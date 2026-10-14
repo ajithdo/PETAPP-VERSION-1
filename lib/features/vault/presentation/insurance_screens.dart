@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
+import '../../../core/utils/read_once.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
@@ -40,8 +41,8 @@ class _InsuranceScreenState extends ConsumerState<InsuranceScreen> {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         if (_opened || !mounted) return;
         _opened = true;
-        final doc = await ref.read(docProvider(widget.docId!).future);
-        final pet = doc == null ? null : await ref.read(petProvider(doc.petId).future);
+        final doc = await readOnce(ref, docProvider(widget.docId!));
+        final pet = doc == null ? null : await readOnce(ref, petProvider(doc.petId));
         if (mounted && pet != null) await showPolicySheet(context, ref, pet: pet, fromDoc: doc);
       });
     }

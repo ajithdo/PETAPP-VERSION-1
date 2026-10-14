@@ -67,6 +67,10 @@ final meRoutes = <RouteBase>[
     path: 'family',
     builder: (_, s) => FamilyScreen(initialPetId: s.uri.queryParameters['pet']),
   ),
+  ...vaultMeRoutes,
+  ...shopMeRoutes,
+  ...sosMeRoutes,
+  ...adminMeRoutes,
 ];
 
 /// Full-screen routes outside the tabs.

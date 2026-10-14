@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
+import '../../../core/utils/read_once.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
@@ -62,12 +63,12 @@ class _AutoReadScreenState extends ConsumerState<AutoReadScreen> {
   }
 
   Future<void> _start() async {
-    final doc = await ref.read(docProvider(widget.docId).future);
+    final doc = await readOnce(ref, docProvider(widget.docId));
     if (doc == null || !mounted) {
       setState(() => _reading = false);
       return;
     }
-    final pet = await ref.read(petProvider(doc.petId).future);
+    final pet = await readOnce(ref, petProvider(doc.petId));
     if (!mounted) return;
     setState(() {
       _doc = doc;

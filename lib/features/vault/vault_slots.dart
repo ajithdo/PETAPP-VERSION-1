@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../album/presentation/album_screen.dart';
+import '../album/presentation/album_viewer.dart';
 import '../album/presentation/birthday_screen.dart';
 import '../album/presentation/memory_card.dart';
 import '../pets/domain/pet.dart';
@@ -30,6 +31,13 @@ final vaultRootRoutes = <RouteBase>[
   GoRoute(
     path: '/pets/:id/album',
     builder: (_, s) => AlbumScreen(petId: s.pathParameters['id'], openAdd: s.uri.queryParameters['add'] == '1'),
+    routes: [
+      // Full-screen viewer; ?set=fav or ?set=album:<name> pages through that set.
+      GoRoute(
+        path: 'item/:itemId',
+        builder: (_, s) => AlbumViewerScreen(petId: s.pathParameters['id']!, itemId: s.pathParameters['itemId']!, filter: s.uri.queryParameters['set']),
+      ),
+    ],
   ),
   GoRoute(path: '/pets/:id/birthday', builder: (_, s) => BirthdayScreen(petId: s.pathParameters['id']!)),
   GoRoute(
