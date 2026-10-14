@@ -131,7 +131,7 @@ export const sendTeleVetMessage = onCall(async (req) => {
       type, text: d.text ?? '', url: d.url ?? null, fileName: d.fileName ?? null, sizeBytes: d.sizeBytes ?? null, durationSec: d.durationSec ?? null,
       event: d.event ?? null, meta: d.meta ?? null, prescriptionId: d.prescriptionId ?? null, demo: false, masked: false, createdAt: now, readBy: [uid],
     });
-    const update: Record<string, unknown> = { lastMessage: d.text ?? d.fileName ?? '', lastType: type, lastSenderId: uid, lastAt: now };
+    const update: Record<string, unknown> = type === 'system' ? { lastAt: now } : { lastMessage: d.text ?? d.fileName ?? '', lastType: type, lastSenderId: uid, lastAt: now };
     for (const p of (conv.participantIds ?? []) as string[]) update[`unread.${p}`] = p === uid ? 0 : FieldValue.increment(1);
     tx.update(convRef, update);
     if (counted) tx.update(ref, { messagesUsed: FieldValue.increment(1) });

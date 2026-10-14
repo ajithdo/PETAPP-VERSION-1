@@ -236,10 +236,14 @@ class ChatRepository {
       'createdAt': now,
       'readBy': [senderId],
     });
+    // System notes (joined, ended...) move the chat up but keep the last
+    // real message as the inbox preview.
     final update = <String, Object?>{
-      'lastMessage': previewOf(type, body, fileName),
-      'lastType': type,
-      'lastSenderId': senderId,
+      if (type != 'system') ...{
+        'lastMessage': previewOf(type, body, fileName),
+        'lastType': type,
+        'lastSenderId': senderId,
+      },
       'lastAt': now,
       'typing.$senderId': null,
     };

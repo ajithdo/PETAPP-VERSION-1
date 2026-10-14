@@ -61,13 +61,13 @@ void seedMessaging(Add add, DateTime now, SeedData data) {
   };
 
   void conversation(String id, Map<String, dynamic> c, List<Map<String, dynamic>> msgs, {Map<String, int> unread = const {}}) {
-    final last = msgs.last;
+    final last = msgs.lastWhere((m) => m['type'] != 'system', orElse: () => msgs.last);
     add('conversations', id, {
       ...c,
       'lastMessage': preview(last),
       'lastType': last['type'],
       'lastSenderId': last['senderId'],
-      'lastAt': last['createdAt'],
+      'lastAt': msgs.last['createdAt'],
       'createdAt': msgs.first['createdAt'],
       'unread': unread,
       'muted': <String, bool>{},
