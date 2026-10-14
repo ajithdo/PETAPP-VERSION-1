@@ -42,6 +42,28 @@ class PetsRepository {
 
   Future<void> updatePet(String id, Map<String, dynamic> fields) => _col.doc(id).update(fields);
 
+  /// Weight changes are routine logs, so the weight chart (Phase 4) has history.
+  Future<void> logWeight(String petId, double kg, String uid, String name) =>
+      _db.collection('logs').add({
+        'petId': petId,
+        'type': 'weight',
+        'at': DateTime.now(),
+        'byUid': uid,
+        'byName': name,
+        'data': {'weightKg': kg},
+      });
+
+  Future<void> archivePet(String petId, {required String reason, String? note}) => _col.doc(petId).update({
+        'archived': true,
+        'archivedReason': reason,
+        'archivedAt': DateTime.now(),
+        'memorial': reason == 'passed_away',
+        'memorialNote': note,
+      });
+
+  Future<void> restorePet(String petId) =>
+      _col.doc(petId).update({'archived': false, 'archivedReason': null, 'memorial': false});
+
   Future<void> logActivity({
     required String petId,
     required String actorId,

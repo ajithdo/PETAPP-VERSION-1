@@ -359,5 +359,364 @@
   "aModeration": "Moderation",
   "aSettings": "Plans and settings",
   "aOutbox": "Demo Outbox",
-  "aAudit": "Audit log"
+  "aAudit": "Audit log",
+  "accept": "Accept",
+  "decline": "Decline",
+  "back": "Back",
+  "done": "Done",
+  "yes": "Yes",
+  "no": "No",
+  "none": "None",
+  "you": "you",
+  "share": "Share",
+  "copyLink": "Copy link",
+  "copied": "Copied",
+  "link": "Link",
+  "phone": "Phone",
+  "manage": "Manage",
+  "moreOptions": "More options",
+  "saveChanges": "Save changes",
+  "details": "Details",
+  "notAdded": "Not added yet",
+  "addPhoto": "Add photo",
+  "addPhotoTitle": "Add a photo",
+  "takePhoto": "Take a photo",
+  "chooseFromGallery": "Choose from gallery",
+  "cropPhoto": "Move and zoom",
+  "cropHint": "Pinch to zoom, drag to move",
+  "editPet": "Edit pet",
+  "petBasicsTitle": "The basics",
+  "petAboutTitle": "About {name}",
+  "@petAboutTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "petAboutSubtitle": "All optional. Add what you know now.",
+  "breed": "Breed",
+  "chooseBreed": "Choose breed",
+  "searchBreeds": "Search breeds",
+  "breedMixed": "Mixed / Indie",
+  "breedOther": "Other (type it)",
+  "typeBreed": "Breed name",
+  "noBreedMatch": "No match. Try 'Other (type it)'.",
+  "colourTag": "Colour tag",
+  "colourTagHint": "Helps you tell pets apart at a glance",
+  "colourAmber": "Amber",
+  "colourLavender": "Lavender",
+  "colourSky": "Sky",
+  "colourRose": "Rose",
+  "colourMint": "Mint",
+  "colourSand": "Sand",
+  "birthday": "Birthday",
+  "exactDate": "Exact date",
+  "approxAge": "Approximate age",
+  "chooseDate": "Choose date",
+  "years": "Years",
+  "months": "Months",
+  "gender": "Gender",
+  "weight": "Weight",
+  "weightKg": "Weight (kg)",
+  "weightGrams": "Weight (grams)",
+  "age": "Age",
+  "moreDetails": "More details",
+  "moreDetailsHint": "Markings, microchip, allergies, diet, clinic",
+  "markings": "Colour and markings",
+  "microchip": "Microchip ID",
+  "neutered": "Neutered / spayed",
+  "allergies": "Allergies",
+  "allergiesHint": "Separate with commas, e.g. Chicken, Wheat",
+  "dietType": "Diet",
+  "regularClinic": "Regular clinic",
+  "temperament": "Temperament notes",
+  "insuranceInVault": "Insurance policies are kept in the Document vault.",
+  "petAdded": "{name} added",
+  "@petAdded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "petLimitTitle": "The free plan has room for {limit} pets",
+  "@petLimitTitle": {
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "petLimitBody": "PawSetu Plus gives you unlimited pets, plus video vet calls and more.",
+  "petsUsed": "{used} of {limit} pets on the free plan",
+  "@petsUsed": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "petNotFound": "We couldn't find this pet",
+  "petCare": "Care",
+  "routine": "Routine",
+  "family": "Family",
+  "petSectionHealth": "Vaccines, medicines, vet visits",
+  "petSectionRoutine": "Walks, meals, play, mood",
+  "petSectionDocs": "Certificates, insurance, reports",
+  "petSectionMemories": "Photos, videos, milestones",
+  "flatFacedChip": "Feels the heat",
+  "qrTag": "QR tag",
+  "archivePet": "Archive pet",
+  "restorePet": "Bring back to active pets",
+  "archiveTitle": "Archive {name}",
+  "@archiveTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "archiveBody": "Their records and memories stay safe. Reminders stop.",
+  "passedAway": "Passed away",
+  "passedAwayHint": "Kept under \"In loving memory\"",
+  "rehomed": "Rehomed",
+  "rehomedHint": "Found a new family",
+  "memorialNote": "A few words (optional)",
+  "memorialNoteHint": "e.g. Forever in our hearts",
+  "inLovingMemory": "In loving memory",
+  "archivedMemorial": "{name} is in loving memory. Their memories are kept safe.",
+  "@archivedMemorial": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "archivedRehomed": "{name} has been archived",
+  "@archivedRehomed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "people": "People",
+  "activity": "Activity",
+  "peopleCount": "{count, plural, =1{1 person} other{{count} people}}",
+  "@peopleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "invite": "Invite",
+  "invitesForYou": "Invites for you",
+  "familyRolesHelp": "Viewer: sees everything and can log routine. Carer: also gives medicines and books services. Co-owner: everything except deleting the pet.",
+  "roleViewerHint": "Sees everything, can log walks and meals",
+  "roleCarerHint": "Also gives medicines and books services",
+  "roleCoownerHint": "Everything except deleting the pet or removing you",
+  "role": "Role",
+  "inviteTitle": "Invite someone to care for {pet}",
+  "@inviteTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "temporaryAccess": "Pet sitter (access ends on a date)",
+  "temporaryAccessHint": "Access stops automatically",
+  "accessUntil": "Access until {date}",
+  "@accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "accessEnded": "Access has ended",
+  "sendInvite": "Send invite",
+  "createLink": "Create invite link",
+  "inviteSent": "Invite sent to {contact}",
+  "@inviteSent": {
+    "placeholders": {
+      "contact": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteLinkReady": "Your invite link is ready",
+  "inviteShareText": "Help me look after {pet} on PawSetu: {link}",
+  "@inviteShareText": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteLink": "Invite link",
+  "invitePending": "Waiting to accept · {role}",
+  "@invitePending": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelInvite": "Cancel invite",
+  "inviteReceived": "{from} invited you to care for {pet} as {role}",
+  "@inviteReceived": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteAccepted": "You can now help care for {pet}",
+  "@inviteAccepted": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteInvalid": "This invite has expired or was already used",
+  "signInToAccept": "Sign in to accept",
+  "changeRole": "Change role",
+  "removeAccess": "Remove access",
+  "removeAccessConfirm": "Remove {name}'s access to {pet}?",
+  "@removeAccessConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "familyLimitTitle": "The free plan shares with up to {limit} people",
+  "@familyLimitTitle": {
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "familyLimitBody": "PawSetu Plus lets up to 8 family members help.",
+  "sharedWithYou": "Shared with you · {role}",
+  "@sharedWithYou": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "noActivityTitle": "No activity yet",
+  "noActivityBody": "When family members log walks or give medicines, it shows here.",
+  "actMedicineGiven": "{who} gave {pet} {detail}",
+  "@actMedicineGiven": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      },
+      "detail": {
+        "type": "String"
+      }
+    }
+  },
+  "actWalk": "{who} walked {pet} ({detail})",
+  "@actWalk": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      },
+      "detail": {
+        "type": "String"
+      }
+    }
+  },
+  "actMeal": "{who} fed {pet}",
+  "@actMeal": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "actMemberJoined": "{who} joined {pet}'s family",
+  "@actMemberJoined": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "actMemberRemoved": "{who} removed {name} from {pet}'s family",
+  "@actMemberRemoved": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "actRoleChanged": "{who} changed a role for {pet}",
+  "@actRoleChanged": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "actGeneric": "{who} updated {pet}",
+  "@actGeneric": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "plusPerkPets": "Unlimited pets and up to 8 family members",
+  "plusPerkVideo": "Video vet calls, longer chats, 10% off video fees",
+  "plusPerkAi": "Unlimited Ask PawSetu questions",
+  "plusPerkStorage": "25 GB for photos and documents",
+  "seePlus": "See PawSetu Plus"
 }

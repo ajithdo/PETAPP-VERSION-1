@@ -1533,6 +1533,840 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Audit log'**
   String get aAudit;
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// No description provided for @decline.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get decline;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no;
+
+  /// No description provided for @none.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get none;
+
+  /// No description provided for @you.
+  ///
+  /// In en, this message translates to:
+  /// **'you'**
+  String get you;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// No description provided for @copyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get copyLink;
+
+  /// No description provided for @copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get copied;
+
+  /// No description provided for @link.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get link;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @manage.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage'**
+  String get manage;
+
+  /// No description provided for @moreOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'More options'**
+  String get moreOptions;
+
+  /// No description provided for @saveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get saveChanges;
+
+  /// No description provided for @details.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get details;
+
+  /// No description provided for @notAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Not added yet'**
+  String get notAdded;
+
+  /// No description provided for @addPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photo'**
+  String get addPhoto;
+
+  /// No description provided for @addPhotoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo'**
+  String get addPhotoTitle;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get takePhoto;
+
+  /// No description provided for @chooseFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get chooseFromGallery;
+
+  /// No description provided for @cropPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Move and zoom'**
+  String get cropPhoto;
+
+  /// No description provided for @cropHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinch to zoom, drag to move'**
+  String get cropHint;
+
+  /// No description provided for @editPet.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit pet'**
+  String get editPet;
+
+  /// No description provided for @petBasicsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The basics'**
+  String get petBasicsTitle;
+
+  /// No description provided for @petAboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About {name}'**
+  String petAboutTitle(String name);
+
+  /// No description provided for @petAboutSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All optional. Add what you know now.'**
+  String get petAboutSubtitle;
+
+  /// No description provided for @breed.
+  ///
+  /// In en, this message translates to:
+  /// **'Breed'**
+  String get breed;
+
+  /// No description provided for @chooseBreed.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose breed'**
+  String get chooseBreed;
+
+  /// No description provided for @searchBreeds.
+  ///
+  /// In en, this message translates to:
+  /// **'Search breeds'**
+  String get searchBreeds;
+
+  /// No description provided for @breedMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed / Indie'**
+  String get breedMixed;
+
+  /// No description provided for @breedOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other (type it)'**
+  String get breedOther;
+
+  /// No description provided for @typeBreed.
+  ///
+  /// In en, this message translates to:
+  /// **'Breed name'**
+  String get typeBreed;
+
+  /// No description provided for @noBreedMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No match. Try \'Other (type it)\'.'**
+  String get noBreedMatch;
+
+  /// No description provided for @colourTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Colour tag'**
+  String get colourTag;
+
+  /// No description provided for @colourTagHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Helps you tell pets apart at a glance'**
+  String get colourTagHint;
+
+  /// No description provided for @colourAmber.
+  ///
+  /// In en, this message translates to:
+  /// **'Amber'**
+  String get colourAmber;
+
+  /// No description provided for @colourLavender.
+  ///
+  /// In en, this message translates to:
+  /// **'Lavender'**
+  String get colourLavender;
+
+  /// No description provided for @colourSky.
+  ///
+  /// In en, this message translates to:
+  /// **'Sky'**
+  String get colourSky;
+
+  /// No description provided for @colourRose.
+  ///
+  /// In en, this message translates to:
+  /// **'Rose'**
+  String get colourRose;
+
+  /// No description provided for @colourMint.
+  ///
+  /// In en, this message translates to:
+  /// **'Mint'**
+  String get colourMint;
+
+  /// No description provided for @colourSand.
+  ///
+  /// In en, this message translates to:
+  /// **'Sand'**
+  String get colourSand;
+
+  /// No description provided for @birthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday'**
+  String get birthday;
+
+  /// No description provided for @exactDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Exact date'**
+  String get exactDate;
+
+  /// No description provided for @approxAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximate age'**
+  String get approxAge;
+
+  /// No description provided for @chooseDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose date'**
+  String get chooseDate;
+
+  /// No description provided for @years.
+  ///
+  /// In en, this message translates to:
+  /// **'Years'**
+  String get years;
+
+  /// No description provided for @months.
+  ///
+  /// In en, this message translates to:
+  /// **'Months'**
+  String get months;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @weight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get weight;
+
+  /// No description provided for @weightKg.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight (kg)'**
+  String get weightKg;
+
+  /// No description provided for @weightGrams.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight (grams)'**
+  String get weightGrams;
+
+  /// No description provided for @age.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get age;
+
+  /// No description provided for @moreDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'More details'**
+  String get moreDetails;
+
+  /// No description provided for @moreDetailsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Markings, microchip, allergies, diet, clinic'**
+  String get moreDetailsHint;
+
+  /// No description provided for @markings.
+  ///
+  /// In en, this message translates to:
+  /// **'Colour and markings'**
+  String get markings;
+
+  /// No description provided for @microchip.
+  ///
+  /// In en, this message translates to:
+  /// **'Microchip ID'**
+  String get microchip;
+
+  /// No description provided for @neutered.
+  ///
+  /// In en, this message translates to:
+  /// **'Neutered / spayed'**
+  String get neutered;
+
+  /// No description provided for @allergies.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies'**
+  String get allergies;
+
+  /// No description provided for @allergiesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Separate with commas, e.g. Chicken, Wheat'**
+  String get allergiesHint;
+
+  /// No description provided for @dietType.
+  ///
+  /// In en, this message translates to:
+  /// **'Diet'**
+  String get dietType;
+
+  /// No description provided for @regularClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Regular clinic'**
+  String get regularClinic;
+
+  /// No description provided for @temperament.
+  ///
+  /// In en, this message translates to:
+  /// **'Temperament notes'**
+  String get temperament;
+
+  /// No description provided for @insuranceInVault.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance policies are kept in the Document vault.'**
+  String get insuranceInVault;
+
+  /// No description provided for @petAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} added'**
+  String petAdded(String name);
+
+  /// No description provided for @petLimitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The free plan has room for {limit} pets'**
+  String petLimitTitle(int limit);
+
+  /// No description provided for @petLimitBody.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu Plus gives you unlimited pets, plus video vet calls and more.'**
+  String get petLimitBody;
+
+  /// No description provided for @petsUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {limit} pets on the free plan'**
+  String petsUsed(int used, int limit);
+
+  /// No description provided for @petNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find this pet'**
+  String get petNotFound;
+
+  /// No description provided for @petCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Care'**
+  String get petCare;
+
+  /// No description provided for @routine.
+  ///
+  /// In en, this message translates to:
+  /// **'Routine'**
+  String get routine;
+
+  /// No description provided for @family.
+  ///
+  /// In en, this message translates to:
+  /// **'Family'**
+  String get family;
+
+  /// No description provided for @petSectionHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccines, medicines, vet visits'**
+  String get petSectionHealth;
+
+  /// No description provided for @petSectionRoutine.
+  ///
+  /// In en, this message translates to:
+  /// **'Walks, meals, play, mood'**
+  String get petSectionRoutine;
+
+  /// No description provided for @petSectionDocs.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificates, insurance, reports'**
+  String get petSectionDocs;
+
+  /// No description provided for @petSectionMemories.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos, videos, milestones'**
+  String get petSectionMemories;
+
+  /// No description provided for @flatFacedChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Feels the heat'**
+  String get flatFacedChip;
+
+  /// No description provided for @qrTag.
+  ///
+  /// In en, this message translates to:
+  /// **'QR tag'**
+  String get qrTag;
+
+  /// No description provided for @archivePet.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive pet'**
+  String get archivePet;
+
+  /// No description provided for @restorePet.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring back to active pets'**
+  String get restorePet;
+
+  /// No description provided for @archiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive {name}'**
+  String archiveTitle(String name);
+
+  /// No description provided for @archiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Their records and memories stay safe. Reminders stop.'**
+  String get archiveBody;
+
+  /// No description provided for @passedAway.
+  ///
+  /// In en, this message translates to:
+  /// **'Passed away'**
+  String get passedAway;
+
+  /// No description provided for @passedAwayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Kept under \"In loving memory\"'**
+  String get passedAwayHint;
+
+  /// No description provided for @rehomed.
+  ///
+  /// In en, this message translates to:
+  /// **'Rehomed'**
+  String get rehomed;
+
+  /// No description provided for @rehomedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Found a new family'**
+  String get rehomedHint;
+
+  /// No description provided for @memorialNote.
+  ///
+  /// In en, this message translates to:
+  /// **'A few words (optional)'**
+  String get memorialNote;
+
+  /// No description provided for @memorialNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Forever in our hearts'**
+  String get memorialNoteHint;
+
+  /// No description provided for @inLovingMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'In loving memory'**
+  String get inLovingMemory;
+
+  /// No description provided for @archivedMemorial.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is in loving memory. Their memories are kept safe.'**
+  String archivedMemorial(String name);
+
+  /// No description provided for @archivedRehomed.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} has been archived'**
+  String archivedRehomed(String name);
+
+  /// No description provided for @people.
+  ///
+  /// In en, this message translates to:
+  /// **'People'**
+  String get people;
+
+  /// No description provided for @activity.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity'**
+  String get activity;
+
+  /// No description provided for @peopleCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 person} other{{count} people}}'**
+  String peopleCount(int count);
+
+  /// No description provided for @invite.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite'**
+  String get invite;
+
+  /// No description provided for @invitesForYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Invites for you'**
+  String get invitesForYou;
+
+  /// No description provided for @familyRolesHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewer: sees everything and can log routine. Carer: also gives medicines and books services. Co-owner: everything except deleting the pet.'**
+  String get familyRolesHelp;
+
+  /// No description provided for @roleViewerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sees everything, can log walks and meals'**
+  String get roleViewerHint;
+
+  /// No description provided for @roleCarerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Also gives medicines and books services'**
+  String get roleCarerHint;
+
+  /// No description provided for @roleCoownerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything except deleting the pet or removing you'**
+  String get roleCoownerHint;
+
+  /// No description provided for @role.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get role;
+
+  /// No description provided for @inviteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite someone to care for {pet}'**
+  String inviteTitle(String pet);
+
+  /// No description provided for @temporaryAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet sitter (access ends on a date)'**
+  String get temporaryAccess;
+
+  /// No description provided for @temporaryAccessHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Access stops automatically'**
+  String get temporaryAccessHint;
+
+  /// No description provided for @accessUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Access until {date}'**
+  String accessUntil(String date);
+
+  /// No description provided for @accessEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Access has ended'**
+  String get accessEnded;
+
+  /// No description provided for @sendInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Send invite'**
+  String get sendInvite;
+
+  /// No description provided for @createLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Create invite link'**
+  String get createLink;
+
+  /// No description provided for @inviteSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite sent to {contact}'**
+  String inviteSent(String contact);
+
+  /// No description provided for @inviteLinkReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Your invite link is ready'**
+  String get inviteLinkReady;
+
+  /// No description provided for @inviteShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Help me look after {pet} on PawSetu: {link}'**
+  String inviteShareText(String pet, String link);
+
+  /// No description provided for @inviteLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite link'**
+  String get inviteLink;
+
+  /// No description provided for @invitePending.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting to accept · {role}'**
+  String invitePending(String role);
+
+  /// No description provided for @cancelInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel invite'**
+  String get cancelInvite;
+
+  /// No description provided for @inviteReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'{from} invited you to care for {pet} as {role}'**
+  String inviteReceived(String from, String pet, String role);
+
+  /// No description provided for @inviteAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'You can now help care for {pet}'**
+  String inviteAccepted(String pet);
+
+  /// No description provided for @inviteInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'This invite has expired or was already used'**
+  String get inviteInvalid;
+
+  /// No description provided for @signInToAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to accept'**
+  String get signInToAccept;
+
+  /// No description provided for @changeRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Change role'**
+  String get changeRole;
+
+  /// No description provided for @removeAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove access'**
+  String get removeAccess;
+
+  /// No description provided for @removeAccessConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}\'s access to {pet}?'**
+  String removeAccessConfirm(String name, String pet);
+
+  /// No description provided for @familyLimitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The free plan shares with up to {limit} people'**
+  String familyLimitTitle(int limit);
+
+  /// No description provided for @familyLimitBody.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu Plus lets up to 8 family members help.'**
+  String get familyLimitBody;
+
+  /// No description provided for @sharedWithYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared with you · {role}'**
+  String sharedWithYou(String role);
+
+  /// No description provided for @noActivityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No activity yet'**
+  String get noActivityTitle;
+
+  /// No description provided for @noActivityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'When family members log walks or give medicines, it shows here.'**
+  String get noActivityBody;
+
+  /// No description provided for @actMedicineGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'{who} gave {pet} {detail}'**
+  String actMedicineGiven(String who, String pet, String detail);
+
+  /// No description provided for @actWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'{who} walked {pet} ({detail})'**
+  String actWalk(String who, String pet, String detail);
+
+  /// No description provided for @actMeal.
+  ///
+  /// In en, this message translates to:
+  /// **'{who} fed {pet}'**
+  String actMeal(String who, String pet);
+
+  /// No description provided for @actMemberJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'{who} joined {pet}\'s family'**
+  String actMemberJoined(String who, String pet);
+
+  /// No description provided for @actMemberRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'{who} removed {name} from {pet}\'s family'**
+  String actMemberRemoved(String who, String name, String pet);
+
+  /// No description provided for @actRoleChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'{who} changed a role for {pet}'**
+  String actRoleChanged(String who, String pet);
+
+  /// No description provided for @actGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'{who} updated {pet}'**
+  String actGeneric(String who, String pet);
+
+  /// No description provided for @plusPerkPets.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited pets and up to 8 family members'**
+  String get plusPerkPets;
+
+  /// No description provided for @plusPerkVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video vet calls, longer chats, 10% off video fees'**
+  String get plusPerkVideo;
+
+  /// No description provided for @plusPerkAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited Ask PawSetu questions'**
+  String get plusPerkAi;
+
+  /// No description provided for @plusPerkStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'25 GB for photos and documents'**
+  String get plusPerkStorage;
+
+  /// No description provided for @seePlus.
+  ///
+  /// In en, this message translates to:
+  /// **'See PawSetu Plus'**
+  String get seePlus;
 }
 
 class _AppLocalizationsDelegate

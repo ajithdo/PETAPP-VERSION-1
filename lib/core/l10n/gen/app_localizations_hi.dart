@@ -782,4 +782,479 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get aAudit => 'ऑडिट लॉग';
+
+  @override
+  String get accept => 'स्वीकार करें';
+
+  @override
+  String get decline => 'मना करें';
+
+  @override
+  String get back => 'पीछे';
+
+  @override
+  String get done => 'हो गया';
+
+  @override
+  String get yes => 'हाँ';
+
+  @override
+  String get no => 'नहीं';
+
+  @override
+  String get none => 'कोई नहीं';
+
+  @override
+  String get you => 'आप';
+
+  @override
+  String get share => 'साझा करें';
+
+  @override
+  String get copyLink => 'लिंक कॉपी करें';
+
+  @override
+  String get copied => 'कॉपी हो गया';
+
+  @override
+  String get link => 'लिंक';
+
+  @override
+  String get phone => 'फ़ोन';
+
+  @override
+  String get manage => 'प्रबंधित करें';
+
+  @override
+  String get moreOptions => 'और विकल्प';
+
+  @override
+  String get saveChanges => 'बदलाव सहेजें';
+
+  @override
+  String get details => 'विवरण';
+
+  @override
+  String get notAdded => 'अभी नहीं जोड़ा';
+
+  @override
+  String get addPhoto => 'फ़ोटो जोड़ें';
+
+  @override
+  String get addPhotoTitle => 'फ़ोटो जोड़ें';
+
+  @override
+  String get takePhoto => 'फ़ोटो खींचें';
+
+  @override
+  String get chooseFromGallery => 'गैलरी से चुनें';
+
+  @override
+  String get cropPhoto => 'खिसकाएँ और ज़ूम करें';
+
+  @override
+  String get cropHint => 'ज़ूम के लिए पिंच करें, खिसकाने के लिए खींचें';
+
+  @override
+  String get editPet => 'पालतू बदलें';
+
+  @override
+  String get petBasicsTitle => 'बुनियादी जानकारी';
+
+  @override
+  String petAboutTitle(String name) {
+    return '$name के बारे में';
+  }
+
+  @override
+  String get petAboutSubtitle => 'सब वैकल्पिक है। जो अभी पता है वो जोड़ें।';
+
+  @override
+  String get breed => 'नस्ल';
+
+  @override
+  String get chooseBreed => 'नस्ल चुनें';
+
+  @override
+  String get searchBreeds => 'नस्ल खोजें';
+
+  @override
+  String get breedMixed => 'मिश्रित / देसी';
+
+  @override
+  String get breedOther => 'अन्य (लिखें)';
+
+  @override
+  String get typeBreed => 'नस्ल का नाम';
+
+  @override
+  String get noBreedMatch => 'कोई मेल नहीं। \'अन्य (लिखें)\' आज़माएँ।';
+
+  @override
+  String get colourTag => 'रंग टैग';
+
+  @override
+  String get colourTagHint => 'एक नज़र में पालतू पहचानने में मदद करता है';
+
+  @override
+  String get colourAmber => 'अंबर';
+
+  @override
+  String get colourLavender => 'लैवेंडर';
+
+  @override
+  String get colourSky => 'आसमानी';
+
+  @override
+  String get colourRose => 'गुलाबी';
+
+  @override
+  String get colourMint => 'पुदीना हरा';
+
+  @override
+  String get colourSand => 'रेतीला';
+
+  @override
+  String get birthday => 'जन्मदिन';
+
+  @override
+  String get exactDate => 'सही तारीख';
+
+  @override
+  String get approxAge => 'अनुमानित उम्र';
+
+  @override
+  String get chooseDate => 'तारीख चुनें';
+
+  @override
+  String get years => 'वर्ष';
+
+  @override
+  String get months => 'महीने';
+
+  @override
+  String get gender => 'लिंग';
+
+  @override
+  String get weight => 'वज़न';
+
+  @override
+  String get weightKg => 'वज़न (किलो)';
+
+  @override
+  String get weightGrams => 'वज़न (ग्राम)';
+
+  @override
+  String get age => 'उम्र';
+
+  @override
+  String get moreDetails => 'और जानकारी';
+
+  @override
+  String get moreDetailsHint => 'निशान, माइक्रोचिप, एलर्जी, आहार, क्लिनिक';
+
+  @override
+  String get markings => 'रंग और निशान';
+
+  @override
+  String get microchip => 'माइक्रोचिप ID';
+
+  @override
+  String get neutered => 'नसबंदी हुई';
+
+  @override
+  String get allergies => 'एलर्जी';
+
+  @override
+  String get allergiesHint => 'कॉमा से अलग करें, जैसे चिकन, गेहूँ';
+
+  @override
+  String get dietType => 'आहार';
+
+  @override
+  String get regularClinic => 'नियमित क्लिनिक';
+
+  @override
+  String get temperament => 'स्वभाव के बारे में';
+
+  @override
+  String get insuranceInVault =>
+      'बीमा पॉलिसी दस्तावेज़ तिजोरी में रखी जाती हैं।';
+
+  @override
+  String petAdded(String name) {
+    return '$name जोड़ा गया';
+  }
+
+  @override
+  String petLimitTitle(int limit) {
+    return 'फ्री प्लान में $limit पालतू तक जोड़ सकते हैं';
+  }
+
+  @override
+  String get petLimitBody =>
+      'PawSetu Plus में असीमित पालतू, वीडियो डॉक्टर कॉल और बहुत कुछ।';
+
+  @override
+  String petsUsed(int used, int limit) {
+    return 'फ्री प्लान पर $limit में से $used पालतू';
+  }
+
+  @override
+  String get petNotFound => 'यह पालतू नहीं मिला';
+
+  @override
+  String get petCare => 'देखभाल';
+
+  @override
+  String get routine => 'दिनचर्या';
+
+  @override
+  String get family => 'परिवार';
+
+  @override
+  String get petSectionHealth => 'टीके, दवाएँ, डॉक्टर विज़िट';
+
+  @override
+  String get petSectionRoutine => 'सैर, खाना, खेल, मूड';
+
+  @override
+  String get petSectionDocs => 'प्रमाणपत्र, बीमा, रिपोर्ट';
+
+  @override
+  String get petSectionMemories => 'फ़ोटो, वीडियो, खास पल';
+
+  @override
+  String get flatFacedChip => 'गर्मी से बचाएँ';
+
+  @override
+  String get qrTag => 'QR टैग';
+
+  @override
+  String get archivePet => 'पालतू संग्रहित करें';
+
+  @override
+  String get restorePet => 'सक्रिय पालतुओं में वापस लाएँ';
+
+  @override
+  String archiveTitle(String name) {
+    return '$name को संग्रहित करें';
+  }
+
+  @override
+  String get archiveBody =>
+      'रिकॉर्ड और यादें सुरक्षित रहेंगी। रिमाइंडर बंद हो जाएँगे।';
+
+  @override
+  String get passedAway => 'गुज़र गया';
+
+  @override
+  String get passedAwayHint => '\"प्यार भरी याद में\" के तहत रखा जाएगा';
+
+  @override
+  String get rehomed => 'नए घर गया';
+
+  @override
+  String get rehomedHint => 'नया परिवार मिला';
+
+  @override
+  String get memorialNote => 'कुछ शब्द (वैकल्पिक)';
+
+  @override
+  String get memorialNoteHint => 'जैसे, हमेशा हमारे दिल में';
+
+  @override
+  String get inLovingMemory => 'प्यार भरी याद में';
+
+  @override
+  String archivedMemorial(String name) {
+    return '$name प्यार भरी याद में है। उसकी यादें सुरक्षित हैं।';
+  }
+
+  @override
+  String archivedRehomed(String name) {
+    return '$name संग्रहित हो गया';
+  }
+
+  @override
+  String get people => 'लोग';
+
+  @override
+  String get activity => 'गतिविधि';
+
+  @override
+  String peopleCount(int count) {
+    return '$count लोग';
+  }
+
+  @override
+  String get invite => 'आमंत्रित करें';
+
+  @override
+  String get invitesForYou => 'आपके लिए आमंत्रण';
+
+  @override
+  String get familyRolesHelp =>
+      'दर्शक: सब देख सकता है और दिनचर्या दर्ज कर सकता है। देखभालकर्ता: दवा भी दे सकता है और सेवाएँ बुक कर सकता है। सह-मालिक: पालतू हटाने के अलावा सब कुछ।';
+
+  @override
+  String get roleViewerHint => 'सब देखता है, सैर और खाना दर्ज कर सकता है';
+
+  @override
+  String get roleCarerHint => 'दवा भी देता है और सेवाएँ बुक करता है';
+
+  @override
+  String get roleCoownerHint => 'पालतू हटाने या आपको हटाने के अलावा सब';
+
+  @override
+  String get role => 'भूमिका';
+
+  @override
+  String inviteTitle(String pet) {
+    return '$pet की देखभाल के लिए किसी को आमंत्रित करें';
+  }
+
+  @override
+  String get temporaryAccess => 'पेट सिटर (पहुँच एक तारीख पर खत्म)';
+
+  @override
+  String get temporaryAccessHint => 'पहुँच अपने आप बंद हो जाएगी';
+
+  @override
+  String accessUntil(String date) {
+    return '$date तक पहुँच';
+  }
+
+  @override
+  String get accessEnded => 'पहुँच खत्म हो गई';
+
+  @override
+  String get sendInvite => 'आमंत्रण भेजें';
+
+  @override
+  String get createLink => 'आमंत्रण लिंक बनाएँ';
+
+  @override
+  String inviteSent(String contact) {
+    return '$contact को आमंत्रण भेजा गया';
+  }
+
+  @override
+  String get inviteLinkReady => 'आपका आमंत्रण लिंक तैयार है';
+
+  @override
+  String inviteShareText(String pet, String link) {
+    return 'PawSetu पर $pet की देखभाल में मेरी मदद करें: $link';
+  }
+
+  @override
+  String get inviteLink => 'आमंत्रण लिंक';
+
+  @override
+  String invitePending(String role) {
+    return 'स्वीकृति का इंतज़ार · $role';
+  }
+
+  @override
+  String get cancelInvite => 'आमंत्रण रद्द करें';
+
+  @override
+  String inviteReceived(String from, String pet, String role) {
+    return '$from ने आपको $pet की देखभाल के लिए $role के रूप में आमंत्रित किया';
+  }
+
+  @override
+  String inviteAccepted(String pet) {
+    return 'अब आप $pet की देखभाल में मदद कर सकते हैं';
+  }
+
+  @override
+  String get inviteInvalid =>
+      'यह आमंत्रण खत्म हो गया या पहले ही उपयोग हो चुका है';
+
+  @override
+  String get signInToAccept => 'स्वीकार करने के लिए साइन इन करें';
+
+  @override
+  String get changeRole => 'भूमिका बदलें';
+
+  @override
+  String get removeAccess => 'पहुँच हटाएँ';
+
+  @override
+  String removeAccessConfirm(String name, String pet) {
+    return '$pet से $name की पहुँच हटाएँ?';
+  }
+
+  @override
+  String familyLimitTitle(int limit) {
+    return 'फ्री प्लान $limit लोगों तक साझा करता है';
+  }
+
+  @override
+  String get familyLimitBody =>
+      'PawSetu Plus में 8 परिवार वाले मदद कर सकते हैं।';
+
+  @override
+  String sharedWithYou(String role) {
+    return 'आपके साथ साझा · $role';
+  }
+
+  @override
+  String get noActivityTitle => 'अभी कोई गतिविधि नहीं';
+
+  @override
+  String get noActivityBody =>
+      'जब परिवार वाले सैर दर्ज करेंगे या दवा देंगे, तो यहाँ दिखेगा।';
+
+  @override
+  String actMedicineGiven(String who, String pet, String detail) {
+    return '$who ने $pet को $detail दी';
+  }
+
+  @override
+  String actWalk(String who, String pet, String detail) {
+    return '$who ने $pet को सैर कराई ($detail)';
+  }
+
+  @override
+  String actMeal(String who, String pet) {
+    return '$who ने $pet को खाना खिलाया';
+  }
+
+  @override
+  String actMemberJoined(String who, String pet) {
+    return '$who $pet के परिवार में शामिल हुए';
+  }
+
+  @override
+  String actMemberRemoved(String who, String name, String pet) {
+    return '$who ने $name को $pet के परिवार से हटाया';
+  }
+
+  @override
+  String actRoleChanged(String who, String pet) {
+    return '$who ने $pet के लिए भूमिका बदली';
+  }
+
+  @override
+  String actGeneric(String who, String pet) {
+    return '$who ने $pet को अपडेट किया';
+  }
+
+  @override
+  String get plusPerkPets => 'असीमित पालतू और 8 परिवार वाले';
+
+  @override
+  String get plusPerkVideo =>
+      'वीडियो डॉक्टर कॉल, लंबी चैट, वीडियो फ़ीस पर 10% छूट';
+
+  @override
+  String get plusPerkAi => 'Ask PawSetu में असीमित सवाल';
+
+  @override
+  String get plusPerkStorage => 'फ़ोटो और दस्तावेज़ों के लिए 25 GB';
+
+  @override
+  String get seePlus => 'PawSetu Plus देखें';
 }

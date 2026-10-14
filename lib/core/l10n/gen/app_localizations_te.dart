@@ -790,4 +790,479 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get aAudit => 'ఆడిట్ లాగ్';
+
+  @override
+  String get accept => 'అంగీకరించండి';
+
+  @override
+  String get decline => 'తిరస్కరించండి';
+
+  @override
+  String get back => 'వెనక్కి';
+
+  @override
+  String get done => 'పూర్తయింది';
+
+  @override
+  String get yes => 'అవును';
+
+  @override
+  String get no => 'కాదు';
+
+  @override
+  String get none => 'ఏదీ లేదు';
+
+  @override
+  String get you => 'మీరు';
+
+  @override
+  String get share => 'షేర్ చేయండి';
+
+  @override
+  String get copyLink => 'లింక్ కాపీ చేయండి';
+
+  @override
+  String get copied => 'కాపీ అయింది';
+
+  @override
+  String get link => 'లింక్';
+
+  @override
+  String get phone => 'ఫోన్';
+
+  @override
+  String get manage => 'నిర్వహించండి';
+
+  @override
+  String get moreOptions => 'మరిన్ని ఎంపికలు';
+
+  @override
+  String get saveChanges => 'మార్పులు సేవ్ చేయండి';
+
+  @override
+  String get details => 'వివరాలు';
+
+  @override
+  String get notAdded => 'ఇంకా జోడించలేదు';
+
+  @override
+  String get addPhoto => 'ఫోటో జోడించండి';
+
+  @override
+  String get addPhotoTitle => 'ఫోటో జోడించండి';
+
+  @override
+  String get takePhoto => 'ఫోటో తీయండి';
+
+  @override
+  String get chooseFromGallery => 'గ్యాలరీ నుండి ఎంచుకోండి';
+
+  @override
+  String get cropPhoto => 'జరిపి జూమ్ చేయండి';
+
+  @override
+  String get cropHint => 'జూమ్‌కి చిటికెడు, జరపడానికి లాగండి';
+
+  @override
+  String get editPet => 'పెంపుడు జంతువును సవరించండి';
+
+  @override
+  String get petBasicsTitle => 'ప్రాథమిక వివరాలు';
+
+  @override
+  String petAboutTitle(String name) {
+    return '$name గురించి';
+  }
+
+  @override
+  String get petAboutSubtitle => 'అన్నీ ఐచ్ఛికం. ఇప్పుడు తెలిసినవి జోడించండి.';
+
+  @override
+  String get breed => 'జాతి';
+
+  @override
+  String get chooseBreed => 'జాతి ఎంచుకోండి';
+
+  @override
+  String get searchBreeds => 'జాతులు వెతకండి';
+
+  @override
+  String get breedMixed => 'మిశ్రమ / దేశీ';
+
+  @override
+  String get breedOther => 'ఇతర (టైప్ చేయండి)';
+
+  @override
+  String get typeBreed => 'జాతి పేరు';
+
+  @override
+  String get noBreedMatch => 'సరిపోలలేదు. \'ఇతర (టైప్ చేయండి)\' ప్రయత్నించండి.';
+
+  @override
+  String get colourTag => 'రంగు ట్యాగ్';
+
+  @override
+  String get colourTagHint => 'ఒక్క చూపులో పెంపుడు జంతువులను గుర్తించడానికి';
+
+  @override
+  String get colourAmber => 'అంబర్';
+
+  @override
+  String get colourLavender => 'లావెండర్';
+
+  @override
+  String get colourSky => 'ఆకాశ నీలం';
+
+  @override
+  String get colourRose => 'గులాబీ';
+
+  @override
+  String get colourMint => 'పుదీనా ఆకుపచ్చ';
+
+  @override
+  String get colourSand => 'ఇసుక రంగు';
+
+  @override
+  String get birthday => 'పుట్టినరోజు';
+
+  @override
+  String get exactDate => 'ఖచ్చితమైన తేదీ';
+
+  @override
+  String get approxAge => 'సుమారు వయస్సు';
+
+  @override
+  String get chooseDate => 'తేదీ ఎంచుకోండి';
+
+  @override
+  String get years => 'సంవత్సరాలు';
+
+  @override
+  String get months => 'నెలలు';
+
+  @override
+  String get gender => 'లింగం';
+
+  @override
+  String get weight => 'బరువు';
+
+  @override
+  String get weightKg => 'బరువు (కి.గ్రా.)';
+
+  @override
+  String get weightGrams => 'బరువు (గ్రాములు)';
+
+  @override
+  String get age => 'వయస్సు';
+
+  @override
+  String get moreDetails => 'మరిన్ని వివరాలు';
+
+  @override
+  String get moreDetailsHint =>
+      'గుర్తులు, మైక్రోచిప్, అలెర్జీలు, ఆహారం, క్లినిక్';
+
+  @override
+  String get markings => 'రంగు, గుర్తులు';
+
+  @override
+  String get microchip => 'మైక్రోచిప్ ID';
+
+  @override
+  String get neutered => 'స్టెరిలైజ్ చేశారు';
+
+  @override
+  String get allergies => 'అలెర్జీలు';
+
+  @override
+  String get allergiesHint => 'కామాలతో వేరు చేయండి, ఉదా. చికెన్, గోధుమ';
+
+  @override
+  String get dietType => 'ఆహారం';
+
+  @override
+  String get regularClinic => 'సాధారణ క్లినిక్';
+
+  @override
+  String get temperament => 'స్వభావం గురించి';
+
+  @override
+  String get insuranceInVault => 'బీమా పాలసీలు డాక్యుమెంట్ వాల్ట్‌లో ఉంటాయి.';
+
+  @override
+  String petAdded(String name) {
+    return '$name జోడించబడింది';
+  }
+
+  @override
+  String petLimitTitle(int limit) {
+    return 'ఫ్రీ ప్లాన్‌లో $limit పెంపుడు జంతువుల వరకు';
+  }
+
+  @override
+  String get petLimitBody =>
+      'PawSetu Plusలో అపరిమిత పెంపుడు జంతువులు, వీడియో వెట్ కాల్స్ ఇంకా మరిన్ని.';
+
+  @override
+  String petsUsed(int used, int limit) {
+    return 'ఫ్రీ ప్లాన్‌లో $limitలో $used పెంపుడు జంతువులు';
+  }
+
+  @override
+  String get petNotFound => 'ఈ పెంపుడు జంతువు దొరకలేదు';
+
+  @override
+  String get petCare => 'సంరక్షణ';
+
+  @override
+  String get routine => 'దినచర్య';
+
+  @override
+  String get family => 'కుటుంబం';
+
+  @override
+  String get petSectionHealth => 'టీకాలు, మందులు, వెట్ సందర్శనలు';
+
+  @override
+  String get petSectionRoutine => 'నడకలు, భోజనం, ఆట, మూడ్';
+
+  @override
+  String get petSectionDocs => 'సర్టిఫికెట్లు, బీమా, రిపోర్టులు';
+
+  @override
+  String get petSectionMemories => 'ఫోటోలు, వీడియోలు, మైలురాళ్లు';
+
+  @override
+  String get flatFacedChip => 'వేడికి జాగ్రత్త';
+
+  @override
+  String get qrTag => 'QR ట్యాగ్';
+
+  @override
+  String get archivePet => 'పెంపుడు జంతువును ఆర్కైవ్ చేయండి';
+
+  @override
+  String get restorePet => 'యాక్టివ్ పెంపుడు జంతువుల్లోకి తిరిగి తీసుకురండి';
+
+  @override
+  String archiveTitle(String name) {
+    return '$nameని ఆర్కైవ్ చేయండి';
+  }
+
+  @override
+  String get archiveBody =>
+      'రికార్డులు, జ్ఞాపకాలు సురక్షితంగా ఉంటాయి. రిమైండర్లు ఆగిపోతాయి.';
+
+  @override
+  String get passedAway => 'మరణించింది';
+
+  @override
+  String get passedAwayHint => '\"ప్రేమపూర్వక జ్ఞాపకంలో\" కింద ఉంచుతాం';
+
+  @override
+  String get rehomed => 'కొత్త ఇంటికి వెళ్ళింది';
+
+  @override
+  String get rehomedHint => 'కొత్త కుటుంబం దొరికింది';
+
+  @override
+  String get memorialNote => 'కొన్ని మాటలు (ఐచ్ఛికం)';
+
+  @override
+  String get memorialNoteHint => 'ఉదా. ఎప్పటికీ మా హృదయాల్లో';
+
+  @override
+  String get inLovingMemory => 'ప్రేమపూర్వక జ్ఞాపకంలో';
+
+  @override
+  String archivedMemorial(String name) {
+    return '$name ప్రేమపూర్వక జ్ఞాపకంలో ఉంది. జ్ఞాపకాలు సురక్షితం.';
+  }
+
+  @override
+  String archivedRehomed(String name) {
+    return '$name ఆర్కైవ్ అయింది';
+  }
+
+  @override
+  String get people => 'వ్యక్తులు';
+
+  @override
+  String get activity => 'కార్యకలాపం';
+
+  @override
+  String peopleCount(int count) {
+    return '$count మంది';
+  }
+
+  @override
+  String get invite => 'ఆహ్వానించండి';
+
+  @override
+  String get invitesForYou => 'మీకు ఆహ్వానాలు';
+
+  @override
+  String get familyRolesHelp =>
+      'వీక్షకుడు: అన్నీ చూడగలరు, దినచర్య నమోదు చేయగలరు. సంరక్షకుడు: మందులు ఇవ్వగలరు, సేవలు బుక్ చేయగలరు. సహ-యజమాని: పెంపుడు జంతువును తొలగించడం తప్ప అన్నీ.';
+
+  @override
+  String get roleViewerHint => 'అన్నీ చూస్తారు, నడకలు, భోజనం నమోదు చేయగలరు';
+
+  @override
+  String get roleCarerHint => 'మందులు ఇస్తారు, సేవలు బుక్ చేస్తారు';
+
+  @override
+  String get roleCoownerHint =>
+      'పెంపుడు జంతువును తొలగించడం లేదా మిమ్మల్ని తీసేయడం తప్ప అన్నీ';
+
+  @override
+  String get role => 'పాత్ర';
+
+  @override
+  String inviteTitle(String pet) {
+    return '$pet సంరక్షణకు ఎవరినైనా ఆహ్వానించండి';
+  }
+
+  @override
+  String get temporaryAccess => 'పెట్ సిట్టర్ (యాక్సెస్ ఒక తేదీన ముగుస్తుంది)';
+
+  @override
+  String get temporaryAccessHint => 'యాక్సెస్ ఆటోమేటిగ్గా ఆగిపోతుంది';
+
+  @override
+  String accessUntil(String date) {
+    return '$date వరకు యాక్సెస్';
+  }
+
+  @override
+  String get accessEnded => 'యాక్సెస్ ముగిసింది';
+
+  @override
+  String get sendInvite => 'ఆహ్వానం పంపండి';
+
+  @override
+  String get createLink => 'ఆహ్వాన లింక్ సృష్టించండి';
+
+  @override
+  String inviteSent(String contact) {
+    return '$contactకి ఆహ్వానం పంపాం';
+  }
+
+  @override
+  String get inviteLinkReady => 'మీ ఆహ్వాన లింక్ సిద్ధం';
+
+  @override
+  String inviteShareText(String pet, String link) {
+    return 'PawSetuలో $pet సంరక్షణలో నాకు సహాయం చేయండి: $link';
+  }
+
+  @override
+  String get inviteLink => 'ఆహ్వాన లింక్';
+
+  @override
+  String invitePending(String role) {
+    return 'అంగీకారం కోసం వేచి ఉంది · $role';
+  }
+
+  @override
+  String get cancelInvite => 'ఆహ్వానం రద్దు చేయండి';
+
+  @override
+  String inviteReceived(String from, String pet, String role) {
+    return '$from మిమ్మల్ని $pet సంరక్షణకు $roleగా ఆహ్వానించారు';
+  }
+
+  @override
+  String inviteAccepted(String pet) {
+    return 'ఇప్పుడు మీరు $pet సంరక్షణలో సహాయం చేయవచ్చు';
+  }
+
+  @override
+  String get inviteInvalid => 'ఈ ఆహ్వానం గడువు ముగిసింది లేదా ఇప్పటికే వాడారు';
+
+  @override
+  String get signInToAccept => 'అంగీకరించడానికి సైన్ ఇన్ చేయండి';
+
+  @override
+  String get changeRole => 'పాత్ర మార్చండి';
+
+  @override
+  String get removeAccess => 'యాక్సెస్ తీసేయండి';
+
+  @override
+  String removeAccessConfirm(String name, String pet) {
+    return '$petకి $name యాక్సెస్ తీసేయాలా?';
+  }
+
+  @override
+  String familyLimitTitle(int limit) {
+    return 'ఫ్రీ ప్లాన్‌లో $limit మందితో షేర్ చేయవచ్చు';
+  }
+
+  @override
+  String get familyLimitBody =>
+      'PawSetu Plusలో 8 మంది కుటుంబ సభ్యులు సహాయం చేయవచ్చు.';
+
+  @override
+  String sharedWithYou(String role) {
+    return 'మీతో షేర్ చేశారు · $role';
+  }
+
+  @override
+  String get noActivityTitle => 'ఇంకా కార్యకలాపం లేదు';
+
+  @override
+  String get noActivityBody =>
+      'కుటుంబ సభ్యులు నడకలు నమోదు చేసినప్పుడు లేదా మందులు ఇచ్చినప్పుడు ఇక్కడ కనిపిస్తుంది.';
+
+  @override
+  String actMedicineGiven(String who, String pet, String detail) {
+    return '$who $petకి $detail ఇచ్చారు';
+  }
+
+  @override
+  String actWalk(String who, String pet, String detail) {
+    return '$who $petని నడిపించారు ($detail)';
+  }
+
+  @override
+  String actMeal(String who, String pet) {
+    return '$who $petకి ఆహారం పెట్టారు';
+  }
+
+  @override
+  String actMemberJoined(String who, String pet) {
+    return '$who $pet కుటుంబంలో చేరారు';
+  }
+
+  @override
+  String actMemberRemoved(String who, String name, String pet) {
+    return '$who $nameని $pet కుటుంబం నుండి తీసేశారు';
+  }
+
+  @override
+  String actRoleChanged(String who, String pet) {
+    return '$who $pet కోసం పాత్ర మార్చారు';
+  }
+
+  @override
+  String actGeneric(String who, String pet) {
+    return '$who $petని అప్‌డేట్ చేశారు';
+  }
+
+  @override
+  String get plusPerkPets => 'అపరిమిత పెంపుడు జంతువులు, 8 మంది కుటుంబ సభ్యులు';
+
+  @override
+  String get plusPerkVideo =>
+      'వీడియో వెట్ కాల్స్, ఎక్కువ చాట్, వీడియో ఫీజుపై 10% తగ్గింపు';
+
+  @override
+  String get plusPerkAi => 'Ask PawSetuలో అపరిమిత ప్రశ్నలు';
+
+  @override
+  String get plusPerkStorage => 'ఫోటోలు, డాక్యుమెంట్లకు 25 GB';
+
+  @override
+  String get seePlus => 'PawSetu Plus చూడండి';
 }

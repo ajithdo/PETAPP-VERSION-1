@@ -798,4 +798,485 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aAudit => 'Audit log';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get decline => 'Decline';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get yes => 'Yes';
+
+  @override
+  String get no => 'No';
+
+  @override
+  String get none => 'None';
+
+  @override
+  String get you => 'you';
+
+  @override
+  String get share => 'Share';
+
+  @override
+  String get copyLink => 'Copy link';
+
+  @override
+  String get copied => 'Copied';
+
+  @override
+  String get link => 'Link';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get manage => 'Manage';
+
+  @override
+  String get moreOptions => 'More options';
+
+  @override
+  String get saveChanges => 'Save changes';
+
+  @override
+  String get details => 'Details';
+
+  @override
+  String get notAdded => 'Not added yet';
+
+  @override
+  String get addPhoto => 'Add photo';
+
+  @override
+  String get addPhotoTitle => 'Add a photo';
+
+  @override
+  String get takePhoto => 'Take a photo';
+
+  @override
+  String get chooseFromGallery => 'Choose from gallery';
+
+  @override
+  String get cropPhoto => 'Move and zoom';
+
+  @override
+  String get cropHint => 'Pinch to zoom, drag to move';
+
+  @override
+  String get editPet => 'Edit pet';
+
+  @override
+  String get petBasicsTitle => 'The basics';
+
+  @override
+  String petAboutTitle(String name) {
+    return 'About $name';
+  }
+
+  @override
+  String get petAboutSubtitle => 'All optional. Add what you know now.';
+
+  @override
+  String get breed => 'Breed';
+
+  @override
+  String get chooseBreed => 'Choose breed';
+
+  @override
+  String get searchBreeds => 'Search breeds';
+
+  @override
+  String get breedMixed => 'Mixed / Indie';
+
+  @override
+  String get breedOther => 'Other (type it)';
+
+  @override
+  String get typeBreed => 'Breed name';
+
+  @override
+  String get noBreedMatch => 'No match. Try \'Other (type it)\'.';
+
+  @override
+  String get colourTag => 'Colour tag';
+
+  @override
+  String get colourTagHint => 'Helps you tell pets apart at a glance';
+
+  @override
+  String get colourAmber => 'Amber';
+
+  @override
+  String get colourLavender => 'Lavender';
+
+  @override
+  String get colourSky => 'Sky';
+
+  @override
+  String get colourRose => 'Rose';
+
+  @override
+  String get colourMint => 'Mint';
+
+  @override
+  String get colourSand => 'Sand';
+
+  @override
+  String get birthday => 'Birthday';
+
+  @override
+  String get exactDate => 'Exact date';
+
+  @override
+  String get approxAge => 'Approximate age';
+
+  @override
+  String get chooseDate => 'Choose date';
+
+  @override
+  String get years => 'Years';
+
+  @override
+  String get months => 'Months';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get weight => 'Weight';
+
+  @override
+  String get weightKg => 'Weight (kg)';
+
+  @override
+  String get weightGrams => 'Weight (grams)';
+
+  @override
+  String get age => 'Age';
+
+  @override
+  String get moreDetails => 'More details';
+
+  @override
+  String get moreDetailsHint => 'Markings, microchip, allergies, diet, clinic';
+
+  @override
+  String get markings => 'Colour and markings';
+
+  @override
+  String get microchip => 'Microchip ID';
+
+  @override
+  String get neutered => 'Neutered / spayed';
+
+  @override
+  String get allergies => 'Allergies';
+
+  @override
+  String get allergiesHint => 'Separate with commas, e.g. Chicken, Wheat';
+
+  @override
+  String get dietType => 'Diet';
+
+  @override
+  String get regularClinic => 'Regular clinic';
+
+  @override
+  String get temperament => 'Temperament notes';
+
+  @override
+  String get insuranceInVault =>
+      'Insurance policies are kept in the Document vault.';
+
+  @override
+  String petAdded(String name) {
+    return '$name added';
+  }
+
+  @override
+  String petLimitTitle(int limit) {
+    return 'The free plan has room for $limit pets';
+  }
+
+  @override
+  String get petLimitBody =>
+      'PawSetu Plus gives you unlimited pets, plus video vet calls and more.';
+
+  @override
+  String petsUsed(int used, int limit) {
+    return '$used of $limit pets on the free plan';
+  }
+
+  @override
+  String get petNotFound => 'We couldn\'t find this pet';
+
+  @override
+  String get petCare => 'Care';
+
+  @override
+  String get routine => 'Routine';
+
+  @override
+  String get family => 'Family';
+
+  @override
+  String get petSectionHealth => 'Vaccines, medicines, vet visits';
+
+  @override
+  String get petSectionRoutine => 'Walks, meals, play, mood';
+
+  @override
+  String get petSectionDocs => 'Certificates, insurance, reports';
+
+  @override
+  String get petSectionMemories => 'Photos, videos, milestones';
+
+  @override
+  String get flatFacedChip => 'Feels the heat';
+
+  @override
+  String get qrTag => 'QR tag';
+
+  @override
+  String get archivePet => 'Archive pet';
+
+  @override
+  String get restorePet => 'Bring back to active pets';
+
+  @override
+  String archiveTitle(String name) {
+    return 'Archive $name';
+  }
+
+  @override
+  String get archiveBody =>
+      'Their records and memories stay safe. Reminders stop.';
+
+  @override
+  String get passedAway => 'Passed away';
+
+  @override
+  String get passedAwayHint => 'Kept under \"In loving memory\"';
+
+  @override
+  String get rehomed => 'Rehomed';
+
+  @override
+  String get rehomedHint => 'Found a new family';
+
+  @override
+  String get memorialNote => 'A few words (optional)';
+
+  @override
+  String get memorialNoteHint => 'e.g. Forever in our hearts';
+
+  @override
+  String get inLovingMemory => 'In loving memory';
+
+  @override
+  String archivedMemorial(String name) {
+    return '$name is in loving memory. Their memories are kept safe.';
+  }
+
+  @override
+  String archivedRehomed(String name) {
+    return '$name has been archived';
+  }
+
+  @override
+  String get people => 'People';
+
+  @override
+  String get activity => 'Activity';
+
+  @override
+  String peopleCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count people',
+      one: '1 person',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get invite => 'Invite';
+
+  @override
+  String get invitesForYou => 'Invites for you';
+
+  @override
+  String get familyRolesHelp =>
+      'Viewer: sees everything and can log routine. Carer: also gives medicines and books services. Co-owner: everything except deleting the pet.';
+
+  @override
+  String get roleViewerHint => 'Sees everything, can log walks and meals';
+
+  @override
+  String get roleCarerHint => 'Also gives medicines and books services';
+
+  @override
+  String get roleCoownerHint =>
+      'Everything except deleting the pet or removing you';
+
+  @override
+  String get role => 'Role';
+
+  @override
+  String inviteTitle(String pet) {
+    return 'Invite someone to care for $pet';
+  }
+
+  @override
+  String get temporaryAccess => 'Pet sitter (access ends on a date)';
+
+  @override
+  String get temporaryAccessHint => 'Access stops automatically';
+
+  @override
+  String accessUntil(String date) {
+    return 'Access until $date';
+  }
+
+  @override
+  String get accessEnded => 'Access has ended';
+
+  @override
+  String get sendInvite => 'Send invite';
+
+  @override
+  String get createLink => 'Create invite link';
+
+  @override
+  String inviteSent(String contact) {
+    return 'Invite sent to $contact';
+  }
+
+  @override
+  String get inviteLinkReady => 'Your invite link is ready';
+
+  @override
+  String inviteShareText(String pet, String link) {
+    return 'Help me look after $pet on PawSetu: $link';
+  }
+
+  @override
+  String get inviteLink => 'Invite link';
+
+  @override
+  String invitePending(String role) {
+    return 'Waiting to accept · $role';
+  }
+
+  @override
+  String get cancelInvite => 'Cancel invite';
+
+  @override
+  String inviteReceived(String from, String pet, String role) {
+    return '$from invited you to care for $pet as $role';
+  }
+
+  @override
+  String inviteAccepted(String pet) {
+    return 'You can now help care for $pet';
+  }
+
+  @override
+  String get inviteInvalid => 'This invite has expired or was already used';
+
+  @override
+  String get signInToAccept => 'Sign in to accept';
+
+  @override
+  String get changeRole => 'Change role';
+
+  @override
+  String get removeAccess => 'Remove access';
+
+  @override
+  String removeAccessConfirm(String name, String pet) {
+    return 'Remove $name\'s access to $pet?';
+  }
+
+  @override
+  String familyLimitTitle(int limit) {
+    return 'The free plan shares with up to $limit people';
+  }
+
+  @override
+  String get familyLimitBody =>
+      'PawSetu Plus lets up to 8 family members help.';
+
+  @override
+  String sharedWithYou(String role) {
+    return 'Shared with you · $role';
+  }
+
+  @override
+  String get noActivityTitle => 'No activity yet';
+
+  @override
+  String get noActivityBody =>
+      'When family members log walks or give medicines, it shows here.';
+
+  @override
+  String actMedicineGiven(String who, String pet, String detail) {
+    return '$who gave $pet $detail';
+  }
+
+  @override
+  String actWalk(String who, String pet, String detail) {
+    return '$who walked $pet ($detail)';
+  }
+
+  @override
+  String actMeal(String who, String pet) {
+    return '$who fed $pet';
+  }
+
+  @override
+  String actMemberJoined(String who, String pet) {
+    return '$who joined $pet\'s family';
+  }
+
+  @override
+  String actMemberRemoved(String who, String name, String pet) {
+    return '$who removed $name from $pet\'s family';
+  }
+
+  @override
+  String actRoleChanged(String who, String pet) {
+    return '$who changed a role for $pet';
+  }
+
+  @override
+  String actGeneric(String who, String pet) {
+    return '$who updated $pet';
+  }
+
+  @override
+  String get plusPerkPets => 'Unlimited pets and up to 8 family members';
+
+  @override
+  String get plusPerkVideo =>
+      'Video vet calls, longer chats, 10% off video fees';
+
+  @override
+  String get plusPerkAi => 'Unlimited Ask PawSetu questions';
+
+  @override
+  String get plusPerkStorage => '25 GB for photos and documents';
+
+  @override
+  String get seePlus => 'See PawSetu Plus';
 }

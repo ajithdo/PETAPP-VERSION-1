@@ -25,6 +25,13 @@ class PawSetuApp extends ConsumerWidget {
             language: data?['language'] as String?,
             easyMode: data?['easyMode'] as bool?,
           );
+      // Finish an invite link opened before signing in.
+      final prefs = ref.read(prefsProvider);
+      final pendingJoin = prefs.getString('pending_join');
+      if (pendingJoin != null) {
+        await prefs.remove('pending_join');
+        router.go('/join/$pendingJoin');
+      }
     });
 
     ThemeData theme(Brightness b) => AppTheme.build(
