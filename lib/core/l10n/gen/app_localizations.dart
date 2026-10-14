@@ -5913,6 +5913,2430 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove'**
   String get remove;
+
+  /// No description provided for @aiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask PawSetu'**
+  String get aiTitle;
+
+  /// No description provided for @aiIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick answers to everyday pet questions'**
+  String get aiIntroTitle;
+
+  /// No description provided for @aiIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask about food, baths, vaccines, ticks and more. For anything serious, talk to a vet.'**
+  String get aiIntroBody;
+
+  /// No description provided for @aiHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your question'**
+  String get aiHint;
+
+  /// No description provided for @aiAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask'**
+  String get aiAsk;
+
+  /// No description provided for @aiPopular.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular questions'**
+  String get aiPopular;
+
+  /// No description provided for @aiDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'General guidance only, not a diagnosis. Your vet knows your pet best.'**
+  String get aiDisclaimer;
+
+  /// No description provided for @aiNotDiagnosis.
+  ///
+  /// In en, this message translates to:
+  /// **'Not a diagnosis. If your pet seems unwell, talk to a vet.'**
+  String get aiNotDiagnosis;
+
+  /// No description provided for @aiUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'I don\'t have an answer for that yet. Try one of the popular questions, or ask a vet in tele-vet.'**
+  String get aiUnknown;
+
+  /// No description provided for @aiTalkToVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a vet'**
+  String get aiTalkToVet;
+
+  /// No description provided for @aiTalkToVetNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Talk to a vet now'**
+  String get aiTalkToVetNow;
+
+  /// No description provided for @aiUnlimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited with Plus'**
+  String get aiUnlimited;
+
+  /// No description provided for @aiLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{left} of {limit} questions left this month'**
+  String aiLeft(int left, int limit);
+
+  /// No description provided for @aiLimitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve used your {limit} questions this month'**
+  String aiLimitTitle(int limit);
+
+  /// No description provided for @aiLimitBody.
+  ///
+  /// In en, this message translates to:
+  /// **'More questions on {date}, or get unlimited questions with PawSetu Plus. Emergencies are always answered.'**
+  String aiLimitBody(String date);
+
+  /// No description provided for @aiRedFlagTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This could be an emergency'**
+  String get aiRedFlagTitle;
+
+  /// No description provided for @aiRedFlagBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{sign} needs a vet right away. Use SOS to reach the nearest open clinic, or talk to a vet now.'**
+  String aiRedFlagBody(String sign);
+
+  /// No description provided for @aiRedFlagShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Possible emergency: {sign}'**
+  String aiRedFlagShort(String sign);
+
+  /// No description provided for @aiTileHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyday questions answered instantly. {left} left this month.'**
+  String aiTileHint(int left);
+
+  /// No description provided for @aiTileHintPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyday questions answered instantly. Unlimited with Plus.'**
+  String get aiTileHintPlus;
+
+  /// No description provided for @rfBreathing.
+  ///
+  /// In en, this message translates to:
+  /// **'Trouble breathing'**
+  String get rfBreathing;
+
+  /// No description provided for @rfCollapse.
+  ///
+  /// In en, this message translates to:
+  /// **'Collapse or fainting'**
+  String get rfCollapse;
+
+  /// No description provided for @rfSeizure.
+  ///
+  /// In en, this message translates to:
+  /// **'A seizure (fits)'**
+  String get rfSeizure;
+
+  /// No description provided for @rfPoisoning.
+  ///
+  /// In en, this message translates to:
+  /// **'Possible poisoning'**
+  String get rfPoisoning;
+
+  /// No description provided for @rfBleeding.
+  ///
+  /// In en, this message translates to:
+  /// **'Heavy bleeding'**
+  String get rfBleeding;
+
+  /// No description provided for @rfBloat.
+  ///
+  /// In en, this message translates to:
+  /// **'A swollen, hard belly'**
+  String get rfBloat;
+
+  /// No description provided for @rfHeatstroke.
+  ///
+  /// In en, this message translates to:
+  /// **'Heatstroke'**
+  String get rfHeatstroke;
+
+  /// No description provided for @rfUrine.
+  ///
+  /// In en, this message translates to:
+  /// **'Not passing urine'**
+  String get rfUrine;
+
+  /// No description provided for @rfInjury.
+  ///
+  /// In en, this message translates to:
+  /// **'A serious injury'**
+  String get rfInjury;
+
+  /// No description provided for @aiQBath.
+  ///
+  /// In en, this message translates to:
+  /// **'How often should I bathe my dog?'**
+  String get aiQBath;
+
+  /// No description provided for @aiQFeeding.
+  ///
+  /// In en, this message translates to:
+  /// **'How much should I feed my pet?'**
+  String get aiQFeeding;
+
+  /// No description provided for @aiQToxicFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Which human foods are unsafe for pets?'**
+  String get aiQToxicFood;
+
+  /// No description provided for @aiQVaccines.
+  ///
+  /// In en, this message translates to:
+  /// **'Which vaccines does my pet need?'**
+  String get aiQVaccines;
+
+  /// No description provided for @aiQDeworming.
+  ///
+  /// In en, this message translates to:
+  /// **'How often should I deworm?'**
+  String get aiQDeworming;
+
+  /// No description provided for @aiQTicks.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I prevent ticks and fleas?'**
+  String get aiQTicks;
+
+  /// No description provided for @aiQHeat.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I keep my pet cool in summer?'**
+  String get aiQHeat;
+
+  /// No description provided for @aiQVomiting.
+  ///
+  /// In en, this message translates to:
+  /// **'My pet vomited. What should I do?'**
+  String get aiQVomiting;
+
+  /// No description provided for @aiQDiarrhoea.
+  ///
+  /// In en, this message translates to:
+  /// **'My pet has loose motions. What should I do?'**
+  String get aiQDiarrhoea;
+
+  /// No description provided for @aiQNotEating.
+  ///
+  /// In en, this message translates to:
+  /// **'My pet is not eating. Should I worry?'**
+  String get aiQNotEating;
+
+  /// No description provided for @aiQItching.
+  ///
+  /// In en, this message translates to:
+  /// **'Why does my dog keep scratching?'**
+  String get aiQItching;
+
+  /// No description provided for @aiQLimping.
+  ///
+  /// In en, this message translates to:
+  /// **'My dog is limping. What should I do?'**
+  String get aiQLimping;
+
+  /// No description provided for @aiQLitter.
+  ///
+  /// In en, this message translates to:
+  /// **'My cat isn\'t using the litter box. Why?'**
+  String get aiQLitter;
+
+  /// No description provided for @aiQChewing.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I stop my puppy chewing and biting?'**
+  String get aiQChewing;
+
+  /// No description provided for @aiQNails.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I trim my pet\'s nails?'**
+  String get aiQNails;
+
+  /// No description provided for @aiQTeeth.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I look after my pet\'s teeth?'**
+  String get aiQTeeth;
+
+  /// No description provided for @aiQBirdDiet.
+  ///
+  /// In en, this message translates to:
+  /// **'What should I feed my bird?'**
+  String get aiQBirdDiet;
+
+  /// No description provided for @aiQRabbitDiet.
+  ///
+  /// In en, this message translates to:
+  /// **'What should I feed my rabbit?'**
+  String get aiQRabbitDiet;
+
+  /// No description provided for @aiQWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Is my pet overweight?'**
+  String get aiQWeight;
+
+  /// No description provided for @aiQAnxiety.
+  ///
+  /// In en, this message translates to:
+  /// **'My pet is scared of crackers and thunder. How can I help?'**
+  String get aiQAnxiety;
+
+  /// No description provided for @aiABath.
+  ///
+  /// In en, this message translates to:
+  /// **'Most dogs need a bath every 3 to 4 weeks; more often only if they get dirty or smelly. Use a dog shampoo (human shampoo can dry the skin), lukewarm water, and rinse well. Dry the ears and the coat fully, especially in the monsoon, to avoid fungal infections. Brushing a few times a week keeps the coat clean between baths. Cats rarely need baths.'**
+  String get aiABath;
+
+  /// No description provided for @aiAFeeding.
+  ///
+  /// In en, this message translates to:
+  /// **'It depends on your pet\'s weight, age and activity. Start with the amount on the food pack for your pet\'s ideal weight, split into 2 meals for adult dogs and cats (3 to 4 for puppies and kittens). Check the waist and ribs every few weeks: you should feel the ribs easily. Treats should be under a tenth of daily food. Keep fresh water out all the time. Your vet can suggest an exact amount.'**
+  String get aiAFeeding;
+
+  /// No description provided for @aiAToxicFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Never give chocolate, grapes or raisins, onion, garlic, xylitol (in some sugar-free gum and sweets), alcohol, caffeine, cooked bones, or very salty and spicy food. Many festival sweets contain chocolate, raisins or xylitol, so keep them out of reach. Cats are also harmed by lilies. If your pet has eaten any of these, use SOS or call a vet now, even if they seem fine.'**
+  String get aiAToxicFood;
+
+  /// No description provided for @aiAVaccines.
+  ///
+  /// In en, this message translates to:
+  /// **'Dogs need DHPPi with Leptospirosis (3 puppy doses from 6 to 8 weeks), anti-rabies at about 3 months, and yearly boosters. Cats need the tricat vaccine and anti-rabies, also with yearly boosters. Rabbits and birds usually don\'t need routine vaccines in India. Your pet\'s Health tab shows the full schedule, what\'s due and what\'s overdue. Your vet decides the final plan.'**
+  String get aiAVaccines;
+
+  /// No description provided for @aiADeworming.
+  ///
+  /// In en, this message translates to:
+  /// **'Puppies and kittens: every 2 weeks until 3 months old, then monthly until 6 months. Adults: every 3 months. Weigh your pet before each dose, because the dose depends on weight. PawSetu reminds you when the next dose is due. Ask your vet which dewormer suits your pet.'**
+  String get aiADeworming;
+
+  /// No description provided for @aiATicks.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a vet-recommended tick and flea preventive all year: a spot-on, a chewable tablet or a collar. Ticks are common in India, especially in the monsoon. Check ears, between the toes and under the collar after walks. Keep bedding clean and dry. Never use dog products on cats. If your pet is weak, has pale gums or a fever after tick bites, see a vet quickly.'**
+  String get aiATicks;
+
+  /// No description provided for @aiAHeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk early in the morning or after sunset, and test the road with your hand: if it\'s too hot for 5 seconds, it\'s too hot for paws. Keep cool water and shade available all day. Never leave a pet in a parked car. Flat-faced breeds like pugs and Persian cats overheat fastest. Heavy panting, drooling, wobbling or bright red gums are signs of heatstroke: use SOS.'**
+  String get aiAHeat;
+
+  /// No description provided for @aiAVomiting.
+  ///
+  /// In en, this message translates to:
+  /// **'One vomit with a normal, playful pet often settles: remove food for a few hours (not water), then give small, bland meals like boiled rice with boiled chicken. See a vet the same day if vomiting repeats, there is blood, your pet is a puppy or kitten, seems weak, has a swollen belly, or may have eaten something toxic or a toy.'**
+  String get aiAVomiting;
+
+  /// No description provided for @aiADiarrhoea.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep fresh water available so your pet doesn\'t get dehydrated, and give small bland meals (boiled rice with boiled chicken or curd rice for dogs) for a day or two. Avoid milk and treats. See a vet if it lasts more than a day, there is blood or black stool, your pet is vomiting too, seems weak, or is a puppy or kitten.'**
+  String get aiADiarrhoea;
+
+  /// No description provided for @aiANotEating.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipping one meal can happen with heat, stress or a change in food. Offer fresh food and water and watch for other signs. See a vet if a dog doesn\'t eat for more than a day, a cat for more than 24 hours, a rabbit for even a few hours (rabbits get sick quickly), or if there is vomiting, weakness, pain or a fever.'**
+  String get aiANotEating;
+
+  /// No description provided for @aiAItching.
+  ///
+  /// In en, this message translates to:
+  /// **'Common causes are fleas and ticks, skin infections (often in the monsoon), food or dust allergies, and dry skin from frequent baths. Check the skin for ticks, redness, bald patches or a smell. Keep up tick and flea prevention and dry your dog well after baths and rain. If scratching goes on for more than a few days or the skin is broken, see a vet.'**
+  String get aiAItching;
+
+  /// No description provided for @aiALimping.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the paw for thorns, glass, cuts, a broken nail or a tick between the toes, and look for swelling. Rest your dog: short toilet walks only, no running or jumping, for a day. Never give human painkillers; many are poisonous to pets. See a vet if the limp lasts more than a day, your dog can\'t put weight on the leg, cries in pain, or after a fall or accident.'**
+  String get aiALimping;
+
+  /// No description provided for @aiALitter.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the box clean (scoop daily), in a quiet spot away from food, with one box per cat plus one extra. Some cats dislike scented litter or covered boxes. Stress, like a new pet or a move, can also cause it. A cat straining in the box with little or no urine is an emergency, especially a male cat: use SOS.'**
+  String get aiALitter;
+
+  /// No description provided for @aiAChewing.
+  ///
+  /// In en, this message translates to:
+  /// **'Puppies explore with their mouths and chew more while teething (3 to 6 months). Give safe chew toys and swap them in when your puppy grabs something else. If they nip, stop play for a few seconds, then continue gently. Praise calm play. Keep wires, shoes and medicines out of reach. Plenty of walks and play reduce chewing. A trainer can help if it continues after 6 months.'**
+  String get aiAChewing;
+
+  /// No description provided for @aiANails.
+  ///
+  /// In en, this message translates to:
+  /// **'Trim every 3 to 4 weeks, or when you hear nails clicking on the floor. Use pet nail clippers and cut only the tip, below the pink quick (on dark nails, take tiny slices). Keep styptic powder or plain cornflour ready in case of bleeding. Reward with a treat after each paw. If your pet hates it, a groomer or vet can do it in minutes. Birds and rabbits need nail trims too.'**
+  String get aiANails;
+
+  /// No description provided for @aiATeeth.
+  ///
+  /// In en, this message translates to:
+  /// **'Brush your dog\'s or cat\'s teeth 2 to 3 times a week with a pet toothbrush and pet toothpaste (human toothpaste is not safe to swallow). Start slowly with a finger brush and lots of praise. Dental chews help a little. Bad breath, red gums, a broken tooth or dropping food can mean dental disease: book a dental check with your vet.'**
+  String get aiATeeth;
+
+  /// No description provided for @aiABirdDiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Seeds alone are not enough. Cockatiels and budgies do best on good-quality pellets with fresh vegetables daily (spinach, carrot, beans, peas) and small amounts of fruit, plus a little seed as a treat. Give fresh water every day. Never give avocado, chocolate, caffeine, salt or onion. Many parrot species are protected in India; only keep legally allowed birds.'**
+  String get aiABirdDiet;
+
+  /// No description provided for @aiARabbitDiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Hay should be about 80% of a rabbit\'s diet, available all day: it keeps teeth and gut healthy. Add a handful of leafy greens (coriander, mint, lettuce, carrot tops) daily, a small amount of rabbit pellets, and fruit only as a rare treat. Always keep fresh water. A rabbit that stops eating or pooping for even a few hours needs a vet urgently.'**
+  String get aiARabbitDiet;
+
+  /// No description provided for @aiAWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Feel the ribs: you should feel them easily under a thin layer, and see a waist from above. If you can\'t, your pet may be overweight. Weigh your pet monthly in PawSetu to see the trend against the healthy range for the breed. Cut treats and table scraps, measure food, and add a little more walking or play. Ask your vet before a big diet change.'**
+  String get aiAWeight;
+
+  /// No description provided for @aiAAnxiety.
+  ///
+  /// In en, this message translates to:
+  /// **'Before Diwali or a storm, make a quiet den: a covered crate or a corner with their bed, curtains closed, a fan or soft music on. Walk your dog early in the day and keep them indoors with ID tags on when crackers start. Stay calm and close, but don\'t force cuddles. Don\'t scold fear. For severe fear, ask your vet well in advance about calming options.'**
+  String get aiAAnxiety;
+
+  /// No description provided for @msgEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No chats yet'**
+  String get msgEmptyTitle;
+
+  /// No description provided for @msgEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats with your vet, clinic, groomer or walker show up here after you book or ask a question.'**
+  String get msgEmptyBody;
+
+  /// No description provided for @msgEmptyPartnerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats with pet parents show up here when they book or send an enquiry.'**
+  String get msgEmptyPartnerBody;
+
+  /// No description provided for @msgEmptyFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'No chats in this list'**
+  String get msgEmptyFilter;
+
+  /// No description provided for @msgNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing found for \"{query}\"'**
+  String msgNoResults(String query);
+
+  /// No description provided for @msgSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search chats and messages'**
+  String get msgSearchHint;
+
+  /// No description provided for @msgClearSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get msgClearSearch;
+
+  /// No description provided for @msgFoundInMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Found in messages'**
+  String get msgFoundInMessages;
+
+  /// No description provided for @msgEnquiries.
+  ///
+  /// In en, this message translates to:
+  /// **'Enquiries'**
+  String get msgEnquiries;
+
+  /// No description provided for @msgEnquiry.
+  ///
+  /// In en, this message translates to:
+  /// **'Enquiry'**
+  String get msgEnquiry;
+
+  /// No description provided for @msgMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Muted'**
+  String get msgMuted;
+
+  /// No description provided for @msgNoMessagesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages yet'**
+  String get msgNoMessagesYet;
+
+  /// No description provided for @msgUnreadCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 unread message} other{{count} unread messages}}'**
+  String msgUnreadCount(int count);
+
+  /// No description provided for @msgYouPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get msgYouPrefix;
+
+  /// No description provided for @msgYou.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} (you)'**
+  String msgYou(String name);
+
+  /// No description provided for @msgOpening.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening the chat…'**
+  String get msgOpening;
+
+  /// No description provided for @msgPickChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a chat'**
+  String get msgPickChat;
+
+  /// No description provided for @msgPickChatHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your conversations with vets, clinics and service providers open here.'**
+  String get msgPickChatHint;
+
+  /// No description provided for @msgPickChatHintPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Your conversations with pet parents open here.'**
+  String get msgPickChatHintPartner;
+
+  /// No description provided for @msgNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This chat is no longer available.'**
+  String get msgNotFound;
+
+  /// No description provided for @msgPreviewPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get msgPreviewPhoto;
+
+  /// No description provided for @msgPreviewPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF document'**
+  String get msgPreviewPdf;
+
+  /// No description provided for @msgPreviewVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice note'**
+  String get msgPreviewVoice;
+
+  /// No description provided for @msgClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close chat'**
+  String get msgClose;
+
+  /// No description provided for @msgChatInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat details'**
+  String get msgChatInfo;
+
+  /// No description provided for @msgCallMasked.
+  ///
+  /// In en, this message translates to:
+  /// **'Call (number stays hidden)'**
+  String get msgCallMasked;
+
+  /// No description provided for @msgMaskedCallDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo mode doesn\'t place real calls. In the live app this calls {name} through a masked number ({number}), so neither of you sees the other\'s real number.'**
+  String msgMaskedCallDemo(String name, String number);
+
+  /// No description provided for @msgMaskedCallLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Calls go through a masked number, so neither side sees the other\'s real number.'**
+  String get msgMaskedCallLive;
+
+  /// No description provided for @msgMaskedInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone numbers are hidden in PawSetu chats and calls. Pay only inside the app.'**
+  String get msgMaskedInfo;
+
+  /// No description provided for @msgMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More options'**
+  String get msgMore;
+
+  /// No description provided for @msgSearchInChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Search in chat'**
+  String get msgSearchInChat;
+
+  /// No description provided for @msgMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No matches} =1{1 match} other{{count} matches}}'**
+  String msgMatches(int count);
+
+  /// No description provided for @msgMute.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute notifications'**
+  String get msgMute;
+
+  /// No description provided for @msgUnmute.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute notifications'**
+  String get msgUnmute;
+
+  /// No description provided for @msgMutedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat muted'**
+  String get msgMutedToast;
+
+  /// No description provided for @msgUnmutedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications on for this chat'**
+  String get msgUnmutedToast;
+
+  /// No description provided for @msgBlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Block'**
+  String get msgBlock;
+
+  /// No description provided for @msgUnblock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unblock'**
+  String get msgUnblock;
+
+  /// No description provided for @msgBlockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Block {name}?'**
+  String msgBlockTitle(String name);
+
+  /// No description provided for @msgBlockBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Neither of you can send messages in this chat until you unblock. Your bookings are not affected.'**
+  String get msgBlockBody;
+
+  /// No description provided for @msgBlockedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked'**
+  String get msgBlockedToast;
+
+  /// No description provided for @msgUnblockedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Unblocked'**
+  String get msgUnblockedToast;
+
+  /// No description provided for @msgYouBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'You blocked this chat. Unblock it from the menu to send messages.'**
+  String get msgYouBlocked;
+
+  /// No description provided for @msgBlockedByOther.
+  ///
+  /// In en, this message translates to:
+  /// **'This chat is closed. You can\'t send messages here.'**
+  String get msgBlockedByOther;
+
+  /// No description provided for @msgReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get msgReport;
+
+  /// No description provided for @msgReportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report this chat'**
+  String get msgReportTitle;
+
+  /// No description provided for @msgReportHint.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu\'s team reviews every report, usually within a day.'**
+  String get msgReportHint;
+
+  /// No description provided for @msgReasonSpam.
+  ///
+  /// In en, this message translates to:
+  /// **'Spam or advertising'**
+  String get msgReasonSpam;
+
+  /// No description provided for @msgReasonAbuse.
+  ///
+  /// In en, this message translates to:
+  /// **'Rude or abusive'**
+  String get msgReasonAbuse;
+
+  /// No description provided for @msgReasonPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Asked to pay outside PawSetu'**
+  String get msgReasonPayment;
+
+  /// No description provided for @msgReasonFake.
+  ///
+  /// In en, this message translates to:
+  /// **'Fake profile or scam'**
+  String get msgReasonFake;
+
+  /// No description provided for @msgReasonOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get msgReasonOther;
+
+  /// No description provided for @msgReportDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details (optional)'**
+  String get msgReportDetails;
+
+  /// No description provided for @msgReportSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send report'**
+  String get msgReportSend;
+
+  /// No description provided for @msgReportedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks. We\'ll look into it.'**
+  String get msgReportedToast;
+
+  /// No description provided for @msgGetHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Get help'**
+  String get msgGetHelp;
+
+  /// No description provided for @msgTypingShort.
+  ///
+  /// In en, this message translates to:
+  /// **'typing…'**
+  String get msgTypingShort;
+
+  /// No description provided for @msgTyping.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is typing…'**
+  String msgTyping(String name);
+
+  /// No description provided for @msgTypeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a message'**
+  String get msgTypeHint;
+
+  /// No description provided for @msgSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get msgSend;
+
+  /// No description provided for @msgAttach.
+  ///
+  /// In en, this message translates to:
+  /// **'Attach a photo or PDF'**
+  String get msgAttach;
+
+  /// No description provided for @msgAttachTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a file'**
+  String get msgAttachTitle;
+
+  /// No description provided for @msgAttachPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF document'**
+  String get msgAttachPdf;
+
+  /// No description provided for @msgAttachPdfHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reports, prescriptions, certificates (up to 10 MB)'**
+  String get msgAttachPdfHint;
+
+  /// No description provided for @msgPdfTooBig.
+  ///
+  /// In en, this message translates to:
+  /// **'That file is over 10 MB. Please send a smaller PDF.'**
+  String get msgPdfTooBig;
+
+  /// No description provided for @msgSendFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send. Check your connection and try again.'**
+  String get msgSendFailed;
+
+  /// No description provided for @msgNumberHiddenToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone numbers are hidden in chats to keep everyone safe.'**
+  String get msgNumberHiddenToast;
+
+  /// No description provided for @msgNumberHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Number hidden'**
+  String get msgNumberHidden;
+
+  /// No description provided for @msgPaymentWarnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay only inside PawSetu'**
+  String get msgPaymentWarnTitle;
+
+  /// No description provided for @msgPaymentWarnBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your message looks like it has payment details (UPI ID, card number, OTP or PIN). Never share an OTP or PIN. Payments made outside PawSetu are not protected.'**
+  String get msgPaymentWarnBody;
+
+  /// No description provided for @msgSendAnyway.
+  ///
+  /// In en, this message translates to:
+  /// **'Send anyway'**
+  String get msgSendAnyway;
+
+  /// No description provided for @msgSafetyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Numbers are hidden and payments stay inside PawSetu. Never share an OTP or PIN.'**
+  String get msgSafetyNote;
+
+  /// No description provided for @msgRecordVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Record a voice note'**
+  String get msgRecordVoice;
+
+  /// No description provided for @msgRecording.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording {elapsed} / {max}'**
+  String msgRecording(String elapsed, String max);
+
+  /// No description provided for @msgRecordingDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo recording {elapsed}'**
+  String msgRecordingDemo(String elapsed);
+
+  /// No description provided for @msgCancelRecording.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel recording'**
+  String get msgCancelRecording;
+
+  /// No description provided for @msgSendVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Send voice note'**
+  String get msgSendVoice;
+
+  /// No description provided for @msgPlayVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Play voice note'**
+  String get msgPlayVoice;
+
+  /// No description provided for @msgPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get msgPause;
+
+  /// No description provided for @msgVoiceCantPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'This voice note can\'t be played on this device.'**
+  String get msgVoiceCantPlay;
+
+  /// No description provided for @msgMicUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone not available'**
+  String get msgMicUnavailableTitle;
+
+  /// No description provided for @msgMicUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow microphone access in your phone\'s settings to send voice notes.'**
+  String get msgMicUnavailable;
+
+  /// No description provided for @msgMicDemoBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The microphone isn\'t available here. Send a short demo voice note instead?'**
+  String get msgMicDemoBody;
+
+  /// No description provided for @msgRecordDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Send demo voice note'**
+  String get msgRecordDemo;
+
+  /// No description provided for @msgSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get msgSent;
+
+  /// No description provided for @msgRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get msgRead;
+
+  /// No description provided for @msgYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get msgYesterday;
+
+  /// No description provided for @msgDemoReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo reply'**
+  String get msgDemoReply;
+
+  /// No description provided for @msgPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF'**
+  String get msgPdf;
+
+  /// No description provided for @msgTapToOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to open'**
+  String get msgTapToOpen;
+
+  /// No description provided for @msgFileCantOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'This file can\'t be opened here.'**
+  String get msgFileCantOpen;
+
+  /// No description provided for @msgSampleStamp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample document · Demo'**
+  String get msgSampleStamp;
+
+  /// No description provided for @msgSampleDocBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a sample document shared in a demo chat.'**
+  String get msgSampleDocBody;
+
+  /// No description provided for @msgSysBookingChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat for {pet}\'s booking on {when}'**
+  String msgSysBookingChat(String pet, String when);
+
+  /// No description provided for @msgSysTvStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat consultation requested'**
+  String get msgSysTvStarted;
+
+  /// No description provided for @msgSysTvStartedVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video consultation requested'**
+  String get msgSysTvStartedVideo;
+
+  /// No description provided for @msgSysTvScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation booked for {when}'**
+  String msgSysTvScheduled(String when);
+
+  /// No description provided for @msgSysVetJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} joined. The chat stays open until {until}.'**
+  String msgSysVetJoined(String name, String until);
+
+  /// No description provided for @msgSysTvEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation ended'**
+  String get msgSysTvEnded;
+
+  /// No description provided for @msgSysCallEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Video call ended · {duration}'**
+  String msgSysCallEnded(String duration);
+
+  /// No description provided for @msgYourPet.
+  ///
+  /// In en, this message translates to:
+  /// **'your pet'**
+  String get msgYourPet;
+
+  /// No description provided for @demoReplyClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for your message. The clinic team will check {pet}\'s details and get back to you shortly.'**
+  String demoReplyClinic(String pet);
+
+  /// No description provided for @demoReplyVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks, noted. How is {pet} eating and drinking today?'**
+  String demoReplyVet(String pet);
+
+  /// No description provided for @demoReplyGroomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Sure! We\'ll take good care of {pet}. Please bring any shampoo {pet} is used to.'**
+  String demoReplyGroomer(String pet);
+
+  /// No description provided for @demoReplyWalker.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it! I\'ll keep {pet} on the shady side of the road and send you a photo.'**
+  String demoReplyWalker(String pet);
+
+  /// No description provided for @demoReplyTrainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Great question. Let\'s practise this with {pet} in our next session.'**
+  String demoReplyTrainer(String pet);
+
+  /// No description provided for @demoReplyBoarder.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is doing well and settling in nicely. I\'ll send a photo this evening.'**
+  String demoReplyBoarder(String pet);
+
+  /// No description provided for @demoReplyOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you! That helps a lot. – {name}'**
+  String demoReplyOwner(String name);
+
+  /// No description provided for @demoReplyOwnerVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you, Dr. {name}! I\'ll follow that.'**
+  String demoReplyOwnerVet(String name);
+
+  /// No description provided for @demoVetGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello {owner}, I\'m here. I\'ve read what you wrote about {pet}. A few questions to start: since when, and is {pet} eating and drinking normally?'**
+  String demoVetGreeting(String owner, String pet);
+
+  /// No description provided for @ntfNewMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'New message from {name}'**
+  String ntfNewMessage(String name);
+
+  /// No description provided for @ntfTeleVetMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet: new message from {name}'**
+  String ntfTeleVetMessage(String name);
+
+  /// No description provided for @tvHomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Talk to a vet'**
+  String get tvHomeTitle;
+
+  /// No description provided for @tvHomeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat or video with a registered vet, usually within minutes.'**
+  String get tvHomeBody;
+
+  /// No description provided for @tvStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a consultation'**
+  String get tvStart;
+
+  /// No description provided for @tvEmergencyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency? Don\'t wait for a chat. Use SOS to reach the nearest open clinic.'**
+  String get tvEmergencyNote;
+
+  /// No description provided for @tvOpenConsults.
+  ///
+  /// In en, this message translates to:
+  /// **'Open consultations'**
+  String get tvOpenConsults;
+
+  /// No description provided for @tvPastConsults.
+  ///
+  /// In en, this message translates to:
+  /// **'Past consultations'**
+  String get tvPastConsults;
+
+  /// No description provided for @tvPartnerHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet requests are in your portal'**
+  String get tvPartnerHere;
+
+  /// No description provided for @tvPlanFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Free plan'**
+  String get tvPlanFree;
+
+  /// No description provided for @tvPlanPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Plus plan'**
+  String get tvPlanPlus;
+
+  /// No description provided for @tvFreeChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get tvFreeChip;
+
+  /// No description provided for @tvLinePerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{limit, plural, =1{1 consultation a month} other{{limit} consultations a month}} · {used} used'**
+  String tvLinePerMonth(int limit, int used);
+
+  /// No description provided for @tvLineUnlimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited consultations'**
+  String get tvLineUnlimited;
+
+  /// No description provided for @tvLineMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to {messages} messages, {words} words each'**
+  String tvLineMessages(int messages, int words);
+
+  /// No description provided for @tvLineHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat stays open {hours} hours after the vet joins'**
+  String tvLineHours(int hours);
+
+  /// No description provided for @tvLineVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video calls included, with 10% off'**
+  String get tvLineVideo;
+
+  /// No description provided for @tvLineNoVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video calls need Plus'**
+  String get tvLineNoVideo;
+
+  /// No description provided for @tvMonthlyUsedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve used this month\'s free consultation'**
+  String get tvMonthlyUsedTitle;
+
+  /// No description provided for @tvMonthlyUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your next free consultation opens on {date}. With Plus you get unlimited chats and video calls.'**
+  String tvMonthlyUsed(String date);
+
+  /// No description provided for @tvPlusPromptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More time with vets'**
+  String get tvPlusPromptTitle;
+
+  /// No description provided for @tvPlusHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus gives you up to 100 messages of 300 words, 72 hours of chat and video calls.'**
+  String get tvPlusHint;
+
+  /// No description provided for @tvVideoPlusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Video calls are part of Plus'**
+  String get tvVideoPlusTitle;
+
+  /// No description provided for @tvStatusQueuedShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get tvStatusQueuedShort;
+
+  /// No description provided for @tvStatusActiveShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get tvStatusActiveShort;
+
+  /// No description provided for @tvStatusEndedShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Ended'**
+  String get tvStatusEndedShort;
+
+  /// No description provided for @tvConsentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you start'**
+  String get tvConsentTitle;
+
+  /// No description provided for @tvConsentIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Online consultations follow the Veterinary Council of India\'s guidelines. Please read and agree:'**
+  String get tvConsentIntro;
+
+  /// No description provided for @tvConsent1.
+  ///
+  /// In en, this message translates to:
+  /// **'A vet gives advice from what you describe and show. It is not a full physical examination.'**
+  String get tvConsent1;
+
+  /// No description provided for @tvConsent2.
+  ///
+  /// In en, this message translates to:
+  /// **'Every vet on PawSetu is registered with a State Veterinary Council. You\'ll see their registration number.'**
+  String get tvConsent2;
+
+  /// No description provided for @tvConsent3.
+  ///
+  /// In en, this message translates to:
+  /// **'The vet may ask you to visit a clinic if your pet needs an examination or tests.'**
+  String get tvConsent3;
+
+  /// No description provided for @tvConsent4.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet is not for emergencies. For trouble breathing, collapse, seizures, poisoning or heavy bleeding, use SOS.'**
+  String get tvConsent4;
+
+  /// No description provided for @tvConsent5.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescriptions are issued only when the vet thinks it is safe, and some medicines need a clinic visit.'**
+  String get tvConsent5;
+
+  /// No description provided for @tvConsent6.
+  ///
+  /// In en, this message translates to:
+  /// **'Your chat, photos and your pet\'s records are shared only with the vet treating your pet.'**
+  String get tvConsent6;
+
+  /// No description provided for @tvConsentAgree.
+  ///
+  /// In en, this message translates to:
+  /// **'I have read and agree'**
+  String get tvConsentAgree;
+
+  /// No description provided for @tvConsentContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get tvConsentContinue;
+
+  /// No description provided for @tvStepPet.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet'**
+  String get tvStepPet;
+
+  /// No description provided for @tvStepProblem.
+  ///
+  /// In en, this message translates to:
+  /// **'Problem'**
+  String get tvStepProblem;
+
+  /// No description provided for @tvStepHow.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet'**
+  String get tvStepHow;
+
+  /// No description provided for @tvWhichPet.
+  ///
+  /// In en, this message translates to:
+  /// **'Which pet is this about?'**
+  String get tvWhichPet;
+
+  /// No description provided for @tvNoPet.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a pet first to talk to a vet.'**
+  String get tvNoPet;
+
+  /// No description provided for @tvDescribe.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s happening with {pet}?'**
+  String tvDescribe(String pet);
+
+  /// No description provided for @tvDescribeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When did it start, what you noticed, eating and drinking, anything they may have eaten'**
+  String get tvDescribeHint;
+
+  /// No description provided for @tvAddPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photos'**
+  String get tvAddPhotos;
+
+  /// No description provided for @tvPhotosHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear photos of the problem (a wound, rash, stool or vomit) help the vet a lot.'**
+  String get tvPhotosHint;
+
+  /// No description provided for @tvContinueToVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how to talk'**
+  String get tvContinueToVet;
+
+  /// No description provided for @tvChatNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat now'**
+  String get tvChatNow;
+
+  /// No description provided for @tvChatNowHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The next available vet joins, usually within minutes'**
+  String get tvChatNowHint;
+
+  /// No description provided for @tvVideoNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Video call now'**
+  String get tvVideoNow;
+
+  /// No description provided for @tvVideoNowHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the vet your pet on a video call'**
+  String get tvVideoNowHint;
+
+  /// No description provided for @tvVideoPlusOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Available with PawSetu Plus'**
+  String get tvVideoPlusOnly;
+
+  /// No description provided for @tvChooseVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a vet'**
+  String get tvChooseVet;
+
+  /// No description provided for @tvChooseVetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a vet by language and experience, now or later today'**
+  String get tvChooseVetHint;
+
+  /// No description provided for @tvModeChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get tvModeChat;
+
+  /// No description provided for @tvModeVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get tvModeVideo;
+
+  /// No description provided for @tvVideoFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Video {amount}'**
+  String tvVideoFee(String amount);
+
+  /// No description provided for @tvWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get tvWhen;
+
+  /// No description provided for @tvNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Now'**
+  String get tvNow;
+
+  /// No description provided for @tvTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get tvTomorrow;
+
+  /// No description provided for @tvSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get tvSummary;
+
+  /// No description provided for @tvSummaryPet.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet'**
+  String get tvSummaryPet;
+
+  /// No description provided for @tvSummaryType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get tvSummaryType;
+
+  /// No description provided for @tvSummaryVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet'**
+  String get tvSummaryVet;
+
+  /// No description provided for @tvNextAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Next available vet'**
+  String get tvNextAvailable;
+
+  /// No description provided for @tvFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Fee'**
+  String get tvFee;
+
+  /// No description provided for @tvIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Included in your plan'**
+  String get tvIncluded;
+
+  /// No description provided for @tvVideoFeeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Video consultation'**
+  String get tvVideoFeeLabel;
+
+  /// No description provided for @tvPlusDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus discount ({percent}%)'**
+  String tvPlusDiscount(int percent);
+
+  /// No description provided for @tvChatRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to {messages} messages of {words} words. The chat stays open {hours} hours after the vet joins.'**
+  String tvChatRules(int messages, int words, int hours);
+
+  /// No description provided for @tvStartChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Start chat'**
+  String get tvStartChat;
+
+  /// No description provided for @tvStartVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Start video call'**
+  String get tvStartVideo;
+
+  /// No description provided for @tvPayAndStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay {amount} and start'**
+  String tvPayAndStart(String amount);
+
+  /// No description provided for @tvPayDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Video consultation for {pet}'**
+  String tvPayDescription(String pet);
+
+  /// No description provided for @tvFindingVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding a vet for {pet}…'**
+  String tvFindingVet(String pet);
+
+  /// No description provided for @tvFindingVetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Most chats are picked up within a few minutes. We\'ll notify you.'**
+  String get tvFindingVetHint;
+
+  /// No description provided for @tvFindingVetShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding a vet…'**
+  String get tvFindingVetShort;
+
+  /// No description provided for @tvScheduledTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation at {when}'**
+  String tvScheduledTitle(String when);
+
+  /// No description provided for @tvScheduledHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The vet will join at this time. You can add details before then.'**
+  String get tvScheduledHint;
+
+  /// No description provided for @tvStatusQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for a vet'**
+  String get tvStatusQueued;
+
+  /// No description provided for @tvStatusActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation open'**
+  String get tvStatusActive;
+
+  /// No description provided for @tvStatusEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation ended'**
+  String get tvStatusEnded;
+
+  /// No description provided for @tvOpenUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Open until {time}'**
+  String tvOpenUntil(String time);
+
+  /// No description provided for @tvMessagesLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No messages left} =1{1 message left} other{{count} messages left}}'**
+  String tvMessagesLeft(int count);
+
+  /// No description provided for @tvPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority (Plus)'**
+  String get tvPriority;
+
+  /// No description provided for @tvVideoCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Video call'**
+  String get tvVideoCall;
+
+  /// No description provided for @tvClosedShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat closed'**
+  String get tvClosedShort;
+
+  /// No description provided for @tvEndedWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Ended · {vet}'**
+  String tvEndedWith(String vet);
+
+  /// No description provided for @tvVetBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} · {owner}'**
+  String tvVetBarTitle(String pet, String owner);
+
+  /// No description provided for @tvRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate this consultation'**
+  String get tvRate;
+
+  /// No description provided for @tvRateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How was your chat with {vet}?'**
+  String tvRateTitle(String vet);
+
+  /// No description provided for @tvRateComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything to add? (optional)'**
+  String get tvRateComment;
+
+  /// No description provided for @tvRateSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit rating'**
+  String get tvRateSubmit;
+
+  /// No description provided for @tvRateThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for rating!'**
+  String get tvRateThanks;
+
+  /// No description provided for @tvStars.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 star} other{{count} stars}}'**
+  String tvStars(int count);
+
+  /// No description provided for @tvAllowanceLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{words}/{max} words · {left} messages left'**
+  String tvAllowanceLine(int words, int max, int left);
+
+  /// No description provided for @tvWordsOver.
+  ///
+  /// In en, this message translates to:
+  /// **'{words}/{max} words. Please shorten your message.'**
+  String tvWordsOver(int words, int max);
+
+  /// No description provided for @tvWordsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages can have up to {max} words'**
+  String tvWordsTitle(int max);
+
+  /// No description provided for @tvWordsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your message has {words} words, the limit is {max}. Split it into shorter messages or keep just the key points; the vet can ask for more.'**
+  String tvWordsBody(int words, int max);
+
+  /// No description provided for @tvEditMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit message'**
+  String get tvEditMessage;
+
+  /// No description provided for @tvNoMessagesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve used all {count} messages'**
+  String tvNoMessagesTitle(int count);
+
+  /// No description provided for @tvNoMessagesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The vet can still reply and send a prescription. For more questions, start a new consultation.'**
+  String get tvNoMessagesBody;
+
+  /// No description provided for @tvClosedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This chat has closed'**
+  String get tvClosedTitle;
+
+  /// No description provided for @tvClosedBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats stay open for {hours} hours after the vet joins. Start a new consultation if you need more help.'**
+  String tvClosedBanner(int hours);
+
+  /// No description provided for @tvEndedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation ended'**
+  String get tvEndedTitle;
+
+  /// No description provided for @tvEndedBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'The vet ended this consultation. Your chat and any prescription stay in your pet\'s records.'**
+  String get tvEndedBanner;
+
+  /// No description provided for @tvProblemLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Problem described'**
+  String get tvProblemLabel;
+
+  /// No description provided for @tvBookVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Book a clinic visit'**
+  String get tvBookVisit;
+
+  /// No description provided for @tvRecVisitMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} recommends a clinic visit for an examination.'**
+  String tvRecVisitMsg(String name);
+
+  /// No description provided for @tvRecEmergencyMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} says this needs emergency care now. Use SOS to reach the nearest open clinic.'**
+  String tvRecEmergencyMsg(String name);
+
+  /// No description provided for @tvConnecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting…'**
+  String get tvConnecting;
+
+  /// No description provided for @tvWaitingVetJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for the vet to join…'**
+  String get tvWaitingVetJoin;
+
+  /// No description provided for @tvDemoCall.
+  ///
+  /// In en, this message translates to:
+  /// **'DEMO CALL'**
+  String get tvDemoCall;
+
+  /// No description provided for @tvGoodNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Good connection'**
+  String get tvGoodNetwork;
+
+  /// No description provided for @tvWeakNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak connection'**
+  String get tvWeakNetwork;
+
+  /// No description provided for @tvRemoteVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video of {name}'**
+  String tvRemoteVideo(String name);
+
+  /// No description provided for @tvSelfView.
+  ///
+  /// In en, this message translates to:
+  /// **'Your camera'**
+  String get tvSelfView;
+
+  /// No description provided for @tvCameraOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera is off'**
+  String get tvCameraOff;
+
+  /// No description provided for @tvCameraOffAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn camera off'**
+  String get tvCameraOffAction;
+
+  /// No description provided for @tvCameraOnAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn camera on'**
+  String get tvCameraOnAction;
+
+  /// No description provided for @tvMute.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute'**
+  String get tvMute;
+
+  /// No description provided for @tvUnmute.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute'**
+  String get tvUnmute;
+
+  /// No description provided for @tvSpeakerOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaker on'**
+  String get tvSpeakerOn;
+
+  /// No description provided for @tvSpeakerOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaker off'**
+  String get tvSpeakerOff;
+
+  /// No description provided for @tvSwitchCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch camera'**
+  String get tvSwitchCamera;
+
+  /// No description provided for @tvFrontCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Front camera'**
+  String get tvFrontCamera;
+
+  /// No description provided for @tvBackCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Back camera'**
+  String get tvBackCamera;
+
+  /// No description provided for @tvEndCall.
+  ///
+  /// In en, this message translates to:
+  /// **'End call'**
+  String get tvEndCall;
+
+  /// No description provided for @tvCallEndedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Call ended · {duration}'**
+  String tvCallEndedToast(String duration);
+
+  /// No description provided for @tvCallFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The call couldn\'t connect.'**
+  String get tvCallFailed;
+
+  /// No description provided for @tvCallLiveLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Real video calls arrive with the live version of PawSetu. Keep chatting with the vet meanwhile.'**
+  String get tvCallLiveLater;
+
+  /// No description provided for @tvQueueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet queue'**
+  String get tvQueueTitle;
+
+  /// No description provided for @tvQueueHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus members and urgent cases come first. Accept a request to start the chat.'**
+  String get tvQueueHint;
+
+  /// No description provided for @tvQueueEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No one is waiting right now.'**
+  String get tvQueueEmpty;
+
+  /// No description provided for @tvWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get tvWaiting;
+
+  /// No description provided for @tvInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get tvInProgress;
+
+  /// No description provided for @tvDoneToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Done today'**
+  String get tvDoneToday;
+
+  /// No description provided for @tvPrescriptionsWritten.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescriptions'**
+  String get tvPrescriptionsWritten;
+
+  /// No description provided for @tvNoActive.
+  ///
+  /// In en, this message translates to:
+  /// **'No open consultations.'**
+  String get tvNoActive;
+
+  /// No description provided for @tvRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get tvRecent;
+
+  /// No description provided for @tvUrgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent'**
+  String get tvUrgent;
+
+  /// No description provided for @tvAskedForYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Asked for you'**
+  String get tvAskedForYou;
+
+  /// No description provided for @tvWaitingFor.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes, plural, =0{Just now} =1{Waiting 1 min} other{Waiting {minutes} min}}'**
+  String tvWaitingFor(int minutes);
+
+  /// No description provided for @tvScheduledFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked for {when}'**
+  String tvScheduledFor(String when);
+
+  /// No description provided for @tvAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get tvAccept;
+
+  /// No description provided for @tvView.
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get tvView;
+
+  /// No description provided for @tvAcceptHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept to start chatting about {pet}. The pet parent is notified.'**
+  String tvAcceptHint(String pet);
+
+  /// No description provided for @tvTabChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get tvTabChat;
+
+  /// No description provided for @tvTabHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get tvTabHistory;
+
+  /// No description provided for @tvTabTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes and tools'**
+  String get tvTabTools;
+
+  /// No description provided for @tvOpenVetTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Open vet tools'**
+  String get tvOpenVetTools;
+
+  /// No description provided for @tvUrgentSign.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent sign: {sign}'**
+  String tvUrgentSign(String sign);
+
+  /// No description provided for @tvFreeContext.
+  ///
+  /// In en, this message translates to:
+  /// **'Free plan: you see the basic profile. Plus members share their full health history.'**
+  String get tvFreeContext;
+
+  /// No description provided for @tvTemperament.
+  ///
+  /// In en, this message translates to:
+  /// **'Temperament'**
+  String get tvTemperament;
+
+  /// No description provided for @tvRecentHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent health records'**
+  String get tvRecentHealth;
+
+  /// No description provided for @tvNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get tvNone;
+
+  /// No description provided for @tvPrivateNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Private notes'**
+  String get tvPrivateNotes;
+
+  /// No description provided for @tvPrivateNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only you can see these notes.'**
+  String get tvPrivateNotesHint;
+
+  /// No description provided for @tvNotesPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Findings, differentials, plan…'**
+  String get tvNotesPlaceholder;
+
+  /// No description provided for @tvRecommend.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommend'**
+  String get tvRecommend;
+
+  /// No description provided for @tvRecVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic visit'**
+  String get tvRecVisit;
+
+  /// No description provided for @tvRecEmergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency care'**
+  String get tvRecEmergency;
+
+  /// No description provided for @tvRecVisitConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell {name} to bring their pet to a clinic for an examination?'**
+  String tvRecVisitConfirm(String name);
+
+  /// No description provided for @tvRecEmergencyConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell {name} this needs emergency care now? They\'ll see the SOS button.'**
+  String tvRecEmergencyConfirm(String name);
+
+  /// No description provided for @tvRecSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommendation sent'**
+  String get tvRecSent;
+
+  /// No description provided for @tvRecDoneVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic visit recommended'**
+  String get tvRecDoneVisit;
+
+  /// No description provided for @tvRecDoneEmergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency care recommended'**
+  String get tvRecDoneEmergency;
+
+  /// No description provided for @tvSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get tvSend;
+
+  /// No description provided for @tvEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'End consultation'**
+  String get tvEnd;
+
+  /// No description provided for @tvEndTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End this consultation?'**
+  String get tvEndTitle;
+
+  /// No description provided for @tvEndBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The pet parent can no longer send messages. The chat and prescription stay in their records.'**
+  String get tvEndBody;
+
+  /// No description provided for @tvEndBodyNoRx.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t written a prescription. End anyway? The pet parent can no longer send messages.'**
+  String get tvEndBodyNoRx;
+
+  /// No description provided for @tvEndedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation ended'**
+  String get tvEndedToast;
+
+  /// No description provided for @tvVetSafetyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for a clinic visit when an examination or tests are needed. Don\'t share personal phone numbers.'**
+  String get tvVetSafetyNote;
+
+  /// No description provided for @rxWrite.
+  ///
+  /// In en, this message translates to:
+  /// **'Write prescription'**
+  String get rxWrite;
+
+  /// No description provided for @rxTitleOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription for {pet}'**
+  String rxTitleOf(String pet);
+
+  /// No description provided for @rxTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'E-prescription'**
+  String get rxTitle;
+
+  /// No description provided for @rxRegNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Reg. no. {number}'**
+  String rxRegNo(String number);
+
+  /// No description provided for @rxDiagnosis.
+  ///
+  /// In en, this message translates to:
+  /// **'Diagnosis or assessment'**
+  String get rxDiagnosis;
+
+  /// No description provided for @rxDiagnosisHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. mild gastritis'**
+  String get rxDiagnosisHint;
+
+  /// No description provided for @rxMedicines.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicines'**
+  String get rxMedicines;
+
+  /// No description provided for @rxMedicineN.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicine {n}'**
+  String rxMedicineN(int n);
+
+  /// No description provided for @rxMedicine.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicine and strength'**
+  String get rxMedicine;
+
+  /// No description provided for @rxMedicineHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. Ondansetron 4 mg tablet'**
+  String get rxMedicineHint;
+
+  /// No description provided for @rxDoseHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Dose, e.g. half a tablet'**
+  String get rxDoseHint;
+
+  /// No description provided for @rxFreqOnce.
+  ///
+  /// In en, this message translates to:
+  /// **'Once a day'**
+  String get rxFreqOnce;
+
+  /// No description provided for @rxFreqTwice.
+  ///
+  /// In en, this message translates to:
+  /// **'Twice a day'**
+  String get rxFreqTwice;
+
+  /// No description provided for @rxFreqThrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Three times a day'**
+  String get rxFreqThrice;
+
+  /// No description provided for @rxFreqNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'When needed'**
+  String get rxFreqNeeded;
+
+  /// No description provided for @rxDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get rxDuration;
+
+  /// No description provided for @rxDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String rxDays(int count);
+
+  /// No description provided for @rxInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Instructions'**
+  String get rxInstructions;
+
+  /// No description provided for @rxAfterFood.
+  ///
+  /// In en, this message translates to:
+  /// **'After food'**
+  String get rxAfterFood;
+
+  /// No description provided for @rxBeforeFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Before food'**
+  String get rxBeforeFood;
+
+  /// No description provided for @rxApplyThin.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply a thin layer'**
+  String get rxApplyThin;
+
+  /// No description provided for @rxAddMedicine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add medicine'**
+  String get rxAddMedicine;
+
+  /// No description provided for @rxNeedMedicine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one medicine.'**
+  String get rxNeedMedicine;
+
+  /// No description provided for @rxAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Advice for the pet parent'**
+  String get rxAdvice;
+
+  /// No description provided for @rxAdviceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Diet, rest, what to watch for, when to come back'**
+  String get rxAdviceHint;
+
+  /// No description provided for @rxAddFollowUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a follow-up date'**
+  String get rxAddFollowUp;
+
+  /// No description provided for @rxFollowUpOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow-up on {date}'**
+  String rxFollowUpOn(String date);
+
+  /// No description provided for @rxFollowUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow-up'**
+  String get rxFollowUp;
+
+  /// No description provided for @rxNoFollowUp.
+  ///
+  /// In en, this message translates to:
+  /// **'No follow-up needed'**
+  String get rxNoFollowUp;
+
+  /// No description provided for @rxWhereItGoes.
+  ///
+  /// In en, this message translates to:
+  /// **'It goes to {pet}\'s health records and the pet parent\'s vault, with a reminder for any follow-up.'**
+  String rxWhereItGoes(String pet);
+
+  /// No description provided for @rxPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get rxPreview;
+
+  /// No description provided for @rxSignTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign and send?'**
+  String get rxSignTitle;
+
+  /// No description provided for @rxSignBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This prescription will be signed digitally with your registration number and sent to {owner} for {pet}.'**
+  String rxSignBody(String owner, String pet);
+
+  /// No description provided for @rxSignSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign and send'**
+  String get rxSignSend;
+
+  /// No description provided for @rxSentToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription sent to {owner} for {pet}'**
+  String rxSentToast(String owner, String pet);
+
+  /// No description provided for @rxSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to {pet}\'s health records'**
+  String rxSaved(String pet);
+
+  /// No description provided for @rxCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription from {vet}'**
+  String rxCardTitle(String vet);
+
+  /// No description provided for @rxView.
+  ///
+  /// In en, this message translates to:
+  /// **'View prescription'**
+  String get rxView;
+
+  /// No description provided for @rxSentPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription'**
+  String get rxSentPreview;
+
+  /// No description provided for @rxPatient.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient'**
+  String get rxPatient;
+
+  /// No description provided for @rxPetName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get rxPetName;
+
+  /// No description provided for @rxSpeciesBreed.
+  ///
+  /// In en, this message translates to:
+  /// **'Species and breed'**
+  String get rxSpeciesBreed;
+
+  /// No description provided for @rxSignedDigitally.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed digitally on {when}'**
+  String rxSignedDigitally(String when);
+
+  /// No description provided for @rxFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu e-prescription · Demo data · Valid only with the vet\'s registration number'**
+  String get rxFooter;
+
+  /// No description provided for @rxDocTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription for {pet}, {date}'**
+  String rxDocTitle(String pet, String date);
+
+  /// No description provided for @rxEventTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet consultation with {vet}'**
+  String rxEventTitle(String vet);
+
+  /// No description provided for @rxEventNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescribed: {medicines}'**
+  String rxEventNotes(String medicines);
+
+  /// No description provided for @rxFollowUpReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow-up for {pet} with {vet}'**
+  String rxFollowUpReminder(String pet, String vet);
+
+  /// No description provided for @ntfTeleVetRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'New tele-vet request: {pet} ({owner})'**
+  String ntfTeleVetRequest(String pet, String owner);
+
+  /// No description provided for @ntfVetJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'{vet} joined your chat about {pet}'**
+  String ntfVetJoined(String vet, String pet);
+
+  /// No description provided for @ntfConsultEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet consultation for {pet} has ended'**
+  String ntfConsultEnded(String pet);
+
+  /// No description provided for @ntfPrescription.
+  ///
+  /// In en, this message translates to:
+  /// **'{vet} sent a prescription for {pet}'**
+  String ntfPrescription(String vet, String pet);
 }
 
 class _AppLocalizationsDelegate

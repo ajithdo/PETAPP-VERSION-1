@@ -52,3 +52,21 @@ A running log of choices and why. Newest at the bottom of each section.
 **Notifications in the recipient's language.** Booking notifications are written in the language saved on the recipient's profile (Ravi gets Telugu even when a groomer using English accepts).
 
 **Partner sign-up.** Business type, details, KYC documents and the account in one form. The listing is created with status `pending` (hidden from owners) plus a `partnerApplications` record for the admin queue. In the standalone demo the account switches to the partner portal straight away and the dashboard shows "Waiting for approval"; with Firebase the role is a custom claim that only an admin sets on approval (Phase 10).
+
+## Phase 6
+
+**How it was built.** Phases 6 and 7 were started by parallel agents in separate git worktrees; a usage limit stopped them mid-way. Their code was saved as WIP commits and finished in the main branch (strings, demo data, server functions, tests, browser checks).
+
+**One chat model for everything.** `conversations` + `messages` (top-level). Thread ids are deterministic so there is one thread per booking (`chat_<bookingId>`), enquiry (`enq_<placeId>_<uid>`), tele-vet consultation (`tv_<consultationId>`) and Ask PawSetu history (`ai_<uid>`, hidden from the inbox). Unread counts live on the conversation (`unread.<uid>`), which drives the top-bar badge.
+
+**Safety in chats.** Phone numbers typed into a chat are hidden before saving (Indian mobile and landline formats). Calls go through a masked number (demo dialog in demo mode). Messages that look like payment details (UPI ID, card number, OTP or PIN, also in Hindi and Telugu) get a "pay only inside PawSetu" warning before sending. Report, block and mute per chat; reports go to the admin moderation queue (`reports`).
+
+**Voice notes.** Recorded as 16-bit PCM with the `record` package on every platform, including the web, and wrapped as WAV; played with `audioplayers`. Two minutes maximum. Where the microphone is unavailable the app offers a clearly labelled demo voice note.
+
+**Tele-vet limits.** All numbers come from `config/app` limits per plan (messages, words per message, hours open, consultations a month, video). The allowance is copied onto the consultation when it starts, so an admin change does not alter running chats. The same rules (`televet_rules.dart`) run on the device in the standalone demo and in the callable functions `startConsultation` and `sendTeleVetMessage` (`functions/src/phase6.ts`) with Firebase. Vets are never limited; the owner's side closes when the window ends while the vet can still wrap up.
+
+**Video calls.** `VideoCallService` with a simulated demo call (no camera, microphone or network). The real provider is chosen in Live phase L4.
+
+**E-prescriptions.** Built by the vet in a form, previewed and saved as a PDF rendered from Flutter widgets (Hindi and Telugu shape correctly). Saving also writes a Health "vet visit" entry, a vault document, a follow-up reminder and a notification in the pet parent's language (on the device in the demo; by the `onPrescriptionCreated` trigger with Firebase).
+
+**Ask PawSetu.** 20 scripted topics answered from the strings files (so answers follow the reader's language), keyword matching in English, Hindi and Telugu, and red-flag detection checked first (breathing trouble, collapse, seizures, poisoning, heavy bleeding, bloat, heatstroke, not passing urine, serious injury), which shows SOS and "Talk to a vet now". Red-flag questions are always answered and never counted against the monthly allowance (free 5, Plus unlimited; admin-configurable). Version 2 replaces the matcher with Gemini behind the same reply shape.

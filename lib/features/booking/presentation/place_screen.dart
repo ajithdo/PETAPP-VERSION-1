@@ -91,6 +91,8 @@ class PlaceScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: Space.sm),
                       PrimaryButton(label: l.bookNow, icon: Icons.event_available_rounded, onPressed: () => context.push('/book/new/${p.id}')),
+                  const SizedBox(height: Space.sm),
+                  SecondaryButton(label: l.message, icon: Icons.chat_rounded, onPressed: () => context.push('/messages/new?place=${p.id}')),
                       if (p.about != null) ...[const SizedBox(height: Space.lg), Text(p.about!)],
                       SectionHeader(l.hoursTitle),
                       PawCard(

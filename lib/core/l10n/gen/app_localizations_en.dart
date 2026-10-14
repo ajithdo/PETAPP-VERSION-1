@@ -3341,4 +3341,1499 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get remove => 'Remove';
+
+  @override
+  String get aiTitle => 'Ask PawSetu';
+
+  @override
+  String get aiIntroTitle => 'Quick answers to everyday pet questions';
+
+  @override
+  String get aiIntroBody =>
+      'Ask about food, baths, vaccines, ticks and more. For anything serious, talk to a vet.';
+
+  @override
+  String get aiHint => 'Type your question';
+
+  @override
+  String get aiAsk => 'Ask';
+
+  @override
+  String get aiPopular => 'Popular questions';
+
+  @override
+  String get aiDisclaimer =>
+      'General guidance only, not a diagnosis. Your vet knows your pet best.';
+
+  @override
+  String get aiNotDiagnosis =>
+      'Not a diagnosis. If your pet seems unwell, talk to a vet.';
+
+  @override
+  String get aiUnknown =>
+      'I don\'t have an answer for that yet. Try one of the popular questions, or ask a vet in tele-vet.';
+
+  @override
+  String get aiTalkToVet => 'Ask a vet';
+
+  @override
+  String get aiTalkToVetNow => 'Talk to a vet now';
+
+  @override
+  String get aiUnlimited => 'Unlimited with Plus';
+
+  @override
+  String aiLeft(int left, int limit) {
+    return '$left of $limit questions left this month';
+  }
+
+  @override
+  String aiLimitTitle(int limit) {
+    return 'You\'ve used your $limit questions this month';
+  }
+
+  @override
+  String aiLimitBody(String date) {
+    return 'More questions on $date, or get unlimited questions with PawSetu Plus. Emergencies are always answered.';
+  }
+
+  @override
+  String get aiRedFlagTitle => 'This could be an emergency';
+
+  @override
+  String aiRedFlagBody(String sign) {
+    return '$sign needs a vet right away. Use SOS to reach the nearest open clinic, or talk to a vet now.';
+  }
+
+  @override
+  String aiRedFlagShort(String sign) {
+    return 'Possible emergency: $sign';
+  }
+
+  @override
+  String aiTileHint(int left) {
+    return 'Everyday questions answered instantly. $left left this month.';
+  }
+
+  @override
+  String get aiTileHintPlus =>
+      'Everyday questions answered instantly. Unlimited with Plus.';
+
+  @override
+  String get rfBreathing => 'Trouble breathing';
+
+  @override
+  String get rfCollapse => 'Collapse or fainting';
+
+  @override
+  String get rfSeizure => 'A seizure (fits)';
+
+  @override
+  String get rfPoisoning => 'Possible poisoning';
+
+  @override
+  String get rfBleeding => 'Heavy bleeding';
+
+  @override
+  String get rfBloat => 'A swollen, hard belly';
+
+  @override
+  String get rfHeatstroke => 'Heatstroke';
+
+  @override
+  String get rfUrine => 'Not passing urine';
+
+  @override
+  String get rfInjury => 'A serious injury';
+
+  @override
+  String get aiQBath => 'How often should I bathe my dog?';
+
+  @override
+  String get aiQFeeding => 'How much should I feed my pet?';
+
+  @override
+  String get aiQToxicFood => 'Which human foods are unsafe for pets?';
+
+  @override
+  String get aiQVaccines => 'Which vaccines does my pet need?';
+
+  @override
+  String get aiQDeworming => 'How often should I deworm?';
+
+  @override
+  String get aiQTicks => 'How do I prevent ticks and fleas?';
+
+  @override
+  String get aiQHeat => 'How do I keep my pet cool in summer?';
+
+  @override
+  String get aiQVomiting => 'My pet vomited. What should I do?';
+
+  @override
+  String get aiQDiarrhoea => 'My pet has loose motions. What should I do?';
+
+  @override
+  String get aiQNotEating => 'My pet is not eating. Should I worry?';
+
+  @override
+  String get aiQItching => 'Why does my dog keep scratching?';
+
+  @override
+  String get aiQLimping => 'My dog is limping. What should I do?';
+
+  @override
+  String get aiQLitter => 'My cat isn\'t using the litter box. Why?';
+
+  @override
+  String get aiQChewing => 'How do I stop my puppy chewing and biting?';
+
+  @override
+  String get aiQNails => 'How do I trim my pet\'s nails?';
+
+  @override
+  String get aiQTeeth => 'How do I look after my pet\'s teeth?';
+
+  @override
+  String get aiQBirdDiet => 'What should I feed my bird?';
+
+  @override
+  String get aiQRabbitDiet => 'What should I feed my rabbit?';
+
+  @override
+  String get aiQWeight => 'Is my pet overweight?';
+
+  @override
+  String get aiQAnxiety =>
+      'My pet is scared of crackers and thunder. How can I help?';
+
+  @override
+  String get aiABath =>
+      'Most dogs need a bath every 3 to 4 weeks; more often only if they get dirty or smelly. Use a dog shampoo (human shampoo can dry the skin), lukewarm water, and rinse well. Dry the ears and the coat fully, especially in the monsoon, to avoid fungal infections. Brushing a few times a week keeps the coat clean between baths. Cats rarely need baths.';
+
+  @override
+  String get aiAFeeding =>
+      'It depends on your pet\'s weight, age and activity. Start with the amount on the food pack for your pet\'s ideal weight, split into 2 meals for adult dogs and cats (3 to 4 for puppies and kittens). Check the waist and ribs every few weeks: you should feel the ribs easily. Treats should be under a tenth of daily food. Keep fresh water out all the time. Your vet can suggest an exact amount.';
+
+  @override
+  String get aiAToxicFood =>
+      'Never give chocolate, grapes or raisins, onion, garlic, xylitol (in some sugar-free gum and sweets), alcohol, caffeine, cooked bones, or very salty and spicy food. Many festival sweets contain chocolate, raisins or xylitol, so keep them out of reach. Cats are also harmed by lilies. If your pet has eaten any of these, use SOS or call a vet now, even if they seem fine.';
+
+  @override
+  String get aiAVaccines =>
+      'Dogs need DHPPi with Leptospirosis (3 puppy doses from 6 to 8 weeks), anti-rabies at about 3 months, and yearly boosters. Cats need the tricat vaccine and anti-rabies, also with yearly boosters. Rabbits and birds usually don\'t need routine vaccines in India. Your pet\'s Health tab shows the full schedule, what\'s due and what\'s overdue. Your vet decides the final plan.';
+
+  @override
+  String get aiADeworming =>
+      'Puppies and kittens: every 2 weeks until 3 months old, then monthly until 6 months. Adults: every 3 months. Weigh your pet before each dose, because the dose depends on weight. PawSetu reminds you when the next dose is due. Ask your vet which dewormer suits your pet.';
+
+  @override
+  String get aiATicks =>
+      'Use a vet-recommended tick and flea preventive all year: a spot-on, a chewable tablet or a collar. Ticks are common in India, especially in the monsoon. Check ears, between the toes and under the collar after walks. Keep bedding clean and dry. Never use dog products on cats. If your pet is weak, has pale gums or a fever after tick bites, see a vet quickly.';
+
+  @override
+  String get aiAHeat =>
+      'Walk early in the morning or after sunset, and test the road with your hand: if it\'s too hot for 5 seconds, it\'s too hot for paws. Keep cool water and shade available all day. Never leave a pet in a parked car. Flat-faced breeds like pugs and Persian cats overheat fastest. Heavy panting, drooling, wobbling or bright red gums are signs of heatstroke: use SOS.';
+
+  @override
+  String get aiAVomiting =>
+      'One vomit with a normal, playful pet often settles: remove food for a few hours (not water), then give small, bland meals like boiled rice with boiled chicken. See a vet the same day if vomiting repeats, there is blood, your pet is a puppy or kitten, seems weak, has a swollen belly, or may have eaten something toxic or a toy.';
+
+  @override
+  String get aiADiarrhoea =>
+      'Keep fresh water available so your pet doesn\'t get dehydrated, and give small bland meals (boiled rice with boiled chicken or curd rice for dogs) for a day or two. Avoid milk and treats. See a vet if it lasts more than a day, there is blood or black stool, your pet is vomiting too, seems weak, or is a puppy or kitten.';
+
+  @override
+  String get aiANotEating =>
+      'Skipping one meal can happen with heat, stress or a change in food. Offer fresh food and water and watch for other signs. See a vet if a dog doesn\'t eat for more than a day, a cat for more than 24 hours, a rabbit for even a few hours (rabbits get sick quickly), or if there is vomiting, weakness, pain or a fever.';
+
+  @override
+  String get aiAItching =>
+      'Common causes are fleas and ticks, skin infections (often in the monsoon), food or dust allergies, and dry skin from frequent baths. Check the skin for ticks, redness, bald patches or a smell. Keep up tick and flea prevention and dry your dog well after baths and rain. If scratching goes on for more than a few days or the skin is broken, see a vet.';
+
+  @override
+  String get aiALimping =>
+      'Check the paw for thorns, glass, cuts, a broken nail or a tick between the toes, and look for swelling. Rest your dog: short toilet walks only, no running or jumping, for a day. Never give human painkillers; many are poisonous to pets. See a vet if the limp lasts more than a day, your dog can\'t put weight on the leg, cries in pain, or after a fall or accident.';
+
+  @override
+  String get aiALitter =>
+      'Keep the box clean (scoop daily), in a quiet spot away from food, with one box per cat plus one extra. Some cats dislike scented litter or covered boxes. Stress, like a new pet or a move, can also cause it. A cat straining in the box with little or no urine is an emergency, especially a male cat: use SOS.';
+
+  @override
+  String get aiAChewing =>
+      'Puppies explore with their mouths and chew more while teething (3 to 6 months). Give safe chew toys and swap them in when your puppy grabs something else. If they nip, stop play for a few seconds, then continue gently. Praise calm play. Keep wires, shoes and medicines out of reach. Plenty of walks and play reduce chewing. A trainer can help if it continues after 6 months.';
+
+  @override
+  String get aiANails =>
+      'Trim every 3 to 4 weeks, or when you hear nails clicking on the floor. Use pet nail clippers and cut only the tip, below the pink quick (on dark nails, take tiny slices). Keep styptic powder or plain cornflour ready in case of bleeding. Reward with a treat after each paw. If your pet hates it, a groomer or vet can do it in minutes. Birds and rabbits need nail trims too.';
+
+  @override
+  String get aiATeeth =>
+      'Brush your dog\'s or cat\'s teeth 2 to 3 times a week with a pet toothbrush and pet toothpaste (human toothpaste is not safe to swallow). Start slowly with a finger brush and lots of praise. Dental chews help a little. Bad breath, red gums, a broken tooth or dropping food can mean dental disease: book a dental check with your vet.';
+
+  @override
+  String get aiABirdDiet =>
+      'Seeds alone are not enough. Cockatiels and budgies do best on good-quality pellets with fresh vegetables daily (spinach, carrot, beans, peas) and small amounts of fruit, plus a little seed as a treat. Give fresh water every day. Never give avocado, chocolate, caffeine, salt or onion. Many parrot species are protected in India; only keep legally allowed birds.';
+
+  @override
+  String get aiARabbitDiet =>
+      'Hay should be about 80% of a rabbit\'s diet, available all day: it keeps teeth and gut healthy. Add a handful of leafy greens (coriander, mint, lettuce, carrot tops) daily, a small amount of rabbit pellets, and fruit only as a rare treat. Always keep fresh water. A rabbit that stops eating or pooping for even a few hours needs a vet urgently.';
+
+  @override
+  String get aiAWeight =>
+      'Feel the ribs: you should feel them easily under a thin layer, and see a waist from above. If you can\'t, your pet may be overweight. Weigh your pet monthly in PawSetu to see the trend against the healthy range for the breed. Cut treats and table scraps, measure food, and add a little more walking or play. Ask your vet before a big diet change.';
+
+  @override
+  String get aiAAnxiety =>
+      'Before Diwali or a storm, make a quiet den: a covered crate or a corner with their bed, curtains closed, a fan or soft music on. Walk your dog early in the day and keep them indoors with ID tags on when crackers start. Stay calm and close, but don\'t force cuddles. Don\'t scold fear. For severe fear, ask your vet well in advance about calming options.';
+
+  @override
+  String get msgEmptyTitle => 'No chats yet';
+
+  @override
+  String get msgEmptyBody =>
+      'Chats with your vet, clinic, groomer or walker show up here after you book or ask a question.';
+
+  @override
+  String get msgEmptyPartnerBody =>
+      'Chats with pet parents show up here when they book or send an enquiry.';
+
+  @override
+  String get msgEmptyFilter => 'No chats in this list';
+
+  @override
+  String msgNoResults(String query) {
+    return 'Nothing found for \"$query\"';
+  }
+
+  @override
+  String get msgSearchHint => 'Search chats and messages';
+
+  @override
+  String get msgClearSearch => 'Clear search';
+
+  @override
+  String get msgFoundInMessages => 'Found in messages';
+
+  @override
+  String get msgEnquiries => 'Enquiries';
+
+  @override
+  String get msgEnquiry => 'Enquiry';
+
+  @override
+  String get msgMuted => 'Muted';
+
+  @override
+  String get msgNoMessagesYet => 'No messages yet';
+
+  @override
+  String msgUnreadCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count unread messages',
+      one: '1 unread message',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get msgYouPrefix => 'You';
+
+  @override
+  String msgYou(String name) {
+    return '$name (you)';
+  }
+
+  @override
+  String get msgOpening => 'Opening the chat…';
+
+  @override
+  String get msgPickChat => 'Pick a chat';
+
+  @override
+  String get msgPickChatHint =>
+      'Your conversations with vets, clinics and service providers open here.';
+
+  @override
+  String get msgPickChatHintPartner =>
+      'Your conversations with pet parents open here.';
+
+  @override
+  String get msgNotFound => 'This chat is no longer available.';
+
+  @override
+  String get msgPreviewPhoto => 'Photo';
+
+  @override
+  String get msgPreviewPdf => 'PDF document';
+
+  @override
+  String get msgPreviewVoice => 'Voice note';
+
+  @override
+  String get msgClose => 'Close chat';
+
+  @override
+  String get msgChatInfo => 'Chat details';
+
+  @override
+  String get msgCallMasked => 'Call (number stays hidden)';
+
+  @override
+  String msgMaskedCallDemo(String name, String number) {
+    return 'Demo mode doesn\'t place real calls. In the live app this calls $name through a masked number ($number), so neither of you sees the other\'s real number.';
+  }
+
+  @override
+  String get msgMaskedCallLive =>
+      'Calls go through a masked number, so neither side sees the other\'s real number.';
+
+  @override
+  String get msgMaskedInfo =>
+      'Phone numbers are hidden in PawSetu chats and calls. Pay only inside the app.';
+
+  @override
+  String get msgMore => 'More options';
+
+  @override
+  String get msgSearchInChat => 'Search in chat';
+
+  @override
+  String msgMatches(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count matches',
+      one: '1 match',
+      zero: 'No matches',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get msgMute => 'Mute notifications';
+
+  @override
+  String get msgUnmute => 'Unmute notifications';
+
+  @override
+  String get msgMutedToast => 'Chat muted';
+
+  @override
+  String get msgUnmutedToast => 'Notifications on for this chat';
+
+  @override
+  String get msgBlock => 'Block';
+
+  @override
+  String get msgUnblock => 'Unblock';
+
+  @override
+  String msgBlockTitle(String name) {
+    return 'Block $name?';
+  }
+
+  @override
+  String get msgBlockBody =>
+      'Neither of you can send messages in this chat until you unblock. Your bookings are not affected.';
+
+  @override
+  String get msgBlockedToast => 'Blocked';
+
+  @override
+  String get msgUnblockedToast => 'Unblocked';
+
+  @override
+  String get msgYouBlocked =>
+      'You blocked this chat. Unblock it from the menu to send messages.';
+
+  @override
+  String get msgBlockedByOther =>
+      'This chat is closed. You can\'t send messages here.';
+
+  @override
+  String get msgReport => 'Report';
+
+  @override
+  String get msgReportTitle => 'Report this chat';
+
+  @override
+  String get msgReportHint =>
+      'PawSetu\'s team reviews every report, usually within a day.';
+
+  @override
+  String get msgReasonSpam => 'Spam or advertising';
+
+  @override
+  String get msgReasonAbuse => 'Rude or abusive';
+
+  @override
+  String get msgReasonPayment => 'Asked to pay outside PawSetu';
+
+  @override
+  String get msgReasonFake => 'Fake profile or scam';
+
+  @override
+  String get msgReasonOther => 'Something else';
+
+  @override
+  String get msgReportDetails => 'Details (optional)';
+
+  @override
+  String get msgReportSend => 'Send report';
+
+  @override
+  String get msgReportedToast => 'Thanks. We\'ll look into it.';
+
+  @override
+  String get msgGetHelp => 'Get help';
+
+  @override
+  String get msgTypingShort => 'typing…';
+
+  @override
+  String msgTyping(String name) {
+    return '$name is typing…';
+  }
+
+  @override
+  String get msgTypeHint => 'Type a message';
+
+  @override
+  String get msgSend => 'Send';
+
+  @override
+  String get msgAttach => 'Attach a photo or PDF';
+
+  @override
+  String get msgAttachTitle => 'Send a file';
+
+  @override
+  String get msgAttachPdf => 'PDF document';
+
+  @override
+  String get msgAttachPdfHint =>
+      'Reports, prescriptions, certificates (up to 10 MB)';
+
+  @override
+  String get msgPdfTooBig =>
+      'That file is over 10 MB. Please send a smaller PDF.';
+
+  @override
+  String get msgSendFailed =>
+      'Couldn\'t send. Check your connection and try again.';
+
+  @override
+  String get msgNumberHiddenToast =>
+      'Phone numbers are hidden in chats to keep everyone safe.';
+
+  @override
+  String get msgNumberHidden => 'Number hidden';
+
+  @override
+  String get msgPaymentWarnTitle => 'Pay only inside PawSetu';
+
+  @override
+  String get msgPaymentWarnBody =>
+      'Your message looks like it has payment details (UPI ID, card number, OTP or PIN). Never share an OTP or PIN. Payments made outside PawSetu are not protected.';
+
+  @override
+  String get msgSendAnyway => 'Send anyway';
+
+  @override
+  String get msgSafetyNote =>
+      'Numbers are hidden and payments stay inside PawSetu. Never share an OTP or PIN.';
+
+  @override
+  String get msgRecordVoice => 'Record a voice note';
+
+  @override
+  String msgRecording(String elapsed, String max) {
+    return 'Recording $elapsed / $max';
+  }
+
+  @override
+  String msgRecordingDemo(String elapsed) {
+    return 'Demo recording $elapsed';
+  }
+
+  @override
+  String get msgCancelRecording => 'Cancel recording';
+
+  @override
+  String get msgSendVoice => 'Send voice note';
+
+  @override
+  String get msgPlayVoice => 'Play voice note';
+
+  @override
+  String get msgPause => 'Pause';
+
+  @override
+  String get msgVoiceCantPlay =>
+      'This voice note can\'t be played on this device.';
+
+  @override
+  String get msgMicUnavailableTitle => 'Microphone not available';
+
+  @override
+  String get msgMicUnavailable =>
+      'Allow microphone access in your phone\'s settings to send voice notes.';
+
+  @override
+  String get msgMicDemoBody =>
+      'The microphone isn\'t available here. Send a short demo voice note instead?';
+
+  @override
+  String get msgRecordDemo => 'Send demo voice note';
+
+  @override
+  String get msgSent => 'Sent';
+
+  @override
+  String get msgRead => 'Read';
+
+  @override
+  String get msgYesterday => 'Yesterday';
+
+  @override
+  String get msgDemoReply => 'Demo reply';
+
+  @override
+  String get msgPdf => 'PDF';
+
+  @override
+  String get msgTapToOpen => 'Tap to open';
+
+  @override
+  String get msgFileCantOpen => 'This file can\'t be opened here.';
+
+  @override
+  String get msgSampleStamp => 'Sample document · Demo';
+
+  @override
+  String get msgSampleDocBody =>
+      'This is a sample document shared in a demo chat.';
+
+  @override
+  String msgSysBookingChat(String pet, String when) {
+    return 'Chat for $pet\'s booking on $when';
+  }
+
+  @override
+  String get msgSysTvStarted => 'Chat consultation requested';
+
+  @override
+  String get msgSysTvStartedVideo => 'Video consultation requested';
+
+  @override
+  String msgSysTvScheduled(String when) {
+    return 'Consultation booked for $when';
+  }
+
+  @override
+  String msgSysVetJoined(String name, String until) {
+    return '$name joined. The chat stays open until $until.';
+  }
+
+  @override
+  String get msgSysTvEnded => 'Consultation ended';
+
+  @override
+  String msgSysCallEnded(String duration) {
+    return 'Video call ended · $duration';
+  }
+
+  @override
+  String get msgYourPet => 'your pet';
+
+  @override
+  String demoReplyClinic(String pet) {
+    return 'Thanks for your message. The clinic team will check $pet\'s details and get back to you shortly.';
+  }
+
+  @override
+  String demoReplyVet(String pet) {
+    return 'Thanks, noted. How is $pet eating and drinking today?';
+  }
+
+  @override
+  String demoReplyGroomer(String pet) {
+    return 'Sure! We\'ll take good care of $pet. Please bring any shampoo $pet is used to.';
+  }
+
+  @override
+  String demoReplyWalker(String pet) {
+    return 'Got it! I\'ll keep $pet on the shady side of the road and send you a photo.';
+  }
+
+  @override
+  String demoReplyTrainer(String pet) {
+    return 'Great question. Let\'s practise this with $pet in our next session.';
+  }
+
+  @override
+  String demoReplyBoarder(String pet) {
+    return '$pet is doing well and settling in nicely. I\'ll send a photo this evening.';
+  }
+
+  @override
+  String demoReplyOwner(String name) {
+    return 'Thank you! That helps a lot. – $name';
+  }
+
+  @override
+  String demoReplyOwnerVet(String name) {
+    return 'Thank you, Dr. $name! I\'ll follow that.';
+  }
+
+  @override
+  String demoVetGreeting(String owner, String pet) {
+    return 'Hello $owner, I\'m here. I\'ve read what you wrote about $pet. A few questions to start: since when, and is $pet eating and drinking normally?';
+  }
+
+  @override
+  String ntfNewMessage(String name) {
+    return 'New message from $name';
+  }
+
+  @override
+  String ntfTeleVetMessage(String name) {
+    return 'Tele-vet: new message from $name';
+  }
+
+  @override
+  String get tvHomeTitle => 'Talk to a vet';
+
+  @override
+  String get tvHomeBody =>
+      'Chat or video with a registered vet, usually within minutes.';
+
+  @override
+  String get tvStart => 'Start a consultation';
+
+  @override
+  String get tvEmergencyNote =>
+      'Emergency? Don\'t wait for a chat. Use SOS to reach the nearest open clinic.';
+
+  @override
+  String get tvOpenConsults => 'Open consultations';
+
+  @override
+  String get tvPastConsults => 'Past consultations';
+
+  @override
+  String get tvPartnerHere => 'Tele-vet requests are in your portal';
+
+  @override
+  String get tvPlanFree => 'Your Free plan';
+
+  @override
+  String get tvPlanPlus => 'Your Plus plan';
+
+  @override
+  String get tvFreeChip => 'Free';
+
+  @override
+  String tvLinePerMonth(int limit, int used) {
+    String _temp0 = intl.Intl.pluralLogic(
+      limit,
+      locale: localeName,
+      other: '$limit consultations a month',
+      one: '1 consultation a month',
+    );
+    return '$_temp0 · $used used';
+  }
+
+  @override
+  String get tvLineUnlimited => 'Unlimited consultations';
+
+  @override
+  String tvLineMessages(int messages, int words) {
+    return 'Up to $messages messages, $words words each';
+  }
+
+  @override
+  String tvLineHours(int hours) {
+    return 'Chat stays open $hours hours after the vet joins';
+  }
+
+  @override
+  String get tvLineVideo => 'Video calls included, with 10% off';
+
+  @override
+  String get tvLineNoVideo => 'Video calls need Plus';
+
+  @override
+  String get tvMonthlyUsedTitle =>
+      'You\'ve used this month\'s free consultation';
+
+  @override
+  String tvMonthlyUsed(String date) {
+    return 'Your next free consultation opens on $date. With Plus you get unlimited chats and video calls.';
+  }
+
+  @override
+  String get tvPlusPromptTitle => 'More time with vets';
+
+  @override
+  String get tvPlusHint =>
+      'Plus gives you up to 100 messages of 300 words, 72 hours of chat and video calls.';
+
+  @override
+  String get tvVideoPlusTitle => 'Video calls are part of Plus';
+
+  @override
+  String get tvStatusQueuedShort => 'Waiting';
+
+  @override
+  String get tvStatusActiveShort => 'Open';
+
+  @override
+  String get tvStatusEndedShort => 'Ended';
+
+  @override
+  String get tvConsentTitle => 'Before you start';
+
+  @override
+  String get tvConsentIntro =>
+      'Online consultations follow the Veterinary Council of India\'s guidelines. Please read and agree:';
+
+  @override
+  String get tvConsent1 =>
+      'A vet gives advice from what you describe and show. It is not a full physical examination.';
+
+  @override
+  String get tvConsent2 =>
+      'Every vet on PawSetu is registered with a State Veterinary Council. You\'ll see their registration number.';
+
+  @override
+  String get tvConsent3 =>
+      'The vet may ask you to visit a clinic if your pet needs an examination or tests.';
+
+  @override
+  String get tvConsent4 =>
+      'Tele-vet is not for emergencies. For trouble breathing, collapse, seizures, poisoning or heavy bleeding, use SOS.';
+
+  @override
+  String get tvConsent5 =>
+      'Prescriptions are issued only when the vet thinks it is safe, and some medicines need a clinic visit.';
+
+  @override
+  String get tvConsent6 =>
+      'Your chat, photos and your pet\'s records are shared only with the vet treating your pet.';
+
+  @override
+  String get tvConsentAgree => 'I have read and agree';
+
+  @override
+  String get tvConsentContinue => 'Continue';
+
+  @override
+  String get tvStepPet => 'Pet';
+
+  @override
+  String get tvStepProblem => 'Problem';
+
+  @override
+  String get tvStepHow => 'Vet';
+
+  @override
+  String get tvWhichPet => 'Which pet is this about?';
+
+  @override
+  String get tvNoPet => 'Add a pet first to talk to a vet.';
+
+  @override
+  String tvDescribe(String pet) {
+    return 'What\'s happening with $pet?';
+  }
+
+  @override
+  String get tvDescribeHint =>
+      'When did it start, what you noticed, eating and drinking, anything they may have eaten';
+
+  @override
+  String get tvAddPhotos => 'Add photos';
+
+  @override
+  String get tvPhotosHint =>
+      'Clear photos of the problem (a wound, rash, stool or vomit) help the vet a lot.';
+
+  @override
+  String get tvContinueToVet => 'Choose how to talk';
+
+  @override
+  String get tvChatNow => 'Chat now';
+
+  @override
+  String get tvChatNowHint =>
+      'The next available vet joins, usually within minutes';
+
+  @override
+  String get tvVideoNow => 'Video call now';
+
+  @override
+  String get tvVideoNowHint => 'Show the vet your pet on a video call';
+
+  @override
+  String get tvVideoPlusOnly => 'Available with PawSetu Plus';
+
+  @override
+  String get tvChooseVet => 'Choose a vet';
+
+  @override
+  String get tvChooseVetHint =>
+      'Pick a vet by language and experience, now or later today';
+
+  @override
+  String get tvModeChat => 'Chat';
+
+  @override
+  String get tvModeVideo => 'Video';
+
+  @override
+  String tvVideoFee(String amount) {
+    return 'Video $amount';
+  }
+
+  @override
+  String get tvWhen => 'When';
+
+  @override
+  String get tvNow => 'Now';
+
+  @override
+  String get tvTomorrow => 'Tomorrow';
+
+  @override
+  String get tvSummary => 'Summary';
+
+  @override
+  String get tvSummaryPet => 'Pet';
+
+  @override
+  String get tvSummaryType => 'Type';
+
+  @override
+  String get tvSummaryVet => 'Vet';
+
+  @override
+  String get tvNextAvailable => 'Next available vet';
+
+  @override
+  String get tvFee => 'Fee';
+
+  @override
+  String get tvIncluded => 'Included in your plan';
+
+  @override
+  String get tvVideoFeeLabel => 'Video consultation';
+
+  @override
+  String tvPlusDiscount(int percent) {
+    return 'Plus discount ($percent%)';
+  }
+
+  @override
+  String tvChatRules(int messages, int words, int hours) {
+    return 'Up to $messages messages of $words words. The chat stays open $hours hours after the vet joins.';
+  }
+
+  @override
+  String get tvStartChat => 'Start chat';
+
+  @override
+  String get tvStartVideo => 'Start video call';
+
+  @override
+  String tvPayAndStart(String amount) {
+    return 'Pay $amount and start';
+  }
+
+  @override
+  String tvPayDescription(String pet) {
+    return 'Video consultation for $pet';
+  }
+
+  @override
+  String tvFindingVet(String pet) {
+    return 'Finding a vet for $pet…';
+  }
+
+  @override
+  String get tvFindingVetHint =>
+      'Most chats are picked up within a few minutes. We\'ll notify you.';
+
+  @override
+  String get tvFindingVetShort => 'Finding a vet…';
+
+  @override
+  String tvScheduledTitle(String when) {
+    return 'Consultation at $when';
+  }
+
+  @override
+  String get tvScheduledHint =>
+      'The vet will join at this time. You can add details before then.';
+
+  @override
+  String get tvStatusQueued => 'Waiting for a vet';
+
+  @override
+  String get tvStatusActive => 'Consultation open';
+
+  @override
+  String get tvStatusEnded => 'Consultation ended';
+
+  @override
+  String tvOpenUntil(String time) {
+    return 'Open until $time';
+  }
+
+  @override
+  String tvMessagesLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count messages left',
+      one: '1 message left',
+      zero: 'No messages left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get tvPriority => 'Priority (Plus)';
+
+  @override
+  String get tvVideoCall => 'Video call';
+
+  @override
+  String get tvClosedShort => 'Chat closed';
+
+  @override
+  String tvEndedWith(String vet) {
+    return 'Ended · $vet';
+  }
+
+  @override
+  String tvVetBarTitle(String pet, String owner) {
+    return '$pet · $owner';
+  }
+
+  @override
+  String get tvRate => 'Rate this consultation';
+
+  @override
+  String tvRateTitle(String vet) {
+    return 'How was your chat with $vet?';
+  }
+
+  @override
+  String get tvRateComment => 'Anything to add? (optional)';
+
+  @override
+  String get tvRateSubmit => 'Submit rating';
+
+  @override
+  String get tvRateThanks => 'Thanks for rating!';
+
+  @override
+  String tvStars(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stars',
+      one: '1 star',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String tvAllowanceLine(int words, int max, int left) {
+    return '$words/$max words · $left messages left';
+  }
+
+  @override
+  String tvWordsOver(int words, int max) {
+    return '$words/$max words. Please shorten your message.';
+  }
+
+  @override
+  String tvWordsTitle(int max) {
+    return 'Messages can have up to $max words';
+  }
+
+  @override
+  String tvWordsBody(int words, int max) {
+    return 'Your message has $words words, the limit is $max. Split it into shorter messages or keep just the key points; the vet can ask for more.';
+  }
+
+  @override
+  String get tvEditMessage => 'Edit message';
+
+  @override
+  String tvNoMessagesTitle(int count) {
+    return 'You\'ve used all $count messages';
+  }
+
+  @override
+  String get tvNoMessagesBody =>
+      'The vet can still reply and send a prescription. For more questions, start a new consultation.';
+
+  @override
+  String get tvClosedTitle => 'This chat has closed';
+
+  @override
+  String tvClosedBanner(int hours) {
+    return 'Chats stay open for $hours hours after the vet joins. Start a new consultation if you need more help.';
+  }
+
+  @override
+  String get tvEndedTitle => 'Consultation ended';
+
+  @override
+  String get tvEndedBanner =>
+      'The vet ended this consultation. Your chat and any prescription stay in your pet\'s records.';
+
+  @override
+  String get tvProblemLabel => 'Problem described';
+
+  @override
+  String get tvBookVisit => 'Book a clinic visit';
+
+  @override
+  String tvRecVisitMsg(String name) {
+    return '$name recommends a clinic visit for an examination.';
+  }
+
+  @override
+  String tvRecEmergencyMsg(String name) {
+    return '$name says this needs emergency care now. Use SOS to reach the nearest open clinic.';
+  }
+
+  @override
+  String get tvConnecting => 'Connecting…';
+
+  @override
+  String get tvWaitingVetJoin => 'Waiting for the vet to join…';
+
+  @override
+  String get tvDemoCall => 'DEMO CALL';
+
+  @override
+  String get tvGoodNetwork => 'Good connection';
+
+  @override
+  String get tvWeakNetwork => 'Weak connection';
+
+  @override
+  String tvRemoteVideo(String name) {
+    return 'Video of $name';
+  }
+
+  @override
+  String get tvSelfView => 'Your camera';
+
+  @override
+  String get tvCameraOff => 'Camera is off';
+
+  @override
+  String get tvCameraOffAction => 'Turn camera off';
+
+  @override
+  String get tvCameraOnAction => 'Turn camera on';
+
+  @override
+  String get tvMute => 'Mute';
+
+  @override
+  String get tvUnmute => 'Unmute';
+
+  @override
+  String get tvSpeakerOn => 'Speaker on';
+
+  @override
+  String get tvSpeakerOff => 'Speaker off';
+
+  @override
+  String get tvSwitchCamera => 'Switch camera';
+
+  @override
+  String get tvFrontCamera => 'Front camera';
+
+  @override
+  String get tvBackCamera => 'Back camera';
+
+  @override
+  String get tvEndCall => 'End call';
+
+  @override
+  String tvCallEndedToast(String duration) {
+    return 'Call ended · $duration';
+  }
+
+  @override
+  String get tvCallFailed => 'The call couldn\'t connect.';
+
+  @override
+  String get tvCallLiveLater =>
+      'Real video calls arrive with the live version of PawSetu. Keep chatting with the vet meanwhile.';
+
+  @override
+  String get tvQueueTitle => 'Tele-vet queue';
+
+  @override
+  String get tvQueueHint =>
+      'Plus members and urgent cases come first. Accept a request to start the chat.';
+
+  @override
+  String get tvQueueEmpty => 'No one is waiting right now.';
+
+  @override
+  String get tvWaiting => 'Waiting';
+
+  @override
+  String get tvInProgress => 'In progress';
+
+  @override
+  String get tvDoneToday => 'Done today';
+
+  @override
+  String get tvPrescriptionsWritten => 'Prescriptions';
+
+  @override
+  String get tvNoActive => 'No open consultations.';
+
+  @override
+  String get tvRecent => 'Recent';
+
+  @override
+  String get tvUrgent => 'Urgent';
+
+  @override
+  String get tvAskedForYou => 'Asked for you';
+
+  @override
+  String tvWaitingFor(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Waiting $minutes min',
+      one: 'Waiting 1 min',
+      zero: 'Just now',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String tvScheduledFor(String when) {
+    return 'Booked for $when';
+  }
+
+  @override
+  String get tvAccept => 'Accept';
+
+  @override
+  String get tvView => 'View';
+
+  @override
+  String tvAcceptHint(String pet) {
+    return 'Accept to start chatting about $pet. The pet parent is notified.';
+  }
+
+  @override
+  String get tvTabChat => 'Chat';
+
+  @override
+  String get tvTabHistory => 'History';
+
+  @override
+  String get tvTabTools => 'Notes and tools';
+
+  @override
+  String get tvOpenVetTools => 'Open vet tools';
+
+  @override
+  String tvUrgentSign(String sign) {
+    return 'Urgent sign: $sign';
+  }
+
+  @override
+  String get tvFreeContext =>
+      'Free plan: you see the basic profile. Plus members share their full health history.';
+
+  @override
+  String get tvTemperament => 'Temperament';
+
+  @override
+  String get tvRecentHealth => 'Recent health records';
+
+  @override
+  String get tvNone => 'None';
+
+  @override
+  String get tvPrivateNotes => 'Private notes';
+
+  @override
+  String get tvPrivateNotesHint => 'Only you can see these notes.';
+
+  @override
+  String get tvNotesPlaceholder => 'Findings, differentials, plan…';
+
+  @override
+  String get tvRecommend => 'Recommend';
+
+  @override
+  String get tvRecVisit => 'Clinic visit';
+
+  @override
+  String get tvRecEmergency => 'Emergency care';
+
+  @override
+  String tvRecVisitConfirm(String name) {
+    return 'Tell $name to bring their pet to a clinic for an examination?';
+  }
+
+  @override
+  String tvRecEmergencyConfirm(String name) {
+    return 'Tell $name this needs emergency care now? They\'ll see the SOS button.';
+  }
+
+  @override
+  String get tvRecSent => 'Recommendation sent';
+
+  @override
+  String get tvRecDoneVisit => 'Clinic visit recommended';
+
+  @override
+  String get tvRecDoneEmergency => 'Emergency care recommended';
+
+  @override
+  String get tvSend => 'Send';
+
+  @override
+  String get tvEnd => 'End consultation';
+
+  @override
+  String get tvEndTitle => 'End this consultation?';
+
+  @override
+  String get tvEndBody =>
+      'The pet parent can no longer send messages. The chat and prescription stay in their records.';
+
+  @override
+  String get tvEndBodyNoRx =>
+      'You haven\'t written a prescription. End anyway? The pet parent can no longer send messages.';
+
+  @override
+  String get tvEndedToast => 'Consultation ended';
+
+  @override
+  String get tvVetSafetyNote =>
+      'Ask for a clinic visit when an examination or tests are needed. Don\'t share personal phone numbers.';
+
+  @override
+  String get rxWrite => 'Write prescription';
+
+  @override
+  String rxTitleOf(String pet) {
+    return 'Prescription for $pet';
+  }
+
+  @override
+  String get rxTitle => 'E-prescription';
+
+  @override
+  String rxRegNo(String number) {
+    return 'Reg. no. $number';
+  }
+
+  @override
+  String get rxDiagnosis => 'Diagnosis or assessment';
+
+  @override
+  String get rxDiagnosisHint => 'E.g. mild gastritis';
+
+  @override
+  String get rxMedicines => 'Medicines';
+
+  @override
+  String rxMedicineN(int n) {
+    return 'Medicine $n';
+  }
+
+  @override
+  String get rxMedicine => 'Medicine and strength';
+
+  @override
+  String get rxMedicineHint => 'E.g. Ondansetron 4 mg tablet';
+
+  @override
+  String get rxDoseHint => 'Dose, e.g. half a tablet';
+
+  @override
+  String get rxFreqOnce => 'Once a day';
+
+  @override
+  String get rxFreqTwice => 'Twice a day';
+
+  @override
+  String get rxFreqThrice => 'Three times a day';
+
+  @override
+  String get rxFreqNeeded => 'When needed';
+
+  @override
+  String get rxDuration => 'Duration';
+
+  @override
+  String rxDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxInstructions => 'Instructions';
+
+  @override
+  String get rxAfterFood => 'After food';
+
+  @override
+  String get rxBeforeFood => 'Before food';
+
+  @override
+  String get rxApplyThin => 'Apply a thin layer';
+
+  @override
+  String get rxAddMedicine => 'Add medicine';
+
+  @override
+  String get rxNeedMedicine => 'Add at least one medicine.';
+
+  @override
+  String get rxAdvice => 'Advice for the pet parent';
+
+  @override
+  String get rxAdviceHint => 'Diet, rest, what to watch for, when to come back';
+
+  @override
+  String get rxAddFollowUp => 'Add a follow-up date';
+
+  @override
+  String rxFollowUpOn(String date) {
+    return 'Follow-up on $date';
+  }
+
+  @override
+  String get rxFollowUp => 'Follow-up';
+
+  @override
+  String get rxNoFollowUp => 'No follow-up needed';
+
+  @override
+  String rxWhereItGoes(String pet) {
+    return 'It goes to $pet\'s health records and the pet parent\'s vault, with a reminder for any follow-up.';
+  }
+
+  @override
+  String get rxPreview => 'Preview';
+
+  @override
+  String get rxSignTitle => 'Sign and send?';
+
+  @override
+  String rxSignBody(String owner, String pet) {
+    return 'This prescription will be signed digitally with your registration number and sent to $owner for $pet.';
+  }
+
+  @override
+  String get rxSignSend => 'Sign and send';
+
+  @override
+  String rxSentToast(String owner, String pet) {
+    return 'Prescription sent to $owner for $pet';
+  }
+
+  @override
+  String rxSaved(String pet) {
+    return 'Saved to $pet\'s health records';
+  }
+
+  @override
+  String rxCardTitle(String vet) {
+    return 'Prescription from $vet';
+  }
+
+  @override
+  String get rxView => 'View prescription';
+
+  @override
+  String get rxSentPreview => 'Prescription';
+
+  @override
+  String get rxPatient => 'Patient';
+
+  @override
+  String get rxPetName => 'Name';
+
+  @override
+  String get rxSpeciesBreed => 'Species and breed';
+
+  @override
+  String rxSignedDigitally(String when) {
+    return 'Signed digitally on $when';
+  }
+
+  @override
+  String get rxFooter =>
+      'PawSetu e-prescription · Demo data · Valid only with the vet\'s registration number';
+
+  @override
+  String rxDocTitle(String pet, String date) {
+    return 'Prescription for $pet, $date';
+  }
+
+  @override
+  String rxEventTitle(String vet) {
+    return 'Tele-vet consultation with $vet';
+  }
+
+  @override
+  String rxEventNotes(String medicines) {
+    return 'Prescribed: $medicines';
+  }
+
+  @override
+  String rxFollowUpReminder(String pet, String vet) {
+    return 'Follow-up for $pet with $vet';
+  }
+
+  @override
+  String ntfTeleVetRequest(String pet, String owner) {
+    return 'New tele-vet request: $pet ($owner)';
+  }
+
+  @override
+  String ntfVetJoined(String vet, String pet) {
+    return '$vet joined your chat about $pet';
+  }
+
+  @override
+  String ntfConsultEnded(String pet) {
+    return 'Tele-vet consultation for $pet has ended';
+  }
+
+  @override
+  String ntfPrescription(String vet, String pet) {
+    return '$vet sent a prescription for $pet';
+  }
 }

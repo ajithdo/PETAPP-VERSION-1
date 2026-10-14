@@ -2115,5 +2115,1056 @@
   "yourAccount": "Your account",
   "submitApplication": "Submit application",
   "partnerApprovalNote": "After you submit, your listing waits for approval. You can set up services and prices meanwhile.",
-  "remove": "Remove"
+  "remove": "Remove",
+  "aiTitle": "Ask PawSetu",
+  "aiIntroTitle": "Quick answers to everyday pet questions",
+  "aiIntroBody": "Ask about food, baths, vaccines, ticks and more. For anything serious, talk to a vet.",
+  "aiHint": "Type your question",
+  "aiAsk": "Ask",
+  "aiPopular": "Popular questions",
+  "aiDisclaimer": "General guidance only, not a diagnosis. Your vet knows your pet best.",
+  "aiNotDiagnosis": "Not a diagnosis. If your pet seems unwell, talk to a vet.",
+  "aiUnknown": "I don't have an answer for that yet. Try one of the popular questions, or ask a vet in tele-vet.",
+  "aiTalkToVet": "Ask a vet",
+  "aiTalkToVetNow": "Talk to a vet now",
+  "aiUnlimited": "Unlimited with Plus",
+  "aiLeft": "{left} of {limit} questions left this month",
+  "@aiLeft": {
+    "placeholders": {
+      "left": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "aiLimitTitle": "You've used your {limit} questions this month",
+  "@aiLimitTitle": {
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "aiLimitBody": "More questions on {date}, or get unlimited questions with PawSetu Plus. Emergencies are always answered.",
+  "@aiLimitBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "aiRedFlagTitle": "This could be an emergency",
+  "aiRedFlagBody": "{sign} needs a vet right away. Use SOS to reach the nearest open clinic, or talk to a vet now.",
+  "@aiRedFlagBody": {
+    "placeholders": {
+      "sign": {
+        "type": "String"
+      }
+    }
+  },
+  "aiRedFlagShort": "Possible emergency: {sign}",
+  "@aiRedFlagShort": {
+    "placeholders": {
+      "sign": {
+        "type": "String"
+      }
+    }
+  },
+  "aiTileHint": "Everyday questions answered instantly. {left} left this month.",
+  "@aiTileHint": {
+    "placeholders": {
+      "left": {
+        "type": "int"
+      }
+    }
+  },
+  "aiTileHintPlus": "Everyday questions answered instantly. Unlimited with Plus.",
+  "rfBreathing": "Trouble breathing",
+  "rfCollapse": "Collapse or fainting",
+  "rfSeizure": "A seizure (fits)",
+  "rfPoisoning": "Possible poisoning",
+  "rfBleeding": "Heavy bleeding",
+  "rfBloat": "A swollen, hard belly",
+  "rfHeatstroke": "Heatstroke",
+  "rfUrine": "Not passing urine",
+  "rfInjury": "A serious injury",
+  "aiQBath": "How often should I bathe my dog?",
+  "aiQFeeding": "How much should I feed my pet?",
+  "aiQToxicFood": "Which human foods are unsafe for pets?",
+  "aiQVaccines": "Which vaccines does my pet need?",
+  "aiQDeworming": "How often should I deworm?",
+  "aiQTicks": "How do I prevent ticks and fleas?",
+  "aiQHeat": "How do I keep my pet cool in summer?",
+  "aiQVomiting": "My pet vomited. What should I do?",
+  "aiQDiarrhoea": "My pet has loose motions. What should I do?",
+  "aiQNotEating": "My pet is not eating. Should I worry?",
+  "aiQItching": "Why does my dog keep scratching?",
+  "aiQLimping": "My dog is limping. What should I do?",
+  "aiQLitter": "My cat isn't using the litter box. Why?",
+  "aiQChewing": "How do I stop my puppy chewing and biting?",
+  "aiQNails": "How do I trim my pet's nails?",
+  "aiQTeeth": "How do I look after my pet's teeth?",
+  "aiQBirdDiet": "What should I feed my bird?",
+  "aiQRabbitDiet": "What should I feed my rabbit?",
+  "aiQWeight": "Is my pet overweight?",
+  "aiQAnxiety": "My pet is scared of crackers and thunder. How can I help?",
+  "aiABath": "Most dogs need a bath every 3 to 4 weeks; more often only if they get dirty or smelly. Use a dog shampoo (human shampoo can dry the skin), lukewarm water, and rinse well. Dry the ears and the coat fully, especially in the monsoon, to avoid fungal infections. Brushing a few times a week keeps the coat clean between baths. Cats rarely need baths.",
+  "aiAFeeding": "It depends on your pet's weight, age and activity. Start with the amount on the food pack for your pet's ideal weight, split into 2 meals for adult dogs and cats (3 to 4 for puppies and kittens). Check the waist and ribs every few weeks: you should feel the ribs easily. Treats should be under a tenth of daily food. Keep fresh water out all the time. Your vet can suggest an exact amount.",
+  "aiAToxicFood": "Never give chocolate, grapes or raisins, onion, garlic, xylitol (in some sugar-free gum and sweets), alcohol, caffeine, cooked bones, or very salty and spicy food. Many festival sweets contain chocolate, raisins or xylitol, so keep them out of reach. Cats are also harmed by lilies. If your pet has eaten any of these, use SOS or call a vet now, even if they seem fine.",
+  "aiAVaccines": "Dogs need DHPPi with Leptospirosis (3 puppy doses from 6 to 8 weeks), anti-rabies at about 3 months, and yearly boosters. Cats need the tricat vaccine and anti-rabies, also with yearly boosters. Rabbits and birds usually don't need routine vaccines in India. Your pet's Health tab shows the full schedule, what's due and what's overdue. Your vet decides the final plan.",
+  "aiADeworming": "Puppies and kittens: every 2 weeks until 3 months old, then monthly until 6 months. Adults: every 3 months. Weigh your pet before each dose, because the dose depends on weight. PawSetu reminds you when the next dose is due. Ask your vet which dewormer suits your pet.",
+  "aiATicks": "Use a vet-recommended tick and flea preventive all year: a spot-on, a chewable tablet or a collar. Ticks are common in India, especially in the monsoon. Check ears, between the toes and under the collar after walks. Keep bedding clean and dry. Never use dog products on cats. If your pet is weak, has pale gums or a fever after tick bites, see a vet quickly.",
+  "aiAHeat": "Walk early in the morning or after sunset, and test the road with your hand: if it's too hot for 5 seconds, it's too hot for paws. Keep cool water and shade available all day. Never leave a pet in a parked car. Flat-faced breeds like pugs and Persian cats overheat fastest. Heavy panting, drooling, wobbling or bright red gums are signs of heatstroke: use SOS.",
+  "aiAVomiting": "One vomit with a normal, playful pet often settles: remove food for a few hours (not water), then give small, bland meals like boiled rice with boiled chicken. See a vet the same day if vomiting repeats, there is blood, your pet is a puppy or kitten, seems weak, has a swollen belly, or may have eaten something toxic or a toy.",
+  "aiADiarrhoea": "Keep fresh water available so your pet doesn't get dehydrated, and give small bland meals (boiled rice with boiled chicken or curd rice for dogs) for a day or two. Avoid milk and treats. See a vet if it lasts more than a day, there is blood or black stool, your pet is vomiting too, seems weak, or is a puppy or kitten.",
+  "aiANotEating": "Skipping one meal can happen with heat, stress or a change in food. Offer fresh food and water and watch for other signs. See a vet if a dog doesn't eat for more than a day, a cat for more than 24 hours, a rabbit for even a few hours (rabbits get sick quickly), or if there is vomiting, weakness, pain or a fever.",
+  "aiAItching": "Common causes are fleas and ticks, skin infections (often in the monsoon), food or dust allergies, and dry skin from frequent baths. Check the skin for ticks, redness, bald patches or a smell. Keep up tick and flea prevention and dry your dog well after baths and rain. If scratching goes on for more than a few days or the skin is broken, see a vet.",
+  "aiALimping": "Check the paw for thorns, glass, cuts, a broken nail or a tick between the toes, and look for swelling. Rest your dog: short toilet walks only, no running or jumping, for a day. Never give human painkillers; many are poisonous to pets. See a vet if the limp lasts more than a day, your dog can't put weight on the leg, cries in pain, or after a fall or accident.",
+  "aiALitter": "Keep the box clean (scoop daily), in a quiet spot away from food, with one box per cat plus one extra. Some cats dislike scented litter or covered boxes. Stress, like a new pet or a move, can also cause it. A cat straining in the box with little or no urine is an emergency, especially a male cat: use SOS.",
+  "aiAChewing": "Puppies explore with their mouths and chew more while teething (3 to 6 months). Give safe chew toys and swap them in when your puppy grabs something else. If they nip, stop play for a few seconds, then continue gently. Praise calm play. Keep wires, shoes and medicines out of reach. Plenty of walks and play reduce chewing. A trainer can help if it continues after 6 months.",
+  "aiANails": "Trim every 3 to 4 weeks, or when you hear nails clicking on the floor. Use pet nail clippers and cut only the tip, below the pink quick (on dark nails, take tiny slices). Keep styptic powder or plain cornflour ready in case of bleeding. Reward with a treat after each paw. If your pet hates it, a groomer or vet can do it in minutes. Birds and rabbits need nail trims too.",
+  "aiATeeth": "Brush your dog's or cat's teeth 2 to 3 times a week with a pet toothbrush and pet toothpaste (human toothpaste is not safe to swallow). Start slowly with a finger brush and lots of praise. Dental chews help a little. Bad breath, red gums, a broken tooth or dropping food can mean dental disease: book a dental check with your vet.",
+  "aiABirdDiet": "Seeds alone are not enough. Cockatiels and budgies do best on good-quality pellets with fresh vegetables daily (spinach, carrot, beans, peas) and small amounts of fruit, plus a little seed as a treat. Give fresh water every day. Never give avocado, chocolate, caffeine, salt or onion. Many parrot species are protected in India; only keep legally allowed birds.",
+  "aiARabbitDiet": "Hay should be about 80% of a rabbit's diet, available all day: it keeps teeth and gut healthy. Add a handful of leafy greens (coriander, mint, lettuce, carrot tops) daily, a small amount of rabbit pellets, and fruit only as a rare treat. Always keep fresh water. A rabbit that stops eating or pooping for even a few hours needs a vet urgently.",
+  "aiAWeight": "Feel the ribs: you should feel them easily under a thin layer, and see a waist from above. If you can't, your pet may be overweight. Weigh your pet monthly in PawSetu to see the trend against the healthy range for the breed. Cut treats and table scraps, measure food, and add a little more walking or play. Ask your vet before a big diet change.",
+  "aiAAnxiety": "Before Diwali or a storm, make a quiet den: a covered crate or a corner with their bed, curtains closed, a fan or soft music on. Walk your dog early in the day and keep them indoors with ID tags on when crackers start. Stay calm and close, but don't force cuddles. Don't scold fear. For severe fear, ask your vet well in advance about calming options.",
+  "msgEmptyTitle": "No chats yet",
+  "msgEmptyBody": "Chats with your vet, clinic, groomer or walker show up here after you book or ask a question.",
+  "msgEmptyPartnerBody": "Chats with pet parents show up here when they book or send an enquiry.",
+  "msgEmptyFilter": "No chats in this list",
+  "msgNoResults": "Nothing found for \"{query}\"",
+  "@msgNoResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "msgSearchHint": "Search chats and messages",
+  "msgClearSearch": "Clear search",
+  "msgFoundInMessages": "Found in messages",
+  "msgEnquiries": "Enquiries",
+  "msgEnquiry": "Enquiry",
+  "msgMuted": "Muted",
+  "msgNoMessagesYet": "No messages yet",
+  "msgUnreadCount": "{count, plural, =1{1 unread message} other{{count} unread messages}}",
+  "@msgUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "msgYouPrefix": "You",
+  "msgYou": "{name} (you)",
+  "@msgYou": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "msgOpening": "Opening the chat…",
+  "msgPickChat": "Pick a chat",
+  "msgPickChatHint": "Your conversations with vets, clinics and service providers open here.",
+  "msgPickChatHintPartner": "Your conversations with pet parents open here.",
+  "msgNotFound": "This chat is no longer available.",
+  "msgPreviewPhoto": "Photo",
+  "msgPreviewPdf": "PDF document",
+  "msgPreviewVoice": "Voice note",
+  "msgClose": "Close chat",
+  "msgChatInfo": "Chat details",
+  "msgCallMasked": "Call (number stays hidden)",
+  "msgMaskedCallDemo": "Demo mode doesn't place real calls. In the live app this calls {name} through a masked number ({number}), so neither of you sees the other's real number.",
+  "@msgMaskedCallDemo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "msgMaskedCallLive": "Calls go through a masked number, so neither side sees the other's real number.",
+  "msgMaskedInfo": "Phone numbers are hidden in PawSetu chats and calls. Pay only inside the app.",
+  "msgMore": "More options",
+  "msgSearchInChat": "Search in chat",
+  "msgMatches": "{count, plural, =0{No matches} =1{1 match} other{{count} matches}}",
+  "@msgMatches": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "msgMute": "Mute notifications",
+  "msgUnmute": "Unmute notifications",
+  "msgMutedToast": "Chat muted",
+  "msgUnmutedToast": "Notifications on for this chat",
+  "msgBlock": "Block",
+  "msgUnblock": "Unblock",
+  "msgBlockTitle": "Block {name}?",
+  "@msgBlockTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "msgBlockBody": "Neither of you can send messages in this chat until you unblock. Your bookings are not affected.",
+  "msgBlockedToast": "Blocked",
+  "msgUnblockedToast": "Unblocked",
+  "msgYouBlocked": "You blocked this chat. Unblock it from the menu to send messages.",
+  "msgBlockedByOther": "This chat is closed. You can't send messages here.",
+  "msgReport": "Report",
+  "msgReportTitle": "Report this chat",
+  "msgReportHint": "PawSetu's team reviews every report, usually within a day.",
+  "msgReasonSpam": "Spam or advertising",
+  "msgReasonAbuse": "Rude or abusive",
+  "msgReasonPayment": "Asked to pay outside PawSetu",
+  "msgReasonFake": "Fake profile or scam",
+  "msgReasonOther": "Something else",
+  "msgReportDetails": "Details (optional)",
+  "msgReportSend": "Send report",
+  "msgReportedToast": "Thanks. We'll look into it.",
+  "msgGetHelp": "Get help",
+  "msgTypingShort": "typing…",
+  "msgTyping": "{name} is typing…",
+  "@msgTyping": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "msgTypeHint": "Type a message",
+  "msgSend": "Send",
+  "msgAttach": "Attach a photo or PDF",
+  "msgAttachTitle": "Send a file",
+  "msgAttachPdf": "PDF document",
+  "msgAttachPdfHint": "Reports, prescriptions, certificates (up to 10 MB)",
+  "msgPdfTooBig": "That file is over 10 MB. Please send a smaller PDF.",
+  "msgSendFailed": "Couldn't send. Check your connection and try again.",
+  "msgNumberHiddenToast": "Phone numbers are hidden in chats to keep everyone safe.",
+  "msgNumberHidden": "Number hidden",
+  "msgPaymentWarnTitle": "Pay only inside PawSetu",
+  "msgPaymentWarnBody": "Your message looks like it has payment details (UPI ID, card number, OTP or PIN). Never share an OTP or PIN. Payments made outside PawSetu are not protected.",
+  "msgSendAnyway": "Send anyway",
+  "msgSafetyNote": "Numbers are hidden and payments stay inside PawSetu. Never share an OTP or PIN.",
+  "msgRecordVoice": "Record a voice note",
+  "msgRecording": "Recording {elapsed} / {max}",
+  "@msgRecording": {
+    "placeholders": {
+      "elapsed": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "msgRecordingDemo": "Demo recording {elapsed}",
+  "@msgRecordingDemo": {
+    "placeholders": {
+      "elapsed": {
+        "type": "String"
+      }
+    }
+  },
+  "msgCancelRecording": "Cancel recording",
+  "msgSendVoice": "Send voice note",
+  "msgPlayVoice": "Play voice note",
+  "msgPause": "Pause",
+  "msgVoiceCantPlay": "This voice note can't be played on this device.",
+  "msgMicUnavailableTitle": "Microphone not available",
+  "msgMicUnavailable": "Allow microphone access in your phone's settings to send voice notes.",
+  "msgMicDemoBody": "The microphone isn't available here. Send a short demo voice note instead?",
+  "msgRecordDemo": "Send demo voice note",
+  "msgSent": "Sent",
+  "msgRead": "Read",
+  "msgYesterday": "Yesterday",
+  "msgDemoReply": "Demo reply",
+  "msgPdf": "PDF",
+  "msgTapToOpen": "Tap to open",
+  "msgFileCantOpen": "This file can't be opened here.",
+  "msgSampleStamp": "Sample document · Demo",
+  "msgSampleDocBody": "This is a sample document shared in a demo chat.",
+  "msgSysBookingChat": "Chat for {pet}'s booking on {when}",
+  "@msgSysBookingChat": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "msgSysTvStarted": "Chat consultation requested",
+  "msgSysTvStartedVideo": "Video consultation requested",
+  "msgSysTvScheduled": "Consultation booked for {when}",
+  "@msgSysTvScheduled": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "msgSysVetJoined": "{name} joined. The chat stays open until {until}.",
+  "@msgSysVetJoined": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "until": {
+        "type": "String"
+      }
+    }
+  },
+  "msgSysTvEnded": "Consultation ended",
+  "msgSysCallEnded": "Video call ended · {duration}",
+  "@msgSysCallEnded": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "msgYourPet": "your pet",
+  "demoReplyClinic": "Thanks for your message. The clinic team will check {pet}'s details and get back to you shortly.",
+  "@demoReplyClinic": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "demoReplyVet": "Thanks, noted. How is {pet} eating and drinking today?",
+  "@demoReplyVet": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "demoReplyGroomer": "Sure! We'll take good care of {pet}. Please bring any shampoo {pet} is used to.",
+  "@demoReplyGroomer": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "demoReplyWalker": "Got it! I'll keep {pet} on the shady side of the road and send you a photo.",
+  "@demoReplyWalker": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "demoReplyTrainer": "Great question. Let's practise this with {pet} in our next session.",
+  "@demoReplyTrainer": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "demoReplyBoarder": "{pet} is doing well and settling in nicely. I'll send a photo this evening.",
+  "@demoReplyBoarder": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "demoReplyOwner": "Thank you! That helps a lot. – {name}",
+  "@demoReplyOwner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "demoReplyOwnerVet": "Thank you, Dr. {name}! I'll follow that.",
+  "@demoReplyOwnerVet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "demoVetGreeting": "Hello {owner}, I'm here. I've read what you wrote about {pet}. A few questions to start: since when, and is {pet} eating and drinking normally?",
+  "@demoVetGreeting": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfNewMessage": "New message from {name}",
+  "@ntfNewMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfTeleVetMessage": "Tele-vet: new message from {name}",
+  "@ntfTeleVetMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tvHomeTitle": "Talk to a vet",
+  "tvHomeBody": "Chat or video with a registered vet, usually within minutes.",
+  "tvStart": "Start a consultation",
+  "tvEmergencyNote": "Emergency? Don't wait for a chat. Use SOS to reach the nearest open clinic.",
+  "tvOpenConsults": "Open consultations",
+  "tvPastConsults": "Past consultations",
+  "tvPartnerHere": "Tele-vet requests are in your portal",
+  "tvPlanFree": "Your Free plan",
+  "tvPlanPlus": "Your Plus plan",
+  "tvFreeChip": "Free",
+  "tvLinePerMonth": "{limit, plural, =1{1 consultation a month} other{{limit} consultations a month}} · {used} used",
+  "@tvLinePerMonth": {
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      },
+      "used": {
+        "type": "int"
+      }
+    }
+  },
+  "tvLineUnlimited": "Unlimited consultations",
+  "tvLineMessages": "Up to {messages} messages, {words} words each",
+  "@tvLineMessages": {
+    "placeholders": {
+      "messages": {
+        "type": "int"
+      },
+      "words": {
+        "type": "int"
+      }
+    }
+  },
+  "tvLineHours": "Chat stays open {hours} hours after the vet joins",
+  "@tvLineHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "tvLineVideo": "Video calls included, with 10% off",
+  "tvLineNoVideo": "Video calls need Plus",
+  "tvMonthlyUsedTitle": "You've used this month's free consultation",
+  "tvMonthlyUsed": "Your next free consultation opens on {date}. With Plus you get unlimited chats and video calls.",
+  "@tvMonthlyUsed": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "tvPlusPromptTitle": "More time with vets",
+  "tvPlusHint": "Plus gives you up to 100 messages of 300 words, 72 hours of chat and video calls.",
+  "tvVideoPlusTitle": "Video calls are part of Plus",
+  "tvStatusQueuedShort": "Waiting",
+  "tvStatusActiveShort": "Open",
+  "tvStatusEndedShort": "Ended",
+  "tvConsentTitle": "Before you start",
+  "tvConsentIntro": "Online consultations follow the Veterinary Council of India's guidelines. Please read and agree:",
+  "tvConsent1": "A vet gives advice from what you describe and show. It is not a full physical examination.",
+  "tvConsent2": "Every vet on PawSetu is registered with a State Veterinary Council. You'll see their registration number.",
+  "tvConsent3": "The vet may ask you to visit a clinic if your pet needs an examination or tests.",
+  "tvConsent4": "Tele-vet is not for emergencies. For trouble breathing, collapse, seizures, poisoning or heavy bleeding, use SOS.",
+  "tvConsent5": "Prescriptions are issued only when the vet thinks it is safe, and some medicines need a clinic visit.",
+  "tvConsent6": "Your chat, photos and your pet's records are shared only with the vet treating your pet.",
+  "tvConsentAgree": "I have read and agree",
+  "tvConsentContinue": "Continue",
+  "tvStepPet": "Pet",
+  "tvStepProblem": "Problem",
+  "tvStepHow": "Vet",
+  "tvWhichPet": "Which pet is this about?",
+  "tvNoPet": "Add a pet first to talk to a vet.",
+  "tvDescribe": "What's happening with {pet}?",
+  "@tvDescribe": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "tvDescribeHint": "When did it start, what you noticed, eating and drinking, anything they may have eaten",
+  "tvAddPhotos": "Add photos",
+  "tvPhotosHint": "Clear photos of the problem (a wound, rash, stool or vomit) help the vet a lot.",
+  "tvContinueToVet": "Choose how to talk",
+  "tvChatNow": "Chat now",
+  "tvChatNowHint": "The next available vet joins, usually within minutes",
+  "tvVideoNow": "Video call now",
+  "tvVideoNowHint": "Show the vet your pet on a video call",
+  "tvVideoPlusOnly": "Available with PawSetu Plus",
+  "tvChooseVet": "Choose a vet",
+  "tvChooseVetHint": "Pick a vet by language and experience, now or later today",
+  "tvModeChat": "Chat",
+  "tvModeVideo": "Video",
+  "tvVideoFee": "Video {amount}",
+  "@tvVideoFee": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "tvWhen": "When",
+  "tvNow": "Now",
+  "tvTomorrow": "Tomorrow",
+  "tvSummary": "Summary",
+  "tvSummaryPet": "Pet",
+  "tvSummaryType": "Type",
+  "tvSummaryVet": "Vet",
+  "tvNextAvailable": "Next available vet",
+  "tvFee": "Fee",
+  "tvIncluded": "Included in your plan",
+  "tvVideoFeeLabel": "Video consultation",
+  "tvPlusDiscount": "Plus discount ({percent}%)",
+  "@tvPlusDiscount": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "tvChatRules": "Up to {messages} messages of {words} words. The chat stays open {hours} hours after the vet joins.",
+  "@tvChatRules": {
+    "placeholders": {
+      "messages": {
+        "type": "int"
+      },
+      "words": {
+        "type": "int"
+      },
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "tvStartChat": "Start chat",
+  "tvStartVideo": "Start video call",
+  "tvPayAndStart": "Pay {amount} and start",
+  "@tvPayAndStart": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "tvPayDescription": "Video consultation for {pet}",
+  "@tvPayDescription": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "tvFindingVet": "Finding a vet for {pet}…",
+  "@tvFindingVet": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "tvFindingVetHint": "Most chats are picked up within a few minutes. We'll notify you.",
+  "tvFindingVetShort": "Finding a vet…",
+  "tvScheduledTitle": "Consultation at {when}",
+  "@tvScheduledTitle": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "tvScheduledHint": "The vet will join at this time. You can add details before then.",
+  "tvStatusQueued": "Waiting for a vet",
+  "tvStatusActive": "Consultation open",
+  "tvStatusEnded": "Consultation ended",
+  "tvOpenUntil": "Open until {time}",
+  "@tvOpenUntil": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "tvMessagesLeft": "{count, plural, =0{No messages left} =1{1 message left} other{{count} messages left}}",
+  "@tvMessagesLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tvPriority": "Priority (Plus)",
+  "tvVideoCall": "Video call",
+  "tvClosedShort": "Chat closed",
+  "tvEndedWith": "Ended · {vet}",
+  "@tvEndedWith": {
+    "placeholders": {
+      "vet": {
+        "type": "String"
+      }
+    }
+  },
+  "tvVetBarTitle": "{pet} · {owner}",
+  "@tvVetBarTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "owner": {
+        "type": "String"
+      }
+    }
+  },
+  "tvRate": "Rate this consultation",
+  "tvRateTitle": "How was your chat with {vet}?",
+  "@tvRateTitle": {
+    "placeholders": {
+      "vet": {
+        "type": "String"
+      }
+    }
+  },
+  "tvRateComment": "Anything to add? (optional)",
+  "tvRateSubmit": "Submit rating",
+  "tvRateThanks": "Thanks for rating!",
+  "tvStars": "{count, plural, =1{1 star} other{{count} stars}}",
+  "@tvStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tvAllowanceLine": "{words}/{max} words · {left} messages left",
+  "@tvAllowanceLine": {
+    "placeholders": {
+      "words": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      },
+      "left": {
+        "type": "int"
+      }
+    }
+  },
+  "tvWordsOver": "{words}/{max} words. Please shorten your message.",
+  "@tvWordsOver": {
+    "placeholders": {
+      "words": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "tvWordsTitle": "Messages can have up to {max} words",
+  "@tvWordsTitle": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "tvWordsBody": "Your message has {words} words, the limit is {max}. Split it into shorter messages or keep just the key points; the vet can ask for more.",
+  "@tvWordsBody": {
+    "placeholders": {
+      "words": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "tvEditMessage": "Edit message",
+  "tvNoMessagesTitle": "You've used all {count} messages",
+  "@tvNoMessagesTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tvNoMessagesBody": "The vet can still reply and send a prescription. For more questions, start a new consultation.",
+  "tvClosedTitle": "This chat has closed",
+  "tvClosedBanner": "Chats stay open for {hours} hours after the vet joins. Start a new consultation if you need more help.",
+  "@tvClosedBanner": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "tvEndedTitle": "Consultation ended",
+  "tvEndedBanner": "The vet ended this consultation. Your chat and any prescription stay in your pet's records.",
+  "tvProblemLabel": "Problem described",
+  "tvBookVisit": "Book a clinic visit",
+  "tvRecVisitMsg": "{name} recommends a clinic visit for an examination.",
+  "@tvRecVisitMsg": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tvRecEmergencyMsg": "{name} says this needs emergency care now. Use SOS to reach the nearest open clinic.",
+  "@tvRecEmergencyMsg": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tvConnecting": "Connecting…",
+  "tvWaitingVetJoin": "Waiting for the vet to join…",
+  "tvDemoCall": "DEMO CALL",
+  "tvGoodNetwork": "Good connection",
+  "tvWeakNetwork": "Weak connection",
+  "tvRemoteVideo": "Video of {name}",
+  "@tvRemoteVideo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tvSelfView": "Your camera",
+  "tvCameraOff": "Camera is off",
+  "tvCameraOffAction": "Turn camera off",
+  "tvCameraOnAction": "Turn camera on",
+  "tvMute": "Mute",
+  "tvUnmute": "Unmute",
+  "tvSpeakerOn": "Speaker on",
+  "tvSpeakerOff": "Speaker off",
+  "tvSwitchCamera": "Switch camera",
+  "tvFrontCamera": "Front camera",
+  "tvBackCamera": "Back camera",
+  "tvEndCall": "End call",
+  "tvCallEndedToast": "Call ended · {duration}",
+  "@tvCallEndedToast": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "tvCallFailed": "The call couldn't connect.",
+  "tvCallLiveLater": "Real video calls arrive with the live version of PawSetu. Keep chatting with the vet meanwhile.",
+  "tvQueueTitle": "Tele-vet queue",
+  "tvQueueHint": "Plus members and urgent cases come first. Accept a request to start the chat.",
+  "tvQueueEmpty": "No one is waiting right now.",
+  "tvWaiting": "Waiting",
+  "tvInProgress": "In progress",
+  "tvDoneToday": "Done today",
+  "tvPrescriptionsWritten": "Prescriptions",
+  "tvNoActive": "No open consultations.",
+  "tvRecent": "Recent",
+  "tvUrgent": "Urgent",
+  "tvAskedForYou": "Asked for you",
+  "tvWaitingFor": "{minutes, plural, =0{Just now} =1{Waiting 1 min} other{Waiting {minutes} min}}",
+  "@tvWaitingFor": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "tvScheduledFor": "Booked for {when}",
+  "@tvScheduledFor": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "tvAccept": "Accept",
+  "tvView": "View",
+  "tvAcceptHint": "Accept to start chatting about {pet}. The pet parent is notified.",
+  "@tvAcceptHint": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "tvTabChat": "Chat",
+  "tvTabHistory": "History",
+  "tvTabTools": "Notes and tools",
+  "tvOpenVetTools": "Open vet tools",
+  "tvUrgentSign": "Urgent sign: {sign}",
+  "@tvUrgentSign": {
+    "placeholders": {
+      "sign": {
+        "type": "String"
+      }
+    }
+  },
+  "tvFreeContext": "Free plan: you see the basic profile. Plus members share their full health history.",
+  "tvTemperament": "Temperament",
+  "tvRecentHealth": "Recent health records",
+  "tvNone": "None",
+  "tvPrivateNotes": "Private notes",
+  "tvPrivateNotesHint": "Only you can see these notes.",
+  "tvNotesPlaceholder": "Findings, differentials, plan…",
+  "tvRecommend": "Recommend",
+  "tvRecVisit": "Clinic visit",
+  "tvRecEmergency": "Emergency care",
+  "tvRecVisitConfirm": "Tell {name} to bring their pet to a clinic for an examination?",
+  "@tvRecVisitConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tvRecEmergencyConfirm": "Tell {name} this needs emergency care now? They'll see the SOS button.",
+  "@tvRecEmergencyConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tvRecSent": "Recommendation sent",
+  "tvRecDoneVisit": "Clinic visit recommended",
+  "tvRecDoneEmergency": "Emergency care recommended",
+  "tvSend": "Send",
+  "tvEnd": "End consultation",
+  "tvEndTitle": "End this consultation?",
+  "tvEndBody": "The pet parent can no longer send messages. The chat and prescription stay in their records.",
+  "tvEndBodyNoRx": "You haven't written a prescription. End anyway? The pet parent can no longer send messages.",
+  "tvEndedToast": "Consultation ended",
+  "tvVetSafetyNote": "Ask for a clinic visit when an examination or tests are needed. Don't share personal phone numbers.",
+  "rxWrite": "Write prescription",
+  "rxTitleOf": "Prescription for {pet}",
+  "@rxTitleOf": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "rxTitle": "E-prescription",
+  "rxRegNo": "Reg. no. {number}",
+  "@rxRegNo": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "rxDiagnosis": "Diagnosis or assessment",
+  "rxDiagnosisHint": "E.g. mild gastritis",
+  "rxMedicines": "Medicines",
+  "rxMedicineN": "Medicine {n}",
+  "@rxMedicineN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "rxMedicine": "Medicine and strength",
+  "rxMedicineHint": "E.g. Ondansetron 4 mg tablet",
+  "rxDoseHint": "Dose, e.g. half a tablet",
+  "rxFreqOnce": "Once a day",
+  "rxFreqTwice": "Twice a day",
+  "rxFreqThrice": "Three times a day",
+  "rxFreqNeeded": "When needed",
+  "rxDuration": "Duration",
+  "rxDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "@rxDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "rxInstructions": "Instructions",
+  "rxAfterFood": "After food",
+  "rxBeforeFood": "Before food",
+  "rxApplyThin": "Apply a thin layer",
+  "rxAddMedicine": "Add medicine",
+  "rxNeedMedicine": "Add at least one medicine.",
+  "rxAdvice": "Advice for the pet parent",
+  "rxAdviceHint": "Diet, rest, what to watch for, when to come back",
+  "rxAddFollowUp": "Add a follow-up date",
+  "rxFollowUpOn": "Follow-up on {date}",
+  "@rxFollowUpOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "rxFollowUp": "Follow-up",
+  "rxNoFollowUp": "No follow-up needed",
+  "rxWhereItGoes": "It goes to {pet}'s health records and the pet parent's vault, with a reminder for any follow-up.",
+  "@rxWhereItGoes": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "rxPreview": "Preview",
+  "rxSignTitle": "Sign and send?",
+  "rxSignBody": "This prescription will be signed digitally with your registration number and sent to {owner} for {pet}.",
+  "@rxSignBody": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "rxSignSend": "Sign and send",
+  "rxSentToast": "Prescription sent to {owner} for {pet}",
+  "@rxSentToast": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "rxSaved": "Saved to {pet}'s health records",
+  "@rxSaved": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "rxCardTitle": "Prescription from {vet}",
+  "@rxCardTitle": {
+    "placeholders": {
+      "vet": {
+        "type": "String"
+      }
+    }
+  },
+  "rxView": "View prescription",
+  "rxSentPreview": "Prescription",
+  "rxPatient": "Patient",
+  "rxPetName": "Name",
+  "rxSpeciesBreed": "Species and breed",
+  "rxSignedDigitally": "Signed digitally on {when}",
+  "@rxSignedDigitally": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "rxFooter": "PawSetu e-prescription · Demo data · Valid only with the vet's registration number",
+  "rxDocTitle": "Prescription for {pet}, {date}",
+  "@rxDocTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "rxEventTitle": "Tele-vet consultation with {vet}",
+  "@rxEventTitle": {
+    "placeholders": {
+      "vet": {
+        "type": "String"
+      }
+    }
+  },
+  "rxEventNotes": "Prescribed: {medicines}",
+  "@rxEventNotes": {
+    "placeholders": {
+      "medicines": {
+        "type": "String"
+      }
+    }
+  },
+  "rxFollowUpReminder": "Follow-up for {pet} with {vet}",
+  "@rxFollowUpReminder": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "vet": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfTeleVetRequest": "New tele-vet request: {pet} ({owner})",
+  "@ntfTeleVetRequest": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "owner": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfVetJoined": "{vet} joined your chat about {pet}",
+  "@ntfVetJoined": {
+    "placeholders": {
+      "vet": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfConsultEnded": "Tele-vet consultation for {pet} has ended",
+  "@ntfConsultEnded": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfPrescription": "{vet} sent a prescription for {pet}",
+  "@ntfPrescription": {
+    "placeholders": {
+      "vet": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  }
 }

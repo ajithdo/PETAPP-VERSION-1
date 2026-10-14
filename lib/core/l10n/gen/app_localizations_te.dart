@@ -3287,4 +3287,1453 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get remove => 'తీసివేయండి';
+
+  @override
+  String get aiTitle => 'PawSetu ని అడగండి';
+
+  @override
+  String get aiIntroTitle => 'రోజువారీ పెంపుడు జంతువు ప్రశ్నలకు త్వరిత జవాబులు';
+
+  @override
+  String get aiIntroBody =>
+      'ఆహారం, స్నానం, టీకాలు, పేలు ఇంకా ఎన్నో అడగండి. ఏదైనా తీవ్రంగా అనిపిస్తే వెట్‌తో మాట్లాడండి.';
+
+  @override
+  String get aiHint => 'మీ ప్రశ్న రాయండి';
+
+  @override
+  String get aiAsk => 'అడగండి';
+
+  @override
+  String get aiPopular => 'తరచుగా అడిగే ప్రశ్నలు';
+
+  @override
+  String get aiDisclaimer =>
+      'ఇది సాధారణ సలహా మాత్రమే, నిర్ధారణ కాదు. మీ పెంపుడు జంతువు గురించి మీ వెట్‌కే బాగా తెలుసు.';
+
+  @override
+  String get aiNotDiagnosis =>
+      'ఇది నిర్ధారణ కాదు. మీ పెంపుడు జంతువు అనారోగ్యంగా అనిపిస్తే వెట్‌తో మాట్లాడండి.';
+
+  @override
+  String get aiUnknown =>
+      'దీనికి ఇంకా నా దగ్గర జవాబు లేదు. తరచుగా అడిగే ప్రశ్నల్లో ఒకటి ఎంచుకోండి, లేదా టెలి-వెట్‌లో వెట్‌ని అడగండి.';
+
+  @override
+  String get aiTalkToVet => 'వెట్‌ని అడగండి';
+
+  @override
+  String get aiTalkToVetNow => 'ఇప్పుడే వెట్‌తో మాట్లాడండి';
+
+  @override
+  String get aiUnlimited => 'Plus తో అపరిమితం';
+
+  @override
+  String aiLeft(int left, int limit) {
+    return 'ఈ నెల $limitలో $left ప్రశ్నలు మిగిలాయి';
+  }
+
+  @override
+  String aiLimitTitle(int limit) {
+    return 'ఈ నెల మీ $limit ప్రశ్నలు అయిపోయాయి';
+  }
+
+  @override
+  String aiLimitBody(String date) {
+    return '$dateన మళ్లీ ప్రశ్నలు వస్తాయి, లేదా PawSetu Plus తో అపరిమితంగా అడగండి. అత్యవసర ప్రశ్నలకు ఎప్పుడూ జవాబు ఉంటుంది.';
+  }
+
+  @override
+  String get aiRedFlagTitle => 'ఇది అత్యవసర పరిస్థితి కావచ్చు';
+
+  @override
+  String aiRedFlagBody(String sign) {
+    return '$signకి వెంటనే వెట్ అవసరం. దగ్గరలో తెరిచి ఉన్న క్లినిక్‌ని చేరడానికి SOS వాడండి, లేదా ఇప్పుడే వెట్‌తో మాట్లాడండి.';
+  }
+
+  @override
+  String aiRedFlagShort(String sign) {
+    return 'అత్యవసరం కావచ్చు: $sign';
+  }
+
+  @override
+  String aiTileHint(int left) {
+    return 'రోజువారీ ప్రశ్నలకు వెంటనే జవాబులు. ఈ నెల $left మిగిలాయి.';
+  }
+
+  @override
+  String get aiTileHintPlus =>
+      'రోజువారీ ప్రశ్నలకు వెంటనే జవాబులు. Plus తో అపరిమితం.';
+
+  @override
+  String get rfBreathing => 'శ్వాస తీసుకోవడంలో ఇబ్బంది';
+
+  @override
+  String get rfCollapse => 'కుప్పకూలడం లేదా స్పృహ తప్పడం';
+
+  @override
+  String get rfSeizure => 'మూర్ఛ (ఫిట్స్)';
+
+  @override
+  String get rfPoisoning => 'విషం తిన్నట్లు అనుమానం';
+
+  @override
+  String get rfBleeding => 'ఎక్కువ రక్తస్రావం';
+
+  @override
+  String get rfBloat => 'ఉబ్బిన, గట్టిగా ఉన్న కడుపు';
+
+  @override
+  String get rfHeatstroke => 'వడదెబ్బ';
+
+  @override
+  String get rfUrine => 'మూత్రం రాకపోవడం';
+
+  @override
+  String get rfInjury => 'తీవ్రమైన గాయం';
+
+  @override
+  String get aiQBath => 'కుక్కకు ఎన్నిసార్లు స్నానం చేయించాలి?';
+
+  @override
+  String get aiQFeeding => 'నా పెంపుడు జంతువుకు ఎంత ఆహారం పెట్టాలి?';
+
+  @override
+  String get aiQToxicFood => 'మనుషుల ఆహారంలో ఏవి పెంపుడు జంతువులకు ప్రమాదం?';
+
+  @override
+  String get aiQVaccines => 'నా పెంపుడు జంతువుకు ఏ టీకాలు అవసరం?';
+
+  @override
+  String get aiQDeworming => 'నులిపురుగుల మందు ఎంత తరచుగా ఇవ్వాలి?';
+
+  @override
+  String get aiQTicks => 'పేలు, ఈగపురుగుల నుండి ఎలా కాపాడాలి?';
+
+  @override
+  String get aiQHeat => 'వేసవిలో పెంపుడు జంతువును చల్లగా ఎలా ఉంచాలి?';
+
+  @override
+  String get aiQVomiting => 'నా పెంపుడు జంతువు వాంతి చేసుకుంది. ఏం చేయాలి?';
+
+  @override
+  String get aiQDiarrhoea =>
+      'నా పెంపుడు జంతువుకు విరేచనాలు అవుతున్నాయి. ఏం చేయాలి?';
+
+  @override
+  String get aiQNotEating => 'నా పెంపుడు జంతువు తినడం లేదు. ఆందోళన పడాలా?';
+
+  @override
+  String get aiQItching => 'నా కుక్క ఎందుకు పదేపదే గోక్కుంటోంది?';
+
+  @override
+  String get aiQLimping => 'నా కుక్క కుంటుతోంది. ఏం చేయాలి?';
+
+  @override
+  String get aiQLitter => 'నా పిల్లి లిట్టర్ బాక్స్ వాడడం లేదు. ఎందుకు?';
+
+  @override
+  String get aiQChewing => 'కుక్కపిల్ల కొరకడం, నమలడం ఎలా ఆపాలి?';
+
+  @override
+  String get aiQNails => 'పెంపుడు జంతువు గోళ్లు ఎలా కత్తిరించాలి?';
+
+  @override
+  String get aiQTeeth => 'పెంపుడు జంతువు దంతాలను ఎలా చూసుకోవాలి?';
+
+  @override
+  String get aiQBirdDiet => 'నా పక్షికి ఏం పెట్టాలి?';
+
+  @override
+  String get aiQRabbitDiet => 'నా కుందేలుకు ఏం పెట్టాలి?';
+
+  @override
+  String get aiQWeight => 'నా పెంపుడు జంతువు బరువు ఎక్కువగా ఉందా?';
+
+  @override
+  String get aiQAnxiety =>
+      'నా పెంపుడు జంతువు టపాసులు, ఉరుములకు భయపడుతుంది. ఎలా సహాయం చేయాలి?';
+
+  @override
+  String get aiABath =>
+      'చాలా కుక్కలకు 3 నుండి 4 వారాలకు ఒకసారి స్నానం సరిపోతుంది; మురికిగా లేదా వాసన వస్తేనే ఎక్కువసార్లు. కుక్కల షాంపూ, గోరువెచ్చని నీళ్లు వాడండి (మనుషుల షాంపూ చర్మాన్ని పొడిబారుస్తుంది), బాగా కడగండి. ఫంగల్ ఇన్ఫెక్షన్ రాకుండా, ముఖ్యంగా వర్షాకాలంలో, చెవులు, బొచ్చు పూర్తిగా ఆరబెట్టండి. వారానికి కొన్నిసార్లు బ్రష్ చేస్తే బొచ్చు శుభ్రంగా ఉంటుంది. పిల్లులకు స్నానం చాలా అరుదుగా అవసరం.';
+
+  @override
+  String get aiAFeeding =>
+      'ఇది మీ పెంపుడు జంతువు బరువు, వయసు, చురుకుదనం మీద ఆధారపడి ఉంటుంది. ఆహారం ప్యాకెట్‌పై సరైన బరువుకు రాసిన మొత్తంతో మొదలుపెట్టండి; పెద్ద కుక్కలు, పిల్లులకు 2 సార్లుగా (కుక్కపిల్లలు, పిల్లి పిల్లలకు 3 నుండి 4 సార్లు) పెట్టండి. కొన్ని వారాలకు ఒకసారి నడుము, పక్కటెముకలు చూడండి: పక్కటెముకలు సులభంగా తగలాలి. ట్రీట్లు రోజువారీ ఆహారంలో పదో వంతు కంటే తక్కువ ఉండాలి. ఎప్పుడూ మంచినీళ్లు అందుబాటులో ఉంచండి. సరైన మొత్తం మీ వెట్ చెప్పగలరు.';
+
+  @override
+  String get aiAToxicFood =>
+      'చాక్లెట్, ద్రాక్ష లేదా కిస్‌మిస్, ఉల్లి, వెల్లుల్లి, జైలిటాల్ (కొన్ని షుగర్-ఫ్రీ చూయింగ్ గమ్, స్వీట్లలో ఉంటుంది), మద్యం, కెఫీన్, వండిన ఎముకలు, ఎక్కువ ఉప్పు లేదా కారం ఉన్న ఆహారం ఎప్పుడూ పెట్టవద్దు. పండుగ స్వీట్లలో చాలావాటిలో చాక్లెట్, కిస్‌మిస్ లేదా జైలిటాల్ ఉంటాయి, వాటిని దూరంగా ఉంచండి. లిల్లీ పూలు పిల్లులకు కూడా హానికరం. వీటిలో ఏదైనా తిన్నట్లయితే, బాగానే కనిపించినా, SOS వాడండి లేదా వెంటనే వెట్‌కి ఫోన్ చేయండి.';
+
+  @override
+  String get aiAVaccines =>
+      'కుక్కలకు లెప్టోస్పైరోసిస్‌తో DHPPi (6 నుండి 8 వారాల వయసు నుండి కుక్కపిల్లకు 3 మోతాదులు), సుమారు 3 నెలలకు రేబీస్ టీకా, ప్రతి సంవత్సరం బూస్టర్ అవసరం. పిల్లులకు ట్రైక్యాట్ టీకా, రేబీస్ టీకా, ప్రతి సంవత్సరం బూస్టర్ అవసరం. భారతదేశంలో కుందేళ్లు, పక్షులకు సాధారణంగా రోజువారీ టీకాలు అవసరం లేదు. మీ పెంపుడు జంతువు ఆరోగ్యం ట్యాబ్‌లో పూర్తి షెడ్యూల్, ఏది బాకీ, ఏది ఆలస్యమైంది అన్నీ కనిపిస్తాయి. తుది ప్రణాళిక మీ వెట్ నిర్ణయిస్తారు.';
+
+  @override
+  String get aiADeworming =>
+      'కుక్కపిల్లలు, పిల్లి పిల్లలు: 3 నెలల వరకు ప్రతి 2 వారాలకు, తర్వాత 6 నెలల వరకు ప్రతి నెల. పెద్దవి: ప్రతి 3 నెలలకు. ప్రతి మోతాదుకు ముందు బరువు చూడండి, ఎందుకంటే మోతాదు బరువు మీద ఆధారపడుతుంది. తదుపరి మోతాదు సమయం వచ్చినప్పుడు PawSetu గుర్తు చేస్తుంది. ఏ మందు సరిపోతుందో మీ వెట్‌ని అడగండి.';
+
+  @override
+  String get aiATicks =>
+      'వెట్ సూచించిన పేలు, ఈగపురుగుల నివారణ మందు సంవత్సరం పొడవునా వాడండి: స్పాట్-ఆన్, నమిలే మాత్ర లేదా కాలర్. భారతదేశంలో పేలు సాధారణం, ముఖ్యంగా వర్షాకాలంలో. నడక తర్వాత చెవులు, వేళ్ల మధ్య, కాలర్ కింద చూడండి. పరుపు శుభ్రంగా, పొడిగా ఉంచండి. కుక్కల మందులు పిల్లులకు ఎప్పుడూ వాడవద్దు. పేలు కుట్టిన తర్వాత నీరసంగా ఉన్నా, చిగుళ్లు తెల్లగా ఉన్నా, జ్వరం ఉన్నా వెంటనే వెట్‌కి చూపించండి.';
+
+  @override
+  String get aiAHeat =>
+      'తెల్లవారుజామున లేదా సూర్యాస్తమయం తర్వాత నడిపించండి, రోడ్డును చేతితో పరీక్షించండి: 5 సెకన్లు చేయి ఉంచలేనంత వేడిగా ఉంటే పాదాలకు కూడా అంతే వేడి. రోజంతా చల్లని నీళ్లు, నీడ అందుబాటులో ఉంచండి. పెంపుడు జంతువును ఆపిన కారులో ఎప్పుడూ వదలవద్దు. పగ్, పర్షియన్ పిల్లి వంటి చదునైన ముఖం ఉన్న జాతులు త్వరగా వేడెక్కుతాయి. ఎక్కువగా ఆయాసపడటం, చొంగ కారడం, తూలడం, ఎర్రని చిగుళ్లు వడదెబ్బ లక్షణాలు: SOS వాడండి.';
+
+  @override
+  String get aiAVomiting =>
+      'ఒక్కసారి వాంతి చేసుకుని మామూలుగా ఆడుకుంటుంటే చాలాసార్లు తగ్గిపోతుంది: కొన్ని గంటలు ఆహారం ఆపండి (నీళ్లు ఇవ్వండి), తర్వాత ఉడికించిన అన్నం, ఉడికించిన చికెన్ వంటి సాదా ఆహారం కొద్దికొద్దిగా పెట్టండి. వాంతులు మళ్లీ మళ్లీ వస్తే, రక్తం కనిపిస్తే, కుక్కపిల్ల లేదా పిల్లి పిల్ల అయితే, నీరసంగా ఉంటే, కడుపు ఉబ్బితే, లేదా విషపూరితమైనది లేదా బొమ్మ మింగినట్లు అనుమానం ఉంటే అదే రోజు వెట్‌కి చూపించండి.';
+
+  @override
+  String get aiADiarrhoea =>
+      'నీరసం రాకుండా మంచినీళ్లు అందుబాటులో ఉంచండి, ఒకటి రెండు రోజులు సాదా ఆహారం కొద్దికొద్దిగా పెట్టండి (కుక్కలకు ఉడికించిన అన్నం, ఉడికించిన చికెన్ లేదా పెరుగన్నం). పాలు, ట్రీట్లు ఇవ్వవద్దు. ఒక రోజుకు మించి ఉంటే, రక్తం లేదా నల్లని మలం కనిపిస్తే, వాంతులు కూడా అవుతుంటే, నీరసంగా ఉంటే, లేదా కుక్కపిల్ల/పిల్లి పిల్ల అయితే వెట్‌కి చూపించండి.';
+
+  @override
+  String get aiANotEating =>
+      'వేడి, ఒత్తిడి లేదా ఆహారం మార్చినప్పుడు ఒక పూట తినకపోవచ్చు. తాజా ఆహారం, నీళ్లు ఇచ్చి ఇతర లక్షణాలు గమనించండి. కుక్క ఒక రోజుకు మించి, పిల్లి 24 గంటలకు మించి, కుందేలు కొన్ని గంటలైనా తినకపోతే (కుందేళ్లు త్వరగా జబ్బు పడతాయి), లేదా వాంతులు, నీరసం, నొప్పి, జ్వరం ఉంటే వెట్‌కి చూపించండి.';
+
+  @override
+  String get aiAItching =>
+      'సాధారణ కారణాలు పేలు, ఈగపురుగులు, చర్మ ఇన్ఫెక్షన్లు (తరచుగా వర్షాకాలంలో), ఆహారం లేదా దుమ్ము అలర్జీ, తరచు స్నానం వల్ల పొడిబారిన చర్మం. చర్మంపై పేలు, ఎరుపు, వెంట్రుకలు ఊడిన మచ్చలు, వాసన ఉన్నాయేమో చూడండి. పేలు నివారణ కొనసాగించండి, స్నానం, వర్షం తర్వాత కుక్కను బాగా ఆరబెట్టండి. దురద కొన్ని రోజులకు మించి ఉన్నా, చర్మం చిట్లినా వెట్‌కి చూపించండి.';
+
+  @override
+  String get aiALimping =>
+      'పాదంలో ముల్లు, గాజు, కోత, విరిగిన గోరు లేదా వేళ్ల మధ్య పేను ఉందేమో చూడండి, వాపు ఉందేమో గమనించండి. కుక్కకు విశ్రాంతి ఇవ్వండి: ఒక రోజు చిన్న నడకలు మాత్రమే, పరుగు, దూకడం వద్దు. మనుషుల నొప్పి మాత్రలు ఎప్పుడూ ఇవ్వవద్దు; చాలావి పెంపుడు జంతువులకు విషం. కుంటడం ఒక రోజుకు మించి ఉన్నా, కాలుపై బరువు వేయలేకపోయినా, నొప్పితో అరిచినా, లేదా పడిపోయిన/ప్రమాదం తర్వాత అయితే వెట్‌కి చూపించండి.';
+
+  @override
+  String get aiALitter =>
+      'బాక్స్‌ను శుభ్రంగా ఉంచండి (రోజూ శుభ్రం చేయండి), ఆహారానికి దూరంగా ప్రశాంతమైన చోట పెట్టండి, ప్రతి పిల్లికి ఒక బాక్స్‌తో పాటు ఒకటి అదనంగా ఉంచండి. కొన్ని పిల్లులకు సువాసన ఉన్న లిట్టర్ లేదా మూత ఉన్న బాక్స్ నచ్చదు. కొత్త పెంపుడు జంతువు లేదా ఇల్లు మారడం వంటి ఒత్తిడి కూడా కారణం కావచ్చు. బాక్స్‌లో ముక్కుతూ మూత్రం కొంచెమే వస్తే లేదా అసలు రాకపోతే అది అత్యవసరం, ముఖ్యంగా మగ పిల్లిలో: SOS వాడండి.';
+
+  @override
+  String get aiAChewing =>
+      'కుక్కపిల్లలు నోటితో ప్రపంచాన్ని తెలుసుకుంటాయి, పళ్లు వచ్చే సమయంలో (3 నుండి 6 నెలలు) ఎక్కువగా నములుతాయి. సురక్షితమైన నమిలే బొమ్మలు ఇవ్వండి, వేరే వస్తువు పట్టుకుంటే దానికి బదులు బొమ్మ ఇవ్వండి. కొరికితే కొన్ని సెకన్లు ఆట ఆపి, మళ్లీ నెమ్మదిగా ఆడండి. ప్రశాంతంగా ఆడితే మెచ్చుకోండి. వైర్లు, చెప్పులు, మందులు అందకుండా ఉంచండి. ఎక్కువ నడక, ఆట వల్ల నమలడం తగ్గుతుంది. 6 నెలల తర్వాత కూడా కొనసాగితే ట్రైనర్ సహాయం చేయగలరు.';
+
+  @override
+  String get aiANails =>
+      '3 నుండి 4 వారాలకు ఒకసారి, లేదా నేలపై గోళ్ల టక్-టక్ శబ్దం వినిపించినప్పుడు కత్తిరించండి. పెంపుడు జంతువుల నెయిల్ కట్టర్ వాడి, గులాబీ రంగు భాగం (క్విక్) కంటే కింద చివర మాత్రమే కత్తిరించండి (నల్లని గోళ్లకు కొంచెం కొంచెంగా). రక్తం వస్తే వాడడానికి స్టిప్టిక్ పౌడర్ లేదా మొక్కజొన్న పిండి దగ్గర ఉంచుకోండి. ప్రతి పాదం తర్వాత ట్రీట్ ఇవ్వండి. అస్సలు ఇష్టపడకపోతే గ్రూమర్ లేదా వెట్ కొన్ని నిమిషాల్లో చేస్తారు. పక్షులు, కుందేళ్లకు కూడా గోళ్లు కత్తిరించాలి.';
+
+  @override
+  String get aiATeeth =>
+      'కుక్క లేదా పిల్లి దంతాలను వారానికి 2 నుండి 3 సార్లు పెంపుడు జంతువుల టూత్‌బ్రష్, టూత్‌పేస్ట్‌తో తోమండి (మనుషుల టూత్‌పేస్ట్ మింగడం సురక్షితం కాదు). ఫింగర్ బ్రష్‌తో నెమ్మదిగా మొదలుపెట్టి బాగా మెచ్చుకోండి. డెంటల్ చూస్ కొంచెం సహాయపడతాయి. నోటి దుర్వాసన, ఎర్రని చిగుళ్లు, విరిగిన పన్ను, ఆహారం జారవిడవడం దంత వ్యాధి సంకేతాలు కావచ్చు: మీ వెట్ దగ్గర దంత పరీక్ష బుక్ చేయండి.';
+
+  @override
+  String get aiABirdDiet =>
+      'గింజలు మాత్రమే సరిపోవు. కాకటీల్, బడ్జీలకు మంచి నాణ్యత పెల్లెట్లతో పాటు రోజూ తాజా కూరగాయలు (పాలకూర, క్యారెట్, బీన్స్, బఠానీలు), కొంచెం పండ్లు, ట్రీట్‌గా కొన్ని గింజలు ఉత్తమం. రోజూ మంచినీళ్లు పెట్టండి. అవకాడో, చాక్లెట్, కెఫీన్, ఉప్పు, ఉల్లి ఎప్పుడూ పెట్టవద్దు. భారతదేశంలో చాలా చిలుక జాతులు సంరక్షించబడినవి; చట్టబద్ధంగా అనుమతి ఉన్న పక్షులను మాత్రమే పెంచండి.';
+
+  @override
+  String get aiARabbitDiet =>
+      'కుందేలు ఆహారంలో సుమారు 80% ఎండుగడ్డి (హే) ఉండాలి, రోజంతా అందుబాటులో ఉండాలి: ఇది పళ్లు, జీర్ణకోశాన్ని ఆరోగ్యంగా ఉంచుతుంది. రోజూ గుప్పెడు ఆకుకూరలు (కొత్తిమీర, పుదీనా, లెట్యూస్, క్యారెట్ ఆకులు), కొంచెం కుందేలు పెల్లెట్లు ఇవ్వండి, పండ్లు అప్పుడప్పుడు ట్రీట్‌గా మాత్రమే. ఎప్పుడూ మంచినీళ్లు ఉంచండి. కొన్ని గంటలైనా కుందేలు తినడం లేదా మలవిసర్జన ఆపేస్తే వెంటనే వెట్‌కి చూపించండి.';
+
+  @override
+  String get aiAWeight =>
+      'పక్కటెముకలు తాకి చూడండి: సన్నని పొర కింద సులభంగా తగలాలి, పై నుండి చూస్తే నడుము కనిపించాలి. అలా లేకపోతే బరువు ఎక్కువ ఉండవచ్చు. జాతికి తగిన ఆరోగ్యకర పరిధితో పోల్చడానికి PawSetu‌లో ప్రతి నెల బరువు నమోదు చేయండి. ట్రీట్లు, మిగిలిన భోజనం తగ్గించండి, ఆహారం కొలిచి పెట్టండి, కొంచెం ఎక్కువ నడక లేదా ఆట జోడించండి. ఆహారంలో పెద్ద మార్పు చేసే ముందు వెట్‌ని అడగండి.';
+
+  @override
+  String get aiAAnxiety =>
+      'దీపావళి లేదా తుఫానుకు ముందు ప్రశాంతమైన చోటు సిద్ధం చేయండి: మూత ఉన్న క్రేట్ లేదా వాటి పరుపు ఉన్న మూల, కర్టెన్లు మూసి, ఫ్యాన్ లేదా మెల్లని సంగీతం పెట్టండి. కుక్కను పగటిపూటే త్వరగా నడిపించి, టపాసులు మొదలైనప్పుడు గుర్తింపు ట్యాగ్‌తో ఇంట్లోనే ఉంచండి. ప్రశాంతంగా దగ్గరగా ఉండండి, కానీ బలవంతంగా హత్తుకోవద్దు. భయపడినందుకు తిట్టవద్దు. తీవ్రమైన భయం ఉంటే ముందుగానే ప్రశాంతపరిచే మార్గాల గురించి వెట్‌ని అడగండి.';
+
+  @override
+  String get msgEmptyTitle => 'ఇంకా చాట్‌లు లేవు';
+
+  @override
+  String get msgEmptyBody =>
+      'బుక్ చేసిన తర్వాత లేదా ప్రశ్న అడిగిన తర్వాత మీ వెట్, క్లినిక్, గ్రూమర్ లేదా వాకర్‌తో చాట్‌లు ఇక్కడ కనిపిస్తాయి.';
+
+  @override
+  String get msgEmptyPartnerBody =>
+      'పెంపుడు జంతువుల యజమానులు బుక్ చేసినప్పుడు లేదా విచారణ పంపినప్పుడు వారి చాట్‌లు ఇక్కడ కనిపిస్తాయి.';
+
+  @override
+  String get msgEmptyFilter => 'ఈ జాబితాలో చాట్‌లు లేవు';
+
+  @override
+  String msgNoResults(String query) {
+    return '\"$query\" కోసం ఏమీ దొరకలేదు';
+  }
+
+  @override
+  String get msgSearchHint => 'చాట్‌లు, సందేశాలు వెతకండి';
+
+  @override
+  String get msgClearSearch => 'వెతుకులాట తీసివేయండి';
+
+  @override
+  String get msgFoundInMessages => 'సందేశాల్లో దొరికింది';
+
+  @override
+  String get msgEnquiries => 'విచారణలు';
+
+  @override
+  String get msgEnquiry => 'విచారణ';
+
+  @override
+  String get msgMuted => 'మ్యూట్';
+
+  @override
+  String get msgNoMessagesYet => 'ఇంకా సందేశాలు లేవు';
+
+  @override
+  String msgUnreadCount(int count) {
+    return '$count చదవని సందేశాలు';
+  }
+
+  @override
+  String get msgYouPrefix => 'మీరు';
+
+  @override
+  String msgYou(String name) {
+    return '$name (మీరు)';
+  }
+
+  @override
+  String get msgOpening => 'చాట్ తెరుస్తోంది…';
+
+  @override
+  String get msgPickChat => 'ఒక చాట్ ఎంచుకోండి';
+
+  @override
+  String get msgPickChatHint =>
+      'వెట్‌లు, క్లినిక్‌లు, సేవలు అందించేవారితో మీ సంభాషణలు ఇక్కడ తెరుచుకుంటాయి.';
+
+  @override
+  String get msgPickChatHintPartner =>
+      'పెంపుడు జంతువుల యజమానులతో మీ సంభాషణలు ఇక్కడ తెరుచుకుంటాయి.';
+
+  @override
+  String get msgNotFound => 'ఈ చాట్ ఇక ఇప్పుడు అందుబాటులో లేదు.';
+
+  @override
+  String get msgPreviewPhoto => 'ఫోటో';
+
+  @override
+  String get msgPreviewPdf => 'PDF పత్రం';
+
+  @override
+  String get msgPreviewVoice => 'వాయిస్ నోట్';
+
+  @override
+  String get msgClose => 'చాట్ మూసివేయండి';
+
+  @override
+  String get msgChatInfo => 'చాట్ వివరాలు';
+
+  @override
+  String get msgCallMasked => 'కాల్ చేయండి (నంబర్ దాచబడుతుంది)';
+
+  @override
+  String msgMaskedCallDemo(String name, String number) {
+    return 'డెమో మోడ్‌లో నిజమైన కాల్స్ వెళ్లవు. అసలు యాప్‌లో ఇది $nameకి దాచిన నంబర్ ($number) ద్వారా కాల్ చేస్తుంది, కాబట్టి ఎవరూ ఇంకొకరి అసలు నంబర్ చూడరు.';
+  }
+
+  @override
+  String get msgMaskedCallLive =>
+      'కాల్స్ దాచిన నంబర్ ద్వారా వెళ్తాయి, కాబట్టి ఎవరూ ఇంకొకరి అసలు నంబర్ చూడరు.';
+
+  @override
+  String get msgMaskedInfo =>
+      'PawSetu చాట్‌లు, కాల్స్‌లో ఫోన్ నంబర్లు దాచబడతాయి. చెల్లింపులు యాప్‌లోనే చేయండి.';
+
+  @override
+  String get msgMore => 'మరిన్ని ఎంపికలు';
+
+  @override
+  String get msgSearchInChat => 'చాట్‌లో వెతకండి';
+
+  @override
+  String msgMatches(int count) {
+    return '$count దొరికాయి';
+  }
+
+  @override
+  String get msgMute => 'నోటిఫికేషన్లు మ్యూట్ చేయండి';
+
+  @override
+  String get msgUnmute => 'నోటిఫికేషన్లు ఆన్ చేయండి';
+
+  @override
+  String get msgMutedToast => 'చాట్ మ్యూట్ అయింది';
+
+  @override
+  String get msgUnmutedToast => 'ఈ చాట్‌కు నోటిఫికేషన్లు ఆన్';
+
+  @override
+  String get msgBlock => 'బ్లాక్ చేయండి';
+
+  @override
+  String get msgUnblock => 'అన్‌బ్లాక్ చేయండి';
+
+  @override
+  String msgBlockTitle(String name) {
+    return '$nameని బ్లాక్ చేయాలా?';
+  }
+
+  @override
+  String get msgBlockBody =>
+      'మీరు అన్‌బ్లాక్ చేసే వరకు ఈ చాట్‌లో ఎవరూ సందేశాలు పంపలేరు. మీ బుకింగ్‌లపై ప్రభావం ఉండదు.';
+
+  @override
+  String get msgBlockedToast => 'బ్లాక్ అయింది';
+
+  @override
+  String get msgUnblockedToast => 'అన్‌బ్లాక్ అయింది';
+
+  @override
+  String get msgYouBlocked =>
+      'మీరు ఈ చాట్‌ను బ్లాక్ చేశారు. సందేశాలు పంపడానికి మెనూ నుండి అన్‌బ్లాక్ చేయండి.';
+
+  @override
+  String get msgBlockedByOther =>
+      'ఈ చాట్ మూసివేయబడింది. మీరు ఇక్కడ సందేశాలు పంపలేరు.';
+
+  @override
+  String get msgReport => 'రిపోర్ట్ చేయండి';
+
+  @override
+  String get msgReportTitle => 'ఈ చాట్‌ను రిపోర్ట్ చేయండి';
+
+  @override
+  String get msgReportHint =>
+      'PawSetu బృందం ప్రతి రిపోర్ట్‌ను సాధారణంగా ఒక రోజులో పరిశీలిస్తుంది.';
+
+  @override
+  String get msgReasonSpam => 'స్పామ్ లేదా ప్రకటనలు';
+
+  @override
+  String get msgReasonAbuse => 'అసభ్యంగా లేదా దూషణగా';
+
+  @override
+  String get msgReasonPayment => 'PawSetu బయట చెల్లించమని అడిగారు';
+
+  @override
+  String get msgReasonFake => 'నకిలీ ప్రొఫైల్ లేదా మోసం';
+
+  @override
+  String get msgReasonOther => 'ఇంకేదైనా';
+
+  @override
+  String get msgReportDetails => 'వివరాలు (ఐచ్ఛికం)';
+
+  @override
+  String get msgReportSend => 'రిపోర్ట్ పంపండి';
+
+  @override
+  String get msgReportedToast => 'ధన్యవాదాలు. మేము దీన్ని పరిశీలిస్తాం.';
+
+  @override
+  String get msgGetHelp => 'సహాయం పొందండి';
+
+  @override
+  String get msgTypingShort => 'టైప్ చేస్తున్నారు…';
+
+  @override
+  String msgTyping(String name) {
+    return '$name టైప్ చేస్తున్నారు…';
+  }
+
+  @override
+  String get msgTypeHint => 'సందేశం రాయండి';
+
+  @override
+  String get msgSend => 'పంపండి';
+
+  @override
+  String get msgAttach => 'ఫోటో లేదా PDF జోడించండి';
+
+  @override
+  String get msgAttachTitle => 'ఫైల్ పంపండి';
+
+  @override
+  String get msgAttachPdf => 'PDF పత్రం';
+
+  @override
+  String get msgAttachPdfHint =>
+      'రిపోర్టులు, ప్రిస్క్రిప్షన్లు, సర్టిఫికెట్లు (10 MB వరకు)';
+
+  @override
+  String get msgPdfTooBig => 'ఈ ఫైల్ 10 MB కంటే పెద్దది. చిన్న PDF పంపండి.';
+
+  @override
+  String get msgSendFailed => 'పంపలేకపోయాం. కనెక్షన్ చూసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get msgNumberHiddenToast =>
+      'అందరి భద్రత కోసం చాట్‌లలో ఫోన్ నంబర్లు దాచబడతాయి.';
+
+  @override
+  String get msgNumberHidden => 'నంబర్ దాచబడింది';
+
+  @override
+  String get msgPaymentWarnTitle => 'చెల్లింపులు PawSetuలోనే చేయండి';
+
+  @override
+  String get msgPaymentWarnBody =>
+      'మీ సందేశంలో చెల్లింపు వివరాలు (UPI ID, కార్డ్ నంబర్, OTP లేదా PIN) ఉన్నట్లు ఉంది. OTP లేదా PIN ఎప్పుడూ పంచుకోవద్దు. PawSetu బయట చేసిన చెల్లింపులకు రక్షణ ఉండదు.';
+
+  @override
+  String get msgSendAnyway => 'అయినా పంపండి';
+
+  @override
+  String get msgSafetyNote =>
+      'నంబర్లు దాచబడతాయి, చెల్లింపులు PawSetuలోనే జరుగుతాయి. OTP లేదా PIN ఎప్పుడూ పంచుకోవద్దు.';
+
+  @override
+  String get msgRecordVoice => 'వాయిస్ నోట్ రికార్డ్ చేయండి';
+
+  @override
+  String msgRecording(String elapsed, String max) {
+    return 'రికార్డింగ్ $elapsed / $max';
+  }
+
+  @override
+  String msgRecordingDemo(String elapsed) {
+    return 'డెమో రికార్డింగ్ $elapsed';
+  }
+
+  @override
+  String get msgCancelRecording => 'రికార్డింగ్ రద్దు చేయండి';
+
+  @override
+  String get msgSendVoice => 'వాయిస్ నోట్ పంపండి';
+
+  @override
+  String get msgPlayVoice => 'వాయిస్ నోట్ ప్లే చేయండి';
+
+  @override
+  String get msgPause => 'ఆపండి';
+
+  @override
+  String get msgVoiceCantPlay => 'ఈ వాయిస్ నోట్ ఈ పరికరంలో ప్లే కాదు.';
+
+  @override
+  String get msgMicUnavailableTitle => 'మైక్రోఫోన్ అందుబాటులో లేదు';
+
+  @override
+  String get msgMicUnavailable =>
+      'వాయిస్ నోట్లు పంపడానికి ఫోన్ సెట్టింగ్‌లలో మైక్రోఫోన్ అనుమతి ఇవ్వండి.';
+
+  @override
+  String get msgMicDemoBody =>
+      'ఇక్కడ మైక్రోఫోన్ అందుబాటులో లేదు. బదులుగా చిన్న డెమో వాయిస్ నోట్ పంపాలా?';
+
+  @override
+  String get msgRecordDemo => 'డెమో వాయిస్ నోట్ పంపండి';
+
+  @override
+  String get msgSent => 'పంపబడింది';
+
+  @override
+  String get msgRead => 'చదివారు';
+
+  @override
+  String get msgYesterday => 'నిన్న';
+
+  @override
+  String get msgDemoReply => 'డెమో జవాబు';
+
+  @override
+  String get msgPdf => 'PDF';
+
+  @override
+  String get msgTapToOpen => 'తెరవడానికి నొక్కండి';
+
+  @override
+  String get msgFileCantOpen => 'ఈ ఫైల్ ఇక్కడ తెరవలేము.';
+
+  @override
+  String get msgSampleStamp => 'నమూనా పత్రం · డెమో';
+
+  @override
+  String get msgSampleDocBody => 'ఇది డెమో చాట్‌లో పంచుకున్న నమూనా పత్రం.';
+
+  @override
+  String msgSysBookingChat(String pet, String when) {
+    return '$when నాటి $pet బుకింగ్ కోసం చాట్';
+  }
+
+  @override
+  String get msgSysTvStarted => 'చాట్ సంప్రదింపు అభ్యర్థించారు';
+
+  @override
+  String get msgSysTvStartedVideo => 'వీడియో సంప్రదింపు అభ్యర్థించారు';
+
+  @override
+  String msgSysTvScheduled(String when) {
+    return '$whenకి సంప్రదింపు బుక్ అయింది';
+  }
+
+  @override
+  String msgSysVetJoined(String name, String until) {
+    return '$name చేరారు. చాట్ $until వరకు తెరిచి ఉంటుంది.';
+  }
+
+  @override
+  String get msgSysTvEnded => 'సంప్రదింపు ముగిసింది';
+
+  @override
+  String msgSysCallEnded(String duration) {
+    return 'వీడియో కాల్ ముగిసింది · $duration';
+  }
+
+  @override
+  String get msgYourPet => 'మీ పెంపుడు జంతువు';
+
+  @override
+  String demoReplyClinic(String pet) {
+    return 'మీ సందేశానికి ధన్యవాదాలు. క్లినిక్ బృందం $pet వివరాలు చూసి త్వరలో జవాబిస్తారు.';
+  }
+
+  @override
+  String demoReplyVet(String pet) {
+    return 'ధన్యవాదాలు, గమనించాను. ఈరోజు $pet ఎలా తింటోంది, తాగుతోంది?';
+  }
+
+  @override
+  String demoReplyGroomer(String pet) {
+    return 'తప్పకుండా! $petని బాగా చూసుకుంటాం. $petకి అలవాటైన షాంపూ ఉంటే తీసుకురండి.';
+  }
+
+  @override
+  String demoReplyWalker(String pet) {
+    return 'అర్థమైంది! $petని రోడ్డు నీడ వైపు నడిపించి మీకు ఫోటో పంపుతాను.';
+  }
+
+  @override
+  String demoReplyTrainer(String pet) {
+    return 'మంచి ప్రశ్న. తదుపరి సెషన్‌లో $petతో దీన్ని సాధన చేద్దాం.';
+  }
+
+  @override
+  String demoReplyBoarder(String pet) {
+    return '$pet బాగుంది, చక్కగా అలవాటు పడుతోంది. సాయంత్రం ఫోటో పంపుతాను.';
+  }
+
+  @override
+  String demoReplyOwner(String name) {
+    return 'ధన్యవాదాలు! ఇది చాలా సహాయపడింది. – $name';
+  }
+
+  @override
+  String demoReplyOwnerVet(String name) {
+    return 'ధన్యవాదాలు, డా. $name! అలాగే చేస్తాను.';
+  }
+
+  @override
+  String demoVetGreeting(String owner, String pet) {
+    return 'నమస్తే $owner, నేను వచ్చాను. మీరు $pet గురించి రాసింది చదివాను. ముందుగా కొన్ని ప్రశ్నలు: ఎప్పటి నుండి, $pet సరిగ్గా తింటోందా, తాగుతోందా?';
+  }
+
+  @override
+  String ntfNewMessage(String name) {
+    return '$name నుండి కొత్త సందేశం';
+  }
+
+  @override
+  String ntfTeleVetMessage(String name) {
+    return 'టెలి-వెట్: $name నుండి కొత్త సందేశం';
+  }
+
+  @override
+  String get tvHomeTitle => 'వెట్‌తో మాట్లాడండి';
+
+  @override
+  String get tvHomeBody =>
+      'నమోదైన వెట్‌తో చాట్ లేదా వీడియోలో మాట్లాడండి, సాధారణంగా కొన్ని నిమిషాల్లోనే.';
+
+  @override
+  String get tvStart => 'సంప్రదింపు ప్రారంభించండి';
+
+  @override
+  String get tvEmergencyNote =>
+      'అత్యవసరమా? చాట్ కోసం ఆగకండి. దగ్గరలో తెరిచి ఉన్న క్లినిక్‌ని చేరడానికి SOS వాడండి.';
+
+  @override
+  String get tvOpenConsults => 'కొనసాగుతున్న సంప్రదింపులు';
+
+  @override
+  String get tvPastConsults => 'గత సంప్రదింపులు';
+
+  @override
+  String get tvPartnerHere => 'టెలి-వెట్ అభ్యర్థనలు మీ పోర్టల్‌లో ఉన్నాయి';
+
+  @override
+  String get tvPlanFree => 'మీ Free ప్లాన్';
+
+  @override
+  String get tvPlanPlus => 'మీ Plus ప్లాన్';
+
+  @override
+  String get tvFreeChip => 'Free';
+
+  @override
+  String tvLinePerMonth(int limit, int used) {
+    return 'నెలకు $limit సంప్రదింపులు · $used వాడారు';
+  }
+
+  @override
+  String get tvLineUnlimited => 'అపరిమిత సంప్రదింపులు';
+
+  @override
+  String tvLineMessages(int messages, int words) {
+    return '$messages సందేశాల వరకు, ఒక్కోదానిలో $words పదాలు';
+  }
+
+  @override
+  String tvLineHours(int hours) {
+    return 'వెట్ చేరిన తర్వాత చాట్ $hours గంటలు తెరిచి ఉంటుంది';
+  }
+
+  @override
+  String get tvLineVideo => 'వీడియో కాల్స్ ఉన్నాయి, 10% తగ్గింపుతో';
+
+  @override
+  String get tvLineNoVideo => 'వీడియో కాల్స్‌కు Plus అవసరం';
+
+  @override
+  String get tvMonthlyUsedTitle => 'ఈ నెల ఉచిత సంప్రదింపు వాడేశారు';
+
+  @override
+  String tvMonthlyUsed(String date) {
+    return 'మీ తదుపరి ఉచిత సంప్రదింపు $dateన అందుబాటులోకి వస్తుంది. Plus తో అపరిమిత చాట్‌లు, వీడియో కాల్స్ వస్తాయి.';
+  }
+
+  @override
+  String get tvPlusPromptTitle => 'వెట్‌లతో ఎక్కువ సమయం';
+
+  @override
+  String get tvPlusHint =>
+      'Plus తో 300 పదాల 100 సందేశాల వరకు, 72 గంటల చాట్, వీడియో కాల్స్ వస్తాయి.';
+
+  @override
+  String get tvVideoPlusTitle => 'వీడియో కాల్స్ Plus లో భాగం';
+
+  @override
+  String get tvStatusQueuedShort => 'వేచి ఉంది';
+
+  @override
+  String get tvStatusActiveShort => 'కొనసాగుతోంది';
+
+  @override
+  String get tvStatusEndedShort => 'ముగిసింది';
+
+  @override
+  String get tvConsentTitle => 'ప్రారంభించే ముందు';
+
+  @override
+  String get tvConsentIntro =>
+      'ఆన్‌లైన్ సంప్రదింపులు వెటర్నరీ కౌన్సిల్ ఆఫ్ ఇండియా మార్గదర్శకాల ప్రకారం జరుగుతాయి. దయచేసి చదివి అంగీకరించండి:';
+
+  @override
+  String get tvConsent1 =>
+      'మీరు చెప్పినది, చూపించినది ఆధారంగా వెట్ సలహా ఇస్తారు. ఇది పూర్తి శారీరక పరీక్ష కాదు.';
+
+  @override
+  String get tvConsent2 =>
+      'PawSetuలో ప్రతి వెట్ రాష్ట్ర వెటర్నరీ కౌన్సిల్‌లో నమోదయ్యారు. వారి రిజిస్ట్రేషన్ నంబర్ మీకు కనిపిస్తుంది.';
+
+  @override
+  String get tvConsent3 =>
+      'పరీక్ష లేదా టెస్టులు అవసరమైతే క్లినిక్‌కి రమ్మని వెట్ చెప్పవచ్చు.';
+
+  @override
+  String get tvConsent4 =>
+      'టెలి-వెట్ అత్యవసరాలకు కాదు. శ్వాస ఇబ్బంది, కుప్పకూలడం, మూర్ఛ, విషం, ఎక్కువ రక్తస్రావం ఉంటే SOS వాడండి.';
+
+  @override
+  String get tvConsent5 =>
+      'వెట్‌కి సురక్షితం అనిపించినప్పుడే ప్రిస్క్రిప్షన్ ఇస్తారు, కొన్ని మందులకు క్లినిక్‌కి వెళ్లడం అవసరం.';
+
+  @override
+  String get tvConsent6 =>
+      'మీ చాట్, ఫోటోలు, మీ పెంపుడు జంతువు రికార్డులు చికిత్స చేసే వెట్‌తో మాత్రమే పంచుకోబడతాయి.';
+
+  @override
+  String get tvConsentAgree => 'నేను చదివాను, అంగీకరిస్తున్నాను';
+
+  @override
+  String get tvConsentContinue => 'కొనసాగించండి';
+
+  @override
+  String get tvStepPet => 'పెంపుడు జంతువు';
+
+  @override
+  String get tvStepProblem => 'సమస్య';
+
+  @override
+  String get tvStepHow => 'వెట్';
+
+  @override
+  String get tvWhichPet => 'ఇది ఏ పెంపుడు జంతువు గురించి?';
+
+  @override
+  String get tvNoPet =>
+      'వెట్‌తో మాట్లాడడానికి ముందు పెంపుడు జంతువును జోడించండి.';
+
+  @override
+  String tvDescribe(String pet) {
+    return '$petకి ఏమవుతోంది?';
+  }
+
+  @override
+  String get tvDescribeHint =>
+      'ఎప్పుడు మొదలైంది, మీరు ఏమి గమనించారు, తినడం-తాగడం ఎలా ఉంది, ఏదైనా తిన్నదా';
+
+  @override
+  String get tvAddPhotos => 'ఫోటోలు జోడించండి';
+
+  @override
+  String get tvPhotosHint =>
+      'సమస్య స్పష్టమైన ఫోటోలు (గాయం, దద్దుర్లు, మలం లేదా వాంతి) వెట్‌కి చాలా సహాయపడతాయి.';
+
+  @override
+  String get tvContinueToVet => 'ఎలా మాట్లాడాలో ఎంచుకోండి';
+
+  @override
+  String get tvChatNow => 'ఇప్పుడే చాట్ చేయండి';
+
+  @override
+  String get tvChatNowHint =>
+      'అందుబాటులో ఉన్న తదుపరి వెట్ చేరతారు, సాధారణంగా కొన్ని నిమిషాల్లో';
+
+  @override
+  String get tvVideoNow => 'ఇప్పుడే వీడియో కాల్';
+
+  @override
+  String get tvVideoNowHint =>
+      'వీడియో కాల్‌లో వెట్‌కి మీ పెంపుడు జంతువును చూపించండి';
+
+  @override
+  String get tvVideoPlusOnly => 'PawSetu Plus తో అందుబాటులో';
+
+  @override
+  String get tvChooseVet => 'వెట్‌ని ఎంచుకోండి';
+
+  @override
+  String get tvChooseVetHint =>
+      'భాష, అనుభవం ఆధారంగా వెట్‌ని ఎంచుకోండి, ఇప్పుడు లేదా ఈరోజు తర్వాత';
+
+  @override
+  String get tvModeChat => 'చాట్';
+
+  @override
+  String get tvModeVideo => 'వీడియో';
+
+  @override
+  String tvVideoFee(String amount) {
+    return 'వీడియో $amount';
+  }
+
+  @override
+  String get tvWhen => 'ఎప్పుడు';
+
+  @override
+  String get tvNow => 'ఇప్పుడు';
+
+  @override
+  String get tvTomorrow => 'రేపు';
+
+  @override
+  String get tvSummary => 'సారాంశం';
+
+  @override
+  String get tvSummaryPet => 'పెంపుడు జంతువు';
+
+  @override
+  String get tvSummaryType => 'రకం';
+
+  @override
+  String get tvSummaryVet => 'వెట్';
+
+  @override
+  String get tvNextAvailable => 'అందుబాటులో ఉన్న తదుపరి వెట్';
+
+  @override
+  String get tvFee => 'ఫీజు';
+
+  @override
+  String get tvIncluded => 'మీ ప్లాన్‌లో ఉంది';
+
+  @override
+  String get tvVideoFeeLabel => 'వీడియో సంప్రదింపు';
+
+  @override
+  String tvPlusDiscount(int percent) {
+    return 'Plus తగ్గింపు ($percent%)';
+  }
+
+  @override
+  String tvChatRules(int messages, int words, int hours) {
+    return '$words పదాల $messages సందేశాల వరకు. వెట్ చేరిన తర్వాత చాట్ $hours గంటలు తెరిచి ఉంటుంది.';
+  }
+
+  @override
+  String get tvStartChat => 'చాట్ ప్రారంభించండి';
+
+  @override
+  String get tvStartVideo => 'వీడియో కాల్ ప్రారంభించండి';
+
+  @override
+  String tvPayAndStart(String amount) {
+    return '$amount చెల్లించి ప్రారంభించండి';
+  }
+
+  @override
+  String tvPayDescription(String pet) {
+    return '$pet కోసం వీడియో సంప్రదింపు';
+  }
+
+  @override
+  String tvFindingVet(String pet) {
+    return '$pet కోసం వెట్‌ని వెతుకుతున్నాం…';
+  }
+
+  @override
+  String get tvFindingVetHint =>
+      'చాలా చాట్‌లు కొన్ని నిమిషాల్లోనే మొదలవుతాయి. మేము మీకు తెలియజేస్తాం.';
+
+  @override
+  String get tvFindingVetShort => 'వెట్‌ని వెతుకుతున్నాం…';
+
+  @override
+  String tvScheduledTitle(String when) {
+    return '$whenకి సంప్రదింపు';
+  }
+
+  @override
+  String get tvScheduledHint =>
+      'వెట్ ఈ సమయానికి చేరతారు. అప్పటి వరకు మీరు మరిన్ని వివరాలు జోడించవచ్చు.';
+
+  @override
+  String get tvStatusQueued => 'వెట్ కోసం వేచి ఉంది';
+
+  @override
+  String get tvStatusActive => 'సంప్రదింపు కొనసాగుతోంది';
+
+  @override
+  String get tvStatusEnded => 'సంప్రదింపు ముగిసింది';
+
+  @override
+  String tvOpenUntil(String time) {
+    return '$time వరకు తెరిచి ఉంటుంది';
+  }
+
+  @override
+  String tvMessagesLeft(int count) {
+    return '$count సందేశాలు మిగిలాయి';
+  }
+
+  @override
+  String get tvPriority => 'ప్రాధాన్యత (Plus)';
+
+  @override
+  String get tvVideoCall => 'వీడియో కాల్';
+
+  @override
+  String get tvClosedShort => 'చాట్ మూసివేయబడింది';
+
+  @override
+  String tvEndedWith(String vet) {
+    return 'ముగిసింది · $vet';
+  }
+
+  @override
+  String tvVetBarTitle(String pet, String owner) {
+    return '$pet · $owner';
+  }
+
+  @override
+  String get tvRate => 'ఈ సంప్రదింపుకు రేటింగ్ ఇవ్వండి';
+
+  @override
+  String tvRateTitle(String vet) {
+    return '$vetతో మీ చాట్ ఎలా ఉంది?';
+  }
+
+  @override
+  String get tvRateComment => 'ఇంకేమైనా చెప్పాలా? (ఐచ్ఛికం)';
+
+  @override
+  String get tvRateSubmit => 'రేటింగ్ పంపండి';
+
+  @override
+  String get tvRateThanks => 'రేటింగ్ ఇచ్చినందుకు ధన్యవాదాలు!';
+
+  @override
+  String tvStars(int count) {
+    return '$count నక్షత్రాలు';
+  }
+
+  @override
+  String tvAllowanceLine(int words, int max, int left) {
+    return '$words/$max పదాలు · $left సందేశాలు మిగిలాయి';
+  }
+
+  @override
+  String tvWordsOver(int words, int max) {
+    return '$words/$max పదాలు. దయచేసి సందేశం చిన్నది చేయండి.';
+  }
+
+  @override
+  String tvWordsTitle(int max) {
+    return 'సందేశాల్లో $max పదాల వరకు ఉండవచ్చు';
+  }
+
+  @override
+  String tvWordsBody(int words, int max) {
+    return 'మీ సందేశంలో $words పదాలు ఉన్నాయి, పరిమితి $max. చిన్న సందేశాలుగా విభజించండి లేదా ముఖ్య విషయాలే ఉంచండి; వెట్ మరిన్ని అడగవచ్చు.';
+  }
+
+  @override
+  String get tvEditMessage => 'సందేశం మార్చండి';
+
+  @override
+  String tvNoMessagesTitle(int count) {
+    return 'మీరు $count సందేశాలూ వాడేశారు';
+  }
+
+  @override
+  String get tvNoMessagesBody =>
+      'వెట్ ఇంకా జవాబు, ప్రిస్క్రిప్షన్ పంపగలరు. మరిన్ని ప్రశ్నలకు కొత్త సంప్రదింపు ప్రారంభించండి.';
+
+  @override
+  String get tvClosedTitle => 'ఈ చాట్ మూసివేయబడింది';
+
+  @override
+  String tvClosedBanner(int hours) {
+    return 'వెట్ చేరిన తర్వాత చాట్ $hours గంటలు తెరిచి ఉంటుంది. మరింత సహాయం కావాలంటే కొత్త సంప్రదింపు ప్రారంభించండి.';
+  }
+
+  @override
+  String get tvEndedTitle => 'సంప్రదింపు ముగిసింది';
+
+  @override
+  String get tvEndedBanner =>
+      'వెట్ ఈ సంప్రదింపును ముగించారు. మీ చాట్, ప్రిస్క్రిప్షన్ మీ పెంపుడు జంతువు రికార్డుల్లో ఉంటాయి.';
+
+  @override
+  String get tvProblemLabel => 'చెప్పిన సమస్య';
+
+  @override
+  String get tvBookVisit => 'క్లినిక్ సందర్శన బుక్ చేయండి';
+
+  @override
+  String tvRecVisitMsg(String name) {
+    return 'పరీక్ష కోసం క్లినిక్‌కి వెళ్లమని $name సూచిస్తున్నారు.';
+  }
+
+  @override
+  String tvRecEmergencyMsg(String name) {
+    return 'దీనికి ఇప్పుడే అత్యవసర చికిత్స అవసరమని $name చెబుతున్నారు. దగ్గరలో తెరిచి ఉన్న క్లినిక్‌ని చేరడానికి SOS వాడండి.';
+  }
+
+  @override
+  String get tvConnecting => 'కనెక్ట్ అవుతోంది…';
+
+  @override
+  String get tvWaitingVetJoin => 'వెట్ చేరే వరకు వేచి ఉన్నాం…';
+
+  @override
+  String get tvDemoCall => 'డెమో కాల్';
+
+  @override
+  String get tvGoodNetwork => 'మంచి కనెక్షన్';
+
+  @override
+  String get tvWeakNetwork => 'బలహీన కనెక్షన్';
+
+  @override
+  String tvRemoteVideo(String name) {
+    return '$name వీడియో';
+  }
+
+  @override
+  String get tvSelfView => 'మీ కెమెరా';
+
+  @override
+  String get tvCameraOff => 'కెమెరా ఆఫ్‌లో ఉంది';
+
+  @override
+  String get tvCameraOffAction => 'కెమెరా ఆఫ్ చేయండి';
+
+  @override
+  String get tvCameraOnAction => 'కెమెరా ఆన్ చేయండి';
+
+  @override
+  String get tvMute => 'మ్యూట్ చేయండి';
+
+  @override
+  String get tvUnmute => 'అన్‌మ్యూట్ చేయండి';
+
+  @override
+  String get tvSpeakerOn => 'స్పీకర్ ఆన్';
+
+  @override
+  String get tvSpeakerOff => 'స్పీకర్ ఆఫ్';
+
+  @override
+  String get tvSwitchCamera => 'కెమెరా మార్చండి';
+
+  @override
+  String get tvFrontCamera => 'ముందు కెమెరా';
+
+  @override
+  String get tvBackCamera => 'వెనుక కెమెరా';
+
+  @override
+  String get tvEndCall => 'కాల్ ముగించండి';
+
+  @override
+  String tvCallEndedToast(String duration) {
+    return 'కాల్ ముగిసింది · $duration';
+  }
+
+  @override
+  String get tvCallFailed => 'కాల్ కనెక్ట్ కాలేదు.';
+
+  @override
+  String get tvCallLiveLater =>
+      'నిజమైన వీడియో కాల్స్ PawSetu లైవ్ వెర్షన్‌తో వస్తాయి. ఈలోగా వెట్‌తో చాట్ కొనసాగించండి.';
+
+  @override
+  String get tvQueueTitle => 'టెలి-వెట్ క్యూ';
+
+  @override
+  String get tvQueueHint =>
+      'Plus సభ్యులు, అత్యవసర కేసులు ముందు వస్తాయి. చాట్ ప్రారంభించడానికి అభ్యర్థనను అంగీకరించండి.';
+
+  @override
+  String get tvQueueEmpty => 'ప్రస్తుతం ఎవరూ వేచి లేరు.';
+
+  @override
+  String get tvWaiting => 'వేచి ఉన్నవి';
+
+  @override
+  String get tvInProgress => 'కొనసాగుతున్నవి';
+
+  @override
+  String get tvDoneToday => 'ఈరోజు పూర్తయినవి';
+
+  @override
+  String get tvPrescriptionsWritten => 'ప్రిస్క్రిప్షన్లు';
+
+  @override
+  String get tvNoActive => 'కొనసాగుతున్న సంప్రదింపులు లేవు.';
+
+  @override
+  String get tvRecent => 'ఇటీవలివి';
+
+  @override
+  String get tvUrgent => 'అత్యవసరం';
+
+  @override
+  String get tvAskedForYou => 'మిమ్మల్నే అడిగారు';
+
+  @override
+  String tvWaitingFor(int minutes) {
+    return '$minutes నిమిషాలుగా వేచి ఉన్నారు';
+  }
+
+  @override
+  String tvScheduledFor(String when) {
+    return '$whenకి బుక్ అయింది';
+  }
+
+  @override
+  String get tvAccept => 'అంగీకరించండి';
+
+  @override
+  String get tvView => 'చూడండి';
+
+  @override
+  String tvAcceptHint(String pet) {
+    return '$pet గురించి చాట్ ప్రారంభించడానికి అంగీకరించండి. యజమానికి తెలియజేస్తాం.';
+  }
+
+  @override
+  String get tvTabChat => 'చాట్';
+
+  @override
+  String get tvTabHistory => 'చరిత్ర';
+
+  @override
+  String get tvTabTools => 'గమనికలు, టూల్స్';
+
+  @override
+  String get tvOpenVetTools => 'వెట్ టూల్స్ తెరవండి';
+
+  @override
+  String tvUrgentSign(String sign) {
+    return 'అత్యవసర లక్షణం: $sign';
+  }
+
+  @override
+  String get tvFreeContext =>
+      'Free ప్లాన్: మీకు ప్రాథమిక ప్రొఫైల్ కనిపిస్తుంది. Plus సభ్యులు పూర్తి ఆరోగ్య చరిత్ర పంచుకుంటారు.';
+
+  @override
+  String get tvTemperament => 'స్వభావం';
+
+  @override
+  String get tvRecentHealth => 'ఇటీవలి ఆరోగ్య రికార్డులు';
+
+  @override
+  String get tvNone => 'ఏమీ లేవు';
+
+  @override
+  String get tvPrivateNotes => 'వ్యక్తిగత గమనికలు';
+
+  @override
+  String get tvPrivateNotesHint => 'ఈ గమనికలు మీకు మాత్రమే కనిపిస్తాయి.';
+
+  @override
+  String get tvNotesPlaceholder => 'పరిశీలనలు, సాధ్యమయ్యే కారణాలు, ప్రణాళిక…';
+
+  @override
+  String get tvRecommend => 'సూచించండి';
+
+  @override
+  String get tvRecVisit => 'క్లినిక్ సందర్శన';
+
+  @override
+  String get tvRecEmergency => 'అత్యవసర చికిత్స';
+
+  @override
+  String tvRecVisitConfirm(String name) {
+    return 'పరీక్ష కోసం పెంపుడు జంతువును క్లినిక్‌కి తీసుకురమ్మని $nameకి చెప్పాలా?';
+  }
+
+  @override
+  String tvRecEmergencyConfirm(String name) {
+    return 'దీనికి ఇప్పుడే అత్యవసర చికిత్స అవసరమని $nameకి చెప్పాలా? వారికి SOS బటన్ కనిపిస్తుంది.';
+  }
+
+  @override
+  String get tvRecSent => 'సూచన పంపబడింది';
+
+  @override
+  String get tvRecDoneVisit => 'క్లినిక్ సందర్శన సూచించారు';
+
+  @override
+  String get tvRecDoneEmergency => 'అత్యవసర చికిత్స సూచించారు';
+
+  @override
+  String get tvSend => 'పంపండి';
+
+  @override
+  String get tvEnd => 'సంప్రదింపు ముగించండి';
+
+  @override
+  String get tvEndTitle => 'ఈ సంప్రదింపు ముగించాలా?';
+
+  @override
+  String get tvEndBody =>
+      'యజమాని ఇక సందేశాలు పంపలేరు. చాట్, ప్రిస్క్రిప్షన్ వారి రికార్డుల్లో ఉంటాయి.';
+
+  @override
+  String get tvEndBodyNoRx =>
+      'మీరు ప్రిస్క్రిప్షన్ రాయలేదు. అయినా ముగించాలా? యజమాని ఇక సందేశాలు పంపలేరు.';
+
+  @override
+  String get tvEndedToast => 'సంప్రదింపు ముగిసింది';
+
+  @override
+  String get tvVetSafetyNote =>
+      'పరీక్ష లేదా టెస్టులు అవసరమైతే క్లినిక్‌కి రమ్మనండి. వ్యక్తిగత ఫోన్ నంబర్లు పంచుకోవద్దు.';
+
+  @override
+  String get rxWrite => 'ప్రిస్క్రిప్షన్ రాయండి';
+
+  @override
+  String rxTitleOf(String pet) {
+    return '$pet కోసం ప్రిస్క్రిప్షన్';
+  }
+
+  @override
+  String get rxTitle => 'ఇ-ప్రిస్క్రిప్షన్';
+
+  @override
+  String rxRegNo(String number) {
+    return 'రిజి. నం. $number';
+  }
+
+  @override
+  String get rxDiagnosis => 'నిర్ధారణ లేదా అంచనా';
+
+  @override
+  String get rxDiagnosisHint => 'ఉదా. తేలికపాటి గ్యాస్ట్రైటిస్';
+
+  @override
+  String get rxMedicines => 'మందులు';
+
+  @override
+  String rxMedicineN(int n) {
+    return 'మందు $n';
+  }
+
+  @override
+  String get rxMedicine => 'మందు, మోతాదు బలం';
+
+  @override
+  String get rxMedicineHint => 'ఉదా. Ondansetron 4 mg మాత్ర';
+
+  @override
+  String get rxDoseHint => 'మోతాదు, ఉదా. సగం మాత్ర';
+
+  @override
+  String get rxFreqOnce => 'రోజుకు ఒకసారి';
+
+  @override
+  String get rxFreqTwice => 'రోజుకు రెండుసార్లు';
+
+  @override
+  String get rxFreqThrice => 'రోజుకు మూడుసార్లు';
+
+  @override
+  String get rxFreqNeeded => 'అవసరమైనప్పుడు';
+
+  @override
+  String get rxDuration => 'ఎన్ని రోజులు';
+
+  @override
+  String rxDays(int count) {
+    return '$count రోజులు';
+  }
+
+  @override
+  String get rxInstructions => 'సూచనలు';
+
+  @override
+  String get rxAfterFood => 'భోజనం తర్వాత';
+
+  @override
+  String get rxBeforeFood => 'భోజనానికి ముందు';
+
+  @override
+  String get rxApplyThin => 'పలుచని పొర రాయండి';
+
+  @override
+  String get rxAddMedicine => 'మందు జోడించండి';
+
+  @override
+  String get rxNeedMedicine => 'కనీసం ఒక మందు జోడించండి.';
+
+  @override
+  String get rxAdvice => 'యజమానికి సలహా';
+
+  @override
+  String get rxAdviceHint =>
+      'ఆహారం, విశ్రాంతి, ఏమి గమనించాలి, ఎప్పుడు మళ్లీ రావాలి';
+
+  @override
+  String get rxAddFollowUp => 'ఫాలో-అప్ తేదీ జోడించండి';
+
+  @override
+  String rxFollowUpOn(String date) {
+    return '$dateన ఫాలో-అప్';
+  }
+
+  @override
+  String get rxFollowUp => 'ఫాలో-అప్';
+
+  @override
+  String get rxNoFollowUp => 'ఫాలో-అప్ అవసరం లేదు';
+
+  @override
+  String rxWhereItGoes(String pet) {
+    return 'ఇది $pet ఆరోగ్య రికార్డులకు, యజమాని వాల్ట్‌కు వెళ్తుంది, ఫాలో-అప్ ఉంటే రిమైండర్‌తో.';
+  }
+
+  @override
+  String get rxPreview => 'ముందుగా చూడండి';
+
+  @override
+  String get rxSignTitle => 'సంతకం చేసి పంపాలా?';
+
+  @override
+  String rxSignBody(String owner, String pet) {
+    return 'ఈ ప్రిస్క్రిప్షన్ మీ రిజిస్ట్రేషన్ నంబర్‌తో డిజిటల్‌గా సంతకం చేయబడి $pet కోసం $ownerకి పంపబడుతుంది.';
+  }
+
+  @override
+  String get rxSignSend => 'సంతకం చేసి పంపండి';
+
+  @override
+  String rxSentToast(String owner, String pet) {
+    return '$pet కోసం ప్రిస్క్రిప్షన్ $ownerకి పంపబడింది';
+  }
+
+  @override
+  String rxSaved(String pet) {
+    return '$pet ఆరోగ్య రికార్డుల్లో సేవ్ అయింది';
+  }
+
+  @override
+  String rxCardTitle(String vet) {
+    return '$vet నుండి ప్రిస్క్రిప్షన్';
+  }
+
+  @override
+  String get rxView => 'ప్రిస్క్రిప్షన్ చూడండి';
+
+  @override
+  String get rxSentPreview => 'ప్రిస్క్రిప్షన్';
+
+  @override
+  String get rxPatient => 'రోగి';
+
+  @override
+  String get rxPetName => 'పేరు';
+
+  @override
+  String get rxSpeciesBreed => 'జాతి, బ్రీడ్';
+
+  @override
+  String rxSignedDigitally(String when) {
+    return '$whenన డిజిటల్‌గా సంతకం చేశారు';
+  }
+
+  @override
+  String get rxFooter =>
+      'PawSetu ఇ-ప్రిస్క్రిప్షన్ · డెమో డేటా · వెట్ రిజిస్ట్రేషన్ నంబర్‌తో మాత్రమే చెల్లుతుంది';
+
+  @override
+  String rxDocTitle(String pet, String date) {
+    return '$pet ప్రిస్క్రిప్షన్, $date';
+  }
+
+  @override
+  String rxEventTitle(String vet) {
+    return '$vetతో టెలి-వెట్ సంప్రదింపు';
+  }
+
+  @override
+  String rxEventNotes(String medicines) {
+    return 'సూచించిన మందులు: $medicines';
+  }
+
+  @override
+  String rxFollowUpReminder(String pet, String vet) {
+    return '$vetతో $pet ఫాలో-అప్';
+  }
+
+  @override
+  String ntfTeleVetRequest(String pet, String owner) {
+    return 'కొత్త టెలి-వెట్ అభ్యర్థన: $pet ($owner)';
+  }
+
+  @override
+  String ntfVetJoined(String vet, String pet) {
+    return '$pet గురించి మీ చాట్‌లో $vet చేరారు';
+  }
+
+  @override
+  String ntfConsultEnded(String pet) {
+    return '$pet టెలి-వెట్ సంప్రదింపు ముగిసింది';
+  }
+
+  @override
+  String ntfPrescription(String vet, String pet) {
+    return '$vet $pet కోసం ప్రిస్క్రిప్షన్ పంపారు';
+  }
 }
