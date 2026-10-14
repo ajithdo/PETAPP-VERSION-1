@@ -9,6 +9,10 @@ import '../../health/domain/vaccine_schedule.dart';
 import '../../health/presentation/health_screen.dart';
 import '../../pets/domain/pet.dart';
 
+export '../../messaging/messaging_slots.dart' show askVetLink;
+export '../../shop/shop_slots.dart' show foodLowSection;
+export '../../vault/vault_slots.dart' show addPhotoLink, latestMemorySection;
+
 /// Home "Next up": vaccines, medicines and care due soonest (spec 5).
 List<Widget> nextUpSection(BuildContext context, WidgetRef ref, {required List<Pet> pets}) {
   final l = context.l10n;
@@ -39,8 +43,3 @@ List<Widget> nextUpSection(BuildContext context, WidgetRef ref, {required List<P
   ];
 }
 
-List<Widget> foodLowSection(BuildContext context, WidgetRef ref, Pet pet) => const [];
-List<Widget> latestMemorySection(BuildContext context, WidgetRef ref, Pet pet) => const [];
-
-String get askVetLink => '/coming-soon?phase=6&title=Tele-vet';
-String addPhotoLink(String petId) => '/coming-soon?phase=7&title=Album';

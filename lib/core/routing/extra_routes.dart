@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/admin/admin_slots.dart';
 import '../../features/booking/presentation/book_home_screen.dart';
 import '../../features/booking/presentation/booking_flow_screen.dart';
 import '../../features/booking/presentation/my_bookings_screen.dart';
@@ -16,23 +17,21 @@ import '../../features/partner/presentation/partner_signup_screen.dart';
 import '../../features/pets/presentation/my_pets_screen.dart';
 import '../../features/pets/presentation/pet_form_screen.dart';
 import '../../features/pets/presentation/pet_profile_screen.dart';
+import '../../features/messaging/messaging_slots.dart';
 import '../../features/routine/presentation/routine_screen.dart';
 import '../../features/routine/presentation/walk_tracker_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
-import '../../features/shell/presentation/coming_soon_screen.dart';
+import '../../features/shop/shop_slots.dart';
+import '../../features/sos/sos_slots.dart';
+import '../../features/vault/vault_slots.dart';
 import '../widgets/layout.dart';
 
 /// Routes and menus that grow phase by phase. router.dart wires them in.
 
-GoRoute _soon(String path, int phase, String Function(BuildContext) title) => GoRoute(
-  path: path,
-  builder: (context, _) => ComingSoonScreen(title: title(context), phase: phase),
-);
-
 /// Tab roots that are not built yet show an embedded placeholder.
 Widget healthTab([String? petId]) => HealthTab(petId: petId);
 Widget bookTab() => const BookHomeScreen();
-Widget shopTab() => Builder(builder: (c) => ComingSoonScreen(title: c.l10n.tabShop, phase: 8, embedded: true));
+Widget shopTab() => shopTabRoot();
 
 final homeRoutes = <RouteBase>[];
 final healthRoutes = <RouteBase>[];
@@ -60,7 +59,7 @@ final bookRoutes = <RouteBase>[
     builder: (_, s) => BookingDetailScreen(bookingId: s.pathParameters['id']!),
   ),
 ];
-final shopRoutes = <RouteBase>[];
+final shopRoutes = <RouteBase>[...shopTabRoutes];
 final settingsRoutes = <RouteBase>[GoRoute(path: 'notifications', builder: (_, _) => const NotificationSettingsScreen())];
 final meRoutes = <RouteBase>[
   GoRoute(path: 'pets', builder: (_, _) => const MyPetsScreen()),
@@ -73,8 +72,11 @@ final meRoutes = <RouteBase>[
 /// Full-screen routes outside the tabs.
 final rootRoutes = <RouteBase>[
   GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
-  _soon('/messages', 6, (c) => c.l10n.messages),
-  _soon('/televet', 6, (c) => c.l10n.teleVet),
+  ...messagingRootRoutes,
+  ...vaultRootRoutes,
+  ...shopRootRoutes,
+  ...sosRootRoutes,
+  ...adminRootRoutes,
   GoRoute(path: '/notifications', builder: (_, _) => const NotificationCentreScreen()),
   GoRoute(path: '/pets/new', builder: (_, _) => const PetFormScreen()),
   GoRoute(
@@ -112,6 +114,8 @@ final rootRoutes = <RouteBase>[
 
 /// Extra partner portal pages (listed before the `:section` route).
 final partnerRoutes = <RouteBase>[
+  ...messagingPartnerRoutes,
+  ...sellerPartnerRoutes,
   GoRoute(
     path: 'booking/:id',
     builder: (_, s) => BookingDetailScreen(
@@ -131,18 +135,17 @@ class MeMenuItem {
 
 List<MeMenuItem> meMenu(BuildContext context) {
   final l = context.l10n;
-  String soon(int phase, String title) => '/coming-soon?phase=$phase&title=${Uri.encodeComponent(title)}';
   return [
     MeMenuItem(Icons.pets_rounded, l.myPets, '/me/pets'),
     MeMenuItem(Icons.family_restroom_rounded, l.familySharing, '/me/family'),
-    MeMenuItem(Icons.lock_rounded, l.documentVault, soon(7, l.documentVault)),
-    MeMenuItem(Icons.photo_library_rounded, l.memoryAlbum, soon(7, l.memoryAlbum)),
-    MeMenuItem(Icons.watch_rounded, l.connectedDevices, soon(9, l.connectedDevices)),
-    MeMenuItem(Icons.qr_code_2_rounded, l.lostPetMode, soon(9, l.lostPetMode)),
-    MeMenuItem(Icons.account_balance_wallet_rounded, l.expenses, soon(8, l.expenses)),
-    MeMenuItem(Icons.workspace_premium_rounded, l.pawsetuPlus, soon(10, l.pawsetuPlus)),
+    MeMenuItem(Icons.lock_rounded, l.documentVault, '/me/vault'),
+    MeMenuItem(Icons.photo_library_rounded, l.memoryAlbum, '/me/album'),
+    MeMenuItem(Icons.watch_rounded, l.connectedDevices, '/me/devices'),
+    MeMenuItem(Icons.qr_code_2_rounded, l.lostPetMode, '/me/lost'),
+    MeMenuItem(Icons.account_balance_wallet_rounded, l.expenses, '/me/expenses'),
+    MeMenuItem(Icons.workspace_premium_rounded, l.pawsetuPlus, '/me/plus'),
     MeMenuItem(Icons.settings_rounded, l.settings, '/me/settings'),
-    MeMenuItem(Icons.support_agent_rounded, l.helpAndComplaints, soon(10, l.helpAndComplaints)),
-    MeMenuItem(Icons.privacy_tip_rounded, l.privacyCentre, soon(10, l.privacyCentre)),
+    MeMenuItem(Icons.support_agent_rounded, l.helpAndComplaints, '/me/help'),
+    MeMenuItem(Icons.privacy_tip_rounded, l.privacyCentre, '/me/privacy'),
   ];
 }

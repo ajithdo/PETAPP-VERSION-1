@@ -99,39 +99,40 @@ void seedHealth(Add add, DateTime now, SeedData data) {
   });
   for (var d = 7; d >= 1; d--) {
     add('medicineLogs', 'ml_tiger_$d', {
-      'medicineId': 'med_tiger_kidney', 'petId': 'pet_tiger', 'dose': daysAgo(d, 9),
-      'at': DateTime(now.year, now.month, now.day - d, 9, 6), 'status': d == 4 ? 'skipped' : 'given',
-      'byUid': 'u_anjali', 'byName': 'Anjali Verma',
+      'medicineId': 'med_tiger_kidney',
+      'petId': 'pet_tiger',
+      'dose': daysAgo(d, 9),
+      'at': DateTime(now.year, now.month, now.day - d, 9, 6),
+      'status': d == 4 ? 'skipped' : 'given',
+      'byUid': 'u_anjali',
+      'byName': 'Anjali Verma',
     });
   }
   for (var d = 3; d >= 1; d--) {
     for (final h in [8, 20]) {
       add('medicineLogs', 'ml_max_${d}_$h', {
-        'medicineId': 'med_max_joint', 'petId': 'pet_max', 'dose': daysAgo(d, h),
-        'at': DateTime(now.year, now.month, now.day - d, h, 10), 'status': 'given',
-        'byUid': h == 8 ? 'u_meera' : 'u_arjun', 'byName': h == 8 ? 'Meera Pillai' : 'Arjun Mehta',
+        'medicineId': 'med_max_joint',
+        'petId': 'pet_max',
+        'dose': daysAgo(d, h),
+        'at': DateTime(now.year, now.month, now.day - d, h, 10),
+        'status': 'given',
+        'byUid': h == 8 ? 'u_meera' : 'u_arjun',
+        'byName': h == 8 ? 'Meera Pillai' : 'Arjun Mehta',
       });
     }
   }
 
   void event(String petId, String type, int ago, Map<String, dynamic> extra) => add('healthEvents', 'he_${n++}', {
-        'petId': petId,
-        'type': type,
-        'date': daysAgo(ago, 11),
-        'notes': '',
-        'photos': <String>[],
-        'createdAt': daysAgo(ago, 11),
-        ...extra,
-      });
+    'petId': petId,
+    'type': type,
+    'date': daysAgo(ago, 11),
+    'notes': '',
+    'photos': <String>[],
+    'createdAt': daysAgo(ago, 11),
+    ...extra,
+  });
 
-  for (final e in [
-    ('pet_bruno', 80, 25),
-    ('pet_misty', 60, 20),
-    ('pet_simba', 20, 28),
-    ('pet_luna', 15, 12),
-    ('pet_max', 85, 26),
-    ('pet_tiger', 70, 22),
-  ]) {
+  for (final e in [('pet_bruno', 80, 25), ('pet_misty', 60, 20), ('pet_simba', 20, 28), ('pet_luna', 15, 12), ('pet_max', 85, 26), ('pet_tiger', 70, 22)]) {
     event(e.$1, 'deworming', e.$2, {'title': 'Deworming tablet (sample)'});
     event(e.$1, 'flea_tick', e.$3, {'title': 'Spot-on tick and flea (sample)'});
   }
@@ -156,38 +157,34 @@ void seedHealth(Add add, DateTime now, SeedData data) {
     'clinicName': 'Featherfold Bird & Pet Hospital',
     'diagnosis': 'Healthy. Nails and beak trimmed.',
   });
-  event('pet_coco', 'vet_visit', 95, {
-    'title': 'Health check',
-    'clinicName': 'Saket Pet Wellness',
-    'diagnosis': 'Healthy. More hay, fewer pellets.',
-  });
+  event('pet_coco', 'vet_visit', 95, {'title': 'Health check', 'clinicName': 'Saket Pet Wellness', 'diagnosis': 'Healthy. More hay, fewer pellets.'});
   event('pet_simba', 'symptom', 6, {'title': 'Symptom', 'symptom': 'vomiting', 'severity': 1, 'notes': 'Once, after eating grass'});
   event('pet_max', 'symptom', 3, {'title': 'Symptom', 'symptom': 'limping', 'severity': 2, 'notes': 'After a long walk on the beach'});
   event('pet_tiger', 'symptom', 10, {'title': 'Symptom', 'symptom': 'not_eating', 'severity': 1, 'notes': 'Ate half his dinner'});
 
   void reminder(String owner, String petId, String type, String title, int inDays, String repeat) => add('reminders', 'rem_${n++}', {
-        'ownerId': owner,
-        'petId': petId,
-        'type': type,
-        'title': title,
-        'at': DateTime(now.year, now.month, now.day + inDays, 10),
-        'repeat': repeat,
-        'done': false,
-      });
+    'ownerId': owner,
+    'petId': petId,
+    'type': type,
+    'title': title,
+    'at': DateTime(now.year, now.month, now.day + inDays, 10),
+    'repeat': repeat,
+    'done': false,
+  });
   reminder('u_priya', 'pet_bruno', 'grooming', 'Grooming · Bruno', 9, 'monthly');
   reminder('u_arjun', 'pet_max', 'insurance', 'Insurance renewal · Max', 20, 'yearly');
   reminder('u_anjali', 'pet_coco', 'nail_trim', 'Nail trim · Coco', 4, 'monthly');
   reminder('u_ravi', 'pet_kiwi', 'custom', 'Clean Kiwi\'s cage', 2, 'none');
 
   void note(String uid, String title, String type, int hoursAgo, {bool read = false, String? link}) => add('notifications', 'note_${n++}', {
-        'uid': uid,
-        'title': title,
-        'body': '',
-        'type': type,
-        'link': link,
-        'read': read,
-        'createdAt': now.subtract(Duration(hours: hoursAgo)),
-      });
+    'uid': uid,
+    'title': title,
+    'body': '',
+    'type': type,
+    'link': link,
+    'read': read,
+    'createdAt': now.subtract(Duration(hours: hoursAgo)),
+  });
   note('u_ravi', "Simba's DHPPi + Lepto is overdue", 'vaccines', 5, link: '/health?pet=pet_simba');
   note('u_ravi', "Kiwi's cage cleaning is in 2 days", 'custom', 30, read: true);
   note('u_priya', 'Rohan gave Bruno his deworming tablet', 'medicines', 20, read: true);
@@ -196,13 +193,13 @@ void seedHealth(Add add, DateTime now, SeedData data) {
   note('u_arjun', 'Only 4 Joint care tablets left for Max', 'medicines', 8, link: '/health?pet=pet_max');
 
   void outbox(String channel, String to, String body, int hoursAgo, {String? subject}) => add('outbox', 'out_${n++}', {
-        'channel': channel,
-        'to': to,
-        'subject': subject,
-        'body': body,
-        'type': 'reminder',
-        'createdAt': now.subtract(Duration(hours: hoursAgo)),
-      });
+    'channel': channel,
+    'to': to,
+    'subject': subject,
+    'body': body,
+    'type': 'reminder',
+    'createdAt': now.subtract(Duration(hours: hoursAgo)),
+  });
   outbox('sms', '+91 90000 00002', "PawSetu: Simba's DHPPi + Lepto is overdue. Book a vet in the app.", 5);
   outbox('whatsapp', '+91 90000 00001', "PawSetu: Bruno's flea and tick prevention is due soon.", 3);
   outbox('email', 'anjali@example.com', "Time for Tiger's Kidney support tablet.", 1, subject: 'Medicine reminder for Tiger');

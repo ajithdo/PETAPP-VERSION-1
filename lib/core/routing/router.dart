@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/admin/admin_slots.dart';
 import '../../features/admin/presentation/admin_shell.dart';
 import '../../features/auth/presentation/demo_login_screen.dart';
 import '../../features/auth/presentation/forgot_password_screen.dart';
@@ -153,6 +154,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/admin',
         builder: (_, _) => const AdminShell(section: 'dashboard'),
         routes: [
+          ...adminExtraRoutes,
           GoRoute(
             path: ':section',
             builder: (_, s) => AdminShell(section: s.pathParameters['section']!),

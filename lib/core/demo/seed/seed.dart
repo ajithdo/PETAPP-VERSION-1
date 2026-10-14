@@ -16,12 +16,11 @@ typedef SeedData = Map<String, Map<String, Map<String, dynamic>>>;
 
 class DemoSeed {
   /// Bump when the seed changes so saved standalone demo data is replaced.
-  static const version = 5;
+  static const version = 6;
 
   static SeedData build(DateTime now) {
     final data = <String, Map<String, Map<String, dynamic>>>{};
-    void add(String col, String id, Map<String, dynamic> doc) =>
-        (data[col] ??= {})[id] = doc;
+    void add(String col, String id, Map<String, dynamic> doc) => (data[col] ??= {})[id] = doc;
 
     seedConfig(add, now);
     seedPeople(add, now);
@@ -62,19 +61,8 @@ void seedConfig(Add add, DateTime now) {
         'videoSeconds': 180,
       },
     },
-    'commission': {
-      'bookingPercent': 10,
-      'foodMarginPercent': 8,
-      'otherMarginPercent': 15,
-      'videoDiscountPercent': 10,
-      'freeDeliveryAbove': 499,
-    },
-    'flags': {
-      'aiAssistant': true,
-      'smartDevices': true,
-      'lostPetAlerts': true,
-      'referrals': true,
-    },
+    'commission': {'bookingPercent': 10, 'foodMarginPercent': 8, 'otherMarginPercent': 15, 'videoDiscountPercent': 10, 'freeDeliveryAbove': 499},
+    'flags': {'aiAssistant': true, 'smartDevices': true, 'lostPetAlerts': true, 'referrals': true},
     'updatedAt': now,
   });
 }
