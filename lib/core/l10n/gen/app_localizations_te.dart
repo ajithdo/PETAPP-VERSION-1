@@ -2340,4 +2340,951 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get medicalCardOffline =>
       'ఈ కార్డ్ ఇంటర్నెట్ లేకుండా పనిచేస్తుంది. వెట్, బోర్డింగ్ సెంటర్ లేదా ఎయిర్‌పోర్ట్‌లో చూపించండి.';
+
+  @override
+  String get bookTitle => 'సంరక్షణ బుక్ చేయండి';
+
+  @override
+  String get findAVet => 'దగ్గరలోని వెట్‌ను కనుగొనండి';
+
+  @override
+  String get kindVet => 'వెట్ క్లినిక్';
+
+  @override
+  String get kindGrooming => 'గ్రూమింగ్';
+
+  @override
+  String get kindTraining => 'శిక్షణ';
+
+  @override
+  String get kindBoarding => 'బోర్డింగ్';
+
+  @override
+  String get kindWalking => 'డాగ్ వాకింగ్';
+
+  @override
+  String get teleVet => 'టెలి-వెట్';
+
+  @override
+  String get clinicFinderMap => 'మ్యాప్‌లో క్లినిక్‌లు';
+
+  @override
+  String get clinicFinderHint =>
+      'మీ చుట్టూ తెరిచి ఉన్న క్లినిక్‌లు, 24x7 అత్యవసర సేవలు చూడండి.';
+
+  @override
+  String get myBookings => 'నా బుకింగ్‌లు';
+
+  @override
+  String get upcoming => 'రాబోయేవి';
+
+  @override
+  String get requests => 'అభ్యర్థనలు';
+
+  @override
+  String get past => 'గతవి';
+
+  @override
+  String get noUpcomingBookings => 'రాబోయే బుకింగ్‌లు లేవు.';
+
+  @override
+  String get noRequests => 'వేచి ఉన్న అభ్యర్థనలు లేవు.';
+
+  @override
+  String get noPastBookings => 'ఇంకా గత బుకింగ్‌లు లేవు.';
+
+  @override
+  String get bookSomething => 'ఏదైనా బుక్ చేయండి';
+
+  @override
+  String get viewBooking => 'బుకింగ్ చూడండి';
+
+  @override
+  String get backToBook => 'బుక్‌కి తిరిగి';
+
+  @override
+  String get searchByNameOrArea => 'పేరు లేదా ప్రాంతంతో వెతకండి';
+
+  @override
+  String get useMyLocation => 'నా లొకేషన్ వాడండి';
+
+  @override
+  String get nearYou => 'మీ దగ్గర';
+
+  @override
+  String get chooseArea => 'మీ ప్రాంతాన్ని ఎంచుకోండి';
+
+  @override
+  String get locationWhyClinics =>
+      'క్లినిక్‌లు, సేవలను దూరం ప్రకారం చూపడానికే PawSetu మీ లొకేషన్ వాడుతుంది. దాన్ని సేవ్ చేయదు.';
+
+  @override
+  String get locationFallback =>
+      'మీ లొకేషన్ దొరకలేదు. మీరు ఎంచుకున్న ప్రాంతం చూపిస్తున్నాం.';
+
+  @override
+  String get filters => 'ఫిల్టర్లు';
+
+  @override
+  String get clearFilters => 'ఫిల్టర్లు తీసివేయండి';
+
+  @override
+  String get showResults => 'ఫలితాలు చూపండి';
+
+  @override
+  String get sortBy => 'క్రమం';
+
+  @override
+  String get sortNearest => 'అత్యంత దగ్గర';
+
+  @override
+  String get sortRating => 'అత్యధిక రేటింగ్';
+
+  @override
+  String get sortSlot => 'త్వరగా స్లాట్';
+
+  @override
+  String get sortFee => 'తక్కువ ఫీజు';
+
+  @override
+  String get openNow => 'ఇప్పుడు తెరిచి ఉంది';
+
+  @override
+  String get openNowChip => 'తెరిచి ఉంది';
+
+  @override
+  String get closedChip => 'మూసి ఉంది';
+
+  @override
+  String get open24x7 => '24x7';
+
+  @override
+  String get open24x7Long => '24 గంటలు, వారం మొత్తం తెరిచి ఉంటుంది';
+
+  @override
+  String get teleVetAvailable => 'టెలి-వెట్ అందుబాటులో';
+
+  @override
+  String get homeVisit => 'ఇంటికి వచ్చి సేవ';
+
+  @override
+  String get rating => 'రేటింగ్';
+
+  @override
+  String get rating4plus => '4★ పైన';
+
+  @override
+  String get speciesTreated => 'చికిత్స చేసే జంతువులు';
+
+  @override
+  String get languagesSpoken => 'మాట్లాడే భాషలు';
+
+  @override
+  String get consultationFee => 'కన్సల్టేషన్ ఫీజు';
+
+  @override
+  String upTo(String amount) {
+    return '$amount వరకు';
+  }
+
+  @override
+  String feeFrom(String amount) {
+    return '$amount నుండి';
+  }
+
+  @override
+  String resultsCount(int count) {
+    return '$count ఫలితాలు';
+  }
+
+  @override
+  String get listView => 'జాబితా';
+
+  @override
+  String get mapView => 'మ్యాప్';
+
+  @override
+  String get noResultsTitle => 'ఏదీ సరిపోలలేదు';
+
+  @override
+  String get noResultsBody =>
+      'వేరే ప్రాంతం ప్రయత్నించండి లేదా కొన్ని ఫిల్టర్లు తీసేయండి.';
+
+  @override
+  String reviewsCount(int count) {
+    return '$count సమీక్షలు';
+  }
+
+  @override
+  String get call => 'కాల్ చేయండి';
+
+  @override
+  String get directions => 'దారి';
+
+  @override
+  String get bookNow => 'ఇప్పుడే బుక్ చేయండి';
+
+  @override
+  String demoCallBody(String phone) {
+    return 'డెమో మోడ్‌లో నిజమైన కాల్స్ వెళ్లవు. అసలు యాప్‌లో ఇది $phoneకి కాల్ చేస్తుంది.';
+  }
+
+  @override
+  String get hoursTitle => 'సమయాలు';
+
+  @override
+  String get closedToday => 'ఈరోజు మూసి ఉంది';
+
+  @override
+  String todayHours(String open, String close) {
+    return 'ఈరోజు $open – $close';
+  }
+
+  @override
+  String emergencyLine(String phone) {
+    return 'అత్యవసర లైన్: $phone';
+  }
+
+  @override
+  String get servicesAndPrices => 'సేవలు, ధరలు';
+
+  @override
+  String get instantBooking => 'తక్షణ బుకింగ్';
+
+  @override
+  String get requestBooking => 'బుకింగ్ అభ్యర్థన';
+
+  @override
+  String get payOnline => 'ఆన్‌లైన్ చెల్లింపు';
+
+  @override
+  String get payAtCentre => 'సెంటర్‌లో చెల్లింపు';
+
+  @override
+  String get payAtClinic => 'క్లినిక్‌లో చెల్లింపు';
+
+  @override
+  String homeVisitAvailable(int km) {
+    return '$km కి.మీ. లోపు ఇంటికి వస్తారు';
+  }
+
+  @override
+  String get packages => 'ప్యాకేజీలు';
+
+  @override
+  String get vetsHere => 'ఇక్కడి వెట్‌లు';
+
+  @override
+  String yearsExperience(int years) {
+    return '$years సంవత్సరాల అనుభవం';
+  }
+
+  @override
+  String regNo(String no) {
+    return 'రిజి. నం. $no';
+  }
+
+  @override
+  String get location => 'లొకేషన్';
+
+  @override
+  String get reviews => 'సమీక్షలు';
+
+  @override
+  String get noReviewsYet => 'ఇంకా సమీక్షలు లేవు.';
+
+  @override
+  String get verifiedBooking => 'ధృవీకరించిన బుకింగ్';
+
+  @override
+  String replyFrom(String name) {
+    return '$name జవాబు';
+  }
+
+  @override
+  String get inClinic => 'క్లినిక్‌లో';
+
+  @override
+  String get svcConsultation => 'కన్సల్టేషన్';
+
+  @override
+  String get svcVaccination => 'టీకా';
+
+  @override
+  String get svcSurgery => 'శస్త్రచికిత్స సంప్రదింపు';
+
+  @override
+  String get svcDental => 'దంతాల శుభ్రత';
+
+  @override
+  String get svcLabTests => 'ల్యాబ్ పరీక్షలు';
+
+  @override
+  String get svcXray => 'ఎక్స్-రే';
+
+  @override
+  String get svcHomeVisit => 'ఇంటికి వచ్చి చూడటం';
+
+  @override
+  String get svcGrooming => 'గ్రూమింగ్';
+
+  @override
+  String get svcBathBrush => 'స్నానం, బ్రష్';
+
+  @override
+  String get svcFullGroom => 'పూర్తి గ్రూమింగ్';
+
+  @override
+  String get svcNailTrim => 'గోళ్లు కత్తిరించడం';
+
+  @override
+  String get svcTickTreatment => 'పేల చికిత్స';
+
+  @override
+  String get svcObedience => 'విధేయత శిక్షణ';
+
+  @override
+  String get svcPuppyBasics => 'కుక్కపిల్ల ప్రాథమిక శిక్షణ';
+
+  @override
+  String get svcBehaviour => 'ప్రవర్తన సెషన్';
+
+  @override
+  String get svcBoarding => 'బోర్డింగ్';
+
+  @override
+  String get svcBoardingNight => 'బోర్డింగ్ (ఒక రాత్రికి)';
+
+  @override
+  String get svcDayCare => 'డే కేర్';
+
+  @override
+  String get svcHomeSitting => 'ఇంట్లో సంరక్షణ';
+
+  @override
+  String get svcWalk30 => '30 నిమిషాల నడక';
+
+  @override
+  String get svcWalk60 => '60 నిమిషాల నడక';
+
+  @override
+  String get stepWhoWhat => 'పెంపుడు జంతువు, సేవ';
+
+  @override
+  String get stepWhen => 'తేదీ, సమయం';
+
+  @override
+  String get stepDetails => 'వివరాలు';
+
+  @override
+  String get stepConfirm => 'నిర్ధారించండి';
+
+  @override
+  String get whichPet => 'ఏ పెంపుడు జంతువు?';
+
+  @override
+  String get whichService => 'ఏ సేవ?';
+
+  @override
+  String get chooseVet => 'వెట్‌ను ఎంచుకోండి';
+
+  @override
+  String get anyVet => 'అందుబాటులో ఉన్న ఏ వెట్ అయినా';
+
+  @override
+  String get noPetForPlace =>
+      'మీ పెంపుడు జంతువులు ఏవీ ఇక్కడ బుక్ కావు. ముందు ఒకటి జోడించండి.';
+
+  @override
+  String homeVisitHint(int km, String fee) {
+    return '$km కి.మీ. లోపు, ప్రయాణ ఛార్జీ $fee';
+  }
+
+  @override
+  String get openSlots => 'ఖాళీ స్లాట్లు';
+
+  @override
+  String get noSlotsThatDay =>
+      'ఆ రోజు ఖాళీ స్లాట్లు లేవు. వేరే రోజు ప్రయత్నించండి.';
+
+  @override
+  String requestExplainer(int hours) {
+    return 'మీకు అనుకూలమైన 3 సమయాలు ఎంచుకోండి. ప్రొవైడర్ $hours గంటల్లో జవాబిస్తారు.';
+  }
+
+  @override
+  String get yourPreferredTimes => 'మీకు ఇష్టమైన సమయాలు';
+
+  @override
+  String get preferredTimes => 'ఇష్టమైన సమయాలు';
+
+  @override
+  String get symptomsNotes => 'వెట్ కోసం లక్షణాలు లేదా గమనికలు';
+
+  @override
+  String get symptomsHint => 'ఉదా. నిన్నటి నుండి తినడం లేదు, రెండుసార్లు వాంతి';
+
+  @override
+  String get notesForProvider => 'ప్రొవైడర్ కోసం గమనికలు';
+
+  @override
+  String get notes => 'గమనికలు';
+
+  @override
+  String get howToPay => 'ఎలా చెల్లిస్తారు?';
+
+  @override
+  String get payOnlineHint => 'ఇప్పుడే UPI లేదా కార్డ్. వెంటనే నిర్ధారణ.';
+
+  @override
+  String get payLaterHint => 'వచ్చినప్పుడు చెల్లించండి.';
+
+  @override
+  String get when => 'ఎప్పుడు';
+
+  @override
+  String get where => 'ఎక్కడ';
+
+  @override
+  String get pet => 'పెంపుడు జంతువు';
+
+  @override
+  String get vet => 'వెట్';
+
+  @override
+  String get travelFee => 'ప్రయాణ ఛార్జీ';
+
+  @override
+  String get platformFee => 'ప్లాట్‌ఫామ్ ఫీజు';
+
+  @override
+  String get free => 'ఉచితం';
+
+  @override
+  String get totalToPay => 'మొత్తం';
+
+  @override
+  String cancellationPolicy(int hours) {
+    return '$hours గంటల ముందు వరకు ఉచితంగా రద్దు. ఆ తర్వాత 50% రీఫండ్.';
+  }
+
+  @override
+  String get confirmBooking => 'బుకింగ్ నిర్ధారించండి';
+
+  @override
+  String get sendRequest => 'అభ్యర్థన పంపండి';
+
+  @override
+  String get demoBookingNote => 'డెమో బుకింగ్. నిజమైన డబ్బు తీసుకోరు.';
+
+  @override
+  String get bookingConfirmedTitle => 'బుకింగ్ నిర్ధారించబడింది';
+
+  @override
+  String bookingConfirmedBody(String pet, String place, String when) {
+    return '$petకి $placeలో $whenన బుకింగ్ అయింది.';
+  }
+
+  @override
+  String get requestSentTitle => 'అభ్యర్థన పంపబడింది';
+
+  @override
+  String requestSentBody(String place) {
+    return '$place త్వరలో జవాబిస్తారు. మేము మీకు తెలియజేస్తాం.';
+  }
+
+  @override
+  String get paymentFailed =>
+      'చెల్లింపు విఫలమైంది. డబ్బు తీసుకోలేదు. మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get paymentPendingNote =>
+      'చెల్లింపు పెండింగ్‌లో ఉంది. పూర్తయ్యాక నిర్ధారిస్తాం.';
+
+  @override
+  String get demoPaymentTitle => 'డెమో చెల్లింపు';
+
+  @override
+  String get demoPaymentNote => 'ఇది డెమో. డబ్బు ఏమీ కదలదు.';
+
+  @override
+  String get demoPaymentChoose => 'ఏమి జరగాలో ఎంచుకోండి:';
+
+  @override
+  String get payUpiDemo => 'UPIతో చెల్లించండి (డెమో)';
+
+  @override
+  String get simulateFailure => 'విఫలమైనట్లు చూపండి';
+
+  @override
+  String get simulatePending => 'పెండింగ్‌గా చూపండి';
+
+  @override
+  String get bookingDetails => 'బుకింగ్ వివరాలు';
+
+  @override
+  String get replyBy => 'జవాబు గడువు';
+
+  @override
+  String replyBefore(String time) {
+    return '$time లోపు జవాబివ్వండి';
+  }
+
+  @override
+  String get payment => 'చెల్లింపు';
+
+  @override
+  String get paidOnline => 'ఆన్‌లైన్‌లో చెల్లించారు';
+
+  @override
+  String get paymentPending => 'చెల్లింపు పెండింగ్';
+
+  @override
+  String get payAtVisit => 'వచ్చినప్పుడు చెల్లింపు';
+
+  @override
+  String get platformCommission => 'ప్లాట్‌ఫామ్ కమీషన్';
+
+  @override
+  String get yourPayout => 'మీకు వచ్చే మొత్తం';
+
+  @override
+  String get refund => 'రీఫండ్';
+
+  @override
+  String refundDemo(String amount) {
+    return '$amount (డెమో, నిజమైన డబ్బు కాదు)';
+  }
+
+  @override
+  String providerSuggested(String place, String when) {
+    return '$place కొత్త సమయం సూచించారు: $when';
+  }
+
+  @override
+  String get liveWalk => 'లైవ్ నడక';
+
+  @override
+  String get liveWalkDemo => 'డెమో కోసం అనుకరణ లైవ్ నడక.';
+
+  @override
+  String walkSoFar(String km) {
+    return 'ఇప్పటివరకు $km';
+  }
+
+  @override
+  String get updates => 'అప్‌డేట్‌లు';
+
+  @override
+  String get dailyUpdates => 'రోజువారీ అప్‌డేట్‌లు';
+
+  @override
+  String get addToCalendar => 'క్యాలెండర్‌కి జోడించండి';
+
+  @override
+  String get message => 'సందేశం';
+
+  @override
+  String get reschedule => 'సమయం మార్చండి';
+
+  @override
+  String rescheduledTo(String when) {
+    return '$whenకి మార్చారు';
+  }
+
+  @override
+  String get cancelBooking => 'బుకింగ్ రద్దు చేయండి';
+
+  @override
+  String get cancelBookingQ => 'ఈ బుకింగ్ రద్దు చేయాలా?';
+
+  @override
+  String cancelRefundInfo(String amount) {
+    return 'మీకు $amount తిరిగి వస్తుంది (డెమో).';
+  }
+
+  @override
+  String cancelledWithRefund(String amount) {
+    return 'రద్దయింది. $amount రీఫండ్ (డెమో).';
+  }
+
+  @override
+  String get bookingCancelled => 'బుకింగ్ రద్దయింది';
+
+  @override
+  String get writeReview => 'సమీక్ష రాయండి';
+
+  @override
+  String rateProvider(String name) {
+    return '$name ఎలా ఉంది?';
+  }
+
+  @override
+  String starsLabel(int count) {
+    return '$count నక్షత్రాలు';
+  }
+
+  @override
+  String get reviewText => 'ఏది బాగుందో ఇతర పెంపుడు జంతువుల యజమానులకు చెప్పండి';
+
+  @override
+  String get postReview => 'సమీక్ష పోస్ట్ చేయండి';
+
+  @override
+  String get thanksForReview => 'మీ సమీక్షకు ధన్యవాదాలు!';
+
+  @override
+  String get bsPending => 'జవాబు కోసం వేచి ఉంది';
+
+  @override
+  String get bsConfirmed => 'నిర్ధారించబడింది';
+
+  @override
+  String get bsSuggested => 'కొత్త సమయం సూచించారు';
+
+  @override
+  String get bsInProgress => 'జరుగుతోంది';
+
+  @override
+  String get bsCompleted => 'పూర్తయింది';
+
+  @override
+  String get bsCancelled => 'రద్దయింది';
+
+  @override
+  String get bsDeclined => 'తిరస్కరించారు';
+
+  @override
+  String get bsExpired => 'గడువు ముగిసింది';
+
+  @override
+  String ntfNewBooking(String pet, String when) {
+    return 'కొత్త బుకింగ్: $pet, $when';
+  }
+
+  @override
+  String ntfNewRequest(String pet) {
+    return '$pet కోసం కొత్త బుకింగ్ అభ్యర్థన';
+  }
+
+  @override
+  String ntfAccepted(String place, String when) {
+    return '$place మీ $when బుకింగ్‌ను నిర్ధారించారు';
+  }
+
+  @override
+  String ntfDeclined(String place) {
+    return '$place మీ అభ్యర్థనను తీసుకోలేకపోయారు';
+  }
+
+  @override
+  String ntfSuggested(String place, String when) {
+    return '$place బదులుగా $when సూచించారు';
+  }
+
+  @override
+  String ntfCancelled(String pet, String when) {
+    return '$pet $when బుకింగ్ రద్దయింది';
+  }
+
+  @override
+  String ntfRescheduled(String pet, String when) {
+    return '$pet బుకింగ్ $whenకి మారింది';
+  }
+
+  @override
+  String ntfCompleted(String pet, String place) {
+    return '$placeలో $pet సందర్శన పూర్తయింది. మీ అనుభవాన్ని రేట్ చేస్తారా?';
+  }
+
+  @override
+  String ntfUpdate(String place, String pet) {
+    return '$place $pet గురించి అప్‌డేట్ పంపారు';
+  }
+
+  @override
+  String ntfExpired(String place) {
+    return '$place సమయానికి జవాబివ్వలేదు. మీ అభ్యర్థన గడువు ముగిసింది.';
+  }
+
+  @override
+  String helloPartner(String name) {
+    return 'నమస్తే, $name';
+  }
+
+  @override
+  String get noBusinessLinked => 'ఈ ఖాతాకు ఇంకా ఏ వ్యాపారం జోడించలేదు.';
+
+  @override
+  String get waitingApproval =>
+      'ఆమోదం కోసం వేచి ఉంది. PawSetu కొత్త భాగస్వాములను 2 పని దినాల్లో తనిఖీ చేస్తుంది. ఈలోగా మీ సేవలు సెట్ చేసుకోండి.';
+
+  @override
+  String get todaysBookings => 'ఈరోజు బుకింగ్‌లు';
+
+  @override
+  String get requestsWaiting => 'వేచి ఉన్న అభ్యర్థనలు';
+
+  @override
+  String get earningsThisMonth => 'ఈ నెల ఆదాయం';
+
+  @override
+  String get completedBookings => 'పూర్తయినవి';
+
+  @override
+  String get noBookingsToday => 'ఈరోజు బుకింగ్‌లు లేవు.';
+
+  @override
+  String bookingsOn(String date) {
+    return '$date బుకింగ్‌లు';
+  }
+
+  @override
+  String get noBookingsThisDay => 'ఈ రోజు బుకింగ్‌లు లేవు.';
+
+  @override
+  String get holidayNoBookings => 'సెలవుగా గుర్తించారు. బుకింగ్‌లు లేవు.';
+
+  @override
+  String get markHoliday => 'సెలవుగా గుర్తించండి';
+
+  @override
+  String get removeHoliday => 'సెలవు తీసివేయండి';
+
+  @override
+  String get blockTime => 'సమయం బ్లాక్ చేయండి';
+
+  @override
+  String timeBlocked(String time) {
+    return '$time నుండి బ్లాక్';
+  }
+
+  @override
+  String get workingHours => 'పని సమయాలు';
+
+  @override
+  String get opens => 'తెరుచుకుంటుంది';
+
+  @override
+  String get closes => 'మూసివేస్తారు';
+
+  @override
+  String get hoursAppliesMonSat =>
+      'ఈ సమయాలు సోమవారం నుండి శనివారం వరకు. ఆదివారం మారదు.';
+
+  @override
+  String slotSettings(int slot, int buffer, int capacity) {
+    return '$slot ని. స్లాట్ · $buffer ని. విరామం · ఒక్కో స్లాట్‌కి $capacity';
+  }
+
+  @override
+  String get slotLength => 'స్లాట్ నిడివి (నిమిషాలు)';
+
+  @override
+  String get bufferTime => 'స్లాట్ల మధ్య విరామం (నిమిషాలు)';
+
+  @override
+  String get capacityPerSlot => 'ఒక్కో స్లాట్‌కి జంతువులు';
+
+  @override
+  String get noRequestsPartner => 'ప్రస్తుతం బుకింగ్ అభ్యర్థనలు లేవు.';
+
+  @override
+  String get waitingForOwner => 'యజమాని జవాబు కోసం';
+
+  @override
+  String get chooseTimeToAccept => 'అంగీకరించడానికి సమయం ఎంచుకోండి';
+
+  @override
+  String get suggestTime => 'వేరే సమయం సూచించండి';
+
+  @override
+  String get suggestionSent => 'యజమానికి కొత్త సమయం పంపాం';
+
+  @override
+  String requestAccepted(String pet) {
+    return '$pet బుకింగ్ నిర్ధారించబడింది';
+  }
+
+  @override
+  String declineRequestQ(String pet) {
+    return '$pet అభ్యర్థనను తిరస్కరించాలా?';
+  }
+
+  @override
+  String get services => 'సేవలు';
+
+  @override
+  String get servicesHelp =>
+      'మీ ధరలు, సమయం, బుకింగ్ విధానం సెట్ చేయండి. మార్పులు వెంటనే యాప్‌లో కనిపిస్తాయి.';
+
+  @override
+  String get priceRupees => 'ధర (₹)';
+
+  @override
+  String get minutes => 'నిమిషాలు';
+
+  @override
+  String get bookingMode => 'బుకింగ్ విధానం';
+
+  @override
+  String get paymentOptions => 'చెల్లింపు ఎంపికలు';
+
+  @override
+  String get saved => 'సేవ్ అయింది';
+
+  @override
+  String get addVet => 'వెట్‌ను జోడించండి';
+
+  @override
+  String get vcRegNumber => 'వెటర్నరీ కౌన్సిల్ రిజి. నంబర్';
+
+  @override
+  String get vcRegHelp =>
+      'వెట్ బుకింగ్‌లు తీసుకునే ముందు PawSetu దీన్ని ధృవీకరిస్తుంది.';
+
+  @override
+  String get vetAddedPending => 'వెట్‌ను జోడించాం. ధృవీకరణ కోసం వేచి ఉంది.';
+
+  @override
+  String get reply => 'జవాబివ్వండి';
+
+  @override
+  String get yourReply => 'మీ జవాబు';
+
+  @override
+  String get postReply => 'జవాబు పోస్ట్ చేయండి';
+
+  @override
+  String get totalPayouts => 'మొత్తం చెల్లింపులు';
+
+  @override
+  String get payoutPending => 'పెండింగ్';
+
+  @override
+  String get settled => 'చెల్లించారు';
+
+  @override
+  String get payoutHistory => 'చెల్లింపుల చరిత్ర';
+
+  @override
+  String get noPayoutsYet => 'ఇంకా చెల్లింపులు లేవు.';
+
+  @override
+  String commissionLine(String amount) {
+    return 'కమీషన్ $amount';
+  }
+
+  @override
+  String get demoPayoutsNote => 'డెమో చెల్లింపులు. నిజమైన డబ్బు కదలదు.';
+
+  @override
+  String get statusApproved => 'ఆమోదించబడింది';
+
+  @override
+  String get statusPendingApproval => 'ఆమోదం పెండింగ్';
+
+  @override
+  String get kycDocuments => 'KYC పత్రాలు';
+
+  @override
+  String get uploadKyc => 'పత్రం అప్‌లోడ్ చేయండి';
+
+  @override
+  String get kycUploaded => 'పత్రం సమీక్షకు అప్‌లోడ్ అయింది';
+
+  @override
+  String get emergencyPhone => 'అత్యవసర ఫోన్';
+
+  @override
+  String get emergencySettingsHelp =>
+      '24x7 క్లినిక్‌లు SOSలో ముందు కనిపిస్తాయి. మీ అత్యవసర నంబర్‌ను తాజాగా ఉంచండి.';
+
+  @override
+  String get allowEnquiries => 'ఇప్పుడు అత్యవసర కాల్స్ తీసుకోండి';
+
+  @override
+  String get allowEnquiriesHint =>
+      'ఖాళీ లేకపోతే ఆపేయండి. యజమానులకు తదుపరి క్లినిక్ కనిపిస్తుంది.';
+
+  @override
+  String get startService => 'ప్రారంభించండి';
+
+  @override
+  String get markCompleted => 'పూర్తయినట్లు గుర్తించండి';
+
+  @override
+  String get sendPhotoUpdate => 'ఫోటో అప్‌డేట్ పంపండి';
+
+  @override
+  String defaultUpdateText(String pet) {
+    return '$pet చక్కగా ఉంది!';
+  }
+
+  @override
+  String updateSent(String name) {
+    return '$nameకి అప్‌డేట్ పంపాం';
+  }
+
+  @override
+  String get partnerCancelNote =>
+      'యజమానికి పూర్తి రీఫండ్, నోటిఫికేషన్ వస్తాయి.';
+
+  @override
+  String get messageOwner => 'యజమానికి సందేశం పంపండి';
+
+  @override
+  String get partnerSignupLink =>
+      'పెంపుడు జంతువుల వ్యాపారం ఉందా? భాగస్వామిగా చేరండి';
+
+  @override
+  String get partnerSignupTitle => 'PawSetu భాగస్వామిగా చేరండి';
+
+  @override
+  String get partnerSignupSubtitle =>
+      'క్లినిక్‌లు, గ్రూమర్లు, ట్రైనర్లు, బోర్డింగ్, వాకర్లు, పెట్ షాపుల కోసం. చేరడం ఉచితం.';
+
+  @override
+  String get businessType => 'ఏ రకమైన వ్యాపారం?';
+
+  @override
+  String get kindSeller => 'పెట్ షాప్';
+
+  @override
+  String get businessName => 'వ్యాపారం పేరు';
+
+  @override
+  String get areaCity => 'ప్రాంతం, నగరం';
+
+  @override
+  String get businessPhone => 'వ్యాపార ఫోన్';
+
+  @override
+  String get businessAddress => 'చిరునామా (ఐచ్ఛికం)';
+
+  @override
+  String get kycHelp =>
+      'గుర్తింపు పత్రం, వ్యాపార రిజిస్ట్రేషన్ జోడించండి. మీ లిస్టింగ్ లైవ్ అయ్యే ముందు PawSetu వాటిని తనిఖీ చేస్తుంది.';
+
+  @override
+  String get useSampleDoc => 'నమూనా పత్రం వాడండి (డెమో)';
+
+  @override
+  String get sampleIdProof => 'గుర్తింపు పత్రం (నమూనా)';
+
+  @override
+  String get kycNeeded => 'కనీసం ఒక పత్రం జోడించండి.';
+
+  @override
+  String get yourAccount => 'మీ ఖాతా';
+
+  @override
+  String get submitApplication => 'దరఖాస్తు పంపండి';
+
+  @override
+  String get partnerApprovalNote =>
+      'పంపిన తర్వాత మీ లిస్టింగ్ ఆమోదం కోసం వేచి ఉంటుంది. ఈలోగా సేవలు, ధరలు సెట్ చేసుకోవచ్చు.';
+
+  @override
+  String get remove => 'తీసివేయండి';
 }

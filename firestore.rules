@@ -85,6 +85,12 @@ service cloud.firestore {
       allow create: if signedIn() && incoming().status == 'pending' && incoming().ownerUid == uid();
       allow update: if isAdmin() || (signedIn() && data().ownerUid == uid() && unchanged(['status', 'rating', 'reviewCount']));
     }
+    // Partner sign-up: the applicant creates it; admins approve (Phase 10).
+    match /partnerApplications/{appUid} {
+      allow read: if signedIn() && (uid() == appUid || isAdmin());
+      allow create: if signedIn() && uid() == appUid && incoming().status == 'pending';
+      allow update: if isAdmin();
+    }
     match /vets/{id} {
       allow read: if signedIn();
       allow write: if isAdmin() || (signedIn() && role() == 'clinic_admin');

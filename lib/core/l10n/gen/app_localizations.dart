@@ -4233,6 +4233,1686 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This card works without internet. Show it to a vet, a boarding centre or at the airport.'**
   String get medicalCardOffline;
+
+  /// No description provided for @bookTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Book care'**
+  String get bookTitle;
+
+  /// No description provided for @findAVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a vet near you'**
+  String get findAVet;
+
+  /// No description provided for @kindVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet clinic'**
+  String get kindVet;
+
+  /// No description provided for @kindGrooming.
+  ///
+  /// In en, this message translates to:
+  /// **'Grooming'**
+  String get kindGrooming;
+
+  /// No description provided for @kindTraining.
+  ///
+  /// In en, this message translates to:
+  /// **'Training'**
+  String get kindTraining;
+
+  /// No description provided for @kindBoarding.
+  ///
+  /// In en, this message translates to:
+  /// **'Boarding'**
+  String get kindBoarding;
+
+  /// No description provided for @kindWalking.
+  ///
+  /// In en, this message translates to:
+  /// **'Dog walking'**
+  String get kindWalking;
+
+  /// No description provided for @teleVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet'**
+  String get teleVet;
+
+  /// No description provided for @clinicFinderMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinics on the map'**
+  String get clinicFinderMap;
+
+  /// No description provided for @clinicFinderHint.
+  ///
+  /// In en, this message translates to:
+  /// **'See open clinics and 24x7 emergency care around you.'**
+  String get clinicFinderHint;
+
+  /// No description provided for @myBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'My bookings'**
+  String get myBookings;
+
+  /// No description provided for @upcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get upcoming;
+
+  /// No description provided for @requests.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests'**
+  String get requests;
+
+  /// No description provided for @past.
+  ///
+  /// In en, this message translates to:
+  /// **'Past'**
+  String get past;
+
+  /// No description provided for @noUpcomingBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'No upcoming bookings.'**
+  String get noUpcomingBookings;
+
+  /// No description provided for @noRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests waiting.'**
+  String get noRequests;
+
+  /// No description provided for @noPastBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'No past bookings yet.'**
+  String get noPastBookings;
+
+  /// No description provided for @bookSomething.
+  ///
+  /// In en, this message translates to:
+  /// **'Book something'**
+  String get bookSomething;
+
+  /// No description provided for @viewBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'View booking'**
+  String get viewBooking;
+
+  /// No description provided for @backToBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Book'**
+  String get backToBook;
+
+  /// No description provided for @searchByNameOrArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name or area'**
+  String get searchByNameOrArea;
+
+  /// No description provided for @useMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Use my location'**
+  String get useMyLocation;
+
+  /// No description provided for @nearYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Near you'**
+  String get nearYou;
+
+  /// No description provided for @chooseArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your area'**
+  String get chooseArea;
+
+  /// No description provided for @locationWhyClinics.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu uses your location only to sort clinics and services by distance. It is not saved.'**
+  String get locationWhyClinics;
+
+  /// No description provided for @locationFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t get your location. Showing your chosen area instead.'**
+  String get locationFallback;
+
+  /// No description provided for @filters.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get filters;
+
+  /// No description provided for @clearFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get clearFilters;
+
+  /// No description provided for @showResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Show results'**
+  String get showResults;
+
+  /// No description provided for @sortBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get sortBy;
+
+  /// No description provided for @sortNearest.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearest'**
+  String get sortNearest;
+
+  /// No description provided for @sortRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Top rated'**
+  String get sortRating;
+
+  /// No description provided for @sortSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Earliest slot'**
+  String get sortSlot;
+
+  /// No description provided for @sortFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowest fee'**
+  String get sortFee;
+
+  /// No description provided for @openNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Open now'**
+  String get openNow;
+
+  /// No description provided for @openNowChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Open now'**
+  String get openNowChip;
+
+  /// No description provided for @closedChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get closedChip;
+
+  /// No description provided for @open24x7.
+  ///
+  /// In en, this message translates to:
+  /// **'24x7'**
+  String get open24x7;
+
+  /// No description provided for @open24x7Long.
+  ///
+  /// In en, this message translates to:
+  /// **'Open 24 hours, all 7 days'**
+  String get open24x7Long;
+
+  /// No description provided for @teleVetAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet available'**
+  String get teleVetAvailable;
+
+  /// No description provided for @homeVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Home visit'**
+  String get homeVisit;
+
+  /// No description provided for @rating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get rating;
+
+  /// No description provided for @rating4plus.
+  ///
+  /// In en, this message translates to:
+  /// **'4★ and above'**
+  String get rating4plus;
+
+  /// No description provided for @speciesTreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Animals treated'**
+  String get speciesTreated;
+
+  /// No description provided for @languagesSpoken.
+  ///
+  /// In en, this message translates to:
+  /// **'Languages spoken'**
+  String get languagesSpoken;
+
+  /// No description provided for @consultationFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation fee'**
+  String get consultationFee;
+
+  /// No description provided for @upTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to {amount}'**
+  String upTo(String amount);
+
+  /// No description provided for @feeFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From {amount}'**
+  String feeFrom(String amount);
+
+  /// No description provided for @resultsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No results} =1{1 result} other{{count} results}}'**
+  String resultsCount(int count);
+
+  /// No description provided for @listView.
+  ///
+  /// In en, this message translates to:
+  /// **'List'**
+  String get listView;
+
+  /// No description provided for @mapView.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get mapView;
+
+  /// No description provided for @noResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing matches'**
+  String get noResultsTitle;
+
+  /// No description provided for @noResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another area or clear some filters.'**
+  String get noResultsBody;
+
+  /// No description provided for @reviewsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 review} other{{count} reviews}}'**
+  String reviewsCount(int count);
+
+  /// No description provided for @call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get call;
+
+  /// No description provided for @directions.
+  ///
+  /// In en, this message translates to:
+  /// **'Directions'**
+  String get directions;
+
+  /// No description provided for @bookNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Book now'**
+  String get bookNow;
+
+  /// No description provided for @demoCallBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo mode doesn\'t place real calls. In the live app this would call {phone}.'**
+  String demoCallBody(String phone);
+
+  /// No description provided for @hoursTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hours'**
+  String get hoursTitle;
+
+  /// No description provided for @closedToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed today'**
+  String get closedToday;
+
+  /// No description provided for @todayHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Today {open} – {close}'**
+  String todayHours(String open, String close);
+
+  /// No description provided for @emergencyLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency line: {phone}'**
+  String emergencyLine(String phone);
+
+  /// No description provided for @servicesAndPrices.
+  ///
+  /// In en, this message translates to:
+  /// **'Services and prices'**
+  String get servicesAndPrices;
+
+  /// No description provided for @instantBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Instant booking'**
+  String get instantBooking;
+
+  /// No description provided for @requestBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Request to book'**
+  String get requestBooking;
+
+  /// No description provided for @payOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay online'**
+  String get payOnline;
+
+  /// No description provided for @payAtCentre.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay at the centre'**
+  String get payAtCentre;
+
+  /// No description provided for @payAtClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay at the clinic'**
+  String get payAtClinic;
+
+  /// No description provided for @homeVisitAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Home visits within {km} km'**
+  String homeVisitAvailable(int km);
+
+  /// No description provided for @packages.
+  ///
+  /// In en, this message translates to:
+  /// **'Packages'**
+  String get packages;
+
+  /// No description provided for @vetsHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Vets here'**
+  String get vetsHere;
+
+  /// No description provided for @yearsExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'{years, plural, =1{1 year experience} other{{years} years experience}}'**
+  String yearsExperience(int years);
+
+  /// No description provided for @regNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Reg. no. {no}'**
+  String regNo(String no);
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @reviews.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviews'**
+  String get reviews;
+
+  /// No description provided for @noReviewsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No reviews yet.'**
+  String get noReviewsYet;
+
+  /// No description provided for @verifiedBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified booking'**
+  String get verifiedBooking;
+
+  /// No description provided for @replyFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply from {name}'**
+  String replyFrom(String name);
+
+  /// No description provided for @inClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'In clinic'**
+  String get inClinic;
+
+  /// No description provided for @svcConsultation.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation'**
+  String get svcConsultation;
+
+  /// No description provided for @svcVaccination.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccination'**
+  String get svcVaccination;
+
+  /// No description provided for @svcSurgery.
+  ///
+  /// In en, this message translates to:
+  /// **'Surgery consult'**
+  String get svcSurgery;
+
+  /// No description provided for @svcDental.
+  ///
+  /// In en, this message translates to:
+  /// **'Dental cleaning'**
+  String get svcDental;
+
+  /// No description provided for @svcLabTests.
+  ///
+  /// In en, this message translates to:
+  /// **'Lab tests'**
+  String get svcLabTests;
+
+  /// No description provided for @svcXray.
+  ///
+  /// In en, this message translates to:
+  /// **'X-ray'**
+  String get svcXray;
+
+  /// No description provided for @svcHomeVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Home visit'**
+  String get svcHomeVisit;
+
+  /// No description provided for @svcGrooming.
+  ///
+  /// In en, this message translates to:
+  /// **'Grooming'**
+  String get svcGrooming;
+
+  /// No description provided for @svcBathBrush.
+  ///
+  /// In en, this message translates to:
+  /// **'Bath and brush'**
+  String get svcBathBrush;
+
+  /// No description provided for @svcFullGroom.
+  ///
+  /// In en, this message translates to:
+  /// **'Full groom'**
+  String get svcFullGroom;
+
+  /// No description provided for @svcNailTrim.
+  ///
+  /// In en, this message translates to:
+  /// **'Nail trim'**
+  String get svcNailTrim;
+
+  /// No description provided for @svcTickTreatment.
+  ///
+  /// In en, this message translates to:
+  /// **'Tick treatment'**
+  String get svcTickTreatment;
+
+  /// No description provided for @svcObedience.
+  ///
+  /// In en, this message translates to:
+  /// **'Obedience training'**
+  String get svcObedience;
+
+  /// No description provided for @svcPuppyBasics.
+  ///
+  /// In en, this message translates to:
+  /// **'Puppy basics'**
+  String get svcPuppyBasics;
+
+  /// No description provided for @svcBehaviour.
+  ///
+  /// In en, this message translates to:
+  /// **'Behaviour session'**
+  String get svcBehaviour;
+
+  /// No description provided for @svcBoarding.
+  ///
+  /// In en, this message translates to:
+  /// **'Boarding'**
+  String get svcBoarding;
+
+  /// No description provided for @svcBoardingNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Boarding (per night)'**
+  String get svcBoardingNight;
+
+  /// No description provided for @svcDayCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Day care'**
+  String get svcDayCare;
+
+  /// No description provided for @svcHomeSitting.
+  ///
+  /// In en, this message translates to:
+  /// **'Home sitting'**
+  String get svcHomeSitting;
+
+  /// No description provided for @svcWalk30.
+  ///
+  /// In en, this message translates to:
+  /// **'30-minute walk'**
+  String get svcWalk30;
+
+  /// No description provided for @svcWalk60.
+  ///
+  /// In en, this message translates to:
+  /// **'60-minute walk'**
+  String get svcWalk60;
+
+  /// No description provided for @stepWhoWhat.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet and service'**
+  String get stepWhoWhat;
+
+  /// No description provided for @stepWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'Date and time'**
+  String get stepWhen;
+
+  /// No description provided for @stepDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get stepDetails;
+
+  /// No description provided for @stepConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get stepConfirm;
+
+  /// No description provided for @whichPet.
+  ///
+  /// In en, this message translates to:
+  /// **'Which pet?'**
+  String get whichPet;
+
+  /// No description provided for @whichService.
+  ///
+  /// In en, this message translates to:
+  /// **'Which service?'**
+  String get whichService;
+
+  /// No description provided for @chooseVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a vet'**
+  String get chooseVet;
+
+  /// No description provided for @anyVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Any available vet'**
+  String get anyVet;
+
+  /// No description provided for @noPetForPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'None of your pets can be booked here. Add a pet first.'**
+  String get noPetForPlace;
+
+  /// No description provided for @homeVisitHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Within {km} km, travel fee {fee}'**
+  String homeVisitHint(int km, String fee);
+
+  /// No description provided for @openSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'Open slots'**
+  String get openSlots;
+
+  /// No description provided for @noSlotsThatDay.
+  ///
+  /// In en, this message translates to:
+  /// **'No open slots that day. Try another day.'**
+  String get noSlotsThatDay;
+
+  /// No description provided for @requestExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up to 3 times that suit you. The provider replies within {hours} hours.'**
+  String requestExplainer(int hours);
+
+  /// No description provided for @yourPreferredTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Your preferred times'**
+  String get yourPreferredTimes;
+
+  /// No description provided for @preferredTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred times'**
+  String get preferredTimes;
+
+  /// No description provided for @symptomsNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Symptoms or notes for the vet'**
+  String get symptomsNotes;
+
+  /// No description provided for @symptomsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. not eating since yesterday, vomited twice'**
+  String get symptomsHint;
+
+  /// No description provided for @notesForProvider.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes for the provider'**
+  String get notesForProvider;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @howToPay.
+  ///
+  /// In en, this message translates to:
+  /// **'How would you like to pay?'**
+  String get howToPay;
+
+  /// No description provided for @payOnlineHint.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI or card now. Instant confirmation.'**
+  String get payOnlineHint;
+
+  /// No description provided for @payLaterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay when you visit.'**
+  String get payLaterHint;
+
+  /// No description provided for @when.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get when;
+
+  /// No description provided for @where.
+  ///
+  /// In en, this message translates to:
+  /// **'Where'**
+  String get where;
+
+  /// No description provided for @pet.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet'**
+  String get pet;
+
+  /// No description provided for @vet.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet'**
+  String get vet;
+
+  /// No description provided for @travelFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel fee'**
+  String get travelFee;
+
+  /// No description provided for @platformFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Platform fee'**
+  String get platformFee;
+
+  /// No description provided for @free.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get free;
+
+  /// No description provided for @totalToPay.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get totalToPay;
+
+  /// No description provided for @cancellationPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Free cancellation up to {hours} hours before. After that, 50% refund.'**
+  String cancellationPolicy(int hours);
+
+  /// No description provided for @confirmBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm booking'**
+  String get confirmBooking;
+
+  /// No description provided for @sendRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Send request'**
+  String get sendRequest;
+
+  /// No description provided for @demoBookingNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo booking. No real money is charged.'**
+  String get demoBookingNote;
+
+  /// No description provided for @bookingConfirmedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking confirmed'**
+  String get bookingConfirmedTitle;
+
+  /// No description provided for @bookingConfirmedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is booked at {place} on {when}.'**
+  String bookingConfirmedBody(String pet, String place, String when);
+
+  /// No description provided for @requestSentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Request sent'**
+  String get requestSentTitle;
+
+  /// No description provided for @requestSentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{place} will reply soon. We\'ll notify you.'**
+  String requestSentBody(String place);
+
+  /// No description provided for @paymentFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment failed. Nothing was charged. Try again.'**
+  String get paymentFailed;
+
+  /// No description provided for @paymentPendingNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment pending. We\'ll confirm once it clears.'**
+  String get paymentPendingNote;
+
+  /// No description provided for @demoPaymentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo payment'**
+  String get demoPaymentTitle;
+
+  /// No description provided for @demoPaymentNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a demo. No money will move.'**
+  String get demoPaymentNote;
+
+  /// No description provided for @demoPaymentChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what happens:'**
+  String get demoPaymentChoose;
+
+  /// No description provided for @payUpiDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay with UPI (demo)'**
+  String get payUpiDemo;
+
+  /// No description provided for @simulateFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulate a failure'**
+  String get simulateFailure;
+
+  /// No description provided for @simulatePending.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulate pending'**
+  String get simulatePending;
+
+  /// No description provided for @bookingDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking details'**
+  String get bookingDetails;
+
+  /// No description provided for @replyBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply by'**
+  String get replyBy;
+
+  /// No description provided for @replyBefore.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply before {time}'**
+  String replyBefore(String time);
+
+  /// No description provided for @payment.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get payment;
+
+  /// No description provided for @paidOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid online'**
+  String get paidOnline;
+
+  /// No description provided for @paymentPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment pending'**
+  String get paymentPending;
+
+  /// No description provided for @payAtVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay at visit'**
+  String get payAtVisit;
+
+  /// No description provided for @platformCommission.
+  ///
+  /// In en, this message translates to:
+  /// **'Platform commission'**
+  String get platformCommission;
+
+  /// No description provided for @yourPayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payout'**
+  String get yourPayout;
+
+  /// No description provided for @refund.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund'**
+  String get refund;
+
+  /// No description provided for @refundDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} (demo, no real money)'**
+  String refundDemo(String amount);
+
+  /// No description provided for @providerSuggested.
+  ///
+  /// In en, this message translates to:
+  /// **'{place} suggested a new time: {when}'**
+  String providerSuggested(String place, String when);
+
+  /// No description provided for @liveWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Live walk'**
+  String get liveWalk;
+
+  /// No description provided for @liveWalkDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulated live walk for the demo.'**
+  String get liveWalkDemo;
+
+  /// No description provided for @walkSoFar.
+  ///
+  /// In en, this message translates to:
+  /// **'{km} so far'**
+  String walkSoFar(String km);
+
+  /// No description provided for @updates.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates'**
+  String get updates;
+
+  /// No description provided for @dailyUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily updates'**
+  String get dailyUpdates;
+
+  /// No description provided for @addToCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to calendar'**
+  String get addToCalendar;
+
+  /// No description provided for @message.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get message;
+
+  /// No description provided for @reschedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Reschedule'**
+  String get reschedule;
+
+  /// No description provided for @rescheduledTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Moved to {when}'**
+  String rescheduledTo(String when);
+
+  /// No description provided for @cancelBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel booking'**
+  String get cancelBooking;
+
+  /// No description provided for @cancelBookingQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this booking?'**
+  String get cancelBookingQ;
+
+  /// No description provided for @cancelRefundInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll get {amount} back (demo).'**
+  String cancelRefundInfo(String amount);
+
+  /// No description provided for @cancelledWithRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled. {amount} refunded (demo).'**
+  String cancelledWithRefund(String amount);
+
+  /// No description provided for @bookingCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking cancelled'**
+  String get bookingCancelled;
+
+  /// No description provided for @writeReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a review'**
+  String get writeReview;
+
+  /// No description provided for @rateProvider.
+  ///
+  /// In en, this message translates to:
+  /// **'How was {name}?'**
+  String rateProvider(String name);
+
+  /// No description provided for @starsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 star} other{{count} stars}}'**
+  String starsLabel(int count);
+
+  /// No description provided for @reviewText.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell other pet parents what went well'**
+  String get reviewText;
+
+  /// No description provided for @postReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Post review'**
+  String get postReview;
+
+  /// No description provided for @thanksForReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for your review!'**
+  String get thanksForReview;
+
+  /// No description provided for @bsPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for reply'**
+  String get bsPending;
+
+  /// No description provided for @bsConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get bsConfirmed;
+
+  /// No description provided for @bsSuggested.
+  ///
+  /// In en, this message translates to:
+  /// **'New time suggested'**
+  String get bsSuggested;
+
+  /// No description provided for @bsInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get bsInProgress;
+
+  /// No description provided for @bsCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get bsCompleted;
+
+  /// No description provided for @bsCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get bsCancelled;
+
+  /// No description provided for @bsDeclined.
+  ///
+  /// In en, this message translates to:
+  /// **'Declined'**
+  String get bsDeclined;
+
+  /// No description provided for @bsExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get bsExpired;
+
+  /// No description provided for @ntfNewBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'New booking: {pet} on {when}'**
+  String ntfNewBooking(String pet, String when);
+
+  /// No description provided for @ntfNewRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'New booking request for {pet}'**
+  String ntfNewRequest(String pet);
+
+  /// No description provided for @ntfAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'{place} confirmed your booking for {when}'**
+  String ntfAccepted(String place, String when);
+
+  /// No description provided for @ntfDeclined.
+  ///
+  /// In en, this message translates to:
+  /// **'{place} couldn\'t take your request'**
+  String ntfDeclined(String place);
+
+  /// No description provided for @ntfSuggested.
+  ///
+  /// In en, this message translates to:
+  /// **'{place} suggested {when} instead'**
+  String ntfSuggested(String place, String when);
+
+  /// No description provided for @ntfCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking for {pet} on {when} was cancelled'**
+  String ntfCancelled(String pet, String when);
+
+  /// No description provided for @ntfRescheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s booking moved to {when}'**
+  String ntfRescheduled(String pet, String when);
+
+  /// No description provided for @ntfCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s visit at {place} is done. Rate your experience?'**
+  String ntfCompleted(String pet, String place);
+
+  /// No description provided for @ntfUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'{place} sent an update about {pet}'**
+  String ntfUpdate(String place, String pet);
+
+  /// No description provided for @ntfExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'{place} didn\'t reply in time. Your request expired.'**
+  String ntfExpired(String place);
+
+  /// No description provided for @helloPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, {name}'**
+  String helloPartner(String name);
+
+  /// No description provided for @noBusinessLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'No business is linked to this account yet.'**
+  String get noBusinessLinked;
+
+  /// No description provided for @waitingApproval.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for approval. PawSetu checks new partners within 2 working days. You can set up your services meanwhile.'**
+  String get waitingApproval;
+
+  /// No description provided for @todaysBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s bookings'**
+  String get todaysBookings;
+
+  /// No description provided for @requestsWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests waiting'**
+  String get requestsWaiting;
+
+  /// No description provided for @earningsThisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Earnings this month'**
+  String get earningsThisMonth;
+
+  /// No description provided for @completedBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completedBookings;
+
+  /// No description provided for @noBookingsToday.
+  ///
+  /// In en, this message translates to:
+  /// **'No bookings today.'**
+  String get noBookingsToday;
+
+  /// No description provided for @bookingsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings on {date}'**
+  String bookingsOn(String date);
+
+  /// No description provided for @noBookingsThisDay.
+  ///
+  /// In en, this message translates to:
+  /// **'No bookings this day.'**
+  String get noBookingsThisDay;
+
+  /// No description provided for @holidayNoBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked as a holiday. No bookings.'**
+  String get holidayNoBookings;
+
+  /// No description provided for @markHoliday.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark holiday'**
+  String get markHoliday;
+
+  /// No description provided for @removeHoliday.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove holiday'**
+  String get removeHoliday;
+
+  /// No description provided for @blockTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Block time'**
+  String get blockTime;
+
+  /// No description provided for @timeBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked from {time}'**
+  String timeBlocked(String time);
+
+  /// No description provided for @workingHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Working hours'**
+  String get workingHours;
+
+  /// No description provided for @opens.
+  ///
+  /// In en, this message translates to:
+  /// **'Opens'**
+  String get opens;
+
+  /// No description provided for @closes.
+  ///
+  /// In en, this message translates to:
+  /// **'Closes'**
+  String get closes;
+
+  /// No description provided for @hoursAppliesMonSat.
+  ///
+  /// In en, this message translates to:
+  /// **'These hours apply Monday to Saturday. Sunday stays as it is.'**
+  String get hoursAppliesMonSat;
+
+  /// No description provided for @slotSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'{slot}-min slots · {buffer}-min buffer · {capacity} per slot'**
+  String slotSettings(int slot, int buffer, int capacity);
+
+  /// No description provided for @slotLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Slot length (minutes)'**
+  String get slotLength;
+
+  /// No description provided for @bufferTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Buffer between slots (minutes)'**
+  String get bufferTime;
+
+  /// No description provided for @capacityPerSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Pets per slot'**
+  String get capacityPerSlot;
+
+  /// No description provided for @noRequestsPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'No booking requests right now.'**
+  String get noRequestsPartner;
+
+  /// No description provided for @waitingForOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for the owner'**
+  String get waitingForOwner;
+
+  /// No description provided for @chooseTimeToAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a time to accept'**
+  String get chooseTimeToAccept;
+
+  /// No description provided for @suggestTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest another time'**
+  String get suggestTime;
+
+  /// No description provided for @suggestionSent.
+  ///
+  /// In en, this message translates to:
+  /// **'New time sent to the owner'**
+  String get suggestionSent;
+
+  /// No description provided for @requestAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking for {pet} confirmed'**
+  String requestAccepted(String pet);
+
+  /// No description provided for @declineRequestQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline the request for {pet}?'**
+  String declineRequestQ(String pet);
+
+  /// No description provided for @services.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get services;
+
+  /// No description provided for @servicesHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your prices, duration and how owners can book. Changes show in the app right away.'**
+  String get servicesHelp;
+
+  /// No description provided for @priceRupees.
+  ///
+  /// In en, this message translates to:
+  /// **'Price (₹)'**
+  String get priceRupees;
+
+  /// No description provided for @minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get minutes;
+
+  /// No description provided for @bookingMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking mode'**
+  String get bookingMode;
+
+  /// No description provided for @paymentOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment options'**
+  String get paymentOptions;
+
+  /// No description provided for @saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get saved;
+
+  /// No description provided for @addVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a vet'**
+  String get addVet;
+
+  /// No description provided for @vcRegNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Veterinary Council reg. number'**
+  String get vcRegNumber;
+
+  /// No description provided for @vcRegHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu verifies this before the vet can take bookings.'**
+  String get vcRegHelp;
+
+  /// No description provided for @vetAddedPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet added. Waiting for verification.'**
+  String get vetAddedPending;
+
+  /// No description provided for @reply.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply'**
+  String get reply;
+
+  /// No description provided for @yourReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reply'**
+  String get yourReply;
+
+  /// No description provided for @postReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Post reply'**
+  String get postReply;
+
+  /// No description provided for @totalPayouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Total payouts'**
+  String get totalPayouts;
+
+  /// No description provided for @payoutPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get payoutPending;
+
+  /// No description provided for @settled.
+  ///
+  /// In en, this message translates to:
+  /// **'Settled'**
+  String get settled;
+
+  /// No description provided for @payoutHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Payout history'**
+  String get payoutHistory;
+
+  /// No description provided for @noPayoutsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No payouts yet.'**
+  String get noPayoutsYet;
+
+  /// No description provided for @commissionLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission {amount}'**
+  String commissionLine(String amount);
+
+  /// No description provided for @demoPayoutsNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo payouts. No real money moves.'**
+  String get demoPayoutsNote;
+
+  /// No description provided for @statusApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get statusApproved;
+
+  /// No description provided for @statusPendingApproval.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending approval'**
+  String get statusPendingApproval;
+
+  /// No description provided for @kycDocuments.
+  ///
+  /// In en, this message translates to:
+  /// **'KYC documents'**
+  String get kycDocuments;
+
+  /// No description provided for @uploadKyc.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload document'**
+  String get uploadKyc;
+
+  /// No description provided for @kycUploaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Document uploaded for review'**
+  String get kycUploaded;
+
+  /// No description provided for @emergencyPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency phone'**
+  String get emergencyPhone;
+
+  /// No description provided for @emergencySettingsHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'24x7 clinics appear first in SOS. Keep your emergency number up to date.'**
+  String get emergencySettingsHelp;
+
+  /// No description provided for @allowEnquiries.
+  ///
+  /// In en, this message translates to:
+  /// **'Take emergency calls now'**
+  String get allowEnquiries;
+
+  /// No description provided for @allowEnquiriesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off if you\'re full. Owners will see the next clinic.'**
+  String get allowEnquiriesHint;
+
+  /// No description provided for @startService.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get startService;
+
+  /// No description provided for @markCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark completed'**
+  String get markCompleted;
+
+  /// No description provided for @sendPhotoUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Send photo update'**
+  String get sendPhotoUpdate;
+
+  /// No description provided for @defaultUpdateText.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is doing great!'**
+  String defaultUpdateText(String pet);
+
+  /// No description provided for @updateSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Update sent to {name}'**
+  String updateSent(String name);
+
+  /// No description provided for @partnerCancelNote.
+  ///
+  /// In en, this message translates to:
+  /// **'The owner gets a full refund and a notification.'**
+  String get partnerCancelNote;
+
+  /// No description provided for @messageOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Message the owner'**
+  String get messageOwner;
+
+  /// No description provided for @partnerSignupLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Run a pet business? Join as a partner'**
+  String get partnerSignupLink;
+
+  /// No description provided for @partnerSignupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Join PawSetu as a partner'**
+  String get partnerSignupTitle;
+
+  /// No description provided for @partnerSignupSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'For clinics, groomers, trainers, boarding, walkers and pet shops. Free to join.'**
+  String get partnerSignupSubtitle;
+
+  /// No description provided for @businessType.
+  ///
+  /// In en, this message translates to:
+  /// **'What kind of business?'**
+  String get businessType;
+
+  /// No description provided for @kindSeller.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet shop'**
+  String get kindSeller;
+
+  /// No description provided for @businessName.
+  ///
+  /// In en, this message translates to:
+  /// **'Business name'**
+  String get businessName;
+
+  /// No description provided for @areaCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Area and city'**
+  String get areaCity;
+
+  /// No description provided for @businessPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Business phone'**
+  String get businessPhone;
+
+  /// No description provided for @businessAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Address (optional)'**
+  String get businessAddress;
+
+  /// No description provided for @kycHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an ID proof and your business registration. PawSetu checks them before your listing goes live.'**
+  String get kycHelp;
+
+  /// No description provided for @useSampleDoc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a sample document (demo)'**
+  String get useSampleDoc;
+
+  /// No description provided for @sampleIdProof.
+  ///
+  /// In en, this message translates to:
+  /// **'ID proof (sample)'**
+  String get sampleIdProof;
+
+  /// No description provided for @kycNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one document.'**
+  String get kycNeeded;
+
+  /// No description provided for @yourAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account'**
+  String get yourAccount;
+
+  /// No description provided for @submitApplication.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit application'**
+  String get submitApplication;
+
+  /// No description provided for @partnerApprovalNote.
+  ///
+  /// In en, this message translates to:
+  /// **'After you submit, your listing waits for approval. You can set up services and prices meanwhile.'**
+  String get partnerApprovalNote;
+
+  /// No description provided for @remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get remove;
 }
 
 class _AppLocalizationsDelegate

@@ -2373,4 +2373,972 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get medicalCardOffline =>
       'This card works without internet. Show it to a vet, a boarding centre or at the airport.';
+
+  @override
+  String get bookTitle => 'Book care';
+
+  @override
+  String get findAVet => 'Find a vet near you';
+
+  @override
+  String get kindVet => 'Vet clinic';
+
+  @override
+  String get kindGrooming => 'Grooming';
+
+  @override
+  String get kindTraining => 'Training';
+
+  @override
+  String get kindBoarding => 'Boarding';
+
+  @override
+  String get kindWalking => 'Dog walking';
+
+  @override
+  String get teleVet => 'Tele-vet';
+
+  @override
+  String get clinicFinderMap => 'Clinics on the map';
+
+  @override
+  String get clinicFinderHint =>
+      'See open clinics and 24x7 emergency care around you.';
+
+  @override
+  String get myBookings => 'My bookings';
+
+  @override
+  String get upcoming => 'Upcoming';
+
+  @override
+  String get requests => 'Requests';
+
+  @override
+  String get past => 'Past';
+
+  @override
+  String get noUpcomingBookings => 'No upcoming bookings.';
+
+  @override
+  String get noRequests => 'No requests waiting.';
+
+  @override
+  String get noPastBookings => 'No past bookings yet.';
+
+  @override
+  String get bookSomething => 'Book something';
+
+  @override
+  String get viewBooking => 'View booking';
+
+  @override
+  String get backToBook => 'Back to Book';
+
+  @override
+  String get searchByNameOrArea => 'Search by name or area';
+
+  @override
+  String get useMyLocation => 'Use my location';
+
+  @override
+  String get nearYou => 'Near you';
+
+  @override
+  String get chooseArea => 'Choose your area';
+
+  @override
+  String get locationWhyClinics =>
+      'PawSetu uses your location only to sort clinics and services by distance. It is not saved.';
+
+  @override
+  String get locationFallback =>
+      'Couldn\'t get your location. Showing your chosen area instead.';
+
+  @override
+  String get filters => 'Filters';
+
+  @override
+  String get clearFilters => 'Clear filters';
+
+  @override
+  String get showResults => 'Show results';
+
+  @override
+  String get sortBy => 'Sort by';
+
+  @override
+  String get sortNearest => 'Nearest';
+
+  @override
+  String get sortRating => 'Top rated';
+
+  @override
+  String get sortSlot => 'Earliest slot';
+
+  @override
+  String get sortFee => 'Lowest fee';
+
+  @override
+  String get openNow => 'Open now';
+
+  @override
+  String get openNowChip => 'Open now';
+
+  @override
+  String get closedChip => 'Closed';
+
+  @override
+  String get open24x7 => '24x7';
+
+  @override
+  String get open24x7Long => 'Open 24 hours, all 7 days';
+
+  @override
+  String get teleVetAvailable => 'Tele-vet available';
+
+  @override
+  String get homeVisit => 'Home visit';
+
+  @override
+  String get rating => 'Rating';
+
+  @override
+  String get rating4plus => '4★ and above';
+
+  @override
+  String get speciesTreated => 'Animals treated';
+
+  @override
+  String get languagesSpoken => 'Languages spoken';
+
+  @override
+  String get consultationFee => 'Consultation fee';
+
+  @override
+  String upTo(String amount) {
+    return 'Up to $amount';
+  }
+
+  @override
+  String feeFrom(String amount) {
+    return 'From $amount';
+  }
+
+  @override
+  String resultsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count results',
+      one: '1 result',
+      zero: 'No results',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get listView => 'List';
+
+  @override
+  String get mapView => 'Map';
+
+  @override
+  String get noResultsTitle => 'Nothing matches';
+
+  @override
+  String get noResultsBody => 'Try another area or clear some filters.';
+
+  @override
+  String reviewsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reviews',
+      one: '1 review',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String get directions => 'Directions';
+
+  @override
+  String get bookNow => 'Book now';
+
+  @override
+  String demoCallBody(String phone) {
+    return 'Demo mode doesn\'t place real calls. In the live app this would call $phone.';
+  }
+
+  @override
+  String get hoursTitle => 'Hours';
+
+  @override
+  String get closedToday => 'Closed today';
+
+  @override
+  String todayHours(String open, String close) {
+    return 'Today $open – $close';
+  }
+
+  @override
+  String emergencyLine(String phone) {
+    return 'Emergency line: $phone';
+  }
+
+  @override
+  String get servicesAndPrices => 'Services and prices';
+
+  @override
+  String get instantBooking => 'Instant booking';
+
+  @override
+  String get requestBooking => 'Request to book';
+
+  @override
+  String get payOnline => 'Pay online';
+
+  @override
+  String get payAtCentre => 'Pay at the centre';
+
+  @override
+  String get payAtClinic => 'Pay at the clinic';
+
+  @override
+  String homeVisitAvailable(int km) {
+    return 'Home visits within $km km';
+  }
+
+  @override
+  String get packages => 'Packages';
+
+  @override
+  String get vetsHere => 'Vets here';
+
+  @override
+  String yearsExperience(int years) {
+    String _temp0 = intl.Intl.pluralLogic(
+      years,
+      locale: localeName,
+      other: '$years years experience',
+      one: '1 year experience',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String regNo(String no) {
+    return 'Reg. no. $no';
+  }
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get reviews => 'Reviews';
+
+  @override
+  String get noReviewsYet => 'No reviews yet.';
+
+  @override
+  String get verifiedBooking => 'Verified booking';
+
+  @override
+  String replyFrom(String name) {
+    return 'Reply from $name';
+  }
+
+  @override
+  String get inClinic => 'In clinic';
+
+  @override
+  String get svcConsultation => 'Consultation';
+
+  @override
+  String get svcVaccination => 'Vaccination';
+
+  @override
+  String get svcSurgery => 'Surgery consult';
+
+  @override
+  String get svcDental => 'Dental cleaning';
+
+  @override
+  String get svcLabTests => 'Lab tests';
+
+  @override
+  String get svcXray => 'X-ray';
+
+  @override
+  String get svcHomeVisit => 'Home visit';
+
+  @override
+  String get svcGrooming => 'Grooming';
+
+  @override
+  String get svcBathBrush => 'Bath and brush';
+
+  @override
+  String get svcFullGroom => 'Full groom';
+
+  @override
+  String get svcNailTrim => 'Nail trim';
+
+  @override
+  String get svcTickTreatment => 'Tick treatment';
+
+  @override
+  String get svcObedience => 'Obedience training';
+
+  @override
+  String get svcPuppyBasics => 'Puppy basics';
+
+  @override
+  String get svcBehaviour => 'Behaviour session';
+
+  @override
+  String get svcBoarding => 'Boarding';
+
+  @override
+  String get svcBoardingNight => 'Boarding (per night)';
+
+  @override
+  String get svcDayCare => 'Day care';
+
+  @override
+  String get svcHomeSitting => 'Home sitting';
+
+  @override
+  String get svcWalk30 => '30-minute walk';
+
+  @override
+  String get svcWalk60 => '60-minute walk';
+
+  @override
+  String get stepWhoWhat => 'Pet and service';
+
+  @override
+  String get stepWhen => 'Date and time';
+
+  @override
+  String get stepDetails => 'Details';
+
+  @override
+  String get stepConfirm => 'Confirm';
+
+  @override
+  String get whichPet => 'Which pet?';
+
+  @override
+  String get whichService => 'Which service?';
+
+  @override
+  String get chooseVet => 'Choose a vet';
+
+  @override
+  String get anyVet => 'Any available vet';
+
+  @override
+  String get noPetForPlace =>
+      'None of your pets can be booked here. Add a pet first.';
+
+  @override
+  String homeVisitHint(int km, String fee) {
+    return 'Within $km km, travel fee $fee';
+  }
+
+  @override
+  String get openSlots => 'Open slots';
+
+  @override
+  String get noSlotsThatDay => 'No open slots that day. Try another day.';
+
+  @override
+  String requestExplainer(int hours) {
+    return 'Pick up to 3 times that suit you. The provider replies within $hours hours.';
+  }
+
+  @override
+  String get yourPreferredTimes => 'Your preferred times';
+
+  @override
+  String get preferredTimes => 'Preferred times';
+
+  @override
+  String get symptomsNotes => 'Symptoms or notes for the vet';
+
+  @override
+  String get symptomsHint => 'E.g. not eating since yesterday, vomited twice';
+
+  @override
+  String get notesForProvider => 'Notes for the provider';
+
+  @override
+  String get notes => 'Notes';
+
+  @override
+  String get howToPay => 'How would you like to pay?';
+
+  @override
+  String get payOnlineHint => 'UPI or card now. Instant confirmation.';
+
+  @override
+  String get payLaterHint => 'Pay when you visit.';
+
+  @override
+  String get when => 'When';
+
+  @override
+  String get where => 'Where';
+
+  @override
+  String get pet => 'Pet';
+
+  @override
+  String get vet => 'Vet';
+
+  @override
+  String get travelFee => 'Travel fee';
+
+  @override
+  String get platformFee => 'Platform fee';
+
+  @override
+  String get free => 'Free';
+
+  @override
+  String get totalToPay => 'Total';
+
+  @override
+  String cancellationPolicy(int hours) {
+    return 'Free cancellation up to $hours hours before. After that, 50% refund.';
+  }
+
+  @override
+  String get confirmBooking => 'Confirm booking';
+
+  @override
+  String get sendRequest => 'Send request';
+
+  @override
+  String get demoBookingNote => 'Demo booking. No real money is charged.';
+
+  @override
+  String get bookingConfirmedTitle => 'Booking confirmed';
+
+  @override
+  String bookingConfirmedBody(String pet, String place, String when) {
+    return '$pet is booked at $place on $when.';
+  }
+
+  @override
+  String get requestSentTitle => 'Request sent';
+
+  @override
+  String requestSentBody(String place) {
+    return '$place will reply soon. We\'ll notify you.';
+  }
+
+  @override
+  String get paymentFailed => 'Payment failed. Nothing was charged. Try again.';
+
+  @override
+  String get paymentPendingNote =>
+      'Payment pending. We\'ll confirm once it clears.';
+
+  @override
+  String get demoPaymentTitle => 'Demo payment';
+
+  @override
+  String get demoPaymentNote => 'This is a demo. No money will move.';
+
+  @override
+  String get demoPaymentChoose => 'Choose what happens:';
+
+  @override
+  String get payUpiDemo => 'Pay with UPI (demo)';
+
+  @override
+  String get simulateFailure => 'Simulate a failure';
+
+  @override
+  String get simulatePending => 'Simulate pending';
+
+  @override
+  String get bookingDetails => 'Booking details';
+
+  @override
+  String get replyBy => 'Reply by';
+
+  @override
+  String replyBefore(String time) {
+    return 'Reply before $time';
+  }
+
+  @override
+  String get payment => 'Payment';
+
+  @override
+  String get paidOnline => 'Paid online';
+
+  @override
+  String get paymentPending => 'Payment pending';
+
+  @override
+  String get payAtVisit => 'Pay at visit';
+
+  @override
+  String get platformCommission => 'Platform commission';
+
+  @override
+  String get yourPayout => 'Your payout';
+
+  @override
+  String get refund => 'Refund';
+
+  @override
+  String refundDemo(String amount) {
+    return '$amount (demo, no real money)';
+  }
+
+  @override
+  String providerSuggested(String place, String when) {
+    return '$place suggested a new time: $when';
+  }
+
+  @override
+  String get liveWalk => 'Live walk';
+
+  @override
+  String get liveWalkDemo => 'Simulated live walk for the demo.';
+
+  @override
+  String walkSoFar(String km) {
+    return '$km so far';
+  }
+
+  @override
+  String get updates => 'Updates';
+
+  @override
+  String get dailyUpdates => 'Daily updates';
+
+  @override
+  String get addToCalendar => 'Add to calendar';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get reschedule => 'Reschedule';
+
+  @override
+  String rescheduledTo(String when) {
+    return 'Moved to $when';
+  }
+
+  @override
+  String get cancelBooking => 'Cancel booking';
+
+  @override
+  String get cancelBookingQ => 'Cancel this booking?';
+
+  @override
+  String cancelRefundInfo(String amount) {
+    return 'You\'ll get $amount back (demo).';
+  }
+
+  @override
+  String cancelledWithRefund(String amount) {
+    return 'Cancelled. $amount refunded (demo).';
+  }
+
+  @override
+  String get bookingCancelled => 'Booking cancelled';
+
+  @override
+  String get writeReview => 'Write a review';
+
+  @override
+  String rateProvider(String name) {
+    return 'How was $name?';
+  }
+
+  @override
+  String starsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stars',
+      one: '1 star',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reviewText => 'Tell other pet parents what went well';
+
+  @override
+  String get postReview => 'Post review';
+
+  @override
+  String get thanksForReview => 'Thanks for your review!';
+
+  @override
+  String get bsPending => 'Waiting for reply';
+
+  @override
+  String get bsConfirmed => 'Confirmed';
+
+  @override
+  String get bsSuggested => 'New time suggested';
+
+  @override
+  String get bsInProgress => 'In progress';
+
+  @override
+  String get bsCompleted => 'Completed';
+
+  @override
+  String get bsCancelled => 'Cancelled';
+
+  @override
+  String get bsDeclined => 'Declined';
+
+  @override
+  String get bsExpired => 'Expired';
+
+  @override
+  String ntfNewBooking(String pet, String when) {
+    return 'New booking: $pet on $when';
+  }
+
+  @override
+  String ntfNewRequest(String pet) {
+    return 'New booking request for $pet';
+  }
+
+  @override
+  String ntfAccepted(String place, String when) {
+    return '$place confirmed your booking for $when';
+  }
+
+  @override
+  String ntfDeclined(String place) {
+    return '$place couldn\'t take your request';
+  }
+
+  @override
+  String ntfSuggested(String place, String when) {
+    return '$place suggested $when instead';
+  }
+
+  @override
+  String ntfCancelled(String pet, String when) {
+    return 'Booking for $pet on $when was cancelled';
+  }
+
+  @override
+  String ntfRescheduled(String pet, String when) {
+    return '$pet\'s booking moved to $when';
+  }
+
+  @override
+  String ntfCompleted(String pet, String place) {
+    return '$pet\'s visit at $place is done. Rate your experience?';
+  }
+
+  @override
+  String ntfUpdate(String place, String pet) {
+    return '$place sent an update about $pet';
+  }
+
+  @override
+  String ntfExpired(String place) {
+    return '$place didn\'t reply in time. Your request expired.';
+  }
+
+  @override
+  String helloPartner(String name) {
+    return 'Hello, $name';
+  }
+
+  @override
+  String get noBusinessLinked => 'No business is linked to this account yet.';
+
+  @override
+  String get waitingApproval =>
+      'Waiting for approval. PawSetu checks new partners within 2 working days. You can set up your services meanwhile.';
+
+  @override
+  String get todaysBookings => 'Today\'s bookings';
+
+  @override
+  String get requestsWaiting => 'Requests waiting';
+
+  @override
+  String get earningsThisMonth => 'Earnings this month';
+
+  @override
+  String get completedBookings => 'Completed';
+
+  @override
+  String get noBookingsToday => 'No bookings today.';
+
+  @override
+  String bookingsOn(String date) {
+    return 'Bookings on $date';
+  }
+
+  @override
+  String get noBookingsThisDay => 'No bookings this day.';
+
+  @override
+  String get holidayNoBookings => 'Marked as a holiday. No bookings.';
+
+  @override
+  String get markHoliday => 'Mark holiday';
+
+  @override
+  String get removeHoliday => 'Remove holiday';
+
+  @override
+  String get blockTime => 'Block time';
+
+  @override
+  String timeBlocked(String time) {
+    return 'Blocked from $time';
+  }
+
+  @override
+  String get workingHours => 'Working hours';
+
+  @override
+  String get opens => 'Opens';
+
+  @override
+  String get closes => 'Closes';
+
+  @override
+  String get hoursAppliesMonSat =>
+      'These hours apply Monday to Saturday. Sunday stays as it is.';
+
+  @override
+  String slotSettings(int slot, int buffer, int capacity) {
+    return '$slot-min slots · $buffer-min buffer · $capacity per slot';
+  }
+
+  @override
+  String get slotLength => 'Slot length (minutes)';
+
+  @override
+  String get bufferTime => 'Buffer between slots (minutes)';
+
+  @override
+  String get capacityPerSlot => 'Pets per slot';
+
+  @override
+  String get noRequestsPartner => 'No booking requests right now.';
+
+  @override
+  String get waitingForOwner => 'Waiting for the owner';
+
+  @override
+  String get chooseTimeToAccept => 'Pick a time to accept';
+
+  @override
+  String get suggestTime => 'Suggest another time';
+
+  @override
+  String get suggestionSent => 'New time sent to the owner';
+
+  @override
+  String requestAccepted(String pet) {
+    return 'Booking for $pet confirmed';
+  }
+
+  @override
+  String declineRequestQ(String pet) {
+    return 'Decline the request for $pet?';
+  }
+
+  @override
+  String get services => 'Services';
+
+  @override
+  String get servicesHelp =>
+      'Set your prices, duration and how owners can book. Changes show in the app right away.';
+
+  @override
+  String get priceRupees => 'Price (₹)';
+
+  @override
+  String get minutes => 'Minutes';
+
+  @override
+  String get bookingMode => 'Booking mode';
+
+  @override
+  String get paymentOptions => 'Payment options';
+
+  @override
+  String get saved => 'Saved';
+
+  @override
+  String get addVet => 'Add a vet';
+
+  @override
+  String get vcRegNumber => 'Veterinary Council reg. number';
+
+  @override
+  String get vcRegHelp =>
+      'PawSetu verifies this before the vet can take bookings.';
+
+  @override
+  String get vetAddedPending => 'Vet added. Waiting for verification.';
+
+  @override
+  String get reply => 'Reply';
+
+  @override
+  String get yourReply => 'Your reply';
+
+  @override
+  String get postReply => 'Post reply';
+
+  @override
+  String get totalPayouts => 'Total payouts';
+
+  @override
+  String get payoutPending => 'Pending';
+
+  @override
+  String get settled => 'Settled';
+
+  @override
+  String get payoutHistory => 'Payout history';
+
+  @override
+  String get noPayoutsYet => 'No payouts yet.';
+
+  @override
+  String commissionLine(String amount) {
+    return 'Commission $amount';
+  }
+
+  @override
+  String get demoPayoutsNote => 'Demo payouts. No real money moves.';
+
+  @override
+  String get statusApproved => 'Approved';
+
+  @override
+  String get statusPendingApproval => 'Pending approval';
+
+  @override
+  String get kycDocuments => 'KYC documents';
+
+  @override
+  String get uploadKyc => 'Upload document';
+
+  @override
+  String get kycUploaded => 'Document uploaded for review';
+
+  @override
+  String get emergencyPhone => 'Emergency phone';
+
+  @override
+  String get emergencySettingsHelp =>
+      '24x7 clinics appear first in SOS. Keep your emergency number up to date.';
+
+  @override
+  String get allowEnquiries => 'Take emergency calls now';
+
+  @override
+  String get allowEnquiriesHint =>
+      'Turn off if you\'re full. Owners will see the next clinic.';
+
+  @override
+  String get startService => 'Start';
+
+  @override
+  String get markCompleted => 'Mark completed';
+
+  @override
+  String get sendPhotoUpdate => 'Send photo update';
+
+  @override
+  String defaultUpdateText(String pet) {
+    return '$pet is doing great!';
+  }
+
+  @override
+  String updateSent(String name) {
+    return 'Update sent to $name';
+  }
+
+  @override
+  String get partnerCancelNote =>
+      'The owner gets a full refund and a notification.';
+
+  @override
+  String get messageOwner => 'Message the owner';
+
+  @override
+  String get partnerSignupLink => 'Run a pet business? Join as a partner';
+
+  @override
+  String get partnerSignupTitle => 'Join PawSetu as a partner';
+
+  @override
+  String get partnerSignupSubtitle =>
+      'For clinics, groomers, trainers, boarding, walkers and pet shops. Free to join.';
+
+  @override
+  String get businessType => 'What kind of business?';
+
+  @override
+  String get kindSeller => 'Pet shop';
+
+  @override
+  String get businessName => 'Business name';
+
+  @override
+  String get areaCity => 'Area and city';
+
+  @override
+  String get businessPhone => 'Business phone';
+
+  @override
+  String get businessAddress => 'Address (optional)';
+
+  @override
+  String get kycHelp =>
+      'Add an ID proof and your business registration. PawSetu checks them before your listing goes live.';
+
+  @override
+  String get useSampleDoc => 'Use a sample document (demo)';
+
+  @override
+  String get sampleIdProof => 'ID proof (sample)';
+
+  @override
+  String get kycNeeded => 'Add at least one document.';
+
+  @override
+  String get yourAccount => 'Your account';
+
+  @override
+  String get submitApplication => 'Submit application';
+
+  @override
+  String get partnerApprovalNote =>
+      'After you submit, your listing waits for approval. You can set up services and prices meanwhile.';
+
+  @override
+  String get remove => 'Remove';
 }

@@ -1,4 +1,5 @@
 import 'seed.dart';
+import 'seed_bookings.dart';
 import 'seed_health.dart';
 import 'seed_routine.dart';
 
@@ -8,4 +9,5 @@ import 'seed_routine.dart';
 void seedActivity(Add add, DateTime now, SeedData data) {
   seedRoutine(add, now);
   seedHealth(add, now, data);
+  seedBookings(add, now);
 }

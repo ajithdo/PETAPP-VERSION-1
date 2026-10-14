@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
@@ -98,6 +99,14 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         PrimaryButton(label: l.createAccount, loading: _busy, onPressed: _submit),
         const SizedBox(height: Space.md),
         Text(l.termsNote, style: context.text.bodySmall, textAlign: TextAlign.center),
+        const SizedBox(height: Space.sm),
+        Center(
+          child: TextButton.icon(
+            onPressed: () => context.push('/partner-signup'),
+            icon: const Icon(Icons.storefront_rounded),
+            label: Text(l.partnerSignupLink),
+          ),
+        ),
       ],
     );
   }

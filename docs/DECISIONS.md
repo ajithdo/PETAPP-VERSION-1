@@ -38,3 +38,17 @@ A running log of choices and why. Newest at the bottom of each section.
 **Walks in the background.** geolocator's Android foreground service (visible notification) and iOS background location updates. The website offers manual entry and a demo walk.
 
 **Android build machine note.** Maven Central rate-limited this build machine (HTTP 429). A machine-level Gradle init script points Maven Central to Google's official mirror; nothing in the project changes.
+
+## Phase 5
+
+**One booking engine.** Vets, grooming, training, boarding and walking share one `bookings` collection and one set of rules in `lib/features/booking/domain/booking_rules.dart`: slots from working hours, slot length, buffer, capacity, holidays and blocked times (30-minute lead time; services of 10+ hours get one slot a day), pricing (service + travel + platform fee − discount; partner payout = service + travel − commission), refunds (full refund up to the cancellation window, 50% after, none after the start) and request expiry. Instant services confirm straight away; request services wait up to the provider's reply window (default 2 hours) and then expire.
+
+**Partner links.** Each booking stores `partnerUids` (the business owner and, for clinics, the chosen vet), so one query serves the partner calendar and dashboard. Vets see their clinic's portal sections for their own bookings.
+
+**Payments.** `PaymentService` with `DemoPaymentService`: a sheet that lets you pick success, failure or pending. Paid bookings add an expense entry automatically. No money moves in demo mode.
+
+**Calendar export.** "Add to calendar" builds an .ics file and opens the share sheet (works on Android, iOS and web, no calendar permission).
+
+**Notifications in the recipient's language.** Booking notifications are written in the language saved on the recipient's profile (Ravi gets Telugu even when a groomer using English accepts).
+
+**Partner sign-up.** Business type, details, KYC documents and the account in one form. The listing is created with status `pending` (hidden from owners) plus a `partnerApplications` record for the admin queue. In the standalone demo the account switches to the partner portal straight away and the dashboard shows "Waiting for approval"; with Firebase the role is a custom claim that only an admin sets on approval (Phase 10).

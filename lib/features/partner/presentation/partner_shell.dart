@@ -21,19 +21,10 @@ class PartnerShell extends ConsumerWidget {
     if (user == null) return const SizedBox.shrink();
     final sections = partnerSectionsFor(context, user.role);
     final current = sections.any((s) => s.key == section) ? section : 'dashboard';
-    final body = partnerSectionBody(context, ref, user, current) ??
-        ComingSoonScreen(
-          title: sections.firstWhere((s) => s.key == current).label,
-          phase: user.role == UserRole.seller ? 8 : 5,
-          embedded: true,
-        );
-    return PortalScaffold(
-      basePath: '/partner',
-      title: l.partnerPortalFor(roleLabel(context, user.role)),
-      sections: sections,
-      current: current,
-      body: body,
-    );
+    final body =
+        partnerSectionBody(context, ref, user, current) ??
+        ComingSoonScreen(title: sections.firstWhere((s) => s.key == current).label, phase: user.role == UserRole.seller ? 8 : 5, embedded: true);
+    return PortalScaffold(basePath: '/partner', title: l.partnerPortalFor(roleLabel(context, user.role)), sections: sections, current: current, body: body);
   }
 }
 

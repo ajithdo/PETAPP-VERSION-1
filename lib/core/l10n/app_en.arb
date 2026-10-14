@@ -1485,5 +1485,635 @@
       }
     }
   },
-  "medicalCardOffline": "This card works without internet. Show it to a vet, a boarding centre or at the airport."
+  "medicalCardOffline": "This card works without internet. Show it to a vet, a boarding centre or at the airport.",
+  "bookTitle": "Book care",
+  "findAVet": "Find a vet near you",
+  "kindVet": "Vet clinic",
+  "kindGrooming": "Grooming",
+  "kindTraining": "Training",
+  "kindBoarding": "Boarding",
+  "kindWalking": "Dog walking",
+  "teleVet": "Tele-vet",
+  "clinicFinderMap": "Clinics on the map",
+  "clinicFinderHint": "See open clinics and 24x7 emergency care around you.",
+  "myBookings": "My bookings",
+  "upcoming": "Upcoming",
+  "requests": "Requests",
+  "past": "Past",
+  "noUpcomingBookings": "No upcoming bookings.",
+  "noRequests": "No requests waiting.",
+  "noPastBookings": "No past bookings yet.",
+  "bookSomething": "Book something",
+  "viewBooking": "View booking",
+  "backToBook": "Back to Book",
+  "searchByNameOrArea": "Search by name or area",
+  "useMyLocation": "Use my location",
+  "nearYou": "Near you",
+  "chooseArea": "Choose your area",
+  "locationWhyClinics": "PawSetu uses your location only to sort clinics and services by distance. It is not saved.",
+  "locationFallback": "Couldn't get your location. Showing your chosen area instead.",
+  "filters": "Filters",
+  "clearFilters": "Clear filters",
+  "showResults": "Show results",
+  "sortBy": "Sort by",
+  "sortNearest": "Nearest",
+  "sortRating": "Top rated",
+  "sortSlot": "Earliest slot",
+  "sortFee": "Lowest fee",
+  "openNow": "Open now",
+  "openNowChip": "Open now",
+  "closedChip": "Closed",
+  "open24x7": "24x7",
+  "open24x7Long": "Open 24 hours, all 7 days",
+  "teleVetAvailable": "Tele-vet available",
+  "homeVisit": "Home visit",
+  "rating": "Rating",
+  "rating4plus": "4★ and above",
+  "speciesTreated": "Animals treated",
+  "languagesSpoken": "Languages spoken",
+  "consultationFee": "Consultation fee",
+  "upTo": "Up to {amount}",
+  "@upTo": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "feeFrom": "From {amount}",
+  "@feeFrom": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "resultsCount": "{count, plural, =0{No results} =1{1 result} other{{count} results}}",
+  "@resultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "listView": "List",
+  "mapView": "Map",
+  "noResultsTitle": "Nothing matches",
+  "noResultsBody": "Try another area or clear some filters.",
+  "reviewsCount": "{count, plural, =1{1 review} other{{count} reviews}}",
+  "@reviewsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "call": "Call",
+  "directions": "Directions",
+  "bookNow": "Book now",
+  "demoCallBody": "Demo mode doesn't place real calls. In the live app this would call {phone}.",
+  "@demoCallBody": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "hoursTitle": "Hours",
+  "closedToday": "Closed today",
+  "todayHours": "Today {open} – {close}",
+  "@todayHours": {
+    "placeholders": {
+      "open": {
+        "type": "String"
+      },
+      "close": {
+        "type": "String"
+      }
+    }
+  },
+  "emergencyLine": "Emergency line: {phone}",
+  "@emergencyLine": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "servicesAndPrices": "Services and prices",
+  "instantBooking": "Instant booking",
+  "requestBooking": "Request to book",
+  "payOnline": "Pay online",
+  "payAtCentre": "Pay at the centre",
+  "payAtClinic": "Pay at the clinic",
+  "homeVisitAvailable": "Home visits within {km} km",
+  "@homeVisitAvailable": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "packages": "Packages",
+  "vetsHere": "Vets here",
+  "yearsExperience": "{years, plural, =1{1 year experience} other{{years} years experience}}",
+  "@yearsExperience": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "regNo": "Reg. no. {no}",
+  "@regNo": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "location": "Location",
+  "reviews": "Reviews",
+  "noReviewsYet": "No reviews yet.",
+  "verifiedBooking": "Verified booking",
+  "replyFrom": "Reply from {name}",
+  "@replyFrom": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "inClinic": "In clinic",
+  "svcConsultation": "Consultation",
+  "svcVaccination": "Vaccination",
+  "svcSurgery": "Surgery consult",
+  "svcDental": "Dental cleaning",
+  "svcLabTests": "Lab tests",
+  "svcXray": "X-ray",
+  "svcHomeVisit": "Home visit",
+  "svcGrooming": "Grooming",
+  "svcBathBrush": "Bath and brush",
+  "svcFullGroom": "Full groom",
+  "svcNailTrim": "Nail trim",
+  "svcTickTreatment": "Tick treatment",
+  "svcObedience": "Obedience training",
+  "svcPuppyBasics": "Puppy basics",
+  "svcBehaviour": "Behaviour session",
+  "svcBoarding": "Boarding",
+  "svcBoardingNight": "Boarding (per night)",
+  "svcDayCare": "Day care",
+  "svcHomeSitting": "Home sitting",
+  "svcWalk30": "30-minute walk",
+  "svcWalk60": "60-minute walk",
+  "stepWhoWhat": "Pet and service",
+  "stepWhen": "Date and time",
+  "stepDetails": "Details",
+  "stepConfirm": "Confirm",
+  "whichPet": "Which pet?",
+  "whichService": "Which service?",
+  "chooseVet": "Choose a vet",
+  "anyVet": "Any available vet",
+  "noPetForPlace": "None of your pets can be booked here. Add a pet first.",
+  "homeVisitHint": "Within {km} km, travel fee {fee}",
+  "@homeVisitHint": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      },
+      "fee": {
+        "type": "String"
+      }
+    }
+  },
+  "openSlots": "Open slots",
+  "noSlotsThatDay": "No open slots that day. Try another day.",
+  "requestExplainer": "Pick up to 3 times that suit you. The provider replies within {hours} hours.",
+  "@requestExplainer": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "yourPreferredTimes": "Your preferred times",
+  "preferredTimes": "Preferred times",
+  "symptomsNotes": "Symptoms or notes for the vet",
+  "symptomsHint": "E.g. not eating since yesterday, vomited twice",
+  "notesForProvider": "Notes for the provider",
+  "notes": "Notes",
+  "howToPay": "How would you like to pay?",
+  "payOnlineHint": "UPI or card now. Instant confirmation.",
+  "payLaterHint": "Pay when you visit.",
+  "when": "When",
+  "where": "Where",
+  "pet": "Pet",
+  "vet": "Vet",
+  "travelFee": "Travel fee",
+  "platformFee": "Platform fee",
+  "free": "Free",
+  "totalToPay": "Total",
+  "cancellationPolicy": "Free cancellation up to {hours} hours before. After that, 50% refund.",
+  "@cancellationPolicy": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "confirmBooking": "Confirm booking",
+  "sendRequest": "Send request",
+  "demoBookingNote": "Demo booking. No real money is charged.",
+  "bookingConfirmedTitle": "Booking confirmed",
+  "bookingConfirmedBody": "{pet} is booked at {place} on {when}.",
+  "@bookingConfirmedBody": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "place": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "requestSentTitle": "Request sent",
+  "requestSentBody": "{place} will reply soon. We'll notify you.",
+  "@requestSentBody": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentFailed": "Payment failed. Nothing was charged. Try again.",
+  "paymentPendingNote": "Payment pending. We'll confirm once it clears.",
+  "demoPaymentTitle": "Demo payment",
+  "demoPaymentNote": "This is a demo. No money will move.",
+  "demoPaymentChoose": "Choose what happens:",
+  "payUpiDemo": "Pay with UPI (demo)",
+  "simulateFailure": "Simulate a failure",
+  "simulatePending": "Simulate pending",
+  "bookingDetails": "Booking details",
+  "replyBy": "Reply by",
+  "replyBefore": "Reply before {time}",
+  "@replyBefore": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "payment": "Payment",
+  "paidOnline": "Paid online",
+  "paymentPending": "Payment pending",
+  "payAtVisit": "Pay at visit",
+  "platformCommission": "Platform commission",
+  "yourPayout": "Your payout",
+  "refund": "Refund",
+  "refundDemo": "{amount} (demo, no real money)",
+  "@refundDemo": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "providerSuggested": "{place} suggested a new time: {when}",
+  "@providerSuggested": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "liveWalk": "Live walk",
+  "liveWalkDemo": "Simulated live walk for the demo.",
+  "walkSoFar": "{km} so far",
+  "@walkSoFar": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "updates": "Updates",
+  "dailyUpdates": "Daily updates",
+  "addToCalendar": "Add to calendar",
+  "message": "Message",
+  "reschedule": "Reschedule",
+  "rescheduledTo": "Moved to {when}",
+  "@rescheduledTo": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelBooking": "Cancel booking",
+  "cancelBookingQ": "Cancel this booking?",
+  "cancelRefundInfo": "You'll get {amount} back (demo).",
+  "@cancelRefundInfo": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelledWithRefund": "Cancelled. {amount} refunded (demo).",
+  "@cancelledWithRefund": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "bookingCancelled": "Booking cancelled",
+  "writeReview": "Write a review",
+  "rateProvider": "How was {name}?",
+  "@rateProvider": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "starsLabel": "{count, plural, =1{1 star} other{{count} stars}}",
+  "@starsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reviewText": "Tell other pet parents what went well",
+  "postReview": "Post review",
+  "thanksForReview": "Thanks for your review!",
+  "bsPending": "Waiting for reply",
+  "bsConfirmed": "Confirmed",
+  "bsSuggested": "New time suggested",
+  "bsInProgress": "In progress",
+  "bsCompleted": "Completed",
+  "bsCancelled": "Cancelled",
+  "bsDeclined": "Declined",
+  "bsExpired": "Expired",
+  "ntfNewBooking": "New booking: {pet} on {when}",
+  "@ntfNewBooking": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfNewRequest": "New booking request for {pet}",
+  "@ntfNewRequest": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfAccepted": "{place} confirmed your booking for {when}",
+  "@ntfAccepted": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfDeclined": "{place} couldn't take your request",
+  "@ntfDeclined": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfSuggested": "{place} suggested {when} instead",
+  "@ntfSuggested": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfCancelled": "Booking for {pet} on {when} was cancelled",
+  "@ntfCancelled": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfRescheduled": "{pet}'s booking moved to {when}",
+  "@ntfRescheduled": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfCompleted": "{pet}'s visit at {place} is done. Rate your experience?",
+  "@ntfCompleted": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfUpdate": "{place} sent an update about {pet}",
+  "@ntfUpdate": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfExpired": "{place} didn't reply in time. Your request expired.",
+  "@ntfExpired": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "helloPartner": "Hello, {name}",
+  "@helloPartner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noBusinessLinked": "No business is linked to this account yet.",
+  "waitingApproval": "Waiting for approval. PawSetu checks new partners within 2 working days. You can set up your services meanwhile.",
+  "todaysBookings": "Today's bookings",
+  "requestsWaiting": "Requests waiting",
+  "earningsThisMonth": "Earnings this month",
+  "completedBookings": "Completed",
+  "noBookingsToday": "No bookings today.",
+  "bookingsOn": "Bookings on {date}",
+  "@bookingsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "noBookingsThisDay": "No bookings this day.",
+  "holidayNoBookings": "Marked as a holiday. No bookings.",
+  "markHoliday": "Mark holiday",
+  "removeHoliday": "Remove holiday",
+  "blockTime": "Block time",
+  "timeBlocked": "Blocked from {time}",
+  "@timeBlocked": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "workingHours": "Working hours",
+  "opens": "Opens",
+  "closes": "Closes",
+  "hoursAppliesMonSat": "These hours apply Monday to Saturday. Sunday stays as it is.",
+  "slotSettings": "{slot}-min slots · {buffer}-min buffer · {capacity} per slot",
+  "@slotSettings": {
+    "placeholders": {
+      "slot": {
+        "type": "int"
+      },
+      "buffer": {
+        "type": "int"
+      },
+      "capacity": {
+        "type": "int"
+      }
+    }
+  },
+  "slotLength": "Slot length (minutes)",
+  "bufferTime": "Buffer between slots (minutes)",
+  "capacityPerSlot": "Pets per slot",
+  "noRequestsPartner": "No booking requests right now.",
+  "waitingForOwner": "Waiting for the owner",
+  "chooseTimeToAccept": "Pick a time to accept",
+  "suggestTime": "Suggest another time",
+  "suggestionSent": "New time sent to the owner",
+  "requestAccepted": "Booking for {pet} confirmed",
+  "@requestAccepted": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "declineRequestQ": "Decline the request for {pet}?",
+  "@declineRequestQ": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "services": "Services",
+  "servicesHelp": "Set your prices, duration and how owners can book. Changes show in the app right away.",
+  "priceRupees": "Price (₹)",
+  "minutes": "Minutes",
+  "bookingMode": "Booking mode",
+  "paymentOptions": "Payment options",
+  "saved": "Saved",
+  "addVet": "Add a vet",
+  "vcRegNumber": "Veterinary Council reg. number",
+  "vcRegHelp": "PawSetu verifies this before the vet can take bookings.",
+  "vetAddedPending": "Vet added. Waiting for verification.",
+  "reply": "Reply",
+  "yourReply": "Your reply",
+  "postReply": "Post reply",
+  "totalPayouts": "Total payouts",
+  "payoutPending": "Pending",
+  "settled": "Settled",
+  "payoutHistory": "Payout history",
+  "noPayoutsYet": "No payouts yet.",
+  "commissionLine": "Commission {amount}",
+  "@commissionLine": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "demoPayoutsNote": "Demo payouts. No real money moves.",
+  "statusApproved": "Approved",
+  "statusPendingApproval": "Pending approval",
+  "kycDocuments": "KYC documents",
+  "uploadKyc": "Upload document",
+  "kycUploaded": "Document uploaded for review",
+  "emergencyPhone": "Emergency phone",
+  "emergencySettingsHelp": "24x7 clinics appear first in SOS. Keep your emergency number up to date.",
+  "allowEnquiries": "Take emergency calls now",
+  "allowEnquiriesHint": "Turn off if you're full. Owners will see the next clinic.",
+  "startService": "Start",
+  "markCompleted": "Mark completed",
+  "sendPhotoUpdate": "Send photo update",
+  "defaultUpdateText": "{pet} is doing great!",
+  "@defaultUpdateText": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "updateSent": "Update sent to {name}",
+  "@updateSent": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "partnerCancelNote": "The owner gets a full refund and a notification.",
+  "messageOwner": "Message the owner",
+  "partnerSignupLink": "Run a pet business? Join as a partner",
+  "partnerSignupTitle": "Join PawSetu as a partner",
+  "partnerSignupSubtitle": "For clinics, groomers, trainers, boarding, walkers and pet shops. Free to join.",
+  "businessType": "What kind of business?",
+  "kindSeller": "Pet shop",
+  "businessName": "Business name",
+  "areaCity": "Area and city",
+  "businessPhone": "Business phone",
+  "businessAddress": "Address (optional)",
+  "kycHelp": "Add an ID proof and your business registration. PawSetu checks them before your listing goes live.",
+  "useSampleDoc": "Use a sample document (demo)",
+  "sampleIdProof": "ID proof (sample)",
+  "kycNeeded": "Add at least one document.",
+  "yourAccount": "Your account",
+  "submitApplication": "Submit application",
+  "partnerApprovalNote": "After you submit, your listing waits for approval. You can set up services and prices meanwhile.",
+  "remove": "Remove"
 }

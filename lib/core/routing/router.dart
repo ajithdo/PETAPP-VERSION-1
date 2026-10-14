@@ -27,14 +27,14 @@ import 'extra_routes.dart';
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 
 /// Paths anyone can open without signing in.
-const publicPrefixes = ['/welcome', '/signin', '/signup', '/forgot', '/phone', '/demo', '/lost/', '/share/', '/join/'];
+const publicPrefixes = ['/welcome', '/signin', '/signup', '/forgot', '/phone', '/demo', '/partner-signup', '/lost/', '/share/', '/join/'];
 const authPaths = ['/welcome', '/signin', '/signup', '/forgot', '/phone', '/demo', '/splash'];
 
 String homeFor(UserRole role) => switch (role) {
-      UserRole.owner => '/home',
-      UserRole.admin => '/admin',
-      _ => '/partner',
-    };
+  UserRole.owner => '/home',
+  UserRole.admin => '/admin',
+  _ => '/partner',
+};
 
 class _RouterRefresh extends ChangeNotifier {
   _RouterRefresh(Ref ref) {
@@ -73,7 +73,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 
     // Role guards: partner portal, admin panel and owner app are separate.
     if (loc.startsWith('/admin') && user.role != UserRole.admin) return home;
-    if (loc.startsWith('/partner') && !user.role.isPartner) return home;
+    if ((loc == '/partner' || loc.startsWith('/partner/')) && !user.role.isPartner) return home;
     final ownerArea = ['/home', '/health', '/book', '/shop', '/me', '/pets', '/setup'];
     if (user.role != UserRole.owner && ownerArea.any(loc.startsWith) && !loc.startsWith('/me/settings')) {
       return home;
@@ -95,39 +95,46 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/phone', builder: (_, _) => const PhoneSignInScreen()),
       GoRoute(path: '/demo', builder: (_, _) => const DemoLoginScreen()),
       GoRoute(path: '/verify-email', builder: (_, _) => const VerifyEmailScreen()),
-      GoRoute(path: '/setup', builder: (_, _) => const SetupPreferencesScreen(), routes: [
-        GoRoute(path: 'pet', builder: (_, _) => const SetupFirstPetScreen()),
-        GoRoute(path: 'notifications', builder: (_, _) => const SetupNotificationsScreen()),
-      ]),
+      GoRoute(
+        path: '/setup',
+        builder: (_, _) => const SetupPreferencesScreen(),
+        routes: [
+          GoRoute(path: 'pet', builder: (_, _) => const SetupFirstPetScreen()),
+          GoRoute(path: 'notifications', builder: (_, _) => const SetupNotificationsScreen()),
+        ],
+      ),
       GoRoute(path: '/design-gallery', builder: (_, _) => const DesignGalleryScreen()),
       GoRoute(
         path: '/coming-soon',
-        builder: (_, s) => ComingSoonScreen(
-          title: s.uri.queryParameters['title'] ?? '',
-          phase: int.tryParse(s.uri.queryParameters['phase'] ?? '') ?? 0,
-        ),
+        builder: (_, s) => ComingSoonScreen(title: s.uri.queryParameters['title'] ?? '', phase: int.tryParse(s.uri.queryParameters['phase'] ?? '') ?? 0),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => OwnerShell(shell: shell),
         branches: [
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/home', builder: (_, _) => const HomeScreen(), routes: homeRoutes),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/health', builder: (_, s) => healthTab(s.uri.queryParameters['pet']), routes: healthRoutes),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/book', builder: (_, _) => bookTab(), routes: bookRoutes),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/shop', builder: (_, _) => shopTab(), routes: shopRoutes),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/me', builder: (_, _) => const MeScreen(), routes: [
-              GoRoute(path: 'settings', builder: (_, _) => const SettingsScreen(), routes: settingsRoutes),
-              ...meRoutes,
-            ]),
-          ]),
+          StatefulShellBranch(
+            routes: [GoRoute(path: '/home', builder: (_, _) => const HomeScreen(), routes: homeRoutes)],
+          ),
+          StatefulShellBranch(
+            routes: [GoRoute(path: '/health', builder: (_, s) => healthTab(s.uri.queryParameters['pet']), routes: healthRoutes)],
+          ),
+          StatefulShellBranch(
+            routes: [GoRoute(path: '/book', builder: (_, _) => bookTab(), routes: bookRoutes)],
+          ),
+          StatefulShellBranch(
+            routes: [GoRoute(path: '/shop', builder: (_, _) => shopTab(), routes: shopRoutes)],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/me',
+                builder: (_, _) => const MeScreen(),
+                routes: [
+                  GoRoute(path: 'settings', builder: (_, _) => const SettingsScreen(), routes: settingsRoutes),
+                  ...meRoutes,
+                ],
+              ),
+            ],
+          ),
         ],
       ),
       ...rootRoutes,
@@ -135,14 +142,21 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/partner',
         builder: (_, _) => const PartnerShell(section: 'dashboard'),
         routes: [
-          GoRoute(path: ':section', builder: (_, s) => PartnerShell(section: s.pathParameters['section']!)),
+          ...partnerRoutes,
+          GoRoute(
+            path: ':section',
+            builder: (_, s) => PartnerShell(section: s.pathParameters['section']!),
+          ),
         ],
       ),
       GoRoute(
         path: '/admin',
         builder: (_, _) => const AdminShell(section: 'dashboard'),
         routes: [
-          GoRoute(path: ':section', builder: (_, s) => AdminShell(section: s.pathParameters['section']!)),
+          GoRoute(
+            path: ':section',
+            builder: (_, s) => AdminShell(section: s.pathParameters['section']!),
+          ),
         ],
       ),
     ],

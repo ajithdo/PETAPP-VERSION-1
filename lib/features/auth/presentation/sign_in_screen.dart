@@ -131,6 +131,13 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           Flexible(child: Text(l.newHere, style: context.text.bodyMedium)),
           TextButton(onPressed: () => context.push('/signup'), child: Text(l.createAccount)),
         ]),
+        Center(
+          child: TextButton.icon(
+            onPressed: () => context.push('/partner-signup'),
+            icon: const Icon(Icons.storefront_rounded),
+            label: Text(l.partnerSignupLink),
+          ),
+        ),
       ],
     );
   }

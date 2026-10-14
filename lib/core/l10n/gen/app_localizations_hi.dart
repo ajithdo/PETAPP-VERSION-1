@@ -2330,4 +2330,946 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get medicalCardOffline =>
       'यह कार्ड बिना इंटरनेट के चलता है। डॉक्टर, बोर्डिंग सेंटर या एयरपोर्ट पर दिखाएँ।';
+
+  @override
+  String get bookTitle => 'देखभाल बुक करें';
+
+  @override
+  String get findAVet => 'पास का पशु-चिकित्सक ढूँढें';
+
+  @override
+  String get kindVet => 'पशु क्लिनिक';
+
+  @override
+  String get kindGrooming => 'ग्रूमिंग';
+
+  @override
+  String get kindTraining => 'ट्रेनिंग';
+
+  @override
+  String get kindBoarding => 'बोर्डिंग';
+
+  @override
+  String get kindWalking => 'डॉग वॉकिंग';
+
+  @override
+  String get teleVet => 'टेली-वेट';
+
+  @override
+  String get clinicFinderMap => 'नक्शे पर क्लिनिक';
+
+  @override
+  String get clinicFinderHint =>
+      'अपने आस-पास खुले क्लिनिक और 24x7 इमरजेंसी देखें।';
+
+  @override
+  String get myBookings => 'मेरी बुकिंग';
+
+  @override
+  String get upcoming => 'आने वाली';
+
+  @override
+  String get requests => 'अनुरोध';
+
+  @override
+  String get past => 'पिछली';
+
+  @override
+  String get noUpcomingBookings => 'कोई आने वाली बुकिंग नहीं।';
+
+  @override
+  String get noRequests => 'कोई अनुरोध बाकी नहीं।';
+
+  @override
+  String get noPastBookings => 'अभी कोई पिछली बुकिंग नहीं।';
+
+  @override
+  String get bookSomething => 'कुछ बुक करें';
+
+  @override
+  String get viewBooking => 'बुकिंग देखें';
+
+  @override
+  String get backToBook => 'बुक पर वापस';
+
+  @override
+  String get searchByNameOrArea => 'नाम या इलाके से खोजें';
+
+  @override
+  String get useMyLocation => 'मेरी लोकेशन लें';
+
+  @override
+  String get nearYou => 'आपके पास';
+
+  @override
+  String get chooseArea => 'अपना इलाका चुनें';
+
+  @override
+  String get locationWhyClinics =>
+      'PawSetu आपकी लोकेशन सिर्फ क्लिनिक और सेवाओं को दूरी के हिसाब से दिखाने में लेता है। इसे सेव नहीं किया जाता।';
+
+  @override
+  String get locationFallback =>
+      'लोकेशन नहीं मिली। आपका चुना इलाका दिखा रहे हैं।';
+
+  @override
+  String get filters => 'फ़िल्टर';
+
+  @override
+  String get clearFilters => 'फ़िल्टर हटाएँ';
+
+  @override
+  String get showResults => 'नतीजे दिखाएँ';
+
+  @override
+  String get sortBy => 'क्रम';
+
+  @override
+  String get sortNearest => 'सबसे पास';
+
+  @override
+  String get sortRating => 'सबसे अच्छी रेटिंग';
+
+  @override
+  String get sortSlot => 'सबसे जल्दी स्लॉट';
+
+  @override
+  String get sortFee => 'सबसे कम फ़ीस';
+
+  @override
+  String get openNow => 'अभी खुला';
+
+  @override
+  String get openNowChip => 'अभी खुला';
+
+  @override
+  String get closedChip => 'बंद';
+
+  @override
+  String get open24x7 => '24x7';
+
+  @override
+  String get open24x7Long => '24 घंटे, सातों दिन खुला';
+
+  @override
+  String get teleVetAvailable => 'टेली-वेट उपलब्ध';
+
+  @override
+  String get homeVisit => 'घर पर विज़िट';
+
+  @override
+  String get rating => 'रेटिंग';
+
+  @override
+  String get rating4plus => '4★ और ऊपर';
+
+  @override
+  String get speciesTreated => 'किन जानवरों का इलाज';
+
+  @override
+  String get languagesSpoken => 'बोली जाने वाली भाषाएँ';
+
+  @override
+  String get consultationFee => 'परामर्श फ़ीस';
+
+  @override
+  String upTo(String amount) {
+    return '$amount तक';
+  }
+
+  @override
+  String feeFrom(String amount) {
+    return '$amount से';
+  }
+
+  @override
+  String resultsCount(int count) {
+    return '$count नतीजे';
+  }
+
+  @override
+  String get listView => 'सूची';
+
+  @override
+  String get mapView => 'नक्शा';
+
+  @override
+  String get noResultsTitle => 'कुछ नहीं मिला';
+
+  @override
+  String get noResultsBody => 'दूसरा इलाका चुनें या कुछ फ़िल्टर हटाएँ।';
+
+  @override
+  String reviewsCount(int count) {
+    return '$count रिव्यू';
+  }
+
+  @override
+  String get call => 'कॉल करें';
+
+  @override
+  String get directions => 'रास्ता';
+
+  @override
+  String get bookNow => 'अभी बुक करें';
+
+  @override
+  String demoCallBody(String phone) {
+    return 'डेमो मोड में असली कॉल नहीं होती। असली ऐप में यह $phone पर कॉल करेगा।';
+  }
+
+  @override
+  String get hoursTitle => 'समय';
+
+  @override
+  String get closedToday => 'आज बंद';
+
+  @override
+  String todayHours(String open, String close) {
+    return 'आज $open – $close';
+  }
+
+  @override
+  String emergencyLine(String phone) {
+    return 'इमरजेंसी लाइन: $phone';
+  }
+
+  @override
+  String get servicesAndPrices => 'सेवाएँ और दाम';
+
+  @override
+  String get instantBooking => 'तुरंत बुकिंग';
+
+  @override
+  String get requestBooking => 'बुकिंग का अनुरोध';
+
+  @override
+  String get payOnline => 'ऑनलाइन भुगतान';
+
+  @override
+  String get payAtCentre => 'सेंटर पर भुगतान';
+
+  @override
+  String get payAtClinic => 'क्लिनिक पर भुगतान';
+
+  @override
+  String homeVisitAvailable(int km) {
+    return '$km किमी तक घर पर विज़िट';
+  }
+
+  @override
+  String get packages => 'पैकेज';
+
+  @override
+  String get vetsHere => 'यहाँ के डॉक्टर';
+
+  @override
+  String yearsExperience(int years) {
+    return '$years वर्ष अनुभव';
+  }
+
+  @override
+  String regNo(String no) {
+    return 'रजि. नं. $no';
+  }
+
+  @override
+  String get location => 'लोकेशन';
+
+  @override
+  String get reviews => 'रिव्यू';
+
+  @override
+  String get noReviewsYet => 'अभी कोई रिव्यू नहीं।';
+
+  @override
+  String get verifiedBooking => 'पुष्ट बुकिंग';
+
+  @override
+  String replyFrom(String name) {
+    return '$name का जवाब';
+  }
+
+  @override
+  String get inClinic => 'क्लिनिक में';
+
+  @override
+  String get svcConsultation => 'परामर्श';
+
+  @override
+  String get svcVaccination => 'टीकाकरण';
+
+  @override
+  String get svcSurgery => 'सर्जरी परामर्श';
+
+  @override
+  String get svcDental => 'दाँतों की सफ़ाई';
+
+  @override
+  String get svcLabTests => 'लैब टेस्ट';
+
+  @override
+  String get svcXray => 'एक्स-रे';
+
+  @override
+  String get svcHomeVisit => 'घर पर विज़िट';
+
+  @override
+  String get svcGrooming => 'ग्रूमिंग';
+
+  @override
+  String get svcBathBrush => 'नहलाना और ब्रश';
+
+  @override
+  String get svcFullGroom => 'पूरी ग्रूमिंग';
+
+  @override
+  String get svcNailTrim => 'नाखून काटना';
+
+  @override
+  String get svcTickTreatment => 'टिक उपचार';
+
+  @override
+  String get svcObedience => 'आज्ञाकारिता ट्रेनिंग';
+
+  @override
+  String get svcPuppyBasics => 'पिल्लों की बेसिक ट्रेनिंग';
+
+  @override
+  String get svcBehaviour => 'व्यवहार सत्र';
+
+  @override
+  String get svcBoarding => 'बोर्डिंग';
+
+  @override
+  String get svcBoardingNight => 'बोर्डिंग (प्रति रात)';
+
+  @override
+  String get svcDayCare => 'डे केयर';
+
+  @override
+  String get svcHomeSitting => 'घर पर देखभाल';
+
+  @override
+  String get svcWalk30 => '30 मिनट की सैर';
+
+  @override
+  String get svcWalk60 => '60 मिनट की सैर';
+
+  @override
+  String get stepWhoWhat => 'पालतू और सेवा';
+
+  @override
+  String get stepWhen => 'तारीख और समय';
+
+  @override
+  String get stepDetails => 'जानकारी';
+
+  @override
+  String get stepConfirm => 'पुष्टि करें';
+
+  @override
+  String get whichPet => 'कौन सा पालतू?';
+
+  @override
+  String get whichService => 'कौन सी सेवा?';
+
+  @override
+  String get chooseVet => 'डॉक्टर चुनें';
+
+  @override
+  String get anyVet => 'कोई भी उपलब्ध डॉक्टर';
+
+  @override
+  String get noPetForPlace =>
+      'आपका कोई पालतू यहाँ बुक नहीं हो सकता। पहले पालतू जोड़ें।';
+
+  @override
+  String homeVisitHint(int km, String fee) {
+    return '$km किमी तक, यात्रा शुल्क $fee';
+  }
+
+  @override
+  String get openSlots => 'खाली स्लॉट';
+
+  @override
+  String get noSlotsThatDay => 'उस दिन कोई स्लॉट खाली नहीं। दूसरा दिन चुनें।';
+
+  @override
+  String requestExplainer(int hours) {
+    return 'अपनी सुविधा के 3 समय चुनें। प्रोवाइडर $hours घंटे में जवाब देगा।';
+  }
+
+  @override
+  String get yourPreferredTimes => 'आपके पसंदीदा समय';
+
+  @override
+  String get preferredTimes => 'पसंदीदा समय';
+
+  @override
+  String get symptomsNotes => 'डॉक्टर के लिए लक्षण या नोट';
+
+  @override
+  String get symptomsHint => 'जैसे कल से खाना नहीं खा रहा, दो बार उल्टी';
+
+  @override
+  String get notesForProvider => 'प्रोवाइडर के लिए नोट';
+
+  @override
+  String get notes => 'नोट';
+
+  @override
+  String get howToPay => 'भुगतान कैसे करेंगे?';
+
+  @override
+  String get payOnlineHint => 'अभी UPI या कार्ड से। तुरंत पुष्टि।';
+
+  @override
+  String get payLaterHint => 'विज़िट के समय भुगतान करें।';
+
+  @override
+  String get when => 'कब';
+
+  @override
+  String get where => 'कहाँ';
+
+  @override
+  String get pet => 'पालतू';
+
+  @override
+  String get vet => 'डॉक्टर';
+
+  @override
+  String get travelFee => 'यात्रा शुल्क';
+
+  @override
+  String get platformFee => 'प्लेटफ़ॉर्म शुल्क';
+
+  @override
+  String get free => 'मुफ़्त';
+
+  @override
+  String get totalToPay => 'कुल';
+
+  @override
+  String cancellationPolicy(int hours) {
+    return '$hours घंटे पहले तक मुफ़्त रद्द। उसके बाद 50% रिफ़ंड।';
+  }
+
+  @override
+  String get confirmBooking => 'बुकिंग पक्की करें';
+
+  @override
+  String get sendRequest => 'अनुरोध भेजें';
+
+  @override
+  String get demoBookingNote => 'डेमो बुकिंग। कोई असली पैसा नहीं कटेगा।';
+
+  @override
+  String get bookingConfirmedTitle => 'बुकिंग पक्की';
+
+  @override
+  String bookingConfirmedBody(String pet, String place, String when) {
+    return '$pet की बुकिंग $place पर $when को पक्की है।';
+  }
+
+  @override
+  String get requestSentTitle => 'अनुरोध भेजा गया';
+
+  @override
+  String requestSentBody(String place) {
+    return '$place जल्द जवाब देगा। हम आपको सूचित करेंगे।';
+  }
+
+  @override
+  String get paymentFailed => 'भुगतान विफल। कोई पैसा नहीं कटा। फिर कोशिश करें।';
+
+  @override
+  String get paymentPendingNote =>
+      'भुगतान लंबित है। पूरा होते ही पुष्टि करेंगे।';
+
+  @override
+  String get demoPaymentTitle => 'डेमो भुगतान';
+
+  @override
+  String get demoPaymentNote => 'यह डेमो है। कोई पैसा नहीं कटेगा।';
+
+  @override
+  String get demoPaymentChoose => 'चुनें क्या होगा:';
+
+  @override
+  String get payUpiDemo => 'UPI से भुगतान (डेमो)';
+
+  @override
+  String get simulateFailure => 'विफलता दिखाएँ';
+
+  @override
+  String get simulatePending => 'लंबित दिखाएँ';
+
+  @override
+  String get bookingDetails => 'बुकिंग जानकारी';
+
+  @override
+  String get replyBy => 'जवाब की समय-सीमा';
+
+  @override
+  String replyBefore(String time) {
+    return '$time से पहले जवाब दें';
+  }
+
+  @override
+  String get payment => 'भुगतान';
+
+  @override
+  String get paidOnline => 'ऑनलाइन भुगतान हुआ';
+
+  @override
+  String get paymentPending => 'भुगतान लंबित';
+
+  @override
+  String get payAtVisit => 'विज़िट पर भुगतान';
+
+  @override
+  String get platformCommission => 'प्लेटफ़ॉर्म कमीशन';
+
+  @override
+  String get yourPayout => 'आपका भुगतान';
+
+  @override
+  String get refund => 'रिफ़ंड';
+
+  @override
+  String refundDemo(String amount) {
+    return '$amount (डेमो, असली पैसा नहीं)';
+  }
+
+  @override
+  String providerSuggested(String place, String when) {
+    return '$place ने नया समय सुझाया: $when';
+  }
+
+  @override
+  String get liveWalk => 'लाइव सैर';
+
+  @override
+  String get liveWalkDemo => 'डेमो के लिए नकली लाइव सैर।';
+
+  @override
+  String walkSoFar(String km) {
+    return 'अब तक $km';
+  }
+
+  @override
+  String get updates => 'अपडेट';
+
+  @override
+  String get dailyUpdates => 'रोज़ के अपडेट';
+
+  @override
+  String get addToCalendar => 'कैलेंडर में जोड़ें';
+
+  @override
+  String get message => 'मैसेज';
+
+  @override
+  String get reschedule => 'समय बदलें';
+
+  @override
+  String rescheduledTo(String when) {
+    return '$when पर बदला गया';
+  }
+
+  @override
+  String get cancelBooking => 'बुकिंग रद्द करें';
+
+  @override
+  String get cancelBookingQ => 'यह बुकिंग रद्द करें?';
+
+  @override
+  String cancelRefundInfo(String amount) {
+    return 'आपको $amount वापस मिलेंगे (डेमो)।';
+  }
+
+  @override
+  String cancelledWithRefund(String amount) {
+    return 'रद्द हुआ। $amount रिफ़ंड (डेमो)।';
+  }
+
+  @override
+  String get bookingCancelled => 'बुकिंग रद्द';
+
+  @override
+  String get writeReview => 'रिव्यू लिखें';
+
+  @override
+  String rateProvider(String name) {
+    return '$name कैसा रहा?';
+  }
+
+  @override
+  String starsLabel(int count) {
+    return '$count स्टार';
+  }
+
+  @override
+  String get reviewText => 'दूसरे पालतू-माता-पिता को बताएँ क्या अच्छा रहा';
+
+  @override
+  String get postReview => 'रिव्यू पोस्ट करें';
+
+  @override
+  String get thanksForReview => 'रिव्यू के लिए धन्यवाद!';
+
+  @override
+  String get bsPending => 'जवाब का इंतज़ार';
+
+  @override
+  String get bsConfirmed => 'पक्की';
+
+  @override
+  String get bsSuggested => 'नया समय सुझाया';
+
+  @override
+  String get bsInProgress => 'चल रहा है';
+
+  @override
+  String get bsCompleted => 'पूरा हुआ';
+
+  @override
+  String get bsCancelled => 'रद्द';
+
+  @override
+  String get bsDeclined => 'अस्वीकार';
+
+  @override
+  String get bsExpired => 'समय समाप्त';
+
+  @override
+  String ntfNewBooking(String pet, String when) {
+    return 'नई बुकिंग: $pet, $when';
+  }
+
+  @override
+  String ntfNewRequest(String pet) {
+    return '$pet के लिए नया बुकिंग अनुरोध';
+  }
+
+  @override
+  String ntfAccepted(String place, String when) {
+    return '$place ने $when की आपकी बुकिंग पक्की की';
+  }
+
+  @override
+  String ntfDeclined(String place) {
+    return '$place आपका अनुरोध नहीं ले सका';
+  }
+
+  @override
+  String ntfSuggested(String place, String when) {
+    return '$place ने इसकी जगह $when सुझाया';
+  }
+
+  @override
+  String ntfCancelled(String pet, String when) {
+    return '$pet की $when की बुकिंग रद्द हुई';
+  }
+
+  @override
+  String ntfRescheduled(String pet, String when) {
+    return '$pet की बुकिंग $when पर बदली';
+  }
+
+  @override
+  String ntfCompleted(String pet, String place) {
+    return '$place पर $pet की विज़िट पूरी हुई। अनुभव रेट करें?';
+  }
+
+  @override
+  String ntfUpdate(String place, String pet) {
+    return '$place ने $pet के बारे में अपडेट भेजा';
+  }
+
+  @override
+  String ntfExpired(String place) {
+    return '$place ने समय पर जवाब नहीं दिया। अनुरोध समाप्त हुआ।';
+  }
+
+  @override
+  String helloPartner(String name) {
+    return 'नमस्ते, $name';
+  }
+
+  @override
+  String get noBusinessLinked => 'इस खाते से अभी कोई बिज़नेस जुड़ा नहीं है।';
+
+  @override
+  String get waitingApproval =>
+      'मंज़ूरी का इंतज़ार। PawSetu नए पार्टनर की जाँच 2 कार्य-दिवस में करता है। तब तक अपनी सेवाएँ सेट करें।';
+
+  @override
+  String get todaysBookings => 'आज की बुकिंग';
+
+  @override
+  String get requestsWaiting => 'बाकी अनुरोध';
+
+  @override
+  String get earningsThisMonth => 'इस महीने की कमाई';
+
+  @override
+  String get completedBookings => 'पूरी हुईं';
+
+  @override
+  String get noBookingsToday => 'आज कोई बुकिंग नहीं।';
+
+  @override
+  String bookingsOn(String date) {
+    return '$date की बुकिंग';
+  }
+
+  @override
+  String get noBookingsThisDay => 'इस दिन कोई बुकिंग नहीं।';
+
+  @override
+  String get holidayNoBookings => 'छुट्टी के रूप में चिह्नित। कोई बुकिंग नहीं।';
+
+  @override
+  String get markHoliday => 'छुट्टी चिह्नित करें';
+
+  @override
+  String get removeHoliday => 'छुट्टी हटाएँ';
+
+  @override
+  String get blockTime => 'समय ब्लॉक करें';
+
+  @override
+  String timeBlocked(String time) {
+    return '$time से ब्लॉक';
+  }
+
+  @override
+  String get workingHours => 'काम का समय';
+
+  @override
+  String get opens => 'खुलता है';
+
+  @override
+  String get closes => 'बंद होता है';
+
+  @override
+  String get hoursAppliesMonSat =>
+      'यह समय सोमवार से शनिवार तक लागू है। रविवार जैसा है वैसा रहेगा।';
+
+  @override
+  String slotSettings(int slot, int buffer, int capacity) {
+    return '$slot मिनट स्लॉट · $buffer मिनट अंतर · प्रति स्लॉट $capacity';
+  }
+
+  @override
+  String get slotLength => 'स्लॉट अवधि (मिनट)';
+
+  @override
+  String get bufferTime => 'स्लॉट के बीच अंतर (मिनट)';
+
+  @override
+  String get capacityPerSlot => 'प्रति स्लॉट पालतू';
+
+  @override
+  String get noRequestsPartner => 'अभी कोई बुकिंग अनुरोध नहीं।';
+
+  @override
+  String get waitingForOwner => 'मालिक के जवाब का इंतज़ार';
+
+  @override
+  String get chooseTimeToAccept => 'स्वीकार करने के लिए समय चुनें';
+
+  @override
+  String get suggestTime => 'दूसरा समय सुझाएँ';
+
+  @override
+  String get suggestionSent => 'मालिक को नया समय भेजा गया';
+
+  @override
+  String requestAccepted(String pet) {
+    return '$pet की बुकिंग पक्की';
+  }
+
+  @override
+  String declineRequestQ(String pet) {
+    return '$pet का अनुरोध अस्वीकार करें?';
+  }
+
+  @override
+  String get services => 'सेवाएँ';
+
+  @override
+  String get servicesHelp =>
+      'अपने दाम, समय और बुकिंग का तरीका सेट करें। बदलाव ऐप में तुरंत दिखेंगे।';
+
+  @override
+  String get priceRupees => 'दाम (₹)';
+
+  @override
+  String get minutes => 'मिनट';
+
+  @override
+  String get bookingMode => 'बुकिंग का तरीका';
+
+  @override
+  String get paymentOptions => 'भुगतान विकल्प';
+
+  @override
+  String get saved => 'सेव हुआ';
+
+  @override
+  String get addVet => 'डॉक्टर जोड़ें';
+
+  @override
+  String get vcRegNumber => 'पशु-चिकित्सा परिषद रजि. नंबर';
+
+  @override
+  String get vcRegHelp =>
+      'डॉक्टर के बुकिंग लेने से पहले PawSetu इसकी जाँच करता है।';
+
+  @override
+  String get vetAddedPending => 'डॉक्टर जोड़ा गया। जाँच का इंतज़ार।';
+
+  @override
+  String get reply => 'जवाब दें';
+
+  @override
+  String get yourReply => 'आपका जवाब';
+
+  @override
+  String get postReply => 'जवाब पोस्ट करें';
+
+  @override
+  String get totalPayouts => 'कुल भुगतान';
+
+  @override
+  String get payoutPending => 'लंबित';
+
+  @override
+  String get settled => 'चुकाया गया';
+
+  @override
+  String get payoutHistory => 'भुगतान इतिहास';
+
+  @override
+  String get noPayoutsYet => 'अभी कोई भुगतान नहीं।';
+
+  @override
+  String commissionLine(String amount) {
+    return 'कमीशन $amount';
+  }
+
+  @override
+  String get demoPayoutsNote => 'डेमो भुगतान। कोई असली पैसा नहीं जाता।';
+
+  @override
+  String get statusApproved => 'मंज़ूर';
+
+  @override
+  String get statusPendingApproval => 'मंज़ूरी बाकी';
+
+  @override
+  String get kycDocuments => 'KYC दस्तावेज़';
+
+  @override
+  String get uploadKyc => 'दस्तावेज़ अपलोड करें';
+
+  @override
+  String get kycUploaded => 'दस्तावेज़ जाँच के लिए अपलोड हुआ';
+
+  @override
+  String get emergencyPhone => 'इमरजेंसी फ़ोन';
+
+  @override
+  String get emergencySettingsHelp =>
+      '24x7 क्लिनिक SOS में सबसे पहले दिखते हैं। अपना इमरजेंसी नंबर अपडेट रखें।';
+
+  @override
+  String get allowEnquiries => 'अभी इमरजेंसी कॉल लें';
+
+  @override
+  String get allowEnquiriesHint =>
+      'भरा हो तो बंद करें। मालिकों को अगला क्लिनिक दिखेगा।';
+
+  @override
+  String get startService => 'शुरू करें';
+
+  @override
+  String get markCompleted => 'पूरा हुआ चिह्नित करें';
+
+  @override
+  String get sendPhotoUpdate => 'फ़ोटो अपडेट भेजें';
+
+  @override
+  String defaultUpdateText(String pet) {
+    return '$pet बढ़िया है!';
+  }
+
+  @override
+  String updateSent(String name) {
+    return '$name को अपडेट भेजा';
+  }
+
+  @override
+  String get partnerCancelNote => 'मालिक को पूरा रिफ़ंड और सूचना मिलेगी।';
+
+  @override
+  String get messageOwner => 'मालिक को मैसेज करें';
+
+  @override
+  String get partnerSignupLink => 'पालतू बिज़नेस चलाते हैं? पार्टनर बनें';
+
+  @override
+  String get partnerSignupTitle => 'PawSetu पार्टनर बनें';
+
+  @override
+  String get partnerSignupSubtitle =>
+      'क्लिनिक, ग्रूमर, ट्रेनर, बोर्डिंग, वॉकर और पेट शॉप के लिए। जुड़ना मुफ़्त है।';
+
+  @override
+  String get businessType => 'कैसा बिज़नेस है?';
+
+  @override
+  String get kindSeller => 'पेट शॉप';
+
+  @override
+  String get businessName => 'बिज़नेस का नाम';
+
+  @override
+  String get areaCity => 'इलाका और शहर';
+
+  @override
+  String get businessPhone => 'बिज़नेस फ़ोन';
+
+  @override
+  String get businessAddress => 'पता (वैकल्पिक)';
+
+  @override
+  String get kycHelp =>
+      'पहचान पत्र और बिज़नेस रजिस्ट्रेशन जोड़ें। लिस्टिंग लाइव होने से पहले PawSetu इनकी जाँच करता है।';
+
+  @override
+  String get useSampleDoc => 'नमूना दस्तावेज़ लें (डेमो)';
+
+  @override
+  String get sampleIdProof => 'पहचान पत्र (नमूना)';
+
+  @override
+  String get kycNeeded => 'कम से कम एक दस्तावेज़ जोड़ें।';
+
+  @override
+  String get yourAccount => 'आपका खाता';
+
+  @override
+  String get submitApplication => 'आवेदन भेजें';
+
+  @override
+  String get partnerApprovalNote =>
+      'भेजने के बाद आपकी लिस्टिंग मंज़ूरी का इंतज़ार करेगी। तब तक सेवाएँ और दाम सेट करें।';
+
+  @override
+  String get remove => 'हटाएँ';
 }
