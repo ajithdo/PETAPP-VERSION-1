@@ -24,3 +24,17 @@ A running log of choices and why. Newest at the bottom of each section.
 **Icons.** Flutter's built-in Material "rounded" icon set (`Icons.*_rounded`) instead of an extra icon package.
 
 **State and navigation.** Riverpod 3 and go_router 18. Models: freezed 4 + json_serializable.
+
+## Phases 2–4
+
+**Photo crop without native plugins.** Square crop uses an in-app pinch/drag view captured with a RepaintBoundary, so it works the same on Android, iOS and web.
+
+**PDFs are rendered by Flutter.** The `pdf` package cannot shape Hindi or Telugu text. Health reports (and later prescriptions, invoices, QR tags and posters) are laid out as Flutter widgets, rendered off screen to images (`lib/core/utils/widget_capture.dart`) and wrapped into an A4 PDF. Text is not selectable; Version 2 can move PDF generation to a Cloud Function with proper Indic shaping if needed.
+
+**Reminders.** `flutter_local_notifications` with inexact scheduling (no exact-alarm permission needed). The reminder engine reschedules the next 7 days whenever health data changes and posts due items to the notification centre. Email/SMS/WhatsApp reminders go through `MessagingService` (Demo Outbox in demo mode). Quiet hours delay reminders to the end of the window; medicine reminders always ring on time. On the website, reminders appear in the notification centre only.
+
+**Maps.** OpenStreetMap tiles via flutter_map with the app's package name as user agent and visible attribution. Directions open the phone's maps app (`geo:` or Google Maps URL), no paid routing API.
+
+**Walks in the background.** geolocator's Android foreground service (visible notification) and iOS background location updates. The website offers manual entry and a demo walk.
+
+**Android build machine note.** Maven Central rate-limited this build machine (HTTP 429). A machine-level Gradle init script points Maven Central to Google's official mirror; nothing in the project changes.

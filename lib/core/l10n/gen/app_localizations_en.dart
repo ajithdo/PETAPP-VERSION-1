@@ -1743,4 +1743,634 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get demoTemperature => 'Demo temperature';
+
+  @override
+  String get add => 'Add';
+
+  @override
+  String get record => 'Record';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get type => 'Type';
+
+  @override
+  String get owner => 'Owner';
+
+  @override
+  String get from => 'From';
+
+  @override
+  String get to => 'To';
+
+  @override
+  String get markDone => 'Mark done';
+
+  @override
+  String get indicativeNote => 'Indicative, always confirm with your vet.';
+
+  @override
+  String healthOf(String name) {
+    return '$name\'s health';
+  }
+
+  @override
+  String get choosePetForHealth => 'Choose a pet';
+
+  @override
+  String itemsNeedAttention(int count) {
+    return '$count need attention';
+  }
+
+  @override
+  String get nextUp => 'Next up';
+
+  @override
+  String nothingDue(String name) {
+    return 'Nothing due for $name right now.';
+  }
+
+  @override
+  String get nothingDueAll => 'All caught up. Nothing due this week.';
+
+  @override
+  String get healthReport => 'Health report';
+
+  @override
+  String healthReportOf(String name) {
+    return '$name\'s health report';
+  }
+
+  @override
+  String get medicalCard => 'Medical card';
+
+  @override
+  String get statusDone => 'Done';
+
+  @override
+  String get statusOverdue => 'Overdue';
+
+  @override
+  String get statusDueSoon => 'Due soon';
+
+  @override
+  String get statusUpcoming => 'Upcoming';
+
+  @override
+  String get statusAskVet => 'Ask your vet';
+
+  @override
+  String get askYourVet => 'Ask your vet';
+
+  @override
+  String get dose => 'Dose';
+
+  @override
+  String doseN(int n) {
+    return 'Dose $n';
+  }
+
+  @override
+  String get booster => 'Booster';
+
+  @override
+  String get optionalVaccine => 'Optional (vet advises)';
+
+  @override
+  String get vaccinations => 'Vaccinations';
+
+  @override
+  String get vaccine => 'Vaccine';
+
+  @override
+  String get vaccineName => 'Vaccine name';
+
+  @override
+  String get otherVaccine => 'Other vaccine';
+
+  @override
+  String recordVaccineFor(String name) {
+    return 'Record a vaccine for $name';
+  }
+
+  @override
+  String get dateGiven => 'Date given';
+
+  @override
+  String get vaccineBrand => 'Vaccine brand';
+
+  @override
+  String get batchNumber => 'Batch number';
+
+  @override
+  String get vetName => 'Vet\'s name';
+
+  @override
+  String get clinicName => 'Clinic';
+
+  @override
+  String get attachCertificate => 'Attach certificate photo';
+
+  @override
+  String get certificateAttached => 'Certificate attached (saved to the vault)';
+
+  @override
+  String vaccineRecorded(String vaccine, String name) {
+    return '$vaccine recorded for $name';
+  }
+
+  @override
+  String givenOn(String date) {
+    return 'Given $date';
+  }
+
+  @override
+  String dueOn(String date) {
+    return 'Due $date';
+  }
+
+  @override
+  String get nextDueShort => 'Next due';
+
+  @override
+  String get catchUpNote =>
+      'No vaccine history yet. Ask your vet for a catch-up plan, and add past vaccines with Record.';
+
+  @override
+  String get rabbitVaccineNote =>
+      'There is no standard routine vaccine schedule for rabbits in India. Check with an exotic-animal vet; a health check every 6–12 months is a good idea.';
+
+  @override
+  String get birdVaccineNote =>
+      'Common pet birds don\'t need routine vaccines. Plan a yearly avian vet check, and keep an eye on nails and beak.';
+
+  @override
+  String get medicines => 'Medicines';
+
+  @override
+  String get medicineName => 'Medicine';
+
+  @override
+  String addMedicineFor(String name) {
+    return 'Add a medicine for $name';
+  }
+
+  @override
+  String get editMedicine => 'Edit medicine';
+
+  @override
+  String get unit => 'Unit';
+
+  @override
+  String get unitTablet => 'tablet';
+
+  @override
+  String get unitMl => 'ml';
+
+  @override
+  String get unitDrops => 'drops';
+
+  @override
+  String get unitMg => 'mg';
+
+  @override
+  String get unitCapsule => 'capsule';
+
+  @override
+  String get unitSachet => 'sachet';
+
+  @override
+  String get frequency => 'How often';
+
+  @override
+  String get freqOnce => 'Once a day';
+
+  @override
+  String get freqTwice => 'Twice a day';
+
+  @override
+  String freqEveryHours(int hours) {
+    return 'Every $hours hours';
+  }
+
+  @override
+  String get freqWeekly => 'Once a week';
+
+  @override
+  String get freqCustom => 'Custom times';
+
+  @override
+  String get doseTimes => 'Dose times';
+
+  @override
+  String get firstDoseAt => 'First dose at';
+
+  @override
+  String get addTime => 'Add time';
+
+  @override
+  String get withFood => 'With food';
+
+  @override
+  String get startDate => 'Start date';
+
+  @override
+  String get noEndDate => 'No end date';
+
+  @override
+  String endsOn(String date) {
+    return 'Ends $date';
+  }
+
+  @override
+  String get setEndDate => 'Set end date';
+
+  @override
+  String get stockCount => 'Doses in stock (optional)';
+
+  @override
+  String get stockHint => 'We\'ll remind you to refill when 5 are left';
+
+  @override
+  String medicineSaved(String name) {
+    return '$name saved';
+  }
+
+  @override
+  String noMedicines(String name) {
+    return '$name isn\'t on any medicine.';
+  }
+
+  @override
+  String nextDoseAt(String time) {
+    return 'Next: $time';
+  }
+
+  @override
+  String stockLeft(int count) {
+    return '$count left';
+  }
+
+  @override
+  String get refill => 'Refill';
+
+  @override
+  String refillNeeded(String name) {
+    return 'Refill $name';
+  }
+
+  @override
+  String get given => 'Given';
+
+  @override
+  String get snooze15 => 'Snooze 15 min';
+
+  @override
+  String doseGiven(String name) {
+    return '$name marked as given';
+  }
+
+  @override
+  String get doseSkipped => 'Dose skipped';
+
+  @override
+  String get doseSnoozed => 'We\'ll remind you in 15 minutes';
+
+  @override
+  String todayAt(String time) {
+    return 'Today, $time';
+  }
+
+  @override
+  String overdueBy(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days overdue',
+      one: '1 day overdue',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dueToday => 'Due today';
+
+  @override
+  String dueInDays(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Due in $days days',
+      one: 'Due tomorrow',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prevention => 'Deworming and flea/tick';
+
+  @override
+  String get deworming => 'Deworming';
+
+  @override
+  String get fleaTick => 'Flea and tick prevention';
+
+  @override
+  String lastDone(String date) {
+    return 'Last $date';
+  }
+
+  @override
+  String nextDue(String date) {
+    return 'Next $date';
+  }
+
+  @override
+  String get tickFeverNote =>
+      'Tick fever is common in India. Keep flea and tick prevention up to date.';
+
+  @override
+  String get productUsed => 'Product used';
+
+  @override
+  String get weightNeedsTwo => 'Add two or more weights to see the chart.';
+
+  @override
+  String weightRangeNote(String range) {
+    return 'Green band: indicative healthy range $range. Always confirm with your vet.';
+  }
+
+  @override
+  String get weightGrowingNote =>
+      'Still growing. Your vet will tell you the right weight.';
+
+  @override
+  String get vetVisit => 'Vet visit';
+
+  @override
+  String get vetVisits => 'Vet visits';
+
+  @override
+  String get reasonForVisit => 'Reason for visit';
+
+  @override
+  String get diagnosis => 'Diagnosis or advice';
+
+  @override
+  String get noVisits => 'No vet visits recorded yet.';
+
+  @override
+  String get symptom => 'Symptom';
+
+  @override
+  String get symptomDiary => 'Symptom diary';
+
+  @override
+  String get noSymptoms => 'No symptoms noted. That\'s good news.';
+
+  @override
+  String get severity => 'How bad is it?';
+
+  @override
+  String get severeSymptomNote =>
+      'If your pet has trouble breathing, collapses, has a seizure or may have eaten poison, use SOS now.';
+
+  @override
+  String get shareWithVet => 'Share with vet';
+
+  @override
+  String symptomShareTitle(String name) {
+    return '$name\'s symptom diary (PawSetu)';
+  }
+
+  @override
+  String get symVomiting => 'Vomiting';
+
+  @override
+  String get symDiarrhoea => 'Diarrhoea';
+
+  @override
+  String get symNotEating => 'Not eating';
+
+  @override
+  String get symLimping => 'Limping';
+
+  @override
+  String get symItching => 'Itching';
+
+  @override
+  String get symCoughing => 'Coughing';
+
+  @override
+  String get symLethargy => 'Very tired';
+
+  @override
+  String get symSneezing => 'Sneezing';
+
+  @override
+  String get symOther => 'Other';
+
+  @override
+  String savedFor(String what, String name) {
+    return '$what saved for $name';
+  }
+
+  @override
+  String get reminders => 'Reminders';
+
+  @override
+  String get noReminders => 'No custom reminders.';
+
+  @override
+  String newReminderFor(String name) {
+    return 'New reminder for $name';
+  }
+
+  @override
+  String get reminderTitle => 'What should we remind you about?';
+
+  @override
+  String get repeat => 'Repeat';
+
+  @override
+  String get repeatNone => 'Don\'t repeat';
+
+  @override
+  String get repeatMonthly => 'Every month';
+
+  @override
+  String get repeatYearly => 'Every year';
+
+  @override
+  String get reminderSet => 'Reminder set';
+
+  @override
+  String get remTypeLicence => 'Licence renewal';
+
+  @override
+  String get remTypeInsurance => 'Insurance renewal';
+
+  @override
+  String get remTypeGrooming => 'Grooming due';
+
+  @override
+  String get remTypeNailTrim => 'Nail trim';
+
+  @override
+  String get remTypeBirthday => 'Birthday';
+
+  @override
+  String get remTypeCustom => 'Something else';
+
+  @override
+  String remVaccineDue(String name, String vaccine) {
+    return '$name\'s $vaccine is due soon';
+  }
+
+  @override
+  String remVaccineOverdue(String name, String vaccine) {
+    return '$name\'s $vaccine is overdue';
+  }
+
+  @override
+  String remMedicine(String name, String medicine) {
+    return 'Time for $name\'s $medicine';
+  }
+
+  @override
+  String remRefill(String medicine, String name) {
+    return '$medicine for $name is running low';
+  }
+
+  @override
+  String remDeworming(String name) {
+    return '$name\'s deworming is due';
+  }
+
+  @override
+  String remFleaTick(String name) {
+    return '$name\'s flea and tick prevention is due';
+  }
+
+  @override
+  String get remTapToOpen => 'Tap to open PawSetu';
+
+  @override
+  String get remSnoozed => 'Snoozed for 15 minutes';
+
+  @override
+  String get markAllRead => 'Mark all read';
+
+  @override
+  String get filterAll => 'All';
+
+  @override
+  String get filterUnread => 'Unread';
+
+  @override
+  String get filterBookings => 'Bookings';
+
+  @override
+  String get filterOrdersMessages => 'Orders and messages';
+
+  @override
+  String get noNotificationsTitle => 'You\'re all caught up';
+
+  @override
+  String get noNotificationsBody => 'Reminders and updates will appear here.';
+
+  @override
+  String get ntVaccines => 'Vaccines';
+
+  @override
+  String get ntMedicines => 'Medicines';
+
+  @override
+  String get ntDeworming => 'Deworming and flea/tick';
+
+  @override
+  String get ntBookings => 'Bookings';
+
+  @override
+  String get ntRoutine => 'Daily routine';
+
+  @override
+  String get ntCustom => 'My reminders';
+
+  @override
+  String get chPush => 'Push';
+
+  @override
+  String get chEmail => 'Email';
+
+  @override
+  String get chSms => 'SMS';
+
+  @override
+  String get chWhatsApp => 'WhatsApp';
+
+  @override
+  String get channelsDemoNote =>
+      'Demo: push reminders are real on your phone. Email, SMS and WhatsApp go to the Demo Outbox instead of being sent.';
+
+  @override
+  String get quietHours => 'Quiet hours';
+
+  @override
+  String get quietHoursOn => 'Don\'t disturb at night';
+
+  @override
+  String get quietHoursHint =>
+      'Reminders wait until morning. Medicine reminders always ring on time.';
+
+  @override
+  String get notificationsOn => 'Notifications are on';
+
+  @override
+  String get notificationsOffHint =>
+      'Notifications are off. You can turn them on in your phone\'s settings.';
+
+  @override
+  String get preparingDocument => 'Preparing your document…';
+
+  @override
+  String get sharePdf => 'Share or save PDF';
+
+  @override
+  String generatedOn(String date) {
+    return 'Generated $date';
+  }
+
+  @override
+  String get reportFooter =>
+      'Made with PawSetu · Demo data · Indicative, always confirm with your vet';
+
+  @override
+  String get ownerAndClinic => 'Owner and clinic';
+
+  @override
+  String get noKnownAllergies => 'No known allergies';
+
+  @override
+  String get currentMedicines => 'Current medicines';
+
+  @override
+  String get rabiesVaccine => 'Rabies vaccine';
+
+  @override
+  String get notRecorded => 'Not recorded';
+
+  @override
+  String medicalCardUpdated(String date) {
+    return 'Updated $date';
+  }
+
+  @override
+  String get medicalCardOffline =>
+      'This card works without internet. Show it to a vet, a boarding centre or at the airport.';
 }

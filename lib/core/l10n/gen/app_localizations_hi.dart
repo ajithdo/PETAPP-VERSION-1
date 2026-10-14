@@ -1711,4 +1711,623 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get demoTemperature => 'डेमो तापमान';
+
+  @override
+  String get add => 'जोड़ें';
+
+  @override
+  String get record => 'दर्ज करें';
+
+  @override
+  String get date => 'तारीख';
+
+  @override
+  String get status => 'स्थिति';
+
+  @override
+  String get type => 'प्रकार';
+
+  @override
+  String get owner => 'मालिक';
+
+  @override
+  String get from => 'से';
+
+  @override
+  String get to => 'तक';
+
+  @override
+  String get markDone => 'हो गया मार्क करें';
+
+  @override
+  String get indicativeNote =>
+      'अनुमानित है, हमेशा अपने पशु चिकित्सक से पुष्टि करें।';
+
+  @override
+  String healthOf(String name) {
+    return '$name की सेहत';
+  }
+
+  @override
+  String get choosePetForHealth => 'एक पालतू चुनें';
+
+  @override
+  String itemsNeedAttention(int count) {
+    return '$count पर ध्यान दें';
+  }
+
+  @override
+  String get nextUp => 'आगे क्या है';
+
+  @override
+  String nothingDue(String name) {
+    return '$name के लिए अभी कुछ बकाया नहीं।';
+  }
+
+  @override
+  String get nothingDueAll => 'सब ठीक है। इस हफ़्ते कुछ बकाया नहीं।';
+
+  @override
+  String get healthReport => 'हेल्थ रिपोर्ट';
+
+  @override
+  String healthReportOf(String name) {
+    return '$name की हेल्थ रिपोर्ट';
+  }
+
+  @override
+  String get medicalCard => 'मेडिकल कार्ड';
+
+  @override
+  String get statusDone => 'हो गया';
+
+  @override
+  String get statusOverdue => 'समय निकल गया';
+
+  @override
+  String get statusDueSoon => 'जल्द बकाया';
+
+  @override
+  String get statusUpcoming => 'आने वाला';
+
+  @override
+  String get statusAskVet => 'डॉक्टर से पूछें';
+
+  @override
+  String get askYourVet => 'अपने डॉक्टर से पूछें';
+
+  @override
+  String get dose => 'खुराक';
+
+  @override
+  String doseN(int n) {
+    return 'खुराक $n';
+  }
+
+  @override
+  String get booster => 'बूस्टर';
+
+  @override
+  String get optionalVaccine => 'वैकल्पिक (डॉक्टर की सलाह पर)';
+
+  @override
+  String get vaccinations => 'टीकाकरण';
+
+  @override
+  String get vaccine => 'टीका';
+
+  @override
+  String get vaccineName => 'टीके का नाम';
+
+  @override
+  String get otherVaccine => 'अन्य टीका';
+
+  @override
+  String recordVaccineFor(String name) {
+    return '$name का टीका दर्ज करें';
+  }
+
+  @override
+  String get dateGiven => 'दिया गया';
+
+  @override
+  String get vaccineBrand => 'टीके का ब्रांड';
+
+  @override
+  String get batchNumber => 'बैच नंबर';
+
+  @override
+  String get vetName => 'डॉक्टर का नाम';
+
+  @override
+  String get clinicName => 'क्लिनिक';
+
+  @override
+  String get attachCertificate => 'प्रमाणपत्र की फ़ोटो लगाएँ';
+
+  @override
+  String get certificateAttached => 'प्रमाणपत्र लगा (तिजोरी में सहेजा)';
+
+  @override
+  String vaccineRecorded(String vaccine, String name) {
+    return '$name का $vaccine दर्ज हुआ';
+  }
+
+  @override
+  String givenOn(String date) {
+    return '$date को दिया';
+  }
+
+  @override
+  String dueOn(String date) {
+    return '$date को बकाया';
+  }
+
+  @override
+  String get nextDueShort => 'अगली बार';
+
+  @override
+  String get catchUpNote =>
+      'अभी टीकों का इतिहास नहीं है। डॉक्टर से कैच-अप प्लान पूछें और पुराने टीके \'दर्ज करें\' से जोड़ें।';
+
+  @override
+  String get rabbitVaccineNote =>
+      'भारत में खरगोशों के लिए कोई तय टीका कार्यक्रम नहीं है। विदेशी जानवरों के डॉक्टर से पूछें; हर 6–12 महीने जाँच कराना अच्छा है।';
+
+  @override
+  String get birdVaccineNote =>
+      'आम पालतू पक्षियों को नियमित टीके नहीं चाहिए। हर साल पक्षियों के डॉक्टर से जाँच कराएँ, नाखून और चोंच पर नज़र रखें।';
+
+  @override
+  String get medicines => 'दवाएँ';
+
+  @override
+  String get medicineName => 'दवा';
+
+  @override
+  String addMedicineFor(String name) {
+    return '$name के लिए दवा जोड़ें';
+  }
+
+  @override
+  String get editMedicine => 'दवा बदलें';
+
+  @override
+  String get unit => 'इकाई';
+
+  @override
+  String get unitTablet => 'गोली';
+
+  @override
+  String get unitMl => 'मि.ली.';
+
+  @override
+  String get unitDrops => 'बूँदें';
+
+  @override
+  String get unitMg => 'मि.ग्रा.';
+
+  @override
+  String get unitCapsule => 'कैप्सूल';
+
+  @override
+  String get unitSachet => 'पाउच';
+
+  @override
+  String get frequency => 'कितनी बार';
+
+  @override
+  String get freqOnce => 'दिन में एक बार';
+
+  @override
+  String get freqTwice => 'दिन में दो बार';
+
+  @override
+  String freqEveryHours(int hours) {
+    return 'हर $hours घंटे';
+  }
+
+  @override
+  String get freqWeekly => 'हफ़्ते में एक बार';
+
+  @override
+  String get freqCustom => 'अपने समय';
+
+  @override
+  String get doseTimes => 'खुराक का समय';
+
+  @override
+  String get firstDoseAt => 'पहली खुराक';
+
+  @override
+  String get addTime => 'समय जोड़ें';
+
+  @override
+  String get withFood => 'खाने के साथ';
+
+  @override
+  String get startDate => 'शुरू होने की तारीख';
+
+  @override
+  String get noEndDate => 'कोई अंतिम तारीख नहीं';
+
+  @override
+  String endsOn(String date) {
+    return '$date को खत्म';
+  }
+
+  @override
+  String get setEndDate => 'अंतिम तारीख चुनें';
+
+  @override
+  String get stockCount => 'स्टॉक में खुराक (वैकल्पिक)';
+
+  @override
+  String get stockHint => '5 बचने पर हम दोबारा मँगाने की याद दिलाएँगे';
+
+  @override
+  String medicineSaved(String name) {
+    return '$name सहेजी गई';
+  }
+
+  @override
+  String noMedicines(String name) {
+    return '$name कोई दवा नहीं ले रहा।';
+  }
+
+  @override
+  String nextDoseAt(String time) {
+    return 'अगली: $time';
+  }
+
+  @override
+  String stockLeft(int count) {
+    return '$count बची';
+  }
+
+  @override
+  String get refill => 'दोबारा मँगाएँ';
+
+  @override
+  String refillNeeded(String name) {
+    return '$name दोबारा मँगाएँ';
+  }
+
+  @override
+  String get given => 'दे दी';
+
+  @override
+  String get snooze15 => '15 मिनट बाद';
+
+  @override
+  String doseGiven(String name) {
+    return '$name दी गई';
+  }
+
+  @override
+  String get doseSkipped => 'खुराक छोड़ी';
+
+  @override
+  String get doseSnoozed => 'हम 15 मिनट में याद दिलाएँगे';
+
+  @override
+  String todayAt(String time) {
+    return 'आज, $time';
+  }
+
+  @override
+  String overdueBy(int days) {
+    return '$days दिन देर';
+  }
+
+  @override
+  String get dueToday => 'आज बकाया';
+
+  @override
+  String dueInDays(int days) {
+    return '$days दिन में';
+  }
+
+  @override
+  String get prevention => 'कृमिनाशक और पिस्सू/किलनी';
+
+  @override
+  String get deworming => 'कृमिनाशक';
+
+  @override
+  String get fleaTick => 'पिस्सू और किलनी से बचाव';
+
+  @override
+  String lastDone(String date) {
+    return 'पिछली $date';
+  }
+
+  @override
+  String nextDue(String date) {
+    return 'अगली $date';
+  }
+
+  @override
+  String get tickFeverNote =>
+      'भारत में टिक फीवर आम है। पिस्सू और किलनी से बचाव समय पर करें।';
+
+  @override
+  String get productUsed => 'इस्तेमाल की गई दवा';
+
+  @override
+  String get weightNeedsTwo => 'चार्ट देखने के लिए दो या ज़्यादा वज़न जोड़ें।';
+
+  @override
+  String weightRangeNote(String range) {
+    return 'हरी पट्टी: अनुमानित स्वस्थ सीमा $range। डॉक्टर से ज़रूर पूछें।';
+  }
+
+  @override
+  String get weightGrowingNote =>
+      'अभी बढ़ रहा है। सही वज़न आपके डॉक्टर बताएँगे।';
+
+  @override
+  String get vetVisit => 'डॉक्टर विज़िट';
+
+  @override
+  String get vetVisits => 'डॉक्टर विज़िट';
+
+  @override
+  String get reasonForVisit => 'आने का कारण';
+
+  @override
+  String get diagnosis => 'निदान या सलाह';
+
+  @override
+  String get noVisits => 'अभी कोई डॉक्टर विज़िट दर्ज नहीं।';
+
+  @override
+  String get symptom => 'लक्षण';
+
+  @override
+  String get symptomDiary => 'लक्षण डायरी';
+
+  @override
+  String get noSymptoms => 'कोई लक्षण नहीं। यह अच्छी खबर है।';
+
+  @override
+  String get severity => 'कितना गंभीर है?';
+
+  @override
+  String get severeSymptomNote =>
+      'अगर पालतू को साँस लेने में दिक्कत, बेहोशी, दौरा या ज़हर खाने का शक हो, तो अभी SOS दबाएँ।';
+
+  @override
+  String get shareWithVet => 'डॉक्टर से साझा करें';
+
+  @override
+  String symptomShareTitle(String name) {
+    return '$name की लक्षण डायरी (PawSetu)';
+  }
+
+  @override
+  String get symVomiting => 'उल्टी';
+
+  @override
+  String get symDiarrhoea => 'दस्त';
+
+  @override
+  String get symNotEating => 'खाना नहीं खा रहा';
+
+  @override
+  String get symLimping => 'लँगड़ाना';
+
+  @override
+  String get symItching => 'खुजली';
+
+  @override
+  String get symCoughing => 'खाँसी';
+
+  @override
+  String get symLethargy => 'बहुत सुस्त';
+
+  @override
+  String get symSneezing => 'छींकना';
+
+  @override
+  String get symOther => 'अन्य';
+
+  @override
+  String savedFor(String what, String name) {
+    return '$name के लिए $what सहेजा';
+  }
+
+  @override
+  String get reminders => 'रिमाइंडर';
+
+  @override
+  String get noReminders => 'कोई अपना रिमाइंडर नहीं।';
+
+  @override
+  String newReminderFor(String name) {
+    return '$name के लिए नया रिमाइंडर';
+  }
+
+  @override
+  String get reminderTitle => 'किस बात की याद दिलाएँ?';
+
+  @override
+  String get repeat => 'दोहराएँ';
+
+  @override
+  String get repeatNone => 'न दोहराएँ';
+
+  @override
+  String get repeatMonthly => 'हर महीने';
+
+  @override
+  String get repeatYearly => 'हर साल';
+
+  @override
+  String get reminderSet => 'रिमाइंडर लग गया';
+
+  @override
+  String get remTypeLicence => 'लाइसेंस नवीनीकरण';
+
+  @override
+  String get remTypeInsurance => 'बीमा नवीनीकरण';
+
+  @override
+  String get remTypeGrooming => 'ग्रूमिंग का समय';
+
+  @override
+  String get remTypeNailTrim => 'नाखून काटना';
+
+  @override
+  String get remTypeBirthday => 'जन्मदिन';
+
+  @override
+  String get remTypeCustom => 'कुछ और';
+
+  @override
+  String remVaccineDue(String name, String vaccine) {
+    return '$name का $vaccine जल्द बकाया है';
+  }
+
+  @override
+  String remVaccineOverdue(String name, String vaccine) {
+    return '$name का $vaccine बकाया है';
+  }
+
+  @override
+  String remMedicine(String name, String medicine) {
+    return '$name की $medicine का समय';
+  }
+
+  @override
+  String remRefill(String medicine, String name) {
+    return '$name की $medicine कम बची है';
+  }
+
+  @override
+  String remDeworming(String name) {
+    return '$name का कृमिनाशक बकाया है';
+  }
+
+  @override
+  String remFleaTick(String name) {
+    return '$name का पिस्सू-किलनी बचाव बकाया है';
+  }
+
+  @override
+  String get remTapToOpen => 'PawSetu खोलने के लिए टैप करें';
+
+  @override
+  String get remSnoozed => '15 मिनट के लिए टाला';
+
+  @override
+  String get markAllRead => 'सब पढ़ा हुआ करें';
+
+  @override
+  String get filterAll => 'सभी';
+
+  @override
+  String get filterUnread => 'बिना पढ़े';
+
+  @override
+  String get filterBookings => 'बुकिंग';
+
+  @override
+  String get filterOrdersMessages => 'ऑर्डर और संदेश';
+
+  @override
+  String get noNotificationsTitle => 'सब देख लिया';
+
+  @override
+  String get noNotificationsBody => 'रिमाइंडर और अपडेट यहाँ दिखेंगे।';
+
+  @override
+  String get ntVaccines => 'टीके';
+
+  @override
+  String get ntMedicines => 'दवाएँ';
+
+  @override
+  String get ntDeworming => 'कृमिनाशक और पिस्सू/किलनी';
+
+  @override
+  String get ntBookings => 'बुकिंग';
+
+  @override
+  String get ntRoutine => 'रोज़ की दिनचर्या';
+
+  @override
+  String get ntCustom => 'मेरे रिमाइंडर';
+
+  @override
+  String get chPush => 'पुश';
+
+  @override
+  String get chEmail => 'ईमेल';
+
+  @override
+  String get chSms => 'SMS';
+
+  @override
+  String get chWhatsApp => 'WhatsApp';
+
+  @override
+  String get channelsDemoNote =>
+      'डेमो: फ़ोन पर पुश रिमाइंडर असली हैं। ईमेल, SMS और WhatsApp भेजे नहीं जाते, डेमो आउटबॉक्स में जाते हैं।';
+
+  @override
+  String get quietHours => 'शांत समय';
+
+  @override
+  String get quietHoursOn => 'रात में परेशान न करें';
+
+  @override
+  String get quietHoursHint =>
+      'रिमाइंडर सुबह तक रुकेंगे। दवा के रिमाइंडर हमेशा समय पर बजेंगे।';
+
+  @override
+  String get notificationsOn => 'सूचनाएँ चालू हैं';
+
+  @override
+  String get notificationsOffHint =>
+      'सूचनाएँ बंद हैं। फ़ोन की सेटिंग्स में चालू कर सकते हैं।';
+
+  @override
+  String get preparingDocument => 'आपका दस्तावेज़ तैयार हो रहा है…';
+
+  @override
+  String get sharePdf => 'PDF साझा करें या सहेजें';
+
+  @override
+  String generatedOn(String date) {
+    return '$date को बनाया';
+  }
+
+  @override
+  String get reportFooter =>
+      'PawSetu से बनाया · डेमो डेटा · अनुमानित, डॉक्टर से पुष्टि करें';
+
+  @override
+  String get ownerAndClinic => 'मालिक और क्लिनिक';
+
+  @override
+  String get noKnownAllergies => 'कोई ज्ञात एलर्जी नहीं';
+
+  @override
+  String get currentMedicines => 'चल रही दवाएँ';
+
+  @override
+  String get rabiesVaccine => 'रेबीज़ टीका';
+
+  @override
+  String get notRecorded => 'दर्ज नहीं';
+
+  @override
+  String medicalCardUpdated(String date) {
+    return '$date को अपडेट';
+  }
+
+  @override
+  String get medicalCardOffline =>
+      'यह कार्ड बिना इंटरनेट के चलता है। डॉक्टर, बोर्डिंग सेंटर या एयरपोर्ट पर दिखाएँ।';
 }

@@ -1043,5 +1043,447 @@
       }
     }
   },
-  "demoTemperature": "Demo temperature"
+  "demoTemperature": "Demo temperature",
+  "add": "Add",
+  "record": "Record",
+  "date": "Date",
+  "status": "Status",
+  "type": "Type",
+  "owner": "Owner",
+  "from": "From",
+  "to": "To",
+  "markDone": "Mark done",
+  "indicativeNote": "Indicative, always confirm with your vet.",
+  "healthOf": "{name}'s health",
+  "@healthOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "choosePetForHealth": "Choose a pet",
+  "itemsNeedAttention": "{count} need attention",
+  "@itemsNeedAttention": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nextUp": "Next up",
+  "nothingDue": "Nothing due for {name} right now.",
+  "@nothingDue": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "nothingDueAll": "All caught up. Nothing due this week.",
+  "healthReport": "Health report",
+  "healthReportOf": "{name}'s health report",
+  "@healthReportOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "medicalCard": "Medical card",
+  "statusDone": "Done",
+  "statusOverdue": "Overdue",
+  "statusDueSoon": "Due soon",
+  "statusUpcoming": "Upcoming",
+  "statusAskVet": "Ask your vet",
+  "askYourVet": "Ask your vet",
+  "dose": "Dose",
+  "doseN": "Dose {n}",
+  "@doseN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "booster": "Booster",
+  "optionalVaccine": "Optional (vet advises)",
+  "vaccinations": "Vaccinations",
+  "vaccine": "Vaccine",
+  "vaccineName": "Vaccine name",
+  "otherVaccine": "Other vaccine",
+  "recordVaccineFor": "Record a vaccine for {name}",
+  "@recordVaccineFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dateGiven": "Date given",
+  "vaccineBrand": "Vaccine brand",
+  "batchNumber": "Batch number",
+  "vetName": "Vet's name",
+  "clinicName": "Clinic",
+  "attachCertificate": "Attach certificate photo",
+  "certificateAttached": "Certificate attached (saved to the vault)",
+  "vaccineRecorded": "{vaccine} recorded for {name}",
+  "@vaccineRecorded": {
+    "placeholders": {
+      "vaccine": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "givenOn": "Given {date}",
+  "@givenOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dueOn": "Due {date}",
+  "@dueOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "nextDueShort": "Next due",
+  "catchUpNote": "No vaccine history yet. Ask your vet for a catch-up plan, and add past vaccines with Record.",
+  "rabbitVaccineNote": "There is no standard routine vaccine schedule for rabbits in India. Check with an exotic-animal vet; a health check every 6–12 months is a good idea.",
+  "birdVaccineNote": "Common pet birds don't need routine vaccines. Plan a yearly avian vet check, and keep an eye on nails and beak.",
+  "medicines": "Medicines",
+  "medicineName": "Medicine",
+  "addMedicineFor": "Add a medicine for {name}",
+  "@addMedicineFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editMedicine": "Edit medicine",
+  "unit": "Unit",
+  "unitTablet": "tablet",
+  "unitMl": "ml",
+  "unitDrops": "drops",
+  "unitMg": "mg",
+  "unitCapsule": "capsule",
+  "unitSachet": "sachet",
+  "frequency": "How often",
+  "freqOnce": "Once a day",
+  "freqTwice": "Twice a day",
+  "freqEveryHours": "Every {hours} hours",
+  "@freqEveryHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "freqWeekly": "Once a week",
+  "freqCustom": "Custom times",
+  "doseTimes": "Dose times",
+  "firstDoseAt": "First dose at",
+  "addTime": "Add time",
+  "withFood": "With food",
+  "startDate": "Start date",
+  "noEndDate": "No end date",
+  "endsOn": "Ends {date}",
+  "@endsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "setEndDate": "Set end date",
+  "stockCount": "Doses in stock (optional)",
+  "stockHint": "We'll remind you to refill when 5 are left",
+  "medicineSaved": "{name} saved",
+  "@medicineSaved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noMedicines": "{name} isn't on any medicine.",
+  "@noMedicines": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "nextDoseAt": "Next: {time}",
+  "@nextDoseAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "stockLeft": "{count} left",
+  "@stockLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "refill": "Refill",
+  "refillNeeded": "Refill {name}",
+  "@refillNeeded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "given": "Given",
+  "snooze15": "Snooze 15 min",
+  "doseGiven": "{name} marked as given",
+  "@doseGiven": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "doseSkipped": "Dose skipped",
+  "doseSnoozed": "We'll remind you in 15 minutes",
+  "todayAt": "Today, {time}",
+  "@todayAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "overdueBy": "{days, plural, =1{1 day overdue} other{{days} days overdue}}",
+  "@overdueBy": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "dueToday": "Due today",
+  "dueInDays": "{days, plural, =1{Due tomorrow} other{Due in {days} days}}",
+  "@dueInDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "prevention": "Deworming and flea/tick",
+  "deworming": "Deworming",
+  "fleaTick": "Flea and tick prevention",
+  "lastDone": "Last {date}",
+  "@lastDone": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "nextDue": "Next {date}",
+  "@nextDue": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "tickFeverNote": "Tick fever is common in India. Keep flea and tick prevention up to date.",
+  "productUsed": "Product used",
+  "weightNeedsTwo": "Add two or more weights to see the chart.",
+  "weightRangeNote": "Green band: indicative healthy range {range}. Always confirm with your vet.",
+  "@weightRangeNote": {
+    "placeholders": {
+      "range": {
+        "type": "String"
+      }
+    }
+  },
+  "weightGrowingNote": "Still growing. Your vet will tell you the right weight.",
+  "vetVisit": "Vet visit",
+  "vetVisits": "Vet visits",
+  "reasonForVisit": "Reason for visit",
+  "diagnosis": "Diagnosis or advice",
+  "noVisits": "No vet visits recorded yet.",
+  "symptom": "Symptom",
+  "symptomDiary": "Symptom diary",
+  "noSymptoms": "No symptoms noted. That's good news.",
+  "severity": "How bad is it?",
+  "severeSymptomNote": "If your pet has trouble breathing, collapses, has a seizure or may have eaten poison, use SOS now.",
+  "shareWithVet": "Share with vet",
+  "symptomShareTitle": "{name}'s symptom diary (PawSetu)",
+  "@symptomShareTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "symVomiting": "Vomiting",
+  "symDiarrhoea": "Diarrhoea",
+  "symNotEating": "Not eating",
+  "symLimping": "Limping",
+  "symItching": "Itching",
+  "symCoughing": "Coughing",
+  "symLethargy": "Very tired",
+  "symSneezing": "Sneezing",
+  "symOther": "Other",
+  "savedFor": "{what} saved for {name}",
+  "@savedFor": {
+    "placeholders": {
+      "what": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reminders": "Reminders",
+  "noReminders": "No custom reminders.",
+  "newReminderFor": "New reminder for {name}",
+  "@newReminderFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderTitle": "What should we remind you about?",
+  "repeat": "Repeat",
+  "repeatNone": "Don't repeat",
+  "repeatMonthly": "Every month",
+  "repeatYearly": "Every year",
+  "reminderSet": "Reminder set",
+  "remTypeLicence": "Licence renewal",
+  "remTypeInsurance": "Insurance renewal",
+  "remTypeGrooming": "Grooming due",
+  "remTypeNailTrim": "Nail trim",
+  "remTypeBirthday": "Birthday",
+  "remTypeCustom": "Something else",
+  "remVaccineDue": "{name}'s {vaccine} is due soon",
+  "@remVaccineDue": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "vaccine": {
+        "type": "String"
+      }
+    }
+  },
+  "remVaccineOverdue": "{name}'s {vaccine} is overdue",
+  "@remVaccineOverdue": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "vaccine": {
+        "type": "String"
+      }
+    }
+  },
+  "remMedicine": "Time for {name}'s {medicine}",
+  "@remMedicine": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "medicine": {
+        "type": "String"
+      }
+    }
+  },
+  "remRefill": "{medicine} for {name} is running low",
+  "@remRefill": {
+    "placeholders": {
+      "medicine": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "remDeworming": "{name}'s deworming is due",
+  "@remDeworming": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "remFleaTick": "{name}'s flea and tick prevention is due",
+  "@remFleaTick": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "remTapToOpen": "Tap to open PawSetu",
+  "remSnoozed": "Snoozed for 15 minutes",
+  "markAllRead": "Mark all read",
+  "filterAll": "All",
+  "filterUnread": "Unread",
+  "filterBookings": "Bookings",
+  "filterOrdersMessages": "Orders and messages",
+  "noNotificationsTitle": "You're all caught up",
+  "noNotificationsBody": "Reminders and updates will appear here.",
+  "ntVaccines": "Vaccines",
+  "ntMedicines": "Medicines",
+  "ntDeworming": "Deworming and flea/tick",
+  "ntBookings": "Bookings",
+  "ntRoutine": "Daily routine",
+  "ntCustom": "My reminders",
+  "chPush": "Push",
+  "chEmail": "Email",
+  "chSms": "SMS",
+  "chWhatsApp": "WhatsApp",
+  "channelsDemoNote": "Demo: push reminders are real on your phone. Email, SMS and WhatsApp go to the Demo Outbox instead of being sent.",
+  "quietHours": "Quiet hours",
+  "quietHoursOn": "Don't disturb at night",
+  "quietHoursHint": "Reminders wait until morning. Medicine reminders always ring on time.",
+  "notificationsOn": "Notifications are on",
+  "notificationsOffHint": "Notifications are off. You can turn them on in your phone's settings.",
+  "preparingDocument": "Preparing your document…",
+  "sharePdf": "Share or save PDF",
+  "generatedOn": "Generated {date}",
+  "@generatedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "reportFooter": "Made with PawSetu · Demo data · Indicative, always confirm with your vet",
+  "ownerAndClinic": "Owner and clinic",
+  "noKnownAllergies": "No known allergies",
+  "currentMedicines": "Current medicines",
+  "rabiesVaccine": "Rabies vaccine",
+  "notRecorded": "Not recorded",
+  "medicalCardUpdated": "Updated {date}",
+  "@medicalCardUpdated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "medicalCardOffline": "This card works without internet. Show it to a vet, a boarding centre or at the airport."
 }

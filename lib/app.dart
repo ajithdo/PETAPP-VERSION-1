@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/l10n/gen/app_localizations.dart';
+import 'features/health/application/reminder_engine.dart';
 import 'core/providers.dart';
 import 'core/routing/router.dart';
 import 'core/settings/settings_controller.dart';
@@ -15,6 +16,8 @@ class PawSetuApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
     final router = ref.watch(routerProvider);
+    // Reminders run while an owner is signed in.
+    ref.watch(reminderEngineProvider);
 
     // Apply the language and Easy mode saved on the signed-in profile.
     ref.listen(currentUserProvider, (prev, next) async {

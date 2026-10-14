@@ -1720,4 +1720,624 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get demoTemperature => 'డెమో ఉష్ణోగ్రత';
+
+  @override
+  String get add => 'జోడించండి';
+
+  @override
+  String get record => 'నమోదు';
+
+  @override
+  String get date => 'తేదీ';
+
+  @override
+  String get status => 'స్థితి';
+
+  @override
+  String get type => 'రకం';
+
+  @override
+  String get owner => 'యజమాని';
+
+  @override
+  String get from => 'నుండి';
+
+  @override
+  String get to => 'వరకు';
+
+  @override
+  String get markDone => 'పూర్తయిందని గుర్తించండి';
+
+  @override
+  String get indicativeNote =>
+      'సుమారు మాత్రమే, ఎల్లప్పుడూ మీ వెట్‌తో నిర్ధారించుకోండి.';
+
+  @override
+  String healthOf(String name) {
+    return '$name ఆరోగ్యం';
+  }
+
+  @override
+  String get choosePetForHealth => 'ఒక పెంపుడు జంతువును ఎంచుకోండి';
+
+  @override
+  String itemsNeedAttention(int count) {
+    return '$count గమనించాలి';
+  }
+
+  @override
+  String get nextUp => 'తర్వాత ఏమిటి';
+
+  @override
+  String nothingDue(String name) {
+    return '$nameకి ప్రస్తుతం ఏమీ బాకీ లేదు.';
+  }
+
+  @override
+  String get nothingDueAll => 'అన్నీ పూర్తి. ఈ వారం ఏమీ బాకీ లేదు.';
+
+  @override
+  String get healthReport => 'ఆరోగ్య నివేదిక';
+
+  @override
+  String healthReportOf(String name) {
+    return '$name ఆరోగ్య నివేదిక';
+  }
+
+  @override
+  String get medicalCard => 'మెడికల్ కార్డ్';
+
+  @override
+  String get statusDone => 'పూర్తి';
+
+  @override
+  String get statusOverdue => 'గడువు దాటింది';
+
+  @override
+  String get statusDueSoon => 'త్వరలో';
+
+  @override
+  String get statusUpcoming => 'రాబోతోంది';
+
+  @override
+  String get statusAskVet => 'వెట్‌ని అడగండి';
+
+  @override
+  String get askYourVet => 'మీ వెట్‌ని అడగండి';
+
+  @override
+  String get dose => 'మోతాదు';
+
+  @override
+  String doseN(int n) {
+    return 'మోతాదు $n';
+  }
+
+  @override
+  String get booster => 'బూస్టర్';
+
+  @override
+  String get optionalVaccine => 'ఐచ్ఛికం (వెట్ సలహాతో)';
+
+  @override
+  String get vaccinations => 'టీకాలు';
+
+  @override
+  String get vaccine => 'టీకా';
+
+  @override
+  String get vaccineName => 'టీకా పేరు';
+
+  @override
+  String get otherVaccine => 'ఇతర టీకా';
+
+  @override
+  String recordVaccineFor(String name) {
+    return '$name టీకా నమోదు చేయండి';
+  }
+
+  @override
+  String get dateGiven => 'ఇచ్చిన తేదీ';
+
+  @override
+  String get vaccineBrand => 'టీకా బ్రాండ్';
+
+  @override
+  String get batchNumber => 'బ్యాచ్ నంబర్';
+
+  @override
+  String get vetName => 'వెట్ పేరు';
+
+  @override
+  String get clinicName => 'క్లినిక్';
+
+  @override
+  String get attachCertificate => 'సర్టిఫికెట్ ఫోటో జోడించండి';
+
+  @override
+  String get certificateAttached => 'సర్టిఫికెట్ జోడించారు (వాల్ట్‌లో సేవ్)';
+
+  @override
+  String vaccineRecorded(String vaccine, String name) {
+    return '$name కోసం $vaccine నమోదైంది';
+  }
+
+  @override
+  String givenOn(String date) {
+    return '$dateన ఇచ్చారు';
+  }
+
+  @override
+  String dueOn(String date) {
+    return '$dateకి రావాలి';
+  }
+
+  @override
+  String get nextDueShort => 'తదుపరి';
+
+  @override
+  String get catchUpNote =>
+      'ఇంకా టీకాల చరిత్ర లేదు. క్యాచ్-అప్ ప్లాన్ కోసం వెట్‌ని అడగండి, పాత టీకాలు \'నమోదు\'తో జోడించండి.';
+
+  @override
+  String get rabbitVaccineNote =>
+      'భారతదేశంలో కుందేళ్ళకు ప్రామాణిక టీకా షెడ్యూల్ లేదు. ఎక్సోటిక్ జంతువుల వెట్‌ని అడగండి; ప్రతి 6–12 నెలలకు ఆరోగ్య పరీక్ష మంచిది.';
+
+  @override
+  String get birdVaccineNote =>
+      'సాధారణ పెంపుడు పక్షులకు రొటీన్ టీకాలు అవసరం లేదు. ఏటా పక్షుల వెట్ పరీక్ష చేయించండి, గోళ్ళు, ముక్కు గమనించండి.';
+
+  @override
+  String get medicines => 'మందులు';
+
+  @override
+  String get medicineName => 'మందు';
+
+  @override
+  String addMedicineFor(String name) {
+    return '$name కోసం మందు జోడించండి';
+  }
+
+  @override
+  String get editMedicine => 'మందు సవరించండి';
+
+  @override
+  String get unit => 'యూనిట్';
+
+  @override
+  String get unitTablet => 'మాత్ర';
+
+  @override
+  String get unitMl => 'మి.లీ.';
+
+  @override
+  String get unitDrops => 'చుక్కలు';
+
+  @override
+  String get unitMg => 'మి.గ్రా.';
+
+  @override
+  String get unitCapsule => 'క్యాప్సూల్';
+
+  @override
+  String get unitSachet => 'సాచెట్';
+
+  @override
+  String get frequency => 'ఎంత తరచుగా';
+
+  @override
+  String get freqOnce => 'రోజుకు ఒకసారి';
+
+  @override
+  String get freqTwice => 'రోజుకు రెండుసార్లు';
+
+  @override
+  String freqEveryHours(int hours) {
+    return 'ప్రతి $hours గంటలకు';
+  }
+
+  @override
+  String get freqWeekly => 'వారానికి ఒకసారి';
+
+  @override
+  String get freqCustom => 'అనుకూల సమయాలు';
+
+  @override
+  String get doseTimes => 'మోతాదు సమయాలు';
+
+  @override
+  String get firstDoseAt => 'మొదటి మోతాదు';
+
+  @override
+  String get addTime => 'సమయం జోడించండి';
+
+  @override
+  String get withFood => 'ఆహారంతో';
+
+  @override
+  String get startDate => 'ప్రారంభ తేదీ';
+
+  @override
+  String get noEndDate => 'ముగింపు తేదీ లేదు';
+
+  @override
+  String endsOn(String date) {
+    return '$dateన ముగుస్తుంది';
+  }
+
+  @override
+  String get setEndDate => 'ముగింపు తేదీ సెట్ చేయండి';
+
+  @override
+  String get stockCount => 'స్టాక్‌లో మోతాదులు (ఐచ్ఛికం)';
+
+  @override
+  String get stockHint => '5 మిగిలినప్పుడు రీఫిల్ చేయమని గుర్తు చేస్తాం';
+
+  @override
+  String medicineSaved(String name) {
+    return '$name సేవ్ అయింది';
+  }
+
+  @override
+  String noMedicines(String name) {
+    return '$name ఏ మందూ తీసుకోవడం లేదు.';
+  }
+
+  @override
+  String nextDoseAt(String time) {
+    return 'తదుపరి: $time';
+  }
+
+  @override
+  String stockLeft(int count) {
+    return '$count మిగిలాయి';
+  }
+
+  @override
+  String get refill => 'రీఫిల్';
+
+  @override
+  String refillNeeded(String name) {
+    return '$name రీఫిల్ చేయండి';
+  }
+
+  @override
+  String get given => 'ఇచ్చాను';
+
+  @override
+  String get snooze15 => '15 ని. తర్వాత';
+
+  @override
+  String doseGiven(String name) {
+    return '$name ఇచ్చినట్టు గుర్తించాం';
+  }
+
+  @override
+  String get doseSkipped => 'మోతాదు దాటవేశారు';
+
+  @override
+  String get doseSnoozed => '15 నిమిషాల్లో గుర్తు చేస్తాం';
+
+  @override
+  String todayAt(String time) {
+    return 'ఈరోజు, $time';
+  }
+
+  @override
+  String overdueBy(int days) {
+    return '$days రోజులు ఆలస్యం';
+  }
+
+  @override
+  String get dueToday => 'ఈరోజు';
+
+  @override
+  String dueInDays(int days) {
+    return '$days రోజుల్లో';
+  }
+
+  @override
+  String get prevention => 'డీవార్మింగ్, ఈగలు/పేలు';
+
+  @override
+  String get deworming => 'డీవార్మింగ్';
+
+  @override
+  String get fleaTick => 'ఈగలు, పేలు నివారణ';
+
+  @override
+  String lastDone(String date) {
+    return 'చివరిసారి $date';
+  }
+
+  @override
+  String nextDue(String date) {
+    return 'తదుపరి $date';
+  }
+
+  @override
+  String get tickFeverNote =>
+      'భారతదేశంలో టిక్ ఫీవర్ సాధారణం. ఈగలు, పేలు నివారణ సమయానికి చేయండి.';
+
+  @override
+  String get productUsed => 'వాడిన ఉత్పత్తి';
+
+  @override
+  String get weightNeedsTwo =>
+      'చార్ట్ చూడటానికి రెండు లేదా ఎక్కువ బరువులు జోడించండి.';
+
+  @override
+  String weightRangeNote(String range) {
+    return 'ఆకుపచ్చ పట్టీ: సుమారు ఆరోగ్యకర పరిధి $range. వెట్‌ని తప్పక అడగండి.';
+  }
+
+  @override
+  String get weightGrowingNote =>
+      'ఇంకా పెరుగుతోంది. సరైన బరువు మీ వెట్ చెబుతారు.';
+
+  @override
+  String get vetVisit => 'వెట్ సందర్శన';
+
+  @override
+  String get vetVisits => 'వెట్ సందర్శనలు';
+
+  @override
+  String get reasonForVisit => 'సందర్శన కారణం';
+
+  @override
+  String get diagnosis => 'నిర్ధారణ లేదా సలహా';
+
+  @override
+  String get noVisits => 'ఇంకా వెట్ సందర్శనలు నమోదు కాలేదు.';
+
+  @override
+  String get symptom => 'లక్షణం';
+
+  @override
+  String get symptomDiary => 'లక్షణాల డైరీ';
+
+  @override
+  String get noSymptoms => 'లక్షణాలు లేవు. మంచి వార్త.';
+
+  @override
+  String get severity => 'ఎంత తీవ్రంగా ఉంది?';
+
+  @override
+  String get severeSymptomNote =>
+      'శ్వాస సమస్య, కుప్పకూలడం, మూర్ఛ లేదా విషం తిన్నట్టు అనుమానం ఉంటే ఇప్పుడే SOS వాడండి.';
+
+  @override
+  String get shareWithVet => 'వెట్‌తో షేర్ చేయండి';
+
+  @override
+  String symptomShareTitle(String name) {
+    return '$name లక్షణాల డైరీ (PawSetu)';
+  }
+
+  @override
+  String get symVomiting => 'వాంతులు';
+
+  @override
+  String get symDiarrhoea => 'విరేచనాలు';
+
+  @override
+  String get symNotEating => 'తినడం లేదు';
+
+  @override
+  String get symLimping => 'కుంటడం';
+
+  @override
+  String get symItching => 'దురద';
+
+  @override
+  String get symCoughing => 'దగ్గు';
+
+  @override
+  String get symLethargy => 'చాలా నీరసం';
+
+  @override
+  String get symSneezing => 'తుమ్ములు';
+
+  @override
+  String get symOther => 'ఇతర';
+
+  @override
+  String savedFor(String what, String name) {
+    return '$name కోసం $what సేవ్ అయింది';
+  }
+
+  @override
+  String get reminders => 'రిమైండర్లు';
+
+  @override
+  String get noReminders => 'అనుకూల రిమైండర్లు లేవు.';
+
+  @override
+  String newReminderFor(String name) {
+    return '$name కోసం కొత్త రిమైండర్';
+  }
+
+  @override
+  String get reminderTitle => 'దేని గురించి గుర్తు చేయాలి?';
+
+  @override
+  String get repeat => 'పునరావృతం';
+
+  @override
+  String get repeatNone => 'పునరావృతం వద్దు';
+
+  @override
+  String get repeatMonthly => 'ప్రతి నెల';
+
+  @override
+  String get repeatYearly => 'ప్రతి సంవత్సరం';
+
+  @override
+  String get reminderSet => 'రిమైండర్ సెట్ అయింది';
+
+  @override
+  String get remTypeLicence => 'లైసెన్స్ పునరుద్ధరణ';
+
+  @override
+  String get remTypeInsurance => 'బీమా పునరుద్ధరణ';
+
+  @override
+  String get remTypeGrooming => 'గ్రూమింగ్ సమయం';
+
+  @override
+  String get remTypeNailTrim => 'గోళ్ళు కత్తిరించడం';
+
+  @override
+  String get remTypeBirthday => 'పుట్టినరోజు';
+
+  @override
+  String get remTypeCustom => 'ఇంకేదైనా';
+
+  @override
+  String remVaccineDue(String name, String vaccine) {
+    return '$name $vaccine త్వరలో ఇవ్వాలి';
+  }
+
+  @override
+  String remVaccineOverdue(String name, String vaccine) {
+    return '$name $vaccine గడువు దాటింది';
+  }
+
+  @override
+  String remMedicine(String name, String medicine) {
+    return '$name $medicine సమయం';
+  }
+
+  @override
+  String remRefill(String medicine, String name) {
+    return '$name కోసం $medicine తక్కువగా ఉంది';
+  }
+
+  @override
+  String remDeworming(String name) {
+    return '$name డీవార్మింగ్ సమయం';
+  }
+
+  @override
+  String remFleaTick(String name) {
+    return '$name ఈగలు, పేలు నివారణ సమయం';
+  }
+
+  @override
+  String get remTapToOpen => 'PawSetu తెరవడానికి ట్యాప్ చేయండి';
+
+  @override
+  String get remSnoozed => '15 నిమిషాలు వాయిదా';
+
+  @override
+  String get markAllRead => 'అన్నీ చదివినట్టు';
+
+  @override
+  String get filterAll => 'అన్నీ';
+
+  @override
+  String get filterUnread => 'చదవనివి';
+
+  @override
+  String get filterBookings => 'బుకింగ్‌లు';
+
+  @override
+  String get filterOrdersMessages => 'ఆర్డర్లు, సందేశాలు';
+
+  @override
+  String get noNotificationsTitle => 'అన్నీ చూశారు';
+
+  @override
+  String get noNotificationsBody => 'రిమైండర్లు, అప్‌డేట్లు ఇక్కడ కనిపిస్తాయి.';
+
+  @override
+  String get ntVaccines => 'టీకాలు';
+
+  @override
+  String get ntMedicines => 'మందులు';
+
+  @override
+  String get ntDeworming => 'డీవార్మింగ్, ఈగలు/పేలు';
+
+  @override
+  String get ntBookings => 'బుకింగ్‌లు';
+
+  @override
+  String get ntRoutine => 'రోజువారీ దినచర్య';
+
+  @override
+  String get ntCustom => 'నా రిమైండర్లు';
+
+  @override
+  String get chPush => 'పుష్';
+
+  @override
+  String get chEmail => 'ఈమెయిల్';
+
+  @override
+  String get chSms => 'SMS';
+
+  @override
+  String get chWhatsApp => 'WhatsApp';
+
+  @override
+  String get channelsDemoNote =>
+      'డెమో: ఫోన్‌లో పుష్ రిమైండర్లు నిజమైనవి. ఈమెయిల్, SMS, WhatsApp పంపకుండా డెమో అవుట్‌బాక్స్‌కి వెళ్తాయి.';
+
+  @override
+  String get quietHours => 'నిశ్శబ్ద సమయం';
+
+  @override
+  String get quietHoursOn => 'రాత్రి ఇబ్బంది పెట్టవద్దు';
+
+  @override
+  String get quietHoursHint =>
+      'రిమైండర్లు ఉదయం వరకు ఆగుతాయి. మందుల రిమైండర్లు ఎప్పుడూ సమయానికే.';
+
+  @override
+  String get notificationsOn => 'నోటిఫికేషన్లు ఆన్';
+
+  @override
+  String get notificationsOffHint =>
+      'నోటిఫికేషన్లు ఆఫ్. ఫోన్ సెట్టింగ్స్‌లో ఆన్ చేయవచ్చు.';
+
+  @override
+  String get preparingDocument => 'మీ డాక్యుమెంట్ సిద్ధమవుతోంది…';
+
+  @override
+  String get sharePdf => 'PDF షేర్ లేదా సేవ్ చేయండి';
+
+  @override
+  String generatedOn(String date) {
+    return '$dateన రూపొందించారు';
+  }
+
+  @override
+  String get reportFooter =>
+      'PawSetuతో రూపొందించారు · డెమో డేటా · సుమారు మాత్రమే, వెట్‌తో నిర్ధారించుకోండి';
+
+  @override
+  String get ownerAndClinic => 'యజమాని, క్లినిక్';
+
+  @override
+  String get noKnownAllergies => 'తెలిసిన అలెర్జీలు లేవు';
+
+  @override
+  String get currentMedicines => 'ప్రస్తుత మందులు';
+
+  @override
+  String get rabiesVaccine => 'రేబీస్ టీకా';
+
+  @override
+  String get notRecorded => 'నమోదు కాలేదు';
+
+  @override
+  String medicalCardUpdated(String date) {
+    return '$dateన అప్‌డేట్';
+  }
+
+  @override
+  String get medicalCardOffline =>
+      'ఈ కార్డ్ ఇంటర్నెట్ లేకుండా పనిచేస్తుంది. వెట్, బోర్డింగ్ సెంటర్ లేదా ఎయిర్‌పోర్ట్‌లో చూపించండి.';
 }

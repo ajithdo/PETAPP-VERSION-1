@@ -114,7 +114,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             GoRoute(path: '/home', builder: (_, _) => const HomeScreen(), routes: homeRoutes),
           ]),
           StatefulShellBranch(routes: [
-            GoRoute(path: '/health', builder: (_, _) => healthTab(), routes: healthRoutes),
+            GoRoute(path: '/health', builder: (_, s) => healthTab(s.uri.queryParameters['pet']), routes: healthRoutes),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(path: '/book', builder: (_, _) => bookTab(), routes: bookRoutes),

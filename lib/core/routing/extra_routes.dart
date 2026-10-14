@@ -3,6 +3,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/family/presentation/family_screen.dart';
 import '../../features/family/presentation/join_screen.dart';
+import '../../features/health/presentation/health_report.dart';
+import '../../features/health/presentation/health_screen.dart';
+import '../../features/notifications/presentation/notification_screens.dart';
 import '../../features/pets/presentation/my_pets_screen.dart';
 import '../../features/pets/presentation/pet_form_screen.dart';
 import '../../features/pets/presentation/pet_profile_screen.dart';
@@ -20,7 +23,7 @@ GoRoute _soon(String path, int phase, String Function(BuildContext) title) => Go
     );
 
 /// Tab roots that are not built yet show an embedded placeholder.
-Widget healthTab() => Builder(builder: (c) => ComingSoonScreen(title: c.l10n.tabHealth, phase: 4, embedded: true));
+Widget healthTab([String? petId]) => HealthTab(petId: petId);
 Widget bookTab() => Builder(builder: (c) => ComingSoonScreen(title: c.l10n.tabBook, phase: 5, embedded: true));
 Widget shopTab() => Builder(builder: (c) => ComingSoonScreen(title: c.l10n.tabShop, phase: 8, embedded: true));
 
@@ -28,7 +31,9 @@ final homeRoutes = <RouteBase>[];
 final healthRoutes = <RouteBase>[];
 final bookRoutes = <RouteBase>[];
 final shopRoutes = <RouteBase>[];
-final settingsRoutes = <RouteBase>[];
+final settingsRoutes = <RouteBase>[
+  GoRoute(path: 'notifications', builder: (_, _) => const NotificationSettingsScreen()),
+];
 final meRoutes = <RouteBase>[
   GoRoute(path: 'pets', builder: (_, _) => const MyPetsScreen()),
   GoRoute(path: 'family', builder: (_, s) => FamilyScreen(initialPetId: s.uri.queryParameters['pet'])),
@@ -38,7 +43,7 @@ final meRoutes = <RouteBase>[
 final rootRoutes = <RouteBase>[
   GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
   _soon('/messages', 6, (c) => c.l10n.messages),
-  _soon('/notifications', 4, (c) => c.l10n.notifications),
+  GoRoute(path: '/notifications', builder: (_, _) => const NotificationCentreScreen()),
   GoRoute(path: '/pets/new', builder: (_, _) => const PetFormScreen()),
   GoRoute(
     path: '/pets/:id',
@@ -46,6 +51,8 @@ final rootRoutes = <RouteBase>[
     routes: [
       GoRoute(path: 'edit', builder: (_, s) => PetFormScreen(petId: s.pathParameters['id'])),
       GoRoute(path: 'routine', builder: (_, s) => RoutineScreen(petId: s.pathParameters['id']!)),
+      GoRoute(path: 'report', builder: (_, s) => HealthReportScreen(petId: s.pathParameters['id']!)),
+      GoRoute(path: 'card', builder: (_, s) => MedicalCardScreen(petId: s.pathParameters['id']!)),
     ],
   ),
   GoRoute(path: '/walk/:petId', builder: (_, s) => WalkTrackerScreen(petId: s.pathParameters['petId']!)),

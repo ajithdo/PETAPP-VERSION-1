@@ -3159,6 +3159,1080 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Demo temperature'**
   String get demoTemperature;
+
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
+  /// No description provided for @record.
+  ///
+  /// In en, this message translates to:
+  /// **'Record'**
+  String get record;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get status;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get type;
+
+  /// No description provided for @owner.
+  ///
+  /// In en, this message translates to:
+  /// **'Owner'**
+  String get owner;
+
+  /// No description provided for @from.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get from;
+
+  /// No description provided for @to.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get to;
+
+  /// No description provided for @markDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark done'**
+  String get markDone;
+
+  /// No description provided for @indicativeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicative, always confirm with your vet.'**
+  String get indicativeNote;
+
+  /// No description provided for @healthOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s health'**
+  String healthOf(String name);
+
+  /// No description provided for @choosePetForHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a pet'**
+  String get choosePetForHealth;
+
+  /// No description provided for @itemsNeedAttention.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} need attention'**
+  String itemsNeedAttention(int count);
+
+  /// No description provided for @nextUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Next up'**
+  String get nextUp;
+
+  /// No description provided for @nothingDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing due for {name} right now.'**
+  String nothingDue(String name);
+
+  /// No description provided for @nothingDueAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All caught up. Nothing due this week.'**
+  String get nothingDueAll;
+
+  /// No description provided for @healthReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Health report'**
+  String get healthReport;
+
+  /// No description provided for @healthReportOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s health report'**
+  String healthReportOf(String name);
+
+  /// No description provided for @medicalCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical card'**
+  String get medicalCard;
+
+  /// No description provided for @statusDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get statusDone;
+
+  /// No description provided for @statusOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue'**
+  String get statusOverdue;
+
+  /// No description provided for @statusDueSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Due soon'**
+  String get statusDueSoon;
+
+  /// No description provided for @statusUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get statusUpcoming;
+
+  /// No description provided for @statusAskVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask your vet'**
+  String get statusAskVet;
+
+  /// No description provided for @askYourVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask your vet'**
+  String get askYourVet;
+
+  /// No description provided for @dose.
+  ///
+  /// In en, this message translates to:
+  /// **'Dose'**
+  String get dose;
+
+  /// No description provided for @doseN.
+  ///
+  /// In en, this message translates to:
+  /// **'Dose {n}'**
+  String doseN(int n);
+
+  /// No description provided for @booster.
+  ///
+  /// In en, this message translates to:
+  /// **'Booster'**
+  String get booster;
+
+  /// No description provided for @optionalVaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional (vet advises)'**
+  String get optionalVaccine;
+
+  /// No description provided for @vaccinations.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccinations'**
+  String get vaccinations;
+
+  /// No description provided for @vaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccine'**
+  String get vaccine;
+
+  /// No description provided for @vaccineName.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccine name'**
+  String get vaccineName;
+
+  /// No description provided for @otherVaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'Other vaccine'**
+  String get otherVaccine;
+
+  /// No description provided for @recordVaccineFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Record a vaccine for {name}'**
+  String recordVaccineFor(String name);
+
+  /// No description provided for @dateGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Date given'**
+  String get dateGiven;
+
+  /// No description provided for @vaccineBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccine brand'**
+  String get vaccineBrand;
+
+  /// No description provided for @batchNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Batch number'**
+  String get batchNumber;
+
+  /// No description provided for @vetName.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet\'s name'**
+  String get vetName;
+
+  /// No description provided for @clinicName.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic'**
+  String get clinicName;
+
+  /// No description provided for @attachCertificate.
+  ///
+  /// In en, this message translates to:
+  /// **'Attach certificate photo'**
+  String get attachCertificate;
+
+  /// No description provided for @certificateAttached.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate attached (saved to the vault)'**
+  String get certificateAttached;
+
+  /// No description provided for @vaccineRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'{vaccine} recorded for {name}'**
+  String vaccineRecorded(String vaccine, String name);
+
+  /// No description provided for @givenOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Given {date}'**
+  String givenOn(String date);
+
+  /// No description provided for @dueOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Due {date}'**
+  String dueOn(String date);
+
+  /// No description provided for @nextDueShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Next due'**
+  String get nextDueShort;
+
+  /// No description provided for @catchUpNote.
+  ///
+  /// In en, this message translates to:
+  /// **'No vaccine history yet. Ask your vet for a catch-up plan, and add past vaccines with Record.'**
+  String get catchUpNote;
+
+  /// No description provided for @rabbitVaccineNote.
+  ///
+  /// In en, this message translates to:
+  /// **'There is no standard routine vaccine schedule for rabbits in India. Check with an exotic-animal vet; a health check every 6–12 months is a good idea.'**
+  String get rabbitVaccineNote;
+
+  /// No description provided for @birdVaccineNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Common pet birds don\'t need routine vaccines. Plan a yearly avian vet check, and keep an eye on nails and beak.'**
+  String get birdVaccineNote;
+
+  /// No description provided for @medicines.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicines'**
+  String get medicines;
+
+  /// No description provided for @medicineName.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicine'**
+  String get medicineName;
+
+  /// No description provided for @addMedicineFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a medicine for {name}'**
+  String addMedicineFor(String name);
+
+  /// No description provided for @editMedicine.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit medicine'**
+  String get editMedicine;
+
+  /// No description provided for @unit.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit'**
+  String get unit;
+
+  /// No description provided for @unitTablet.
+  ///
+  /// In en, this message translates to:
+  /// **'tablet'**
+  String get unitTablet;
+
+  /// No description provided for @unitMl.
+  ///
+  /// In en, this message translates to:
+  /// **'ml'**
+  String get unitMl;
+
+  /// No description provided for @unitDrops.
+  ///
+  /// In en, this message translates to:
+  /// **'drops'**
+  String get unitDrops;
+
+  /// No description provided for @unitMg.
+  ///
+  /// In en, this message translates to:
+  /// **'mg'**
+  String get unitMg;
+
+  /// No description provided for @unitCapsule.
+  ///
+  /// In en, this message translates to:
+  /// **'capsule'**
+  String get unitCapsule;
+
+  /// No description provided for @unitSachet.
+  ///
+  /// In en, this message translates to:
+  /// **'sachet'**
+  String get unitSachet;
+
+  /// No description provided for @frequency.
+  ///
+  /// In en, this message translates to:
+  /// **'How often'**
+  String get frequency;
+
+  /// No description provided for @freqOnce.
+  ///
+  /// In en, this message translates to:
+  /// **'Once a day'**
+  String get freqOnce;
+
+  /// No description provided for @freqTwice.
+  ///
+  /// In en, this message translates to:
+  /// **'Twice a day'**
+  String get freqTwice;
+
+  /// No description provided for @freqEveryHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {hours} hours'**
+  String freqEveryHours(int hours);
+
+  /// No description provided for @freqWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Once a week'**
+  String get freqWeekly;
+
+  /// No description provided for @freqCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom times'**
+  String get freqCustom;
+
+  /// No description provided for @doseTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Dose times'**
+  String get doseTimes;
+
+  /// No description provided for @firstDoseAt.
+  ///
+  /// In en, this message translates to:
+  /// **'First dose at'**
+  String get firstDoseAt;
+
+  /// No description provided for @addTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Add time'**
+  String get addTime;
+
+  /// No description provided for @withFood.
+  ///
+  /// In en, this message translates to:
+  /// **'With food'**
+  String get withFood;
+
+  /// No description provided for @startDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start date'**
+  String get startDate;
+
+  /// No description provided for @noEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'No end date'**
+  String get noEndDate;
+
+  /// No description provided for @endsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends {date}'**
+  String endsOn(String date);
+
+  /// No description provided for @setEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Set end date'**
+  String get setEndDate;
+
+  /// No description provided for @stockCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Doses in stock (optional)'**
+  String get stockCount;
+
+  /// No description provided for @stockHint.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll remind you to refill when 5 are left'**
+  String get stockHint;
+
+  /// No description provided for @medicineSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} saved'**
+  String medicineSaved(String name);
+
+  /// No description provided for @noMedicines.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} isn\'t on any medicine.'**
+  String noMedicines(String name);
+
+  /// No description provided for @nextDoseAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {time}'**
+  String nextDoseAt(String time);
+
+  /// No description provided for @stockLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} left'**
+  String stockLeft(int count);
+
+  /// No description provided for @refill.
+  ///
+  /// In en, this message translates to:
+  /// **'Refill'**
+  String get refill;
+
+  /// No description provided for @refillNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Refill {name}'**
+  String refillNeeded(String name);
+
+  /// No description provided for @given.
+  ///
+  /// In en, this message translates to:
+  /// **'Given'**
+  String get given;
+
+  /// No description provided for @snooze15.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze 15 min'**
+  String get snooze15;
+
+  /// No description provided for @doseGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} marked as given'**
+  String doseGiven(String name);
+
+  /// No description provided for @doseSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Dose skipped'**
+  String get doseSkipped;
+
+  /// No description provided for @doseSnoozed.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll remind you in 15 minutes'**
+  String get doseSnoozed;
+
+  /// No description provided for @todayAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Today, {time}'**
+  String todayAt(String time);
+
+  /// No description provided for @overdueBy.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =1{1 day overdue} other{{days} days overdue}}'**
+  String overdueBy(int days);
+
+  /// No description provided for @dueToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Due today'**
+  String get dueToday;
+
+  /// No description provided for @dueInDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =1{Due tomorrow} other{Due in {days} days}}'**
+  String dueInDays(int days);
+
+  /// No description provided for @prevention.
+  ///
+  /// In en, this message translates to:
+  /// **'Deworming and flea/tick'**
+  String get prevention;
+
+  /// No description provided for @deworming.
+  ///
+  /// In en, this message translates to:
+  /// **'Deworming'**
+  String get deworming;
+
+  /// No description provided for @fleaTick.
+  ///
+  /// In en, this message translates to:
+  /// **'Flea and tick prevention'**
+  String get fleaTick;
+
+  /// No description provided for @lastDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Last {date}'**
+  String lastDone(String date);
+
+  /// No description provided for @nextDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Next {date}'**
+  String nextDue(String date);
+
+  /// No description provided for @tickFeverNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Tick fever is common in India. Keep flea and tick prevention up to date.'**
+  String get tickFeverNote;
+
+  /// No description provided for @productUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Product used'**
+  String get productUsed;
+
+  /// No description provided for @weightNeedsTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add two or more weights to see the chart.'**
+  String get weightNeedsTwo;
+
+  /// No description provided for @weightRangeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Green band: indicative healthy range {range}. Always confirm with your vet.'**
+  String weightRangeNote(String range);
+
+  /// No description provided for @weightGrowingNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Still growing. Your vet will tell you the right weight.'**
+  String get weightGrowingNote;
+
+  /// No description provided for @vetVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet visit'**
+  String get vetVisit;
+
+  /// No description provided for @vetVisits.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet visits'**
+  String get vetVisits;
+
+  /// No description provided for @reasonForVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason for visit'**
+  String get reasonForVisit;
+
+  /// No description provided for @diagnosis.
+  ///
+  /// In en, this message translates to:
+  /// **'Diagnosis or advice'**
+  String get diagnosis;
+
+  /// No description provided for @noVisits.
+  ///
+  /// In en, this message translates to:
+  /// **'No vet visits recorded yet.'**
+  String get noVisits;
+
+  /// No description provided for @symptom.
+  ///
+  /// In en, this message translates to:
+  /// **'Symptom'**
+  String get symptom;
+
+  /// No description provided for @symptomDiary.
+  ///
+  /// In en, this message translates to:
+  /// **'Symptom diary'**
+  String get symptomDiary;
+
+  /// No description provided for @noSymptoms.
+  ///
+  /// In en, this message translates to:
+  /// **'No symptoms noted. That\'s good news.'**
+  String get noSymptoms;
+
+  /// No description provided for @severity.
+  ///
+  /// In en, this message translates to:
+  /// **'How bad is it?'**
+  String get severity;
+
+  /// No description provided for @severeSymptomNote.
+  ///
+  /// In en, this message translates to:
+  /// **'If your pet has trouble breathing, collapses, has a seizure or may have eaten poison, use SOS now.'**
+  String get severeSymptomNote;
+
+  /// No description provided for @shareWithVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with vet'**
+  String get shareWithVet;
+
+  /// No description provided for @symptomShareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s symptom diary (PawSetu)'**
+  String symptomShareTitle(String name);
+
+  /// No description provided for @symVomiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Vomiting'**
+  String get symVomiting;
+
+  /// No description provided for @symDiarrhoea.
+  ///
+  /// In en, this message translates to:
+  /// **'Diarrhoea'**
+  String get symDiarrhoea;
+
+  /// No description provided for @symNotEating.
+  ///
+  /// In en, this message translates to:
+  /// **'Not eating'**
+  String get symNotEating;
+
+  /// No description provided for @symLimping.
+  ///
+  /// In en, this message translates to:
+  /// **'Limping'**
+  String get symLimping;
+
+  /// No description provided for @symItching.
+  ///
+  /// In en, this message translates to:
+  /// **'Itching'**
+  String get symItching;
+
+  /// No description provided for @symCoughing.
+  ///
+  /// In en, this message translates to:
+  /// **'Coughing'**
+  String get symCoughing;
+
+  /// No description provided for @symLethargy.
+  ///
+  /// In en, this message translates to:
+  /// **'Very tired'**
+  String get symLethargy;
+
+  /// No description provided for @symSneezing.
+  ///
+  /// In en, this message translates to:
+  /// **'Sneezing'**
+  String get symSneezing;
+
+  /// No description provided for @symOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get symOther;
+
+  /// No description provided for @savedFor.
+  ///
+  /// In en, this message translates to:
+  /// **'{what} saved for {name}'**
+  String savedFor(String what, String name);
+
+  /// No description provided for @reminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get reminders;
+
+  /// No description provided for @noReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'No custom reminders.'**
+  String get noReminders;
+
+  /// No description provided for @newReminderFor.
+  ///
+  /// In en, this message translates to:
+  /// **'New reminder for {name}'**
+  String newReminderFor(String name);
+
+  /// No description provided for @reminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What should we remind you about?'**
+  String get reminderTitle;
+
+  /// No description provided for @repeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat'**
+  String get repeat;
+
+  /// No description provided for @repeatNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t repeat'**
+  String get repeatNone;
+
+  /// No description provided for @repeatMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Every month'**
+  String get repeatMonthly;
+
+  /// No description provided for @repeatYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Every year'**
+  String get repeatYearly;
+
+  /// No description provided for @reminderSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder set'**
+  String get reminderSet;
+
+  /// No description provided for @remTypeLicence.
+  ///
+  /// In en, this message translates to:
+  /// **'Licence renewal'**
+  String get remTypeLicence;
+
+  /// No description provided for @remTypeInsurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance renewal'**
+  String get remTypeInsurance;
+
+  /// No description provided for @remTypeGrooming.
+  ///
+  /// In en, this message translates to:
+  /// **'Grooming due'**
+  String get remTypeGrooming;
+
+  /// No description provided for @remTypeNailTrim.
+  ///
+  /// In en, this message translates to:
+  /// **'Nail trim'**
+  String get remTypeNailTrim;
+
+  /// No description provided for @remTypeBirthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday'**
+  String get remTypeBirthday;
+
+  /// No description provided for @remTypeCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get remTypeCustom;
+
+  /// No description provided for @remVaccineDue.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s {vaccine} is due soon'**
+  String remVaccineDue(String name, String vaccine);
+
+  /// No description provided for @remVaccineOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s {vaccine} is overdue'**
+  String remVaccineOverdue(String name, String vaccine);
+
+  /// No description provided for @remMedicine.
+  ///
+  /// In en, this message translates to:
+  /// **'Time for {name}\'s {medicine}'**
+  String remMedicine(String name, String medicine);
+
+  /// No description provided for @remRefill.
+  ///
+  /// In en, this message translates to:
+  /// **'{medicine} for {name} is running low'**
+  String remRefill(String medicine, String name);
+
+  /// No description provided for @remDeworming.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s deworming is due'**
+  String remDeworming(String name);
+
+  /// No description provided for @remFleaTick.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s flea and tick prevention is due'**
+  String remFleaTick(String name);
+
+  /// No description provided for @remTapToOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to open PawSetu'**
+  String get remTapToOpen;
+
+  /// No description provided for @remSnoozed.
+  ///
+  /// In en, this message translates to:
+  /// **'Snoozed for 15 minutes'**
+  String get remSnoozed;
+
+  /// No description provided for @markAllRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all read'**
+  String get markAllRead;
+
+  /// No description provided for @filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get filterAll;
+
+  /// No description provided for @filterUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'Unread'**
+  String get filterUnread;
+
+  /// No description provided for @filterBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get filterBookings;
+
+  /// No description provided for @filterOrdersMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders and messages'**
+  String get filterOrdersMessages;
+
+  /// No description provided for @noNotificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all caught up'**
+  String get noNotificationsTitle;
+
+  /// No description provided for @noNotificationsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders and updates will appear here.'**
+  String get noNotificationsBody;
+
+  /// No description provided for @ntVaccines.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccines'**
+  String get ntVaccines;
+
+  /// No description provided for @ntMedicines.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicines'**
+  String get ntMedicines;
+
+  /// No description provided for @ntDeworming.
+  ///
+  /// In en, this message translates to:
+  /// **'Deworming and flea/tick'**
+  String get ntDeworming;
+
+  /// No description provided for @ntBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get ntBookings;
+
+  /// No description provided for @ntRoutine.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily routine'**
+  String get ntRoutine;
+
+  /// No description provided for @ntCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'My reminders'**
+  String get ntCustom;
+
+  /// No description provided for @chPush.
+  ///
+  /// In en, this message translates to:
+  /// **'Push'**
+  String get chPush;
+
+  /// No description provided for @chEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get chEmail;
+
+  /// No description provided for @chSms.
+  ///
+  /// In en, this message translates to:
+  /// **'SMS'**
+  String get chSms;
+
+  /// No description provided for @chWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get chWhatsApp;
+
+  /// No description provided for @channelsDemoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: push reminders are real on your phone. Email, SMS and WhatsApp go to the Demo Outbox instead of being sent.'**
+  String get channelsDemoNote;
+
+  /// No description provided for @quietHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet hours'**
+  String get quietHours;
+
+  /// No description provided for @quietHoursOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t disturb at night'**
+  String get quietHoursOn;
+
+  /// No description provided for @quietHoursHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders wait until morning. Medicine reminders always ring on time.'**
+  String get quietHoursHint;
+
+  /// No description provided for @notificationsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are on'**
+  String get notificationsOn;
+
+  /// No description provided for @notificationsOffHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are off. You can turn them on in your phone\'s settings.'**
+  String get notificationsOffHint;
+
+  /// No description provided for @preparingDocument.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your document…'**
+  String get preparingDocument;
+
+  /// No description provided for @sharePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Share or save PDF'**
+  String get sharePdf;
+
+  /// No description provided for @generatedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Generated {date}'**
+  String generatedOn(String date);
+
+  /// No description provided for @reportFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Made with PawSetu · Demo data · Indicative, always confirm with your vet'**
+  String get reportFooter;
+
+  /// No description provided for @ownerAndClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Owner and clinic'**
+  String get ownerAndClinic;
+
+  /// No description provided for @noKnownAllergies.
+  ///
+  /// In en, this message translates to:
+  /// **'No known allergies'**
+  String get noKnownAllergies;
+
+  /// No description provided for @currentMedicines.
+  ///
+  /// In en, this message translates to:
+  /// **'Current medicines'**
+  String get currentMedicines;
+
+  /// No description provided for @rabiesVaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'Rabies vaccine'**
+  String get rabiesVaccine;
+
+  /// No description provided for @notRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Not recorded'**
+  String get notRecorded;
+
+  /// No description provided for @medicalCardUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated {date}'**
+  String medicalCardUpdated(String date);
+
+  /// No description provided for @medicalCardOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'This card works without internet. Show it to a vet, a boarding centre or at the airport.'**
+  String get medicalCardOffline;
 }
 
 class _AppLocalizationsDelegate
