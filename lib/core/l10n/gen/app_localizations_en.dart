@@ -4836,4 +4836,1333 @@ class AppLocalizationsEn extends AppLocalizations {
   String ntfPrescription(String vet, String pet) {
     return '$vet sent a prescription for $pet';
   }
+
+  @override
+  String get albumPhotos => 'Photos';
+
+  @override
+  String get albumTimeline => 'Timeline';
+
+  @override
+  String get albumAlbums => 'Albums';
+
+  @override
+  String get albumFavourites => 'Favourites';
+
+  @override
+  String get albumAdd => 'Add photos or videos';
+
+  @override
+  String albumAddTitle(String pet) {
+    return 'Add to $pet\'s album';
+  }
+
+  @override
+  String albumAddFirst(String pet) {
+    return 'Add the first photo of $pet';
+  }
+
+  @override
+  String get albumChoosePhotos => 'Choose photos';
+
+  @override
+  String get albumChooseVideo => 'Choose a video';
+
+  @override
+  String get albumRecordVideo => 'Record a video';
+
+  @override
+  String get albumCaption => 'Caption';
+
+  @override
+  String get albumCaptionHint => 'What\'s happening in this moment?';
+
+  @override
+  String get albumDateTaken => 'Date taken';
+
+  @override
+  String get albumMilestone => 'Milestone';
+
+  @override
+  String get albumNoMilestone => 'No milestone';
+
+  @override
+  String get albumAddMilestone => 'Mark as a milestone';
+
+  @override
+  String get albumMilestoneTitle => 'Milestone name';
+
+  @override
+  String get albumMilestoneTitleHint => 'E.g. First swim';
+
+  @override
+  String get albumMsGotcha => 'Gotcha day';
+
+  @override
+  String get albumMsFirstWalk => 'First walk';
+
+  @override
+  String get albumMsFirstVaccine => 'First vaccine';
+
+  @override
+  String get albumMsBirthday => 'Birthday';
+
+  @override
+  String get albumMsCustom => 'Special moment';
+
+  @override
+  String get albumNewAlbum => 'New album';
+
+  @override
+  String get albumAlbumName => 'Album name';
+
+  @override
+  String get albumUploading => 'Adding your memories…';
+
+  @override
+  String albumPhotosAdded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count memories added',
+      one: '1 memory added',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String albumSaved(String pet) {
+    return 'Saved to $pet\'s album';
+  }
+
+  @override
+  String albumAddedToAlbum(String album) {
+    return 'Added to $album';
+  }
+
+  @override
+  String get albumStorageNote =>
+      'Photos and videos use your plan\'s storage. Videos up to 1 minute on Free, 3 minutes on Plus.';
+
+  @override
+  String albumVideoMaxSec(int seconds) {
+    return 'Videos up to $seconds seconds';
+  }
+
+  @override
+  String get albumVideoTooLongTitle => 'This video is too long';
+
+  @override
+  String albumVideoTooLong(int seconds, int limit) {
+    return 'It\'s $seconds seconds; your plan allows $limit.';
+  }
+
+  @override
+  String get albumVideoPlusBody =>
+      'Trim it on your phone, or get 3-minute videos with PawSetu Plus.';
+
+  @override
+  String get albumEmptyTitle => 'No memories yet';
+
+  @override
+  String albumEmptyBody(String pet) {
+    return 'Add $pet\'s photos and videos. They\'re grouped by month, with milestones on a timeline.';
+  }
+
+  @override
+  String albumMonthCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count memories',
+      one: '1 memory',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get albumOnThisDay => 'On this day';
+
+  @override
+  String get albumLatestMemory => 'Latest memory';
+
+  @override
+  String albumOfPet(String pet) {
+    return 'A moment with $pet';
+  }
+
+  @override
+  String get albumSeeAlbum => 'See album';
+
+  @override
+  String albumYearsAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count years ago',
+      one: '1 year ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String albumTimelineBorn(String pet) {
+    return '$pet was born';
+  }
+
+  @override
+  String albumTimelineEmpty(String pet) {
+    return 'Mark milestones while adding photos and $pet\'s story appears here.';
+  }
+
+  @override
+  String get albumCelebrate => 'Celebrate';
+
+  @override
+  String get albumBadges => 'Milestone badges';
+
+  @override
+  String get albumBadgeLocked => 'not yet';
+
+  @override
+  String get albumNoAlbums => 'No albums yet';
+
+  @override
+  String get albumNoAlbumsBody =>
+      'Group memories into albums like \"Goa trip\" or \"First year\".';
+
+  @override
+  String get albumNoFavourites => 'No favourites yet';
+
+  @override
+  String get albumNoFavouritesBody =>
+      'Tap the heart on a photo to keep it here.';
+
+  @override
+  String albumChooseForAlbum(String album) {
+    return 'Choose memories for $album';
+  }
+
+  @override
+  String albumItemsSelected(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count selected',
+      one: '1 selected',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get albumRenameAlbum => 'Rename album';
+
+  @override
+  String get albumDeleteAlbum => 'Remove album';
+
+  @override
+  String albumDeleteAlbumBody(String pet) {
+    return 'The photos stay in $pet\'s album. Only this group is removed.';
+  }
+
+  @override
+  String get albumRemoveFromAlbum => 'Remove from album';
+
+  @override
+  String get albumVideo => 'Video';
+
+  @override
+  String albumOfCount(int index, int total) {
+    return '$index of $total';
+  }
+
+  @override
+  String get albumClose => 'Close';
+
+  @override
+  String get albumPrevious => 'Previous';
+
+  @override
+  String get albumFavourite => 'Add to favourites';
+
+  @override
+  String get albumUnfavourite => 'Remove from favourites';
+
+  @override
+  String get albumEditCaption => 'Edit caption';
+
+  @override
+  String get albumAddToAlbum => 'Add to album';
+
+  @override
+  String get albumShare => 'Share';
+
+  @override
+  String get albumDelete => 'Delete';
+
+  @override
+  String get albumDeleteQ => 'Delete this memory?';
+
+  @override
+  String albumDeleteBody(String pet) {
+    return 'It will be removed from $pet\'s album for everyone in the family.';
+  }
+
+  @override
+  String get albumDeleted => 'Memory deleted';
+
+  @override
+  String albumAddedBy(String name) {
+    return 'Added by $name';
+  }
+
+  @override
+  String get albumPlay => 'Play';
+
+  @override
+  String get albumPause => 'Pause';
+
+  @override
+  String get albumVideoFailed => 'This video can\'t be played here.';
+
+  @override
+  String get albumDemoVideo =>
+      'Demo video: a sample clip stands in for the real file.';
+
+  @override
+  String get albumShareTitle => 'Share memories';
+
+  @override
+  String get albumShareBody =>
+      'Send to WhatsApp or any app, or make a private link for family.';
+
+  @override
+  String get albumShareToApps => 'Share to apps';
+
+  @override
+  String get albumShareFailed => 'Couldn\'t share. Please try again.';
+
+  @override
+  String get albumWatermark => 'Add a PawSetu watermark';
+
+  @override
+  String get albumWatermarkPhotosOnly =>
+      'Photos only; videos are shared as they are.';
+
+  @override
+  String get albumWatermarkText => 'Made with PawSetu';
+
+  @override
+  String get albumFamilyLink => 'Private family link';
+
+  @override
+  String albumFamilyLinkBody(String pet) {
+    return 'Anyone with the link can view these memories of $pet until it expires. You can stop it any time.';
+  }
+
+  @override
+  String get albumFamilyLinkWhich => 'What to share';
+
+  @override
+  String get albumWholeAlbum => 'The whole album';
+
+  @override
+  String albumFamilyLinkText(String pet, String url) {
+    return 'Photos of $pet on PawSetu: $url';
+  }
+
+  @override
+  String albumSharedBy(String owner, String pet) {
+    return '$owner shared memories of $pet';
+  }
+
+  @override
+  String get albumBirthdayScreenTitle => 'Birthday';
+
+  @override
+  String albumBirthdayToday(String pet) {
+    return 'Happy birthday, $pet!';
+  }
+
+  @override
+  String albumBirthdayIn(int days, String pet, int age) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$pet turns $age in $days days',
+      one: '$pet turns $age tomorrow',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String albumBirthdaySubtitle(int age, String pet) {
+    return '$pet is $age today';
+  }
+
+  @override
+  String albumBirthdayWishes(String pet) {
+    return 'Wishing $pet lots of walks, treats and cuddles this year!';
+  }
+
+  @override
+  String get albumBirthdayMemories => 'Memories from this year';
+
+  @override
+  String get albumBirthdayAddPhoto => 'Add a birthday photo';
+
+  @override
+  String albumBirthdayReminder(String pet) {
+    return 'Remind me before $pet\'s birthday';
+  }
+
+  @override
+  String albumBirthdayReminderTitle(String pet) {
+    return '$pet\'s birthday is coming up';
+  }
+
+  @override
+  String get albumBirthdayReminderOn => 'Birthday reminder on';
+
+  @override
+  String albumNoBirthday(String pet) {
+    return 'Add $pet\'s birthday to celebrate it here.';
+  }
+
+  @override
+  String get vaultSetupTitle => 'Protect your vault';
+
+  @override
+  String get vaultSetupBody =>
+      'Choose a 4 to 6 digit PIN. You\'ll enter it each time you open the vault.';
+
+  @override
+  String get vaultSetupBodyBio =>
+      'Choose a 4 to 6 digit PIN as a backup. You can then unlock with your fingerprint or face.';
+
+  @override
+  String get vaultChoosePin => 'Choose a PIN';
+
+  @override
+  String get vaultConfirmPin => 'Enter the PIN again';
+
+  @override
+  String get vaultCurrentPin => 'Current PIN';
+
+  @override
+  String get vaultSetPinButton => 'Set PIN';
+
+  @override
+  String get vaultPinMismatch => 'The PINs don\'t match. Try again.';
+
+  @override
+  String get vaultPinWeak =>
+      'That PIN is easy to guess. Avoid 1234 or repeated digits.';
+
+  @override
+  String get vaultPinSet => 'Vault PIN set';
+
+  @override
+  String get vaultPinChanged => 'PIN changed';
+
+  @override
+  String get vaultChangePin => 'Change PIN';
+
+  @override
+  String vaultPinDigits(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count digits entered',
+      one: '1 digit entered',
+      zero: 'No digits entered',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get vaultPinBackspace => 'Delete last digit';
+
+  @override
+  String get vaultLockedTitle => 'Vault locked';
+
+  @override
+  String get vaultLockedBody =>
+      'Your pet\'s documents are protected. Unlock to continue.';
+
+  @override
+  String get vaultUnlock => 'Unlock';
+
+  @override
+  String get vaultUseBiometrics => 'Use fingerprint or face';
+
+  @override
+  String get vaultBiometricReason => 'Unlock your PawSetu document vault';
+
+  @override
+  String get vaultBiometricsToggle => 'Unlock with fingerprint or face';
+
+  @override
+  String get vaultWrongPin => 'Wrong PIN.';
+
+  @override
+  String vaultTriesLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tries left.',
+      one: '1 try left.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String vaultLockedOut(int seconds) {
+    return 'Too many wrong tries. Try again in $seconds seconds.';
+  }
+
+  @override
+  String get vaultForgotPin => 'Forgot PIN?';
+
+  @override
+  String get vaultForgotPinTitle => 'Reset your vault PIN';
+
+  @override
+  String get vaultForgotPinBody =>
+      'Sign in again to prove it\'s you, then choose a new PIN. Your documents stay safe.';
+
+  @override
+  String get vaultSignInAgain => 'Sign in again';
+
+  @override
+  String get vaultAutoLockNote =>
+      'The vault locks itself after 2 minutes away.';
+
+  @override
+  String get vaultLockNow => 'Lock now';
+
+  @override
+  String get vaultLockSettings => 'Vault lock';
+
+  @override
+  String vaultOfPet(String pet) {
+    return '$pet\'s documents';
+  }
+
+  @override
+  String get vaultAllDocs => 'All documents';
+
+  @override
+  String vaultDocCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count documents',
+      one: '1 document',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get vaultSearchHint => 'Search titles, tags or vets';
+
+  @override
+  String get vaultClearSearch => 'Clear search';
+
+  @override
+  String get vaultNeedsAttention => 'Needs attention';
+
+  @override
+  String get vaultNeedsReview => 'Check details';
+
+  @override
+  String vaultAddedOn(String date) {
+    return 'Added $date';
+  }
+
+  @override
+  String get vaultEmptyTitle => 'Your vault is empty';
+
+  @override
+  String get vaultEmptyBody =>
+      'Keep vaccination certificates, prescriptions, lab reports and insurance safe in one place.';
+
+  @override
+  String get vaultAddDocument => 'Add document';
+
+  @override
+  String get vaultStorageTitle => 'Storage';
+
+  @override
+  String vaultStorageUsed(String used, String limit) {
+    return '$used of $limit used';
+  }
+
+  @override
+  String vaultStorageSplit(String docs, String album) {
+    return 'Documents $docs · Album $album';
+  }
+
+  @override
+  String get vaultStorageFullTitle => 'Storage full';
+
+  @override
+  String vaultStorageFullBody(String used, String limit) {
+    return 'You\'ve used $used of $limit. Delete old files or get 25 GB with PawSetu Plus.';
+  }
+
+  @override
+  String vaultStorageFullBodyPlus(String used, String limit) {
+    return 'You\'ve used $used of $limit. Delete old files to make room.';
+  }
+
+  @override
+  String get vaultTooBig =>
+      'That file is too big. Please choose one under 20 MB.';
+
+  @override
+  String get vaultTypeVaccination => 'Vaccination certificate';
+
+  @override
+  String get vaultTypePrescription => 'Prescription';
+
+  @override
+  String get vaultTypeLab => 'Lab report';
+
+  @override
+  String get vaultTypeInsurance => 'Insurance';
+
+  @override
+  String get vaultTypeInvoice => 'Bill or invoice';
+
+  @override
+  String get vaultTypeLicence => 'Municipal licence';
+
+  @override
+  String get vaultTypeAdoption => 'Adoption or purchase papers';
+
+  @override
+  String get vaultTypeTravel => 'Travel or health certificate';
+
+  @override
+  String get vaultTypeOther => 'Other';
+
+  @override
+  String get vaultExpired => 'Expired';
+
+  @override
+  String get vaultExpiresSoon => 'Expires soon';
+
+  @override
+  String vaultExpiresOn(String date) {
+    return 'Expires $date';
+  }
+
+  @override
+  String vaultExpiredOn(String date) {
+    return 'Expired $date';
+  }
+
+  @override
+  String get vaultNoExpiry => 'No expiry date';
+
+  @override
+  String get vaultUploadTitle => 'Add a document';
+
+  @override
+  String get vaultForPet => 'For which pet?';
+
+  @override
+  String get vaultScanCamera => 'Scan with camera';
+
+  @override
+  String get vaultScanCameraHint =>
+      'Edges are found for you; adjust the corners if needed';
+
+  @override
+  String get vaultFromGallery => 'Photo from gallery';
+
+  @override
+  String get vaultFromPdf => 'PDF file';
+
+  @override
+  String get vaultPdfOnly => 'Please choose a PDF file.';
+
+  @override
+  String get vaultTrySample => 'Demo: try a sample document to see auto-read';
+
+  @override
+  String get vaultSampleRabies => 'Sample rabies certificate';
+
+  @override
+  String get vaultSampleLab => 'Sample blood test report';
+
+  @override
+  String get vaultSampleInsurance => 'Sample insurance policy';
+
+  @override
+  String get vaultUploading => 'Saving securely…';
+
+  @override
+  String get vaultScanTitle => 'Adjust the scan';
+
+  @override
+  String get vaultScanHint => 'Drag the corners to the edges of the page.';
+
+  @override
+  String get vaultScanAuto => 'Page edges found. Adjust the corners if needed.';
+
+  @override
+  String get vaultScanBw => 'Black and white (sharper text)';
+
+  @override
+  String get vaultScanCorner => 'Corner handle, drag to adjust';
+
+  @override
+  String get vaultUseScan => 'Use this scan';
+
+  @override
+  String get vaultPreviewFailed => 'Couldn\'t show a preview of this file.';
+
+  @override
+  String get vaultReading => 'Reading the document…';
+
+  @override
+  String get vaultCheckDetails => 'Check the details';
+
+  @override
+  String get vaultCheckDetailsHint =>
+      'We read these from the document. Please confirm or correct them.';
+
+  @override
+  String get vaultAddDetails => 'Add details';
+
+  @override
+  String get vaultFoundTitle => 'We found these details';
+
+  @override
+  String get vaultFoundBody =>
+      'Check each field before saving. Nothing is saved until you confirm.';
+
+  @override
+  String get vaultNotFoundTitle => 'We couldn\'t read this one';
+
+  @override
+  String get vaultNotFoundBody =>
+      'Add the details yourself, or skip and add them later.';
+
+  @override
+  String get vaultDemoReadNote =>
+      'Demo auto-read: details come from the sample document, not a real scan of your file.';
+
+  @override
+  String vaultPetMismatch(String docPet, String pet) {
+    return 'The document says $docPet, but you chose $pet. Check the pet before saving.';
+  }
+
+  @override
+  String get vaultFieldDocType => 'Document type';
+
+  @override
+  String get vaultFieldTitle => 'Title';
+
+  @override
+  String get vaultFieldTags => 'Tags';
+
+  @override
+  String get vaultTagHint => 'E.g. rabies, 2026';
+
+  @override
+  String get vaultAddTag => 'Add tag';
+
+  @override
+  String vaultAddToHealth(String pet) {
+    return 'Add to $pet\'s health records';
+  }
+
+  @override
+  String get vaultAddToHealthHint =>
+      'Records the vaccine, and the next dose is scheduled for you.';
+
+  @override
+  String get vaultVaccineNeeded =>
+      'Add the vaccine name and the date given to save it to health records.';
+
+  @override
+  String get vaultTrackInsurance => 'Track this policy in insurance';
+
+  @override
+  String get vaultExpiryReminderNote =>
+      'We\'ll remind you 30 days before it expires.';
+
+  @override
+  String get vaultSaveDetails => 'Save';
+
+  @override
+  String get vaultSkipDetails => 'Skip for now';
+
+  @override
+  String get vaultSaved => 'Saved to the vault';
+
+  @override
+  String vaultSavedVaccine(String vaccine, String pet) {
+    return '$vaccine recorded for $pet';
+  }
+
+  @override
+  String vaultReminderTitle(String title, String pet) {
+    return '$title for $pet expires soon';
+  }
+
+  @override
+  String vaultTitleVaccineCert(String vaccine) {
+    return '$vaccine certificate';
+  }
+
+  @override
+  String vaultTitlePolicy(String insurer) {
+    return '$insurer policy';
+  }
+
+  @override
+  String get vaultDocDetails => 'Document details';
+
+  @override
+  String get vaultDetailsRead => 'Details';
+
+  @override
+  String get vaultEditDetails => 'Edit details';
+
+  @override
+  String vaultConfirmedBy(String name, String date) {
+    return 'Checked by $name on $date';
+  }
+
+  @override
+  String get vaultFieldPetName => 'Pet\'s name';
+
+  @override
+  String get vaultFieldIssuedOn => 'Issued on';
+
+  @override
+  String get vaultFieldExpiry => 'Valid until';
+
+  @override
+  String get vaultFieldIssuer => 'Issued by';
+
+  @override
+  String get vaultFieldVetReg => 'Vet reg. no.';
+
+  @override
+  String get vaultFieldReference => 'Reference no.';
+
+  @override
+  String get vaultFieldTest => 'Test';
+
+  @override
+  String get vaultFieldAmount => 'Amount';
+
+  @override
+  String get vaultFileType => 'File type';
+
+  @override
+  String get vaultFileSize => 'Size';
+
+  @override
+  String get vaultAddedLabel => 'Added';
+
+  @override
+  String get vaultPdf => 'PDF';
+
+  @override
+  String get vaultPhoto => 'Photo';
+
+  @override
+  String get vaultSample => 'Sample';
+
+  @override
+  String get vaultTapToZoom => 'Tap to zoom';
+
+  @override
+  String get vaultSecureNote =>
+      'Stored privately in your account. Only you and the people you share a link with can see it.';
+
+  @override
+  String vaultLinkedVaccine(String pet) {
+    return 'Linked to $pet\'s vaccine record';
+  }
+
+  @override
+  String get vaultOpenInApp => 'Open in PawSetu';
+
+  @override
+  String get vaultOpenPolicy => 'Open policy';
+
+  @override
+  String get vaultTrackPolicy => 'Track in insurance';
+
+  @override
+  String get vaultShareWithVet => 'Share with a vet';
+
+  @override
+  String get vaultDeleteDoc => 'Delete document';
+
+  @override
+  String vaultDeleteDocQ(String title) {
+    return 'Delete \"$title\"?';
+  }
+
+  @override
+  String vaultDeleteDocBody(String pet) {
+    return 'It will be removed from $pet\'s vault, and share links to it will stop working.';
+  }
+
+  @override
+  String get vaultDeleted => 'Document deleted';
+
+  @override
+  String get vaultShareTitle => 'Share with a vet';
+
+  @override
+  String get vaultShareBody =>
+      'Create a link that opens only the documents you choose, for a limited time.';
+
+  @override
+  String get vaultChooseDocs => 'Documents to share';
+
+  @override
+  String get vaultSelectOneDoc => 'Choose at least one document.';
+
+  @override
+  String get vaultLinkValidFor => 'Link works for';
+
+  @override
+  String get vaultExpiry1h => '1 hour';
+
+  @override
+  String get vaultExpiry24h => '24 hours';
+
+  @override
+  String get vaultExpiry7d => '7 days';
+
+  @override
+  String get vaultExpiryNever => 'Until I stop it';
+
+  @override
+  String get vaultAddPin => 'Ask for a PIN';
+
+  @override
+  String get vaultAddPinHint =>
+      'The vet enters this 4 to 6 digit PIN to open the link.';
+
+  @override
+  String get vaultPinFormat => 'The PIN must be 4 to 6 digits.';
+
+  @override
+  String get vaultCreateLink => 'Create link';
+
+  @override
+  String get vaultLinkReady => 'Link ready';
+
+  @override
+  String vaultLinkPinIs(String pin) {
+    return 'PIN: $pin';
+  }
+
+  @override
+  String get vaultSendTo => 'Send the link';
+
+  @override
+  String get vaultSendPhoneTo => 'Vet\'s phone number';
+
+  @override
+  String get vaultSendEmailTo => 'Vet\'s email';
+
+  @override
+  String get vaultSend => 'Send';
+
+  @override
+  String vaultSentTo(String target) {
+    return 'Link sent to $target (demo: in the Demo Outbox)';
+  }
+
+  @override
+  String get vaultShareCopiedInstead => 'Link copied. Paste it into any app.';
+
+  @override
+  String get vaultShareEmailSubject => 'Pet health documents from PawSetu';
+
+  @override
+  String vaultShareText(String name, String pet, String url) {
+    return '$name shared $pet\'s health documents with you on PawSetu: $url';
+  }
+
+  @override
+  String get vaultShareLinks => 'Share links';
+
+  @override
+  String get vaultLinksNote =>
+      'Links open only the documents you chose and stop working when they expire or when you stop them.';
+
+  @override
+  String get vaultLinksOld => 'Expired and stopped';
+
+  @override
+  String get vaultNoLinks => 'No share links yet';
+
+  @override
+  String get vaultNoLinksBody =>
+      'Share documents with a vet from any document in the vault.';
+
+  @override
+  String get vaultLinkActive => 'Active';
+
+  @override
+  String get vaultLinkExpired => 'Expired';
+
+  @override
+  String get vaultLinkRevoked => 'Stopped';
+
+  @override
+  String vaultLinkDocs(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count documents',
+      one: '1 document',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get vaultLinkAlbum => 'Album link';
+
+  @override
+  String vaultLinkWorksUntil(String when) {
+    return 'Works until $when';
+  }
+
+  @override
+  String get vaultLinkNoEnd => 'Works until you stop it';
+
+  @override
+  String vaultLinkOpened(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Opened $count times',
+      one: 'Opened once',
+      zero: 'Not opened yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get vaultHasPin => 'PIN';
+
+  @override
+  String vaultCreatedOn(String when) {
+    return 'Created $when';
+  }
+
+  @override
+  String vaultRevokedOn(String when) {
+    return 'Stopped $when';
+  }
+
+  @override
+  String get vaultAccessLog => 'Access log';
+
+  @override
+  String get vaultNoAccess => 'Nobody has opened this link yet.';
+
+  @override
+  String get vaultAccessOk => 'Opened';
+
+  @override
+  String get vaultAccessWrongPin => 'Wrong PIN tried';
+
+  @override
+  String get vaultRevoke => 'Stop link';
+
+  @override
+  String get vaultRevokeQ => 'Stop this link?';
+
+  @override
+  String get vaultRevokeBody =>
+      'Anyone who opens it will see that it no longer works. Your documents stay in the vault.';
+
+  @override
+  String get vaultRevoked => 'Link stopped';
+
+  @override
+  String vaultSharedBy(String owner, String pet) {
+    return '$owner shared $pet\'s documents';
+  }
+
+  @override
+  String vaultSharedUntil(String when) {
+    return 'Available until $when';
+  }
+
+  @override
+  String get vaultViewOnly => 'View only';
+
+  @override
+  String get vaultNoMatches => 'No documents in this link';
+
+  @override
+  String get vaultSharedFooter =>
+      'Shared securely with PawSetu. The pet parent can stop this link at any time.';
+
+  @override
+  String get vaultGetPawSetu => 'Get PawSetu';
+
+  @override
+  String get vaultEnterSharePin => 'Enter the PIN';
+
+  @override
+  String vaultEnterSharePinBody(String owner) {
+    return '$owner protected these documents with a PIN. Ask them for it.';
+  }
+
+  @override
+  String get vaultLinkPin => 'PIN';
+
+  @override
+  String get vaultOpenLink => 'Open';
+
+  @override
+  String get vaultShareWrongPin => 'Wrong PIN. Please try again.';
+
+  @override
+  String get vaultShareLocked =>
+      'Too many wrong tries. Try again in 15 minutes.';
+
+  @override
+  String get vaultLinkStopped => 'This link isn\'t available';
+
+  @override
+  String vaultLinkExpiredBody(String when) {
+    return 'It expired on $when. Ask the pet parent for a new link.';
+  }
+
+  @override
+  String get vaultLinkRevokedBody =>
+      'The pet parent stopped this link. Ask them for a new one.';
+
+  @override
+  String get vaultLinkNotFoundBody =>
+      'Check that the link was copied completely.';
+
+  @override
+  String get vaultInsuranceTitle => 'Pet insurance';
+
+  @override
+  String get vaultInsuranceNote =>
+      'PawSetu doesn\'t sell insurance. Track your policy, renewals and claims here.';
+
+  @override
+  String get vaultNoPolicies => 'No policies yet';
+
+  @override
+  String get vaultNoPoliciesBody =>
+      'Add your pet\'s insurance to track cover, renewal dates and claims.';
+
+  @override
+  String get vaultAddPolicy => 'Add policy';
+
+  @override
+  String get vaultEditPolicy => 'Edit policy';
+
+  @override
+  String vaultPolicyFor(String pet) {
+    return 'Policy for $pet';
+  }
+
+  @override
+  String get vaultFieldInsurer => 'Insurance company';
+
+  @override
+  String get vaultPlanName => 'Plan name';
+
+  @override
+  String get vaultFieldPolicyNo => 'Policy number';
+
+  @override
+  String get vaultFieldCover => 'Sum insured (₹)';
+
+  @override
+  String get vaultFieldPremium => 'Yearly premium (₹)';
+
+  @override
+  String get vaultFieldCoverStart => 'Cover starts';
+
+  @override
+  String get vaultFieldRenewal => 'Renewal date';
+
+  @override
+  String get vaultRenewalReminderNote =>
+      'We\'ll remind you 30 days before renewal.';
+
+  @override
+  String vaultInsuranceReminderTitle(String pet) {
+    return '$pet\'s insurance renews soon';
+  }
+
+  @override
+  String get vaultPolicyDoc => 'Policy document';
+
+  @override
+  String get vaultLinkDoc => 'Link the policy document from the vault';
+
+  @override
+  String get vaultNoDocLinked => 'No document linked';
+
+  @override
+  String get vaultAttachDoc => 'Attach from vault';
+
+  @override
+  String vaultAttached(String title) {
+    return 'Attached: $title';
+  }
+
+  @override
+  String get vaultDocMissing => 'This policy is no longer available.';
+
+  @override
+  String get vaultCover => 'Cover';
+
+  @override
+  String vaultCoverLeft(String amount) {
+    return '$amount cover left this year';
+  }
+
+  @override
+  String get vaultPremium => 'Premium';
+
+  @override
+  String vaultPremiumYear(String amount) {
+    return '$amount a year';
+  }
+
+  @override
+  String get vaultPolicyActive => 'Active';
+
+  @override
+  String get vaultPolicyLapsed => 'Lapsed';
+
+  @override
+  String get vaultRenewSoon => 'Renew soon';
+
+  @override
+  String get vaultDeletePolicyQ => 'Delete this policy?';
+
+  @override
+  String get vaultDeletePolicyBody =>
+      'Its claims are removed too. The policy document stays in the vault.';
+
+  @override
+  String get vaultClaims => 'Claims';
+
+  @override
+  String vaultOpenClaims(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count open',
+      one: '1 open',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get vaultNoClaims => 'No claims yet';
+
+  @override
+  String get vaultNewClaim => 'New claim';
+
+  @override
+  String get vaultClaimFor => 'What is the claim for?';
+
+  @override
+  String get vaultClaimForHint => 'E.g. Bruno\'s leg X-ray and treatment';
+
+  @override
+  String get vaultClaimAmount => 'Amount claimed';
+
+  @override
+  String get vaultClaimDate => 'Treatment date';
+
+  @override
+  String get vaultClaimChecklist => 'Documents checklist';
+
+  @override
+  String vaultChecklistProgress(int done, int total) {
+    return '$done of $total ready';
+  }
+
+  @override
+  String get vaultCkClaimForm => 'Filled claim form';
+
+  @override
+  String get vaultCkVetBills => 'Vet bills and receipts';
+
+  @override
+  String get vaultCkPrescription => 'Prescription';
+
+  @override
+  String get vaultCkLabReports => 'Lab or X-ray reports';
+
+  @override
+  String get vaultCkPolicyCopy => 'Policy copy';
+
+  @override
+  String get vaultCkPetPhoto => 'Recent photo of your pet';
+
+  @override
+  String get vaultCkIdProof => 'Your ID proof';
+
+  @override
+  String get vaultReadyToSubmit =>
+      'Tick every document in the checklist before submitting.';
+
+  @override
+  String vaultMarkAs(String status) {
+    return 'Mark as $status';
+  }
+
+  @override
+  String get vaultClaimDraft => 'Draft';
+
+  @override
+  String get vaultClaimSubmitted => 'Submitted';
+
+  @override
+  String get vaultClaimInReview => 'In review';
+
+  @override
+  String get vaultClaimApproved => 'Approved';
+
+  @override
+  String get vaultClaimRejected => 'Rejected';
+
+  @override
+  String get vaultClaimPaid => 'Paid';
+
+  @override
+  String vaultClaimedAmount(String amount) {
+    return 'Claimed $amount';
+  }
+
+  @override
+  String vaultPaidAmount(String amount) {
+    return 'Paid $amount';
+  }
+
+  @override
+  String get vaultSettledAmount => 'Amount paid by insurer';
+
+  @override
+  String get vaultClaimSaved => 'Claim saved';
 }

@@ -4718,4 +4718,1266 @@ class AppLocalizationsHi extends AppLocalizations {
   String ntfPrescription(String vet, String pet) {
     return '$vet ने $pet के लिए पर्चा भेजा';
   }
+
+  @override
+  String get albumPhotos => 'फ़ोटो';
+
+  @override
+  String get albumTimeline => 'टाइमलाइन';
+
+  @override
+  String get albumAlbums => 'एल्बम';
+
+  @override
+  String get albumFavourites => 'पसंदीदा';
+
+  @override
+  String get albumAdd => 'फ़ोटो या वीडियो जोड़ें';
+
+  @override
+  String albumAddTitle(String pet) {
+    return '$pet के एल्बम में जोड़ें';
+  }
+
+  @override
+  String albumAddFirst(String pet) {
+    return '$pet की पहली फ़ोटो जोड़ें';
+  }
+
+  @override
+  String get albumChoosePhotos => 'फ़ोटो चुनें';
+
+  @override
+  String get albumChooseVideo => 'वीडियो चुनें';
+
+  @override
+  String get albumRecordVideo => 'वीडियो रिकॉर्ड करें';
+
+  @override
+  String get albumCaption => 'कैप्शन';
+
+  @override
+  String get albumCaptionHint => 'इस पल में क्या हो रहा है?';
+
+  @override
+  String get albumDateTaken => 'तारीख़';
+
+  @override
+  String get albumMilestone => 'ख़ास पल';
+
+  @override
+  String get albumNoMilestone => 'कोई ख़ास पल नहीं';
+
+  @override
+  String get albumAddMilestone => 'ख़ास पल के रूप में जोड़ें';
+
+  @override
+  String get albumMilestoneTitle => 'ख़ास पल का नाम';
+
+  @override
+  String get albumMilestoneTitleHint => 'जैसे पहली बार तैरना';
+
+  @override
+  String get albumMsGotcha => 'घर आने का दिन';
+
+  @override
+  String get albumMsFirstWalk => 'पहली सैर';
+
+  @override
+  String get albumMsFirstVaccine => 'पहला टीका';
+
+  @override
+  String get albumMsBirthday => 'जन्मदिन';
+
+  @override
+  String get albumMsCustom => 'ख़ास पल';
+
+  @override
+  String get albumNewAlbum => 'नया एल्बम';
+
+  @override
+  String get albumAlbumName => 'एल्बम का नाम';
+
+  @override
+  String get albumUploading => 'आपकी यादें जोड़ रहे हैं…';
+
+  @override
+  String albumPhotosAdded(int count) {
+    return '$count यादें जोड़ी गईं';
+  }
+
+  @override
+  String albumSaved(String pet) {
+    return '$pet के एल्बम में सेव हुआ';
+  }
+
+  @override
+  String albumAddedToAlbum(String album) {
+    return '$album में जोड़ा गया';
+  }
+
+  @override
+  String get albumStorageNote =>
+      'फ़ोटो और वीडियो आपके प्लान की स्टोरेज इस्तेमाल करते हैं। Free में 1 मिनट तक, Plus में 3 मिनट तक के वीडियो।';
+
+  @override
+  String albumVideoMaxSec(int seconds) {
+    return '$seconds सेकंड तक के वीडियो';
+  }
+
+  @override
+  String get albumVideoTooLongTitle => 'यह वीडियो बहुत लंबा है';
+
+  @override
+  String albumVideoTooLong(int seconds, int limit) {
+    return 'यह $seconds सेकंड का है; आपका प्लान $limit सेकंड तक की अनुमति देता है।';
+  }
+
+  @override
+  String get albumVideoPlusBody =>
+      'इसे फ़ोन पर छोटा करें, या PawSetu Plus से 3 मिनट तक के वीडियो पाएँ।';
+
+  @override
+  String get albumEmptyTitle => 'अभी कोई यादें नहीं';
+
+  @override
+  String albumEmptyBody(String pet) {
+    return '$pet की फ़ोटो और वीडियो जोड़ें। ये महीने के हिसाब से बँटेंगे और ख़ास पल टाइमलाइन पर दिखेंगे।';
+  }
+
+  @override
+  String albumMonthCount(int count) {
+    return '$count यादें';
+  }
+
+  @override
+  String get albumOnThisDay => 'आज के दिन';
+
+  @override
+  String get albumLatestMemory => 'ताज़ा याद';
+
+  @override
+  String albumOfPet(String pet) {
+    return '$pet के साथ एक पल';
+  }
+
+  @override
+  String get albumSeeAlbum => 'एल्बम देखें';
+
+  @override
+  String albumYearsAgo(int count) {
+    return '$count साल पहले';
+  }
+
+  @override
+  String albumTimelineBorn(String pet) {
+    return '$pet का जन्म';
+  }
+
+  @override
+  String albumTimelineEmpty(String pet) {
+    return 'फ़ोटो जोड़ते समय ख़ास पल चुनें, $pet की कहानी यहाँ दिखेगी।';
+  }
+
+  @override
+  String get albumCelebrate => 'जश्न मनाएँ';
+
+  @override
+  String get albumBadges => 'ख़ास पलों के बैज';
+
+  @override
+  String get albumBadgeLocked => 'अभी नहीं';
+
+  @override
+  String get albumNoAlbums => 'अभी कोई एल्बम नहीं';
+
+  @override
+  String get albumNoAlbumsBody =>
+      'यादों को एल्बम में रखें, जैसे \"गोवा ट्रिप\" या \"पहला साल\"।';
+
+  @override
+  String get albumNoFavourites => 'अभी कोई पसंदीदा नहीं';
+
+  @override
+  String get albumNoFavouritesBody =>
+      'किसी फ़ोटो पर दिल दबाएँ, वह यहाँ दिखेगी।';
+
+  @override
+  String albumChooseForAlbum(String album) {
+    return '$album के लिए यादें चुनें';
+  }
+
+  @override
+  String albumItemsSelected(int count) {
+    return '$count चुने गए';
+  }
+
+  @override
+  String get albumRenameAlbum => 'एल्बम का नाम बदलें';
+
+  @override
+  String get albumDeleteAlbum => 'एल्बम हटाएँ';
+
+  @override
+  String albumDeleteAlbumBody(String pet) {
+    return 'फ़ोटो $pet के एल्बम में रहेंगी। सिर्फ़ यह समूह हटेगा।';
+  }
+
+  @override
+  String get albumRemoveFromAlbum => 'एल्बम से हटाएँ';
+
+  @override
+  String get albumVideo => 'वीडियो';
+
+  @override
+  String albumOfCount(int index, int total) {
+    return '$total में से $index';
+  }
+
+  @override
+  String get albumClose => 'बंद करें';
+
+  @override
+  String get albumPrevious => 'पिछला';
+
+  @override
+  String get albumFavourite => 'पसंदीदा में जोड़ें';
+
+  @override
+  String get albumUnfavourite => 'पसंदीदा से हटाएँ';
+
+  @override
+  String get albumEditCaption => 'कैप्शन बदलें';
+
+  @override
+  String get albumAddToAlbum => 'एल्बम में जोड़ें';
+
+  @override
+  String get albumShare => 'शेयर करें';
+
+  @override
+  String get albumDelete => 'हटाएँ';
+
+  @override
+  String get albumDeleteQ => 'यह याद हटाएँ?';
+
+  @override
+  String albumDeleteBody(String pet) {
+    return 'यह परिवार के सभी लोगों के लिए $pet के एल्बम से हट जाएगी।';
+  }
+
+  @override
+  String get albumDeleted => 'याद हटा दी गई';
+
+  @override
+  String albumAddedBy(String name) {
+    return '$name ने जोड़ा';
+  }
+
+  @override
+  String get albumPlay => 'चलाएँ';
+
+  @override
+  String get albumPause => 'रोकें';
+
+  @override
+  String get albumVideoFailed => 'यह वीडियो यहाँ नहीं चल सकता।';
+
+  @override
+  String get albumDemoVideo => 'डेमो वीडियो: असली फ़ाइल की जगह नमूना क्लिप।';
+
+  @override
+  String get albumShareTitle => 'यादें शेयर करें';
+
+  @override
+  String get albumShareBody =>
+      'WhatsApp या किसी भी ऐप पर भेजें, या परिवार के लिए निजी लिंक बनाएँ।';
+
+  @override
+  String get albumShareToApps => 'ऐप्स पर शेयर करें';
+
+  @override
+  String get albumShareFailed => 'शेयर नहीं हो पाया। फिर कोशिश करें।';
+
+  @override
+  String get albumWatermark => 'PawSetu वॉटरमार्क लगाएँ';
+
+  @override
+  String get albumWatermarkPhotosOnly =>
+      'सिर्फ़ फ़ोटो पर; वीडियो जैसे हैं वैसे शेयर होंगे।';
+
+  @override
+  String get albumWatermarkText => 'PawSetu से बना';
+
+  @override
+  String get albumFamilyLink => 'परिवार के लिए निजी लिंक';
+
+  @override
+  String albumFamilyLinkBody(String pet) {
+    return 'लिंक वाला कोई भी $pet की ये यादें लिंक की अवधि तक देख सकता है। आप इसे कभी भी बंद कर सकते हैं।';
+  }
+
+  @override
+  String get albumFamilyLinkWhich => 'क्या शेयर करें';
+
+  @override
+  String get albumWholeAlbum => 'पूरा एल्बम';
+
+  @override
+  String albumFamilyLinkText(String pet, String url) {
+    return 'PawSetu पर $pet की फ़ोटो: $url';
+  }
+
+  @override
+  String albumSharedBy(String owner, String pet) {
+    return '$owner ने $pet की यादें शेयर कीं';
+  }
+
+  @override
+  String get albumBirthdayScreenTitle => 'जन्मदिन';
+
+  @override
+  String albumBirthdayToday(String pet) {
+    return 'जन्मदिन मुबारक हो, $pet!';
+  }
+
+  @override
+  String albumBirthdayIn(int days, String pet, int age) {
+    return '$pet $days दिन में $age साल का होगा';
+  }
+
+  @override
+  String albumBirthdaySubtitle(int age, String pet) {
+    return '$pet आज $age साल का हो गया';
+  }
+
+  @override
+  String albumBirthdayWishes(String pet) {
+    return '$pet को इस साल ढेर सारी सैर, ट्रीट और प्यार की शुभकामनाएँ!';
+  }
+
+  @override
+  String get albumBirthdayMemories => 'इस साल की यादें';
+
+  @override
+  String get albumBirthdayAddPhoto => 'जन्मदिन की फ़ोटो जोड़ें';
+
+  @override
+  String albumBirthdayReminder(String pet) {
+    return '$pet के जन्मदिन से पहले याद दिलाएँ';
+  }
+
+  @override
+  String albumBirthdayReminderTitle(String pet) {
+    return '$pet का जन्मदिन आने वाला है';
+  }
+
+  @override
+  String get albumBirthdayReminderOn => 'जन्मदिन रिमाइंडर चालू';
+
+  @override
+  String albumNoBirthday(String pet) {
+    return 'यहाँ जश्न मनाने के लिए $pet का जन्मदिन जोड़ें।';
+  }
+
+  @override
+  String get vaultSetupTitle => 'अपना वॉल्ट सुरक्षित करें';
+
+  @override
+  String get vaultSetupBody =>
+      '4 से 6 अंकों का PIN चुनें। वॉल्ट खोलते समय हर बार यह डालना होगा।';
+
+  @override
+  String get vaultSetupBodyBio =>
+      'बैकअप के लिए 4 से 6 अंकों का PIN चुनें। फिर आप फ़िंगरप्रिंट या चेहरे से खोल सकेंगे।';
+
+  @override
+  String get vaultChoosePin => 'PIN चुनें';
+
+  @override
+  String get vaultConfirmPin => 'PIN फिर से डालें';
+
+  @override
+  String get vaultCurrentPin => 'मौजूदा PIN';
+
+  @override
+  String get vaultSetPinButton => 'PIN सेट करें';
+
+  @override
+  String get vaultPinMismatch => 'PIN मेल नहीं खाते। फिर कोशिश करें।';
+
+  @override
+  String get vaultPinWeak =>
+      'यह PIN आसानी से पता चल सकता है। 1234 या एक जैसे अंक न रखें।';
+
+  @override
+  String get vaultPinSet => 'वॉल्ट PIN सेट हो गया';
+
+  @override
+  String get vaultPinChanged => 'PIN बदल गया';
+
+  @override
+  String get vaultChangePin => 'PIN बदलें';
+
+  @override
+  String vaultPinDigits(int count) {
+    return '$count अंक डाले गए';
+  }
+
+  @override
+  String get vaultPinBackspace => 'आख़िरी अंक हटाएँ';
+
+  @override
+  String get vaultLockedTitle => 'वॉल्ट लॉक है';
+
+  @override
+  String get vaultLockedBody =>
+      'आपके पालतू के दस्तावेज़ सुरक्षित हैं। आगे बढ़ने के लिए अनलॉक करें।';
+
+  @override
+  String get vaultUnlock => 'अनलॉक करें';
+
+  @override
+  String get vaultUseBiometrics => 'फ़िंगरप्रिंट या चेहरा इस्तेमाल करें';
+
+  @override
+  String get vaultBiometricReason => 'अपना PawSetu दस्तावेज़ वॉल्ट खोलें';
+
+  @override
+  String get vaultBiometricsToggle => 'फ़िंगरप्रिंट या चेहरे से खोलें';
+
+  @override
+  String get vaultWrongPin => 'ग़लत PIN।';
+
+  @override
+  String vaultTriesLeft(int count) {
+    return '$count कोशिशें बाकी।';
+  }
+
+  @override
+  String vaultLockedOut(int seconds) {
+    return 'बहुत ज़्यादा ग़लत कोशिशें। $seconds सेकंड बाद फिर कोशिश करें।';
+  }
+
+  @override
+  String get vaultForgotPin => 'PIN भूल गए?';
+
+  @override
+  String get vaultForgotPinTitle => 'वॉल्ट PIN रीसेट करें';
+
+  @override
+  String get vaultForgotPinBody =>
+      'यह साबित करने के लिए फिर से साइन इन करें कि यह आप ही हैं, फिर नया PIN चुनें। आपके दस्तावेज़ सुरक्षित रहेंगे।';
+
+  @override
+  String get vaultSignInAgain => 'फिर से साइन इन करें';
+
+  @override
+  String get vaultAutoLockNote =>
+      '2 मिनट दूर रहने पर वॉल्ट अपने आप लॉक हो जाता है।';
+
+  @override
+  String get vaultLockNow => 'अभी लॉक करें';
+
+  @override
+  String get vaultLockSettings => 'वॉल्ट लॉक';
+
+  @override
+  String vaultOfPet(String pet) {
+    return '$pet के दस्तावेज़';
+  }
+
+  @override
+  String get vaultAllDocs => 'सभी दस्तावेज़';
+
+  @override
+  String vaultDocCount(int count) {
+    return '$count दस्तावेज़';
+  }
+
+  @override
+  String get vaultSearchHint => 'शीर्षक, टैग या डॉक्टर खोजें';
+
+  @override
+  String get vaultClearSearch => 'खोज हटाएँ';
+
+  @override
+  String get vaultNeedsAttention => 'ध्यान दें';
+
+  @override
+  String get vaultNeedsReview => 'जानकारी जाँचें';
+
+  @override
+  String vaultAddedOn(String date) {
+    return '$date को जोड़ा';
+  }
+
+  @override
+  String get vaultEmptyTitle => 'आपका वॉल्ट ख़ाली है';
+
+  @override
+  String get vaultEmptyBody =>
+      'टीका प्रमाणपत्र, पर्चे, लैब रिपोर्ट और बीमा एक ही जगह सुरक्षित रखें।';
+
+  @override
+  String get vaultAddDocument => 'दस्तावेज़ जोड़ें';
+
+  @override
+  String get vaultStorageTitle => 'स्टोरेज';
+
+  @override
+  String vaultStorageUsed(String used, String limit) {
+    return '$limit में से $used इस्तेमाल';
+  }
+
+  @override
+  String vaultStorageSplit(String docs, String album) {
+    return 'दस्तावेज़ $docs · एल्बम $album';
+  }
+
+  @override
+  String get vaultStorageFullTitle => 'स्टोरेज भर गई';
+
+  @override
+  String vaultStorageFullBody(String used, String limit) {
+    return 'आपने $limit में से $used इस्तेमाल कर लिया है। पुरानी फ़ाइलें हटाएँ या PawSetu Plus से 25 GB पाएँ।';
+  }
+
+  @override
+  String vaultStorageFullBodyPlus(String used, String limit) {
+    return 'आपने $limit में से $used इस्तेमाल कर लिया है। जगह बनाने के लिए पुरानी फ़ाइलें हटाएँ।';
+  }
+
+  @override
+  String get vaultTooBig => 'यह फ़ाइल बहुत बड़ी है। 20 MB से छोटी फ़ाइल चुनें।';
+
+  @override
+  String get vaultTypeVaccination => 'टीका प्रमाणपत्र';
+
+  @override
+  String get vaultTypePrescription => 'पर्चा';
+
+  @override
+  String get vaultTypeLab => 'लैब रिपोर्ट';
+
+  @override
+  String get vaultTypeInsurance => 'बीमा';
+
+  @override
+  String get vaultTypeInvoice => 'बिल';
+
+  @override
+  String get vaultTypeLicence => 'नगर निगम लाइसेंस';
+
+  @override
+  String get vaultTypeAdoption => 'गोद लेने या ख़रीद के काग़ज़';
+
+  @override
+  String get vaultTypeTravel => 'यात्रा या स्वास्थ्य प्रमाणपत्र';
+
+  @override
+  String get vaultTypeOther => 'अन्य';
+
+  @override
+  String get vaultExpired => 'समाप्त';
+
+  @override
+  String get vaultExpiresSoon => 'जल्द समाप्त';
+
+  @override
+  String vaultExpiresOn(String date) {
+    return '$date को समाप्त';
+  }
+
+  @override
+  String vaultExpiredOn(String date) {
+    return '$date को समाप्त हुआ';
+  }
+
+  @override
+  String get vaultNoExpiry => 'कोई समाप्ति तारीख़ नहीं';
+
+  @override
+  String get vaultUploadTitle => 'दस्तावेज़ जोड़ें';
+
+  @override
+  String get vaultForPet => 'किस पालतू के लिए?';
+
+  @override
+  String get vaultScanCamera => 'कैमरे से स्कैन करें';
+
+  @override
+  String get vaultScanCameraHint =>
+      'किनारे अपने आप मिलते हैं; ज़रूरत हो तो कोने ठीक करें';
+
+  @override
+  String get vaultFromGallery => 'गैलरी से फ़ोटो';
+
+  @override
+  String get vaultFromPdf => 'PDF फ़ाइल';
+
+  @override
+  String get vaultPdfOnly => 'कृपया PDF फ़ाइल चुनें।';
+
+  @override
+  String get vaultTrySample =>
+      'डेमो: ऑटो-रीड देखने के लिए नमूना दस्तावेज़ आज़माएँ';
+
+  @override
+  String get vaultSampleRabies => 'नमूना रेबीज़ प्रमाणपत्र';
+
+  @override
+  String get vaultSampleLab => 'नमूना ख़ून जाँच रिपोर्ट';
+
+  @override
+  String get vaultSampleInsurance => 'नमूना बीमा पॉलिसी';
+
+  @override
+  String get vaultUploading => 'सुरक्षित रूप से सेव हो रहा है…';
+
+  @override
+  String get vaultScanTitle => 'स्कैन ठीक करें';
+
+  @override
+  String get vaultScanHint => 'कोनों को पन्ने के किनारों तक खींचें।';
+
+  @override
+  String get vaultScanAuto =>
+      'पन्ने के किनारे मिल गए। ज़रूरत हो तो कोने ठीक करें।';
+
+  @override
+  String get vaultScanBw => 'ब्लैक एंड व्हाइट (साफ़ अक्षर)';
+
+  @override
+  String get vaultScanCorner => 'कोने का हैंडल, ठीक करने के लिए खींचें';
+
+  @override
+  String get vaultUseScan => 'यह स्कैन इस्तेमाल करें';
+
+  @override
+  String get vaultPreviewFailed => 'इस फ़ाइल का पूर्वावलोकन नहीं दिखा सके।';
+
+  @override
+  String get vaultReading => 'दस्तावेज़ पढ़ रहे हैं…';
+
+  @override
+  String get vaultCheckDetails => 'जानकारी जाँचें';
+
+  @override
+  String get vaultCheckDetailsHint =>
+      'ये जानकारी दस्तावेज़ से पढ़ी गई है। कृपया पुष्टि करें या सुधारें।';
+
+  @override
+  String get vaultAddDetails => 'जानकारी जोड़ें';
+
+  @override
+  String get vaultFoundTitle => 'हमें ये जानकारी मिली';
+
+  @override
+  String get vaultFoundBody =>
+      'सेव करने से पहले हर जानकारी जाँचें। आपकी पुष्टि के बिना कुछ सेव नहीं होगा।';
+
+  @override
+  String get vaultNotFoundTitle => 'इसे पढ़ नहीं पाए';
+
+  @override
+  String get vaultNotFoundBody =>
+      'जानकारी ख़ुद जोड़ें, या छोड़ें और बाद में जोड़ें।';
+
+  @override
+  String get vaultDemoReadNote =>
+      'डेमो ऑटो-रीड: जानकारी नमूना दस्तावेज़ से आती है, आपकी फ़ाइल के असली स्कैन से नहीं।';
+
+  @override
+  String vaultPetMismatch(String docPet, String pet) {
+    return 'दस्तावेज़ में $docPet लिखा है, पर आपने $pet चुना है। सेव करने से पहले पालतू जाँचें।';
+  }
+
+  @override
+  String get vaultFieldDocType => 'दस्तावेज़ का प्रकार';
+
+  @override
+  String get vaultFieldTitle => 'शीर्षक';
+
+  @override
+  String get vaultFieldTags => 'टैग';
+
+  @override
+  String get vaultTagHint => 'जैसे रेबीज़, 2026';
+
+  @override
+  String get vaultAddTag => 'टैग जोड़ें';
+
+  @override
+  String vaultAddToHealth(String pet) {
+    return '$pet के स्वास्थ्य रिकॉर्ड में जोड़ें';
+  }
+
+  @override
+  String get vaultAddToHealthHint =>
+      'टीका दर्ज होगा और अगली खुराक अपने आप तय हो जाएगी।';
+
+  @override
+  String get vaultVaccineNeeded =>
+      'स्वास्थ्य रिकॉर्ड में सेव करने के लिए टीके का नाम और तारीख़ जोड़ें।';
+
+  @override
+  String get vaultTrackInsurance => 'इस पॉलिसी को बीमा में ट्रैक करें';
+
+  @override
+  String get vaultExpiryReminderNote =>
+      'समाप्ति से 30 दिन पहले हम याद दिलाएँगे।';
+
+  @override
+  String get vaultSaveDetails => 'सेव करें';
+
+  @override
+  String get vaultSkipDetails => 'अभी छोड़ें';
+
+  @override
+  String get vaultSaved => 'वॉल्ट में सेव हुआ';
+
+  @override
+  String vaultSavedVaccine(String vaccine, String pet) {
+    return '$pet का $vaccine दर्ज हुआ';
+  }
+
+  @override
+  String vaultReminderTitle(String title, String pet) {
+    return '$pet का $title जल्द समाप्त होगा';
+  }
+
+  @override
+  String vaultTitleVaccineCert(String vaccine) {
+    return '$vaccine प्रमाणपत्र';
+  }
+
+  @override
+  String vaultTitlePolicy(String insurer) {
+    return '$insurer पॉलिसी';
+  }
+
+  @override
+  String get vaultDocDetails => 'दस्तावेज़ की जानकारी';
+
+  @override
+  String get vaultDetailsRead => 'जानकारी';
+
+  @override
+  String get vaultEditDetails => 'जानकारी बदलें';
+
+  @override
+  String vaultConfirmedBy(String name, String date) {
+    return '$date को $name ने जाँचा';
+  }
+
+  @override
+  String get vaultFieldPetName => 'पालतू का नाम';
+
+  @override
+  String get vaultFieldIssuedOn => 'जारी करने की तारीख़';
+
+  @override
+  String get vaultFieldExpiry => 'कब तक मान्य';
+
+  @override
+  String get vaultFieldIssuer => 'जारी करने वाले';
+
+  @override
+  String get vaultFieldVetReg => 'डॉक्टर रजि. नं.';
+
+  @override
+  String get vaultFieldReference => 'संदर्भ संख्या';
+
+  @override
+  String get vaultFieldTest => 'जाँच';
+
+  @override
+  String get vaultFieldAmount => 'राशि';
+
+  @override
+  String get vaultFileType => 'फ़ाइल प्रकार';
+
+  @override
+  String get vaultFileSize => 'आकार';
+
+  @override
+  String get vaultAddedLabel => 'जोड़ा गया';
+
+  @override
+  String get vaultPdf => 'PDF';
+
+  @override
+  String get vaultPhoto => 'फ़ोटो';
+
+  @override
+  String get vaultSample => 'नमूना';
+
+  @override
+  String get vaultTapToZoom => 'बड़ा करने के लिए टैप करें';
+
+  @override
+  String get vaultSecureNote =>
+      'आपके खाते में निजी रूप से सुरक्षित। सिर्फ़ आप और जिनसे आप लिंक शेयर करें, वही देख सकते हैं।';
+
+  @override
+  String vaultLinkedVaccine(String pet) {
+    return '$pet के टीका रिकॉर्ड से जुड़ा';
+  }
+
+  @override
+  String get vaultOpenInApp => 'PawSetu में खोलें';
+
+  @override
+  String get vaultOpenPolicy => 'पॉलिसी खोलें';
+
+  @override
+  String get vaultTrackPolicy => 'बीमा में ट्रैक करें';
+
+  @override
+  String get vaultShareWithVet => 'डॉक्टर से शेयर करें';
+
+  @override
+  String get vaultDeleteDoc => 'दस्तावेज़ हटाएँ';
+
+  @override
+  String vaultDeleteDocQ(String title) {
+    return '\"$title\" हटाएँ?';
+  }
+
+  @override
+  String vaultDeleteDocBody(String pet) {
+    return 'यह $pet के वॉल्ट से हट जाएगा और इसके शेयर लिंक काम करना बंद कर देंगे।';
+  }
+
+  @override
+  String get vaultDeleted => 'दस्तावेज़ हटा दिया गया';
+
+  @override
+  String get vaultShareTitle => 'डॉक्टर से शेयर करें';
+
+  @override
+  String get vaultShareBody =>
+      'ऐसा लिंक बनाएँ जो सीमित समय के लिए सिर्फ़ आपके चुने दस्तावेज़ खोले।';
+
+  @override
+  String get vaultChooseDocs => 'शेयर करने वाले दस्तावेज़';
+
+  @override
+  String get vaultSelectOneDoc => 'कम से कम एक दस्तावेज़ चुनें।';
+
+  @override
+  String get vaultLinkValidFor => 'लिंक कितनी देर चलेगा';
+
+  @override
+  String get vaultExpiry1h => '1 घंटा';
+
+  @override
+  String get vaultExpiry24h => '24 घंटे';
+
+  @override
+  String get vaultExpiry7d => '7 दिन';
+
+  @override
+  String get vaultExpiryNever => 'जब तक मैं बंद न करूँ';
+
+  @override
+  String get vaultAddPin => 'PIN माँगें';
+
+  @override
+  String get vaultAddPinHint =>
+      'लिंक खोलने के लिए डॉक्टर यह 4 से 6 अंकों का PIN डालेंगे।';
+
+  @override
+  String get vaultPinFormat => 'PIN 4 से 6 अंकों का होना चाहिए।';
+
+  @override
+  String get vaultCreateLink => 'लिंक बनाएँ';
+
+  @override
+  String get vaultLinkReady => 'लिंक तैयार';
+
+  @override
+  String vaultLinkPinIs(String pin) {
+    return 'PIN: $pin';
+  }
+
+  @override
+  String get vaultSendTo => 'लिंक भेजें';
+
+  @override
+  String get vaultSendPhoneTo => 'डॉक्टर का फ़ोन नंबर';
+
+  @override
+  String get vaultSendEmailTo => 'डॉक्टर का ईमेल';
+
+  @override
+  String get vaultSend => 'भेजें';
+
+  @override
+  String vaultSentTo(String target) {
+    return 'लिंक $target को भेजा गया (डेमो: डेमो आउटबॉक्स में)';
+  }
+
+  @override
+  String get vaultShareCopiedInstead =>
+      'लिंक कॉपी हो गया। किसी भी ऐप में पेस्ट करें।';
+
+  @override
+  String get vaultShareEmailSubject =>
+      'PawSetu से पालतू के स्वास्थ्य दस्तावेज़';
+
+  @override
+  String vaultShareText(String name, String pet, String url) {
+    return '$name ने PawSetu पर $pet के स्वास्थ्य दस्तावेज़ आपसे शेयर किए: $url';
+  }
+
+  @override
+  String get vaultShareLinks => 'शेयर लिंक';
+
+  @override
+  String get vaultLinksNote =>
+      'लिंक सिर्फ़ आपके चुने दस्तावेज़ खोलते हैं और समय पूरा होने या आपके बंद करने पर काम करना बंद कर देते हैं।';
+
+  @override
+  String get vaultLinksOld => 'समाप्त और बंद';
+
+  @override
+  String get vaultNoLinks => 'अभी कोई शेयर लिंक नहीं';
+
+  @override
+  String get vaultNoLinksBody =>
+      'वॉल्ट के किसी भी दस्तावेज़ से डॉक्टर को शेयर करें।';
+
+  @override
+  String get vaultLinkActive => 'चालू';
+
+  @override
+  String get vaultLinkExpired => 'समाप्त';
+
+  @override
+  String get vaultLinkRevoked => 'बंद';
+
+  @override
+  String vaultLinkDocs(int count) {
+    return '$count दस्तावेज़';
+  }
+
+  @override
+  String get vaultLinkAlbum => 'एल्बम लिंक';
+
+  @override
+  String vaultLinkWorksUntil(String when) {
+    return '$when तक चलेगा';
+  }
+
+  @override
+  String get vaultLinkNoEnd => 'आपके बंद करने तक चलेगा';
+
+  @override
+  String vaultLinkOpened(int count) {
+    return '$count बार खोला गया';
+  }
+
+  @override
+  String get vaultHasPin => 'PIN';
+
+  @override
+  String vaultCreatedOn(String when) {
+    return '$when को बनाया';
+  }
+
+  @override
+  String vaultRevokedOn(String when) {
+    return '$when को बंद किया';
+  }
+
+  @override
+  String get vaultAccessLog => 'खोलने का रिकॉर्ड';
+
+  @override
+  String get vaultNoAccess => 'अभी तक किसी ने यह लिंक नहीं खोला।';
+
+  @override
+  String get vaultAccessOk => 'खोला गया';
+
+  @override
+  String get vaultAccessWrongPin => 'ग़लत PIN डाला गया';
+
+  @override
+  String get vaultRevoke => 'लिंक बंद करें';
+
+  @override
+  String get vaultRevokeQ => 'यह लिंक बंद करें?';
+
+  @override
+  String get vaultRevokeBody =>
+      'इसे खोलने वाले को दिखेगा कि यह अब काम नहीं करता। आपके दस्तावेज़ वॉल्ट में रहेंगे।';
+
+  @override
+  String get vaultRevoked => 'लिंक बंद हो गया';
+
+  @override
+  String vaultSharedBy(String owner, String pet) {
+    return '$owner ने $pet के दस्तावेज़ शेयर किए';
+  }
+
+  @override
+  String vaultSharedUntil(String when) {
+    return '$when तक उपलब्ध';
+  }
+
+  @override
+  String get vaultViewOnly => 'सिर्फ़ देखने के लिए';
+
+  @override
+  String get vaultNoMatches => 'इस लिंक में कोई दस्तावेज़ नहीं';
+
+  @override
+  String get vaultSharedFooter =>
+      'PawSetu से सुरक्षित रूप से शेयर किया गया। पालतू-माता-पिता यह लिंक कभी भी बंद कर सकते हैं।';
+
+  @override
+  String get vaultGetPawSetu => 'PawSetu पाएँ';
+
+  @override
+  String get vaultEnterSharePin => 'PIN डालें';
+
+  @override
+  String vaultEnterSharePinBody(String owner) {
+    return '$owner ने इन दस्तावेज़ों पर PIN लगाया है। उनसे PIN माँगें।';
+  }
+
+  @override
+  String get vaultLinkPin => 'PIN';
+
+  @override
+  String get vaultOpenLink => 'खोलें';
+
+  @override
+  String get vaultShareWrongPin => 'ग़लत PIN। फिर कोशिश करें।';
+
+  @override
+  String get vaultShareLocked =>
+      'बहुत ज़्यादा ग़लत कोशिशें। 15 मिनट बाद फिर कोशिश करें।';
+
+  @override
+  String get vaultLinkStopped => 'यह लिंक उपलब्ध नहीं है';
+
+  @override
+  String vaultLinkExpiredBody(String when) {
+    return 'यह $when को समाप्त हो गया। पालतू-माता-पिता से नया लिंक माँगें।';
+  }
+
+  @override
+  String get vaultLinkRevokedBody =>
+      'पालतू-माता-पिता ने यह लिंक बंद कर दिया है। उनसे नया लिंक माँगें।';
+
+  @override
+  String get vaultLinkNotFoundBody => 'जाँचें कि लिंक पूरा कॉपी हुआ है।';
+
+  @override
+  String get vaultInsuranceTitle => 'पालतू बीमा';
+
+  @override
+  String get vaultInsuranceNote =>
+      'PawSetu बीमा नहीं बेचता। अपनी पॉलिसी, रिन्यूअल और क्लेम यहाँ ट्रैक करें।';
+
+  @override
+  String get vaultNoPolicies => 'अभी कोई पॉलिसी नहीं';
+
+  @override
+  String get vaultNoPoliciesBody =>
+      'कवर, रिन्यूअल की तारीख़ और क्लेम ट्रैक करने के लिए पालतू का बीमा जोड़ें।';
+
+  @override
+  String get vaultAddPolicy => 'पॉलिसी जोड़ें';
+
+  @override
+  String get vaultEditPolicy => 'पॉलिसी बदलें';
+
+  @override
+  String vaultPolicyFor(String pet) {
+    return '$pet की पॉलिसी';
+  }
+
+  @override
+  String get vaultFieldInsurer => 'बीमा कंपनी';
+
+  @override
+  String get vaultPlanName => 'प्लान का नाम';
+
+  @override
+  String get vaultFieldPolicyNo => 'पॉलिसी नंबर';
+
+  @override
+  String get vaultFieldCover => 'बीमा राशि (₹)';
+
+  @override
+  String get vaultFieldPremium => 'सालाना प्रीमियम (₹)';
+
+  @override
+  String get vaultFieldCoverStart => 'कवर शुरू';
+
+  @override
+  String get vaultFieldRenewal => 'रिन्यूअल की तारीख़';
+
+  @override
+  String get vaultRenewalReminderNote =>
+      'रिन्यूअल से 30 दिन पहले हम याद दिलाएँगे।';
+
+  @override
+  String vaultInsuranceReminderTitle(String pet) {
+    return '$pet का बीमा जल्द रिन्यू होगा';
+  }
+
+  @override
+  String get vaultPolicyDoc => 'पॉलिसी दस्तावेज़';
+
+  @override
+  String get vaultLinkDoc => 'वॉल्ट से पॉलिसी दस्तावेज़ जोड़ें';
+
+  @override
+  String get vaultNoDocLinked => 'कोई दस्तावेज़ नहीं जुड़ा';
+
+  @override
+  String get vaultAttachDoc => 'वॉल्ट से जोड़ें';
+
+  @override
+  String vaultAttached(String title) {
+    return 'जोड़ा गया: $title';
+  }
+
+  @override
+  String get vaultDocMissing => 'यह पॉलिसी अब उपलब्ध नहीं है।';
+
+  @override
+  String get vaultCover => 'कवर';
+
+  @override
+  String vaultCoverLeft(String amount) {
+    return 'इस साल $amount कवर बाकी';
+  }
+
+  @override
+  String get vaultPremium => 'प्रीमियम';
+
+  @override
+  String vaultPremiumYear(String amount) {
+    return '$amount सालाना';
+  }
+
+  @override
+  String get vaultPolicyActive => 'चालू';
+
+  @override
+  String get vaultPolicyLapsed => 'समाप्त';
+
+  @override
+  String get vaultRenewSoon => 'जल्द रिन्यू करें';
+
+  @override
+  String get vaultDeletePolicyQ => 'यह पॉलिसी हटाएँ?';
+
+  @override
+  String get vaultDeletePolicyBody =>
+      'इसके क्लेम भी हट जाएँगे। पॉलिसी दस्तावेज़ वॉल्ट में रहेगा।';
+
+  @override
+  String get vaultClaims => 'क्लेम';
+
+  @override
+  String vaultOpenClaims(int count) {
+    return '$count चालू';
+  }
+
+  @override
+  String get vaultNoClaims => 'अभी कोई क्लेम नहीं';
+
+  @override
+  String get vaultNewClaim => 'नया क्लेम';
+
+  @override
+  String get vaultClaimFor => 'क्लेम किस लिए है?';
+
+  @override
+  String get vaultClaimForHint => 'जैसे ब्रूनो के पैर का एक्स-रे और इलाज';
+
+  @override
+  String get vaultClaimAmount => 'क्लेम की राशि';
+
+  @override
+  String get vaultClaimDate => 'इलाज की तारीख़';
+
+  @override
+  String get vaultClaimChecklist => 'दस्तावेज़ों की सूची';
+
+  @override
+  String vaultChecklistProgress(int done, int total) {
+    return '$total में से $done तैयार';
+  }
+
+  @override
+  String get vaultCkClaimForm => 'भरा हुआ क्लेम फ़ॉर्म';
+
+  @override
+  String get vaultCkVetBills => 'डॉक्टर के बिल और रसीदें';
+
+  @override
+  String get vaultCkPrescription => 'पर्चा';
+
+  @override
+  String get vaultCkLabReports => 'लैब या एक्स-रे रिपोर्ट';
+
+  @override
+  String get vaultCkPolicyCopy => 'पॉलिसी की कॉपी';
+
+  @override
+  String get vaultCkPetPhoto => 'पालतू की हाल की फ़ोटो';
+
+  @override
+  String get vaultCkIdProof => 'आपका पहचान पत्र';
+
+  @override
+  String get vaultReadyToSubmit =>
+      'जमा करने से पहले सूची के सभी दस्तावेज़ों पर टिक करें।';
+
+  @override
+  String vaultMarkAs(String status) {
+    return '$status के रूप में चिह्नित करें';
+  }
+
+  @override
+  String get vaultClaimDraft => 'ड्राफ़्ट';
+
+  @override
+  String get vaultClaimSubmitted => 'जमा किया';
+
+  @override
+  String get vaultClaimInReview => 'जाँच में';
+
+  @override
+  String get vaultClaimApproved => 'मंज़ूर';
+
+  @override
+  String get vaultClaimRejected => 'अस्वीकार';
+
+  @override
+  String get vaultClaimPaid => 'भुगतान हुआ';
+
+  @override
+  String vaultClaimedAmount(String amount) {
+    return '$amount का क्लेम';
+  }
+
+  @override
+  String vaultPaidAmount(String amount) {
+    return '$amount मिले';
+  }
+
+  @override
+  String get vaultSettledAmount => 'बीमा कंपनी द्वारा दी गई राशि';
+
+  @override
+  String get vaultClaimSaved => 'क्लेम सेव हुआ';
 }

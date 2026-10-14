@@ -8337,6 +8337,2160 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{vet} sent a prescription for {pet}'**
   String ntfPrescription(String vet, String pet);
+
+  /// No description provided for @albumPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get albumPhotos;
+
+  /// No description provided for @albumTimeline.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get albumTimeline;
+
+  /// No description provided for @albumAlbums.
+  ///
+  /// In en, this message translates to:
+  /// **'Albums'**
+  String get albumAlbums;
+
+  /// No description provided for @albumFavourites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourites'**
+  String get albumFavourites;
+
+  /// No description provided for @albumAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photos or videos'**
+  String get albumAdd;
+
+  /// No description provided for @albumAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to {pet}\'s album'**
+  String albumAddTitle(String pet);
+
+  /// No description provided for @albumAddFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the first photo of {pet}'**
+  String albumAddFirst(String pet);
+
+  /// No description provided for @albumChoosePhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose photos'**
+  String get albumChoosePhotos;
+
+  /// No description provided for @albumChooseVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a video'**
+  String get albumChooseVideo;
+
+  /// No description provided for @albumRecordVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Record a video'**
+  String get albumRecordVideo;
+
+  /// No description provided for @albumCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Caption'**
+  String get albumCaption;
+
+  /// No description provided for @albumCaptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s happening in this moment?'**
+  String get albumCaptionHint;
+
+  /// No description provided for @albumDateTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'Date taken'**
+  String get albumDateTaken;
+
+  /// No description provided for @albumMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone'**
+  String get albumMilestone;
+
+  /// No description provided for @albumNoMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'No milestone'**
+  String get albumNoMilestone;
+
+  /// No description provided for @albumAddMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as a milestone'**
+  String get albumAddMilestone;
+
+  /// No description provided for @albumMilestoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone name'**
+  String get albumMilestoneTitle;
+
+  /// No description provided for @albumMilestoneTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. First swim'**
+  String get albumMilestoneTitleHint;
+
+  /// No description provided for @albumMsGotcha.
+  ///
+  /// In en, this message translates to:
+  /// **'Gotcha day'**
+  String get albumMsGotcha;
+
+  /// No description provided for @albumMsFirstWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'First walk'**
+  String get albumMsFirstWalk;
+
+  /// No description provided for @albumMsFirstVaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'First vaccine'**
+  String get albumMsFirstVaccine;
+
+  /// No description provided for @albumMsBirthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday'**
+  String get albumMsBirthday;
+
+  /// No description provided for @albumMsCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Special moment'**
+  String get albumMsCustom;
+
+  /// No description provided for @albumNewAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'New album'**
+  String get albumNewAlbum;
+
+  /// No description provided for @albumAlbumName.
+  ///
+  /// In en, this message translates to:
+  /// **'Album name'**
+  String get albumAlbumName;
+
+  /// No description provided for @albumUploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding your memories…'**
+  String get albumUploading;
+
+  /// No description provided for @albumPhotosAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 memory added} other{{count} memories added}}'**
+  String albumPhotosAdded(int count);
+
+  /// No description provided for @albumSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to {pet}\'s album'**
+  String albumSaved(String pet);
+
+  /// No description provided for @albumAddedToAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to {album}'**
+  String albumAddedToAlbum(String album);
+
+  /// No description provided for @albumStorageNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos and videos use your plan\'s storage. Videos up to 1 minute on Free, 3 minutes on Plus.'**
+  String get albumStorageNote;
+
+  /// No description provided for @albumVideoMaxSec.
+  ///
+  /// In en, this message translates to:
+  /// **'Videos up to {seconds} seconds'**
+  String albumVideoMaxSec(int seconds);
+
+  /// No description provided for @albumVideoTooLongTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This video is too long'**
+  String get albumVideoTooLongTitle;
+
+  /// No description provided for @albumVideoTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s {seconds} seconds; your plan allows {limit}.'**
+  String albumVideoTooLong(int seconds, int limit);
+
+  /// No description provided for @albumVideoPlusBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Trim it on your phone, or get 3-minute videos with PawSetu Plus.'**
+  String get albumVideoPlusBody;
+
+  /// No description provided for @albumEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No memories yet'**
+  String get albumEmptyTitle;
+
+  /// No description provided for @albumEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {pet}\'s photos and videos. They\'re grouped by month, with milestones on a timeline.'**
+  String albumEmptyBody(String pet);
+
+  /// No description provided for @albumMonthCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 memory} other{{count} memories}}'**
+  String albumMonthCount(int count);
+
+  /// No description provided for @albumOnThisDay.
+  ///
+  /// In en, this message translates to:
+  /// **'On this day'**
+  String get albumOnThisDay;
+
+  /// No description provided for @albumLatestMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest memory'**
+  String get albumLatestMemory;
+
+  /// No description provided for @albumOfPet.
+  ///
+  /// In en, this message translates to:
+  /// **'A moment with {pet}'**
+  String albumOfPet(String pet);
+
+  /// No description provided for @albumSeeAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'See album'**
+  String get albumSeeAlbum;
+
+  /// No description provided for @albumYearsAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 year ago} other{{count} years ago}}'**
+  String albumYearsAgo(int count);
+
+  /// No description provided for @albumTimelineBorn.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} was born'**
+  String albumTimelineBorn(String pet);
+
+  /// No description provided for @albumTimelineEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark milestones while adding photos and {pet}\'s story appears here.'**
+  String albumTimelineEmpty(String pet);
+
+  /// No description provided for @albumCelebrate.
+  ///
+  /// In en, this message translates to:
+  /// **'Celebrate'**
+  String get albumCelebrate;
+
+  /// No description provided for @albumBadges.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone badges'**
+  String get albumBadges;
+
+  /// No description provided for @albumBadgeLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'not yet'**
+  String get albumBadgeLocked;
+
+  /// No description provided for @albumNoAlbums.
+  ///
+  /// In en, this message translates to:
+  /// **'No albums yet'**
+  String get albumNoAlbums;
+
+  /// No description provided for @albumNoAlbumsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Group memories into albums like \"Goa trip\" or \"First year\".'**
+  String get albumNoAlbumsBody;
+
+  /// No description provided for @albumNoFavourites.
+  ///
+  /// In en, this message translates to:
+  /// **'No favourites yet'**
+  String get albumNoFavourites;
+
+  /// No description provided for @albumNoFavouritesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the heart on a photo to keep it here.'**
+  String get albumNoFavouritesBody;
+
+  /// No description provided for @albumChooseForAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose memories for {album}'**
+  String albumChooseForAlbum(String album);
+
+  /// No description provided for @albumItemsSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 selected} other{{count} selected}}'**
+  String albumItemsSelected(int count);
+
+  /// No description provided for @albumRenameAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename album'**
+  String get albumRenameAlbum;
+
+  /// No description provided for @albumDeleteAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove album'**
+  String get albumDeleteAlbum;
+
+  /// No description provided for @albumDeleteAlbumBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The photos stay in {pet}\'s album. Only this group is removed.'**
+  String albumDeleteAlbumBody(String pet);
+
+  /// No description provided for @albumRemoveFromAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from album'**
+  String get albumRemoveFromAlbum;
+
+  /// No description provided for @albumVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get albumVideo;
+
+  /// No description provided for @albumOfCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{index} of {total}'**
+  String albumOfCount(int index, int total);
+
+  /// No description provided for @albumClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get albumClose;
+
+  /// No description provided for @albumPrevious.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get albumPrevious;
+
+  /// No description provided for @albumFavourite.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to favourites'**
+  String get albumFavourite;
+
+  /// No description provided for @albumUnfavourite.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from favourites'**
+  String get albumUnfavourite;
+
+  /// No description provided for @albumEditCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit caption'**
+  String get albumEditCaption;
+
+  /// No description provided for @albumAddToAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to album'**
+  String get albumAddToAlbum;
+
+  /// No description provided for @albumShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get albumShare;
+
+  /// No description provided for @albumDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get albumDelete;
+
+  /// No description provided for @albumDeleteQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this memory?'**
+  String get albumDeleteQ;
+
+  /// No description provided for @albumDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It will be removed from {pet}\'s album for everyone in the family.'**
+  String albumDeleteBody(String pet);
+
+  /// No description provided for @albumDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory deleted'**
+  String get albumDeleted;
+
+  /// No description provided for @albumAddedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Added by {name}'**
+  String albumAddedBy(String name);
+
+  /// No description provided for @albumPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get albumPlay;
+
+  /// No description provided for @albumPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get albumPause;
+
+  /// No description provided for @albumVideoFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'This video can\'t be played here.'**
+  String get albumVideoFailed;
+
+  /// No description provided for @albumDemoVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo video: a sample clip stands in for the real file.'**
+  String get albumDemoVideo;
+
+  /// No description provided for @albumShareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share memories'**
+  String get albumShareTitle;
+
+  /// No description provided for @albumShareBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to WhatsApp or any app, or make a private link for family.'**
+  String get albumShareBody;
+
+  /// No description provided for @albumShareToApps.
+  ///
+  /// In en, this message translates to:
+  /// **'Share to apps'**
+  String get albumShareToApps;
+
+  /// No description provided for @albumShareFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t share. Please try again.'**
+  String get albumShareFailed;
+
+  /// No description provided for @albumWatermark.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a PawSetu watermark'**
+  String get albumWatermark;
+
+  /// No description provided for @albumWatermarkPhotosOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos only; videos are shared as they are.'**
+  String get albumWatermarkPhotosOnly;
+
+  /// No description provided for @albumWatermarkText.
+  ///
+  /// In en, this message translates to:
+  /// **'Made with PawSetu'**
+  String get albumWatermarkText;
+
+  /// No description provided for @albumFamilyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Private family link'**
+  String get albumFamilyLink;
+
+  /// No description provided for @albumFamilyLinkBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone with the link can view these memories of {pet} until it expires. You can stop it any time.'**
+  String albumFamilyLinkBody(String pet);
+
+  /// No description provided for @albumFamilyLinkWhich.
+  ///
+  /// In en, this message translates to:
+  /// **'What to share'**
+  String get albumFamilyLinkWhich;
+
+  /// No description provided for @albumWholeAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'The whole album'**
+  String get albumWholeAlbum;
+
+  /// No description provided for @albumFamilyLinkText.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos of {pet} on PawSetu: {url}'**
+  String albumFamilyLinkText(String pet, String url);
+
+  /// No description provided for @albumSharedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'{owner} shared memories of {pet}'**
+  String albumSharedBy(String owner, String pet);
+
+  /// No description provided for @albumBirthdayScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday'**
+  String get albumBirthdayScreenTitle;
+
+  /// No description provided for @albumBirthdayToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Happy birthday, {pet}!'**
+  String albumBirthdayToday(String pet);
+
+  /// No description provided for @albumBirthdayIn.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =1{{pet} turns {age} tomorrow} other{{pet} turns {age} in {days} days}}'**
+  String albumBirthdayIn(int days, String pet, int age);
+
+  /// No description provided for @albumBirthdaySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is {age} today'**
+  String albumBirthdaySubtitle(int age, String pet);
+
+  /// No description provided for @albumBirthdayWishes.
+  ///
+  /// In en, this message translates to:
+  /// **'Wishing {pet} lots of walks, treats and cuddles this year!'**
+  String albumBirthdayWishes(String pet);
+
+  /// No description provided for @albumBirthdayMemories.
+  ///
+  /// In en, this message translates to:
+  /// **'Memories from this year'**
+  String get albumBirthdayMemories;
+
+  /// No description provided for @albumBirthdayAddPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a birthday photo'**
+  String get albumBirthdayAddPhoto;
+
+  /// No description provided for @albumBirthdayReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me before {pet}\'s birthday'**
+  String albumBirthdayReminder(String pet);
+
+  /// No description provided for @albumBirthdayReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s birthday is coming up'**
+  String albumBirthdayReminderTitle(String pet);
+
+  /// No description provided for @albumBirthdayReminderOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday reminder on'**
+  String get albumBirthdayReminderOn;
+
+  /// No description provided for @albumNoBirthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {pet}\'s birthday to celebrate it here.'**
+  String albumNoBirthday(String pet);
+
+  /// No description provided for @vaultSetupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect your vault'**
+  String get vaultSetupTitle;
+
+  /// No description provided for @vaultSetupBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a 4 to 6 digit PIN. You\'ll enter it each time you open the vault.'**
+  String get vaultSetupBody;
+
+  /// No description provided for @vaultSetupBodyBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a 4 to 6 digit PIN as a backup. You can then unlock with your fingerprint or face.'**
+  String get vaultSetupBodyBio;
+
+  /// No description provided for @vaultChoosePin.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a PIN'**
+  String get vaultChoosePin;
+
+  /// No description provided for @vaultConfirmPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the PIN again'**
+  String get vaultConfirmPin;
+
+  /// No description provided for @vaultCurrentPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Current PIN'**
+  String get vaultCurrentPin;
+
+  /// No description provided for @vaultSetPinButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Set PIN'**
+  String get vaultSetPinButton;
+
+  /// No description provided for @vaultPinMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The PINs don\'t match. Try again.'**
+  String get vaultPinMismatch;
+
+  /// No description provided for @vaultPinWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'That PIN is easy to guess. Avoid 1234 or repeated digits.'**
+  String get vaultPinWeak;
+
+  /// No description provided for @vaultPinSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Vault PIN set'**
+  String get vaultPinSet;
+
+  /// No description provided for @vaultPinChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN changed'**
+  String get vaultPinChanged;
+
+  /// No description provided for @vaultChangePin.
+  ///
+  /// In en, this message translates to:
+  /// **'Change PIN'**
+  String get vaultChangePin;
+
+  /// No description provided for @vaultPinDigits.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No digits entered} =1{1 digit entered} other{{count} digits entered}}'**
+  String vaultPinDigits(int count);
+
+  /// No description provided for @vaultPinBackspace.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete last digit'**
+  String get vaultPinBackspace;
+
+  /// No description provided for @vaultLockedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Vault locked'**
+  String get vaultLockedTitle;
+
+  /// No description provided for @vaultLockedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your pet\'s documents are protected. Unlock to continue.'**
+  String get vaultLockedBody;
+
+  /// No description provided for @vaultUnlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock'**
+  String get vaultUnlock;
+
+  /// No description provided for @vaultUseBiometrics.
+  ///
+  /// In en, this message translates to:
+  /// **'Use fingerprint or face'**
+  String get vaultUseBiometrics;
+
+  /// No description provided for @vaultBiometricReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock your PawSetu document vault'**
+  String get vaultBiometricReason;
+
+  /// No description provided for @vaultBiometricsToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock with fingerprint or face'**
+  String get vaultBiometricsToggle;
+
+  /// No description provided for @vaultWrongPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong PIN.'**
+  String get vaultWrongPin;
+
+  /// No description provided for @vaultTriesLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 try left.} other{{count} tries left.}}'**
+  String vaultTriesLeft(int count);
+
+  /// No description provided for @vaultLockedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many wrong tries. Try again in {seconds} seconds.'**
+  String vaultLockedOut(int seconds);
+
+  /// No description provided for @vaultForgotPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot PIN?'**
+  String get vaultForgotPin;
+
+  /// No description provided for @vaultForgotPinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset your vault PIN'**
+  String get vaultForgotPinTitle;
+
+  /// No description provided for @vaultForgotPinBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in again to prove it\'s you, then choose a new PIN. Your documents stay safe.'**
+  String get vaultForgotPinBody;
+
+  /// No description provided for @vaultSignInAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in again'**
+  String get vaultSignInAgain;
+
+  /// No description provided for @vaultAutoLockNote.
+  ///
+  /// In en, this message translates to:
+  /// **'The vault locks itself after 2 minutes away.'**
+  String get vaultAutoLockNote;
+
+  /// No description provided for @vaultLockNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock now'**
+  String get vaultLockNow;
+
+  /// No description provided for @vaultLockSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Vault lock'**
+  String get vaultLockSettings;
+
+  /// No description provided for @vaultOfPet.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s documents'**
+  String vaultOfPet(String pet);
+
+  /// No description provided for @vaultAllDocs.
+  ///
+  /// In en, this message translates to:
+  /// **'All documents'**
+  String get vaultAllDocs;
+
+  /// No description provided for @vaultDocCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 document} other{{count} documents}}'**
+  String vaultDocCount(int count);
+
+  /// No description provided for @vaultSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search titles, tags or vets'**
+  String get vaultSearchHint;
+
+  /// No description provided for @vaultClearSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get vaultClearSearch;
+
+  /// No description provided for @vaultNeedsAttention.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs attention'**
+  String get vaultNeedsAttention;
+
+  /// No description provided for @vaultNeedsReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Check details'**
+  String get vaultNeedsReview;
+
+  /// No description provided for @vaultAddedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Added {date}'**
+  String vaultAddedOn(String date);
+
+  /// No description provided for @vaultEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your vault is empty'**
+  String get vaultEmptyTitle;
+
+  /// No description provided for @vaultEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep vaccination certificates, prescriptions, lab reports and insurance safe in one place.'**
+  String get vaultEmptyBody;
+
+  /// No description provided for @vaultAddDocument.
+  ///
+  /// In en, this message translates to:
+  /// **'Add document'**
+  String get vaultAddDocument;
+
+  /// No description provided for @vaultStorageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage'**
+  String get vaultStorageTitle;
+
+  /// No description provided for @vaultStorageUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {limit} used'**
+  String vaultStorageUsed(String used, String limit);
+
+  /// No description provided for @vaultStorageSplit.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents {docs} · Album {album}'**
+  String vaultStorageSplit(String docs, String album);
+
+  /// No description provided for @vaultStorageFullTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage full'**
+  String get vaultStorageFullTitle;
+
+  /// No description provided for @vaultStorageFullBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve used {used} of {limit}. Delete old files or get 25 GB with PawSetu Plus.'**
+  String vaultStorageFullBody(String used, String limit);
+
+  /// No description provided for @vaultStorageFullBodyPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve used {used} of {limit}. Delete old files to make room.'**
+  String vaultStorageFullBodyPlus(String used, String limit);
+
+  /// No description provided for @vaultTooBig.
+  ///
+  /// In en, this message translates to:
+  /// **'That file is too big. Please choose one under 20 MB.'**
+  String get vaultTooBig;
+
+  /// No description provided for @vaultTypeVaccination.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccination certificate'**
+  String get vaultTypeVaccination;
+
+  /// No description provided for @vaultTypePrescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription'**
+  String get vaultTypePrescription;
+
+  /// No description provided for @vaultTypeLab.
+  ///
+  /// In en, this message translates to:
+  /// **'Lab report'**
+  String get vaultTypeLab;
+
+  /// No description provided for @vaultTypeInsurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance'**
+  String get vaultTypeInsurance;
+
+  /// No description provided for @vaultTypeInvoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill or invoice'**
+  String get vaultTypeInvoice;
+
+  /// No description provided for @vaultTypeLicence.
+  ///
+  /// In en, this message translates to:
+  /// **'Municipal licence'**
+  String get vaultTypeLicence;
+
+  /// No description provided for @vaultTypeAdoption.
+  ///
+  /// In en, this message translates to:
+  /// **'Adoption or purchase papers'**
+  String get vaultTypeAdoption;
+
+  /// No description provided for @vaultTypeTravel.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel or health certificate'**
+  String get vaultTypeTravel;
+
+  /// No description provided for @vaultTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get vaultTypeOther;
+
+  /// No description provided for @vaultExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get vaultExpired;
+
+  /// No description provided for @vaultExpiresSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires soon'**
+  String get vaultExpiresSoon;
+
+  /// No description provided for @vaultExpiresOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires {date}'**
+  String vaultExpiresOn(String date);
+
+  /// No description provided for @vaultExpiredOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired {date}'**
+  String vaultExpiredOn(String date);
+
+  /// No description provided for @vaultNoExpiry.
+  ///
+  /// In en, this message translates to:
+  /// **'No expiry date'**
+  String get vaultNoExpiry;
+
+  /// No description provided for @vaultUploadTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a document'**
+  String get vaultUploadTitle;
+
+  /// No description provided for @vaultForPet.
+  ///
+  /// In en, this message translates to:
+  /// **'For which pet?'**
+  String get vaultForPet;
+
+  /// No description provided for @vaultScanCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan with camera'**
+  String get vaultScanCamera;
+
+  /// No description provided for @vaultScanCameraHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Edges are found for you; adjust the corners if needed'**
+  String get vaultScanCameraHint;
+
+  /// No description provided for @vaultFromGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo from gallery'**
+  String get vaultFromGallery;
+
+  /// No description provided for @vaultFromPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF file'**
+  String get vaultFromPdf;
+
+  /// No description provided for @vaultPdfOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a PDF file.'**
+  String get vaultPdfOnly;
+
+  /// No description provided for @vaultTrySample.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: try a sample document to see auto-read'**
+  String get vaultTrySample;
+
+  /// No description provided for @vaultSampleRabies.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample rabies certificate'**
+  String get vaultSampleRabies;
+
+  /// No description provided for @vaultSampleLab.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample blood test report'**
+  String get vaultSampleLab;
+
+  /// No description provided for @vaultSampleInsurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample insurance policy'**
+  String get vaultSampleInsurance;
+
+  /// No description provided for @vaultUploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving securely…'**
+  String get vaultUploading;
+
+  /// No description provided for @vaultScanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust the scan'**
+  String get vaultScanTitle;
+
+  /// No description provided for @vaultScanHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the corners to the edges of the page.'**
+  String get vaultScanHint;
+
+  /// No description provided for @vaultScanAuto.
+  ///
+  /// In en, this message translates to:
+  /// **'Page edges found. Adjust the corners if needed.'**
+  String get vaultScanAuto;
+
+  /// No description provided for @vaultScanBw.
+  ///
+  /// In en, this message translates to:
+  /// **'Black and white (sharper text)'**
+  String get vaultScanBw;
+
+  /// No description provided for @vaultScanCorner.
+  ///
+  /// In en, this message translates to:
+  /// **'Corner handle, drag to adjust'**
+  String get vaultScanCorner;
+
+  /// No description provided for @vaultUseScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this scan'**
+  String get vaultUseScan;
+
+  /// No description provided for @vaultPreviewFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t show a preview of this file.'**
+  String get vaultPreviewFailed;
+
+  /// No description provided for @vaultReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading the document…'**
+  String get vaultReading;
+
+  /// No description provided for @vaultCheckDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the details'**
+  String get vaultCheckDetails;
+
+  /// No description provided for @vaultCheckDetailsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'We read these from the document. Please confirm or correct them.'**
+  String get vaultCheckDetailsHint;
+
+  /// No description provided for @vaultAddDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Add details'**
+  String get vaultAddDetails;
+
+  /// No description provided for @vaultFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We found these details'**
+  String get vaultFoundTitle;
+
+  /// No description provided for @vaultFoundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Check each field before saving. Nothing is saved until you confirm.'**
+  String get vaultFoundBody;
+
+  /// No description provided for @vaultNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t read this one'**
+  String get vaultNotFoundTitle;
+
+  /// No description provided for @vaultNotFoundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the details yourself, or skip and add them later.'**
+  String get vaultNotFoundBody;
+
+  /// No description provided for @vaultDemoReadNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo auto-read: details come from the sample document, not a real scan of your file.'**
+  String get vaultDemoReadNote;
+
+  /// No description provided for @vaultPetMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The document says {docPet}, but you chose {pet}. Check the pet before saving.'**
+  String vaultPetMismatch(String docPet, String pet);
+
+  /// No description provided for @vaultFieldDocType.
+  ///
+  /// In en, this message translates to:
+  /// **'Document type'**
+  String get vaultFieldDocType;
+
+  /// No description provided for @vaultFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get vaultFieldTitle;
+
+  /// No description provided for @vaultFieldTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get vaultFieldTags;
+
+  /// No description provided for @vaultTagHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. rabies, 2026'**
+  String get vaultTagHint;
+
+  /// No description provided for @vaultAddTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Add tag'**
+  String get vaultAddTag;
+
+  /// No description provided for @vaultAddToHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to {pet}\'s health records'**
+  String vaultAddToHealth(String pet);
+
+  /// No description provided for @vaultAddToHealthHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Records the vaccine, and the next dose is scheduled for you.'**
+  String get vaultAddToHealthHint;
+
+  /// No description provided for @vaultVaccineNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the vaccine name and the date given to save it to health records.'**
+  String get vaultVaccineNeeded;
+
+  /// No description provided for @vaultTrackInsurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Track this policy in insurance'**
+  String get vaultTrackInsurance;
+
+  /// No description provided for @vaultExpiryReminderNote.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll remind you 30 days before it expires.'**
+  String get vaultExpiryReminderNote;
+
+  /// No description provided for @vaultSaveDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get vaultSaveDetails;
+
+  /// No description provided for @vaultSkipDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip for now'**
+  String get vaultSkipDetails;
+
+  /// No description provided for @vaultSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to the vault'**
+  String get vaultSaved;
+
+  /// No description provided for @vaultSavedVaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'{vaccine} recorded for {pet}'**
+  String vaultSavedVaccine(String vaccine, String pet);
+
+  /// No description provided for @vaultReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} for {pet} expires soon'**
+  String vaultReminderTitle(String title, String pet);
+
+  /// No description provided for @vaultTitleVaccineCert.
+  ///
+  /// In en, this message translates to:
+  /// **'{vaccine} certificate'**
+  String vaultTitleVaccineCert(String vaccine);
+
+  /// No description provided for @vaultTitlePolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'{insurer} policy'**
+  String vaultTitlePolicy(String insurer);
+
+  /// No description provided for @vaultDocDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Document details'**
+  String get vaultDocDetails;
+
+  /// No description provided for @vaultDetailsRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get vaultDetailsRead;
+
+  /// No description provided for @vaultEditDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit details'**
+  String get vaultEditDetails;
+
+  /// No description provided for @vaultConfirmedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Checked by {name} on {date}'**
+  String vaultConfirmedBy(String name, String date);
+
+  /// No description provided for @vaultFieldPetName.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet\'s name'**
+  String get vaultFieldPetName;
+
+  /// No description provided for @vaultFieldIssuedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Issued on'**
+  String get vaultFieldIssuedOn;
+
+  /// No description provided for @vaultFieldExpiry.
+  ///
+  /// In en, this message translates to:
+  /// **'Valid until'**
+  String get vaultFieldExpiry;
+
+  /// No description provided for @vaultFieldIssuer.
+  ///
+  /// In en, this message translates to:
+  /// **'Issued by'**
+  String get vaultFieldIssuer;
+
+  /// No description provided for @vaultFieldVetReg.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet reg. no.'**
+  String get vaultFieldVetReg;
+
+  /// No description provided for @vaultFieldReference.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference no.'**
+  String get vaultFieldReference;
+
+  /// No description provided for @vaultFieldTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Test'**
+  String get vaultFieldTest;
+
+  /// No description provided for @vaultFieldAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get vaultFieldAmount;
+
+  /// No description provided for @vaultFileType.
+  ///
+  /// In en, this message translates to:
+  /// **'File type'**
+  String get vaultFileType;
+
+  /// No description provided for @vaultFileSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get vaultFileSize;
+
+  /// No description provided for @vaultAddedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Added'**
+  String get vaultAddedLabel;
+
+  /// No description provided for @vaultPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF'**
+  String get vaultPdf;
+
+  /// No description provided for @vaultPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get vaultPhoto;
+
+  /// No description provided for @vaultSample.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample'**
+  String get vaultSample;
+
+  /// No description provided for @vaultTapToZoom.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to zoom'**
+  String get vaultTapToZoom;
+
+  /// No description provided for @vaultSecureNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Stored privately in your account. Only you and the people you share a link with can see it.'**
+  String get vaultSecureNote;
+
+  /// No description provided for @vaultLinkedVaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked to {pet}\'s vaccine record'**
+  String vaultLinkedVaccine(String pet);
+
+  /// No description provided for @vaultOpenInApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in PawSetu'**
+  String get vaultOpenInApp;
+
+  /// No description provided for @vaultOpenPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Open policy'**
+  String get vaultOpenPolicy;
+
+  /// No description provided for @vaultTrackPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Track in insurance'**
+  String get vaultTrackPolicy;
+
+  /// No description provided for @vaultShareWithVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with a vet'**
+  String get vaultShareWithVet;
+
+  /// No description provided for @vaultDeleteDoc.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete document'**
+  String get vaultDeleteDoc;
+
+  /// No description provided for @vaultDeleteDocQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete \"{title}\"?'**
+  String vaultDeleteDocQ(String title);
+
+  /// No description provided for @vaultDeleteDocBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It will be removed from {pet}\'s vault, and share links to it will stop working.'**
+  String vaultDeleteDocBody(String pet);
+
+  /// No description provided for @vaultDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Document deleted'**
+  String get vaultDeleted;
+
+  /// No description provided for @vaultShareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with a vet'**
+  String get vaultShareTitle;
+
+  /// No description provided for @vaultShareBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a link that opens only the documents you choose, for a limited time.'**
+  String get vaultShareBody;
+
+  /// No description provided for @vaultChooseDocs.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents to share'**
+  String get vaultChooseDocs;
+
+  /// No description provided for @vaultSelectOneDoc.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose at least one document.'**
+  String get vaultSelectOneDoc;
+
+  /// No description provided for @vaultLinkValidFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Link works for'**
+  String get vaultLinkValidFor;
+
+  /// No description provided for @vaultExpiry1h.
+  ///
+  /// In en, this message translates to:
+  /// **'1 hour'**
+  String get vaultExpiry1h;
+
+  /// No description provided for @vaultExpiry24h.
+  ///
+  /// In en, this message translates to:
+  /// **'24 hours'**
+  String get vaultExpiry24h;
+
+  /// No description provided for @vaultExpiry7d.
+  ///
+  /// In en, this message translates to:
+  /// **'7 days'**
+  String get vaultExpiry7d;
+
+  /// No description provided for @vaultExpiryNever.
+  ///
+  /// In en, this message translates to:
+  /// **'Until I stop it'**
+  String get vaultExpiryNever;
+
+  /// No description provided for @vaultAddPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for a PIN'**
+  String get vaultAddPin;
+
+  /// No description provided for @vaultAddPinHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The vet enters this 4 to 6 digit PIN to open the link.'**
+  String get vaultAddPinHint;
+
+  /// No description provided for @vaultPinFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'The PIN must be 4 to 6 digits.'**
+  String get vaultPinFormat;
+
+  /// No description provided for @vaultCreateLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Create link'**
+  String get vaultCreateLink;
+
+  /// No description provided for @vaultLinkReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Link ready'**
+  String get vaultLinkReady;
+
+  /// No description provided for @vaultLinkPinIs.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN: {pin}'**
+  String vaultLinkPinIs(String pin);
+
+  /// No description provided for @vaultSendTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Send the link'**
+  String get vaultSendTo;
+
+  /// No description provided for @vaultSendPhoneTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet\'s phone number'**
+  String get vaultSendPhoneTo;
+
+  /// No description provided for @vaultSendEmailTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet\'s email'**
+  String get vaultSendEmailTo;
+
+  /// No description provided for @vaultSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get vaultSend;
+
+  /// No description provided for @vaultSentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Link sent to {target} (demo: in the Demo Outbox)'**
+  String vaultSentTo(String target);
+
+  /// No description provided for @vaultShareCopiedInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Link copied. Paste it into any app.'**
+  String get vaultShareCopiedInstead;
+
+  /// No description provided for @vaultShareEmailSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet health documents from PawSetu'**
+  String get vaultShareEmailSubject;
+
+  /// No description provided for @vaultShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} shared {pet}\'s health documents with you on PawSetu: {url}'**
+  String vaultShareText(String name, String pet, String url);
+
+  /// No description provided for @vaultShareLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Share links'**
+  String get vaultShareLinks;
+
+  /// No description provided for @vaultLinksNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Links open only the documents you chose and stop working when they expire or when you stop them.'**
+  String get vaultLinksNote;
+
+  /// No description provided for @vaultLinksOld.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired and stopped'**
+  String get vaultLinksOld;
+
+  /// No description provided for @vaultNoLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'No share links yet'**
+  String get vaultNoLinks;
+
+  /// No description provided for @vaultNoLinksBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Share documents with a vet from any document in the vault.'**
+  String get vaultNoLinksBody;
+
+  /// No description provided for @vaultLinkActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get vaultLinkActive;
+
+  /// No description provided for @vaultLinkExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get vaultLinkExpired;
+
+  /// No description provided for @vaultLinkRevoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopped'**
+  String get vaultLinkRevoked;
+
+  /// No description provided for @vaultLinkDocs.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 document} other{{count} documents}}'**
+  String vaultLinkDocs(int count);
+
+  /// No description provided for @vaultLinkAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Album link'**
+  String get vaultLinkAlbum;
+
+  /// No description provided for @vaultLinkWorksUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Works until {when}'**
+  String vaultLinkWorksUntil(String when);
+
+  /// No description provided for @vaultLinkNoEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Works until you stop it'**
+  String get vaultLinkNoEnd;
+
+  /// No description provided for @vaultLinkOpened.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Not opened yet} =1{Opened once} other{Opened {count} times}}'**
+  String vaultLinkOpened(int count);
+
+  /// No description provided for @vaultHasPin.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN'**
+  String get vaultHasPin;
+
+  /// No description provided for @vaultCreatedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Created {when}'**
+  String vaultCreatedOn(String when);
+
+  /// No description provided for @vaultRevokedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopped {when}'**
+  String vaultRevokedOn(String when);
+
+  /// No description provided for @vaultAccessLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Access log'**
+  String get vaultAccessLog;
+
+  /// No description provided for @vaultNoAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Nobody has opened this link yet.'**
+  String get vaultNoAccess;
+
+  /// No description provided for @vaultAccessOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Opened'**
+  String get vaultAccessOk;
+
+  /// No description provided for @vaultAccessWrongPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong PIN tried'**
+  String get vaultAccessWrongPin;
+
+  /// No description provided for @vaultRevoke.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop link'**
+  String get vaultRevoke;
+
+  /// No description provided for @vaultRevokeQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop this link?'**
+  String get vaultRevokeQ;
+
+  /// No description provided for @vaultRevokeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone who opens it will see that it no longer works. Your documents stay in the vault.'**
+  String get vaultRevokeBody;
+
+  /// No description provided for @vaultRevoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Link stopped'**
+  String get vaultRevoked;
+
+  /// No description provided for @vaultSharedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'{owner} shared {pet}\'s documents'**
+  String vaultSharedBy(String owner, String pet);
+
+  /// No description provided for @vaultSharedUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Available until {when}'**
+  String vaultSharedUntil(String when);
+
+  /// No description provided for @vaultViewOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'View only'**
+  String get vaultViewOnly;
+
+  /// No description provided for @vaultNoMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'No documents in this link'**
+  String get vaultNoMatches;
+
+  /// No description provided for @vaultSharedFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared securely with PawSetu. The pet parent can stop this link at any time.'**
+  String get vaultSharedFooter;
+
+  /// No description provided for @vaultGetPawSetu.
+  ///
+  /// In en, this message translates to:
+  /// **'Get PawSetu'**
+  String get vaultGetPawSetu;
+
+  /// No description provided for @vaultEnterSharePin.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the PIN'**
+  String get vaultEnterSharePin;
+
+  /// No description provided for @vaultEnterSharePinBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{owner} protected these documents with a PIN. Ask them for it.'**
+  String vaultEnterSharePinBody(String owner);
+
+  /// No description provided for @vaultLinkPin.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN'**
+  String get vaultLinkPin;
+
+  /// No description provided for @vaultOpenLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get vaultOpenLink;
+
+  /// No description provided for @vaultShareWrongPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong PIN. Please try again.'**
+  String get vaultShareWrongPin;
+
+  /// No description provided for @vaultShareLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many wrong tries. Try again in 15 minutes.'**
+  String get vaultShareLocked;
+
+  /// No description provided for @vaultLinkStopped.
+  ///
+  /// In en, this message translates to:
+  /// **'This link isn\'t available'**
+  String get vaultLinkStopped;
+
+  /// No description provided for @vaultLinkExpiredBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It expired on {when}. Ask the pet parent for a new link.'**
+  String vaultLinkExpiredBody(String when);
+
+  /// No description provided for @vaultLinkRevokedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The pet parent stopped this link. Ask them for a new one.'**
+  String get vaultLinkRevokedBody;
+
+  /// No description provided for @vaultLinkNotFoundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Check that the link was copied completely.'**
+  String get vaultLinkNotFoundBody;
+
+  /// No description provided for @vaultInsuranceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet insurance'**
+  String get vaultInsuranceTitle;
+
+  /// No description provided for @vaultInsuranceNote.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu doesn\'t sell insurance. Track your policy, renewals and claims here.'**
+  String get vaultInsuranceNote;
+
+  /// No description provided for @vaultNoPolicies.
+  ///
+  /// In en, this message translates to:
+  /// **'No policies yet'**
+  String get vaultNoPolicies;
+
+  /// No description provided for @vaultNoPoliciesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your pet\'s insurance to track cover, renewal dates and claims.'**
+  String get vaultNoPoliciesBody;
+
+  /// No description provided for @vaultAddPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Add policy'**
+  String get vaultAddPolicy;
+
+  /// No description provided for @vaultEditPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit policy'**
+  String get vaultEditPolicy;
+
+  /// No description provided for @vaultPolicyFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Policy for {pet}'**
+  String vaultPolicyFor(String pet);
+
+  /// No description provided for @vaultFieldInsurer.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance company'**
+  String get vaultFieldInsurer;
+
+  /// No description provided for @vaultPlanName.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan name'**
+  String get vaultPlanName;
+
+  /// No description provided for @vaultFieldPolicyNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Policy number'**
+  String get vaultFieldPolicyNo;
+
+  /// No description provided for @vaultFieldCover.
+  ///
+  /// In en, this message translates to:
+  /// **'Sum insured (₹)'**
+  String get vaultFieldCover;
+
+  /// No description provided for @vaultFieldPremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly premium (₹)'**
+  String get vaultFieldPremium;
+
+  /// No description provided for @vaultFieldCoverStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover starts'**
+  String get vaultFieldCoverStart;
+
+  /// No description provided for @vaultFieldRenewal.
+  ///
+  /// In en, this message translates to:
+  /// **'Renewal date'**
+  String get vaultFieldRenewal;
+
+  /// No description provided for @vaultRenewalReminderNote.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll remind you 30 days before renewal.'**
+  String get vaultRenewalReminderNote;
+
+  /// No description provided for @vaultInsuranceReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s insurance renews soon'**
+  String vaultInsuranceReminderTitle(String pet);
+
+  /// No description provided for @vaultPolicyDoc.
+  ///
+  /// In en, this message translates to:
+  /// **'Policy document'**
+  String get vaultPolicyDoc;
+
+  /// No description provided for @vaultLinkDoc.
+  ///
+  /// In en, this message translates to:
+  /// **'Link the policy document from the vault'**
+  String get vaultLinkDoc;
+
+  /// No description provided for @vaultNoDocLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'No document linked'**
+  String get vaultNoDocLinked;
+
+  /// No description provided for @vaultAttachDoc.
+  ///
+  /// In en, this message translates to:
+  /// **'Attach from vault'**
+  String get vaultAttachDoc;
+
+  /// No description provided for @vaultAttached.
+  ///
+  /// In en, this message translates to:
+  /// **'Attached: {title}'**
+  String vaultAttached(String title);
+
+  /// No description provided for @vaultDocMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'This policy is no longer available.'**
+  String get vaultDocMissing;
+
+  /// No description provided for @vaultCover.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover'**
+  String get vaultCover;
+
+  /// No description provided for @vaultCoverLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} cover left this year'**
+  String vaultCoverLeft(String amount);
+
+  /// No description provided for @vaultPremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium'**
+  String get vaultPremium;
+
+  /// No description provided for @vaultPremiumYear.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} a year'**
+  String vaultPremiumYear(String amount);
+
+  /// No description provided for @vaultPolicyActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get vaultPolicyActive;
+
+  /// No description provided for @vaultPolicyLapsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Lapsed'**
+  String get vaultPolicyLapsed;
+
+  /// No description provided for @vaultRenewSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Renew soon'**
+  String get vaultRenewSoon;
+
+  /// No description provided for @vaultDeletePolicyQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this policy?'**
+  String get vaultDeletePolicyQ;
+
+  /// No description provided for @vaultDeletePolicyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Its claims are removed too. The policy document stays in the vault.'**
+  String get vaultDeletePolicyBody;
+
+  /// No description provided for @vaultClaims.
+  ///
+  /// In en, this message translates to:
+  /// **'Claims'**
+  String get vaultClaims;
+
+  /// No description provided for @vaultOpenClaims.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 open} other{{count} open}}'**
+  String vaultOpenClaims(int count);
+
+  /// No description provided for @vaultNoClaims.
+  ///
+  /// In en, this message translates to:
+  /// **'No claims yet'**
+  String get vaultNoClaims;
+
+  /// No description provided for @vaultNewClaim.
+  ///
+  /// In en, this message translates to:
+  /// **'New claim'**
+  String get vaultNewClaim;
+
+  /// No description provided for @vaultClaimFor.
+  ///
+  /// In en, this message translates to:
+  /// **'What is the claim for?'**
+  String get vaultClaimFor;
+
+  /// No description provided for @vaultClaimForHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. Bruno\'s leg X-ray and treatment'**
+  String get vaultClaimForHint;
+
+  /// No description provided for @vaultClaimAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount claimed'**
+  String get vaultClaimAmount;
+
+  /// No description provided for @vaultClaimDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Treatment date'**
+  String get vaultClaimDate;
+
+  /// No description provided for @vaultClaimChecklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents checklist'**
+  String get vaultClaimChecklist;
+
+  /// No description provided for @vaultChecklistProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} ready'**
+  String vaultChecklistProgress(int done, int total);
+
+  /// No description provided for @vaultCkClaimForm.
+  ///
+  /// In en, this message translates to:
+  /// **'Filled claim form'**
+  String get vaultCkClaimForm;
+
+  /// No description provided for @vaultCkVetBills.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet bills and receipts'**
+  String get vaultCkVetBills;
+
+  /// No description provided for @vaultCkPrescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription'**
+  String get vaultCkPrescription;
+
+  /// No description provided for @vaultCkLabReports.
+  ///
+  /// In en, this message translates to:
+  /// **'Lab or X-ray reports'**
+  String get vaultCkLabReports;
+
+  /// No description provided for @vaultCkPolicyCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Policy copy'**
+  String get vaultCkPolicyCopy;
+
+  /// No description provided for @vaultCkPetPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent photo of your pet'**
+  String get vaultCkPetPhoto;
+
+  /// No description provided for @vaultCkIdProof.
+  ///
+  /// In en, this message translates to:
+  /// **'Your ID proof'**
+  String get vaultCkIdProof;
+
+  /// No description provided for @vaultReadyToSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Tick every document in the checklist before submitting.'**
+  String get vaultReadyToSubmit;
+
+  /// No description provided for @vaultMarkAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as {status}'**
+  String vaultMarkAs(String status);
+
+  /// No description provided for @vaultClaimDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get vaultClaimDraft;
+
+  /// No description provided for @vaultClaimSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Submitted'**
+  String get vaultClaimSubmitted;
+
+  /// No description provided for @vaultClaimInReview.
+  ///
+  /// In en, this message translates to:
+  /// **'In review'**
+  String get vaultClaimInReview;
+
+  /// No description provided for @vaultClaimApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get vaultClaimApproved;
+
+  /// No description provided for @vaultClaimRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get vaultClaimRejected;
+
+  /// No description provided for @vaultClaimPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get vaultClaimPaid;
+
+  /// No description provided for @vaultClaimedAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Claimed {amount}'**
+  String vaultClaimedAmount(String amount);
+
+  /// No description provided for @vaultPaidAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid {amount}'**
+  String vaultPaidAmount(String amount);
+
+  /// No description provided for @vaultSettledAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount paid by insurer'**
+  String get vaultSettledAmount;
+
+  /// No description provided for @vaultClaimSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim saved'**
+  String get vaultClaimSaved;
 }
 
 class _AppLocalizationsDelegate

@@ -97,9 +97,11 @@ class HealthRepository {
     String? vetName,
     String? clinicName,
     String? certificateUrl,
+    // A certificate already in the vault (Phase 7 auto-read) is linked, not copied.
+    String? certificateDocId,
   }) async {
-    String? docId;
-    if (certificateUrl != null) {
+    String? docId = certificateDocId;
+    if (docId == null && certificateUrl != null) {
       // Saved into the documents collection the vault (Phase 7) uses.
       final doc = await _db.collection('documents').add({
         'ownerId': pet.ownerId,

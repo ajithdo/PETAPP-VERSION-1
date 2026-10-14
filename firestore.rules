@@ -135,18 +135,38 @@ service cloud.firestore {
     }
 
     // ---------- vault and album ----------
+    // Family members on the pet see its documents; only the uploader or the
+    // owner / co-owner change them.
     match /documents/{id} {
-      allow read, update, delete: if signedIn() && (data().ownerId == uid() || isPetMember(data().petId));
-      allow create: if signedIn() && incoming().ownerId == uid();
+      allow read: if signedIn() && (data().ownerId == uid() || isPetMember(data().petId));
+      // A carer saving a vaccine certificate files it under the pet's owner.
+      allow create: if signedIn() && canCare(incoming().petId)
+        && (incoming().ownerId == uid() || incoming().ownerId == pet(incoming().petId).ownerId);
+      allow update: if signedIn() && (data().ownerId == uid() || canEditPet(data().petId)) && unchanged(['ownerId', 'petId']);
+      allow delete: if signedIn() && (data().ownerId == uid() || canEditPet(data().petId));
     }
+    // Only the owner of a link sees it. People with the link open it through
+    // the openShareLink function, which checks revocation, expiry and the PIN,
+    // writes the access log and hands out short-lived file URLs.
     match /shareLinks/{id} {
-      allow read: if true; // opened by the vet with the link; files are served by a function that checks expiry, PIN and revocation
-      allow create, update: if signedIn() && incoming().ownerId == uid();
+      allow read: if signedIn() && data().ownerId == uid();
+      allow create: if signedIn() && incoming().ownerId == uid() && canCare(incoming().petId)
+        && incoming().revoked == false && incoming().accessLog.size() == 0;
+      // Revoking is final.
+      allow update: if signedIn() && data().ownerId == uid() && incoming().revoked == true
+        && incoming().diff(data()).affectedKeys().hasOnly(['revoked', 'revokedAt']);
     }
-    match /insurance/{id} { allow read, write: if signedIn() && isPetMember(request.resource == null ? resource.data.petId : incoming().petId); }
+    match /insurance/{id} {
+      allow read: if signedIn() && isPetMember(data().petId);
+      allow create: if signedIn() && canEditPet(incoming().petId);
+      allow update: if signedIn() && canEditPet(data().petId) && unchanged(['petId']);
+      allow delete: if signedIn() && canEditPet(data().petId);
+    }
     match /album/{id} {
-      allow read: if signedIn() && isPetMember(resource.data.petId);
-      allow write: if signedIn() && canLog(request.resource == null ? resource.data.petId : incoming().petId);
+      allow read: if signedIn() && isPetMember(data().petId);
+      allow create: if signedIn() && canLog(incoming().petId) && incoming().byUid == uid();
+      allow update: if signedIn() && canLog(data().petId) && unchanged(['petId', 'ownerId', 'byUid']);
+      allow delete: if signedIn() && canLog(data().petId);
     }
 
     // ---------- marketplace and money ----------

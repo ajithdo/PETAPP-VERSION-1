@@ -3166,5 +3166,932 @@
         "type": "String"
       }
     }
-  }
+  },
+  "albumPhotos": "Photos",
+  "albumTimeline": "Timeline",
+  "albumAlbums": "Albums",
+  "albumFavourites": "Favourites",
+  "albumAdd": "Add photos or videos",
+  "albumAddTitle": "Add to {pet}'s album",
+  "@albumAddTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumAddFirst": "Add the first photo of {pet}",
+  "@albumAddFirst": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumChoosePhotos": "Choose photos",
+  "albumChooseVideo": "Choose a video",
+  "albumRecordVideo": "Record a video",
+  "albumCaption": "Caption",
+  "albumCaptionHint": "What's happening in this moment?",
+  "albumDateTaken": "Date taken",
+  "albumMilestone": "Milestone",
+  "albumNoMilestone": "No milestone",
+  "albumAddMilestone": "Mark as a milestone",
+  "albumMilestoneTitle": "Milestone name",
+  "albumMilestoneTitleHint": "E.g. First swim",
+  "albumMsGotcha": "Gotcha day",
+  "albumMsFirstWalk": "First walk",
+  "albumMsFirstVaccine": "First vaccine",
+  "albumMsBirthday": "Birthday",
+  "albumMsCustom": "Special moment",
+  "albumNewAlbum": "New album",
+  "albumAlbumName": "Album name",
+  "albumUploading": "Adding your memories…",
+  "albumPhotosAdded": "{count, plural, =1{1 memory added} other{{count} memories added}}",
+  "@albumPhotosAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "albumSaved": "Saved to {pet}'s album",
+  "@albumSaved": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumAddedToAlbum": "Added to {album}",
+  "@albumAddedToAlbum": {
+    "placeholders": {
+      "album": {
+        "type": "String"
+      }
+    }
+  },
+  "albumStorageNote": "Photos and videos use your plan's storage. Videos up to 1 minute on Free, 3 minutes on Plus.",
+  "albumVideoMaxSec": "Videos up to {seconds} seconds",
+  "@albumVideoMaxSec": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "albumVideoTooLongTitle": "This video is too long",
+  "albumVideoTooLong": "It's {seconds} seconds; your plan allows {limit}.",
+  "@albumVideoTooLong": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "albumVideoPlusBody": "Trim it on your phone, or get 3-minute videos with PawSetu Plus.",
+  "albumEmptyTitle": "No memories yet",
+  "albumEmptyBody": "Add {pet}'s photos and videos. They're grouped by month, with milestones on a timeline.",
+  "@albumEmptyBody": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumMonthCount": "{count, plural, =1{1 memory} other{{count} memories}}",
+  "@albumMonthCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "albumOnThisDay": "On this day",
+  "albumLatestMemory": "Latest memory",
+  "albumOfPet": "A moment with {pet}",
+  "@albumOfPet": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumSeeAlbum": "See album",
+  "albumYearsAgo": "{count, plural, =1{1 year ago} other{{count} years ago}}",
+  "@albumYearsAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "albumTimelineBorn": "{pet} was born",
+  "@albumTimelineBorn": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumTimelineEmpty": "Mark milestones while adding photos and {pet}'s story appears here.",
+  "@albumTimelineEmpty": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumCelebrate": "Celebrate",
+  "albumBadges": "Milestone badges",
+  "albumBadgeLocked": "not yet",
+  "albumNoAlbums": "No albums yet",
+  "albumNoAlbumsBody": "Group memories into albums like \"Goa trip\" or \"First year\".",
+  "albumNoFavourites": "No favourites yet",
+  "albumNoFavouritesBody": "Tap the heart on a photo to keep it here.",
+  "albumChooseForAlbum": "Choose memories for {album}",
+  "@albumChooseForAlbum": {
+    "placeholders": {
+      "album": {
+        "type": "String"
+      }
+    }
+  },
+  "albumItemsSelected": "{count, plural, =1{1 selected} other{{count} selected}}",
+  "@albumItemsSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "albumRenameAlbum": "Rename album",
+  "albumDeleteAlbum": "Remove album",
+  "albumDeleteAlbumBody": "The photos stay in {pet}'s album. Only this group is removed.",
+  "@albumDeleteAlbumBody": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumRemoveFromAlbum": "Remove from album",
+  "albumVideo": "Video",
+  "albumOfCount": "{index} of {total}",
+  "@albumOfCount": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "albumClose": "Close",
+  "albumPrevious": "Previous",
+  "albumFavourite": "Add to favourites",
+  "albumUnfavourite": "Remove from favourites",
+  "albumEditCaption": "Edit caption",
+  "albumAddToAlbum": "Add to album",
+  "albumShare": "Share",
+  "albumDelete": "Delete",
+  "albumDeleteQ": "Delete this memory?",
+  "albumDeleteBody": "It will be removed from {pet}'s album for everyone in the family.",
+  "@albumDeleteBody": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumDeleted": "Memory deleted",
+  "albumAddedBy": "Added by {name}",
+  "@albumAddedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "albumPlay": "Play",
+  "albumPause": "Pause",
+  "albumVideoFailed": "This video can't be played here.",
+  "albumDemoVideo": "Demo video: a sample clip stands in for the real file.",
+  "albumShareTitle": "Share memories",
+  "albumShareBody": "Send to WhatsApp or any app, or make a private link for family.",
+  "albumShareToApps": "Share to apps",
+  "albumShareFailed": "Couldn't share. Please try again.",
+  "albumWatermark": "Add a PawSetu watermark",
+  "albumWatermarkPhotosOnly": "Photos only; videos are shared as they are.",
+  "albumWatermarkText": "Made with PawSetu",
+  "albumFamilyLink": "Private family link",
+  "albumFamilyLinkBody": "Anyone with the link can view these memories of {pet} until it expires. You can stop it any time.",
+  "@albumFamilyLinkBody": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumFamilyLinkWhich": "What to share",
+  "albumWholeAlbum": "The whole album",
+  "albumFamilyLinkText": "Photos of {pet} on PawSetu: {url}",
+  "@albumFamilyLinkText": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "albumSharedBy": "{owner} shared memories of {pet}",
+  "@albumSharedBy": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumBirthdayScreenTitle": "Birthday",
+  "albumBirthdayToday": "Happy birthday, {pet}!",
+  "@albumBirthdayToday": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumBirthdayIn": "{days, plural, =1{{pet} turns {age} tomorrow} other{{pet} turns {age} in {days} days}}",
+  "@albumBirthdayIn": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      },
+      "pet": {
+        "type": "String"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "albumBirthdaySubtitle": "{pet} is {age} today",
+  "@albumBirthdaySubtitle": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumBirthdayWishes": "Wishing {pet} lots of walks, treats and cuddles this year!",
+  "@albumBirthdayWishes": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumBirthdayMemories": "Memories from this year",
+  "albumBirthdayAddPhoto": "Add a birthday photo",
+  "albumBirthdayReminder": "Remind me before {pet}'s birthday",
+  "@albumBirthdayReminder": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumBirthdayReminderTitle": "{pet}'s birthday is coming up",
+  "@albumBirthdayReminderTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "albumBirthdayReminderOn": "Birthday reminder on",
+  "albumNoBirthday": "Add {pet}'s birthday to celebrate it here.",
+  "@albumNoBirthday": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultSetupTitle": "Protect your vault",
+  "vaultSetupBody": "Choose a 4 to 6 digit PIN. You'll enter it each time you open the vault.",
+  "vaultSetupBodyBio": "Choose a 4 to 6 digit PIN as a backup. You can then unlock with your fingerprint or face.",
+  "vaultChoosePin": "Choose a PIN",
+  "vaultConfirmPin": "Enter the PIN again",
+  "vaultCurrentPin": "Current PIN",
+  "vaultSetPinButton": "Set PIN",
+  "vaultPinMismatch": "The PINs don't match. Try again.",
+  "vaultPinWeak": "That PIN is easy to guess. Avoid 1234 or repeated digits.",
+  "vaultPinSet": "Vault PIN set",
+  "vaultPinChanged": "PIN changed",
+  "vaultChangePin": "Change PIN",
+  "vaultPinDigits": "{count, plural, =0{No digits entered} =1{1 digit entered} other{{count} digits entered}}",
+  "@vaultPinDigits": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultPinBackspace": "Delete last digit",
+  "vaultLockedTitle": "Vault locked",
+  "vaultLockedBody": "Your pet's documents are protected. Unlock to continue.",
+  "vaultUnlock": "Unlock",
+  "vaultUseBiometrics": "Use fingerprint or face",
+  "vaultBiometricReason": "Unlock your PawSetu document vault",
+  "vaultBiometricsToggle": "Unlock with fingerprint or face",
+  "vaultWrongPin": "Wrong PIN.",
+  "vaultTriesLeft": "{count, plural, =1{1 try left.} other{{count} tries left.}}",
+  "@vaultTriesLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultLockedOut": "Too many wrong tries. Try again in {seconds} seconds.",
+  "@vaultLockedOut": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultForgotPin": "Forgot PIN?",
+  "vaultForgotPinTitle": "Reset your vault PIN",
+  "vaultForgotPinBody": "Sign in again to prove it's you, then choose a new PIN. Your documents stay safe.",
+  "vaultSignInAgain": "Sign in again",
+  "vaultAutoLockNote": "The vault locks itself after 2 minutes away.",
+  "vaultLockNow": "Lock now",
+  "vaultLockSettings": "Vault lock",
+  "vaultOfPet": "{pet}'s documents",
+  "@vaultOfPet": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultAllDocs": "All documents",
+  "vaultDocCount": "{count, plural, =1{1 document} other{{count} documents}}",
+  "@vaultDocCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultSearchHint": "Search titles, tags or vets",
+  "vaultClearSearch": "Clear search",
+  "vaultNeedsAttention": "Needs attention",
+  "vaultNeedsReview": "Check details",
+  "vaultAddedOn": "Added {date}",
+  "@vaultAddedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultEmptyTitle": "Your vault is empty",
+  "vaultEmptyBody": "Keep vaccination certificates, prescriptions, lab reports and insurance safe in one place.",
+  "vaultAddDocument": "Add document",
+  "vaultStorageTitle": "Storage",
+  "vaultStorageUsed": "{used} of {limit} used",
+  "@vaultStorageUsed": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultStorageSplit": "Documents {docs} · Album {album}",
+  "@vaultStorageSplit": {
+    "placeholders": {
+      "docs": {
+        "type": "String"
+      },
+      "album": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultStorageFullTitle": "Storage full",
+  "vaultStorageFullBody": "You've used {used} of {limit}. Delete old files or get 25 GB with PawSetu Plus.",
+  "@vaultStorageFullBody": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultStorageFullBodyPlus": "You've used {used} of {limit}. Delete old files to make room.",
+  "@vaultStorageFullBodyPlus": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultTooBig": "That file is too big. Please choose one under 20 MB.",
+  "vaultTypeVaccination": "Vaccination certificate",
+  "vaultTypePrescription": "Prescription",
+  "vaultTypeLab": "Lab report",
+  "vaultTypeInsurance": "Insurance",
+  "vaultTypeInvoice": "Bill or invoice",
+  "vaultTypeLicence": "Municipal licence",
+  "vaultTypeAdoption": "Adoption or purchase papers",
+  "vaultTypeTravel": "Travel or health certificate",
+  "vaultTypeOther": "Other",
+  "vaultExpired": "Expired",
+  "vaultExpiresSoon": "Expires soon",
+  "vaultExpiresOn": "Expires {date}",
+  "@vaultExpiresOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultExpiredOn": "Expired {date}",
+  "@vaultExpiredOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultNoExpiry": "No expiry date",
+  "vaultUploadTitle": "Add a document",
+  "vaultForPet": "For which pet?",
+  "vaultScanCamera": "Scan with camera",
+  "vaultScanCameraHint": "Edges are found for you; adjust the corners if needed",
+  "vaultFromGallery": "Photo from gallery",
+  "vaultFromPdf": "PDF file",
+  "vaultPdfOnly": "Please choose a PDF file.",
+  "vaultTrySample": "Demo: try a sample document to see auto-read",
+  "vaultSampleRabies": "Sample rabies certificate",
+  "vaultSampleLab": "Sample blood test report",
+  "vaultSampleInsurance": "Sample insurance policy",
+  "vaultUploading": "Saving securely…",
+  "vaultScanTitle": "Adjust the scan",
+  "vaultScanHint": "Drag the corners to the edges of the page.",
+  "vaultScanAuto": "Page edges found. Adjust the corners if needed.",
+  "vaultScanBw": "Black and white (sharper text)",
+  "vaultScanCorner": "Corner handle, drag to adjust",
+  "vaultUseScan": "Use this scan",
+  "vaultPreviewFailed": "Couldn't show a preview of this file.",
+  "vaultReading": "Reading the document…",
+  "vaultCheckDetails": "Check the details",
+  "vaultCheckDetailsHint": "We read these from the document. Please confirm or correct them.",
+  "vaultAddDetails": "Add details",
+  "vaultFoundTitle": "We found these details",
+  "vaultFoundBody": "Check each field before saving. Nothing is saved until you confirm.",
+  "vaultNotFoundTitle": "We couldn't read this one",
+  "vaultNotFoundBody": "Add the details yourself, or skip and add them later.",
+  "vaultDemoReadNote": "Demo auto-read: details come from the sample document, not a real scan of your file.",
+  "vaultPetMismatch": "The document says {docPet}, but you chose {pet}. Check the pet before saving.",
+  "@vaultPetMismatch": {
+    "placeholders": {
+      "docPet": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultFieldDocType": "Document type",
+  "vaultFieldTitle": "Title",
+  "vaultFieldTags": "Tags",
+  "vaultTagHint": "E.g. rabies, 2026",
+  "vaultAddTag": "Add tag",
+  "vaultAddToHealth": "Add to {pet}'s health records",
+  "@vaultAddToHealth": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultAddToHealthHint": "Records the vaccine, and the next dose is scheduled for you.",
+  "vaultVaccineNeeded": "Add the vaccine name and the date given to save it to health records.",
+  "vaultTrackInsurance": "Track this policy in insurance",
+  "vaultExpiryReminderNote": "We'll remind you 30 days before it expires.",
+  "vaultSaveDetails": "Save",
+  "vaultSkipDetails": "Skip for now",
+  "vaultSaved": "Saved to the vault",
+  "vaultSavedVaccine": "{vaccine} recorded for {pet}",
+  "@vaultSavedVaccine": {
+    "placeholders": {
+      "vaccine": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultReminderTitle": "{title} for {pet} expires soon",
+  "@vaultReminderTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultTitleVaccineCert": "{vaccine} certificate",
+  "@vaultTitleVaccineCert": {
+    "placeholders": {
+      "vaccine": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultTitlePolicy": "{insurer} policy",
+  "@vaultTitlePolicy": {
+    "placeholders": {
+      "insurer": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultDocDetails": "Document details",
+  "vaultDetailsRead": "Details",
+  "vaultEditDetails": "Edit details",
+  "vaultConfirmedBy": "Checked by {name} on {date}",
+  "@vaultConfirmedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultFieldPetName": "Pet's name",
+  "vaultFieldIssuedOn": "Issued on",
+  "vaultFieldExpiry": "Valid until",
+  "vaultFieldIssuer": "Issued by",
+  "vaultFieldVetReg": "Vet reg. no.",
+  "vaultFieldReference": "Reference no.",
+  "vaultFieldTest": "Test",
+  "vaultFieldAmount": "Amount",
+  "vaultFileType": "File type",
+  "vaultFileSize": "Size",
+  "vaultAddedLabel": "Added",
+  "vaultPdf": "PDF",
+  "vaultPhoto": "Photo",
+  "vaultSample": "Sample",
+  "vaultTapToZoom": "Tap to zoom",
+  "vaultSecureNote": "Stored privately in your account. Only you and the people you share a link with can see it.",
+  "vaultLinkedVaccine": "Linked to {pet}'s vaccine record",
+  "@vaultLinkedVaccine": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultOpenInApp": "Open in PawSetu",
+  "vaultOpenPolicy": "Open policy",
+  "vaultTrackPolicy": "Track in insurance",
+  "vaultShareWithVet": "Share with a vet",
+  "vaultDeleteDoc": "Delete document",
+  "vaultDeleteDocQ": "Delete \"{title}\"?",
+  "@vaultDeleteDocQ": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultDeleteDocBody": "It will be removed from {pet}'s vault, and share links to it will stop working.",
+  "@vaultDeleteDocBody": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultDeleted": "Document deleted",
+  "vaultShareTitle": "Share with a vet",
+  "vaultShareBody": "Create a link that opens only the documents you choose, for a limited time.",
+  "vaultChooseDocs": "Documents to share",
+  "vaultSelectOneDoc": "Choose at least one document.",
+  "vaultLinkValidFor": "Link works for",
+  "vaultExpiry1h": "1 hour",
+  "vaultExpiry24h": "24 hours",
+  "vaultExpiry7d": "7 days",
+  "vaultExpiryNever": "Until I stop it",
+  "vaultAddPin": "Ask for a PIN",
+  "vaultAddPinHint": "The vet enters this 4 to 6 digit PIN to open the link.",
+  "vaultPinFormat": "The PIN must be 4 to 6 digits.",
+  "vaultCreateLink": "Create link",
+  "vaultLinkReady": "Link ready",
+  "vaultLinkPinIs": "PIN: {pin}",
+  "@vaultLinkPinIs": {
+    "placeholders": {
+      "pin": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultSendTo": "Send the link",
+  "vaultSendPhoneTo": "Vet's phone number",
+  "vaultSendEmailTo": "Vet's email",
+  "vaultSend": "Send",
+  "vaultSentTo": "Link sent to {target} (demo: in the Demo Outbox)",
+  "@vaultSentTo": {
+    "placeholders": {
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultShareCopiedInstead": "Link copied. Paste it into any app.",
+  "vaultShareEmailSubject": "Pet health documents from PawSetu",
+  "vaultShareText": "{name} shared {pet}'s health documents with you on PawSetu: {url}",
+  "@vaultShareText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultShareLinks": "Share links",
+  "vaultLinksNote": "Links open only the documents you chose and stop working when they expire or when you stop them.",
+  "vaultLinksOld": "Expired and stopped",
+  "vaultNoLinks": "No share links yet",
+  "vaultNoLinksBody": "Share documents with a vet from any document in the vault.",
+  "vaultLinkActive": "Active",
+  "vaultLinkExpired": "Expired",
+  "vaultLinkRevoked": "Stopped",
+  "vaultLinkDocs": "{count, plural, =1{1 document} other{{count} documents}}",
+  "@vaultLinkDocs": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultLinkAlbum": "Album link",
+  "vaultLinkWorksUntil": "Works until {when}",
+  "@vaultLinkWorksUntil": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultLinkNoEnd": "Works until you stop it",
+  "vaultLinkOpened": "{count, plural, =0{Not opened yet} =1{Opened once} other{Opened {count} times}}",
+  "@vaultLinkOpened": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultHasPin": "PIN",
+  "vaultCreatedOn": "Created {when}",
+  "@vaultCreatedOn": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultRevokedOn": "Stopped {when}",
+  "@vaultRevokedOn": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultAccessLog": "Access log",
+  "vaultNoAccess": "Nobody has opened this link yet.",
+  "vaultAccessOk": "Opened",
+  "vaultAccessWrongPin": "Wrong PIN tried",
+  "vaultRevoke": "Stop link",
+  "vaultRevokeQ": "Stop this link?",
+  "vaultRevokeBody": "Anyone who opens it will see that it no longer works. Your documents stay in the vault.",
+  "vaultRevoked": "Link stopped",
+  "vaultSharedBy": "{owner} shared {pet}'s documents",
+  "@vaultSharedBy": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultSharedUntil": "Available until {when}",
+  "@vaultSharedUntil": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultViewOnly": "View only",
+  "vaultNoMatches": "No documents in this link",
+  "vaultSharedFooter": "Shared securely with PawSetu. The pet parent can stop this link at any time.",
+  "vaultGetPawSetu": "Get PawSetu",
+  "vaultEnterSharePin": "Enter the PIN",
+  "vaultEnterSharePinBody": "{owner} protected these documents with a PIN. Ask them for it.",
+  "@vaultEnterSharePinBody": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultLinkPin": "PIN",
+  "vaultOpenLink": "Open",
+  "vaultShareWrongPin": "Wrong PIN. Please try again.",
+  "vaultShareLocked": "Too many wrong tries. Try again in 15 minutes.",
+  "vaultLinkStopped": "This link isn't available",
+  "vaultLinkExpiredBody": "It expired on {when}. Ask the pet parent for a new link.",
+  "@vaultLinkExpiredBody": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultLinkRevokedBody": "The pet parent stopped this link. Ask them for a new one.",
+  "vaultLinkNotFoundBody": "Check that the link was copied completely.",
+  "vaultInsuranceTitle": "Pet insurance",
+  "vaultInsuranceNote": "PawSetu doesn't sell insurance. Track your policy, renewals and claims here.",
+  "vaultNoPolicies": "No policies yet",
+  "vaultNoPoliciesBody": "Add your pet's insurance to track cover, renewal dates and claims.",
+  "vaultAddPolicy": "Add policy",
+  "vaultEditPolicy": "Edit policy",
+  "vaultPolicyFor": "Policy for {pet}",
+  "@vaultPolicyFor": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultFieldInsurer": "Insurance company",
+  "vaultPlanName": "Plan name",
+  "vaultFieldPolicyNo": "Policy number",
+  "vaultFieldCover": "Sum insured (₹)",
+  "vaultFieldPremium": "Yearly premium (₹)",
+  "vaultFieldCoverStart": "Cover starts",
+  "vaultFieldRenewal": "Renewal date",
+  "vaultRenewalReminderNote": "We'll remind you 30 days before renewal.",
+  "vaultInsuranceReminderTitle": "{pet}'s insurance renews soon",
+  "@vaultInsuranceReminderTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultPolicyDoc": "Policy document",
+  "vaultLinkDoc": "Link the policy document from the vault",
+  "vaultNoDocLinked": "No document linked",
+  "vaultAttachDoc": "Attach from vault",
+  "vaultAttached": "Attached: {title}",
+  "@vaultAttached": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultDocMissing": "This policy is no longer available.",
+  "vaultCover": "Cover",
+  "vaultCoverLeft": "{amount} cover left this year",
+  "@vaultCoverLeft": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultPremium": "Premium",
+  "vaultPremiumYear": "{amount} a year",
+  "@vaultPremiumYear": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultPolicyActive": "Active",
+  "vaultPolicyLapsed": "Lapsed",
+  "vaultRenewSoon": "Renew soon",
+  "vaultDeletePolicyQ": "Delete this policy?",
+  "vaultDeletePolicyBody": "Its claims are removed too. The policy document stays in the vault.",
+  "vaultClaims": "Claims",
+  "vaultOpenClaims": "{count, plural, =1{1 open} other{{count} open}}",
+  "@vaultOpenClaims": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultNoClaims": "No claims yet",
+  "vaultNewClaim": "New claim",
+  "vaultClaimFor": "What is the claim for?",
+  "vaultClaimForHint": "E.g. Bruno's leg X-ray and treatment",
+  "vaultClaimAmount": "Amount claimed",
+  "vaultClaimDate": "Treatment date",
+  "vaultClaimChecklist": "Documents checklist",
+  "vaultChecklistProgress": "{done} of {total} ready",
+  "@vaultChecklistProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultCkClaimForm": "Filled claim form",
+  "vaultCkVetBills": "Vet bills and receipts",
+  "vaultCkPrescription": "Prescription",
+  "vaultCkLabReports": "Lab or X-ray reports",
+  "vaultCkPolicyCopy": "Policy copy",
+  "vaultCkPetPhoto": "Recent photo of your pet",
+  "vaultCkIdProof": "Your ID proof",
+  "vaultReadyToSubmit": "Tick every document in the checklist before submitting.",
+  "vaultMarkAs": "Mark as {status}",
+  "@vaultMarkAs": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultClaimDraft": "Draft",
+  "vaultClaimSubmitted": "Submitted",
+  "vaultClaimInReview": "In review",
+  "vaultClaimApproved": "Approved",
+  "vaultClaimRejected": "Rejected",
+  "vaultClaimPaid": "Paid",
+  "vaultClaimedAmount": "Claimed {amount}",
+  "@vaultClaimedAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultPaidAmount": "Paid {amount}",
+  "@vaultPaidAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultSettledAmount": "Amount paid by insurer",
+  "vaultClaimSaved": "Claim saved"
 }
