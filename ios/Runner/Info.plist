@@ -66,5 +66,30 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>PawSetu uses your location to draw walk routes and find the nearest open clinics.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>PawSetu keeps tracking an active walk when your screen is off, so the route is complete.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>PawSetu uses the camera for pet photos and to scan documents.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>PawSetu lets you add pet photos and documents from your gallery.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>PawSetu records voice notes and video calls with your vet.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>PawSetu uses Face ID to unlock your document vault.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https</string>
+		<string>tel</string>
+		<string>whatsapp</string>
+		<string>comgooglemaps</string>
+		<string>maps</string>
+	</array>
 </dict>
 </plist>

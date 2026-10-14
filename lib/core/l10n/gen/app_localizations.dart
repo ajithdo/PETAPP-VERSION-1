@@ -2367,6 +2367,798 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'See PawSetu Plus'**
   String get seePlus;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @seeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get seeAll;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @week.
+  ///
+  /// In en, this message translates to:
+  /// **'Week'**
+  String get week;
+
+  /// No description provided for @month.
+  ///
+  /// In en, this message translates to:
+  /// **'Month'**
+  String get month;
+
+  /// No description provided for @increase.
+  ///
+  /// In en, this message translates to:
+  /// **'Increase'**
+  String get increase;
+
+  /// No description provided for @decrease.
+  ///
+  /// In en, this message translates to:
+  /// **'Decrease'**
+  String get decrease;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueLabel;
+
+  /// No description provided for @noteOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get noteOptional;
+
+  /// No description provided for @minutesShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String minutesShort(int minutes);
+
+  /// No description provided for @daysCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String daysCount(int count);
+
+  /// No description provided for @logWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk'**
+  String get logWalk;
+
+  /// No description provided for @logPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get logPlay;
+
+  /// No description provided for @logMeal.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal'**
+  String get logMeal;
+
+  /// No description provided for @logWater.
+  ///
+  /// In en, this message translates to:
+  /// **'Water'**
+  String get logWater;
+
+  /// No description provided for @logPotty.
+  ///
+  /// In en, this message translates to:
+  /// **'Potty'**
+  String get logPotty;
+
+  /// No description provided for @logSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep / nap'**
+  String get logSleep;
+
+  /// No description provided for @logGrooming.
+  ///
+  /// In en, this message translates to:
+  /// **'Grooming'**
+  String get logGrooming;
+
+  /// No description provided for @logTraining.
+  ///
+  /// In en, this message translates to:
+  /// **'Training'**
+  String get logTraining;
+
+  /// No description provided for @logMood.
+  ///
+  /// In en, this message translates to:
+  /// **'Mood'**
+  String get logMood;
+
+  /// No description provided for @logWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get logWeight;
+
+  /// No description provided for @logBehaviour.
+  ///
+  /// In en, this message translates to:
+  /// **'Behaviour'**
+  String get logBehaviour;
+
+  /// No description provided for @logFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Log for {name}'**
+  String logFor(String name);
+
+  /// No description provided for @logSomething.
+  ///
+  /// In en, this message translates to:
+  /// **'Log'**
+  String get logSomething;
+
+  /// No description provided for @logNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Log {type} now'**
+  String logNow(String type);
+
+  /// No description provided for @logged.
+  ///
+  /// In en, this message translates to:
+  /// **'{type} logged for {name}'**
+  String logged(String type, String name);
+
+  /// No description provided for @addDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Add details'**
+  String get addDetails;
+
+  /// No description provided for @amountGrams.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount (grams)'**
+  String get amountGrams;
+
+  /// No description provided for @distanceKm.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance (km)'**
+  String get distanceKm;
+
+  /// No description provided for @durationMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration (minutes)'**
+  String get durationMinutes;
+
+  /// No description provided for @enterWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the weight'**
+  String get enterWeight;
+
+  /// No description provided for @chooseOneTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose at least one behaviour'**
+  String get chooseOneTag;
+
+  /// No description provided for @howIsPet.
+  ///
+  /// In en, this message translates to:
+  /// **'How is {name} today?'**
+  String howIsPet(String name);
+
+  /// No description provided for @behaviourPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'What did you notice?'**
+  String get behaviourPrompt;
+
+  /// No description provided for @behaviourHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap again to change: mild, moderate, strong'**
+  String get behaviourHint;
+
+  /// No description provided for @intensityMild.
+  ///
+  /// In en, this message translates to:
+  /// **'mild'**
+  String get intensityMild;
+
+  /// No description provided for @intensityModerate.
+  ///
+  /// In en, this message translates to:
+  /// **'moderate'**
+  String get intensityModerate;
+
+  /// No description provided for @intensityStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'strong'**
+  String get intensityStrong;
+
+  /// No description provided for @moodHappy.
+  ///
+  /// In en, this message translates to:
+  /// **'Happy'**
+  String get moodHappy;
+
+  /// No description provided for @moodCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm'**
+  String get moodCalm;
+
+  /// No description provided for @moodPlayful.
+  ///
+  /// In en, this message translates to:
+  /// **'Playful'**
+  String get moodPlayful;
+
+  /// No description provided for @moodTired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tired'**
+  String get moodTired;
+
+  /// No description provided for @moodAnxious.
+  ///
+  /// In en, this message translates to:
+  /// **'Anxious'**
+  String get moodAnxious;
+
+  /// No description provided for @moodUnwell.
+  ///
+  /// In en, this message translates to:
+  /// **'Unwell'**
+  String get moodUnwell;
+
+  /// No description provided for @tagPlayful.
+  ///
+  /// In en, this message translates to:
+  /// **'Playful'**
+  String get tagPlayful;
+
+  /// No description provided for @tagCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm'**
+  String get tagCalm;
+
+  /// No description provided for @tagAnxious.
+  ///
+  /// In en, this message translates to:
+  /// **'Anxious'**
+  String get tagAnxious;
+
+  /// No description provided for @tagLeashPulling.
+  ///
+  /// In en, this message translates to:
+  /// **'Leash pulling'**
+  String get tagLeashPulling;
+
+  /// No description provided for @tagBarking.
+  ///
+  /// In en, this message translates to:
+  /// **'Barking'**
+  String get tagBarking;
+
+  /// No description provided for @tagAggressionDogs.
+  ///
+  /// In en, this message translates to:
+  /// **'Aggression with dogs'**
+  String get tagAggressionDogs;
+
+  /// No description provided for @tagSeparationAnxiety.
+  ///
+  /// In en, this message translates to:
+  /// **'Separation anxiety'**
+  String get tagSeparationAnxiety;
+
+  /// No description provided for @tagScratching.
+  ///
+  /// In en, this message translates to:
+  /// **'Scratching furniture'**
+  String get tagScratching;
+
+  /// No description provided for @tagChewing.
+  ///
+  /// In en, this message translates to:
+  /// **'Chewing things'**
+  String get tagChewing;
+
+  /// No description provided for @tagJumping.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumping on people'**
+  String get tagJumping;
+
+  /// No description provided for @tagHiding.
+  ///
+  /// In en, this message translates to:
+  /// **'Hiding'**
+  String get tagHiding;
+
+  /// No description provided for @tagNotEating.
+  ///
+  /// In en, this message translates to:
+  /// **'Not eating well'**
+  String get tagNotEating;
+
+  /// No description provided for @todayFor.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s day'**
+  String todayFor(String name);
+
+  /// No description provided for @todayAllPets.
+  ///
+  /// In en, this message translates to:
+  /// **'Today for all pets'**
+  String get todayAllPets;
+
+  /// No description provided for @allDoneToday.
+  ///
+  /// In en, this message translates to:
+  /// **'All done for today. Good job with {name}!'**
+  String allDoneToday(String name);
+
+  /// No description provided for @tasksLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 thing left today} other{{count} things left today}}'**
+  String tasksLeft(int count);
+
+  /// No description provided for @streakDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day streak'**
+  String streakDays(int count);
+
+  /// No description provided for @playProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Play · {done} / {goal} min'**
+  String playProgress(int done, int goal);
+
+  /// No description provided for @routineOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s routine'**
+  String routineOf(String name);
+
+  /// No description provided for @tabLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log'**
+  String get tabLog;
+
+  /// No description provided for @tabCharts.
+  ///
+  /// In en, this message translates to:
+  /// **'Charts'**
+  String get tabCharts;
+
+  /// No description provided for @tabBehaviour.
+  ///
+  /// In en, this message translates to:
+  /// **'Behaviour'**
+  String get tabBehaviour;
+
+  /// No description provided for @tabPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily plan'**
+  String get tabPlan;
+
+  /// No description provided for @noLogsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing logged for {name} yet'**
+  String noLogsTitle(String name);
+
+  /// No description provided for @noLogsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap Log to add a meal, walk or play time.'**
+  String get noLogsBody;
+
+  /// No description provided for @deleteLogConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this entry?'**
+  String get deleteLogConfirm;
+
+  /// No description provided for @totalWalked.
+  ///
+  /// In en, this message translates to:
+  /// **'Walked'**
+  String get totalWalked;
+
+  /// No description provided for @streak.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak'**
+  String get streak;
+
+  /// No description provided for @mealsLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals logged'**
+  String get mealsLogged;
+
+  /// No description provided for @chartWalkKm.
+  ///
+  /// In en, this message translates to:
+  /// **'Walking (km per day)'**
+  String get chartWalkKm;
+
+  /// No description provided for @chartPlayMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Play (minutes per day)'**
+  String get chartPlayMinutes;
+
+  /// No description provided for @chartMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals per day'**
+  String get chartMeals;
+
+  /// No description provided for @chartMood.
+  ///
+  /// In en, this message translates to:
+  /// **'Mood'**
+  String get chartMood;
+
+  /// No description provided for @noMoodLogs.
+  ///
+  /// In en, this message translates to:
+  /// **'No mood logged in this period.'**
+  String get noMoodLogs;
+
+  /// No description provided for @noBehaviourTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No behaviour notes yet'**
+  String get noBehaviourTitle;
+
+  /// No description provided for @noBehaviourBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Note things like leash pulling or barking to see how {name} changes over time.'**
+  String noBehaviourBody(String name);
+
+  /// No description provided for @trendUp.
+  ///
+  /// In en, this message translates to:
+  /// **'increasing'**
+  String get trendUp;
+
+  /// No description provided for @trendDown.
+  ///
+  /// In en, this message translates to:
+  /// **'improving'**
+  String get trendDown;
+
+  /// No description provided for @trendSteady.
+  ///
+  /// In en, this message translates to:
+  /// **'steady'**
+  String get trendSteady;
+
+  /// No description provided for @trendNew.
+  ///
+  /// In en, this message translates to:
+  /// **'new'**
+  String get trendNew;
+
+  /// No description provided for @shareWithTrainerVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with trainer or vet'**
+  String get shareWithTrainerVet;
+
+  /// No description provided for @behaviourSummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s behaviour (PawSetu)'**
+  String behaviourSummaryTitle(String name);
+
+  /// No description provided for @dailyPlanFor.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s daily plan'**
+  String dailyPlanFor(String name);
+
+  /// No description provided for @dailyPlanHint.
+  ///
+  /// In en, this message translates to:
+  /// **'This drives the Today checklist on Home.'**
+  String get dailyPlanHint;
+
+  /// No description provided for @walksPerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Walks per day'**
+  String get walksPerDay;
+
+  /// No description provided for @mealsPerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals per day'**
+  String get mealsPerDay;
+
+  /// No description provided for @playMinutesPerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play minutes per day'**
+  String get playMinutesPerDay;
+
+  /// No description provided for @suggestedGoalsText.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested for this pet: {walks}{meals} meals and {play} minutes of play a day. Indicative, always confirm with your vet.'**
+  String suggestedGoalsText(String walks, int meals, int play);
+
+  /// No description provided for @suggestedWalks.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} walks ({minutes} min in all), '**
+  String suggestedWalks(int count, int minutes);
+
+  /// No description provided for @useSuggested.
+  ///
+  /// In en, this message translates to:
+  /// **'Use suggested goals'**
+  String get useSuggested;
+
+  /// No description provided for @savePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Save plan'**
+  String get savePlan;
+
+  /// No description provided for @planSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily plan saved'**
+  String get planSaved;
+
+  /// No description provided for @planReminderNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders for the plan are set in Settings → Reminders and channels.'**
+  String get planReminderNote;
+
+  /// No description provided for @walkWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk with {name}'**
+  String walkWith(String name);
+
+  /// No description provided for @distance.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance'**
+  String get distance;
+
+  /// No description provided for @duration.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get duration;
+
+  /// No description provided for @pace.
+  ///
+  /// In en, this message translates to:
+  /// **'Pace'**
+  String get pace;
+
+  /// No description provided for @paceValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} min/km'**
+  String paceValue(String value);
+
+  /// No description provided for @startWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Start walk'**
+  String get startWalk;
+
+  /// No description provided for @startDemoWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a demo walk'**
+  String get startDemoWalk;
+
+  /// No description provided for @pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pause;
+
+  /// No description provided for @resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get resume;
+
+  /// No description provided for @stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get stop;
+
+  /// No description provided for @saveWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Save walk'**
+  String get saveWalk;
+
+  /// No description provided for @discardWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard walk'**
+  String get discardWalk;
+
+  /// No description provided for @walkSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s walk saved: {distance}'**
+  String walkSaved(String name, String distance);
+
+  /// No description provided for @walkLeaveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop this walk?'**
+  String get walkLeaveTitle;
+
+  /// No description provided for @walkLeaveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The route so far will not be saved.'**
+  String get walkLeaveBody;
+
+  /// No description provided for @walkNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu is tracking your walk'**
+  String get walkNotificationTitle;
+
+  /// No description provided for @walkNotificationText.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to open. Stop the walk in the app when you\'re home.'**
+  String get walkNotificationText;
+
+  /// No description provided for @walkWebNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Live GPS walks work in the Android and iPhone apps. On the website you can add a walk by hand.'**
+  String get walkWebNote;
+
+  /// No description provided for @enterWalkManually.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a walk by hand'**
+  String get enterWalkManually;
+
+  /// No description provided for @demoWalkBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo walk: the route is simulated near your home area.'**
+  String get demoWalkBanner;
+
+  /// No description provided for @locationWhyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use your location?'**
+  String get locationWhyTitle;
+
+  /// No description provided for @locationWhyWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'We use it only while you walk, to draw the route and measure the distance.'**
+  String get locationWhyWalk;
+
+  /// No description provided for @locationOffTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is off'**
+  String get locationOffTitle;
+
+  /// No description provided for @locationOffBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location to track a real walk, or try a demo walk now.'**
+  String get locationOffBody;
+
+  /// No description provided for @useDemoWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Use demo walk'**
+  String get useDemoWalk;
+
+  /// No description provided for @walkWeather.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk weather'**
+  String get walkWeather;
+
+  /// No description provided for @heatOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Good weather for {name}\'s walk'**
+  String heatOk(String name);
+
+  /// No description provided for @heatWarm.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s warm. Keep walks short and shaded.'**
+  String get heatWarm;
+
+  /// No description provided for @heatHot.
+  ///
+  /// In en, this message translates to:
+  /// **'Too hot for a long walk with {name}'**
+  String heatHot(String name);
+
+  /// No description provided for @heatDanger.
+  ///
+  /// In en, this message translates to:
+  /// **'Dangerous heat. Skip the walk for {name} now'**
+  String heatDanger(String name);
+
+  /// No description provided for @heatTipTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk early morning (before 8 am) or after sunset.'**
+  String get heatTipTime;
+
+  /// No description provided for @heatTipWater.
+  ///
+  /// In en, this message translates to:
+  /// **'Carry water and avoid hot roads; they burn paws.'**
+  String get heatTipWater;
+
+  /// No description provided for @heatTipFlatFaced.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} has a short nose and overheats faster than most pets.'**
+  String heatTipFlatFaced(String name);
+
+  /// No description provided for @demoTemperature.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo temperature'**
+  String get demoTemperature;
 }
 
 class _AppLocalizationsDelegate

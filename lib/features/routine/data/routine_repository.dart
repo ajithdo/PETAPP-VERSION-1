@@ -63,8 +63,8 @@ class RoutineRepository {
       'byUid': by.uid,
       'byName': by.name,
       if (note != null && note.isNotEmpty) 'note': note,
-      if (photoUrl != null) 'photoUrl': photoUrl,
-      if (data != null) 'data': data,
+      'photoUrl': ?photoUrl,
+      'data': ?data,
     });
     // Family feed: only the shared moments, not every glass of water.
     final feed = switch (type) {

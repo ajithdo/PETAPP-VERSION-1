@@ -718,5 +718,330 @@
   "plusPerkVideo": "Video vet calls, longer chats, 10% off video fees",
   "plusPerkAi": "Unlimited Ask PawSetu questions",
   "plusPerkStorage": "25 GB for photos and documents",
-  "seePlus": "See PawSetu Plus"
+  "seePlus": "See PawSetu Plus",
+  "save": "Save",
+  "delete": "Delete",
+  "seeAll": "See all",
+  "today": "Today",
+  "week": "Week",
+  "month": "Month",
+  "increase": "Increase",
+  "decrease": "Decrease",
+  "continueLabel": "Continue",
+  "noteOptional": "Note (optional)",
+  "minutesShort": "{minutes} min",
+  "@minutesShort": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "daysCount": "{count, plural, =1{1 day} other{{count} days}}",
+  "@daysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "logWalk": "Walk",
+  "logPlay": "Play",
+  "logMeal": "Meal",
+  "logWater": "Water",
+  "logPotty": "Potty",
+  "logSleep": "Sleep / nap",
+  "logGrooming": "Grooming",
+  "logTraining": "Training",
+  "logMood": "Mood",
+  "logWeight": "Weight",
+  "logBehaviour": "Behaviour",
+  "logFor": "Log for {name}",
+  "@logFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "logSomething": "Log",
+  "logNow": "Log {type} now",
+  "@logNow": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "logged": "{type} logged for {name}",
+  "@logged": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "addDetails": "Add details",
+  "amountGrams": "Amount (grams)",
+  "distanceKm": "Distance (km)",
+  "durationMinutes": "Duration (minutes)",
+  "enterWeight": "Enter the weight",
+  "chooseOneTag": "Choose at least one behaviour",
+  "howIsPet": "How is {name} today?",
+  "@howIsPet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "behaviourPrompt": "What did you notice?",
+  "behaviourHint": "Tap again to change: mild, moderate, strong",
+  "intensityMild": "mild",
+  "intensityModerate": "moderate",
+  "intensityStrong": "strong",
+  "moodHappy": "Happy",
+  "moodCalm": "Calm",
+  "moodPlayful": "Playful",
+  "moodTired": "Tired",
+  "moodAnxious": "Anxious",
+  "moodUnwell": "Unwell",
+  "tagPlayful": "Playful",
+  "tagCalm": "Calm",
+  "tagAnxious": "Anxious",
+  "tagLeashPulling": "Leash pulling",
+  "tagBarking": "Barking",
+  "tagAggressionDogs": "Aggression with dogs",
+  "tagSeparationAnxiety": "Separation anxiety",
+  "tagScratching": "Scratching furniture",
+  "tagChewing": "Chewing things",
+  "tagJumping": "Jumping on people",
+  "tagHiding": "Hiding",
+  "tagNotEating": "Not eating well",
+  "todayFor": "{name}'s day",
+  "@todayFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "todayAllPets": "Today for all pets",
+  "allDoneToday": "All done for today. Good job with {name}!",
+  "@allDoneToday": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tasksLeft": "{count, plural, =1{1 thing left today} other{{count} things left today}}",
+  "@tasksLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "streakDays": "{count}-day streak",
+  "@streakDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playProgress": "Play · {done} / {goal} min",
+  "@playProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "routineOf": "{name}'s routine",
+  "@routineOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tabLog": "Log",
+  "tabCharts": "Charts",
+  "tabBehaviour": "Behaviour",
+  "tabPlan": "Daily plan",
+  "noLogsTitle": "Nothing logged for {name} yet",
+  "@noLogsTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noLogsBody": "Tap Log to add a meal, walk or play time.",
+  "deleteLogConfirm": "Delete this entry?",
+  "totalWalked": "Walked",
+  "streak": "Streak",
+  "mealsLogged": "Meals logged",
+  "chartWalkKm": "Walking (km per day)",
+  "chartPlayMinutes": "Play (minutes per day)",
+  "chartMeals": "Meals per day",
+  "chartMood": "Mood",
+  "noMoodLogs": "No mood logged in this period.",
+  "noBehaviourTitle": "No behaviour notes yet",
+  "noBehaviourBody": "Note things like leash pulling or barking to see how {name} changes over time.",
+  "@noBehaviourBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "trendUp": "increasing",
+  "trendDown": "improving",
+  "trendSteady": "steady",
+  "trendNew": "new",
+  "shareWithTrainerVet": "Share with trainer or vet",
+  "behaviourSummaryTitle": "{name}'s behaviour (PawSetu)",
+  "@behaviourSummaryTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dailyPlanFor": "{name}'s daily plan",
+  "@dailyPlanFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dailyPlanHint": "This drives the Today checklist on Home.",
+  "walksPerDay": "Walks per day",
+  "mealsPerDay": "Meals per day",
+  "playMinutesPerDay": "Play minutes per day",
+  "suggestedGoalsText": "Suggested for this pet: {walks}{meals} meals and {play} minutes of play a day. Indicative, always confirm with your vet.",
+  "@suggestedGoalsText": {
+    "placeholders": {
+      "walks": {
+        "type": "String"
+      },
+      "meals": {
+        "type": "int"
+      },
+      "play": {
+        "type": "int"
+      }
+    }
+  },
+  "suggestedWalks": "{count} walks ({minutes} min in all), ",
+  "@suggestedWalks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "useSuggested": "Use suggested goals",
+  "savePlan": "Save plan",
+  "planSaved": "Daily plan saved",
+  "planReminderNote": "Reminders for the plan are set in Settings → Reminders and channels.",
+  "walkWith": "Walk with {name}",
+  "@walkWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "distance": "Distance",
+  "duration": "Time",
+  "pace": "Pace",
+  "paceValue": "{value} min/km",
+  "@paceValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "startWalk": "Start walk",
+  "startDemoWalk": "Try a demo walk",
+  "pause": "Pause",
+  "resume": "Resume",
+  "stop": "Stop",
+  "saveWalk": "Save walk",
+  "discardWalk": "Discard walk",
+  "walkSaved": "{name}'s walk saved: {distance}",
+  "@walkSaved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "walkLeaveTitle": "Stop this walk?",
+  "walkLeaveBody": "The route so far will not be saved.",
+  "walkNotificationTitle": "PawSetu is tracking your walk",
+  "walkNotificationText": "Tap to open. Stop the walk in the app when you're home.",
+  "walkWebNote": "Live GPS walks work in the Android and iPhone apps. On the website you can add a walk by hand.",
+  "enterWalkManually": "Add a walk by hand",
+  "demoWalkBanner": "Demo walk: the route is simulated near your home area.",
+  "locationWhyTitle": "Use your location?",
+  "locationWhyWalk": "We use it only while you walk, to draw the route and measure the distance.",
+  "locationOffTitle": "Location is off",
+  "locationOffBody": "Turn on location to track a real walk, or try a demo walk now.",
+  "useDemoWalk": "Use demo walk",
+  "walkWeather": "Walk weather",
+  "heatOk": "Good weather for {name}'s walk",
+  "@heatOk": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "heatWarm": "It's warm. Keep walks short and shaded.",
+  "heatHot": "Too hot for a long walk with {name}",
+  "@heatHot": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "heatDanger": "Dangerous heat. Skip the walk for {name} now",
+  "@heatDanger": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "heatTipTime": "Walk early morning (before 8 am) or after sunset.",
+  "heatTipWater": "Carry water and avoid hot roads; they burn paws.",
+  "heatTipFlatFaced": "{name} has a short nose and overheats faster than most pets.",
+  "@heatTipFlatFaced": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "demoTemperature": "Demo temperature"
 }

@@ -20,7 +20,7 @@ class _PetSeed {
 
 const _pets = [
   _PetSeed('pet_bruno', 'u_priya', 'Priya Sharma', 'indiranagar', 'dog',
-      walkKm: 3.0, helper: 'u_rohan', helperName: 'Rohan Sharma', weights: [28.2, 28.5, 28.4, 28.8, 29.1, 29.0]),
+      walkKm: 2.2, helper: 'u_rohan', helperName: 'Rohan Sharma', weights: [28.2, 28.5, 28.4, 28.8, 29.1, 29.0]),
   _PetSeed('pet_misty', 'u_priya', 'Priya Sharma', 'indiranagar', 'cat',
       helper: 'u_rohan', helperName: 'Rohan Sharma', weights: [4.3, 4.3, 4.2, 4.2, 4.2]),
   _PetSeed('pet_simba', 'u_ravi', 'Ravi Teja', 'banjara', 'puppy', walkKm: 1.2, weights: [5.2, 5.9, 6.6, 7.3, 7.9, 8.5]),
@@ -44,8 +44,8 @@ void seedRoutine(Add add, DateTime now) {
       'at': at,
       'byUid': by,
       'byName': byName,
-      if (note != null) 'note': note,
-      if (data != null) 'data': data,
+      'note': ?note,
+      'data': ?data,
     });
   }
 

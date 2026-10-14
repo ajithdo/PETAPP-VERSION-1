@@ -1257,4 +1257,458 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get seePlus => 'PawSetu Plus देखें';
+
+  @override
+  String get save => 'सहेजें';
+
+  @override
+  String get delete => 'हटाएँ';
+
+  @override
+  String get seeAll => 'सब देखें';
+
+  @override
+  String get today => 'आज';
+
+  @override
+  String get week => 'हफ़्ता';
+
+  @override
+  String get month => 'महीना';
+
+  @override
+  String get increase => 'बढ़ाएँ';
+
+  @override
+  String get decrease => 'घटाएँ';
+
+  @override
+  String get continueLabel => 'आगे बढ़ें';
+
+  @override
+  String get noteOptional => 'नोट (वैकल्पिक)';
+
+  @override
+  String minutesShort(int minutes) {
+    return '$minutes मिनट';
+  }
+
+  @override
+  String daysCount(int count) {
+    return '$count दिन';
+  }
+
+  @override
+  String get logWalk => 'सैर';
+
+  @override
+  String get logPlay => 'खेल';
+
+  @override
+  String get logMeal => 'खाना';
+
+  @override
+  String get logWater => 'पानी';
+
+  @override
+  String get logPotty => 'शौच';
+
+  @override
+  String get logSleep => 'नींद / झपकी';
+
+  @override
+  String get logGrooming => 'ग्रूमिंग';
+
+  @override
+  String get logTraining => 'ट्रेनिंग';
+
+  @override
+  String get logMood => 'मूड';
+
+  @override
+  String get logWeight => 'वज़न';
+
+  @override
+  String get logBehaviour => 'व्यवहार';
+
+  @override
+  String logFor(String name) {
+    return '$name के लिए दर्ज करें';
+  }
+
+  @override
+  String get logSomething => 'दर्ज करें';
+
+  @override
+  String logNow(String type) {
+    return 'अभी $type दर्ज करें';
+  }
+
+  @override
+  String logged(String type, String name) {
+    return '$name का $type दर्ज हुआ';
+  }
+
+  @override
+  String get addDetails => 'विवरण जोड़ें';
+
+  @override
+  String get amountGrams => 'मात्रा (ग्राम)';
+
+  @override
+  String get distanceKm => 'दूरी (किमी)';
+
+  @override
+  String get durationMinutes => 'अवधि (मिनट)';
+
+  @override
+  String get enterWeight => 'वज़न डालें';
+
+  @override
+  String get chooseOneTag => 'कम से कम एक व्यवहार चुनें';
+
+  @override
+  String howIsPet(String name) {
+    return '$name आज कैसा है?';
+  }
+
+  @override
+  String get behaviourPrompt => 'आपने क्या देखा?';
+
+  @override
+  String get behaviourHint => 'बदलने के लिए फिर टैप करें: हल्का, मध्यम, तेज़';
+
+  @override
+  String get intensityMild => 'हल्का';
+
+  @override
+  String get intensityModerate => 'मध्यम';
+
+  @override
+  String get intensityStrong => 'तेज़';
+
+  @override
+  String get moodHappy => 'खुश';
+
+  @override
+  String get moodCalm => 'शांत';
+
+  @override
+  String get moodPlayful => 'खिलंदड़ा';
+
+  @override
+  String get moodTired => 'थका हुआ';
+
+  @override
+  String get moodAnxious => 'बेचैन';
+
+  @override
+  String get moodUnwell => 'बीमार सा';
+
+  @override
+  String get tagPlayful => 'खिलंदड़ा';
+
+  @override
+  String get tagCalm => 'शांत';
+
+  @override
+  String get tagAnxious => 'बेचैन';
+
+  @override
+  String get tagLeashPulling => 'पट्टा खींचना';
+
+  @override
+  String get tagBarking => 'भौंकना';
+
+  @override
+  String get tagAggressionDogs => 'कुत्तों पर गुस्सा';
+
+  @override
+  String get tagSeparationAnxiety => 'अकेले छोड़ने पर बेचैनी';
+
+  @override
+  String get tagScratching => 'फ़र्नीचर खरोंचना';
+
+  @override
+  String get tagChewing => 'चीज़ें चबाना';
+
+  @override
+  String get tagJumping => 'लोगों पर कूदना';
+
+  @override
+  String get tagHiding => 'छिपना';
+
+  @override
+  String get tagNotEating => 'ठीक से न खाना';
+
+  @override
+  String todayFor(String name) {
+    return '$name का दिन';
+  }
+
+  @override
+  String get todayAllPets => 'सभी पालतुओं का आज';
+
+  @override
+  String allDoneToday(String name) {
+    return 'आज का सब हो गया। $name के लिए शाबाश!';
+  }
+
+  @override
+  String tasksLeft(int count) {
+    return 'आज $count काम बाकी';
+  }
+
+  @override
+  String streakDays(int count) {
+    return 'लगातार $count दिन';
+  }
+
+  @override
+  String playProgress(int done, int goal) {
+    return 'खेल · $done / $goal मिनट';
+  }
+
+  @override
+  String routineOf(String name) {
+    return '$name की दिनचर्या';
+  }
+
+  @override
+  String get tabLog => 'रिकॉर्ड';
+
+  @override
+  String get tabCharts => 'चार्ट';
+
+  @override
+  String get tabBehaviour => 'व्यवहार';
+
+  @override
+  String get tabPlan => 'रोज़ की योजना';
+
+  @override
+  String noLogsTitle(String name) {
+    return '$name के लिए अभी कुछ दर्ज नहीं';
+  }
+
+  @override
+  String get noLogsBody =>
+      'खाना, सैर या खेल जोड़ने के लिए \'दर्ज करें\' दबाएँ।';
+
+  @override
+  String get deleteLogConfirm => 'यह प्रविष्टि हटाएँ?';
+
+  @override
+  String get totalWalked => 'कुल सैर';
+
+  @override
+  String get streak => 'लगातार';
+
+  @override
+  String get mealsLogged => 'दर्ज खाना';
+
+  @override
+  String get chartWalkKm => 'सैर (किमी प्रति दिन)';
+
+  @override
+  String get chartPlayMinutes => 'खेल (मिनट प्रति दिन)';
+
+  @override
+  String get chartMeals => 'रोज़ का खाना';
+
+  @override
+  String get chartMood => 'मूड';
+
+  @override
+  String get noMoodLogs => 'इस दौरान कोई मूड दर्ज नहीं।';
+
+  @override
+  String get noBehaviourTitle => 'अभी व्यवहार के नोट नहीं';
+
+  @override
+  String noBehaviourBody(String name) {
+    return 'पट्टा खींचना या भौंकना जैसी बातें दर्ज करें, ताकि $name में बदलाव दिखें।';
+  }
+
+  @override
+  String get trendUp => 'बढ़ रहा है';
+
+  @override
+  String get trendDown => 'सुधर रहा है';
+
+  @override
+  String get trendSteady => 'स्थिर';
+
+  @override
+  String get trendNew => 'नया';
+
+  @override
+  String get shareWithTrainerVet => 'ट्रेनर या डॉक्टर से साझा करें';
+
+  @override
+  String behaviourSummaryTitle(String name) {
+    return '$name का व्यवहार (PawSetu)';
+  }
+
+  @override
+  String dailyPlanFor(String name) {
+    return '$name की रोज़ की योजना';
+  }
+
+  @override
+  String get dailyPlanHint => 'इसी से होम पर \'आज\' की सूची बनती है।';
+
+  @override
+  String get walksPerDay => 'रोज़ की सैर';
+
+  @override
+  String get mealsPerDay => 'रोज़ का खाना';
+
+  @override
+  String get playMinutesPerDay => 'रोज़ खेल के मिनट';
+
+  @override
+  String suggestedGoalsText(String walks, int meals, int play) {
+    return 'इस पालतू के लिए सुझाव: $walksरोज़ $meals बार खाना और $play मिनट खेल। अनुमानित है, डॉक्टर से ज़रूर पूछें।';
+  }
+
+  @override
+  String suggestedWalks(int count, int minutes) {
+    return '$count सैर (कुल $minutes मिनट), ';
+  }
+
+  @override
+  String get useSuggested => 'सुझाए लक्ष्य लगाएँ';
+
+  @override
+  String get savePlan => 'योजना सहेजें';
+
+  @override
+  String get planSaved => 'रोज़ की योजना सहेजी गई';
+
+  @override
+  String get planReminderNote =>
+      'योजना के रिमाइंडर सेटिंग्स → रिमाइंडर और माध्यम में सेट होते हैं।';
+
+  @override
+  String walkWith(String name) {
+    return '$name के साथ सैर';
+  }
+
+  @override
+  String get distance => 'दूरी';
+
+  @override
+  String get duration => 'समय';
+
+  @override
+  String get pace => 'रफ़्तार';
+
+  @override
+  String paceValue(String value) {
+    return '$value मिनट/किमी';
+  }
+
+  @override
+  String get startWalk => 'सैर शुरू करें';
+
+  @override
+  String get startDemoWalk => 'डेमो सैर आज़माएँ';
+
+  @override
+  String get pause => 'रोकें';
+
+  @override
+  String get resume => 'फिर शुरू';
+
+  @override
+  String get stop => 'बंद करें';
+
+  @override
+  String get saveWalk => 'सैर सहेजें';
+
+  @override
+  String get discardWalk => 'सैर हटाएँ';
+
+  @override
+  String walkSaved(String name, String distance) {
+    return '$name की सैर सहेजी गई: $distance';
+  }
+
+  @override
+  String get walkLeaveTitle => 'यह सैर रोकें?';
+
+  @override
+  String get walkLeaveBody => 'अब तक का रास्ता सहेजा नहीं जाएगा।';
+
+  @override
+  String get walkNotificationTitle => 'PawSetu आपकी सैर ट्रैक कर रहा है';
+
+  @override
+  String get walkNotificationText =>
+      'खोलने के लिए टैप करें। घर पहुँचकर ऐप में सैर बंद करें।';
+
+  @override
+  String get walkWebNote =>
+      'लाइव GPS सैर Android और iPhone ऐप में चलती है। वेबसाइट पर आप हाथ से सैर जोड़ सकते हैं।';
+
+  @override
+  String get enterWalkManually => 'हाथ से सैर जोड़ें';
+
+  @override
+  String get demoWalkBanner => 'डेमो सैर: रास्ता आपके घर के पास बनाया गया है।';
+
+  @override
+  String get locationWhyTitle => 'आपकी लोकेशन इस्तेमाल करें?';
+
+  @override
+  String get locationWhyWalk =>
+      'हम इसे सिर्फ़ सैर के दौरान रास्ता बनाने और दूरी नापने के लिए इस्तेमाल करते हैं।';
+
+  @override
+  String get locationOffTitle => 'लोकेशन बंद है';
+
+  @override
+  String get locationOffBody =>
+      'असली सैर ट्रैक करने के लिए लोकेशन चालू करें, या अभी डेमो सैर आज़माएँ।';
+
+  @override
+  String get useDemoWalk => 'डेमो सैर चलाएँ';
+
+  @override
+  String get walkWeather => 'सैर का मौसम';
+
+  @override
+  String heatOk(String name) {
+    return '$name की सैर के लिए अच्छा मौसम';
+  }
+
+  @override
+  String get heatWarm => 'गर्मी है। सैर छोटी और छाँव में रखें।';
+
+  @override
+  String heatHot(String name) {
+    return '$name के साथ लंबी सैर के लिए बहुत गर्मी है';
+  }
+
+  @override
+  String heatDanger(String name) {
+    return 'खतरनाक गर्मी। अभी $name की सैर न कराएँ';
+  }
+
+  @override
+  String get heatTipTime =>
+      'सुबह जल्दी (8 बजे से पहले) या सूरज ढलने के बाद सैर कराएँ।';
+
+  @override
+  String get heatTipWater =>
+      'पानी साथ रखें और गर्म सड़कों से बचें, पंजे जल सकते हैं।';
+
+  @override
+  String heatTipFlatFaced(String name) {
+    return '$name की नाक छोटी है, इसलिए उसे जल्दी गर्मी लगती है।';
+  }
+
+  @override
+  String get demoTemperature => 'डेमो तापमान';
 }

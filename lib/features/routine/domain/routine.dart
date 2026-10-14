@@ -130,18 +130,24 @@ double routeKm(List<({double lat, double lng})> pts) {
 double? paceMinPerKm(double km, Duration d) => km < 0.05 ? null : d.inSeconds / 60 / km;
 
 /// Generates a pleasant loop walk around a point (demo GPS and seed data).
+/// The loop wobbles smoothly so it looks like streets, not a circle.
 List<({double lat, double lng})> demoLoopRoute(double lat, double lng, {required int seed, double km = 2.0, int points = 40}) {
   final rnd = math.Random(seed);
-  // Radius in degrees for a loop of roughly [km].
   final radiusKm = km / (2 * math.pi);
   final dLat = radiusKm / 111.0;
   final dLng = radiusKm / (111.0 * math.cos(lat * math.pi / 180));
   final start = rnd.nextDouble() * 2 * math.pi;
+  final phase = rnd.nextDouble() * 2 * math.pi;
+  final lobes = 2 + rnd.nextInt(3);
+  // Centre the loop so it starts and ends at (lat, lng).
+  final cLat = lat - dLat * math.sin(start);
+  final cLng = lng - dLng * math.cos(start);
   return [
     for (var i = 0; i <= points; i++)
-      (
-        lat: lat + dLat * math.sin(start + i / points * 2 * math.pi) * (0.85 + 0.3 * rnd.nextDouble()) - dLat * math.sin(start),
-        lng: lng + dLng * math.cos(start + i / points * 2 * math.pi) * (0.85 + 0.3 * rnd.nextDouble()) - dLng * math.cos(start),
-      ),
+      () {
+        final a = start + i / points * 2 * math.pi;
+        final r = i == 0 || i == points ? 1.0 : 1 + 0.18 * math.sin(lobes * a + phase);
+        return (lat: cLat + dLat * r * math.sin(a), lng: cLng + dLng * r * math.cos(a));
+      }(),
   ];
 }

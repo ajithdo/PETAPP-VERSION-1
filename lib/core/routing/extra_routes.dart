@@ -6,6 +6,8 @@ import '../../features/family/presentation/join_screen.dart';
 import '../../features/pets/presentation/my_pets_screen.dart';
 import '../../features/pets/presentation/pet_form_screen.dart';
 import '../../features/pets/presentation/pet_profile_screen.dart';
+import '../../features/routine/presentation/routine_screen.dart';
+import '../../features/routine/presentation/walk_tracker_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/shell/presentation/coming_soon_screen.dart';
 import '../widgets/layout.dart';
@@ -43,8 +45,10 @@ final rootRoutes = <RouteBase>[
     builder: (_, s) => PetProfileScreen(petId: s.pathParameters['id']!),
     routes: [
       GoRoute(path: 'edit', builder: (_, s) => PetFormScreen(petId: s.pathParameters['id'])),
+      GoRoute(path: 'routine', builder: (_, s) => RoutineScreen(petId: s.pathParameters['id']!)),
     ],
   ),
+  GoRoute(path: '/walk/:petId', builder: (_, s) => WalkTrackerScreen(petId: s.pathParameters['petId']!)),
   GoRoute(path: '/join/:token', builder: (_, s) => JoinScreen(token: s.pathParameters['token']!)),
 ];
 

@@ -1279,4 +1279,468 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get seePlus => 'See PawSetu Plus';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get seeAll => 'See all';
+
+  @override
+  String get today => 'Today';
+
+  @override
+  String get week => 'Week';
+
+  @override
+  String get month => 'Month';
+
+  @override
+  String get increase => 'Increase';
+
+  @override
+  String get decrease => 'Decrease';
+
+  @override
+  String get continueLabel => 'Continue';
+
+  @override
+  String get noteOptional => 'Note (optional)';
+
+  @override
+  String minutesShort(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String daysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get logWalk => 'Walk';
+
+  @override
+  String get logPlay => 'Play';
+
+  @override
+  String get logMeal => 'Meal';
+
+  @override
+  String get logWater => 'Water';
+
+  @override
+  String get logPotty => 'Potty';
+
+  @override
+  String get logSleep => 'Sleep / nap';
+
+  @override
+  String get logGrooming => 'Grooming';
+
+  @override
+  String get logTraining => 'Training';
+
+  @override
+  String get logMood => 'Mood';
+
+  @override
+  String get logWeight => 'Weight';
+
+  @override
+  String get logBehaviour => 'Behaviour';
+
+  @override
+  String logFor(String name) {
+    return 'Log for $name';
+  }
+
+  @override
+  String get logSomething => 'Log';
+
+  @override
+  String logNow(String type) {
+    return 'Log $type now';
+  }
+
+  @override
+  String logged(String type, String name) {
+    return '$type logged for $name';
+  }
+
+  @override
+  String get addDetails => 'Add details';
+
+  @override
+  String get amountGrams => 'Amount (grams)';
+
+  @override
+  String get distanceKm => 'Distance (km)';
+
+  @override
+  String get durationMinutes => 'Duration (minutes)';
+
+  @override
+  String get enterWeight => 'Enter the weight';
+
+  @override
+  String get chooseOneTag => 'Choose at least one behaviour';
+
+  @override
+  String howIsPet(String name) {
+    return 'How is $name today?';
+  }
+
+  @override
+  String get behaviourPrompt => 'What did you notice?';
+
+  @override
+  String get behaviourHint => 'Tap again to change: mild, moderate, strong';
+
+  @override
+  String get intensityMild => 'mild';
+
+  @override
+  String get intensityModerate => 'moderate';
+
+  @override
+  String get intensityStrong => 'strong';
+
+  @override
+  String get moodHappy => 'Happy';
+
+  @override
+  String get moodCalm => 'Calm';
+
+  @override
+  String get moodPlayful => 'Playful';
+
+  @override
+  String get moodTired => 'Tired';
+
+  @override
+  String get moodAnxious => 'Anxious';
+
+  @override
+  String get moodUnwell => 'Unwell';
+
+  @override
+  String get tagPlayful => 'Playful';
+
+  @override
+  String get tagCalm => 'Calm';
+
+  @override
+  String get tagAnxious => 'Anxious';
+
+  @override
+  String get tagLeashPulling => 'Leash pulling';
+
+  @override
+  String get tagBarking => 'Barking';
+
+  @override
+  String get tagAggressionDogs => 'Aggression with dogs';
+
+  @override
+  String get tagSeparationAnxiety => 'Separation anxiety';
+
+  @override
+  String get tagScratching => 'Scratching furniture';
+
+  @override
+  String get tagChewing => 'Chewing things';
+
+  @override
+  String get tagJumping => 'Jumping on people';
+
+  @override
+  String get tagHiding => 'Hiding';
+
+  @override
+  String get tagNotEating => 'Not eating well';
+
+  @override
+  String todayFor(String name) {
+    return '$name\'s day';
+  }
+
+  @override
+  String get todayAllPets => 'Today for all pets';
+
+  @override
+  String allDoneToday(String name) {
+    return 'All done for today. Good job with $name!';
+  }
+
+  @override
+  String tasksLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count things left today',
+      one: '1 thing left today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakDays(int count) {
+    return '$count-day streak';
+  }
+
+  @override
+  String playProgress(int done, int goal) {
+    return 'Play · $done / $goal min';
+  }
+
+  @override
+  String routineOf(String name) {
+    return '$name\'s routine';
+  }
+
+  @override
+  String get tabLog => 'Log';
+
+  @override
+  String get tabCharts => 'Charts';
+
+  @override
+  String get tabBehaviour => 'Behaviour';
+
+  @override
+  String get tabPlan => 'Daily plan';
+
+  @override
+  String noLogsTitle(String name) {
+    return 'Nothing logged for $name yet';
+  }
+
+  @override
+  String get noLogsBody => 'Tap Log to add a meal, walk or play time.';
+
+  @override
+  String get deleteLogConfirm => 'Delete this entry?';
+
+  @override
+  String get totalWalked => 'Walked';
+
+  @override
+  String get streak => 'Streak';
+
+  @override
+  String get mealsLogged => 'Meals logged';
+
+  @override
+  String get chartWalkKm => 'Walking (km per day)';
+
+  @override
+  String get chartPlayMinutes => 'Play (minutes per day)';
+
+  @override
+  String get chartMeals => 'Meals per day';
+
+  @override
+  String get chartMood => 'Mood';
+
+  @override
+  String get noMoodLogs => 'No mood logged in this period.';
+
+  @override
+  String get noBehaviourTitle => 'No behaviour notes yet';
+
+  @override
+  String noBehaviourBody(String name) {
+    return 'Note things like leash pulling or barking to see how $name changes over time.';
+  }
+
+  @override
+  String get trendUp => 'increasing';
+
+  @override
+  String get trendDown => 'improving';
+
+  @override
+  String get trendSteady => 'steady';
+
+  @override
+  String get trendNew => 'new';
+
+  @override
+  String get shareWithTrainerVet => 'Share with trainer or vet';
+
+  @override
+  String behaviourSummaryTitle(String name) {
+    return '$name\'s behaviour (PawSetu)';
+  }
+
+  @override
+  String dailyPlanFor(String name) {
+    return '$name\'s daily plan';
+  }
+
+  @override
+  String get dailyPlanHint => 'This drives the Today checklist on Home.';
+
+  @override
+  String get walksPerDay => 'Walks per day';
+
+  @override
+  String get mealsPerDay => 'Meals per day';
+
+  @override
+  String get playMinutesPerDay => 'Play minutes per day';
+
+  @override
+  String suggestedGoalsText(String walks, int meals, int play) {
+    return 'Suggested for this pet: $walks$meals meals and $play minutes of play a day. Indicative, always confirm with your vet.';
+  }
+
+  @override
+  String suggestedWalks(int count, int minutes) {
+    return '$count walks ($minutes min in all), ';
+  }
+
+  @override
+  String get useSuggested => 'Use suggested goals';
+
+  @override
+  String get savePlan => 'Save plan';
+
+  @override
+  String get planSaved => 'Daily plan saved';
+
+  @override
+  String get planReminderNote =>
+      'Reminders for the plan are set in Settings → Reminders and channels.';
+
+  @override
+  String walkWith(String name) {
+    return 'Walk with $name';
+  }
+
+  @override
+  String get distance => 'Distance';
+
+  @override
+  String get duration => 'Time';
+
+  @override
+  String get pace => 'Pace';
+
+  @override
+  String paceValue(String value) {
+    return '$value min/km';
+  }
+
+  @override
+  String get startWalk => 'Start walk';
+
+  @override
+  String get startDemoWalk => 'Try a demo walk';
+
+  @override
+  String get pause => 'Pause';
+
+  @override
+  String get resume => 'Resume';
+
+  @override
+  String get stop => 'Stop';
+
+  @override
+  String get saveWalk => 'Save walk';
+
+  @override
+  String get discardWalk => 'Discard walk';
+
+  @override
+  String walkSaved(String name, String distance) {
+    return '$name\'s walk saved: $distance';
+  }
+
+  @override
+  String get walkLeaveTitle => 'Stop this walk?';
+
+  @override
+  String get walkLeaveBody => 'The route so far will not be saved.';
+
+  @override
+  String get walkNotificationTitle => 'PawSetu is tracking your walk';
+
+  @override
+  String get walkNotificationText =>
+      'Tap to open. Stop the walk in the app when you\'re home.';
+
+  @override
+  String get walkWebNote =>
+      'Live GPS walks work in the Android and iPhone apps. On the website you can add a walk by hand.';
+
+  @override
+  String get enterWalkManually => 'Add a walk by hand';
+
+  @override
+  String get demoWalkBanner =>
+      'Demo walk: the route is simulated near your home area.';
+
+  @override
+  String get locationWhyTitle => 'Use your location?';
+
+  @override
+  String get locationWhyWalk =>
+      'We use it only while you walk, to draw the route and measure the distance.';
+
+  @override
+  String get locationOffTitle => 'Location is off';
+
+  @override
+  String get locationOffBody =>
+      'Turn on location to track a real walk, or try a demo walk now.';
+
+  @override
+  String get useDemoWalk => 'Use demo walk';
+
+  @override
+  String get walkWeather => 'Walk weather';
+
+  @override
+  String heatOk(String name) {
+    return 'Good weather for $name\'s walk';
+  }
+
+  @override
+  String get heatWarm => 'It\'s warm. Keep walks short and shaded.';
+
+  @override
+  String heatHot(String name) {
+    return 'Too hot for a long walk with $name';
+  }
+
+  @override
+  String heatDanger(String name) {
+    return 'Dangerous heat. Skip the walk for $name now';
+  }
+
+  @override
+  String get heatTipTime => 'Walk early morning (before 8 am) or after sunset.';
+
+  @override
+  String get heatTipWater => 'Carry water and avoid hot roads; they burn paws.';
+
+  @override
+  String heatTipFlatFaced(String name) {
+    return '$name has a short nose and overheats faster than most pets.';
+  }
+
+  @override
+  String get demoTemperature => 'Demo temperature';
 }
