@@ -59,3 +59,4 @@ functions/lib/
 
 # Build outputs we deliver separately
 /dist/
+.claude/worktrees/

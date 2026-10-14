@@ -6,6 +6,7 @@ analyzer:
     - "**/*.freezed.dart"
     - "lib/core/l10n/gen/**"
     - "third_party/**"
+    - ".claude/**"
     - build/**
     - android/**
     - ios/**
