@@ -107,3 +107,9 @@ flutter:
           weight: 600
         - asset: assets/fonts/NotoSansTelugu-700.ttf
           weight: 700
+
+# Patched copy (see third_party/fake_cloud_firestore/PAWSETU_PATCH.md) so the
+# standalone demo database also works in release web and APK builds.
+dependency_overrides:
+  fake_cloud_firestore:
+    path: third_party/fake_cloud_firestore

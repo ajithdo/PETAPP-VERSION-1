@@ -1,0 +1,202 @@
+rules_version = '2';
+
+// PawSetu security rules. Deny by default; every collection is listed.
+// Roles come from the "role" custom claim set by Cloud Functions
+// (ensureProfile / setUserRole), never from data the client can write.
+// Prices, limits and commissions are checked again in Cloud Functions.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- helpers ----------
+    function signedIn() { return request.auth != null; }
+    function uid() { return request.auth.uid; }
+    function role() { return signedIn() ? request.auth.token.get('role', 'owner') : null; }
+    function isAdmin() { return role() == 'admin'; }
+    function isPartner() { return role() in ['vet', 'clinic_admin', 'groomer', 'trainer', 'boarder', 'walker', 'seller']; }
+    function data() { return resource.data; }
+    function incoming() { return request.resource.data; }
+    function unchanged(fields) { return !incoming().diff(data()).affectedKeys().hasAny(fields); }
+
+    function pet(petId) { return get(/databases/$(database)/documents/pets/$(petId)).data; }
+    function memberRole(p) {
+      return (uid() in p.members)
+        && (p.members[uid()].expiresAt == null || p.members[uid()].expiresAt > request.time)
+        ? p.members[uid()].role : null;
+    }
+    function isPetMember(petId) { return signedIn() && memberRole(pet(petId)) != null; }
+    function canCare(petId) { return signedIn() && memberRole(pet(petId)) in ['owner', 'coowner', 'carer']; }
+    function canLog(petId) { return signedIn() && memberRole(pet(petId)) in ['owner', 'coowner', 'carer', 'viewer']; }
+    function canEditPet(petId) { return signedIn() && memberRole(pet(petId)) in ['owner', 'coowner']; }
+
+    // ---------- users ----------
+    match /users/{userId} {
+      allow read: if signedIn() && (uid() == userId || isAdmin() || isPartner());
+      // Users edit their own profile but never their role, plan or partner link.
+      allow create: if signedIn() && uid() == userId && incoming().role == 'owner' && incoming().plan == 'free';
+      allow update: if signedIn() && ((uid() == userId && unchanged(['role', 'plan', 'planRenewsAt', 'partnerId'])) || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // ---------- pets and family ----------
+    match /pets/{petId} {
+      allow read: if signedIn() && (uid() in resource.data.memberIds || isAdmin());
+      allow create: if signedIn() && incoming().ownerId == uid() && incoming().memberIds == [uid()];
+      // Co-owners edit details; only the owner changes ownership or deletes.
+      allow update: if signedIn() && (
+        (memberRole(data()) == 'owner') ||
+        (memberRole(data()) == 'coowner' && unchanged(['ownerId', 'memberIds', 'members'])) ||
+        (memberRole(data()) == 'carer' && incoming().diff(data()).affectedKeys().hasOnly(['foodOpenedAt', 'weightKg'])));
+      allow delete: if signedIn() && data().ownerId == uid();
+    }
+    match /petInvites/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn() && canEditPet(incoming().petId);
+      allow update: if signedIn();
+      allow delete: if signedIn() && canEditPet(data().petId);
+    }
+    match /activity/{id} {
+      allow read: if isPetMember(resource.data.petId);
+      allow create: if canLog(incoming().petId) && incoming().actorId == uid();
+    }
+
+    // ---------- routine and health ----------
+    match /logs/{id} {
+      allow read: if isPetMember(resource.data.petId) || isAdmin();
+      allow create: if canLog(incoming().petId) && incoming().byUid == uid();
+      allow update, delete: if canCare(data().petId);
+    }
+    match /vaccinations/{id} { allow read: if isPetMember(resource.data.petId) || isPartner(); allow write: if canCare(request.resource == null ? resource.data.petId : incoming().petId); }
+    match /medicines/{id} { allow read: if isPetMember(resource.data.petId); allow write: if canCare(request.resource == null ? resource.data.petId : incoming().petId); }
+    match /medicineLogs/{id} { allow read: if isPetMember(resource.data.petId); allow create: if canCare(incoming().petId); }
+    match /healthEvents/{id} { allow read: if isPetMember(resource.data.petId) || isPartner(); allow write: if canCare(request.resource == null ? resource.data.petId : incoming().petId); }
+    match /reminders/{id} {
+      allow read, delete: if signedIn() && data().ownerId == uid();
+      allow create, update: if signedIn() && incoming().ownerId == uid();
+    }
+    match /notifications/{id} {
+      allow read, delete: if signedIn() && data().uid == uid();
+      allow update: if signedIn() && data().uid == uid() && incoming().diff(data()).affectedKeys().hasOnly(['read']);
+      allow create: if signedIn();
+    }
+
+    // ---------- clinics, providers, bookings ----------
+    match /clinics/{id} {
+      allow read: if resource.data.status == 'approved' || isAdmin() || (signedIn() && data().ownerUid == uid());
+      allow create: if signedIn() && incoming().status == 'pending' && incoming().ownerUid == uid();
+      allow update: if isAdmin() || (signedIn() && data().ownerUid == uid() && unchanged(['status', 'rating', 'reviewCount']));
+    }
+    match /vets/{id} {
+      allow read: if signedIn();
+      allow write: if isAdmin() || (signedIn() && role() == 'clinic_admin');
+    }
+    match /providers/{id} {
+      allow read: if resource.data.status == 'approved' || isAdmin() || (signedIn() && data().uid == uid());
+      allow create: if signedIn() && incoming().status == 'pending' && incoming().uid == uid();
+      allow update: if isAdmin() || (signedIn() && data().uid == uid() && unchanged(['status', 'rating', 'reviewCount']));
+    }
+    // Bookings are created and priced by the createBooking function.
+    match /bookings/{id} {
+      allow read: if signedIn() && (data().ownerId == uid() || uid() in data().get('partnerUids', []) || isAdmin() || isPetMember(data().petId));
+      allow update: if signedIn() && (data().ownerId == uid() || uid() in data().get('partnerUids', []) || isAdmin())
+        && unchanged(['price', 'platformFee', 'commission', 'payout', 'ownerId']);
+    }
+    match /reviews/{id} {
+      allow read: if true;
+      allow create: if signedIn() && incoming().ownerId == uid();
+      allow update: if isAdmin() || (signedIn() && isPartner() && incoming().diff(data()).affectedKeys().hasOnly(['reply', 'replyAt']));
+    }
+
+    // ---------- messaging and tele-vet ----------
+    match /conversations/{id} {
+      allow read, update: if signedIn() && (uid() in resource.data.participantIds || isAdmin());
+      allow create: if signedIn() && uid() in incoming().participantIds;
+    }
+    match /messages/{id} {
+      allow read: if signedIn() && (uid() in get(/databases/$(database)/documents/conversations/$(resource.data.conversationId)).data.participantIds || isAdmin());
+      // Tele-vet messages go through the sendTeleVetMessage function (limits).
+      allow create: if signedIn() && incoming().senderId == uid()
+        && uid() in get(/databases/$(database)/documents/conversations/$(incoming().conversationId)).data.participantIds
+        && get(/databases/$(database)/documents/conversations/$(incoming().conversationId)).data.type != 'televet';
+      allow update: if signedIn() && incoming().diff(data()).affectedKeys().hasOnly(['readBy']);
+    }
+    match /consultations/{id} {
+      allow read: if signedIn() && (data().ownerId == uid() || role() == 'vet' || isAdmin());
+      allow update: if signedIn() && (role() == 'vet' || (data().ownerId == uid() && incoming().diff(data()).affectedKeys().hasOnly(['rating', 'ratingText'])));
+    }
+    match /prescriptions/{id} {
+      allow read: if signedIn() && (isPetMember(resource.data.petId) || role() == 'vet' || isAdmin());
+      allow create: if signedIn() && role() == 'vet';
+    }
+
+    // ---------- vault and album ----------
+    match /documents/{id} {
+      allow read, update, delete: if signedIn() && (data().ownerId == uid() || isPetMember(data().petId));
+      allow create: if signedIn() && incoming().ownerId == uid();
+    }
+    match /shareLinks/{id} {
+      allow read: if true; // opened by the vet with the link; files are served by a function that checks expiry, PIN and revocation
+      allow create, update: if signedIn() && incoming().ownerId == uid();
+    }
+    match /insurance/{id} { allow read, write: if signedIn() && isPetMember(request.resource == null ? resource.data.petId : incoming().petId); }
+    match /album/{id} {
+      allow read: if signedIn() && isPetMember(resource.data.petId);
+      allow write: if signedIn() && canLog(request.resource == null ? resource.data.petId : incoming().petId);
+    }
+
+    // ---------- marketplace and money ----------
+    match /products/{id} {
+      allow read: if true;
+      allow write: if isAdmin() || (signedIn() && role() == 'seller');
+    }
+    match /sellers/{id} {
+      allow read: if true;
+      allow create: if signedIn() && incoming().status == 'pending' && incoming().uid == uid();
+      allow update: if isAdmin() || (signedIn() && data().uid == uid() && unchanged(['status']));
+    }
+    match /partners/{id} { allow read: if true; allow write: if isAdmin(); }
+    // Orders are created by the createOrder function, which checks prices and stock.
+    match /orders/{id} {
+      allow read: if signedIn() && (data().ownerId == uid() || uid() in data().get('sellerUids', []) || isAdmin());
+      allow update: if signedIn() && (data().ownerId == uid() || uid() in data().get('sellerUids', []) || isAdmin())
+        && unchanged(['items', 'total', 'commission', 'ownerId']);
+    }
+    match /subscriptions/{id} {
+      allow read, delete: if signedIn() && data().ownerId == uid();
+      allow create, update: if signedIn() && incoming().ownerId == uid();
+    }
+    match /expenses/{id} {
+      allow read, delete: if signedIn() && data().ownerId == uid();
+      allow create, update: if signedIn() && incoming().ownerId == uid();
+    }
+    match /carts/{userId} { allow read, write: if signedIn() && uid() == userId; }
+    match /coupons/{code} { allow read: if signedIn(); allow write: if isAdmin(); }
+
+    // ---------- safety, devices, support ----------
+    match /devices/{id} {
+      allow read, write: if signedIn() && isPetMember(request.resource == null ? resource.data.petId : incoming().petId);
+    }
+    match /sosLogs/{id} {
+      allow create: if signedIn() && incoming().uid == uid();
+      allow read: if isAdmin();
+    }
+    match /lostReports/{id} { allow read: if true; allow write: if signedIn(); }
+    match /tickets/{id} {
+      allow read: if signedIn() && (data().uid == uid() || isAdmin());
+      allow create: if signedIn() && incoming().uid == uid();
+      allow update: if signedIn() && (data().uid == uid() || isAdmin());
+    }
+    match /reports/{id} {
+      allow create: if signedIn() && incoming().reporterId == uid();
+      allow read, update: if isAdmin();
+    }
+
+    // ---------- platform ----------
+    match /config/{doc} { allow read: if true; allow write: if isAdmin(); }
+    match /outbox/{id} { allow read: if isAdmin(); allow create: if signedIn(); }
+    match /auditLog/{id} { allow read: if isAdmin(); allow create: if isAdmin(); }
+    match /analyticsDaily/{id} { allow read: if isAdmin(); }
+    match /demoAccounts/{id} { allow read, write: if false; }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}

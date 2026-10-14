@@ -1,0 +1,363 @@
+{
+  "@@locale": "en",
+  "appName": "PawSetu",
+  "ok": "OK",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "next": "Next",
+  "skip": "Skip",
+  "skipForNow": "Skip for now",
+  "notNow": "Not now",
+  "or": "or",
+  "loading": "Loading",
+  "tryAgain": "Try again",
+  "errorTitle": "Something went wrong",
+  "errorBody": "We couldn't load this. Check your internet and try again.",
+  "fieldRequired": "Please fill this in",
+  "comingSoon": "Coming soon",
+  "comingInPhase": "This part of PawSetu arrives in Phase {phase}. Everything else you see already works.",
+  "@comingInPhase": {
+    "placeholders": {
+      "phase": {
+        "type": "int"
+      }
+    }
+  },
+  "notFoundTitle": "We can't find that page",
+  "notFoundBody": "The link may be old. Let's take you home.",
+  "goHome": "Go to Home",
+  "stepOf": "Step {step} of {total}",
+  "@stepOf": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "tabHome": "Home",
+  "tabHealth": "Health",
+  "tabBook": "Book",
+  "tabShop": "Shop",
+  "tabMe": "Me",
+  "messages": "Messages",
+  "notifications": "Notifications",
+  "switchPet": "Switch pet",
+  "allPets": "All pets",
+  "addPet": "Add pet",
+  "petProfile": "Pet profile",
+  "openPetProfile": "Open {name}'s profile",
+  "@openPetProfile": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "petParent": "Pet parent",
+  "sosTitle": "Emergency help",
+  "sosSemantic": "SOS emergency button",
+  "sosHoldHint": "Hold for 2 seconds to activate",
+  "sosConfirmTitle": "Need emergency help?",
+  "sosConfirmBody": "We'll show the nearest open clinics so you can call or go there.",
+  "sosGetHelp": "Get help now",
+  "goodMorning": "Good morning",
+  "goodAfternoon": "Good afternoon",
+  "goodEvening": "Good evening",
+  "noPetsTitle": "Let's add your first pet",
+  "noPetsBody": "Only a name and species are needed. You can add more later.",
+  "quickActions": "Quick actions",
+  "qaBookVet": "Book vet",
+  "qaLogWalk": "Log walk",
+  "qaAskVet": "Ask a vet",
+  "qaAddPhoto": "Add photo",
+  "weightValue": "{value}",
+  "@weightValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "speciesDog": "Dog",
+  "speciesCat": "Cat",
+  "speciesBird": "Bird",
+  "speciesRabbit": "Rabbit",
+  "species": "Species",
+  "petName": "Pet's name",
+  "ageYears": "{years, plural, =1{1 yr} other{{years} yrs}}",
+  "@ageYears": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "ageMonths": "{months, plural, =1{1 mo} other{{months} mo}}",
+  "@ageMonths": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "ageYearsMonths": "{years} yrs {months} mo",
+  "@ageYearsMonths": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      },
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "stagePuppy": "Puppy",
+  "stageKitten": "Kitten",
+  "stageYoung": "Young",
+  "stageAdult": "Adult",
+  "stageSenior": "Senior",
+  "genderMale": "Male",
+  "genderFemale": "Female",
+  "genderUnknown": "Not sure",
+  "birdLegalNote": "Native Indian birds such as the rose-ringed (Indian ringneck), Alexandrine and plum-headed parakeets, munias and mynas are protected wildlife under the Wild Life (Protection) Act, 1972 and can't legally be kept as pets, so they aren't listed.",
+  "roleOwner": "Owner",
+  "roleCoowner": "Co-owner",
+  "roleCarer": "Carer",
+  "roleViewer": "Viewer",
+  "rolePetParent": "Pet parent",
+  "roleVet": "Vet",
+  "roleClinicAdmin": "Clinic admin",
+  "roleGroomer": "Groomer",
+  "roleTrainer": "Trainer",
+  "roleBoarder": "Boarding and sitting",
+  "roleWalker": "Dog walker",
+  "roleSeller": "Seller",
+  "roleAdmin": "Platform admin",
+  "welcome1Title": "Every care your pet needs, in one place",
+  "welcome1Body": "Track walks, meals and moods for every pet in your home.",
+  "welcome2Title": "Never miss a vaccine or medicine",
+  "welcome2Body": "Gentle reminders, health records and a report you can share with your vet.",
+  "welcome3Title": "Vets, groomers and shops, all connected",
+  "welcome3Body": "Book in a few taps, chat with a vet, and get help fast in an emergency.",
+  "getStarted": "Get started",
+  "language": "Language",
+  "signInTitle": "Welcome to PawSetu",
+  "signInSubtitle": "Sign in to look after your pets",
+  "email": "Email",
+  "password": "Password",
+  "passwordHelper": "At least 6 characters",
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
+  "forgotPassword": "Forgot password?",
+  "signIn": "Sign in",
+  "signOut": "Sign out",
+  "signOutConfirm": "Sign out of PawSetu?",
+  "continueWithGoogle": "Continue with Google",
+  "continueWithPhone": "Continue with phone number",
+  "continueWithApple": "Continue with Apple",
+  "newHere": "New to PawSetu?",
+  "createAccount": "Create account",
+  "exploreDemo": "Explore as demo user",
+  "exploreDemoHint": "Try every role with one tap. No sign-up needed.",
+  "signUpTitle": "Create your account",
+  "signUpSubtitle": "It takes less than a minute",
+  "yourName": "Your name",
+  "termsNote": "By creating an account you agree to the terms and privacy policy.",
+  "resetTitle": "Reset your password",
+  "resetSubtitle": "We'll email you a link to choose a new one.",
+  "sendResetLink": "Send reset link",
+  "resetSent": "If {email} has an account, a reset link is on its way.",
+  "@resetSent": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "backToSignIn": "Back to sign in",
+  "phoneTitle": "Sign in with your phone",
+  "phoneSubtitle": "We'll send a 6-digit code by SMS.",
+  "mobileNumber": "Mobile number",
+  "phoneInvalid": "Enter a 10-digit mobile number",
+  "sendCode": "Send code",
+  "enterCodeTitle": "Enter the code",
+  "enterCodeSubtitle": "We sent a 6-digit code to {phone}",
+  "@enterCodeSubtitle": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "sixDigitCode": "6-digit code",
+  "verifyAndContinue": "Verify and continue",
+  "changeNumber": "Change number",
+  "verifyTitle": "Check your email",
+  "verifySubtitle": "We sent a link to {email}. Tap it to confirm it's you.",
+  "@verifySubtitle": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyDemoNote": "Demo: the email went to the Demo Outbox. Tap below to open it.",
+  "openDemoEmail": "Open demo email and verify",
+  "iveVerified": "I've verified my email",
+  "resendEmail": "Send the email again",
+  "emailResent": "Sent again. Check your inbox and spam folder.",
+  "authErrNoAccount": "No account with that email. Check the spelling or create an account.",
+  "authErrWrongPassword": "That email and password don't match. Try again or reset your password.",
+  "authErrEmailInUse": "This email already has an account. Sign in instead.",
+  "authErrWeakPassword": "Use at least 6 characters",
+  "authErrInvalidEmail": "That doesn't look like an email address",
+  "authErrInvalidCode": "That code isn't right. Check the SMS and try again.",
+  "authErrNetwork": "No internet connection. Check it and try again.",
+  "authErrCancelled": "Sign-in was cancelled.",
+  "demoTitle": "Demo",
+  "demoBadge": "Demo",
+  "demoSocialBody": "Demo: in the live app this opens {provider} sign-in. Here you'll continue as a demo account.",
+  "@demoSocialBody": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "demoOtpBody": "Demo: no SMS is sent. Use the code {code}.",
+  "@demoOtpBody": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "demoOutboxNote": "Demo: nothing was really sent. The message is in the Demo Outbox in the admin panel.",
+  "demoLoginNote": "These are demo accounts with made-up people, clinics and data. Nothing here is real, no money is charged and no messages are sent.",
+  "demoGroupOwners": "Pet parents",
+  "demoGroupFamily": "Family and pet sitter",
+  "demoGroupPartners": "Partners",
+  "demoGroupPlatform": "Platform",
+  "demoPriya": "Bengaluru · Plus · Bruno the Labrador and Misty the Persian cat",
+  "demoRavi": "Hyderabad · Free · Telugu · Simba the Indie puppy and Kiwi the cockatiel",
+  "demoAnjali": "Delhi NCR · Free · Hindi · Easy mode · Coco the rabbit and Tiger the senior cat",
+  "demoArjun": "Mumbai · Plus · Max the German Shepherd and Luna the Beagle puppy",
+  "demoRohan": "Priya's husband · Carer for Bruno and Misty",
+  "demoMeera": "Pet sitter for Arjun · access ends in 3 days",
+  "demoClinicAdmin": "Clinic admin · Golconda Gate Pet Clinic, Hyderabad",
+  "demoVet": "Vet · bookings, tele-vet queue and prescriptions",
+  "demoGroomer": "Groomer · accepts booking requests",
+  "demoTrainer": "Dog trainer",
+  "demoBoarder": "Home boarding and pet sitting",
+  "demoWalker": "Dog walker · live walk route",
+  "demoSeller": "Seller · products, orders and payouts",
+  "demoAdmin": "Platform admin · approvals, complaints, Demo Outbox",
+  "demoCredentials": "Signing in by hand? Every demo account uses the password {password}. Demo phone code: {otp}.",
+  "@demoCredentials": {
+    "placeholders": {
+      "password": {
+        "type": "String"
+      },
+      "otp": {
+        "type": "String"
+      }
+    }
+  },
+  "setupHello": "Hi {name}, let's set things up",
+  "@setupHello": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "setupHelloNoName": "Let's set things up",
+  "setupPrefsSubtitle": "Choose how PawSetu looks and reads. You can change this any time in Settings.",
+  "setupPetTitle": "Who are we caring for?",
+  "setupPetSubtitle": "Just a name and species for now.",
+  "setupNotifTitle": "Reminders keep your pet healthy",
+  "setupNotifSubtitle": "Allow notifications so we can remind you about:",
+  "notifReasonVaccines": "Vaccines and deworming that are due",
+  "notifReasonMedicines": "Medicine times, with one-tap Given",
+  "notifReasonBookings": "Vet and grooming appointments",
+  "notifReasonMessages": "Replies from vets and providers",
+  "allowNotifications": "Allow notifications",
+  "settings": "Settings",
+  "appearance": "Appearance",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "themeSystem": "System default",
+  "accessibility": "Accessibility",
+  "easyMode": "Easy mode",
+  "easyModeHint": "Bigger text and buttons, a simpler Home and plain words.",
+  "textSize": "Text size",
+  "highContrast": "High contrast",
+  "highContrastHint": "Darker text and stronger outlines.",
+  "notificationChannels": "Reminders and channels",
+  "notificationChannelsHint": "Push, email, SMS or WhatsApp, and quiet hours",
+  "demoData": "Demo data",
+  "demoModeOn": "Demo mode is on",
+  "demoStandaloneHint": "Everything runs on this device. No real money, messages or calls.",
+  "demoEmulatorHint": "Connected to the Firebase emulators on your computer.",
+  "resetDemoData": "Reset demo data",
+  "resetDemoDataHint": "Undo your changes and start fresh",
+  "resetDemoDataConfirm": "This removes everything you added in the demo and signs you out.",
+  "about": "About",
+  "aboutVersion": "Version {version}",
+  "@aboutVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "mapCredit": "Maps © OpenStreetMap contributors",
+  "designGallery": "Design gallery",
+  "myPets": "My pets",
+  "familySharing": "Family and sharing",
+  "documentVault": "Document vault",
+  "memoryAlbum": "Memory album",
+  "connectedDevices": "Connected devices",
+  "lostPetMode": "Lost pet mode and QR tag",
+  "expenses": "Expenses",
+  "pawsetuPlus": "PawSetu Plus",
+  "helpAndComplaints": "Help and complaints",
+  "privacyCentre": "Privacy centre",
+  "planFree": "Free",
+  "planPlus": "Plus",
+  "partnerPortalFor": "Partner portal · {role}",
+  "@partnerPortalFor": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "pDashboard": "Dashboard",
+  "pCalendar": "Calendar and slots",
+  "pRequests": "Booking requests",
+  "pTeleVetQueue": "Tele-vet queue",
+  "pServices": "Services and prices",
+  "pStaff": "Staff and vets",
+  "pChat": "Chat inbox",
+  "pReviews": "Reviews",
+  "pPayouts": "Payouts",
+  "pProfileKyc": "Profile and KYC",
+  "pEmergency": "Emergency settings",
+  "pProducts": "Products and stock",
+  "pOrders": "Orders",
+  "pReturns": "Returns",
+  "adminPanel": "Admin panel",
+  "aDashboard": "Dashboard",
+  "aApprovals": "Approvals",
+  "aUsers": "Users",
+  "aCatalogue": "Catalogue",
+  "aComplaints": "Complaints and tickets",
+  "aModeration": "Moderation",
+  "aSettings": "Plans and settings",
+  "aOutbox": "Demo Outbox",
+  "aAudit": "Audit log"
+}
