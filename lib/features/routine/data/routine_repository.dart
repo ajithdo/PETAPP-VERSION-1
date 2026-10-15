@@ -55,8 +55,9 @@ class RoutineRepository {
     String? note,
     String? photoUrl,
     Map<String, dynamic>? data,
+    String? id,
   }) async {
-    final ref = await _logs.add({
+    final log = {
       'petId': pet.id,
       'type': type.name,
       'at': at ?? DateTime.now(),
@@ -65,7 +66,10 @@ class RoutineRepository {
       if (note != null && note.isNotEmpty) 'note': note,
       'photoUrl': ?photoUrl,
       'data': ?data,
-    });
+    };
+    // A fixed id (device activity) makes writing the same log twice harmless.
+    final ref = id == null ? await _logs.add(log) : _logs.doc(id);
+    if (id != null) await ref.set(log);
     // Family feed: only the shared moments, not every glass of water.
     final feed = switch (type) {
       LogType.walk => 'walk_logged',

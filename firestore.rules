@@ -45,7 +45,8 @@ service cloud.firestore {
       allow update: if signedIn() && (
         (memberRole(data()) == 'owner') ||
         (memberRole(data()) == 'coowner' && unchanged(['ownerId', 'memberIds', 'members'])) ||
-        (memberRole(data()) == 'carer' && incoming().diff(data()).affectedKeys().hasOnly(['foodOpenedAt', 'weightKg'])));
+        // Carers may also mark the pet lost or found (Phase 9).
+        (memberRole(data()) == 'carer' && incoming().diff(data()).affectedKeys().hasOnly(['foodOpenedAt', 'weightKg', 'lost'])));
       allow delete: if signedIn() && data().ownerId == uid();
     }
     match /petInvites/{id} {
@@ -215,13 +216,32 @@ service cloud.firestore {
 
     // ---------- safety, devices, support ----------
     match /devices/{id} {
-      allow read, write: if signedIn() && isPetMember(request.resource == null ? resource.data.petId : incoming().petId);
+      allow read: if isPetMember(data().petId);
+      allow create: if canCare(incoming().petId) && incoming().ownerId == pet(incoming().petId).ownerId && incoming().pairedBy == uid();
+      // Any family member's app records the latest reading (data); carers and
+      // up rename it, change the safe zone or remove it. The pet never changes.
+      allow update: if isPetMember(data().petId)
+        && unchanged(['petId', 'ownerId', 'type', 'serial', 'pairedAt', 'pairedBy'])
+        && (canCare(data().petId) || incoming().diff(data()).affectedKeys().hasOnly(['data']));
+      allow delete: if canCare(data().petId);
     }
     match /sosLogs/{id} {
-      allow create: if signedIn() && incoming().uid == uid();
-      allow read: if isAdmin();
+      allow create: if signedIn() && incoming().uid == uid()
+        && incoming().keys().hasOnly(['uid', 'petId', 'at', 'lat', 'lng', 'area', 'source'])
+        && incoming().source in ['gps', 'last_known', 'chosen'];
+      allow read: if isAdmin() || (signedIn() && data().uid == uid());
     }
-    match /lostReports/{id} { allow read: if true; allow write: if signedIn(); }
+    // Finders never read these directly: the public page and the relay go
+    // through openLostPage, contactPetFamily and shareFinderLocation.
+    // Sightings and alert counts are written by those functions only.
+    match /lostReports/{id} {
+      allow read: if isPetMember(data().petId) || isAdmin();
+      allow create: if canCare(incoming().petId) && incoming().createdBy == uid() && incoming().ownerId == pet(incoming().petId).ownerId
+        && incoming().status == 'lost' && incoming().alertsSent == 0 && incoming().sightings.size() == 0;
+      allow update: if canCare(data().petId)
+        && incoming().diff(data()).affectedKeys().hasOnly(['status', 'foundAt', 'note', 'area'])
+        && incoming().status in ['lost', 'found'];
+    }
     match /tickets/{id} {
       allow read: if signedIn() && (data().uid == uid() || isAdmin());
       allow create: if signedIn() && incoming().uid == uid();

@@ -6,7 +6,7 @@ Roles: `owner`, `vet`, `clinic_admin`, `groomer`, `trainer`, `boarder`, `walker`
 
 | Collection | Key fields | Who reads | Who writes | Indexes |
 | --- | --- | --- | --- | --- |
-| `users/{uid}` | name, email, phone, role, plan (free/trial/plus), planRenewsAt, trialEndsAt, language, city, easyMode, partnerId, onboarded, addresses[], consents{}, referralCode, deletionRequestedAt | self, partners (name only in UI), admin | self (not role/plan/partnerId), admin, functions | — |
+| `users/{uid}` | name, email, phone, role, plan (free/trial/plus), planRenewsAt, trialEndsAt, language, city, easyMode, partnerId, onboarded, addresses[], consents{}, referralCode, deletionRequestedAt, homeLat, homeLng (for lost-pet alerts within 5 km) | self, partners (name only in UI), admin | self (not role/plan/partnerId), admin, functions | — |
 | `pets/{petId}` | ownerId, name, species, breedId, breedOther, birthday, gender, weightKg, colorTag, photoUrl, markings, microchip, neutered, allergies[], dietType, clinicId, insuranceDocId, temperament, archived, archivedReason, archivedAt, memorial, memorialNote, memberIds[], members{uid:{role,name,expiresAt}}, dailyPlan{walks,meals,playMinutes}, qrToken, lost{since,area,lat,lng,note}, foodBagKg, dailyPortionG, foodProductId, foodOpenedAt | members, admin | owner/co-owner (carer: food and weight only) | memberIds (array-contains) |
 | `petInvites/{id}` | petId, petName, invitedBy, invitedByName, contact, role, expiresAt (for sitters), token, status (pending/accepted/declined) | signed-in | owner/co-owner | contact, token |
 | `activity/{id}` | petId, actorId, actorName, type, detail, createdAt | pet members | pet members | petId + createdAt desc |
@@ -39,9 +39,10 @@ Roles: `owner`, `vet`, `clinic_admin`, `groomer`, `trainer`, `boarder`, `walker`
 | `orders/{id}` | ownerId, petId, items[{productId,name,sellerId,qty,price,commission}], subtotal, discount, coupon, deliveryFee, total, commission, sellerUids[], address{}, slot, status (placed/packed/shipped/out_for_delivery/delivered/cancelled/return_requested/returned), timeline[{status,at}], paymentStatus, invoiceNo, createdAt | owner, sellers in order, admin | createOrder function; status updates by seller/owner | ownerId + createdAt, sellerUids + createdAt |
 | `subscriptions/{id}` | ownerId, petId, productId, everyWeeks, nextAt, active | owner | owner | ownerId |
 | `expenses/{id}` | ownerId, petId, category (vet, grooming, training, boarding, walking, food, supplies, insurance, other), amount, date, note, source (booking/order/manual), sourceId | owner | owner, functions | ownerId + date |
-| `devices/{id}` | ownerId, petId, type (gps_collar, activity_tracker, feeder, fountain, camera, litter_box), name, vendor, status, battery, data{}, safeZone{lat,lng,radiusM}, pairedAt | pet members | members | petId |
-| `sosLogs/{id}` | uid, petId, at, lat, lng, area, source (gps/last_known/chosen) | admin | owner | at desc |
-| `lostReports/{id}` | petId, ownerId, status (lost/found), since, area, lat, lng, note, alertsSent, sightings[] | everyone (public pet page) | owner | status |
+| `devices/{id}` | ownerId, petId, type (gps_collar, activity_tracker, feeder, fountain, camera, litter_box), name, vendor, model, serial, status, battery, data{inside, lat, lng, metersFromHome, at, lastSync}, safeZone{lat,lng,radiusM}, pairedAt, pairedBy | pet members | carers and up (any member may update `data` only) | petId |
+| `sosLogs/{id}` | uid, petId, at, lat, lng (3 decimals), area, source (gps/last_known/chosen) | admin, self | self | at desc |
+| `lostReports/{id}` | petId, ownerId, petName, species, qrToken, status (lost/found), since, foundAt, area, lat, lng, note, alert, alertsSent, sightings[{at,lat,lng,area,note,name}], createdBy, createdAt | pet members, admin (finders use the openLostPage function) | carers and up (status/note); functions (sightings, alertsSent) | — |
+| `tagRelays/{qrToken}` | times[] (finder messages in the last hour, max 5) | — | functions only | — |
 | `tickets/{id}` | uid, role, subject, body, linkType (booking/order/chat), linkId, status (open/in_progress/resolved), assignee, messages[{by,text,at}], refund{amount,status}, createdAt | raiser, admin | raiser, admin | uid, status |
 | `reports/{id}` | type (chat/review/content), targetId, reporterId, reason, status (open/actioned/dismissed), createdAt | admin | reporter, admin | status |
 | `coupons/{code}` | percent, flat, minOrder, validTill, uses, maxUses, active | signed-in | admin | — |

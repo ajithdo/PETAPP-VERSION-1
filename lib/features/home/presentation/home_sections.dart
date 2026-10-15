@@ -45,6 +45,7 @@ List<Widget> homeSections(BuildContext context, WidgetRef ref,
   if (pet == null) {
     // "All pets": merged today's tasks.
     return [
+      ...lostPetSection(context, ref, pets),
       SectionHeader(l.todayAllPets),
       for (final p in pets) Padding(padding: const EdgeInsets.only(bottom: Space.md), child: _MiniToday(pet: p)),
       ...nextUpSection(context, ref, pets: pets),
@@ -54,6 +55,7 @@ List<Widget> homeSections(BuildContext context, WidgetRef ref,
   }
 
   return [
+    ...lostPetSection(context, ref, [pet]),
     const SizedBox(height: Space.lg),
     TodayCard(pet: pet, big: easy),
     ...nextUpSection(context, ref, pets: [pet]),

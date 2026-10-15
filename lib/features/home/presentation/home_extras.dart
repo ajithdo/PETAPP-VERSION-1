@@ -11,6 +11,7 @@ import '../../pets/domain/pet.dart';
 
 export '../../messaging/messaging_slots.dart' show askVetLink;
 export '../../shop/shop_slots.dart' show foodLowSection;
+export '../../sos/sos_slots.dart' show lostPetSection;
 export '../../vault/vault_slots.dart' show addPhotoLink, latestMemorySection;
 
 /// Home "Next up": vaccines, medicines and care due soonest (spec 5).

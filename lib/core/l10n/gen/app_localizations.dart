@@ -12843,6 +12843,2046 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The customer\'s phone is hidden; the courier calls through PawSetu.'**
   String get selPhoneHidden;
+
+  /// No description provided for @faChokingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choking'**
+  String get faChokingTitle;
+
+  /// No description provided for @faChokingSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Pawing at the mouth, gagging, coughing, blue gums or struggling to breathe.'**
+  String get faChokingSigns;
+
+  /// No description provided for @faChokingSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay calm and keep your pet still. If they can still cough, let them try to clear it.\nOpen the mouth gently and look inside with a torch.\nIf you can see the object and reach it easily, hook it out with your fingers. Don\'t push it deeper.\nSmall dog or cat: hold them upside down by the hips and give 5 sharp taps between the shoulder blades.\nLarge dog: stand behind, put your fist just below the ribs and give 5 quick pushes inwards and upwards.\nCheck the mouth again. Go to a vet straight away, even if the object came out.'**
+  String get faChokingSteps;
+
+  /// No description provided for @faChokingAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t reach blindly down the throat.\nDon\'t give food or water.\nDon\'t pull on string or thread you see; it may be caught on something inside.'**
+  String get faChokingAvoid;
+
+  /// No description provided for @faChokingVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Always see a vet after choking, even if your pet seems fine. Use SOS if they collapse or can\'t breathe.'**
+  String get faChokingVet;
+
+  /// No description provided for @faPoisoningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Poisoning'**
+  String get faPoisoningTitle;
+
+  /// No description provided for @faPoisoningSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Vomiting, drooling, shaking, wobbly walking, fits, sudden tiredness, or a chewed packet nearby.'**
+  String get faPoisoningSigns;
+
+  /// No description provided for @faPoisoningSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Move your pet away from the poison and remove any left in the mouth.\nFind out what was eaten, how much and when. Keep the packet or take a photo of the plant.\nCall your vet now, or use SOS to reach the nearest clinic.\nIf the poison is on the fur or skin, rinse it off with plenty of lukewarm water.\nKeep your pet warm and quiet on the way to the clinic.'**
+  String get faPoisoningSteps;
+
+  /// No description provided for @faPoisoningAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t make your pet vomit unless a vet tells you to.\nDon\'t give milk, salt, oil or home remedies.\nDon\'t wait for signs; some poisons act hours later.'**
+  String get faPoisoningAvoid;
+
+  /// No description provided for @faPoisoningVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Go now. With poisons, early treatment saves lives.'**
+  String get faPoisoningVet;
+
+  /// No description provided for @faHeatstrokeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Heatstroke'**
+  String get faHeatstrokeTitle;
+
+  /// No description provided for @faHeatstrokeSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Heavy panting, thick drool, bright red or pale gums, weakness, vomiting or collapse on a hot day.'**
+  String get faHeatstrokeSigns;
+
+  /// No description provided for @faHeatstrokeSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Move your pet into shade or a cool room right away.\nPour cool (not ice-cold) water over the body, especially the belly, neck and paws.\nUse a fan or wet towels, and change the towels often so they don\'t trap heat.\nOffer small sips of cool water; don\'t force it.\nGo to a vet even if your pet seems better.'**
+  String get faHeatstrokeSteps;
+
+  /// No description provided for @faHeatstrokeAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t use ice or ice-cold water.\nDon\'t cover your pet with a wet towel and leave it there.\nDon\'t walk in the afternoon heat, and never leave a pet in a parked car.'**
+  String get faHeatstrokeAvoid;
+
+  /// No description provided for @faHeatstrokeVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Heatstroke can harm organs hours later. See a vet today. Flat-faced breeds are at higher risk.'**
+  String get faHeatstrokeVet;
+
+  /// No description provided for @faBleedingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bleeding'**
+  String get faBleedingTitle;
+
+  /// No description provided for @faBleedingSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood from a wound, paw, ear or nose.'**
+  String get faBleedingSigns;
+
+  /// No description provided for @faBleedingSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Press a clean cloth or gauze firmly on the wound.\nKeep pressing for at least 5 minutes without lifting to check.\nIf blood soaks through, add more cloth on top and keep pressing.\nWrap a bandage firmly, but not too tight, to hold it in place.\nKeep your pet calm and go to a vet.'**
+  String get faBleedingSteps;
+
+  /// No description provided for @faBleedingAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t tie a tight band (tourniquet) unless a vet tells you to.\nDon\'t pull out anything stuck in the wound.\nDon\'t put turmeric, powders or creams on a deep wound.'**
+  String get faBleedingAvoid;
+
+  /// No description provided for @faBleedingVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Use SOS for heavy bleeding, spurting blood or bleeding that doesn\'t slow after 10 minutes of pressure.'**
+  String get faBleedingVet;
+
+  /// No description provided for @faFractureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Broken bones'**
+  String get faFractureTitle;
+
+  /// No description provided for @faFractureSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Not putting weight on a leg, swelling, a strange angle, crying when touched.'**
+  String get faFractureSigns;
+
+  /// No description provided for @faFractureSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your pet as still as possible. A frightened pet may bite, so be gentle.\nCarry small pets in a box or basket lined with a towel.\nFor a large dog, use a board or a blanket held like a stretcher.\nCover any open wound with a clean cloth.\nGo to a vet straight away.'**
+  String get faFractureSteps;
+
+  /// No description provided for @faFractureAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t try to straighten the bone.\nDon\'t give human painkillers; many are poisonous to pets.\nDon\'t let your pet walk on the leg.'**
+  String get faFractureAvoid;
+
+  /// No description provided for @faFractureVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Every suspected broken bone needs a vet, and usually an X-ray.'**
+  String get faFractureVet;
+
+  /// No description provided for @faSeizureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fits (seizures)'**
+  String get faSeizureTitle;
+
+  /// No description provided for @faSeizureSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Falling over, stiff or jerking legs, paddling, drooling, not responding.'**
+  String get faSeizureSigns;
+
+  /// No description provided for @faSeizureSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay calm and note the time the fit started.\nMove furniture and sharp things away. Dim the lights and keep it quiet.\nKeep your hands away from the mouth.\nAfter the fit, keep your pet warm and let them rest; they may be confused for a while.\nCall your vet and tell them how long it lasted.'**
+  String get faSeizureSteps;
+
+  /// No description provided for @faSeizureAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t hold your pet down.\nDon\'t put anything in the mouth; pets don\'t swallow their tongue.\nDon\'t give food or water until they are fully awake.'**
+  String get faSeizureAvoid;
+
+  /// No description provided for @faSeizureVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Use SOS if a fit lasts more than 5 minutes or fits come one after another. A first fit always needs a vet visit.'**
+  String get faSeizureVet;
+
+  /// No description provided for @faBurnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Burns'**
+  String get faBurnTitle;
+
+  /// No description provided for @faBurnSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Red or raw skin, blisters, singed fur, or contact with hot liquid, fire or chemicals.'**
+  String get faBurnSigns;
+
+  /// No description provided for @faBurnSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Cool the burn under cool running water for 10 minutes.\nFor a chemical burn, rinse with plenty of water for 15 minutes; wear gloves.\nCover loosely with a clean, damp, lint-free cloth.\nKeep your pet warm by wrapping the rest of the body, and go to a vet.'**
+  String get faBurnSteps;
+
+  /// No description provided for @faBurnAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t use ice, butter, oil, toothpaste or turmeric.\nDon\'t pop blisters.\nDon\'t let your pet lick the burn.'**
+  String get faBurnAvoid;
+
+  /// No description provided for @faBurnVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Burns can be deeper than they look. See a vet the same day.'**
+  String get faBurnVet;
+
+  /// No description provided for @faBiteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Snake or insect bite'**
+  String get faBiteTitle;
+
+  /// No description provided for @faBiteSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Sudden swelling, pain, puncture marks, bleeding, weakness, drooling or trouble breathing.'**
+  String get faBiteSigns;
+
+  /// No description provided for @faBiteSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your pet calm and as still as possible; carry them if you can.\nKeep the bitten part level with or below the heart.\nTake off the collar if the neck or face is swelling.\nFor a bee sting, scrape the sting out with a card.\nGo to the nearest clinic straight away. Use SOS to find one that\'s open.\nIf it\'s safe, note the snake\'s colour and size, or take a photo from a distance.'**
+  String get faBiteSteps;
+
+  /// No description provided for @faBiteAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t cut the wound or try to suck out venom.\nDon\'t tie a tight band above the bite.\nDon\'t try to catch the snake.'**
+  String get faBiteAvoid;
+
+  /// No description provided for @faBiteVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Every snake bite is an emergency. Go even if your pet seems fine.'**
+  String get faBiteVet;
+
+  /// No description provided for @faTickTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Removing a tick'**
+  String get faTickTitle;
+
+  /// No description provided for @faTickSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'A small grey-brown bump stuck to the skin, often around the ears, neck, armpits or between the toes.'**
+  String get faTickSigns;
+
+  /// No description provided for @faTickSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Wear gloves if you can. Part the fur so you can see the tick clearly.\nUse fine tweezers or a tick hook to grip the tick close to the skin.\nPull straight out, slowly and steadily, without twisting or squeezing.\nClean the spot with antiseptic and wash your hands.\nDrop the tick in alcohol, or seal it in tape before throwing it away.\nWatch for fever, tiredness or pale gums over the next 3 weeks.'**
+  String get faTickSteps;
+
+  /// No description provided for @faTickAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t burn the tick or cover it in oil, kerosene or petrol.\nDon\'t squeeze the tick\'s body.\nDon\'t crush ticks with bare fingers.'**
+  String get faTickAvoid;
+
+  /// No description provided for @faTickVet.
+  ///
+  /// In en, this message translates to:
+  /// **'See a vet if your pet gets a fever, is tired or off food, or has many ticks. Ask about tick prevention.'**
+  String get faTickVet;
+
+  /// No description provided for @clearSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get clearSearch;
+
+  /// No description provided for @closedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed now'**
+  String get closedNow;
+
+  /// No description provided for @copy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get copy;
+
+  /// No description provided for @openInMaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in Maps'**
+  String get openInMaps;
+
+  /// No description provided for @draftVetReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft, to be reviewed by a vet'**
+  String get draftVetReview;
+
+  /// No description provided for @sosCallNearest.
+  ///
+  /// In en, this message translates to:
+  /// **'Call nearest clinic'**
+  String get sosCallNearest;
+
+  /// No description provided for @sosGetAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Get nearest clinic address'**
+  String get sosGetAddress;
+
+  /// No description provided for @sosFinding.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding clinics near you…'**
+  String get sosFinding;
+
+  /// No description provided for @sosLocating.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding where you are…'**
+  String get sosLocating;
+
+  /// No description provided for @sosUsingGps.
+  ///
+  /// In en, this message translates to:
+  /// **'Using your current location'**
+  String get sosUsingGps;
+
+  /// No description provided for @sosUsingLastKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Using your last known location (from {time})'**
+  String sosUsingLastKnown(String time);
+
+  /// No description provided for @sosUsingArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is off. Showing clinics near {area}.'**
+  String sosUsingArea(String area);
+
+  /// No description provided for @sosLocationOffHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong area? Change it so the list is right.'**
+  String get sosLocationOffHint;
+
+  /// No description provided for @sosTryLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Try my location again'**
+  String get sosTryLocation;
+
+  /// No description provided for @sosChangeArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Change area'**
+  String get sosChangeArea;
+
+  /// No description provided for @sosSavedClinics.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak internet: showing clinics saved on {when}.'**
+  String sosSavedClinics(String when);
+
+  /// No description provided for @sosNoClinics.
+  ///
+  /// In en, this message translates to:
+  /// **'No clinics found nearby. Try another area.'**
+  String get sosNoClinics;
+
+  /// No description provided for @sosCallClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Call {name}'**
+  String sosCallClinic(String name);
+
+  /// No description provided for @sosAway.
+  ///
+  /// In en, this message translates to:
+  /// **'{km} away'**
+  String sosAway(String km);
+
+  /// No description provided for @sosDemoCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: this would call {phone}. No real call is made in the demo.'**
+  String sosDemoCall(String phone);
+
+  /// No description provided for @sosShowVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this to the vet'**
+  String get sosShowVet;
+
+  /// No description provided for @firstAidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First aid'**
+  String get firstAidTitle;
+
+  /// No description provided for @firstAidOfflineHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Step-by-step guides that work without internet'**
+  String get firstAidOfflineHint;
+
+  /// No description provided for @firstAidOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Works without internet'**
+  String get firstAidOffline;
+
+  /// No description provided for @firstAidEmergencyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Not breathing, collapsed or bleeding heavily? Hold SOS now and go to a clinic. These guides help on the way.'**
+  String get firstAidEmergencyNote;
+
+  /// No description provided for @firstAidSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs'**
+  String get firstAidSigns;
+
+  /// No description provided for @firstAidWhatToDo.
+  ///
+  /// In en, this message translates to:
+  /// **'What to do'**
+  String get firstAidWhatToDo;
+
+  /// No description provided for @firstAidAvoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t'**
+  String get firstAidAvoid;
+
+  /// No description provided for @firstAidWhenVet.
+  ///
+  /// In en, this message translates to:
+  /// **'When to see a vet'**
+  String get firstAidWhenVet;
+
+  /// No description provided for @firstAidTalkToVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Talk to a vet now'**
+  String get firstAidTalkToVet;
+
+  /// No description provided for @toxTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Is it safe?'**
+  String get toxTitle;
+
+  /// No description provided for @toxTileHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Check foods, plants and household things for your pet'**
+  String get toxTileHint;
+
+  /// No description provided for @toxSearchLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Food, plant or household item'**
+  String get toxSearchLabel;
+
+  /// No description provided for @toxSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: grapes, lily, chocolate'**
+  String get toxSearchHint;
+
+  /// No description provided for @toxForWhichPet.
+  ///
+  /// In en, this message translates to:
+  /// **'For which pet?'**
+  String get toxForWhichPet;
+
+  /// No description provided for @toxKindAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get toxKindAll;
+
+  /// No description provided for @toxKindFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get toxKindFood;
+
+  /// No description provided for @toxKindPlant.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants'**
+  String get toxKindPlant;
+
+  /// No description provided for @toxKindHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Around the home'**
+  String get toxKindHome;
+
+  /// No description provided for @toxDanger.
+  ///
+  /// In en, this message translates to:
+  /// **'Dangerous'**
+  String get toxDanger;
+
+  /// No description provided for @toxCaution.
+  ///
+  /// In en, this message translates to:
+  /// **'Be careful'**
+  String get toxCaution;
+
+  /// No description provided for @toxSafe.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe in small amounts'**
+  String get toxSafe;
+
+  /// No description provided for @toxForEachPet.
+  ///
+  /// In en, this message translates to:
+  /// **'For each kind of pet'**
+  String get toxForEachPet;
+
+  /// No description provided for @toxAteIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Already eaten? Don\'t wait for signs. Get help now and take the packet or a photo with you.'**
+  String get toxAteIt;
+
+  /// No description provided for @toxPoisoningGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the poisoning guide'**
+  String get toxPoisoningGuide;
+
+  /// No description provided for @toxNoMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Not in our list yet'**
+  String get toxNoMatch;
+
+  /// No description provided for @toxNoMatchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'If you\'re not sure, don\'t give it, and ask a vet.'**
+  String get toxNoMatchHint;
+
+  /// No description provided for @lostIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Every pet gets a QR tag. Anyone who scans it sees a page with your pet\'s photo and can message you or share where they are. Your phone number stays hidden.'**
+  String get lostIntro;
+
+  /// No description provided for @lostSafeAtHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe at home'**
+  String get lostSafeAtHome;
+
+  /// No description provided for @lostSinceShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost since {when}'**
+  String lostSinceShort(String when);
+
+  /// No description provided for @lostPetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} · QR tag'**
+  String lostPetTitle(String pet);
+
+  /// No description provided for @lostIfMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'If {pet} goes missing'**
+  String lostIfMissing(String pet);
+
+  /// No description provided for @lostIfMissingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark them lost to share a lost page, alert PawSetu users nearby (if you choose) and make a poster in one tap.'**
+  String get lostIfMissingBody;
+
+  /// No description provided for @lostMarkLost.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark {pet} as lost'**
+  String lostMarkLost(String pet);
+
+  /// No description provided for @lostWhereSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Where was your pet last seen?'**
+  String get lostWhereSeen;
+
+  /// No description provided for @lostUsingGps.
+  ///
+  /// In en, this message translates to:
+  /// **'Using where you are now'**
+  String get lostUsingGps;
+
+  /// No description provided for @lostNearMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Near my location'**
+  String get lostNearMe;
+
+  /// No description provided for @lostWhenSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'When?'**
+  String get lostWhenSeen;
+
+  /// No description provided for @lostWhenNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get lostWhenNow;
+
+  /// No description provided for @lostWhenHour.
+  ///
+  /// In en, this message translates to:
+  /// **'About an hour ago'**
+  String get lostWhenHour;
+
+  /// No description provided for @lostWhenMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'This morning'**
+  String get lostWhenMorning;
+
+  /// No description provided for @lostWhenYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday evening'**
+  String get lostWhenYesterday;
+
+  /// No description provided for @lostNoteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything that helps people recognise them'**
+  String get lostNoteLabel;
+
+  /// No description provided for @lostNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: red collar, shy with strangers'**
+  String get lostNoteHint;
+
+  /// No description provided for @lostAlertNearby.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert PawSetu users within 5 km'**
+  String get lostAlertNearby;
+
+  /// No description provided for @lostAlertNearbyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only people who turned on lost-pet alerts get it. They see the lost page, never your number.'**
+  String get lostAlertNearbyHint;
+
+  /// No description provided for @lostMarkLostConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as lost'**
+  String get lostMarkLostConfirm;
+
+  /// No description provided for @lostMarked.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is marked lost. Your family has been told.'**
+  String lostMarked(String pet);
+
+  /// No description provided for @lostDemoAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: the alert reached {count} PawSetu users within 5 km of {area} who turned on lost-pet alerts. The messages are in the Demo Outbox; no real alert was sent.'**
+  String lostDemoAlert(int count, String area);
+
+  /// No description provided for @lostBannerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is marked lost'**
+  String lostBannerTitle(String pet);
+
+  /// No description provided for @lostBannerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Since {when}, near {area}.'**
+  String lostBannerBody(String when, String area);
+
+  /// No description provided for @lostAlertsSent.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No PawSetu users nearby were alerted} =1{Alert sent to 1 person nearby} other{Alert sent to {count} people nearby}}'**
+  String lostAlertsSent(int count);
+
+  /// No description provided for @lostSightings.
+  ///
+  /// In en, this message translates to:
+  /// **'Sightings'**
+  String get lostSightings;
+
+  /// No description provided for @lostNoSightings.
+  ///
+  /// In en, this message translates to:
+  /// **'No sightings yet. Share the lost page and the poster so more people can help.'**
+  String get lostNoSightings;
+
+  /// No description provided for @lostSightingNoDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Location shared'**
+  String get lostSightingNoDetails;
+
+  /// No description provided for @lostMakePoster.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a poster (PDF)'**
+  String get lostMakePoster;
+
+  /// No description provided for @lostShareLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the lost page'**
+  String get lostShareLink;
+
+  /// No description provided for @lostShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please help! {pet} is lost near {area}. If you see them, open {url}'**
+  String lostShareText(String pet, String area, String url);
+
+  /// No description provided for @lostMarkFound.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is found'**
+  String lostMarkFound(String pet);
+
+  /// No description provided for @lostFoundConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Is {pet} home safe?'**
+  String lostFoundConfirmTitle(String pet);
+
+  /// No description provided for @lostFoundConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll take down the lost page and tell your family.'**
+  String get lostFoundConfirmBody;
+
+  /// No description provided for @lostFoundConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, found'**
+  String get lostFoundConfirm;
+
+  /// No description provided for @lostWelcomeHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome home, {pet}!'**
+  String lostWelcomeHome(String pet);
+
+  /// No description provided for @lostFamilyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is lost'**
+  String lostFamilyTitle(String pet);
+
+  /// No description provided for @lostFamilyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} marked them lost near {area}. Open the lost page to share it.'**
+  String lostFamilyBody(String name, String area);
+
+  /// No description provided for @lostFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Good news: {pet} is home safe'**
+  String lostFoundTitle(String pet);
+
+  /// No description provided for @lostNearbyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Have you seen {pet}? A pet is lost near you'**
+  String lostNearbyTitle(String pet);
+
+  /// No description provided for @lostNearbyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Last seen near {area}. Tap to see the photo and tell the family.'**
+  String lostNearbyBody(String area);
+
+  /// No description provided for @qrTagHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Print this for {pet}\'s collar tag. Anyone who scans it can message you without seeing your number.'**
+  String qrTagHint(String pet);
+
+  /// No description provided for @qrForPet.
+  ///
+  /// In en, this message translates to:
+  /// **'QR code for {pet}\'s tag'**
+  String qrForPet(String pet);
+
+  /// No description provided for @qrPrintTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Print QR tags (PDF)'**
+  String get qrPrintTags;
+
+  /// No description provided for @qrOpenPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the page'**
+  String get qrOpenPage;
+
+  /// No description provided for @qrTagsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'QR tags for {pet}'**
+  String qrTagsTitle(String pet);
+
+  /// No description provided for @qrTagsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cut out a tag and fix it to the collar'**
+  String get qrTagsSubtitle;
+
+  /// No description provided for @qrTagsFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Made with PawSetu. Scanning a tag never shows the family\'s phone number.'**
+  String get qrTagsFooter;
+
+  /// No description provided for @qrTagScanLine.
+  ///
+  /// In en, this message translates to:
+  /// **'If I\'m alone, scan me to tell my family'**
+  String get qrTagScanLine;
+
+  /// No description provided for @posterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost poster for {pet}'**
+  String posterTitle(String pet);
+
+  /// No description provided for @posterHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost {species}'**
+  String posterHeadline(String species);
+
+  /// No description provided for @posterLastSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Last seen near {area}, {when}'**
+  String posterLastSeen(String area, String when);
+
+  /// No description provided for @posterScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Seen me? Scan this'**
+  String get posterScan;
+
+  /// No description provided for @posterScanBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a message or share where you saw me. My family gets it right away.'**
+  String get posterScanBody;
+
+  /// No description provided for @lostTagInactive.
+  ///
+  /// In en, this message translates to:
+  /// **'This tag isn\'t active'**
+  String get lostTagInactive;
+
+  /// No description provided for @lostTagInactiveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The link may be old or mistyped. If you found a pet, take them to the nearest vet clinic: they can scan for a microchip.'**
+  String get lostTagInactiveHint;
+
+  /// No description provided for @finderDemoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo page: messages and locations go to the Demo Outbox, not to a real family.'**
+  String get finderDemoNote;
+
+  /// No description provided for @finderDemoSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'(Demo)'**
+  String get finderDemoSuffix;
+
+  /// No description provided for @finderLostHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is lost'**
+  String finderLostHeadline(String pet);
+
+  /// No description provided for @finderLastSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Last seen near {area} · {when}'**
+  String finderLastSeen(String area, String when);
+
+  /// No description provided for @finderHello.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi, I\'m {pet}!'**
+  String finderHello(String pet);
+
+  /// No description provided for @finderHelloLost.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m {pet}. Please help me get home!'**
+  String finderHelloLost(String pet);
+
+  /// No description provided for @finderAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'If I\'m alone, please tell my family. They\'ll come for me.'**
+  String get finderAsk;
+
+  /// No description provided for @finderLostAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'My family is looking for me. If you can, keep me safe and send them a message or your location.'**
+  String get finderLostAsk;
+
+  /// No description provided for @finderContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact my family'**
+  String get finderContact;
+
+  /// No description provided for @finderShareLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Share my location'**
+  String get finderShareLocation;
+
+  /// No description provided for @finderPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu passes your message on. The family\'s number stays private; leave yours only if you want a call back.'**
+  String get finderPrivacy;
+
+  /// No description provided for @finderTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer water and shade, keep the pet on a lead or in a closed space, and don\'t chase a scared pet.'**
+  String get finderTips;
+
+  /// No description provided for @finderContactHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your message goes straight to the family in the PawSetu app.'**
+  String get finderContactHint;
+
+  /// No description provided for @finderMessageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your message'**
+  String get finderMessageLabel;
+
+  /// No description provided for @finderMessageStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi, I found {pet} near '**
+  String finderMessageStart(String pet);
+
+  /// No description provided for @finderYourName.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name (optional)'**
+  String get finderYourName;
+
+  /// No description provided for @finderYourPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone (optional)'**
+  String get finderYourPhone;
+
+  /// No description provided for @finderPhoneHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Only if you\'d like the family to call you'**
+  String get finderPhoneHelper;
+
+  /// No description provided for @finderSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get finderSend;
+
+  /// No description provided for @finderSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Message sent to {pet}\'s family. Thank you!'**
+  String finderSent(String pet);
+
+  /// No description provided for @finderLocationSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Location sent to {pet}\'s family. Thank you!'**
+  String finderLocationSent(String pet);
+
+  /// No description provided for @finderTooMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many messages for this tag right now. Please try again in an hour.'**
+  String get finderTooMany;
+
+  /// No description provided for @finderWhereSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Where are you?'**
+  String get finderWhereSeen;
+
+  /// No description provided for @finderLocationOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Your location is off. Choose the area and add a landmark.'**
+  String get finderLocationOff;
+
+  /// No description provided for @finderLandmark.
+  ///
+  /// In en, this message translates to:
+  /// **'Landmark'**
+  String get finderLandmark;
+
+  /// No description provided for @finderLandmarkHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: near the metro station'**
+  String get finderLandmarkHint;
+
+  /// No description provided for @finderMessageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Message about {pet} from someone who scanned the tag'**
+  String finderMessageTitle(String pet);
+
+  /// No description provided for @finderFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'from {from}'**
+  String finderFrom(String from);
+
+  /// No description provided for @finderSightingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone shared where they saw {pet}'**
+  String finderSightingTitle(String pet);
+
+  /// No description provided for @devDemoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo devices: the readings are simulated so you can try everything.'**
+  String get devDemoNote;
+
+  /// No description provided for @devAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a device'**
+  String get devAdd;
+
+  /// No description provided for @devNoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No devices yet'**
+  String get devNoneTitle;
+
+  /// No description provided for @devNoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Pair a GPS collar, activity tracker, feeder, water fountain, camera or litter box.'**
+  String get devNoneBody;
+
+  /// No description provided for @devGpsCollar.
+  ///
+  /// In en, this message translates to:
+  /// **'GPS collar'**
+  String get devGpsCollar;
+
+  /// No description provided for @devGpsCollarHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Live location and a safe-zone alert'**
+  String get devGpsCollarHint;
+
+  /// No description provided for @devActivityTracker.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity tracker'**
+  String get devActivityTracker;
+
+  /// No description provided for @devActivityTrackerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps and active minutes'**
+  String get devActivityTrackerHint;
+
+  /// No description provided for @devFeeder.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart feeder'**
+  String get devFeeder;
+
+  /// No description provided for @devFeederHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals on time, even when you\'re out'**
+  String get devFeederHint;
+
+  /// No description provided for @devFountain.
+  ///
+  /// In en, this message translates to:
+  /// **'Water fountain'**
+  String get devFountain;
+
+  /// No description provided for @devFountainHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Water level and filter reminders'**
+  String get devFountainHint;
+
+  /// No description provided for @devCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet camera'**
+  String get devCamera;
+
+  /// No description provided for @devCameraHint.
+  ///
+  /// In en, this message translates to:
+  /// **'See your pet while you\'re away'**
+  String get devCameraHint;
+
+  /// No description provided for @devLitterBox.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart litter box'**
+  String get devLitterBox;
+
+  /// No description provided for @devLitterBoxHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Visits and cleaning reminders'**
+  String get devLitterBoxHint;
+
+  /// No description provided for @devPairDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo pairing: we\'ll find a demo device for you. Nothing connects over Bluetooth.'**
+  String get devPairDemo;
+
+  /// No description provided for @devStepType.
+  ///
+  /// In en, this message translates to:
+  /// **'1. What kind of device?'**
+  String get devStepType;
+
+  /// No description provided for @devStepPet.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Which pet is it for?'**
+  String get devStepPet;
+
+  /// No description provided for @devStepFind.
+  ///
+  /// In en, this message translates to:
+  /// **'3. Find the device'**
+  String get devStepFind;
+
+  /// No description provided for @devStepName.
+  ///
+  /// In en, this message translates to:
+  /// **'4. Name it'**
+  String get devStepName;
+
+  /// No description provided for @devNotForAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Some pets are greyed out because this device doesn\'t suit them.'**
+  String get devNotForAll;
+
+  /// No description provided for @devSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for the device'**
+  String get devSearch;
+
+  /// No description provided for @devSearching.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching nearby…'**
+  String get devSearching;
+
+  /// No description provided for @devDefaultName.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s {type}'**
+  String devDefaultName(String pet, String type);
+
+  /// No description provided for @devNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Device name'**
+  String get devNameLabel;
+
+  /// No description provided for @devSafeZoneRadius.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe zone: {metres} m around home'**
+  String devSafeZoneRadius(int metres);
+
+  /// No description provided for @devSafeZoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll get an alert as soon as the collar leaves this circle.'**
+  String get devSafeZoneHint;
+
+  /// No description provided for @devPair.
+  ///
+  /// In en, this message translates to:
+  /// **'Pair device'**
+  String get devPair;
+
+  /// No description provided for @devPaired.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is paired'**
+  String devPaired(String name);
+
+  /// No description provided for @devLiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming in Version 2'**
+  String get devLiveTitle;
+
+  /// No description provided for @devLiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Real devices connect in the live version. For now, try the demo devices.'**
+  String get devLiveBody;
+
+  /// No description provided for @devConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get devConnected;
+
+  /// No description provided for @devInsideZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Inside the safe zone · {metres} m from home'**
+  String devInsideZone(int metres);
+
+  /// No description provided for @devOutsideZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Outside the safe zone! {metres} m from home'**
+  String devOutsideZone(int metres);
+
+  /// No description provided for @devStepsToday.
+  ///
+  /// In en, this message translates to:
+  /// **'{steps} steps today'**
+  String devStepsToday(String steps);
+
+  /// No description provided for @devNextMeal.
+  ///
+  /// In en, this message translates to:
+  /// **'Next meal at {time}'**
+  String devNextMeal(String time);
+
+  /// No description provided for @devWaterLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Water level: {pct}%'**
+  String devWaterLevel(int pct);
+
+  /// No description provided for @devCameraReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get devCameraReady;
+
+  /// No description provided for @devLitterVisits.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No visits today} =1{1 visit today} other{{count} visits today}}'**
+  String devLitterVisits(int count);
+
+  /// No description provided for @devUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated {time}'**
+  String devUpdated(String time);
+
+  /// No description provided for @devLocate.
+  ///
+  /// In en, this message translates to:
+  /// **'Locate now'**
+  String get devLocate;
+
+  /// No description provided for @devLocated.
+  ///
+  /// In en, this message translates to:
+  /// **'Location updated'**
+  String get devLocated;
+
+  /// No description provided for @devEditZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit safe zone'**
+  String get devEditZone;
+
+  /// No description provided for @devNoZone.
+  ///
+  /// In en, this message translates to:
+  /// **'No safe zone set yet. Edit it to get alerts.'**
+  String get devNoZone;
+
+  /// No description provided for @devAlertSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone looking after this pet got an alert (push and SMS).'**
+  String get devAlertSent;
+
+  /// No description provided for @devBackInside.
+  ///
+  /// In en, this message translates to:
+  /// **'Back inside the safe zone.'**
+  String get devBackInside;
+
+  /// No description provided for @devDemoControls.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo controls'**
+  String get devDemoControls;
+
+  /// No description provided for @devDemoControlsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Try the safe-zone alert without leaving home.'**
+  String get devDemoControlsHint;
+
+  /// No description provided for @devDemoWalkOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: walk {pet} out of the safe zone'**
+  String devDemoWalkOut(String pet);
+
+  /// No description provided for @devDemoComeHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: bring {pet} home'**
+  String devDemoComeHome(String pet);
+
+  /// No description provided for @devToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get devToday;
+
+  /// No description provided for @devActiveMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{active} of {goal} active minutes'**
+  String devActiveMinutes(int active, int goal);
+
+  /// No description provided for @devNoSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'No walks or play noticed yet today.'**
+  String get devNoSessions;
+
+  /// No description provided for @devWalkSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk · {minutes} min · {km} km'**
+  String devWalkSession(int minutes, String km);
+
+  /// No description provided for @devPlaySession.
+  ///
+  /// In en, this message translates to:
+  /// **'Play · {minutes} min'**
+  String devPlaySession(int minutes);
+
+  /// No description provided for @devInRoutine.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to the daily routine'**
+  String get devInRoutine;
+
+  /// No description provided for @devFlowsToRoutine.
+  ///
+  /// In en, this message translates to:
+  /// **'Walks and play from this device are added to {pet}\'s daily routine automatically.'**
+  String devFlowsToRoutine(String pet);
+
+  /// No description provided for @devSynced.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 activity} other{{count} activities}} added to {pet}\'s routine'**
+  String devSynced(int count, String pet);
+
+  /// No description provided for @devHopper.
+  ///
+  /// In en, this message translates to:
+  /// **'Food left in the feeder: {pct}%'**
+  String devHopper(int pct);
+
+  /// No description provided for @devMealsToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals today'**
+  String get devMealsToday;
+
+  /// No description provided for @devNoMealsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No meals served yet today.'**
+  String get devNoMealsYet;
+
+  /// No description provided for @devMealGrams.
+  ///
+  /// In en, this message translates to:
+  /// **'{grams} g served'**
+  String devMealGrams(int grams);
+
+  /// No description provided for @devFeedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Feed a small portion now'**
+  String get devFeedNow;
+
+  /// No description provided for @devFed.
+  ///
+  /// In en, this message translates to:
+  /// **'A small portion was served to {pet} and added to today\'s meals.'**
+  String devFed(String pet);
+
+  /// No description provided for @devFilterDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter change in {days} days'**
+  String devFilterDays(int days);
+
+  /// No description provided for @devRefillSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Water is running low. Refill the fountain soon.'**
+  String get devRefillSoon;
+
+  /// No description provided for @devCameraPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Live video arrives with real cameras in Version 2.'**
+  String get devCameraPlaceholder;
+
+  /// No description provided for @devSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a snapshot'**
+  String get devSnapshot;
+
+  /// No description provided for @devSnapshotDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: a real camera would send a photo of your pet here.'**
+  String get devSnapshotDemo;
+
+  /// No description provided for @devLastVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Last visit at {time}'**
+  String devLastVisit(String time);
+
+  /// No description provided for @devCleanSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean soon'**
+  String get devCleanSoon;
+
+  /// No description provided for @devLitterClean.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean'**
+  String get devLitterClean;
+
+  /// No description provided for @devRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove device'**
+  String get devRemove;
+
+  /// No description provided for @devRemoveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}?'**
+  String devRemoveTitle(String name);
+
+  /// No description provided for @devRemoveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It will stop sending data. Logs already in the routine stay.'**
+  String get devRemoveBody;
+
+  /// No description provided for @zoneLeftTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} has left the safe zone'**
+  String zoneLeftTitle(String pet);
+
+  /// No description provided for @zoneLeftBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{device}: now {metres} m from home. Tap to see where.'**
+  String zoneLeftBody(String device, int metres);
+
+  /// No description provided for @zoneBackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} is back in the safe zone'**
+  String zoneBackTitle(String pet);
+
+  /// No description provided for @toxChocolateName.
+  ///
+  /// In en, this message translates to:
+  /// **'Chocolate'**
+  String get toxChocolateName;
+
+  /// No description provided for @toxChocolateWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Has theobromine and caffeine, which cause vomiting, a racing heart and fits. Dark chocolate and cocoa powder are the most dangerous.'**
+  String get toxChocolateWhy;
+
+  /// No description provided for @toxGrapesName.
+  ///
+  /// In en, this message translates to:
+  /// **'Grapes and raisins'**
+  String get toxGrapesName;
+
+  /// No description provided for @toxGrapesWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Even a few grapes or raisins (kishmish) can cause sudden kidney failure in dogs and cats. Birds and rabbits: only a tiny piece as a rare treat.'**
+  String get toxGrapesWhy;
+
+  /// No description provided for @toxOnionGarlicName.
+  ///
+  /// In en, this message translates to:
+  /// **'Onion and garlic'**
+  String get toxOnionGarlicName;
+
+  /// No description provided for @toxOnionGarlicWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Raw, cooked or powdered, and in curries and gravies too, they damage red blood cells and cause weakness days later.'**
+  String get toxOnionGarlicWhy;
+
+  /// No description provided for @toxXylitolName.
+  ///
+  /// In en, this message translates to:
+  /// **'Xylitol (sugar-free sweetener)'**
+  String get toxXylitolName;
+
+  /// No description provided for @toxXylitolWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Found in sugar-free gum, mints, some peanut butters and medicines. In dogs it causes a sudden drop in blood sugar and liver damage. Keep it away from all pets.'**
+  String get toxXylitolWhy;
+
+  /// No description provided for @toxAlcoholName.
+  ///
+  /// In en, this message translates to:
+  /// **'Alcohol'**
+  String get toxAlcoholName;
+
+  /// No description provided for @toxAlcoholWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Even small amounts cause vomiting, wobbliness, breathing problems and coma. Raw bread dough with yeast also makes alcohol in the stomach.'**
+  String get toxAlcoholWhy;
+
+  /// No description provided for @toxCaffeineName.
+  ///
+  /// In en, this message translates to:
+  /// **'Tea, coffee and caffeine'**
+  String get toxCaffeineName;
+
+  /// No description provided for @toxCaffeineWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Tea, coffee, energy drinks and caffeine tablets cause restlessness, a racing heart and fits.'**
+  String get toxCaffeineWhy;
+
+  /// No description provided for @toxAvocadoName.
+  ///
+  /// In en, this message translates to:
+  /// **'Avocado'**
+  String get toxAvocadoName;
+
+  /// No description provided for @toxAvocadoWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Very dangerous for birds and rabbits: it can damage the heart. For dogs and cats the stone can block the gut, and the skin and leaves upset the stomach.'**
+  String get toxAvocadoWhy;
+
+  /// No description provided for @toxCookedBonesName.
+  ///
+  /// In en, this message translates to:
+  /// **'Cooked bones'**
+  String get toxCookedBonesName;
+
+  /// No description provided for @toxCookedBonesWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cooked chicken or mutton bones splinter and can choke your pet or tear the gut. Never give cooked bones.'**
+  String get toxCookedBonesWhy;
+
+  /// No description provided for @toxMilkName.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk'**
+  String get toxMilkName;
+
+  /// No description provided for @toxMilkWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Most adult cats and dogs can\'t digest milk well and get loose motions. Don\'t give milk to birds or rabbits.'**
+  String get toxMilkWhy;
+
+  /// No description provided for @toxSaltySnacksName.
+  ///
+  /// In en, this message translates to:
+  /// **'Salty snacks (namkeen, chips)'**
+  String get toxSaltySnacksName;
+
+  /// No description provided for @toxSaltySnacksWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Namkeen, chips and papad cause thirst and vomiting; large amounts can cause salt poisoning. Birds are especially sensitive.'**
+  String get toxSaltySnacksWhy;
+
+  /// No description provided for @toxSpicyFoodName.
+  ///
+  /// In en, this message translates to:
+  /// **'Spicy food'**
+  String get toxSpicyFoodName;
+
+  /// No description provided for @toxSpicyFoodWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Chilli and masala upset the stomach and cause vomiting and loose motions. Curries usually contain onion and garlic too.'**
+  String get toxSpicyFoodWhy;
+
+  /// No description provided for @toxFattyFoodName.
+  ///
+  /// In en, this message translates to:
+  /// **'Fried and fatty food'**
+  String get toxFattyFoodName;
+
+  /// No description provided for @toxFattyFoodWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Fried snacks, ghee, fat trimmings and rich leftovers can cause pancreatitis, a painful swelling of the pancreas.'**
+  String get toxFattyFoodWhy;
+
+  /// No description provided for @toxSweetsName.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweets (mithai)'**
+  String get toxSweetsName;
+
+  /// No description provided for @toxSweetsWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sugary sweets cause weight gain and tummy upsets, and many contain ghee, chocolate, raisins or sugar-free sweeteners.'**
+  String get toxSweetsWhy;
+
+  /// No description provided for @toxFruitSeedsName.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruit stones and seeds'**
+  String get toxFruitSeedsName;
+
+  /// No description provided for @toxFruitSeedsWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Mango stones, apple seeds and the stones of plums, peaches and cherries can choke or block the gut, and some contain cyanide.'**
+  String get toxFruitSeedsWhy;
+
+  /// No description provided for @toxTomatoName.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomato'**
+  String get toxTomatoName;
+
+  /// No description provided for @toxTomatoWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'A little ripe tomato is usually fine. Green tomatoes, leaves and stems are harmful.'**
+  String get toxTomatoWhy;
+
+  /// No description provided for @toxPeanutsName.
+  ///
+  /// In en, this message translates to:
+  /// **'Peanuts'**
+  String get toxPeanutsName;
+
+  /// No description provided for @toxPeanutsWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Only plain, unsalted peanuts, a few at a time. Salted or masala peanuts are not safe, and peanut butter must not contain xylitol.'**
+  String get toxPeanutsWhy;
+
+  /// No description provided for @toxMangoName.
+  ///
+  /// In en, this message translates to:
+  /// **'Mango'**
+  String get toxMangoName;
+
+  /// No description provided for @toxMangoWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Ripe mango flesh is fine as a small treat. Remove the skin and the stone. Too much causes loose motions.'**
+  String get toxMangoWhy;
+
+  /// No description provided for @toxAppleName.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple'**
+  String get toxAppleName;
+
+  /// No description provided for @toxAppleWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple slices without the seeds and core are a healthy, crunchy treat.'**
+  String get toxAppleWhy;
+
+  /// No description provided for @toxBananaName.
+  ///
+  /// In en, this message translates to:
+  /// **'Banana'**
+  String get toxBananaName;
+
+  /// No description provided for @toxBananaWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'A small piece is a fine treat. It is high in sugar, so keep it small.'**
+  String get toxBananaWhy;
+
+  /// No description provided for @toxWatermelonName.
+  ///
+  /// In en, this message translates to:
+  /// **'Watermelon'**
+  String get toxWatermelonName;
+
+  /// No description provided for @toxWatermelonWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Seedless pieces without the rind make a cooling summer treat.'**
+  String get toxWatermelonWhy;
+
+  /// No description provided for @toxCarrotName.
+  ///
+  /// In en, this message translates to:
+  /// **'Carrot'**
+  String get toxCarrotName;
+
+  /// No description provided for @toxCarrotWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Raw or cooked carrot is a healthy treat. For rabbits, keep carrot as a small treat, because it is sugary.'**
+  String get toxCarrotWhy;
+
+  /// No description provided for @toxRiceName.
+  ///
+  /// In en, this message translates to:
+  /// **'Plain cooked rice'**
+  String get toxRiceName;
+
+  /// No description provided for @toxRiceWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Plain rice with no salt, ghee, onion or masala is gentle on the stomach in small amounts. Rabbits need hay, not rice.'**
+  String get toxRiceWhy;
+
+  /// No description provided for @toxEggName.
+  ///
+  /// In en, this message translates to:
+  /// **'Cooked egg'**
+  String get toxEggName;
+
+  /// No description provided for @toxEggWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'A fully cooked egg is a good protein treat. Avoid raw egg. Rabbits eat only plants.'**
+  String get toxEggWhy;
+
+  /// No description provided for @toxLilyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Lilies'**
+  String get toxLilyName;
+
+  /// No description provided for @toxLilyWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Every part of a lily, even the pollen or the vase water, can cause kidney failure in cats. Keep lilies out of homes with cats.'**
+  String get toxLilyWhy;
+
+  /// No description provided for @toxSagoPalmName.
+  ///
+  /// In en, this message translates to:
+  /// **'Sago palm (cycas)'**
+  String get toxSagoPalmName;
+
+  /// No description provided for @toxSagoPalmWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Every part is poisonous, the seeds most of all. It causes vomiting and liver failure.'**
+  String get toxSagoPalmWhy;
+
+  /// No description provided for @toxOleanderName.
+  ///
+  /// In en, this message translates to:
+  /// **'Oleander (kaner)'**
+  String get toxOleanderName;
+
+  /// No description provided for @toxOleanderWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Oleander affects the heart. A few leaves or flowers can be fatal.'**
+  String get toxOleanderWhy;
+
+  /// No description provided for @toxCastorName.
+  ///
+  /// In en, this message translates to:
+  /// **'Castor plant (arandi)'**
+  String get toxCastorName;
+
+  /// No description provided for @toxCastorWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Castor seeds contain ricin. Chewing even one or two seeds can be fatal.'**
+  String get toxCastorWhy;
+
+  /// No description provided for @toxDaturaName.
+  ///
+  /// In en, this message translates to:
+  /// **'Datura (dhatura)'**
+  String get toxDaturaName;
+
+  /// No description provided for @toxDaturaWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'The seeds and flowers cause a racing heart, wide pupils, confusion and fits.'**
+  String get toxDaturaWhy;
+
+  /// No description provided for @toxLantanaName.
+  ///
+  /// In en, this message translates to:
+  /// **'Lantana'**
+  String get toxLantanaName;
+
+  /// No description provided for @toxLantanaWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'The berries and leaves of this common hedge plant can damage the liver.'**
+  String get toxLantanaWhy;
+
+  /// No description provided for @toxAloeVeraName.
+  ///
+  /// In en, this message translates to:
+  /// **'Aloe vera'**
+  String get toxAloeVeraName;
+
+  /// No description provided for @toxAloeVeraWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'The clear gel is usually fine, but the bitter yellow sap under the skin causes vomiting and loose motions.'**
+  String get toxAloeVeraWhy;
+
+  /// No description provided for @toxMoneyPlantName.
+  ///
+  /// In en, this message translates to:
+  /// **'Money plant'**
+  String get toxMoneyPlantName;
+
+  /// No description provided for @toxMoneyPlantWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Chewing the leaves causes mouth pain, drooling and vomiting.'**
+  String get toxMoneyPlantWhy;
+
+  /// No description provided for @toxSnakePlantName.
+  ///
+  /// In en, this message translates to:
+  /// **'Snake plant'**
+  String get toxSnakePlantName;
+
+  /// No description provided for @toxSnakePlantWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Chewing it can cause drooling, vomiting and loose motions.'**
+  String get toxSnakePlantWhy;
+
+  /// No description provided for @toxMarigoldName.
+  ///
+  /// In en, this message translates to:
+  /// **'Marigold (genda)'**
+  String get toxMarigoldName;
+
+  /// No description provided for @toxMarigoldWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Chewing marigolds can cause mild mouth irritation and an upset stomach.'**
+  String get toxMarigoldWhy;
+
+  /// No description provided for @toxTulsiName.
+  ///
+  /// In en, this message translates to:
+  /// **'Tulsi (holy basil)'**
+  String get toxTulsiName;
+
+  /// No description provided for @toxTulsiWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Tulsi is not known to be poisonous to pets. Large amounts may still upset the stomach.'**
+  String get toxTulsiWhy;
+
+  /// No description provided for @toxArecaPalmName.
+  ///
+  /// In en, this message translates to:
+  /// **'Areca palm'**
+  String get toxArecaPalmName;
+
+  /// No description provided for @toxArecaPalmWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'A pet-friendly houseplant.'**
+  String get toxArecaPalmWhy;
+
+  /// No description provided for @toxSpiderPlantName.
+  ///
+  /// In en, this message translates to:
+  /// **'Spider plant'**
+  String get toxSpiderPlantName;
+
+  /// No description provided for @toxSpiderPlantWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Not poisonous, though cats love to chew it and may vomit a little.'**
+  String get toxSpiderPlantWhy;
+
+  /// No description provided for @toxRatPoisonName.
+  ///
+  /// In en, this message translates to:
+  /// **'Rat poison'**
+  String get toxRatPoisonName;
+
+  /// No description provided for @toxRatPoisonWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Causes internal bleeding or fits, sometimes days later. Take the packet to the vet.'**
+  String get toxRatPoisonWhy;
+
+  /// No description provided for @toxHumanMedicinesName.
+  ///
+  /// In en, this message translates to:
+  /// **'Human medicines'**
+  String get toxHumanMedicinesName;
+
+  /// No description provided for @toxHumanMedicinesWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Paracetamol and painkillers like ibuprofen are poisonous to pets. One paracetamol tablet can kill a cat. Give only medicines your vet prescribes.'**
+  String get toxHumanMedicinesWhy;
+
+  /// No description provided for @toxMosquitoRepellentName.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosquito coils and vaporisers'**
+  String get toxMosquitoRepellentName;
+
+  /// No description provided for @toxMosquitoRepellentWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'The fumes can harm birds\' lungs. Use them away from pets and keep the room aired.'**
+  String get toxMosquitoRepellentWhy;
+
+  /// No description provided for @toxMothballsName.
+  ///
+  /// In en, this message translates to:
+  /// **'Naphthalene balls'**
+  String get toxMothballsName;
+
+  /// No description provided for @toxMothballsWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Poisonous if chewed, and the fumes harm birds. Keep them in closed cupboards.'**
+  String get toxMothballsWhy;
+
+  /// No description provided for @toxNonStickFumesName.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-stick pan fumes'**
+  String get toxNonStickFumesName;
+
+  /// No description provided for @toxNonStickFumesWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'An overheated non-stick pan gives off fumes that can kill a bird within minutes. Keep birds out of the kitchen.'**
+  String get toxNonStickFumesWhy;
+
+  /// No description provided for @toxPhenylName.
+  ///
+  /// In en, this message translates to:
+  /// **'Phenyl and floor cleaners'**
+  String get toxPhenylName;
+
+  /// No description provided for @toxPhenylWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Phenyl and many floor cleaners contain phenols, which are especially poisonous to cats. Let floors dry before pets walk on them.'**
+  String get toxPhenylWhy;
 }
 
 class _AppLocalizationsDelegate

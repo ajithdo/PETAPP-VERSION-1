@@ -39,6 +39,8 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
         'messages' => Icons.chat_rounded,
         'orders' => Icons.local_shipping_rounded,
         'lost' => Icons.travel_explore_rounded,
+        'device' => Icons.watch_rounded,
+        'sos' => Icons.emergency_rounded,
         _ => Icons.notifications_rounded,
       };
 

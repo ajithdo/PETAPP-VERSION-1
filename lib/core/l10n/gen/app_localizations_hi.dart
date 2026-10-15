@@ -7365,4 +7365,1264 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get selPhoneHidden =>
       'ग्राहक का फ़ोन छिपा है; कूरियर PawSetu से कॉल करता है।';
+
+  @override
+  String get faChokingTitle => 'गले में कुछ फँसना';
+
+  @override
+  String get faChokingSigns =>
+      'मुँह पर पंजा मारना, उबकाई, खाँसी, नीले मसूड़े या साँस लेने में तकलीफ़।';
+
+  @override
+  String get faChokingSteps =>
+      'शांत रहें और पालतू को स्थिर रखें। अगर वह खाँस पा रहा है, तो उसे खुद निकालने दें।\nधीरे से मुँह खोलें और टॉर्च से अंदर देखें।\nअगर चीज़ दिख रही है और आसानी से पहुँच में है, तो उँगलियों से निकालें। उसे और अंदर न धकेलें।\nछोटा कुत्ता या बिल्ली: कूल्हों से उल्टा पकड़ें और कंधों के बीच 5 बार ज़ोर से थपथपाएँ।\nबड़ा कुत्ता: पीछे खड़े होकर मुट्ठी पसलियों के ठीक नीचे रखें और 5 बार तेज़ी से अंदर और ऊपर की ओर दबाएँ।\nमुँह फिर से देखें। चीज़ निकल जाए तब भी तुरंत डॉक्टर के पास जाएँ।';
+
+  @override
+  String get faChokingAvoid =>
+      'बिना देखे गले में उँगली न डालें।\nखाना या पानी न दें।\nदिखने वाला धागा या डोरी न खींचें; वह अंदर किसी चीज़ में फँसा हो सकता है।';
+
+  @override
+  String get faChokingVet =>
+      'गले में कुछ फँसने के बाद हमेशा डॉक्टर को दिखाएँ, भले ही पालतू ठीक लगे। अगर वह गिर जाए या साँस न ले पाए तो SOS का इस्तेमाल करें।';
+
+  @override
+  String get faPoisoningTitle => 'ज़हर खा लेना';
+
+  @override
+  String get faPoisoningSigns =>
+      'उल्टी, लार गिरना, काँपना, लड़खड़ाकर चलना, दौरे, अचानक सुस्ती, या पास में चबाया हुआ पैकेट।';
+
+  @override
+  String get faPoisoningSteps =>
+      'पालतू को ज़हर से दूर ले जाएँ और मुँह में बचा हुआ हिस्सा निकाल दें।\nपता करें कि क्या खाया, कितना और कब। पैकेट रखें या पौधे की फ़ोटो लें।\nअभी अपने डॉक्टर को फ़ोन करें, या SOS से सबसे पास का क्लिनिक खोजें।\nअगर ज़हर बालों या त्वचा पर लगा है, तो गुनगुने पानी से अच्छी तरह धोएँ।\nक्लिनिक जाते समय पालतू को गर्म और शांत रखें।';
+
+  @override
+  String get faPoisoningAvoid =>
+      'डॉक्टर के कहे बिना उल्टी न कराएँ।\nदूध, नमक, तेल या घरेलू नुस्खे न दें।\nलक्षणों का इंतज़ार न करें; कुछ ज़हर घंटों बाद असर करते हैं।';
+
+  @override
+  String get faPoisoningVet => 'अभी जाएँ। ज़हर में जल्दी इलाज से जान बचती है।';
+
+  @override
+  String get faHeatstrokeTitle => 'लू लगना';
+
+  @override
+  String get faHeatstrokeSigns =>
+      'गर्म दिन में तेज़ हाँफना, गाढ़ी लार, बहुत लाल या पीले मसूड़े, कमज़ोरी, उल्टी या गिर जाना।';
+
+  @override
+  String get faHeatstrokeSteps =>
+      'पालतू को तुरंत छाँव या ठंडे कमरे में ले जाएँ।\nशरीर पर ठंडा (बर्फ़ जैसा नहीं) पानी डालें, ख़ासकर पेट, गर्दन और पंजों पर।\nपंखा चलाएँ या गीले तौलिये रखें, और उन्हें बार-बार बदलें ताकि गर्मी न रुके।\nठंडे पानी के छोटे घूँट दें; ज़बरदस्ती न पिलाएँ।\nपालतू बेहतर लगे तब भी डॉक्टर के पास जाएँ।';
+
+  @override
+  String get faHeatstrokeAvoid =>
+      'बर्फ़ या बर्फ़ जैसा ठंडा पानी इस्तेमाल न करें।\nपालतू को गीले तौलिये से ढककर छोड़ न दें।\nदोपहर की गर्मी में न घुमाएँ, और पालतू को कभी खड़ी कार में न छोड़ें।';
+
+  @override
+  String get faHeatstrokeVet =>
+      'लू से अंगों को घंटों बाद नुकसान हो सकता है। आज ही डॉक्टर को दिखाएँ। चपटे चेहरे वाली नस्लों को ज़्यादा ख़तरा होता है।';
+
+  @override
+  String get faBleedingTitle => 'ख़ून बहना';
+
+  @override
+  String get faBleedingSigns => 'घाव, पंजे, कान या नाक से ख़ून।';
+
+  @override
+  String get faBleedingSteps =>
+      'घाव पर साफ़ कपड़ा या गॉज़ रखकर ज़ोर से दबाएँ।\nकम से कम 5 मिनट तक बिना हटाए दबाए रखें।\nख़ून कपड़े से रिसे तो ऊपर और कपड़ा रखें और दबाते रहें।\nपट्टी मज़बूती से बाँधें, पर बहुत टाइट नहीं।\nपालतू को शांत रखें और डॉक्टर के पास जाएँ।';
+
+  @override
+  String get faBleedingAvoid =>
+      'डॉक्टर के कहे बिना टाइट बंधन (टूर्निकेट) न बाँधें।\nघाव में फँसी चीज़ बाहर न खींचें।\nगहरे घाव पर हल्दी, पाउडर या क्रीम न लगाएँ।';
+
+  @override
+  String get faBleedingVet =>
+      'बहुत ज़्यादा ख़ून, फव्वारे जैसा ख़ून, या 10 मिनट दबाने पर भी कम न होने पर SOS का इस्तेमाल करें।';
+
+  @override
+  String get faFractureTitle => 'हड्डी टूटना';
+
+  @override
+  String get faFractureSigns =>
+      'पैर पर वज़न न डालना, सूजन, अजीब मोड़, छूने पर रोना।';
+
+  @override
+  String get faFractureSteps =>
+      'पालतू को जितना हो सके स्थिर रखें। डरा हुआ पालतू काट सकता है, इसलिए धीरे से संभालें।\nछोटे पालतू को तौलिया बिछे डिब्बे या टोकरी में ले जाएँ।\nबड़े कुत्ते के लिए तख़्ता या कंबल को स्ट्रेचर की तरह इस्तेमाल करें।\nखुले घाव को साफ़ कपड़े से ढकें।\nतुरंत डॉक्टर के पास जाएँ।';
+
+  @override
+  String get faFractureAvoid =>
+      'हड्डी सीधी करने की कोशिश न करें।\nइंसानों की दर्द की दवा न दें; कई दवाएँ पालतू के लिए ज़हरीली हैं।\nपालतू को उस पैर पर चलने न दें।';
+
+  @override
+  String get faFractureVet =>
+      'हड्डी टूटने के हर शक पर डॉक्टर को दिखाएँ; अक्सर एक्स-रे की ज़रूरत होती है।';
+
+  @override
+  String get faSeizureTitle => 'दौरा पड़ना';
+
+  @override
+  String get faSeizureSigns =>
+      'गिर जाना, पैरों का अकड़ना या झटके, पैर चलाना, लार गिरना, कोई जवाब न देना।';
+
+  @override
+  String get faSeizureSteps =>
+      'शांत रहें और दौरा शुरू होने का समय नोट करें।\nफ़र्नीचर और नुकीली चीज़ें दूर करें। रोशनी कम करें और शांति रखें।\nअपने हाथ मुँह से दूर रखें।\nदौरे के बाद पालतू को गर्म रखें और आराम करने दें; वह कुछ देर उलझन में रह सकता है।\nडॉक्टर को फ़ोन करें और बताएँ कि दौरा कितनी देर चला।';
+
+  @override
+  String get faSeizureAvoid =>
+      'पालतू को ज़बरदस्ती न पकड़ें।\nमुँह में कुछ न डालें; पालतू अपनी जीभ नहीं निगलते।\nपूरी तरह होश आने तक खाना या पानी न दें।';
+
+  @override
+  String get faSeizureVet =>
+      'दौरा 5 मिनट से ज़्यादा चले या एक के बाद एक आएँ तो SOS का इस्तेमाल करें। पहले दौरे पर हमेशा डॉक्टर को दिखाएँ।';
+
+  @override
+  String get faBurnTitle => 'जलना';
+
+  @override
+  String get faBurnSigns =>
+      'लाल या छिली त्वचा, छाले, झुलसे बाल, या गर्म तरल, आग या केमिकल से संपर्क।';
+
+  @override
+  String get faBurnSteps =>
+      'जली जगह को 10 मिनट तक बहते ठंडे पानी से ठंडा करें।\nकेमिकल से जलने पर 15 मिनट तक ख़ूब पानी से धोएँ; दस्ताने पहनें।\nसाफ़, गीले, रोएँ रहित कपड़े से हल्के से ढकें।\nबाकी शरीर को लपेटकर गर्म रखें और डॉक्टर के पास जाएँ।';
+
+  @override
+  String get faBurnAvoid =>
+      'बर्फ़, मक्खन, तेल, टूथपेस्ट या हल्दी न लगाएँ।\nछाले न फोड़ें।\nपालतू को जली जगह चाटने न दें।';
+
+  @override
+  String get faBurnVet =>
+      'जलन दिखने से ज़्यादा गहरी हो सकती है। उसी दिन डॉक्टर को दिखाएँ।';
+
+  @override
+  String get faBiteTitle => 'साँप या कीड़े का काटना';
+
+  @override
+  String get faBiteSigns =>
+      'अचानक सूजन, दर्द, दाँतों के निशान, ख़ून, कमज़ोरी, लार गिरना या साँस लेने में तकलीफ़।';
+
+  @override
+  String get faBiteSteps =>
+      'पालतू को शांत और जितना हो सके स्थिर रखें; हो सके तो गोद में उठाकर ले जाएँ।\nकाटे गए हिस्से को दिल के बराबर या नीचे रखें।\nगर्दन या चेहरा सूज रहा हो तो पट्टा (कॉलर) उतार दें।\nमधुमक्खी के डंक को कार्ड से खुरचकर निकालें।\nतुरंत सबसे पास के क्लिनिक जाएँ। खुला क्लिनिक खोजने के लिए SOS का इस्तेमाल करें।\nसुरक्षित हो तो साँप का रंग और आकार याद रखें, या दूर से फ़ोटो लें।';
+
+  @override
+  String get faBiteAvoid =>
+      'घाव को न काटें और ज़हर चूसकर निकालने की कोशिश न करें।\nकाटे गए हिस्से के ऊपर टाइट पट्टी न बाँधें।\nसाँप को पकड़ने की कोशिश न करें।';
+
+  @override
+  String get faBiteVet =>
+      'साँप का हर काटना इमरजेंसी है। पालतू ठीक लगे तब भी जाएँ।';
+
+  @override
+  String get faTickTitle => 'किलनी (टिक) निकालना';
+
+  @override
+  String get faTickSigns =>
+      'त्वचा से चिपका छोटा भूरा-स्लेटी दाना, अक्सर कान, गर्दन, बगल या उँगलियों के बीच।';
+
+  @override
+  String get faTickSteps =>
+      'हो सके तो दस्ताने पहनें। बाल हटाकर किलनी को साफ़ देखें।\nपतली चिमटी या टिक हुक से किलनी को त्वचा के पास से पकड़ें।\nधीरे और लगातार सीधा बाहर खींचें, बिना घुमाए या दबाए।\nजगह को एंटीसेप्टिक से साफ़ करें और हाथ धोएँ।\nकिलनी को अल्कोहल में डालें, या टेप में बंद करके फेंकें।\nअगले 3 हफ़्ते बुख़ार, सुस्ती या पीले मसूड़ों पर नज़र रखें।';
+
+  @override
+  String get faTickAvoid =>
+      'किलनी को जलाएँ नहीं, न ही तेल, केरोसिन या पेट्रोल लगाएँ।\nकिलनी का शरीर न दबाएँ।\nनंगी उँगलियों से किलनी न मसलें।';
+
+  @override
+  String get faTickVet =>
+      'बुख़ार, सुस्ती, खाना न खाना या बहुत सारी किलनियाँ हों तो डॉक्टर को दिखाएँ। किलनी से बचाव के बारे में पूछें।';
+
+  @override
+  String get clearSearch => 'खोज साफ़ करें';
+
+  @override
+  String get closedNow => 'अभी बंद';
+
+  @override
+  String get copy => 'कॉपी करें';
+
+  @override
+  String get openInMaps => 'मैप्स में खोलें';
+
+  @override
+  String get draftVetReview => 'ड्राफ़्ट, डॉक्टर द्वारा जाँच बाकी';
+
+  @override
+  String get sosCallNearest => 'सबसे पास के क्लिनिक को कॉल करें';
+
+  @override
+  String get sosGetAddress => 'सबसे पास के क्लिनिक का पता';
+
+  @override
+  String get sosFinding => 'आपके पास के क्लिनिक खोज रहे हैं…';
+
+  @override
+  String get sosLocating => 'आपकी जगह पता कर रहे हैं…';
+
+  @override
+  String get sosUsingGps => 'आपकी अभी की जगह इस्तेमाल हो रही है';
+
+  @override
+  String sosUsingLastKnown(String time) {
+    return 'आपकी पिछली जगह इस्तेमाल हो रही है ($time की)';
+  }
+
+  @override
+  String sosUsingArea(String area) {
+    return 'लोकेशन बंद है। $area के पास के क्लिनिक दिखा रहे हैं।';
+  }
+
+  @override
+  String get sosLocationOffHint => 'जगह ग़लत है? बदलें ताकि सूची सही रहे।';
+
+  @override
+  String get sosTryLocation => 'मेरी लोकेशन फिर से आज़माएँ';
+
+  @override
+  String get sosChangeArea => 'जगह बदलें';
+
+  @override
+  String sosSavedClinics(String when) {
+    return 'इंटरनेट कमज़ोर है: $when को सेव किए क्लिनिक दिखा रहे हैं।';
+  }
+
+  @override
+  String get sosNoClinics =>
+      'पास में कोई क्लिनिक नहीं मिला। दूसरी जगह आज़माएँ।';
+
+  @override
+  String sosCallClinic(String name) {
+    return '$name को कॉल करें';
+  }
+
+  @override
+  String sosAway(String km) {
+    return '$km दूर';
+  }
+
+  @override
+  String sosDemoCall(String phone) {
+    return 'डेमो: यह $phone पर कॉल करता। डेमो में असली कॉल नहीं होती।';
+  }
+
+  @override
+  String get sosShowVet => 'यह डॉक्टर को दिखाएँ';
+
+  @override
+  String get firstAidTitle => 'प्राथमिक उपचार';
+
+  @override
+  String get firstAidOfflineHint => 'बिना इंटरनेट के चलने वाली आसान गाइड';
+
+  @override
+  String get firstAidOffline => 'बिना इंटरनेट के चलता है';
+
+  @override
+  String get firstAidEmergencyNote =>
+      'साँस नहीं ले रहा, गिर गया या बहुत ख़ून बह रहा है? अभी SOS दबाए रखें और क्लिनिक जाएँ। ये गाइड रास्ते में मदद करेंगी।';
+
+  @override
+  String get firstAidSigns => 'लक्षण';
+
+  @override
+  String get firstAidWhatToDo => 'क्या करें';
+
+  @override
+  String get firstAidAvoid => 'क्या न करें';
+
+  @override
+  String get firstAidWhenVet => 'डॉक्टर को कब दिखाएँ';
+
+  @override
+  String get firstAidTalkToVet => 'अभी डॉक्टर से बात करें';
+
+  @override
+  String get toxTitle => 'क्या यह सुरक्षित है?';
+
+  @override
+  String get toxTileHint =>
+      'अपने पालतू के लिए खाना, पौधे और घर की चीज़ें जाँचें';
+
+  @override
+  String get toxSearchLabel => 'खाना, पौधा या घर की चीज़';
+
+  @override
+  String get toxSearchHint => 'जैसे: अंगूर, लिली, चॉकलेट';
+
+  @override
+  String get toxForWhichPet => 'किस पालतू के लिए?';
+
+  @override
+  String get toxKindAll => 'सभी';
+
+  @override
+  String get toxKindFood => 'खाना';
+
+  @override
+  String get toxKindPlant => 'पौधे';
+
+  @override
+  String get toxKindHome => 'घर की चीज़ें';
+
+  @override
+  String get toxDanger => 'ख़तरनाक';
+
+  @override
+  String get toxCaution => 'सावधान रहें';
+
+  @override
+  String get toxSafe => 'थोड़ी मात्रा में सुरक्षित';
+
+  @override
+  String get toxForEachPet => 'हर तरह के पालतू के लिए';
+
+  @override
+  String get toxAteIt =>
+      'पहले ही खा लिया? लक्षणों का इंतज़ार न करें। अभी मदद लें और पैकेट या फ़ोटो साथ ले जाएँ।';
+
+  @override
+  String get toxPoisoningGuide => 'ज़हर वाली गाइड खोलें';
+
+  @override
+  String get toxNoMatch => 'अभी हमारी सूची में नहीं है';
+
+  @override
+  String get toxNoMatchHint => 'पक्का न हो तो न दें, और डॉक्टर से पूछें।';
+
+  @override
+  String get lostIntro =>
+      'हर पालतू को एक QR टैग मिलता है। इसे स्कैन करने वाला आपके पालतू की फ़ोटो वाला पेज देखता है और आपको संदेश भेज सकता है या अपनी जगह बता सकता है। आपका फ़ोन नंबर छिपा रहता है।';
+
+  @override
+  String get lostSafeAtHome => 'घर पर सुरक्षित';
+
+  @override
+  String lostSinceShort(String when) {
+    return '$when से लापता';
+  }
+
+  @override
+  String lostPetTitle(String pet) {
+    return '$pet · QR टैग';
+  }
+
+  @override
+  String lostIfMissing(String pet) {
+    return 'अगर $pet खो जाए';
+  }
+
+  @override
+  String get lostIfMissingBody =>
+      'लापता मार्क करें: एक पेज शेयर करें, चाहें तो पास के PawSetu यूज़र्स को अलर्ट भेजें, और एक टैप में पोस्टर बनाएँ।';
+
+  @override
+  String lostMarkLost(String pet) {
+    return '$pet को लापता मार्क करें';
+  }
+
+  @override
+  String get lostWhereSeen => 'आपका पालतू आख़िरी बार कहाँ दिखा?';
+
+  @override
+  String get lostUsingGps => 'आपकी अभी की जगह';
+
+  @override
+  String get lostNearMe => 'मेरी जगह के पास';
+
+  @override
+  String get lostWhenSeen => 'कब?';
+
+  @override
+  String get lostWhenNow => 'अभी-अभी';
+
+  @override
+  String get lostWhenHour => 'क़रीब एक घंटा पहले';
+
+  @override
+  String get lostWhenMorning => 'आज सुबह';
+
+  @override
+  String get lostWhenYesterday => 'कल शाम';
+
+  @override
+  String get lostNoteLabel => 'पहचानने में मदद करने वाली कोई बात';
+
+  @override
+  String get lostNoteHint => 'जैसे: लाल पट्टा, अजनबियों से डरता है';
+
+  @override
+  String get lostAlertNearby => '5 किमी के अंदर PawSetu यूज़र्स को अलर्ट भेजें';
+
+  @override
+  String get lostAlertNearbyHint =>
+      'सिर्फ़ उन्हें मिलेगा जिन्होंने लापता पालतू अलर्ट चालू किए हैं। वे लापता पेज देखेंगे, आपका नंबर कभी नहीं।';
+
+  @override
+  String get lostMarkLostConfirm => 'लापता मार्क करें';
+
+  @override
+  String lostMarked(String pet) {
+    return '$pet को लापता मार्क किया गया। आपके परिवार को बता दिया गया है।';
+  }
+
+  @override
+  String lostDemoAlert(int count, String area) {
+    return 'डेमो: अलर्ट $area के 5 किमी के अंदर $count PawSetu यूज़र्स तक पहुँचा जिन्होंने लापता पालतू अलर्ट चालू किए हैं। संदेश डेमो आउटबॉक्स में हैं; कोई असली अलर्ट नहीं भेजा गया।';
+  }
+
+  @override
+  String lostBannerTitle(String pet) {
+    return '$pet लापता मार्क है';
+  }
+
+  @override
+  String lostBannerBody(String when, String area) {
+    return '$when से, $area के पास।';
+  }
+
+  @override
+  String lostAlertsSent(int count) {
+    return 'पास के $count लोगों को अलर्ट भेजा गया';
+  }
+
+  @override
+  String get lostSightings => 'कहाँ दिखा';
+
+  @override
+  String get lostNoSightings =>
+      'अभी तक कहीं नहीं दिखा। लापता पेज और पोस्टर शेयर करें ताकि ज़्यादा लोग मदद कर सकें।';
+
+  @override
+  String get lostSightingNoDetails => 'जगह शेयर की गई';
+
+  @override
+  String get lostMakePoster => 'पोस्टर बनाएँ (PDF)';
+
+  @override
+  String get lostShareLink => 'लापता पेज शेयर करें';
+
+  @override
+  String lostShareText(String pet, String area, String url) {
+    return 'कृपया मदद करें! $pet $area के पास लापता है। दिखे तो यह खोलें: $url';
+  }
+
+  @override
+  String lostMarkFound(String pet) {
+    return '$pet मिल गया';
+  }
+
+  @override
+  String lostFoundConfirmTitle(String pet) {
+    return 'क्या $pet सुरक्षित घर आ गया?';
+  }
+
+  @override
+  String get lostFoundConfirmBody =>
+      'हम लापता पेज हटा देंगे और आपके परिवार को बता देंगे।';
+
+  @override
+  String get lostFoundConfirm => 'हाँ, मिल गया';
+
+  @override
+  String lostWelcomeHome(String pet) {
+    return 'घर में स्वागत है, $pet!';
+  }
+
+  @override
+  String lostFamilyTitle(String pet) {
+    return '$pet लापता है';
+  }
+
+  @override
+  String lostFamilyBody(String name, String area) {
+    return '$name ने $area के पास लापता मार्क किया। शेयर करने के लिए लापता पेज खोलें।';
+  }
+
+  @override
+  String lostFoundTitle(String pet) {
+    return 'अच्छी ख़बर: $pet सुरक्षित घर आ गया';
+  }
+
+  @override
+  String lostNearbyTitle(String pet) {
+    return 'क्या आपने $pet को देखा? आपके पास एक पालतू लापता है';
+  }
+
+  @override
+  String lostNearbyBody(String area) {
+    return 'आख़िरी बार $area के पास दिखा। फ़ोटो देखने और परिवार को बताने के लिए टैप करें।';
+  }
+
+  @override
+  String qrTagHint(String pet) {
+    return 'इसे $pet के पट्टे के टैग के लिए प्रिंट करें। स्कैन करने वाला आपका नंबर देखे बिना आपको संदेश भेज सकता है।';
+  }
+
+  @override
+  String qrForPet(String pet) {
+    return '$pet के टैग का QR कोड';
+  }
+
+  @override
+  String get qrPrintTags => 'QR टैग प्रिंट करें (PDF)';
+
+  @override
+  String get qrOpenPage => 'पेज खोलें';
+
+  @override
+  String qrTagsTitle(String pet) {
+    return '$pet के QR टैग';
+  }
+
+  @override
+  String get qrTagsSubtitle => 'एक टैग काटकर पट्टे पर लगाएँ';
+
+  @override
+  String get qrTagsFooter =>
+      'PawSetu से बना। टैग स्कैन करने पर परिवार का फ़ोन नंबर कभी नहीं दिखता।';
+
+  @override
+  String get qrTagScanLine =>
+      'मैं अकेला दिखूँ तो स्कैन करके मेरे परिवार को बताएँ';
+
+  @override
+  String posterTitle(String pet) {
+    return '$pet का लापता पोस्टर';
+  }
+
+  @override
+  String posterHeadline(String species) {
+    return 'लापता $species';
+  }
+
+  @override
+  String posterLastSeen(String area, String when) {
+    return 'आख़िरी बार $area के पास दिखा, $when';
+  }
+
+  @override
+  String get posterScan => 'मुझे देखा? इसे स्कैन करें';
+
+  @override
+  String get posterScanBody =>
+      'संदेश भेजें या बताएँ कि मुझे कहाँ देखा। मेरे परिवार को तुरंत मिलेगा।';
+
+  @override
+  String get lostTagInactive => 'यह टैग चालू नहीं है';
+
+  @override
+  String get lostTagInactiveHint =>
+      'लिंक पुराना या ग़लत हो सकता है। अगर आपको कोई पालतू मिला है, तो उसे पास के क्लिनिक ले जाएँ: वहाँ माइक्रोचिप स्कैन हो सकती है।';
+
+  @override
+  String get finderDemoNote =>
+      'डेमो पेज: संदेश और जगह डेमो आउटबॉक्स में जाते हैं, किसी असली परिवार को नहीं।';
+
+  @override
+  String get finderDemoSuffix => '(डेमो)';
+
+  @override
+  String finderLostHeadline(String pet) {
+    return '$pet लापता है';
+  }
+
+  @override
+  String finderLastSeen(String area, String when) {
+    return 'आख़िरी बार $area के पास · $when';
+  }
+
+  @override
+  String finderHello(String pet) {
+    return 'नमस्ते, मैं $pet हूँ!';
+  }
+
+  @override
+  String finderHelloLost(String pet) {
+    return 'मैं $pet हूँ। मुझे घर पहुँचने में मदद करें!';
+  }
+
+  @override
+  String get finderAsk =>
+      'अगर मैं अकेला हूँ, तो मेरे परिवार को बताएँ। वे मुझे लेने आएँगे।';
+
+  @override
+  String get finderLostAsk =>
+      'मेरा परिवार मुझे ढूँढ रहा है। हो सके तो मुझे सुरक्षित रखें और उन्हें संदेश या अपनी जगह भेजें।';
+
+  @override
+  String get finderContact => 'मेरे परिवार से संपर्क करें';
+
+  @override
+  String get finderShareLocation => 'मेरी जगह शेयर करें';
+
+  @override
+  String get finderPrivacy =>
+      'PawSetu आपका संदेश पहुँचाता है। परिवार का नंबर निजी रहता है; वापस कॉल चाहिए तो ही अपना नंबर दें।';
+
+  @override
+  String get finderTips =>
+      'पानी और छाँव दें, पालतू को पट्टे पर या बंद जगह में रखें, और डरे हुए पालतू का पीछा न करें।';
+
+  @override
+  String get finderContactHint =>
+      'आपका संदेश सीधे PawSetu ऐप में परिवार तक जाता है।';
+
+  @override
+  String get finderMessageLabel => 'आपका संदेश';
+
+  @override
+  String finderMessageStart(String pet) {
+    return 'नमस्ते, मुझे $pet यहाँ मिला: ';
+  }
+
+  @override
+  String get finderYourName => 'आपका नाम (वैकल्पिक)';
+
+  @override
+  String get finderYourPhone => 'आपका फ़ोन (वैकल्पिक)';
+
+  @override
+  String get finderPhoneHelper =>
+      'सिर्फ़ तब, जब आप चाहें कि परिवार आपको कॉल करे';
+
+  @override
+  String get finderSend => 'भेजें';
+
+  @override
+  String finderSent(String pet) {
+    return '$pet के परिवार को संदेश भेज दिया। धन्यवाद!';
+  }
+
+  @override
+  String finderLocationSent(String pet) {
+    return '$pet के परिवार को जगह भेज दी। धन्यवाद!';
+  }
+
+  @override
+  String get finderTooMany =>
+      'इस टैग पर अभी बहुत संदेश आ चुके हैं। कृपया एक घंटे बाद कोशिश करें।';
+
+  @override
+  String get finderWhereSeen => 'आप कहाँ हैं?';
+
+  @override
+  String get finderLocationOff =>
+      'आपकी लोकेशन बंद है। इलाका चुनें और कोई पहचान की जगह लिखें।';
+
+  @override
+  String get finderLandmark => 'पहचान की जगह';
+
+  @override
+  String get finderLandmarkHint => 'जैसे: मेट्रो स्टेशन के पास';
+
+  @override
+  String finderMessageTitle(String pet) {
+    return 'टैग स्कैन करने वाले से $pet के बारे में संदेश';
+  }
+
+  @override
+  String finderFrom(String from) {
+    return 'भेजने वाले: $from';
+  }
+
+  @override
+  String finderSightingTitle(String pet) {
+    return 'किसी ने बताया कि $pet कहाँ दिखा';
+  }
+
+  @override
+  String get devDemoNote =>
+      'डेमो डिवाइस: रीडिंग नकली हैं ताकि आप सब कुछ आज़मा सकें।';
+
+  @override
+  String get devAdd => 'डिवाइस जोड़ें';
+
+  @override
+  String get devNoneTitle => 'अभी कोई डिवाइस नहीं';
+
+  @override
+  String get devNoneBody =>
+      'GPS कॉलर, एक्टिविटी ट्रैकर, फ़ीडर, पानी का फ़व्वारा, कैमरा या लिटर बॉक्स जोड़ें।';
+
+  @override
+  String get devGpsCollar => 'GPS कॉलर';
+
+  @override
+  String get devGpsCollarHint => 'लाइव लोकेशन और सेफ़ ज़ोन अलर्ट';
+
+  @override
+  String get devActivityTracker => 'एक्टिविटी ट्रैकर';
+
+  @override
+  String get devActivityTrackerHint => 'क़दम और सक्रिय मिनट';
+
+  @override
+  String get devFeeder => 'स्मार्ट फ़ीडर';
+
+  @override
+  String get devFeederHint => 'समय पर खाना, आप बाहर हों तब भी';
+
+  @override
+  String get devFountain => 'पानी का फ़व्वारा';
+
+  @override
+  String get devFountainHint => 'पानी का स्तर और फ़िल्टर रिमाइंडर';
+
+  @override
+  String get devCamera => 'पेट कैमरा';
+
+  @override
+  String get devCameraHint => 'दूर रहकर भी अपने पालतू को देखें';
+
+  @override
+  String get devLitterBox => 'स्मार्ट लिटर बॉक्स';
+
+  @override
+  String get devLitterBoxHint => 'इस्तेमाल और सफ़ाई रिमाइंडर';
+
+  @override
+  String get devPairDemo =>
+      'डेमो पेयरिंग: हम आपके लिए एक डेमो डिवाइस ढूँढेंगे। ब्लूटूथ से कुछ नहीं जुड़ता।';
+
+  @override
+  String get devStepType => '1. कौन-सा डिवाइस?';
+
+  @override
+  String get devStepPet => '2. किस पालतू के लिए?';
+
+  @override
+  String get devStepFind => '3. डिवाइस खोजें';
+
+  @override
+  String get devStepName => '4. नाम दें';
+
+  @override
+  String get devNotForAll =>
+      'कुछ पालतू धुंधले हैं क्योंकि यह डिवाइस उनके लिए नहीं है।';
+
+  @override
+  String get devSearch => 'डिवाइस खोजें';
+
+  @override
+  String get devSearching => 'आसपास खोज रहे हैं…';
+
+  @override
+  String devDefaultName(String pet, String type) {
+    return '$pet का $type';
+  }
+
+  @override
+  String get devNameLabel => 'डिवाइस का नाम';
+
+  @override
+  String devSafeZoneRadius(int metres) {
+    return 'सेफ़ ज़ोन: घर के आसपास $metres मीटर';
+  }
+
+  @override
+  String get devSafeZoneHint =>
+      'कॉलर इस घेरे से बाहर जाते ही आपको अलर्ट मिलेगा।';
+
+  @override
+  String get devPair => 'डिवाइस जोड़ें';
+
+  @override
+  String devPaired(String name) {
+    return '$name जुड़ गया';
+  }
+
+  @override
+  String get devLiveTitle => 'वर्ज़न 2 में आएगा';
+
+  @override
+  String get devLiveBody =>
+      'असली डिवाइस लाइव वर्ज़न में जुड़ेंगे। अभी डेमो डिवाइस आज़माएँ।';
+
+  @override
+  String get devConnected => 'जुड़ा हुआ';
+
+  @override
+  String devInsideZone(int metres) {
+    return 'सेफ़ ज़ोन के अंदर · घर से $metres मीटर';
+  }
+
+  @override
+  String devOutsideZone(int metres) {
+    return 'सेफ़ ज़ोन से बाहर! घर से $metres मीटर';
+  }
+
+  @override
+  String devStepsToday(String steps) {
+    return 'आज $steps क़दम';
+  }
+
+  @override
+  String devNextMeal(String time) {
+    return 'अगला खाना $time बजे';
+  }
+
+  @override
+  String devWaterLevel(int pct) {
+    return 'पानी का स्तर: $pct%';
+  }
+
+  @override
+  String get devCameraReady => 'तैयार';
+
+  @override
+  String devLitterVisits(int count) {
+    return 'आज $count बार';
+  }
+
+  @override
+  String devUpdated(String time) {
+    return '$time पर अपडेट';
+  }
+
+  @override
+  String get devLocate => 'अभी ढूँढें';
+
+  @override
+  String get devLocated => 'लोकेशन अपडेट हुई';
+
+  @override
+  String get devEditZone => 'सेफ़ ज़ोन बदलें';
+
+  @override
+  String get devNoZone =>
+      'अभी कोई सेफ़ ज़ोन नहीं है। अलर्ट के लिए इसे सेट करें।';
+
+  @override
+  String get devAlertSent =>
+      'इस पालतू की देखभाल करने वाले सभी को अलर्ट गया (पुश और SMS)।';
+
+  @override
+  String get devBackInside => 'सेफ़ ज़ोन में वापस।';
+
+  @override
+  String get devDemoControls => 'डेमो कंट्रोल';
+
+  @override
+  String get devDemoControlsHint => 'घर से निकले बिना सेफ़ ज़ोन अलर्ट आज़माएँ।';
+
+  @override
+  String devDemoWalkOut(String pet) {
+    return 'डेमो: $pet को सेफ़ ज़ोन से बाहर ले जाएँ';
+  }
+
+  @override
+  String devDemoComeHome(String pet) {
+    return 'डेमो: $pet को घर वापस लाएँ';
+  }
+
+  @override
+  String get devToday => 'आज';
+
+  @override
+  String devActiveMinutes(int active, int goal) {
+    return '$goal में से $active सक्रिय मिनट';
+  }
+
+  @override
+  String get devNoSessions => 'आज अभी तक कोई सैर या खेल दर्ज नहीं हुआ।';
+
+  @override
+  String devWalkSession(int minutes, String km) {
+    return 'सैर · $minutes मिनट · $km किमी';
+  }
+
+  @override
+  String devPlaySession(int minutes) {
+    return 'खेल · $minutes मिनट';
+  }
+
+  @override
+  String get devInRoutine => 'रोज़ की दिनचर्या में जोड़ा गया';
+
+  @override
+  String devFlowsToRoutine(String pet) {
+    return 'इस डिवाइस से सैर और खेल अपने-आप $pet की रोज़ की दिनचर्या में जुड़ जाते हैं।';
+  }
+
+  @override
+  String devSynced(int count, String pet) {
+    return '$pet की दिनचर्या में $count गतिविधियाँ जोड़ी गईं';
+  }
+
+  @override
+  String devHopper(int pct) {
+    return 'फ़ीडर में बचा खाना: $pct%';
+  }
+
+  @override
+  String get devMealsToday => 'आज का खाना';
+
+  @override
+  String get devNoMealsYet => 'आज अभी तक खाना नहीं दिया गया।';
+
+  @override
+  String devMealGrams(int grams) {
+    return '$grams ग्राम परोसा';
+  }
+
+  @override
+  String get devFeedNow => 'अभी थोड़ा खाना दें';
+
+  @override
+  String devFed(String pet) {
+    return '$pet को थोड़ा खाना दिया गया और आज के खाने में जोड़ा गया।';
+  }
+
+  @override
+  String devFilterDays(int days) {
+    return '$days दिन में फ़िल्टर बदलें';
+  }
+
+  @override
+  String get devRefillSoon => 'पानी कम हो रहा है। जल्द फ़व्वारा भरें।';
+
+  @override
+  String get devCameraPlaceholder =>
+      'लाइव वीडियो असली कैमरों के साथ वर्ज़न 2 में आएगा।';
+
+  @override
+  String get devSnapshot => 'फ़ोटो लें';
+
+  @override
+  String get devSnapshotDemo =>
+      'डेमो: असली कैमरा यहाँ आपके पालतू की फ़ोटो भेजता।';
+
+  @override
+  String devLastVisit(String time) {
+    return 'आख़िरी बार $time बजे';
+  }
+
+  @override
+  String get devCleanSoon => 'जल्द साफ़ करें';
+
+  @override
+  String get devLitterClean => 'साफ़';
+
+  @override
+  String get devRemove => 'डिवाइस हटाएँ';
+
+  @override
+  String devRemoveTitle(String name) {
+    return '$name हटाएँ?';
+  }
+
+  @override
+  String get devRemoveBody =>
+      'यह डेटा भेजना बंद कर देगा। दिनचर्या में दर्ज रिकॉर्ड बने रहेंगे।';
+
+  @override
+  String zoneLeftTitle(String pet) {
+    return '$pet सेफ़ ज़ोन से बाहर चला गया';
+  }
+
+  @override
+  String zoneLeftBody(String device, int metres) {
+    return '$device: अभी घर से $metres मीटर दूर। देखने के लिए टैप करें।';
+  }
+
+  @override
+  String zoneBackTitle(String pet) {
+    return '$pet सेफ़ ज़ोन में वापस आ गया';
+  }
+
+  @override
+  String get toxChocolateName => 'चॉकलेट';
+
+  @override
+  String get toxChocolateWhy =>
+      'इसमें थियोब्रोमीन और कैफ़ीन होते हैं, जिनसे उल्टी, तेज़ धड़कन और दौरे हो सकते हैं। डार्क चॉकलेट और कोको पाउडर सबसे ख़तरनाक हैं।';
+
+  @override
+  String get toxGrapesName => 'अंगूर और किशमिश';
+
+  @override
+  String get toxGrapesWhy =>
+      'थोड़े से अंगूर या किशमिश भी कुत्तों और बिल्लियों में अचानक किडनी फ़ेल कर सकते हैं। पक्षी और खरगोश: कभी-कभार सिर्फ़ छोटा टुकड़ा।';
+
+  @override
+  String get toxOnionGarlicName => 'प्याज़ और लहसुन';
+
+  @override
+  String get toxOnionGarlicWhy =>
+      'कच्चे, पके या पाउडर, करी और ग्रेवी में भी, ये ख़ून की लाल कोशिकाओं को नुकसान पहुँचाते हैं और कुछ दिन बाद कमज़ोरी आती है।';
+
+  @override
+  String get toxXylitolName => 'ज़ाइलिटॉल (शुगर-फ़्री मिठास)';
+
+  @override
+  String get toxXylitolWhy =>
+      'शुगर-फ़्री च्युइंग गम, मिंट, कुछ पीनट बटर और दवाओं में होता है। कुत्तों में इससे अचानक ब्लड शुगर गिरती है और लिवर ख़राब होता है। इसे सभी पालतुओं से दूर रखें।';
+
+  @override
+  String get toxAlcoholName => 'शराब';
+
+  @override
+  String get toxAlcoholWhy =>
+      'थोड़ी सी मात्रा से भी उल्टी, लड़खड़ाहट, साँस की तकलीफ़ और बेहोशी हो सकती है। ख़मीर वाला कच्चा आटा भी पेट में शराब बनाता है।';
+
+  @override
+  String get toxCaffeineName => 'चाय, कॉफ़ी और कैफ़ीन';
+
+  @override
+  String get toxCaffeineWhy =>
+      'चाय, कॉफ़ी, एनर्जी ड्रिंक और कैफ़ीन की गोलियों से बेचैनी, तेज़ धड़कन और दौरे हो सकते हैं।';
+
+  @override
+  String get toxAvocadoName => 'एवोकाडो';
+
+  @override
+  String get toxAvocadoWhy =>
+      'पक्षियों और खरगोशों के लिए बहुत ख़तरनाक: दिल को नुकसान पहुँचा सकता है। कुत्तों और बिल्लियों में गुठली आँतों में फँस सकती है, और छिलका व पत्ते पेट ख़राब करते हैं।';
+
+  @override
+  String get toxCookedBonesName => 'पकी हुई हड्डियाँ';
+
+  @override
+  String get toxCookedBonesWhy =>
+      'पकी हुई चिकन या मटन की हड्डियाँ टूटकर नुकीली हो जाती हैं और गले में फँस सकती हैं या आँतें फाड़ सकती हैं। पकी हड्डियाँ कभी न दें।';
+
+  @override
+  String get toxMilkName => 'दूध';
+
+  @override
+  String get toxMilkWhy =>
+      'ज़्यादातर बड़ी बिल्लियाँ और कुत्ते दूध ठीक से नहीं पचा पाते और उन्हें दस्त हो जाते हैं। पक्षियों और खरगोशों को दूध न दें।';
+
+  @override
+  String get toxSaltySnacksName => 'नमकीन स्नैक्स (नमकीन, चिप्स)';
+
+  @override
+  String get toxSaltySnacksWhy =>
+      'नमकीन, चिप्स और पापड़ से प्यास और उल्टी होती है; ज़्यादा खाने पर नमक का ज़हर चढ़ सकता है। पक्षी इसके लिए ख़ास तौर पर संवेदनशील हैं।';
+
+  @override
+  String get toxSpicyFoodName => 'मसालेदार खाना';
+
+  @override
+  String get toxSpicyFoodWhy =>
+      'मिर्च और मसाले पेट ख़राब करते हैं, उल्टी और दस्त होते हैं। करी में अक्सर प्याज़ और लहसुन भी होते हैं।';
+
+  @override
+  String get toxFattyFoodName => 'तला और चिकनाई वाला खाना';
+
+  @override
+  String get toxFattyFoodWhy =>
+      'तले हुए स्नैक्स, घी, चर्बी और भारी बचा हुआ खाना पैंक्रियाटाइटिस कर सकता है, जो अग्न्याशय की दर्दनाक सूजन है।';
+
+  @override
+  String get toxSweetsName => 'मिठाई';
+
+  @override
+  String get toxSweetsWhy =>
+      'मीठी मिठाइयों से वज़न बढ़ता है और पेट ख़राब होता है, और कई में घी, चॉकलेट, किशमिश या शुगर-फ़्री मिठास होती है।';
+
+  @override
+  String get toxFruitSeedsName => 'फलों की गुठली और बीज';
+
+  @override
+  String get toxFruitSeedsWhy =>
+      'आम की गुठली, सेब के बीज और आलूबुखारा, आड़ू, चेरी की गुठलियाँ गले या आँतों में फँस सकती हैं, और कुछ में साइनाइड होता है।';
+
+  @override
+  String get toxTomatoName => 'टमाटर';
+
+  @override
+  String get toxTomatoWhy =>
+      'थोड़ा पका टमाटर आमतौर पर ठीक है। हरे टमाटर, पत्ते और डंठल नुकसानदायक हैं।';
+
+  @override
+  String get toxPeanutsName => 'मूँगफली';
+
+  @override
+  String get toxPeanutsWhy =>
+      'सिर्फ़ सादी, बिना नमक की मूँगफली, एक बार में कुछ ही। नमकीन या मसाला मूँगफली सुरक्षित नहीं है, और पीनट बटर में ज़ाइलिटॉल नहीं होना चाहिए।';
+
+  @override
+  String get toxMangoName => 'आम';
+
+  @override
+  String get toxMangoWhy =>
+      'पके आम का गूदा छोटे ट्रीट के रूप में ठीक है। छिलका और गुठली हटा दें। ज़्यादा खाने से दस्त होते हैं।';
+
+  @override
+  String get toxAppleName => 'सेब';
+
+  @override
+  String get toxAppleWhy =>
+      'बीज और बीच का हिस्सा हटाकर सेब के टुकड़े एक सेहतमंद, कुरकुरा ट्रीट हैं।';
+
+  @override
+  String get toxBananaName => 'केला';
+
+  @override
+  String get toxBananaWhy =>
+      'छोटा टुकड़ा अच्छा ट्रीट है। इसमें शक्कर ज़्यादा होती है, इसलिए थोड़ा ही दें।';
+
+  @override
+  String get toxWatermelonName => 'तरबूज़';
+
+  @override
+  String get toxWatermelonWhy =>
+      'बिना बीज और छिलके के टुकड़े गर्मियों का ठंडा ट्रीट हैं।';
+
+  @override
+  String get toxCarrotName => 'गाजर';
+
+  @override
+  String get toxCarrotWhy =>
+      'कच्ची या पकी गाजर सेहतमंद ट्रीट है। खरगोशों को गाजर थोड़ी ही दें, क्योंकि इसमें शक्कर होती है।';
+
+  @override
+  String get toxRiceName => 'सादे पके चावल';
+
+  @override
+  String get toxRiceWhy =>
+      'बिना नमक, घी, प्याज़ या मसाले के सादे चावल थोड़ी मात्रा में पेट के लिए हल्के हैं। खरगोशों को चावल नहीं, सूखी घास चाहिए।';
+
+  @override
+  String get toxEggName => 'पका हुआ अंडा';
+
+  @override
+  String get toxEggWhy =>
+      'पूरी तरह पका अंडा प्रोटीन वाला अच्छा ट्रीट है। कच्चा अंडा न दें। खरगोश सिर्फ़ पौधे खाते हैं।';
+
+  @override
+  String get toxLilyName => 'लिली';
+
+  @override
+  String get toxLilyWhy =>
+      'लिली का हर हिस्सा, यहाँ तक कि पराग या फूलदान का पानी भी, बिल्लियों में किडनी फ़ेल कर सकता है। बिल्ली वाले घर में लिली न रखें।';
+
+  @override
+  String get toxSagoPalmName => 'साइकस (सागो पाम)';
+
+  @override
+  String get toxSagoPalmWhy =>
+      'हर हिस्सा ज़हरीला है, बीज सबसे ज़्यादा। इससे उल्टी और लिवर फ़ेल हो सकता है।';
+
+  @override
+  String get toxOleanderName => 'कनेर';
+
+  @override
+  String get toxOleanderWhy =>
+      'कनेर दिल पर असर करता है। कुछ पत्ते या फूल भी जानलेवा हो सकते हैं।';
+
+  @override
+  String get toxCastorName => 'अरंडी';
+
+  @override
+  String get toxCastorWhy =>
+      'अरंडी के बीजों में रिसिन होता है। एक-दो बीज चबाना भी जानलेवा हो सकता है।';
+
+  @override
+  String get toxDaturaName => 'धतूरा';
+
+  @override
+  String get toxDaturaWhy =>
+      'इसके बीज और फूल से तेज़ धड़कन, फैली पुतलियाँ, बेचैनी और दौरे होते हैं।';
+
+  @override
+  String get toxLantanaName => 'लैंटाना';
+
+  @override
+  String get toxLantanaWhy =>
+      'इस आम झाड़ी के बेर और पत्ते लिवर को नुकसान पहुँचा सकते हैं।';
+
+  @override
+  String get toxAloeVeraName => 'एलोवेरा';
+
+  @override
+  String get toxAloeVeraWhy =>
+      'पारदर्शी जेल आमतौर पर ठीक है, लेकिन छिलके के नीचे का कड़वा पीला रस उल्टी और दस्त करता है।';
+
+  @override
+  String get toxMoneyPlantName => 'मनी प्लांट';
+
+  @override
+  String get toxMoneyPlantWhy =>
+      'पत्ते चबाने से मुँह में दर्द, लार गिरना और उल्टी होती है।';
+
+  @override
+  String get toxSnakePlantName => 'स्नेक प्लांट';
+
+  @override
+  String get toxSnakePlantWhy =>
+      'इसे चबाने से लार गिरना, उल्टी और दस्त हो सकते हैं।';
+
+  @override
+  String get toxMarigoldName => 'गेंदा';
+
+  @override
+  String get toxMarigoldWhy =>
+      'गेंदे के फूल चबाने से मुँह में हल्की जलन और पेट ख़राब हो सकता है।';
+
+  @override
+  String get toxTulsiName => 'तुलसी';
+
+  @override
+  String get toxTulsiWhy =>
+      'तुलसी पालतुओं के लिए ज़हरीली नहीं मानी जाती। फिर भी ज़्यादा खाने से पेट ख़राब हो सकता है।';
+
+  @override
+  String get toxArecaPalmName => 'एरिका पाम';
+
+  @override
+  String get toxArecaPalmWhy => 'पालतुओं के लिए सुरक्षित घरेलू पौधा।';
+
+  @override
+  String get toxSpiderPlantName => 'स्पाइडर प्लांट';
+
+  @override
+  String get toxSpiderPlantWhy =>
+      'ज़हरीला नहीं है, हालाँकि बिल्लियाँ इसे चबाना पसंद करती हैं और थोड़ी उल्टी कर सकती हैं।';
+
+  @override
+  String get toxRatPoisonName => 'चूहे मारने की दवा';
+
+  @override
+  String get toxRatPoisonWhy =>
+      'इससे अंदरूनी ख़ून बहना या दौरे होते हैं, कभी-कभी कई दिन बाद। पैकेट डॉक्टर के पास ले जाएँ।';
+
+  @override
+  String get toxHumanMedicinesName => 'इंसानों की दवाएँ';
+
+  @override
+  String get toxHumanMedicinesWhy =>
+      'पैरासिटामोल और आइबुप्रोफ़ेन जैसी दर्द की दवाएँ पालतुओं के लिए ज़हरीली हैं। पैरासिटामोल की एक गोली भी बिल्ली की जान ले सकती है। सिर्फ़ डॉक्टर की लिखी दवा ही दें।';
+
+  @override
+  String get toxMosquitoRepellentName => 'मच्छर कॉइल और लिक्विड वेपोराइज़र';
+
+  @override
+  String get toxMosquitoRepellentWhy =>
+      'इनका धुआँ पक्षियों के फेफड़ों को नुकसान पहुँचा सकता है। पालतुओं से दूर इस्तेमाल करें और कमरे में हवा आने दें।';
+
+  @override
+  String get toxMothballsName => 'नेफ़्थलीन की गोलियाँ';
+
+  @override
+  String get toxMothballsWhy =>
+      'चबाने पर ज़हरीली हैं, और इनकी गंध पक्षियों को नुकसान पहुँचाती है। इन्हें बंद अलमारी में रखें।';
+
+  @override
+  String get toxNonStickFumesName => 'नॉन-स्टिक पैन का धुआँ';
+
+  @override
+  String get toxNonStickFumesWhy =>
+      'ज़्यादा गर्म नॉन-स्टिक पैन से निकलने वाला धुआँ कुछ ही मिनटों में पक्षी की जान ले सकता है। पक्षियों को रसोई से दूर रखें।';
+
+  @override
+  String get toxPhenylName => 'फ़िनाइल और फ़र्श क्लीनर';
+
+  @override
+  String get toxPhenylWhy =>
+      'फ़िनाइल और कई फ़र्श क्लीनर में फ़ीनॉल होता है, जो ख़ासकर बिल्लियों के लिए ज़हरीला है। पालतुओं के चलने से पहले फ़र्श सूखने दें।';
 }

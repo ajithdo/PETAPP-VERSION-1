@@ -7648,4 +7648,1285 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get selPhoneHidden =>
       'The customer\'s phone is hidden; the courier calls through PawSetu.';
+
+  @override
+  String get faChokingTitle => 'Choking';
+
+  @override
+  String get faChokingSigns =>
+      'Pawing at the mouth, gagging, coughing, blue gums or struggling to breathe.';
+
+  @override
+  String get faChokingSteps =>
+      'Stay calm and keep your pet still. If they can still cough, let them try to clear it.\nOpen the mouth gently and look inside with a torch.\nIf you can see the object and reach it easily, hook it out with your fingers. Don\'t push it deeper.\nSmall dog or cat: hold them upside down by the hips and give 5 sharp taps between the shoulder blades.\nLarge dog: stand behind, put your fist just below the ribs and give 5 quick pushes inwards and upwards.\nCheck the mouth again. Go to a vet straight away, even if the object came out.';
+
+  @override
+  String get faChokingAvoid =>
+      'Don\'t reach blindly down the throat.\nDon\'t give food or water.\nDon\'t pull on string or thread you see; it may be caught on something inside.';
+
+  @override
+  String get faChokingVet =>
+      'Always see a vet after choking, even if your pet seems fine. Use SOS if they collapse or can\'t breathe.';
+
+  @override
+  String get faPoisoningTitle => 'Poisoning';
+
+  @override
+  String get faPoisoningSigns =>
+      'Vomiting, drooling, shaking, wobbly walking, fits, sudden tiredness, or a chewed packet nearby.';
+
+  @override
+  String get faPoisoningSteps =>
+      'Move your pet away from the poison and remove any left in the mouth.\nFind out what was eaten, how much and when. Keep the packet or take a photo of the plant.\nCall your vet now, or use SOS to reach the nearest clinic.\nIf the poison is on the fur or skin, rinse it off with plenty of lukewarm water.\nKeep your pet warm and quiet on the way to the clinic.';
+
+  @override
+  String get faPoisoningAvoid =>
+      'Don\'t make your pet vomit unless a vet tells you to.\nDon\'t give milk, salt, oil or home remedies.\nDon\'t wait for signs; some poisons act hours later.';
+
+  @override
+  String get faPoisoningVet =>
+      'Go now. With poisons, early treatment saves lives.';
+
+  @override
+  String get faHeatstrokeTitle => 'Heatstroke';
+
+  @override
+  String get faHeatstrokeSigns =>
+      'Heavy panting, thick drool, bright red or pale gums, weakness, vomiting or collapse on a hot day.';
+
+  @override
+  String get faHeatstrokeSteps =>
+      'Move your pet into shade or a cool room right away.\nPour cool (not ice-cold) water over the body, especially the belly, neck and paws.\nUse a fan or wet towels, and change the towels often so they don\'t trap heat.\nOffer small sips of cool water; don\'t force it.\nGo to a vet even if your pet seems better.';
+
+  @override
+  String get faHeatstrokeAvoid =>
+      'Don\'t use ice or ice-cold water.\nDon\'t cover your pet with a wet towel and leave it there.\nDon\'t walk in the afternoon heat, and never leave a pet in a parked car.';
+
+  @override
+  String get faHeatstrokeVet =>
+      'Heatstroke can harm organs hours later. See a vet today. Flat-faced breeds are at higher risk.';
+
+  @override
+  String get faBleedingTitle => 'Bleeding';
+
+  @override
+  String get faBleedingSigns => 'Blood from a wound, paw, ear or nose.';
+
+  @override
+  String get faBleedingSteps =>
+      'Press a clean cloth or gauze firmly on the wound.\nKeep pressing for at least 5 minutes without lifting to check.\nIf blood soaks through, add more cloth on top and keep pressing.\nWrap a bandage firmly, but not too tight, to hold it in place.\nKeep your pet calm and go to a vet.';
+
+  @override
+  String get faBleedingAvoid =>
+      'Don\'t tie a tight band (tourniquet) unless a vet tells you to.\nDon\'t pull out anything stuck in the wound.\nDon\'t put turmeric, powders or creams on a deep wound.';
+
+  @override
+  String get faBleedingVet =>
+      'Use SOS for heavy bleeding, spurting blood or bleeding that doesn\'t slow after 10 minutes of pressure.';
+
+  @override
+  String get faFractureTitle => 'Broken bones';
+
+  @override
+  String get faFractureSigns =>
+      'Not putting weight on a leg, swelling, a strange angle, crying when touched.';
+
+  @override
+  String get faFractureSteps =>
+      'Keep your pet as still as possible. A frightened pet may bite, so be gentle.\nCarry small pets in a box or basket lined with a towel.\nFor a large dog, use a board or a blanket held like a stretcher.\nCover any open wound with a clean cloth.\nGo to a vet straight away.';
+
+  @override
+  String get faFractureAvoid =>
+      'Don\'t try to straighten the bone.\nDon\'t give human painkillers; many are poisonous to pets.\nDon\'t let your pet walk on the leg.';
+
+  @override
+  String get faFractureVet =>
+      'Every suspected broken bone needs a vet, and usually an X-ray.';
+
+  @override
+  String get faSeizureTitle => 'Fits (seizures)';
+
+  @override
+  String get faSeizureSigns =>
+      'Falling over, stiff or jerking legs, paddling, drooling, not responding.';
+
+  @override
+  String get faSeizureSteps =>
+      'Stay calm and note the time the fit started.\nMove furniture and sharp things away. Dim the lights and keep it quiet.\nKeep your hands away from the mouth.\nAfter the fit, keep your pet warm and let them rest; they may be confused for a while.\nCall your vet and tell them how long it lasted.';
+
+  @override
+  String get faSeizureAvoid =>
+      'Don\'t hold your pet down.\nDon\'t put anything in the mouth; pets don\'t swallow their tongue.\nDon\'t give food or water until they are fully awake.';
+
+  @override
+  String get faSeizureVet =>
+      'Use SOS if a fit lasts more than 5 minutes or fits come one after another. A first fit always needs a vet visit.';
+
+  @override
+  String get faBurnTitle => 'Burns';
+
+  @override
+  String get faBurnSigns =>
+      'Red or raw skin, blisters, singed fur, or contact with hot liquid, fire or chemicals.';
+
+  @override
+  String get faBurnSteps =>
+      'Cool the burn under cool running water for 10 minutes.\nFor a chemical burn, rinse with plenty of water for 15 minutes; wear gloves.\nCover loosely with a clean, damp, lint-free cloth.\nKeep your pet warm by wrapping the rest of the body, and go to a vet.';
+
+  @override
+  String get faBurnAvoid =>
+      'Don\'t use ice, butter, oil, toothpaste or turmeric.\nDon\'t pop blisters.\nDon\'t let your pet lick the burn.';
+
+  @override
+  String get faBurnVet =>
+      'Burns can be deeper than they look. See a vet the same day.';
+
+  @override
+  String get faBiteTitle => 'Snake or insect bite';
+
+  @override
+  String get faBiteSigns =>
+      'Sudden swelling, pain, puncture marks, bleeding, weakness, drooling or trouble breathing.';
+
+  @override
+  String get faBiteSteps =>
+      'Keep your pet calm and as still as possible; carry them if you can.\nKeep the bitten part level with or below the heart.\nTake off the collar if the neck or face is swelling.\nFor a bee sting, scrape the sting out with a card.\nGo to the nearest clinic straight away. Use SOS to find one that\'s open.\nIf it\'s safe, note the snake\'s colour and size, or take a photo from a distance.';
+
+  @override
+  String get faBiteAvoid =>
+      'Don\'t cut the wound or try to suck out venom.\nDon\'t tie a tight band above the bite.\nDon\'t try to catch the snake.';
+
+  @override
+  String get faBiteVet =>
+      'Every snake bite is an emergency. Go even if your pet seems fine.';
+
+  @override
+  String get faTickTitle => 'Removing a tick';
+
+  @override
+  String get faTickSigns =>
+      'A small grey-brown bump stuck to the skin, often around the ears, neck, armpits or between the toes.';
+
+  @override
+  String get faTickSteps =>
+      'Wear gloves if you can. Part the fur so you can see the tick clearly.\nUse fine tweezers or a tick hook to grip the tick close to the skin.\nPull straight out, slowly and steadily, without twisting or squeezing.\nClean the spot with antiseptic and wash your hands.\nDrop the tick in alcohol, or seal it in tape before throwing it away.\nWatch for fever, tiredness or pale gums over the next 3 weeks.';
+
+  @override
+  String get faTickAvoid =>
+      'Don\'t burn the tick or cover it in oil, kerosene or petrol.\nDon\'t squeeze the tick\'s body.\nDon\'t crush ticks with bare fingers.';
+
+  @override
+  String get faTickVet =>
+      'See a vet if your pet gets a fever, is tired or off food, or has many ticks. Ask about tick prevention.';
+
+  @override
+  String get clearSearch => 'Clear search';
+
+  @override
+  String get closedNow => 'Closed now';
+
+  @override
+  String get copy => 'Copy';
+
+  @override
+  String get openInMaps => 'Open in Maps';
+
+  @override
+  String get draftVetReview => 'Draft, to be reviewed by a vet';
+
+  @override
+  String get sosCallNearest => 'Call nearest clinic';
+
+  @override
+  String get sosGetAddress => 'Get nearest clinic address';
+
+  @override
+  String get sosFinding => 'Finding clinics near you…';
+
+  @override
+  String get sosLocating => 'Finding where you are…';
+
+  @override
+  String get sosUsingGps => 'Using your current location';
+
+  @override
+  String sosUsingLastKnown(String time) {
+    return 'Using your last known location (from $time)';
+  }
+
+  @override
+  String sosUsingArea(String area) {
+    return 'Location is off. Showing clinics near $area.';
+  }
+
+  @override
+  String get sosLocationOffHint =>
+      'Wrong area? Change it so the list is right.';
+
+  @override
+  String get sosTryLocation => 'Try my location again';
+
+  @override
+  String get sosChangeArea => 'Change area';
+
+  @override
+  String sosSavedClinics(String when) {
+    return 'Weak internet: showing clinics saved on $when.';
+  }
+
+  @override
+  String get sosNoClinics => 'No clinics found nearby. Try another area.';
+
+  @override
+  String sosCallClinic(String name) {
+    return 'Call $name';
+  }
+
+  @override
+  String sosAway(String km) {
+    return '$km away';
+  }
+
+  @override
+  String sosDemoCall(String phone) {
+    return 'Demo: this would call $phone. No real call is made in the demo.';
+  }
+
+  @override
+  String get sosShowVet => 'Show this to the vet';
+
+  @override
+  String get firstAidTitle => 'First aid';
+
+  @override
+  String get firstAidOfflineHint =>
+      'Step-by-step guides that work without internet';
+
+  @override
+  String get firstAidOffline => 'Works without internet';
+
+  @override
+  String get firstAidEmergencyNote =>
+      'Not breathing, collapsed or bleeding heavily? Hold SOS now and go to a clinic. These guides help on the way.';
+
+  @override
+  String get firstAidSigns => 'Signs';
+
+  @override
+  String get firstAidWhatToDo => 'What to do';
+
+  @override
+  String get firstAidAvoid => 'Don\'t';
+
+  @override
+  String get firstAidWhenVet => 'When to see a vet';
+
+  @override
+  String get firstAidTalkToVet => 'Talk to a vet now';
+
+  @override
+  String get toxTitle => 'Is it safe?';
+
+  @override
+  String get toxTileHint =>
+      'Check foods, plants and household things for your pet';
+
+  @override
+  String get toxSearchLabel => 'Food, plant or household item';
+
+  @override
+  String get toxSearchHint => 'For example: grapes, lily, chocolate';
+
+  @override
+  String get toxForWhichPet => 'For which pet?';
+
+  @override
+  String get toxKindAll => 'All';
+
+  @override
+  String get toxKindFood => 'Food';
+
+  @override
+  String get toxKindPlant => 'Plants';
+
+  @override
+  String get toxKindHome => 'Around the home';
+
+  @override
+  String get toxDanger => 'Dangerous';
+
+  @override
+  String get toxCaution => 'Be careful';
+
+  @override
+  String get toxSafe => 'Safe in small amounts';
+
+  @override
+  String get toxForEachPet => 'For each kind of pet';
+
+  @override
+  String get toxAteIt =>
+      'Already eaten? Don\'t wait for signs. Get help now and take the packet or a photo with you.';
+
+  @override
+  String get toxPoisoningGuide => 'Open the poisoning guide';
+
+  @override
+  String get toxNoMatch => 'Not in our list yet';
+
+  @override
+  String get toxNoMatchHint =>
+      'If you\'re not sure, don\'t give it, and ask a vet.';
+
+  @override
+  String get lostIntro =>
+      'Every pet gets a QR tag. Anyone who scans it sees a page with your pet\'s photo and can message you or share where they are. Your phone number stays hidden.';
+
+  @override
+  String get lostSafeAtHome => 'Safe at home';
+
+  @override
+  String lostSinceShort(String when) {
+    return 'Lost since $when';
+  }
+
+  @override
+  String lostPetTitle(String pet) {
+    return '$pet · QR tag';
+  }
+
+  @override
+  String lostIfMissing(String pet) {
+    return 'If $pet goes missing';
+  }
+
+  @override
+  String get lostIfMissingBody =>
+      'Mark them lost to share a lost page, alert PawSetu users nearby (if you choose) and make a poster in one tap.';
+
+  @override
+  String lostMarkLost(String pet) {
+    return 'Mark $pet as lost';
+  }
+
+  @override
+  String get lostWhereSeen => 'Where was your pet last seen?';
+
+  @override
+  String get lostUsingGps => 'Using where you are now';
+
+  @override
+  String get lostNearMe => 'Near my location';
+
+  @override
+  String get lostWhenSeen => 'When?';
+
+  @override
+  String get lostWhenNow => 'Just now';
+
+  @override
+  String get lostWhenHour => 'About an hour ago';
+
+  @override
+  String get lostWhenMorning => 'This morning';
+
+  @override
+  String get lostWhenYesterday => 'Yesterday evening';
+
+  @override
+  String get lostNoteLabel => 'Anything that helps people recognise them';
+
+  @override
+  String get lostNoteHint => 'For example: red collar, shy with strangers';
+
+  @override
+  String get lostAlertNearby => 'Alert PawSetu users within 5 km';
+
+  @override
+  String get lostAlertNearbyHint =>
+      'Only people who turned on lost-pet alerts get it. They see the lost page, never your number.';
+
+  @override
+  String get lostMarkLostConfirm => 'Mark as lost';
+
+  @override
+  String lostMarked(String pet) {
+    return '$pet is marked lost. Your family has been told.';
+  }
+
+  @override
+  String lostDemoAlert(int count, String area) {
+    return 'Demo: the alert reached $count PawSetu users within 5 km of $area who turned on lost-pet alerts. The messages are in the Demo Outbox; no real alert was sent.';
+  }
+
+  @override
+  String lostBannerTitle(String pet) {
+    return '$pet is marked lost';
+  }
+
+  @override
+  String lostBannerBody(String when, String area) {
+    return 'Since $when, near $area.';
+  }
+
+  @override
+  String lostAlertsSent(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Alert sent to $count people nearby',
+      one: 'Alert sent to 1 person nearby',
+      zero: 'No PawSetu users nearby were alerted',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get lostSightings => 'Sightings';
+
+  @override
+  String get lostNoSightings =>
+      'No sightings yet. Share the lost page and the poster so more people can help.';
+
+  @override
+  String get lostSightingNoDetails => 'Location shared';
+
+  @override
+  String get lostMakePoster => 'Make a poster (PDF)';
+
+  @override
+  String get lostShareLink => 'Share the lost page';
+
+  @override
+  String lostShareText(String pet, String area, String url) {
+    return 'Please help! $pet is lost near $area. If you see them, open $url';
+  }
+
+  @override
+  String lostMarkFound(String pet) {
+    return '$pet is found';
+  }
+
+  @override
+  String lostFoundConfirmTitle(String pet) {
+    return 'Is $pet home safe?';
+  }
+
+  @override
+  String get lostFoundConfirmBody =>
+      'We\'ll take down the lost page and tell your family.';
+
+  @override
+  String get lostFoundConfirm => 'Yes, found';
+
+  @override
+  String lostWelcomeHome(String pet) {
+    return 'Welcome home, $pet!';
+  }
+
+  @override
+  String lostFamilyTitle(String pet) {
+    return '$pet is lost';
+  }
+
+  @override
+  String lostFamilyBody(String name, String area) {
+    return '$name marked them lost near $area. Open the lost page to share it.';
+  }
+
+  @override
+  String lostFoundTitle(String pet) {
+    return 'Good news: $pet is home safe';
+  }
+
+  @override
+  String lostNearbyTitle(String pet) {
+    return 'Have you seen $pet? A pet is lost near you';
+  }
+
+  @override
+  String lostNearbyBody(String area) {
+    return 'Last seen near $area. Tap to see the photo and tell the family.';
+  }
+
+  @override
+  String qrTagHint(String pet) {
+    return 'Print this for $pet\'s collar tag. Anyone who scans it can message you without seeing your number.';
+  }
+
+  @override
+  String qrForPet(String pet) {
+    return 'QR code for $pet\'s tag';
+  }
+
+  @override
+  String get qrPrintTags => 'Print QR tags (PDF)';
+
+  @override
+  String get qrOpenPage => 'Open the page';
+
+  @override
+  String qrTagsTitle(String pet) {
+    return 'QR tags for $pet';
+  }
+
+  @override
+  String get qrTagsSubtitle => 'Cut out a tag and fix it to the collar';
+
+  @override
+  String get qrTagsFooter =>
+      'Made with PawSetu. Scanning a tag never shows the family\'s phone number.';
+
+  @override
+  String get qrTagScanLine => 'If I\'m alone, scan me to tell my family';
+
+  @override
+  String posterTitle(String pet) {
+    return 'Lost poster for $pet';
+  }
+
+  @override
+  String posterHeadline(String species) {
+    return 'Lost $species';
+  }
+
+  @override
+  String posterLastSeen(String area, String when) {
+    return 'Last seen near $area, $when';
+  }
+
+  @override
+  String get posterScan => 'Seen me? Scan this';
+
+  @override
+  String get posterScanBody =>
+      'Send a message or share where you saw me. My family gets it right away.';
+
+  @override
+  String get lostTagInactive => 'This tag isn\'t active';
+
+  @override
+  String get lostTagInactiveHint =>
+      'The link may be old or mistyped. If you found a pet, take them to the nearest vet clinic: they can scan for a microchip.';
+
+  @override
+  String get finderDemoNote =>
+      'Demo page: messages and locations go to the Demo Outbox, not to a real family.';
+
+  @override
+  String get finderDemoSuffix => '(Demo)';
+
+  @override
+  String finderLostHeadline(String pet) {
+    return '$pet is lost';
+  }
+
+  @override
+  String finderLastSeen(String area, String when) {
+    return 'Last seen near $area · $when';
+  }
+
+  @override
+  String finderHello(String pet) {
+    return 'Hi, I\'m $pet!';
+  }
+
+  @override
+  String finderHelloLost(String pet) {
+    return 'I\'m $pet. Please help me get home!';
+  }
+
+  @override
+  String get finderAsk =>
+      'If I\'m alone, please tell my family. They\'ll come for me.';
+
+  @override
+  String get finderLostAsk =>
+      'My family is looking for me. If you can, keep me safe and send them a message or your location.';
+
+  @override
+  String get finderContact => 'Contact my family';
+
+  @override
+  String get finderShareLocation => 'Share my location';
+
+  @override
+  String get finderPrivacy =>
+      'PawSetu passes your message on. The family\'s number stays private; leave yours only if you want a call back.';
+
+  @override
+  String get finderTips =>
+      'Offer water and shade, keep the pet on a lead or in a closed space, and don\'t chase a scared pet.';
+
+  @override
+  String get finderContactHint =>
+      'Your message goes straight to the family in the PawSetu app.';
+
+  @override
+  String get finderMessageLabel => 'Your message';
+
+  @override
+  String finderMessageStart(String pet) {
+    return 'Hi, I found $pet near ';
+  }
+
+  @override
+  String get finderYourName => 'Your name (optional)';
+
+  @override
+  String get finderYourPhone => 'Your phone (optional)';
+
+  @override
+  String get finderPhoneHelper => 'Only if you\'d like the family to call you';
+
+  @override
+  String get finderSend => 'Send';
+
+  @override
+  String finderSent(String pet) {
+    return 'Message sent to $pet\'s family. Thank you!';
+  }
+
+  @override
+  String finderLocationSent(String pet) {
+    return 'Location sent to $pet\'s family. Thank you!';
+  }
+
+  @override
+  String get finderTooMany =>
+      'Too many messages for this tag right now. Please try again in an hour.';
+
+  @override
+  String get finderWhereSeen => 'Where are you?';
+
+  @override
+  String get finderLocationOff =>
+      'Your location is off. Choose the area and add a landmark.';
+
+  @override
+  String get finderLandmark => 'Landmark';
+
+  @override
+  String get finderLandmarkHint => 'For example: near the metro station';
+
+  @override
+  String finderMessageTitle(String pet) {
+    return 'Message about $pet from someone who scanned the tag';
+  }
+
+  @override
+  String finderFrom(String from) {
+    return 'from $from';
+  }
+
+  @override
+  String finderSightingTitle(String pet) {
+    return 'Someone shared where they saw $pet';
+  }
+
+  @override
+  String get devDemoNote =>
+      'Demo devices: the readings are simulated so you can try everything.';
+
+  @override
+  String get devAdd => 'Add a device';
+
+  @override
+  String get devNoneTitle => 'No devices yet';
+
+  @override
+  String get devNoneBody =>
+      'Pair a GPS collar, activity tracker, feeder, water fountain, camera or litter box.';
+
+  @override
+  String get devGpsCollar => 'GPS collar';
+
+  @override
+  String get devGpsCollarHint => 'Live location and a safe-zone alert';
+
+  @override
+  String get devActivityTracker => 'Activity tracker';
+
+  @override
+  String get devActivityTrackerHint => 'Steps and active minutes';
+
+  @override
+  String get devFeeder => 'Smart feeder';
+
+  @override
+  String get devFeederHint => 'Meals on time, even when you\'re out';
+
+  @override
+  String get devFountain => 'Water fountain';
+
+  @override
+  String get devFountainHint => 'Water level and filter reminders';
+
+  @override
+  String get devCamera => 'Pet camera';
+
+  @override
+  String get devCameraHint => 'See your pet while you\'re away';
+
+  @override
+  String get devLitterBox => 'Smart litter box';
+
+  @override
+  String get devLitterBoxHint => 'Visits and cleaning reminders';
+
+  @override
+  String get devPairDemo =>
+      'Demo pairing: we\'ll find a demo device for you. Nothing connects over Bluetooth.';
+
+  @override
+  String get devStepType => '1. What kind of device?';
+
+  @override
+  String get devStepPet => '2. Which pet is it for?';
+
+  @override
+  String get devStepFind => '3. Find the device';
+
+  @override
+  String get devStepName => '4. Name it';
+
+  @override
+  String get devNotForAll =>
+      'Some pets are greyed out because this device doesn\'t suit them.';
+
+  @override
+  String get devSearch => 'Search for the device';
+
+  @override
+  String get devSearching => 'Searching nearby…';
+
+  @override
+  String devDefaultName(String pet, String type) {
+    return '$pet\'s $type';
+  }
+
+  @override
+  String get devNameLabel => 'Device name';
+
+  @override
+  String devSafeZoneRadius(int metres) {
+    return 'Safe zone: $metres m around home';
+  }
+
+  @override
+  String get devSafeZoneHint =>
+      'You\'ll get an alert as soon as the collar leaves this circle.';
+
+  @override
+  String get devPair => 'Pair device';
+
+  @override
+  String devPaired(String name) {
+    return '$name is paired';
+  }
+
+  @override
+  String get devLiveTitle => 'Coming in Version 2';
+
+  @override
+  String get devLiveBody =>
+      'Real devices connect in the live version. For now, try the demo devices.';
+
+  @override
+  String get devConnected => 'Connected';
+
+  @override
+  String devInsideZone(int metres) {
+    return 'Inside the safe zone · $metres m from home';
+  }
+
+  @override
+  String devOutsideZone(int metres) {
+    return 'Outside the safe zone! $metres m from home';
+  }
+
+  @override
+  String devStepsToday(String steps) {
+    return '$steps steps today';
+  }
+
+  @override
+  String devNextMeal(String time) {
+    return 'Next meal at $time';
+  }
+
+  @override
+  String devWaterLevel(int pct) {
+    return 'Water level: $pct%';
+  }
+
+  @override
+  String get devCameraReady => 'Ready';
+
+  @override
+  String devLitterVisits(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count visits today',
+      one: '1 visit today',
+      zero: 'No visits today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String devUpdated(String time) {
+    return 'Updated $time';
+  }
+
+  @override
+  String get devLocate => 'Locate now';
+
+  @override
+  String get devLocated => 'Location updated';
+
+  @override
+  String get devEditZone => 'Edit safe zone';
+
+  @override
+  String get devNoZone => 'No safe zone set yet. Edit it to get alerts.';
+
+  @override
+  String get devAlertSent =>
+      'Everyone looking after this pet got an alert (push and SMS).';
+
+  @override
+  String get devBackInside => 'Back inside the safe zone.';
+
+  @override
+  String get devDemoControls => 'Demo controls';
+
+  @override
+  String get devDemoControlsHint =>
+      'Try the safe-zone alert without leaving home.';
+
+  @override
+  String devDemoWalkOut(String pet) {
+    return 'Demo: walk $pet out of the safe zone';
+  }
+
+  @override
+  String devDemoComeHome(String pet) {
+    return 'Demo: bring $pet home';
+  }
+
+  @override
+  String get devToday => 'Today';
+
+  @override
+  String devActiveMinutes(int active, int goal) {
+    return '$active of $goal active minutes';
+  }
+
+  @override
+  String get devNoSessions => 'No walks or play noticed yet today.';
+
+  @override
+  String devWalkSession(int minutes, String km) {
+    return 'Walk · $minutes min · $km km';
+  }
+
+  @override
+  String devPlaySession(int minutes) {
+    return 'Play · $minutes min';
+  }
+
+  @override
+  String get devInRoutine => 'Added to the daily routine';
+
+  @override
+  String devFlowsToRoutine(String pet) {
+    return 'Walks and play from this device are added to $pet\'s daily routine automatically.';
+  }
+
+  @override
+  String devSynced(int count, String pet) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count activities',
+      one: '1 activity',
+    );
+    return '$_temp0 added to $pet\'s routine';
+  }
+
+  @override
+  String devHopper(int pct) {
+    return 'Food left in the feeder: $pct%';
+  }
+
+  @override
+  String get devMealsToday => 'Meals today';
+
+  @override
+  String get devNoMealsYet => 'No meals served yet today.';
+
+  @override
+  String devMealGrams(int grams) {
+    return '$grams g served';
+  }
+
+  @override
+  String get devFeedNow => 'Feed a small portion now';
+
+  @override
+  String devFed(String pet) {
+    return 'A small portion was served to $pet and added to today\'s meals.';
+  }
+
+  @override
+  String devFilterDays(int days) {
+    return 'Filter change in $days days';
+  }
+
+  @override
+  String get devRefillSoon => 'Water is running low. Refill the fountain soon.';
+
+  @override
+  String get devCameraPlaceholder =>
+      'Live video arrives with real cameras in Version 2.';
+
+  @override
+  String get devSnapshot => 'Take a snapshot';
+
+  @override
+  String get devSnapshotDemo =>
+      'Demo: a real camera would send a photo of your pet here.';
+
+  @override
+  String devLastVisit(String time) {
+    return 'Last visit at $time';
+  }
+
+  @override
+  String get devCleanSoon => 'Clean soon';
+
+  @override
+  String get devLitterClean => 'Clean';
+
+  @override
+  String get devRemove => 'Remove device';
+
+  @override
+  String devRemoveTitle(String name) {
+    return 'Remove $name?';
+  }
+
+  @override
+  String get devRemoveBody =>
+      'It will stop sending data. Logs already in the routine stay.';
+
+  @override
+  String zoneLeftTitle(String pet) {
+    return '$pet has left the safe zone';
+  }
+
+  @override
+  String zoneLeftBody(String device, int metres) {
+    return '$device: now $metres m from home. Tap to see where.';
+  }
+
+  @override
+  String zoneBackTitle(String pet) {
+    return '$pet is back in the safe zone';
+  }
+
+  @override
+  String get toxChocolateName => 'Chocolate';
+
+  @override
+  String get toxChocolateWhy =>
+      'Has theobromine and caffeine, which cause vomiting, a racing heart and fits. Dark chocolate and cocoa powder are the most dangerous.';
+
+  @override
+  String get toxGrapesName => 'Grapes and raisins';
+
+  @override
+  String get toxGrapesWhy =>
+      'Even a few grapes or raisins (kishmish) can cause sudden kidney failure in dogs and cats. Birds and rabbits: only a tiny piece as a rare treat.';
+
+  @override
+  String get toxOnionGarlicName => 'Onion and garlic';
+
+  @override
+  String get toxOnionGarlicWhy =>
+      'Raw, cooked or powdered, and in curries and gravies too, they damage red blood cells and cause weakness days later.';
+
+  @override
+  String get toxXylitolName => 'Xylitol (sugar-free sweetener)';
+
+  @override
+  String get toxXylitolWhy =>
+      'Found in sugar-free gum, mints, some peanut butters and medicines. In dogs it causes a sudden drop in blood sugar and liver damage. Keep it away from all pets.';
+
+  @override
+  String get toxAlcoholName => 'Alcohol';
+
+  @override
+  String get toxAlcoholWhy =>
+      'Even small amounts cause vomiting, wobbliness, breathing problems and coma. Raw bread dough with yeast also makes alcohol in the stomach.';
+
+  @override
+  String get toxCaffeineName => 'Tea, coffee and caffeine';
+
+  @override
+  String get toxCaffeineWhy =>
+      'Tea, coffee, energy drinks and caffeine tablets cause restlessness, a racing heart and fits.';
+
+  @override
+  String get toxAvocadoName => 'Avocado';
+
+  @override
+  String get toxAvocadoWhy =>
+      'Very dangerous for birds and rabbits: it can damage the heart. For dogs and cats the stone can block the gut, and the skin and leaves upset the stomach.';
+
+  @override
+  String get toxCookedBonesName => 'Cooked bones';
+
+  @override
+  String get toxCookedBonesWhy =>
+      'Cooked chicken or mutton bones splinter and can choke your pet or tear the gut. Never give cooked bones.';
+
+  @override
+  String get toxMilkName => 'Milk';
+
+  @override
+  String get toxMilkWhy =>
+      'Most adult cats and dogs can\'t digest milk well and get loose motions. Don\'t give milk to birds or rabbits.';
+
+  @override
+  String get toxSaltySnacksName => 'Salty snacks (namkeen, chips)';
+
+  @override
+  String get toxSaltySnacksWhy =>
+      'Namkeen, chips and papad cause thirst and vomiting; large amounts can cause salt poisoning. Birds are especially sensitive.';
+
+  @override
+  String get toxSpicyFoodName => 'Spicy food';
+
+  @override
+  String get toxSpicyFoodWhy =>
+      'Chilli and masala upset the stomach and cause vomiting and loose motions. Curries usually contain onion and garlic too.';
+
+  @override
+  String get toxFattyFoodName => 'Fried and fatty food';
+
+  @override
+  String get toxFattyFoodWhy =>
+      'Fried snacks, ghee, fat trimmings and rich leftovers can cause pancreatitis, a painful swelling of the pancreas.';
+
+  @override
+  String get toxSweetsName => 'Sweets (mithai)';
+
+  @override
+  String get toxSweetsWhy =>
+      'Sugary sweets cause weight gain and tummy upsets, and many contain ghee, chocolate, raisins or sugar-free sweeteners.';
+
+  @override
+  String get toxFruitSeedsName => 'Fruit stones and seeds';
+
+  @override
+  String get toxFruitSeedsWhy =>
+      'Mango stones, apple seeds and the stones of plums, peaches and cherries can choke or block the gut, and some contain cyanide.';
+
+  @override
+  String get toxTomatoName => 'Tomato';
+
+  @override
+  String get toxTomatoWhy =>
+      'A little ripe tomato is usually fine. Green tomatoes, leaves and stems are harmful.';
+
+  @override
+  String get toxPeanutsName => 'Peanuts';
+
+  @override
+  String get toxPeanutsWhy =>
+      'Only plain, unsalted peanuts, a few at a time. Salted or masala peanuts are not safe, and peanut butter must not contain xylitol.';
+
+  @override
+  String get toxMangoName => 'Mango';
+
+  @override
+  String get toxMangoWhy =>
+      'Ripe mango flesh is fine as a small treat. Remove the skin and the stone. Too much causes loose motions.';
+
+  @override
+  String get toxAppleName => 'Apple';
+
+  @override
+  String get toxAppleWhy =>
+      'Apple slices without the seeds and core are a healthy, crunchy treat.';
+
+  @override
+  String get toxBananaName => 'Banana';
+
+  @override
+  String get toxBananaWhy =>
+      'A small piece is a fine treat. It is high in sugar, so keep it small.';
+
+  @override
+  String get toxWatermelonName => 'Watermelon';
+
+  @override
+  String get toxWatermelonWhy =>
+      'Seedless pieces without the rind make a cooling summer treat.';
+
+  @override
+  String get toxCarrotName => 'Carrot';
+
+  @override
+  String get toxCarrotWhy =>
+      'Raw or cooked carrot is a healthy treat. For rabbits, keep carrot as a small treat, because it is sugary.';
+
+  @override
+  String get toxRiceName => 'Plain cooked rice';
+
+  @override
+  String get toxRiceWhy =>
+      'Plain rice with no salt, ghee, onion or masala is gentle on the stomach in small amounts. Rabbits need hay, not rice.';
+
+  @override
+  String get toxEggName => 'Cooked egg';
+
+  @override
+  String get toxEggWhy =>
+      'A fully cooked egg is a good protein treat. Avoid raw egg. Rabbits eat only plants.';
+
+  @override
+  String get toxLilyName => 'Lilies';
+
+  @override
+  String get toxLilyWhy =>
+      'Every part of a lily, even the pollen or the vase water, can cause kidney failure in cats. Keep lilies out of homes with cats.';
+
+  @override
+  String get toxSagoPalmName => 'Sago palm (cycas)';
+
+  @override
+  String get toxSagoPalmWhy =>
+      'Every part is poisonous, the seeds most of all. It causes vomiting and liver failure.';
+
+  @override
+  String get toxOleanderName => 'Oleander (kaner)';
+
+  @override
+  String get toxOleanderWhy =>
+      'Oleander affects the heart. A few leaves or flowers can be fatal.';
+
+  @override
+  String get toxCastorName => 'Castor plant (arandi)';
+
+  @override
+  String get toxCastorWhy =>
+      'Castor seeds contain ricin. Chewing even one or two seeds can be fatal.';
+
+  @override
+  String get toxDaturaName => 'Datura (dhatura)';
+
+  @override
+  String get toxDaturaWhy =>
+      'The seeds and flowers cause a racing heart, wide pupils, confusion and fits.';
+
+  @override
+  String get toxLantanaName => 'Lantana';
+
+  @override
+  String get toxLantanaWhy =>
+      'The berries and leaves of this common hedge plant can damage the liver.';
+
+  @override
+  String get toxAloeVeraName => 'Aloe vera';
+
+  @override
+  String get toxAloeVeraWhy =>
+      'The clear gel is usually fine, but the bitter yellow sap under the skin causes vomiting and loose motions.';
+
+  @override
+  String get toxMoneyPlantName => 'Money plant';
+
+  @override
+  String get toxMoneyPlantWhy =>
+      'Chewing the leaves causes mouth pain, drooling and vomiting.';
+
+  @override
+  String get toxSnakePlantName => 'Snake plant';
+
+  @override
+  String get toxSnakePlantWhy =>
+      'Chewing it can cause drooling, vomiting and loose motions.';
+
+  @override
+  String get toxMarigoldName => 'Marigold (genda)';
+
+  @override
+  String get toxMarigoldWhy =>
+      'Chewing marigolds can cause mild mouth irritation and an upset stomach.';
+
+  @override
+  String get toxTulsiName => 'Tulsi (holy basil)';
+
+  @override
+  String get toxTulsiWhy =>
+      'Tulsi is not known to be poisonous to pets. Large amounts may still upset the stomach.';
+
+  @override
+  String get toxArecaPalmName => 'Areca palm';
+
+  @override
+  String get toxArecaPalmWhy => 'A pet-friendly houseplant.';
+
+  @override
+  String get toxSpiderPlantName => 'Spider plant';
+
+  @override
+  String get toxSpiderPlantWhy =>
+      'Not poisonous, though cats love to chew it and may vomit a little.';
+
+  @override
+  String get toxRatPoisonName => 'Rat poison';
+
+  @override
+  String get toxRatPoisonWhy =>
+      'Causes internal bleeding or fits, sometimes days later. Take the packet to the vet.';
+
+  @override
+  String get toxHumanMedicinesName => 'Human medicines';
+
+  @override
+  String get toxHumanMedicinesWhy =>
+      'Paracetamol and painkillers like ibuprofen are poisonous to pets. One paracetamol tablet can kill a cat. Give only medicines your vet prescribes.';
+
+  @override
+  String get toxMosquitoRepellentName => 'Mosquito coils and vaporisers';
+
+  @override
+  String get toxMosquitoRepellentWhy =>
+      'The fumes can harm birds\' lungs. Use them away from pets and keep the room aired.';
+
+  @override
+  String get toxMothballsName => 'Naphthalene balls';
+
+  @override
+  String get toxMothballsWhy =>
+      'Poisonous if chewed, and the fumes harm birds. Keep them in closed cupboards.';
+
+  @override
+  String get toxNonStickFumesName => 'Non-stick pan fumes';
+
+  @override
+  String get toxNonStickFumesWhy =>
+      'An overheated non-stick pan gives off fumes that can kill a bird within minutes. Keep birds out of the kitchen.';
+
+  @override
+  String get toxPhenylName => 'Phenyl and floor cleaners';
+
+  @override
+  String get toxPhenylWhy =>
+      'Phenyl and many floor cleaners contain phenols, which are especially poisonous to cats. Let floors dry before pets walk on them.';
 }

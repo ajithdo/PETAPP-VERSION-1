@@ -5215,5 +5215,843 @@
   "selCommission": "PawSetu commission",
   "selYourPayout": "Your payout",
   "selShipTo": "Ship to",
-  "selPhoneHidden": "The customer's phone is hidden; the courier calls through PawSetu."
+  "selPhoneHidden": "The customer's phone is hidden; the courier calls through PawSetu.",
+  "faChokingTitle": "Choking",
+  "faChokingSigns": "Pawing at the mouth, gagging, coughing, blue gums or struggling to breathe.",
+  "faChokingSteps": "Stay calm and keep your pet still. If they can still cough, let them try to clear it.\nOpen the mouth gently and look inside with a torch.\nIf you can see the object and reach it easily, hook it out with your fingers. Don't push it deeper.\nSmall dog or cat: hold them upside down by the hips and give 5 sharp taps between the shoulder blades.\nLarge dog: stand behind, put your fist just below the ribs and give 5 quick pushes inwards and upwards.\nCheck the mouth again. Go to a vet straight away, even if the object came out.",
+  "faChokingAvoid": "Don't reach blindly down the throat.\nDon't give food or water.\nDon't pull on string or thread you see; it may be caught on something inside.",
+  "faChokingVet": "Always see a vet after choking, even if your pet seems fine. Use SOS if they collapse or can't breathe.",
+  "faPoisoningTitle": "Poisoning",
+  "faPoisoningSigns": "Vomiting, drooling, shaking, wobbly walking, fits, sudden tiredness, or a chewed packet nearby.",
+  "faPoisoningSteps": "Move your pet away from the poison and remove any left in the mouth.\nFind out what was eaten, how much and when. Keep the packet or take a photo of the plant.\nCall your vet now, or use SOS to reach the nearest clinic.\nIf the poison is on the fur or skin, rinse it off with plenty of lukewarm water.\nKeep your pet warm and quiet on the way to the clinic.",
+  "faPoisoningAvoid": "Don't make your pet vomit unless a vet tells you to.\nDon't give milk, salt, oil or home remedies.\nDon't wait for signs; some poisons act hours later.",
+  "faPoisoningVet": "Go now. With poisons, early treatment saves lives.",
+  "faHeatstrokeTitle": "Heatstroke",
+  "faHeatstrokeSigns": "Heavy panting, thick drool, bright red or pale gums, weakness, vomiting or collapse on a hot day.",
+  "faHeatstrokeSteps": "Move your pet into shade or a cool room right away.\nPour cool (not ice-cold) water over the body, especially the belly, neck and paws.\nUse a fan or wet towels, and change the towels often so they don't trap heat.\nOffer small sips of cool water; don't force it.\nGo to a vet even if your pet seems better.",
+  "faHeatstrokeAvoid": "Don't use ice or ice-cold water.\nDon't cover your pet with a wet towel and leave it there.\nDon't walk in the afternoon heat, and never leave a pet in a parked car.",
+  "faHeatstrokeVet": "Heatstroke can harm organs hours later. See a vet today. Flat-faced breeds are at higher risk.",
+  "faBleedingTitle": "Bleeding",
+  "faBleedingSigns": "Blood from a wound, paw, ear or nose.",
+  "faBleedingSteps": "Press a clean cloth or gauze firmly on the wound.\nKeep pressing for at least 5 minutes without lifting to check.\nIf blood soaks through, add more cloth on top and keep pressing.\nWrap a bandage firmly, but not too tight, to hold it in place.\nKeep your pet calm and go to a vet.",
+  "faBleedingAvoid": "Don't tie a tight band (tourniquet) unless a vet tells you to.\nDon't pull out anything stuck in the wound.\nDon't put turmeric, powders or creams on a deep wound.",
+  "faBleedingVet": "Use SOS for heavy bleeding, spurting blood or bleeding that doesn't slow after 10 minutes of pressure.",
+  "faFractureTitle": "Broken bones",
+  "faFractureSigns": "Not putting weight on a leg, swelling, a strange angle, crying when touched.",
+  "faFractureSteps": "Keep your pet as still as possible. A frightened pet may bite, so be gentle.\nCarry small pets in a box or basket lined with a towel.\nFor a large dog, use a board or a blanket held like a stretcher.\nCover any open wound with a clean cloth.\nGo to a vet straight away.",
+  "faFractureAvoid": "Don't try to straighten the bone.\nDon't give human painkillers; many are poisonous to pets.\nDon't let your pet walk on the leg.",
+  "faFractureVet": "Every suspected broken bone needs a vet, and usually an X-ray.",
+  "faSeizureTitle": "Fits (seizures)",
+  "faSeizureSigns": "Falling over, stiff or jerking legs, paddling, drooling, not responding.",
+  "faSeizureSteps": "Stay calm and note the time the fit started.\nMove furniture and sharp things away. Dim the lights and keep it quiet.\nKeep your hands away from the mouth.\nAfter the fit, keep your pet warm and let them rest; they may be confused for a while.\nCall your vet and tell them how long it lasted.",
+  "faSeizureAvoid": "Don't hold your pet down.\nDon't put anything in the mouth; pets don't swallow their tongue.\nDon't give food or water until they are fully awake.",
+  "faSeizureVet": "Use SOS if a fit lasts more than 5 minutes or fits come one after another. A first fit always needs a vet visit.",
+  "faBurnTitle": "Burns",
+  "faBurnSigns": "Red or raw skin, blisters, singed fur, or contact with hot liquid, fire or chemicals.",
+  "faBurnSteps": "Cool the burn under cool running water for 10 minutes.\nFor a chemical burn, rinse with plenty of water for 15 minutes; wear gloves.\nCover loosely with a clean, damp, lint-free cloth.\nKeep your pet warm by wrapping the rest of the body, and go to a vet.",
+  "faBurnAvoid": "Don't use ice, butter, oil, toothpaste or turmeric.\nDon't pop blisters.\nDon't let your pet lick the burn.",
+  "faBurnVet": "Burns can be deeper than they look. See a vet the same day.",
+  "faBiteTitle": "Snake or insect bite",
+  "faBiteSigns": "Sudden swelling, pain, puncture marks, bleeding, weakness, drooling or trouble breathing.",
+  "faBiteSteps": "Keep your pet calm and as still as possible; carry them if you can.\nKeep the bitten part level with or below the heart.\nTake off the collar if the neck or face is swelling.\nFor a bee sting, scrape the sting out with a card.\nGo to the nearest clinic straight away. Use SOS to find one that's open.\nIf it's safe, note the snake's colour and size, or take a photo from a distance.",
+  "faBiteAvoid": "Don't cut the wound or try to suck out venom.\nDon't tie a tight band above the bite.\nDon't try to catch the snake.",
+  "faBiteVet": "Every snake bite is an emergency. Go even if your pet seems fine.",
+  "faTickTitle": "Removing a tick",
+  "faTickSigns": "A small grey-brown bump stuck to the skin, often around the ears, neck, armpits or between the toes.",
+  "faTickSteps": "Wear gloves if you can. Part the fur so you can see the tick clearly.\nUse fine tweezers or a tick hook to grip the tick close to the skin.\nPull straight out, slowly and steadily, without twisting or squeezing.\nClean the spot with antiseptic and wash your hands.\nDrop the tick in alcohol, or seal it in tape before throwing it away.\nWatch for fever, tiredness or pale gums over the next 3 weeks.",
+  "faTickAvoid": "Don't burn the tick or cover it in oil, kerosene or petrol.\nDon't squeeze the tick's body.\nDon't crush ticks with bare fingers.",
+  "faTickVet": "See a vet if your pet gets a fever, is tired or off food, or has many ticks. Ask about tick prevention.",
+  "clearSearch": "Clear search",
+  "closedNow": "Closed now",
+  "copy": "Copy",
+  "openInMaps": "Open in Maps",
+  "draftVetReview": "Draft, to be reviewed by a vet",
+  "sosCallNearest": "Call nearest clinic",
+  "sosGetAddress": "Get nearest clinic address",
+  "sosFinding": "Finding clinics near you…",
+  "sosLocating": "Finding where you are…",
+  "sosUsingGps": "Using your current location",
+  "sosUsingLastKnown": "Using your last known location (from {time})",
+  "@sosUsingLastKnown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sosUsingArea": "Location is off. Showing clinics near {area}.",
+  "@sosUsingArea": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "sosLocationOffHint": "Wrong area? Change it so the list is right.",
+  "sosTryLocation": "Try my location again",
+  "sosChangeArea": "Change area",
+  "sosSavedClinics": "Weak internet: showing clinics saved on {when}.",
+  "@sosSavedClinics": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sosNoClinics": "No clinics found nearby. Try another area.",
+  "sosCallClinic": "Call {name}",
+  "@sosCallClinic": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sosAway": "{km} away",
+  "@sosAway": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "sosDemoCall": "Demo: this would call {phone}. No real call is made in the demo.",
+  "@sosDemoCall": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "sosShowVet": "Show this to the vet",
+  "firstAidTitle": "First aid",
+  "firstAidOfflineHint": "Step-by-step guides that work without internet",
+  "firstAidOffline": "Works without internet",
+  "firstAidEmergencyNote": "Not breathing, collapsed or bleeding heavily? Hold SOS now and go to a clinic. These guides help on the way.",
+  "firstAidSigns": "Signs",
+  "firstAidWhatToDo": "What to do",
+  "firstAidAvoid": "Don't",
+  "firstAidWhenVet": "When to see a vet",
+  "firstAidTalkToVet": "Talk to a vet now",
+  "toxTitle": "Is it safe?",
+  "toxTileHint": "Check foods, plants and household things for your pet",
+  "toxSearchLabel": "Food, plant or household item",
+  "toxSearchHint": "For example: grapes, lily, chocolate",
+  "toxForWhichPet": "For which pet?",
+  "toxKindAll": "All",
+  "toxKindFood": "Food",
+  "toxKindPlant": "Plants",
+  "toxKindHome": "Around the home",
+  "toxDanger": "Dangerous",
+  "toxCaution": "Be careful",
+  "toxSafe": "Safe in small amounts",
+  "toxForEachPet": "For each kind of pet",
+  "toxAteIt": "Already eaten? Don't wait for signs. Get help now and take the packet or a photo with you.",
+  "toxPoisoningGuide": "Open the poisoning guide",
+  "toxNoMatch": "Not in our list yet",
+  "toxNoMatchHint": "If you're not sure, don't give it, and ask a vet.",
+  "lostIntro": "Every pet gets a QR tag. Anyone who scans it sees a page with your pet's photo and can message you or share where they are. Your phone number stays hidden.",
+  "lostSafeAtHome": "Safe at home",
+  "lostSinceShort": "Lost since {when}",
+  "@lostSinceShort": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "lostPetTitle": "{pet} · QR tag",
+  "@lostPetTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostIfMissing": "If {pet} goes missing",
+  "@lostIfMissing": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostIfMissingBody": "Mark them lost to share a lost page, alert PawSetu users nearby (if you choose) and make a poster in one tap.",
+  "lostMarkLost": "Mark {pet} as lost",
+  "@lostMarkLost": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostWhereSeen": "Where was your pet last seen?",
+  "lostUsingGps": "Using where you are now",
+  "lostNearMe": "Near my location",
+  "lostWhenSeen": "When?",
+  "lostWhenNow": "Just now",
+  "lostWhenHour": "About an hour ago",
+  "lostWhenMorning": "This morning",
+  "lostWhenYesterday": "Yesterday evening",
+  "lostNoteLabel": "Anything that helps people recognise them",
+  "lostNoteHint": "For example: red collar, shy with strangers",
+  "lostAlertNearby": "Alert PawSetu users within 5 km",
+  "lostAlertNearbyHint": "Only people who turned on lost-pet alerts get it. They see the lost page, never your number.",
+  "lostMarkLostConfirm": "Mark as lost",
+  "lostMarked": "{pet} is marked lost. Your family has been told.",
+  "@lostMarked": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostDemoAlert": "Demo: the alert reached {count} PawSetu users within 5 km of {area} who turned on lost-pet alerts. The messages are in the Demo Outbox; no real alert was sent.",
+  "@lostDemoAlert": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "lostBannerTitle": "{pet} is marked lost",
+  "@lostBannerTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostBannerBody": "Since {when}, near {area}.",
+  "@lostBannerBody": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      },
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "lostAlertsSent": "{count, plural, =0{No PawSetu users nearby were alerted} =1{Alert sent to 1 person nearby} other{Alert sent to {count} people nearby}}",
+  "@lostAlertsSent": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "lostSightings": "Sightings",
+  "lostNoSightings": "No sightings yet. Share the lost page and the poster so more people can help.",
+  "lostSightingNoDetails": "Location shared",
+  "lostMakePoster": "Make a poster (PDF)",
+  "lostShareLink": "Share the lost page",
+  "lostShareText": "Please help! {pet} is lost near {area}. If you see them, open {url}",
+  "@lostShareText": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "area": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "lostMarkFound": "{pet} is found",
+  "@lostMarkFound": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostFoundConfirmTitle": "Is {pet} home safe?",
+  "@lostFoundConfirmTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostFoundConfirmBody": "We'll take down the lost page and tell your family.",
+  "lostFoundConfirm": "Yes, found",
+  "lostWelcomeHome": "Welcome home, {pet}!",
+  "@lostWelcomeHome": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostFamilyTitle": "{pet} is lost",
+  "@lostFamilyTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostFamilyBody": "{name} marked them lost near {area}. Open the lost page to share it.",
+  "@lostFamilyBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "lostFoundTitle": "Good news: {pet} is home safe",
+  "@lostFoundTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostNearbyTitle": "Have you seen {pet}? A pet is lost near you",
+  "@lostNearbyTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "lostNearbyBody": "Last seen near {area}. Tap to see the photo and tell the family.",
+  "@lostNearbyBody": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "qrTagHint": "Print this for {pet}'s collar tag. Anyone who scans it can message you without seeing your number.",
+  "@qrTagHint": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "qrForPet": "QR code for {pet}'s tag",
+  "@qrForPet": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "qrPrintTags": "Print QR tags (PDF)",
+  "qrOpenPage": "Open the page",
+  "qrTagsTitle": "QR tags for {pet}",
+  "@qrTagsTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "qrTagsSubtitle": "Cut out a tag and fix it to the collar",
+  "qrTagsFooter": "Made with PawSetu. Scanning a tag never shows the family's phone number.",
+  "qrTagScanLine": "If I'm alone, scan me to tell my family",
+  "posterTitle": "Lost poster for {pet}",
+  "@posterTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "posterHeadline": "Lost {species}",
+  "@posterHeadline": {
+    "placeholders": {
+      "species": {
+        "type": "String"
+      }
+    }
+  },
+  "posterLastSeen": "Last seen near {area}, {when}",
+  "@posterLastSeen": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "posterScan": "Seen me? Scan this",
+  "posterScanBody": "Send a message or share where you saw me. My family gets it right away.",
+  "lostTagInactive": "This tag isn't active",
+  "lostTagInactiveHint": "The link may be old or mistyped. If you found a pet, take them to the nearest vet clinic: they can scan for a microchip.",
+  "finderDemoNote": "Demo page: messages and locations go to the Demo Outbox, not to a real family.",
+  "finderDemoSuffix": "(Demo)",
+  "finderLostHeadline": "{pet} is lost",
+  "@finderLostHeadline": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "finderLastSeen": "Last seen near {area} · {when}",
+  "@finderLastSeen": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      },
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "finderHello": "Hi, I'm {pet}!",
+  "@finderHello": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "finderHelloLost": "I'm {pet}. Please help me get home!",
+  "@finderHelloLost": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "finderAsk": "If I'm alone, please tell my family. They'll come for me.",
+  "finderLostAsk": "My family is looking for me. If you can, keep me safe and send them a message or your location.",
+  "finderContact": "Contact my family",
+  "finderShareLocation": "Share my location",
+  "finderPrivacy": "PawSetu passes your message on. The family's number stays private; leave yours only if you want a call back.",
+  "finderTips": "Offer water and shade, keep the pet on a lead or in a closed space, and don't chase a scared pet.",
+  "finderContactHint": "Your message goes straight to the family in the PawSetu app.",
+  "finderMessageLabel": "Your message",
+  "finderMessageStart": "Hi, I found {pet} near ",
+  "@finderMessageStart": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "finderYourName": "Your name (optional)",
+  "finderYourPhone": "Your phone (optional)",
+  "finderPhoneHelper": "Only if you'd like the family to call you",
+  "finderSend": "Send",
+  "finderSent": "Message sent to {pet}'s family. Thank you!",
+  "@finderSent": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "finderLocationSent": "Location sent to {pet}'s family. Thank you!",
+  "@finderLocationSent": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "finderTooMany": "Too many messages for this tag right now. Please try again in an hour.",
+  "finderWhereSeen": "Where are you?",
+  "finderLocationOff": "Your location is off. Choose the area and add a landmark.",
+  "finderLandmark": "Landmark",
+  "finderLandmarkHint": "For example: near the metro station",
+  "finderMessageTitle": "Message about {pet} from someone who scanned the tag",
+  "@finderMessageTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "finderFrom": "from {from}",
+  "@finderFrom": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      }
+    }
+  },
+  "finderSightingTitle": "Someone shared where they saw {pet}",
+  "@finderSightingTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "devDemoNote": "Demo devices: the readings are simulated so you can try everything.",
+  "devAdd": "Add a device",
+  "devNoneTitle": "No devices yet",
+  "devNoneBody": "Pair a GPS collar, activity tracker, feeder, water fountain, camera or litter box.",
+  "devGpsCollar": "GPS collar",
+  "devGpsCollarHint": "Live location and a safe-zone alert",
+  "devActivityTracker": "Activity tracker",
+  "devActivityTrackerHint": "Steps and active minutes",
+  "devFeeder": "Smart feeder",
+  "devFeederHint": "Meals on time, even when you're out",
+  "devFountain": "Water fountain",
+  "devFountainHint": "Water level and filter reminders",
+  "devCamera": "Pet camera",
+  "devCameraHint": "See your pet while you're away",
+  "devLitterBox": "Smart litter box",
+  "devLitterBoxHint": "Visits and cleaning reminders",
+  "devPairDemo": "Demo pairing: we'll find a demo device for you. Nothing connects over Bluetooth.",
+  "devStepType": "1. What kind of device?",
+  "devStepPet": "2. Which pet is it for?",
+  "devStepFind": "3. Find the device",
+  "devStepName": "4. Name it",
+  "devNotForAll": "Some pets are greyed out because this device doesn't suit them.",
+  "devSearch": "Search for the device",
+  "devSearching": "Searching nearby…",
+  "devDefaultName": "{pet}'s {type}",
+  "@devDefaultName": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "devNameLabel": "Device name",
+  "devSafeZoneRadius": "Safe zone: {metres} m around home",
+  "@devSafeZoneRadius": {
+    "placeholders": {
+      "metres": {
+        "type": "int"
+      }
+    }
+  },
+  "devSafeZoneHint": "You'll get an alert as soon as the collar leaves this circle.",
+  "devPair": "Pair device",
+  "devPaired": "{name} is paired",
+  "@devPaired": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devLiveTitle": "Coming in Version 2",
+  "devLiveBody": "Real devices connect in the live version. For now, try the demo devices.",
+  "devConnected": "Connected",
+  "devInsideZone": "Inside the safe zone · {metres} m from home",
+  "@devInsideZone": {
+    "placeholders": {
+      "metres": {
+        "type": "int"
+      }
+    }
+  },
+  "devOutsideZone": "Outside the safe zone! {metres} m from home",
+  "@devOutsideZone": {
+    "placeholders": {
+      "metres": {
+        "type": "int"
+      }
+    }
+  },
+  "devStepsToday": "{steps} steps today",
+  "@devStepsToday": {
+    "placeholders": {
+      "steps": {
+        "type": "String"
+      }
+    }
+  },
+  "devNextMeal": "Next meal at {time}",
+  "@devNextMeal": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "devWaterLevel": "Water level: {pct}%",
+  "@devWaterLevel": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
+  "devCameraReady": "Ready",
+  "devLitterVisits": "{count, plural, =0{No visits today} =1{1 visit today} other{{count} visits today}}",
+  "@devLitterVisits": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "devUpdated": "Updated {time}",
+  "@devUpdated": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "devLocate": "Locate now",
+  "devLocated": "Location updated",
+  "devEditZone": "Edit safe zone",
+  "devNoZone": "No safe zone set yet. Edit it to get alerts.",
+  "devAlertSent": "Everyone looking after this pet got an alert (push and SMS).",
+  "devBackInside": "Back inside the safe zone.",
+  "devDemoControls": "Demo controls",
+  "devDemoControlsHint": "Try the safe-zone alert without leaving home.",
+  "devDemoWalkOut": "Demo: walk {pet} out of the safe zone",
+  "@devDemoWalkOut": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "devDemoComeHome": "Demo: bring {pet} home",
+  "@devDemoComeHome": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "devToday": "Today",
+  "devActiveMinutes": "{active} of {goal} active minutes",
+  "@devActiveMinutes": {
+    "placeholders": {
+      "active": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "devNoSessions": "No walks or play noticed yet today.",
+  "devWalkSession": "Walk · {minutes} min · {km} km",
+  "@devWalkSession": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "devPlaySession": "Play · {minutes} min",
+  "@devPlaySession": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "devInRoutine": "Added to the daily routine",
+  "devFlowsToRoutine": "Walks and play from this device are added to {pet}'s daily routine automatically.",
+  "@devFlowsToRoutine": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "devSynced": "{count, plural, =1{1 activity} other{{count} activities}} added to {pet}'s routine",
+  "@devSynced": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "devHopper": "Food left in the feeder: {pct}%",
+  "@devHopper": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
+  "devMealsToday": "Meals today",
+  "devNoMealsYet": "No meals served yet today.",
+  "devMealGrams": "{grams} g served",
+  "@devMealGrams": {
+    "placeholders": {
+      "grams": {
+        "type": "int"
+      }
+    }
+  },
+  "devFeedNow": "Feed a small portion now",
+  "devFed": "A small portion was served to {pet} and added to today's meals.",
+  "@devFed": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "devFilterDays": "Filter change in {days} days",
+  "@devFilterDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "devRefillSoon": "Water is running low. Refill the fountain soon.",
+  "devCameraPlaceholder": "Live video arrives with real cameras in Version 2.",
+  "devSnapshot": "Take a snapshot",
+  "devSnapshotDemo": "Demo: a real camera would send a photo of your pet here.",
+  "devLastVisit": "Last visit at {time}",
+  "@devLastVisit": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "devCleanSoon": "Clean soon",
+  "devLitterClean": "Clean",
+  "devRemove": "Remove device",
+  "devRemoveTitle": "Remove {name}?",
+  "@devRemoveTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devRemoveBody": "It will stop sending data. Logs already in the routine stay.",
+  "zoneLeftTitle": "{pet} has left the safe zone",
+  "@zoneLeftTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "zoneLeftBody": "{device}: now {metres} m from home. Tap to see where.",
+  "@zoneLeftBody": {
+    "placeholders": {
+      "device": {
+        "type": "String"
+      },
+      "metres": {
+        "type": "int"
+      }
+    }
+  },
+  "zoneBackTitle": "{pet} is back in the safe zone",
+  "@zoneBackTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "toxChocolateName": "Chocolate",
+  "toxChocolateWhy": "Has theobromine and caffeine, which cause vomiting, a racing heart and fits. Dark chocolate and cocoa powder are the most dangerous.",
+  "toxGrapesName": "Grapes and raisins",
+  "toxGrapesWhy": "Even a few grapes or raisins (kishmish) can cause sudden kidney failure in dogs and cats. Birds and rabbits: only a tiny piece as a rare treat.",
+  "toxOnionGarlicName": "Onion and garlic",
+  "toxOnionGarlicWhy": "Raw, cooked or powdered, and in curries and gravies too, they damage red blood cells and cause weakness days later.",
+  "toxXylitolName": "Xylitol (sugar-free sweetener)",
+  "toxXylitolWhy": "Found in sugar-free gum, mints, some peanut butters and medicines. In dogs it causes a sudden drop in blood sugar and liver damage. Keep it away from all pets.",
+  "toxAlcoholName": "Alcohol",
+  "toxAlcoholWhy": "Even small amounts cause vomiting, wobbliness, breathing problems and coma. Raw bread dough with yeast also makes alcohol in the stomach.",
+  "toxCaffeineName": "Tea, coffee and caffeine",
+  "toxCaffeineWhy": "Tea, coffee, energy drinks and caffeine tablets cause restlessness, a racing heart and fits.",
+  "toxAvocadoName": "Avocado",
+  "toxAvocadoWhy": "Very dangerous for birds and rabbits: it can damage the heart. For dogs and cats the stone can block the gut, and the skin and leaves upset the stomach.",
+  "toxCookedBonesName": "Cooked bones",
+  "toxCookedBonesWhy": "Cooked chicken or mutton bones splinter and can choke your pet or tear the gut. Never give cooked bones.",
+  "toxMilkName": "Milk",
+  "toxMilkWhy": "Most adult cats and dogs can't digest milk well and get loose motions. Don't give milk to birds or rabbits.",
+  "toxSaltySnacksName": "Salty snacks (namkeen, chips)",
+  "toxSaltySnacksWhy": "Namkeen, chips and papad cause thirst and vomiting; large amounts can cause salt poisoning. Birds are especially sensitive.",
+  "toxSpicyFoodName": "Spicy food",
+  "toxSpicyFoodWhy": "Chilli and masala upset the stomach and cause vomiting and loose motions. Curries usually contain onion and garlic too.",
+  "toxFattyFoodName": "Fried and fatty food",
+  "toxFattyFoodWhy": "Fried snacks, ghee, fat trimmings and rich leftovers can cause pancreatitis, a painful swelling of the pancreas.",
+  "toxSweetsName": "Sweets (mithai)",
+  "toxSweetsWhy": "Sugary sweets cause weight gain and tummy upsets, and many contain ghee, chocolate, raisins or sugar-free sweeteners.",
+  "toxFruitSeedsName": "Fruit stones and seeds",
+  "toxFruitSeedsWhy": "Mango stones, apple seeds and the stones of plums, peaches and cherries can choke or block the gut, and some contain cyanide.",
+  "toxTomatoName": "Tomato",
+  "toxTomatoWhy": "A little ripe tomato is usually fine. Green tomatoes, leaves and stems are harmful.",
+  "toxPeanutsName": "Peanuts",
+  "toxPeanutsWhy": "Only plain, unsalted peanuts, a few at a time. Salted or masala peanuts are not safe, and peanut butter must not contain xylitol.",
+  "toxMangoName": "Mango",
+  "toxMangoWhy": "Ripe mango flesh is fine as a small treat. Remove the skin and the stone. Too much causes loose motions.",
+  "toxAppleName": "Apple",
+  "toxAppleWhy": "Apple slices without the seeds and core are a healthy, crunchy treat.",
+  "toxBananaName": "Banana",
+  "toxBananaWhy": "A small piece is a fine treat. It is high in sugar, so keep it small.",
+  "toxWatermelonName": "Watermelon",
+  "toxWatermelonWhy": "Seedless pieces without the rind make a cooling summer treat.",
+  "toxCarrotName": "Carrot",
+  "toxCarrotWhy": "Raw or cooked carrot is a healthy treat. For rabbits, keep carrot as a small treat, because it is sugary.",
+  "toxRiceName": "Plain cooked rice",
+  "toxRiceWhy": "Plain rice with no salt, ghee, onion or masala is gentle on the stomach in small amounts. Rabbits need hay, not rice.",
+  "toxEggName": "Cooked egg",
+  "toxEggWhy": "A fully cooked egg is a good protein treat. Avoid raw egg. Rabbits eat only plants.",
+  "toxLilyName": "Lilies",
+  "toxLilyWhy": "Every part of a lily, even the pollen or the vase water, can cause kidney failure in cats. Keep lilies out of homes with cats.",
+  "toxSagoPalmName": "Sago palm (cycas)",
+  "toxSagoPalmWhy": "Every part is poisonous, the seeds most of all. It causes vomiting and liver failure.",
+  "toxOleanderName": "Oleander (kaner)",
+  "toxOleanderWhy": "Oleander affects the heart. A few leaves or flowers can be fatal.",
+  "toxCastorName": "Castor plant (arandi)",
+  "toxCastorWhy": "Castor seeds contain ricin. Chewing even one or two seeds can be fatal.",
+  "toxDaturaName": "Datura (dhatura)",
+  "toxDaturaWhy": "The seeds and flowers cause a racing heart, wide pupils, confusion and fits.",
+  "toxLantanaName": "Lantana",
+  "toxLantanaWhy": "The berries and leaves of this common hedge plant can damage the liver.",
+  "toxAloeVeraName": "Aloe vera",
+  "toxAloeVeraWhy": "The clear gel is usually fine, but the bitter yellow sap under the skin causes vomiting and loose motions.",
+  "toxMoneyPlantName": "Money plant",
+  "toxMoneyPlantWhy": "Chewing the leaves causes mouth pain, drooling and vomiting.",
+  "toxSnakePlantName": "Snake plant",
+  "toxSnakePlantWhy": "Chewing it can cause drooling, vomiting and loose motions.",
+  "toxMarigoldName": "Marigold (genda)",
+  "toxMarigoldWhy": "Chewing marigolds can cause mild mouth irritation and an upset stomach.",
+  "toxTulsiName": "Tulsi (holy basil)",
+  "toxTulsiWhy": "Tulsi is not known to be poisonous to pets. Large amounts may still upset the stomach.",
+  "toxArecaPalmName": "Areca palm",
+  "toxArecaPalmWhy": "A pet-friendly houseplant.",
+  "toxSpiderPlantName": "Spider plant",
+  "toxSpiderPlantWhy": "Not poisonous, though cats love to chew it and may vomit a little.",
+  "toxRatPoisonName": "Rat poison",
+  "toxRatPoisonWhy": "Causes internal bleeding or fits, sometimes days later. Take the packet to the vet.",
+  "toxHumanMedicinesName": "Human medicines",
+  "toxHumanMedicinesWhy": "Paracetamol and painkillers like ibuprofen are poisonous to pets. One paracetamol tablet can kill a cat. Give only medicines your vet prescribes.",
+  "toxMosquitoRepellentName": "Mosquito coils and vaporisers",
+  "toxMosquitoRepellentWhy": "The fumes can harm birds' lungs. Use them away from pets and keep the room aired.",
+  "toxMothballsName": "Naphthalene balls",
+  "toxMothballsWhy": "Poisonous if chewed, and the fumes harm birds. Keep them in closed cupboards.",
+  "toxNonStickFumesName": "Non-stick pan fumes",
+  "toxNonStickFumesWhy": "An overheated non-stick pan gives off fumes that can kill a bird within minutes. Keep birds out of the kitchen.",
+  "toxPhenylName": "Phenyl and floor cleaners",
+  "toxPhenylWhy": "Phenyl and many floor cleaners contain phenols, which are especially poisonous to cats. Let floors dry before pets walk on them."
 }

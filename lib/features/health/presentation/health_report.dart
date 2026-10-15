@@ -11,6 +11,7 @@ import '../../pets/domain/pet.dart';
 import '../../pets/presentation/pet_labels.dart';
 import '../../routine/data/routine_repository.dart';
 import '../../routine/domain/routine.dart';
+import '../../shell/presentation/sos_launcher.dart';
 import '../data/health_repository.dart';
 import '../domain/vaccine_schedule.dart';
 import 'health_labels.dart';
@@ -272,8 +273,37 @@ class MedicalCardScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l.medicalCard),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: Space.md),
+            child: SosButton(onActivate: () => openSos(context, ref)),
+          ),
+        ],
+      ),
+      body: PageBody(maxWidth: 560, children: [
+        const SizedBox(height: Space.sm),
+        MedicalSummaryCard(petId: petId),
+        const SizedBox(height: Space.lg),
+        InfoNote(l.medicalCardOffline, icon: Icons.offline_bolt_rounded),
+      ]),
+    );
+  }
+}
+
+/// The medical card itself: shown on the medical card screen and in SOS so
+/// the vet can see it at a glance.
+class MedicalSummaryCard extends ConsumerWidget {
+  const MedicalSummaryCard({super.key, required this.petId});
+  final String petId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
     final pet = ref.watch(petProvider(petId)).value;
-    if (pet == null) return const Scaffold(body: SkeletonList());
+    if (pet == null) return const Skeleton(height: 240);
     final user = ref.watch(currentUserProvider);
     final vaccines = ref.watch(vaccinesProvider(petId)).value ?? const [];
     final meds = ref.watch(medicinesProvider(petId)).value ?? const [];
@@ -286,39 +316,31 @@ class MedicalCardScreen extends ConsumerWidget {
           title: Text(k, style: context.text.bodySmall),
           subtitle: Text(v, style: context.text.bodyLarge?.copyWith(fontWeight: FontWeight.w600, color: color)),
         );
-    return Scaffold(
-      appBar: AppBar(title: Text(l.medicalCard)),
-      body: PageBody(maxWidth: 560, children: [
-        const SizedBox(height: Space.sm),
-        PawCard(
-          borderColor: context.paw.sos,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Row(children: [
-              PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 72),
-              const SizedBox(width: Space.lg),
-              Expanded(
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(pet.name, style: context.text.headlineSmall),
-                  Text('${speciesLabel(context, pet.species)} · ${pet.breedName(context.lang)}', style: context.text.bodySmall),
-                  Text([petAgeLabel(context, pet), if (pet.weightKg != null) Fmt.weight(pet.weightKg!, grams: pet.isBird)].where((s) => s.isNotEmpty).join(' · '),
-                      style: context.text.bodySmall),
-                ]),
-              ),
+    return PawCard(
+      borderColor: context.paw.sos,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(children: [
+          PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 72),
+          const SizedBox(width: Space.lg),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(pet.name, style: context.text.headlineSmall),
+              Text('${speciesLabel(context, pet.species)} · ${pet.breedName(context.lang)}', style: context.text.bodySmall),
+              Text([petAgeLabel(context, pet), if (pet.weightKg != null) Fmt.weight(pet.weightKg!, grams: pet.isBird)].where((s) => s.isNotEmpty).join(' · '),
+                  style: context.text.bodySmall),
             ]),
-            const Divider(height: Space.xl),
-            row(Icons.no_food_rounded, l.allergies, pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', '),
-                color: pet.allergies.isEmpty ? null : context.paw.error),
-            row(Icons.medication_rounded, l.currentMedicines, meds.isEmpty ? l.none : meds.map((m) => '${m.name} (${frequencyLabel(context, m)})').join(', ')),
-            row(Icons.vaccines_rounded, l.rabiesVaccine, rabies.isEmpty ? l.notRecorded : l.givenOn(Fmt.date(rabies.first.givenDate, context.lang))),
-            row(Icons.memory_rounded, l.microchip, pet.microchip ?? l.notAdded),
-            row(Icons.local_hospital_rounded, l.regularClinic, clinic == null ? l.notAdded : '${clinic['name']} · ${clinic['phone']}'),
-            row(Icons.person_rounded, l.owner, '${user?.name ?? ''} · ${user?.phone ?? ''}'),
-            const SizedBox(height: Space.sm),
-            Text(l.medicalCardUpdated(Fmt.dateTime(now, context.lang)), style: context.text.labelSmall),
-          ]),
-        ),
-        const SizedBox(height: Space.lg),
-        InfoNote(l.medicalCardOffline, icon: Icons.offline_bolt_rounded),
+          ),
+        ]),
+        const Divider(height: Space.xl),
+        row(Icons.no_food_rounded, l.allergies, pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', '),
+            color: pet.allergies.isEmpty ? null : context.paw.error),
+        row(Icons.medication_rounded, l.currentMedicines, meds.isEmpty ? l.none : meds.map((m) => '${m.name} (${frequencyLabel(context, m)})').join(', ')),
+        row(Icons.vaccines_rounded, l.rabiesVaccine, rabies.isEmpty ? l.notRecorded : l.givenOn(Fmt.date(rabies.first.givenDate, context.lang))),
+        row(Icons.memory_rounded, l.microchip, pet.microchip ?? l.notAdded),
+        row(Icons.local_hospital_rounded, l.regularClinic, clinic == null ? l.notAdded : '${clinic['name']} · ${clinic['phone']}'),
+        row(Icons.person_rounded, l.owner, '${user?.name ?? ''} · ${user?.phone ?? ''}'),
+        const SizedBox(height: Space.sm),
+        Text(l.medicalCardUpdated(Fmt.dateTime(now, context.lang)), style: context.text.labelSmall),
       ]),
     );
   }
