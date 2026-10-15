@@ -13186,6 +13186,18 @@ abstract class AppLocalizations {
   /// **'Location is off. Showing clinics near {area}.'**
   String sosUsingArea(String area);
 
+  /// No description provided for @sosLocatingNear.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding your location… Meanwhile, clinics near {area}.'**
+  String sosLocatingNear(String area);
+
+  /// No description provided for @sosLocatingLastKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding your location… Meanwhile, clinics near your last known location.'**
+  String get sosLocatingLastKnown;
+
   /// No description provided for @sosLocationOffHint.
   ///
   /// In en, this message translates to:

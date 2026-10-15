@@ -41,7 +41,9 @@ class _DocumentPreviewScreenState extends State<DocumentPreviewScreen> {
       final out = <Uint8List>[];
       for (final p in pages) {
         if (!mounted) return;
-        out.add(await renderWidgetToPng(p, view: view, theme: theme, logicalSize: a4Logical, pixelRatio: 2));
+        // Pages are built off screen: give them this screen's translations.
+        final page = Localizations.override(context: context, child: p);
+        out.add(await renderWidgetToPng(page, view: view, theme: theme, logicalSize: a4Logical, pixelRatio: 2));
       }
       if (mounted) setState(() => _images = out);
     } catch (e) {

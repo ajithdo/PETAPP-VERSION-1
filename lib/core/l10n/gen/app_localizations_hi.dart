@@ -7576,6 +7576,15 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String sosLocatingNear(String area) {
+    return 'आपकी लोकेशन खोज रहे हैं… तब तक $area के पास के क्लिनिक।';
+  }
+
+  @override
+  String get sosLocatingLastKnown =>
+      'आपकी लोकेशन खोज रहे हैं… तब तक आपकी पिछली जगह के पास के क्लिनिक।';
+
+  @override
   String get sosLocationOffHint => 'जगह ग़लत है? बदलें ताकि सूची सही रहे।';
 
   @override

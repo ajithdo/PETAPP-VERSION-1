@@ -78,7 +78,16 @@ class SosClinic {
   /// The emergency line when the clinic has one.
   String get callNumber => (emergencyPhone == null || emergencyPhone!.isEmpty) ? phone : emergencyPhone!;
 
-  String get fullAddress => [address, area, city].where((s) => s.trim().isNotEmpty).join(', ');
+  /// The street address, adding the area and city only when it doesn't
+  /// already name them.
+  String get fullAddress {
+    final parts = [address.trim()];
+    for (final extra in [area, city]) {
+      final e = extra.trim();
+      if (e.isNotEmpty && !parts.join(', ').toLowerCase().contains(e.toLowerCase())) parts.add(e);
+    }
+    return parts.where((s) => s.isNotEmpty).join(', ');
+  }
 
   bool openAt(DateTime now) => is24x7 || isOpenNow(hours, now);
 
@@ -113,11 +122,22 @@ class SosClinic {
 
 typedef RankedClinic = ({SosClinic clinic, double km, bool open});
 
+/// How far SOS looks for clinics before falling back to the nearest few.
+const nearbyKm = 50.0;
+
 /// Open-now and 24x7 clinics first, each group nearest first (spec 7.12).
+/// Only clinics within [nearbyKm]; if none are that close, the nearest 3.
 List<RankedClinic> rankSosClinics(Iterable<SosClinic> clinics, {required double lat, required double lng, required DateTime now}) {
-  final list = [
+  var list = [
     for (final c in clinics) (clinic: c, km: distanceKm(lat, lng, c.lat, c.lng), open: c.openAt(now)),
   ];
+  final near = list.where((r) => r.km <= nearbyKm).toList();
+  if (near.isNotEmpty) {
+    list = near;
+  } else {
+    list.sort((a, b) => a.km.compareTo(b.km));
+    list = list.take(3).toList();
+  }
   list.sort((a, b) {
     if (a.open != b.open) return a.open ? -1 : 1;
     return a.km.compareTo(b.km);

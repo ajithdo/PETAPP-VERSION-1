@@ -5287,6 +5287,15 @@
       }
     }
   },
+  "sosLocatingNear": "Finding your location… Meanwhile, clinics near {area}.",
+  "@sosLocatingNear": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "sosLocatingLastKnown": "Finding your location… Meanwhile, clinics near your last known location.",
   "sosLocationOffHint": "Wrong area? Change it so the list is right.",
   "sosTryLocation": "Try my location again",
   "sosChangeArea": "Change area",

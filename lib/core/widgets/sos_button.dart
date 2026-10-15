@@ -86,7 +86,9 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
       button: true,
       label: context.l10n.sosSemantic,
       hint: easy ? null : context.l10n.sosHoldHint,
-      onTap: widget.onActivate,
+      // Screen readers activate directly (a hold isn't possible); Easy mode
+      // still asks first.
+      onTap: easy ? _easyTap : widget.onActivate,
       child: GestureDetector(
         onTapDown: easy ? null : (_) => _down(),
         onTapUp: easy ? null : (_) => _up(),

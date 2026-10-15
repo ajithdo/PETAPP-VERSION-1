@@ -7860,6 +7860,15 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String sosLocatingNear(String area) {
+    return 'Finding your location… Meanwhile, clinics near $area.';
+  }
+
+  @override
+  String get sosLocatingLastKnown =>
+      'Finding your location… Meanwhile, clinics near your last known location.';
+
+  @override
   String get sosLocationOffHint =>
       'Wrong area? Change it so the list is right.';
 

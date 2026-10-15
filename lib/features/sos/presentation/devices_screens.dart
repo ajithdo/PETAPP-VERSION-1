@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -93,6 +94,14 @@ class _DeviceTile extends ConsumerWidget {
       ]),
     );
   }
+}
+
+/// Four points around the safe zone, [factor] × its radius out, so the map
+/// shows the whole circle (and the collar when it has left).
+List<LatLng> _zoneBox(SafeZone z, double factor) {
+  final dLat = z.radiusM * factor / 111320;
+  final dLng = z.radiusM * factor / (111320 * math.cos(z.lat * math.pi / 180));
+  return [LatLng(z.lat + dLat, z.lng), LatLng(z.lat - dLat, z.lng), LatLng(z.lat, z.lng + dLng), LatLng(z.lat, z.lng - dLng)];
 }
 
 IconData _batteryIcon(int b) => b < 20 ? Icons.battery_alert_rounded : (b < 60 ? Icons.battery_4_bar_rounded : Icons.battery_full_rounded);
@@ -503,9 +512,10 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
         child: SizedBox(
           height: 260,
           child: PawMap(
+            key: ValueKey('zone-$out-${z.radiusM}'),
             center: LatLng(z.lat, z.lng),
             zoom: 15,
-            fitPoints: [LatLng(z.lat, z.lng), LatLng(fix.lat, fix.lng)],
+            fitPoints: [..._zoneBox(z, out ? 1.8 : 1.15), LatLng(fix.lat, fix.lng)],
             circles: [
               CircleMarker(
                 point: LatLng(z.lat, z.lng),

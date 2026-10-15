@@ -110,3 +110,28 @@ A running log of choices and why. Newest at the bottom of each section.
 **Expenses.** `expenses` collection. Orders add `exp_<orderId>_food` and `exp_<orderId>_supplies` (food and treats vs everything else), bookings add theirs (Phase 5), people can add or edit manual ones. Charts use `fl_chart` (already in the project).
 
 **Packages.** No new packages: `pdf`/`printing` (invoices), `file_picker` (CSV), `fl_chart` and `url_launcher` were already added and support Android, iOS and web.
+
+## Phase 9
+
+**SOS never waits.** The 2-second hold (and the Easy-mode confirm, also for screen readers) opens a full-screen page with exactly two big options. The page shows clinics at once from a location remembered in the last 6 hours or the chosen area (the person's city, or the area picked with "Change area"), and switches to GPS only if it answers within 10 seconds: a location prompt nobody answers must not hold up an emergency. Clinics are ranked open-now and 24x7 first, then nearest; the emergency line is called when a clinic has one. In demo mode a call shows "Demo: this would call +91 90000 000xx" and never dials.
+
+**Weak internet.** After each SOS the nearest 20 clinics are saved on the device (SharedPreferences, `sos_rules.dart`). If the live list does not arrive within 3 seconds, SOS shows the saved list with the date it was saved.
+
+**Activation log.** Every SOS writes `sosLogs` (uid, pet, time, latitude and longitude rounded to 3 decimals, about 100 m, area, source gps/last_known/chosen). `onSosLogged` adds it to `analyticsDaily/{date}.sos` for the admin dashboard.
+
+**First aid and the toxic checker.** All text is in the ARB files (`10_firstaid.json`, `10_toxic.json`), so it ships inside the app and works offline. Guides have signs, numbered steps, "don't" and "when to see a vet". The checker has 42 foods, plants and household items, each rated per species (Dangerous / Be careful / Safe in small amounts); search matches names in the three languages plus Hinglish keywords, with English words matched as whole words ("rat" is not in "carrot"). Everything is labelled "Draft, to be reviewed by a vet" in Version 1.
+
+**QR tags and the public page.** Each pet's tag id (`pets.qrToken`) is 16 random characters from an alphabet without look-alike characters (about 92 bits); new pets also get `qr_<random document id>`. The tag links to `<website>#/lost/<tag>`, a public route. With Firebase, finders never read the database: `openLostPage` returns only `publicPetView()` (name, species, breed, colour, photo, markings, lost details), and `contactPetFamily` / `shareFinderLocation` pass the message or location to everyone who looks after the pet as a notification, push and SMS (Demo Outbox in demo mode). The family's number is never shown. A tag accepts at most 5 messages an hour (`tagRelays/{tag}`, server only). The standalone demo runs the same rules on the device.
+
+**Lost pet mode.** "Mark as lost" writes `lostReports` and `pets.lost` (carers can do this too). The opt-in alert goes to people who turned on lost-pet alerts (`users.consents.lostPetAlerts`) and live within 5 km, using `users.homeLat/homeLng` (Version 1: the home area; Live: the geocoded address). Sightings and alert counts are written only by the server. The tag sheet and the poster are A4 PDFs drawn from Flutter widgets (so Hindi and Telugu render correctly) with `qr_flutter`.
+
+**Connected devices.** `DeviceProvider` (`lib/features/sos/data/device_provider.dart`) has `scan`, `watch`, `read` and `command`. `DemoDeviceProvider` works readings out from the clock and the device id, so every family member sees the same numbers, and has a "walk out of the safe zone" control for demos; `LiveDeviceProvider` is a Version 2 stub. `DEVICES_MODE` (or `APP_MODE`) picks one. The safe zone is a 100–2000 m circle around home. The app records the collar's zone state on the device (`data.inside`); going out alerts everyone who looks after the pet (notification, push, SMS), and coming back sends a calmer note. With Firebase, `onDeviceUpdated` sends these. Walks and play noticed by a collar or tracker are written once into the routine tracker (log id `dev_<device>_<date>_<n>`, `data.source = 'device'`).
+
+**Adding a real device vendor (Version 2).**
+1. Write a `DeviceProvider` for the vendor: `scan` signs in to the vendor account (cloud devices) or scans Bluetooth LE (phones only; hide Bluetooth vendors on the website); `watch` reads `devices/{id}` snapshots; `command` calls a callable function that talks to the vendor API.
+2. Add a Cloud Functions webhook (`onRequest`) that checks the vendor's signature (secret in Secret Manager, never in code), maps the payload to `devices/{id}.data` (lat, lng, battery, steps, feeding events) and lets `onDeviceUpdated` raise safe-zone alerts.
+3. Register the provider for that vendor in `deviceProviderProvider` and add the vendor to the admin settings.
+
+**Rules.** `devices`: family reads; carers and up pair, rename, change the zone or remove; any family member may update `data` only (latest reading). `sosLogs`: people log only their own activations with a known source; they and admins read. `lostReports`: family and admins read; carers and up create with no alerts or sightings, and may change status and note only. `tagRelays`: server only.
+
+**Packages.** No new packages: `qr_flutter` (already in pubspec), `geolocator`, `flutter_map`, `share_plus` and `printing` support Android, iOS and the web.

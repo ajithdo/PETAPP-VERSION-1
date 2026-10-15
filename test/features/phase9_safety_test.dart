@@ -111,6 +111,21 @@ void main() {
       expect(ranked[1].clinic.callNumber, '+91 90000 00012');
     });
 
+    test('only clinics within 50 km, or the nearest 3 when none are that close', () {
+      final here = areas['indiranagar']!;
+      final far = [for (var i = 0; i < 5; i++) clinic('far$i', here.lat + 1 + i * 0.1, here.lng)]; // 110+ km away
+      expect(rankSosClinics([...far, clinic('near', here.lat + 0.01, here.lng)], lat: here.lat, lng: here.lng, now: now).map((r) => r.clinic.id), ['near']);
+      expect(rankSosClinics(far, lat: here.lat, lng: here.lng, now: now).map((r) => r.clinic.id), ['far0', 'far1', 'far2']);
+    });
+
+    test('the clinic address does not repeat its area and city', () {
+      const c = SosClinic(id: 'c', name: 'Gulmohar Vet Studio', address: '60, Main Road, Indiranagar, Bengaluru 560038', area: 'Indiranagar', city: 'Bengaluru',
+          lat: 0, lng: 0, phone: '', is24x7: false, hours: {});
+      expect(c.fullAddress, '60, Main Road, Indiranagar, Bengaluru 560038');
+      const d = SosClinic(id: 'd', name: 'X', address: '12 Hill Road', area: 'Bandra West', city: 'Mumbai', lat: 0, lng: 0, phone: '', is24x7: false, hours: {});
+      expect(d.fullAddress, '12 Hill Road, Bandra West, Mumbai');
+    });
+
     test('location: GPS, then a recent last-known fix, then the chosen area', () {
       const chosen = SosSpot(lat: 1, lng: 1, source: SosSource.chosen, label: 'Indiranagar');
       final gps = SosSpot(lat: 2, lng: 2, source: SosSource.gps, at: now);

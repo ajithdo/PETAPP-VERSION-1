@@ -44,6 +44,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
   String? _petId;
   _Open _open = _Open.call;
   bool _slow = false;
+  bool _userChose = false;
   Timer? _slowTimer;
 
   @override
@@ -95,24 +96,30 @@ class _SosScreenState extends ConsumerState<SosScreen> {
     return SosSpot(lat: a.lat, lng: a.lng, source: SosSource.chosen, label: '${a.name}, ${a.city}');
   }
 
+  /// Shows clinics straight away from the last known place or the chosen
+  /// area, then switches to GPS if it answers within 10 seconds. A location
+  /// prompt nobody answers must never hold up SOS.
   Future<void> _locate() async {
     setState(() => _locating = true);
     final repo = ref.read(sosRepositoryProvider);
-    final gps = await _gps();
     final saved = repo.lastKnown();
-    final os = await _osLastKnown();
+    final os = await _osLastKnown().timeout(const Duration(seconds: 2), onTimeout: () => null);
     final last = [saved, os].whereType<SosSpot>().fold<SosSpot?>(null, (a, b) => a == null || (b.at ?? DateTime(0)).isAfter(a.at ?? DateTime(0)) ? b : a);
     if (!mounted) return;
-    final spot = pickSosSpot(gps: gps, lastKnown: last, chosen: _chosen(), now: DateTime.now());
+    if (_spot == null || _spot!.source != SosSource.chosen) {
+      setState(() => _spot = pickSosSpot(lastKnown: last, chosen: _chosen(), now: DateTime.now()));
+    }
+    final gps = await _gps().timeout(const Duration(seconds: 10), onTimeout: () => null);
+    if (!mounted) return;
     if (gps != null) unawaited(repo.rememberSpot(gps.lat, gps.lng));
     setState(() {
-      _spot = spot;
+      if (gps != null && !_userChose) _spot = gps;
       _locating = false;
     });
     final user = ref.read(currentUserProvider);
-    if (!_logged && user != null) {
+    if (!_logged && user != null && _spot != null) {
       _logged = true;
-      unawaited(repo.logActivation(uid: user.uid, petId: _petId ?? ref.read(selectedPetProvider)?.id, spot: spot).catchError((_) {}));
+      unawaited(repo.logActivation(uid: user.uid, petId: _petId ?? ref.read(selectedPetProvider)?.id, spot: _spot!).catchError((_) {}));
     }
   }
 
@@ -120,7 +127,10 @@ class _SosScreenState extends ConsumerState<SosScreen> {
     await pickArea(context, ref);
     if (!mounted) return;
     final o = ref.read(searchOriginProvider);
-    setState(() => _spot = SosSpot(lat: o.lat, lng: o.lng, source: SosSource.chosen, label: o.label));
+    setState(() {
+      _userChose = true;
+      _spot = SosSpot(lat: o.lat, lng: o.lng, source: SosSource.chosen, label: o.label);
+    });
   }
 
   Future<void> _call(SosClinic c) async {
@@ -270,13 +280,15 @@ class _LocationLine extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = context.l10n;
     final s = spot;
-    final text = locating || s == null
+    final text = s == null
         ? l.sosLocating
-        : switch (s.source) {
-            SosSource.gps => l.sosUsingGps,
-            SosSource.lastKnown => l.sosUsingLastKnown(Fmt.time(s.at ?? DateTime.now(), context.lang)),
-            SosSource.chosen => l.sosUsingArea(s.label),
-          };
+        : locating && s.source != SosSource.gps
+            ? (s.source == SosSource.chosen ? l.sosLocatingNear(s.label) : l.sosLocatingLastKnown)
+            : switch (s.source) {
+                SosSource.gps => l.sosUsingGps,
+                SosSource.lastKnown => l.sosUsingLastKnown(Fmt.time(s.at ?? DateTime.now(), context.lang)),
+                SosSource.chosen => l.sosUsingArea(s.label),
+              };
     return PawCard(
       padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md),
       child: Row(children: [
