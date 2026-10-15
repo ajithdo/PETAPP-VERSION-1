@@ -170,9 +170,14 @@ service cloud.firestore {
     }
 
     // ---------- marketplace and money ----------
+    // Sellers manage only their own products and never their ratings.
+    function ownsSeller(sellerId) { return sellerId != null && get(/databases/$(database)/documents/sellers/$(sellerId)).data.uid == uid(); }
     match /products/{id} {
       allow read: if true;
-      allow write: if isAdmin() || (signedIn() && role() == 'seller');
+      allow create: if isAdmin() || (signedIn() && role() == 'seller' && ownsSeller(incoming().sellerId) && incoming().get('partnerId', null) == null
+        && incoming().get('rating', 0) == 0 && incoming().get('reviewCount', 0) == 0);
+      allow update: if isAdmin() || (signedIn() && role() == 'seller' && ownsSeller(data().sellerId) && unchanged(['sellerId', 'partnerId', 'rating', 'reviewCount']));
+      allow delete: if isAdmin();
     }
     match /sellers/{id} {
       allow read: if true;
@@ -180,11 +185,22 @@ service cloud.firestore {
       allow update: if isAdmin() || (signedIn() && data().uid == uid() && unchanged(['status']));
     }
     match /partners/{id} { allow read: if true; allow write: if isAdmin(); }
-    // Orders are created by the createOrder function, which checks prices and stock.
+    // Orders are created by the createOrder function, which checks prices,
+    // stock and the coupon. Money fields never change from the app; refunds,
+    // restocking and payouts happen in functions (onOrderUpdated, runSellerPayouts).
     match /orders/{id} {
       allow read: if signedIn() && (data().ownerId == uid() || uid() in data().get('sellerUids', []) || isAdmin());
-      allow update: if signedIn() && (data().ownerId == uid() || uid() in data().get('sellerUids', []) || isAdmin())
-        && unchanged(['items', 'total', 'commission', 'ownerId']);
+      allow update: if signedIn()
+        && unchanged(['items', 'subtotal', 'discount', 'coupon', 'deliveryFee', 'total', 'commission', 'payout', 'payoutStatus', 'ownerId', 'sellerId', 'sellerUids', 'groupId', 'invoiceNo'])
+        && (isAdmin()
+          || (data().ownerId == uid() && incoming().status in [data().status, 'cancelled', 'return_requested']
+              && (!incoming().diff(data()).affectedKeys().hasAny(['paymentStatus']) || (data().paymentStatus == 'pending' && incoming().paymentStatus == 'paid')))
+          || (uid() in data().get('sellerUids', []) && !incoming().diff(data()).affectedKeys().hasAny(['paymentStatus', 'reviewed'])));
+    }
+    // Partner-store clicks (affiliate tracking); a trigger adds them to the partner's count.
+    match /affiliateClicks/{id} {
+      allow create: if signedIn() && incoming().uid == uid();
+      allow read: if isAdmin();
     }
     match /subscriptions/{id} {
       allow read, delete: if signedIn() && data().ownerId == uid();

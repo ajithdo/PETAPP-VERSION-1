@@ -16,7 +16,7 @@ typedef SeedData = Map<String, Map<String, Map<String, dynamic>>>;
 
 class DemoSeed {
   /// Bump when the seed changes so saved standalone demo data is replaced.
-  static const version = 8;
+  static const version = 9;
 
   static SeedData build(DateTime now) {
     final data = <String, Map<String, Map<String, dynamic>>>{};
@@ -62,6 +62,7 @@ void seedConfig(Add add, DateTime now) {
       },
     },
     'commission': {'bookingPercent': 10, 'foodMarginPercent': 8, 'otherMarginPercent': 15, 'videoDiscountPercent': 10, 'freeDeliveryAbove': 499},
+    'shop': {'deliveryFee': 49, 'freeDeliveryAbove': 999},
     'flags': {'aiAssistant': true, 'smartDevices': true, 'lostPetAlerts': true, 'referrals': true},
     'updatedAt': now,
   });

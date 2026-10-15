@@ -147,6 +147,8 @@ List<MeMenuItem> meMenu(BuildContext context) {
     MeMenuItem(Icons.watch_rounded, l.connectedDevices, '/me/devices'),
     MeMenuItem(Icons.qr_code_2_rounded, l.lostPetMode, '/me/lost'),
     MeMenuItem(Icons.account_balance_wallet_rounded, l.expenses, '/me/expenses'),
+    MeMenuItem(Icons.receipt_long_rounded, l.ordMyOrders, '/shop/orders'),
+    MeMenuItem(Icons.location_on_rounded, l.addrBook, '/me/addresses'),
     MeMenuItem(Icons.workspace_premium_rounded, l.pawsetuPlus, '/me/plus'),
     MeMenuItem(Icons.settings_rounded, l.settings, '/me/settings'),
     MeMenuItem(Icons.support_agent_rounded, l.helpAndComplaints, '/me/help'),

@@ -1,2 +1,2270 @@
 {
+ "edit": {
+  "en": "Edit",
+  "hi": "बदलें",
+  "te": "మార్చండి"
+ },
+ "close": {
+  "en": "Close",
+  "hi": "बंद करें",
+  "te": "మూసివేయండి"
+ },
+ "change": {
+  "en": "Change",
+  "hi": "बदलें",
+  "te": "మార్చండి"
+ },
+ "catFood": {
+  "en": "Food",
+  "hi": "खाना",
+  "te": "ఆహారం"
+ },
+ "catTreats": {
+  "en": "Treats",
+  "hi": "ट्रीट्स",
+  "te": "ట్రీట్స్"
+ },
+ "catToys": {
+  "en": "Toys",
+  "hi": "खिलौने",
+  "te": "బొమ్మలు"
+ },
+ "catGrooming": {
+  "en": "Grooming",
+  "hi": "ग्रूमिंग",
+  "te": "గ్రూమింగ్"
+ },
+ "catHealthHygiene": {
+  "en": "Health and hygiene",
+  "hi": "सेहत और सफ़ाई",
+  "te": "ఆరోగ్యం, శుభ్రత"
+ },
+ "catBeds": {
+  "en": "Beds",
+  "hi": "बिस्तर",
+  "te": "పడకలు"
+ },
+ "catCollars": {
+  "en": "Collars and leashes",
+  "hi": "पट्टे और कॉलर",
+  "te": "కాలర్లు, లీషులు"
+ },
+ "catBowls": {
+  "en": "Bowls and feeders",
+  "hi": "कटोरे और फ़ीडर",
+  "te": "గిన్నెలు, ఫీడర్లు"
+ },
+ "catLitter": {
+  "en": "Litter and cat care",
+  "hi": "लिटर और बिल्ली की देखभाल",
+  "te": "లిట్టర్, పిల్లి సంరక్షణ"
+ },
+ "catBird": {
+  "en": "Bird food and cages",
+  "hi": "पक्षी का दाना और पिंजरे",
+  "te": "పక్షుల ఆహారం, పంజరాలు"
+ },
+ "catRabbit": {
+  "en": "Rabbit hay and care",
+  "hi": "खरगोश की घास और देखभाल",
+  "te": "కుందేలు గడ్డి, సంరక్షణ"
+ },
+ "catClothing": {
+  "en": "Clothing",
+  "hi": "कपड़े",
+  "te": "దుస్తులు"
+ },
+ "catTravel": {
+  "en": "Travel",
+  "hi": "यात्रा",
+  "te": "ప్రయాణం"
+ },
+ "shopStageYoung": {
+  "en": "Puppy / kitten",
+  "hi": "पिल्ला / बिल्ली का बच्चा",
+  "te": "కుక్కపిల్ల / పిల్లిపిల్ల"
+ },
+ "shopStageAdult": {
+  "en": "Adult",
+  "hi": "वयस्क",
+  "te": "పెద్దది"
+ },
+ "shopStageSenior": {
+  "en": "Senior",
+  "hi": "बुज़ुर्ग",
+  "te": "వృద్ధ"
+ },
+ "shopStageAll": {
+  "en": "All ages",
+  "hi": "हर उम्र",
+  "te": "అన్ని వయసులు"
+ },
+ "shopSizeSmall": {
+  "en": "Small breeds",
+  "hi": "छोटी नस्लें",
+  "te": "చిన్న జాతులు"
+ },
+ "shopSizeMedium": {
+  "en": "Medium breeds",
+  "hi": "मध्यम नस्लें",
+  "te": "మధ్యస్థ జాతులు"
+ },
+ "shopSizeLarge": {
+  "en": "Large breeds",
+  "hi": "बड़ी नस्लें",
+  "te": "పెద్ద జాతులు"
+ },
+ "shopSizeGiant": {
+  "en": "Giant breeds",
+  "hi": "बहुत बड़ी नस्लें",
+  "te": "చాలా పెద్ద జాతులు"
+ },
+ "shopSizeAll": {
+  "en": "All sizes",
+  "hi": "हर आकार",
+  "te": "అన్ని సైజులు"
+ },
+ "sortPopular": {
+  "en": "Popular",
+  "hi": "लोकप्रिय",
+  "te": "పాపులర్"
+ },
+ "sortPriceLow": {
+  "en": "Price: low to high",
+  "hi": "कीमत: कम से ज़्यादा",
+  "te": "ధర: తక్కువ నుండి ఎక్కువ"
+ },
+ "sortPriceHigh": {
+  "en": "Price: high to low",
+  "hi": "कीमत: ज़्यादा से कम",
+  "te": "ధర: ఎక్కువ నుండి తక్కువ"
+ },
+ "sortDiscount": {
+  "en": "Biggest discount",
+  "hi": "सबसे ज़्यादा छूट",
+  "te": "ఎక్కువ తగ్గింపు"
+ },
+ "sortNewest": {
+  "en": "Newest",
+  "hi": "नए",
+  "te": "కొత్తవి"
+ },
+ "shopTitle": {
+  "en": "Shop",
+  "hi": "शॉप",
+  "te": "షాప్"
+ },
+ "shopSearchHint": {
+  "en": "Search food, toys, beds…",
+  "hi": "खाना, खिलौने, बिस्तर खोजें…",
+  "te": "ఆహారం, బొమ్మలు, పడకలు వెతకండి…"
+ },
+ "shopSearchTitle": {
+  "en": "Search",
+  "hi": "खोजें",
+  "te": "వెతకండి"
+ },
+ "shopClearSearch": {
+  "en": "Clear search",
+  "hi": "खोज हटाएँ",
+  "te": "వెతుకుట తీసివేయండి"
+ },
+ "shopForPet": {
+  "en": "For {pet}",
+  "hi": "{pet} के लिए",
+  "te": "{pet} కోసం",
+  "ph": {
+   "pet": "String"
+  }
+ },
+ "shopAvoiding": {
+  "en": "Avoiding: {items}",
+  "hi": "इनसे बचें: {items}",
+  "te": "ఇవి లేకుండా: {items}",
+  "ph": {
+   "items": "String"
+  }
+ },
+ "shopNoPicks": {
+  "en": "No picks yet. Try searching the shop.",
+  "hi": "अभी कोई सुझाव नहीं। शॉप में खोजकर देखें।",
+  "te": "ఇంకా సూచనలు లేవు. షాప్‌లో వెతకండి."
+ },
+ "shopBuyAgain": {
+  "en": "Buy again",
+  "hi": "फिर से खरीदें",
+  "te": "మళ్ళీ కొనండి"
+ },
+ "shopReorder": {
+  "en": "Reorder",
+  "hi": "फिर से मँगाएँ",
+  "te": "మళ్ళీ ఆర్డర్"
+ },
+ "shopReorderPrice": {
+  "en": "Reorder · {price}",
+  "hi": "फिर से मँगाएँ · {price}",
+  "te": "మళ్ళీ ఆర్డర్ · {price}",
+  "ph": {
+   "price": "String"
+  }
+ },
+ "shopCategories": {
+  "en": "Categories",
+  "hi": "कैटेगरी",
+  "te": "విభాగాలు"
+ },
+ "shopDeals": {
+  "en": "Deals",
+  "hi": "ऑफ़र",
+  "te": "ఆఫర్లు"
+ },
+ "shopPartnerStores": {
+  "en": "Partner stores",
+  "hi": "पार्टनर स्टोर",
+  "te": "పార్ట్‌నర్ స్టోర్లు"
+ },
+ "shopPartnerStoresNote": {
+  "en": "You buy these on the partner's own website. PawSetu may earn a small commission.",
+  "hi": "ये आप पार्टनर की अपनी वेबसाइट पर खरीदते हैं। PawSetu को थोड़ा कमीशन मिल सकता है।",
+  "te": "వీటిని పార్ట్‌నర్ వెబ్‌సైట్‌లోనే కొంటారు. PawSetuకి చిన్న కమీషన్ రావచ్చు."
+ },
+ "shopListings": {
+  "en": "{count, plural, =1{1 product} other{{count} products}}",
+  "hi": "{count} प्रोडक्ट",
+  "te": "{count} ఉత్పత్తులు",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "shopPlusDeliveryNote": {
+  "en": "Plus members get free delivery above {amount}.",
+  "hi": "Plus सदस्यों को {amount} से ऊपर फ़्री डिलीवरी।",
+  "te": "Plus సభ్యులకు {amount} పైన ఉచిత డెలివరీ.",
+  "ph": {
+   "amount": "String"
+  }
+ },
+ "shopPartnerStore": {
+  "en": "Partner store",
+  "hi": "पार्टनर स्टोर",
+  "te": "పార్ట్‌నర్ స్టోర్"
+ },
+ "shopSoldOn": {
+  "en": "On {store}",
+  "hi": "{store} पर",
+  "te": "{store}లో",
+  "ph": {
+   "store": "String"
+  }
+ },
+ "shopOffPercent": {
+  "en": "{percent}% off",
+  "hi": "{percent}% छूट",
+  "te": "{percent}% తగ్గింపు",
+  "ph": {
+   "percent": "int"
+  }
+ },
+ "shopPriceSemantics": {
+  "en": "{price}, was {mrp}, {percent}% off",
+  "hi": "{price}, पहले {mrp}, {percent}% छूट",
+  "te": "{price}, ముందు {mrp}, {percent}% తగ్గింపు",
+  "ph": {
+   "price": "String",
+   "mrp": "String",
+   "percent": "int"
+  }
+ },
+ "shopRatingSemantics": {
+  "en": "Rated {rating} out of 5 by {count} people",
+  "hi": "{count} लोगों ने 5 में से {rating} रेटिंग दी",
+  "te": "{count} మంది 5కి {rating} రేటింగ్ ఇచ్చారు",
+  "ph": {
+   "rating": "String",
+   "count": "int"
+  }
+ },
+ "shopNoReviewsYet": {
+  "en": "No reviews yet",
+  "hi": "अभी कोई रिव्यू नहीं",
+  "te": "ఇంకా రివ్యూలు లేవు"
+ },
+ "shopOutOfStock": {
+  "en": "Out of stock",
+  "hi": "स्टॉक में नहीं",
+  "te": "స్టాక్ లేదు"
+ },
+ "shopInStock": {
+  "en": "In stock",
+  "hi": "स्टॉक में है",
+  "te": "స్టాక్ ఉంది"
+ },
+ "shopOnlyLeft": {
+  "en": "Only {count} left",
+  "hi": "सिर्फ़ {count} बचे",
+  "te": "{count} మాత్రమే మిగిలాయి",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "shopResults": {
+  "en": "{count, plural, =0{No products} =1{1 product} other{{count} products}}",
+  "hi": "{count} प्रोडक्ट",
+  "te": "{count} ఉత్పత్తులు",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "shopFiltersCount": {
+  "en": "Filters ({count})",
+  "hi": "फ़िल्टर ({count})",
+  "te": "ఫిల్టర్లు ({count})",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "shopNoResults": {
+  "en": "Nothing found",
+  "hi": "कुछ नहीं मिला",
+  "te": "ఏమీ దొరకలేదు"
+ },
+ "shopNoResultsBody": {
+  "en": "Try another word or clear the filters.",
+  "hi": "कोई और शब्द आज़माएँ या फ़िल्टर हटाएँ।",
+  "te": "వేరే పదం ప్రయత్నించండి లేదా ఫిల్టర్లు తీసివేయండి."
+ },
+ "shopClearFilters": {
+  "en": "Clear filters",
+  "hi": "फ़िल्टर हटाएँ",
+  "te": "ఫిల్టర్లు తీసివేయండి"
+ },
+ "shopCategory": {
+  "en": "Category",
+  "hi": "कैटेगरी",
+  "te": "విభాగం"
+ },
+ "shopPrice": {
+  "en": "Price",
+  "hi": "कीमत",
+  "te": "ధర"
+ },
+ "shopMinPrice": {
+  "en": "Min price",
+  "hi": "न्यूनतम कीमत",
+  "te": "కనిష్ఠ ధర"
+ },
+ "shopMaxPrice": {
+  "en": "Max price",
+  "hi": "अधिकतम कीमत",
+  "te": "గరిష్ఠ ధర"
+ },
+ "shopBrand": {
+  "en": "Brand",
+  "hi": "ब्रांड",
+  "te": "బ్రాండ్"
+ },
+ "shopRatingAtLeast": {
+  "en": "{rating}★ and up",
+  "hi": "{rating}★ और ऊपर",
+  "te": "{rating}★ ఆపైన",
+  "ph": {
+   "rating": "String"
+  }
+ },
+ "shopHidePartner": {
+  "en": "Hide partner-store listings",
+  "hi": "पार्टनर स्टोर वाले प्रोडक्ट छिपाएँ",
+  "te": "పార్ట్‌నర్ స్టోర్ ఉత్పత్తులు దాచండి"
+ },
+ "shopHidePartnerHint": {
+  "en": "Show only products you can buy in PawSetu",
+  "hi": "सिर्फ़ वही दिखाएँ जो PawSetu में खरीद सकते हैं",
+  "te": "PawSetuలో కొనగలిగేవే చూపండి"
+ },
+ "shopShowResults": {
+  "en": "Show results",
+  "hi": "नतीजे दिखाएँ",
+  "te": "ఫలితాలు చూపండి"
+ },
+ "shopProduct": {
+  "en": "Product",
+  "hi": "प्रोडक्ट",
+  "te": "ఉత్పత్తి"
+ },
+ "shopProductGone": {
+  "en": "This product is no longer available",
+  "hi": "यह प्रोडक्ट अब उपलब्ध नहीं है",
+  "te": "ఈ ఉత్పత్తి ఇప్పుడు అందుబాటులో లేదు"
+ },
+ "shopShareText": {
+  "en": "{name} for {price} on PawSetu",
+  "hi": "PawSetu पर {name} {price} में",
+  "te": "PawSetuలో {name} {price}కి",
+  "ph": {
+   "name": "String",
+   "price": "String"
+  }
+ },
+ "shopInclTaxes": {
+  "en": "Inclusive of all taxes",
+  "hi": "सभी टैक्स शामिल",
+  "te": "అన్ని పన్నులతో కలిపి"
+ },
+ "shopAffiliateNote": {
+  "en": "You will buy this on {store}. PawSetu may earn a small commission; the price is the same for you.",
+  "hi": "यह आप {store} पर खरीदेंगे। PawSetu को थोड़ा कमीशन मिल सकता है; आपके लिए कीमत वही रहती है।",
+  "te": "ఇది మీరు {store}లో కొంటారు. PawSetuకి చిన్న కమీషన్ రావచ్చు; మీకు ధర అదే.",
+  "ph": {
+   "store": "String"
+  }
+ },
+ "shopSoldBy": {
+  "en": "Sold by {seller}, {city}",
+  "hi": "विक्रेता: {seller}, {city}",
+  "te": "అమ్మకందారు: {seller}, {city}",
+  "ph": {
+   "seller": "String",
+   "city": "String"
+  }
+ },
+ "shopSuitableFor": {
+  "en": "Suitable for",
+  "hi": "किसके लिए",
+  "te": "ఎవరికి సరిపోతుంది"
+ },
+ "shopCheckDelivery": {
+  "en": "Check delivery",
+  "hi": "डिलीवरी देखें",
+  "te": "డెలివరీ చూడండి"
+ },
+ "shopEnterPin": {
+  "en": "Enter a PIN code to see the delivery date",
+  "hi": "डिलीवरी की तारीख देखने के लिए पिन कोड डालें",
+  "te": "డెలివరీ తేదీ కోసం పిన్ కోడ్ ఇవ్వండి"
+ },
+ "shopDeliveryBetween": {
+  "en": "Delivery {from} – {to}",
+  "hi": "डिलीवरी {from} – {to}",
+  "te": "డెలివరీ {from} – {to}",
+  "ph": {
+   "from": "String",
+   "to": "String"
+  }
+ },
+ "shopReturnable": {
+  "en": "Easy returns within {days} days of delivery",
+  "hi": "डिलीवरी के {days} दिन के अंदर आसान वापसी",
+  "te": "డెలివరీ అయిన {days} రోజుల్లో సులభంగా తిరిగి ఇవ్వొచ్చు",
+  "ph": {
+   "days": "int"
+  }
+ },
+ "shopNotReturnable": {
+  "en": "Food and treats can't be returned once delivered",
+  "hi": "खाना और ट्रीट्स डिलीवरी के बाद वापस नहीं होते",
+  "te": "ఆహారం, ట్రీట్స్ డెలివరీ తర్వాత తిరిగి తీసుకోరు"
+ },
+ "shopAbout": {
+  "en": "About this product",
+  "hi": "इस प्रोडक्ट के बारे में",
+  "te": "ఈ ఉత్పత్తి గురించి"
+ },
+ "shopPackSize": {
+  "en": "Pack size",
+  "hi": "पैक का साइज़",
+  "te": "ప్యాక్ సైజు"
+ },
+ "shopIngredients": {
+  "en": "Ingredients",
+  "hi": "सामग्री",
+  "te": "పదార్థాలు"
+ },
+ "shopReturnPolicy": {
+  "en": "Return policy",
+  "hi": "वापसी नीति",
+  "te": "రిటర్న్ పాలసీ"
+ },
+ "shopVerifiedBuyer": {
+  "en": "Verified buyer",
+  "hi": "पक्का खरीदार",
+  "te": "ధృవీకరించిన కొనుగోలుదారు"
+ },
+ "shopSellerReplied": {
+  "en": "Seller: {reply}",
+  "hi": "विक्रेता: {reply}",
+  "te": "అమ్మకందారు: {reply}",
+  "ph": {
+   "reply": "String"
+  }
+ },
+ "shopBuyOn": {
+  "en": "Buy on {store}",
+  "hi": "{store} पर खरीदें",
+  "te": "{store}లో కొనండి",
+  "ph": {
+   "store": "String"
+  }
+ },
+ "shopAddToCart": {
+  "en": "Add to cart",
+  "hi": "कार्ट में डालें",
+  "te": "కార్ట్‌లో వేయండి"
+ },
+ "shopBuyNow": {
+  "en": "Buy now",
+  "hi": "अभी खरीदें",
+  "te": "ఇప్పుడే కొనండి"
+ },
+ "shopAddedToCart": {
+  "en": "Added to cart",
+  "hi": "कार्ट में डाला",
+  "te": "కార్ట్‌లో వేశాం"
+ },
+ "shopViewCart": {
+  "en": "View cart",
+  "hi": "कार्ट देखें",
+  "te": "కార్ట్ చూడండి"
+ },
+ "shopLeavingTitle": {
+  "en": "You will buy on {store}",
+  "hi": "आप {store} पर खरीदेंगे",
+  "te": "మీరు {store}లో కొంటారు",
+  "ph": {
+   "store": "String"
+  }
+ },
+ "shopLeavingBody": {
+  "en": "We will open {store} in your browser. Payment, delivery and returns are handled by {store}. PawSetu may earn a small commission.",
+  "hi": "हम आपके ब्राउज़र में {store} खोलेंगे। भुगतान, डिलीवरी और वापसी {store} संभालेगा। PawSetu को थोड़ा कमीशन मिल सकता है।",
+  "te": "మీ బ్రౌజర్‌లో {store} తెరుస్తాం. చెల్లింపు, డెలివరీ, రిటర్న్‌లు {store} చూసుకుంటుంది. PawSetuకి చిన్న కమీషన్ రావచ్చు.",
+  "ph": {
+   "store": "String"
+  }
+ },
+ "shopContinueTo": {
+  "en": "Go to {store}",
+  "hi": "{store} पर जाएँ",
+  "te": "{store}కి వెళ్ళండి",
+  "ph": {
+   "store": "String"
+  }
+ },
+ "shopCart": {
+  "en": "Cart",
+  "hi": "कार्ट",
+  "te": "కార్ట్"
+ },
+ "shopCartWithCount": {
+  "en": "Cart, {count} items",
+  "hi": "कार्ट, {count} आइटम",
+  "te": "కార్ట్, {count} వస్తువులు",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "shopQuantity": {
+  "en": "Quantity",
+  "hi": "मात्रा",
+  "te": "పరిమాణం"
+ },
+ "shopQtySemantics": {
+  "en": "Quantity {count}",
+  "hi": "मात्रा {count}",
+  "te": "పరిమాణం {count}",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "shopQtyShort": {
+  "en": "Qty {count}",
+  "hi": "मात्रा {count}",
+  "te": "సంఖ్య {count}",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "shopLessOf": {
+  "en": "One less {item}",
+  "hi": "एक कम {item}",
+  "te": "ఒకటి తక్కువ {item}",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "shopMoreOf": {
+  "en": "One more {item}",
+  "hi": "एक और {item}",
+  "te": "ఇంకొకటి {item}",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "shopRemoveItem": {
+  "en": "Remove {item}",
+  "hi": "{item} हटाएँ",
+  "te": "{item} తీసివేయండి",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "shopStars": {
+  "en": "{count, plural, =1{1 star} other{{count} stars}}",
+  "hi": "{count} स्टार",
+  "te": "{count} స్టార్లు",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "shopReviewText": {
+  "en": "What did you think? (optional)",
+  "hi": "आपको कैसा लगा? (ज़रूरी नहीं)",
+  "te": "మీకు ఎలా అనిపించింది? (ఐచ్ఛికం)"
+ },
+ "shopPostReview": {
+  "en": "Post review",
+  "hi": "रिव्यू भेजें",
+  "te": "రివ్యూ పంపండి"
+ },
+ "shopThanksReview": {
+  "en": "Thanks for your review!",
+  "hi": "रिव्यू के लिए धन्यवाद!",
+  "te": "రివ్యూకి ధన్యవాదాలు!"
+ },
+ "shopRate": {
+  "en": "Rate",
+  "hi": "रेट करें",
+  "te": "రేట్ చేయండి"
+ },
+ "shopForWhichPet": {
+  "en": "For which pet?",
+  "hi": "किस पालतू के लिए?",
+  "te": "ఏ పెంపుడు జంతువు కోసం?"
+ },
+ "shopReorderTitle": {
+  "en": "Reorder",
+  "hi": "फिर से मँगाएँ",
+  "te": "మళ్ళీ ఆర్డర్"
+ },
+ "shopReorderFor": {
+  "en": "Reorder for {pet}",
+  "hi": "{pet} के लिए फिर से मँगाएँ",
+  "te": "{pet} కోసం మళ్ళీ ఆర్డర్",
+  "ph": {
+   "pet": "String"
+  }
+ },
+ "shopDeliveryOn": {
+  "en": "Delivery on {date}",
+  "hi": "{date} को डिलीवरी",
+  "te": "{date}న డెలివరీ",
+  "ph": {
+   "date": "String"
+  }
+ },
+ "shopItemsTotal": {
+  "en": "Items total",
+  "hi": "सामान का कुल",
+  "te": "వస్తువుల మొత్తం"
+ },
+ "shopDeliveryFee": {
+  "en": "Delivery",
+  "hi": "डिलीवरी",
+  "te": "డెలివరీ"
+ },
+ "shopFree": {
+  "en": "Free",
+  "hi": "फ़्री",
+  "te": "ఉచితం"
+ },
+ "shopToPay": {
+  "en": "To pay",
+  "hi": "देना है",
+  "te": "చెల్లించాల్సింది"
+ },
+ "shopPlaceOrderAmount": {
+  "en": "Place order · {amount}",
+  "hi": "ऑर्डर करें · {amount}",
+  "te": "ఆర్డర్ చేయండి · {amount}",
+  "ph": {
+   "amount": "String"
+  }
+ },
+ "shopOrderPlacedToast": {
+  "en": "Order placed!",
+  "hi": "ऑर्डर हो गया!",
+  "te": "ఆర్డర్ అయింది!"
+ },
+ "shopOrderFailed": {
+  "en": "We couldn't place the order. Please try again.",
+  "hi": "ऑर्डर नहीं हो पाया। कृपया फिर कोशिश करें।",
+  "te": "ఆర్డర్ చేయలేకపోయాం. మళ్ళీ ప్రయత్నించండి."
+ },
+ "addrBook": {
+  "en": "Addresses",
+  "hi": "पते",
+  "te": "చిరునామాలు"
+ },
+ "addrAdd": {
+  "en": "Add address",
+  "hi": "पता जोड़ें",
+  "te": "చిరునామా జోడించండి"
+ },
+ "addrEdit": {
+  "en": "Edit address",
+  "hi": "पता बदलें",
+  "te": "చిరునామా మార్చండి"
+ },
+ "addrAddFirst": {
+  "en": "Add a delivery address",
+  "hi": "डिलीवरी का पता जोड़ें",
+  "te": "డెలివరీ చిరునామా జోడించండి"
+ },
+ "addrNone": {
+  "en": "No addresses yet",
+  "hi": "अभी कोई पता नहीं",
+  "te": "ఇంకా చిరునామాలు లేవు"
+ },
+ "addrNoneBody": {
+  "en": "Add your home address for faster checkout.",
+  "hi": "जल्दी चेकआउट के लिए घर का पता जोड़ें।",
+  "te": "త్వరగా చెక్అవుట్ కోసం ఇంటి చిరునామా జోడించండి."
+ },
+ "addrDeleteQ": {
+  "en": "Delete this address?",
+  "hi": "यह पता हटाएँ?",
+  "te": "ఈ చిరునామా తొలగించాలా?"
+ },
+ "addrChoose": {
+  "en": "Deliver to",
+  "hi": "यहाँ डिलीवर करें",
+  "te": "ఇక్కడికి డెలివరీ"
+ },
+ "addrHome": {
+  "en": "Home",
+  "hi": "घर",
+  "te": "ఇల్లు"
+ },
+ "addrWork": {
+  "en": "Work",
+  "hi": "ऑफ़िस",
+  "te": "ఆఫీసు"
+ },
+ "addrOther": {
+  "en": "Other",
+  "hi": "अन्य",
+  "te": "ఇతరం"
+ },
+ "addrName": {
+  "en": "Name",
+  "hi": "नाम",
+  "te": "పేరు"
+ },
+ "addrPhoneInvalid": {
+  "en": "Enter a 10-digit mobile number",
+  "hi": "10 अंकों का मोबाइल नंबर डालें",
+  "te": "10 అంకెల మొబైల్ నంబర్ ఇవ్వండి"
+ },
+ "addrLine1": {
+  "en": "House / flat and street",
+  "hi": "मकान / फ़्लैट और गली",
+  "te": "ఇల్లు / ఫ్లాట్, వీధి"
+ },
+ "addrLine2": {
+  "en": "Landmark (optional)",
+  "hi": "पास की जगह (ज़रूरी नहीं)",
+  "te": "దగ్గర గుర్తు (ఐచ్ఛికం)"
+ },
+ "addrArea": {
+  "en": "Area",
+  "hi": "इलाका",
+  "te": "ప్రాంతం"
+ },
+ "addrCity": {
+  "en": "City",
+  "hi": "शहर",
+  "te": "నగరం"
+ },
+ "addrPin": {
+  "en": "PIN code",
+  "hi": "पिन कोड",
+  "te": "పిన్ కోడ్"
+ },
+ "addrPinInvalid": {
+  "en": "Enter a 6-digit PIN code",
+  "hi": "6 अंकों का पिन कोड डालें",
+  "te": "6 అంకెల పిన్ కోడ్ ఇవ్వండి"
+ },
+ "cartEmpty": {
+  "en": "Your cart is empty",
+  "hi": "आपका कार्ट खाली है",
+  "te": "మీ కార్ట్ ఖాళీగా ఉంది"
+ },
+ "cartEmptyBody": {
+  "en": "Food, toys and more for your pet are a tap away.",
+  "hi": "आपके पालतू के लिए खाना, खिलौने और बहुत कुछ एक टैप दूर।",
+  "te": "మీ పెంపుడు జంతువుకి ఆహారం, బొమ్మలు ఒక్క ట్యాప్ దూరంలో."
+ },
+ "cartStartShopping": {
+  "en": "Start shopping",
+  "hi": "खरीदारी शुरू करें",
+  "te": "షాపింగ్ మొదలుపెట్టండి"
+ },
+ "cartSoldBy": {
+  "en": "Sold by {seller}",
+  "hi": "विक्रेता: {seller}",
+  "te": "అమ్మకందారు: {seller}",
+  "ph": {
+   "seller": "String"
+  }
+ },
+ "cartSkipped": {
+  "en": "These can't be ordered here right now",
+  "hi": "इन्हें अभी यहाँ से ऑर्डर नहीं कर सकते",
+  "te": "వీటిని ఇప్పుడు ఇక్కడ ఆర్డర్ చేయలేరు"
+ },
+ "cartPartnerOnly": {
+  "en": "Buy this on the partner store",
+  "hi": "इसे पार्टनर स्टोर पर खरीदें",
+  "te": "దీన్ని పార్ట్‌నర్ స్టోర్‌లో కొనండి"
+ },
+ "cartPetHint": {
+  "en": "Helps us track spending and food for this pet.",
+  "hi": "इससे इस पालतू का खर्च और खाना ट्रैक होता है।",
+  "te": "ఈ పెంపుడు జంతువు ఖర్చు, ఆహారం ట్రాక్ చేయడానికి."
+ },
+ "cartDeliverTo": {
+  "en": "Deliver to",
+  "hi": "डिलीवरी का पता",
+  "te": "డెలివరీ చిరునామా"
+ },
+ "cartSlot": {
+  "en": "Delivery slot",
+  "hi": "डिलीवरी का समय",
+  "te": "డెలివరీ సమయం"
+ },
+ "cartCoupon": {
+  "en": "Coupon",
+  "hi": "कूपन",
+  "te": "కూపన్"
+ },
+ "couponCode": {
+  "en": "Coupon code",
+  "hi": "कूपन कोड",
+  "te": "కూపన్ కోడ్"
+ },
+ "couponApply": {
+  "en": "Apply",
+  "hi": "लगाएँ",
+  "te": "వర్తింపజేయండి"
+ },
+ "couponApplied": {
+  "en": "Coupon applied",
+  "hi": "कूपन लग गया",
+  "te": "కూపన్ వర్తించింది"
+ },
+ "couponSaved": {
+  "en": "{code} applied: you save {amount}",
+  "hi": "{code} लगा: आपकी बचत {amount}",
+  "te": "{code} వర్తించింది: మీకు {amount} ఆదా",
+  "ph": {
+   "code": "String",
+   "amount": "String"
+  }
+ },
+ "couponNotFound": {
+  "en": "That coupon code isn't valid",
+  "hi": "यह कूपन कोड सही नहीं है",
+  "te": "ఈ కూపన్ కోడ్ చెల్లదు"
+ },
+ "couponExpired": {
+  "en": "This coupon has expired",
+  "hi": "यह कूपन खत्म हो गया है",
+  "te": "ఈ కూపన్ గడువు ముగిసింది"
+ },
+ "couponMinOrder": {
+  "en": "Add items worth ₹{amount} or more to use this coupon",
+  "hi": "यह कूपन ₹{amount} या उससे ज़्यादा के ऑर्डर पर लगेगा",
+  "te": "ఈ కూపన్ కోసం ₹{amount} లేదా అంతకంటే ఎక్కువ కొనండి",
+  "ph": {
+   "amount": "int"
+  }
+ },
+ "couponUsedUp": {
+  "en": "This coupon has been fully used",
+  "hi": "यह कूपन पूरा इस्तेमाल हो चुका है",
+  "te": "ఈ కూపన్ పూర్తిగా వాడేశారు"
+ },
+ "cartPayment": {
+  "en": "Payment",
+  "hi": "भुगतान",
+  "te": "చెల్లింపు"
+ },
+ "payOnlineDemo": {
+  "en": "Pay online (demo)",
+  "hi": "ऑनलाइन भुगतान (डेमो)",
+  "te": "ఆన్‌లైన్ చెల్లింపు (డెమో)"
+ },
+ "payOnDelivery": {
+  "en": "Pay on delivery",
+  "hi": "डिलीवरी पर भुगतान",
+  "te": "డెలివరీ అప్పుడు చెల్లింపు"
+ },
+ "cartBill": {
+  "en": "Bill details",
+  "hi": "बिल",
+  "te": "బిల్లు వివరాలు"
+ },
+ "cartMrpTotal": {
+  "en": "{count, plural, =1{Price (1 item)} other{Price ({count} items)}}",
+  "hi": "कीमत ({count} आइटम)",
+  "te": "ధర ({count} వస్తువులు)",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "cartMrpDiscount": {
+  "en": "Discount on MRP",
+  "hi": "MRP पर छूट",
+  "te": "MRPపై తగ్గింపు"
+ },
+ "cartCouponDiscount": {
+  "en": "Coupon",
+  "hi": "कूपन",
+  "te": "కూపన్"
+ },
+ "cartCouponDiscountCode": {
+  "en": "Coupon {code}",
+  "hi": "कूपन {code}",
+  "te": "కూపన్ {code}",
+  "ph": {
+   "code": "String"
+  }
+ },
+ "cartAddForFree": {
+  "en": "Add {amount} more for free delivery",
+  "hi": "फ़्री डिलीवरी के लिए {amount} का और सामान लें",
+  "te": "ఉచిత డెలివరీ కోసం ఇంకా {amount} కొనండి",
+  "ph": {
+   "amount": "String"
+  }
+ },
+ "cartPlusFreeDelivery": {
+  "en": "Free delivery with Plus",
+  "hi": "Plus के साथ फ़्री डिलीवरी",
+  "te": "Plusతో ఉచిత డెలివరీ"
+ },
+ "cartSplitNote": {
+  "en": "Items come from {count} sellers, so you'll get {count} deliveries. You pay once.",
+  "hi": "सामान {count} विक्रेताओं से आएगा, इसलिए {count} डिलीवरी होंगी। भुगतान एक बार।",
+  "te": "వస్తువులు {count} అమ్మకందారుల నుండి వస్తాయి, కాబట్టి {count} డెలివరీలు. చెల్లింపు ఒక్కసారే.",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "cartYouSave": {
+  "en": "You save {amount}",
+  "hi": "आपकी बचत {amount}",
+  "te": "మీకు {amount} ఆదా",
+  "ph": {
+   "amount": "String"
+  }
+ },
+ "cartPay": {
+  "en": "Pay {amount}",
+  "hi": "{amount} चुकाएँ",
+  "te": "{amount} చెల్లించండి",
+  "ph": {
+   "amount": "String"
+  }
+ },
+ "cartPlaceOrder": {
+  "en": "Place order",
+  "hi": "ऑर्डर करें",
+  "te": "ఆర్డర్ చేయండి"
+ },
+ "cartPaymentFor": {
+  "en": "{count, plural, =1{PawSetu order, 1 item} other{PawSetu order, {count} items}}",
+  "hi": "PawSetu ऑर्डर, {count} आइटम",
+  "te": "PawSetu ఆర్డర్, {count} వస్తువులు",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "payFailedTryAgain": {
+  "en": "Payment failed. Your cart is saved; please try again.",
+  "hi": "भुगतान नहीं हुआ। आपका कार्ट सेव है; फिर कोशिश करें।",
+  "te": "చెల్లింపు విఫలమైంది. మీ కార్ట్ సేవ్ అయింది; మళ్ళీ ప్రయత్నించండి."
+ },
+ "payPaidOnline": {
+  "en": "Paid online",
+  "hi": "ऑनलाइन भुगतान हुआ",
+  "te": "ఆన్‌లైన్‌లో చెల్లించారు"
+ },
+ "payPending": {
+  "en": "Payment pending",
+  "hi": "भुगतान बाकी",
+  "te": "చెల్లింపు పెండింగ్"
+ },
+ "payRefunded": {
+  "en": "Refunded",
+  "hi": "पैसे वापस",
+  "te": "డబ్బు తిరిగి ఇచ్చాం"
+ },
+ "payPendingNote": {
+  "en": "Your payment is being confirmed. If it fails, you can pay again or pay on delivery.",
+  "hi": "आपका भुगतान पक्का हो रहा है। न हो तो फिर से भुगतान करें या डिलीवरी पर दें।",
+  "te": "మీ చెల్లింపు నిర్ధారణ అవుతోంది. విఫలమైతే మళ్ళీ చెల్లించండి లేదా డెలివరీ అప్పుడు చెల్లించండి."
+ },
+ "payNow": {
+  "en": "Pay now",
+  "hi": "अभी भुगतान करें",
+  "te": "ఇప్పుడే చెల్లించండి"
+ },
+ "ordMyOrders": {
+  "en": "My orders",
+  "hi": "मेरे ऑर्डर",
+  "te": "నా ఆర్డర్లు"
+ },
+ "ordTabOrders": {
+  "en": "Orders",
+  "hi": "ऑर्डर",
+  "te": "ఆర్డర్లు"
+ },
+ "ordNone": {
+  "en": "No orders yet",
+  "hi": "अभी कोई ऑर्डर नहीं",
+  "te": "ఇంకా ఆర్డర్లు లేవు"
+ },
+ "ordPlaced": {
+  "en": "Placed",
+  "hi": "ऑर्डर हुआ",
+  "te": "ఆర్డర్ అయింది"
+ },
+ "ordPacked": {
+  "en": "Packed",
+  "hi": "पैक हुआ",
+  "te": "ప్యాక్ అయింది"
+ },
+ "ordShipped": {
+  "en": "Shipped",
+  "hi": "भेजा गया",
+  "te": "పంపించాం"
+ },
+ "ordOutForDelivery": {
+  "en": "Out for delivery",
+  "hi": "डिलीवरी के लिए निकला",
+  "te": "డెలివరీకి బయలుదేరింది"
+ },
+ "ordDelivered": {
+  "en": "Delivered",
+  "hi": "डिलीवर हुआ",
+  "te": "డెలివరీ అయింది"
+ },
+ "ordCancelled": {
+  "en": "Cancelled",
+  "hi": "रद्द",
+  "te": "రద్దు"
+ },
+ "ordReturnRequested": {
+  "en": "Return requested",
+  "hi": "वापसी माँगी",
+  "te": "రిటర్న్ కోరారు"
+ },
+ "ordReturned": {
+  "en": "Returned",
+  "hi": "वापस हुआ",
+  "te": "తిరిగి ఇచ్చారు"
+ },
+ "ordReturnRejected": {
+  "en": "Return declined",
+  "hi": "वापसी नामंज़ूर",
+  "te": "రిటర్న్ తిరస్కరించారు"
+ },
+ "ordItemsMore": {
+  "en": "{name} +{count} more",
+  "hi": "{name} +{count} और",
+  "te": "{name} +ఇంకా {count}",
+  "ph": {
+   "name": "String",
+   "count": "int"
+  }
+ },
+ "ordArrivingBy": {
+  "en": "Arriving by {date}",
+  "hi": "{date} तक आएगा",
+  "te": "{date} లోపు వస్తుంది",
+  "ph": {
+   "date": "String"
+  }
+ },
+ "ordExpected": {
+  "en": "Expected {date}",
+  "hi": "अनुमान {date}",
+  "te": "అంచనా {date}",
+  "ph": {
+   "date": "String"
+  }
+ },
+ "ordPlacedTitle": {
+  "en": "Order placed",
+  "hi": "ऑर्डर हो गया",
+  "te": "ఆర్డర్ అయింది"
+ },
+ "ordPlacedHeading": {
+  "en": "Thank you! Your order is placed.",
+  "hi": "धन्यवाद! आपका ऑर्डर हो गया।",
+  "te": "ధన్యవాదాలు! మీ ఆర్డర్ అయింది."
+ },
+ "ordPlacedBody": {
+  "en": "We'll let you know when it's on the way.",
+  "hi": "रास्ते में होने पर हम बताएँगे।",
+  "te": "దారిలో ఉన్నప్పుడు చెబుతాం."
+ },
+ "ordPlacedSplit": {
+  "en": "It comes in {count} deliveries, one from each seller.",
+  "hi": "यह {count} डिलीवरी में आएगा, हर विक्रेता से एक।",
+  "te": "ఇది {count} డెలివరీల్లో వస్తుంది, ఒక్కో అమ్మకందారు నుండి ఒకటి.",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "ordTrack": {
+  "en": "Track order",
+  "hi": "ऑर्डर ट्रैक करें",
+  "te": "ఆర్డర్ ట్రాక్ చేయండి"
+ },
+ "ordContinueShopping": {
+  "en": "Continue shopping",
+  "hi": "खरीदारी जारी रखें",
+  "te": "షాపింగ్ కొనసాగించండి"
+ },
+ "ordDetail": {
+  "en": "Order details",
+  "hi": "ऑर्डर की जानकारी",
+  "te": "ఆర్డర్ వివరాలు"
+ },
+ "ordNotFound": {
+  "en": "We couldn't find this order",
+  "hi": "यह ऑर्डर नहीं मिला",
+  "te": "ఈ ఆర్డర్ దొరకలేదు"
+ },
+ "ordNumber": {
+  "en": "Order {number}",
+  "hi": "ऑर्डर {number}",
+  "te": "ఆర్డర్ {number}",
+  "ph": {
+   "number": "String"
+  }
+ },
+ "ordPlacedOn": {
+  "en": "Placed on {date}",
+  "hi": "{date} को ऑर्डर किया",
+  "te": "{date}న ఆర్డర్ చేశారు",
+  "ph": {
+   "date": "String"
+  }
+ },
+ "ordTracking": {
+  "en": "Tracking",
+  "hi": "ट्रैकिंग",
+  "te": "ట్రాకింగ్"
+ },
+ "ordItems": {
+  "en": "{count, plural, =1{1 item} other{{count} items}}",
+  "hi": "{count} आइटम",
+  "te": "{count} వస్తువులు",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "ordSlot": {
+  "en": "Slot: {date}, {window}",
+  "hi": "समय: {date}, {window}",
+  "te": "సమయం: {date}, {window}",
+  "ph": {
+   "date": "String",
+   "window": "String"
+  }
+ },
+ "ordForPet": {
+  "en": "For {pet}",
+  "hi": "{pet} के लिए",
+  "te": "{pet} కోసం",
+  "ph": {
+   "pet": "String"
+  }
+ },
+ "ordTotal": {
+  "en": "Total",
+  "hi": "कुल",
+  "te": "మొత్తం"
+ },
+ "ordPayment": {
+  "en": "Payment",
+  "hi": "भुगतान",
+  "te": "చెల్లింపు"
+ },
+ "ordInvoice": {
+  "en": "Invoice (PDF)",
+  "hi": "बिल (PDF)",
+  "te": "ఇన్వాయిస్ (PDF)"
+ },
+ "ordCancel": {
+  "en": "Cancel order",
+  "hi": "ऑर्डर रद्द करें",
+  "te": "ఆర్డర్ రద్దు చేయండి"
+ },
+ "ordReturn": {
+  "en": "Return",
+  "hi": "वापस करें",
+  "te": "తిరిగి ఇవ్వండి"
+ },
+ "ordHelp": {
+  "en": "Get help",
+  "hi": "मदद लें",
+  "te": "సహాయం పొందండి"
+ },
+ "ordReturnWindowOver": {
+  "en": "The {days}-day return window has ended.",
+  "hi": "{days} दिन की वापसी का समय खत्म हो गया।",
+  "te": "{days} రోజుల రిటర్న్ గడువు ముగిసింది.",
+  "ph": {
+   "days": "int"
+  }
+ },
+ "ordCancelTitle": {
+  "en": "Why do you want to cancel?",
+  "hi": "आप क्यों रद्द करना चाहते हैं?",
+  "te": "ఎందుకు రద్దు చేయాలనుకుంటున్నారు?"
+ },
+ "ordReturnTitle": {
+  "en": "Why are you returning it?",
+  "hi": "आप क्यों वापस कर रहे हैं?",
+  "te": "ఎందుకు తిరిగి ఇస్తున్నారు?"
+ },
+ "ordReasonChangedMind": {
+  "en": "I changed my mind",
+  "hi": "मेरा मन बदल गया",
+  "te": "నా మనసు మారింది"
+ },
+ "ordReasonWrongItem": {
+  "en": "Wrong item or size",
+  "hi": "गलत सामान या साइज़",
+  "te": "తప్పు వస్తువు లేదా సైజు"
+ },
+ "ordReasonTooLate": {
+  "en": "Delivery is too late",
+  "hi": "डिलीवरी बहुत देर से है",
+  "te": "డెలివరీ చాలా ఆలస్యం"
+ },
+ "ordReasonDamaged": {
+  "en": "It arrived damaged",
+  "hi": "टूटा-फूटा आया",
+  "te": "పాడైపోయి వచ్చింది"
+ },
+ "ordReasonNotSuitable": {
+  "en": "Not suitable for my pet",
+  "hi": "मेरे पालतू के लिए ठीक नहीं",
+  "te": "నా పెంపుడు జంతువుకి సరిపోలేదు"
+ },
+ "ordReasonOther": {
+  "en": "Something else",
+  "hi": "कुछ और",
+  "te": "ఇంకేదో"
+ },
+ "ordCancelledToast": {
+  "en": "Order cancelled",
+  "hi": "ऑर्डर रद्द हुआ",
+  "te": "ఆర్డర్ రద్దయింది"
+ },
+ "ordCancelledRefund": {
+  "en": "Order cancelled. Your refund is on its way (demo).",
+  "hi": "ऑर्डर रद्द हुआ। आपका रिफ़ंड आ रहा है (डेमो)।",
+  "te": "ఆర్డర్ రద్దయింది. మీ డబ్బు తిరిగి వస్తోంది (డెమో)."
+ },
+ "ordReturnRequestedToast": {
+  "en": "Return requested. The seller will reply soon.",
+  "hi": "वापसी माँगी गई। विक्रेता जल्द जवाब देगा।",
+  "te": "రిటర్న్ కోరాం. అమ్మకందారు త్వరలో స్పందిస్తారు."
+ },
+ "ordReason": {
+  "en": "Reason: {reason}",
+  "hi": "कारण: {reason}",
+  "te": "కారణం: {reason}",
+  "ph": {
+   "reason": "String"
+  }
+ },
+ "ordStepDone": {
+  "en": "done",
+  "hi": "पूरा",
+  "te": "పూర్తయింది"
+ },
+ "invTitle": {
+  "en": "Tax invoice",
+  "hi": "टैक्स इनवॉइस",
+  "te": "టాక్స్ ఇన్వాయిస్"
+ },
+ "invFooter": {
+  "en": "PawSetu marketplace · This invoice is generated by the seller through PawSetu.",
+  "hi": "PawSetu मार्केटप्लेस · यह इनवॉइस विक्रेता ने PawSetu से बनाया है।",
+  "te": "PawSetu మార్కెట్‌ప్లేస్ · ఈ ఇన్వాయిస్ అమ్మకందారు PawSetu ద్వారా తయారు చేశారు."
+ },
+ "invSoldBy": {
+  "en": "Sold by",
+  "hi": "विक्रेता",
+  "te": "అమ్మకందారు"
+ },
+ "invBillTo": {
+  "en": "Bill to",
+  "hi": "खरीदार",
+  "te": "కొనుగోలుదారు"
+ },
+ "invGstin": {
+  "en": "GSTIN: {gstin}",
+  "hi": "GSTIN: {gstin}",
+  "te": "GSTIN: {gstin}",
+  "ph": {
+   "gstin": "String"
+  }
+ },
+ "invMarketplace": {
+  "en": "Sold through PawSetu marketplace",
+  "hi": "PawSetu मार्केटप्लेस से बेचा गया",
+  "te": "PawSetu మార్కెట్‌ప్లేస్ ద్వారా అమ్మారు"
+ },
+ "invOrder": {
+  "en": "Order",
+  "hi": "ऑर्डर",
+  "te": "ఆర్డర్"
+ },
+ "invInvoiceNo": {
+  "en": "Invoice {number}",
+  "hi": "इनवॉइस {number}",
+  "te": "ఇన్వాయిస్ {number}",
+  "ph": {
+   "number": "String"
+  }
+ },
+ "invPayment": {
+  "en": "Payment: {method}",
+  "hi": "भुगतान: {method}",
+  "te": "చెల్లింపు: {method}",
+  "ph": {
+   "method": "String"
+  }
+ },
+ "invItems": {
+  "en": "Items",
+  "hi": "सामान",
+  "te": "వస్తువులు"
+ },
+ "invItem": {
+  "en": "Item",
+  "hi": "सामान",
+  "te": "వస్తువు"
+ },
+ "invQty": {
+  "en": "Qty",
+  "hi": "मात्रा",
+  "te": "సంఖ్య"
+ },
+ "invPrice": {
+  "en": "Price",
+  "hi": "कीमत",
+  "te": "ధర"
+ },
+ "invAmount": {
+  "en": "Amount",
+  "hi": "राशि",
+  "te": "మొత్తం"
+ },
+ "invTax": {
+  "en": "GST",
+  "hi": "GST",
+  "te": "GST"
+ },
+ "invTaxPlaceholder": {
+  "en": "Included",
+  "hi": "शामिल",
+  "te": "కలిపి ఉంది"
+ },
+ "invDemoNote": {
+  "en": "Demo invoice: no money was charged and GST details are placeholders.",
+  "hi": "डेमो इनवॉइस: कोई पैसा नहीं लिया गया और GST जानकारी नमूना है।",
+  "te": "డెమో ఇన్వాయిస్: డబ్బు తీసుకోలేదు, GST వివరాలు నమూనా మాత్రమే."
+ },
+ "orderEmailSubject": {
+  "en": "Your PawSetu order is placed",
+  "hi": "आपका PawSetu ऑर्डर हो गया",
+  "te": "మీ PawSetu ఆర్డర్ అయింది"
+ },
+ "orderEmailBody": {
+  "en": "Hi {name}, thank you for your order of {amount}. It should reach you by {date}.",
+  "hi": "नमस्ते {name}, {amount} के ऑर्डर के लिए धन्यवाद। यह {date} तक पहुँच जाना चाहिए।",
+  "te": "నమస్తే {name}, {amount} ఆర్డర్‌కి ధన్యవాదాలు. ఇది {date} లోపు చేరాలి.",
+  "ph": {
+   "name": "String",
+   "amount": "String",
+   "date": "String"
+  }
+ },
+ "subsTitle": {
+  "en": "Auto-reorder",
+  "hi": "अपने-आप दोबारा ऑर्डर",
+  "te": "ఆటో రీఆర్డర్"
+ },
+ "subsHint": {
+  "en": "Get this delivered every 2, 4 or 6 weeks. Pause or cancel anytime.",
+  "hi": "हर 2, 4 या 6 हफ़्ते में डिलीवरी। कभी भी रोकें या बंद करें।",
+  "te": "ప్రతి 2, 4 లేదా 6 వారాలకు డెలివరీ. ఎప్పుడైనా ఆపండి లేదా రద్దు చేయండి."
+ },
+ "subsEvery": {
+  "en": "Deliver every",
+  "hi": "कितने समय में",
+  "te": "ఎంత కాలానికి"
+ },
+ "subsWeeks": {
+  "en": "{count, plural, =1{Every week} other{Every {count} weeks}}",
+  "hi": "हर {count} हफ़्ते",
+  "te": "ప్రతి {count} వారాలకు",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "subsFirstOn": {
+  "en": "First delivery around {date}, paid on delivery.",
+  "hi": "पहली डिलीवरी लगभग {date} को, डिलीवरी पर भुगतान।",
+  "te": "మొదటి డెలివరీ సుమారు {date}న, డెలివరీ అప్పుడు చెల్లింపు.",
+  "ph": {
+   "date": "String"
+  }
+ },
+ "subsStart": {
+  "en": "Start auto-reorder",
+  "hi": "ऑटो-ऑर्डर शुरू करें",
+  "te": "ఆటో రీఆర్డర్ మొదలుపెట్టండి"
+ },
+ "subsCreated": {
+  "en": "Auto-reorder is on",
+  "hi": "ऑटो-ऑर्डर चालू है",
+  "te": "ఆటో రీఆర్డర్ ఆన్ అయింది"
+ },
+ "subsTab": {
+  "en": "Auto-reorder",
+  "hi": "ऑटो-ऑर्डर",
+  "te": "ఆటో రీఆర్డర్"
+ },
+ "subsNone": {
+  "en": "No auto-reorders",
+  "hi": "कोई ऑटो-ऑर्डर नहीं",
+  "te": "ఆటో రీఆర్డర్లు లేవు"
+ },
+ "subsNoneBody": {
+  "en": "Set one up from any food page so you never run out.",
+  "hi": "किसी भी खाने के पेज से शुरू करें ताकि खाना कभी खत्म न हो।",
+  "te": "ఆహారం ఎప్పుడూ అయిపోకుండా ఏదైనా ఆహార పేజీ నుండి మొదలుపెట్టండి."
+ },
+ "subsNext": {
+  "en": "Next delivery {date}",
+  "hi": "अगली डिलीवरी {date}",
+  "te": "తదుపరి డెలివరీ {date}",
+  "ph": {
+   "date": "String"
+  }
+ },
+ "subsPaused": {
+  "en": "Paused",
+  "hi": "रुका हुआ",
+  "te": "ఆపారు"
+ },
+ "subsPause": {
+  "en": "Pause",
+  "hi": "रोकें",
+  "te": "ఆపండి"
+ },
+ "subsResume": {
+  "en": "Resume",
+  "hi": "फिर शुरू करें",
+  "te": "మళ్ళీ మొదలుపెట్టండి"
+ },
+ "subsCancel": {
+  "en": "Cancel",
+  "hi": "बंद करें",
+  "te": "రద్దు చేయండి"
+ },
+ "subsCancelQ": {
+  "en": "Stop this auto-reorder?",
+  "hi": "यह ऑटो-ऑर्डर बंद करें?",
+  "te": "ఈ ఆటో రీఆర్డర్ ఆపాలా?"
+ },
+ "subsOrderedToast": {
+  "en": "{count, plural, =1{Your auto-reorder was placed} other{{count} auto-reorders were placed}}",
+  "hi": "{count} ऑटो-ऑर्डर हो गए",
+  "te": "{count} ఆటో రీఆర్డర్లు చేశాం",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "ntfNewOrder": {
+  "en": "{count, plural, =1{New order: {item}} other{New order: {item} and more}}",
+  "hi": "नया ऑर्डर: {item}",
+  "te": "కొత్త ఆర్డర్: {item}",
+  "ph": {
+   "item": "String",
+   "count": "int"
+  }
+ },
+ "ntfOrderCancelled": {
+  "en": "Order {number} was cancelled by the customer",
+  "hi": "ग्राहक ने ऑर्डर {number} रद्द किया",
+  "te": "కస్టమర్ ఆర్డర్ {number} రద్దు చేశారు",
+  "ph": {
+   "number": "String"
+  }
+ },
+ "ntfOrderCancelledBySeller": {
+  "en": "Sorry, the seller cancelled your order for {item}. Any payment is refunded.",
+  "hi": "माफ़ कीजिए, विक्रेता ने {item} का ऑर्डर रद्द किया। भुगतान वापस होगा।",
+  "te": "క్షమించండి, అమ్మకందారు {item} ఆర్డర్ రద్దు చేశారు. చెల్లింపు తిరిగి వస్తుంది.",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "ntfOrderPacked": {
+  "en": "{item} is packed",
+  "hi": "{item} पैक हो गया",
+  "te": "{item} ప్యాక్ అయింది",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "ntfOrderShipped": {
+  "en": "{item} is on the way",
+  "hi": "{item} रास्ते में है",
+  "te": "{item} దారిలో ఉంది",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "ntfOrderOutForDelivery": {
+  "en": "{item} is out for delivery today",
+  "hi": "{item} आज डिलीवरी के लिए निकला",
+  "te": "{item} ఈరోజు డెలివరీకి బయలుదేరింది",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "ntfOrderDelivered": {
+  "en": "{item} was delivered",
+  "hi": "{item} डिलीवर हो गया",
+  "te": "{item} డెలివరీ అయింది",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "ntfOrderUpdated": {
+  "en": "Your order for {item} was updated",
+  "hi": "{item} का ऑर्डर अपडेट हुआ",
+  "te": "{item} ఆర్డర్ అప్‌డేట్ అయింది",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "ntfReturnAccepted": {
+  "en": "Return accepted for {item}. Your refund is on its way.",
+  "hi": "{item} की वापसी मंज़ूर। रिफ़ंड आ रहा है।",
+  "te": "{item} రిటర్న్ అంగీకరించారు. డబ్బు తిరిగి వస్తోంది.",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "ntfReturnRejected": {
+  "en": "Return declined for {item}. Tap for help.",
+  "hi": "{item} की वापसी नामंज़ूर। मदद के लिए टैप करें।",
+  "te": "{item} రిటర్న్ తిరస్కరించారు. సహాయం కోసం ట్యాప్ చేయండి.",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "ntfReturnRequested": {
+  "en": "Return requested for order {number}",
+  "hi": "ऑर्डर {number} की वापसी माँगी गई",
+  "te": "ఆర్డర్ {number} రిటర్న్ కోరారు",
+  "ph": {
+   "number": "String"
+  }
+ },
+ "ntfSubscriptionOrdered": {
+  "en": "Auto-reorder placed: {item}",
+  "hi": "ऑटो-ऑर्डर हुआ: {item}",
+  "te": "ఆటో రీఆర్డర్ చేశాం: {item}",
+  "ph": {
+   "item": "String"
+  }
+ },
+ "foodRunsOutIn": {
+  "en": "{pet}'s food may run out in about {days, plural, =1{1 day} other{{days} days}}. Reorder?",
+  "hi": "{pet} का खाना लगभग {days} दिन में खत्म हो सकता है। फिर से मँगाएँ?",
+  "te": "{pet} ఆహారం సుమారు {days} రోజుల్లో అయిపోవచ్చు. మళ్ళీ ఆర్డర్ చేయాలా?",
+  "ph": {
+   "pet": "String",
+   "days": "int"
+  }
+ },
+ "foodRanOut": {
+  "en": "{pet}'s food may have run out. Reorder?",
+  "hi": "{pet} का खाना शायद खत्म हो गया है। फिर से मँगाएँ?",
+  "te": "{pet} ఆహారం అయిపోయి ఉండవచ్చు. మళ్ళీ ఆర్డర్ చేయాలా?",
+  "ph": {
+   "pet": "String"
+  }
+ },
+ "foodPortionLine": {
+  "en": "{grams} g a day · {bag} bag",
+  "hi": "रोज़ {grams} ग्राम · {bag} का पैक",
+  "te": "రోజుకు {grams} గ్రా · {bag} ప్యాక్",
+  "ph": {
+   "grams": "int",
+   "bag": "String"
+  }
+ },
+ "foodEditPortion": {
+  "en": "Edit portion",
+  "hi": "मात्रा बदलें",
+  "te": "పరిమాణం మార్చండి"
+ },
+ "foodOnTheWay": {
+  "en": "New food for {pet} is on the way",
+  "hi": "{pet} का नया खाना रास्ते में है",
+  "te": "{pet} కొత్త ఆహారం దారిలో ఉంది",
+  "ph": {
+   "pet": "String"
+  }
+ },
+ "foodPlanTitle": {
+  "en": "{pet}'s food",
+  "hi": "{pet} का खाना",
+  "te": "{pet} ఆహారం",
+  "ph": {
+   "pet": "String"
+  }
+ },
+ "foodDailyPortion": {
+  "en": "Daily portion",
+  "hi": "रोज़ की मात्रा",
+  "te": "రోజువారీ పరిమాణం"
+ },
+ "foodSuggested": {
+  "en": "A starting point is {grams} g a day. Follow the pack or your vet.",
+  "hi": "शुरुआत के लिए रोज़ {grams} ग्राम। पैक या अपने डॉक्टर की सलाह मानें।",
+  "te": "మొదట రోజుకు {grams} గ్రా. ప్యాక్ లేదా మీ వెట్ సలహా పాటించండి.",
+  "ph": {
+   "grams": "int"
+  }
+ },
+ "foodBagSize": {
+  "en": "Bag size",
+  "hi": "पैक का साइज़",
+  "te": "ప్యాక్ సైజు"
+ },
+ "foodOpenedOn": {
+  "en": "Bag opened on",
+  "hi": "पैक कब खोला",
+  "te": "ప్యాక్ తెరిచిన తేదీ"
+ },
+ "expAdd": {
+  "en": "Add expense",
+  "hi": "खर्च जोड़ें",
+  "te": "ఖర్చు జోడించండి"
+ },
+ "expEdit": {
+  "en": "Edit expense",
+  "hi": "खर्च बदलें",
+  "te": "ఖర్చు మార్చండి"
+ },
+ "expThisMonth": {
+  "en": "This month",
+  "hi": "इस महीने",
+  "te": "ఈ నెల"
+ },
+ "expLastMonth": {
+  "en": "Last month",
+  "hi": "पिछले महीने",
+  "te": "గత నెల"
+ },
+ "expPeriodTotal": {
+  "en": "Last {months} months",
+  "hi": "पिछले {months} महीने",
+  "te": "గత {months} నెలలు",
+  "ph": {
+   "months": "int"
+  }
+ },
+ "expByMonth": {
+  "en": "Spending by month",
+  "hi": "महीने के हिसाब से खर्च",
+  "te": "నెలవారీ ఖర్చు"
+ },
+ "expMonths": {
+  "en": "{count} months",
+  "hi": "{count} महीने",
+  "te": "{count} నెలలు",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "expByCategory": {
+  "en": "By category",
+  "hi": "कैटेगरी के हिसाब से",
+  "te": "విభాగాల వారీగా"
+ },
+ "expChartSemantics": {
+  "en": "Spending by month: {values}",
+  "hi": "महीने के हिसाब से खर्च: {values}",
+  "te": "నెలవారీ ఖర్చు: {values}",
+  "ph": {
+   "values": "String"
+  }
+ },
+ "expNone": {
+  "en": "No expenses yet",
+  "hi": "अभी कोई खर्च नहीं",
+  "te": "ఇంకా ఖర్చులు లేవు"
+ },
+ "expNoneBody": {
+  "en": "Bookings and orders are added here automatically. You can add others too.",
+  "hi": "बुकिंग और ऑर्डर यहाँ अपने-आप जुड़ते हैं। आप दूसरे खर्च भी जोड़ सकते हैं।",
+  "te": "బుకింగ్‌లు, ఆర్డర్లు ఇక్కడ ఆటోమేటిక్‌గా చేరతాయి. ఇతర ఖర్చులూ జోడించవచ్చు."
+ },
+ "expVet": {
+  "en": "Vet",
+  "hi": "डॉक्टर",
+  "te": "వెట్"
+ },
+ "expGrooming": {
+  "en": "Grooming",
+  "hi": "ग्रूमिंग",
+  "te": "గ్రూమింగ్"
+ },
+ "expTraining": {
+  "en": "Training",
+  "hi": "ट्रेनिंग",
+  "te": "శిక్షణ"
+ },
+ "expBoarding": {
+  "en": "Boarding",
+  "hi": "बोर्डिंग",
+  "te": "బోర్డింగ్"
+ },
+ "expWalking": {
+  "en": "Walking",
+  "hi": "वॉकिंग",
+  "te": "వాకింగ్"
+ },
+ "expFood": {
+  "en": "Food",
+  "hi": "खाना",
+  "te": "ఆహారం"
+ },
+ "expSupplies": {
+  "en": "Supplies",
+  "hi": "सामान",
+  "te": "సామగ్రి"
+ },
+ "expInsurance": {
+  "en": "Insurance",
+  "hi": "बीमा",
+  "te": "బీమా"
+ },
+ "expOther": {
+  "en": "Other",
+  "hi": "अन्य",
+  "te": "ఇతరం"
+ },
+ "expFromBooking": {
+  "en": "from a booking",
+  "hi": "बुकिंग से",
+  "te": "బుకింగ్ నుండి"
+ },
+ "expFromOrder": {
+  "en": "from an order",
+  "hi": "ऑर्डर से",
+  "te": "ఆర్డర్ నుండి"
+ },
+ "expFromTeleVet": {
+  "en": "from tele-vet",
+  "hi": "टेली-वेट से",
+  "te": "టెలీ-వెట్ నుండి"
+ },
+ "expAmount": {
+  "en": "Amount",
+  "hi": "राशि",
+  "te": "మొత్తం"
+ },
+ "expAmountInvalid": {
+  "en": "Enter an amount",
+  "hi": "राशि डालें",
+  "te": "మొత్తం ఇవ్వండి"
+ },
+ "expCategory": {
+  "en": "Category",
+  "hi": "कैटेगरी",
+  "te": "విభాగం"
+ },
+ "expForPet": {
+  "en": "For",
+  "hi": "किसके लिए",
+  "te": "ఎవరి కోసం"
+ },
+ "expAllPets": {
+  "en": "All pets",
+  "hi": "सभी पालतू",
+  "te": "అన్ని పెంపుడు జంతువులు"
+ },
+ "expNote": {
+  "en": "Note",
+  "hi": "नोट",
+  "te": "నోట్"
+ },
+ "expNoteHint": {
+  "en": "For example: rabies booster, new collar",
+  "hi": "जैसे: रेबीज़ बूस्टर, नया पट्टा",
+  "te": "ఉదా: రేబీస్ బూస్టర్, కొత్త కాలర్"
+ },
+ "expSaved": {
+  "en": "Expense saved",
+  "hi": "खर्च सेव हुआ",
+  "te": "ఖర్చు సేవ్ అయింది"
+ },
+ "expDeleteQ": {
+  "en": "Delete this expense?",
+  "hi": "यह खर्च हटाएँ?",
+  "te": "ఈ ఖర్చు తొలగించాలా?"
+ },
+ "selToPack": {
+  "en": "Orders to pack",
+  "hi": "पैक करने वाले ऑर्डर",
+  "te": "ప్యాక్ చేయాల్సిన ఆర్డర్లు"
+ },
+ "selOnTheWay": {
+  "en": "On the way",
+  "hi": "रास्ते में",
+  "te": "దారిలో"
+ },
+ "selLowStock": {
+  "en": "Low stock",
+  "hi": "कम स्टॉक",
+  "te": "తక్కువ స్టాక్"
+ },
+ "selReturnsWaiting": {
+  "en": "{count, plural, =1{1 return is waiting for you} other{{count} returns are waiting for you}}",
+  "hi": "{count} वापसी आपके जवाब का इंतज़ार कर रही हैं",
+  "te": "{count} రిటర్న్‌లు మీ కోసం ఎదురుచూస్తున్నాయి",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "selNewOrders": {
+  "en": "New orders",
+  "hi": "नए ऑर्डर",
+  "te": "కొత్త ఆర్డర్లు"
+ },
+ "selNoNewOrders": {
+  "en": "No new orders right now",
+  "hi": "अभी कोई नया ऑर्डर नहीं",
+  "te": "ఇప్పుడు కొత్త ఆర్డర్లు లేవు"
+ },
+ "selStockLeft": {
+  "en": "{count} in stock",
+  "hi": "{count} स्टॉक में",
+  "te": "స్టాక్‌లో {count}",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "selAddProduct": {
+  "en": "Add product",
+  "hi": "प्रोडक्ट जोड़ें",
+  "te": "ఉత్పత్తి జోడించండి"
+ },
+ "selEditProduct": {
+  "en": "Edit product",
+  "hi": "प्रोडक्ट बदलें",
+  "te": "ఉత్పత్తి మార్చండి"
+ },
+ "selCsvUpload": {
+  "en": "CSV bulk upload",
+  "hi": "CSV से एक साथ अपलोड",
+  "te": "CSV బల్క్ అప్‌లోడ్"
+ },
+ "selSearchProducts": {
+  "en": "Search your products",
+  "hi": "अपने प्रोडक्ट खोजें",
+  "te": "మీ ఉత్పత్తులు వెతకండి"
+ },
+ "selProductCount": {
+  "en": "{count, plural, =1{1 product} other{{count} products}}",
+  "hi": "{count} प्रोडक्ट",
+  "te": "{count} ఉత్పత్తులు",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "selHidden": {
+  "en": "Hidden from the shop",
+  "hi": "शॉप में छिपा है",
+  "te": "షాప్‌లో కనిపించదు"
+ },
+ "selProductName": {
+  "en": "Product name",
+  "hi": "प्रोडक्ट का नाम",
+  "te": "ఉత్పత్తి పేరు"
+ },
+ "selPrice": {
+  "en": "Selling price",
+  "hi": "बिक्री कीमत",
+  "te": "అమ్మకం ధర"
+ },
+ "selMrp": {
+  "en": "MRP",
+  "hi": "MRP",
+  "te": "MRP"
+ },
+ "selPriceInvalid": {
+  "en": "Enter a price",
+  "hi": "कीमत डालें",
+  "te": "ధర ఇవ్వండి"
+ },
+ "selMrpInvalid": {
+  "en": "MRP can't be lower than the price",
+  "hi": "MRP कीमत से कम नहीं हो सकता",
+  "te": "MRP ధర కంటే తక్కువ ఉండకూడదు"
+ },
+ "selStock": {
+  "en": "Stock",
+  "hi": "स्टॉक",
+  "te": "స్టాక్"
+ },
+ "selPackKg": {
+  "en": "Pack size in kg (food)",
+  "hi": "पैक साइज़ किलो में (खाना)",
+  "te": "ప్యాక్ సైజు కేజీల్లో (ఆహారం)"
+ },
+ "selDescription": {
+  "en": "Description",
+  "hi": "विवरण",
+  "te": "వివరణ"
+ },
+ "selVisible": {
+  "en": "Show in the shop",
+  "hi": "शॉप में दिखाएँ",
+  "te": "షాప్‌లో చూపండి"
+ },
+ "selVisibleHint": {
+  "en": "Turn off to hide it without deleting",
+  "hi": "बिना हटाए छिपाने के लिए बंद करें",
+  "te": "తొలగించకుండా దాచడానికి ఆఫ్ చేయండి"
+ },
+ "selNoRxNote": {
+  "en": "Prescription-only medicines can't be sold on PawSetu.",
+  "hi": "सिर्फ़ पर्चे वाली दवाएँ PawSetu पर नहीं बिक सकतीं।",
+  "te": "ప్రిస్క్రిప్షన్‌తో మాత్రమే అమ్మే మందులు PawSetuలో అమ్మకూడదు."
+ },
+ "selSaved": {
+  "en": "Product saved",
+  "hi": "प्रोडक्ट सेव हुआ",
+  "te": "ఉత్పత్తి సేవ్ అయింది"
+ },
+ "selCsvHelp": {
+  "en": "Columns: {columns}. Species can be several, like dog|cat.",
+  "hi": "कॉलम: {columns}। प्रजाति कई हो सकती हैं, जैसे dog|cat।",
+  "te": "కాలమ్‌లు: {columns}. జాతులు చాలా ఉండొచ్చు, ఉదా dog|cat.",
+  "ph": {
+   "columns": "String"
+  }
+ },
+ "selCsvChoose": {
+  "en": "Choose CSV file",
+  "hi": "CSV फ़ाइल चुनें",
+  "te": "CSV ఫైల్ ఎంచుకోండి"
+ },
+ "selCsvSample": {
+  "en": "Try the sample",
+  "hi": "नमूना आज़माएँ",
+  "te": "నమూనా ప్రయత్నించండి"
+ },
+ "selCsvCopyTemplate": {
+  "en": "Copy template",
+  "hi": "टेम्पलेट कॉपी करें",
+  "te": "టెంప్లేట్ కాపీ చేయండి"
+ },
+ "selCsvCopied": {
+  "en": "Template copied",
+  "hi": "टेम्पलेट कॉपी हुआ",
+  "te": "టెంప్లేట్ కాపీ అయింది"
+ },
+ "selCsvPaste": {
+  "en": "Or paste CSV here",
+  "hi": "या CSV यहाँ पेस्ट करें",
+  "te": "లేదా CSV ఇక్కడ పేస్ట్ చేయండి"
+ },
+ "selCsvPreview": {
+  "en": "Preview: {ok} ready, {bad} to fix",
+  "hi": "झलक: {ok} तैयार, {bad} ठीक करने हैं",
+  "te": "ప్రివ్యూ: {ok} సిద్ధం, {bad} సరిచేయాలి",
+  "ph": {
+   "ok": "int",
+   "bad": "int"
+  }
+ },
+ "selCsvLine": {
+  "en": "Line {line}",
+  "hi": "लाइन {line}",
+  "te": "లైన్ {line}",
+  "ph": {
+   "line": "int"
+  }
+ },
+ "selCsvProblems": {
+  "en": "Check: {fields}",
+  "hi": "जाँचें: {fields}",
+  "te": "చూడండి: {fields}",
+  "ph": {
+   "fields": "String"
+  }
+ },
+ "selCsvImport": {
+  "en": "{count, plural, =1{Add 1 product} other{Add {count} products}}",
+  "hi": "{count} प्रोडक्ट जोड़ें",
+  "te": "{count} ఉత్పత్తులు జోడించండి",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "selCsvImported": {
+  "en": "{count, plural, =1{1 product added} other{{count} products added}}",
+  "hi": "{count} प्रोडक्ट जुड़े",
+  "te": "{count} ఉత్పత్తులు జోడించాం",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "selTabNew": {
+  "en": "New",
+  "hi": "नए",
+  "te": "కొత్తవి"
+ },
+ "selTabPacked": {
+  "en": "Packed",
+  "hi": "पैक हुए",
+  "te": "ప్యాక్ అయినవి"
+ },
+ "selTabShipping": {
+  "en": "Shipping",
+  "hi": "भेजे गए",
+  "te": "పంపినవి"
+ },
+ "selTabDelivered": {
+  "en": "Delivered",
+  "hi": "डिलीवर हुए",
+  "te": "డెలివరీ అయినవి"
+ },
+ "selTabCancelled": {
+  "en": "Cancelled / returned",
+  "hi": "रद्द / वापस",
+  "te": "రద్దు / రిటర్న్"
+ },
+ "selNoOrdersHere": {
+  "en": "No orders here",
+  "hi": "यहाँ कोई ऑर्डर नहीं",
+  "te": "ఇక్కడ ఆర్డర్లు లేవు"
+ },
+ "selReturnsOpen": {
+  "en": "Waiting for you",
+  "hi": "आपके जवाब का इंतज़ार",
+  "te": "మీ కోసం ఎదురుచూస్తున్నవి"
+ },
+ "selReturnsDone": {
+  "en": "Done",
+  "hi": "पूरे हुए",
+  "te": "పూర్తయినవి"
+ },
+ "selNoReturns": {
+  "en": "No returns",
+  "hi": "कोई वापसी नहीं",
+  "te": "రిటర్న్‌లు లేవు"
+ },
+ "selAcceptReturn": {
+  "en": "Accept return",
+  "hi": "वापसी मंज़ूर करें",
+  "te": "రిటర్న్ అంగీకరించండి"
+ },
+ "selRejectReturn": {
+  "en": "Decline return",
+  "hi": "वापसी नामंज़ूर करें",
+  "te": "రిటర్న్ తిరస్కరించండి"
+ },
+ "selPayoutDemo": {
+  "en": "Demo payouts: no real money moves.",
+  "hi": "डेमो भुगतान: असली पैसा नहीं जाता।",
+  "te": "డెమో చెల్లింపులు: నిజమైన డబ్బు జరగదు."
+ },
+ "selPayoutPending": {
+  "en": "Pending",
+  "hi": "बाकी",
+  "te": "పెండింగ్"
+ },
+ "selPayoutReady": {
+  "en": "Ready to pay",
+  "hi": "भुगतान के लिए तैयार",
+  "te": "చెల్లించడానికి సిద్ధం"
+ },
+ "selPayoutPaid": {
+  "en": "Paid",
+  "hi": "भुगतान हुआ",
+  "te": "చెల్లించారు"
+ },
+ "selPayoutOnHold": {
+  "en": "In return window",
+  "hi": "वापसी के समय में",
+  "te": "రిటర్న్ గడువులో"
+ },
+ "selCommissionPaid": {
+  "en": "PawSetu commission",
+  "hi": "PawSetu कमीशन",
+  "te": "PawSetu కమీషన్"
+ },
+ "selRunPayout": {
+  "en": "Pay out {amount} now (demo)",
+  "hi": "अभी {amount} का भुगतान करें (डेमो)",
+  "te": "ఇప్పుడు {amount} చెల్లించండి (డెమో)",
+  "ph": {
+   "amount": "String"
+  }
+ },
+ "selPayoutDone": {
+  "en": "{count, plural, =1{1 order paid out} other{{count} orders paid out}}",
+  "hi": "{count} ऑर्डर का भुगतान हुआ",
+  "te": "{count} ఆర్డర్లకు చెల్లించాం",
+  "ph": {
+   "count": "int"
+  }
+ },
+ "selPayoutRule": {
+  "en": "Payouts are made weekly once the {days}-day return window ends.",
+  "hi": "{days} दिन की वापसी का समय खत्म होने पर हर हफ़्ते भुगतान होता है।",
+  "te": "{days} రోజుల రిటర్న్ గడువు ముగిశాక ప్రతి వారం చెల్లిస్తాం.",
+  "ph": {
+   "days": "int"
+  }
+ },
+ "selPayoutOrders": {
+  "en": "Orders",
+  "hi": "ऑर्डर",
+  "te": "ఆర్డర్లు"
+ },
+ "selPayoutLine": {
+  "en": "Sales {gross} · commission {commission}",
+  "hi": "बिक्री {gross} · कमीशन {commission}",
+  "te": "అమ్మకం {gross} · కమీషన్ {commission}",
+  "ph": {
+   "gross": "String",
+   "commission": "String"
+  }
+ },
+ "selReviewSummary": {
+  "en": "★ {rating} from {count, plural, =1{1 review} other{{count} reviews}}",
+  "hi": "★ {rating}, {count} रिव्यू",
+  "te": "★ {rating}, {count} రివ్యూలు",
+  "ph": {
+   "rating": "String",
+   "count": "int"
+  }
+ },
+ "selReplyText": {
+  "en": "Your reply",
+  "hi": "आपका जवाब",
+  "te": "మీ సమాధానం"
+ },
+ "selSendReply": {
+  "en": "Send reply",
+  "hi": "जवाब भेजें",
+  "te": "సమాధానం పంపండి"
+ },
+ "selApproved": {
+  "en": "Approved",
+  "hi": "मंज़ूर",
+  "te": "ఆమోదించారు"
+ },
+ "selKyc": {
+  "en": "KYC documents",
+  "hi": "KYC दस्तावेज़",
+  "te": "KYC పత్రాలు"
+ },
+ "selVerified": {
+  "en": "Verified",
+  "hi": "जाँचा गया",
+  "te": "ధృవీకరించారు"
+ },
+ "selCancelQ": {
+  "en": "Cancel this order?",
+  "hi": "यह ऑर्डर रद्द करें?",
+  "te": "ఈ ఆర్డర్ రద్దు చేయాలా?"
+ },
+ "selCancelBody": {
+  "en": "The customer is told and any payment is refunded.",
+  "hi": "ग्राहक को बताया जाएगा और भुगतान वापस होगा।",
+  "te": "కస్టమర్‌కి చెబుతాం, చెల్లింపు తిరిగి ఇస్తాం."
+ },
+ "selCancelOrder": {
+  "en": "Cancel order",
+  "hi": "ऑर्डर रद्द करें",
+  "te": "ఆర్డర్ రద్దు చేయండి"
+ },
+ "selOutOfStockReason": {
+  "en": "Out of stock",
+  "hi": "स्टॉक खत्म",
+  "te": "స్టాక్ అయిపోయింది"
+ },
+ "selMarkPacked": {
+  "en": "Mark packed",
+  "hi": "पैक हुआ",
+  "te": "ప్యాక్ అయింది"
+ },
+ "selMarkShipped": {
+  "en": "Mark shipped",
+  "hi": "भेज दिया",
+  "te": "పంపించాం"
+ },
+ "selMarkOut": {
+  "en": "Out for delivery",
+  "hi": "डिलीवरी के लिए निकला",
+  "te": "డెలివరీకి బయలుదేరింది"
+ },
+ "selMarkDelivered": {
+  "en": "Mark delivered",
+  "hi": "डिलीवर हुआ",
+  "te": "డెలివరీ అయింది"
+ },
+ "selCommission": {
+  "en": "PawSetu commission",
+  "hi": "PawSetu कमीशन",
+  "te": "PawSetu కమీషన్"
+ },
+ "selYourPayout": {
+  "en": "Your payout",
+  "hi": "आपको मिलेगा",
+  "te": "మీకు వచ్చేది"
+ },
+ "selShipTo": {
+  "en": "Ship to",
+  "hi": "यहाँ भेजें",
+  "te": "ఇక్కడికి పంపండి"
+ },
+ "selPhoneHidden": {
+  "en": "The customer's phone is hidden; the courier calls through PawSetu.",
+  "hi": "ग्राहक का फ़ोन छिपा है; कूरियर PawSetu से कॉल करता है।",
+  "te": "కస్టమర్ ఫోన్ దాచాం; కొరియర్ PawSetu ద్వారా కాల్ చేస్తారు."
+ }
 }

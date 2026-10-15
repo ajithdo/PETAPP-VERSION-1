@@ -17,6 +17,7 @@ class Fmt {
   static String weekdayDate(DateTime d, [String locale = 'en']) =>
       DateFormat('EEE, d MMM', _l(locale)).format(d);
   static String monthYear(DateTime d, [String locale = 'en']) => DateFormat('MMMM yyyy', _l(locale)).format(d);
+  static String monthShort(DateTime d, [String locale = 'en']) => DateFormat('MMM', _l(locale)).format(d);
   static String time(DateTime d, [String locale = 'en']) =>
       DateFormat('h:mm a', locale == 'en' ? 'en' : _l(locale)).format(d);
   static String dateTime(DateTime d, [String locale = 'en']) => '${date(d, locale)}, ${time(d, locale)}';

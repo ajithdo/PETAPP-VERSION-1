@@ -6165,4 +6165,1487 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get vaultClaimSaved => 'Claim saved';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get catFood => 'Food';
+
+  @override
+  String get catTreats => 'Treats';
+
+  @override
+  String get catToys => 'Toys';
+
+  @override
+  String get catGrooming => 'Grooming';
+
+  @override
+  String get catHealthHygiene => 'Health and hygiene';
+
+  @override
+  String get catBeds => 'Beds';
+
+  @override
+  String get catCollars => 'Collars and leashes';
+
+  @override
+  String get catBowls => 'Bowls and feeders';
+
+  @override
+  String get catLitter => 'Litter and cat care';
+
+  @override
+  String get catBird => 'Bird food and cages';
+
+  @override
+  String get catRabbit => 'Rabbit hay and care';
+
+  @override
+  String get catClothing => 'Clothing';
+
+  @override
+  String get catTravel => 'Travel';
+
+  @override
+  String get shopStageYoung => 'Puppy / kitten';
+
+  @override
+  String get shopStageAdult => 'Adult';
+
+  @override
+  String get shopStageSenior => 'Senior';
+
+  @override
+  String get shopStageAll => 'All ages';
+
+  @override
+  String get shopSizeSmall => 'Small breeds';
+
+  @override
+  String get shopSizeMedium => 'Medium breeds';
+
+  @override
+  String get shopSizeLarge => 'Large breeds';
+
+  @override
+  String get shopSizeGiant => 'Giant breeds';
+
+  @override
+  String get shopSizeAll => 'All sizes';
+
+  @override
+  String get sortPopular => 'Popular';
+
+  @override
+  String get sortPriceLow => 'Price: low to high';
+
+  @override
+  String get sortPriceHigh => 'Price: high to low';
+
+  @override
+  String get sortDiscount => 'Biggest discount';
+
+  @override
+  String get sortNewest => 'Newest';
+
+  @override
+  String get shopTitle => 'Shop';
+
+  @override
+  String get shopSearchHint => 'Search food, toys, beds…';
+
+  @override
+  String get shopSearchTitle => 'Search';
+
+  @override
+  String get shopClearSearch => 'Clear search';
+
+  @override
+  String shopForPet(String pet) {
+    return 'For $pet';
+  }
+
+  @override
+  String shopAvoiding(String items) {
+    return 'Avoiding: $items';
+  }
+
+  @override
+  String get shopNoPicks => 'No picks yet. Try searching the shop.';
+
+  @override
+  String get shopBuyAgain => 'Buy again';
+
+  @override
+  String get shopReorder => 'Reorder';
+
+  @override
+  String shopReorderPrice(String price) {
+    return 'Reorder · $price';
+  }
+
+  @override
+  String get shopCategories => 'Categories';
+
+  @override
+  String get shopDeals => 'Deals';
+
+  @override
+  String get shopPartnerStores => 'Partner stores';
+
+  @override
+  String get shopPartnerStoresNote =>
+      'You buy these on the partner\'s own website. PawSetu may earn a small commission.';
+
+  @override
+  String shopListings(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count products',
+      one: '1 product',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String shopPlusDeliveryNote(String amount) {
+    return 'Plus members get free delivery above $amount.';
+  }
+
+  @override
+  String get shopPartnerStore => 'Partner store';
+
+  @override
+  String shopSoldOn(String store) {
+    return 'On $store';
+  }
+
+  @override
+  String shopOffPercent(int percent) {
+    return '$percent% off';
+  }
+
+  @override
+  String shopPriceSemantics(String price, String mrp, int percent) {
+    return '$price, was $mrp, $percent% off';
+  }
+
+  @override
+  String shopRatingSemantics(String rating, int count) {
+    return 'Rated $rating out of 5 by $count people';
+  }
+
+  @override
+  String get shopNoReviewsYet => 'No reviews yet';
+
+  @override
+  String get shopOutOfStock => 'Out of stock';
+
+  @override
+  String get shopInStock => 'In stock';
+
+  @override
+  String shopOnlyLeft(int count) {
+    return 'Only $count left';
+  }
+
+  @override
+  String shopResults(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count products',
+      one: '1 product',
+      zero: 'No products',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String shopFiltersCount(int count) {
+    return 'Filters ($count)';
+  }
+
+  @override
+  String get shopNoResults => 'Nothing found';
+
+  @override
+  String get shopNoResultsBody => 'Try another word or clear the filters.';
+
+  @override
+  String get shopClearFilters => 'Clear filters';
+
+  @override
+  String get shopCategory => 'Category';
+
+  @override
+  String get shopPrice => 'Price';
+
+  @override
+  String get shopMinPrice => 'Min price';
+
+  @override
+  String get shopMaxPrice => 'Max price';
+
+  @override
+  String get shopBrand => 'Brand';
+
+  @override
+  String shopRatingAtLeast(String rating) {
+    return '$rating★ and up';
+  }
+
+  @override
+  String get shopHidePartner => 'Hide partner-store listings';
+
+  @override
+  String get shopHidePartnerHint => 'Show only products you can buy in PawSetu';
+
+  @override
+  String get shopShowResults => 'Show results';
+
+  @override
+  String get shopProduct => 'Product';
+
+  @override
+  String get shopProductGone => 'This product is no longer available';
+
+  @override
+  String shopShareText(String name, String price) {
+    return '$name for $price on PawSetu';
+  }
+
+  @override
+  String get shopInclTaxes => 'Inclusive of all taxes';
+
+  @override
+  String shopAffiliateNote(String store) {
+    return 'You will buy this on $store. PawSetu may earn a small commission; the price is the same for you.';
+  }
+
+  @override
+  String shopSoldBy(String seller, String city) {
+    return 'Sold by $seller, $city';
+  }
+
+  @override
+  String get shopSuitableFor => 'Suitable for';
+
+  @override
+  String get shopCheckDelivery => 'Check delivery';
+
+  @override
+  String get shopEnterPin => 'Enter a PIN code to see the delivery date';
+
+  @override
+  String shopDeliveryBetween(String from, String to) {
+    return 'Delivery $from – $to';
+  }
+
+  @override
+  String shopReturnable(int days) {
+    return 'Easy returns within $days days of delivery';
+  }
+
+  @override
+  String get shopNotReturnable =>
+      'Food and treats can\'t be returned once delivered';
+
+  @override
+  String get shopAbout => 'About this product';
+
+  @override
+  String get shopPackSize => 'Pack size';
+
+  @override
+  String get shopIngredients => 'Ingredients';
+
+  @override
+  String get shopReturnPolicy => 'Return policy';
+
+  @override
+  String get shopVerifiedBuyer => 'Verified buyer';
+
+  @override
+  String shopSellerReplied(String reply) {
+    return 'Seller: $reply';
+  }
+
+  @override
+  String shopBuyOn(String store) {
+    return 'Buy on $store';
+  }
+
+  @override
+  String get shopAddToCart => 'Add to cart';
+
+  @override
+  String get shopBuyNow => 'Buy now';
+
+  @override
+  String get shopAddedToCart => 'Added to cart';
+
+  @override
+  String get shopViewCart => 'View cart';
+
+  @override
+  String shopLeavingTitle(String store) {
+    return 'You will buy on $store';
+  }
+
+  @override
+  String shopLeavingBody(String store) {
+    return 'We will open $store in your browser. Payment, delivery and returns are handled by $store. PawSetu may earn a small commission.';
+  }
+
+  @override
+  String shopContinueTo(String store) {
+    return 'Go to $store';
+  }
+
+  @override
+  String get shopCart => 'Cart';
+
+  @override
+  String shopCartWithCount(int count) {
+    return 'Cart, $count items';
+  }
+
+  @override
+  String get shopQuantity => 'Quantity';
+
+  @override
+  String shopQtySemantics(int count) {
+    return 'Quantity $count';
+  }
+
+  @override
+  String shopQtyShort(int count) {
+    return 'Qty $count';
+  }
+
+  @override
+  String shopLessOf(String item) {
+    return 'One less $item';
+  }
+
+  @override
+  String shopMoreOf(String item) {
+    return 'One more $item';
+  }
+
+  @override
+  String shopRemoveItem(String item) {
+    return 'Remove $item';
+  }
+
+  @override
+  String shopStars(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stars',
+      one: '1 star',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shopReviewText => 'What did you think? (optional)';
+
+  @override
+  String get shopPostReview => 'Post review';
+
+  @override
+  String get shopThanksReview => 'Thanks for your review!';
+
+  @override
+  String get shopRate => 'Rate';
+
+  @override
+  String get shopForWhichPet => 'For which pet?';
+
+  @override
+  String get shopReorderTitle => 'Reorder';
+
+  @override
+  String shopReorderFor(String pet) {
+    return 'Reorder for $pet';
+  }
+
+  @override
+  String shopDeliveryOn(String date) {
+    return 'Delivery on $date';
+  }
+
+  @override
+  String get shopItemsTotal => 'Items total';
+
+  @override
+  String get shopDeliveryFee => 'Delivery';
+
+  @override
+  String get shopFree => 'Free';
+
+  @override
+  String get shopToPay => 'To pay';
+
+  @override
+  String shopPlaceOrderAmount(String amount) {
+    return 'Place order · $amount';
+  }
+
+  @override
+  String get shopOrderPlacedToast => 'Order placed!';
+
+  @override
+  String get shopOrderFailed =>
+      'We couldn\'t place the order. Please try again.';
+
+  @override
+  String get addrBook => 'Addresses';
+
+  @override
+  String get addrAdd => 'Add address';
+
+  @override
+  String get addrEdit => 'Edit address';
+
+  @override
+  String get addrAddFirst => 'Add a delivery address';
+
+  @override
+  String get addrNone => 'No addresses yet';
+
+  @override
+  String get addrNoneBody => 'Add your home address for faster checkout.';
+
+  @override
+  String get addrDeleteQ => 'Delete this address?';
+
+  @override
+  String get addrChoose => 'Deliver to';
+
+  @override
+  String get addrHome => 'Home';
+
+  @override
+  String get addrWork => 'Work';
+
+  @override
+  String get addrOther => 'Other';
+
+  @override
+  String get addrName => 'Name';
+
+  @override
+  String get addrPhoneInvalid => 'Enter a 10-digit mobile number';
+
+  @override
+  String get addrLine1 => 'House / flat and street';
+
+  @override
+  String get addrLine2 => 'Landmark (optional)';
+
+  @override
+  String get addrArea => 'Area';
+
+  @override
+  String get addrCity => 'City';
+
+  @override
+  String get addrPin => 'PIN code';
+
+  @override
+  String get addrPinInvalid => 'Enter a 6-digit PIN code';
+
+  @override
+  String get cartEmpty => 'Your cart is empty';
+
+  @override
+  String get cartEmptyBody =>
+      'Food, toys and more for your pet are a tap away.';
+
+  @override
+  String get cartStartShopping => 'Start shopping';
+
+  @override
+  String cartSoldBy(String seller) {
+    return 'Sold by $seller';
+  }
+
+  @override
+  String get cartSkipped => 'These can\'t be ordered here right now';
+
+  @override
+  String get cartPartnerOnly => 'Buy this on the partner store';
+
+  @override
+  String get cartPetHint => 'Helps us track spending and food for this pet.';
+
+  @override
+  String get cartDeliverTo => 'Deliver to';
+
+  @override
+  String get cartSlot => 'Delivery slot';
+
+  @override
+  String get cartCoupon => 'Coupon';
+
+  @override
+  String get couponCode => 'Coupon code';
+
+  @override
+  String get couponApply => 'Apply';
+
+  @override
+  String get couponApplied => 'Coupon applied';
+
+  @override
+  String couponSaved(String code, String amount) {
+    return '$code applied: you save $amount';
+  }
+
+  @override
+  String get couponNotFound => 'That coupon code isn\'t valid';
+
+  @override
+  String get couponExpired => 'This coupon has expired';
+
+  @override
+  String couponMinOrder(int amount) {
+    return 'Add items worth ₹$amount or more to use this coupon';
+  }
+
+  @override
+  String get couponUsedUp => 'This coupon has been fully used';
+
+  @override
+  String get cartPayment => 'Payment';
+
+  @override
+  String get payOnlineDemo => 'Pay online (demo)';
+
+  @override
+  String get payOnDelivery => 'Pay on delivery';
+
+  @override
+  String get cartBill => 'Bill details';
+
+  @override
+  String cartMrpTotal(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Price ($count items)',
+      one: 'Price (1 item)',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get cartMrpDiscount => 'Discount on MRP';
+
+  @override
+  String get cartCouponDiscount => 'Coupon';
+
+  @override
+  String cartCouponDiscountCode(String code) {
+    return 'Coupon $code';
+  }
+
+  @override
+  String cartAddForFree(String amount) {
+    return 'Add $amount more for free delivery';
+  }
+
+  @override
+  String get cartPlusFreeDelivery => 'Free delivery with Plus';
+
+  @override
+  String cartSplitNote(int count) {
+    return 'Items come from $count sellers, so you\'ll get $count deliveries. You pay once.';
+  }
+
+  @override
+  String cartYouSave(String amount) {
+    return 'You save $amount';
+  }
+
+  @override
+  String cartPay(String amount) {
+    return 'Pay $amount';
+  }
+
+  @override
+  String get cartPlaceOrder => 'Place order';
+
+  @override
+  String cartPaymentFor(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'PawSetu order, $count items',
+      one: 'PawSetu order, 1 item',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get payFailedTryAgain =>
+      'Payment failed. Your cart is saved; please try again.';
+
+  @override
+  String get payPaidOnline => 'Paid online';
+
+  @override
+  String get payPending => 'Payment pending';
+
+  @override
+  String get payRefunded => 'Refunded';
+
+  @override
+  String get payPendingNote =>
+      'Your payment is being confirmed. If it fails, you can pay again or pay on delivery.';
+
+  @override
+  String get payNow => 'Pay now';
+
+  @override
+  String get ordMyOrders => 'My orders';
+
+  @override
+  String get ordTabOrders => 'Orders';
+
+  @override
+  String get ordNone => 'No orders yet';
+
+  @override
+  String get ordPlaced => 'Placed';
+
+  @override
+  String get ordPacked => 'Packed';
+
+  @override
+  String get ordShipped => 'Shipped';
+
+  @override
+  String get ordOutForDelivery => 'Out for delivery';
+
+  @override
+  String get ordDelivered => 'Delivered';
+
+  @override
+  String get ordCancelled => 'Cancelled';
+
+  @override
+  String get ordReturnRequested => 'Return requested';
+
+  @override
+  String get ordReturned => 'Returned';
+
+  @override
+  String get ordReturnRejected => 'Return declined';
+
+  @override
+  String ordItemsMore(String name, int count) {
+    return '$name +$count more';
+  }
+
+  @override
+  String ordArrivingBy(String date) {
+    return 'Arriving by $date';
+  }
+
+  @override
+  String ordExpected(String date) {
+    return 'Expected $date';
+  }
+
+  @override
+  String get ordPlacedTitle => 'Order placed';
+
+  @override
+  String get ordPlacedHeading => 'Thank you! Your order is placed.';
+
+  @override
+  String get ordPlacedBody => 'We\'ll let you know when it\'s on the way.';
+
+  @override
+  String ordPlacedSplit(int count) {
+    return 'It comes in $count deliveries, one from each seller.';
+  }
+
+  @override
+  String get ordTrack => 'Track order';
+
+  @override
+  String get ordContinueShopping => 'Continue shopping';
+
+  @override
+  String get ordDetail => 'Order details';
+
+  @override
+  String get ordNotFound => 'We couldn\'t find this order';
+
+  @override
+  String ordNumber(String number) {
+    return 'Order $number';
+  }
+
+  @override
+  String ordPlacedOn(String date) {
+    return 'Placed on $date';
+  }
+
+  @override
+  String get ordTracking => 'Tracking';
+
+  @override
+  String ordItems(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count items',
+      one: '1 item',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ordSlot(String date, String window) {
+    return 'Slot: $date, $window';
+  }
+
+  @override
+  String ordForPet(String pet) {
+    return 'For $pet';
+  }
+
+  @override
+  String get ordTotal => 'Total';
+
+  @override
+  String get ordPayment => 'Payment';
+
+  @override
+  String get ordInvoice => 'Invoice (PDF)';
+
+  @override
+  String get ordCancel => 'Cancel order';
+
+  @override
+  String get ordReturn => 'Return';
+
+  @override
+  String get ordHelp => 'Get help';
+
+  @override
+  String ordReturnWindowOver(int days) {
+    return 'The $days-day return window has ended.';
+  }
+
+  @override
+  String get ordCancelTitle => 'Why do you want to cancel?';
+
+  @override
+  String get ordReturnTitle => 'Why are you returning it?';
+
+  @override
+  String get ordReasonChangedMind => 'I changed my mind';
+
+  @override
+  String get ordReasonWrongItem => 'Wrong item or size';
+
+  @override
+  String get ordReasonTooLate => 'Delivery is too late';
+
+  @override
+  String get ordReasonDamaged => 'It arrived damaged';
+
+  @override
+  String get ordReasonNotSuitable => 'Not suitable for my pet';
+
+  @override
+  String get ordReasonOther => 'Something else';
+
+  @override
+  String get ordCancelledToast => 'Order cancelled';
+
+  @override
+  String get ordCancelledRefund =>
+      'Order cancelled. Your refund is on its way (demo).';
+
+  @override
+  String get ordReturnRequestedToast =>
+      'Return requested. The seller will reply soon.';
+
+  @override
+  String ordReason(String reason) {
+    return 'Reason: $reason';
+  }
+
+  @override
+  String get ordStepDone => 'done';
+
+  @override
+  String get invTitle => 'Tax invoice';
+
+  @override
+  String get invFooter =>
+      'PawSetu marketplace · This invoice is generated by the seller through PawSetu.';
+
+  @override
+  String get invSoldBy => 'Sold by';
+
+  @override
+  String get invBillTo => 'Bill to';
+
+  @override
+  String invGstin(String gstin) {
+    return 'GSTIN: $gstin';
+  }
+
+  @override
+  String get invMarketplace => 'Sold through PawSetu marketplace';
+
+  @override
+  String get invOrder => 'Order';
+
+  @override
+  String invInvoiceNo(String number) {
+    return 'Invoice $number';
+  }
+
+  @override
+  String invPayment(String method) {
+    return 'Payment: $method';
+  }
+
+  @override
+  String get invItems => 'Items';
+
+  @override
+  String get invItem => 'Item';
+
+  @override
+  String get invQty => 'Qty';
+
+  @override
+  String get invPrice => 'Price';
+
+  @override
+  String get invAmount => 'Amount';
+
+  @override
+  String get invTax => 'GST';
+
+  @override
+  String get invTaxPlaceholder => 'Included';
+
+  @override
+  String get invDemoNote =>
+      'Demo invoice: no money was charged and GST details are placeholders.';
+
+  @override
+  String get orderEmailSubject => 'Your PawSetu order is placed';
+
+  @override
+  String orderEmailBody(String name, String amount, String date) {
+    return 'Hi $name, thank you for your order of $amount. It should reach you by $date.';
+  }
+
+  @override
+  String get subsTitle => 'Auto-reorder';
+
+  @override
+  String get subsHint =>
+      'Get this delivered every 2, 4 or 6 weeks. Pause or cancel anytime.';
+
+  @override
+  String get subsEvery => 'Deliver every';
+
+  @override
+  String subsWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Every $count weeks',
+      one: 'Every week',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String subsFirstOn(String date) {
+    return 'First delivery around $date, paid on delivery.';
+  }
+
+  @override
+  String get subsStart => 'Start auto-reorder';
+
+  @override
+  String get subsCreated => 'Auto-reorder is on';
+
+  @override
+  String get subsTab => 'Auto-reorder';
+
+  @override
+  String get subsNone => 'No auto-reorders';
+
+  @override
+  String get subsNoneBody =>
+      'Set one up from any food page so you never run out.';
+
+  @override
+  String subsNext(String date) {
+    return 'Next delivery $date';
+  }
+
+  @override
+  String get subsPaused => 'Paused';
+
+  @override
+  String get subsPause => 'Pause';
+
+  @override
+  String get subsResume => 'Resume';
+
+  @override
+  String get subsCancel => 'Cancel';
+
+  @override
+  String get subsCancelQ => 'Stop this auto-reorder?';
+
+  @override
+  String subsOrderedToast(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count auto-reorders were placed',
+      one: 'Your auto-reorder was placed',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ntfNewOrder(String item, int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'New order: $item and more',
+      one: 'New order: $item',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ntfOrderCancelled(String number) {
+    return 'Order $number was cancelled by the customer';
+  }
+
+  @override
+  String ntfOrderCancelledBySeller(String item) {
+    return 'Sorry, the seller cancelled your order for $item. Any payment is refunded.';
+  }
+
+  @override
+  String ntfOrderPacked(String item) {
+    return '$item is packed';
+  }
+
+  @override
+  String ntfOrderShipped(String item) {
+    return '$item is on the way';
+  }
+
+  @override
+  String ntfOrderOutForDelivery(String item) {
+    return '$item is out for delivery today';
+  }
+
+  @override
+  String ntfOrderDelivered(String item) {
+    return '$item was delivered';
+  }
+
+  @override
+  String ntfOrderUpdated(String item) {
+    return 'Your order for $item was updated';
+  }
+
+  @override
+  String ntfReturnAccepted(String item) {
+    return 'Return accepted for $item. Your refund is on its way.';
+  }
+
+  @override
+  String ntfReturnRejected(String item) {
+    return 'Return declined for $item. Tap for help.';
+  }
+
+  @override
+  String ntfReturnRequested(String number) {
+    return 'Return requested for order $number';
+  }
+
+  @override
+  String ntfSubscriptionOrdered(String item) {
+    return 'Auto-reorder placed: $item';
+  }
+
+  @override
+  String foodRunsOutIn(String pet, int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days',
+      one: '1 day',
+    );
+    return '$pet\'s food may run out in about $_temp0. Reorder?';
+  }
+
+  @override
+  String foodRanOut(String pet) {
+    return '$pet\'s food may have run out. Reorder?';
+  }
+
+  @override
+  String foodPortionLine(int grams, String bag) {
+    return '$grams g a day · $bag bag';
+  }
+
+  @override
+  String get foodEditPortion => 'Edit portion';
+
+  @override
+  String foodOnTheWay(String pet) {
+    return 'New food for $pet is on the way';
+  }
+
+  @override
+  String foodPlanTitle(String pet) {
+    return '$pet\'s food';
+  }
+
+  @override
+  String get foodDailyPortion => 'Daily portion';
+
+  @override
+  String foodSuggested(int grams) {
+    return 'A starting point is $grams g a day. Follow the pack or your vet.';
+  }
+
+  @override
+  String get foodBagSize => 'Bag size';
+
+  @override
+  String get foodOpenedOn => 'Bag opened on';
+
+  @override
+  String get expAdd => 'Add expense';
+
+  @override
+  String get expEdit => 'Edit expense';
+
+  @override
+  String get expThisMonth => 'This month';
+
+  @override
+  String get expLastMonth => 'Last month';
+
+  @override
+  String expPeriodTotal(int months) {
+    return 'Last $months months';
+  }
+
+  @override
+  String get expByMonth => 'Spending by month';
+
+  @override
+  String expMonths(int count) {
+    return '$count months';
+  }
+
+  @override
+  String get expByCategory => 'By category';
+
+  @override
+  String expChartSemantics(String values) {
+    return 'Spending by month: $values';
+  }
+
+  @override
+  String get expNone => 'No expenses yet';
+
+  @override
+  String get expNoneBody =>
+      'Bookings and orders are added here automatically. You can add others too.';
+
+  @override
+  String get expVet => 'Vet';
+
+  @override
+  String get expGrooming => 'Grooming';
+
+  @override
+  String get expTraining => 'Training';
+
+  @override
+  String get expBoarding => 'Boarding';
+
+  @override
+  String get expWalking => 'Walking';
+
+  @override
+  String get expFood => 'Food';
+
+  @override
+  String get expSupplies => 'Supplies';
+
+  @override
+  String get expInsurance => 'Insurance';
+
+  @override
+  String get expOther => 'Other';
+
+  @override
+  String get expFromBooking => 'from a booking';
+
+  @override
+  String get expFromOrder => 'from an order';
+
+  @override
+  String get expFromTeleVet => 'from tele-vet';
+
+  @override
+  String get expAmount => 'Amount';
+
+  @override
+  String get expAmountInvalid => 'Enter an amount';
+
+  @override
+  String get expCategory => 'Category';
+
+  @override
+  String get expForPet => 'For';
+
+  @override
+  String get expAllPets => 'All pets';
+
+  @override
+  String get expNote => 'Note';
+
+  @override
+  String get expNoteHint => 'For example: rabies booster, new collar';
+
+  @override
+  String get expSaved => 'Expense saved';
+
+  @override
+  String get expDeleteQ => 'Delete this expense?';
+
+  @override
+  String get selToPack => 'Orders to pack';
+
+  @override
+  String get selOnTheWay => 'On the way';
+
+  @override
+  String get selLowStock => 'Low stock';
+
+  @override
+  String selReturnsWaiting(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count returns are waiting for you',
+      one: '1 return is waiting for you',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get selNewOrders => 'New orders';
+
+  @override
+  String get selNoNewOrders => 'No new orders right now';
+
+  @override
+  String selStockLeft(int count) {
+    return '$count in stock';
+  }
+
+  @override
+  String get selAddProduct => 'Add product';
+
+  @override
+  String get selEditProduct => 'Edit product';
+
+  @override
+  String get selCsvUpload => 'CSV bulk upload';
+
+  @override
+  String get selSearchProducts => 'Search your products';
+
+  @override
+  String selProductCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count products',
+      one: '1 product',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get selHidden => 'Hidden from the shop';
+
+  @override
+  String get selProductName => 'Product name';
+
+  @override
+  String get selPrice => 'Selling price';
+
+  @override
+  String get selMrp => 'MRP';
+
+  @override
+  String get selPriceInvalid => 'Enter a price';
+
+  @override
+  String get selMrpInvalid => 'MRP can\'t be lower than the price';
+
+  @override
+  String get selStock => 'Stock';
+
+  @override
+  String get selPackKg => 'Pack size in kg (food)';
+
+  @override
+  String get selDescription => 'Description';
+
+  @override
+  String get selVisible => 'Show in the shop';
+
+  @override
+  String get selVisibleHint => 'Turn off to hide it without deleting';
+
+  @override
+  String get selNoRxNote =>
+      'Prescription-only medicines can\'t be sold on PawSetu.';
+
+  @override
+  String get selSaved => 'Product saved';
+
+  @override
+  String selCsvHelp(String columns) {
+    return 'Columns: $columns. Species can be several, like dog|cat.';
+  }
+
+  @override
+  String get selCsvChoose => 'Choose CSV file';
+
+  @override
+  String get selCsvSample => 'Try the sample';
+
+  @override
+  String get selCsvCopyTemplate => 'Copy template';
+
+  @override
+  String get selCsvCopied => 'Template copied';
+
+  @override
+  String get selCsvPaste => 'Or paste CSV here';
+
+  @override
+  String selCsvPreview(int ok, int bad) {
+    return 'Preview: $ok ready, $bad to fix';
+  }
+
+  @override
+  String selCsvLine(int line) {
+    return 'Line $line';
+  }
+
+  @override
+  String selCsvProblems(String fields) {
+    return 'Check: $fields';
+  }
+
+  @override
+  String selCsvImport(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Add $count products',
+      one: 'Add 1 product',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String selCsvImported(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count products added',
+      one: '1 product added',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get selTabNew => 'New';
+
+  @override
+  String get selTabPacked => 'Packed';
+
+  @override
+  String get selTabShipping => 'Shipping';
+
+  @override
+  String get selTabDelivered => 'Delivered';
+
+  @override
+  String get selTabCancelled => 'Cancelled / returned';
+
+  @override
+  String get selNoOrdersHere => 'No orders here';
+
+  @override
+  String get selReturnsOpen => 'Waiting for you';
+
+  @override
+  String get selReturnsDone => 'Done';
+
+  @override
+  String get selNoReturns => 'No returns';
+
+  @override
+  String get selAcceptReturn => 'Accept return';
+
+  @override
+  String get selRejectReturn => 'Decline return';
+
+  @override
+  String get selPayoutDemo => 'Demo payouts: no real money moves.';
+
+  @override
+  String get selPayoutPending => 'Pending';
+
+  @override
+  String get selPayoutReady => 'Ready to pay';
+
+  @override
+  String get selPayoutPaid => 'Paid';
+
+  @override
+  String get selPayoutOnHold => 'In return window';
+
+  @override
+  String get selCommissionPaid => 'PawSetu commission';
+
+  @override
+  String selRunPayout(String amount) {
+    return 'Pay out $amount now (demo)';
+  }
+
+  @override
+  String selPayoutDone(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count orders paid out',
+      one: '1 order paid out',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String selPayoutRule(int days) {
+    return 'Payouts are made weekly once the $days-day return window ends.';
+  }
+
+  @override
+  String get selPayoutOrders => 'Orders';
+
+  @override
+  String selPayoutLine(String gross, String commission) {
+    return 'Sales $gross · commission $commission';
+  }
+
+  @override
+  String selReviewSummary(String rating, int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reviews',
+      one: '1 review',
+    );
+    return '★ $rating from $_temp0';
+  }
+
+  @override
+  String get selReplyText => 'Your reply';
+
+  @override
+  String get selSendReply => 'Send reply';
+
+  @override
+  String get selApproved => 'Approved';
+
+  @override
+  String get selKyc => 'KYC documents';
+
+  @override
+  String get selVerified => 'Verified';
+
+  @override
+  String get selCancelQ => 'Cancel this order?';
+
+  @override
+  String get selCancelBody =>
+      'The customer is told and any payment is refunded.';
+
+  @override
+  String get selCancelOrder => 'Cancel order';
+
+  @override
+  String get selOutOfStockReason => 'Out of stock';
+
+  @override
+  String get selMarkPacked => 'Mark packed';
+
+  @override
+  String get selMarkShipped => 'Mark shipped';
+
+  @override
+  String get selMarkOut => 'Out for delivery';
+
+  @override
+  String get selMarkDelivered => 'Mark delivered';
+
+  @override
+  String get selCommission => 'PawSetu commission';
+
+  @override
+  String get selYourPayout => 'Your payout';
+
+  @override
+  String get selShipTo => 'Ship to';
+
+  @override
+  String get selPhoneHidden =>
+      'The customer\'s phone is hidden; the courier calls through PawSetu.';
 }

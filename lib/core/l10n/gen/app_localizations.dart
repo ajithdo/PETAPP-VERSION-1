@@ -10491,6 +10491,2358 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Claim saved'**
   String get vaultClaimSaved;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @catFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get catFood;
+
+  /// No description provided for @catTreats.
+  ///
+  /// In en, this message translates to:
+  /// **'Treats'**
+  String get catTreats;
+
+  /// No description provided for @catToys.
+  ///
+  /// In en, this message translates to:
+  /// **'Toys'**
+  String get catToys;
+
+  /// No description provided for @catGrooming.
+  ///
+  /// In en, this message translates to:
+  /// **'Grooming'**
+  String get catGrooming;
+
+  /// No description provided for @catHealthHygiene.
+  ///
+  /// In en, this message translates to:
+  /// **'Health and hygiene'**
+  String get catHealthHygiene;
+
+  /// No description provided for @catBeds.
+  ///
+  /// In en, this message translates to:
+  /// **'Beds'**
+  String get catBeds;
+
+  /// No description provided for @catCollars.
+  ///
+  /// In en, this message translates to:
+  /// **'Collars and leashes'**
+  String get catCollars;
+
+  /// No description provided for @catBowls.
+  ///
+  /// In en, this message translates to:
+  /// **'Bowls and feeders'**
+  String get catBowls;
+
+  /// No description provided for @catLitter.
+  ///
+  /// In en, this message translates to:
+  /// **'Litter and cat care'**
+  String get catLitter;
+
+  /// No description provided for @catBird.
+  ///
+  /// In en, this message translates to:
+  /// **'Bird food and cages'**
+  String get catBird;
+
+  /// No description provided for @catRabbit.
+  ///
+  /// In en, this message translates to:
+  /// **'Rabbit hay and care'**
+  String get catRabbit;
+
+  /// No description provided for @catClothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Clothing'**
+  String get catClothing;
+
+  /// No description provided for @catTravel.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel'**
+  String get catTravel;
+
+  /// No description provided for @shopStageYoung.
+  ///
+  /// In en, this message translates to:
+  /// **'Puppy / kitten'**
+  String get shopStageYoung;
+
+  /// No description provided for @shopStageAdult.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult'**
+  String get shopStageAdult;
+
+  /// No description provided for @shopStageSenior.
+  ///
+  /// In en, this message translates to:
+  /// **'Senior'**
+  String get shopStageSenior;
+
+  /// No description provided for @shopStageAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All ages'**
+  String get shopStageAll;
+
+  /// No description provided for @shopSizeSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small breeds'**
+  String get shopSizeSmall;
+
+  /// No description provided for @shopSizeMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium breeds'**
+  String get shopSizeMedium;
+
+  /// No description provided for @shopSizeLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large breeds'**
+  String get shopSizeLarge;
+
+  /// No description provided for @shopSizeGiant.
+  ///
+  /// In en, this message translates to:
+  /// **'Giant breeds'**
+  String get shopSizeGiant;
+
+  /// No description provided for @shopSizeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All sizes'**
+  String get shopSizeAll;
+
+  /// No description provided for @sortPopular.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular'**
+  String get sortPopular;
+
+  /// No description provided for @sortPriceLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Price: low to high'**
+  String get sortPriceLow;
+
+  /// No description provided for @sortPriceHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Price: high to low'**
+  String get sortPriceHigh;
+
+  /// No description provided for @sortDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Biggest discount'**
+  String get sortDiscount;
+
+  /// No description provided for @sortNewest.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest'**
+  String get sortNewest;
+
+  /// No description provided for @shopTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop'**
+  String get shopTitle;
+
+  /// No description provided for @shopSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search food, toys, beds…'**
+  String get shopSearchHint;
+
+  /// No description provided for @shopSearchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get shopSearchTitle;
+
+  /// No description provided for @shopClearSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get shopClearSearch;
+
+  /// No description provided for @shopForPet.
+  ///
+  /// In en, this message translates to:
+  /// **'For {pet}'**
+  String shopForPet(String pet);
+
+  /// No description provided for @shopAvoiding.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoiding: {items}'**
+  String shopAvoiding(String items);
+
+  /// No description provided for @shopNoPicks.
+  ///
+  /// In en, this message translates to:
+  /// **'No picks yet. Try searching the shop.'**
+  String get shopNoPicks;
+
+  /// No description provided for @shopBuyAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy again'**
+  String get shopBuyAgain;
+
+  /// No description provided for @shopReorder.
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder'**
+  String get shopReorder;
+
+  /// No description provided for @shopReorderPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder · {price}'**
+  String shopReorderPrice(String price);
+
+  /// No description provided for @shopCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get shopCategories;
+
+  /// No description provided for @shopDeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Deals'**
+  String get shopDeals;
+
+  /// No description provided for @shopPartnerStores.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner stores'**
+  String get shopPartnerStores;
+
+  /// No description provided for @shopPartnerStoresNote.
+  ///
+  /// In en, this message translates to:
+  /// **'You buy these on the partner\'s own website. PawSetu may earn a small commission.'**
+  String get shopPartnerStoresNote;
+
+  /// No description provided for @shopListings.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 product} other{{count} products}}'**
+  String shopListings(int count);
+
+  /// No description provided for @shopPlusDeliveryNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus members get free delivery above {amount}.'**
+  String shopPlusDeliveryNote(String amount);
+
+  /// No description provided for @shopPartnerStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner store'**
+  String get shopPartnerStore;
+
+  /// No description provided for @shopSoldOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On {store}'**
+  String shopSoldOn(String store);
+
+  /// No description provided for @shopOffPercent.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% off'**
+  String shopOffPercent(int percent);
+
+  /// No description provided for @shopPriceSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'{price}, was {mrp}, {percent}% off'**
+  String shopPriceSemantics(String price, String mrp, int percent);
+
+  /// No description provided for @shopRatingSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Rated {rating} out of 5 by {count} people'**
+  String shopRatingSemantics(String rating, int count);
+
+  /// No description provided for @shopNoReviewsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No reviews yet'**
+  String get shopNoReviewsYet;
+
+  /// No description provided for @shopOutOfStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Out of stock'**
+  String get shopOutOfStock;
+
+  /// No description provided for @shopInStock.
+  ///
+  /// In en, this message translates to:
+  /// **'In stock'**
+  String get shopInStock;
+
+  /// No description provided for @shopOnlyLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Only {count} left'**
+  String shopOnlyLeft(int count);
+
+  /// No description provided for @shopResults.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No products} =1{1 product} other{{count} products}}'**
+  String shopResults(int count);
+
+  /// No description provided for @shopFiltersCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters ({count})'**
+  String shopFiltersCount(int count);
+
+  /// No description provided for @shopNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing found'**
+  String get shopNoResults;
+
+  /// No description provided for @shopNoResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another word or clear the filters.'**
+  String get shopNoResultsBody;
+
+  /// No description provided for @shopClearFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get shopClearFilters;
+
+  /// No description provided for @shopCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get shopCategory;
+
+  /// No description provided for @shopPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get shopPrice;
+
+  /// No description provided for @shopMinPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Min price'**
+  String get shopMinPrice;
+
+  /// No description provided for @shopMaxPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Max price'**
+  String get shopMaxPrice;
+
+  /// No description provided for @shopBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand'**
+  String get shopBrand;
+
+  /// No description provided for @shopRatingAtLeast.
+  ///
+  /// In en, this message translates to:
+  /// **'{rating}★ and up'**
+  String shopRatingAtLeast(String rating);
+
+  /// No description provided for @shopHidePartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide partner-store listings'**
+  String get shopHidePartner;
+
+  /// No description provided for @shopHidePartnerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Show only products you can buy in PawSetu'**
+  String get shopHidePartnerHint;
+
+  /// No description provided for @shopShowResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Show results'**
+  String get shopShowResults;
+
+  /// No description provided for @shopProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Product'**
+  String get shopProduct;
+
+  /// No description provided for @shopProductGone.
+  ///
+  /// In en, this message translates to:
+  /// **'This product is no longer available'**
+  String get shopProductGone;
+
+  /// No description provided for @shopShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} for {price} on PawSetu'**
+  String shopShareText(String name, String price);
+
+  /// No description provided for @shopInclTaxes.
+  ///
+  /// In en, this message translates to:
+  /// **'Inclusive of all taxes'**
+  String get shopInclTaxes;
+
+  /// No description provided for @shopAffiliateNote.
+  ///
+  /// In en, this message translates to:
+  /// **'You will buy this on {store}. PawSetu may earn a small commission; the price is the same for you.'**
+  String shopAffiliateNote(String store);
+
+  /// No description provided for @shopSoldBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold by {seller}, {city}'**
+  String shopSoldBy(String seller, String city);
+
+  /// No description provided for @shopSuitableFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Suitable for'**
+  String get shopSuitableFor;
+
+  /// No description provided for @shopCheckDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Check delivery'**
+  String get shopCheckDelivery;
+
+  /// No description provided for @shopEnterPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a PIN code to see the delivery date'**
+  String get shopEnterPin;
+
+  /// No description provided for @shopDeliveryBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery {from} – {to}'**
+  String shopDeliveryBetween(String from, String to);
+
+  /// No description provided for @shopReturnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy returns within {days} days of delivery'**
+  String shopReturnable(int days);
+
+  /// No description provided for @shopNotReturnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Food and treats can\'t be returned once delivered'**
+  String get shopNotReturnable;
+
+  /// No description provided for @shopAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About this product'**
+  String get shopAbout;
+
+  /// No description provided for @shopPackSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack size'**
+  String get shopPackSize;
+
+  /// No description provided for @shopIngredients.
+  ///
+  /// In en, this message translates to:
+  /// **'Ingredients'**
+  String get shopIngredients;
+
+  /// No description provided for @shopReturnPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Return policy'**
+  String get shopReturnPolicy;
+
+  /// No description provided for @shopVerifiedBuyer.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified buyer'**
+  String get shopVerifiedBuyer;
+
+  /// No description provided for @shopSellerReplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Seller: {reply}'**
+  String shopSellerReplied(String reply);
+
+  /// No description provided for @shopBuyOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy on {store}'**
+  String shopBuyOn(String store);
+
+  /// No description provided for @shopAddToCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to cart'**
+  String get shopAddToCart;
+
+  /// No description provided for @shopBuyNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy now'**
+  String get shopBuyNow;
+
+  /// No description provided for @shopAddedToCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to cart'**
+  String get shopAddedToCart;
+
+  /// No description provided for @shopViewCart.
+  ///
+  /// In en, this message translates to:
+  /// **'View cart'**
+  String get shopViewCart;
+
+  /// No description provided for @shopLeavingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You will buy on {store}'**
+  String shopLeavingTitle(String store);
+
+  /// No description provided for @shopLeavingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We will open {store} in your browser. Payment, delivery and returns are handled by {store}. PawSetu may earn a small commission.'**
+  String shopLeavingBody(String store);
+
+  /// No description provided for @shopContinueTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to {store}'**
+  String shopContinueTo(String store);
+
+  /// No description provided for @shopCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Cart'**
+  String get shopCart;
+
+  /// No description provided for @shopCartWithCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Cart, {count} items'**
+  String shopCartWithCount(int count);
+
+  /// No description provided for @shopQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get shopQuantity;
+
+  /// No description provided for @shopQtySemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity {count}'**
+  String shopQtySemantics(int count);
+
+  /// No description provided for @shopQtyShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Qty {count}'**
+  String shopQtyShort(int count);
+
+  /// No description provided for @shopLessOf.
+  ///
+  /// In en, this message translates to:
+  /// **'One less {item}'**
+  String shopLessOf(String item);
+
+  /// No description provided for @shopMoreOf.
+  ///
+  /// In en, this message translates to:
+  /// **'One more {item}'**
+  String shopMoreOf(String item);
+
+  /// No description provided for @shopRemoveItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {item}'**
+  String shopRemoveItem(String item);
+
+  /// No description provided for @shopStars.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 star} other{{count} stars}}'**
+  String shopStars(int count);
+
+  /// No description provided for @shopReviewText.
+  ///
+  /// In en, this message translates to:
+  /// **'What did you think? (optional)'**
+  String get shopReviewText;
+
+  /// No description provided for @shopPostReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Post review'**
+  String get shopPostReview;
+
+  /// No description provided for @shopThanksReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for your review!'**
+  String get shopThanksReview;
+
+  /// No description provided for @shopRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate'**
+  String get shopRate;
+
+  /// No description provided for @shopForWhichPet.
+  ///
+  /// In en, this message translates to:
+  /// **'For which pet?'**
+  String get shopForWhichPet;
+
+  /// No description provided for @shopReorderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder'**
+  String get shopReorderTitle;
+
+  /// No description provided for @shopReorderFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder for {pet}'**
+  String shopReorderFor(String pet);
+
+  /// No description provided for @shopDeliveryOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery on {date}'**
+  String shopDeliveryOn(String date);
+
+  /// No description provided for @shopItemsTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Items total'**
+  String get shopItemsTotal;
+
+  /// No description provided for @shopDeliveryFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery'**
+  String get shopDeliveryFee;
+
+  /// No description provided for @shopFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get shopFree;
+
+  /// No description provided for @shopToPay.
+  ///
+  /// In en, this message translates to:
+  /// **'To pay'**
+  String get shopToPay;
+
+  /// No description provided for @shopPlaceOrderAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Place order · {amount}'**
+  String shopPlaceOrderAmount(String amount);
+
+  /// No description provided for @shopOrderPlacedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Order placed!'**
+  String get shopOrderPlacedToast;
+
+  /// No description provided for @shopOrderFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t place the order. Please try again.'**
+  String get shopOrderFailed;
+
+  /// No description provided for @addrBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Addresses'**
+  String get addrBook;
+
+  /// No description provided for @addrAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add address'**
+  String get addrAdd;
+
+  /// No description provided for @addrEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit address'**
+  String get addrEdit;
+
+  /// No description provided for @addrAddFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a delivery address'**
+  String get addrAddFirst;
+
+  /// No description provided for @addrNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No addresses yet'**
+  String get addrNone;
+
+  /// No description provided for @addrNoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your home address for faster checkout.'**
+  String get addrNoneBody;
+
+  /// No description provided for @addrDeleteQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this address?'**
+  String get addrDeleteQ;
+
+  /// No description provided for @addrChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Deliver to'**
+  String get addrChoose;
+
+  /// No description provided for @addrHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get addrHome;
+
+  /// No description provided for @addrWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Work'**
+  String get addrWork;
+
+  /// No description provided for @addrOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get addrOther;
+
+  /// No description provided for @addrName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get addrName;
+
+  /// No description provided for @addrPhoneInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a 10-digit mobile number'**
+  String get addrPhoneInvalid;
+
+  /// No description provided for @addrLine1.
+  ///
+  /// In en, this message translates to:
+  /// **'House / flat and street'**
+  String get addrLine1;
+
+  /// No description provided for @addrLine2.
+  ///
+  /// In en, this message translates to:
+  /// **'Landmark (optional)'**
+  String get addrLine2;
+
+  /// No description provided for @addrArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get addrArea;
+
+  /// No description provided for @addrCity.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get addrCity;
+
+  /// No description provided for @addrPin.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN code'**
+  String get addrPin;
+
+  /// No description provided for @addrPinInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a 6-digit PIN code'**
+  String get addrPinInvalid;
+
+  /// No description provided for @cartEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Your cart is empty'**
+  String get cartEmpty;
+
+  /// No description provided for @cartEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Food, toys and more for your pet are a tap away.'**
+  String get cartEmptyBody;
+
+  /// No description provided for @cartStartShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Start shopping'**
+  String get cartStartShopping;
+
+  /// No description provided for @cartSoldBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold by {seller}'**
+  String cartSoldBy(String seller);
+
+  /// No description provided for @cartSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'These can\'t be ordered here right now'**
+  String get cartSkipped;
+
+  /// No description provided for @cartPartnerOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy this on the partner store'**
+  String get cartPartnerOnly;
+
+  /// No description provided for @cartPetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Helps us track spending and food for this pet.'**
+  String get cartPetHint;
+
+  /// No description provided for @cartDeliverTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Deliver to'**
+  String get cartDeliverTo;
+
+  /// No description provided for @cartSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery slot'**
+  String get cartSlot;
+
+  /// No description provided for @cartCoupon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupon'**
+  String get cartCoupon;
+
+  /// No description provided for @couponCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupon code'**
+  String get couponCode;
+
+  /// No description provided for @couponApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get couponApply;
+
+  /// No description provided for @couponApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupon applied'**
+  String get couponApplied;
+
+  /// No description provided for @couponSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'{code} applied: you save {amount}'**
+  String couponSaved(String code, String amount);
+
+  /// No description provided for @couponNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'That coupon code isn\'t valid'**
+  String get couponNotFound;
+
+  /// No description provided for @couponExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'This coupon has expired'**
+  String get couponExpired;
+
+  /// No description provided for @couponMinOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Add items worth ₹{amount} or more to use this coupon'**
+  String couponMinOrder(int amount);
+
+  /// No description provided for @couponUsedUp.
+  ///
+  /// In en, this message translates to:
+  /// **'This coupon has been fully used'**
+  String get couponUsedUp;
+
+  /// No description provided for @cartPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get cartPayment;
+
+  /// No description provided for @payOnlineDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay online (demo)'**
+  String get payOnlineDemo;
+
+  /// No description provided for @payOnDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay on delivery'**
+  String get payOnDelivery;
+
+  /// No description provided for @cartBill.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill details'**
+  String get cartBill;
+
+  /// No description provided for @cartMrpTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Price (1 item)} other{Price ({count} items)}}'**
+  String cartMrpTotal(int count);
+
+  /// No description provided for @cartMrpDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount on MRP'**
+  String get cartMrpDiscount;
+
+  /// No description provided for @cartCouponDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupon'**
+  String get cartCouponDiscount;
+
+  /// No description provided for @cartCouponDiscountCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupon {code}'**
+  String cartCouponDiscountCode(String code);
+
+  /// No description provided for @cartAddForFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {amount} more for free delivery'**
+  String cartAddForFree(String amount);
+
+  /// No description provided for @cartPlusFreeDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Free delivery with Plus'**
+  String get cartPlusFreeDelivery;
+
+  /// No description provided for @cartSplitNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Items come from {count} sellers, so you\'ll get {count} deliveries. You pay once.'**
+  String cartSplitNote(int count);
+
+  /// No description provided for @cartYouSave.
+  ///
+  /// In en, this message translates to:
+  /// **'You save {amount}'**
+  String cartYouSave(String amount);
+
+  /// No description provided for @cartPay.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay {amount}'**
+  String cartPay(String amount);
+
+  /// No description provided for @cartPlaceOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Place order'**
+  String get cartPlaceOrder;
+
+  /// No description provided for @cartPaymentFor.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{PawSetu order, 1 item} other{PawSetu order, {count} items}}'**
+  String cartPaymentFor(int count);
+
+  /// No description provided for @payFailedTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment failed. Your cart is saved; please try again.'**
+  String get payFailedTryAgain;
+
+  /// No description provided for @payPaidOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid online'**
+  String get payPaidOnline;
+
+  /// No description provided for @payPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment pending'**
+  String get payPending;
+
+  /// No description provided for @payRefunded.
+  ///
+  /// In en, this message translates to:
+  /// **'Refunded'**
+  String get payRefunded;
+
+  /// No description provided for @payPendingNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payment is being confirmed. If it fails, you can pay again or pay on delivery.'**
+  String get payPendingNote;
+
+  /// No description provided for @payNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay now'**
+  String get payNow;
+
+  /// No description provided for @ordMyOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'My orders'**
+  String get ordMyOrders;
+
+  /// No description provided for @ordTabOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get ordTabOrders;
+
+  /// No description provided for @ordNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders yet'**
+  String get ordNone;
+
+  /// No description provided for @ordPlaced.
+  ///
+  /// In en, this message translates to:
+  /// **'Placed'**
+  String get ordPlaced;
+
+  /// No description provided for @ordPacked.
+  ///
+  /// In en, this message translates to:
+  /// **'Packed'**
+  String get ordPacked;
+
+  /// No description provided for @ordShipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipped'**
+  String get ordShipped;
+
+  /// No description provided for @ordOutForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Out for delivery'**
+  String get ordOutForDelivery;
+
+  /// No description provided for @ordDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get ordDelivered;
+
+  /// No description provided for @ordCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get ordCancelled;
+
+  /// No description provided for @ordReturnRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'Return requested'**
+  String get ordReturnRequested;
+
+  /// No description provided for @ordReturned.
+  ///
+  /// In en, this message translates to:
+  /// **'Returned'**
+  String get ordReturned;
+
+  /// No description provided for @ordReturnRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Return declined'**
+  String get ordReturnRejected;
+
+  /// No description provided for @ordItemsMore.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} +{count} more'**
+  String ordItemsMore(String name, int count);
+
+  /// No description provided for @ordArrivingBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Arriving by {date}'**
+  String ordArrivingBy(String date);
+
+  /// No description provided for @ordExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected {date}'**
+  String ordExpected(String date);
+
+  /// No description provided for @ordPlacedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Order placed'**
+  String get ordPlacedTitle;
+
+  /// No description provided for @ordPlacedHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you! Your order is placed.'**
+  String get ordPlacedHeading;
+
+  /// No description provided for @ordPlacedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll let you know when it\'s on the way.'**
+  String get ordPlacedBody;
+
+  /// No description provided for @ordPlacedSplit.
+  ///
+  /// In en, this message translates to:
+  /// **'It comes in {count} deliveries, one from each seller.'**
+  String ordPlacedSplit(int count);
+
+  /// No description provided for @ordTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'Track order'**
+  String get ordTrack;
+
+  /// No description provided for @ordContinueShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue shopping'**
+  String get ordContinueShopping;
+
+  /// No description provided for @ordDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Order details'**
+  String get ordDetail;
+
+  /// No description provided for @ordNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find this order'**
+  String get ordNotFound;
+
+  /// No description provided for @ordNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Order {number}'**
+  String ordNumber(String number);
+
+  /// No description provided for @ordPlacedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Placed on {date}'**
+  String ordPlacedOn(String date);
+
+  /// No description provided for @ordTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracking'**
+  String get ordTracking;
+
+  /// No description provided for @ordItems.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 item} other{{count} items}}'**
+  String ordItems(int count);
+
+  /// No description provided for @ordSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Slot: {date}, {window}'**
+  String ordSlot(String date, String window);
+
+  /// No description provided for @ordForPet.
+  ///
+  /// In en, this message translates to:
+  /// **'For {pet}'**
+  String ordForPet(String pet);
+
+  /// No description provided for @ordTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get ordTotal;
+
+  /// No description provided for @ordPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get ordPayment;
+
+  /// No description provided for @ordInvoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice (PDF)'**
+  String get ordInvoice;
+
+  /// No description provided for @ordCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel order'**
+  String get ordCancel;
+
+  /// No description provided for @ordReturn.
+  ///
+  /// In en, this message translates to:
+  /// **'Return'**
+  String get ordReturn;
+
+  /// No description provided for @ordHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Get help'**
+  String get ordHelp;
+
+  /// No description provided for @ordReturnWindowOver.
+  ///
+  /// In en, this message translates to:
+  /// **'The {days}-day return window has ended.'**
+  String ordReturnWindowOver(int days);
+
+  /// No description provided for @ordCancelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why do you want to cancel?'**
+  String get ordCancelTitle;
+
+  /// No description provided for @ordReturnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why are you returning it?'**
+  String get ordReturnTitle;
+
+  /// No description provided for @ordReasonChangedMind.
+  ///
+  /// In en, this message translates to:
+  /// **'I changed my mind'**
+  String get ordReasonChangedMind;
+
+  /// No description provided for @ordReasonWrongItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong item or size'**
+  String get ordReasonWrongItem;
+
+  /// No description provided for @ordReasonTooLate.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery is too late'**
+  String get ordReasonTooLate;
+
+  /// No description provided for @ordReasonDamaged.
+  ///
+  /// In en, this message translates to:
+  /// **'It arrived damaged'**
+  String get ordReasonDamaged;
+
+  /// No description provided for @ordReasonNotSuitable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not suitable for my pet'**
+  String get ordReasonNotSuitable;
+
+  /// No description provided for @ordReasonOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get ordReasonOther;
+
+  /// No description provided for @ordCancelledToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Order cancelled'**
+  String get ordCancelledToast;
+
+  /// No description provided for @ordCancelledRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Order cancelled. Your refund is on its way (demo).'**
+  String get ordCancelledRefund;
+
+  /// No description provided for @ordReturnRequestedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Return requested. The seller will reply soon.'**
+  String get ordReturnRequestedToast;
+
+  /// No description provided for @ordReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason: {reason}'**
+  String ordReason(String reason);
+
+  /// No description provided for @ordStepDone.
+  ///
+  /// In en, this message translates to:
+  /// **'done'**
+  String get ordStepDone;
+
+  /// No description provided for @invTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax invoice'**
+  String get invTitle;
+
+  /// No description provided for @invFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu marketplace · This invoice is generated by the seller through PawSetu.'**
+  String get invFooter;
+
+  /// No description provided for @invSoldBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold by'**
+  String get invSoldBy;
+
+  /// No description provided for @invBillTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill to'**
+  String get invBillTo;
+
+  /// No description provided for @invGstin.
+  ///
+  /// In en, this message translates to:
+  /// **'GSTIN: {gstin}'**
+  String invGstin(String gstin);
+
+  /// No description provided for @invMarketplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold through PawSetu marketplace'**
+  String get invMarketplace;
+
+  /// No description provided for @invOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get invOrder;
+
+  /// No description provided for @invInvoiceNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice {number}'**
+  String invInvoiceNo(String number);
+
+  /// No description provided for @invPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment: {method}'**
+  String invPayment(String method);
+
+  /// No description provided for @invItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get invItems;
+
+  /// No description provided for @invItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get invItem;
+
+  /// No description provided for @invQty.
+  ///
+  /// In en, this message translates to:
+  /// **'Qty'**
+  String get invQty;
+
+  /// No description provided for @invPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get invPrice;
+
+  /// No description provided for @invAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get invAmount;
+
+  /// No description provided for @invTax.
+  ///
+  /// In en, this message translates to:
+  /// **'GST'**
+  String get invTax;
+
+  /// No description provided for @invTaxPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Included'**
+  String get invTaxPlaceholder;
+
+  /// No description provided for @invDemoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo invoice: no money was charged and GST details are placeholders.'**
+  String get invDemoNote;
+
+  /// No description provided for @orderEmailSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Your PawSetu order is placed'**
+  String get orderEmailSubject;
+
+  /// No description provided for @orderEmailBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, thank you for your order of {amount}. It should reach you by {date}.'**
+  String orderEmailBody(String name, String amount, String date);
+
+  /// No description provided for @subsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-reorder'**
+  String get subsTitle;
+
+  /// No description provided for @subsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Get this delivered every 2, 4 or 6 weeks. Pause or cancel anytime.'**
+  String get subsHint;
+
+  /// No description provided for @subsEvery.
+  ///
+  /// In en, this message translates to:
+  /// **'Deliver every'**
+  String get subsEvery;
+
+  /// No description provided for @subsWeeks.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Every week} other{Every {count} weeks}}'**
+  String subsWeeks(int count);
+
+  /// No description provided for @subsFirstOn.
+  ///
+  /// In en, this message translates to:
+  /// **'First delivery around {date}, paid on delivery.'**
+  String subsFirstOn(String date);
+
+  /// No description provided for @subsStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start auto-reorder'**
+  String get subsStart;
+
+  /// No description provided for @subsCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-reorder is on'**
+  String get subsCreated;
+
+  /// No description provided for @subsTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-reorder'**
+  String get subsTab;
+
+  /// No description provided for @subsNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No auto-reorders'**
+  String get subsNone;
+
+  /// No description provided for @subsNoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Set one up from any food page so you never run out.'**
+  String get subsNoneBody;
+
+  /// No description provided for @subsNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next delivery {date}'**
+  String subsNext(String date);
+
+  /// No description provided for @subsPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get subsPaused;
+
+  /// No description provided for @subsPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get subsPause;
+
+  /// No description provided for @subsResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get subsResume;
+
+  /// No description provided for @subsCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get subsCancel;
+
+  /// No description provided for @subsCancelQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop this auto-reorder?'**
+  String get subsCancelQ;
+
+  /// No description provided for @subsOrderedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Your auto-reorder was placed} other{{count} auto-reorders were placed}}'**
+  String subsOrderedToast(int count);
+
+  /// No description provided for @ntfNewOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{New order: {item}} other{New order: {item} and more}}'**
+  String ntfNewOrder(String item, int count);
+
+  /// No description provided for @ntfOrderCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Order {number} was cancelled by the customer'**
+  String ntfOrderCancelled(String number);
+
+  /// No description provided for @ntfOrderCancelledBySeller.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, the seller cancelled your order for {item}. Any payment is refunded.'**
+  String ntfOrderCancelledBySeller(String item);
+
+  /// No description provided for @ntfOrderPacked.
+  ///
+  /// In en, this message translates to:
+  /// **'{item} is packed'**
+  String ntfOrderPacked(String item);
+
+  /// No description provided for @ntfOrderShipped.
+  ///
+  /// In en, this message translates to:
+  /// **'{item} is on the way'**
+  String ntfOrderShipped(String item);
+
+  /// No description provided for @ntfOrderOutForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'{item} is out for delivery today'**
+  String ntfOrderOutForDelivery(String item);
+
+  /// No description provided for @ntfOrderDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'{item} was delivered'**
+  String ntfOrderDelivered(String item);
+
+  /// No description provided for @ntfOrderUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order for {item} was updated'**
+  String ntfOrderUpdated(String item);
+
+  /// No description provided for @ntfReturnAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Return accepted for {item}. Your refund is on its way.'**
+  String ntfReturnAccepted(String item);
+
+  /// No description provided for @ntfReturnRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Return declined for {item}. Tap for help.'**
+  String ntfReturnRejected(String item);
+
+  /// No description provided for @ntfReturnRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'Return requested for order {number}'**
+  String ntfReturnRequested(String number);
+
+  /// No description provided for @ntfSubscriptionOrdered.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-reorder placed: {item}'**
+  String ntfSubscriptionOrdered(String item);
+
+  /// No description provided for @foodRunsOutIn.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s food may run out in about {days, plural, =1{1 day} other{{days} days}}. Reorder?'**
+  String foodRunsOutIn(String pet, int days);
+
+  /// No description provided for @foodRanOut.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s food may have run out. Reorder?'**
+  String foodRanOut(String pet);
+
+  /// No description provided for @foodPortionLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{grams} g a day · {bag} bag'**
+  String foodPortionLine(int grams, String bag);
+
+  /// No description provided for @foodEditPortion.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit portion'**
+  String get foodEditPortion;
+
+  /// No description provided for @foodOnTheWay.
+  ///
+  /// In en, this message translates to:
+  /// **'New food for {pet} is on the way'**
+  String foodOnTheWay(String pet);
+
+  /// No description provided for @foodPlanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s food'**
+  String foodPlanTitle(String pet);
+
+  /// No description provided for @foodDailyPortion.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily portion'**
+  String get foodDailyPortion;
+
+  /// No description provided for @foodSuggested.
+  ///
+  /// In en, this message translates to:
+  /// **'A starting point is {grams} g a day. Follow the pack or your vet.'**
+  String foodSuggested(int grams);
+
+  /// No description provided for @foodBagSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Bag size'**
+  String get foodBagSize;
+
+  /// No description provided for @foodOpenedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Bag opened on'**
+  String get foodOpenedOn;
+
+  /// No description provided for @expAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add expense'**
+  String get expAdd;
+
+  /// No description provided for @expEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit expense'**
+  String get expEdit;
+
+  /// No description provided for @expThisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get expThisMonth;
+
+  /// No description provided for @expLastMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Last month'**
+  String get expLastMonth;
+
+  /// No description provided for @expPeriodTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Last {months} months'**
+  String expPeriodTotal(int months);
+
+  /// No description provided for @expByMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Spending by month'**
+  String get expByMonth;
+
+  /// No description provided for @expMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} months'**
+  String expMonths(int count);
+
+  /// No description provided for @expByCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'By category'**
+  String get expByCategory;
+
+  /// No description provided for @expChartSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Spending by month: {values}'**
+  String expChartSemantics(String values);
+
+  /// No description provided for @expNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No expenses yet'**
+  String get expNone;
+
+  /// No description provided for @expNoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings and orders are added here automatically. You can add others too.'**
+  String get expNoneBody;
+
+  /// No description provided for @expVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet'**
+  String get expVet;
+
+  /// No description provided for @expGrooming.
+  ///
+  /// In en, this message translates to:
+  /// **'Grooming'**
+  String get expGrooming;
+
+  /// No description provided for @expTraining.
+  ///
+  /// In en, this message translates to:
+  /// **'Training'**
+  String get expTraining;
+
+  /// No description provided for @expBoarding.
+  ///
+  /// In en, this message translates to:
+  /// **'Boarding'**
+  String get expBoarding;
+
+  /// No description provided for @expWalking.
+  ///
+  /// In en, this message translates to:
+  /// **'Walking'**
+  String get expWalking;
+
+  /// No description provided for @expFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get expFood;
+
+  /// No description provided for @expSupplies.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplies'**
+  String get expSupplies;
+
+  /// No description provided for @expInsurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance'**
+  String get expInsurance;
+
+  /// No description provided for @expOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get expOther;
+
+  /// No description provided for @expFromBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'from a booking'**
+  String get expFromBooking;
+
+  /// No description provided for @expFromOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'from an order'**
+  String get expFromOrder;
+
+  /// No description provided for @expFromTeleVet.
+  ///
+  /// In en, this message translates to:
+  /// **'from tele-vet'**
+  String get expFromTeleVet;
+
+  /// No description provided for @expAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get expAmount;
+
+  /// No description provided for @expAmountInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an amount'**
+  String get expAmountInvalid;
+
+  /// No description provided for @expCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get expCategory;
+
+  /// No description provided for @expForPet.
+  ///
+  /// In en, this message translates to:
+  /// **'For'**
+  String get expForPet;
+
+  /// No description provided for @expAllPets.
+  ///
+  /// In en, this message translates to:
+  /// **'All pets'**
+  String get expAllPets;
+
+  /// No description provided for @expNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get expNote;
+
+  /// No description provided for @expNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: rabies booster, new collar'**
+  String get expNoteHint;
+
+  /// No description provided for @expSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense saved'**
+  String get expSaved;
+
+  /// No description provided for @expDeleteQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this expense?'**
+  String get expDeleteQ;
+
+  /// No description provided for @selToPack.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders to pack'**
+  String get selToPack;
+
+  /// No description provided for @selOnTheWay.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way'**
+  String get selOnTheWay;
+
+  /// No description provided for @selLowStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Low stock'**
+  String get selLowStock;
+
+  /// No description provided for @selReturnsWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 return is waiting for you} other{{count} returns are waiting for you}}'**
+  String selReturnsWaiting(int count);
+
+  /// No description provided for @selNewOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'New orders'**
+  String get selNewOrders;
+
+  /// No description provided for @selNoNewOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'No new orders right now'**
+  String get selNoNewOrders;
+
+  /// No description provided for @selStockLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} in stock'**
+  String selStockLeft(int count);
+
+  /// No description provided for @selAddProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Add product'**
+  String get selAddProduct;
+
+  /// No description provided for @selEditProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit product'**
+  String get selEditProduct;
+
+  /// No description provided for @selCsvUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'CSV bulk upload'**
+  String get selCsvUpload;
+
+  /// No description provided for @selSearchProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Search your products'**
+  String get selSearchProducts;
+
+  /// No description provided for @selProductCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 product} other{{count} products}}'**
+  String selProductCount(int count);
+
+  /// No description provided for @selHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden from the shop'**
+  String get selHidden;
+
+  /// No description provided for @selProductName.
+  ///
+  /// In en, this message translates to:
+  /// **'Product name'**
+  String get selProductName;
+
+  /// No description provided for @selPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Selling price'**
+  String get selPrice;
+
+  /// No description provided for @selMrp.
+  ///
+  /// In en, this message translates to:
+  /// **'MRP'**
+  String get selMrp;
+
+  /// No description provided for @selPriceInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a price'**
+  String get selPriceInvalid;
+
+  /// No description provided for @selMrpInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'MRP can\'t be lower than the price'**
+  String get selMrpInvalid;
+
+  /// No description provided for @selStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock'**
+  String get selStock;
+
+  /// No description provided for @selPackKg.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack size in kg (food)'**
+  String get selPackKg;
+
+  /// No description provided for @selDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get selDescription;
+
+  /// No description provided for @selVisible.
+  ///
+  /// In en, this message translates to:
+  /// **'Show in the shop'**
+  String get selVisible;
+
+  /// No description provided for @selVisibleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off to hide it without deleting'**
+  String get selVisibleHint;
+
+  /// No description provided for @selNoRxNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription-only medicines can\'t be sold on PawSetu.'**
+  String get selNoRxNote;
+
+  /// No description provided for @selSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Product saved'**
+  String get selSaved;
+
+  /// No description provided for @selCsvHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Columns: {columns}. Species can be several, like dog|cat.'**
+  String selCsvHelp(String columns);
+
+  /// No description provided for @selCsvChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose CSV file'**
+  String get selCsvChoose;
+
+  /// No description provided for @selCsvSample.
+  ///
+  /// In en, this message translates to:
+  /// **'Try the sample'**
+  String get selCsvSample;
+
+  /// No description provided for @selCsvCopyTemplate.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy template'**
+  String get selCsvCopyTemplate;
+
+  /// No description provided for @selCsvCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Template copied'**
+  String get selCsvCopied;
+
+  /// No description provided for @selCsvPaste.
+  ///
+  /// In en, this message translates to:
+  /// **'Or paste CSV here'**
+  String get selCsvPaste;
+
+  /// No description provided for @selCsvPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview: {ok} ready, {bad} to fix'**
+  String selCsvPreview(int ok, int bad);
+
+  /// No description provided for @selCsvLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Line {line}'**
+  String selCsvLine(int line);
+
+  /// No description provided for @selCsvProblems.
+  ///
+  /// In en, this message translates to:
+  /// **'Check: {fields}'**
+  String selCsvProblems(String fields);
+
+  /// No description provided for @selCsvImport.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Add 1 product} other{Add {count} products}}'**
+  String selCsvImport(int count);
+
+  /// No description provided for @selCsvImported.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 product added} other{{count} products added}}'**
+  String selCsvImported(int count);
+
+  /// No description provided for @selTabNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get selTabNew;
+
+  /// No description provided for @selTabPacked.
+  ///
+  /// In en, this message translates to:
+  /// **'Packed'**
+  String get selTabPacked;
+
+  /// No description provided for @selTabShipping.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping'**
+  String get selTabShipping;
+
+  /// No description provided for @selTabDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get selTabDelivered;
+
+  /// No description provided for @selTabCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled / returned'**
+  String get selTabCancelled;
+
+  /// No description provided for @selNoOrdersHere.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders here'**
+  String get selNoOrdersHere;
+
+  /// No description provided for @selReturnsOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for you'**
+  String get selReturnsOpen;
+
+  /// No description provided for @selReturnsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get selReturnsDone;
+
+  /// No description provided for @selNoReturns.
+  ///
+  /// In en, this message translates to:
+  /// **'No returns'**
+  String get selNoReturns;
+
+  /// No description provided for @selAcceptReturn.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept return'**
+  String get selAcceptReturn;
+
+  /// No description provided for @selRejectReturn.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline return'**
+  String get selRejectReturn;
+
+  /// No description provided for @selPayoutDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo payouts: no real money moves.'**
+  String get selPayoutDemo;
+
+  /// No description provided for @selPayoutPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get selPayoutPending;
+
+  /// No description provided for @selPayoutReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to pay'**
+  String get selPayoutReady;
+
+  /// No description provided for @selPayoutPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get selPayoutPaid;
+
+  /// No description provided for @selPayoutOnHold.
+  ///
+  /// In en, this message translates to:
+  /// **'In return window'**
+  String get selPayoutOnHold;
+
+  /// No description provided for @selCommissionPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu commission'**
+  String get selCommissionPaid;
+
+  /// No description provided for @selRunPayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay out {amount} now (demo)'**
+  String selRunPayout(String amount);
+
+  /// No description provided for @selPayoutDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 order paid out} other{{count} orders paid out}}'**
+  String selPayoutDone(int count);
+
+  /// No description provided for @selPayoutRule.
+  ///
+  /// In en, this message translates to:
+  /// **'Payouts are made weekly once the {days}-day return window ends.'**
+  String selPayoutRule(int days);
+
+  /// No description provided for @selPayoutOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get selPayoutOrders;
+
+  /// No description provided for @selPayoutLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Sales {gross} · commission {commission}'**
+  String selPayoutLine(String gross, String commission);
+
+  /// No description provided for @selReviewSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'★ {rating} from {count, plural, =1{1 review} other{{count} reviews}}'**
+  String selReviewSummary(String rating, int count);
+
+  /// No description provided for @selReplyText.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reply'**
+  String get selReplyText;
+
+  /// No description provided for @selSendReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reply'**
+  String get selSendReply;
+
+  /// No description provided for @selApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get selApproved;
+
+  /// No description provided for @selKyc.
+  ///
+  /// In en, this message translates to:
+  /// **'KYC documents'**
+  String get selKyc;
+
+  /// No description provided for @selVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get selVerified;
+
+  /// No description provided for @selCancelQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this order?'**
+  String get selCancelQ;
+
+  /// No description provided for @selCancelBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The customer is told and any payment is refunded.'**
+  String get selCancelBody;
+
+  /// No description provided for @selCancelOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel order'**
+  String get selCancelOrder;
+
+  /// No description provided for @selOutOfStockReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Out of stock'**
+  String get selOutOfStockReason;
+
+  /// No description provided for @selMarkPacked.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark packed'**
+  String get selMarkPacked;
+
+  /// No description provided for @selMarkShipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark shipped'**
+  String get selMarkShipped;
+
+  /// No description provided for @selMarkOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Out for delivery'**
+  String get selMarkOut;
+
+  /// No description provided for @selMarkDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark delivered'**
+  String get selMarkDelivered;
+
+  /// No description provided for @selCommission.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu commission'**
+  String get selCommission;
+
+  /// No description provided for @selYourPayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payout'**
+  String get selYourPayout;
+
+  /// No description provided for @selShipTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship to'**
+  String get selShipTo;
+
+  /// No description provided for @selPhoneHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'The customer\'s phone is hidden; the courier calls through PawSetu.'**
+  String get selPhoneHidden;
 }
 
 class _AppLocalizationsDelegate

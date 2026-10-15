@@ -4093,5 +4093,1127 @@
     }
   },
   "vaultSettledAmount": "Amount paid by insurer",
-  "vaultClaimSaved": "Claim saved"
+  "vaultClaimSaved": "Claim saved",
+  "edit": "Edit",
+  "close": "Close",
+  "change": "Change",
+  "catFood": "Food",
+  "catTreats": "Treats",
+  "catToys": "Toys",
+  "catGrooming": "Grooming",
+  "catHealthHygiene": "Health and hygiene",
+  "catBeds": "Beds",
+  "catCollars": "Collars and leashes",
+  "catBowls": "Bowls and feeders",
+  "catLitter": "Litter and cat care",
+  "catBird": "Bird food and cages",
+  "catRabbit": "Rabbit hay and care",
+  "catClothing": "Clothing",
+  "catTravel": "Travel",
+  "shopStageYoung": "Puppy / kitten",
+  "shopStageAdult": "Adult",
+  "shopStageSenior": "Senior",
+  "shopStageAll": "All ages",
+  "shopSizeSmall": "Small breeds",
+  "shopSizeMedium": "Medium breeds",
+  "shopSizeLarge": "Large breeds",
+  "shopSizeGiant": "Giant breeds",
+  "shopSizeAll": "All sizes",
+  "sortPopular": "Popular",
+  "sortPriceLow": "Price: low to high",
+  "sortPriceHigh": "Price: high to low",
+  "sortDiscount": "Biggest discount",
+  "sortNewest": "Newest",
+  "shopTitle": "Shop",
+  "shopSearchHint": "Search food, toys, beds…",
+  "shopSearchTitle": "Search",
+  "shopClearSearch": "Clear search",
+  "shopForPet": "For {pet}",
+  "@shopForPet": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "shopAvoiding": "Avoiding: {items}",
+  "@shopAvoiding": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "shopNoPicks": "No picks yet. Try searching the shop.",
+  "shopBuyAgain": "Buy again",
+  "shopReorder": "Reorder",
+  "shopReorderPrice": "Reorder · {price}",
+  "@shopReorderPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "shopCategories": "Categories",
+  "shopDeals": "Deals",
+  "shopPartnerStores": "Partner stores",
+  "shopPartnerStoresNote": "You buy these on the partner's own website. PawSetu may earn a small commission.",
+  "shopListings": "{count, plural, =1{1 product} other{{count} products}}",
+  "@shopListings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopPlusDeliveryNote": "Plus members get free delivery above {amount}.",
+  "@shopPlusDeliveryNote": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "shopPartnerStore": "Partner store",
+  "shopSoldOn": "On {store}",
+  "@shopSoldOn": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "shopOffPercent": "{percent}% off",
+  "@shopOffPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "shopPriceSemantics": "{price}, was {mrp}, {percent}% off",
+  "@shopPriceSemantics": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "mrp": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "shopRatingSemantics": "Rated {rating} out of 5 by {count} people",
+  "@shopRatingSemantics": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopNoReviewsYet": "No reviews yet",
+  "shopOutOfStock": "Out of stock",
+  "shopInStock": "In stock",
+  "shopOnlyLeft": "Only {count} left",
+  "@shopOnlyLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopResults": "{count, plural, =0{No products} =1{1 product} other{{count} products}}",
+  "@shopResults": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopFiltersCount": "Filters ({count})",
+  "@shopFiltersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopNoResults": "Nothing found",
+  "shopNoResultsBody": "Try another word or clear the filters.",
+  "shopClearFilters": "Clear filters",
+  "shopCategory": "Category",
+  "shopPrice": "Price",
+  "shopMinPrice": "Min price",
+  "shopMaxPrice": "Max price",
+  "shopBrand": "Brand",
+  "shopRatingAtLeast": "{rating}★ and up",
+  "@shopRatingAtLeast": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      }
+    }
+  },
+  "shopHidePartner": "Hide partner-store listings",
+  "shopHidePartnerHint": "Show only products you can buy in PawSetu",
+  "shopShowResults": "Show results",
+  "shopProduct": "Product",
+  "shopProductGone": "This product is no longer available",
+  "shopShareText": "{name} for {price} on PawSetu",
+  "@shopShareText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "shopInclTaxes": "Inclusive of all taxes",
+  "shopAffiliateNote": "You will buy this on {store}. PawSetu may earn a small commission; the price is the same for you.",
+  "@shopAffiliateNote": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "shopSoldBy": "Sold by {seller}, {city}",
+  "@shopSoldBy": {
+    "placeholders": {
+      "seller": {
+        "type": "String"
+      },
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "shopSuitableFor": "Suitable for",
+  "shopCheckDelivery": "Check delivery",
+  "shopEnterPin": "Enter a PIN code to see the delivery date",
+  "shopDeliveryBetween": "Delivery {from} – {to}",
+  "@shopDeliveryBetween": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "shopReturnable": "Easy returns within {days} days of delivery",
+  "@shopReturnable": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "shopNotReturnable": "Food and treats can't be returned once delivered",
+  "shopAbout": "About this product",
+  "shopPackSize": "Pack size",
+  "shopIngredients": "Ingredients",
+  "shopReturnPolicy": "Return policy",
+  "shopVerifiedBuyer": "Verified buyer",
+  "shopSellerReplied": "Seller: {reply}",
+  "@shopSellerReplied": {
+    "placeholders": {
+      "reply": {
+        "type": "String"
+      }
+    }
+  },
+  "shopBuyOn": "Buy on {store}",
+  "@shopBuyOn": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "shopAddToCart": "Add to cart",
+  "shopBuyNow": "Buy now",
+  "shopAddedToCart": "Added to cart",
+  "shopViewCart": "View cart",
+  "shopLeavingTitle": "You will buy on {store}",
+  "@shopLeavingTitle": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "shopLeavingBody": "We will open {store} in your browser. Payment, delivery and returns are handled by {store}. PawSetu may earn a small commission.",
+  "@shopLeavingBody": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "shopContinueTo": "Go to {store}",
+  "@shopContinueTo": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "shopCart": "Cart",
+  "shopCartWithCount": "Cart, {count} items",
+  "@shopCartWithCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopQuantity": "Quantity",
+  "shopQtySemantics": "Quantity {count}",
+  "@shopQtySemantics": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopQtyShort": "Qty {count}",
+  "@shopQtyShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopLessOf": "One less {item}",
+  "@shopLessOf": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "shopMoreOf": "One more {item}",
+  "@shopMoreOf": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "shopRemoveItem": "Remove {item}",
+  "@shopRemoveItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "shopStars": "{count, plural, =1{1 star} other{{count} stars}}",
+  "@shopStars": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopReviewText": "What did you think? (optional)",
+  "shopPostReview": "Post review",
+  "shopThanksReview": "Thanks for your review!",
+  "shopRate": "Rate",
+  "shopForWhichPet": "For which pet?",
+  "shopReorderTitle": "Reorder",
+  "shopReorderFor": "Reorder for {pet}",
+  "@shopReorderFor": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "shopDeliveryOn": "Delivery on {date}",
+  "@shopDeliveryOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "shopItemsTotal": "Items total",
+  "shopDeliveryFee": "Delivery",
+  "shopFree": "Free",
+  "shopToPay": "To pay",
+  "shopPlaceOrderAmount": "Place order · {amount}",
+  "@shopPlaceOrderAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "shopOrderPlacedToast": "Order placed!",
+  "shopOrderFailed": "We couldn't place the order. Please try again.",
+  "addrBook": "Addresses",
+  "addrAdd": "Add address",
+  "addrEdit": "Edit address",
+  "addrAddFirst": "Add a delivery address",
+  "addrNone": "No addresses yet",
+  "addrNoneBody": "Add your home address for faster checkout.",
+  "addrDeleteQ": "Delete this address?",
+  "addrChoose": "Deliver to",
+  "addrHome": "Home",
+  "addrWork": "Work",
+  "addrOther": "Other",
+  "addrName": "Name",
+  "addrPhoneInvalid": "Enter a 10-digit mobile number",
+  "addrLine1": "House / flat and street",
+  "addrLine2": "Landmark (optional)",
+  "addrArea": "Area",
+  "addrCity": "City",
+  "addrPin": "PIN code",
+  "addrPinInvalid": "Enter a 6-digit PIN code",
+  "cartEmpty": "Your cart is empty",
+  "cartEmptyBody": "Food, toys and more for your pet are a tap away.",
+  "cartStartShopping": "Start shopping",
+  "cartSoldBy": "Sold by {seller}",
+  "@cartSoldBy": {
+    "placeholders": {
+      "seller": {
+        "type": "String"
+      }
+    }
+  },
+  "cartSkipped": "These can't be ordered here right now",
+  "cartPartnerOnly": "Buy this on the partner store",
+  "cartPetHint": "Helps us track spending and food for this pet.",
+  "cartDeliverTo": "Deliver to",
+  "cartSlot": "Delivery slot",
+  "cartCoupon": "Coupon",
+  "couponCode": "Coupon code",
+  "couponApply": "Apply",
+  "couponApplied": "Coupon applied",
+  "couponSaved": "{code} applied: you save {amount}",
+  "@couponSaved": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "couponNotFound": "That coupon code isn't valid",
+  "couponExpired": "This coupon has expired",
+  "couponMinOrder": "Add items worth ₹{amount} or more to use this coupon",
+  "@couponMinOrder": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "couponUsedUp": "This coupon has been fully used",
+  "cartPayment": "Payment",
+  "payOnlineDemo": "Pay online (demo)",
+  "payOnDelivery": "Pay on delivery",
+  "cartBill": "Bill details",
+  "cartMrpTotal": "{count, plural, =1{Price (1 item)} other{Price ({count} items)}}",
+  "@cartMrpTotal": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cartMrpDiscount": "Discount on MRP",
+  "cartCouponDiscount": "Coupon",
+  "cartCouponDiscountCode": "Coupon {code}",
+  "@cartCouponDiscountCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "cartAddForFree": "Add {amount} more for free delivery",
+  "@cartAddForFree": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "cartPlusFreeDelivery": "Free delivery with Plus",
+  "cartSplitNote": "Items come from {count} sellers, so you'll get {count} deliveries. You pay once.",
+  "@cartSplitNote": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cartYouSave": "You save {amount}",
+  "@cartYouSave": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "cartPay": "Pay {amount}",
+  "@cartPay": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "cartPlaceOrder": "Place order",
+  "cartPaymentFor": "{count, plural, =1{PawSetu order, 1 item} other{PawSetu order, {count} items}}",
+  "@cartPaymentFor": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "payFailedTryAgain": "Payment failed. Your cart is saved; please try again.",
+  "payPaidOnline": "Paid online",
+  "payPending": "Payment pending",
+  "payRefunded": "Refunded",
+  "payPendingNote": "Your payment is being confirmed. If it fails, you can pay again or pay on delivery.",
+  "payNow": "Pay now",
+  "ordMyOrders": "My orders",
+  "ordTabOrders": "Orders",
+  "ordNone": "No orders yet",
+  "ordPlaced": "Placed",
+  "ordPacked": "Packed",
+  "ordShipped": "Shipped",
+  "ordOutForDelivery": "Out for delivery",
+  "ordDelivered": "Delivered",
+  "ordCancelled": "Cancelled",
+  "ordReturnRequested": "Return requested",
+  "ordReturned": "Returned",
+  "ordReturnRejected": "Return declined",
+  "ordItemsMore": "{name} +{count} more",
+  "@ordItemsMore": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ordArrivingBy": "Arriving by {date}",
+  "@ordArrivingBy": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "ordExpected": "Expected {date}",
+  "@ordExpected": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "ordPlacedTitle": "Order placed",
+  "ordPlacedHeading": "Thank you! Your order is placed.",
+  "ordPlacedBody": "We'll let you know when it's on the way.",
+  "ordPlacedSplit": "It comes in {count} deliveries, one from each seller.",
+  "@ordPlacedSplit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ordTrack": "Track order",
+  "ordContinueShopping": "Continue shopping",
+  "ordDetail": "Order details",
+  "ordNotFound": "We couldn't find this order",
+  "ordNumber": "Order {number}",
+  "@ordNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "ordPlacedOn": "Placed on {date}",
+  "@ordPlacedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "ordTracking": "Tracking",
+  "ordItems": "{count, plural, =1{1 item} other{{count} items}}",
+  "@ordItems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ordSlot": "Slot: {date}, {window}",
+  "@ordSlot": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "window": {
+        "type": "String"
+      }
+    }
+  },
+  "ordForPet": "For {pet}",
+  "@ordForPet": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "ordTotal": "Total",
+  "ordPayment": "Payment",
+  "ordInvoice": "Invoice (PDF)",
+  "ordCancel": "Cancel order",
+  "ordReturn": "Return",
+  "ordHelp": "Get help",
+  "ordReturnWindowOver": "The {days}-day return window has ended.",
+  "@ordReturnWindowOver": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "ordCancelTitle": "Why do you want to cancel?",
+  "ordReturnTitle": "Why are you returning it?",
+  "ordReasonChangedMind": "I changed my mind",
+  "ordReasonWrongItem": "Wrong item or size",
+  "ordReasonTooLate": "Delivery is too late",
+  "ordReasonDamaged": "It arrived damaged",
+  "ordReasonNotSuitable": "Not suitable for my pet",
+  "ordReasonOther": "Something else",
+  "ordCancelledToast": "Order cancelled",
+  "ordCancelledRefund": "Order cancelled. Your refund is on its way (demo).",
+  "ordReturnRequestedToast": "Return requested. The seller will reply soon.",
+  "ordReason": "Reason: {reason}",
+  "@ordReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "ordStepDone": "done",
+  "invTitle": "Tax invoice",
+  "invFooter": "PawSetu marketplace · This invoice is generated by the seller through PawSetu.",
+  "invSoldBy": "Sold by",
+  "invBillTo": "Bill to",
+  "invGstin": "GSTIN: {gstin}",
+  "@invGstin": {
+    "placeholders": {
+      "gstin": {
+        "type": "String"
+      }
+    }
+  },
+  "invMarketplace": "Sold through PawSetu marketplace",
+  "invOrder": "Order",
+  "invInvoiceNo": "Invoice {number}",
+  "@invInvoiceNo": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "invPayment": "Payment: {method}",
+  "@invPayment": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "invItems": "Items",
+  "invItem": "Item",
+  "invQty": "Qty",
+  "invPrice": "Price",
+  "invAmount": "Amount",
+  "invTax": "GST",
+  "invTaxPlaceholder": "Included",
+  "invDemoNote": "Demo invoice: no money was charged and GST details are placeholders.",
+  "orderEmailSubject": "Your PawSetu order is placed",
+  "orderEmailBody": "Hi {name}, thank you for your order of {amount}. It should reach you by {date}.",
+  "@orderEmailBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "subsTitle": "Auto-reorder",
+  "subsHint": "Get this delivered every 2, 4 or 6 weeks. Pause or cancel anytime.",
+  "subsEvery": "Deliver every",
+  "subsWeeks": "{count, plural, =1{Every week} other{Every {count} weeks}}",
+  "@subsWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "subsFirstOn": "First delivery around {date}, paid on delivery.",
+  "@subsFirstOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "subsStart": "Start auto-reorder",
+  "subsCreated": "Auto-reorder is on",
+  "subsTab": "Auto-reorder",
+  "subsNone": "No auto-reorders",
+  "subsNoneBody": "Set one up from any food page so you never run out.",
+  "subsNext": "Next delivery {date}",
+  "@subsNext": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "subsPaused": "Paused",
+  "subsPause": "Pause",
+  "subsResume": "Resume",
+  "subsCancel": "Cancel",
+  "subsCancelQ": "Stop this auto-reorder?",
+  "subsOrderedToast": "{count, plural, =1{Your auto-reorder was placed} other{{count} auto-reorders were placed}}",
+  "@subsOrderedToast": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfNewOrder": "{count, plural, =1{New order: {item}} other{New order: {item} and more}}",
+  "@ntfNewOrder": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ntfOrderCancelled": "Order {number} was cancelled by the customer",
+  "@ntfOrderCancelled": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfOrderCancelledBySeller": "Sorry, the seller cancelled your order for {item}. Any payment is refunded.",
+  "@ntfOrderCancelledBySeller": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfOrderPacked": "{item} is packed",
+  "@ntfOrderPacked": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfOrderShipped": "{item} is on the way",
+  "@ntfOrderShipped": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfOrderOutForDelivery": "{item} is out for delivery today",
+  "@ntfOrderOutForDelivery": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfOrderDelivered": "{item} was delivered",
+  "@ntfOrderDelivered": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfOrderUpdated": "Your order for {item} was updated",
+  "@ntfOrderUpdated": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfReturnAccepted": "Return accepted for {item}. Your refund is on its way.",
+  "@ntfReturnAccepted": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfReturnRejected": "Return declined for {item}. Tap for help.",
+  "@ntfReturnRejected": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfReturnRequested": "Return requested for order {number}",
+  "@ntfReturnRequested": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "ntfSubscriptionOrdered": "Auto-reorder placed: {item}",
+  "@ntfSubscriptionOrdered": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "foodRunsOutIn": "{pet}'s food may run out in about {days, plural, =1{1 day} other{{days} days}}. Reorder?",
+  "@foodRunsOutIn": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "foodRanOut": "{pet}'s food may have run out. Reorder?",
+  "@foodRanOut": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "foodPortionLine": "{grams} g a day · {bag} bag",
+  "@foodPortionLine": {
+    "placeholders": {
+      "grams": {
+        "type": "int"
+      },
+      "bag": {
+        "type": "String"
+      }
+    }
+  },
+  "foodEditPortion": "Edit portion",
+  "foodOnTheWay": "New food for {pet} is on the way",
+  "@foodOnTheWay": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "foodPlanTitle": "{pet}'s food",
+  "@foodPlanTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "foodDailyPortion": "Daily portion",
+  "foodSuggested": "A starting point is {grams} g a day. Follow the pack or your vet.",
+  "@foodSuggested": {
+    "placeholders": {
+      "grams": {
+        "type": "int"
+      }
+    }
+  },
+  "foodBagSize": "Bag size",
+  "foodOpenedOn": "Bag opened on",
+  "expAdd": "Add expense",
+  "expEdit": "Edit expense",
+  "expThisMonth": "This month",
+  "expLastMonth": "Last month",
+  "expPeriodTotal": "Last {months} months",
+  "@expPeriodTotal": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "expByMonth": "Spending by month",
+  "expMonths": "{count} months",
+  "@expMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "expByCategory": "By category",
+  "expChartSemantics": "Spending by month: {values}",
+  "@expChartSemantics": {
+    "placeholders": {
+      "values": {
+        "type": "String"
+      }
+    }
+  },
+  "expNone": "No expenses yet",
+  "expNoneBody": "Bookings and orders are added here automatically. You can add others too.",
+  "expVet": "Vet",
+  "expGrooming": "Grooming",
+  "expTraining": "Training",
+  "expBoarding": "Boarding",
+  "expWalking": "Walking",
+  "expFood": "Food",
+  "expSupplies": "Supplies",
+  "expInsurance": "Insurance",
+  "expOther": "Other",
+  "expFromBooking": "from a booking",
+  "expFromOrder": "from an order",
+  "expFromTeleVet": "from tele-vet",
+  "expAmount": "Amount",
+  "expAmountInvalid": "Enter an amount",
+  "expCategory": "Category",
+  "expForPet": "For",
+  "expAllPets": "All pets",
+  "expNote": "Note",
+  "expNoteHint": "For example: rabies booster, new collar",
+  "expSaved": "Expense saved",
+  "expDeleteQ": "Delete this expense?",
+  "selToPack": "Orders to pack",
+  "selOnTheWay": "On the way",
+  "selLowStock": "Low stock",
+  "selReturnsWaiting": "{count, plural, =1{1 return is waiting for you} other{{count} returns are waiting for you}}",
+  "@selReturnsWaiting": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selNewOrders": "New orders",
+  "selNoNewOrders": "No new orders right now",
+  "selStockLeft": "{count} in stock",
+  "@selStockLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selAddProduct": "Add product",
+  "selEditProduct": "Edit product",
+  "selCsvUpload": "CSV bulk upload",
+  "selSearchProducts": "Search your products",
+  "selProductCount": "{count, plural, =1{1 product} other{{count} products}}",
+  "@selProductCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selHidden": "Hidden from the shop",
+  "selProductName": "Product name",
+  "selPrice": "Selling price",
+  "selMrp": "MRP",
+  "selPriceInvalid": "Enter a price",
+  "selMrpInvalid": "MRP can't be lower than the price",
+  "selStock": "Stock",
+  "selPackKg": "Pack size in kg (food)",
+  "selDescription": "Description",
+  "selVisible": "Show in the shop",
+  "selVisibleHint": "Turn off to hide it without deleting",
+  "selNoRxNote": "Prescription-only medicines can't be sold on PawSetu.",
+  "selSaved": "Product saved",
+  "selCsvHelp": "Columns: {columns}. Species can be several, like dog|cat.",
+  "@selCsvHelp": {
+    "placeholders": {
+      "columns": {
+        "type": "String"
+      }
+    }
+  },
+  "selCsvChoose": "Choose CSV file",
+  "selCsvSample": "Try the sample",
+  "selCsvCopyTemplate": "Copy template",
+  "selCsvCopied": "Template copied",
+  "selCsvPaste": "Or paste CSV here",
+  "selCsvPreview": "Preview: {ok} ready, {bad} to fix",
+  "@selCsvPreview": {
+    "placeholders": {
+      "ok": {
+        "type": "int"
+      },
+      "bad": {
+        "type": "int"
+      }
+    }
+  },
+  "selCsvLine": "Line {line}",
+  "@selCsvLine": {
+    "placeholders": {
+      "line": {
+        "type": "int"
+      }
+    }
+  },
+  "selCsvProblems": "Check: {fields}",
+  "@selCsvProblems": {
+    "placeholders": {
+      "fields": {
+        "type": "String"
+      }
+    }
+  },
+  "selCsvImport": "{count, plural, =1{Add 1 product} other{Add {count} products}}",
+  "@selCsvImport": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selCsvImported": "{count, plural, =1{1 product added} other{{count} products added}}",
+  "@selCsvImported": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selTabNew": "New",
+  "selTabPacked": "Packed",
+  "selTabShipping": "Shipping",
+  "selTabDelivered": "Delivered",
+  "selTabCancelled": "Cancelled / returned",
+  "selNoOrdersHere": "No orders here",
+  "selReturnsOpen": "Waiting for you",
+  "selReturnsDone": "Done",
+  "selNoReturns": "No returns",
+  "selAcceptReturn": "Accept return",
+  "selRejectReturn": "Decline return",
+  "selPayoutDemo": "Demo payouts: no real money moves.",
+  "selPayoutPending": "Pending",
+  "selPayoutReady": "Ready to pay",
+  "selPayoutPaid": "Paid",
+  "selPayoutOnHold": "In return window",
+  "selCommissionPaid": "PawSetu commission",
+  "selRunPayout": "Pay out {amount} now (demo)",
+  "@selRunPayout": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "selPayoutDone": "{count, plural, =1{1 order paid out} other{{count} orders paid out}}",
+  "@selPayoutDone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selPayoutRule": "Payouts are made weekly once the {days}-day return window ends.",
+  "@selPayoutRule": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "selPayoutOrders": "Orders",
+  "selPayoutLine": "Sales {gross} · commission {commission}",
+  "@selPayoutLine": {
+    "placeholders": {
+      "gross": {
+        "type": "String"
+      },
+      "commission": {
+        "type": "String"
+      }
+    }
+  },
+  "selReviewSummary": "★ {rating} from {count, plural, =1{1 review} other{{count} reviews}}",
+  "@selReviewSummary": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selReplyText": "Your reply",
+  "selSendReply": "Send reply",
+  "selApproved": "Approved",
+  "selKyc": "KYC documents",
+  "selVerified": "Verified",
+  "selCancelQ": "Cancel this order?",
+  "selCancelBody": "The customer is told and any payment is refunded.",
+  "selCancelOrder": "Cancel order",
+  "selOutOfStockReason": "Out of stock",
+  "selMarkPacked": "Mark packed",
+  "selMarkShipped": "Mark shipped",
+  "selMarkOut": "Out for delivery",
+  "selMarkDelivered": "Mark delivered",
+  "selCommission": "PawSetu commission",
+  "selYourPayout": "Your payout",
+  "selShipTo": "Ship to",
+  "selPhoneHidden": "The customer's phone is hidden; the courier calls through PawSetu."
 }

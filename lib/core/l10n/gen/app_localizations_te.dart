@@ -5998,4 +5998,1389 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get vaultClaimSaved => 'క్లెయిమ్ సేవ్ అయింది';
+
+  @override
+  String get edit => 'మార్చండి';
+
+  @override
+  String get close => 'మూసివేయండి';
+
+  @override
+  String get change => 'మార్చండి';
+
+  @override
+  String get catFood => 'ఆహారం';
+
+  @override
+  String get catTreats => 'ట్రీట్స్';
+
+  @override
+  String get catToys => 'బొమ్మలు';
+
+  @override
+  String get catGrooming => 'గ్రూమింగ్';
+
+  @override
+  String get catHealthHygiene => 'ఆరోగ్యం, శుభ్రత';
+
+  @override
+  String get catBeds => 'పడకలు';
+
+  @override
+  String get catCollars => 'కాలర్లు, లీషులు';
+
+  @override
+  String get catBowls => 'గిన్నెలు, ఫీడర్లు';
+
+  @override
+  String get catLitter => 'లిట్టర్, పిల్లి సంరక్షణ';
+
+  @override
+  String get catBird => 'పక్షుల ఆహారం, పంజరాలు';
+
+  @override
+  String get catRabbit => 'కుందేలు గడ్డి, సంరక్షణ';
+
+  @override
+  String get catClothing => 'దుస్తులు';
+
+  @override
+  String get catTravel => 'ప్రయాణం';
+
+  @override
+  String get shopStageYoung => 'కుక్కపిల్ల / పిల్లిపిల్ల';
+
+  @override
+  String get shopStageAdult => 'పెద్దది';
+
+  @override
+  String get shopStageSenior => 'వృద్ధ';
+
+  @override
+  String get shopStageAll => 'అన్ని వయసులు';
+
+  @override
+  String get shopSizeSmall => 'చిన్న జాతులు';
+
+  @override
+  String get shopSizeMedium => 'మధ్యస్థ జాతులు';
+
+  @override
+  String get shopSizeLarge => 'పెద్ద జాతులు';
+
+  @override
+  String get shopSizeGiant => 'చాలా పెద్ద జాతులు';
+
+  @override
+  String get shopSizeAll => 'అన్ని సైజులు';
+
+  @override
+  String get sortPopular => 'పాపులర్';
+
+  @override
+  String get sortPriceLow => 'ధర: తక్కువ నుండి ఎక్కువ';
+
+  @override
+  String get sortPriceHigh => 'ధర: ఎక్కువ నుండి తక్కువ';
+
+  @override
+  String get sortDiscount => 'ఎక్కువ తగ్గింపు';
+
+  @override
+  String get sortNewest => 'కొత్తవి';
+
+  @override
+  String get shopTitle => 'షాప్';
+
+  @override
+  String get shopSearchHint => 'ఆహారం, బొమ్మలు, పడకలు వెతకండి…';
+
+  @override
+  String get shopSearchTitle => 'వెతకండి';
+
+  @override
+  String get shopClearSearch => 'వెతుకుట తీసివేయండి';
+
+  @override
+  String shopForPet(String pet) {
+    return '$pet కోసం';
+  }
+
+  @override
+  String shopAvoiding(String items) {
+    return 'ఇవి లేకుండా: $items';
+  }
+
+  @override
+  String get shopNoPicks => 'ఇంకా సూచనలు లేవు. షాప్‌లో వెతకండి.';
+
+  @override
+  String get shopBuyAgain => 'మళ్ళీ కొనండి';
+
+  @override
+  String get shopReorder => 'మళ్ళీ ఆర్డర్';
+
+  @override
+  String shopReorderPrice(String price) {
+    return 'మళ్ళీ ఆర్డర్ · $price';
+  }
+
+  @override
+  String get shopCategories => 'విభాగాలు';
+
+  @override
+  String get shopDeals => 'ఆఫర్లు';
+
+  @override
+  String get shopPartnerStores => 'పార్ట్‌నర్ స్టోర్లు';
+
+  @override
+  String get shopPartnerStoresNote =>
+      'వీటిని పార్ట్‌నర్ వెబ్‌సైట్‌లోనే కొంటారు. PawSetuకి చిన్న కమీషన్ రావచ్చు.';
+
+  @override
+  String shopListings(int count) {
+    return '$count ఉత్పత్తులు';
+  }
+
+  @override
+  String shopPlusDeliveryNote(String amount) {
+    return 'Plus సభ్యులకు $amount పైన ఉచిత డెలివరీ.';
+  }
+
+  @override
+  String get shopPartnerStore => 'పార్ట్‌నర్ స్టోర్';
+
+  @override
+  String shopSoldOn(String store) {
+    return '$storeలో';
+  }
+
+  @override
+  String shopOffPercent(int percent) {
+    return '$percent% తగ్గింపు';
+  }
+
+  @override
+  String shopPriceSemantics(String price, String mrp, int percent) {
+    return '$price, ముందు $mrp, $percent% తగ్గింపు';
+  }
+
+  @override
+  String shopRatingSemantics(String rating, int count) {
+    return '$count మంది 5కి $rating రేటింగ్ ఇచ్చారు';
+  }
+
+  @override
+  String get shopNoReviewsYet => 'ఇంకా రివ్యూలు లేవు';
+
+  @override
+  String get shopOutOfStock => 'స్టాక్ లేదు';
+
+  @override
+  String get shopInStock => 'స్టాక్ ఉంది';
+
+  @override
+  String shopOnlyLeft(int count) {
+    return '$count మాత్రమే మిగిలాయి';
+  }
+
+  @override
+  String shopResults(int count) {
+    return '$count ఉత్పత్తులు';
+  }
+
+  @override
+  String shopFiltersCount(int count) {
+    return 'ఫిల్టర్లు ($count)';
+  }
+
+  @override
+  String get shopNoResults => 'ఏమీ దొరకలేదు';
+
+  @override
+  String get shopNoResultsBody =>
+      'వేరే పదం ప్రయత్నించండి లేదా ఫిల్టర్లు తీసివేయండి.';
+
+  @override
+  String get shopClearFilters => 'ఫిల్టర్లు తీసివేయండి';
+
+  @override
+  String get shopCategory => 'విభాగం';
+
+  @override
+  String get shopPrice => 'ధర';
+
+  @override
+  String get shopMinPrice => 'కనిష్ఠ ధర';
+
+  @override
+  String get shopMaxPrice => 'గరిష్ఠ ధర';
+
+  @override
+  String get shopBrand => 'బ్రాండ్';
+
+  @override
+  String shopRatingAtLeast(String rating) {
+    return '$rating★ ఆపైన';
+  }
+
+  @override
+  String get shopHidePartner => 'పార్ట్‌నర్ స్టోర్ ఉత్పత్తులు దాచండి';
+
+  @override
+  String get shopHidePartnerHint => 'PawSetuలో కొనగలిగేవే చూపండి';
+
+  @override
+  String get shopShowResults => 'ఫలితాలు చూపండి';
+
+  @override
+  String get shopProduct => 'ఉత్పత్తి';
+
+  @override
+  String get shopProductGone => 'ఈ ఉత్పత్తి ఇప్పుడు అందుబాటులో లేదు';
+
+  @override
+  String shopShareText(String name, String price) {
+    return 'PawSetuలో $name $priceకి';
+  }
+
+  @override
+  String get shopInclTaxes => 'అన్ని పన్నులతో కలిపి';
+
+  @override
+  String shopAffiliateNote(String store) {
+    return 'ఇది మీరు $storeలో కొంటారు. PawSetuకి చిన్న కమీషన్ రావచ్చు; మీకు ధర అదే.';
+  }
+
+  @override
+  String shopSoldBy(String seller, String city) {
+    return 'అమ్మకందారు: $seller, $city';
+  }
+
+  @override
+  String get shopSuitableFor => 'ఎవరికి సరిపోతుంది';
+
+  @override
+  String get shopCheckDelivery => 'డెలివరీ చూడండి';
+
+  @override
+  String get shopEnterPin => 'డెలివరీ తేదీ కోసం పిన్ కోడ్ ఇవ్వండి';
+
+  @override
+  String shopDeliveryBetween(String from, String to) {
+    return 'డెలివరీ $from – $to';
+  }
+
+  @override
+  String shopReturnable(int days) {
+    return 'డెలివరీ అయిన $days రోజుల్లో సులభంగా తిరిగి ఇవ్వొచ్చు';
+  }
+
+  @override
+  String get shopNotReturnable =>
+      'ఆహారం, ట్రీట్స్ డెలివరీ తర్వాత తిరిగి తీసుకోరు';
+
+  @override
+  String get shopAbout => 'ఈ ఉత్పత్తి గురించి';
+
+  @override
+  String get shopPackSize => 'ప్యాక్ సైజు';
+
+  @override
+  String get shopIngredients => 'పదార్థాలు';
+
+  @override
+  String get shopReturnPolicy => 'రిటర్న్ పాలసీ';
+
+  @override
+  String get shopVerifiedBuyer => 'ధృవీకరించిన కొనుగోలుదారు';
+
+  @override
+  String shopSellerReplied(String reply) {
+    return 'అమ్మకందారు: $reply';
+  }
+
+  @override
+  String shopBuyOn(String store) {
+    return '$storeలో కొనండి';
+  }
+
+  @override
+  String get shopAddToCart => 'కార్ట్‌లో వేయండి';
+
+  @override
+  String get shopBuyNow => 'ఇప్పుడే కొనండి';
+
+  @override
+  String get shopAddedToCart => 'కార్ట్‌లో వేశాం';
+
+  @override
+  String get shopViewCart => 'కార్ట్ చూడండి';
+
+  @override
+  String shopLeavingTitle(String store) {
+    return 'మీరు $storeలో కొంటారు';
+  }
+
+  @override
+  String shopLeavingBody(String store) {
+    return 'మీ బ్రౌజర్‌లో $store తెరుస్తాం. చెల్లింపు, డెలివరీ, రిటర్న్‌లు $store చూసుకుంటుంది. PawSetuకి చిన్న కమీషన్ రావచ్చు.';
+  }
+
+  @override
+  String shopContinueTo(String store) {
+    return '$storeకి వెళ్ళండి';
+  }
+
+  @override
+  String get shopCart => 'కార్ట్';
+
+  @override
+  String shopCartWithCount(int count) {
+    return 'కార్ట్, $count వస్తువులు';
+  }
+
+  @override
+  String get shopQuantity => 'పరిమాణం';
+
+  @override
+  String shopQtySemantics(int count) {
+    return 'పరిమాణం $count';
+  }
+
+  @override
+  String shopQtyShort(int count) {
+    return 'సంఖ్య $count';
+  }
+
+  @override
+  String shopLessOf(String item) {
+    return 'ఒకటి తక్కువ $item';
+  }
+
+  @override
+  String shopMoreOf(String item) {
+    return 'ఇంకొకటి $item';
+  }
+
+  @override
+  String shopRemoveItem(String item) {
+    return '$item తీసివేయండి';
+  }
+
+  @override
+  String shopStars(int count) {
+    return '$count స్టార్లు';
+  }
+
+  @override
+  String get shopReviewText => 'మీకు ఎలా అనిపించింది? (ఐచ్ఛికం)';
+
+  @override
+  String get shopPostReview => 'రివ్యూ పంపండి';
+
+  @override
+  String get shopThanksReview => 'రివ్యూకి ధన్యవాదాలు!';
+
+  @override
+  String get shopRate => 'రేట్ చేయండి';
+
+  @override
+  String get shopForWhichPet => 'ఏ పెంపుడు జంతువు కోసం?';
+
+  @override
+  String get shopReorderTitle => 'మళ్ళీ ఆర్డర్';
+
+  @override
+  String shopReorderFor(String pet) {
+    return '$pet కోసం మళ్ళీ ఆర్డర్';
+  }
+
+  @override
+  String shopDeliveryOn(String date) {
+    return '$dateన డెలివరీ';
+  }
+
+  @override
+  String get shopItemsTotal => 'వస్తువుల మొత్తం';
+
+  @override
+  String get shopDeliveryFee => 'డెలివరీ';
+
+  @override
+  String get shopFree => 'ఉచితం';
+
+  @override
+  String get shopToPay => 'చెల్లించాల్సింది';
+
+  @override
+  String shopPlaceOrderAmount(String amount) {
+    return 'ఆర్డర్ చేయండి · $amount';
+  }
+
+  @override
+  String get shopOrderPlacedToast => 'ఆర్డర్ అయింది!';
+
+  @override
+  String get shopOrderFailed => 'ఆర్డర్ చేయలేకపోయాం. మళ్ళీ ప్రయత్నించండి.';
+
+  @override
+  String get addrBook => 'చిరునామాలు';
+
+  @override
+  String get addrAdd => 'చిరునామా జోడించండి';
+
+  @override
+  String get addrEdit => 'చిరునామా మార్చండి';
+
+  @override
+  String get addrAddFirst => 'డెలివరీ చిరునామా జోడించండి';
+
+  @override
+  String get addrNone => 'ఇంకా చిరునామాలు లేవు';
+
+  @override
+  String get addrNoneBody => 'త్వరగా చెక్అవుట్ కోసం ఇంటి చిరునామా జోడించండి.';
+
+  @override
+  String get addrDeleteQ => 'ఈ చిరునామా తొలగించాలా?';
+
+  @override
+  String get addrChoose => 'ఇక్కడికి డెలివరీ';
+
+  @override
+  String get addrHome => 'ఇల్లు';
+
+  @override
+  String get addrWork => 'ఆఫీసు';
+
+  @override
+  String get addrOther => 'ఇతరం';
+
+  @override
+  String get addrName => 'పేరు';
+
+  @override
+  String get addrPhoneInvalid => '10 అంకెల మొబైల్ నంబర్ ఇవ్వండి';
+
+  @override
+  String get addrLine1 => 'ఇల్లు / ఫ్లాట్, వీధి';
+
+  @override
+  String get addrLine2 => 'దగ్గర గుర్తు (ఐచ్ఛికం)';
+
+  @override
+  String get addrArea => 'ప్రాంతం';
+
+  @override
+  String get addrCity => 'నగరం';
+
+  @override
+  String get addrPin => 'పిన్ కోడ్';
+
+  @override
+  String get addrPinInvalid => '6 అంకెల పిన్ కోడ్ ఇవ్వండి';
+
+  @override
+  String get cartEmpty => 'మీ కార్ట్ ఖాళీగా ఉంది';
+
+  @override
+  String get cartEmptyBody =>
+      'మీ పెంపుడు జంతువుకి ఆహారం, బొమ్మలు ఒక్క ట్యాప్ దూరంలో.';
+
+  @override
+  String get cartStartShopping => 'షాపింగ్ మొదలుపెట్టండి';
+
+  @override
+  String cartSoldBy(String seller) {
+    return 'అమ్మకందారు: $seller';
+  }
+
+  @override
+  String get cartSkipped => 'వీటిని ఇప్పుడు ఇక్కడ ఆర్డర్ చేయలేరు';
+
+  @override
+  String get cartPartnerOnly => 'దీన్ని పార్ట్‌నర్ స్టోర్‌లో కొనండి';
+
+  @override
+  String get cartPetHint => 'ఈ పెంపుడు జంతువు ఖర్చు, ఆహారం ట్రాక్ చేయడానికి.';
+
+  @override
+  String get cartDeliverTo => 'డెలివరీ చిరునామా';
+
+  @override
+  String get cartSlot => 'డెలివరీ సమయం';
+
+  @override
+  String get cartCoupon => 'కూపన్';
+
+  @override
+  String get couponCode => 'కూపన్ కోడ్';
+
+  @override
+  String get couponApply => 'వర్తింపజేయండి';
+
+  @override
+  String get couponApplied => 'కూపన్ వర్తించింది';
+
+  @override
+  String couponSaved(String code, String amount) {
+    return '$code వర్తించింది: మీకు $amount ఆదా';
+  }
+
+  @override
+  String get couponNotFound => 'ఈ కూపన్ కోడ్ చెల్లదు';
+
+  @override
+  String get couponExpired => 'ఈ కూపన్ గడువు ముగిసింది';
+
+  @override
+  String couponMinOrder(int amount) {
+    return 'ఈ కూపన్ కోసం ₹$amount లేదా అంతకంటే ఎక్కువ కొనండి';
+  }
+
+  @override
+  String get couponUsedUp => 'ఈ కూపన్ పూర్తిగా వాడేశారు';
+
+  @override
+  String get cartPayment => 'చెల్లింపు';
+
+  @override
+  String get payOnlineDemo => 'ఆన్‌లైన్ చెల్లింపు (డెమో)';
+
+  @override
+  String get payOnDelivery => 'డెలివరీ అప్పుడు చెల్లింపు';
+
+  @override
+  String get cartBill => 'బిల్లు వివరాలు';
+
+  @override
+  String cartMrpTotal(int count) {
+    return 'ధర ($count వస్తువులు)';
+  }
+
+  @override
+  String get cartMrpDiscount => 'MRPపై తగ్గింపు';
+
+  @override
+  String get cartCouponDiscount => 'కూపన్';
+
+  @override
+  String cartCouponDiscountCode(String code) {
+    return 'కూపన్ $code';
+  }
+
+  @override
+  String cartAddForFree(String amount) {
+    return 'ఉచిత డెలివరీ కోసం ఇంకా $amount కొనండి';
+  }
+
+  @override
+  String get cartPlusFreeDelivery => 'Plusతో ఉచిత డెలివరీ';
+
+  @override
+  String cartSplitNote(int count) {
+    return 'వస్తువులు $count అమ్మకందారుల నుండి వస్తాయి, కాబట్టి $count డెలివరీలు. చెల్లింపు ఒక్కసారే.';
+  }
+
+  @override
+  String cartYouSave(String amount) {
+    return 'మీకు $amount ఆదా';
+  }
+
+  @override
+  String cartPay(String amount) {
+    return '$amount చెల్లించండి';
+  }
+
+  @override
+  String get cartPlaceOrder => 'ఆర్డర్ చేయండి';
+
+  @override
+  String cartPaymentFor(int count) {
+    return 'PawSetu ఆర్డర్, $count వస్తువులు';
+  }
+
+  @override
+  String get payFailedTryAgain =>
+      'చెల్లింపు విఫలమైంది. మీ కార్ట్ సేవ్ అయింది; మళ్ళీ ప్రయత్నించండి.';
+
+  @override
+  String get payPaidOnline => 'ఆన్‌లైన్‌లో చెల్లించారు';
+
+  @override
+  String get payPending => 'చెల్లింపు పెండింగ్';
+
+  @override
+  String get payRefunded => 'డబ్బు తిరిగి ఇచ్చాం';
+
+  @override
+  String get payPendingNote =>
+      'మీ చెల్లింపు నిర్ధారణ అవుతోంది. విఫలమైతే మళ్ళీ చెల్లించండి లేదా డెలివరీ అప్పుడు చెల్లించండి.';
+
+  @override
+  String get payNow => 'ఇప్పుడే చెల్లించండి';
+
+  @override
+  String get ordMyOrders => 'నా ఆర్డర్లు';
+
+  @override
+  String get ordTabOrders => 'ఆర్డర్లు';
+
+  @override
+  String get ordNone => 'ఇంకా ఆర్డర్లు లేవు';
+
+  @override
+  String get ordPlaced => 'ఆర్డర్ అయింది';
+
+  @override
+  String get ordPacked => 'ప్యాక్ అయింది';
+
+  @override
+  String get ordShipped => 'పంపించాం';
+
+  @override
+  String get ordOutForDelivery => 'డెలివరీకి బయలుదేరింది';
+
+  @override
+  String get ordDelivered => 'డెలివరీ అయింది';
+
+  @override
+  String get ordCancelled => 'రద్దు';
+
+  @override
+  String get ordReturnRequested => 'రిటర్న్ కోరారు';
+
+  @override
+  String get ordReturned => 'తిరిగి ఇచ్చారు';
+
+  @override
+  String get ordReturnRejected => 'రిటర్న్ తిరస్కరించారు';
+
+  @override
+  String ordItemsMore(String name, int count) {
+    return '$name +ఇంకా $count';
+  }
+
+  @override
+  String ordArrivingBy(String date) {
+    return '$date లోపు వస్తుంది';
+  }
+
+  @override
+  String ordExpected(String date) {
+    return 'అంచనా $date';
+  }
+
+  @override
+  String get ordPlacedTitle => 'ఆర్డర్ అయింది';
+
+  @override
+  String get ordPlacedHeading => 'ధన్యవాదాలు! మీ ఆర్డర్ అయింది.';
+
+  @override
+  String get ordPlacedBody => 'దారిలో ఉన్నప్పుడు చెబుతాం.';
+
+  @override
+  String ordPlacedSplit(int count) {
+    return 'ఇది $count డెలివరీల్లో వస్తుంది, ఒక్కో అమ్మకందారు నుండి ఒకటి.';
+  }
+
+  @override
+  String get ordTrack => 'ఆర్డర్ ట్రాక్ చేయండి';
+
+  @override
+  String get ordContinueShopping => 'షాపింగ్ కొనసాగించండి';
+
+  @override
+  String get ordDetail => 'ఆర్డర్ వివరాలు';
+
+  @override
+  String get ordNotFound => 'ఈ ఆర్డర్ దొరకలేదు';
+
+  @override
+  String ordNumber(String number) {
+    return 'ఆర్డర్ $number';
+  }
+
+  @override
+  String ordPlacedOn(String date) {
+    return '$dateన ఆర్డర్ చేశారు';
+  }
+
+  @override
+  String get ordTracking => 'ట్రాకింగ్';
+
+  @override
+  String ordItems(int count) {
+    return '$count వస్తువులు';
+  }
+
+  @override
+  String ordSlot(String date, String window) {
+    return 'సమయం: $date, $window';
+  }
+
+  @override
+  String ordForPet(String pet) {
+    return '$pet కోసం';
+  }
+
+  @override
+  String get ordTotal => 'మొత్తం';
+
+  @override
+  String get ordPayment => 'చెల్లింపు';
+
+  @override
+  String get ordInvoice => 'ఇన్వాయిస్ (PDF)';
+
+  @override
+  String get ordCancel => 'ఆర్డర్ రద్దు చేయండి';
+
+  @override
+  String get ordReturn => 'తిరిగి ఇవ్వండి';
+
+  @override
+  String get ordHelp => 'సహాయం పొందండి';
+
+  @override
+  String ordReturnWindowOver(int days) {
+    return '$days రోజుల రిటర్న్ గడువు ముగిసింది.';
+  }
+
+  @override
+  String get ordCancelTitle => 'ఎందుకు రద్దు చేయాలనుకుంటున్నారు?';
+
+  @override
+  String get ordReturnTitle => 'ఎందుకు తిరిగి ఇస్తున్నారు?';
+
+  @override
+  String get ordReasonChangedMind => 'నా మనసు మారింది';
+
+  @override
+  String get ordReasonWrongItem => 'తప్పు వస్తువు లేదా సైజు';
+
+  @override
+  String get ordReasonTooLate => 'డెలివరీ చాలా ఆలస్యం';
+
+  @override
+  String get ordReasonDamaged => 'పాడైపోయి వచ్చింది';
+
+  @override
+  String get ordReasonNotSuitable => 'నా పెంపుడు జంతువుకి సరిపోలేదు';
+
+  @override
+  String get ordReasonOther => 'ఇంకేదో';
+
+  @override
+  String get ordCancelledToast => 'ఆర్డర్ రద్దయింది';
+
+  @override
+  String get ordCancelledRefund =>
+      'ఆర్డర్ రద్దయింది. మీ డబ్బు తిరిగి వస్తోంది (డెమో).';
+
+  @override
+  String get ordReturnRequestedToast =>
+      'రిటర్న్ కోరాం. అమ్మకందారు త్వరలో స్పందిస్తారు.';
+
+  @override
+  String ordReason(String reason) {
+    return 'కారణం: $reason';
+  }
+
+  @override
+  String get ordStepDone => 'పూర్తయింది';
+
+  @override
+  String get invTitle => 'టాక్స్ ఇన్వాయిస్';
+
+  @override
+  String get invFooter =>
+      'PawSetu మార్కెట్‌ప్లేస్ · ఈ ఇన్వాయిస్ అమ్మకందారు PawSetu ద్వారా తయారు చేశారు.';
+
+  @override
+  String get invSoldBy => 'అమ్మకందారు';
+
+  @override
+  String get invBillTo => 'కొనుగోలుదారు';
+
+  @override
+  String invGstin(String gstin) {
+    return 'GSTIN: $gstin';
+  }
+
+  @override
+  String get invMarketplace => 'PawSetu మార్కెట్‌ప్లేస్ ద్వారా అమ్మారు';
+
+  @override
+  String get invOrder => 'ఆర్డర్';
+
+  @override
+  String invInvoiceNo(String number) {
+    return 'ఇన్వాయిస్ $number';
+  }
+
+  @override
+  String invPayment(String method) {
+    return 'చెల్లింపు: $method';
+  }
+
+  @override
+  String get invItems => 'వస్తువులు';
+
+  @override
+  String get invItem => 'వస్తువు';
+
+  @override
+  String get invQty => 'సంఖ్య';
+
+  @override
+  String get invPrice => 'ధర';
+
+  @override
+  String get invAmount => 'మొత్తం';
+
+  @override
+  String get invTax => 'GST';
+
+  @override
+  String get invTaxPlaceholder => 'కలిపి ఉంది';
+
+  @override
+  String get invDemoNote =>
+      'డెమో ఇన్వాయిస్: డబ్బు తీసుకోలేదు, GST వివరాలు నమూనా మాత్రమే.';
+
+  @override
+  String get orderEmailSubject => 'మీ PawSetu ఆర్డర్ అయింది';
+
+  @override
+  String orderEmailBody(String name, String amount, String date) {
+    return 'నమస్తే $name, $amount ఆర్డర్‌కి ధన్యవాదాలు. ఇది $date లోపు చేరాలి.';
+  }
+
+  @override
+  String get subsTitle => 'ఆటో రీఆర్డర్';
+
+  @override
+  String get subsHint =>
+      'ప్రతి 2, 4 లేదా 6 వారాలకు డెలివరీ. ఎప్పుడైనా ఆపండి లేదా రద్దు చేయండి.';
+
+  @override
+  String get subsEvery => 'ఎంత కాలానికి';
+
+  @override
+  String subsWeeks(int count) {
+    return 'ప్రతి $count వారాలకు';
+  }
+
+  @override
+  String subsFirstOn(String date) {
+    return 'మొదటి డెలివరీ సుమారు $dateన, డెలివరీ అప్పుడు చెల్లింపు.';
+  }
+
+  @override
+  String get subsStart => 'ఆటో రీఆర్డర్ మొదలుపెట్టండి';
+
+  @override
+  String get subsCreated => 'ఆటో రీఆర్డర్ ఆన్ అయింది';
+
+  @override
+  String get subsTab => 'ఆటో రీఆర్డర్';
+
+  @override
+  String get subsNone => 'ఆటో రీఆర్డర్లు లేవు';
+
+  @override
+  String get subsNoneBody =>
+      'ఆహారం ఎప్పుడూ అయిపోకుండా ఏదైనా ఆహార పేజీ నుండి మొదలుపెట్టండి.';
+
+  @override
+  String subsNext(String date) {
+    return 'తదుపరి డెలివరీ $date';
+  }
+
+  @override
+  String get subsPaused => 'ఆపారు';
+
+  @override
+  String get subsPause => 'ఆపండి';
+
+  @override
+  String get subsResume => 'మళ్ళీ మొదలుపెట్టండి';
+
+  @override
+  String get subsCancel => 'రద్దు చేయండి';
+
+  @override
+  String get subsCancelQ => 'ఈ ఆటో రీఆర్డర్ ఆపాలా?';
+
+  @override
+  String subsOrderedToast(int count) {
+    return '$count ఆటో రీఆర్డర్లు చేశాం';
+  }
+
+  @override
+  String ntfNewOrder(String item, int count) {
+    return 'కొత్త ఆర్డర్: $item';
+  }
+
+  @override
+  String ntfOrderCancelled(String number) {
+    return 'కస్టమర్ ఆర్డర్ $number రద్దు చేశారు';
+  }
+
+  @override
+  String ntfOrderCancelledBySeller(String item) {
+    return 'క్షమించండి, అమ్మకందారు $item ఆర్డర్ రద్దు చేశారు. చెల్లింపు తిరిగి వస్తుంది.';
+  }
+
+  @override
+  String ntfOrderPacked(String item) {
+    return '$item ప్యాక్ అయింది';
+  }
+
+  @override
+  String ntfOrderShipped(String item) {
+    return '$item దారిలో ఉంది';
+  }
+
+  @override
+  String ntfOrderOutForDelivery(String item) {
+    return '$item ఈరోజు డెలివరీకి బయలుదేరింది';
+  }
+
+  @override
+  String ntfOrderDelivered(String item) {
+    return '$item డెలివరీ అయింది';
+  }
+
+  @override
+  String ntfOrderUpdated(String item) {
+    return '$item ఆర్డర్ అప్‌డేట్ అయింది';
+  }
+
+  @override
+  String ntfReturnAccepted(String item) {
+    return '$item రిటర్న్ అంగీకరించారు. డబ్బు తిరిగి వస్తోంది.';
+  }
+
+  @override
+  String ntfReturnRejected(String item) {
+    return '$item రిటర్న్ తిరస్కరించారు. సహాయం కోసం ట్యాప్ చేయండి.';
+  }
+
+  @override
+  String ntfReturnRequested(String number) {
+    return 'ఆర్డర్ $number రిటర్న్ కోరారు';
+  }
+
+  @override
+  String ntfSubscriptionOrdered(String item) {
+    return 'ఆటో రీఆర్డర్ చేశాం: $item';
+  }
+
+  @override
+  String foodRunsOutIn(String pet, int days) {
+    return '$pet ఆహారం సుమారు $days రోజుల్లో అయిపోవచ్చు. మళ్ళీ ఆర్డర్ చేయాలా?';
+  }
+
+  @override
+  String foodRanOut(String pet) {
+    return '$pet ఆహారం అయిపోయి ఉండవచ్చు. మళ్ళీ ఆర్డర్ చేయాలా?';
+  }
+
+  @override
+  String foodPortionLine(int grams, String bag) {
+    return 'రోజుకు $grams గ్రా · $bag ప్యాక్';
+  }
+
+  @override
+  String get foodEditPortion => 'పరిమాణం మార్చండి';
+
+  @override
+  String foodOnTheWay(String pet) {
+    return '$pet కొత్త ఆహారం దారిలో ఉంది';
+  }
+
+  @override
+  String foodPlanTitle(String pet) {
+    return '$pet ఆహారం';
+  }
+
+  @override
+  String get foodDailyPortion => 'రోజువారీ పరిమాణం';
+
+  @override
+  String foodSuggested(int grams) {
+    return 'మొదట రోజుకు $grams గ్రా. ప్యాక్ లేదా మీ వెట్ సలహా పాటించండి.';
+  }
+
+  @override
+  String get foodBagSize => 'ప్యాక్ సైజు';
+
+  @override
+  String get foodOpenedOn => 'ప్యాక్ తెరిచిన తేదీ';
+
+  @override
+  String get expAdd => 'ఖర్చు జోడించండి';
+
+  @override
+  String get expEdit => 'ఖర్చు మార్చండి';
+
+  @override
+  String get expThisMonth => 'ఈ నెల';
+
+  @override
+  String get expLastMonth => 'గత నెల';
+
+  @override
+  String expPeriodTotal(int months) {
+    return 'గత $months నెలలు';
+  }
+
+  @override
+  String get expByMonth => 'నెలవారీ ఖర్చు';
+
+  @override
+  String expMonths(int count) {
+    return '$count నెలలు';
+  }
+
+  @override
+  String get expByCategory => 'విభాగాల వారీగా';
+
+  @override
+  String expChartSemantics(String values) {
+    return 'నెలవారీ ఖర్చు: $values';
+  }
+
+  @override
+  String get expNone => 'ఇంకా ఖర్చులు లేవు';
+
+  @override
+  String get expNoneBody =>
+      'బుకింగ్‌లు, ఆర్డర్లు ఇక్కడ ఆటోమేటిక్‌గా చేరతాయి. ఇతర ఖర్చులూ జోడించవచ్చు.';
+
+  @override
+  String get expVet => 'వెట్';
+
+  @override
+  String get expGrooming => 'గ్రూమింగ్';
+
+  @override
+  String get expTraining => 'శిక్షణ';
+
+  @override
+  String get expBoarding => 'బోర్డింగ్';
+
+  @override
+  String get expWalking => 'వాకింగ్';
+
+  @override
+  String get expFood => 'ఆహారం';
+
+  @override
+  String get expSupplies => 'సామగ్రి';
+
+  @override
+  String get expInsurance => 'బీమా';
+
+  @override
+  String get expOther => 'ఇతరం';
+
+  @override
+  String get expFromBooking => 'బుకింగ్ నుండి';
+
+  @override
+  String get expFromOrder => 'ఆర్డర్ నుండి';
+
+  @override
+  String get expFromTeleVet => 'టెలీ-వెట్ నుండి';
+
+  @override
+  String get expAmount => 'మొత్తం';
+
+  @override
+  String get expAmountInvalid => 'మొత్తం ఇవ్వండి';
+
+  @override
+  String get expCategory => 'విభాగం';
+
+  @override
+  String get expForPet => 'ఎవరి కోసం';
+
+  @override
+  String get expAllPets => 'అన్ని పెంపుడు జంతువులు';
+
+  @override
+  String get expNote => 'నోట్';
+
+  @override
+  String get expNoteHint => 'ఉదా: రేబీస్ బూస్టర్, కొత్త కాలర్';
+
+  @override
+  String get expSaved => 'ఖర్చు సేవ్ అయింది';
+
+  @override
+  String get expDeleteQ => 'ఈ ఖర్చు తొలగించాలా?';
+
+  @override
+  String get selToPack => 'ప్యాక్ చేయాల్సిన ఆర్డర్లు';
+
+  @override
+  String get selOnTheWay => 'దారిలో';
+
+  @override
+  String get selLowStock => 'తక్కువ స్టాక్';
+
+  @override
+  String selReturnsWaiting(int count) {
+    return '$count రిటర్న్‌లు మీ కోసం ఎదురుచూస్తున్నాయి';
+  }
+
+  @override
+  String get selNewOrders => 'కొత్త ఆర్డర్లు';
+
+  @override
+  String get selNoNewOrders => 'ఇప్పుడు కొత్త ఆర్డర్లు లేవు';
+
+  @override
+  String selStockLeft(int count) {
+    return 'స్టాక్‌లో $count';
+  }
+
+  @override
+  String get selAddProduct => 'ఉత్పత్తి జోడించండి';
+
+  @override
+  String get selEditProduct => 'ఉత్పత్తి మార్చండి';
+
+  @override
+  String get selCsvUpload => 'CSV బల్క్ అప్‌లోడ్';
+
+  @override
+  String get selSearchProducts => 'మీ ఉత్పత్తులు వెతకండి';
+
+  @override
+  String selProductCount(int count) {
+    return '$count ఉత్పత్తులు';
+  }
+
+  @override
+  String get selHidden => 'షాప్‌లో కనిపించదు';
+
+  @override
+  String get selProductName => 'ఉత్పత్తి పేరు';
+
+  @override
+  String get selPrice => 'అమ్మకం ధర';
+
+  @override
+  String get selMrp => 'MRP';
+
+  @override
+  String get selPriceInvalid => 'ధర ఇవ్వండి';
+
+  @override
+  String get selMrpInvalid => 'MRP ధర కంటే తక్కువ ఉండకూడదు';
+
+  @override
+  String get selStock => 'స్టాక్';
+
+  @override
+  String get selPackKg => 'ప్యాక్ సైజు కేజీల్లో (ఆహారం)';
+
+  @override
+  String get selDescription => 'వివరణ';
+
+  @override
+  String get selVisible => 'షాప్‌లో చూపండి';
+
+  @override
+  String get selVisibleHint => 'తొలగించకుండా దాచడానికి ఆఫ్ చేయండి';
+
+  @override
+  String get selNoRxNote =>
+      'ప్రిస్క్రిప్షన్‌తో మాత్రమే అమ్మే మందులు PawSetuలో అమ్మకూడదు.';
+
+  @override
+  String get selSaved => 'ఉత్పత్తి సేవ్ అయింది';
+
+  @override
+  String selCsvHelp(String columns) {
+    return 'కాలమ్‌లు: $columns. జాతులు చాలా ఉండొచ్చు, ఉదా dog|cat.';
+  }
+
+  @override
+  String get selCsvChoose => 'CSV ఫైల్ ఎంచుకోండి';
+
+  @override
+  String get selCsvSample => 'నమూనా ప్రయత్నించండి';
+
+  @override
+  String get selCsvCopyTemplate => 'టెంప్లేట్ కాపీ చేయండి';
+
+  @override
+  String get selCsvCopied => 'టెంప్లేట్ కాపీ అయింది';
+
+  @override
+  String get selCsvPaste => 'లేదా CSV ఇక్కడ పేస్ట్ చేయండి';
+
+  @override
+  String selCsvPreview(int ok, int bad) {
+    return 'ప్రివ్యూ: $ok సిద్ధం, $bad సరిచేయాలి';
+  }
+
+  @override
+  String selCsvLine(int line) {
+    return 'లైన్ $line';
+  }
+
+  @override
+  String selCsvProblems(String fields) {
+    return 'చూడండి: $fields';
+  }
+
+  @override
+  String selCsvImport(int count) {
+    return '$count ఉత్పత్తులు జోడించండి';
+  }
+
+  @override
+  String selCsvImported(int count) {
+    return '$count ఉత్పత్తులు జోడించాం';
+  }
+
+  @override
+  String get selTabNew => 'కొత్తవి';
+
+  @override
+  String get selTabPacked => 'ప్యాక్ అయినవి';
+
+  @override
+  String get selTabShipping => 'పంపినవి';
+
+  @override
+  String get selTabDelivered => 'డెలివరీ అయినవి';
+
+  @override
+  String get selTabCancelled => 'రద్దు / రిటర్న్';
+
+  @override
+  String get selNoOrdersHere => 'ఇక్కడ ఆర్డర్లు లేవు';
+
+  @override
+  String get selReturnsOpen => 'మీ కోసం ఎదురుచూస్తున్నవి';
+
+  @override
+  String get selReturnsDone => 'పూర్తయినవి';
+
+  @override
+  String get selNoReturns => 'రిటర్న్‌లు లేవు';
+
+  @override
+  String get selAcceptReturn => 'రిటర్న్ అంగీకరించండి';
+
+  @override
+  String get selRejectReturn => 'రిటర్న్ తిరస్కరించండి';
+
+  @override
+  String get selPayoutDemo => 'డెమో చెల్లింపులు: నిజమైన డబ్బు జరగదు.';
+
+  @override
+  String get selPayoutPending => 'పెండింగ్';
+
+  @override
+  String get selPayoutReady => 'చెల్లించడానికి సిద్ధం';
+
+  @override
+  String get selPayoutPaid => 'చెల్లించారు';
+
+  @override
+  String get selPayoutOnHold => 'రిటర్న్ గడువులో';
+
+  @override
+  String get selCommissionPaid => 'PawSetu కమీషన్';
+
+  @override
+  String selRunPayout(String amount) {
+    return 'ఇప్పుడు $amount చెల్లించండి (డెమో)';
+  }
+
+  @override
+  String selPayoutDone(int count) {
+    return '$count ఆర్డర్లకు చెల్లించాం';
+  }
+
+  @override
+  String selPayoutRule(int days) {
+    return '$days రోజుల రిటర్న్ గడువు ముగిశాక ప్రతి వారం చెల్లిస్తాం.';
+  }
+
+  @override
+  String get selPayoutOrders => 'ఆర్డర్లు';
+
+  @override
+  String selPayoutLine(String gross, String commission) {
+    return 'అమ్మకం $gross · కమీషన్ $commission';
+  }
+
+  @override
+  String selReviewSummary(String rating, int count) {
+    return '★ $rating, $count రివ్యూలు';
+  }
+
+  @override
+  String get selReplyText => 'మీ సమాధానం';
+
+  @override
+  String get selSendReply => 'సమాధానం పంపండి';
+
+  @override
+  String get selApproved => 'ఆమోదించారు';
+
+  @override
+  String get selKyc => 'KYC పత్రాలు';
+
+  @override
+  String get selVerified => 'ధృవీకరించారు';
+
+  @override
+  String get selCancelQ => 'ఈ ఆర్డర్ రద్దు చేయాలా?';
+
+  @override
+  String get selCancelBody => 'కస్టమర్‌కి చెబుతాం, చెల్లింపు తిరిగి ఇస్తాం.';
+
+  @override
+  String get selCancelOrder => 'ఆర్డర్ రద్దు చేయండి';
+
+  @override
+  String get selOutOfStockReason => 'స్టాక్ అయిపోయింది';
+
+  @override
+  String get selMarkPacked => 'ప్యాక్ అయింది';
+
+  @override
+  String get selMarkShipped => 'పంపించాం';
+
+  @override
+  String get selMarkOut => 'డెలివరీకి బయలుదేరింది';
+
+  @override
+  String get selMarkDelivered => 'డెలివరీ అయింది';
+
+  @override
+  String get selCommission => 'PawSetu కమీషన్';
+
+  @override
+  String get selYourPayout => 'మీకు వచ్చేది';
+
+  @override
+  String get selShipTo => 'ఇక్కడికి పంపండి';
+
+  @override
+  String get selPhoneHidden =>
+      'కస్టమర్ ఫోన్ దాచాం; కొరియర్ PawSetu ద్వారా కాల్ చేస్తారు.';
 }
