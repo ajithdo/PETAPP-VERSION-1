@@ -17751,6 +17751,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You\'re offline. Saved information still works, and new entries are kept until you\'re back online.'**
   String get offlineBanner;
+
+  /// No description provided for @albumTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet}\'s memories'**
+  String albumTitle(String pet);
 }
 
 class _AppLocalizationsDelegate

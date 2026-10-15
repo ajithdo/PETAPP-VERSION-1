@@ -70,12 +70,8 @@ Future<void> _quickSave(BuildContext context, WidgetRef ref, Pet pet, LogType t)
   final id = await ref.read(routineRepositoryProvider).addLog(pet: pet, by: user, type: t, data: _defaults(pet, t));
   if (!context.mounted) return;
   final l = context.l10n;
-  ScaffoldMessenger.of(context)
-    ..hideCurrentSnackBar()
-    ..showSnackBar(SnackBar(
-      content: Text(l.logged(logTypeLabel(context, t), pet.name)),
-      action: SnackBarAction(label: l.addDetails, onPressed: () => showLogDetails(context, ref, pet, t, logId: id)),
-    ));
+  showToast(context, l.logged(logTypeLabel(context, t), pet.name),
+      actionLabel: l.addDetails, onAction: () => showLogDetails(context, ref, pet, t, logId: id));
 }
 
 /// Full log form: time, type-specific fields, note and photo.

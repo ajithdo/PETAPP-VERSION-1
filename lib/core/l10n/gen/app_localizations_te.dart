@@ -10323,4 +10323,9 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get offlineBanner =>
       'మీరు ఆఫ్‌లైన్‌లో ఉన్నారు. సేవ్ చేసిన సమాచారం పనిచేస్తుంది, కొత్త ఎంట్రీలు ఇంటర్నెట్ వచ్చాక సేవ్ అవుతాయి.';
+
+  @override
+  String albumTitle(String pet) {
+    return '$pet జ్ఞాపకాలు';
+  }
 }

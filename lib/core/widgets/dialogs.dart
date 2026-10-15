@@ -43,12 +43,20 @@ Future<bool> confirmAction(
   return ok ?? false;
 }
 
+/// A short message at the bottom of the screen. One with a button (e.g.
+/// "Track order") still closes by itself after a few seconds: Flutter would
+/// keep it open until tapped, covering the screen. With a screen reader it
+/// stays, with a close button, so there is time to reach the action.
 void showToast(BuildContext context, String message, {String? actionLabel, VoidCallback? onAction}) {
+  final keep = actionLabel != null && MediaQuery.accessibleNavigationOf(context);
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
     ..showSnackBar(SnackBar(
       content: Text(message),
       action: actionLabel == null ? null : SnackBarAction(label: actionLabel, onPressed: onAction ?? () {}),
+      duration: Duration(seconds: actionLabel == null ? 4 : 6),
+      persist: keep,
+      showCloseIcon: keep,
     ));
 }
 

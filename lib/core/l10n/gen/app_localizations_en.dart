@@ -10667,4 +10667,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get offlineBanner =>
       'You\'re offline. Saved information still works, and new entries are kept until you\'re back online.';
+
+  @override
+  String albumTitle(String pet) {
+    return '$pet\'s memories';
+  }
 }

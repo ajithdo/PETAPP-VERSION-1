@@ -7284,5 +7284,13 @@
   "suspContactBody": "Demo: write to support@example.com. In the live app this opens your email.",
   "showMore": "Show more",
   "showEarlierMessages": "Show earlier messages",
-  "offlineBanner": "You're offline. Saved information still works, and new entries are kept until you're back online."
+  "offlineBanner": "You're offline. Saved information still works, and new entries are kept until you're back online.",
+  "albumTitle": "{pet}'s memories",
+  "@albumTitle": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -62,7 +62,7 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
     }
     final items = ref.watch(petAlbumProvider(p.id));
     final canLog = ref.watch(currentUserProvider) != null && p.canLog(ref.watch(currentUserProvider)!.uid);
-    final title = Text(l.albumOfPet(p.name), overflow: TextOverflow.ellipsis);
+    final title = Text(l.albumTitle(p.name), overflow: TextOverflow.ellipsis);
     return DefaultTabController(
       length: 4,
       child: Scaffold(

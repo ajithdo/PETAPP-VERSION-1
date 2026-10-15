@@ -10295,4 +10295,9 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get offlineBanner =>
       'आप ऑफ़लाइन हैं। सेव की हुई जानकारी चलती रहेगी, और नई एंट्री इंटरनेट आने पर सेव हो जाएँगी।';
+
+  @override
+  String albumTitle(String pet) {
+    return '$pet की यादें';
+  }
 }
