@@ -87,6 +87,43 @@ class ResponsiveGrid extends StatelessWidget {
   }
 }
 
+/// Equal-width tiles in rows of [columns]. Each row is as tall as its
+/// tallest tile, so tiles grow with big text (200%) instead of cutting it.
+class TileGrid extends StatelessWidget {
+  const TileGrid({super.key, required this.columns, required this.children, this.spacing = Space.md, this.minTileHeight = 0});
+  final int columns;
+  final List<Widget> children;
+  final double spacing;
+
+  /// Keeps short tiles from looking squashed at normal text size.
+  final double minTileHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    final rows = <Widget>[];
+    for (var i = 0; i < children.length; i += columns) {
+      rows.add(IntrinsicHeight(
+        child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          for (var j = i; j < i + columns; j++) ...[
+            if (j > i) SizedBox(width: spacing),
+            Expanded(
+              child: j < children.length
+                  ? ConstrainedBox(constraints: BoxConstraints(minHeight: minTileHeight), child: children[j])
+                  : const SizedBox.shrink(),
+            ),
+          ],
+        ]),
+      ));
+    }
+    return Column(children: [
+      for (var r = 0; r < rows.length; r++) ...[
+        if (r > 0) SizedBox(height: spacing),
+        rows[r],
+      ],
+    ]);
+  }
+}
+
 class Gap extends StatelessWidget {
   const Gap(this.size, {super.key});
   final double size;

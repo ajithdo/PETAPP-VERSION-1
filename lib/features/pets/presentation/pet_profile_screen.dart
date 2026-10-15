@@ -61,7 +61,8 @@ class _Profile extends ConsumerWidget {
     return CustomScrollView(slivers: [
       SliverAppBar(
         pinned: true,
-        expandedHeight: 280,
+        // Taller with big text so the name and breed never get cut off.
+        expandedHeight: 220 + 60 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
         backgroundColor: Color.alphaBlend(tag.withValues(alpha: 0.18), context.paw.background),
         actions: [
           if (canEdit)
@@ -100,15 +101,21 @@ class _Profile extends ConsumerWidget {
                 species: pet.species,
                 colorTag: pet.colorTag,
                 photoUrl: pet.photoUrl,
-                size: 132,
+                size: MediaQuery.textScalerOf(context).scale(1) > 1.5 ? 104 : 132,
                 heroTag: 'pet-${pet.id}',
                 name: pet.name,
               ),
               const SizedBox(height: Space.md),
-              Text(pet.name, style: context.text.headlineMedium),
-              Text(
-                [pet.breedName(context.lang), if (age.isNotEmpty) age].join(' · '),
-                style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary),
+              Text(pet.name, style: context.text.headlineMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: Space.lg),
+                child: Text(
+                  [pet.breedName(context.lang), if (age.isNotEmpty) age].join(' · '),
+                  style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ]),
           ),

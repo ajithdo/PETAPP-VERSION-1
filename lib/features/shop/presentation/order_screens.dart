@@ -80,10 +80,10 @@ class OrderCard extends StatelessWidget {
             ),
             if (o.isOpen && o.expectedBy != null && !sellerView)
               Text(l.ordArrivingBy(Fmt.weekdayDate(o.expectedBy!, context.lang)), style: context.text.bodySmall?.copyWith(color: context.colors.primary)),
+            const SizedBox(height: 4),
+            StatusChip(s.$1, tone: s.$2),
           ]),
         ),
-        const SizedBox(width: Space.sm),
-        StatusChip(s.$1, tone: s.$2),
       ]),
     );
   }

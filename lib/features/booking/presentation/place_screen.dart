@@ -229,11 +229,13 @@ class _Reviews extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  Wrap(
+                    spacing: Space.sm,
+                    runSpacing: 2,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text('★' * r.rating, style: TextStyle(color: context.paw.accent)),
-                      const SizedBox(width: Space.sm),
-                      Expanded(child: Text(r.ownerName, style: context.text.labelMedium)),
+                      Text(r.ownerName, style: context.text.labelMedium),
                       Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall),
                     ],
                   ),

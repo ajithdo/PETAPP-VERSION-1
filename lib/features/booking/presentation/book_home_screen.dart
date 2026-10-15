@@ -31,13 +31,9 @@ class BookHomeScreen extends ConsumerWidget {
         const SizedBox(height: Space.sm),
         Text(l.bookTitle, style: context.text.headlineSmall),
         const SizedBox(height: Space.md),
-        GridView.count(
-          crossAxisCount: context.isPhone ? 2 : 3,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          mainAxisSpacing: Space.md,
-          crossAxisSpacing: Space.md,
-          childAspectRatio: 1.45,
+        TileGrid(
+          columns: context.isPhone ? 2 : 3,
+          minTileHeight: 108,
           children: [for (final t in tiles) QuickActionTile(icon: t.$1, label: t.$2, color: t.$4, onTap: () => context.push(t.$3))],
         ),
         const SizedBox(height: Space.md),

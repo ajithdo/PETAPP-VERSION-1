@@ -203,13 +203,10 @@ class _CategoryGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, c) {
       final cols = (c.maxWidth / 120).floor().clamp(3, 7);
-      return GridView.count(
-        crossAxisCount: cols,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        mainAxisSpacing: Space.sm,
-        crossAxisSpacing: Space.sm,
-        childAspectRatio: 0.95,
+      return TileGrid(
+        columns: cols,
+        spacing: Space.sm,
+        minTileHeight: 104,
         children: [
           for (final cat in shopCategories)
             Material(

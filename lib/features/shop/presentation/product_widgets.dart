@@ -188,16 +188,19 @@ class ProductRow extends StatelessWidget {
   const ProductRow({super.key, required this.products});
   final List<Product> products;
 
+  /// The row is as tall as its tallest card, so big text and taller
+  /// scripts (Hindi, Telugu) never get cut off.
   @override
   Widget build(BuildContext context) {
-    final scale = MediaQuery.textScalerOf(context).scale(1);
-    return SizedBox(
-      height: 158 / 1.3 + 132 * scale + Space.lg,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: products.length,
-        separatorBuilder: (_, _) => const SizedBox(width: Space.sm),
-        itemBuilder: (_, i) => SizedBox(width: 158, child: ProductCard(product: products[i], compact: true)),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: IntrinsicHeight(
+        child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          for (var i = 0; i < products.length; i++) ...[
+            if (i > 0) const SizedBox(width: Space.sm),
+            SizedBox(width: 158, child: ProductCard(product: products[i], compact: true)),
+          ],
+        ]),
       ),
     );
   }

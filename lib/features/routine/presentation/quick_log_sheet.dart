@@ -28,13 +28,9 @@ Future<void> showQuickLog(BuildContext context, WidgetRef ref, Pet pet) {
         Expanded(child: Text(l.logFor(pet.name), style: ctx.text.titleMedium)),
       ]),
       const SizedBox(height: Space.lg),
-      GridView.count(
-        crossAxisCount: ctx.isPhone ? 3 : 4,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        mainAxisSpacing: Space.sm,
-        crossAxisSpacing: Space.sm,
-        childAspectRatio: 1.05,
+      TileGrid(
+        columns: ctx.isPhone ? 3 : 4,
+        spacing: Space.sm,
         children: [
           for (final t in types)
             QuickActionTile(

@@ -591,11 +591,13 @@ class _PartnerReviews extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Row(
+                    Wrap(
+                      spacing: Space.sm,
+                      runSpacing: 2,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Text('★' * r.rating, style: TextStyle(color: context.paw.accent)),
-                        const SizedBox(width: Space.sm),
-                        Expanded(child: Text(r.ownerName)),
+                        Text(r.ownerName),
                         Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall),
                       ],
                     ),
@@ -665,18 +667,15 @@ class _Payouts extends ConsumerWidget {
               for (final b in done)
                 ListTile(
                   title: Text('${b.petName} · ${serviceLabel(context, b.serviceId)}'),
-                  subtitle: Text('${Fmt.date(b.start, context.lang)} · ${l.commissionLine(Fmt.inr(b.commission))}'),
-                  trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(Fmt.inr(b.payout), style: context.text.titleSmall),
-                      StatusChip(
-                        b.start.isBefore(DateTime.now().subtract(const Duration(days: 3))) ? l.settled : l.payoutPending,
-                        tone: b.start.isBefore(DateTime.now().subtract(const Duration(days: 3))) ? ChipTone.success : ChipTone.warning,
-                      ),
-                    ],
-                  ),
+                  subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text('${Fmt.date(b.start, context.lang)} · ${l.commissionLine(Fmt.inr(b.commission))}'),
+                    const SizedBox(height: 4),
+                    StatusChip(
+                      b.start.isBefore(DateTime.now().subtract(const Duration(days: 3))) ? l.settled : l.payoutPending,
+                      tone: b.start.isBefore(DateTime.now().subtract(const Duration(days: 3))) ? ChipTone.success : ChipTone.warning,
+                    ),
+                  ]),
+                  trailing: Text(Fmt.inr(b.payout), style: context.text.titleSmall),
                 ),
             ],
           ),

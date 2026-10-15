@@ -84,10 +84,9 @@ class _ReportCard extends ConsumerWidget {
     final resolvedAt = parseDate(r.raw['resolvedAt']);
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Row(children: [
+        Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
           Icon(r.type == 'review' ? Icons.star_half_rounded : (r.type == 'chat' ? Icons.chat_rounded : Icons.flag_rounded), color: context.paw.warning),
-          const SizedBox(width: Space.sm),
-          Expanded(child: Text(reportTypeLabel(context, r.type), style: context.text.titleSmall)),
+          Text(reportTypeLabel(context, r.type), style: context.text.titleSmall),
           StatusChip(reportReasonLabel(context, r.reason), tone: ChipTone.warning),
         ]),
         if (r.targetTitle.isNotEmpty) ...[const SizedBox(height: Space.xs), Text(r.targetTitle, style: context.text.bodyMedium)],
@@ -195,13 +194,8 @@ class _OutboxTile extends StatelessWidget {
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(children: [
-                Expanded(
-                  child: Text('${outboxChannelLabel(context, channel)} → ${msg['to'] ?? ''}',
-                      style: context.text.labelLarge, maxLines: 1, overflow: TextOverflow.ellipsis),
-                ),
-                if (at != null) Text(Fmt.dateTime(at, context.lang), style: context.text.labelSmall),
-              ]),
+              Text('${outboxChannelLabel(context, channel)} → ${msg['to'] ?? ''}', style: context.text.labelLarge, maxLines: 2, overflow: TextOverflow.ellipsis),
+              if (at != null) Text(Fmt.dateTime(at, context.lang), style: context.text.labelSmall),
               if (subject != null && subject.isNotEmpty) Text(subject, style: context.text.titleSmall),
               Text('${msg['body'] ?? ''}', style: context.text.bodySmall, maxLines: 4, overflow: TextOverflow.ellipsis),
               if (msg['type'] is String) Padding(padding: const EdgeInsets.only(top: 4), child: StatusChip('${msg['type']}')),
@@ -276,9 +270,9 @@ class _AuditTile extends StatelessWidget {
               Text(auditActionLabel(context, '${entry['action']}'), style: context.text.titleSmall),
               Text([entry['actorName'] ?? '', entry['targetId'] ?? ''].where((x) => '$x'.isNotEmpty).join(' · '), style: context.text.bodySmall),
               if (detailText.isNotEmpty) Text(detailText, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary), maxLines: 3, overflow: TextOverflow.ellipsis),
+              if (at != null) Text(Fmt.dateTime(at, context.lang), style: context.text.labelSmall),
             ]),
           ),
-          if (at != null) Text(Fmt.dateTime(at, context.lang), style: context.text.labelSmall),
         ]),
       ),
     );

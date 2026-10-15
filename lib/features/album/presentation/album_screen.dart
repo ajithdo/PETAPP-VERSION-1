@@ -289,24 +289,21 @@ class OnThisDayCard extends StatelessWidget {
           Text(l.albumOnThisDay, style: context.text.titleMedium),
         ]),
         const SizedBox(height: Space.md),
-        SizedBox(
-          height: 150,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemCount: items.length,
-            separatorBuilder: (_, _) => const SizedBox(width: Space.sm),
-            itemBuilder: (_, i) {
-              final it = items[i];
-              return SizedBox(
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            for (var i = 0; i < items.length; i++) ...[
+              if (i > 0) const SizedBox(width: Space.sm),
+              SizedBox(
                 width: 120,
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  SizedBox(height: 120, width: 120, child: MemoryTile(item: it, onTap: () => context.push(viewerPath(pet.id, it.id)))),
+                  SizedBox(height: 120, width: 120, child: MemoryTile(item: items[i], onTap: () => context.push(viewerPath(pet.id, items[i].id)))),
                   const SizedBox(height: 4),
-                  Text(yearsAgoLabel(context, it.takenAt), style: context.text.labelMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
+                  Text(yearsAgoLabel(context, items[i].takenAt), style: context.text.labelMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
                 ]),
-              );
-            },
-          ),
+              ),
+            ],
+          ]),
         ),
       ]),
     );

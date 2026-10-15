@@ -19,13 +19,9 @@ List<Widget> homeSections(BuildContext context, WidgetRef ref,
     {required Pet? pet, required List<Pet> pets, required bool easy}) {
   final l = context.l10n;
   final focus = pet ?? pets.first;
-  final quick = GridView.count(
-    crossAxisCount: context.isPhone ? 2 : 4,
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    mainAxisSpacing: Space.md,
-    crossAxisSpacing: Space.md,
-    childAspectRatio: easy ? 1.15 : 1.5,
+  final quick = TileGrid(
+    columns: context.isPhone ? 2 : 4,
+    minTileHeight: easy ? 140 : 108,
     children: [
       QuickActionTile(icon: Icons.medical_services_rounded, label: l.qaBookVet, onTap: () => context.go('/book')),
       QuickActionTile(

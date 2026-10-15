@@ -250,11 +250,9 @@ class _AnswerCard extends StatelessWidget {
       child: PawCard(
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(children: [
+          Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
             Icon(Icons.auto_awesome_rounded, color: context.colors.primary, size: 20),
-            const SizedBox(width: Space.sm),
             Text(l.aiTitle, style: context.text.labelLarge?.copyWith(color: context.colors.primary)),
-            const SizedBox(width: Space.sm),
             StatusChip(l.demoBadge, tone: ChipTone.accent),
           ]),
           const SizedBox(height: Space.sm),

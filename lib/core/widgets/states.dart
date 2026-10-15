@@ -134,7 +134,9 @@ class SkeletonList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: context.l10n.loading,
-      child: Padding(
+      // Clipped, never overflowing, when it sits in a small space.
+      child: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.all(context.gutter),
         child: Column(
           children: [
