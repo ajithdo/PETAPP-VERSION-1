@@ -22,6 +22,11 @@ class PromoBannerData {
   String get tone => (raw['tone'] as String?) ?? 'primary';
   bool get active => (raw['active'] as bool?) ?? true;
   int get order => (raw['order'] as num?)?.toInt() ?? 0;
+
+  /// all, free (people without Plus) or plus
+  String get audience => (raw['audience'] as String?) ?? 'all';
+
+  bool showsTo({required bool plus}) => audience == 'all' || (audience == 'plus') == plus;
 }
 
 final bannersProvider = StreamProvider<List<PromoBannerData>>((ref) {
@@ -33,10 +38,11 @@ final bannersProvider = StreamProvider<List<PromoBannerData>>((ref) {
       .map((s) => [for (final d in s.docs) PromoBannerData(d.id, d.data())]..sort((a, b) => a.order.compareTo(b.order)));
 });
 
-/// Active banners for [placement], newest order first.
+/// Active banners for [placement] that this person should see, in order.
 final activeBannersProvider = Provider.family<List<PromoBannerData>, String>((ref, placement) {
   final all = ref.watch(bannersProvider).value ?? const <PromoBannerData>[];
-  return [for (final b in all) if (b.active && b.placement == placement) b];
+  final plus = ref.watch(currentUserProvider)?.isPlus ?? false;
+  return [for (final b in all) if (b.active && b.placement == placement && b.showsTo(plus: plus)) b];
 });
 
 class PromoBanner extends StatelessWidget {

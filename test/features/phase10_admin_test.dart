@@ -13,6 +13,7 @@ import 'package:pawsetu/features/admin/data/support_repository.dart';
 import 'package:pawsetu/features/admin/domain/admin_rules.dart';
 import 'package:pawsetu/features/admin/domain/privacy.dart';
 import 'package:pawsetu/features/admin/domain/support.dart';
+import 'package:pawsetu/features/admin/presentation/banners.dart';
 import 'package:pawsetu/features/booking/domain/booking_rules.dart';
 import 'package:pawsetu/features/health/domain/vaccine_schedule.dart';
 import 'package:pawsetu/features/plans/data/plan_repository.dart';
@@ -173,6 +174,16 @@ void main() {
       expect(changed.firstWhere((t) => t.key == 'rabies_booster').everyYears, 3);
       expect(changed.firstWhere((t) => t.key == 'dhppi_2').fromWeeks, 9);
       expect(identical(applyVaccineOverride(base, const {}), base), isTrue);
+    });
+
+    test('banners show to everyone, Free-plan people or Plus members', () {
+      PromoBannerData b(String a) => PromoBannerData('b', {'audience': a});
+      expect(b('all').showsTo(plus: true) && b('all').showsTo(plus: false), isTrue);
+      expect(b('free').showsTo(plus: false), isTrue);
+      expect(b('free').showsTo(plus: true), isFalse);
+      expect(b('plus').showsTo(plus: true), isTrue);
+      expect(b('plus').showsTo(plus: false), isFalse);
+      expect(PromoBannerData('b', const {}).audience, 'all');
     });
 
     test('privacy: 30-day grace and plain JSON', () {

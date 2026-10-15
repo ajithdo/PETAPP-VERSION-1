@@ -46,7 +46,7 @@ class TicketThread extends StatelessWidget {
                     ),
                   ]),
                   const SizedBox(height: 2),
-                  SelectableText(m.text, style: context.text.bodyMedium),
+                  Text(m.text, style: context.text.bodyMedium),
                   const SizedBox(height: 2),
                   Text(Fmt.dateTime(m.at, context.lang), style: context.text.labelSmall?.copyWith(color: context.paw.textSecondary)),
                 ]),

@@ -20,6 +20,8 @@
  *   and storage limits are in phase6.ts and phase7.ts.
  * - onTicketWritten: tells support about new tickets and the person about
  *   replies, resolution and refunds, in their own language.
+ * - Dashboard counters: new users, pets, bookings, orders and Plus sign-ups
+ *   are added to analyticsDaily/{yyyy-mm-dd} (India time), like SOS in phase9.
  *
  * The pure rules mirror lib/features/plans/domain/plan_rules.dart,
  * lib/features/admin/domain/support.dart and privacy.dart (unit tested in
@@ -481,7 +483,10 @@ export const onPetCreatedLimit = onDocumentCreated('pets/{petId}', async (event)
   const limit = limitFor(cfg, plan, 'pets', plan === 'free' ? 3 : 999);
   const pets = await db.collection('pets').where('ownerId', '==', pet.ownerId).get();
   const active = pets.docs.filter((d) => d.data().archived !== true);
-  if (active.length <= limit) return;
+  if (active.length <= limit) {
+    await bumpDay(new Date(), { pets: 1 });
+    return;
+  }
   await event.data!.ref.delete();
   await notify([pet.ownerId], 'petLimit', 'petLimitBody', { limit }, 'plan', '/me/plus');
 });
@@ -543,4 +548,39 @@ export const onTicketWritten = onDocumentWritten('tickets/{ticketId}', async (ev
   if (!before.refund && after.refund) {
     await notify([after.uid], 'refundTitle', 'refundBody', { amount: Number(after.refund.amount ?? 0) }, 'support', link, true);
   }
+});
+
+// ---------- dashboard counters ----------
+
+/** analyticsDaily id for a moment: its date in India (yyyy-mm-dd). */
+export function dayKey(at: Date): string {
+  return at.toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+}
+
+/** Adds to the day's dashboard numbers. */
+export async function bumpDay(at: Date, inc: Record<string, number>): Promise<void> {
+  const key = dayKey(at);
+  const data: Record<string, unknown> = { date: new Date(`${key}T00:00:00+05:30`) };
+  for (const [k, v] of Object.entries(inc)) if (v) data[k] = FieldValue.increment(v);
+  await db.collection('analyticsDaily').doc(key).set(data, { merge: true });
+}
+
+export const onUserCounted = onDocumentCreated('users/{uid}', async () => {
+  await bumpDay(new Date(), { users: 1 });
+});
+
+export const onBookingCounted = onDocumentCreated('bookings/{id}', async (event) => {
+  const b = event.data?.data() ?? {};
+  await bumpDay(new Date(), { bookings: 1, bookingValue: Number(b.total ?? 0), commission: Number(b.commission ?? 0) });
+});
+
+export const onOrderCounted = onDocumentCreated('orders/{id}', async (event) => {
+  const o = event.data?.data() ?? {};
+  await bumpDay(new Date(), { orders: 1, orderValue: Number(o.total ?? 0), commission: Number(o.commission ?? 0) });
+});
+
+/** New Plus members (renewals are not new sign-ups). */
+export const onPaymentCounted = onDocumentCreated('payments/{id}', async (event) => {
+  const p = event.data?.data() ?? {};
+  if (p.kind === 'plus' && p.renewal !== true) await bumpDay(new Date(), { subscriptions: 1 });
 });

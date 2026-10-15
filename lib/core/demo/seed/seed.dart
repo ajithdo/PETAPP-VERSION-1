@@ -16,7 +16,7 @@ typedef SeedData = Map<String, Map<String, Map<String, dynamic>>>;
 
 class DemoSeed {
   /// Bump when the seed changes so saved standalone demo data is replaced.
-  static const version = 11;
+  static const version = 12;
 
   static SeedData build(DateTime now) {
     final data = <String, Map<String, Map<String, dynamic>>>{};

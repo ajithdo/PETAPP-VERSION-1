@@ -90,10 +90,16 @@ class PortalScaffold extends ConsumerWidget {
         if (user != null)
           Padding(
             padding: const EdgeInsets.only(right: Space.md),
-            child: Chip(
-              avatar: const Icon(Icons.person_rounded, size: 18),
-              label: Text(user.name, overflow: TextOverflow.ellipsis),
-            ),
+            // On a phone the name would squeeze the page title: initial only.
+            child: wide
+                ? Chip(
+                    avatar: const Icon(Icons.person_rounded, size: 18),
+                    label: Text(user.name, overflow: TextOverflow.ellipsis),
+                  )
+                : Tooltip(
+                    message: user.name,
+                    child: CircleAvatar(radius: 16, child: Text(user.name.isEmpty ? '?' : user.name.characters.first.toUpperCase())),
+                  ),
           ),
       ],
     );

@@ -9124,6 +9124,15 @@ class AppLocalizationsTe extends AppLocalizations {
   String get admToneNews => 'వార్త (ఆకుపచ్చ)';
 
   @override
+  String get admBannerAudience => 'ఎవరికి కనిపిస్తుంది';
+
+  @override
+  String get admAudienceFree => 'Free ప్లాన్ వారికి మాత్రమే';
+
+  @override
+  String get admAudiencePlus => 'Plus సభ్యులకు మాత్రమే';
+
+  @override
   String get admPlacesNote =>
       'ప్రతి క్లినిక్ లేదా సేవ అందించేవారి బుకింగ్ కమిషన్. ఖాళీగా ఉంటే \'ప్లాన్‌లు మరియు సెట్టింగ్‌లు\'లో వాటి రకం రేటు వర్తిస్తుంది.';
 

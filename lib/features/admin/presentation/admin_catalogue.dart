@@ -458,6 +458,8 @@ class _BannersTab extends ConsumerWidget {
                 const SizedBox(height: Space.sm),
                 Row(children: [
                   StatusChip(b.placement == 'shop' ? l.admPlaceShop : l.admPlaceHome, icon: b.placement == 'shop' ? Icons.storefront_rounded : Icons.home_rounded),
+                  const SizedBox(width: Space.xs),
+                  StatusChip(bannerAudienceLabel(context, b.audience), icon: Icons.people_rounded),
                   const SizedBox(width: Space.sm),
                   if (b.link.isNotEmpty) Expanded(child: Text(b.link, style: context.text.bodySmall, maxLines: 1, overflow: TextOverflow.ellipsis)) else const Spacer(),
                   IconButton(tooltip: l.edit, icon: const Icon(Icons.edit_rounded), onPressed: () => editBanner(context, ref, b)),
@@ -488,6 +490,7 @@ Future<void> editBanner(BuildContext context, WidgetRef ref, PromoBannerData? b)
   final link = TextEditingController(text: b?.link ?? '');
   var placement = b?.placement ?? 'home';
   var tone = b?.tone ?? 'primary';
+  var audience = b?.audience ?? 'all';
   final saved = await showPawSheet<bool>(context, builder: (ctx) {
     final l = ctx.l10n;
     return StatefulBuilder(builder: (ctx, setSheet) {
@@ -517,6 +520,15 @@ Future<void> editBanner(BuildContext context, WidgetRef ref, PromoBannerData? b)
           label: (t) => t == 'accent' ? l.admToneOffer : l.admToneNews,
           onSelected: (t) => setSheet(() => tone = t),
         ),
+        const SizedBox(height: Space.sm),
+        Text(l.admBannerAudience, style: ctx.text.titleSmall),
+        const SizedBox(height: Space.xs),
+        ChoiceRow<String>(
+          options: const ['all', 'free', 'plus'],
+          selected: audience,
+          label: (a) => bannerAudienceLabel(ctx, a),
+          onSelected: (a) => setSheet(() => audience = a),
+        ),
         const SizedBox(height: Space.md),
         PrimaryButton(label: l.save, onPressed: title.text.trim().isEmpty || !linkOk ? null : () => Navigator.pop(ctx, true)),
         const SizedBox(height: Space.sm),
@@ -526,11 +538,20 @@ Future<void> editBanner(BuildContext context, WidgetRef ref, PromoBannerData? b)
   });
   final admin = ref.read(currentUserProvider);
   if (saved != true || admin == null) return;
-  final fields = {'title': title.text.trim(), 'body': body.text.trim(), 'link': link.text.trim(), 'placement': placement, 'tone': tone};
+  final fields = {'title': title.text.trim(), 'body': body.text.trim(), 'link': link.text.trim(), 'placement': placement, 'tone': tone, 'audience': audience};
   final repo = ref.read(adminRepositoryProvider);
   if (b == null) {
     await repo.addDoc(admin, 'banners', {...fields, 'active': true, 'order': DateTime.now().millisecondsSinceEpoch ~/ 1000, 'createdAt': DateTime.now()}, action: 'banner_create');
   } else {
     await repo.updateDoc(admin, 'banners', b.id, fields, action: 'banner_update');
   }
+}
+
+String bannerAudienceLabel(BuildContext context, String audience) {
+  final l = context.l10n;
+  return switch (audience) {
+    'free' => l.admAudienceFree,
+    'plus' => l.admAudiencePlus,
+    _ => l.admEveryone,
+  };
 }

@@ -354,7 +354,7 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
                   if (code != null) ...[
                     Text(l.referYourCode, style: context.text.labelLarge, textAlign: TextAlign.center),
                     const SizedBox(height: Space.xs),
-                    SelectableText(code, style: context.text.headlineMedium?.copyWith(letterSpacing: 4, fontWeight: FontWeight.w800), textAlign: TextAlign.center),
+                    Text(code, style: context.text.headlineMedium?.copyWith(letterSpacing: 4, fontWeight: FontWeight.w800), textAlign: TextAlign.center),
                     const SizedBox(height: Space.sm),
                     Wrap(alignment: WrapAlignment.center, spacing: Space.sm, runSpacing: Space.sm, children: [
                       SecondaryButton(
@@ -403,7 +403,7 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
                         const SizedBox(width: Space.md),
                         Expanded(
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            SelectableText('${c['id']}', style: context.text.titleSmall?.copyWith(letterSpacing: 1)),
+                            Text('${c['id']}', style: context.text.titleSmall?.copyWith(letterSpacing: 1)),
                             Text(
                               l.referCouponLine(
                                 Fmt.inr((c['flat'] as num?) ?? 0, context.lang),

@@ -15700,6 +15700,24 @@ abstract class AppLocalizations {
   /// **'News (green)'**
   String get admToneNews;
 
+  /// No description provided for @admBannerAudience.
+  ///
+  /// In en, this message translates to:
+  /// **'Who sees it'**
+  String get admBannerAudience;
+
+  /// No description provided for @admAudienceFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free plan only'**
+  String get admAudienceFree;
+
+  /// No description provided for @admAudiencePlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus members only'**
+  String get admAudiencePlus;
+
   /// No description provided for @admPlacesNote.
   ///
   /// In en, this message translates to:

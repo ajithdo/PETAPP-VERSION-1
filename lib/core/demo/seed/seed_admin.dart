@@ -105,6 +105,7 @@ void seedAdmin(Add add, DateTime now, SeedData data) {
     'link': '/me/plus',
     'placement': 'home',
     'tone': 'primary',
+    'audience': 'free',
     'active': true,
     'order': 1,
     'createdAt': ago(days: 20),

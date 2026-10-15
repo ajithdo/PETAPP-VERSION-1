@@ -21,6 +21,8 @@ import { FieldValue, getFirestore, Timestamp } from 'firebase-admin/firestore';
 import { onDocumentCreated, onDocumentUpdated, onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { onCall } from 'firebase-functions/v2/https';
 
+import { bumpDay } from './phase10';
+
 const db = getFirestore();
 
 export const LOST_ALERT_KM = 5;
@@ -244,5 +246,5 @@ export const onSosLogged = onDocumentCreated('sosLogs/{id}', async (event) => {
   const d = event.data?.data();
   if (!d) return;
   const at = d.at instanceof Timestamp ? d.at.toDate() : new Date();
-  await db.collection('analyticsDaily').doc(at.toISOString().slice(0, 10)).set({ sos: FieldValue.increment(1) }, { merge: true });
+  await bumpDay(at, { sos: 1 });
 });

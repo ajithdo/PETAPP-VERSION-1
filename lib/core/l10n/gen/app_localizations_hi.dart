@@ -9102,6 +9102,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get admToneNews => 'ख़बर (हरा)';
 
   @override
+  String get admBannerAudience => 'किसे दिखेगा';
+
+  @override
+  String get admAudienceFree => 'सिर्फ़ Free प्लान वालों को';
+
+  @override
+  String get admAudiencePlus => 'सिर्फ़ Plus सदस्यों को';
+
+  @override
   String get admPlacesNote =>
       'हर क्लिनिक या सेवा देने वाले का बुकिंग कमीशन। ख़ाली हो तो \'प्लान और सेटिंग्स\' में उसके प्रकार की दर लगेगी।';
 
@@ -10063,7 +10072,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String plusPerMonth(String value) {
-    return '$value महीने में';
+    return 'हर महीने $value';
   }
 
   @override

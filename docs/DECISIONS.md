@@ -135,3 +135,31 @@ A running log of choices and why. Newest at the bottom of each section.
 **Rules.** `devices`: family reads; carers and up pair, rename, change the zone or remove; any family member may update `data` only (latest reading). `sosLogs`: people log only their own activations with a known source; they and admins read. `lostReports`: family and admins read; carers and up create with no alerts or sightings, and may change status and note only. `tagRelays`: server only.
 
 **Packages.** No new packages: `qr_flutter` (already in pubspec), `geolocator`, `flutter_map`, `share_plus` and `printing` support Android, iOS and the web.
+
+## Phase 10
+
+**One place for every number.** Prices, trial length, plan limits (pets, family, tele-vet chats, messages, words and hours, Ask PawSetu questions, storage, video length), booking commission (default, per type and per provider), shop margins (food, other, per category, per seller), delivery fees, the Plus video discount, feature switches, the referral reward, vaccine timings and the vet-review status of content all live in `config/app`. The admin writes them with dotted paths (`limits.free.teleVetMessages`) so one change never overwrites its neighbours, every change is in the audit log, and the app picks it up at once because `appSettingsDocProvider` streams the document. Vaccine timing changes are copied into `VaccineOverrides` by `configSyncProvider` and applied by `templatesFor()`.
+
+**Admin access.** The admin panel is only reachable with the `admin` role; with Firebase that role is a custom claim, and `firestore.rules` checks the claim, not the profile. Approving a partner (`reviewPartner`), pausing an account (`setUserSuspended`, which also disables sign-in) and changing roles (`setUserRole`) run in Cloud Functions so the sign-in claims change too. A rejection or suspension needs a reason, which the partner sees. Registration numbers get a format check (DEMO-VC-0001, a state council code such as TSVC-12345, or VCI) and a reminder to check the council register; the admin still decides.
+
+**Paused accounts.** `users.suspended` sends the person to an "account paused" page with a contact-support button; public pages such as a lost pet's page still open.
+
+**PawSetu Plus.** Free, `trial` (7 days, once per person, `trialUsedAt`) and `plus` (`planRenewsAt`, `planPeriod` monthly/yearly, `autoRenew`). An ended trial or period counts as free straight away (`effectivePlan`, in Dart and in the functions), and the nightly `expirePlans` job switches it back or renews it with a demo payment. Buying during a trial or an active period starts when that ends. People can't change their own plan, trial, suspension or referral code (rules); `startTrial`, `buyPlus` and `redeemReferral` do it on the server with prices from `config/app`. All payments in Version 1 are simulated and recorded in `payments` (kind plus or refund, `demo: true`, tax placeholder).
+
+**Plan limits on the server.** Tele-vet, Ask PawSetu and storage were already checked in Phase 6 and 7 functions. Phase 10 adds triggers for the rest: a pet over the limit (`onPetCreatedLimit`), family members over the limit (`onPetMembersLimit`) and album videos longer than the plan allows (`onAlbumVideoLimit`) are taken off again and the person is told why. The app checks first, so this only catches changed apps.
+
+**Referrals.** Every account gets a code (up to 4 letters of the name and 4 random characters; `PAWS…` for names in Hindi or Telugu script). A friend can enter one code once; both get a personal ₹100 coupon (`coupons.forUid`) that only they can use, checked in the cart, in the order repository and in `createOrder`.
+
+**Help and complaints.** `tickets` hold the whole conversation (`messages[]`). Pet parents raise them at `/me/help`, partners at `/help` (the owner area is closed to partner accounts) or from the Help section of their portal; links from a booking, order or chat fill in what it is about. Support sets status (open, in progress, resolved), assigns, replies and gives demo refunds up to the amount paid. A reply from the person reopens a resolved ticket. Notifications go out in each person's language (`onTicketWritten` with Firebase, `SafetyNotifier` in the standalone demo). Rules let the person add only their own message and never touch status, assignee or refund.
+
+**Moderation.** Reported reviews can be hidden (and shown again); reported chats and content are marked handled or dismissed. Hidden reviews disappear from clinic and product pages.
+
+**Privacy centre.** Consents (lost-pet alerts, anonymous usage, offers, sharing a health summary with clinics you book), "Download my data" (a JSON file with the profile and 27 kinds of records; `exportMyData` on the server) and "Delete my account" with a 30-day grace period. `purgeDeletedAccounts` deletes personal records and the sign-in after 30 days; bookings, orders, payments, reviews and chats are kept for accounts and disputes but lose the person's name and address.
+
+**Dashboard numbers.** `analyticsDaily/{yyyy-mm-dd}` holds the daily totals (90 seeded days in the demo; with Firebase the Phase 8 and 9 triggers add to it). The dashboard groups them by day (last 14), Monday-starting week (last 12) or month (last 3) and compares only periods that have ended, so the running week never looks like a drop. The commission report adds booking commission, shop margin, Plus payments and refunds per month and per partner, with a CSV download.
+
+**Banners and featured products.** Banners show on Home or in the Shop, to everyone, Free-plan people only or Plus members only. Featured products get their own Shop row.
+
+**Content review.** First-aid guides, the toxic checker and vaccine schedules say "Draft, to be reviewed by a vet" until the admin records the reviewing vet's name and registration number; then they say "Reviewed by …".
+
+**Packages.** No new packages: `fl_chart` (charts) and `share_plus` (CSV and JSON files; it downloads the file on the web) were already in use and support Android, iOS and the web.

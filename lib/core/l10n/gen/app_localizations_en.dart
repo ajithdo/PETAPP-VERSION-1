@@ -9425,6 +9425,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get admToneNews => 'News (green)';
 
   @override
+  String get admBannerAudience => 'Who sees it';
+
+  @override
+  String get admAudienceFree => 'Free plan only';
+
+  @override
+  String get admAudiencePlus => 'Plus members only';
+
+  @override
   String get admPlacesNote =>
       'Booking commission for each clinic or provider. Empty means the rate for its type in Plans and settings.';
 

@@ -6408,6 +6408,9 @@
   "admBannerLinkHelp": "For example /me/plus or /shop/search?q=food. Leave empty for no link.",
   "admToneOffer": "Offer (orange)",
   "admToneNews": "News (green)",
+  "admBannerAudience": "Who sees it",
+  "admAudienceFree": "Free plan only",
+  "admAudiencePlus": "Plus members only",
   "admPlacesNote": "Booking commission for each clinic or provider. Empty means the rate for its type in Plans and settings.",
   "admRateCustom": "Commission {pct}% (own rate)",
   "@admRateCustom": {

@@ -67,6 +67,10 @@ describe('phase 10 rules', () => {
     assert.match(m.newReferralCode('Al'), /^ALPA[A-Z2-9]{4}$/);
     assert.match(m.rewardCouponCode(), /^REF[A-Z2-9]{6}$/);
   });
+  it('dashboard days are India dates', () => {
+    assert.equal(m.dayKey(new Date('2026-10-14T19:00:00Z')), '2026-10-15');
+    assert.equal(m.dayKey(new Date('2026-10-14T18:00:00Z')), '2026-10-14');
+  });
   it('account deletion waits 30 days; the export covers the same parts as the app', () => {
     assert.equal(m.deletionDate(now).toISOString(), '2026-11-14T10:00:00.000Z');
     assert.equal(m.EXPORT_PARTS.length, 27);
