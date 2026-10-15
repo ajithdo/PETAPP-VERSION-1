@@ -6491,8 +6491,8 @@
       }
     }
   },
-  "admPaid": "Paid {amount}",
-  "@admPaid": {
+  "admTotal": "Total {amount}",
+  "@admTotal": {
     "placeholders": {
       "amount": {
         "type": "String"

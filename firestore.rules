@@ -31,9 +31,13 @@ service cloud.firestore {
     // ---------- users ----------
     match /users/{userId} {
       allow read: if signedIn() && (uid() == userId || isAdmin() || isPartner());
-      // Users edit their own profile but never their role, plan or partner link.
-      allow create: if signedIn() && uid() == userId && incoming().role == 'owner' && incoming().plan == 'free';
-      allow update: if signedIn() && ((uid() == userId && unchanged(['role', 'plan', 'planRenewsAt', 'partnerId'])) || isAdmin());
+      // Users edit their own profile (consents, auto-renew, account deletion)
+      // but never their role, plan, trial, suspension or referral code: the
+      // admin panel and Cloud Functions set those.
+      allow create: if signedIn() && uid() == userId && incoming().role == 'owner' && incoming().plan == 'free'
+        && !incoming().keys().hasAny(['suspended', 'trialEndsAt', 'trialUsedAt', 'planRenewsAt', 'planPeriod']);
+      allow update: if signedIn() && ((uid() == userId && unchanged(['role', 'plan', 'planRenewsAt', 'partnerId', 'suspended', 'suspendReason',
+        'trialEndsAt', 'trialUsedAt', 'planPeriod', 'referralCode'])) || isAdmin());
       allow delete: if isAdmin();
     }
 
@@ -242,15 +246,39 @@ service cloud.firestore {
         && incoming().diff(data()).affectedKeys().hasOnly(['status', 'foundAt', 'note', 'area'])
         && incoming().status in ['lost', 'found'];
     }
+    // Help and complaints: the person opens a ticket with their first
+    // message and can add their own replies (which may reopen it); status,
+    // assignee and demo refunds are for support only.
     match /tickets/{id} {
+      function ownerReply() {
+        let n = data().messages.size();
+        return incoming().diff(data()).affectedKeys().hasOnly(['messages', 'status', 'updatedAt'])
+          && incoming().messages.size() == n + 1
+          && incoming().messages[0:n] == data().messages
+          && incoming().messages[n].by == uid() && incoming().messages[n].admin == false
+          && (incoming().status == data().status || (data().status == 'resolved' && incoming().status == 'open'));
+      }
       allow read: if signedIn() && (data().uid == uid() || isAdmin());
-      allow create: if signedIn() && incoming().uid == uid();
-      allow update: if signedIn() && (data().uid == uid() || isAdmin());
+      allow create: if signedIn() && incoming().uid == uid() && incoming().status == 'open'
+        && incoming().get('refund', null) == null && incoming().get('assignee', null) == null
+        && incoming().messages.size() == 1 && incoming().messages[0].by == uid() && incoming().messages[0].admin == false;
+      allow update: if isAdmin() || (signedIn() && data().uid == uid() && ownerReply());
     }
     match /reports/{id} {
-      allow create: if signedIn() && incoming().reporterId == uid();
+      allow create: if signedIn() && incoming().reporterId == uid() && incoming().get('status', 'open') == 'open';
       allow read, update: if isAdmin();
     }
+    // PawSetu Plus payments come from Cloud Functions (buyPlus, renewals);
+    // admins record demo refunds. People see their own.
+    match /payments/{id} {
+      allow read: if signedIn() && (data().uid == uid() || isAdmin());
+      allow create: if isAdmin() && incoming().kind == 'refund' && incoming().demo == true;
+    }
+    // Referrals are made by the redeemReferral function only.
+    match /referrals/{id} {
+      allow read: if signedIn() && (data().referrerId == uid() || data().referredId == uid() || isAdmin());
+    }
+    match /banners/{id} { allow read: if signedIn(); allow write: if isAdmin(); }
 
     // ---------- platform ----------
     match /config/{doc} { allow read: if true; allow write: if isAdmin(); }

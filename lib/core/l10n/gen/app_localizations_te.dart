@@ -9213,8 +9213,8 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String admPaid(String amount) {
-    return '$amount చెల్లించారు';
+  String admTotal(String amount) {
+    return 'మొత్తం $amount';
   }
 
   @override

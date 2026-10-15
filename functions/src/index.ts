@@ -10,6 +10,7 @@ import { getAuth } from 'firebase-admin/auth';
 import { FieldValue, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { newReferralCode } from './phase10';
 
 initializeApp();
 setGlobalOptions({ region: 'asia-south1', maxInstances: 10 });
@@ -53,6 +54,8 @@ export const ensureProfile = onCall(async (req) => {
       role,
       plan: 'free',
       language: String(data.language ?? 'en'),
+      consents: { marketing: false, analytics: true, lostPetAlerts: true },
+      referralCode: newReferralCode(String(data.name ?? req.auth.token.name ?? '')),
       createdAt: FieldValue.serverTimestamp(),
     });
   }
@@ -178,3 +181,4 @@ export * from './phase6';
 export * from './phase7';
 export * from './phase8';
 export * from './phase9';
+export * from './phase10';

@@ -157,7 +157,7 @@
   "admResolveAfter": {"en": "Mark as resolved after sending", "hi": "भेजने के बाद हल हुआ मानें", "te": "పంపిన తర్వాత పరిష్కారమైందిగా గుర్తించండి"},
   "admLinkMissing": {"en": "The linked item can't be found ({type}).", "hi": "जुड़ी हुई चीज़ नहीं मिली ({type})।", "te": "జత చేసిన అంశం దొరకలేదు ({type}).", "ph": {"type": "String"}},
   "admOrderLine": {"en": "{count, plural, =1{1 item} other{{count} items}} from {seller}", "hi": "{seller} से {count} सामान", "te": "{seller} నుండి {count} వస్తువులు", "ph": {"count": "int", "seller": "String"}},
-  "admPaid": {"en": "Paid {amount}", "hi": "{amount} चुकाए", "te": "{amount} చెల్లించారు", "ph": {"amount": "String"}},
+  "admTotal": {"en": "Total {amount}", "hi": "कुल {amount}", "te": "మొత్తం {amount}", "ph": {"amount": "String"}},
   "admRefundDone": {"en": "Refunded {amount} on {date} (demo)", "hi": "{date} को {amount} वापस किए (डेमो)", "te": "{date}న {amount} తిరిగి ఇచ్చారు (డెమో)", "ph": {"amount": "String", "date": "String"}},
   "admRefundButton": {"en": "Refund (demo)", "hi": "पैसे वापस करें (डेमो)", "te": "డబ్బు తిరిగి ఇవ్వండి (డెమో)"},
   "admRefundAmount": {"en": "Refund amount", "hi": "वापसी की रक़म", "te": "తిరిగి ఇచ్చే మొత్తం"},

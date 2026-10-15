@@ -8,7 +8,9 @@ import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../booking/presentation/booking_labels.dart' show bookingStatus;
 import '../../partner/presentation/partner_shell.dart' show roleLabel;
+import '../../shop/presentation/shop_labels.dart' show orderStatusInfo;
 import '../data/admin_repository.dart';
 import '../data/support_repository.dart';
 import '../domain/support.dart';
@@ -276,14 +278,14 @@ class _LinkedItem extends ConsumerWidget {
               Icon(linkTypeIcon(t.linkType), color: context.colors.primary),
               const SizedBox(width: Space.sm),
               Expanded(child: Text(linkTypeLabel(context, t.linkType), style: context.text.titleSmall)),
-              if (d['status'] is String) StatusChip('${d['status']}'),
+              if (d['status'] is String) _linkStatus(context, t.linkType, d['status'] as String),
             ]),
             const SizedBox(height: Space.xs),
             Text(title, style: context.text.bodyMedium),
             Text(
               [
                 if (when != null) Fmt.dateTime(when, context.lang),
-                if (t.linkType != 'chat') l.admPaid(Fmt.inr(paid, context.lang)),
+                if (t.linkType != 'chat') l.admTotal(Fmt.inr(paid, context.lang)),
                 '#${t.linkId}',
               ].join(' · '),
               style: context.text.bodySmall,
@@ -324,4 +326,16 @@ class _LinkedItem extends ConsumerWidget {
     if (!context.mounted) return;
     await showDemoDialog(context, title: l.admRefundDemoTitle, body: l.admRefundDemoBody(Fmt.inr(amount, context.lang), ticket.name));
   }
+}
+
+Widget _linkStatus(BuildContext context, String type, String status) {
+  if (type == 'booking') {
+    final (label, tone) = bookingStatus(context, status);
+    return StatusChip(label, tone: tone);
+  }
+  if (type == 'order') {
+    final (label, tone, icon) = orderStatusInfo(context, status);
+    return StatusChip(label, tone: tone, icon: icon);
+  }
+  return const SizedBox.shrink();
 }

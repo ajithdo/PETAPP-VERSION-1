@@ -2624,7 +2624,7 @@
   "admResolveAfter": "भेजने के बाद हल हुआ मानें",
   "admLinkMissing": "जुड़ी हुई चीज़ नहीं मिली ({type})।",
   "admOrderLine": "{seller} से {count} सामान",
-  "admPaid": "{amount} चुकाए",
+  "admTotal": "कुल {amount}",
   "admRefundDone": "{date} को {amount} वापस किए (डेमो)",
   "admRefundButton": "पैसे वापस करें (डेमो)",
   "admRefundAmount": "वापसी की रक़म",

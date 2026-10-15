@@ -2624,7 +2624,7 @@
   "admResolveAfter": "పంపిన తర్వాత పరిష్కారమైందిగా గుర్తించండి",
   "admLinkMissing": "జత చేసిన అంశం దొరకలేదు ({type}).",
   "admOrderLine": "{seller} నుండి {count} వస్తువులు",
-  "admPaid": "{amount} చెల్లించారు",
+  "admTotal": "మొత్తం {amount}",
   "admRefundDone": "{date}న {amount} తిరిగి ఇచ్చారు (డెమో)",
   "admRefundButton": "డబ్బు తిరిగి ఇవ్వండి (డెమో)",
   "admRefundAmount": "తిరిగి ఇచ్చే మొత్తం",

@@ -198,7 +198,11 @@ class _LimitsTable extends ConsumerWidget {
               await ref.read(adminRepositoryProvider).updateConfig(admin, {'limits.$plan.$key': x}, what: 'limits');
               if (context.mounted) showToast(context, l.admSavedLive);
             },
-            child: Text(v == null ? '–' : (v >= 999 ? l.admUnlimited : Fmt.number(v, context.lang)), textAlign: TextAlign.center),
+            style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 4)),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(v == null ? '–' : (v >= 999 ? l.admUnlimited : Fmt.number(v, context.lang)), textAlign: TextAlign.center, maxLines: 1),
+            ),
           ),
         );
     return PawCard(

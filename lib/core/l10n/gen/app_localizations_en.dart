@@ -9520,8 +9520,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String admPaid(String amount) {
-    return 'Paid $amount';
+  String admTotal(String amount) {
+    return 'Total $amount';
   }
 
   @override

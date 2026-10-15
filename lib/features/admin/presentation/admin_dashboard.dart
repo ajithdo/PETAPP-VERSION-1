@@ -28,6 +28,7 @@ class _AdminDashboardState extends ConsumerState<AdminDashboard> {
     final totals = ref.watch(adminTotalsProvider).value ?? const Totals();
     final days = ref.watch(adminAnalyticsProvider).value ?? const <DayStats>[];
     final periods = groupStats(days, _range);
+    final complete = completePeriods(periods, _range, DateTime.now());
     String label(DateTime d) => switch (_range) {
           StatRange.day => Fmt.dateShort(d, lang),
           StatRange.week => Fmt.dateShort(d, lang),
@@ -68,19 +69,19 @@ class _AdminDashboardState extends ConsumerState<AdminDashboard> {
         ResponsiveGrid(minItemWidth: 420, children: [
           _ChartCard(
             title: l.admChartBookingsOrders,
-            change: changePercent(periods, (d) => d.bookings + d.orders),
+            change: changePercent(complete, (d) => d.bookings + d.orders),
             legend: [(l.admLegendBookings, context.colors.primary), (l.admLegendOrders, context.paw.accent)],
             child: _Bars(periods: periods, label: label, series: [((d) => d.bookings.toDouble(), context.colors.primary), ((d) => d.orders.toDouble(), context.paw.accent)]),
           ),
           _ChartCard(
             title: l.admChartMoney,
-            change: changePercent(periods, (d) => d.orderValue),
+            change: changePercent(complete, (d) => d.orderValue),
             legend: [(l.admLegendOrderValue, context.colors.primary), (l.admLegendCommission, context.paw.success)],
             child: _Lines(periods: periods, label: label, series: [((d) => d.orderValue.toDouble(), context.colors.primary), ((d) => d.commission.toDouble(), context.paw.success)]),
           ),
           _ChartCard(
             title: l.admChartGrowth,
-            change: changePercent(periods, (d) => d.users),
+            change: changePercent(complete, (d) => d.users),
             legend: [(l.admLegendUsers, context.colors.primary), (l.admLegendPets, context.paw.accent), (l.admLegendPlus, context.paw.warning)],
             child: _Bars(periods: periods, label: label, series: [
               ((d) => d.users.toDouble(), context.colors.primary),
@@ -90,7 +91,7 @@ class _AdminDashboardState extends ConsumerState<AdminDashboard> {
           ),
           _ChartCard(
             title: l.admChartSos,
-            change: changePercent(periods, (d) => d.sos),
+            change: changePercent(complete, (d) => d.sos),
             legend: [(l.admLegendSos, context.paw.sos)],
             child: _Bars(periods: periods, label: label, series: [((d) => d.sos.toDouble(), context.paw.sos)]),
           ),

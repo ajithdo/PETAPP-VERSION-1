@@ -44,7 +44,10 @@ class PortalScaffold extends ConsumerWidget {
       context.go(key == 'dashboard' ? basePath : '$basePath/$key');
     }
 
+    // Keyed by section: opening a page from a web address or the browser's
+    // back button builds a fresh menu with the right item highlighted.
     final nav = NavigationDrawer(
+      key: ValueKey('nav-$current'),
       selectedIndex: idx,
       onDestinationSelected: (i) {
         if (!wide) Navigator.of(context).pop();

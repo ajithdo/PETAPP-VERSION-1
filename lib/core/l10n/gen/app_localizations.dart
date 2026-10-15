@@ -15844,11 +15844,11 @@ abstract class AppLocalizations {
   /// **'{count, plural, =1{1 item} other{{count} items}} from {seller}'**
   String admOrderLine(int count, String seller);
 
-  /// No description provided for @admPaid.
+  /// No description provided for @admTotal.
   ///
   /// In en, this message translates to:
-  /// **'Paid {amount}'**
-  String admPaid(String amount);
+  /// **'Total {amount}'**
+  String admTotal(String amount);
 
   /// No description provided for @admRefundDone.
   ///

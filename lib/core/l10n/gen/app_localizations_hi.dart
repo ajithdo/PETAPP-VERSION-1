@@ -9191,8 +9191,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String admPaid(String amount) {
-    return '$amount चुकाए';
+  String admTotal(String amount) {
+    return 'कुल $amount';
   }
 
   @override

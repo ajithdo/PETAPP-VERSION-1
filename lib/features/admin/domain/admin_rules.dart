@@ -80,6 +80,18 @@ List<DayStats> groupStats(List<DayStats> days, StatRange range) {
   return list.length <= keep ? list : list.sublist(list.length - keep);
 }
 
+/// Periods that have fully ended by [today]. The current week or month is
+/// still filling up, so comparing it would look like a drop.
+List<DayStats> completePeriods(List<DayStats> periods, StatRange range, DateTime today) {
+  final t = DateTime(today.year, today.month, today.day);
+  bool done(DateTime start) => switch (range) {
+        StatRange.day => start.isBefore(t),
+        StatRange.week => !DateTime(start.year, start.month, start.day + 7).isAfter(t),
+        StatRange.month => !DateTime(start.year, start.month + 1).isAfter(t),
+      };
+  return [for (final p in periods) if (done(p.date)) p];
+}
+
 /// Change between the last two periods, in percent (null when unknown).
 int? changePercent(List<DayStats> periods, int Function(DayStats) value) {
   if (periods.length < 2) return null;
