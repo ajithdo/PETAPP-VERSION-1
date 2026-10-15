@@ -4,6 +4,8 @@ rules_version = '2';
 // Roles come from the "role" custom claim set by Cloud Functions
 // (ensureProfile / setUserRole), never from data the client can write.
 // Prices, limits and commissions are checked again in Cloud Functions.
+// Tests: functions/src/rules*.test.ts (rules_matrix.test.ts covers every
+// collection for every role).
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -13,9 +15,19 @@ service cloud.firestore {
     function role() { return signedIn() ? request.auth.token.get('role', 'owner') : null; }
     function isAdmin() { return role() == 'admin'; }
     function isPartner() { return role() in ['vet', 'clinic_admin', 'groomer', 'trainer', 'boarder', 'walker', 'seller']; }
+    // Vets and clinics may see pets' vaccines and health history.
+    function isClinical() { return role() in ['vet', 'clinic_admin']; }
     function data() { return resource.data; }
     function incoming() { return request.resource.data; }
     function unchanged(fields) { return !incoming().diff(data()).affectedKeys().hasAny(fields); }
+    function changesOnly(fields) { return incoming().diff(data()).affectedKeys().hasOnly(fields); }
+    function booking(id) { return get(/databases/$(database)/documents/bookings/$(id)).data; }
+    function conversation(id) { return get(/databases/$(database)/documents/conversations/$(id)).data; }
+    function consultationDoc(id) { return get(/databases/$(database)/documents/consultations/$(id)).data; }
+    function orderDoc(id) { return get(/databases/$(database)/documents/orders/$(id)).data; }
+    function clinicDoc(id) { return get(/databases/$(database)/documents/clinics/$(id)).data; }
+    function providerDoc(id) { return get(/databases/$(database)/documents/providers/$(id)).data; }
+    function vetDoc(id) { return get(/databases/$(database)/documents/vets/$(id)).data; }
 
     function pet(petId) { return get(/databases/$(database)/documents/pets/$(petId)).data; }
     function memberRole(p) {
@@ -28,14 +40,24 @@ service cloud.firestore {
     function canLog(petId) { return signedIn() && memberRole(pet(petId)) in ['owner', 'coowner', 'carer', 'viewer']; }
     function canEditPet(petId) { return signedIn() && memberRole(pet(petId)) in ['owner', 'coowner']; }
 
+    // Partner listings: only admins (and Cloud Functions) set these.
+    function listingFieldsKept() {
+      return unchanged(['status', 'rating', 'reviewCount', 'commissionPercent', 'featured', 'reviewReason', 'reviewedAt', 'reviewedBy']);
+    }
+    function ownsClinic(clinicId) { return signedIn() && clinicId is string && get(/databases/$(database)/documents/clinics/$(clinicId)).data.get('ownerUid', null) == uid(); }
+    function ownsSeller(sellerId) { return signedIn() && sellerId is string && get(/databases/$(database)/documents/sellers/$(sellerId)).data.get('uid', null) == uid(); }
+
     // ---------- users ----------
     match /users/{userId} {
-      allow read: if signedIn() && (uid() == userId || isAdmin() || isPartner());
+      // Partners open a customer's profile by id (name, language); only
+      // admins list or search people.
+      allow get: if signedIn() && (uid() == userId || isAdmin() || isPartner());
+      allow list: if isAdmin();
       // Users edit their own profile (consents, auto-renew, account deletion)
       // but never their role, plan, trial, suspension or referral code: the
       // admin panel and Cloud Functions set those.
       allow create: if signedIn() && uid() == userId && incoming().role == 'owner' && incoming().plan == 'free'
-        && !incoming().keys().hasAny(['suspended', 'trialEndsAt', 'trialUsedAt', 'planRenewsAt', 'planPeriod']);
+        && !incoming().keys().hasAny(['suspended', 'suspendReason', 'trialEndsAt', 'trialUsedAt', 'planRenewsAt', 'planPeriod', 'partnerId', 'referralCode']);
       allow update: if signedIn() && ((uid() == userId && unchanged(['role', 'plan', 'planRenewsAt', 'partnerId', 'suspended', 'suspendReason',
         'trialEndsAt', 'trialUsedAt', 'planPeriod', 'referralCode'])) || isAdmin());
       allow delete: if isAdmin();
@@ -50,14 +72,24 @@ service cloud.firestore {
         (memberRole(data()) == 'owner') ||
         (memberRole(data()) == 'coowner' && unchanged(['ownerId', 'memberIds', 'members'])) ||
         // Carers may also mark the pet lost or found (Phase 9).
-        (memberRole(data()) == 'carer' && incoming().diff(data()).affectedKeys().hasOnly(['foodOpenedAt', 'weightKg', 'lost'])));
+        (memberRole(data()) == 'carer' && changesOnly(['foodOpenedAt', 'weightKg', 'lost'])));
       allow delete: if signedIn() && data().ownerId == uid();
     }
-    match /petInvites/{id} {
-      allow read: if signedIn();
-      allow create: if signedIn() && canEditPet(incoming().petId);
-      allow update: if signedIn();
-      allow delete: if signedIn() && canEditPet(data().petId);
+    // Family invites. The id is the secret token in the invite link, so only
+    // people with the link, the pet's owners and the invited email or phone
+    // can see one. Joining runs in the acceptPetInvite function, which adds
+    // the person to the pet; nobody becomes the owner through an invite.
+    match /petInvites/{token} {
+      function myContacts() {
+        return [request.auth.token.get('email', '').lower(), request.auth.token.get('phone_number', '')];
+      }
+      allow get: if signedIn();
+      allow list: if signedIn() && (canEditPet(resource.data.petId) || resource.data.contact in myContacts());
+      allow create: if canEditPet(incoming().petId) && incoming().invitedBy == uid() && incoming().token == token
+        && incoming().status == 'pending' && incoming().role in ['coowner', 'carer', 'viewer'];
+      // The invited person may decline.
+      allow update: if signedIn() && data().status == 'pending' && changesOnly(['status']) && incoming().status == 'declined';
+      allow delete: if canEditPet(data().petId);
     }
     match /activity/{id} {
       allow read: if isPetMember(resource.data.petId);
@@ -65,30 +97,59 @@ service cloud.firestore {
     }
 
     // ---------- routine and health ----------
+    // Records never move to another pet.
     match /logs/{id} {
       allow read: if isPetMember(resource.data.petId) || isAdmin();
       allow create: if canLog(incoming().petId) && incoming().byUid == uid();
-      allow update, delete: if canCare(data().petId);
+      allow update: if canCare(data().petId) && unchanged(['petId', 'byUid']);
+      allow delete: if canCare(data().petId);
     }
-    match /vaccinations/{id} { allow read: if isPetMember(resource.data.petId) || isPartner(); allow write: if canCare(request.resource == null ? resource.data.petId : incoming().petId); }
-    match /medicines/{id} { allow read: if isPetMember(resource.data.petId); allow write: if canCare(request.resource == null ? resource.data.petId : incoming().petId); }
+    match /vaccinations/{id} {
+      allow read: if isPetMember(resource.data.petId) || isClinical() || isAdmin();
+      allow create: if canCare(incoming().petId);
+      allow update: if canCare(data().petId) && unchanged(['petId']);
+      allow delete: if canCare(data().petId);
+    }
+    match /medicines/{id} {
+      allow read: if isPetMember(resource.data.petId);
+      allow create: if canCare(incoming().petId);
+      allow update: if canCare(data().petId) && unchanged(['petId']);
+      allow delete: if canCare(data().petId);
+    }
     match /medicineLogs/{id} { allow read: if isPetMember(resource.data.petId); allow create: if canCare(incoming().petId); }
-    match /healthEvents/{id} { allow read: if isPetMember(resource.data.petId) || isPartner(); allow write: if canCare(request.resource == null ? resource.data.petId : incoming().petId); }
+    match /healthEvents/{id} {
+      allow read: if isPetMember(resource.data.petId) || isClinical() || isAdmin();
+      allow create: if canCare(incoming().petId);
+      allow update: if canCare(data().petId) && unchanged(['petId']);
+      allow delete: if canCare(data().petId);
+    }
     match /reminders/{id} {
       allow read, delete: if signedIn() && data().ownerId == uid();
-      allow create, update: if signedIn() && incoming().ownerId == uid();
+      allow create: if signedIn() && incoming().ownerId == uid();
+      allow update: if signedIn() && data().ownerId == uid() && incoming().ownerId == uid();
     }
     match /notifications/{id} {
       allow read, delete: if signedIn() && data().uid == uid();
-      allow update: if signedIn() && data().uid == uid() && incoming().diff(data()).affectedKeys().hasOnly(['read']);
-      allow create: if signedIn();
+      allow update: if signedIn() && data().uid == uid() && changesOnly(['read']);
+      // The app notifies you yourself, the other people on a booking or in
+      // a chat. Everything else comes from Cloud Functions.
+      allow create: if signedIn() && incoming().read == false && (
+        incoming().uid == uid() || isAdmin()
+        || (incoming().get('bookingId', null) is string && bookingPeople(incoming().bookingId).hasAll([uid(), incoming().uid]))
+        || (incoming().get('conversationId', null) is string
+            && conversation(incoming().conversationId).participantIds.hasAll([uid(), incoming().uid])));
+    }
+    function bookingPeople(bookingId) {
+      let b = booking(bookingId);
+      return [b.ownerId].concat(b.get('partnerUids', []));
     }
 
     // ---------- clinics, providers, bookings ----------
     match /clinics/{id} {
       allow read: if resource.data.status == 'approved' || isAdmin() || (signedIn() && data().ownerUid == uid());
-      allow create: if signedIn() && incoming().status == 'pending' && incoming().ownerUid == uid();
-      allow update: if isAdmin() || (signedIn() && data().ownerUid == uid() && unchanged(['status', 'rating', 'reviewCount']));
+      allow create: if signedIn() && incoming().status == 'pending' && incoming().ownerUid == uid()
+        && !incoming().keys().hasAny(['commissionPercent', 'featured']);
+      allow update: if isAdmin() || (signedIn() && data().ownerUid == uid() && listingFieldsKept() && unchanged(['ownerUid']));
     }
     // Partner sign-up: the applicant creates it; admins approve (Phase 10).
     match /partnerApplications/{appUid} {
@@ -96,47 +157,145 @@ service cloud.firestore {
       allow create: if signedIn() && uid() == appUid && incoming().status == 'pending';
       allow update: if isAdmin();
     }
+    // A clinic admin adds vets to their own clinic (pending until an admin
+    // approves them) and edits them; a vet edits their own profile.
     match /vets/{id} {
       allow read: if signedIn();
-      allow write: if isAdmin() || (signedIn() && role() == 'clinic_admin');
+      allow create: if isAdmin() || (role() == 'clinic_admin' && ownsClinic(incoming().clinicId) && incoming().status == 'pending'
+        && incoming().get('rating', 0) == 0 && incoming().get('reviewCount', 0) == 0);
+      allow update: if isAdmin() || (signedIn() && (ownsClinic(data().clinicId) || data().get('uid', null) == uid())
+        && listingFieldsKept() && unchanged(['clinicId', 'uid']));
+      allow delete: if isAdmin() || ownsClinic(data().clinicId);
     }
     match /providers/{id} {
       allow read: if resource.data.status == 'approved' || isAdmin() || (signedIn() && data().uid == uid());
-      allow create: if signedIn() && incoming().status == 'pending' && incoming().uid == uid();
-      allow update: if isAdmin() || (signedIn() && data().uid == uid() && unchanged(['status', 'rating', 'reviewCount']));
+      allow create: if signedIn() && incoming().status == 'pending' && incoming().uid == uid()
+        && !incoming().keys().hasAny(['commissionPercent', 'featured']);
+      allow update: if isAdmin() || (signedIn() && data().uid == uid() && listingFieldsKept() && unchanged(['uid']));
     }
-    // Bookings are created and priced by the createBooking function.
+    // Bookings are created and priced by the createBooking function. The pet
+    // parent accepts a suggested time, reschedules or cancels; the partner
+    // answers requests, completes visits and posts updates. Money, people
+    // and the pet never change from the app, and a refund is never more
+    // than what was paid.
     match /bookings/{id} {
+      function refundOk() {
+        let r = incoming().get('refund', 0);
+        return r == null || (r is number && r >= 0 && r <= data().get('total', 0));
+      }
+      function ownerChange() {
+        return data().ownerId == uid()
+          && changesOnly(['status', 'start', 'end', 'refund', 'cancelledBy', 'reviewed'])
+          && (incoming().status == data().status
+            || (data().status == 'suggested' && incoming().status == 'confirmed')
+            || (incoming().status == 'cancelled' && incoming().cancelledBy == 'owner')
+            || (data().status == 'pending' && incoming().status == 'expired'));
+      }
+      function partnerChange() {
+        return uid() in data().get('partnerUids', [])
+          && changesOnly(['status', 'start', 'end', 'respondBy', 'suggestedTime', 'refund', 'cancelledBy', 'paymentStatus', 'updates'])
+          && (unchanged(['cancelledBy']) || incoming().cancelledBy == 'partner')
+          && (unchanged(['paymentStatus']) || incoming().paymentStatus == 'paid');
+      }
       allow read: if signedIn() && (data().ownerId == uid() || uid() in data().get('partnerUids', []) || isAdmin() || isPetMember(data().petId));
-      allow update: if signedIn() && (data().ownerId == uid() || uid() in data().get('partnerUids', []) || isAdmin())
-        && unchanged(['price', 'platformFee', 'commission', 'payout', 'ownerId']);
+      allow update: if signedIn()
+        && unchanged(['price', 'travelFee', 'platformFee', 'discount', 'total', 'commission', 'payout', 'ownerId', 'partnerUids', 'providerId', 'petId', 'kind'])
+        && refundOk()
+        && (isAdmin() || ownerChange() || partnerChange());
     }
+    // Reviews are verified: after your own completed booking, delivered
+    // order or tele-vet chat. They start visible without a reply; only the
+    // business being reviewed replies, and only admins hide reviews.
     match /reviews/{id} {
+      function verified(r) {
+        return (r.targetType in ['clinic', 'provider'] && r.bookingId is string
+            && booking(r.bookingId).ownerId == uid()
+            && booking(r.bookingId).status == 'completed'
+            && booking(r.bookingId).providerId == r.targetId)
+          || (r.targetType == 'product' && r.orderId is string
+            && orderDoc(r.orderId).ownerId == uid()
+            && orderDoc(r.orderId).status == 'delivered'
+            && orderDoc(r.orderId).get('sellerId', null) == r.get('sellerId', null))
+          || (r.targetType == 'vet' && r.consultationId is string
+            && consultationDoc(r.consultationId).ownerId == uid()
+            && consultationDoc(r.consultationId).get('vetId', null) == r.targetId);
+      }
+      function ownsTarget(r) {
+        return (r.targetType == 'clinic' && clinicDoc(r.targetId).get('ownerUid', null) == uid())
+          || (r.targetType == 'provider' && providerDoc(r.targetId).get('uid', null) == uid())
+          || (r.targetType == 'vet' && (vetDoc(r.targetId).get('uid', null) == uid() || ownsClinic(vetDoc(r.targetId).get('clinicId', null))))
+          || (r.targetType == 'product' && ownsSeller(r.get('sellerId', null)));
+      }
       allow read: if true;
-      allow create: if signedIn() && incoming().ownerId == uid();
-      allow update: if isAdmin() || (signedIn() && isPartner() && incoming().diff(data()).affectedKeys().hasOnly(['reply', 'replyAt']));
+      allow create: if signedIn() && incoming().ownerId == uid() && incoming().get('status', 'visible') == 'visible'
+        && incoming().get('reply', null) == null && incoming().rating is number && incoming().rating >= 1 && incoming().rating <= 5
+        && verified(incoming());
+      allow update: if isAdmin() || (signedIn() && isPartner() && changesOnly(['reply', 'replyAt']) && ownsTarget(data()));
     }
 
     // ---------- messaging and tele-vet ----------
     match /conversations/{id} {
-      allow read, update: if signedIn() && (uid() in resource.data.participantIds || isAdmin());
-      allow create: if signedIn() && uid() in incoming().participantIds;
+      // A chat about a booking holds only the people on the booking; an
+      // enquiry is between one pet parent and one business; Ask PawSetu is
+      // yours alone. Tele-vet chats come from the startConsultation function.
+      function bookingChatOk() {
+        let b = booking(incoming().bookingId);
+        return id == 'chat_' + incoming().bookingId
+          && (uid() == b.ownerId || uid() in b.get('partnerUids', []))
+          && incoming().ownerId == b.ownerId
+          && incoming().participantIds.hasOnly([b.ownerId, 'p_' + b.providerId].concat(b.get('partnerUids', [])));
+      }
+      function enquiryOk() {
+        let place = incoming().providerKind == 'clinic' ? clinicDoc(incoming().providerId).get('ownerUid', null)
+          : providerDoc(incoming().providerId).get('uid', null);
+        return id == 'enq_' + incoming().providerId + '_' + uid()
+          && incoming().ownerId == uid() && incoming().participantIds.size() == 2 && incoming().participantIds[0] == uid()
+          && incoming().participantIds[1] in ['p_' + incoming().providerId, place];
+      }
+      allow read: if signedIn() && (uid() in resource.data.participantIds || isAdmin());
+      allow create: if signedIn() && uid() in incoming().participantIds && (
+        (incoming().type == 'assistant' && id == 'ai_' + uid() && incoming().participantIds == [uid()] && incoming().ownerId == uid())
+        || (incoming().type == 'enquiry' && enquiryOk())
+        || (incoming().type == 'chat' && bookingChatOk()));
+      // People in the chat update the preview, unread counts, typing, mute
+      // and their own block, never who is in it or what kind of chat it is.
+      allow update: if isAdmin() || (signedIn() && uid() in data().participantIds
+        && changesOnly(['lastMessage', 'lastType', 'lastSenderId', 'lastAt', 'typing', 'unread', 'muted', 'blockedBy'])
+        && incoming().get('blockedBy', []).removeAll([uid()]).toSet() == data().get('blockedBy', []).removeAll([uid()]).toSet());
     }
     match /messages/{id} {
-      allow read: if signedIn() && (uid() in get(/databases/$(database)/documents/conversations/$(resource.data.conversationId)).data.participantIds || isAdmin());
-      // Tele-vet messages go through the sendTeleVetMessage function (limits).
-      allow create: if signedIn() && incoming().senderId == uid()
-        && uid() in get(/databases/$(database)/documents/conversations/$(incoming().conversationId)).data.participantIds
-        && get(/databases/$(database)/documents/conversations/$(incoming().conversationId)).data.type != 'televet';
-      allow update: if signedIn() && incoming().diff(data()).affectedKeys().hasOnly(['readBy']);
+      function chat(cid) { return conversation(cid); }
+      allow read: if signedIn() && (uid() in chat(resource.data.conversationId).participantIds || isAdmin());
+      // You send as yourself (or the "chat started" note) into a chat you
+      // are in that nobody blocked. Tele-vet messages go through the
+      // sendTeleVetMessage function (limits).
+      allow create: if signedIn()
+        && (incoming().senderId == uid() || (incoming().senderId == 'system' && incoming().type == 'system' && incoming().event == 'booking_chat'))
+        && uid() in chat(incoming().conversationId).participantIds
+        && chat(incoming().conversationId).type != 'televet'
+        && chat(incoming().conversationId).get('blockedBy', []).size() == 0;
+      // Reading a message only adds you to readBy.
+      allow update: if signedIn() && uid() in chat(data().conversationId).participantIds
+        && changesOnly(['readBy'])
+        && incoming().readBy.toSet() == data().get('readBy', []).toSet().union([uid()].toSet());
     }
+    // Vets see the waiting queue and their own consultations; the assigned
+    // vet keeps notes, the pet parent rates. Start, accept and end run in
+    // Cloud Functions.
     match /consultations/{id} {
-      allow read: if signedIn() && (data().ownerId == uid() || role() == 'vet' || isAdmin());
-      allow update: if signedIn() && (role() == 'vet' || (data().ownerId == uid() && incoming().diff(data()).affectedKeys().hasOnly(['rating', 'ratingText'])));
+      allow read: if signedIn() && (data().ownerId == uid() || isAdmin()
+        || (role() == 'vet' && (data().status == 'queued' || data().get('vetUid', null) == uid())));
+      allow update: if signedIn() && (
+        (role() == 'vet' && data().get('vetUid', null) == uid() && changesOnly(['privateNotes', 'notesAt', 'recommendation', 'prescriptionId']))
+        || (data().ownerId == uid() && changesOnly(['rating', 'ratingText'])));
     }
+    // Only the vet on the consultation writes its prescription.
     match /prescriptions/{id} {
-      allow read: if signedIn() && (isPetMember(resource.data.petId) || role() == 'vet' || isAdmin());
-      allow create: if signedIn() && role() == 'vet';
+      function consultation() { return consultationDoc(incoming().consultationId); }
+      allow read: if signedIn() && (isPetMember(resource.data.petId) || data().get('vetUid', null) == uid() || isAdmin());
+      allow create: if signedIn() && role() == 'vet' && incoming().vetUid == uid() && incoming().consultationId is string
+        && consultation().get('vetUid', null) == uid()
+        && incoming().ownerId == consultation().ownerId && incoming().petId == consultation().petId;
     }
 
     // ---------- vault and album ----------
@@ -159,7 +318,7 @@ service cloud.firestore {
         && incoming().revoked == false && incoming().accessLog.size() == 0;
       // Revoking is final.
       allow update: if signedIn() && data().ownerId == uid() && incoming().revoked == true
-        && incoming().diff(data()).affectedKeys().hasOnly(['revoked', 'revokedAt']);
+        && changesOnly(['revoked', 'revokedAt']);
     }
     match /insurance/{id} {
       allow read: if signedIn() && isPetMember(data().petId);
@@ -175,19 +334,21 @@ service cloud.firestore {
     }
 
     // ---------- marketplace and money ----------
-    // Sellers manage only their own products and never their ratings.
-    function ownsSeller(sellerId) { return sellerId != null && get(/databases/$(database)/documents/sellers/$(sellerId)).data.uid == uid(); }
+    // Sellers manage only their own products and never their ratings or
+    // the "featured" spot.
     match /products/{id} {
       allow read: if true;
       allow create: if isAdmin() || (signedIn() && role() == 'seller' && ownsSeller(incoming().sellerId) && incoming().get('partnerId', null) == null
-        && incoming().get('rating', 0) == 0 && incoming().get('reviewCount', 0) == 0);
-      allow update: if isAdmin() || (signedIn() && role() == 'seller' && ownsSeller(data().sellerId) && unchanged(['sellerId', 'partnerId', 'rating', 'reviewCount']));
+        && incoming().get('rating', 0) == 0 && incoming().get('reviewCount', 0) == 0 && incoming().get('featured', false) == false);
+      allow update: if isAdmin() || (signedIn() && role() == 'seller' && ownsSeller(data().sellerId)
+        && unchanged(['sellerId', 'partnerId', 'rating', 'reviewCount', 'featured']));
       allow delete: if isAdmin();
     }
     match /sellers/{id} {
       allow read: if true;
-      allow create: if signedIn() && incoming().status == 'pending' && incoming().uid == uid();
-      allow update: if isAdmin() || (signedIn() && data().uid == uid() && unchanged(['status']));
+      allow create: if signedIn() && incoming().status == 'pending' && incoming().uid == uid()
+        && !incoming().keys().hasAny(['commissionPercent', 'featured']);
+      allow update: if isAdmin() || (signedIn() && data().uid == uid() && listingFieldsKept() && unchanged(['uid']));
     }
     match /partners/{id} { allow read: if true; allow write: if isAdmin(); }
     // Orders are created by the createOrder function, which checks prices,
@@ -207,13 +368,18 @@ service cloud.firestore {
       allow create: if signedIn() && incoming().uid == uid();
       allow read: if isAdmin();
     }
+    // Private to their owner; an update can't take over someone else's.
     match /subscriptions/{id} {
       allow read, delete: if signedIn() && data().ownerId == uid();
-      allow create, update: if signedIn() && incoming().ownerId == uid();
+      allow create: if signedIn() && incoming().ownerId == uid();
+      allow update: if signedIn() && data().ownerId == uid() && incoming().ownerId == uid();
     }
+    // Booking expenses for the pet parent are kept in step with the booking
+    // by the syncBookingExpense function.
     match /expenses/{id} {
       allow read, delete: if signedIn() && data().ownerId == uid();
-      allow create, update: if signedIn() && incoming().ownerId == uid();
+      allow create: if signedIn() && incoming().ownerId == uid();
+      allow update: if signedIn() && data().ownerId == uid() && incoming().ownerId == uid();
     }
     match /carts/{userId} { allow read, write: if signedIn() && uid() == userId; }
     match /coupons/{code} { allow read: if signedIn(); allow write: if isAdmin(); }
@@ -226,7 +392,7 @@ service cloud.firestore {
       // up rename it, change the safe zone or remove it. The pet never changes.
       allow update: if isPetMember(data().petId)
         && unchanged(['petId', 'ownerId', 'type', 'serial', 'pairedAt', 'pairedBy'])
-        && (canCare(data().petId) || incoming().diff(data()).affectedKeys().hasOnly(['data']));
+        && (canCare(data().petId) || changesOnly(['data']));
       allow delete: if canCare(data().petId);
     }
     match /sosLogs/{id} {
@@ -243,7 +409,7 @@ service cloud.firestore {
       allow create: if canCare(incoming().petId) && incoming().createdBy == uid() && incoming().ownerId == pet(incoming().petId).ownerId
         && incoming().status == 'lost' && incoming().alertsSent == 0 && incoming().sightings.size() == 0;
       allow update: if canCare(data().petId)
-        && incoming().diff(data()).affectedKeys().hasOnly(['status', 'foundAt', 'note', 'area'])
+        && changesOnly(['status', 'foundAt', 'note', 'area'])
         && incoming().status in ['lost', 'found'];
     }
     // Help and complaints: the person opens a ticket with their first
@@ -252,7 +418,7 @@ service cloud.firestore {
     match /tickets/{id} {
       function ownerReply() {
         let n = data().messages.size();
-        return incoming().diff(data()).affectedKeys().hasOnly(['messages', 'status', 'updatedAt'])
+        return changesOnly(['messages', 'status', 'updatedAt'])
           && incoming().messages.size() == n + 1
           && incoming().messages[0:n] == data().messages
           && incoming().messages[n].by == uid() && incoming().messages[n].admin == false
@@ -282,6 +448,8 @@ service cloud.firestore {
 
     // ---------- platform ----------
     match /config/{doc} { allow read: if true; allow write: if isAdmin(); }
+    // Demo Outbox: every simulated SMS, WhatsApp, email and push. Only
+    // admins read it.
     match /outbox/{id} { allow read: if isAdmin(); allow create: if signedIn(); }
     match /auditLog/{id} { allow read: if isAdmin(); allow create: if isAdmin(); }
     match /analyticsDaily/{id} { allow read: if isAdmin(); }

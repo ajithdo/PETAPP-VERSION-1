@@ -83,12 +83,20 @@ class BookingRepository {
 
   Stream<Booking?> watchOne(String id) => _col.doc(id).snapshots().map((d) => d.exists ? Booking(d.id, d.data()!) : null);
 
+  /// The person's language. With Firebase a pet parent can't open a
+  /// partner's profile, so their notification falls back to English.
   Future<AppLocalizations> _lang(String uid) async {
-    final u = await _db.collection('users').doc(uid).get();
-    return lookupAppLocalizations(Locale((u.data()?['language'] as String?) ?? 'en'));
+    try {
+      final u = await _db.collection('users').doc(uid).get();
+      return lookupAppLocalizations(Locale((u.data()?['language'] as String?) ?? 'en'));
+    } catch (_) {
+      return lookupAppLocalizations(const Locale('en'));
+    }
   }
 
-  Future<void> _notify(String uid, String Function(AppLocalizations l) title, String link) async {
+  /// Tells the other side of booking [bookingId] (the rules check that both
+  /// people are on it).
+  Future<void> _notify(String uid, String bookingId, String Function(AppLocalizations l) title, String link) async {
     final l = await _lang(uid);
     await _db.collection('notifications').add({
       'uid': uid,
@@ -96,10 +104,15 @@ class BookingRepository {
       'body': '',
       'type': 'bookings',
       'link': link,
+      'bookingId': bookingId,
       'read': false,
       'createdAt': DateTime.now(),
     });
   }
+
+  /// With Firebase the syncBookingExpense function keeps the pet parent's
+  /// expense in step with the booking; the standalone demo does it here.
+  bool get _standalone => functions == null;
 
   Future<List<String>> _partnerUids(Place place, String? vetId) async {
     final out = <String>{};
@@ -149,11 +162,9 @@ class BookingRepository {
         'photos': photos,
       });
       final id = res.data['id'] as String;
-      final total = service.price + (homeVisit ? place.homeVisitFee : 0);
-      if (paidOnline) await _expense(owner.uid, pet.id, place.kind, total, id, serviceName, start);
       final partners = await _partnerUids(place, vetId);
       for (final uid in partners) {
-        await _notify(uid, (l) => service.mode == 'instant' ? l.ntfNewBooking(pet.name, Fmt.dateTime(start, l.localeName)) : l.ntfNewRequest(pet.name), '/partner/requests');
+        await _notify(uid, id, (l) => service.mode == 'instant' ? l.ntfNewBooking(pet.name, Fmt.dateTime(start, l.localeName)) : l.ntfNewRequest(pet.name), '/partner/requests');
       }
       return id;
     }
@@ -209,7 +220,7 @@ class BookingRepository {
     });
     if (paidOnline) await _expense(owner.uid, pet.id, place.kind, p.total, ref.id, serviceName, start);
     for (final uid in partners) {
-      await _notify(uid, (l) => instant ? l.ntfNewBooking(pet.name, Fmt.dateTime(start, l.localeName)) : l.ntfNewRequest(pet.name), '/partner/requests');
+      await _notify(uid, ref.id, (l) => instant ? l.ntfNewBooking(pet.name, Fmt.dateTime(start, l.localeName)) : l.ntfNewRequest(pet.name), '/partner/requests');
     }
     return ref.id;
   }
@@ -230,39 +241,39 @@ class BookingRepository {
 
   Future<void> accept(Booking b, DateTime at) async {
     await _col.doc(b.id).update({'status': 'confirmed', 'start': at, 'end': at.add(b.end.difference(b.start)), 'respondBy': null});
-    await _notify(b.ownerId, (l) => l.ntfAccepted(b.providerName, Fmt.dateTime(at, l.localeName)), '/book/bookings/${b.id}');
+    await _notify(b.ownerId, b.id, (l) => l.ntfAccepted(b.providerName, Fmt.dateTime(at, l.localeName)), '/book/bookings/${b.id}');
   }
 
   Future<void> decline(Booking b) async {
     await _col.doc(b.id).update({'status': 'declined', 'refund': b.paymentStatus == 'paid' ? b.total : 0});
-    await _db.collection('expenses').doc('exp_${b.id}').delete();
-    await _notify(b.ownerId, (l) => l.ntfDeclined(b.providerName), '/book/bookings/${b.id}');
+    if (_standalone) await _db.collection('expenses').doc('exp_${b.id}').delete();
+    await _notify(b.ownerId, b.id, (l) => l.ntfDeclined(b.providerName), '/book/bookings/${b.id}');
   }
 
   Future<void> suggest(Booking b, DateTime at) async {
     await _col.doc(b.id).update({'status': 'suggested', 'suggestedTime': at});
-    await _notify(b.ownerId, (l) => l.ntfSuggested(b.providerName, Fmt.dateTime(at, l.localeName)), '/book/bookings/${b.id}');
+    await _notify(b.ownerId, b.id, (l) => l.ntfSuggested(b.providerName, Fmt.dateTime(at, l.localeName)), '/book/bookings/${b.id}');
   }
 
   Future<void> acceptSuggestion(Booking b) async {
     final at = b.suggestedTime!;
     await _col.doc(b.id).update({'status': 'confirmed', 'start': at, 'end': at.add(b.end.difference(b.start))});
     for (final uid in b.partnerUids) {
-      await _notify(uid, (l) => l.ntfNewBooking(b.petName, Fmt.dateTime(at, l.localeName)), '/partner/calendar');
+      await _notify(uid, b.id, (l) => l.ntfNewBooking(b.petName, Fmt.dateTime(at, l.localeName)), '/partner/calendar');
     }
   }
 
   Future<int> cancel(Booking b, {required int cancellationHours, required bool byOwner}) async {
     final refund = b.paymentStatus == 'paid' ? refundAmount(paid: b.total, start: b.start, now: DateTime.now(), cancellationHours: cancellationHours) : 0;
     await _col.doc(b.id).update({'status': 'cancelled', 'refund': refund, 'cancelledBy': byOwner ? 'owner' : 'partner'});
-    if (refund > 0) {
+    if (_standalone && refund > 0) {
       await _db.collection('expenses').doc('exp_${b.id}').update({'amount': b.total - refund});
-    } else if (b.paymentStatus != 'paid') {
+    } else if (_standalone && b.paymentStatus != 'paid') {
       await _db.collection('expenses').doc('exp_${b.id}').delete();
     }
     final targets = byOwner ? b.partnerUids : [b.ownerId];
     for (final uid in targets) {
-      await _notify(uid, (l) => l.ntfCancelled(b.petName, Fmt.dateTime(b.start, l.localeName)), byOwner ? '/partner/calendar' : '/book/bookings/${b.id}');
+      await _notify(uid, b.id, (l) => l.ntfCancelled(b.petName, Fmt.dateTime(b.start, l.localeName)), byOwner ? '/partner/calendar' : '/book/bookings/${b.id}');
     }
     return refund;
   }
@@ -270,7 +281,7 @@ class BookingRepository {
   Future<void> reschedule(Booking b, DateTime at) async {
     await _col.doc(b.id).update({'start': at, 'end': at.add(b.end.difference(b.start))});
     for (final uid in b.partnerUids) {
-      await _notify(uid, (l) => l.ntfRescheduled(b.petName, Fmt.dateTime(at, l.localeName)), '/partner/calendar');
+      await _notify(uid, b.id, (l) => l.ntfRescheduled(b.petName, Fmt.dateTime(at, l.localeName)), '/partner/calendar');
     }
   }
 
@@ -278,10 +289,10 @@ class BookingRepository {
     await _col.doc(b.id).update({'status': status});
     if (status == 'completed') {
       if (b.paymentStatus != 'paid') {
-        await _expense(b.ownerId, b.petId, b.kind, b.total, b.id, (b.raw['serviceName'] as String?) ?? '', b.start);
+        if (_standalone) await _expense(b.ownerId, b.petId, b.kind, b.total, b.id, (b.raw['serviceName'] as String?) ?? '', b.start);
         await _col.doc(b.id).update({'paymentStatus': 'paid'});
       }
-      await _notify(b.ownerId, (l) => l.ntfCompleted(b.petName, b.providerName), '/book/bookings/${b.id}');
+      await _notify(b.ownerId, b.id, (l) => l.ntfCompleted(b.petName, b.providerName), '/book/bookings/${b.id}');
     }
   }
 
@@ -291,7 +302,7 @@ class BookingRepository {
         {'at': DateTime.now(), 'text': text, 'photoUrl': photoUrl},
       ]),
     });
-    await _notify(b.ownerId, (l) => l.ntfUpdate(b.providerName, b.petName), '/book/bookings/${b.id}');
+    await _notify(b.ownerId, b.id, (l) => l.ntfUpdate(b.providerName, b.petName), '/book/bookings/${b.id}');
   }
 
   /// Requests not answered in time are cancelled and the owner is told.
@@ -299,7 +310,7 @@ class BookingRepository {
     final now = DateTime.now();
     for (final b in list.where((b) => b.status == 'pending' && b.respondBy != null && now.isAfter(b.respondBy!))) {
       await _col.doc(b.id).update({'status': 'expired', 'refund': b.paymentStatus == 'paid' ? b.total : 0});
-      await _notify(b.ownerId, (l) => l.ntfExpired(b.providerName), '/book/bookings/${b.id}');
+      await _notify(b.ownerId, b.id, (l) => l.ntfExpired(b.providerName), '/book/bookings/${b.id}');
     }
   }
 }

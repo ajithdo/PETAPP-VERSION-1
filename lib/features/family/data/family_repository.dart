@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/auth/app_user.dart';
@@ -35,11 +36,17 @@ class ActivityItem {
 }
 
 /// Family sharing (spec 6 and 7.2): invites by phone, email or link, roles,
-/// expiring sitter access and the "who did what" feed.
+/// expiring sitter access and the "who did what" feed. An invite's id is the
+/// secret token in its link.
 class FamilyRepository {
-  FamilyRepository(this._db, this._messaging);
+  FamilyRepository(this._db, this._messaging, {this.functions});
   final FirebaseFirestore _db;
   final MessagingService _messaging;
+
+  /// With Firebase, joining a pet runs in the acceptPetInvite function (the
+  /// rules don't let anyone add themselves to someone else's pet). Null in
+  /// the standalone demo.
+  final FirebaseFunctions? functions;
 
   static String contactKey(String contact) {
     final c = contact.trim().toLowerCase();
@@ -76,7 +83,8 @@ class FamilyRepository {
       'status': 'pending',
       'createdAt': DateTime.now(),
     };
-    final ref = await _db.collection('petInvites').add(data);
+    final ref = _db.collection('petInvites').doc(token);
+    await ref.set(data);
     if (contact != null) {
       final isEmail = contact.contains('@');
       await _messaging.send(
@@ -114,12 +122,16 @@ class FamilyRepository {
   }
 
   Future<PetInvite?> findByToken(String token) async {
-    final q = await _db.collection('petInvites').where('token', isEqualTo: token).limit(1).get();
-    if (q.docs.isEmpty) return null;
-    return PetInvite(q.docs.first.id, q.docs.first.data());
+    if (token.isEmpty || token.contains('/')) return null;
+    final d = await _db.collection('petInvites').doc(token).get();
+    return d.exists ? PetInvite(d.id, d.data()!) : null;
   }
 
   Future<void> accept(PetInvite invite, AppUser user) async {
+    if (functions != null) {
+      await functions!.httpsCallable('acceptPetInvite').call({'token': invite.token});
+      return;
+    }
     final pet = _db.collection('pets').doc(invite.petId);
     await pet.update({
       'memberIds': FieldValue.arrayUnion([user.uid]),
@@ -138,6 +150,8 @@ class FamilyRepository {
     await _db.collection('pets').doc(petId).update({
       'members.$uid.role': role,
       'members.$uid.expiresAt': expiresAt,
+      // Extending ended access brings the pet back to their list.
+      'memberIds': FieldValue.arrayUnion([uid]),
     });
     await _activity(petId, by, 'role_changed', role);
   }
@@ -174,8 +188,11 @@ class FamilyRepository {
   }
 }
 
-final familyRepositoryProvider = Provider<FamilyRepository>(
-    (ref) => FamilyRepository(ref.watch(firestoreProvider), ref.watch(messagingServiceProvider)));
+final familyRepositoryProvider = Provider<FamilyRepository>((ref) => FamilyRepository(
+      ref.watch(firestoreProvider),
+      ref.watch(messagingServiceProvider),
+      functions: ref.watch(appConfigProvider).usesFirebase ? FirebaseFunctions.instanceFor(region: 'asia-south1') : null,
+    ));
 
 final myInvitesProvider = StreamProvider<List<PetInvite>>((ref) {
   final user = ref.watch(currentUserProvider);

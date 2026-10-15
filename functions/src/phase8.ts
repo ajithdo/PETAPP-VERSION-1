@@ -6,8 +6,9 @@
  *   pet's expenses and the sellers' notifications.
  * - onOrderUpdated: refunds and restocks cancelled or returned orders,
  *   opens a delivered food bag for the pet, and tells the other side.
- * - onAffiliateClick, onProductReview: partner-store click counts and
- *   product ratings (clients cannot write those).
+ * - onAffiliateClick, onReviewCreated: partner-store click counts and the
+ *   ratings of products, clinics, groomers and vets (clients cannot write
+ *   those).
  * - runSubscriptions (daily) and runSellerPayouts (seller, demo payouts).
  *
  * The money rules mirror lib/features/shop/domain/shop_rules.dart, which
@@ -432,12 +433,16 @@ export const onAffiliateClick = onDocumentCreated('affiliateClicks/{id}', async 
   if ((await ref.get()).exists) await ref.update({ clicks: FieldValue.increment(1) });
 });
 
-export const onProductReview = onDocumentCreated('reviews/{id}', async (event) => {
+/** Where each kind of review keeps its average rating. */
+export const REVIEW_TARGETS: Record<string, string> = { product: 'products', clinic: 'clinics', provider: 'providers', vet: 'vets' };
+
+export const onReviewCreated = onDocumentCreated('reviews/{id}', async (event) => {
   const r = event.data?.data();
-  if (!r || r.targetType !== 'product' || typeof r.targetId !== 'string') return;
+  const collection = REVIEW_TARGETS[String(r?.targetType)];
+  if (!r || !collection || typeof r.targetId !== 'string') return;
   const rating = Math.max(1, Math.min(5, Math.round(Number(r.rating) || 0)));
   await db.runTransaction(async (tx) => {
-    const ref = db.collection('products').doc(r.targetId);
+    const ref = db.collection(collection).doc(r.targetId);
     const p = (await tx.get(ref)).data();
     if (!p) return;
     const n = (p.reviewCount ?? 0) + 1;

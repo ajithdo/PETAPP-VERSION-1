@@ -290,6 +290,7 @@ class ChatRepository {
         'body': body,
         'type': 'messages',
         'link': '/messages/${c.id}',
+        'conversationId': c.id,
         'read': false,
         'createdAt': DateTime.now(),
       });

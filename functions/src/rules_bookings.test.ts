@@ -30,9 +30,13 @@ beforeEach(async () => {
       ownerId: 'ravi', petId: 'simba', providerId: 'prov_groom_1', partnerUids: ['groomer'],
       status: 'pending', price: 1499, platformFee: 0, commission: 150, payout: 1349,
     });
+    await setDoc(doc(db, 'bookings/g2'), {
+      ownerId: 'ravi', petId: 'simba', providerId: 'prov_groom_1', partnerUids: ['groomer'],
+      status: 'completed', price: 1499, platformFee: 0, total: 1499, commission: 150, payout: 1349,
+    });
     await setDoc(doc(db, 'providers/prov_groom_1'), { name: 'Lakshmi Groom Studio', status: 'approved', uid: 'groomer', rating: 4.5, reviewCount: 10 });
     await setDoc(doc(db, 'providers/prov_new'), { name: 'New groomer', status: 'pending', uid: 'newbie' });
-    await setDoc(doc(db, 'reviews/r1'), { targetId: 'prov_groom_1', ownerId: 'ravi', rating: 5, text: 'Great', status: 'visible' });
+    await setDoc(doc(db, 'reviews/r1'), { targetType: 'provider', targetId: 'prov_groom_1', ownerId: 'ravi', bookingId: 'g2', rating: 5, text: 'Great', status: 'visible' });
     await setDoc(doc(db, 'notifications/n1'), { uid: 'ravi', title: 'Hi', read: false });
     await setDoc(doc(db, 'expenses/e1'), { ownerId: 'ravi', petId: 'simba', amount: 1499 });
   });
@@ -58,15 +62,25 @@ describe('bookings', () => {
 });
 
 describe('reviews', () => {
-  it('anyone reads reviews; you can only post as yourself', async () => {
+  it('anyone reads reviews; you review only your own completed booking, as yourself', async () => {
+    const review = { targetType: 'provider', targetId: 'prov_groom_1', ownerId: 'ravi', bookingId: 'g2', rating: 4, text: 'Good', status: 'visible' };
     await assertSucceeds(getDoc(doc(as('priya'), 'reviews/r1')));
-    await assertSucceeds(addDoc(collection(as('ravi'), 'reviews'), { targetId: 'prov_groom_1', ownerId: 'ravi', rating: 4 }));
-    await assertFails(addDoc(collection(as('ravi'), 'reviews'), { targetId: 'prov_groom_1', ownerId: 'priya', rating: 1 }));
+    await assertSucceeds(addDoc(collection(as('ravi'), 'reviews'), review));
+    await assertFails(addDoc(collection(as('ravi'), 'reviews'), { ...review, ownerId: 'priya' }));
+    // No booking, someone else's booking, or a visit that hasn't happened.
+    await assertFails(addDoc(collection(as('ravi'), 'reviews'), { ...review, bookingId: null }));
+    await assertFails(addDoc(collection(as('priya'), 'reviews'), { ...review, ownerId: 'priya' }));
+    await assertFails(addDoc(collection(as('ravi'), 'reviews'), { ...review, bookingId: 'g1' }));
+    // Ratings are 1 to 5 and a new review has no reply.
+    await assertFails(addDoc(collection(as('ravi'), 'reviews'), { ...review, rating: 50 }));
+    await assertFails(addDoc(collection(as('ravi'), 'reviews'), { ...review, reply: 'Thanks from us!' }));
   });
   it('partners may only add a reply', async () => {
     await assertSucceeds(updateDoc(doc(as('groomer', 'groomer'), 'reviews/r1'), { reply: 'Thank you!', replyAt: new Date() }));
     await assertFails(updateDoc(doc(as('groomer', 'groomer'), 'reviews/r1'), { rating: 1 }));
     await assertFails(updateDoc(doc(as('priya'), 'reviews/r1'), { reply: 'Fake reply' }));
+    // Another groomer can't answer for this one.
+    await assertFails(updateDoc(doc(as('othergroomer', 'groomer'), 'reviews/r1'), { reply: 'Come to us instead' }));
   });
 });
 

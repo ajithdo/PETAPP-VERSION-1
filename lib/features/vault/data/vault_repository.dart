@@ -105,27 +105,34 @@ class VaultRepository {
 
   Future<void> deleteDoc(VaultDoc d) async {
     await _docs.doc(d.id).delete();
-    await _deleteReminders('docId', d.id);
+    await _deleteReminders('docId', d.id, d.ownerId);
     final url = d.url;
     if (url != null && !d.isSample && !url.startsWith('seed:')) await _storage.delete(url);
     // Unlink the certificate from a vaccine record so the health tab stays tidy.
-    final linked = await _db.collection('vaccinations').where('certificateDocId', isEqualTo: d.id).get();
+    final linked = await _db.collection('vaccinations').where('petId', isEqualTo: d.petId).where('certificateDocId', isEqualTo: d.id).get();
     for (final v in linked.docs) {
       await v.reference.update({'certificateDocId': null});
     }
   }
 
-  Future<void> _deleteReminders(String field, String id) async {
-    final old = await _db.collection('reminders').where(field, isEqualTo: id).get();
-    for (final r in old.docs) {
-      await r.reference.delete();
+  /// Removes the reminders linked to a document or policy. They belong to
+  /// [ownerId]; with Firebase nobody else can see them, so theirs stay.
+  Future<void> _deleteReminders(String field, String id, String? ownerId) async {
+    if (ownerId == null || ownerId.isEmpty) return;
+    try {
+      final old = await _db.collection('reminders').where('ownerId', isEqualTo: ownerId).where(field, isEqualTo: id).get();
+      for (final r in old.docs) {
+        await r.reference.delete();
+      }
+    } on FirebaseException catch (e) {
+      if (e.code != 'permission-denied') rethrow;
     }
   }
 
   /// One reminder per document with an expiry date (14 days before).
   /// Vaccine certificates are covered by the vaccine schedule instead.
   Future<void> setExpiryReminder({required String docId, required String type, required Pet pet, required String ownerId, required DateTime? expiry, required String title}) async {
-    await _deleteReminders('docId', docId);
+    await _deleteReminders('docId', docId, ownerId);
     if (expiry == null || type == 'vaccination') return;
     final at = expiryReminderAt(expiry, DateTime.now());
     if (at == null) return;
@@ -235,7 +242,7 @@ class VaultRepository {
       policyId = id;
     }
     // Renewal reminder 14 days before, linked to the policy.
-    await _deleteReminders('policyId', policyId);
+    await _deleteReminders('policyId', policyId, data['ownerId'] as String?);
     final renewal = data['renewal'] as DateTime?;
     final at = renewal == null ? null : expiryReminderAt(renewal, DateTime.now());
     if (at != null) {
@@ -254,8 +261,9 @@ class VaultRepository {
   }
 
   Future<void> deletePolicy(String id) async {
+    final owner = (await _ins.doc(id).get()).data()?['ownerId'] as String?;
     await _ins.doc(id).delete();
-    await _deleteReminders('policyId', id);
+    await _deleteReminders('policyId', id, owner);
   }
 
   /// Adds or replaces one claim (matched by id).

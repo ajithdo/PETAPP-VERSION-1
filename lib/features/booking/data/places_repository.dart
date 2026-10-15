@@ -99,8 +99,12 @@ class Review {
 }
 
 class PlacesRepository {
-  PlacesRepository(this._db);
+  PlacesRepository(this._db, {this.standalone = true});
   final FirebaseFirestore _db;
+
+  /// With Firebase the onReviewCreated function updates ratings (the pet
+  /// parent can't edit a clinic's listing).
+  final bool standalone;
 
   Stream<List<Place>> watchClinics() =>
       _db.collection('clinics').where('status', isEqualTo: 'approved').snapshots().map((s) => [for (final d in s.docs) Place(d.id, 'clinic', d.data())]);
@@ -153,16 +157,19 @@ class PlacesRepository {
       'status': 'visible',
       'createdAt': DateTime.now(),
     });
-    final n = place.reviewCount + 1;
-    final avg = ((place.rating * place.reviewCount + rating) / n);
-    await updatePlace(place, {'rating': double.parse(avg.toStringAsFixed(1)), 'reviewCount': n});
+    if (standalone) {
+      final n = place.reviewCount + 1;
+      final avg = ((place.rating * place.reviewCount + rating) / n);
+      await updatePlace(place, {'rating': double.parse(avg.toStringAsFixed(1)), 'reviewCount': n});
+    }
     await _db.collection('bookings').doc(bookingId).update({'reviewed': true});
   }
 
   Future<void> replyToReview(String reviewId, String reply) => _db.collection('reviews').doc(reviewId).update({'reply': reply, 'replyAt': DateTime.now()});
 }
 
-final placesRepositoryProvider = Provider<PlacesRepository>((ref) => PlacesRepository(ref.watch(firestoreProvider)));
+final placesRepositoryProvider =
+    Provider<PlacesRepository>((ref) => PlacesRepository(ref.watch(firestoreProvider), standalone: ref.watch(appConfigProvider).isStandalone));
 final clinicsProvider = StreamProvider<List<Place>>((ref) => ref.watch(placesRepositoryProvider).watchClinics());
 final providersOfTypeProvider = StreamProvider.family<List<Place>, String>((ref, t) => ref.watch(placesRepositoryProvider).watchProviders(t));
 final placeProvider = StreamProvider.family<Place?, String>((ref, id) => ref.watch(placesRepositoryProvider).watchPlace(id));
