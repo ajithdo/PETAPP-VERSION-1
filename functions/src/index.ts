@@ -169,3 +169,4 @@ export const createBooking = onCall(async (req) => {
 });
 export * from './phase6';
 export * from './phase7';
+export * from './phase8';

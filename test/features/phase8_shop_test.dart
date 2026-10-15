@@ -173,7 +173,7 @@ void main() {
       expect(invoiceNumber(DateTime(2026, 10, 14), 123), 'PS/26-27/00123');
       expect(invoiceNumber(DateTime(2027, 2, 1), 7), 'PS/26-27/00007');
       expect(invoiceNumber(DateTime(2027, 4, 1), 7), 'PS/27-28/00007');
-      expect(shortOrderNo('ord_1'), matches(RegExp(r'^PS\d{6}$')));
+      expect(shortOrderNo('ord_1'), 'PS806099'); // same as functions/src/phase8.test.ts
       expect(shortOrderNo('ord_1'), shortOrderNo('ord_1'));
     });
   });

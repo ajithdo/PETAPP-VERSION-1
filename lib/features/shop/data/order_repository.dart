@@ -59,7 +59,10 @@ class OrderRepository {
     return lookupAppLocalizations(Locale((u.data()?['language'] as String?) ?? 'en'));
   }
 
+  /// Notifies the other side of an order in their own language. With
+  /// Firebase the order functions (functions/src/phase8.ts) send these.
   Future<void> _notify(String uid, String Function(AppLocalizations l) title, String link) async {
+    if (functions != null) return;
     final l = await _lang(uid);
     await _db.collection('notifications').add({
       'uid': uid,
@@ -277,7 +280,8 @@ class OrderRepository {
     await _setStatus(o, 'cancelled', extra: {
       'cancelReason': reason,
       'cancelledBy': bySeller ? 'seller' : 'customer',
-      if (o.paymentStatus == 'paid') 'paymentStatus': 'refunded',
+      // With Firebase the onOrderUpdated trigger refunds and restocks.
+      if (functions == null && o.paymentStatus == 'paid') 'paymentStatus': 'refunded',
     });
     if (functions == null) {
       await _restock(o);
@@ -304,7 +308,7 @@ class OrderRepository {
   Future<void> sellerUpdate(ShopOrder o, String status, {String? note}) async {
     if (status == 'cancelled') return cancel(o, reason: note ?? '', bySeller: true);
     await _setStatus(o, status, extra: {
-      if (status == 'returned' && o.paymentStatus == 'paid') 'paymentStatus': 'refunded',
+      if (functions == null && status == 'returned' && o.paymentStatus == 'paid') 'paymentStatus': 'refunded',
       if (note != null && note.isNotEmpty) 'sellerNote': note,
     });
     if (functions == null) {
@@ -324,7 +328,7 @@ class OrderRepository {
           'return_rejected' => l.ntfReturnRejected(first),
           _ => l.ntfOrderUpdated(first),
         }, '/shop/orders/${o.id}');
-    if (status == 'out_for_delivery') {
+    if (status == 'out_for_delivery' && functions == null) {
       final u = (await _db.collection('users').doc(o.ownerId).get()).data();
       final l = await _lang(o.ownerId);
       await _messages.send(channel: Channel.sms, to: (u?['phone'] as String?) ?? o.ownerId, uid: o.ownerId, type: 'orders', body: l.ntfOrderOutForDelivery(first));
@@ -358,6 +362,11 @@ class OrderRepository {
   /// Weekly payout run (simulated): delivered orders past the return window
   /// are marked paid.
   Future<int> runPayouts(Iterable<ShopOrder> orders) async {
+    final fns = functions;
+    if (fns != null) {
+      final res = await fns.httpsCallable('runSellerPayouts').call<Map<String, dynamic>>({});
+      return (res.data['count'] as num?)?.toInt() ?? 0;
+    }
     final now = DateTime.now();
     var n = 0;
     for (final o in orders.where((o) => payoutState(o, now) == 'ready')) {
