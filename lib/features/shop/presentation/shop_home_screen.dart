@@ -7,6 +7,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/utils/read_once.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../admin/presentation/banners.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../data/order_repository.dart';
@@ -68,6 +69,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
             ? const <Product>[]
             : picksFor(all, species: pet.species, lifeStage: pet.lifeStage(), breedSize: pet.size.name, allergies: pet.allergies);
         final again = [for (final id in buyAgainIds(orders)) ?byId[id]].where((p) => p.active && !p.isAffiliate).toList();
+        final featured = all.where((p) => p.active && p.featured).take(10).toList();
         final deals = (all.where((p) => p.active && p.discountPercent >= 15).toList()..sort((a, b) => b.discountPercent.compareTo(a.discountPercent))).take(10).toList();
         return PageBody(children: [
           const SizedBox(height: Space.sm),
@@ -90,6 +92,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
               ),
             ),
           ),
+          const BannerStrip(placement: 'shop'),
           if (user != null && !user.isPlus) ...[
             const SizedBox(height: Space.sm),
             InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Icons.workspace_premium_rounded, tone: ChipTone.accent),
@@ -127,6 +130,10 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
           ],
           SectionHeader(l.shopCategories),
           _CategoryGrid(species: pet?.species),
+          if (featured.isNotEmpty) ...[
+            SectionHeader(l.shopFeatured),
+            ProductRow(products: featured),
+          ],
           if (deals.isNotEmpty) ...[
             SectionHeader(l.shopDeals, action: l.seeAll, onAction: () => context.push('/shop/search?sort=discount')),
             ProductRow(products: deals),

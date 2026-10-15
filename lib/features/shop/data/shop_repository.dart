@@ -25,11 +25,14 @@ class ShopRepository {
 
   Stream<List<PartnerStore>> watchPartners() => _db.collection('partners').snapshots().map((s) => [for (final d in s.docs) PartnerStore(d.id, d.data())]);
 
-  Future<Coupon?> coupon(String code) async {
+  /// A coupon by code; personal ones (referral rewards) only for [uid].
+  Future<Coupon?> coupon(String code, {String? uid}) async {
     final c = normaliseCoupon(code);
     if (c.isEmpty) return null;
     final d = await _db.collection('coupons').doc(c).get();
-    return d.exists ? Coupon(d.id, d.data()!) : null;
+    if (!d.exists) return null;
+    final coupon = Coupon(d.id, d.data()!);
+    return coupon.forUid == null || coupon.forUid == uid ? coupon : null;
   }
 
   Stream<List<Coupon>> watchCoupons() =>

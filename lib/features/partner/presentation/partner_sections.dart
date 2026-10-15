@@ -15,6 +15,7 @@ import '../../booking/data/places_repository.dart';
 import '../../booking/domain/booking_rules.dart';
 import '../../booking/presentation/book_home_screen.dart';
 import '../../booking/presentation/booking_labels.dart';
+import '../../admin/admin_slots.dart' show HelpListBody;
 import 'partner_extra_sections.dart';
 
 /// The clinic or provider this partner account manages. Vets resolve to
@@ -36,6 +37,7 @@ final partnerPlaceProvider = StreamProvider<Place?>((ref) async* {
 /// Returns the body for a partner portal section, or null if that section
 /// is built in a later phase.
 Widget? partnerSectionBody(BuildContext context, WidgetRef ref, AppUser user, String section) {
+  if (section == 'help') return const HelpListBody(embedded: true);
   if (user.role == UserRole.seller) return sellerSectionBody(context, ref, user, section);
   return switch (section) {
     'dashboard' => const _Dashboard(),

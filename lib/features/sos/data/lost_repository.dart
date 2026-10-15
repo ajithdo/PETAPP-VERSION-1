@@ -95,6 +95,9 @@ class LostRepository {
     await _notifier.notify(family,
         title: (l) => l.lostFamilyTitle(pet.name), body: (l) => l.lostFamilyBody(by.firstName, area), type: 'lost', link: '/me/lost/${pet.id}');
     if (!alert) return 0;
+    // The admin can switch nearby alerts off (Settings → Feature switches).
+    final cfg = (await _db.collection('config').doc('app').get()).data();
+    if (((cfg?['flags'] as Map?)?['lostPetAlerts']) == false) return 0;
     final users = await _db.collection('users').get();
     final uids = nearbyAlertUids(
       [

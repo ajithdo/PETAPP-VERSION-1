@@ -87,7 +87,7 @@ class _ToxicCheckScreenState extends ConsumerState<ToxicCheckScreen> {
             ChoiceChip(label: Text(toxKindLabel(l, k)), selected: _kind == k, onSelected: (_) => setState(() => _kind = k)),
         ]),
         const SizedBox(height: Space.md),
-        const DraftLabel(),
+        const DraftLabel(area: 'toxic'),
         const SizedBox(height: Space.md),
         if (results.isEmpty)
           EmptyState(title: l.toxNoMatch, message: l.toxNoMatchHint, compact: true, actionLabel: l.firstAidTalkToVet, onAction: () => context.push('/televet'))
@@ -174,7 +174,7 @@ Future<void> _showToxItem(BuildContext context, ToxItem item, String? species) {
         ),
       ],
       const SizedBox(height: Space.md),
-      const DraftLabel(),
+      const DraftLabel(area: 'toxic'),
     ]);
   });
 }

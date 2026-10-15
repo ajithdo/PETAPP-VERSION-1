@@ -14895,6 +14895,2826 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Phenyl and many floor cleaners contain phenols, which are especially poisonous to cats. Let floors dry before pets walk on them.'**
   String get toxPhenylWhy;
+
+  /// No description provided for @reviewedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviewed by {name}'**
+  String reviewedBy(String name);
+
+  /// No description provided for @featurePaused.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is switched off for now'**
+  String get featurePaused;
+
+  /// No description provided for @featurePausedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The PawSetu team has paused it. Please check again later.'**
+  String get featurePausedBody;
+
+  /// No description provided for @shopFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get shopFeatured;
+
+  /// No description provided for @admUsers.
+  ///
+  /// In en, this message translates to:
+  /// **'Users: {owners} pet parents, {partners} partners'**
+  String admUsers(int owners, int partners);
+
+  /// No description provided for @admPets.
+  ///
+  /// In en, this message translates to:
+  /// **'Pets'**
+  String get admPets;
+
+  /// No description provided for @admBookings30.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings, last 30 days'**
+  String get admBookings30;
+
+  /// No description provided for @admOrderValue30.
+  ///
+  /// In en, this message translates to:
+  /// **'Order value, last 30 days'**
+  String get admOrderValue30;
+
+  /// No description provided for @admCommission30.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission earned, last 30 days'**
+  String get admCommission30;
+
+  /// No description provided for @admPlusMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus members'**
+  String get admPlusMembers;
+
+  /// No description provided for @admSos30.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS activations, last 30 days'**
+  String get admSos30;
+
+  /// No description provided for @admByDay.
+  ///
+  /// In en, this message translates to:
+  /// **'By day'**
+  String get admByDay;
+
+  /// No description provided for @admByWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'By week'**
+  String get admByWeek;
+
+  /// No description provided for @admByMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'By month'**
+  String get admByMonth;
+
+  /// No description provided for @admCommissionReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission report'**
+  String get admCommissionReport;
+
+  /// No description provided for @admNoNumbers.
+  ///
+  /// In en, this message translates to:
+  /// **'No numbers yet'**
+  String get admNoNumbers;
+
+  /// No description provided for @admChartBookingsOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings and orders'**
+  String get admChartBookingsOrders;
+
+  /// No description provided for @admLegendBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get admLegendBookings;
+
+  /// No description provided for @admLegendOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get admLegendOrders;
+
+  /// No description provided for @admChartMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Order value and commission'**
+  String get admChartMoney;
+
+  /// No description provided for @admLegendOrderValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Order value'**
+  String get admLegendOrderValue;
+
+  /// No description provided for @admLegendCommission.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission'**
+  String get admLegendCommission;
+
+  /// No description provided for @admChartGrowth.
+  ///
+  /// In en, this message translates to:
+  /// **'New users, pets and Plus members'**
+  String get admChartGrowth;
+
+  /// No description provided for @admLegendUsers.
+  ///
+  /// In en, this message translates to:
+  /// **'New users'**
+  String get admLegendUsers;
+
+  /// No description provided for @admLegendPets.
+  ///
+  /// In en, this message translates to:
+  /// **'New pets'**
+  String get admLegendPets;
+
+  /// No description provided for @admLegendPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'New Plus'**
+  String get admLegendPlus;
+
+  /// No description provided for @admChartSos.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS activations'**
+  String get admChartSos;
+
+  /// No description provided for @admLegendSos.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS'**
+  String get admLegendSos;
+
+  /// No description provided for @admTopClinics.
+  ///
+  /// In en, this message translates to:
+  /// **'Top clinics'**
+  String get admTopClinics;
+
+  /// No description provided for @admTopProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Top products'**
+  String get admTopProducts;
+
+  /// No description provided for @admBookingsUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'bookings'**
+  String get admBookingsUnit;
+
+  /// No description provided for @admSoldUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'sold'**
+  String get admSoldUnit;
+
+  /// No description provided for @admChange.
+  ///
+  /// In en, this message translates to:
+  /// **'{change}% vs before'**
+  String admChange(String change);
+
+  /// No description provided for @admNothingYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing yet'**
+  String get admNothingYet;
+
+  /// No description provided for @admKindClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic'**
+  String get admKindClinic;
+
+  /// No description provided for @admStatusRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get admStatusRejected;
+
+  /// No description provided for @admStatusSuspended.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended'**
+  String get admStatusSuspended;
+
+  /// No description provided for @admAllKinds.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get admAllKinds;
+
+  /// No description provided for @admWaitingCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 waiting for review} other{{count} waiting for review}}'**
+  String admWaitingCount(int count);
+
+  /// No description provided for @admNoPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing waiting for approval'**
+  String get admNoPending;
+
+  /// No description provided for @admNothingHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here'**
+  String get admNothingHere;
+
+  /// No description provided for @admRejectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject {name}?'**
+  String admRejectTitle(String name);
+
+  /// No description provided for @admSuspendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspend {name}?'**
+  String admSuspendTitle(String name);
+
+  /// No description provided for @admReasonDocs.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents are unclear'**
+  String get admReasonDocs;
+
+  /// No description provided for @admReasonRegNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration number doesn\'t match'**
+  String get admReasonRegNo;
+
+  /// No description provided for @admReasonDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details are missing'**
+  String get admReasonDetails;
+
+  /// No description provided for @admApprovedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} approved'**
+  String admApprovedToast(String name);
+
+  /// No description provided for @admRejectedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} rejected'**
+  String admRejectedToast(String name);
+
+  /// No description provided for @admSuspendedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} suspended'**
+  String admSuspendedToast(String name);
+
+  /// No description provided for @admAppliedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied {date}'**
+  String admAppliedOn(String date);
+
+  /// No description provided for @admRegNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration no.: {regNo}'**
+  String admRegNo(String regNo);
+
+  /// No description provided for @admRegMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'No registration number'**
+  String get admRegMissing;
+
+  /// No description provided for @admRegLooksRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Format looks right'**
+  String get admRegLooksRight;
+
+  /// No description provided for @admRegCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Check this number'**
+  String get admRegCheck;
+
+  /// No description provided for @admRegHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Always check it against the State Veterinary Council register.'**
+  String get admRegHint;
+
+  /// No description provided for @admKycDocs.
+  ///
+  /// In en, this message translates to:
+  /// **'KYC documents'**
+  String get admKycDocs;
+
+  /// No description provided for @admNoDocs.
+  ///
+  /// In en, this message translates to:
+  /// **'No documents uploaded yet'**
+  String get admNoDocs;
+
+  /// No description provided for @admReasonGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason: {reason}'**
+  String admReasonGiven(String reason);
+
+  /// No description provided for @admApprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get admApprove;
+
+  /// No description provided for @admReinstate.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve again'**
+  String get admReinstate;
+
+  /// No description provided for @admReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get admReject;
+
+  /// No description provided for @admSuspend.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspend'**
+  String get admSuspend;
+
+  /// No description provided for @admSampleStamp.
+  ///
+  /// In en, this message translates to:
+  /// **'SAMPLE'**
+  String get admSampleStamp;
+
+  /// No description provided for @admDocDemoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: sample documents only. Real KYC files open here in the live app.'**
+  String get admDocDemoNote;
+
+  /// No description provided for @admReasonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason (the partner sees this)'**
+  String get admReasonLabel;
+
+  /// No description provided for @admSearchUsers.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name, email, phone or city'**
+  String get admSearchUsers;
+
+  /// No description provided for @admFilterOwners.
+  ///
+  /// In en, this message translates to:
+  /// **'Pet parents'**
+  String get admFilterOwners;
+
+  /// No description provided for @admFilterPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'Partners'**
+  String get admFilterPartners;
+
+  /// No description provided for @admFilterAdmins.
+  ///
+  /// In en, this message translates to:
+  /// **'Admins'**
+  String get admFilterAdmins;
+
+  /// No description provided for @admPeopleCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 person} other{{count} people}}'**
+  String admPeopleCount(int count);
+
+  /// No description provided for @plusTrialChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus trial'**
+  String get plusTrialChip;
+
+  /// No description provided for @admDeletionPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion requested'**
+  String get admDeletionPending;
+
+  /// No description provided for @admRoleConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Make {name} a {role}?'**
+  String admRoleConfirm(String name, String role);
+
+  /// No description provided for @admRoleChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Role changed. It applies the next time they open the app.'**
+  String get admRoleChanged;
+
+  /// No description provided for @admSuspendUserTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause {name}\'s account?'**
+  String admSuspendUserTitle(String name);
+
+  /// No description provided for @admReasonAbuse.
+  ///
+  /// In en, this message translates to:
+  /// **'Abusive behaviour'**
+  String get admReasonAbuse;
+
+  /// No description provided for @admReasonFraud.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment fraud'**
+  String get admReasonFraud;
+
+  /// No description provided for @admReasonFake.
+  ///
+  /// In en, this message translates to:
+  /// **'Fake account'**
+  String get admReasonFake;
+
+  /// No description provided for @admUserSuspended.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s account is paused'**
+  String admUserSuspended(String name);
+
+  /// No description provided for @admUserRestored.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s account is active again'**
+  String admUserRestored(String name);
+
+  /// No description provided for @admCity.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get admCity;
+
+  /// No description provided for @admPlanLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan'**
+  String get admPlanLabel;
+
+  /// No description provided for @admPlusTill.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus till {date}'**
+  String admPlusTill(String date);
+
+  /// No description provided for @admTrialTill.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus trial till {date}'**
+  String admTrialTill(String date);
+
+  /// No description provided for @admJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'Joined'**
+  String get admJoined;
+
+  /// No description provided for @admDeletionOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Account will be deleted on {date}'**
+  String admDeletionOn(String date);
+
+  /// No description provided for @admNotYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t change your own role or pause yourself.'**
+  String get admNotYourself;
+
+  /// No description provided for @admSaveRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Save role'**
+  String get admSaveRole;
+
+  /// No description provided for @admUnsuspend.
+  ///
+  /// In en, this message translates to:
+  /// **'Make active again'**
+  String get admUnsuspend;
+
+  /// No description provided for @admSuspendUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause account'**
+  String get admSuspendUser;
+
+  /// No description provided for @admTabProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Products'**
+  String get admTabProducts;
+
+  /// No description provided for @admTabCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get admTabCategories;
+
+  /// No description provided for @admTabPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinics and services'**
+  String get admTabPlaces;
+
+  /// No description provided for @admTabSellers.
+  ///
+  /// In en, this message translates to:
+  /// **'Sellers'**
+  String get admTabSellers;
+
+  /// No description provided for @admTabPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner shops'**
+  String get admTabPartners;
+
+  /// No description provided for @admTabBanners.
+  ///
+  /// In en, this message translates to:
+  /// **'Banners'**
+  String get admTabBanners;
+
+  /// No description provided for @admSearchProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Search products, brands or sellers'**
+  String get admSearchProducts;
+
+  /// No description provided for @admFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get admFeatured;
+
+  /// No description provided for @admHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden'**
+  String get admHidden;
+
+  /// No description provided for @admLowStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Low stock'**
+  String get admLowStock;
+
+  /// No description provided for @admPartnerLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner links'**
+  String get admPartnerLinks;
+
+  /// No description provided for @admShowingOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing {shown} of {total}. Search to narrow down.'**
+  String admShowingOf(int shown, int total);
+
+  /// No description provided for @admProductsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 product} other{{count} products}}'**
+  String admProductsCount(int count);
+
+  /// No description provided for @admPartnerLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner link'**
+  String get admPartnerLink;
+
+  /// No description provided for @admStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock {count}'**
+  String admStock(int count);
+
+  /// No description provided for @admUnfeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from featured'**
+  String get admUnfeature;
+
+  /// No description provided for @admFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Feature in the Shop'**
+  String get admFeature;
+
+  /// No description provided for @admShowInShop.
+  ///
+  /// In en, this message translates to:
+  /// **'Show in the Shop'**
+  String get admShowInShop;
+
+  /// No description provided for @admCategoryNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Default margin: {food}% on food, {other}% on everything else. You can set a different margin for any category.'**
+  String admCategoryNote(String food, String other);
+
+  /// No description provided for @admMarginCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Margin {pct}% (own rate)'**
+  String admMarginCustom(String pct);
+
+  /// No description provided for @admMarginDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Margin {pct}% (default)'**
+  String admMarginDefault(String pct);
+
+  /// No description provided for @admMarginFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Margin for {name}'**
+  String admMarginFor(String name);
+
+  /// No description provided for @admEmptyDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave empty to use the default'**
+  String get admEmptyDefault;
+
+  /// No description provided for @admSellerNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Sellers are approved in Approvals. Here you can give a seller its own margin.'**
+  String get admSellerNote;
+
+  /// No description provided for @admMarginStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard margin'**
+  String get admMarginStandard;
+
+  /// No description provided for @admEditMargin.
+  ///
+  /// In en, this message translates to:
+  /// **'Change rate'**
+  String get admEditMargin;
+
+  /// No description provided for @admPartnersNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Affiliate partner shops: people buy on the partner\'s own website and PawSetu earns a commission.'**
+  String get admPartnersNote;
+
+  /// No description provided for @admPartnerLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission {pct}% · {clicks} clicks'**
+  String admPartnerLine(String pct, int clicks);
+
+  /// No description provided for @admAddPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Add partner shop'**
+  String get admAddPartner;
+
+  /// No description provided for @admPartnerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop name'**
+  String get admPartnerName;
+
+  /// No description provided for @admPartnerUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Website (https://…)'**
+  String get admPartnerUrl;
+
+  /// No description provided for @admPartnerCommission.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission'**
+  String get admPartnerCommission;
+
+  /// No description provided for @admBannersNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Banners show on Home or in the Shop. Only banners that are switched on are shown.'**
+  String get admBannersNote;
+
+  /// No description provided for @admPlaceShop.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop'**
+  String get admPlaceShop;
+
+  /// No description provided for @admPlaceHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get admPlaceHome;
+
+  /// No description provided for @admBannerShown.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this banner'**
+  String get admBannerShown;
+
+  /// No description provided for @admNewBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'New banner'**
+  String get admNewBanner;
+
+  /// No description provided for @admEditBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit banner'**
+  String get admEditBanner;
+
+  /// No description provided for @admBannerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get admBannerTitle;
+
+  /// No description provided for @admBannerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Short text'**
+  String get admBannerBody;
+
+  /// No description provided for @admBannerLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Opens (app page)'**
+  String get admBannerLink;
+
+  /// No description provided for @admBannerLinkHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'For example /me/plus or /shop/search?q=food. Leave empty for no link.'**
+  String get admBannerLinkHelp;
+
+  /// No description provided for @admToneOffer.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer (orange)'**
+  String get admToneOffer;
+
+  /// No description provided for @admToneNews.
+  ///
+  /// In en, this message translates to:
+  /// **'News (green)'**
+  String get admToneNews;
+
+  /// No description provided for @admPlacesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking commission for each clinic or provider. Empty means the rate for its type in Plans and settings.'**
+  String get admPlacesNote;
+
+  /// No description provided for @admRateCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission {pct}% (own rate)'**
+  String admRateCustom(String pct);
+
+  /// No description provided for @admRateStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission {pct}% (standard)'**
+  String admRateStandard(String pct);
+
+  /// No description provided for @admRateFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission for {name}'**
+  String admRateFor(String name);
+
+  /// No description provided for @hpStatusOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get hpStatusOpen;
+
+  /// No description provided for @hpStatusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get hpStatusInProgress;
+
+  /// No description provided for @hpStatusResolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolved'**
+  String get hpStatusResolved;
+
+  /// No description provided for @admNeedsReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs a reply'**
+  String get admNeedsReply;
+
+  /// No description provided for @admNotResolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Not resolved'**
+  String get admNotResolved;
+
+  /// No description provided for @admEveryone.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone'**
+  String get admEveryone;
+
+  /// No description provided for @admNoTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'No tickets here'**
+  String get admNoTickets;
+
+  /// No description provided for @hpSupportTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu support'**
+  String get hpSupportTeam;
+
+  /// No description provided for @hpNewReply.
+  ///
+  /// In en, this message translates to:
+  /// **'New reply'**
+  String get hpNewReply;
+
+  /// No description provided for @hpRefunded.
+  ///
+  /// In en, this message translates to:
+  /// **'Refunded {amount}'**
+  String hpRefunded(String amount);
+
+  /// No description provided for @admTicketTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket'**
+  String get admTicketTitle;
+
+  /// No description provided for @admTicketMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'This ticket isn\'t available'**
+  String get admTicketMissing;
+
+  /// No description provided for @admAssignee.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned to'**
+  String get admAssignee;
+
+  /// No description provided for @admUnassigned.
+  ///
+  /// In en, this message translates to:
+  /// **'Not assigned'**
+  String get admUnassigned;
+
+  /// No description provided for @admConversation.
+  ///
+  /// In en, this message translates to:
+  /// **'Conversation'**
+  String get admConversation;
+
+  /// No description provided for @admReplyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply to {name}'**
+  String admReplyHint(String name);
+
+  /// No description provided for @admReplySent.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply sent. {name} gets a notification.'**
+  String admReplySent(String name);
+
+  /// No description provided for @admResolveAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as resolved after sending'**
+  String get admResolveAfter;
+
+  /// No description provided for @admLinkMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'The linked item can\'t be found ({type}).'**
+  String admLinkMissing(String type);
+
+  /// No description provided for @admOrderLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 item} other{{count} items}} from {seller}'**
+  String admOrderLine(int count, String seller);
+
+  /// No description provided for @admPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid {amount}'**
+  String admPaid(String amount);
+
+  /// No description provided for @admRefundDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Refunded {amount} on {date} (demo)'**
+  String admRefundDone(String amount, String date);
+
+  /// No description provided for @admRefundButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund (demo)'**
+  String get admRefundButton;
+
+  /// No description provided for @admRefundAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund amount'**
+  String get admRefundAmount;
+
+  /// No description provided for @admRefundMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to {amount}, the amount paid'**
+  String admRefundMax(String amount);
+
+  /// No description provided for @admRefundConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund {amount} to {name}?'**
+  String admRefundConfirm(String amount, String name);
+
+  /// No description provided for @admRefundDemoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo refund'**
+  String get admRefundDemoTitle;
+
+  /// No description provided for @admRefundDemoBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is told that {amount} is refunded. This is a demo: no real money moved.'**
+  String admRefundDemoBody(String amount, String name);
+
+  /// No description provided for @hpRaisedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Raised {date}'**
+  String hpRaisedOn(String date);
+
+  /// No description provided for @admAssignedTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned to {name}'**
+  String admAssignedTo(String name);
+
+  /// No description provided for @hpWriteReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a reply'**
+  String get hpWriteReply;
+
+  /// No description provided for @hpTopicRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund'**
+  String get hpTopicRefund;
+
+  /// No description provided for @hpTopicLate.
+  ///
+  /// In en, this message translates to:
+  /// **'Late or didn\'t come'**
+  String get hpTopicLate;
+
+  /// No description provided for @hpTopicQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'Quality problem'**
+  String get hpTopicQuality;
+
+  /// No description provided for @hpTopicBehaviour.
+  ///
+  /// In en, this message translates to:
+  /// **'Rude or unsafe behaviour'**
+  String get hpTopicBehaviour;
+
+  /// No description provided for @hpTopicApp.
+  ///
+  /// In en, this message translates to:
+  /// **'App problem'**
+  String get hpTopicApp;
+
+  /// No description provided for @hpTopicOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get hpTopicOther;
+
+  /// No description provided for @hpLinkBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get hpLinkBooking;
+
+  /// No description provided for @hpLinkOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get hpLinkOrder;
+
+  /// No description provided for @hpLinkChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get hpLinkChat;
+
+  /// No description provided for @hpLinkOther.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get hpLinkOther;
+
+  /// No description provided for @admReportsOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open ({count})'**
+  String admReportsOpen(int count);
+
+  /// No description provided for @admReportsClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get admReportsClosed;
+
+  /// No description provided for @admNoReports.
+  ///
+  /// In en, this message translates to:
+  /// **'No reports to review'**
+  String get admNoReports;
+
+  /// No description provided for @admReviewHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Review hidden'**
+  String get admReviewHidden;
+
+  /// No description provided for @admReviewRestored.
+  ///
+  /// In en, this message translates to:
+  /// **'Review shown again'**
+  String get admReviewRestored;
+
+  /// No description provided for @admReportHandled.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked as handled'**
+  String get admReportHandled;
+
+  /// No description provided for @admReportDismissed.
+  ///
+  /// In en, this message translates to:
+  /// **'Report dismissed'**
+  String get admReportDismissed;
+
+  /// No description provided for @admReportReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported review'**
+  String get admReportReview;
+
+  /// No description provided for @admReportChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported chat'**
+  String get admReportChat;
+
+  /// No description provided for @admReportContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported content'**
+  String get admReportContent;
+
+  /// No description provided for @admReporterSays.
+  ///
+  /// In en, this message translates to:
+  /// **'Reporter says: {text}'**
+  String admReporterSays(String text);
+
+  /// No description provided for @admReportedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported by {name}'**
+  String admReportedBy(String name);
+
+  /// No description provided for @admClosedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'closed {date}'**
+  String admClosedOn(String date);
+
+  /// No description provided for @admHideReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide review'**
+  String get admHideReview;
+
+  /// No description provided for @admMarkHandled.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as handled'**
+  String get admMarkHandled;
+
+  /// No description provided for @admDismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismiss'**
+  String get admDismiss;
+
+  /// No description provided for @admRestoreReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Show review again'**
+  String get admRestoreReview;
+
+  /// No description provided for @admSearchOutbox.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by phone, email or text'**
+  String get admSearchOutbox;
+
+  /// No description provided for @admAllCount.
+  ///
+  /// In en, this message translates to:
+  /// **'All ({count})'**
+  String admAllCount(int count);
+
+  /// No description provided for @admChannelSms.
+  ///
+  /// In en, this message translates to:
+  /// **'SMS'**
+  String get admChannelSms;
+
+  /// No description provided for @admChannelWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get admChannelWhatsapp;
+
+  /// No description provided for @admChannelEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get admChannelEmail;
+
+  /// No description provided for @admChannelPush.
+  ///
+  /// In en, this message translates to:
+  /// **'Push'**
+  String get admChannelPush;
+
+  /// No description provided for @admAuditNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Every change made in the admin panel, newest first.'**
+  String get admAuditNote;
+
+  /// No description provided for @admSearchAudit.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by person, action or item'**
+  String get admSearchAudit;
+
+  /// No description provided for @admActApprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved a partner'**
+  String get admActApprove;
+
+  /// No description provided for @admActReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected a partner'**
+  String get admActReject;
+
+  /// No description provided for @admActSuspendPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended a partner'**
+  String get admActSuspendPartner;
+
+  /// No description provided for @admActSuspendUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused an account'**
+  String get admActSuspendUser;
+
+  /// No description provided for @admActUnsuspendUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Made an account active again'**
+  String get admActUnsuspendUser;
+
+  /// No description provided for @admActRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed a role'**
+  String get admActRole;
+
+  /// No description provided for @admActTicketReply.
+  ///
+  /// In en, this message translates to:
+  /// **'Replied to a ticket'**
+  String get admActTicketReply;
+
+  /// No description provided for @admActTicketStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed a ticket\'s status'**
+  String get admActTicketStatus;
+
+  /// No description provided for @admActTicketAssign.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned a ticket'**
+  String get admActTicketAssign;
+
+  /// No description provided for @admActRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Gave a demo refund'**
+  String get admActRefund;
+
+  /// No description provided for @admActHide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hid a review'**
+  String get admActHide;
+
+  /// No description provided for @admActRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Showed a review again'**
+  String get admActRestore;
+
+  /// No description provided for @admActDismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismissed a report'**
+  String get admActDismiss;
+
+  /// No description provided for @admActHandled.
+  ///
+  /// In en, this message translates to:
+  /// **'Handled a report'**
+  String get admActHandled;
+
+  /// No description provided for @admActCouponNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Created a coupon'**
+  String get admActCouponNew;
+
+  /// No description provided for @admActCouponEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed a coupon'**
+  String get admActCouponEdit;
+
+  /// No description provided for @admActProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed a product'**
+  String get admActProduct;
+
+  /// No description provided for @admActBannerNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Created a banner'**
+  String get admActBannerNew;
+
+  /// No description provided for @admActBannerEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed a banner'**
+  String get admActBannerEdit;
+
+  /// No description provided for @admActSeller.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed a seller'**
+  String get admActSeller;
+
+  /// No description provided for @admActPartnerStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed a partner shop'**
+  String get admActPartnerStore;
+
+  /// No description provided for @admActPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed a clinic or provider'**
+  String get admActPlace;
+
+  /// No description provided for @admActSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Changed settings'**
+  String get admActSettings;
+
+  /// No description provided for @admSettingsNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes reach the app straight away, no update needed.'**
+  String get admSettingsNote;
+
+  /// No description provided for @admLastChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Last changed {when}.'**
+  String admLastChanged(String when);
+
+  /// No description provided for @admPlanPrices.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan prices'**
+  String get admPlanPrices;
+
+  /// No description provided for @admPlusMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus, monthly'**
+  String get admPlusMonthly;
+
+  /// No description provided for @admPlusYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus, yearly'**
+  String get admPlusYearly;
+
+  /// No description provided for @admTrialDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Free trial'**
+  String get admTrialDays;
+
+  /// No description provided for @admDaysUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get admDaysUnit;
+
+  /// No description provided for @admPlanLimits.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan limits'**
+  String get admPlanLimits;
+
+  /// No description provided for @admBookingCommission.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking commission'**
+  String get admBookingCommission;
+
+  /// No description provided for @admDefaultRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Default rate'**
+  String get admDefaultRate;
+
+  /// No description provided for @admRateClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet clinics'**
+  String get admRateClinic;
+
+  /// No description provided for @admRateGroomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Groomers'**
+  String get admRateGroomer;
+
+  /// No description provided for @admRateTrainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Trainers'**
+  String get admRateTrainer;
+
+  /// No description provided for @admRateBoarder.
+  ///
+  /// In en, this message translates to:
+  /// **'Boarding and sitting'**
+  String get admRateBoarder;
+
+  /// No description provided for @admRateWalker.
+  ///
+  /// In en, this message translates to:
+  /// **'Dog walkers'**
+  String get admRateWalker;
+
+  /// No description provided for @admProviderRateNote.
+  ///
+  /// In en, this message translates to:
+  /// **'A clinic or provider can also have its own rate: Catalogue → Clinics and services.'**
+  String get admProviderRateNote;
+
+  /// No description provided for @admShopMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop margins and delivery'**
+  String get admShopMoney;
+
+  /// No description provided for @admFoodMargin.
+  ///
+  /// In en, this message translates to:
+  /// **'Margin on food'**
+  String get admFoodMargin;
+
+  /// No description provided for @admOtherMargin.
+  ///
+  /// In en, this message translates to:
+  /// **'Margin on other items'**
+  String get admOtherMargin;
+
+  /// No description provided for @admVideoDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus discount on video vet fees'**
+  String get admVideoDiscount;
+
+  /// No description provided for @admDeliveryFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery fee'**
+  String get admDeliveryFee;
+
+  /// No description provided for @admFreeDeliveryFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free delivery above (Free plan)'**
+  String get admFreeDeliveryFree;
+
+  /// No description provided for @admFreeDeliveryPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Free delivery above (Plus)'**
+  String get admFreeDeliveryPlus;
+
+  /// No description provided for @admFeatureFlags.
+  ///
+  /// In en, this message translates to:
+  /// **'Feature switches'**
+  String get admFeatureFlags;
+
+  /// No description provided for @admReferrals.
+  ///
+  /// In en, this message translates to:
+  /// **'Referrals'**
+  String get admReferrals;
+
+  /// No description provided for @admReferralReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Reward for each friend'**
+  String get admReferralReward;
+
+  /// No description provided for @admCoupons.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupons'**
+  String get admCoupons;
+
+  /// No description provided for @admNewCoupon.
+  ///
+  /// In en, this message translates to:
+  /// **'New coupon'**
+  String get admNewCoupon;
+
+  /// No description provided for @admVaccineSchedules.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccine schedules'**
+  String get admVaccineSchedules;
+
+  /// No description provided for @admVaccineNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicative timings. Change a timing after a vet has reviewed it; every pet\'s schedule updates.'**
+  String get admVaccineNote;
+
+  /// No description provided for @admContentReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet review of content'**
+  String get admContentReview;
+
+  /// No description provided for @admContentReviewNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Until a vet reviews it, this content shows \"Draft, to be reviewed by a vet\".'**
+  String get admContentReviewNote;
+
+  /// No description provided for @admUsesDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get admUsesDefault;
+
+  /// No description provided for @admSavedLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved. The app uses the new value now.'**
+  String get admSavedLive;
+
+  /// No description provided for @admLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit'**
+  String get admLimit;
+
+  /// No description provided for @admLimitPets.
+  ///
+  /// In en, this message translates to:
+  /// **'Pets'**
+  String get admLimitPets;
+
+  /// No description provided for @admLimitFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Family members'**
+  String get admLimitFamily;
+
+  /// No description provided for @admLimitTeleVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet chats a month'**
+  String get admLimitTeleVet;
+
+  /// No description provided for @admLimitMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages per tele-vet chat'**
+  String get admLimitMessages;
+
+  /// No description provided for @admLimitWords.
+  ///
+  /// In en, this message translates to:
+  /// **'Words per message'**
+  String get admLimitWords;
+
+  /// No description provided for @admLimitHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet chat open for'**
+  String get admLimitHours;
+
+  /// No description provided for @admLimitAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask PawSetu questions a month'**
+  String get admLimitAi;
+
+  /// No description provided for @admLimitStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage'**
+  String get admLimitStorage;
+
+  /// No description provided for @admLimitVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video length'**
+  String get admLimitVideo;
+
+  /// No description provided for @admHoursUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'hours'**
+  String get admHoursUnit;
+
+  /// No description provided for @admSecondsUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'seconds'**
+  String get admSecondsUnit;
+
+  /// No description provided for @admUnlimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited'**
+  String get admUnlimited;
+
+  /// No description provided for @admUnlimitedNote.
+  ///
+  /// In en, this message translates to:
+  /// **'999 or more means unlimited.'**
+  String get admUnlimitedNote;
+
+  /// No description provided for @admFlagAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask PawSetu'**
+  String get admFlagAi;
+
+  /// No description provided for @admFlagAiHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The AI pet assistant'**
+  String get admFlagAiHint;
+
+  /// No description provided for @admFlagDevices.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected devices'**
+  String get admFlagDevices;
+
+  /// No description provided for @admFlagDevicesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Collars, feeders and other smart devices'**
+  String get admFlagDevicesHint;
+
+  /// No description provided for @admFlagLost.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost pet alerts nearby'**
+  String get admFlagLost;
+
+  /// No description provided for @admFlagLostHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts to app users within 5 km'**
+  String get admFlagLostHint;
+
+  /// No description provided for @admFlagReferrals.
+  ///
+  /// In en, this message translates to:
+  /// **'Refer a friend'**
+  String get admFlagReferrals;
+
+  /// No description provided for @admFlagReferralsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral codes and rewards'**
+  String get admFlagReferralsHint;
+
+  /// No description provided for @admCouponPercent.
+  ///
+  /// In en, this message translates to:
+  /// **'{pct}% off up to {max}'**
+  String admCouponPercent(int pct, String max);
+
+  /// No description provided for @admCouponFlat.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} off'**
+  String admCouponFlat(String amount);
+
+  /// No description provided for @admCouponMin.
+  ///
+  /// In en, this message translates to:
+  /// **'min. order {amount}'**
+  String admCouponMin(String amount);
+
+  /// No description provided for @admCouponTill.
+  ///
+  /// In en, this message translates to:
+  /// **'till {date}'**
+  String admCouponTill(String date);
+
+  /// No description provided for @admCouponUses.
+  ///
+  /// In en, this message translates to:
+  /// **'used {used} of {max}'**
+  String admCouponUses(int used, int max);
+
+  /// No description provided for @admCouponActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupon on'**
+  String get admCouponActive;
+
+  /// No description provided for @admPersonalCoupons.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 personal referral coupon is not shown.} other{{count} personal referral coupons are not shown.}}'**
+  String admPersonalCoupons(int count);
+
+  /// No description provided for @admCouponCodeHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'4 to 16 letters or digits, for example DIWALI20'**
+  String get admCouponCodeHelp;
+
+  /// No description provided for @admCouponDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description people see'**
+  String get admCouponDescription;
+
+  /// No description provided for @admCouponTypePercent.
+  ///
+  /// In en, this message translates to:
+  /// **'Percent off'**
+  String get admCouponTypePercent;
+
+  /// No description provided for @admCouponTypeFlat.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount off'**
+  String get admCouponTypeFlat;
+
+  /// No description provided for @admCouponPercentOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Percent off'**
+  String get admCouponPercentOff;
+
+  /// No description provided for @admCouponAmountOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount off'**
+  String get admCouponAmountOff;
+
+  /// No description provided for @admCouponMaxDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum discount'**
+  String get admCouponMaxDiscount;
+
+  /// No description provided for @admCouponMinOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum order'**
+  String get admCouponMinOrder;
+
+  /// No description provided for @admCouponMaxUses.
+  ///
+  /// In en, this message translates to:
+  /// **'How many times it can be used'**
+  String get admCouponMaxUses;
+
+  /// No description provided for @admCouponValidTill.
+  ///
+  /// In en, this message translates to:
+  /// **'Valid till'**
+  String get admCouponValidTill;
+
+  /// No description provided for @admDogSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Dogs'**
+  String get admDogSchedule;
+
+  /// No description provided for @admCatSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Cats'**
+  String get admCatSchedule;
+
+  /// No description provided for @admAskVetTiming.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional, timing as the vet advises'**
+  String get admAskVetTiming;
+
+  /// No description provided for @admEveryYears.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Every year} other{Every {count} years}}'**
+  String admEveryYears(int count);
+
+  /// No description provided for @admWeeksRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Age {from} to {to} weeks'**
+  String admWeeksRange(int from, int to);
+
+  /// No description provided for @admBoosterEvery.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} booster: every how many years?'**
+  String admBoosterEvery(String name);
+
+  /// No description provided for @admYearsUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'years'**
+  String get admYearsUnit;
+
+  /// No description provided for @admFromWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: from which week of age?'**
+  String admFromWeek(String name);
+
+  /// No description provided for @admToWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: up to which week of age?'**
+  String admToWeek(String name);
+
+  /// No description provided for @admWeeksUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'weeks'**
+  String get admWeeksUnit;
+
+  /// No description provided for @admAreaFirstAid.
+  ///
+  /// In en, this message translates to:
+  /// **'First-aid guides'**
+  String get admAreaFirstAid;
+
+  /// No description provided for @admAreaToxic.
+  ///
+  /// In en, this message translates to:
+  /// **'Toxic food and plant checker'**
+  String get admAreaToxic;
+
+  /// No description provided for @admAreaVaccines.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccine schedules'**
+  String get admAreaVaccines;
+
+  /// No description provided for @admDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get admDraft;
+
+  /// No description provided for @admReviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviewed'**
+  String get admReviewed;
+
+  /// No description provided for @admReviewSheetNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the name and registration number of the vet who checked this content.'**
+  String get admReviewSheetNote;
+
+  /// No description provided for @admReviewerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Vet\'s name and registration no.'**
+  String get admReviewerName;
+
+  /// No description provided for @admMarkReviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as reviewed'**
+  String get admMarkReviewed;
+
+  /// No description provided for @admBackToDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to draft'**
+  String get admBackToDraft;
+
+  /// No description provided for @admKindShop.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop'**
+  String get admKindShop;
+
+  /// No description provided for @admKindBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get admKindBooking;
+
+  /// No description provided for @admDownloadCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Download CSV'**
+  String get admDownloadCsv;
+
+  /// No description provided for @admColPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner'**
+  String get admColPartner;
+
+  /// No description provided for @admColType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get admColType;
+
+  /// No description provided for @admColCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Count'**
+  String get admColCount;
+
+  /// No description provided for @admColGross.
+  ///
+  /// In en, this message translates to:
+  /// **'Gross'**
+  String get admColGross;
+
+  /// No description provided for @admColCommission.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission'**
+  String get admColCommission;
+
+  /// No description provided for @admColPayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Payout'**
+  String get admColPayout;
+
+  /// No description provided for @admBookingCommissionShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking commission'**
+  String get admBookingCommissionShort;
+
+  /// No description provided for @admShopMargin.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop margin'**
+  String get admShopMargin;
+
+  /// No description provided for @admPlusRevenue.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus payments'**
+  String get admPlusRevenue;
+
+  /// No description provided for @admRefunds.
+  ///
+  /// In en, this message translates to:
+  /// **'Refunds'**
+  String get admRefunds;
+
+  /// No description provided for @admPlatformTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu earned'**
+  String get admPlatformTotal;
+
+  /// No description provided for @admReportDemoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo money: all payments in Version 1 are simulated. Tax fields are placeholders.'**
+  String get admReportDemoNote;
+
+  /// No description provided for @admByPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'By partner'**
+  String get admByPartner;
+
+  /// No description provided for @admLineCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 sale} other{{count} sales}}'**
+  String admLineCount(int count);
+
+  /// No description provided for @admNoteApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is approved and now visible to pet parents'**
+  String admNoteApproved(String name);
+
+  /// No description provided for @admNoteRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} was not approved'**
+  String admNoteRejected(String name);
+
+  /// No description provided for @admNoteSuspended.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is paused'**
+  String admNoteSuspended(String name);
+
+  /// No description provided for @hpReplyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Support replied: {subject}'**
+  String hpReplyTitle(String subject);
+
+  /// No description provided for @hpResolvedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolved: {subject}'**
+  String hpResolvedTitle(String subject);
+
+  /// No description provided for @hpRefundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund of ₹{amount} is on its way'**
+  String hpRefundTitle(int amount);
+
+  /// No description provided for @hpRefundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo refund: no real money moved.'**
+  String get hpRefundBody;
+
+  /// No description provided for @hpNewForSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'New message from {name}'**
+  String hpNewForSupport(String name);
+
+  /// No description provided for @hpIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re here to help'**
+  String get hpIntroTitle;
+
+  /// No description provided for @hpIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise a complaint or question about a booking, order or chat. We usually reply within a day.'**
+  String get hpIntroBody;
+
+  /// No description provided for @hpIntroPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus members get priority support: we usually reply within 4 hours.'**
+  String get hpIntroPlus;
+
+  /// No description provided for @hpRaise.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise a complaint'**
+  String get hpRaise;
+
+  /// No description provided for @hpYourTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Your tickets'**
+  String get hpYourTickets;
+
+  /// No description provided for @hpNoTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'No tickets yet. If something goes wrong, tell us here.'**
+  String get hpNoTickets;
+
+  /// No description provided for @hpQuickAnswers.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick answers'**
+  String get hpQuickAnswers;
+
+  /// No description provided for @hpFaqRefundQ.
+  ///
+  /// In en, this message translates to:
+  /// **'How do refunds work?'**
+  String get hpFaqRefundQ;
+
+  /// No description provided for @hpFaqRefundA.
+  ///
+  /// In en, this message translates to:
+  /// **'If you paid online and cancel in time, the money goes back to the same payment method in 5 to 7 working days. For other problems, raise a complaint and we\'ll check.'**
+  String get hpFaqRefundA;
+
+  /// No description provided for @hpFaqCancelQ.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I cancel a booking?'**
+  String get hpFaqCancelQ;
+
+  /// No description provided for @hpFaqCancelA.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Book, then My bookings. Choose the booking and tap Cancel booking. The clinic\'s cancellation time is shown there.'**
+  String get hpFaqCancelA;
+
+  /// No description provided for @hpFaqUrgentQ.
+  ///
+  /// In en, this message translates to:
+  /// **'My pet needs help right now'**
+  String get hpFaqUrgentQ;
+
+  /// No description provided for @hpFaqUrgentA.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the red SOS button on Home: hold it for 2 seconds to reach the nearest clinic. Don\'t wait for a reply here.'**
+  String get hpFaqUrgentA;
+
+  /// No description provided for @hpFaqDataQ.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I get or delete my data?'**
+  String get hpFaqDataQ;
+
+  /// No description provided for @hpFaqDataA.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Me, then Privacy centre, to download your data or delete your account.'**
+  String get hpFaqDataA;
+
+  /// No description provided for @hpAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'What is it about?'**
+  String get hpAbout;
+
+  /// No description provided for @hpPickItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a booking or order'**
+  String get hpPickItem;
+
+  /// No description provided for @hpSomethingElse.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get hpSomethingElse;
+
+  /// No description provided for @hpTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic'**
+  String get hpTopic;
+
+  /// No description provided for @hpSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject (optional)'**
+  String get hpSubject;
+
+  /// No description provided for @hpDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'What happened?'**
+  String get hpDetails;
+
+  /// No description provided for @hpDetailsHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 10 characters. Add dates, names and amounts if you can.'**
+  String get hpDetailsHelp;
+
+  /// No description provided for @hpSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to support'**
+  String get hpSend;
+
+  /// No description provided for @hpSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to PawSetu support'**
+  String get hpSent;
+
+  /// No description provided for @hpReplyTime.
+  ///
+  /// In en, this message translates to:
+  /// **'We usually reply within a day.'**
+  String get hpReplyTime;
+
+  /// No description provided for @hpReplyTimePlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus priority support: we usually reply within 4 hours.'**
+  String get hpReplyTimePlus;
+
+  /// No description provided for @hpTicketTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your ticket'**
+  String get hpTicketTitle;
+
+  /// No description provided for @hpResolvedNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked as resolved. Reply below if you still need help.'**
+  String get hpResolvedNote;
+
+  /// No description provided for @hpReopenHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Still need help? Write here to reopen'**
+  String get hpReopenHint;
+
+  /// No description provided for @hpGetHelpBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Get help with this booking'**
+  String get hpGetHelpBooking;
+
+  /// No description provided for @plusTrialStartedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your free trial has started'**
+  String get plusTrialStartedTitle;
+
+  /// No description provided for @plusTrialStartedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You have every Plus feature for {days} days, till {date}. Demo: nothing is charged.'**
+  String plusTrialStartedBody(int days, String date);
+
+  /// No description provided for @plusTrialUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve already used your free trial.'**
+  String get plusTrialUsed;
+
+  /// No description provided for @plusPayYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu Plus, 1 year'**
+  String get plusPayYearly;
+
+  /// No description provided for @plusPayMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu Plus, 1 month'**
+  String get plusPayMonthly;
+
+  /// No description provided for @plusWelcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to PawSetu Plus!'**
+  String get plusWelcomeTitle;
+
+  /// No description provided for @plusWelcomeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus is on. It renews on {date}. This was a demo payment: no money moved.'**
+  String plusWelcomeBody(String date);
+
+  /// No description provided for @plusKeepAfterTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep Plus after your trial'**
+  String get plusKeepAfterTrial;
+
+  /// No description provided for @plusChoosePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your plan'**
+  String get plusChoosePlan;
+
+  /// No description provided for @plusBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Plus for {amount}'**
+  String plusBuy(String amount);
+
+  /// No description provided for @plusStartsAfterTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'Your paid plan starts when the trial ends on {date}.'**
+  String plusStartsAfterTrial(String date);
+
+  /// No description provided for @plusStartTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'Start {days}-day free trial'**
+  String plusStartTrial(int days);
+
+  /// No description provided for @plusTrialNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Free for {days} days. No card needed in the demo.'**
+  String plusTrialNote(int days);
+
+  /// No description provided for @plusAutoRenew.
+  ///
+  /// In en, this message translates to:
+  /// **'Renew automatically'**
+  String get plusAutoRenew;
+
+  /// No description provided for @plusAutoRenewOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews on {date}'**
+  String plusAutoRenewOn(String date);
+
+  /// No description provided for @plusAutoRenewOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Plus stays till {date}, then you move to Free'**
+  String plusAutoRenewOff(String date);
+
+  /// No description provided for @plusDemoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: no money is charged and nothing renews for real.'**
+  String get plusDemoNote;
+
+  /// No description provided for @plusOnTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =0{Plus trial ends today} =1{Plus trial: 1 day left} other{Plus trial: {days} days left}}'**
+  String plusOnTrial(int days);
+
+  /// No description provided for @plusTrialEnds.
+  ///
+  /// In en, this message translates to:
+  /// **'Your trial ends on {date}.'**
+  String plusTrialEnds(String date);
+
+  /// No description provided for @plusYouHavePlus.
+  ///
+  /// In en, this message translates to:
+  /// **'You have PawSetu Plus'**
+  String get plusYouHavePlus;
+
+  /// No description provided for @plusRenewsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews on {date}'**
+  String plusRenewsOn(String date);
+
+  /// No description provided for @plusEndsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends on {date}'**
+  String plusEndsOn(String date);
+
+  /// No description provided for @plusYouAreFree.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re on the Free plan'**
+  String get plusYouAreFree;
+
+  /// No description provided for @plusFreeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade for video vet calls, unlimited pets and more.'**
+  String get plusFreeBody;
+
+  /// No description provided for @plusMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} min'**
+  String plusMinutes(int count);
+
+  /// No description provided for @plusSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} sec'**
+  String plusSeconds(int count);
+
+  /// No description provided for @plusRowPets.
+  ///
+  /// In en, this message translates to:
+  /// **'Pets'**
+  String get plusRowPets;
+
+  /// No description provided for @plusRowFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Family members'**
+  String get plusRowFamily;
+
+  /// No description provided for @plusRowVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video vet calls'**
+  String get plusRowVideo;
+
+  /// No description provided for @plusRowTeleVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Tele-vet chats'**
+  String get plusRowTeleVet;
+
+  /// No description provided for @plusRowMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat length'**
+  String get plusRowMessages;
+
+  /// No description provided for @plusRowAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask PawSetu'**
+  String get plusRowAi;
+
+  /// No description provided for @plusRowStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo and document storage'**
+  String get plusRowStorage;
+
+  /// No description provided for @plusRowVideoLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Video length in album'**
+  String get plusRowVideoLength;
+
+  /// No description provided for @plusRowVideoDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Off vet video fees'**
+  String get plusRowVideoDiscount;
+
+  /// No description provided for @plusRowDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Free delivery'**
+  String get plusRowDelivery;
+
+  /// No description provided for @plusRowSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get plusRowSupport;
+
+  /// No description provided for @plusYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get plusYes;
+
+  /// No description provided for @plusPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} a month'**
+  String plusPerMonth(String value);
+
+  /// No description provided for @plusMessagesWords.
+  ///
+  /// In en, this message translates to:
+  /// **'{messages} messages, {words} words each'**
+  String plusMessagesWords(String messages, String words);
+
+  /// No description provided for @plusAbove.
+  ///
+  /// In en, this message translates to:
+  /// **'above {amount}'**
+  String plusAbove(String amount);
+
+  /// No description provided for @plusStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get plusStandard;
+
+  /// No description provided for @plusPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get plusPriority;
+
+  /// No description provided for @plusYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly'**
+  String get plusYearly;
+
+  /// No description provided for @plusMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get plusMonthly;
+
+  /// No description provided for @plusPerYear.
+  ///
+  /// In en, this message translates to:
+  /// **'a year'**
+  String get plusPerYear;
+
+  /// No description provided for @plusPerMonthPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'a month'**
+  String get plusPerMonthPrice;
+
+  /// No description provided for @plusSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save {pct}%'**
+  String plusSave(int pct);
+
+  /// No description provided for @plusTrialEndingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =0{Your Plus trial ends today. Choose a plan to keep Plus.} =1{Your Plus trial ends tomorrow. Choose a plan to keep Plus.} other{Your Plus trial ends in {days} days. Choose a plan to keep Plus.}}'**
+  String plusTrialEndingSoon(int days);
+
+  /// No description provided for @referTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Refer a friend'**
+  String get referTitle;
+
+  /// No description provided for @referInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That code isn\'t valid, or you\'ve already used a code.'**
+  String get referInvalid;
+
+  /// No description provided for @referDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Code applied!'**
+  String get referDoneTitle;
+
+  /// No description provided for @referDoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You and your friend each get {amount} off. Your coupon: {code}. Use it in the Shop at checkout.'**
+  String referDoneBody(String amount, String code);
+
+  /// No description provided for @referPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Refer a friend is paused right now.'**
+  String get referPaused;
+
+  /// No description provided for @referHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Give {amount}, get {amount}'**
+  String referHeadline(String amount);
+
+  /// No description provided for @referBody.
+  ///
+  /// In en, this message translates to:
+  /// **'When a friend joins PawSetu with your code, you both get a {amount} Shop coupon.'**
+  String referBody(String amount);
+
+  /// No description provided for @referYourCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Your code'**
+  String get referYourCode;
+
+  /// No description provided for @referShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Join me on PawSetu, the app for pet parents! Use my code {code} and we both get {amount} off in the PawSetu Shop.'**
+  String referShareText(String code, String amount);
+
+  /// No description provided for @referFriendsJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No friends have joined with your code yet} =1{1 friend joined with your code} other{{count} friends joined with your code}}'**
+  String referFriendsJoined(int count);
+
+  /// No description provided for @referHaveCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Got a friend\'s code?'**
+  String get referHaveCode;
+
+  /// No description provided for @referEnterCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Friend\'s code'**
+  String get referEnterCode;
+
+  /// No description provided for @referApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply code'**
+  String get referApply;
+
+  /// No description provided for @referYourRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reward coupons'**
+  String get referYourRewards;
+
+  /// No description provided for @referCouponLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} off orders above {min}, till {date}'**
+  String referCouponLine(String amount, String min, String date);
+
+  /// No description provided for @referUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Used'**
+  String get referUsed;
+
+  /// No description provided for @referDemoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: coupons work in the demo Shop. No real money.'**
+  String get referDemoNote;
+
+  /// No description provided for @prvExportReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Your file is ready: {parts} sections, {kb} KB.'**
+  String prvExportReady(int parts, int kb);
+
+  /// No description provided for @prvExportSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'My PawSetu data'**
+  String get prvExportSubject;
+
+  /// No description provided for @prvDeleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete your account?'**
+  String get prvDeleteConfirmTitle;
+
+  /// No description provided for @prvDeleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account, pets and records will be deleted on {date}. Sign in within {days} days and cancel if you change your mind.'**
+  String prvDeleteConfirmBody(String date, int days);
+
+  /// No description provided for @prvDeleteButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get prvDeleteButton;
+
+  /// No description provided for @prvDeleteRequestedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion scheduled'**
+  String get prvDeleteRequestedTitle;
+
+  /// No description provided for @prvDeleteRequestedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account will be deleted on {date}. Demo: nothing is deleted for real.'**
+  String prvDeleteRequestedBody(String date);
+
+  /// No description provided for @prvConsentLost.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost pet alerts near me'**
+  String get prvConsentLost;
+
+  /// No description provided for @prvConsentLostHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Get an alert when a pet is lost within 5 km'**
+  String get prvConsentLostHint;
+
+  /// No description provided for @prvConsentAnalytics.
+  ///
+  /// In en, this message translates to:
+  /// **'Help improve PawSetu'**
+  String get prvConsentAnalytics;
+
+  /// No description provided for @prvConsentAnalyticsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Share anonymous app usage (no names or photos)'**
+  String get prvConsentAnalyticsHint;
+
+  /// No description provided for @prvConsentMarketing.
+  ///
+  /// In en, this message translates to:
+  /// **'Offers and news'**
+  String get prvConsentMarketing;
+
+  /// No description provided for @prvConsentMarketingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Occasional offers by SMS, WhatsApp or email'**
+  String get prvConsentMarketingHint;
+
+  /// No description provided for @prvConsentPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'Share health summary with clinics I book'**
+  String get prvConsentPartners;
+
+  /// No description provided for @prvConsentPartnersHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Helps the vet prepare before your visit'**
+  String get prvConsentPartnersHint;
+
+  /// No description provided for @prvDeletionPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account will be deleted on {date}. Tap to keep it.'**
+  String prvDeletionPending(String date);
+
+  /// No description provided for @prvCancelDeletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep my account'**
+  String get prvCancelDeletion;
+
+  /// No description provided for @prvDeletionCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion cancelled. Your account stays.'**
+  String get prvDeletionCancelled;
+
+  /// No description provided for @prvIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'You control your data. Choose what you share, download a copy of everything, or delete your account.'**
+  String get prvIntro;
+
+  /// No description provided for @prvConsents.
+  ///
+  /// In en, this message translates to:
+  /// **'What you share'**
+  String get prvConsents;
+
+  /// No description provided for @prvDownloadTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Download my data'**
+  String get prvDownloadTitle;
+
+  /// No description provided for @prvDownloadBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a file with your profile, pets, health records, bookings, orders, chats and more.'**
+  String get prvDownloadBody;
+
+  /// No description provided for @prvDownloadButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Download my data'**
+  String get prvDownloadButton;
+
+  /// No description provided for @prvDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get prvDeleteTitle;
+
+  /// No description provided for @prvDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is deleted {days} days after you ask. Until then you can sign in and cancel.'**
+  String prvDeleteBody(int days);
+
+  /// No description provided for @prvDemoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: the file is made on your device. In the live app we also email you a download link.'**
+  String get prvDemoNote;
+
+  /// No description provided for @suspTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is paused'**
+  String get suspTitle;
+
+  /// No description provided for @suspBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Our team paused this account. If you think this is a mistake, contact PawSetu support.'**
+  String get suspBody;
+
+  /// No description provided for @suspContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact support'**
+  String get suspContact;
+
+  /// No description provided for @suspContactBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo: write to support@example.com. In the live app this opens your email.'**
+  String get suspContactBody;
 }
 
 class _AppLocalizationsDelegate

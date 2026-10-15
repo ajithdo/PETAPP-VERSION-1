@@ -62,6 +62,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       return settings.onboardingSeen ? '/signin' : '/welcome';
     }
 
+    // An admin paused this account: only the "account paused" page.
+    if (user.suspended) return loc == '/suspended' || (isPublic && !authPaths.contains(loc)) ? null : '/suspended';
+    if (loc == '/suspended') return homeFor(user.role);
+
     if (!user.emailVerified && loc != '/verify-email') return '/verify-email';
     if (user.emailVerified && loc == '/verify-email') return homeFor(user.role);
 

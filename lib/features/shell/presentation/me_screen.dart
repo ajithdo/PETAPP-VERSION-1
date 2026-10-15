@@ -6,6 +6,7 @@ import '../../../core/providers.dart';
 import '../../../core/routing/extra_routes.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../admin/admin_slots.dart' show meItemVisible;
 
 /// "Me" tab: everything about the owner's account and pets (spec 5).
 class MeScreen extends ConsumerWidget {
@@ -15,7 +16,7 @@ class MeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final user = ref.watch(currentUserProvider);
-    final items = meMenu(context);
+    final items = meMenu(context).where((m) => meItemVisible(ref, m.route)).toList();
     return PageBody(children: [
       const SizedBox(height: Space.sm),
       PawCard(

@@ -241,6 +241,8 @@ export async function placeOrder(uid: string, input: PlaceInput): Promise<{ grou
       const d = await tx.get(db.collection('coupons').doc(code));
       if (!d.exists) throw new HttpsError('failed-precondition', 'coupon');
       coupon = d.data()!;
+      // Referral rewards are personal: only their owner can use them.
+      if (coupon.forUid && coupon.forUid !== uid) throw new HttpsError('failed-precondition', 'coupon');
     }
     let pet: Record<string, any> | undefined;
     if (input.petId) {

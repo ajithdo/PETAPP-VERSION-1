@@ -116,7 +116,10 @@ class HealthBody extends ConsumerWidget {
       _EventsSection(pet: pet, type: 'symptom', canCare: canCare),
       _RemindersSection(pet: pet),
       const SizedBox(height: Space.lg),
-      InfoNote(l.indicativeNote),
+      Builder(builder: (context) {
+        final by = ((ref.watch(appSettingsDocProvider).value?['contentReview'] as Map?)?['vaccines'] as String?) ?? '';
+        return InfoNote(by.isEmpty ? l.indicativeNote : '${l.indicativeNote} ${l.reviewedBy(by)}');
+      }),
     ]);
   }
 }

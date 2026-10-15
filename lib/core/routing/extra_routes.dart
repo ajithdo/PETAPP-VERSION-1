@@ -150,6 +150,7 @@ List<MeMenuItem> meMenu(BuildContext context) {
     MeMenuItem(Icons.receipt_long_rounded, l.ordMyOrders, '/shop/orders'),
     MeMenuItem(Icons.location_on_rounded, l.addrBook, '/me/addresses'),
     MeMenuItem(Icons.workspace_premium_rounded, l.pawsetuPlus, '/me/plus'),
+    MeMenuItem(Icons.card_giftcard_rounded, l.referTitle, '/me/refer'),
     MeMenuItem(Icons.settings_rounded, l.settings, '/me/settings'),
     MeMenuItem(Icons.support_agent_rounded, l.helpAndComplaints, '/me/help'),
     MeMenuItem(Icons.privacy_tip_rounded, l.privacyCentre, '/me/privacy'),

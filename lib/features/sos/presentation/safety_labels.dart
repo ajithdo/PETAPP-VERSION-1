@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/gen/app_localizations.dart';
+import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../domain/devices.dart';
@@ -142,15 +144,24 @@ IconData deviceIcon(DeviceType t) => switch (t) {
       DeviceType.litterBox => Icons.inventory_2_rounded,
     };
 
-/// The red "Draft, to be reviewed by a vet" label (Version 1 content).
-class DraftLabel extends StatelessWidget {
-  const DraftLabel({super.key});
+/// The "Draft, to be reviewed by a vet" label (Version 1 content). Once the
+/// admin records a vet's review (Settings → Content review), it shows who
+/// reviewed it instead. [area] is firstAid or toxic.
+class DraftLabel extends ConsumerWidget {
+  const DraftLabel({super.key, this.area = 'firstAid'});
+  final String area;
 
   @override
-  Widget build(BuildContext context) => Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: StatusChip(context.l10n.draftVetReview, tone: ChipTone.warning, icon: Icons.rate_review_rounded),
-      );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final review = (ref.watch(appSettingsDocProvider).value?['contentReview'] as Map?) ?? const {};
+    final by = (review[area] as String?) ?? '';
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: by.isEmpty
+          ? StatusChip(context.l10n.draftVetReview, tone: ChipTone.warning, icon: Icons.rate_review_rounded)
+          : StatusChip(context.l10n.reviewedBy(by), tone: ChipTone.success, icon: Icons.verified_rounded),
+    );
+  }
 }
 
 /// Space between list sections in Phase 9 screens.

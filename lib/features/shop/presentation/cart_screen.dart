@@ -256,9 +256,9 @@ class _CartScreenState extends ConsumerState<CartScreen> {
   Future<void> _apply({bool silent = false}) async {
     final code = normaliseCoupon(_coupon.text);
     if (code.isEmpty) return;
-    final c = await ref.read(shopRepositoryProvider).coupon(code);
-    if (!mounted) return;
     final user = ref.read(currentUserProvider)!;
+    final c = await ref.read(shopRepositoryProvider).coupon(code, uid: user.uid);
+    if (!mounted) return;
     setState(() {
       _applied = c;
       _couponMsg = c == null ? (silent ? null : context.l10n.couponNotFound) : null;

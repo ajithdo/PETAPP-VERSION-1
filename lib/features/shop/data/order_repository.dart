@@ -126,6 +126,7 @@ class OrderRepository {
       final d = await _db.collection('coupons').doc(normaliseCoupon(couponCode)).get();
       if (!d.exists) throw OrderException('coupon');
       coupon = Coupon(d.id, d.data()!);
+      if (coupon.forUid != null && coupon.forUid != owner.uid) throw OrderException('coupon');
     }
     final price = priceCart(
       lines,

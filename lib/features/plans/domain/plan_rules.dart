@@ -45,3 +45,20 @@ DateTime renewalDate(DateTime start, {required bool yearly}) =>
 
 /// Whole days left in a trial or period (never negative).
 int daysLeft(DateTime? end, DateTime now) => end == null || !end.isAfter(now) ? 0 : (end.difference(now).inHours / 24).ceil();
+
+const _codeChars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+/// A person's referral code: up to four letters of their name and four
+/// random characters, e.g. PRIY7K2Q (PAWS… for names in other scripts).
+String newReferralCode(String name, int Function(int max) nextInt) {
+  final letters = name.toUpperCase().replaceAll(RegExp('[^A-Z]'), '');
+  final head = '${letters}PAWS'.substring(0, 4);
+  return head + List.generate(4, (_) => _codeChars[nextInt(_codeChars.length)]).join();
+}
+
+/// Referral codes are 6 to 10 letters or digits.
+bool referralCodeLooksValid(String code) => RegExp(r'^[A-Z0-9]{6,10}$').hasMatch(code.trim().toUpperCase());
+
+/// Free and Plus values for the plan comparison: limits of 999 or more
+/// mean "unlimited".
+bool isUnlimited(num? v) => v != null && v >= 999;

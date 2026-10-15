@@ -41,11 +41,44 @@ const catTemplates = [
   DoseTemplate('felv', 'FeLV', 'optional', optional: true),
 ];
 
-List<DoseTemplate> templatesFor(Species s) => switch (s) {
-      Species.dog => dogTemplates,
-      Species.cat => catTemplates,
-      _ => const [],
-    };
+List<DoseTemplate> templatesFor(Species s) => applyVaccineOverride(
+      switch (s) {
+        Species.dog => dogTemplates,
+        Species.cat => catTemplates,
+        _ => const [],
+      },
+      (VaccineOverrides.current[s.name] as Map?) ?? const {},
+    );
+
+/// Timing changes made in the admin panel (Settings → Vaccine schedules),
+/// kept in config/app `vaccineSchedules`, for example
+/// `{'dog': {'dhppi_1': {'from': 6, 'to': 8}, 'rabies_booster': {'everyYears': 1}}}`.
+/// The app copies them here whenever config/app changes.
+class VaccineOverrides {
+  static Map<String, dynamic> current = const {};
+}
+
+/// [base] with the admin's timing changes for one species applied.
+List<DoseTemplate> applyVaccineOverride(List<DoseTemplate> base, Map overrides) {
+  if (overrides.isEmpty) return base;
+  int? n(Object? v) => (v as num?)?.toInt();
+  return [
+    for (final t in base)
+      if (overrides[t.key] is Map)
+        DoseTemplate(
+          t.key,
+          t.name,
+          t.doseLabel,
+          fromWeeks: n((overrides[t.key] as Map)['from']) ?? t.fromWeeks,
+          toWeeks: n((overrides[t.key] as Map)['to']) ?? t.toWeeks,
+          yearlyAfter: t.yearlyAfter,
+          everyYears: n((overrides[t.key] as Map)['everyYears']) ?? t.everyYears,
+          optional: t.optional,
+        )
+      else
+        t,
+  ];
+}
 
 /// A vaccine the owner recorded.
 class VaccineRecord {

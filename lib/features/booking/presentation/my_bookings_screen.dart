@@ -204,6 +204,12 @@ class BookingDetailScreen extends ConsumerWidget {
               const SizedBox(height: Space.md),
               if (!partnerView) ..._ownerActions(context, ref, b, place),
               if (partnerView && partnerActions != null) partnerActions!(b),
+              const SizedBox(height: Space.sm),
+              TextButton.icon(
+                onPressed: () => context.push('${partnerView ? '/help' : '/me/help'}/new?booking=${b.id}'),
+                icon: const Icon(Icons.support_agent_rounded),
+                label: Text(context.l10n.hpGetHelpBooking),
+              ),
             ],
           );
         },

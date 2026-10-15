@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../admin/admin_slots.dart' show adminHomeSection;
 import '../../pets/domain/pet.dart';
 import '../../routine/data/routine_repository.dart';
 import '../../routine/presentation/heat_card.dart';
@@ -46,6 +47,7 @@ List<Widget> homeSections(BuildContext context, WidgetRef ref,
     // "All pets": merged today's tasks.
     return [
       ...lostPetSection(context, ref, pets),
+      ...adminHomeSection(context, ref),
       SectionHeader(l.todayAllPets),
       for (final p in pets) Padding(padding: const EdgeInsets.only(bottom: Space.md), child: _MiniToday(pet: p)),
       ...nextUpSection(context, ref, pets: pets),
@@ -56,6 +58,7 @@ List<Widget> homeSections(BuildContext context, WidgetRef ref,
 
   return [
     ...lostPetSection(context, ref, [pet]),
+    ...adminHomeSection(context, ref),
     const SizedBox(height: Space.lg),
     TodayCard(pet: pet, big: easy),
     ...nextUpSection(context, ref, pets: [pet]),

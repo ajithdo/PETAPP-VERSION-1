@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/l10n/gen/app_localizations.dart';
+import 'features/admin/admin_slots.dart';
 import 'features/health/application/reminder_engine.dart';
 import 'core/providers.dart';
 import 'core/routing/router.dart';
@@ -18,6 +19,8 @@ class PawSetuApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
     // Reminders run while an owner is signed in.
     ref.watch(reminderEngineProvider);
+    // Admin changes in config/app (e.g. vaccine timings) apply straight away.
+    ref.watch(configSyncProvider);
 
     // Apply the language and Easy mode saved on the signed-in profile.
     ref.listen(currentUserProvider, (prev, next) async {

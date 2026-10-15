@@ -69,7 +69,7 @@ String statusAfterMessage(String current, {required bool fromAdmin}) {
 }
 
 /// Refunds in Version 1 are simulated and can't exceed what was paid.
-int refundAmount(int requested, {required int paid}) => requested < 0 ? 0 : (requested > paid ? paid : requested);
+int ticketRefundAmount(int requested, {required int paid}) => requested < 0 ? 0 : (requested > paid ? paid : requested);
 
 class Report {
   Report(this.id, this.raw, this.date);
@@ -81,7 +81,14 @@ class Report {
   String get type => (raw['type'] as String?) ?? 'content';
   String get targetId => (raw['targetId'] as String?) ?? '';
   String get reporterId => (raw['reporterId'] as String?) ?? '';
-  String get reason => (raw['reason'] as String?) ?? '';
+  String get targetTitle => (raw['targetTitle'] as String?) ?? '';
+  String get reporterName => (raw['reporterName'] as String?) ?? '';
+
+  /// spam, abuse, payment, fake or other
+  String get reason => (raw['reason'] as String?) ?? 'other';
+  String get details => (raw['details'] as String?) ?? '';
+
+  /// The reported words (a review's text or chat message).
   String get excerpt => (raw['excerpt'] as String?) ?? '';
 
   /// open, actioned or dismissed

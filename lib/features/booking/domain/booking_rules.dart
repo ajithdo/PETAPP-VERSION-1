@@ -156,3 +156,15 @@ String icsFor({required String uid, required String title, required DateTime sta
     'END:VCALENDAR',
   ].join('\r\n');
 }
+
+/// Booking commission in percent (spec 8): the provider's own rate if the
+/// admin set one, else the rate for its type (clinic, groomer, trainer,
+/// boarder, walker), else the default rate (10%).
+num bookingCommissionPercent(Map<String, dynamic>? cfg, {required String kind, Object? providerRate}) {
+  if (providerRate is num) return providerRate;
+  final c = (cfg?['commission'] as Map?) ?? const {};
+  final byType = (c['bookingTypePercent'] as Map?) ?? const {};
+  final t = byType[kind];
+  if (t is num) return t;
+  return (c['bookingPercent'] as num?) ?? 10;
+}

@@ -50,6 +50,9 @@ class Product {
   int get deliveryDays => (raw['deliveryDays'] as num?)?.toInt() ?? 3;
   bool get returnable => (raw['returnable'] as bool?) ?? true;
   bool get active => (raw['active'] as bool?) ?? true;
+
+  /// Picked by the admin (Catalogue → Products) for the Shop home.
+  bool get featured => (raw['featured'] as bool?) ?? false;
   String? get photoUrl => raw['photoUrl'] as String?;
   DateTime get createdAt => parseDate(raw['createdAt']) ?? DateTime.fromMillisecondsSinceEpoch(0);
 
@@ -200,6 +203,9 @@ class Coupon {
   int? get maxUses => (raw['maxUses'] as num?)?.toInt();
   bool get active => (raw['active'] as bool?) ?? true;
   String get description => (raw['description'] as String?) ?? '';
+
+  /// Set for referral rewards: only this person can use the coupon.
+  String? get forUid => raw['forUid'] as String?;
 }
 
 /// Expense categories (data model `expenses.category`).

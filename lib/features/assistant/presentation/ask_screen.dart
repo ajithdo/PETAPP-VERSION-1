@@ -6,6 +6,7 @@ import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../admin/admin_slots.dart' show featureOn;
 import '../../messaging/data/chat_models.dart';
 import '../../plans/presentation/plus_prompt.dart';
 import '../../shell/presentation/sos_launcher.dart';
@@ -69,6 +70,9 @@ class _AskScreenState extends ConsumerState<AskScreen> {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    if (!featureOn(ref, 'aiAssistant')) {
+      return Scaffold(appBar: AppBar(title: Text(l.aiTitle)), body: EmptyState(title: l.featurePaused, message: l.featurePausedBody));
+    }
     final msgs = ref.watch(assistantMessagesProvider);
     final a = ref.watch(assistantAllowanceProvider);
     final list = msgs.value ?? const <ChatMessage>[];

@@ -153,7 +153,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
     final l = context.l10n;
     final user = ref.read(currentUserProvider)!;
     final cfg = ref.read(appSettingsDocProvider).value ?? const {};
-    final pct = ((cfg['commission'] as Map?)?['bookingPercent'] as num?) ?? 10;
+    final pct = bookingCommissionPercent(cfg, kind: place.kind, providerRate: place.raw['commissionPercent']);
     final price = priceBooking(servicePrice: s.price, homeVisit: _homeVisit, travelFee: place.homeVisitFee, commissionPercent: pct);
     var paid = false;
     if (_payment == 'online') {
@@ -404,7 +404,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
   List<Widget> _confirm(BuildContext context, Place place, PlaceService s, Pet pet) {
     final l = context.l10n;
     final cfg = ref.watch(appSettingsDocProvider).value ?? const {};
-    final pct = ((cfg['commission'] as Map?)?['bookingPercent'] as num?) ?? 10;
+    final pct = bookingCommissionPercent(cfg, kind: place.kind, providerRate: place.raw['commissionPercent']);
     final p = priceBooking(servicePrice: s.price, homeVisit: _homeVisit, travelFee: place.homeVisitFee, commissionPercent: pct);
     Widget row(String k, String v, {bool bold = false}) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),

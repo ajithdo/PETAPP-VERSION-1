@@ -8938,4 +8938,1714 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get toxPhenylWhy =>
       'Phenyl and many floor cleaners contain phenols, which are especially poisonous to cats. Let floors dry before pets walk on them.';
+
+  @override
+  String reviewedBy(String name) {
+    return 'Reviewed by $name';
+  }
+
+  @override
+  String get featurePaused => 'This feature is switched off for now';
+
+  @override
+  String get featurePausedBody =>
+      'The PawSetu team has paused it. Please check again later.';
+
+  @override
+  String get shopFeatured => 'Featured';
+
+  @override
+  String admUsers(int owners, int partners) {
+    return 'Users: $owners pet parents, $partners partners';
+  }
+
+  @override
+  String get admPets => 'Pets';
+
+  @override
+  String get admBookings30 => 'Bookings, last 30 days';
+
+  @override
+  String get admOrderValue30 => 'Order value, last 30 days';
+
+  @override
+  String get admCommission30 => 'Commission earned, last 30 days';
+
+  @override
+  String get admPlusMembers => 'Plus members';
+
+  @override
+  String get admSos30 => 'SOS activations, last 30 days';
+
+  @override
+  String get admByDay => 'By day';
+
+  @override
+  String get admByWeek => 'By week';
+
+  @override
+  String get admByMonth => 'By month';
+
+  @override
+  String get admCommissionReport => 'Commission report';
+
+  @override
+  String get admNoNumbers => 'No numbers yet';
+
+  @override
+  String get admChartBookingsOrders => 'Bookings and orders';
+
+  @override
+  String get admLegendBookings => 'Bookings';
+
+  @override
+  String get admLegendOrders => 'Orders';
+
+  @override
+  String get admChartMoney => 'Order value and commission';
+
+  @override
+  String get admLegendOrderValue => 'Order value';
+
+  @override
+  String get admLegendCommission => 'Commission';
+
+  @override
+  String get admChartGrowth => 'New users, pets and Plus members';
+
+  @override
+  String get admLegendUsers => 'New users';
+
+  @override
+  String get admLegendPets => 'New pets';
+
+  @override
+  String get admLegendPlus => 'New Plus';
+
+  @override
+  String get admChartSos => 'SOS activations';
+
+  @override
+  String get admLegendSos => 'SOS';
+
+  @override
+  String get admTopClinics => 'Top clinics';
+
+  @override
+  String get admTopProducts => 'Top products';
+
+  @override
+  String get admBookingsUnit => 'bookings';
+
+  @override
+  String get admSoldUnit => 'sold';
+
+  @override
+  String admChange(String change) {
+    return '$change% vs before';
+  }
+
+  @override
+  String get admNothingYet => 'Nothing yet';
+
+  @override
+  String get admKindClinic => 'Clinic';
+
+  @override
+  String get admStatusRejected => 'Rejected';
+
+  @override
+  String get admStatusSuspended => 'Suspended';
+
+  @override
+  String get admAllKinds => 'All';
+
+  @override
+  String admWaitingCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count waiting for review',
+      one: '1 waiting for review',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get admNoPending => 'Nothing waiting for approval';
+
+  @override
+  String get admNothingHere => 'Nothing here';
+
+  @override
+  String admRejectTitle(String name) {
+    return 'Reject $name?';
+  }
+
+  @override
+  String admSuspendTitle(String name) {
+    return 'Suspend $name?';
+  }
+
+  @override
+  String get admReasonDocs => 'Documents are unclear';
+
+  @override
+  String get admReasonRegNo => 'Registration number doesn\'t match';
+
+  @override
+  String get admReasonDetails => 'Details are missing';
+
+  @override
+  String admApprovedToast(String name) {
+    return '$name approved';
+  }
+
+  @override
+  String admRejectedToast(String name) {
+    return '$name rejected';
+  }
+
+  @override
+  String admSuspendedToast(String name) {
+    return '$name suspended';
+  }
+
+  @override
+  String admAppliedOn(String date) {
+    return 'Applied $date';
+  }
+
+  @override
+  String admRegNo(String regNo) {
+    return 'Registration no.: $regNo';
+  }
+
+  @override
+  String get admRegMissing => 'No registration number';
+
+  @override
+  String get admRegLooksRight => 'Format looks right';
+
+  @override
+  String get admRegCheck => 'Check this number';
+
+  @override
+  String get admRegHint =>
+      'Always check it against the State Veterinary Council register.';
+
+  @override
+  String get admKycDocs => 'KYC documents';
+
+  @override
+  String get admNoDocs => 'No documents uploaded yet';
+
+  @override
+  String admReasonGiven(String reason) {
+    return 'Reason: $reason';
+  }
+
+  @override
+  String get admApprove => 'Approve';
+
+  @override
+  String get admReinstate => 'Approve again';
+
+  @override
+  String get admReject => 'Reject';
+
+  @override
+  String get admSuspend => 'Suspend';
+
+  @override
+  String get admSampleStamp => 'SAMPLE';
+
+  @override
+  String get admDocDemoNote =>
+      'Demo: sample documents only. Real KYC files open here in the live app.';
+
+  @override
+  String get admReasonLabel => 'Reason (the partner sees this)';
+
+  @override
+  String get admSearchUsers => 'Search by name, email, phone or city';
+
+  @override
+  String get admFilterOwners => 'Pet parents';
+
+  @override
+  String get admFilterPartners => 'Partners';
+
+  @override
+  String get admFilterAdmins => 'Admins';
+
+  @override
+  String admPeopleCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count people',
+      one: '1 person',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get plusTrialChip => 'Plus trial';
+
+  @override
+  String get admDeletionPending => 'Deletion requested';
+
+  @override
+  String admRoleConfirm(String name, String role) {
+    return 'Make $name a $role?';
+  }
+
+  @override
+  String get admRoleChanged =>
+      'Role changed. It applies the next time they open the app.';
+
+  @override
+  String admSuspendUserTitle(String name) {
+    return 'Pause $name\'s account?';
+  }
+
+  @override
+  String get admReasonAbuse => 'Abusive behaviour';
+
+  @override
+  String get admReasonFraud => 'Payment fraud';
+
+  @override
+  String get admReasonFake => 'Fake account';
+
+  @override
+  String admUserSuspended(String name) {
+    return '$name\'s account is paused';
+  }
+
+  @override
+  String admUserRestored(String name) {
+    return '$name\'s account is active again';
+  }
+
+  @override
+  String get admCity => 'City';
+
+  @override
+  String get admPlanLabel => 'Plan';
+
+  @override
+  String admPlusTill(String date) {
+    return 'Plus till $date';
+  }
+
+  @override
+  String admTrialTill(String date) {
+    return 'Plus trial till $date';
+  }
+
+  @override
+  String get admJoined => 'Joined';
+
+  @override
+  String admDeletionOn(String date) {
+    return 'Account will be deleted on $date';
+  }
+
+  @override
+  String get admNotYourself =>
+      'You can\'t change your own role or pause yourself.';
+
+  @override
+  String get admSaveRole => 'Save role';
+
+  @override
+  String get admUnsuspend => 'Make active again';
+
+  @override
+  String get admSuspendUser => 'Pause account';
+
+  @override
+  String get admTabProducts => 'Products';
+
+  @override
+  String get admTabCategories => 'Categories';
+
+  @override
+  String get admTabPlaces => 'Clinics and services';
+
+  @override
+  String get admTabSellers => 'Sellers';
+
+  @override
+  String get admTabPartners => 'Partner shops';
+
+  @override
+  String get admTabBanners => 'Banners';
+
+  @override
+  String get admSearchProducts => 'Search products, brands or sellers';
+
+  @override
+  String get admFeatured => 'Featured';
+
+  @override
+  String get admHidden => 'Hidden';
+
+  @override
+  String get admLowStock => 'Low stock';
+
+  @override
+  String get admPartnerLinks => 'Partner links';
+
+  @override
+  String admShowingOf(int shown, int total) {
+    return 'Showing $shown of $total. Search to narrow down.';
+  }
+
+  @override
+  String admProductsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count products',
+      one: '1 product',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get admPartnerLink => 'Partner link';
+
+  @override
+  String admStock(int count) {
+    return 'Stock $count';
+  }
+
+  @override
+  String get admUnfeature => 'Remove from featured';
+
+  @override
+  String get admFeature => 'Feature in the Shop';
+
+  @override
+  String get admShowInShop => 'Show in the Shop';
+
+  @override
+  String admCategoryNote(String food, String other) {
+    return 'Default margin: $food% on food, $other% on everything else. You can set a different margin for any category.';
+  }
+
+  @override
+  String admMarginCustom(String pct) {
+    return 'Margin $pct% (own rate)';
+  }
+
+  @override
+  String admMarginDefault(String pct) {
+    return 'Margin $pct% (default)';
+  }
+
+  @override
+  String admMarginFor(String name) {
+    return 'Margin for $name';
+  }
+
+  @override
+  String get admEmptyDefault => 'Leave empty to use the default';
+
+  @override
+  String get admSellerNote =>
+      'Sellers are approved in Approvals. Here you can give a seller its own margin.';
+
+  @override
+  String get admMarginStandard => 'Standard margin';
+
+  @override
+  String get admEditMargin => 'Change rate';
+
+  @override
+  String get admPartnersNote =>
+      'Affiliate partner shops: people buy on the partner\'s own website and PawSetu earns a commission.';
+
+  @override
+  String admPartnerLine(String pct, int clicks) {
+    return 'Commission $pct% · $clicks clicks';
+  }
+
+  @override
+  String get admAddPartner => 'Add partner shop';
+
+  @override
+  String get admPartnerName => 'Shop name';
+
+  @override
+  String get admPartnerUrl => 'Website (https://…)';
+
+  @override
+  String get admPartnerCommission => 'Commission';
+
+  @override
+  String get admBannersNote =>
+      'Banners show on Home or in the Shop. Only banners that are switched on are shown.';
+
+  @override
+  String get admPlaceShop => 'Shop';
+
+  @override
+  String get admPlaceHome => 'Home';
+
+  @override
+  String get admBannerShown => 'Show this banner';
+
+  @override
+  String get admNewBanner => 'New banner';
+
+  @override
+  String get admEditBanner => 'Edit banner';
+
+  @override
+  String get admBannerTitle => 'Title';
+
+  @override
+  String get admBannerBody => 'Short text';
+
+  @override
+  String get admBannerLink => 'Opens (app page)';
+
+  @override
+  String get admBannerLinkHelp =>
+      'For example /me/plus or /shop/search?q=food. Leave empty for no link.';
+
+  @override
+  String get admToneOffer => 'Offer (orange)';
+
+  @override
+  String get admToneNews => 'News (green)';
+
+  @override
+  String get admPlacesNote =>
+      'Booking commission for each clinic or provider. Empty means the rate for its type in Plans and settings.';
+
+  @override
+  String admRateCustom(String pct) {
+    return 'Commission $pct% (own rate)';
+  }
+
+  @override
+  String admRateStandard(String pct) {
+    return 'Commission $pct% (standard)';
+  }
+
+  @override
+  String admRateFor(String name) {
+    return 'Commission for $name';
+  }
+
+  @override
+  String get hpStatusOpen => 'Open';
+
+  @override
+  String get hpStatusInProgress => 'In progress';
+
+  @override
+  String get hpStatusResolved => 'Resolved';
+
+  @override
+  String get admNeedsReply => 'Needs a reply';
+
+  @override
+  String get admNotResolved => 'Not resolved';
+
+  @override
+  String get admEveryone => 'Everyone';
+
+  @override
+  String get admNoTickets => 'No tickets here';
+
+  @override
+  String get hpSupportTeam => 'PawSetu support';
+
+  @override
+  String get hpNewReply => 'New reply';
+
+  @override
+  String hpRefunded(String amount) {
+    return 'Refunded $amount';
+  }
+
+  @override
+  String get admTicketTitle => 'Ticket';
+
+  @override
+  String get admTicketMissing => 'This ticket isn\'t available';
+
+  @override
+  String get admAssignee => 'Assigned to';
+
+  @override
+  String get admUnassigned => 'Not assigned';
+
+  @override
+  String get admConversation => 'Conversation';
+
+  @override
+  String admReplyHint(String name) {
+    return 'Reply to $name';
+  }
+
+  @override
+  String admReplySent(String name) {
+    return 'Reply sent. $name gets a notification.';
+  }
+
+  @override
+  String get admResolveAfter => 'Mark as resolved after sending';
+
+  @override
+  String admLinkMissing(String type) {
+    return 'The linked item can\'t be found ($type).';
+  }
+
+  @override
+  String admOrderLine(int count, String seller) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count items',
+      one: '1 item',
+    );
+    return '$_temp0 from $seller';
+  }
+
+  @override
+  String admPaid(String amount) {
+    return 'Paid $amount';
+  }
+
+  @override
+  String admRefundDone(String amount, String date) {
+    return 'Refunded $amount on $date (demo)';
+  }
+
+  @override
+  String get admRefundButton => 'Refund (demo)';
+
+  @override
+  String get admRefundAmount => 'Refund amount';
+
+  @override
+  String admRefundMax(String amount) {
+    return 'Up to $amount, the amount paid';
+  }
+
+  @override
+  String admRefundConfirm(String amount, String name) {
+    return 'Refund $amount to $name?';
+  }
+
+  @override
+  String get admRefundDemoTitle => 'Demo refund';
+
+  @override
+  String admRefundDemoBody(String amount, String name) {
+    return '$name is told that $amount is refunded. This is a demo: no real money moved.';
+  }
+
+  @override
+  String hpRaisedOn(String date) {
+    return 'Raised $date';
+  }
+
+  @override
+  String admAssignedTo(String name) {
+    return 'Assigned to $name';
+  }
+
+  @override
+  String get hpWriteReply => 'Write a reply';
+
+  @override
+  String get hpTopicRefund => 'Refund';
+
+  @override
+  String get hpTopicLate => 'Late or didn\'t come';
+
+  @override
+  String get hpTopicQuality => 'Quality problem';
+
+  @override
+  String get hpTopicBehaviour => 'Rude or unsafe behaviour';
+
+  @override
+  String get hpTopicApp => 'App problem';
+
+  @override
+  String get hpTopicOther => 'Something else';
+
+  @override
+  String get hpLinkBooking => 'Booking';
+
+  @override
+  String get hpLinkOrder => 'Order';
+
+  @override
+  String get hpLinkChat => 'Chat';
+
+  @override
+  String get hpLinkOther => 'General';
+
+  @override
+  String admReportsOpen(int count) {
+    return 'Open ($count)';
+  }
+
+  @override
+  String get admReportsClosed => 'Closed';
+
+  @override
+  String get admNoReports => 'No reports to review';
+
+  @override
+  String get admReviewHidden => 'Review hidden';
+
+  @override
+  String get admReviewRestored => 'Review shown again';
+
+  @override
+  String get admReportHandled => 'Marked as handled';
+
+  @override
+  String get admReportDismissed => 'Report dismissed';
+
+  @override
+  String get admReportReview => 'Reported review';
+
+  @override
+  String get admReportChat => 'Reported chat';
+
+  @override
+  String get admReportContent => 'Reported content';
+
+  @override
+  String admReporterSays(String text) {
+    return 'Reporter says: $text';
+  }
+
+  @override
+  String admReportedBy(String name) {
+    return 'Reported by $name';
+  }
+
+  @override
+  String admClosedOn(String date) {
+    return 'closed $date';
+  }
+
+  @override
+  String get admHideReview => 'Hide review';
+
+  @override
+  String get admMarkHandled => 'Mark as handled';
+
+  @override
+  String get admDismiss => 'Dismiss';
+
+  @override
+  String get admRestoreReview => 'Show review again';
+
+  @override
+  String get admSearchOutbox => 'Search by phone, email or text';
+
+  @override
+  String admAllCount(int count) {
+    return 'All ($count)';
+  }
+
+  @override
+  String get admChannelSms => 'SMS';
+
+  @override
+  String get admChannelWhatsapp => 'WhatsApp';
+
+  @override
+  String get admChannelEmail => 'Email';
+
+  @override
+  String get admChannelPush => 'Push';
+
+  @override
+  String get admAuditNote =>
+      'Every change made in the admin panel, newest first.';
+
+  @override
+  String get admSearchAudit => 'Search by person, action or item';
+
+  @override
+  String get admActApprove => 'Approved a partner';
+
+  @override
+  String get admActReject => 'Rejected a partner';
+
+  @override
+  String get admActSuspendPartner => 'Suspended a partner';
+
+  @override
+  String get admActSuspendUser => 'Paused an account';
+
+  @override
+  String get admActUnsuspendUser => 'Made an account active again';
+
+  @override
+  String get admActRole => 'Changed a role';
+
+  @override
+  String get admActTicketReply => 'Replied to a ticket';
+
+  @override
+  String get admActTicketStatus => 'Changed a ticket\'s status';
+
+  @override
+  String get admActTicketAssign => 'Assigned a ticket';
+
+  @override
+  String get admActRefund => 'Gave a demo refund';
+
+  @override
+  String get admActHide => 'Hid a review';
+
+  @override
+  String get admActRestore => 'Showed a review again';
+
+  @override
+  String get admActDismiss => 'Dismissed a report';
+
+  @override
+  String get admActHandled => 'Handled a report';
+
+  @override
+  String get admActCouponNew => 'Created a coupon';
+
+  @override
+  String get admActCouponEdit => 'Changed a coupon';
+
+  @override
+  String get admActProduct => 'Changed a product';
+
+  @override
+  String get admActBannerNew => 'Created a banner';
+
+  @override
+  String get admActBannerEdit => 'Changed a banner';
+
+  @override
+  String get admActSeller => 'Changed a seller';
+
+  @override
+  String get admActPartnerStore => 'Changed a partner shop';
+
+  @override
+  String get admActPlace => 'Changed a clinic or provider';
+
+  @override
+  String get admActSettings => 'Changed settings';
+
+  @override
+  String get admSettingsNote =>
+      'Changes reach the app straight away, no update needed.';
+
+  @override
+  String admLastChanged(String when) {
+    return 'Last changed $when.';
+  }
+
+  @override
+  String get admPlanPrices => 'Plan prices';
+
+  @override
+  String get admPlusMonthly => 'Plus, monthly';
+
+  @override
+  String get admPlusYearly => 'Plus, yearly';
+
+  @override
+  String get admTrialDays => 'Free trial';
+
+  @override
+  String get admDaysUnit => 'days';
+
+  @override
+  String get admPlanLimits => 'Plan limits';
+
+  @override
+  String get admBookingCommission => 'Booking commission';
+
+  @override
+  String get admDefaultRate => 'Default rate';
+
+  @override
+  String get admRateClinic => 'Vet clinics';
+
+  @override
+  String get admRateGroomer => 'Groomers';
+
+  @override
+  String get admRateTrainer => 'Trainers';
+
+  @override
+  String get admRateBoarder => 'Boarding and sitting';
+
+  @override
+  String get admRateWalker => 'Dog walkers';
+
+  @override
+  String get admProviderRateNote =>
+      'A clinic or provider can also have its own rate: Catalogue → Clinics and services.';
+
+  @override
+  String get admShopMoney => 'Shop margins and delivery';
+
+  @override
+  String get admFoodMargin => 'Margin on food';
+
+  @override
+  String get admOtherMargin => 'Margin on other items';
+
+  @override
+  String get admVideoDiscount => 'Plus discount on video vet fees';
+
+  @override
+  String get admDeliveryFee => 'Delivery fee';
+
+  @override
+  String get admFreeDeliveryFree => 'Free delivery above (Free plan)';
+
+  @override
+  String get admFreeDeliveryPlus => 'Free delivery above (Plus)';
+
+  @override
+  String get admFeatureFlags => 'Feature switches';
+
+  @override
+  String get admReferrals => 'Referrals';
+
+  @override
+  String get admReferralReward => 'Reward for each friend';
+
+  @override
+  String get admCoupons => 'Coupons';
+
+  @override
+  String get admNewCoupon => 'New coupon';
+
+  @override
+  String get admVaccineSchedules => 'Vaccine schedules';
+
+  @override
+  String get admVaccineNote =>
+      'Indicative timings. Change a timing after a vet has reviewed it; every pet\'s schedule updates.';
+
+  @override
+  String get admContentReview => 'Vet review of content';
+
+  @override
+  String get admContentReviewNote =>
+      'Until a vet reviews it, this content shows \"Draft, to be reviewed by a vet\".';
+
+  @override
+  String get admUsesDefault => 'Default';
+
+  @override
+  String get admSavedLive => 'Saved. The app uses the new value now.';
+
+  @override
+  String get admLimit => 'Limit';
+
+  @override
+  String get admLimitPets => 'Pets';
+
+  @override
+  String get admLimitFamily => 'Family members';
+
+  @override
+  String get admLimitTeleVet => 'Tele-vet chats a month';
+
+  @override
+  String get admLimitMessages => 'Messages per tele-vet chat';
+
+  @override
+  String get admLimitWords => 'Words per message';
+
+  @override
+  String get admLimitHours => 'Tele-vet chat open for';
+
+  @override
+  String get admLimitAi => 'Ask PawSetu questions a month';
+
+  @override
+  String get admLimitStorage => 'Storage';
+
+  @override
+  String get admLimitVideo => 'Video length';
+
+  @override
+  String get admHoursUnit => 'hours';
+
+  @override
+  String get admSecondsUnit => 'seconds';
+
+  @override
+  String get admUnlimited => 'Unlimited';
+
+  @override
+  String get admUnlimitedNote => '999 or more means unlimited.';
+
+  @override
+  String get admFlagAi => 'Ask PawSetu';
+
+  @override
+  String get admFlagAiHint => 'The AI pet assistant';
+
+  @override
+  String get admFlagDevices => 'Connected devices';
+
+  @override
+  String get admFlagDevicesHint => 'Collars, feeders and other smart devices';
+
+  @override
+  String get admFlagLost => 'Lost pet alerts nearby';
+
+  @override
+  String get admFlagLostHint => 'Alerts to app users within 5 km';
+
+  @override
+  String get admFlagReferrals => 'Refer a friend';
+
+  @override
+  String get admFlagReferralsHint => 'Referral codes and rewards';
+
+  @override
+  String admCouponPercent(int pct, String max) {
+    return '$pct% off up to $max';
+  }
+
+  @override
+  String admCouponFlat(String amount) {
+    return '$amount off';
+  }
+
+  @override
+  String admCouponMin(String amount) {
+    return 'min. order $amount';
+  }
+
+  @override
+  String admCouponTill(String date) {
+    return 'till $date';
+  }
+
+  @override
+  String admCouponUses(int used, int max) {
+    return 'used $used of $max';
+  }
+
+  @override
+  String get admCouponActive => 'Coupon on';
+
+  @override
+  String admPersonalCoupons(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count personal referral coupons are not shown.',
+      one: '1 personal referral coupon is not shown.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get admCouponCodeHelp =>
+      '4 to 16 letters or digits, for example DIWALI20';
+
+  @override
+  String get admCouponDescription => 'Description people see';
+
+  @override
+  String get admCouponTypePercent => 'Percent off';
+
+  @override
+  String get admCouponTypeFlat => 'Amount off';
+
+  @override
+  String get admCouponPercentOff => 'Percent off';
+
+  @override
+  String get admCouponAmountOff => 'Amount off';
+
+  @override
+  String get admCouponMaxDiscount => 'Maximum discount';
+
+  @override
+  String get admCouponMinOrder => 'Minimum order';
+
+  @override
+  String get admCouponMaxUses => 'How many times it can be used';
+
+  @override
+  String get admCouponValidTill => 'Valid till';
+
+  @override
+  String get admDogSchedule => 'Dogs';
+
+  @override
+  String get admCatSchedule => 'Cats';
+
+  @override
+  String get admAskVetTiming => 'Optional, timing as the vet advises';
+
+  @override
+  String admEveryYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Every $count years',
+      one: 'Every year',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admWeeksRange(int from, int to) {
+    return 'Age $from to $to weeks';
+  }
+
+  @override
+  String admBoosterEvery(String name) {
+    return '$name booster: every how many years?';
+  }
+
+  @override
+  String get admYearsUnit => 'years';
+
+  @override
+  String admFromWeek(String name) {
+    return '$name: from which week of age?';
+  }
+
+  @override
+  String admToWeek(String name) {
+    return '$name: up to which week of age?';
+  }
+
+  @override
+  String get admWeeksUnit => 'weeks';
+
+  @override
+  String get admAreaFirstAid => 'First-aid guides';
+
+  @override
+  String get admAreaToxic => 'Toxic food and plant checker';
+
+  @override
+  String get admAreaVaccines => 'Vaccine schedules';
+
+  @override
+  String get admDraft => 'Draft';
+
+  @override
+  String get admReviewed => 'Reviewed';
+
+  @override
+  String get admReviewSheetNote =>
+      'Enter the name and registration number of the vet who checked this content.';
+
+  @override
+  String get admReviewerName => 'Vet\'s name and registration no.';
+
+  @override
+  String get admMarkReviewed => 'Mark as reviewed';
+
+  @override
+  String get admBackToDraft => 'Back to draft';
+
+  @override
+  String get admKindShop => 'Shop';
+
+  @override
+  String get admKindBooking => 'Bookings';
+
+  @override
+  String get admDownloadCsv => 'Download CSV';
+
+  @override
+  String get admColPartner => 'Partner';
+
+  @override
+  String get admColType => 'Type';
+
+  @override
+  String get admColCount => 'Count';
+
+  @override
+  String get admColGross => 'Gross';
+
+  @override
+  String get admColCommission => 'Commission';
+
+  @override
+  String get admColPayout => 'Payout';
+
+  @override
+  String get admBookingCommissionShort => 'Booking commission';
+
+  @override
+  String get admShopMargin => 'Shop margin';
+
+  @override
+  String get admPlusRevenue => 'Plus payments';
+
+  @override
+  String get admRefunds => 'Refunds';
+
+  @override
+  String get admPlatformTotal => 'PawSetu earned';
+
+  @override
+  String get admReportDemoNote =>
+      'Demo money: all payments in Version 1 are simulated. Tax fields are placeholders.';
+
+  @override
+  String get admByPartner => 'By partner';
+
+  @override
+  String admLineCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sales',
+      one: '1 sale',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admNoteApproved(String name) {
+    return '$name is approved and now visible to pet parents';
+  }
+
+  @override
+  String admNoteRejected(String name) {
+    return '$name was not approved';
+  }
+
+  @override
+  String admNoteSuspended(String name) {
+    return '$name is paused';
+  }
+
+  @override
+  String hpReplyTitle(String subject) {
+    return 'Support replied: $subject';
+  }
+
+  @override
+  String hpResolvedTitle(String subject) {
+    return 'Resolved: $subject';
+  }
+
+  @override
+  String hpRefundTitle(int amount) {
+    return 'Refund of ₹$amount is on its way';
+  }
+
+  @override
+  String get hpRefundBody => 'Demo refund: no real money moved.';
+
+  @override
+  String hpNewForSupport(String name) {
+    return 'New message from $name';
+  }
+
+  @override
+  String get hpIntroTitle => 'We\'re here to help';
+
+  @override
+  String get hpIntroBody =>
+      'Raise a complaint or question about a booking, order or chat. We usually reply within a day.';
+
+  @override
+  String get hpIntroPlus =>
+      'Plus members get priority support: we usually reply within 4 hours.';
+
+  @override
+  String get hpRaise => 'Raise a complaint';
+
+  @override
+  String get hpYourTickets => 'Your tickets';
+
+  @override
+  String get hpNoTickets =>
+      'No tickets yet. If something goes wrong, tell us here.';
+
+  @override
+  String get hpQuickAnswers => 'Quick answers';
+
+  @override
+  String get hpFaqRefundQ => 'How do refunds work?';
+
+  @override
+  String get hpFaqRefundA =>
+      'If you paid online and cancel in time, the money goes back to the same payment method in 5 to 7 working days. For other problems, raise a complaint and we\'ll check.';
+
+  @override
+  String get hpFaqCancelQ => 'How do I cancel a booking?';
+
+  @override
+  String get hpFaqCancelA =>
+      'Open Book, then My bookings. Choose the booking and tap Cancel booking. The clinic\'s cancellation time is shown there.';
+
+  @override
+  String get hpFaqUrgentQ => 'My pet needs help right now';
+
+  @override
+  String get hpFaqUrgentA =>
+      'Use the red SOS button on Home: hold it for 2 seconds to reach the nearest clinic. Don\'t wait for a reply here.';
+
+  @override
+  String get hpFaqDataQ => 'How do I get or delete my data?';
+
+  @override
+  String get hpFaqDataA =>
+      'Go to Me, then Privacy centre, to download your data or delete your account.';
+
+  @override
+  String get hpAbout => 'What is it about?';
+
+  @override
+  String get hpPickItem => 'Choose a booking or order';
+
+  @override
+  String get hpSomethingElse => 'Something else';
+
+  @override
+  String get hpTopic => 'Topic';
+
+  @override
+  String get hpSubject => 'Subject (optional)';
+
+  @override
+  String get hpDetails => 'What happened?';
+
+  @override
+  String get hpDetailsHelp =>
+      'At least 10 characters. Add dates, names and amounts if you can.';
+
+  @override
+  String get hpSend => 'Send to support';
+
+  @override
+  String get hpSent => 'Sent to PawSetu support';
+
+  @override
+  String get hpReplyTime => 'We usually reply within a day.';
+
+  @override
+  String get hpReplyTimePlus =>
+      'Plus priority support: we usually reply within 4 hours.';
+
+  @override
+  String get hpTicketTitle => 'Your ticket';
+
+  @override
+  String get hpResolvedNote =>
+      'Marked as resolved. Reply below if you still need help.';
+
+  @override
+  String get hpReopenHint => 'Still need help? Write here to reopen';
+
+  @override
+  String get hpGetHelpBooking => 'Get help with this booking';
+
+  @override
+  String get plusTrialStartedTitle => 'Your free trial has started';
+
+  @override
+  String plusTrialStartedBody(int days, String date) {
+    return 'You have every Plus feature for $days days, till $date. Demo: nothing is charged.';
+  }
+
+  @override
+  String get plusTrialUsed => 'You\'ve already used your free trial.';
+
+  @override
+  String get plusPayYearly => 'PawSetu Plus, 1 year';
+
+  @override
+  String get plusPayMonthly => 'PawSetu Plus, 1 month';
+
+  @override
+  String get plusWelcomeTitle => 'Welcome to PawSetu Plus!';
+
+  @override
+  String plusWelcomeBody(String date) {
+    return 'Plus is on. It renews on $date. This was a demo payment: no money moved.';
+  }
+
+  @override
+  String get plusKeepAfterTrial => 'Keep Plus after your trial';
+
+  @override
+  String get plusChoosePlan => 'Choose your plan';
+
+  @override
+  String plusBuy(String amount) {
+    return 'Get Plus for $amount';
+  }
+
+  @override
+  String plusStartsAfterTrial(String date) {
+    return 'Your paid plan starts when the trial ends on $date.';
+  }
+
+  @override
+  String plusStartTrial(int days) {
+    return 'Start $days-day free trial';
+  }
+
+  @override
+  String plusTrialNote(int days) {
+    return 'Free for $days days. No card needed in the demo.';
+  }
+
+  @override
+  String get plusAutoRenew => 'Renew automatically';
+
+  @override
+  String plusAutoRenewOn(String date) {
+    return 'Renews on $date';
+  }
+
+  @override
+  String plusAutoRenewOff(String date) {
+    return 'Plus stays till $date, then you move to Free';
+  }
+
+  @override
+  String get plusDemoNote =>
+      'Demo: no money is charged and nothing renews for real.';
+
+  @override
+  String plusOnTrial(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Plus trial: $days days left',
+      one: 'Plus trial: 1 day left',
+      zero: 'Plus trial ends today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String plusTrialEnds(String date) {
+    return 'Your trial ends on $date.';
+  }
+
+  @override
+  String get plusYouHavePlus => 'You have PawSetu Plus';
+
+  @override
+  String plusRenewsOn(String date) {
+    return 'Renews on $date';
+  }
+
+  @override
+  String plusEndsOn(String date) {
+    return 'Ends on $date';
+  }
+
+  @override
+  String get plusYouAreFree => 'You\'re on the Free plan';
+
+  @override
+  String get plusFreeBody =>
+      'Upgrade for video vet calls, unlimited pets and more.';
+
+  @override
+  String plusMinutes(int count) {
+    return '$count min';
+  }
+
+  @override
+  String plusSeconds(int count) {
+    return '$count sec';
+  }
+
+  @override
+  String get plusRowPets => 'Pets';
+
+  @override
+  String get plusRowFamily => 'Family members';
+
+  @override
+  String get plusRowVideo => 'Video vet calls';
+
+  @override
+  String get plusRowTeleVet => 'Tele-vet chats';
+
+  @override
+  String get plusRowMessages => 'Chat length';
+
+  @override
+  String get plusRowAi => 'Ask PawSetu';
+
+  @override
+  String get plusRowStorage => 'Photo and document storage';
+
+  @override
+  String get plusRowVideoLength => 'Video length in album';
+
+  @override
+  String get plusRowVideoDiscount => 'Off vet video fees';
+
+  @override
+  String get plusRowDelivery => 'Free delivery';
+
+  @override
+  String get plusRowSupport => 'Support';
+
+  @override
+  String get plusYes => 'Yes';
+
+  @override
+  String plusPerMonth(String value) {
+    return '$value a month';
+  }
+
+  @override
+  String plusMessagesWords(String messages, String words) {
+    return '$messages messages, $words words each';
+  }
+
+  @override
+  String plusAbove(String amount) {
+    return 'above $amount';
+  }
+
+  @override
+  String get plusStandard => 'Standard';
+
+  @override
+  String get plusPriority => 'Priority';
+
+  @override
+  String get plusYearly => 'Yearly';
+
+  @override
+  String get plusMonthly => 'Monthly';
+
+  @override
+  String get plusPerYear => 'a year';
+
+  @override
+  String get plusPerMonthPrice => 'a month';
+
+  @override
+  String plusSave(int pct) {
+    return 'Save $pct%';
+  }
+
+  @override
+  String plusTrialEndingSoon(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Your Plus trial ends in $days days. Choose a plan to keep Plus.',
+      one: 'Your Plus trial ends tomorrow. Choose a plan to keep Plus.',
+      zero: 'Your Plus trial ends today. Choose a plan to keep Plus.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get referTitle => 'Refer a friend';
+
+  @override
+  String get referInvalid =>
+      'That code isn\'t valid, or you\'ve already used a code.';
+
+  @override
+  String get referDoneTitle => 'Code applied!';
+
+  @override
+  String referDoneBody(String amount, String code) {
+    return 'You and your friend each get $amount off. Your coupon: $code. Use it in the Shop at checkout.';
+  }
+
+  @override
+  String get referPaused => 'Refer a friend is paused right now.';
+
+  @override
+  String referHeadline(String amount) {
+    return 'Give $amount, get $amount';
+  }
+
+  @override
+  String referBody(String amount) {
+    return 'When a friend joins PawSetu with your code, you both get a $amount Shop coupon.';
+  }
+
+  @override
+  String get referYourCode => 'Your code';
+
+  @override
+  String referShareText(String code, String amount) {
+    return 'Join me on PawSetu, the app for pet parents! Use my code $code and we both get $amount off in the PawSetu Shop.';
+  }
+
+  @override
+  String referFriendsJoined(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count friends joined with your code',
+      one: '1 friend joined with your code',
+      zero: 'No friends have joined with your code yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get referHaveCode => 'Got a friend\'s code?';
+
+  @override
+  String get referEnterCode => 'Friend\'s code';
+
+  @override
+  String get referApply => 'Apply code';
+
+  @override
+  String get referYourRewards => 'Your reward coupons';
+
+  @override
+  String referCouponLine(String amount, String min, String date) {
+    return '$amount off orders above $min, till $date';
+  }
+
+  @override
+  String get referUsed => 'Used';
+
+  @override
+  String get referDemoNote =>
+      'Demo: coupons work in the demo Shop. No real money.';
+
+  @override
+  String prvExportReady(int parts, int kb) {
+    return 'Your file is ready: $parts sections, $kb KB.';
+  }
+
+  @override
+  String get prvExportSubject => 'My PawSetu data';
+
+  @override
+  String get prvDeleteConfirmTitle => 'Delete your account?';
+
+  @override
+  String prvDeleteConfirmBody(String date, int days) {
+    return 'Your account, pets and records will be deleted on $date. Sign in within $days days and cancel if you change your mind.';
+  }
+
+  @override
+  String get prvDeleteButton => 'Delete my account';
+
+  @override
+  String get prvDeleteRequestedTitle => 'Deletion scheduled';
+
+  @override
+  String prvDeleteRequestedBody(String date) {
+    return 'Your account will be deleted on $date. Demo: nothing is deleted for real.';
+  }
+
+  @override
+  String get prvConsentLost => 'Lost pet alerts near me';
+
+  @override
+  String get prvConsentLostHint =>
+      'Get an alert when a pet is lost within 5 km';
+
+  @override
+  String get prvConsentAnalytics => 'Help improve PawSetu';
+
+  @override
+  String get prvConsentAnalyticsHint =>
+      'Share anonymous app usage (no names or photos)';
+
+  @override
+  String get prvConsentMarketing => 'Offers and news';
+
+  @override
+  String get prvConsentMarketingHint =>
+      'Occasional offers by SMS, WhatsApp or email';
+
+  @override
+  String get prvConsentPartners => 'Share health summary with clinics I book';
+
+  @override
+  String get prvConsentPartnersHint =>
+      'Helps the vet prepare before your visit';
+
+  @override
+  String prvDeletionPending(String date) {
+    return 'Your account will be deleted on $date. Tap to keep it.';
+  }
+
+  @override
+  String get prvCancelDeletion => 'Keep my account';
+
+  @override
+  String get prvDeletionCancelled => 'Deletion cancelled. Your account stays.';
+
+  @override
+  String get prvIntro =>
+      'You control your data. Choose what you share, download a copy of everything, or delete your account.';
+
+  @override
+  String get prvConsents => 'What you share';
+
+  @override
+  String get prvDownloadTitle => 'Download my data';
+
+  @override
+  String get prvDownloadBody =>
+      'Get a file with your profile, pets, health records, bookings, orders, chats and more.';
+
+  @override
+  String get prvDownloadButton => 'Download my data';
+
+  @override
+  String get prvDeleteTitle => 'Delete my account';
+
+  @override
+  String prvDeleteBody(int days) {
+    return 'Your account is deleted $days days after you ask. Until then you can sign in and cancel.';
+  }
+
+  @override
+  String get prvDemoNote =>
+      'Demo: the file is made on your device. In the live app we also email you a download link.';
+
+  @override
+  String get suspTitle => 'Your account is paused';
+
+  @override
+  String get suspBody =>
+      'Our team paused this account. If you think this is a mistake, contact PawSetu support.';
+
+  @override
+  String get suspContact => 'Contact support';
+
+  @override
+  String get suspContactBody =>
+      'Demo: write to support@example.com. In the live app this opens your email.';
 }

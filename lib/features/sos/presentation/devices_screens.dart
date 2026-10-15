@@ -13,6 +13,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/paw_map.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../admin/admin_slots.dart' show featureOn;
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../../routine/data/routine_repository.dart';
@@ -29,6 +30,9 @@ class DevicesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    if (!featureOn(ref, 'smartDevices')) {
+      return Scaffold(appBar: AppBar(title: Text(l.connectedDevices)), body: EmptyState(title: l.featurePaused, message: l.featurePausedBody));
+    }
     final devices = ref.watch(myDevicesProvider);
     final pets = {for (final p in ref.watch(activePetsProvider)) p.id: p};
     return Scaffold(

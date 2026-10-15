@@ -41,6 +41,9 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
         'lost' => Icons.travel_explore_rounded,
         'device' => Icons.watch_rounded,
         'sos' => Icons.emergency_rounded,
+        'support' => Icons.support_agent_rounded,
+        'account' => Icons.verified_user_rounded,
+        'plan' => Icons.workspace_premium_rounded,
         _ => Icons.notifications_rounded,
       };
 

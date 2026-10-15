@@ -54,6 +54,7 @@ List<PortalSection> partnerSectionsFor(BuildContext context, UserRole role) {
       PortalSection('payouts', Icons.account_balance_rounded, l.pPayouts),
       PortalSection('reviews', Icons.star_rounded, l.pReviews),
       PortalSection('profile', Icons.badge_rounded, l.pProfileKyc),
+      PortalSection('help', Icons.support_agent_rounded, l.helpAndComplaints),
     ];
   }
   return [
@@ -68,5 +69,6 @@ List<PortalSection> partnerSectionsFor(BuildContext context, UserRole role) {
     if (role != UserRole.vet) PortalSection('payouts', Icons.account_balance_rounded, l.pPayouts),
     PortalSection('profile', Icons.badge_rounded, l.pProfileKyc),
     if (role == UserRole.clinicAdmin) PortalSection('emergency', Icons.emergency_rounded, l.pEmergency),
+    PortalSection('help', Icons.support_agent_rounded, l.helpAndComplaints),
   ];
 }

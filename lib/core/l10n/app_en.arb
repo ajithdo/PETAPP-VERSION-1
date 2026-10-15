@@ -6062,5 +6062,1221 @@
   "toxNonStickFumesName": "Non-stick pan fumes",
   "toxNonStickFumesWhy": "An overheated non-stick pan gives off fumes that can kill a bird within minutes. Keep birds out of the kitchen.",
   "toxPhenylName": "Phenyl and floor cleaners",
-  "toxPhenylWhy": "Phenyl and many floor cleaners contain phenols, which are especially poisonous to cats. Let floors dry before pets walk on them."
+  "toxPhenylWhy": "Phenyl and many floor cleaners contain phenols, which are especially poisonous to cats. Let floors dry before pets walk on them.",
+  "reviewedBy": "Reviewed by {name}",
+  "@reviewedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "featurePaused": "This feature is switched off for now",
+  "featurePausedBody": "The PawSetu team has paused it. Please check again later.",
+  "shopFeatured": "Featured",
+  "admUsers": "Users: {owners} pet parents, {partners} partners",
+  "@admUsers": {
+    "placeholders": {
+      "owners": {
+        "type": "int"
+      },
+      "partners": {
+        "type": "int"
+      }
+    }
+  },
+  "admPets": "Pets",
+  "admBookings30": "Bookings, last 30 days",
+  "admOrderValue30": "Order value, last 30 days",
+  "admCommission30": "Commission earned, last 30 days",
+  "admPlusMembers": "Plus members",
+  "admSos30": "SOS activations, last 30 days",
+  "admByDay": "By day",
+  "admByWeek": "By week",
+  "admByMonth": "By month",
+  "admCommissionReport": "Commission report",
+  "admNoNumbers": "No numbers yet",
+  "admChartBookingsOrders": "Bookings and orders",
+  "admLegendBookings": "Bookings",
+  "admLegendOrders": "Orders",
+  "admChartMoney": "Order value and commission",
+  "admLegendOrderValue": "Order value",
+  "admLegendCommission": "Commission",
+  "admChartGrowth": "New users, pets and Plus members",
+  "admLegendUsers": "New users",
+  "admLegendPets": "New pets",
+  "admLegendPlus": "New Plus",
+  "admChartSos": "SOS activations",
+  "admLegendSos": "SOS",
+  "admTopClinics": "Top clinics",
+  "admTopProducts": "Top products",
+  "admBookingsUnit": "bookings",
+  "admSoldUnit": "sold",
+  "admChange": "{change}% vs before",
+  "@admChange": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      }
+    }
+  },
+  "admNothingYet": "Nothing yet",
+  "admKindClinic": "Clinic",
+  "admStatusRejected": "Rejected",
+  "admStatusSuspended": "Suspended",
+  "admAllKinds": "All",
+  "admWaitingCount": "{count, plural, =1{1 waiting for review} other{{count} waiting for review}}",
+  "@admWaitingCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admNoPending": "Nothing waiting for approval",
+  "admNothingHere": "Nothing here",
+  "admRejectTitle": "Reject {name}?",
+  "@admRejectTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admSuspendTitle": "Suspend {name}?",
+  "@admSuspendTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admReasonDocs": "Documents are unclear",
+  "admReasonRegNo": "Registration number doesn't match",
+  "admReasonDetails": "Details are missing",
+  "admApprovedToast": "{name} approved",
+  "@admApprovedToast": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admRejectedToast": "{name} rejected",
+  "@admRejectedToast": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admSuspendedToast": "{name} suspended",
+  "@admSuspendedToast": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admAppliedOn": "Applied {date}",
+  "@admAppliedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "admRegNo": "Registration no.: {regNo}",
+  "@admRegNo": {
+    "placeholders": {
+      "regNo": {
+        "type": "String"
+      }
+    }
+  },
+  "admRegMissing": "No registration number",
+  "admRegLooksRight": "Format looks right",
+  "admRegCheck": "Check this number",
+  "admRegHint": "Always check it against the State Veterinary Council register.",
+  "admKycDocs": "KYC documents",
+  "admNoDocs": "No documents uploaded yet",
+  "admReasonGiven": "Reason: {reason}",
+  "@admReasonGiven": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "admApprove": "Approve",
+  "admReinstate": "Approve again",
+  "admReject": "Reject",
+  "admSuspend": "Suspend",
+  "admSampleStamp": "SAMPLE",
+  "admDocDemoNote": "Demo: sample documents only. Real KYC files open here in the live app.",
+  "admReasonLabel": "Reason (the partner sees this)",
+  "admSearchUsers": "Search by name, email, phone or city",
+  "admFilterOwners": "Pet parents",
+  "admFilterPartners": "Partners",
+  "admFilterAdmins": "Admins",
+  "admPeopleCount": "{count, plural, =1{1 person} other{{count} people}}",
+  "@admPeopleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "plusTrialChip": "Plus trial",
+  "admDeletionPending": "Deletion requested",
+  "admRoleConfirm": "Make {name} a {role}?",
+  "@admRoleConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "admRoleChanged": "Role changed. It applies the next time they open the app.",
+  "admSuspendUserTitle": "Pause {name}'s account?",
+  "@admSuspendUserTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admReasonAbuse": "Abusive behaviour",
+  "admReasonFraud": "Payment fraud",
+  "admReasonFake": "Fake account",
+  "admUserSuspended": "{name}'s account is paused",
+  "@admUserSuspended": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admUserRestored": "{name}'s account is active again",
+  "@admUserRestored": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admCity": "City",
+  "admPlanLabel": "Plan",
+  "admPlusTill": "Plus till {date}",
+  "@admPlusTill": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "admTrialTill": "Plus trial till {date}",
+  "@admTrialTill": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "admJoined": "Joined",
+  "admDeletionOn": "Account will be deleted on {date}",
+  "@admDeletionOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "admNotYourself": "You can't change your own role or pause yourself.",
+  "admSaveRole": "Save role",
+  "admUnsuspend": "Make active again",
+  "admSuspendUser": "Pause account",
+  "admTabProducts": "Products",
+  "admTabCategories": "Categories",
+  "admTabPlaces": "Clinics and services",
+  "admTabSellers": "Sellers",
+  "admTabPartners": "Partner shops",
+  "admTabBanners": "Banners",
+  "admSearchProducts": "Search products, brands or sellers",
+  "admFeatured": "Featured",
+  "admHidden": "Hidden",
+  "admLowStock": "Low stock",
+  "admPartnerLinks": "Partner links",
+  "admShowingOf": "Showing {shown} of {total}. Search to narrow down.",
+  "@admShowingOf": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "admProductsCount": "{count, plural, =1{1 product} other{{count} products}}",
+  "@admProductsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admPartnerLink": "Partner link",
+  "admStock": "Stock {count}",
+  "@admStock": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admUnfeature": "Remove from featured",
+  "admFeature": "Feature in the Shop",
+  "admShowInShop": "Show in the Shop",
+  "admCategoryNote": "Default margin: {food}% on food, {other}% on everything else. You can set a different margin for any category.",
+  "@admCategoryNote": {
+    "placeholders": {
+      "food": {
+        "type": "String"
+      },
+      "other": {
+        "type": "String"
+      }
+    }
+  },
+  "admMarginCustom": "Margin {pct}% (own rate)",
+  "@admMarginCustom": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "admMarginDefault": "Margin {pct}% (default)",
+  "@admMarginDefault": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "admMarginFor": "Margin for {name}",
+  "@admMarginFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admEmptyDefault": "Leave empty to use the default",
+  "admSellerNote": "Sellers are approved in Approvals. Here you can give a seller its own margin.",
+  "admMarginStandard": "Standard margin",
+  "admEditMargin": "Change rate",
+  "admPartnersNote": "Affiliate partner shops: people buy on the partner's own website and PawSetu earns a commission.",
+  "admPartnerLine": "Commission {pct}% · {clicks} clicks",
+  "@admPartnerLine": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      },
+      "clicks": {
+        "type": "int"
+      }
+    }
+  },
+  "admAddPartner": "Add partner shop",
+  "admPartnerName": "Shop name",
+  "admPartnerUrl": "Website (https://…)",
+  "admPartnerCommission": "Commission",
+  "admBannersNote": "Banners show on Home or in the Shop. Only banners that are switched on are shown.",
+  "admPlaceShop": "Shop",
+  "admPlaceHome": "Home",
+  "admBannerShown": "Show this banner",
+  "admNewBanner": "New banner",
+  "admEditBanner": "Edit banner",
+  "admBannerTitle": "Title",
+  "admBannerBody": "Short text",
+  "admBannerLink": "Opens (app page)",
+  "admBannerLinkHelp": "For example /me/plus or /shop/search?q=food. Leave empty for no link.",
+  "admToneOffer": "Offer (orange)",
+  "admToneNews": "News (green)",
+  "admPlacesNote": "Booking commission for each clinic or provider. Empty means the rate for its type in Plans and settings.",
+  "admRateCustom": "Commission {pct}% (own rate)",
+  "@admRateCustom": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "admRateStandard": "Commission {pct}% (standard)",
+  "@admRateStandard": {
+    "placeholders": {
+      "pct": {
+        "type": "String"
+      }
+    }
+  },
+  "admRateFor": "Commission for {name}",
+  "@admRateFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "hpStatusOpen": "Open",
+  "hpStatusInProgress": "In progress",
+  "hpStatusResolved": "Resolved",
+  "admNeedsReply": "Needs a reply",
+  "admNotResolved": "Not resolved",
+  "admEveryone": "Everyone",
+  "admNoTickets": "No tickets here",
+  "hpSupportTeam": "PawSetu support",
+  "hpNewReply": "New reply",
+  "hpRefunded": "Refunded {amount}",
+  "@hpRefunded": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "admTicketTitle": "Ticket",
+  "admTicketMissing": "This ticket isn't available",
+  "admAssignee": "Assigned to",
+  "admUnassigned": "Not assigned",
+  "admConversation": "Conversation",
+  "admReplyHint": "Reply to {name}",
+  "@admReplyHint": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admReplySent": "Reply sent. {name} gets a notification.",
+  "@admReplySent": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admResolveAfter": "Mark as resolved after sending",
+  "admLinkMissing": "The linked item can't be found ({type}).",
+  "@admLinkMissing": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "admOrderLine": "{count, plural, =1{1 item} other{{count} items}} from {seller}",
+  "@admOrderLine": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "seller": {
+        "type": "String"
+      }
+    }
+  },
+  "admPaid": "Paid {amount}",
+  "@admPaid": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "admRefundDone": "Refunded {amount} on {date} (demo)",
+  "@admRefundDone": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "admRefundButton": "Refund (demo)",
+  "admRefundAmount": "Refund amount",
+  "admRefundMax": "Up to {amount}, the amount paid",
+  "@admRefundMax": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "admRefundConfirm": "Refund {amount} to {name}?",
+  "@admRefundConfirm": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admRefundDemoTitle": "Demo refund",
+  "admRefundDemoBody": "{name} is told that {amount} is refunded. This is a demo: no real money moved.",
+  "@admRefundDemoBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "hpRaisedOn": "Raised {date}",
+  "@hpRaisedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "admAssignedTo": "Assigned to {name}",
+  "@admAssignedTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "hpWriteReply": "Write a reply",
+  "hpTopicRefund": "Refund",
+  "hpTopicLate": "Late or didn't come",
+  "hpTopicQuality": "Quality problem",
+  "hpTopicBehaviour": "Rude or unsafe behaviour",
+  "hpTopicApp": "App problem",
+  "hpTopicOther": "Something else",
+  "hpLinkBooking": "Booking",
+  "hpLinkOrder": "Order",
+  "hpLinkChat": "Chat",
+  "hpLinkOther": "General",
+  "admReportsOpen": "Open ({count})",
+  "@admReportsOpen": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admReportsClosed": "Closed",
+  "admNoReports": "No reports to review",
+  "admReviewHidden": "Review hidden",
+  "admReviewRestored": "Review shown again",
+  "admReportHandled": "Marked as handled",
+  "admReportDismissed": "Report dismissed",
+  "admReportReview": "Reported review",
+  "admReportChat": "Reported chat",
+  "admReportContent": "Reported content",
+  "admReporterSays": "Reporter says: {text}",
+  "@admReporterSays": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "admReportedBy": "Reported by {name}",
+  "@admReportedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admClosedOn": "closed {date}",
+  "@admClosedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "admHideReview": "Hide review",
+  "admMarkHandled": "Mark as handled",
+  "admDismiss": "Dismiss",
+  "admRestoreReview": "Show review again",
+  "admSearchOutbox": "Search by phone, email or text",
+  "admAllCount": "All ({count})",
+  "@admAllCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admChannelSms": "SMS",
+  "admChannelWhatsapp": "WhatsApp",
+  "admChannelEmail": "Email",
+  "admChannelPush": "Push",
+  "admAuditNote": "Every change made in the admin panel, newest first.",
+  "admSearchAudit": "Search by person, action or item",
+  "admActApprove": "Approved a partner",
+  "admActReject": "Rejected a partner",
+  "admActSuspendPartner": "Suspended a partner",
+  "admActSuspendUser": "Paused an account",
+  "admActUnsuspendUser": "Made an account active again",
+  "admActRole": "Changed a role",
+  "admActTicketReply": "Replied to a ticket",
+  "admActTicketStatus": "Changed a ticket's status",
+  "admActTicketAssign": "Assigned a ticket",
+  "admActRefund": "Gave a demo refund",
+  "admActHide": "Hid a review",
+  "admActRestore": "Showed a review again",
+  "admActDismiss": "Dismissed a report",
+  "admActHandled": "Handled a report",
+  "admActCouponNew": "Created a coupon",
+  "admActCouponEdit": "Changed a coupon",
+  "admActProduct": "Changed a product",
+  "admActBannerNew": "Created a banner",
+  "admActBannerEdit": "Changed a banner",
+  "admActSeller": "Changed a seller",
+  "admActPartnerStore": "Changed a partner shop",
+  "admActPlace": "Changed a clinic or provider",
+  "admActSettings": "Changed settings",
+  "admSettingsNote": "Changes reach the app straight away, no update needed.",
+  "admLastChanged": "Last changed {when}.",
+  "@admLastChanged": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "admPlanPrices": "Plan prices",
+  "admPlusMonthly": "Plus, monthly",
+  "admPlusYearly": "Plus, yearly",
+  "admTrialDays": "Free trial",
+  "admDaysUnit": "days",
+  "admPlanLimits": "Plan limits",
+  "admBookingCommission": "Booking commission",
+  "admDefaultRate": "Default rate",
+  "admRateClinic": "Vet clinics",
+  "admRateGroomer": "Groomers",
+  "admRateTrainer": "Trainers",
+  "admRateBoarder": "Boarding and sitting",
+  "admRateWalker": "Dog walkers",
+  "admProviderRateNote": "A clinic or provider can also have its own rate: Catalogue → Clinics and services.",
+  "admShopMoney": "Shop margins and delivery",
+  "admFoodMargin": "Margin on food",
+  "admOtherMargin": "Margin on other items",
+  "admVideoDiscount": "Plus discount on video vet fees",
+  "admDeliveryFee": "Delivery fee",
+  "admFreeDeliveryFree": "Free delivery above (Free plan)",
+  "admFreeDeliveryPlus": "Free delivery above (Plus)",
+  "admFeatureFlags": "Feature switches",
+  "admReferrals": "Referrals",
+  "admReferralReward": "Reward for each friend",
+  "admCoupons": "Coupons",
+  "admNewCoupon": "New coupon",
+  "admVaccineSchedules": "Vaccine schedules",
+  "admVaccineNote": "Indicative timings. Change a timing after a vet has reviewed it; every pet's schedule updates.",
+  "admContentReview": "Vet review of content",
+  "admContentReviewNote": "Until a vet reviews it, this content shows \"Draft, to be reviewed by a vet\".",
+  "admUsesDefault": "Default",
+  "admSavedLive": "Saved. The app uses the new value now.",
+  "admLimit": "Limit",
+  "admLimitPets": "Pets",
+  "admLimitFamily": "Family members",
+  "admLimitTeleVet": "Tele-vet chats a month",
+  "admLimitMessages": "Messages per tele-vet chat",
+  "admLimitWords": "Words per message",
+  "admLimitHours": "Tele-vet chat open for",
+  "admLimitAi": "Ask PawSetu questions a month",
+  "admLimitStorage": "Storage",
+  "admLimitVideo": "Video length",
+  "admHoursUnit": "hours",
+  "admSecondsUnit": "seconds",
+  "admUnlimited": "Unlimited",
+  "admUnlimitedNote": "999 or more means unlimited.",
+  "admFlagAi": "Ask PawSetu",
+  "admFlagAiHint": "The AI pet assistant",
+  "admFlagDevices": "Connected devices",
+  "admFlagDevicesHint": "Collars, feeders and other smart devices",
+  "admFlagLost": "Lost pet alerts nearby",
+  "admFlagLostHint": "Alerts to app users within 5 km",
+  "admFlagReferrals": "Refer a friend",
+  "admFlagReferralsHint": "Referral codes and rewards",
+  "admCouponPercent": "{pct}% off up to {max}",
+  "@admCouponPercent": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "admCouponFlat": "{amount} off",
+  "@admCouponFlat": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "admCouponMin": "min. order {amount}",
+  "@admCouponMin": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "admCouponTill": "till {date}",
+  "@admCouponTill": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "admCouponUses": "used {used} of {max}",
+  "@admCouponUses": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "admCouponActive": "Coupon on",
+  "admPersonalCoupons": "{count, plural, =1{1 personal referral coupon is not shown.} other{{count} personal referral coupons are not shown.}}",
+  "@admPersonalCoupons": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admCouponCodeHelp": "4 to 16 letters or digits, for example DIWALI20",
+  "admCouponDescription": "Description people see",
+  "admCouponTypePercent": "Percent off",
+  "admCouponTypeFlat": "Amount off",
+  "admCouponPercentOff": "Percent off",
+  "admCouponAmountOff": "Amount off",
+  "admCouponMaxDiscount": "Maximum discount",
+  "admCouponMinOrder": "Minimum order",
+  "admCouponMaxUses": "How many times it can be used",
+  "admCouponValidTill": "Valid till",
+  "admDogSchedule": "Dogs",
+  "admCatSchedule": "Cats",
+  "admAskVetTiming": "Optional, timing as the vet advises",
+  "admEveryYears": "{count, plural, =1{Every year} other{Every {count} years}}",
+  "@admEveryYears": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admWeeksRange": "Age {from} to {to} weeks",
+  "@admWeeksRange": {
+    "placeholders": {
+      "from": {
+        "type": "int"
+      },
+      "to": {
+        "type": "int"
+      }
+    }
+  },
+  "admBoosterEvery": "{name} booster: every how many years?",
+  "@admBoosterEvery": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admYearsUnit": "years",
+  "admFromWeek": "{name}: from which week of age?",
+  "@admFromWeek": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admToWeek": "{name}: up to which week of age?",
+  "@admToWeek": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admWeeksUnit": "weeks",
+  "admAreaFirstAid": "First-aid guides",
+  "admAreaToxic": "Toxic food and plant checker",
+  "admAreaVaccines": "Vaccine schedules",
+  "admDraft": "Draft",
+  "admReviewed": "Reviewed",
+  "admReviewSheetNote": "Enter the name and registration number of the vet who checked this content.",
+  "admReviewerName": "Vet's name and registration no.",
+  "admMarkReviewed": "Mark as reviewed",
+  "admBackToDraft": "Back to draft",
+  "admKindShop": "Shop",
+  "admKindBooking": "Bookings",
+  "admDownloadCsv": "Download CSV",
+  "admColPartner": "Partner",
+  "admColType": "Type",
+  "admColCount": "Count",
+  "admColGross": "Gross",
+  "admColCommission": "Commission",
+  "admColPayout": "Payout",
+  "admBookingCommissionShort": "Booking commission",
+  "admShopMargin": "Shop margin",
+  "admPlusRevenue": "Plus payments",
+  "admRefunds": "Refunds",
+  "admPlatformTotal": "PawSetu earned",
+  "admReportDemoNote": "Demo money: all payments in Version 1 are simulated. Tax fields are placeholders.",
+  "admByPartner": "By partner",
+  "admLineCount": "{count, plural, =1{1 sale} other{{count} sales}}",
+  "@admLineCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admNoteApproved": "{name} is approved and now visible to pet parents",
+  "@admNoteApproved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admNoteRejected": "{name} was not approved",
+  "@admNoteRejected": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admNoteSuspended": "{name} is paused",
+  "@admNoteSuspended": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "hpReplyTitle": "Support replied: {subject}",
+  "@hpReplyTitle": {
+    "placeholders": {
+      "subject": {
+        "type": "String"
+      }
+    }
+  },
+  "hpResolvedTitle": "Resolved: {subject}",
+  "@hpResolvedTitle": {
+    "placeholders": {
+      "subject": {
+        "type": "String"
+      }
+    }
+  },
+  "hpRefundTitle": "Refund of ₹{amount} is on its way",
+  "@hpRefundTitle": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "hpRefundBody": "Demo refund: no real money moved.",
+  "hpNewForSupport": "New message from {name}",
+  "@hpNewForSupport": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "hpIntroTitle": "We're here to help",
+  "hpIntroBody": "Raise a complaint or question about a booking, order or chat. We usually reply within a day.",
+  "hpIntroPlus": "Plus members get priority support: we usually reply within 4 hours.",
+  "hpRaise": "Raise a complaint",
+  "hpYourTickets": "Your tickets",
+  "hpNoTickets": "No tickets yet. If something goes wrong, tell us here.",
+  "hpQuickAnswers": "Quick answers",
+  "hpFaqRefundQ": "How do refunds work?",
+  "hpFaqRefundA": "If you paid online and cancel in time, the money goes back to the same payment method in 5 to 7 working days. For other problems, raise a complaint and we'll check.",
+  "hpFaqCancelQ": "How do I cancel a booking?",
+  "hpFaqCancelA": "Open Book, then My bookings. Choose the booking and tap Cancel booking. The clinic's cancellation time is shown there.",
+  "hpFaqUrgentQ": "My pet needs help right now",
+  "hpFaqUrgentA": "Use the red SOS button on Home: hold it for 2 seconds to reach the nearest clinic. Don't wait for a reply here.",
+  "hpFaqDataQ": "How do I get or delete my data?",
+  "hpFaqDataA": "Go to Me, then Privacy centre, to download your data or delete your account.",
+  "hpAbout": "What is it about?",
+  "hpPickItem": "Choose a booking or order",
+  "hpSomethingElse": "Something else",
+  "hpTopic": "Topic",
+  "hpSubject": "Subject (optional)",
+  "hpDetails": "What happened?",
+  "hpDetailsHelp": "At least 10 characters. Add dates, names and amounts if you can.",
+  "hpSend": "Send to support",
+  "hpSent": "Sent to PawSetu support",
+  "hpReplyTime": "We usually reply within a day.",
+  "hpReplyTimePlus": "Plus priority support: we usually reply within 4 hours.",
+  "hpTicketTitle": "Your ticket",
+  "hpResolvedNote": "Marked as resolved. Reply below if you still need help.",
+  "hpReopenHint": "Still need help? Write here to reopen",
+  "hpGetHelpBooking": "Get help with this booking",
+  "plusTrialStartedTitle": "Your free trial has started",
+  "plusTrialStartedBody": "You have every Plus feature for {days} days, till {date}. Demo: nothing is charged.",
+  "@plusTrialStartedBody": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusTrialUsed": "You've already used your free trial.",
+  "plusPayYearly": "PawSetu Plus, 1 year",
+  "plusPayMonthly": "PawSetu Plus, 1 month",
+  "plusWelcomeTitle": "Welcome to PawSetu Plus!",
+  "plusWelcomeBody": "Plus is on. It renews on {date}. This was a demo payment: no money moved.",
+  "@plusWelcomeBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusKeepAfterTrial": "Keep Plus after your trial",
+  "plusChoosePlan": "Choose your plan",
+  "plusBuy": "Get Plus for {amount}",
+  "@plusBuy": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "plusStartsAfterTrial": "Your paid plan starts when the trial ends on {date}.",
+  "@plusStartsAfterTrial": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusStartTrial": "Start {days}-day free trial",
+  "@plusStartTrial": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "plusTrialNote": "Free for {days} days. No card needed in the demo.",
+  "@plusTrialNote": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "plusAutoRenew": "Renew automatically",
+  "plusAutoRenewOn": "Renews on {date}",
+  "@plusAutoRenewOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusAutoRenewOff": "Plus stays till {date}, then you move to Free",
+  "@plusAutoRenewOff": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusDemoNote": "Demo: no money is charged and nothing renews for real.",
+  "plusOnTrial": "{days, plural, =0{Plus trial ends today} =1{Plus trial: 1 day left} other{Plus trial: {days} days left}}",
+  "@plusOnTrial": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "plusTrialEnds": "Your trial ends on {date}.",
+  "@plusTrialEnds": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusYouHavePlus": "You have PawSetu Plus",
+  "plusRenewsOn": "Renews on {date}",
+  "@plusRenewsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusEndsOn": "Ends on {date}",
+  "@plusEndsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusYouAreFree": "You're on the Free plan",
+  "plusFreeBody": "Upgrade for video vet calls, unlimited pets and more.",
+  "plusMinutes": "{count} min",
+  "@plusMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "plusSeconds": "{count} sec",
+  "@plusSeconds": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "plusRowPets": "Pets",
+  "plusRowFamily": "Family members",
+  "plusRowVideo": "Video vet calls",
+  "plusRowTeleVet": "Tele-vet chats",
+  "plusRowMessages": "Chat length",
+  "plusRowAi": "Ask PawSetu",
+  "plusRowStorage": "Photo and document storage",
+  "plusRowVideoLength": "Video length in album",
+  "plusRowVideoDiscount": "Off vet video fees",
+  "plusRowDelivery": "Free delivery",
+  "plusRowSupport": "Support",
+  "plusYes": "Yes",
+  "plusPerMonth": "{value} a month",
+  "@plusPerMonth": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "plusMessagesWords": "{messages} messages, {words} words each",
+  "@plusMessagesWords": {
+    "placeholders": {
+      "messages": {
+        "type": "String"
+      },
+      "words": {
+        "type": "String"
+      }
+    }
+  },
+  "plusAbove": "above {amount}",
+  "@plusAbove": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "plusStandard": "Standard",
+  "plusPriority": "Priority",
+  "plusYearly": "Yearly",
+  "plusMonthly": "Monthly",
+  "plusPerYear": "a year",
+  "plusPerMonthPrice": "a month",
+  "plusSave": "Save {pct}%",
+  "@plusSave": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
+  "plusTrialEndingSoon": "{days, plural, =0{Your Plus trial ends today. Choose a plan to keep Plus.} =1{Your Plus trial ends tomorrow. Choose a plan to keep Plus.} other{Your Plus trial ends in {days} days. Choose a plan to keep Plus.}}",
+  "@plusTrialEndingSoon": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "referTitle": "Refer a friend",
+  "referInvalid": "That code isn't valid, or you've already used a code.",
+  "referDoneTitle": "Code applied!",
+  "referDoneBody": "You and your friend each get {amount} off. Your coupon: {code}. Use it in the Shop at checkout.",
+  "@referDoneBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "referPaused": "Refer a friend is paused right now.",
+  "referHeadline": "Give {amount}, get {amount}",
+  "@referHeadline": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "referBody": "When a friend joins PawSetu with your code, you both get a {amount} Shop coupon.",
+  "@referBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "referYourCode": "Your code",
+  "referShareText": "Join me on PawSetu, the app for pet parents! Use my code {code} and we both get {amount} off in the PawSetu Shop.",
+  "@referShareText": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "referFriendsJoined": "{count, plural, =0{No friends have joined with your code yet} =1{1 friend joined with your code} other{{count} friends joined with your code}}",
+  "@referFriendsJoined": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "referHaveCode": "Got a friend's code?",
+  "referEnterCode": "Friend's code",
+  "referApply": "Apply code",
+  "referYourRewards": "Your reward coupons",
+  "referCouponLine": "{amount} off orders above {min}, till {date}",
+  "@referCouponLine": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "referUsed": "Used",
+  "referDemoNote": "Demo: coupons work in the demo Shop. No real money.",
+  "prvExportReady": "Your file is ready: {parts} sections, {kb} KB.",
+  "@prvExportReady": {
+    "placeholders": {
+      "parts": {
+        "type": "int"
+      },
+      "kb": {
+        "type": "int"
+      }
+    }
+  },
+  "prvExportSubject": "My PawSetu data",
+  "prvDeleteConfirmTitle": "Delete your account?",
+  "prvDeleteConfirmBody": "Your account, pets and records will be deleted on {date}. Sign in within {days} days and cancel if you change your mind.",
+  "@prvDeleteConfirmBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "prvDeleteButton": "Delete my account",
+  "prvDeleteRequestedTitle": "Deletion scheduled",
+  "prvDeleteRequestedBody": "Your account will be deleted on {date}. Demo: nothing is deleted for real.",
+  "@prvDeleteRequestedBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "prvConsentLost": "Lost pet alerts near me",
+  "prvConsentLostHint": "Get an alert when a pet is lost within 5 km",
+  "prvConsentAnalytics": "Help improve PawSetu",
+  "prvConsentAnalyticsHint": "Share anonymous app usage (no names or photos)",
+  "prvConsentMarketing": "Offers and news",
+  "prvConsentMarketingHint": "Occasional offers by SMS, WhatsApp or email",
+  "prvConsentPartners": "Share health summary with clinics I book",
+  "prvConsentPartnersHint": "Helps the vet prepare before your visit",
+  "prvDeletionPending": "Your account will be deleted on {date}. Tap to keep it.",
+  "@prvDeletionPending": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "prvCancelDeletion": "Keep my account",
+  "prvDeletionCancelled": "Deletion cancelled. Your account stays.",
+  "prvIntro": "You control your data. Choose what you share, download a copy of everything, or delete your account.",
+  "prvConsents": "What you share",
+  "prvDownloadTitle": "Download my data",
+  "prvDownloadBody": "Get a file with your profile, pets, health records, bookings, orders, chats and more.",
+  "prvDownloadButton": "Download my data",
+  "prvDeleteTitle": "Delete my account",
+  "prvDeleteBody": "Your account is deleted {days} days after you ask. Until then you can sign in and cancel.",
+  "@prvDeleteBody": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "prvDemoNote": "Demo: the file is made on your device. In the live app we also email you a download link.",
+  "suspTitle": "Your account is paused",
+  "suspBody": "Our team paused this account. If you think this is a mistake, contact PawSetu support.",
+  "suspContact": "Contact support",
+  "suspContactBody": "Demo: write to support@example.com. In the live app this opens your email."
 }

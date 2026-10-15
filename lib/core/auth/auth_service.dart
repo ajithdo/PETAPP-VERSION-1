@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
@@ -6,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart' as fb;
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/plans/domain/plan_rules.dart' show newReferralCode;
 import '../demo/seed/seed_people.dart';
 import 'app_user.dart';
 
@@ -163,7 +165,7 @@ class DemoAuthService implements AuthService {
         'createdAt': DateTime.now(),
         'addresses': <Map<String, dynamic>>[],
         'consents': {'marketing': false, 'analytics': true, 'lostPetAlerts': true},
-        'referralCode': 'PAW${uid.substring(uid.length - 5)}',
+        'referralCode': newReferralCode(name, math.Random().nextInt),
       });
 
   @override

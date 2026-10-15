@@ -8634,4 +8634,1646 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get toxPhenylWhy =>
       'फ़िनाइल और कई फ़र्श क्लीनर में फ़ीनॉल होता है, जो ख़ासकर बिल्लियों के लिए ज़हरीला है। पालतुओं के चलने से पहले फ़र्श सूखने दें।';
+
+  @override
+  String reviewedBy(String name) {
+    return '$name द्वारा जाँचा गया';
+  }
+
+  @override
+  String get featurePaused => 'यह सुविधा अभी बंद है';
+
+  @override
+  String get featurePausedBody =>
+      'PawSetu टीम ने इसे रोका है। कृपया बाद में देखें।';
+
+  @override
+  String get shopFeatured => 'ख़ास चुने हुए';
+
+  @override
+  String admUsers(int owners, int partners) {
+    return 'यूज़र: $owners पालतू माता-पिता, $partners पार्टनर';
+  }
+
+  @override
+  String get admPets => 'पालतू';
+
+  @override
+  String get admBookings30 => 'बुकिंग, पिछले 30 दिन';
+
+  @override
+  String get admOrderValue30 => 'ऑर्डर की रक़म, पिछले 30 दिन';
+
+  @override
+  String get admCommission30 => 'कमाया कमीशन, पिछले 30 दिन';
+
+  @override
+  String get admPlusMembers => 'Plus सदस्य';
+
+  @override
+  String get admSos30 => 'SOS इस्तेमाल, पिछले 30 दिन';
+
+  @override
+  String get admByDay => 'दिन के हिसाब से';
+
+  @override
+  String get admByWeek => 'हफ़्ते के हिसाब से';
+
+  @override
+  String get admByMonth => 'महीने के हिसाब से';
+
+  @override
+  String get admCommissionReport => 'कमीशन रिपोर्ट';
+
+  @override
+  String get admNoNumbers => 'अभी कोई आँकड़े नहीं';
+
+  @override
+  String get admChartBookingsOrders => 'बुकिंग और ऑर्डर';
+
+  @override
+  String get admLegendBookings => 'बुकिंग';
+
+  @override
+  String get admLegendOrders => 'ऑर्डर';
+
+  @override
+  String get admChartMoney => 'ऑर्डर की रक़म और कमीशन';
+
+  @override
+  String get admLegendOrderValue => 'ऑर्डर की रक़म';
+
+  @override
+  String get admLegendCommission => 'कमीशन';
+
+  @override
+  String get admChartGrowth => 'नए यूज़र, पालतू और Plus सदस्य';
+
+  @override
+  String get admLegendUsers => 'नए यूज़र';
+
+  @override
+  String get admLegendPets => 'नए पालतू';
+
+  @override
+  String get admLegendPlus => 'नए Plus';
+
+  @override
+  String get admChartSos => 'SOS इस्तेमाल';
+
+  @override
+  String get admLegendSos => 'SOS';
+
+  @override
+  String get admTopClinics => 'सबसे ज़्यादा बुक हुए क्लिनिक';
+
+  @override
+  String get admTopProducts => 'सबसे ज़्यादा बिके प्रोडक्ट';
+
+  @override
+  String get admBookingsUnit => 'बुकिंग';
+
+  @override
+  String get admSoldUnit => 'बिके';
+
+  @override
+  String admChange(String change) {
+    return 'पहले से $change%';
+  }
+
+  @override
+  String get admNothingYet => 'अभी कुछ नहीं';
+
+  @override
+  String get admKindClinic => 'क्लिनिक';
+
+  @override
+  String get admStatusRejected => 'नामंज़ूर';
+
+  @override
+  String get admStatusSuspended => 'रोका गया';
+
+  @override
+  String get admAllKinds => 'सभी';
+
+  @override
+  String admWaitingCount(int count) {
+    return '$count जाँच का इंतज़ार कर रहे हैं';
+  }
+
+  @override
+  String get admNoPending => 'मंज़ूरी के लिए कुछ बाकी नहीं';
+
+  @override
+  String get admNothingHere => 'यहाँ कुछ नहीं है';
+
+  @override
+  String admRejectTitle(String name) {
+    return '$name को नामंज़ूर करें?';
+  }
+
+  @override
+  String admSuspendTitle(String name) {
+    return '$name को रोकें?';
+  }
+
+  @override
+  String get admReasonDocs => 'दस्तावेज़ साफ़ नहीं हैं';
+
+  @override
+  String get admReasonRegNo => 'रजिस्ट्रेशन नंबर मेल नहीं खाता';
+
+  @override
+  String get admReasonDetails => 'जानकारी अधूरी है';
+
+  @override
+  String admApprovedToast(String name) {
+    return '$name को मंज़ूरी मिली';
+  }
+
+  @override
+  String admRejectedToast(String name) {
+    return '$name नामंज़ूर';
+  }
+
+  @override
+  String admSuspendedToast(String name) {
+    return '$name को रोका गया';
+  }
+
+  @override
+  String admAppliedOn(String date) {
+    return '$date को आवेदन';
+  }
+
+  @override
+  String admRegNo(String regNo) {
+    return 'रजिस्ट्रेशन नंबर: $regNo';
+  }
+
+  @override
+  String get admRegMissing => 'रजिस्ट्रेशन नंबर नहीं है';
+
+  @override
+  String get admRegLooksRight => 'फ़ॉर्मैट सही लगता है';
+
+  @override
+  String get admRegCheck => 'यह नंबर जाँचें';
+
+  @override
+  String get admRegHint =>
+      'इसे हमेशा राज्य पशु चिकित्सा परिषद के रजिस्टर से मिलाएँ।';
+
+  @override
+  String get admKycDocs => 'KYC दस्तावेज़';
+
+  @override
+  String get admNoDocs => 'अभी कोई दस्तावेज़ अपलोड नहीं हुआ';
+
+  @override
+  String admReasonGiven(String reason) {
+    return 'कारण: $reason';
+  }
+
+  @override
+  String get admApprove => 'मंज़ूर करें';
+
+  @override
+  String get admReinstate => 'फिर से मंज़ूर करें';
+
+  @override
+  String get admReject => 'नामंज़ूर करें';
+
+  @override
+  String get admSuspend => 'रोकें';
+
+  @override
+  String get admSampleStamp => 'नमूना';
+
+  @override
+  String get admDocDemoNote =>
+      'डेमो: सिर्फ़ नमूना दस्तावेज़। असली ऐप में KYC फ़ाइलें यहीं खुलेंगी।';
+
+  @override
+  String get admReasonLabel => 'कारण (पार्टनर को दिखेगा)';
+
+  @override
+  String get admSearchUsers => 'नाम, ईमेल, फ़ोन या शहर से खोजें';
+
+  @override
+  String get admFilterOwners => 'पालतू माता-पिता';
+
+  @override
+  String get admFilterPartners => 'पार्टनर';
+
+  @override
+  String get admFilterAdmins => 'एडमिन';
+
+  @override
+  String admPeopleCount(int count) {
+    return '$count लोग';
+  }
+
+  @override
+  String get plusTrialChip => 'Plus ट्रायल';
+
+  @override
+  String get admDeletionPending => 'डिलीट करने का अनुरोध';
+
+  @override
+  String admRoleConfirm(String name, String role) {
+    return '$name को $role बनाएँ?';
+  }
+
+  @override
+  String get admRoleChanged => 'भूमिका बदल गई। अगली बार ऐप खोलने पर लागू होगी।';
+
+  @override
+  String admSuspendUserTitle(String name) {
+    return '$name का खाता रोकें?';
+  }
+
+  @override
+  String get admReasonAbuse => 'बुरा बर्ताव';
+
+  @override
+  String get admReasonFraud => 'पेमेंट में धोखाधड़ी';
+
+  @override
+  String get admReasonFake => 'नकली खाता';
+
+  @override
+  String admUserSuspended(String name) {
+    return '$name का खाता रोका गया';
+  }
+
+  @override
+  String admUserRestored(String name) {
+    return '$name का खाता फिर से चालू है';
+  }
+
+  @override
+  String get admCity => 'शहर';
+
+  @override
+  String get admPlanLabel => 'प्लान';
+
+  @override
+  String admPlusTill(String date) {
+    return '$date तक Plus';
+  }
+
+  @override
+  String admTrialTill(String date) {
+    return '$date तक Plus ट्रायल';
+  }
+
+  @override
+  String get admJoined => 'जुड़े';
+
+  @override
+  String admDeletionOn(String date) {
+    return 'खाता $date को डिलीट होगा';
+  }
+
+  @override
+  String get admNotYourself =>
+      'आप अपनी भूमिका नहीं बदल सकते, न ख़ुद को रोक सकते हैं।';
+
+  @override
+  String get admSaveRole => 'भूमिका सेव करें';
+
+  @override
+  String get admUnsuspend => 'फिर से चालू करें';
+
+  @override
+  String get admSuspendUser => 'खाता रोकें';
+
+  @override
+  String get admTabProducts => 'प्रोडक्ट';
+
+  @override
+  String get admTabCategories => 'श्रेणियाँ';
+
+  @override
+  String get admTabPlaces => 'क्लिनिक और सेवाएँ';
+
+  @override
+  String get admTabSellers => 'विक्रेता';
+
+  @override
+  String get admTabPartners => 'पार्टनर दुकानें';
+
+  @override
+  String get admTabBanners => 'बैनर';
+
+  @override
+  String get admSearchProducts => 'प्रोडक्ट, ब्रांड या विक्रेता खोजें';
+
+  @override
+  String get admFeatured => 'ख़ास';
+
+  @override
+  String get admHidden => 'छिपे हुए';
+
+  @override
+  String get admLowStock => 'कम स्टॉक';
+
+  @override
+  String get admPartnerLinks => 'पार्टनर लिंक';
+
+  @override
+  String admShowingOf(int shown, int total) {
+    return '$total में से $shown दिखा रहे हैं। कम करने के लिए खोजें।';
+  }
+
+  @override
+  String admProductsCount(int count) {
+    return '$count प्रोडक्ट';
+  }
+
+  @override
+  String get admPartnerLink => 'पार्टनर लिंक';
+
+  @override
+  String admStock(int count) {
+    return 'स्टॉक $count';
+  }
+
+  @override
+  String get admUnfeature => 'ख़ास से हटाएँ';
+
+  @override
+  String get admFeature => 'शॉप में ख़ास दिखाएँ';
+
+  @override
+  String get admShowInShop => 'शॉप में दिखाएँ';
+
+  @override
+  String admCategoryNote(String food, String other) {
+    return 'डिफ़ॉल्ट मार्जिन: खाने पर $food%, बाकी सब पर $other%। किसी भी श्रेणी का अलग मार्जिन रख सकते हैं।';
+  }
+
+  @override
+  String admMarginCustom(String pct) {
+    return 'मार्जिन $pct% (अपनी दर)';
+  }
+
+  @override
+  String admMarginDefault(String pct) {
+    return 'मार्जिन $pct% (डिफ़ॉल्ट)';
+  }
+
+  @override
+  String admMarginFor(String name) {
+    return '$name का मार्जिन';
+  }
+
+  @override
+  String get admEmptyDefault => 'डिफ़ॉल्ट के लिए ख़ाली छोड़ें';
+
+  @override
+  String get admSellerNote =>
+      'विक्रेताओं को मंज़ूरी \'मंज़ूरियाँ\' में मिलती है। यहाँ किसी विक्रेता का अपना मार्जिन रख सकते हैं।';
+
+  @override
+  String get admMarginStandard => 'सामान्य मार्जिन';
+
+  @override
+  String get admEditMargin => 'दर बदलें';
+
+  @override
+  String get admPartnersNote =>
+      'एफ़िलिएट पार्टनर दुकानें: लोग पार्टनर की वेबसाइट पर ख़रीदते हैं और PawSetu को कमीशन मिलता है।';
+
+  @override
+  String admPartnerLine(String pct, int clicks) {
+    return 'कमीशन $pct% · $clicks क्लिक';
+  }
+
+  @override
+  String get admAddPartner => 'पार्टनर दुकान जोड़ें';
+
+  @override
+  String get admPartnerName => 'दुकान का नाम';
+
+  @override
+  String get admPartnerUrl => 'वेबसाइट (https://…)';
+
+  @override
+  String get admPartnerCommission => 'कमीशन';
+
+  @override
+  String get admBannersNote =>
+      'बैनर होम या शॉप में दिखते हैं। सिर्फ़ चालू बैनर दिखते हैं।';
+
+  @override
+  String get admPlaceShop => 'शॉप';
+
+  @override
+  String get admPlaceHome => 'होम';
+
+  @override
+  String get admBannerShown => 'यह बैनर दिखाएँ';
+
+  @override
+  String get admNewBanner => 'नया बैनर';
+
+  @override
+  String get admEditBanner => 'बैनर बदलें';
+
+  @override
+  String get admBannerTitle => 'शीर्षक';
+
+  @override
+  String get admBannerBody => 'छोटा संदेश';
+
+  @override
+  String get admBannerLink => 'खुलेगा (ऐप पेज)';
+
+  @override
+  String get admBannerLinkHelp =>
+      'जैसे /me/plus या /shop/search?q=food। लिंक नहीं चाहिए तो ख़ाली छोड़ें।';
+
+  @override
+  String get admToneOffer => 'ऑफ़र (नारंगी)';
+
+  @override
+  String get admToneNews => 'ख़बर (हरा)';
+
+  @override
+  String get admPlacesNote =>
+      'हर क्लिनिक या सेवा देने वाले का बुकिंग कमीशन। ख़ाली हो तो \'प्लान और सेटिंग्स\' में उसके प्रकार की दर लगेगी।';
+
+  @override
+  String admRateCustom(String pct) {
+    return 'कमीशन $pct% (अपनी दर)';
+  }
+
+  @override
+  String admRateStandard(String pct) {
+    return 'कमीशन $pct% (सामान्य)';
+  }
+
+  @override
+  String admRateFor(String name) {
+    return '$name का कमीशन';
+  }
+
+  @override
+  String get hpStatusOpen => 'खुला';
+
+  @override
+  String get hpStatusInProgress => 'काम चल रहा है';
+
+  @override
+  String get hpStatusResolved => 'हल हो गया';
+
+  @override
+  String get admNeedsReply => 'जवाब देना है';
+
+  @override
+  String get admNotResolved => 'हल नहीं हुए';
+
+  @override
+  String get admEveryone => 'सभी';
+
+  @override
+  String get admNoTickets => 'यहाँ कोई टिकट नहीं';
+
+  @override
+  String get hpSupportTeam => 'PawSetu सहायता';
+
+  @override
+  String get hpNewReply => 'नया जवाब';
+
+  @override
+  String hpRefunded(String amount) {
+    return '$amount वापस किए';
+  }
+
+  @override
+  String get admTicketTitle => 'टिकट';
+
+  @override
+  String get admTicketMissing => 'यह टिकट उपलब्ध नहीं है';
+
+  @override
+  String get admAssignee => 'किसे सौंपा';
+
+  @override
+  String get admUnassigned => 'किसी को नहीं सौंपा';
+
+  @override
+  String get admConversation => 'बातचीत';
+
+  @override
+  String admReplyHint(String name) {
+    return '$name को जवाब दें';
+  }
+
+  @override
+  String admReplySent(String name) {
+    return 'जवाब भेजा गया। $name को सूचना मिलेगी।';
+  }
+
+  @override
+  String get admResolveAfter => 'भेजने के बाद हल हुआ मानें';
+
+  @override
+  String admLinkMissing(String type) {
+    return 'जुड़ी हुई चीज़ नहीं मिली ($type)।';
+  }
+
+  @override
+  String admOrderLine(int count, String seller) {
+    return '$seller से $count सामान';
+  }
+
+  @override
+  String admPaid(String amount) {
+    return '$amount चुकाए';
+  }
+
+  @override
+  String admRefundDone(String amount, String date) {
+    return '$date को $amount वापस किए (डेमो)';
+  }
+
+  @override
+  String get admRefundButton => 'पैसे वापस करें (डेमो)';
+
+  @override
+  String get admRefundAmount => 'वापसी की रक़म';
+
+  @override
+  String admRefundMax(String amount) {
+    return '$amount तक, जितना चुकाया गया';
+  }
+
+  @override
+  String admRefundConfirm(String amount, String name) {
+    return '$name को $amount वापस करें?';
+  }
+
+  @override
+  String get admRefundDemoTitle => 'डेमो रिफ़ंड';
+
+  @override
+  String admRefundDemoBody(String amount, String name) {
+    return '$name को बताया गया कि $amount वापस हुए। यह डेमो है: असली पैसे नहीं गए।';
+  }
+
+  @override
+  String hpRaisedOn(String date) {
+    return '$date को दर्ज';
+  }
+
+  @override
+  String admAssignedTo(String name) {
+    return '$name को सौंपा';
+  }
+
+  @override
+  String get hpWriteReply => 'जवाब लिखें';
+
+  @override
+  String get hpTopicRefund => 'पैसे वापसी';
+
+  @override
+  String get hpTopicLate => 'देर हुई या नहीं आए';
+
+  @override
+  String get hpTopicQuality => 'क्वालिटी की समस्या';
+
+  @override
+  String get hpTopicBehaviour => 'बदतमीज़ी या असुरक्षित बर्ताव';
+
+  @override
+  String get hpTopicApp => 'ऐप में समस्या';
+
+  @override
+  String get hpTopicOther => 'कुछ और';
+
+  @override
+  String get hpLinkBooking => 'बुकिंग';
+
+  @override
+  String get hpLinkOrder => 'ऑर्डर';
+
+  @override
+  String get hpLinkChat => 'चैट';
+
+  @override
+  String get hpLinkOther => 'सामान्य';
+
+  @override
+  String admReportsOpen(int count) {
+    return 'खुले ($count)';
+  }
+
+  @override
+  String get admReportsClosed => 'बंद';
+
+  @override
+  String get admNoReports => 'जाँचने के लिए कोई रिपोर्ट नहीं';
+
+  @override
+  String get admReviewHidden => 'रिव्यू छिपाया गया';
+
+  @override
+  String get admReviewRestored => 'रिव्यू फिर से दिखेगा';
+
+  @override
+  String get admReportHandled => 'निपटाया गया';
+
+  @override
+  String get admReportDismissed => 'रिपोर्ट ख़ारिज';
+
+  @override
+  String get admReportReview => 'रिपोर्ट किया गया रिव्यू';
+
+  @override
+  String get admReportChat => 'रिपोर्ट की गई चैट';
+
+  @override
+  String get admReportContent => 'रिपोर्ट की गई सामग्री';
+
+  @override
+  String admReporterSays(String text) {
+    return 'रिपोर्ट करने वाले ने कहा: $text';
+  }
+
+  @override
+  String admReportedBy(String name) {
+    return '$name ने रिपोर्ट किया';
+  }
+
+  @override
+  String admClosedOn(String date) {
+    return '$date को बंद';
+  }
+
+  @override
+  String get admHideReview => 'रिव्यू छिपाएँ';
+
+  @override
+  String get admMarkHandled => 'निपटाया हुआ मानें';
+
+  @override
+  String get admDismiss => 'ख़ारिज करें';
+
+  @override
+  String get admRestoreReview => 'रिव्यू फिर से दिखाएँ';
+
+  @override
+  String get admSearchOutbox => 'फ़ोन, ईमेल या संदेश से खोजें';
+
+  @override
+  String admAllCount(int count) {
+    return 'सभी ($count)';
+  }
+
+  @override
+  String get admChannelSms => 'SMS';
+
+  @override
+  String get admChannelWhatsapp => 'WhatsApp';
+
+  @override
+  String get admChannelEmail => 'ईमेल';
+
+  @override
+  String get admChannelPush => 'पुश';
+
+  @override
+  String get admAuditNote => 'एडमिन पैनल में किया हर बदलाव, नया सबसे ऊपर।';
+
+  @override
+  String get admSearchAudit => 'व्यक्ति, काम या चीज़ से खोजें';
+
+  @override
+  String get admActApprove => 'पार्टनर को मंज़ूरी दी';
+
+  @override
+  String get admActReject => 'पार्टनर को नामंज़ूर किया';
+
+  @override
+  String get admActSuspendPartner => 'पार्टनर को रोका';
+
+  @override
+  String get admActSuspendUser => 'खाता रोका';
+
+  @override
+  String get admActUnsuspendUser => 'खाता फिर से चालू किया';
+
+  @override
+  String get admActRole => 'भूमिका बदली';
+
+  @override
+  String get admActTicketReply => 'टिकट का जवाब दिया';
+
+  @override
+  String get admActTicketStatus => 'टिकट की स्थिति बदली';
+
+  @override
+  String get admActTicketAssign => 'टिकट सौंपा';
+
+  @override
+  String get admActRefund => 'डेमो रिफ़ंड दिया';
+
+  @override
+  String get admActHide => 'रिव्यू छिपाया';
+
+  @override
+  String get admActRestore => 'रिव्यू फिर से दिखाया';
+
+  @override
+  String get admActDismiss => 'रिपोर्ट ख़ारिज की';
+
+  @override
+  String get admActHandled => 'रिपोर्ट निपटाई';
+
+  @override
+  String get admActCouponNew => 'कूपन बनाया';
+
+  @override
+  String get admActCouponEdit => 'कूपन बदला';
+
+  @override
+  String get admActProduct => 'प्रोडक्ट बदला';
+
+  @override
+  String get admActBannerNew => 'बैनर बनाया';
+
+  @override
+  String get admActBannerEdit => 'बैनर बदला';
+
+  @override
+  String get admActSeller => 'विक्रेता बदला';
+
+  @override
+  String get admActPartnerStore => 'पार्टनर दुकान बदली';
+
+  @override
+  String get admActPlace => 'क्लिनिक या सेवा देने वाला बदला';
+
+  @override
+  String get admActSettings => 'सेटिंग्स बदलीं';
+
+  @override
+  String get admSettingsNote =>
+      'बदलाव तुरंत ऐप में पहुँचते हैं, अपडेट की ज़रूरत नहीं।';
+
+  @override
+  String admLastChanged(String when) {
+    return 'पिछला बदलाव $when।';
+  }
+
+  @override
+  String get admPlanPrices => 'प्लान की क़ीमतें';
+
+  @override
+  String get admPlusMonthly => 'Plus, महीने का';
+
+  @override
+  String get admPlusYearly => 'Plus, साल का';
+
+  @override
+  String get admTrialDays => 'मुफ़्त ट्रायल';
+
+  @override
+  String get admDaysUnit => 'दिन';
+
+  @override
+  String get admPlanLimits => 'प्लान की सीमाएँ';
+
+  @override
+  String get admBookingCommission => 'बुकिंग कमीशन';
+
+  @override
+  String get admDefaultRate => 'डिफ़ॉल्ट दर';
+
+  @override
+  String get admRateClinic => 'पशु क्लिनिक';
+
+  @override
+  String get admRateGroomer => 'ग्रूमर';
+
+  @override
+  String get admRateTrainer => 'ट्रेनर';
+
+  @override
+  String get admRateBoarder => 'बोर्डिंग और देखभाल';
+
+  @override
+  String get admRateWalker => 'डॉग वॉकर';
+
+  @override
+  String get admProviderRateNote =>
+      'किसी क्लिनिक या सेवा देने वाले की अपनी दर भी हो सकती है: कैटलॉग → क्लिनिक और सेवाएँ।';
+
+  @override
+  String get admShopMoney => 'शॉप मार्जिन और डिलीवरी';
+
+  @override
+  String get admFoodMargin => 'खाने पर मार्जिन';
+
+  @override
+  String get admOtherMargin => 'बाकी सामान पर मार्जिन';
+
+  @override
+  String get admVideoDiscount => 'वीडियो डॉक्टर फ़ीस पर Plus छूट';
+
+  @override
+  String get admDeliveryFee => 'डिलीवरी शुल्क';
+
+  @override
+  String get admFreeDeliveryFree => 'इससे ऊपर मुफ़्त डिलीवरी (Free प्लान)';
+
+  @override
+  String get admFreeDeliveryPlus => 'इससे ऊपर मुफ़्त डिलीवरी (Plus)';
+
+  @override
+  String get admFeatureFlags => 'सुविधाओं के स्विच';
+
+  @override
+  String get admReferrals => 'रेफ़रल';
+
+  @override
+  String get admReferralReward => 'हर दोस्त का इनाम';
+
+  @override
+  String get admCoupons => 'कूपन';
+
+  @override
+  String get admNewCoupon => 'नया कूपन';
+
+  @override
+  String get admVaccineSchedules => 'टीकों का शेड्यूल';
+
+  @override
+  String get admVaccineNote =>
+      'अनुमानित समय। डॉक्टर की जाँच के बाद समय बदलें; हर पालतू का शेड्यूल बदल जाएगा।';
+
+  @override
+  String get admContentReview => 'सामग्री की डॉक्टर से जाँच';
+
+  @override
+  String get admContentReviewNote =>
+      'डॉक्टर की जाँच तक इस सामग्री पर \"ड्राफ़्ट, डॉक्टर द्वारा जाँच बाकी\" दिखेगा।';
+
+  @override
+  String get admUsesDefault => 'डिफ़ॉल्ट';
+
+  @override
+  String get admSavedLive => 'सेव हो गया। ऐप अब नई वैल्यू इस्तेमाल करेगा।';
+
+  @override
+  String get admLimit => 'सीमा';
+
+  @override
+  String get admLimitPets => 'पालतू';
+
+  @override
+  String get admLimitFamily => 'परिवार के सदस्य';
+
+  @override
+  String get admLimitTeleVet => 'महीने में टेली-वेट चैट';
+
+  @override
+  String get admLimitMessages => 'हर टेली-वेट चैट में संदेश';
+
+  @override
+  String get admLimitWords => 'हर संदेश में शब्द';
+
+  @override
+  String get admLimitHours => 'टेली-वेट चैट कितनी देर खुली';
+
+  @override
+  String get admLimitAi => 'महीने में Ask PawSetu सवाल';
+
+  @override
+  String get admLimitStorage => 'स्टोरेज';
+
+  @override
+  String get admLimitVideo => 'वीडियो की लंबाई';
+
+  @override
+  String get admHoursUnit => 'घंटे';
+
+  @override
+  String get admSecondsUnit => 'सेकंड';
+
+  @override
+  String get admUnlimited => 'असीमित';
+
+  @override
+  String get admUnlimitedNote => '999 या उससे ज़्यादा का मतलब असीमित।';
+
+  @override
+  String get admFlagAi => 'Ask PawSetu';
+
+  @override
+  String get admFlagAiHint => 'AI पालतू सहायक';
+
+  @override
+  String get admFlagDevices => 'जुड़े डिवाइस';
+
+  @override
+  String get admFlagDevicesHint => 'कॉलर, फ़ीडर और दूसरे स्मार्ट डिवाइस';
+
+  @override
+  String get admFlagLost => 'पास में खोए पालतू के अलर्ट';
+
+  @override
+  String get admFlagLostHint => '5 किमी के अंदर के यूज़र को अलर्ट';
+
+  @override
+  String get admFlagReferrals => 'दोस्त को बुलाएँ';
+
+  @override
+  String get admFlagReferralsHint => 'रेफ़रल कोड और इनाम';
+
+  @override
+  String admCouponPercent(int pct, String max) {
+    return '$max तक $pct% छूट';
+  }
+
+  @override
+  String admCouponFlat(String amount) {
+    return '$amount की छूट';
+  }
+
+  @override
+  String admCouponMin(String amount) {
+    return 'कम से कम ऑर्डर $amount';
+  }
+
+  @override
+  String admCouponTill(String date) {
+    return '$date तक';
+  }
+
+  @override
+  String admCouponUses(int used, int max) {
+    return '$max में से $used बार इस्तेमाल';
+  }
+
+  @override
+  String get admCouponActive => 'कूपन चालू';
+
+  @override
+  String admPersonalCoupons(int count) {
+    return '$count निजी रेफ़रल कूपन यहाँ नहीं दिखाए गए।';
+  }
+
+  @override
+  String get admCouponCodeHelp => '4 से 16 अक्षर या अंक, जैसे DIWALI20';
+
+  @override
+  String get admCouponDescription => 'लोगों को दिखने वाला विवरण';
+
+  @override
+  String get admCouponTypePercent => 'प्रतिशत छूट';
+
+  @override
+  String get admCouponTypeFlat => 'रक़म की छूट';
+
+  @override
+  String get admCouponPercentOff => 'प्रतिशत छूट';
+
+  @override
+  String get admCouponAmountOff => 'छूट की रक़म';
+
+  @override
+  String get admCouponMaxDiscount => 'अधिकतम छूट';
+
+  @override
+  String get admCouponMinOrder => 'कम से कम ऑर्डर';
+
+  @override
+  String get admCouponMaxUses => 'कितनी बार इस्तेमाल हो सकता है';
+
+  @override
+  String get admCouponValidTill => 'कब तक मान्य';
+
+  @override
+  String get admDogSchedule => 'कुत्ते';
+
+  @override
+  String get admCatSchedule => 'बिल्लियाँ';
+
+  @override
+  String get admAskVetTiming => 'ज़रूरी नहीं, समय डॉक्टर की सलाह से';
+
+  @override
+  String admEveryYears(int count) {
+    return 'हर $count साल';
+  }
+
+  @override
+  String admWeeksRange(int from, int to) {
+    return 'उम्र $from से $to हफ़्ते';
+  }
+
+  @override
+  String admBoosterEvery(String name) {
+    return '$name बूस्टर: कितने साल में?';
+  }
+
+  @override
+  String get admYearsUnit => 'साल';
+
+  @override
+  String admFromWeek(String name) {
+    return '$name: किस हफ़्ते की उम्र से?';
+  }
+
+  @override
+  String admToWeek(String name) {
+    return '$name: किस हफ़्ते की उम्र तक?';
+  }
+
+  @override
+  String get admWeeksUnit => 'हफ़्ते';
+
+  @override
+  String get admAreaFirstAid => 'प्राथमिक उपचार गाइड';
+
+  @override
+  String get admAreaToxic => 'ज़हरीले खाने और पौधों की जाँच';
+
+  @override
+  String get admAreaVaccines => 'टीकों का शेड्यूल';
+
+  @override
+  String get admDraft => 'ड्राफ़्ट';
+
+  @override
+  String get admReviewed => 'जाँचा गया';
+
+  @override
+  String get admReviewSheetNote =>
+      'इस सामग्री की जाँच करने वाले डॉक्टर का नाम और रजिस्ट्रेशन नंबर लिखें।';
+
+  @override
+  String get admReviewerName => 'डॉक्टर का नाम और रजिस्ट्रेशन नंबर';
+
+  @override
+  String get admMarkReviewed => 'जाँचा हुआ मानें';
+
+  @override
+  String get admBackToDraft => 'वापस ड्राफ़्ट करें';
+
+  @override
+  String get admKindShop => 'शॉप';
+
+  @override
+  String get admKindBooking => 'बुकिंग';
+
+  @override
+  String get admDownloadCsv => 'CSV डाउनलोड करें';
+
+  @override
+  String get admColPartner => 'पार्टनर';
+
+  @override
+  String get admColType => 'प्रकार';
+
+  @override
+  String get admColCount => 'गिनती';
+
+  @override
+  String get admColGross => 'कुल';
+
+  @override
+  String get admColCommission => 'कमीशन';
+
+  @override
+  String get admColPayout => 'भुगतान';
+
+  @override
+  String get admBookingCommissionShort => 'बुकिंग कमीशन';
+
+  @override
+  String get admShopMargin => 'शॉप मार्जिन';
+
+  @override
+  String get admPlusRevenue => 'Plus भुगतान';
+
+  @override
+  String get admRefunds => 'रिफ़ंड';
+
+  @override
+  String get admPlatformTotal => 'PawSetu की कमाई';
+
+  @override
+  String get admReportDemoNote =>
+      'डेमो पैसे: वर्शन 1 के सारे भुगतान नक़ली हैं। टैक्स के खाने सिर्फ़ जगह के लिए हैं।';
+
+  @override
+  String get admByPartner => 'पार्टनर के हिसाब से';
+
+  @override
+  String admLineCount(int count) {
+    return '$count बिक्री';
+  }
+
+  @override
+  String admNoteApproved(String name) {
+    return '$name को मंज़ूरी मिली, अब पालतू माता-पिता को दिखेगा';
+  }
+
+  @override
+  String admNoteRejected(String name) {
+    return '$name को मंज़ूरी नहीं मिली';
+  }
+
+  @override
+  String admNoteSuspended(String name) {
+    return '$name को रोका गया है';
+  }
+
+  @override
+  String hpReplyTitle(String subject) {
+    return 'सहायता टीम का जवाब: $subject';
+  }
+
+  @override
+  String hpResolvedTitle(String subject) {
+    return 'हल हो गया: $subject';
+  }
+
+  @override
+  String hpRefundTitle(int amount) {
+    return '₹$amount का रिफ़ंड आ रहा है';
+  }
+
+  @override
+  String get hpRefundBody => 'डेमो रिफ़ंड: असली पैसे नहीं गए।';
+
+  @override
+  String hpNewForSupport(String name) {
+    return '$name का नया संदेश';
+  }
+
+  @override
+  String get hpIntroTitle => 'हम मदद के लिए हैं';
+
+  @override
+  String get hpIntroBody =>
+      'बुकिंग, ऑर्डर या चैट के बारे में शिकायत या सवाल भेजें। हम आमतौर पर एक दिन में जवाब देते हैं।';
+
+  @override
+  String get hpIntroPlus =>
+      'Plus सदस्यों को पहले मदद: हम आमतौर पर 4 घंटे में जवाब देते हैं।';
+
+  @override
+  String get hpRaise => 'शिकायत दर्ज करें';
+
+  @override
+  String get hpYourTickets => 'आपके टिकट';
+
+  @override
+  String get hpNoTickets => 'अभी कोई टिकट नहीं। कुछ गड़बड़ हो तो यहाँ बताएँ।';
+
+  @override
+  String get hpQuickAnswers => 'झटपट जवाब';
+
+  @override
+  String get hpFaqRefundQ => 'पैसे वापसी कैसे होती है?';
+
+  @override
+  String get hpFaqRefundA =>
+      'अगर आपने ऑनलाइन भुगतान किया और समय पर रद्द किया, तो पैसे 5 से 7 कामकाजी दिनों में उसी तरीके में लौट आते हैं। बाकी समस्याओं के लिए शिकायत दर्ज करें, हम जाँचेंगे।';
+
+  @override
+  String get hpFaqCancelQ => 'बुकिंग कैसे रद्द करें?';
+
+  @override
+  String get hpFaqCancelA =>
+      'बुक खोलें, फिर मेरी बुकिंग। बुकिंग चुनें और बुकिंग रद्द करें दबाएँ। क्लिनिक का रद्द करने का समय वहीं दिखता है।';
+
+  @override
+  String get hpFaqUrgentQ => 'मेरे पालतू को अभी मदद चाहिए';
+
+  @override
+  String get hpFaqUrgentA =>
+      'होम पर लाल SOS बटन इस्तेमाल करें: सबसे पास के क्लिनिक तक पहुँचने के लिए इसे 2 सेकंड दबाए रखें। यहाँ जवाब का इंतज़ार न करें।';
+
+  @override
+  String get hpFaqDataQ => 'अपना डेटा कैसे लें या डिलीट करें?';
+
+  @override
+  String get hpFaqDataA =>
+      'मैं, फिर प्राइवेसी सेंटर में जाकर अपना डेटा डाउनलोड करें या खाता डिलीट करें।';
+
+  @override
+  String get hpAbout => 'यह किस बारे में है?';
+
+  @override
+  String get hpPickItem => 'बुकिंग या ऑर्डर चुनें';
+
+  @override
+  String get hpSomethingElse => 'कुछ और';
+
+  @override
+  String get hpTopic => 'विषय';
+
+  @override
+  String get hpSubject => 'विषय पंक्ति (ज़रूरी नहीं)';
+
+  @override
+  String get hpDetails => 'क्या हुआ?';
+
+  @override
+  String get hpDetailsHelp =>
+      'कम से कम 10 अक्षर। हो सके तो तारीख़, नाम और रक़म लिखें।';
+
+  @override
+  String get hpSend => 'सहायता टीम को भेजें';
+
+  @override
+  String get hpSent => 'PawSetu सहायता को भेजा गया';
+
+  @override
+  String get hpReplyTime => 'हम आमतौर पर एक दिन में जवाब देते हैं।';
+
+  @override
+  String get hpReplyTimePlus =>
+      'Plus प्राथमिक सहायता: हम आमतौर पर 4 घंटे में जवाब देते हैं।';
+
+  @override
+  String get hpTicketTitle => 'आपका टिकट';
+
+  @override
+  String get hpResolvedNote =>
+      'हल हुआ माना गया। अब भी मदद चाहिए तो नीचे जवाब दें।';
+
+  @override
+  String get hpReopenHint => 'अब भी मदद चाहिए? दोबारा खोलने के लिए यहाँ लिखें';
+
+  @override
+  String get hpGetHelpBooking => 'इस बुकिंग में मदद लें';
+
+  @override
+  String get plusTrialStartedTitle => 'आपका मुफ़्त ट्रायल शुरू हो गया';
+
+  @override
+  String plusTrialStartedBody(int days, String date) {
+    return '$date तक $days दिन आपके पास Plus की हर सुविधा है। डेमो: कोई पैसा नहीं कटेगा।';
+  }
+
+  @override
+  String get plusTrialUsed => 'आप मुफ़्त ट्रायल पहले ही ले चुके हैं।';
+
+  @override
+  String get plusPayYearly => 'PawSetu Plus, 1 साल';
+
+  @override
+  String get plusPayMonthly => 'PawSetu Plus, 1 महीना';
+
+  @override
+  String get plusWelcomeTitle => 'PawSetu Plus में स्वागत है!';
+
+  @override
+  String plusWelcomeBody(String date) {
+    return 'Plus चालू है। यह $date को रिन्यू होगा। यह डेमो भुगतान था: कोई पैसा नहीं गया।';
+  }
+
+  @override
+  String get plusKeepAfterTrial => 'ट्रायल के बाद भी Plus रखें';
+
+  @override
+  String get plusChoosePlan => 'अपना प्लान चुनें';
+
+  @override
+  String plusBuy(String amount) {
+    return '$amount में Plus लें';
+  }
+
+  @override
+  String plusStartsAfterTrial(String date) {
+    return 'आपका पेड प्लान $date को ट्रायल ख़त्म होने पर शुरू होगा।';
+  }
+
+  @override
+  String plusStartTrial(int days) {
+    return '$days दिन का मुफ़्त ट्रायल शुरू करें';
+  }
+
+  @override
+  String plusTrialNote(int days) {
+    return '$days दिन मुफ़्त। डेमो में कार्ड की ज़रूरत नहीं।';
+  }
+
+  @override
+  String get plusAutoRenew => 'अपने आप रिन्यू करें';
+
+  @override
+  String plusAutoRenewOn(String date) {
+    return '$date को रिन्यू होगा';
+  }
+
+  @override
+  String plusAutoRenewOff(String date) {
+    return 'Plus $date तक रहेगा, फिर आप Free पर आ जाएँगे';
+  }
+
+  @override
+  String get plusDemoNote =>
+      'डेमो: कोई पैसा नहीं कटता और असल में कुछ रिन्यू नहीं होता।';
+
+  @override
+  String plusOnTrial(int days) {
+    return 'Plus ट्रायल: $days दिन बाकी';
+  }
+
+  @override
+  String plusTrialEnds(String date) {
+    return 'आपका ट्रायल $date को ख़त्म होगा।';
+  }
+
+  @override
+  String get plusYouHavePlus => 'आपके पास PawSetu Plus है';
+
+  @override
+  String plusRenewsOn(String date) {
+    return '$date को रिन्यू होगा';
+  }
+
+  @override
+  String plusEndsOn(String date) {
+    return '$date को ख़त्म होगा';
+  }
+
+  @override
+  String get plusYouAreFree => 'आप Free प्लान पर हैं';
+
+  @override
+  String get plusFreeBody =>
+      'वीडियो डॉक्टर कॉल, असीमित पालतू और बहुत कुछ के लिए अपग्रेड करें।';
+
+  @override
+  String plusMinutes(int count) {
+    return '$count मिनट';
+  }
+
+  @override
+  String plusSeconds(int count) {
+    return '$count सेकंड';
+  }
+
+  @override
+  String get plusRowPets => 'पालतू';
+
+  @override
+  String get plusRowFamily => 'परिवार के सदस्य';
+
+  @override
+  String get plusRowVideo => 'वीडियो डॉक्टर कॉल';
+
+  @override
+  String get plusRowTeleVet => 'टेली-वेट चैट';
+
+  @override
+  String get plusRowMessages => 'चैट की लंबाई';
+
+  @override
+  String get plusRowAi => 'Ask PawSetu';
+
+  @override
+  String get plusRowStorage => 'फ़ोटो और दस्तावेज़ स्टोरेज';
+
+  @override
+  String get plusRowVideoLength => 'एल्बम में वीडियो की लंबाई';
+
+  @override
+  String get plusRowVideoDiscount => 'वीडियो डॉक्टर फ़ीस पर छूट';
+
+  @override
+  String get plusRowDelivery => 'मुफ़्त डिलीवरी';
+
+  @override
+  String get plusRowSupport => 'सहायता';
+
+  @override
+  String get plusYes => 'हाँ';
+
+  @override
+  String plusPerMonth(String value) {
+    return '$value महीने में';
+  }
+
+  @override
+  String plusMessagesWords(String messages, String words) {
+    return '$messages संदेश, हर एक में $words शब्द';
+  }
+
+  @override
+  String plusAbove(String amount) {
+    return '$amount से ऊपर';
+  }
+
+  @override
+  String get plusStandard => 'सामान्य';
+
+  @override
+  String get plusPriority => 'पहले';
+
+  @override
+  String get plusYearly => 'सालाना';
+
+  @override
+  String get plusMonthly => 'मासिक';
+
+  @override
+  String get plusPerYear => 'हर साल';
+
+  @override
+  String get plusPerMonthPrice => 'हर महीने';
+
+  @override
+  String plusSave(int pct) {
+    return '$pct% बचाएँ';
+  }
+
+  @override
+  String plusTrialEndingSoon(int days) {
+    return 'आपका Plus ट्रायल $days दिन में ख़त्म होगा। Plus रखने के लिए प्लान चुनें।';
+  }
+
+  @override
+  String get referTitle => 'दोस्त को बुलाएँ';
+
+  @override
+  String get referInvalid =>
+      'यह कोड सही नहीं है, या आप पहले ही कोड इस्तेमाल कर चुके हैं।';
+
+  @override
+  String get referDoneTitle => 'कोड लग गया!';
+
+  @override
+  String referDoneBody(String amount, String code) {
+    return 'आपको और आपके दोस्त को $amount की छूट मिली। आपका कूपन: $code। शॉप में पेमेंट के समय इस्तेमाल करें।';
+  }
+
+  @override
+  String get referPaused => 'दोस्त को बुलाना अभी रुका हुआ है।';
+
+  @override
+  String referHeadline(String amount) {
+    return '$amount दें, $amount पाएँ';
+  }
+
+  @override
+  String referBody(String amount) {
+    return 'जब कोई दोस्त आपके कोड से PawSetu में जुड़ता है, तो दोनों को $amount का शॉप कूपन मिलता है।';
+  }
+
+  @override
+  String get referYourCode => 'आपका कोड';
+
+  @override
+  String referShareText(String code, String amount) {
+    return 'PawSetu पर मेरे साथ जुड़ें, पालतू माता-पिता का ऐप! मेरा कोड $code इस्तेमाल करें और हम दोनों को PawSetu शॉप में $amount की छूट मिलेगी।';
+  }
+
+  @override
+  String referFriendsJoined(int count) {
+    return 'आपके कोड से $count दोस्त जुड़े';
+  }
+
+  @override
+  String get referHaveCode => 'दोस्त का कोड है?';
+
+  @override
+  String get referEnterCode => 'दोस्त का कोड';
+
+  @override
+  String get referApply => 'कोड लगाएँ';
+
+  @override
+  String get referYourRewards => 'आपके इनाम कूपन';
+
+  @override
+  String referCouponLine(String amount, String min, String date) {
+    return '$min से ऊपर के ऑर्डर पर $amount छूट, $date तक';
+  }
+
+  @override
+  String get referUsed => 'इस्तेमाल हो गया';
+
+  @override
+  String get referDemoNote =>
+      'डेमो: कूपन डेमो शॉप में चलते हैं। असली पैसे नहीं।';
+
+  @override
+  String prvExportReady(int parts, int kb) {
+    return 'आपकी फ़ाइल तैयार है: $parts हिस्से, $kb KB।';
+  }
+
+  @override
+  String get prvExportSubject => 'मेरा PawSetu डेटा';
+
+  @override
+  String get prvDeleteConfirmTitle => 'अपना खाता डिलीट करें?';
+
+  @override
+  String prvDeleteConfirmBody(String date, int days) {
+    return 'आपका खाता, पालतू और रिकॉर्ड $date को डिलीट होंगे। मन बदले तो $days दिनों में साइन इन करके रद्द करें।';
+  }
+
+  @override
+  String get prvDeleteButton => 'मेरा खाता डिलीट करें';
+
+  @override
+  String get prvDeleteRequestedTitle => 'डिलीट होना तय हुआ';
+
+  @override
+  String prvDeleteRequestedBody(String date) {
+    return 'आपका खाता $date को डिलीट होगा। डेमो: असल में कुछ डिलीट नहीं होगा।';
+  }
+
+  @override
+  String get prvConsentLost => 'मेरे पास खोए पालतू के अलर्ट';
+
+  @override
+  String get prvConsentLostHint => '5 किमी के अंदर कोई पालतू खोए तो अलर्ट पाएँ';
+
+  @override
+  String get prvConsentAnalytics => 'PawSetu को बेहतर बनाने में मदद करें';
+
+  @override
+  String get prvConsentAnalyticsHint =>
+      'बिना नाम का ऐप इस्तेमाल डेटा भेजें (नाम या फ़ोटो नहीं)';
+
+  @override
+  String get prvConsentMarketing => 'ऑफ़र और ख़बरें';
+
+  @override
+  String get prvConsentMarketingHint => 'कभी-कभी SMS, WhatsApp या ईमेल से ऑफ़र';
+
+  @override
+  String get prvConsentPartners =>
+      'जिन क्लिनिक में बुक करूँ, उनसे सेहत का सारांश साझा करें';
+
+  @override
+  String get prvConsentPartnersHint =>
+      'आपके आने से पहले डॉक्टर तैयारी कर पाते हैं';
+
+  @override
+  String prvDeletionPending(String date) {
+    return 'आपका खाता $date को डिलीट होगा। रखने के लिए दबाएँ।';
+  }
+
+  @override
+  String get prvCancelDeletion => 'मेरा खाता रखें';
+
+  @override
+  String get prvDeletionCancelled => 'डिलीट रद्द। आपका खाता बना रहेगा।';
+
+  @override
+  String get prvIntro =>
+      'आपका डेटा आपके हाथ में है। चुनें क्या साझा करना है, सबकी कॉपी डाउनलोड करें, या खाता डिलीट करें।';
+
+  @override
+  String get prvConsents => 'आप क्या साझा करते हैं';
+
+  @override
+  String get prvDownloadTitle => 'मेरा डेटा डाउनलोड करें';
+
+  @override
+  String get prvDownloadBody =>
+      'अपनी प्रोफ़ाइल, पालतू, सेहत रिकॉर्ड, बुकिंग, ऑर्डर, चैट और बाकी सब की फ़ाइल पाएँ।';
+
+  @override
+  String get prvDownloadButton => 'मेरा डेटा डाउनलोड करें';
+
+  @override
+  String get prvDeleteTitle => 'मेरा खाता डिलीट करें';
+
+  @override
+  String prvDeleteBody(int days) {
+    return 'अनुरोध के $days दिन बाद खाता डिलीट होता है। तब तक आप साइन इन करके रद्द कर सकते हैं।';
+  }
+
+  @override
+  String get prvDemoNote =>
+      'डेमो: फ़ाइल आपके डिवाइस पर बनती है। असली ऐप में हम डाउनलोड लिंक ईमेल भी करेंगे।';
+
+  @override
+  String get suspTitle => 'आपका खाता रोका गया है';
+
+  @override
+  String get suspBody =>
+      'हमारी टीम ने यह खाता रोका है। अगर आपको लगता है कि यह ग़लती है, तो PawSetu सहायता से संपर्क करें।';
+
+  @override
+  String get suspContact => 'सहायता से संपर्क करें';
+
+  @override
+  String get suspContactBody =>
+      'डेमो: support@example.com पर लिखें। असली ऐप में यह आपका ईमेल खोलेगा।';
 }

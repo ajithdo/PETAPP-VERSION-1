@@ -111,7 +111,14 @@ export const createBooking = onCall(async (req) => {
   const payments = (service.payments as string[]) ?? ['at_clinic'];
   if (!payments.includes(d.paymentOption)) throw new HttpsError('invalid-argument', 'Payment option not offered.');
 
-  const commissionPct = Number(cfgSnap.data()?.commission?.bookingPercent ?? 10);
+  // Spec 8: the provider's own rate, else the rate for its type, else the default.
+  const placeKind = placeSnap.ref.parent.id === 'clinics' ? 'clinic' : String(place.type ?? '');
+  const commissionCfg = cfgSnap.data()?.commission ?? {};
+  const commissionPct = Number(
+    typeof place.commissionPercent === 'number'
+      ? place.commissionPercent
+      : (commissionCfg.bookingTypePercent?.[placeKind] ?? commissionCfg.bookingPercent ?? 10),
+  );
   const price = Number(service.price ?? 0);
   const travelFee = d.homeVisit ? Number(place.kind === 'clinic' ? place.homeVisitFee ?? 0 : place.travelFee ?? 0) : 0;
   const commission = Math.round((price * commissionPct) / 100);

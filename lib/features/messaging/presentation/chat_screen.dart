@@ -6,6 +6,7 @@ import '../../../core/auth/app_user.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../admin/admin_slots.dart' show helpBase;
 import '../../televet/data/consultation.dart';
 import '../../televet/data/televet_repository.dart';
 import '../../televet/presentation/televet_bar.dart';
@@ -165,8 +166,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
               value: 'block',
               child: ListTile(leading: const Icon(Icons.block_rounded), title: Text(blockedByMe ? l.msgUnblock : l.msgBlock)),
             ),
-            if (me.role == UserRole.owner)
-              PopupMenuItem(value: 'help', child: ListTile(leading: const Icon(Icons.support_agent_rounded), title: Text(l.msgGetHelp))),
+            PopupMenuItem(value: 'help', child: ListTile(leading: const Icon(Icons.support_agent_rounded), title: Text(l.msgGetHelp))),
           ],
         ),
       ],
@@ -201,7 +201,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
           if (context.mounted) showToast(context, l.msgBlockedToast);
         }
       case 'help':
-        context.push('/me/help/new?conversation=${c.id}');
+        context.push('${helpBase(me)}/new?conversation=${c.id}');
     }
   }
 
