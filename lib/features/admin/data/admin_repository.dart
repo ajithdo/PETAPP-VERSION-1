@@ -68,7 +68,7 @@ class AdminRepository {
           recentBookings.fold<int>(0, (a, d) => a + ((d.data()['commission'] as num?)?.toInt() ?? 0)),
       plusMembers: plus,
       sos30: sos.docs.where((d) => recent(d.data()['at'])).length,
-      topClinics: topCounts([for (final d in bookings.docs) if (d.data()['kind'] == 'vet') (d.data()['providerName'] as String?) ?? '']),
+      topClinics: topCounts([for (final d in bookings.docs) if (d.data()['kind'] == 'clinic') (d.data()['providerName'] as String?) ?? '']),
       topProducts: topCounts([
         for (final o in orders.docs)
           for (final i in (o.data()['items'] as List?) ?? const [])
