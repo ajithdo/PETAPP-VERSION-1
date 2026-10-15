@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/auth/app_user.dart';
+import '../../../core/data/paging.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
@@ -212,7 +213,17 @@ class _ChatViewState extends ConsumerState<ChatView> {
         final typing = c.typingOther(me.uid, now, typingIsFresh);
         final group = c.participantIds.length > 2;
         // Newest at the bottom: build oldest → newest, then reverse.
-        final items = <Widget>[const ChatSafetyNote()];
+        final limitKey = 'chat:${widget.conversationId}';
+        final items = <Widget>[
+          if (mayHaveMore(list.length, ref.watch(listLimitProvider(limitKey))))
+            ShowMoreButton(
+              label: l.showEarlierMessages,
+              icon: Icons.expand_less_rounded,
+              onPressed: () => ref.read(listLimitProvider(limitKey).notifier).more(),
+            )
+          else
+            const ChatSafetyNote(),
+        ];
         DateTime? lastDay;
         for (final m in list) {
           if (lastDay == null || !Fmt.sameDay(lastDay, m.createdAt)) {

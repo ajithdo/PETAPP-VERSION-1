@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/data/converters.dart';
+import '../../../core/data/paging.dart';
 import '../../../core/providers.dart';
 import '../../../core/services/notification_service.dart';
 import '../../../core/settings/settings_controller.dart';
@@ -11,14 +12,18 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 
-final _notificationsProvider = StreamProvider<List<QueryDocumentSnapshot<Map<String, dynamic>>>>((ref) {
+/// The newest page of my notifications; "Show more" loads older ones.
+final _notificationsProvider = StreamProvider.autoDispose<List<QueryDocumentSnapshot<Map<String, dynamic>>>>((ref) {
   final u = ref.watch(currentUserProvider);
   if (u == null) return Stream.value(const []);
-  return ref.watch(firestoreProvider).collection('notifications').where('uid', isEqualTo: u.uid).snapshots().map((s) {
-    final docs = s.docs.toList()
-      ..sort((a, b) => (parseDate(b.data()['createdAt']) ?? DateTime(2000)).compareTo(parseDate(a.data()['createdAt']) ?? DateTime(2000)));
-    return docs;
-  });
+  return ref
+      .watch(firestoreProvider)
+      .collection('notifications')
+      .where('uid', isEqualTo: u.uid)
+      .orderBy('createdAt', descending: true)
+      .limit(ref.watch(listLimitProvider('notifications')))
+      .snapshots()
+      .map((s) => s.docs);
 });
 
 /// Notification centre: history, filters, mark all read (spec 7.14).
@@ -65,11 +70,18 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
         actions: [
           TextButton(
             onPressed: () async {
-              final batch = ref.read(firestoreProvider).batch();
-              for (final d in docs.value ?? const []) {
-                if (d.data()['read'] != true) batch.update(d.reference, {'read': true});
+              // Every unread one, not just the page on screen.
+              final u = ref.read(currentUserProvider);
+              if (u == null) return;
+              final db = ref.read(firestoreProvider);
+              final unread = await db.collection('notifications').where('uid', isEqualTo: u.uid).where('read', isEqualTo: false).get();
+              for (var i = 0; i < unread.docs.length; i += 400) {
+                final batch = db.batch();
+                for (final d in unread.docs.skip(i).take(400)) {
+                  batch.update(d.reference, {'read': true});
+                }
+                await batch.commit();
               }
-              await batch.commit();
             },
             child: Text(l.markAllRead),
           ),
@@ -84,6 +96,7 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
         value: docs,
         data: (all) {
           final list = all.where((d) => _match(d.data()['type'] as String?) && (_filter != 'unread' || d.data()['read'] != true)).toList();
+          final more = mayHaveMore(all.length, ref.watch(listLimitProvider('notifications')));
           return Column(children: [
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -101,9 +114,12 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
                   ? EmptyState(scene: Scene.chat, title: l.noNotificationsTitle, message: l.noNotificationsBody)
                   : ListView.separated(
                       padding: EdgeInsets.symmetric(horizontal: context.gutter),
-                      itemCount: list.length,
+                      itemCount: list.length + (more ? 1 : 0),
                       separatorBuilder: (_, _) => const Divider(height: 1),
                       itemBuilder: (context, i) {
+                        if (i == list.length) {
+                          return ShowMoreButton(onPressed: () => ref.read(listLimitProvider('notifications').notifier).more());
+                        }
                         final d = list[i].data();
                         final unread = d['read'] != true;
                         return ListTile(

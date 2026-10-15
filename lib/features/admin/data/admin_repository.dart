@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/auth/app_user.dart';
 import '../../../core/data/converters.dart';
+import '../../../core/data/paging.dart';
 import '../../../core/providers.dart';
 import '../../../core/services/service_providers.dart';
 import '../../sos/data/safety_notify.dart';
@@ -29,10 +30,10 @@ class AdminRepository {
   Future<void> audit(AppUser admin, String action, String targetId, [Map<String, dynamic> details = const {}]) =>
       _db.collection('auditLog').add({'actorId': admin.uid, 'actorName': admin.name, 'action': action, 'targetId': targetId, 'details': details, 'createdAt': DateTime.now()});
 
-  Stream<List<Map<String, dynamic>>> watchAudit() => _db
+  Stream<List<Map<String, dynamic>>> watchAudit({int limit = adminPageSize}) => _db
       .collection('auditLog')
       .orderBy('createdAt', descending: true)
-      .limit(200)
+      .limit(limit)
       .snapshots()
       .map((s) => [for (final d in s.docs) {...d.data(), 'id': d.id}]);
 
@@ -264,10 +265,10 @@ class AdminRepository {
 
   // ---------- Demo Outbox ----------
 
-  Stream<List<Map<String, dynamic>>> watchOutbox() => _db
+  Stream<List<Map<String, dynamic>>> watchOutbox({int limit = adminPageSize}) => _db
       .collection('outbox')
       .orderBy('createdAt', descending: true)
-      .limit(300)
+      .limit(limit)
       .snapshots()
       .map((s) => [for (final d in s.docs) {...d.data(), 'id': d.id}]);
 }
@@ -307,5 +308,8 @@ final adminUsersProvider = StreamProvider<List<Map<String, dynamic>>>((ref) => r
 final adminCollectionProvider = StreamProvider.family<List<Map<String, dynamic>>, String>((ref, c) => ref.watch(adminRepositoryProvider).watchAll(c));
 final adminTicketsProvider = StreamProvider<List<Ticket>>((ref) => ref.watch(adminRepositoryProvider).watchTickets());
 final adminReportsProvider = StreamProvider<List<Report>>((ref) => ref.watch(adminRepositoryProvider).watchReports());
-final adminOutboxProvider = StreamProvider<List<Map<String, dynamic>>>((ref) => ref.watch(adminRepositoryProvider).watchOutbox());
-final adminAuditProvider = StreamProvider<List<Map<String, dynamic>>>((ref) => ref.watch(adminRepositoryProvider).watchAudit());
+/// Newest first, a page at a time ("Show more").
+final adminOutboxProvider = StreamProvider.autoDispose<List<Map<String, dynamic>>>(
+    (ref) => ref.watch(adminRepositoryProvider).watchOutbox(limit: ref.watch(listLimitProvider('admin:outbox'))));
+final adminAuditProvider = StreamProvider.autoDispose<List<Map<String, dynamic>>>(
+    (ref) => ref.watch(adminRepositoryProvider).watchAudit(limit: ref.watch(listLimitProvider('admin:audit'))));

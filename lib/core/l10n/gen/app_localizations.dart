@@ -17733,6 +17733,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Demo: write to support@example.com. In the live app this opens your email.'**
   String get suspContactBody;
+
+  /// No description provided for @showMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more'**
+  String get showMore;
+
+  /// No description provided for @showEarlierMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Show earlier messages'**
+  String get showEarlierMessages;
+
+  /// No description provided for @offlineBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline. Saved information still works, and new entries are kept until you\'re back online.'**
+  String get offlineBanner;
 }
 
 class _AppLocalizationsDelegate

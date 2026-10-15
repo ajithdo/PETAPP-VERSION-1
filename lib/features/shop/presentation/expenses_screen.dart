@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/data/paging.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
@@ -116,16 +117,31 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
             if (keys.isEmpty)
               Padding(padding: const EdgeInsets.only(top: Space.lg), child: EmptyState(compact: true, title: l.expNone, message: l.expNoneBody))
             else
-              for (final m in keys) ...[
-                SectionHeader('${Fmt.monthYear(m, context.lang)} · ${Fmt.inr(byMonth[m]!.fold(0, (s, e) => s + e.amount))}'),
-                for (final e in byMonth[m]!..sort((a, b) => b.date.compareTo(a.date)))
-                  Padding(padding: const EdgeInsets.only(bottom: Space.xs), child: _ExpenseTile(expense: e, pets: pets)),
-              ],
+              ..._expenseList(keys, byMonth, pets),
             const SizedBox(height: 80),
           ]);
         },
       ),
     );
+  }
+
+  /// Month by month, newest first, a page of entries at a time.
+  List<Widget> _expenseList(List<DateTime> keys, Map<DateTime, List<Expense>> byMonth, List<Pet> pets) {
+    final limit = ref.watch(listLimitProvider('expenses'));
+    final total = byMonth.values.fold(0, (n, list) => n + list.length);
+    var shown = 0;
+    final out = <Widget>[];
+    for (final m in keys) {
+      if (shown >= limit) break;
+      final items = byMonth[m]!..sort((a, b) => b.date.compareTo(a.date));
+      out.add(SectionHeader('${Fmt.monthYear(m, context.lang)} · ${Fmt.inr(items.fold(0, (s, e) => s + e.amount))}'));
+      for (final e in items.take(limit - shown)) {
+        out.add(Padding(padding: const EdgeInsets.only(bottom: Space.xs), child: _ExpenseTile(expense: e, pets: pets)));
+        shown++;
+      }
+    }
+    if (total > limit) out.add(ShowMoreButton(onPressed: () => ref.read(listLimitProvider('expenses').notifier).more()));
+    return out;
   }
 }
 

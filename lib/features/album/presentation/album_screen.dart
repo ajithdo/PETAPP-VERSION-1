@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/data/paging.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
@@ -257,20 +258,35 @@ class _PhotosTab extends ConsumerWidget {
           actionLabel: canLog ? l.albumAdd : null,
           onAction: canLog ? () => showAddMemorySheet(context, ref, pet) : null,
         ),
-      for (final g in groups) ...[
-        Padding(
-          padding: const EdgeInsets.only(top: Space.md, bottom: Space.sm),
-          child: Row(children: [
-            Expanded(child: Semantics(header: true, child: Text(Fmt.monthYear(g.month, context.lang), style: context.text.titleMedium))),
-            Text(l.albumMonthCount(g.items.length), style: context.text.bodySmall),
-          ]),
-        ),
-        MemoryGrid(items: g.items, onTap: (i) => context.push(viewerPath(pet.id, i.id))),
-      ],
+      ..._months(context, ref, groups, media.length),
       const SizedBox(height: Space.xl),
       const StorageMeter(),
       const SizedBox(height: 80),
     ]);
+  }
+
+  /// Month by month, newest first, a page of photos at a time.
+  List<Widget> _months(BuildContext context, WidgetRef ref, List<MonthGroup> groups, int total) {
+    final key = 'album:${pet.id}';
+    final limit = ref.watch(listLimitProvider(key));
+    var shown = 0;
+    final out = <Widget>[];
+    for (final g in groups) {
+      if (shown >= limit) break;
+      final part = g.items.take(limit - shown).toList();
+      shown += part.length;
+      out
+        ..add(Padding(
+          padding: const EdgeInsets.only(top: Space.md, bottom: Space.sm),
+          child: Row(children: [
+            Expanded(child: Semantics(header: true, child: Text(Fmt.monthYear(g.month, context.lang), style: context.text.titleMedium))),
+            Text(context.l10n.albumMonthCount(g.items.length), style: context.text.bodySmall),
+          ]),
+        ))
+        ..add(MemoryGrid(items: part, onTap: (i) => context.push(viewerPath(pet.id, i.id))));
+    }
+    if (total > limit) out.add(ShowMoreButton(onPressed: () => ref.read(listLimitProvider(key).notifier).more()));
+    return out;
   }
 }
 

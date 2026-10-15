@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/data/converters.dart';
+import '../../../core/data/paging.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
@@ -169,7 +170,9 @@ class _AdminOutboxState extends ConsumerState<AdminOutbox> {
           ),
           const SizedBox(height: Space.md),
           if (shown.isEmpty) EmptyState(title: l.admNothingHere, compact: true),
-          for (final m in shown.take(150)) _OutboxTile(msg: m),
+          for (final m in shown) _OutboxTile(msg: m),
+          if (mayHaveMore(all.length, ref.watch(listLimitProvider('admin:outbox'))))
+            ShowMoreButton(onPressed: () => ref.read(listLimitProvider('admin:outbox').notifier).more()),
         ]);
       },
     );
@@ -240,6 +243,8 @@ class _AdminAuditState extends ConsumerState<AdminAudit> {
           const SizedBox(height: Space.md),
           if (shown.isEmpty) EmptyState(title: l.admNothingHere, compact: true),
           for (final e in shown) _AuditTile(entry: e),
+          if (mayHaveMore(all.length, ref.watch(listLimitProvider('admin:audit'))))
+            ShowMoreButton(onPressed: () => ref.read(listLimitProvider('admin:audit').notifier).more()),
         ]);
       },
     );

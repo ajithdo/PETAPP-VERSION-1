@@ -7281,5 +7281,8 @@
   "suspTitle": "Your account is paused",
   "suspBody": "Our team paused this account. If you think this is a mistake, contact PawSetu support.",
   "suspContact": "Contact support",
-  "suspContactBody": "Demo: write to support@example.com. In the live app this opens your email."
+  "suspContactBody": "Demo: write to support@example.com. In the live app this opens your email.",
+  "showMore": "Show more",
+  "showEarlierMessages": "Show earlier messages",
+  "offlineBanner": "You're offline. Saved information still works, and new entries are kept until you're back online."
 }

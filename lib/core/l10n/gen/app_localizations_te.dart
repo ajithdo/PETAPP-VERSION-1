@@ -10313,4 +10313,14 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get suspContactBody =>
       'డెమో: support@example.comకి రాయండి. నిజమైన యాప్‌లో ఇది మీ ఈమెయిల్ తెరుస్తుంది.';
+
+  @override
+  String get showMore => 'మరిన్ని చూపించు';
+
+  @override
+  String get showEarlierMessages => 'ముందటి సందేశాలు చూపించు';
+
+  @override
+  String get offlineBanner =>
+      'మీరు ఆఫ్‌లైన్‌లో ఉన్నారు. సేవ్ చేసిన సమాచారం పనిచేస్తుంది, కొత్త ఎంట్రీలు ఇంటర్నెట్ వచ్చాక సేవ్ అవుతాయి.';
 }

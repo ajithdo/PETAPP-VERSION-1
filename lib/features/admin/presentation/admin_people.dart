@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/auth/app_user.dart';
 import '../../../core/data/converters.dart';
+import '../../../core/data/paging.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
@@ -275,7 +276,9 @@ class _AdminUsersState extends ConsumerState<AdminUsers> {
           Text(l.admPeopleCount(shown.length), style: context.text.bodySmall),
           const SizedBox(height: Space.sm),
           if (shown.isEmpty) EmptyState(title: l.admNothingHere, compact: true),
-          for (final u in shown) _UserTile(user: u),
+          for (final u in shown.take(ref.watch(listLimitProvider('admin:users')))) _UserTile(user: u),
+          if (shown.length > ref.watch(listLimitProvider('admin:users')))
+            ShowMoreButton(onPressed: () => ref.read(listLimitProvider('admin:users').notifier).more()),
         ]);
       },
     );

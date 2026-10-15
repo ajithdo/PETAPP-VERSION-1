@@ -9,6 +9,7 @@ import 'core/providers.dart';
 import 'core/routing/router.dart';
 import 'core/settings/settings_controller.dart';
 import 'core/theme/app_theme.dart';
+import 'core/widgets/offline_banner.dart';
 
 class PawSetuApp extends ConsumerWidget {
   const PawSetuApp({super.key});
@@ -68,7 +69,7 @@ class PawSetuApp extends ConsumerWidget {
         final scale = (mq.textScaler.scale(1) * settings.effectiveTextScale).clamp(0.8, 2.0);
         return MediaQuery(
           data: mq.copyWith(textScaler: TextScaler.linear(scale)),
-          child: child ?? const SizedBox.shrink(),
+          child: OfflineBanner(child: child ?? const SizedBox.shrink()),
         );
       },
     );

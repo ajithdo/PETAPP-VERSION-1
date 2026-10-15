@@ -1,0 +1,5 @@
+{
+  "showMore": {"en": "Show more", "hi": "और दिखाएँ", "te": "మరిన్ని చూపించు"},
+  "showEarlierMessages": {"en": "Show earlier messages", "hi": "पहले के संदेश दिखाएँ", "te": "ముందటి సందేశాలు చూపించు"},
+  "offlineBanner": {"en": "You're offline. Saved information still works, and new entries are kept until you're back online.", "hi": "आप ऑफ़लाइन हैं। सेव की हुई जानकारी चलती रहेगी, और नई एंट्री इंटरनेट आने पर सेव हो जाएँगी।", "te": "మీరు ఆఫ్‌లైన్‌లో ఉన్నారు. సేవ్ చేసిన సమాచారం పనిచేస్తుంది, కొత్త ఎంట్రీలు ఇంటర్నెట్ వచ్చాక సేవ్ అవుతాయి."}
+}

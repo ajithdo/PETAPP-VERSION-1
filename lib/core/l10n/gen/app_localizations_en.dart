@@ -10657,4 +10657,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get suspContactBody =>
       'Demo: write to support@example.com. In the live app this opens your email.';
+
+  @override
+  String get showMore => 'Show more';
+
+  @override
+  String get showEarlierMessages => 'Show earlier messages';
+
+  @override
+  String get offlineBanner =>
+      'You\'re offline. Saved information still works, and new entries are kept until you\'re back online.';
 }

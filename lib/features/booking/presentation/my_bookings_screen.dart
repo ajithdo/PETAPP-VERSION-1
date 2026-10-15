@@ -9,6 +9,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../core/data/converters.dart';
+import '../../../core/data/paging.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
@@ -49,20 +50,30 @@ class MyBookingsScreen extends ConsumerWidget {
               ..sort((a, b) => a.start.compareTo(b.start));
             final requests = all.where((b) => b.status == 'pending' || b.status == 'suggested').toList();
             final past = all.where((b) => !upcoming.contains(b) && !requests.contains(b)).toList();
-            Widget list(List<Booking> items, String empty) => items.isEmpty
-                ? EmptyState(scene: Scene.empty, title: empty, actionLabel: l.bookSomething, onAction: () => context.go('/book'))
-                : PageBody(
-                    maxWidth: 800,
-                    children: [
-                      const SizedBox(height: Space.md),
-                      for (final b in items)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: Space.sm),
-                          child: BookingCard(booking: b),
-                        ),
-                    ],
-                  );
-            return TabBarView(children: [list(upcoming, l.noUpcomingBookings), list(requests, l.noRequests), list(past, l.noPastBookings)]);
+            Widget list(List<Booking> items, String empty, String key) {
+              if (items.isEmpty) {
+                return EmptyState(scene: Scene.empty, title: empty, actionLabel: l.bookSomething, onAction: () => context.go('/book'));
+              }
+              final limit = ref.watch(listLimitProvider(key));
+              return PageBody(
+                maxWidth: 800,
+                children: [
+                  const SizedBox(height: Space.md),
+                  for (final b in items.take(limit))
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: Space.sm),
+                      child: BookingCard(booking: b),
+                    ),
+                  if (items.length > limit) ShowMoreButton(onPressed: () => ref.read(listLimitProvider(key).notifier).more()),
+                ],
+              );
+            }
+
+            return TabBarView(children: [
+              list(upcoming, l.noUpcomingBookings, 'bookings:upcoming'),
+              list(requests, l.noRequests, 'bookings:requests'),
+              list(past, l.noPastBookings, 'bookings:past'),
+            ]);
           },
         ),
       ),

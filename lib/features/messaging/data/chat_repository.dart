@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/auth/app_user.dart';
+import '../../../core/data/paging.dart';
 import '../../../core/l10n/gen/app_localizations.dart';
 import '../../../core/providers.dart';
 import '../../../core/services/service_providers.dart';
@@ -39,8 +40,11 @@ class ChatRepository {
 
   Stream<Conversation?> watchOne(String id) => _conv.doc(id).snapshots().map((d) => d.exists ? Conversation(d.id, d.data()!) : null);
 
-  Stream<List<ChatMessage>> watchMessages(String conversationId) => _msgs
+  /// The latest [limit] messages, oldest first.
+  Stream<List<ChatMessage>> watchMessages(String conversationId, {int limit = pageSize}) => _msgs
       .where('conversationId', isEqualTo: conversationId)
+      .orderBy('createdAt', descending: true)
+      .limit(limit)
       .snapshots()
       .map((s) => [for (final d in s.docs) ChatMessage(d.id, d.data())]..sort((a, b) => a.createdAt.compareTo(b.createdAt)));
 
@@ -432,7 +436,9 @@ final inboxProvider = StreamProvider<List<Conversation>>((ref) {
 
 final conversationProvider = StreamProvider.family<Conversation?, String>((ref, id) => ref.watch(chatRepositoryProvider).watchOne(id));
 
-final messagesProvider = StreamProvider.family<List<ChatMessage>, String>((ref, id) => ref.watch(chatRepositoryProvider).watchMessages(id));
+/// The latest page of a chat; "Show earlier messages" loads more.
+final messagesProvider = StreamProvider.autoDispose.family<List<ChatMessage>, String>(
+    (ref, id) => ref.watch(chatRepositoryProvider).watchMessages(id, limit: ref.watch(listLimitProvider('chat:$id'))));
 
 /// "Today 9:30 AM" style time for the inbox and bubbles.
 String chatTime(DateTime at, String lang, {DateTime? now}) {

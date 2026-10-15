@@ -5,6 +5,7 @@ export 'illustrations.dart';
 export 'inputs.dart';
 export 'layout.dart';
 export 'media_image.dart';
+export 'offline_banner.dart';
 export 'pet_avatar.dart';
 export 'progress_ring.dart';
 export 'sos_button.dart';

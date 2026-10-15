@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,7 +12,9 @@ import 'illustrations.dart';
 /// Shows an image from any of our URL kinds:
 ///  - mem://id        standalone demo upload
 ///  - seed:kind:n     illustrated placeholder for demo data (no real photos)
-///  - http(s)://...   Cloud Storage or network
+///  - http(s)://...   Cloud Storage or network, kept in a disk cache on
+///                     phones (the browser's cache on the web) and decoded
+///                     at the size shown
 class MediaImage extends ConsumerWidget {
   const MediaImage({super.key, required this.url, this.width, this.height, this.fit = BoxFit.cover, this.semanticLabel});
   final String url;
@@ -36,19 +39,20 @@ class MediaImage extends ConsumerWidget {
         },
       );
     }
-    return Image.network(
-      url,
+    final image = CachedNetworkImage(
+      imageUrl: url,
       width: width,
       height: height,
       fit: fit,
-      semanticLabel: semanticLabel,
-      cacheWidth: width != null && width!.isFinite ? (width! * 2).round() : null,
-      errorBuilder: (_, _, _) => SizedBox(
+      memCacheWidth: width != null && width!.isFinite ? (width! * 2).round() : null,
+      placeholder: (context, _) => SizedBox(width: width, height: height, child: ColoredBox(color: context.paw.outline)),
+      errorWidget: (context, _, _) => SizedBox(
         width: width,
         height: height,
         child: Icon(Icons.broken_image_rounded, color: context.paw.textSecondary),
       ),
     );
+    return semanticLabel == null ? image : Semantics(image: true, label: semanticLabel, child: image);
   }
 
   Widget _mem(Uint8List bytes) => Image.memory(bytes,

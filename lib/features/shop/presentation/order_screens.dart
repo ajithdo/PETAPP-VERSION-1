@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/data/paging.dart';
 import '../../../core/providers.dart';
 import '../../../core/services/payment_service.dart';
 import '../../../core/theme/tokens.dart';
@@ -40,7 +41,10 @@ class OrdersScreen extends ConsumerWidget {
                 ? EmptyState(scene: Scene.shop, title: l.ordNone, actionLabel: l.cartStartShopping, onAction: () => context.go('/shop'))
                 : PageBody(maxWidth: 820, children: [
                     const SizedBox(height: Space.md),
-                    for (final o in orders) Padding(padding: const EdgeInsets.only(bottom: Space.sm), child: OrderCard(order: o)),
+                    for (final o in orders.take(ref.watch(listLimitProvider('orders'))))
+                      Padding(padding: const EdgeInsets.only(bottom: Space.sm), child: OrderCard(order: o)),
+                    if (orders.length > ref.watch(listLimitProvider('orders')))
+                      ShowMoreButton(onPressed: () => ref.read(listLimitProvider('orders').notifier).more()),
                   ]),
           ),
           const _Subscriptions(),

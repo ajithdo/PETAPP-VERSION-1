@@ -10285,4 +10285,14 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get suspContactBody =>
       'डेमो: support@example.com पर लिखें। असली ऐप में यह आपका ईमेल खोलेगा।';
+
+  @override
+  String get showMore => 'और दिखाएँ';
+
+  @override
+  String get showEarlierMessages => 'पहले के संदेश दिखाएँ';
+
+  @override
+  String get offlineBanner =>
+      'आप ऑफ़लाइन हैं। सेव की हुई जानकारी चलती रहेगी, और नई एंट्री इंटरनेट आने पर सेव हो जाएँगी।';
 }
