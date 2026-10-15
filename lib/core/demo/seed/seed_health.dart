@@ -173,8 +173,10 @@ void seedHealth(Add add, DateTime now, SeedData data) {
   });
   reminder('u_priya', 'pet_bruno', 'grooming', 'Grooming · Bruno', 9, 'monthly');
   reminder('u_arjun', 'pet_max', 'insurance', 'Insurance renewal · Max', 20, 'yearly');
-  reminder('u_anjali', 'pet_coco', 'nail_trim', 'Nail trim · Coco', 4, 'monthly');
-  reminder('u_ravi', 'pet_kiwi', 'custom', 'Clean Kiwi\'s cage', 2, 'none');
+  // Ravi uses Telugu and Anjali Hindi: their reminders and notifications
+  // are in their language (seed data is plain Dart, so the words are here).
+  reminder('u_anjali', 'pet_coco', 'nail_trim', 'नाखून काटना · Coco', 4, 'monthly');
+  reminder('u_ravi', 'pet_kiwi', 'custom', 'Kiwi పంజరం శుభ్రం చేయాలి', 2, 'none');
 
   void note(String uid, String title, String type, int hoursAgo, {bool read = false, String? link}) => add('notifications', 'note_${n++}', {
     'uid': uid,
@@ -185,11 +187,11 @@ void seedHealth(Add add, DateTime now, SeedData data) {
     'read': read,
     'createdAt': now.subtract(Duration(hours: hoursAgo)),
   });
-  note('u_ravi', "Simba's DHPPi + Lepto is overdue", 'vaccines', 5, link: '/health?pet=pet_simba');
-  note('u_ravi', "Kiwi's cage cleaning is in 2 days", 'custom', 30, read: true);
+  note('u_ravi', 'Simba DHPPi + Lepto గడువు దాటింది', 'vaccines', 5, link: '/health?pet=pet_simba');
+  note('u_ravi', 'Kiwi పంజరం శుభ్రం చేయాలి: 2 రోజుల్లో', 'custom', 30, read: true);
   note('u_priya', 'Rohan gave Bruno his deworming tablet', 'medicines', 20, read: true);
   note('u_priya', "Bruno's flea and tick prevention is due soon", 'deworming', 3, link: '/health?pet=pet_bruno');
-  note('u_anjali', "Time for Tiger's Kidney support tablet", 'medicines', 1, link: '/health?pet=pet_tiger');
+  note('u_anjali', 'Tiger की Kidney support tablet का समय', 'medicines', 1, link: '/health?pet=pet_tiger');
   note('u_arjun', 'Only 4 Joint care tablets left for Max', 'medicines', 8, link: '/health?pet=pet_max');
 
   void outbox(String channel, String to, String body, int hoursAgo, {String? subject}) => add('outbox', 'out_${n++}', {
@@ -200,7 +202,7 @@ void seedHealth(Add add, DateTime now, SeedData data) {
     'type': 'reminder',
     'createdAt': now.subtract(Duration(hours: hoursAgo)),
   });
-  outbox('sms', '+91 90000 00002', "PawSetu: Simba's DHPPi + Lepto is overdue. Book a vet in the app.", 5);
+  outbox('sms', '+91 90000 00002', 'PawSetu: Simba DHPPi + Lepto గడువు దాటింది. యాప్‌లో వెట్‌ని బుక్ చేయండి.', 5);
   outbox('whatsapp', '+91 90000 00001', "PawSetu: Bruno's flea and tick prevention is due soon.", 3);
-  outbox('email', 'anjali@example.com', "Time for Tiger's Kidney support tablet.", 1, subject: 'Medicine reminder for Tiger');
+  outbox('email', 'anjali@example.com', 'Tiger की Kidney support tablet का समय।', 1, subject: 'Tiger की दवा का रिमाइंडर');
 }
