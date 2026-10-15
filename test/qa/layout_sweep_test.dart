@@ -114,6 +114,7 @@ Future<void> sweep(
   double textScale = 1.0,
   bool easyMode = false,
   bool a11y = false,
+  ThemeMode theme = ThemeMode.light,
   required List<String> problems,
 }) async {
   final semantics = a11y ? tester.ensureSemantics() : null;
@@ -157,6 +158,7 @@ Future<void> sweep(
     // The profile's own language and Easy mode apply on sign-in; set ours after.
     container.read(settingsProvider.notifier).setLocale(locale);
     container.read(settingsProvider.notifier).setEasyMode(easyMode);
+    container.read(settingsProvider.notifier).setThemeMode(theme);
     final router = container.read(routerProvider);
     var opened = 0;
     for (final r in routes) {
@@ -167,11 +169,12 @@ Future<void> sweep(
       }
       if (a11y) {
         // Every button and link has a spoken label and is at least 48 px.
+        // (Text contrast is checked exactly in test/core/contrast_test.dart.)
         for (final g in [labeledTapTargetGuideline, androidTapTargetGuideline]) {
           final e = await g.evaluate(tester);
           if (!e.passed) {
             for (final line in (e.reason ?? '').split('\n').where((x) => x.trim().isNotEmpty).take(4)) {
-              final msg = '[a11y $locale] $r: ${line.trim()}';
+              final msg = '[a11y $locale ${theme.name}] $r: ${line.trim()}';
               if (!problems.contains(msg)) problems.add(msg);
             }
           }
@@ -247,6 +250,10 @@ void main() {
     await sweep(t, uid: 'u_priya', routes: ownerRoutes, locale: 'en', size: phone, a11y: true, problems: problems);
     await sweep(t, uid: 'u_admin', routes: adminRoutes, locale: 'en', size: phone, a11y: true, problems: problems);
     await sweep(t, uid: 'u_clinicadmin', routes: clinicRoutes, locale: 'en', size: phone, a11y: true, problems: problems);
+  });
+  testWidgets('dark mode: pet parent and admin screens, phone, te', (t) async {
+    await sweep(t, uid: 'u_ravi', routes: ownerRoutes, locale: 'te', size: phone, theme: ThemeMode.dark, problems: problems);
+    await sweep(t, uid: 'u_admin', routes: adminRoutes, locale: 'te', size: phone, theme: ThemeMode.dark, problems: problems);
   });
   testWidgets('pet parent screens, desktop, en', (t) async {
     await sweep(t, uid: 'u_priya', routes: ownerRoutes, locale: 'en', size: desktop, problems: problems);

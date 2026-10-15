@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 /// Design tokens from section 4 of docs/PROJECT_SPEC.md.
@@ -138,6 +140,25 @@ class PetTagColors {
   };
 
   static Color of(String? key) => all[key] ?? all['amber']!;
+}
+
+/// WCAG contrast ratio between two opaque colours (1 to 21).
+double contrastRatio(Color a, Color b) {
+  final la = a.computeLuminance(), lb = b.computeLuminance();
+  return (math.max(la, lb) + 0.05) / (math.min(la, lb) + 0.05);
+}
+
+/// [fg], made darker on light backgrounds (lighter on dark ones) until it
+/// reads at [ratio] on every one of [backgrounds] (WCAG AA for text: 4.5).
+Color readableOn(Color fg, List<Color> backgrounds, {double ratio = 4.5}) {
+  var c = fg;
+  for (final bg in backgrounds) {
+    final toward = bg.computeLuminance() > 0.18 ? Colors.black : Colors.white;
+    for (var i = 0; i < 20 && contrastRatio(c, bg) < ratio; i++) {
+      c = Color.lerp(c, toward, 0.08)!;
+    }
+  }
+  return c;
 }
 
 /// 4-point spacing grid and shape radii.

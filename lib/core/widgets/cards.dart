@@ -73,30 +73,40 @@ class StatusChip extends StatelessWidget {
   final ChipTone tone;
   final IconData? icon;
 
-  @override
-  Widget build(BuildContext context) {
-    final p = context.paw;
+  /// The tint behind a chip of [tone] and its text colour, which reads at
+  /// WCAG AA (4.5:1) whether the chip sits on the page or on a card.
+  static ({Color tint, Color text}) colorsFor(PawColors p, Color primary, ChipTone tone) {
     final c = switch (tone) {
       ChipTone.success => p.success,
       ChipTone.warning => p.warning,
       ChipTone.error => p.error,
-      ChipTone.info => context.colors.primary,
+      ChipTone.info => primary,
       ChipTone.accent => p.accent,
       ChipTone.neutral => p.textSecondary,
     };
+    final tint = c.withValues(alpha: 0.14);
+    return (
+      tint: tint,
+      text: readableOn(c, [Color.alphaBlend(tint, p.background), Color.alphaBlend(tint, p.surface)]),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = colorsFor(context.paw, context.colors.primary, tone);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: c.withValues(alpha: 0.14),
+        color: c.tint,
         borderRadius: BorderRadius.circular(100),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (icon != null) ...[Icon(icon, size: 14, color: c), const SizedBox(width: 4)],
+          if (icon != null) ...[Icon(icon, size: 14, color: c.text), const SizedBox(width: 4)],
           Flexible(
             child: Text(label,
-                style: context.text.labelSmall?.copyWith(color: c, fontWeight: FontWeight.w700),
+                style: context.text.labelSmall?.copyWith(color: c.text, fontWeight: FontWeight.w700),
                 overflow: TextOverflow.ellipsis),
           ),
         ],

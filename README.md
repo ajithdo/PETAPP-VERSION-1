@@ -86,9 +86,24 @@ flutter build apk --release --split-per-abi          # Android APKs in build/app
 
 ```sh
 flutter analyze
-flutter test
-firebase emulators:exec --only firestore --project demo-pawsetu "npm --prefix functions test"   # security rules tests
+flutter test        # unit and widget tests, plus test/qa/layout_sweep_test.dart
+firebase emulators:exec --only firestore --project demo-pawsetu "npm --prefix functions test"   # server and security rules tests
 ```
+
+- `test/qa/layout_sweep_test.dart` opens every main screen with the real
+  fonts in English, Hindi and Telugu, on a phone with double-size text, a
+  tablet and a desktop, in Easy mode and for each partner portal, and fails
+  on any text that doesn't fit. Its accessibility part checks that every
+  button has a spoken label and is at least 48 px.
+- `functions/src/rules_matrix.test.ts` checks every collection in
+  `firestore.rules` for every kind of user (signed out, a stranger, the
+  family, each partner role, admin) and fails if a collection has no cases.
+
+## Quality
+
+- `docs/QA_REPORT.md`: what was checked and fixed in the full QA pass, the
+  words to confirm with a native Hindi or Telugu speaker, and known limits.
+- `docs/store`: store-style screenshots (1080 × 1920).
 
 ## Project map
 
@@ -100,5 +115,5 @@ firebase emulators:exec --only firestore --project demo-pawsetu "npm --prefix fu
   booking, partner, messaging, vault, shop, sos, admin...).
 - `functions`: Cloud Functions (region asia-south1) and security rules tests.
 - `firestore.rules`, `storage.rules`: security rules.
-- `docs`: the product spec, build prompts, progress log, decisions and the
-  data model.
+- `docs`: the product spec, build prompts, progress log, decisions, the
+  data model, the QA report and store screenshots.

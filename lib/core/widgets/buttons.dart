@@ -3,6 +3,11 @@ import 'package:flutter/services.dart';
 
 import '../theme/tokens.dart';
 
+/// Red for destructive buttons with white text: the dark theme's error red
+/// is too light for white text (2.8:1), so it uses the deeper SOS red.
+Color dangerColor(BuildContext context) =>
+    Theme.of(context).brightness == Brightness.light ? context.paw.error : context.paw.sos;
+
 /// The one main action on a screen.
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
@@ -25,7 +30,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = danger
-        ? FilledButton.styleFrom(backgroundColor: context.paw.error, foregroundColor: Colors.white)
+        ? FilledButton.styleFrom(backgroundColor: dangerColor(context), foregroundColor: Colors.white)
         : null;
     final child = loading
         ? SizedBox(
