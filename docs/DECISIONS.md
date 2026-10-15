@@ -92,3 +92,21 @@ A running log of choices and why. Newest at the bottom of each section.
 **Riverpod 3 one-off reads.** Riverpod 3 pauses providers nobody listens to, so `ref.read(streamProvider.future)` can wait forever for data that is not on screen. One-off reads in callbacks use `readOnce` (`lib/core/utils/read_once.dart`), which keeps a listener open until the value arrives.
 
 **Packages added.** `local_auth` (biometrics; Android/iOS, web falls back to the PIN), `crypto` (PBKDF2), `record` and `audioplayers` (voice notes, Phase 6), `file_picker` (PDFs), `video_player` (album videos; web uses the browser player), `qr_flutter`. All support Android, iOS and web or have a web fallback.
+
+## Phase 8
+
+**One set of shop rules, used twice.** `lib/features/shop/domain/shop_rules.dart` holds the pure pricing rules (commission, coupons, delivery fee, splitting a cart into one order per seller, sharing a discount or fee across sellers with largest-remainder `allocate`, invoice and short order numbers, order steps, cancel/return windows, payout states, expense split, search, picks, CSV parsing). `functions/src/phase8.ts` mirrors the money parts in TypeScript, and unit tests on both sides use the same examples. In the standalone demo the app prices the cart with the Dart rules; with Firebase the `createOrder` callable prices it again on the server from the product documents (client prices are ignored), checks stock and the coupon, writes the orders and decrements stock in one transaction.
+
+**Orders.** One `orders` document per seller with a shared `groupId` for the checkout. Money fields (prices, discount, fee, commission, total) can never be changed by a client: rules let the owner only cancel, ask for a return or move a pending payment to paid; the seller only moves the status forward (placed → packed → shipped → delivered) and handles returns. Refunds are recorded by the server (`onOrderUpdated`) in Firebase mode and locally in the demo. Payment is the Phase 5 `PaymentService` (demo sheet in Version 1).
+
+**Food running low.** Each pet can have a food product, bag size, daily portion (suggested from species, weight and life stage, e.g. a 29 kg Labrador ≈ 400 g a day) and the date the bag was opened (`food_stock.dart`). Days left = bag ÷ portion − days since opening; 7 days or less shows the Home card. When a food order is delivered the bag date resets. The 2-tap reorder uses the saved address and pay on delivery by default; it can be changed in the sheet.
+
+**Subscriptions.** `subscriptions` collection (product, quantity, every N weeks, next date, address). With Firebase, `runSubscriptions` runs daily at 06:00 India time and places due orders; the standalone demo runs due subscriptions when the shop opens.
+
+**Sellers and payouts.** Sellers manage only their own products (rules check `ownsSeller`; the rating field is server-only and recomputed by `onProductReview`). CSV upload uses `file_picker` bytes and `parseProductCsv`, shows each row's problems before importing, and never imports a row with errors. Payouts: delivered orders become "ready" after the return window; the seller's weekly payout run (`runSellerPayouts` with Firebase, simulated in Version 1) marks them paid.
+
+**Affiliate partner stores.** Partner store links open in the browser; each tap is written to `affiliateClicks` (create-only for clients) and counted by `onAffiliateClick`.
+
+**Expenses.** `expenses` collection. Orders add `exp_<orderId>_food` and `exp_<orderId>_supplies` (food and treats vs everything else), bookings add theirs (Phase 5), people can add or edit manual ones. Charts use `fl_chart` (already in the project).
+
+**Packages.** No new packages: `pdf`/`printing` (invoices), `file_picker` (CSV), `fl_chart` and `url_launcher` were already added and support Android, iOS and web.

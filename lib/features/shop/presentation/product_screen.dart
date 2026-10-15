@@ -240,7 +240,10 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
       child: Container(
         padding: EdgeInsets.fromLTRB(context.gutter, Space.sm, context.gutter, Space.sm),
         decoration: BoxDecoration(color: context.paw.surface, border: Border(top: BorderSide(color: context.paw.outline))),
+        // heightFactor: 1 keeps the bar as tall as its content (a plain
+        // Center would fill the whole screen in this slot).
         child: Center(
+          heightFactor: 1,
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 720),
             child: p.isAffiliate

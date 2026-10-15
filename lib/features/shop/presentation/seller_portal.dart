@@ -59,7 +59,7 @@ class _SellerDashboard extends ConsumerWidget {
       final returns = orders.where((o) => o.status == 'return_requested').length;
       return PageBody(children: [
         const SizedBox(height: Space.md),
-        Text(l.helloPartner(user.firstName), style: context.text.headlineSmall),
+        Text(l.helloPartner(user.name), style: context.text.headlineSmall),
         Text(s.name, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
         if (s.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
         const SizedBox(height: Space.lg),
