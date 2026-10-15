@@ -73,12 +73,15 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(100),
                     onTap: () => _pickPet(pets),
-                    child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 32),
-                      const SizedBox(width: Space.sm),
-                      Flexible(child: title),
-                      const Icon(Icons.expand_more_rounded),
-                    ]),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(minHeight: 48),
+                      child: Row(mainAxisSize: MainAxisSize.min, children: [
+                        PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 32),
+                        const SizedBox(width: Space.sm),
+                        Flexible(child: title),
+                        const Icon(Icons.expand_more_rounded),
+                      ]),
+                    ),
                   ),
                 )
               : title,

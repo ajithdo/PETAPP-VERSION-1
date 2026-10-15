@@ -104,7 +104,7 @@ class _CropScreenState extends State<_CropScreen> {
                     child: SizedBox(
                       width: side,
                       height: side,
-                      child: Image.memory(widget.bytes, fit: BoxFit.cover),
+                      child: Image.memory(widget.bytes, fit: BoxFit.cover, semanticLabel: context.l10n.vaultPhoto),
                     ),
                   ),
                 ),

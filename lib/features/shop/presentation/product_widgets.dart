@@ -221,7 +221,6 @@ class QtyStepper extends StatelessWidget {
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         IconButton(
           tooltip: qty <= 1 ? l.shopRemoveItem(itemName) : l.shopLessOf(itemName),
-          visualDensity: VisualDensity.compact,
           icon: Icon(qty <= 1 ? Icons.delete_outline_rounded : Icons.remove_rounded),
           onPressed: () => onChanged(qty - 1),
         ),
@@ -232,7 +231,6 @@ class QtyStepper extends StatelessWidget {
         ),
         IconButton(
           tooltip: l.shopMoreOf(itemName),
-          visualDensity: VisualDensity.compact,
           icon: const Icon(Icons.add_rounded),
           onPressed: qty >= max ? null : () => onChanged(qty + 1),
         ),

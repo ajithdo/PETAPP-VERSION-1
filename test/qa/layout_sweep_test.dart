@@ -113,8 +113,10 @@ Future<void> sweep(
   required Size size,
   double textScale = 1.0,
   bool easyMode = false,
+  bool a11y = false,
   required List<String> problems,
 }) async {
+  final semantics = a11y ? tester.ensureSemantics() : null;
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1.0;
   tester.platformDispatcher.textScaleFactorTestValue = textScale;
@@ -163,6 +165,18 @@ Future<void> sweep(
       for (var i = 0; i < 8; i++) {
         await tester.pump(const Duration(milliseconds: 200));
       }
+      if (a11y) {
+        // Every button and link has a spoken label and is at least 48 px.
+        for (final g in [labeledTapTargetGuideline, androidTapTargetGuideline]) {
+          final e = await g.evaluate(tester);
+          if (!e.passed) {
+            for (final line in (e.reason ?? '').split('\n').where((x) => x.trim().isNotEmpty).take(4)) {
+              final msg = '[a11y $locale] $r: ${line.trim()}';
+              if (!problems.contains(msg)) problems.add(msg);
+            }
+          }
+        }
+      }
       final at = router.routerDelegate.currentConfiguration.uri.path;
       if (at != r.split('?').first) problems.add('[$locale] $r: opened $at instead');
       opened++;
@@ -183,6 +197,7 @@ Future<void> sweep(
     print('  checked $opened screens as $uid ($locale, ${size.width.toInt()} px, text x$textScale${easyMode ? ', Easy mode' : ''})');
   } finally {
     FlutterError.onError = original;
+    semantics?.dispose();
   }
 }
 
@@ -227,6 +242,11 @@ void main() {
   testWidgets('partner portals, tablet, hi', (t) async {
     await sweep(t, uid: 'u_clinicadmin', routes: clinicRoutes, locale: 'hi', size: tablet, problems: problems);
     await sweep(t, uid: 'u_seller', routes: sellerRoutes, locale: 'hi', size: tablet, problems: problems);
+  });
+  testWidgets('accessibility: labels and tap targets, phone, en', (t) async {
+    await sweep(t, uid: 'u_priya', routes: ownerRoutes, locale: 'en', size: phone, a11y: true, problems: problems);
+    await sweep(t, uid: 'u_admin', routes: adminRoutes, locale: 'en', size: phone, a11y: true, problems: problems);
+    await sweep(t, uid: 'u_clinicadmin', routes: clinicRoutes, locale: 'en', size: phone, a11y: true, problems: problems);
   });
   testWidgets('pet parent screens, desktop, en', (t) async {
     await sweep(t, uid: 'u_priya', routes: ownerRoutes, locale: 'en', size: desktop, problems: problems);

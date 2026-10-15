@@ -164,7 +164,8 @@ class AppTheme {
         backgroundColor: paw.surface,
         selectedColor: paw.primaryContainer,
         labelStyle: textTheme.labelMedium,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        // 48 px tall with the default label: an easy finger-sized target.
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,

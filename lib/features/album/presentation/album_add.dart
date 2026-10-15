@@ -268,7 +268,7 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
                             Text(videoLength(m.durationSec), style: context.text.titleSmall),
                           ]),
                         )
-                      : Image.memory(m.bytes, fit: BoxFit.cover))
+                      : Image.memory(m.bytes, fit: BoxFit.cover, semanticLabel: context.l10n.vaultPhoto))
                   : MediaImage(url: e!.url!, width: 160, height: 160),
             ),
           ),

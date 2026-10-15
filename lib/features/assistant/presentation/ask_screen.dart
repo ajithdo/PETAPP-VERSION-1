@@ -124,20 +124,9 @@ class _AskScreenState extends ConsumerState<AskScreen> {
                 ),
         ),
         if (list.isNotEmpty && suggestions.isNotEmpty && !a.exhausted)
-          SizedBox(
-            height: 52,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.xs),
-              children: [
-                for (final t in suggestions)
-                  Padding(
-                    padding: const EdgeInsets.only(right: Space.sm),
-                    child: ActionChip(label: Text(aiQuestion(context, t)), onPressed: _busy ? null : () => _ask(aiQuestion(context, t), topic: t)),
-                  ),
-              ],
-            ),
-          ),
+          ChipStrip(chips: [
+            for (final t in suggestions) ActionChip(label: Text(aiQuestion(context, t)), onPressed: _busy ? null : () => _ask(aiQuestion(context, t), topic: t)),
+          ]),
         Material(
           color: context.paw.background,
           child: SafeArea(
@@ -160,7 +149,7 @@ class _AskScreenState extends ConsumerState<AskScreen> {
                           hintText: l.aiHint,
                           isDense: true,
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: 15),
                         ),
                       ),
                     ),

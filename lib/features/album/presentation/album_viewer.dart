@@ -46,7 +46,7 @@ class AlbumViewerScreen extends ConsumerWidget {
         data: (list) {
           final items = filterItems(list, filter);
           if (items.isEmpty || pet == null) {
-            return Center(child: IconButton(onPressed: () => context.pop(), icon: const Icon(Icons.close_rounded, color: Colors.white)));
+            return Center(child: IconButton(tooltip: context.l10n.close, onPressed: () => context.pop(), icon: const Icon(Icons.close_rounded, color: Colors.white)));
           }
           final start = items.indexWhere((i) => i.id == itemId);
           return MediaPager(items: items, initialIndex: start < 0 ? 0 : start, pet: pet);

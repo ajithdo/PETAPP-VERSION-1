@@ -124,6 +124,27 @@ class TileGrid extends StatelessWidget {
   }
 }
 
+/// One row of chips that scrolls sideways (filters, suggestions). It grows
+/// with the text size and keeps every chip at least 48 px tall.
+class ChipStrip extends StatelessWidget {
+  const ChipStrip({super.key, required this.chips});
+  final List<Widget> chips;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.textScalerOf(context).scale(32) + 24,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.xs),
+        children: [
+          for (final c in chips) Padding(padding: const EdgeInsets.only(right: Space.sm), child: Center(child: c)),
+        ],
+      ),
+    );
+  }
+}
+
 class Gap extends StatelessWidget {
   const Gap(this.size, {super.key});
   final double size;

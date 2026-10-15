@@ -241,7 +241,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       Center(
         child: Stack(children: [
           _photo != null
-              ? ClipOval(child: Image.memory(_photo!, width: 112, height: 112, fit: BoxFit.cover))
+              ? ClipOval(child: Image.memory(_photo!, width: 112, height: 112, fit: BoxFit.cover, semanticLabel: context.l10n.vaultPhoto))
               : PetAvatar(species: _species, colorTag: _color, photoUrl: _photoUrl, size: 112),
           Positioned(
             right: 0,

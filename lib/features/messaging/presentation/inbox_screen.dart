@@ -154,20 +154,9 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
               ),
             ),
           ),
-          SizedBox(
-            height: 52,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.xs),
-              children: [
-                for (final f in filters)
-                  Padding(
-                    padding: const EdgeInsets.only(right: Space.sm),
-                    child: ChoiceChip(label: Text(f.$2), selected: _filter == f.$1, onSelected: (_) => setState(() => _filter = f.$1)),
-                  ),
-              ],
-            ),
-          ),
+          ChipStrip(chips: [
+            for (final f in filters) ChoiceChip(label: Text(f.$2), selected: _filter == f.$1, onSelected: (_) => setState(() => _filter = f.$1)),
+          ]),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.only(bottom: 96),
