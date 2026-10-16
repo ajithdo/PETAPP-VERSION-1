@@ -136,8 +136,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         await ref.read(authServiceProvider).signOut();
                         await store.reset();
                         // Start again on the demo accounts.
-                        await ref.read(prefsProvider).setString(startAtKey, '/demo');
-                        if (context.mounted) context.go('/demo');
+                        await ref.read(prefsProvider).setString(startAtKey, '/signin');
+                        if (context.mounted) context.go('/signin');
                         await ref.read(appRestartProvider)();
                       },
               ),

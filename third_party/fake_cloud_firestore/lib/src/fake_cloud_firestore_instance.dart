@@ -117,6 +117,32 @@ class FakeFirebaseFirestore implements FirebaseFirestore {
     return await transactionHandler(transaction);
   }
 
+  // PawSetu patch: a normal write re-runs every query listening to its
+  // collection, so loading thousands of documents while screens listen takes
+  // minutes and freezes a web page. This writes them all first, then
+  // updates each collection's listeners once.
+  /// Writes [collections] (collection path -> document id -> data). With
+  /// [between], it is awaited every [chunk] documents so the app can draw.
+  Future<void> loadDocuments(
+    Map<String, Map<String, Map<String, dynamic>>> collections, {
+    Future<void> Function()? between,
+    int chunk = 400,
+  }) async {
+    var n = 0;
+    for (final c in collections.entries) {
+      final col = collection(c.key);
+      for (final d in c.value.entries) {
+        await (col.doc(d.key) as MockDocumentReference<Map<String, dynamic>>)
+            .setQuietly(d.value);
+        if (between != null && ++n % chunk == 0) await between();
+      }
+    }
+    for (final path in collections.keys) {
+      await QuerySnapshotStreamManager()
+          .fireSnapshotUpdate<Map<String, dynamic>>(this, path, id: '');
+    }
+  }
+
   /// Wipes entire fake database.
   @override
   Future<void> clearPersistence() {

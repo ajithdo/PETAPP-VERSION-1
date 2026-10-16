@@ -19,11 +19,14 @@ class DemoLoginScreen extends StatelessWidget {
 }
 
 /// Every demo account, grouped, each signed in with one tap. Used on its
-/// own page and beside the sign-in form on laptops.
+/// own page and, with [embedded], at the top of the sign-in page.
 class DemoAccountList extends ConsumerStatefulWidget {
-  const DemoAccountList({super.key, this.maxWidth = 900, this.minItemWidth = 300});
+  const DemoAccountList({super.key, this.maxWidth = 900, this.minItemWidth = 300, this.embedded = false});
   final double maxWidth;
   final double minItemWidth;
+
+  /// A section inside another scrolling page instead of a page of its own.
+  final bool embedded;
 
   @override
   ConsumerState<DemoAccountList> createState() => _DemoAccountListState();
@@ -85,46 +88,67 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
       l.demoGroupPartners: demoAccounts.where((a) => a.role != 'owner' && a.role != 'admin').toList(),
       l.demoGroupPlatform: demoAccounts.where((a) => a.role == 'admin').toList(),
     };
-    return PageBody(maxWidth: widget.maxWidth, children: [
-        DemoBanner(l.demoLoginNote),
-        for (final g in groups.entries) ...[
-          SectionHeader(g.key),
-          ResponsiveGrid(
-            minItemWidth: widget.minItemWidth,
-            children: [
-              for (final a in g.value)
-                PawCard(
-                  onTap: _busyUid == null ? () => _login(a.uid) : null,
-                  semanticLabel: '${l.demoBadge}: ${a.name}. ${_describe(context, a)}',
-                  child: Row(children: [
-                    CircleAvatar(
-                      radius: 24,
-                      backgroundColor: context.paw.primaryContainer,
-                      child: Icon(_icon(a.role), color: context.colors.primary),
-                    ),
-                    const SizedBox(width: Space.md),
-                    Expanded(
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Row(children: [
-                          Flexible(child: Text(a.name, style: context.text.titleSmall, overflow: TextOverflow.ellipsis)),
-                          const SizedBox(width: Space.sm),
-                          StatusChip(l.demoBadge, tone: ChipTone.accent),
-                        ]),
-                        const SizedBox(height: 2),
-                        Text(_describe(context, a), style: context.text.bodySmall),
-                      ]),
-                    ),
-                    if (_busyUid == a.uid)
-                      const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
-                    else
-                      const Icon(Icons.login_rounded),
-                  ]),
-                ),
-            ],
-          ),
-        ],
-        const SizedBox(height: Space.lg),
-        Text(l.demoCredentials(demoPassword, demoOtp), style: context.text.bodySmall, textAlign: TextAlign.center),
-      ]);
+    final content = <Widget>[
+      for (final g in groups.entries) ...[
+        SectionHeader(g.key),
+        ResponsiveGrid(
+          minItemWidth: widget.minItemWidth,
+          children: [for (final a in g.value) _tile(context, a)],
+        ),
+      ],
+      const SizedBox(height: Space.lg),
+      Text(l.demoCredentials(demoPassword, demoOtp), style: context.text.bodySmall, textAlign: TextAlign.center),
+    ];
+    if (!widget.embedded) return PageBody(maxWidth: widget.maxWidth, children: [DemoBanner(l.demoLoginNote), ...content]);
+    return PawCard(
+      color: context.paw.accent.withValues(alpha: 0.10),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(children: [
+          Icon(Icons.science_rounded, color: context.paw.textPrimary),
+          const SizedBox(width: Space.sm),
+          Expanded(child: Semantics(header: true, child: Text(l.demoAccountsTitle, style: context.text.titleLarge))),
+        ]),
+        const SizedBox(height: Space.xs),
+        Text(l.demoAccountsHint, style: context.text.bodyMedium),
+        ...content,
+      ]),
+    );
+  }
+
+  Widget _tile(BuildContext context, DemoAccount a) {
+    final l = context.l10n;
+    final compact = widget.embedded;
+    return PawCard(
+      onTap: _busyUid == null ? () => _login(a.uid) : null,
+      semanticLabel: '${l.demoBadge}: ${a.name}. ${_describe(context, a)}',
+      child: Row(children: [
+        CircleAvatar(
+          radius: compact ? 20 : 24,
+          backgroundColor: context.paw.primaryContainer,
+          child: Icon(_icon(a.role), color: context.colors.primary),
+        ),
+        const SizedBox(width: Space.md),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              Flexible(child: Text(a.name, style: context.text.titleSmall, overflow: TextOverflow.ellipsis)),
+              if (!compact) ...[
+                const SizedBox(width: Space.sm),
+                StatusChip(l.demoBadge, tone: ChipTone.accent),
+              ],
+            ]),
+            const SizedBox(height: 2),
+            Text(_describe(context, a),
+                style: context.text.bodySmall,
+                maxLines: compact ? 2 : null,
+                overflow: compact ? TextOverflow.ellipsis : null),
+          ]),
+        ),
+        if (_busyUid == a.uid)
+          const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
+        else
+          const Icon(Icons.login_rounded),
+      ]),
+    );
   }
 }

@@ -489,6 +489,16 @@ class AppLocalizationsHi extends AppLocalizations {
       'ये डेमो खाते हैं, लोग, क्लिनिक और डेटा काल्पनिक हैं। यहाँ कुछ भी असली नहीं है, कोई पैसा नहीं कटता और कोई संदेश नहीं जाता।';
 
   @override
+  String get demoAccountsTitle => 'डेमो खाते';
+
+  @override
+  String get demoAccountsHint =>
+      'किसी भी खाते पर टैप करके साइन इन करें। पासवर्ड की ज़रूरत नहीं।';
+
+  @override
+  String get orSignInWithEmail => 'या अपने ईमेल से साइन इन करें';
+
+  @override
   String get demoGroupOwners => 'पालतू अभिभावक';
 
   @override

@@ -47,10 +47,10 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
             child: Column(children: [
               Padding(
                 padding: EdgeInsets.all(context.gutter),
-                child: Row(children: [
-                  const PawSetuLogo(size: 36, withName: true),
-                  const Spacer(),
-                  _LanguageMenu(),
+                child: const Row(children: [
+                  PawSetuLogo(size: 36, withName: true),
+                  Spacer(),
+                  LanguageMenu(),
                 ]),
               ),
               Expanded(
@@ -128,7 +128,10 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
   }
 }
 
-class _LanguageMenu extends ConsumerWidget {
+/// Language switch shown before sign-in (welcome and sign-in pages).
+class LanguageMenu extends ConsumerWidget {
+  const LanguageMenu({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(settingsProvider).locale;

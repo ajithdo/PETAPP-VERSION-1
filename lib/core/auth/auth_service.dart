@@ -68,13 +68,12 @@ String _phoneKey(String phone) => phone.replaceAll(RegExp(r'[^0-9]'), '');
 /// Standalone demo: accounts live in the demo database (demoAccounts).
 /// Nothing leaves the device. OTP is always 123456.
 class DemoAuthService implements AuthService {
+  /// Every start opens on the sign-in page with the demo accounts, so any
+  /// account can be picked (an earlier version stayed signed in to the last
+  /// one).
   DemoAuthService(this._db, this._prefs) {
-    final uid = _prefs.getString(_sessionKey);
-    if (uid != null) {
-      _listen(uid);
-    } else {
-      _controller.add(null);
-    }
+    _prefs.remove(_sessionKey);
+    _controller.add(null);
   }
 
   final FirebaseFirestore _db;
@@ -106,10 +105,7 @@ class DemoAuthService implements AuthService {
     });
   }
 
-  Future<void> _start(String uid) async {
-    await _prefs.setString(_sessionKey, uid);
-    _listen(uid);
-  }
+  Future<void> _start(String uid) async => _listen(uid);
 
   Future<QueryDocumentSnapshot<Map<String, dynamic>>?> _byEmail(String email) async {
     final q = await _db

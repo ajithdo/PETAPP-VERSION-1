@@ -1,3 +1,4 @@
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pawsetu/core/demo/demo_store.dart';
 import 'package:pawsetu/core/demo/seed/seed.dart';
@@ -53,5 +54,32 @@ void main() {
     data['users']!.remove('u_priya');
     expect(DemoStore.hasDemoAccounts(data), isFalse);
     expect(DemoStore.hasDemoAccounts({}), isFalse);
+  });
+
+  test('loading the history while screens listen is quick and updates them once', () async {
+    final now = DateTime(2026, 10, 15, 9);
+    final (first, later) = DemoStore.splitForStartup(DemoSeed.build(now), now);
+    final db = FakeFirebaseFirestore();
+    await DemoStore.loadInto(db, first);
+    // Like the Home screen: several lists listening to the routine logs.
+    final sizes = <int>[];
+    final subs = [
+      for (var i = 0; i < 4; i++) db.collection('logs').where('petId', isEqualTo: 'pet_bruno').snapshots().listen((s) => sizes.add(s.size)),
+    ];
+    await Future<void>.delayed(Duration.zero);
+    final before = sizes.length;
+    final watch = Stopwatch()..start();
+    await DemoStore.loadInto(db, later, yieldBetweenBatches: true);
+    await Future<void>.delayed(Duration.zero);
+    // It took minutes (and froze the website) when every document re-ran
+    // every listening query.
+    expect(watch.elapsed, lessThan(const Duration(seconds: 10)));
+    final all = await db.collection('logs').where('petId', isEqualTo: 'pet_bruno').get();
+    expect(sizes.length - before, 4, reason: 'one update per listening list');
+    expect(sizes.last, all.size);
+    expect(sizes.last, greaterThan(sizes[before - 1]), reason: 'old logs arrived');
+    for (final s in subs) {
+      await s.cancel();
+    }
   });
 }

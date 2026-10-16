@@ -93,25 +93,12 @@ class DemoStore {
     _later = null;
   }
 
-  /// Writes seed collections into a Firestore instance in batches (about
-  /// three times faster than one write at a time, which matters at start-up).
+  /// Writes seed collections into a Firestore instance. Screens listening to
+  /// the database are updated once per collection at the end, not after
+  /// every document (that froze the website while the history loaded).
   /// With [yieldBetweenBatches] the app keeps drawing frames in between.
-  static Future<void> loadInto(FakeFirebaseFirestore db, SeedData data, {bool yieldBetweenBatches = false}) async {
-    var batch = db.batch();
-    var n = 0;
-    for (final entry in data.entries) {
-      final col = db.collection(entry.key);
-      for (final doc in entry.value.entries) {
-        batch.set(col.doc(doc.key), doc.value);
-        if (++n % 400 == 0) {
-          await batch.commit();
-          batch = db.batch();
-          if (yieldBetweenBatches) await Future<void>.delayed(Duration.zero);
-        }
-      }
-    }
-    await batch.commit();
-  }
+  static Future<void> loadInto(FakeFirebaseFirestore db, SeedData data, {bool yieldBetweenBatches = false}) =>
+      db.loadDocuments(data, between: yieldBetweenBatches ? () => Future<void>.delayed(Duration.zero) : null);
 
   /// Saves the database if it changed since the last save.
   Future<void> save() async {

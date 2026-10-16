@@ -6,6 +6,7 @@ import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import 'auth_widgets.dart';
+import '../../onboarding/presentation/welcome_screen.dart';
 import 'demo_login_screen.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
@@ -57,30 +58,15 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
     final l = context.l10n;
     final auth = ref.read(authServiceProvider);
     final cfg = ref.watch(appConfigProvider);
-    final besideForm = cfg.isDemo && context.width >= 1024;
     return AuthScaffold(
       title: l.signInTitle,
       subtitle: l.signInSubtitle,
-      side: cfg.isDemo ? const DemoAccountList(minItemWidth: 280) : null,
+      trailing: const LanguageMenu(),
+      top: cfg.isDemo ? const DemoAccountList(minItemWidth: 250, embedded: true) : null,
       children: [
-        if (cfg.isDemo && !besideForm) ...[
-          PawCard(
-            color: context.paw.accent.withValues(alpha: 0.16),
-            onTap: () => context.push('/demo'),
-            semanticLabel: l.exploreDemo,
-            child: Row(children: [
-              Icon(Icons.science_rounded, color: context.paw.textPrimary),
-              const SizedBox(width: Space.md),
-              Expanded(
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(l.exploreDemo, style: context.text.titleSmall),
-                  Text(l.exploreDemoHint, style: context.text.bodySmall),
-                ]),
-              ),
-              const Icon(Icons.chevron_right_rounded),
-            ]),
-          ),
-          const SizedBox(height: Space.lg),
+        if (cfg.isDemo) ...[
+          Semantics(header: true, child: Text(l.orSignInWithEmail, style: context.text.titleMedium, textAlign: TextAlign.center)),
+          const SizedBox(height: Space.md),
         ],
         Form(
           key: _form,

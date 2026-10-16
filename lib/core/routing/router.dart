@@ -59,7 +59,8 @@ final routerProvider = Provider<GoRouter>((ref) {
 
     if (user == null) {
       if (isPublic) return null;
-      return settings.onboardingSeen ? '/signin' : '/welcome';
+      // The demo opens on the sign-in page with every demo account on it.
+      return settings.onboardingSeen || ref.read(appConfigProvider).isDemo ? '/signin' : '/welcome';
     }
 
     // An admin paused this account: only the "account paused" page.

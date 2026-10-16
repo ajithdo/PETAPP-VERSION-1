@@ -110,7 +110,8 @@ class MockDocumentReference<T extends Object?>
   }
 
   /// Sets document raw data. Does not check for existence.
-  Future<void> _setRawData(Map<Object, Object?> data) async {
+  Future<void> _setRawData(Map<Object, Object?> data,
+      {bool notifyQueries = true}) async {
     validateDocumentValue(data);
 
     // If docsData does not have a Map for _path, create it. It should be
@@ -145,10 +146,21 @@ class MockDocumentReference<T extends Object?>
       _applyValues(document, key, value);
     });
     _firestore.saveDocument(path);
-    await QuerySnapshotStreamManager()
-        .fireSnapshotUpdate<T>(firestore, path, id: id);
+    if (notifyQueries) {
+      await QuerySnapshotStreamManager()
+          .fireSnapshotUpdate<T>(firestore, path, id: id);
+    }
     fireSnapshotUpdate();
     return Future.value(null);
+  }
+
+  // PawSetu patch: replaces the document without re-running the queries
+  // listening to its collection (see FakeFirebaseFirestore.loadDocuments).
+  Future<void> setQuietly(Map<String, dynamic> data) {
+    if (docsData.containsKey(_path)) {
+      docsData[_path].clear();
+    }
+    return _setRawData(data, notifyQueries: false);
   }
 
   void _applyValues(Map<String, dynamic> document, String key, dynamic value) {

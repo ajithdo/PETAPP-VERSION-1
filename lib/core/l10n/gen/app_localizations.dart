@@ -982,6 +982,24 @@ abstract class AppLocalizations {
   /// **'These are demo accounts with made-up people, clinics and data. Nothing here is real, no money is charged and no messages are sent.'**
   String get demoLoginNote;
 
+  /// No description provided for @demoAccountsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo accounts'**
+  String get demoAccountsTitle;
+
+  /// No description provided for @demoAccountsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any account to sign in. No password needed.'**
+  String get demoAccountsHint;
+
+  /// No description provided for @orSignInWithEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Or sign in with your email'**
+  String get orSignInWithEmail;
+
   /// No description provided for @demoGroupOwners.
   ///
   /// In en, this message translates to:

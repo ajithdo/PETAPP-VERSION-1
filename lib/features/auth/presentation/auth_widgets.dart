@@ -8,56 +8,33 @@ import '../../../core/widgets/widgets.dart';
 
 /// Centered single-column layout for auth screens, with the logo on top.
 class AuthScaffold extends StatelessWidget {
-  const AuthScaffold({super.key, required this.title, this.subtitle, required this.children, this.showBack = false, this.side});
+  const AuthScaffold({super.key, required this.title, this.subtitle, required this.children, this.showBack = false, this.top, this.trailing});
   final String title;
   final String? subtitle;
   final List<Widget> children;
   final bool showBack;
 
-  /// Shown beside the form on laptops and desktops (e.g. the demo accounts).
-  final Widget? side;
+  /// Shown above the form, wider than it (e.g. the demo accounts).
+  final Widget? top;
+
+  /// Shown at the top right (e.g. the language switch).
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
-    final form = _form(context);
-    final wide = side != null && context.width >= 1024;
-    final l = context.l10n;
     return Scaffold(
       appBar: showBack ? AppBar() : null,
       body: SafeArea(
-        child: wide
-            ? Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                Expanded(flex: 4, child: form),
-                SizedBox(width: 1, child: ColoredBox(color: context.paw.outline)),
-                Expanded(
-                  flex: 6,
-                  child: ColoredBox(
-                    color: context.paw.surface,
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(Space.xl, Space.xl, Space.xl, 0),
-                        child: Semantics(header: true, child: Text(l.exploreDemo, style: context.text.headlineSmall)),
-                      ),
-                      Expanded(child: side!),
-                    ]),
-                  ),
-                ),
-              ])
-            : form,
-      ),
-    );
-  }
-
-  Widget _form(BuildContext context) {
-    return Center(
+        child: Center(
           child: SingleChildScrollView(
             padding: EdgeInsets.all(context.gutter),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 440),
+              constraints: BoxConstraints(maxWidth: top != null ? 1100 : 440),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (!showBack) const SizedBox(height: Space.lg),
+                  if (trailing != null) Align(alignment: Alignment.centerRight, child: trailing!),
+                  if (!showBack && trailing == null) const SizedBox(height: Space.lg),
                   const Center(child: PawSetuLogo(size: 56)),
                   const SizedBox(height: Space.lg),
                   Semantics(
@@ -71,12 +48,20 @@ class AuthScaffold extends StatelessWidget {
                         textAlign: TextAlign.center),
                   ],
                   const SizedBox(height: Space.xl),
-                  ...children,
+                  if (top != null) ...[top!, const SizedBox(height: Space.xl)],
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 440),
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
-        );
+        ),
+      ),
+    );
   }
 }
 

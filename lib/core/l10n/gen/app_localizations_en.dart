@@ -504,6 +504,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'These are demo accounts with made-up people, clinics and data. Nothing here is real, no money is charged and no messages are sent.';
 
   @override
+  String get demoAccountsTitle => 'Demo accounts';
+
+  @override
+  String get demoAccountsHint =>
+      'Tap any account to sign in. No password needed.';
+
+  @override
+  String get orSignInWithEmail => 'Or sign in with your email';
+
+  @override
   String get demoGroupOwners => 'Pet parents';
 
   @override

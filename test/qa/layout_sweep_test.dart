@@ -127,11 +127,12 @@ Future<void> sweep(
     tester.platformDispatcher.clearTextScaleFactorTestValue();
   });
 
-  SharedPreferences.setMockInitialValues({'onboardingSeen': true, 'languageChosen': true, 'locale': locale, 'demo_session_uid': uid});
+  SharedPreferences.setMockInitialValues({'onboardingSeen': true, 'languageChosen': true, 'locale': locale});
   final prefs = await SharedPreferences.getInstance();
   final db = FakeFirebaseFirestore();
   await tester.runAsync(() => DemoStore.loadInto(db, DemoSeed.build(DateTime.now())));
   final auth = DemoAuthService(db, prefs);
+  await tester.runAsync(() => auth.signInAsDemo(uid));
   final container = ProviderContainer(overrides: [
     appConfigProvider.overrideWithValue(const AppConfig(mode: AppMode.demo, backend: Backend.standalone, emulatorHost: 'localhost', firebaseProjectId: 'demo-pawsetu')),
     prefsProvider.overrideWithValue(prefs),

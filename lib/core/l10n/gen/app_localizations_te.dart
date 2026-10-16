@@ -493,6 +493,16 @@ class AppLocalizationsTe extends AppLocalizations {
       'ఇవి డెమో ఖాతాలు. వ్యక్తులు, క్లినిక్‌లు, డేటా కల్పితం. ఇక్కడ ఏదీ నిజం కాదు, డబ్బు కట్ కాదు, సందేశాలు వెళ్ళవు.';
 
   @override
+  String get demoAccountsTitle => 'డెమో ఖాతాలు';
+
+  @override
+  String get demoAccountsHint =>
+      'ఏ ఖాతానైనా ట్యాప్ చేసి సైన్ ఇన్ అవ్వండి. పాస్‌వర్డ్ అవసరం లేదు.';
+
+  @override
+  String get orSignInWithEmail => 'లేదా మీ ఈమెయిల్‌తో సైన్ ఇన్ చేయండి';
+
+  @override
   String get demoGroupOwners => 'పెంపుడు తల్లిదండ్రులు';
 
   @override
