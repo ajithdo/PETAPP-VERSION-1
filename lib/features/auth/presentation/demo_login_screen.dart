@@ -8,13 +8,28 @@ import '../../../core/widgets/widgets.dart';
 import 'auth_widgets.dart';
 
 /// "Explore as demo user": one-tap logins for every role (spec 5 and 12).
-class DemoLoginScreen extends ConsumerStatefulWidget {
+class DemoLoginScreen extends StatelessWidget {
   const DemoLoginScreen({super.key});
+
   @override
-  ConsumerState<DemoLoginScreen> createState() => _DemoLoginScreenState();
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(title: Text(context.l10n.exploreDemo)),
+        body: const DemoAccountList(),
+      );
 }
 
-class _DemoLoginScreenState extends ConsumerState<DemoLoginScreen> {
+/// Every demo account, grouped, each signed in with one tap. Used on its
+/// own page and beside the sign-in form on laptops.
+class DemoAccountList extends ConsumerStatefulWidget {
+  const DemoAccountList({super.key, this.maxWidth = 900, this.minItemWidth = 300});
+  final double maxWidth;
+  final double minItemWidth;
+
+  @override
+  ConsumerState<DemoAccountList> createState() => _DemoAccountListState();
+}
+
+class _DemoAccountListState extends ConsumerState<DemoAccountList> {
   String? _busyUid;
 
   String _describe(BuildContext context, DemoAccount a) {
@@ -70,14 +85,12 @@ class _DemoLoginScreenState extends ConsumerState<DemoLoginScreen> {
       l.demoGroupPartners: demoAccounts.where((a) => a.role != 'owner' && a.role != 'admin').toList(),
       l.demoGroupPlatform: demoAccounts.where((a) => a.role == 'admin').toList(),
     };
-    return Scaffold(
-      appBar: AppBar(title: Text(l.exploreDemo)),
-      body: PageBody(maxWidth: 900, children: [
+    return PageBody(maxWidth: widget.maxWidth, children: [
         DemoBanner(l.demoLoginNote),
         for (final g in groups.entries) ...[
           SectionHeader(g.key),
           ResponsiveGrid(
-            minItemWidth: 300,
+            minItemWidth: widget.minItemWidth,
             children: [
               for (final a in g.value)
                 PawCard(
@@ -112,7 +125,6 @@ class _DemoLoginScreenState extends ConsumerState<DemoLoginScreen> {
         ],
         const SizedBox(height: Space.lg),
         Text(l.demoCredentials(demoPassword, demoOtp), style: context.text.bodySmall, textAlign: TextAlign.center),
-      ]),
-    );
+      ]);
   }
 }

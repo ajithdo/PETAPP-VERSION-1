@@ -86,9 +86,14 @@ final routerProvider = Provider<GoRouter>((ref) {
     return null;
   }
 
+  // Where to open after the app restarts itself (e.g. the demo accounts
+  // after "Reset demo data"); used once.
+  final prefs = ref.read(prefsProvider);
+  final startAt = prefs.getString(startAtKey);
+  if (startAt != null) prefs.remove(startAtKey);
   return GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: '/splash',
+    initialLocation: startAt ?? '/splash',
     refreshListenable: refresh,
     redirect: redirect,
     routes: [

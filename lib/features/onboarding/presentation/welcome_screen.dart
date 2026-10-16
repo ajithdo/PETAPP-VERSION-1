@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/providers.dart';
 import '../../../core/settings/settings_controller.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/logo.dart';
@@ -24,9 +25,9 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
     super.dispose();
   }
 
-  void _finish() {
+  void _finish({String to = '/signin'}) {
     ref.read(settingsProvider.notifier).setOnboardingSeen();
-    context.go('/signin');
+    context.go(to);
   }
 
   @override
@@ -107,6 +108,18 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                   ),
                 ]),
               ),
+              if (ref.watch(appConfigProvider).isDemo)
+                Padding(
+                  padding: EdgeInsets.fromLTRB(context.gutter, 0, context.gutter, context.gutter),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      onPressed: () => _finish(to: '/demo'),
+                      icon: const Icon(Icons.science_rounded),
+                      label: Text(l.exploreDemo),
+                    ),
+                  ),
+                ),
             ]),
           ),
         ),

@@ -8,18 +8,48 @@ import '../../../core/widgets/widgets.dart';
 
 /// Centered single-column layout for auth screens, with the logo on top.
 class AuthScaffold extends StatelessWidget {
-  const AuthScaffold({super.key, required this.title, this.subtitle, required this.children, this.showBack = false});
+  const AuthScaffold({super.key, required this.title, this.subtitle, required this.children, this.showBack = false, this.side});
   final String title;
   final String? subtitle;
   final List<Widget> children;
   final bool showBack;
 
+  /// Shown beside the form on laptops and desktops (e.g. the demo accounts).
+  final Widget? side;
+
   @override
   Widget build(BuildContext context) {
+    final form = _form(context);
+    final wide = side != null && context.width >= 1024;
+    final l = context.l10n;
     return Scaffold(
       appBar: showBack ? AppBar() : null,
       body: SafeArea(
-        child: Center(
+        child: wide
+            ? Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                Expanded(flex: 4, child: form),
+                SizedBox(width: 1, child: ColoredBox(color: context.paw.outline)),
+                Expanded(
+                  flex: 6,
+                  child: ColoredBox(
+                    color: context.paw.surface,
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(Space.xl, Space.xl, Space.xl, 0),
+                        child: Semantics(header: true, child: Text(l.exploreDemo, style: context.text.headlineSmall)),
+                      ),
+                      Expanded(child: side!),
+                    ]),
+                  ),
+                ),
+              ])
+            : form,
+      ),
+    );
+  }
+
+  Widget _form(BuildContext context) {
+    return Center(
           child: SingleChildScrollView(
             padding: EdgeInsets.all(context.gutter),
             child: ConstrainedBox(
@@ -46,9 +76,7 @@ class AuthScaffold extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
+        );
   }
 }
 

@@ -6,6 +6,7 @@ import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import 'auth_widgets.dart';
+import 'demo_login_screen.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({super.key});
@@ -56,11 +57,13 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
     final l = context.l10n;
     final auth = ref.read(authServiceProvider);
     final cfg = ref.watch(appConfigProvider);
+    final besideForm = cfg.isDemo && context.width >= 1024;
     return AuthScaffold(
       title: l.signInTitle,
       subtitle: l.signInSubtitle,
+      side: cfg.isDemo ? const DemoAccountList(minItemWidth: 280) : null,
       children: [
-        if (cfg.isDemo) ...[
+        if (cfg.isDemo && !besideForm) ...[
           PawCard(
             color: context.paw.accent.withValues(alpha: 0.16),
             onTap: () => context.push('/demo'),
