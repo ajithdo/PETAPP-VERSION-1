@@ -21,6 +21,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting();
   final config = AppConfig.fromEnvironment();
+  runApp(_Root(config: config, overrides: await _setUp(config)));
+}
+
+/// Everything the app needs before its first screen.
+Future<List<Override>> _setUp(AppConfig config) async {
   final prefs = await SharedPreferences.getInstance();
 
   final overrides = <Override>[
@@ -57,6 +62,37 @@ Future<void> main() async {
       ),
     ]);
   }
+  return overrides;
+}
 
-  runApp(ProviderScope(overrides: overrides, child: const PawSetuApp()));
+/// Holds the app; [restart] builds it again from scratch with a new set-up
+/// (a fresh demo database after "Reset demo data").
+class _Root extends StatefulWidget {
+  const _Root({required this.config, required this.overrides});
+  final AppConfig config;
+  final List<Override> overrides;
+
+  @override
+  State<_Root> createState() => _RootState();
+}
+
+class _RootState extends State<_Root> {
+  late List<Override> _overrides = widget.overrides;
+  var _generation = 0;
+
+  Future<void> _restart() async {
+    final next = await _setUp(widget.config);
+    if (!mounted) return;
+    setState(() {
+      _overrides = next;
+      _generation++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => ProviderScope(
+        key: ValueKey(_generation),
+        overrides: [..._overrides, appRestartProvider.overrideWithValue(_restart)],
+        child: const PawSetuApp(),
+      );
 }

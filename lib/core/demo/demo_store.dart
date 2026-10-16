@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'seed/seed.dart';
+import 'seed/seed_people.dart' show demoAccounts;
 
 /// The standalone demo database: an in-memory Firestore seeded with the demo
 /// data, saved on the device so changes survive a restart.
@@ -22,6 +23,7 @@ class DemoStore {
   /// Long history still to load after the first screen; nothing is saved
   /// until it is in, so a save never drops it.
   SeedData? _later;
+  bool _resetting = false;
 
   static const _key = 'demo_db_v1';
   static const _seedVersionKey = 'demo_seed_version';
@@ -33,6 +35,12 @@ class DemoStore {
     if (saved != null && prefs.getInt(_seedVersionKey) == DemoSeed.version) {
       try {
         data = _decode(saved);
+        // A saved copy without the demo accounts can't be signed in to
+        // (an older reset could save one): start again from fresh data.
+        if (!hasDemoAccounts(data)) {
+          debugPrint('Saved demo data has no demo accounts, reseeding');
+          data = null;
+        }
       } catch (e) {
         debugPrint('Demo data could not be restored, reseeding: $e');
         await prefs.remove(_key);
@@ -85,12 +93,6 @@ class DemoStore {
     _later = null;
   }
 
-  Future<void> _seed() async {
-    final data = DemoSeed.build(DateTime.now());
-    await loadInto(db, data);
-    await _prefs.setInt(_seedVersionKey, DemoSeed.version);
-  }
-
   /// Writes seed collections into a Firestore instance in batches (about
   /// three times faster than one write at a time, which matters at start-up).
   /// With [yieldBetweenBatches] the app keeps drawing frames in between.
@@ -113,7 +115,7 @@ class DemoStore {
 
   /// Saves the database if it changed since the last save.
   Future<void> save() async {
-    if (_later != null) return;
+    if (_later != null || _resetting) return;
     final text = db.dump();
     final h = text.hashCode;
     if (h == _lastHash) return;
@@ -125,13 +127,20 @@ class DemoStore {
     }
   }
 
-  /// Wipes all changes and loads fresh demo data.
+  /// Whether [data] still holds every demo account (sign-in record and
+  /// profile).
+  static bool hasDemoAccounts(SeedData data) => demoAccounts.every((a) =>
+      (data['demoAccounts']?.containsKey(a.uid) ?? false) && (data['users']?[a.uid]?['name'] as String?)?.isNotEmpty == true);
+
+  /// Forgets all changes: stops saving and removes the saved copy, so the
+  /// next start (the app restarts itself, see `appRestartProvider`) loads
+  /// fresh demo data into a new database. Clearing this database in place
+  /// would cut off every screen listening to it.
   Future<void> reset() async {
     _later = null;
-    await db.clearPersistence();
+    _resetting = true;
+    dispose();
     await _prefs.remove(_key);
-    await _seed();
-    _lastHash = db.dump().hashCode;
   }
 
   void dispose() {

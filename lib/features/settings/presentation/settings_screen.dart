@@ -135,7 +135,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         setState(() => _resetting = true);
                         await ref.read(authServiceProvider).signOut();
                         await store.reset();
-                        if (mounted) setState(() => _resetting = false);
+                        await ref.read(appRestartProvider)();
                       },
               ),
           ]),

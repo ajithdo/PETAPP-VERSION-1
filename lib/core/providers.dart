@@ -16,6 +16,10 @@ final authServiceProvider = Provider<AuthService>((ref) => throw UnimplementedEr
 /// Only set in standalone demo mode.
 final demoStoreProvider = Provider<DemoStore?>((ref) => null);
 
+/// Starts the whole app again from scratch, with a new database (used after
+/// "Reset demo data"). Set in main.dart.
+final appRestartProvider = Provider<Future<void> Function()>((ref) => () async {});
+
 final authStateProvider = StreamProvider<AppUser?>((ref) {
   return ref.watch(authServiceProvider).userChanges();
 });
