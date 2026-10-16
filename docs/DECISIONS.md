@@ -189,3 +189,7 @@ A running log of choices and why. Newest at the bottom of each section.
 
 **QA tooling.** The layout sweep (`test/qa/layout_sweep_test.dart`) runs in `flutter test`: real fonts, every main screen, three languages, phone at 200% text, tablet, desktop, Easy mode, dark mode, accessibility guidelines for labels and 48 px tap targets. Browser checks and the walk-through recording use Playwright with the preinstalled Chromium (scripts kept outside the repository).
 
+**Demo start and loading (16 Oct 2026).**
+- *No frozen page while history loads.* The patched fake_cloud_firestore re-ran every query listening to a collection after each written document, so loading the 1,700 older records while Home was open took minutes and froze the website. `FakeFirebaseFirestore.loadDocuments` (our patch in `third_party/`) writes them all first and then updates each collection's listeners once; `DemoStore.loadInto` uses it. Test: `test/core/demo_store_test.dart`.
+- *Every start opens on sign-in.* The standalone demo no longer remembers the signed-in account between starts (`DemoAuthService`), and signed-out visitors go straight to the sign-in page in demo mode (the welcome slides are skipped). The sign-in page shows all demo accounts at the top, grouped, then "Or sign in with your email". Demo data itself is still saved on the device.
+
