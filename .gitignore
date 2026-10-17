@@ -60,3 +60,10 @@ functions/lib/
 # Build outputs we deliver separately
 /dist/
 .claude/worktrees/
+
+# Node dev tooling (Playwright, shadcn MCP)
+/node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
