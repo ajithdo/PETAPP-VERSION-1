@@ -28,6 +28,9 @@ import 'package:pawsetu/core/services/notification_service.dart';
 import 'package:pawsetu/core/settings/settings_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../support/map_cache.dart';
+import '../support/no_notifications.dart';
+
 /// Screens by who sees them. `null` means signed out.
 const _screens = <String?, Map<String, String>>{
   null: {'welcome': '/welcome', 'signin': '/signin'},
@@ -113,25 +116,6 @@ bool _sandboxNoise(FlutterErrorDetails d) {
       text.contains('ClientException');
 }
 
-/// Phone notifications need platform plugins the test sandbox doesn't have;
-/// their errors would land while a golden is being written.
-class _NoNotifications implements NotificationService {
-  @override
-  Future<void> init() async {}
-  @override
-  Future<bool> requestPermission() async => false;
-  @override
-  Future<void> schedule({required int id, required String title, required String body, required DateTime at, required String payload, bool medicineActions = false}) async {}
-  @override
-  Future<void> showNow({required int id, required String title, required String body, required String payload, bool medicineActions = false}) async {}
-  @override
-  Future<void> cancelAll() async {}
-  @override
-  Stream<NotificationTap> get taps => const Stream.empty();
-  @override
-  bool get supported => false;
-}
-
 /// Passes when at most [_tolerance] of the pixels differ, so a changed date
 /// or greeting doesn't fail the comparison.
 class _TolerantComparator extends LocalFileComparator {
@@ -173,7 +157,7 @@ Future<void> _capture(WidgetTester tester, String? uid, _Variant v, List<String>
     prefsProvider.overrideWithValue(prefs),
     firestoreProvider.overrideWithValue(db),
     authServiceProvider.overrideWithValue(auth),
-    notificationServiceProvider.overrideWithValue(_NoNotifications()),
+    notificationServiceProvider.overrideWithValue(NoNotifications()),
   ]);
 
   final original = FlutterError.onError;
@@ -183,6 +167,10 @@ Future<void> _capture(WidgetTester tester, String? uid, _Variant v, List<String>
     final msg = '[${v.name}] $where: ${d.exceptionAsString().split('\n').first}';
     if (!problems.contains(msg)) problems.add(msg);
   };
+  // flutter_test draws shadows as solid black outlines; show them as users
+  // see them (goldens are always made and compared in one environment). The
+  // test framework requires the default back before the test ends.
+  debugDisableShadows = false;
   try {
     await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const PawSetuApp()));
     for (var i = 0; i < 7; i++) {
@@ -210,6 +198,7 @@ Future<void> _capture(WidgetTester tester, String? uid, _Variant v, List<String>
     await tester.pump(const Duration(minutes: 2));
   } finally {
     FlutterError.onError = original;
+    debugDisableShadows = true;
   }
 }
 
@@ -218,6 +207,7 @@ void main() {
     TestWidgetsFlutterBinding.ensureInitialized();
     await initializeDateFormatting();
     await _loadFonts();
+    useTemporaryMapCache();
     final basedir = (goldenFileComparator as LocalFileComparator).basedir;
     goldenFileComparator = _TolerantComparator(basedir.resolve('baseline_golden_test.dart'));
   });
