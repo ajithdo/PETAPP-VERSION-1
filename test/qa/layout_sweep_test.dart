@@ -79,6 +79,21 @@ const clinicRoutes = [...providerRoutes, '/partner/staff', '/partner/emergency']
 const vetRoutes = ['/partner', '/partner/televet', '/partner/requests', '/partner/profile', '/partner/help'];
 const sellerRoutes = ['/partner', '/partner/products', '/partner/orders', '/partner/returns', '/partner/payouts', '/partner/reviews', '/partner/profile', '/partner/help'];
 
+/// Accessibility guidelines counted by the report-only audit.
+final _auditGuidelines = <String, AccessibilityGuideline>{
+  'labelled tap targets': labeledTapTargetGuideline,
+  'Android tap targets (48 px)': androidTapTargetGuideline,
+  'iOS tap targets (44 px)': iOSTapTargetGuideline,
+  'text contrast': textContrastGuideline,
+};
+
+/// Failures for one guideline in one mode.
+class A11yTally {
+  int screens = 0;
+  int failures = 0;
+  final failedScreens = <String>{};
+}
+
 Future<void> _loadFonts() async {
   Future<void> family(String name, List<int> weights) async {
     final loader = FontLoader(name);
@@ -115,9 +130,11 @@ Future<void> sweep(
   bool easyMode = false,
   bool a11y = false,
   ThemeMode theme = ThemeMode.light,
+  bool highContrast = false,
+  Map<String, A11yTally>? a11yTally,
   required List<String> problems,
 }) async {
-  final semantics = a11y ? tester.ensureSemantics() : null;
+  final semantics = a11y || a11yTally != null ? tester.ensureSemantics() : null;
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1.0;
   tester.platformDispatcher.textScaleFactorTestValue = textScale;
@@ -160,6 +177,7 @@ Future<void> sweep(
     container.read(settingsProvider.notifier).setLocale(locale);
     container.read(settingsProvider.notifier).setEasyMode(easyMode);
     container.read(settingsProvider.notifier).setThemeMode(theme);
+    container.read(settingsProvider.notifier).setHighContrast(highContrast);
     final router = container.read(routerProvider);
     var opened = 0;
     for (final r in routes) {
@@ -178,6 +196,19 @@ Future<void> sweep(
               final msg = '[a11y $locale ${theme.name}] $r: ${line.trim()}';
               if (!problems.contains(msg)) problems.add(msg);
             }
+          }
+        }
+      }
+      if (a11yTally != null) {
+        // Report only: count failures per guideline and mode, don't fail.
+        final mode = highContrast ? 'high contrast' : theme.name;
+        for (final MapEntry(key: name, value: g) in _auditGuidelines.entries) {
+          final e = await g.evaluate(tester);
+          final tally = a11yTally.putIfAbsent('$name ($mode)', A11yTally.new);
+          tally.screens++;
+          if (!e.passed) {
+            tally.failedScreens.add(r);
+            tally.failures += (e.reason ?? '').split('\n').where((x) => x.trim().isNotEmpty).length;
           }
         }
       }
@@ -263,7 +294,28 @@ void main() {
     await sweep(t, uid: 'u_admin', routes: adminRoutes, locale: 'te', size: desktop, problems: problems);
   });
 
+  // Report only (redesign baseline): all four guidelines in light, dark and
+  // high contrast. Prints the counts; Phase 7 of the redesign makes them
+  // strict. Flutter's text contrast check samples anti-aliased pixels and
+  // over-reports (see docs/DECISIONS.md); test/core/contrast_test.dart is
+  // the exact check.
+  final tally = <String, A11yTally>{};
+  final auditLayout = <String>[];
+  for (final (theme, hc) in [(ThemeMode.light, false), (ThemeMode.dark, false), (ThemeMode.light, true)]) {
+    testWidgets('accessibility audit (report only), phone, en, ${hc ? 'high contrast' : theme.name}', (t) async {
+      await sweep(t, uid: 'u_priya', routes: ownerRoutes, locale: 'en', size: phone, theme: theme, highContrast: hc, a11yTally: tally, problems: auditLayout);
+      await sweep(t, uid: 'u_admin', routes: adminRoutes, locale: 'en', size: phone, theme: theme, highContrast: hc, a11yTally: tally, problems: auditLayout);
+      await sweep(t, uid: 'u_clinicadmin', routes: clinicRoutes, locale: 'en', size: phone, theme: theme, highContrast: hc, a11yTally: tally, problems: auditLayout);
+    });
+  }
+
   tearDownAll(() {
+    if (tally.isNotEmpty) {
+      // ignore: avoid_print
+      print('ACCESSIBILITY AUDIT (report only):\n${tally.entries.map((e) => '  ${e.key}: ${e.value.failures} failures on ${e.value.failedScreens.length} of ${e.value.screens} screens'
+          '${e.value.failedScreens.isEmpty ? '' : ' [${e.value.failedScreens.join(', ')}]'}').join('\n')}\n'
+          '  layout problems during the audit runs: ${auditLayout.length}${auditLayout.isEmpty ? '' : '\n    ${auditLayout.join('\n    ')}'}');
+    }
     if (problems.isNotEmpty) {
       // ignore: avoid_print
       print('LAYOUT PROBLEMS (${problems.length}):\n${problems.join('\n')}');
