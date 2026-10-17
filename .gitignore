@@ -68,3 +68,4 @@ functions/lib/
 /blob-report/
 /playwright/.cache/
 /.playwright-mcp/
+/test/goldens/failures/

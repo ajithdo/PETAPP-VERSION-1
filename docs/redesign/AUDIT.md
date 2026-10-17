@@ -159,4 +159,6 @@ Count by brief problem: navigation 2 (#1, #8), Me 2 (#7, #16), Home 4 (#3, #12, 
 
 ## 6. Decision needed
 
-**Make goldens independent of the clock.** Today the goldens allow 3% changed pixels because the app reads the real time in 301 places. The clean fix reads time through one replaceable clock (`clock.now()` from `package:clock`, already in the dependency tree from Flutter's own test tools) so tests can freeze it. It changes no behaviour, but it touches business-logic files, which the brief says to ask about first. Recommended: do it in Phase 3, then drop the tolerance to zero.
+**Make goldens independent of the clock.** Today the goldens allow 3% changed pixels because the app reads the real time in 301 places, and even that isn't enough: on Notifications at 200% text, a demo time of "12:06 PM" pushes "PM" onto its own line while "12:14 PM" fits, so the list shifts and 12% of the pixels change between runs eight minutes apart. Until this is fixed the goldens are skipped in a plain `flutter test` run (`dart_test.yaml`) and run on request with `flutter test --tags golden --run-skipped test/goldens/`; any mismatch fails that run.
+
+The clean fix reads time through one replaceable clock (`clock.now()` from `package:clock`, already in the dependency tree through Flutter's own test tools) so tests can freeze it. It changes no behaviour, but it touches business-logic files, which the brief says to ask about first. Recommended: do it in Phase 3, then drop the tolerance to zero and run the goldens in every `flutter test`.

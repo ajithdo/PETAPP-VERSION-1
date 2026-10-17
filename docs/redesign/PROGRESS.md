@@ -45,7 +45,7 @@ Full write-up: [AUDIT.md](AUDIT.md). Headline numbers:
 - 54% of text under 14 px; 80 / 62 / 85 pieces of text cut off in English / Hindi / Telugu, 113 at 200% text.
 - Web: 4.8 MB first visit; first frame 31.7 s on a budget phone over slow 4G, 5.8 s on desktop broadband.
 - Critique: 24/40 on Nielsen's heuristics (Acceptable); design reads as a generic card kit.
-- Tests: 256 passed (203 existing + 9 report-only audit runs + 44 golden comparisons); server and security tests 170 passed in Phase 0, untouched since.
+- Tests: 256 passed (203 existing + 9 report-only audit runs + 44 golden comparisons); server and security tests 170 passed in Phase 0, untouched since. Goldens are now skipped in a plain `flutter test` (see Decisions), so a plain run reports 212 passed and the golden group skipped.
 
 Added for later phases:
 - `test/support/`: `text_audit.dart` (exact contrast, small and cut-off text), `no_notifications.dart` and `map_cache.dart` (keep platform-plugin errors out of tests that wait on real async work).
@@ -61,6 +61,6 @@ Phase 2: navigation and IA plan, Me regrouping, Home priority rules, three visua
 - Branch restarted from the default branch because its earlier pull request was already merged.
 - Browser MCP servers use the cloud's preinstalled Chromium.
 - Context7 reads its key from the `CONTEXT7_API_KEY` environment variable; the key is never committed.
-- Goldens render real shadows (`debugDisableShadows = false` during capture) and tolerate 3% changed pixels until the app reads time through a replaceable clock (decision pending, see AUDIT.md section 6).
+- Goldens render real shadows (`debugDisableShadows = false` during capture) and tolerate 3% changed pixels until the app reads time through a replaceable clock (decision pending, see AUDIT.md section 6). Until then they are tagged `golden` and skipped in a plain `flutter test`; run them with `flutter test --tags golden --run-skipped test/goldens/` (add `--update-goldens` to refresh). Any problem while capturing, a mismatch included, fails the run.
 - Flutter's `textContrastGuideline` is reported but not used for decisions: it samples whole merged semantics areas. The exact text audit is the contrast source of truth.
 - Load time is measured to Flutter's first frame, not LCP (LCP only sees the HTML loading screen).

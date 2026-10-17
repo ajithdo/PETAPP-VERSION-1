@@ -4,13 +4,18 @@
 // Generated in the Claude Code cloud environment (Linux). Goldens are
 // platform-sensitive, so compare them in the same environment.
 //
-// Create or refresh: flutter test --update-goldens test/goldens/
-// Compare:           flutter test test/goldens/
+// Create or refresh: flutter test --tags golden --run-skipped --update-goldens test/goldens/
+// Compare:           flutter test --tags golden --run-skipped test/goldens/
 //
 // The app reads DateTime.now() directly and the demo data is built relative
-// to today, so the greeting and printed dates change between runs. Until the
-// app reads time through one replaceable clock, the comparison allows a small
-// share of changed pixels (see _TolerantComparator).
+// to now, so greetings, dates and times change between runs, and at 200% text
+// a different time can reflow a whole list. Until the app reads time through
+// one replaceable clock, the comparison allows a small share of changed
+// pixels (see _TolerantComparator) and the golden tag is skipped in a plain
+// `flutter test` run (dart_test.yaml).
+@Tags(['golden'])
+library;
+
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -224,5 +229,7 @@ void main() {
       // ignore: avoid_print
       print('PROBLEMS WHILE CAPTURING (${problems.length}):\n${problems.join('\n')}');
     }
+    // Errors while capturing, golden mismatches included, fail the run.
+    expect(problems, isEmpty, reason: 'see PROBLEMS WHILE CAPTURING above');
   });
 }
