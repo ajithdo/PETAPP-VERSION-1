@@ -193,3 +193,11 @@ A running log of choices and why. Newest at the bottom of each section.
 - *No frozen page while history loads.* The patched fake_cloud_firestore re-ran every query listening to a collection after each written document, so loading the 1,700 older records while Home was open took minutes and froze the website. `FakeFirebaseFirestore.loadDocuments` (our patch in `third_party/`) writes them all first and then updates each collection's listeners once; `DemoStore.loadInto` uses it. Test: `test/core/demo_store_test.dart`.
 - *Every start opens on sign-in.* The standalone demo no longer remembers the signed-in account between starts (`DemoAuthService`), and signed-out visitors go straight to the sign-in page in demo mode (the welcome slides are skipped). The sign-in page shows all demo accounts at the top, grouped, then "Or sign in with your email". Demo data itself is still saved on the device.
 
+
+## AI design and testing toolkit (17 Oct 2026)
+
+Dev tools for the coding agent only; nothing here ships in the app.
+
+- **Skills** in `.claude/skills/`: Anthropic's `frontend-design` and `webapp-testing`, Impeccable 0.1.15 and the Vercel agent skills, installed with the `skills` CLI (`skills-lock.json` records the sources). Impeccable's auto-run design hook is off (turn on with `/impeccable hooks on`). `deploy-to-vercel` uploads the project folder to Vercel when asked to deploy, so only use it on purpose.
+- **MCP servers** in `.mcp.json` (each needs approval the first time Claude Code starts): Playwright, Chrome DevTools (with `--no-usage-statistics --no-performance-crux`, so nothing is sent to Google), Context7 (a hosted docs lookup) and shadcn. shadcn and the Vercel React skills are for React web projects; this app is Flutter, so they are kept for reference.
+- **Browser tests:** `@playwright/test` 1.64 and `@axe-core/playwright` 4.14 as npm dev dependencies (root `package.json`; `node_modules/` is ignored). Run `npx playwright install chromium firefox webkit` once on your own computer. In the cloud session, use the preinstalled Chromium (`executablePath: '/opt/pw-browsers/chromium'`).
