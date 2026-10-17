@@ -196,8 +196,9 @@ A running log of choices and why. Newest at the bottom of each section.
 
 ## AI design and testing toolkit (17 Oct 2026)
 
-Dev tools for the coding agent only; nothing here ships in the app.
+Dev tools for the coding agent only; nothing here ships in the app. React-only tools tried first (shadcn, the Vercel skills, axe-core) were removed because this is a Flutter app.
 
-- **Skills** in `.claude/skills/`: Anthropic's `frontend-design` and `webapp-testing`, Impeccable 0.1.15 and the Vercel agent skills, installed with the `skills` CLI (`skills-lock.json` records the sources). Impeccable's auto-run design hook is off (turn on with `/impeccable hooks on`). `deploy-to-vercel` uploads the project folder to Vercel when asked to deploy, so only use it on purpose.
-- **MCP servers** in `.mcp.json` (each needs approval the first time Claude Code starts): Playwright, Chrome DevTools (with `--no-usage-statistics --no-performance-crux`, so nothing is sent to Google), Context7 (a hosted docs lookup) and shadcn. shadcn and the Vercel React skills are for React web projects; this app is Flutter, so they are kept for reference.
-- **Browser tests:** `@playwright/test` 1.64 and `@axe-core/playwright` 4.14 as npm dev dependencies (root `package.json`; `node_modules/` is ignored). Run `npx playwright install chromium firefox webkit` once on your own computer. In the cloud session, use the preinstalled Chromium (`executablePath: '/opt/pw-browsers/chromium'`).
+- **Flutter:** the official `dart-flutter` plugin (flutter/agent-plugins, v1.0.6) is declared in `.claude/settings.json` (`extraKnownMarketplaces` + `enabledPlugins`), so Claude Code offers it in every new session and on any computer. It brings 25 Dart/Flutter skills and the Dart MCP server (`dart mcp-server`, which needs the Dart/Flutter SDK on PATH). It adds no hooks.
+- **Design skills** in `.claude/skills/`: Anthropic's `frontend-design` and Impeccable 0.1.15 (with its 4 agents in `.claude/agents/`), installed with the `skills` CLI (`skills-lock.json` records the source). Impeccable's auto-run design hook is off (turn on with `/impeccable hooks on`).
+- **Web checks:** the Flutter web build is screenshotted and checked with the `webapp-testing` skill, the Playwright MCP and Chrome DevTools MCP servers (`.mcp.json`; Chrome DevTools runs with `--no-usage-statistics --no-performance-crux`, so nothing is sent to Google), and `@playwright/test` 1.64 (root `package.json`; `node_modules/` is ignored). Run `npx playwright install chromium firefox webkit` once on your own computer. In the cloud session, use the preinstalled Chromium (`executablePath: '/opt/pw-browsers/chromium'`).
+- **Docs lookup:** Context7 (hosted MCP server in `.mcp.json`).
