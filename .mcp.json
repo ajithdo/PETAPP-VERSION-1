@@ -4,7 +4,12 @@
       "type": "stdio",
       "command": "npx",
       "args": [
-        "@playwright/mcp@latest"
+        "@playwright/mcp@latest",
+        "--executable-path",
+        "/opt/pw-browsers/chromium",
+        "--headless",
+        "--isolated",
+        "--no-sandbox"
       ],
       "env": {}
     },
@@ -14,7 +19,12 @@
       "args": [
         "chrome-devtools-mcp@latest",
         "--no-usage-statistics",
-        "--no-performance-crux"
+        "--no-performance-crux",
+        "--executablePath=/opt/pw-browsers/chromium",
+        "--headless",
+        "--isolated",
+        "--chrome-arg=--no-sandbox",
+        "--chrome-arg=--disable-setuid-sandbox"
       ],
       "env": {}
     },

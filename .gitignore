@@ -67,3 +67,4 @@ functions/lib/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/.playwright-mcp/
