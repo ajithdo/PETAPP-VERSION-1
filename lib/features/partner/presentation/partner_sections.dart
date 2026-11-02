@@ -80,7 +80,7 @@ class _Dashboard extends ConsumerWidget {
       (place) => PageBody(
         children: [
           const SizedBox(height: Space.md),
-          Text(l.helloPartner(user.name.split(' ').first), style: context.text.headlineSmall),
+          Text(l.helloPartner(user.firstName), style: context.text.headlineSmall),
           Text(place.name, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
           if (place.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
           const SizedBox(height: Space.lg),

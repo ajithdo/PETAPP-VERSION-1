@@ -60,6 +60,9 @@ void main() {
   });
 
   test('Arjun\'s sitter has an expiry date', () async {
+    // Her access ends 3 days after the demo data is made, so make it today.
+    db = FakeFirebaseFirestore();
+    await DemoStore.loadInto(db, DemoSeed.build(DateTime.now()));
     final d = await db.collection('pets').doc('pet_max').get();
     final max = Pet.fromJson({...d.data()!, 'id': d.id});
     expect(max.members['u_meera']!.expiresAt, isNotNull);

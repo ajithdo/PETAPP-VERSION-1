@@ -97,7 +97,14 @@ class AppUser {
 
   bool get isPlus => effectivePlan != 'free';
   bool get onTrial => effectivePlan == 'trial';
-  String get firstName => name.split(' ').first;
+  /// First name for greetings, skipping a title ("Dr. Sameer Khan" -> "Sameer").
+  String get firstName {
+    final parts = name.trim().split(RegExp(r'\s+'));
+    final i = parts.length > 1 && _titles.contains(parts.first.toLowerCase()) ? 1 : 0;
+    return parts[i];
+  }
+
+  static const _titles = {'dr', 'dr.', 'mr', 'mr.', 'mrs', 'mrs.', 'ms', 'ms.', 'shri', 'smt', 'smt.'};
 
   AppUser copyWith({UserRole? role, String? name, String? plan, bool? onboarded, String? partnerId}) => AppUser(
         uid: uid,

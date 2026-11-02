@@ -51,4 +51,12 @@ void main() {
     final outbox = await db.collection('outbox').where('to', isEqualTo: 'new@example.com').get();
     expect(outbox.docs, isNotEmpty);
   });
+
+  test('greetings use the first name, not a title', () {
+    String first(String name) => AppUser(uid: 'x', role: UserRole.owner, name: name).firstName;
+    expect(first('Dr. Sameer Khan'), 'Sameer');
+    expect(first('Priya Sharma'), 'Priya');
+    expect(first('Dr.'), 'Dr.');
+    expect(first('Tail Treats Traders'), 'Tail');
+  });
 }

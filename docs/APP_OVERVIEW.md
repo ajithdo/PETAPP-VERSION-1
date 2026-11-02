@@ -73,8 +73,6 @@ opened; weakness 1 explains this.
 - `/shop/placed/:groupId`: order placed.
 - `/shop/orders`: my orders.
 - `/shop/orders/:id`: track, cancel, return, invoice.
-- `/shop/expenses`: spending tracker and chart.
-- `/shop/addresses`: saved addresses.
 
 ### Pets and family
 
@@ -133,6 +131,8 @@ opened; weakness 1 explains this.
 - `/notifications`: notification centre.
 - `/me/settings`: app settings.
 - `/me/settings/notifications`: notification channels and quiet hours.
+- `/me/expenses`: spending tracker and chart.
+- `/me/addresses`: saved delivery addresses.
 - `/me/plus`: PawSetu Plus plan and trial.
 - `/me/refer`: refer a friend.
 - `/me/privacy`: consents, download my data, delete my account.
