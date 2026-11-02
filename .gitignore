@@ -67,3 +67,6 @@ functions/lib/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Netlify local state
+.netlify
