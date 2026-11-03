@@ -7,7 +7,7 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 **Look and feel:** friendly, warm and trustworthy. Clean and modern, not cartoonish.
 
 **Names we use (set by the owner, 3 Nov 2026):**
-- **Design 1** is the look the app has today: the code on branch `claude/inspiring-lovelace-1eo1xz` at commit `97c1346`, which is also what the Netlify demo shows. The screenshots in `docs/ui-revamp/before/` are Design 1. To get Design 1 back at any time, use the app code from that commit.
+- **Design 1** is the look the app has today: the code on branch `claude/inspiring-lovelace-1eo1xz` at commit `97c1346`. The Netlify demo shows the same look if it was last published from this code (not checked). The screenshots in `docs/ui-revamp/before/` are Design 1. To get Design 1 back at any time, use the app code from that commit.
 - **Design 2** is the new design system proposed in this plan (Figma page "PetSetu v2"). It is not in the app yet.
 - The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is neither Design 1 nor Design 2.
 
