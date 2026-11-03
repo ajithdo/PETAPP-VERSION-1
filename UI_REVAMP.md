@@ -11,7 +11,7 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 | Step | State |
 |---|---|
 | 1. Audit (read-only) | ✅ Done 3 Nov 2026 |
-| 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ✅ Proposed 3 Nov 2026. **Waiting for the owner's go-ahead** |
+| 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ✅ Proposed 3 Nov 2026: [Foundations frame](https://www.figma.com/design/RdduLVvn2mYCDQjCcIMBg8?node-id=2-2) (node `2:2` on page `1:2` "PetSetu v2"). It is drawn as plain frames; real Figma variables, text styles and components come in step 3. **Waiting for the owner's go-ahead** |
 | 3. Build the foundation (one token file, shared components, Figma variables/styles/components) | ⏸ Not started. The owner said: do not implement in the app until they say so |
 | 4. Redesign screen by screen | ⏸ Not started. Stop after the first screen for a before/after check |
 
@@ -201,7 +201,7 @@ One set: the built-in Material Icons **Rounded** (no new package), filled, with 
 | `PawChip` | filter (single/multi), input (removable), pet chip (avatar + name) | default, selected, hover, focus, disabled |
 | `PawAvatar` | pet (photo / illustrated face, tag ring), person (initials); 24/40/56/120 | default, selected |
 | `PawBadge` | status (success, warning, error, info, neutral, highlight), count (number/dot) | – |
-| `PawListItem` | leading: icon-in-circle / avatar / thumbnail; title + up to 2-line subtitle; trailing: chevron / badge / switch / action; grouped in a card with inset dividers | default, hover, pressed, focus, disabled |
+| `PawListItem` | leading: icon in a 40 px brand-100 circle (brand-700 icon) / avatar / thumbnail; title + up to 2-line subtitle; trailing: chevron / badge / switch / action; grouped in a card with inset dividers | default, hover, pressed, focus, disabled |
 | `PawTopBar` | tab bar (pet switcher, messages, bell, SOS), page bar (back, title, ≤2 actions), large title | – |
 | `PawNavBar` | bottom bar (phone), rail (tablet), sidebar (desktop); selected = brand-700 icon on brand-100 pill | default, selected, hover, focus |
 | `PawSheet` / `PawDialog` | sheet with handle, title, content, pinned primary action; dialog with title, body, ghost + primary/destructive | – |
@@ -239,6 +239,15 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [ ] 17. Final sweep: hard-coded-value search is clean, Figma matches code, before/after summary
 
 ---
+
+## Choices in this proposal that change today's look (owner to confirm)
+
+1. **Apricot becomes a small highlight only.** No more apricot buttons ("Health report", "Medical card"), apricot banners or pet-colour card backgrounds.
+2. **Smallest everyday text goes from 13 to 14 px.** Spec §4 says caption 13, so the spec would change too.
+3. **Field labels move above the box** instead of floating inside it.
+4. **The pet profile header becomes a 4:3 photo** (or the illustrated face on a tint) instead of a small circle on an apricot band.
+5. **Fewer corner sizes:** buttons and inputs 14 → 12, sheets 28 → 20.
+6. **Desktop reading width:** Home and lists max 1,040 px, grids 1,200 px.
 
 ## Suggested copy and flow changes (not made; for the owner to decide)
 
