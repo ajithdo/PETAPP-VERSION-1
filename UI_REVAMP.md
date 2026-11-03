@@ -6,6 +6,11 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 
 **Look and feel:** friendly, warm and trustworthy. Clean and modern, not cartoonish.
 
+**Names we use (set by the owner, 3 Nov 2026):**
+- **Design 1** is the look the app has today: the code on branch `claude/inspiring-lovelace-1eo1xz` at commit `97c1346`, which is also what the Netlify demo shows. The screenshots in `docs/ui-revamp/before/` are Design 1. To get Design 1 back at any time, use the app code from that commit.
+- **Design 2** is the new design system proposed in this plan (Figma page "PetSetu v2"). It is not in the app yet.
+- The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is neither Design 1 nor Design 2.
+
 ## Status
 
 | Step | State |
@@ -17,7 +22,7 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 
 **Rules for this work:** UI/UX only (no business logic, API calls, data models or routing). Commit after each screen. In Figma, only add to the "PetSetu v2" page. Ask before adding any library, font or tool. Keep features and content; suggest copy and flow changes in the list at the bottom instead of making them.
 
-**Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`) and chose to keep the current design. This plan keeps that look (teal brand, the logo, Plus Jakarta Sans, a warm off-white page) and makes it consistent. It is not a new visual direction.
+**Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`) and chose to keep the current design (Design 1). Design 2 keeps that look (teal brand, the logo, Plus Jakarta Sans, a warm off-white page) and makes it consistent. It is not a new visual direction.
 
 ---
 
