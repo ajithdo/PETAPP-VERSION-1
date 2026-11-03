@@ -8,7 +8,7 @@ import '../settings/settings_controller.dart';
 import '../theme/tokens.dart';
 import 'layout.dart';
 
-/// Red SOS button (spec 7.12): hold for 2 seconds while a ring fills.
+/// SOS button (spec 7.12): hold for 2 seconds while it fills.
 /// A quick tap shows "Hold to activate". In Easy mode a tap opens a simple
 /// confirm dialog instead.
 class SosButton extends ConsumerStatefulWidget {
@@ -80,8 +80,8 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     final easy = ref.watch(settingsProvider).easyMode;
-    final size = widget.large ? 72.0 : (easy ? 52.0 : 44.0);
     final paw = context.paw;
+    final visual = widget.large ? _circle(paw) : _pill(context, paw, easy);
     return Semantics(
       button: true,
       label: context.l10n.sosSemantic,
@@ -94,44 +94,99 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
         onTapUp: easy ? null : (_) => _up(),
         onTapCancel: easy ? null : _up,
         onTap: easy ? _easyTap : null,
-        child: SizedBox(
-          width: size + 6,
-          height: size + 6,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              ExcludeSemantics(child: AnimatedBuilder(
+        child: visual,
+      ),
+    );
+  }
+
+  /// Design 2 top-bar SOS: a soft red pill that fills while held.
+  Widget _pill(BuildContext context, PawColors paw, bool easy) {
+    final h = easy ? TapTarget.easy : TapTarget.min;
+    final radius = BorderRadius.circular(Radii.full);
+    return Container(
+      height: h,
+      decoration: BoxDecoration(
+        color: paw.sosContainer,
+        borderRadius: radius,
+        border: Border.all(color: paw.sosBorder),
+      ),
+      child: ClipRRect(
+        borderRadius: radius,
+        child: Stack(children: [
+          Positioned.fill(
+            child: ExcludeSemantics(
+              child: AnimatedBuilder(
                 animation: _c,
-                builder: (_, _) => SizedBox(
-                  width: size + 6,
-                  height: size + 6,
-                  child: CircularProgressIndicator(
-                    value: _c.value,
-                    strokeWidth: 4,
-                    color: paw.sos,
-                    backgroundColor: Colors.transparent,
-                  ),
-                ),
-              )),
-              Container(
-                width: size - 4,
-                height: size - 4,
-                decoration: BoxDecoration(color: paw.sos, shape: BoxShape.circle),
-                alignment: Alignment.center,
-                child: Text(
-                  'SOS',
-                  style: TextStyle(
-                    color: paw.onSos,
-                    fontWeight: FontWeight.w800,
-                    fontSize: widget.large ? 20 : 13,
-                    fontFamily: 'PlusJakartaSans',
-                    letterSpacing: 0.5,
-                  ),
+                builder: (_, _) => FractionallySizedBox(
+                  alignment: Alignment.centerLeft,
+                  widthFactor: _c.value,
+                  child: ColoredBox(color: paw.sos.withValues(alpha: Opacities.tintStrong)),
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Space.md + 2),
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              Icon(Icons.emergency_outlined, size: IconSizes.md - 2, color: paw.onSosContainer),
+              const SizedBox(width: Space.xs + 2),
+              Text(
+                'SOS',
+                style: context.text.labelLarge?.copyWith(
+                  color: paw.onSosContainer,
+                  fontWeight: FontWeight.w800,
+                  fontFamily: FontFamilies.heading,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ]),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  /// Big round SOS (SOS screen): solid red with a ring that fills while held.
+  Widget _circle(PawColors paw) {
+    const size = TapTarget.easy + Space.lg;
+    return SizedBox(
+      width: size + 6,
+      height: size + 6,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          ExcludeSemantics(
+            child: AnimatedBuilder(
+              animation: _c,
+              builder: (_, _) => SizedBox(
+                width: size + 6,
+                height: size + 6,
+                child: CircularProgressIndicator(
+                  value: _c.value,
+                  strokeWidth: 4,
+                  color: paw.sos,
+                  backgroundColor: Colors.transparent,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            width: size - 4,
+            height: size - 4,
+            decoration: BoxDecoration(color: paw.sos, shape: BoxShape.circle),
+            alignment: Alignment.center,
+            child: Text(
+              'SOS',
+              style: TextStyle(
+                color: paw.onSos,
+                fontWeight: FontWeight.w800,
+                fontSize: TypeScale.title.size,
+                fontFamily: FontFamilies.heading,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

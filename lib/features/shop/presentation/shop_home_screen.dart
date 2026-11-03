@@ -84,7 +84,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
             label: l.shopSearchHint,
             excludeSemantics: true,
             child: InkWell(
-              borderRadius: BorderRadius.circular(Radii.button),
+              borderRadius: BorderRadius.circular(Radii.md),
               onTap: () => context.push('/shop/search?focus=1'),
               child: InputDecorator(
                 decoration: InputDecoration(prefixIcon: const Icon(Icons.search_rounded), hintText: l.shopSearchHint),

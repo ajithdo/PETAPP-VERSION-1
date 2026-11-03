@@ -44,7 +44,7 @@ class HeatCard extends ConsumerWidget {
         padding: const EdgeInsets.all(Space.md),
         decoration: BoxDecoration(
           color: c.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(compact ? Radii.button : Radii.card),
+          borderRadius: BorderRadius.circular(compact ? Radii.md : Radii.card),
           border: Border.all(color: c.withValues(alpha: 0.35)),
         ),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [

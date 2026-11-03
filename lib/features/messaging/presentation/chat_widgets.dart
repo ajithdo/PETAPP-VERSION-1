@@ -38,7 +38,7 @@ class ConversationAvatar extends StatelessWidget {
     return CircleAvatar(
       radius: size / 2,
       backgroundColor: tele ? context.paw.accent.withValues(alpha: 0.22) : context.paw.primaryContainer,
-      child: Icon(conversationIcon(c), color: tele ? context.paw.onAccent : context.colors.primary, size: size * 0.48),
+      child: Icon(conversationIcon(c), color: tele ? context.paw.onAccentContainer : context.colors.primary, size: size * 0.48),
     );
   }
 }

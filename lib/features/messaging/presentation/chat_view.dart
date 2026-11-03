@@ -436,7 +436,7 @@ Future<void> showTeleVetLimitNotice(BuildContext context, TeleVetCheck check, Co
       Row(children: [
         CircleAvatar(
           backgroundColor: ctx.paw.accent.withValues(alpha: 0.2),
-          child: Icon(check.block == TeleVetBlock.tooManyWords ? Icons.short_text_rounded : Icons.chat_bubble_outline_rounded, color: ctx.paw.onAccent),
+          child: Icon(check.block == TeleVetBlock.tooManyWords ? Icons.short_text_rounded : Icons.chat_bubble_outline_rounded, color: ctx.paw.onAccentContainer),
         ),
         const SizedBox(width: Space.md),
         Expanded(child: Text(title, style: ctx.text.titleMedium)),

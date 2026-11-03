@@ -315,7 +315,7 @@ class _LimitCard extends StatelessWidget {
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(Icons.hourglass_bottom_rounded, color: context.paw.onAccent),
+            Icon(Icons.hourglass_bottom_rounded, color: context.paw.onAccentContainer),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(l.aiLimitTitle(limit), style: context.text.titleSmall)),
           ]),

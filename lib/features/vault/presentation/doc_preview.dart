@@ -50,14 +50,14 @@ class DocPreview extends ConsumerWidget {
       button: onTap != null,
       child: Material(
         color: context.paw.background,
-        borderRadius: BorderRadius.circular(Radii.button),
+        borderRadius: BorderRadius.circular(Radii.md),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onTap,
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: context.paw.outline),
-              borderRadius: BorderRadius.circular(Radii.button),
+              borderRadius: BorderRadius.circular(Radii.md),
             ),
             child: Center(child: body),
           ),

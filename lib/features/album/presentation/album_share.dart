@@ -96,7 +96,7 @@ Future<void> showShareMemorySheet(BuildContext context, WidgetRef ref, AlbumItem
         const SizedBox(height: Space.md),
         Center(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(Radii.button),
+            borderRadius: BorderRadius.circular(Radii.md),
             child: SizedBox(
               width: 200,
               height: 200,

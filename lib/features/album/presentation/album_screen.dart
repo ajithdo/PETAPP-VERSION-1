@@ -303,7 +303,7 @@ class OnThisDayCard extends StatelessWidget {
       color: context.paw.accent.withValues(alpha: 0.14),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Icon(Icons.history_rounded, color: context.paw.onAccent),
+          Icon(Icons.history_rounded, color: context.paw.onAccentContainer),
           const SizedBox(width: Space.sm),
           Text(l.albumOnThisDay, style: context.text.titleMedium),
         ]),
@@ -345,7 +345,7 @@ class BirthdayCard extends StatelessWidget {
       color: today ? context.paw.accent.withValues(alpha: 0.28) : context.paw.primaryContainer.withValues(alpha: 0.6),
       onTap: () => context.push('/pets/${pet.id}/birthday'),
       child: Row(children: [
-        Icon(Icons.cake_rounded, color: today ? context.paw.onAccent : context.colors.primary, size: 36),
+        Icon(Icons.cake_rounded, color: today ? context.paw.onAccentContainer : context.colors.primary, size: 36),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

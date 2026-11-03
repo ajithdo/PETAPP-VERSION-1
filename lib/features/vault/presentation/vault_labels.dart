@@ -135,7 +135,7 @@ class DocTypeBadge extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      decoration: BoxDecoration(color: c.withValues(alpha: 0.16), borderRadius: BorderRadius.circular(Radii.button)),
+      decoration: BoxDecoration(color: c.withValues(alpha: 0.16), borderRadius: BorderRadius.circular(Radii.md)),
       child: Icon(docTypeIcon(type), color: c, size: size * 0.52),
     );
   }

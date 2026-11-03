@@ -255,7 +255,7 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
       if (!noMedia)
         Center(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(Radii.button),
+            borderRadius: BorderRadius.circular(Radii.md),
             child: SizedBox(
               width: 160,
               height: 160,

@@ -137,7 +137,7 @@ class _Body extends ConsumerWidget {
           color: context.paw.accent.withValues(alpha: 0.16),
           onTap: () => context.push('/vault/doc/${doc.id}/read'),
           child: Row(children: [
-            Icon(Icons.auto_awesome_rounded, color: context.paw.onAccent),
+            Icon(Icons.auto_awesome_rounded, color: context.paw.onAccentContainer),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
