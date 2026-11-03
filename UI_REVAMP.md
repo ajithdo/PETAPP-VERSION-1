@@ -12,16 +12,11 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 - The design system proposed in this plan (Figma page "PetSetu v2", Foundations frame) is **not** Design 2. It is only a proposal and is on hold.
 - The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is neither Design 1 nor Design 2.
 
-**Owner requirement for Design 2 (3 Nov 2026):** when Design 2 is built into the app, Design 1 must stay available, and the app must work fully in whichever design is selected. Planned approach (not built yet; build only when the owner says go):
-- A "Design" choice (Design 1 / Design 2), saved on the device the same way as the light/dark choice (`lib/core/settings/settings_controller.dart`). It switches instantly, with no restart.
-- Design 1's look is kept as it is today. Design 2 is added next to it. Features, data, navigation and text are shared, so both designs show the same content and work with the same data.
-- Checks before any release: automated tests open every main screen in both designs (light and dark; English, Hindi and Telugu), plus `flutter analyze` and the existing tests. A change is only done when both designs pass.
-- If Design 2 changes only the look (colours, fonts, shapes, buttons, cards), one switch covers the whole app. If it changes a screen's layout, that screen needs two versions, and new features must be built for both designs.
-- **Decided by the owner (3 Nov 2026):**
-  - **Only the admin can switch.** The choice goes in Admin → Settings, not in the pet parent's Settings. Normal users never see it.
-  - The switch is a **preview tool**, saved on the admin's own device or browser. It does not change the app for anyone else. To see a design across the whole app, the admin picks it, then signs in as a demo pet parent in the same browser.
-  - **Everyone sees Design 1 by default** (what the app has today).
-  - When the owner picks the final design, it becomes the design for everyone. Then the other design and the switch can be removed, but only after asking the owner.
+**Design 1 is the permanent backup (owner's rule, 3 Nov 2026).** The owner is making a new design (Design 2). If Design 2 turns out worse and the owner says "go back to Design 1", the app must return to Design 1 and work fully, with no errors.
+- **Where Design 1 is saved:** commit `97c1346` on GitHub. It is the tip of branch `claude/inspiring-lovelace-1eo1xz` and is also in the history of `ui-revamp`. The screenshots in `docs/ui-revamp/before/` show how it looks. (A `design-1` Git tag was tried, but GitHub refused tag pushes from this session; the commit itself is the backup.)
+- **Checked working on 3 Nov 2026:** `flutter analyze` found no issues, all 204 tests passed (including the layout sweep across roles, languages and screen sizes), and the web build succeeded.
+- **Rules while Design 2 is built:** Design 2 work goes on its own branch, never onto Design 1's commit. Never delete, rewrite or force-push the commit or branch that holds Design 1.
+- **How to go back when the owner asks:** put the app's look back to `97c1346`. Keep any features or fixes added since then, unless the owner says to drop them. Then run `flutter analyze`, all tests and a web build, and click through the main screens in light and dark, English and Telugu, Easy mode, and at 360 px and desktop widths. Only report "done" when all of these pass.
 
 ## Status
 
