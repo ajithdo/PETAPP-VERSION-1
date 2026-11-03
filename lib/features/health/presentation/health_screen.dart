@@ -145,27 +145,29 @@ class DueTile extends ConsumerWidget {
       title: Text(showPet ? '${pet.name} · $title' : title),
       subtitle: when.isEmpty ? null : Text(when),
       trailing: statusChipWidget(context, item.status),
-      onTap: () => _act(context, ref),
+      onTap: () => openDueItem(context, ref, pet, item),
     );
   }
+}
 
-  Future<void> _act(BuildContext context, WidgetRef ref) async {
-    switch (item.kind) {
-      case 'vaccine':
-        final t = templatesFor(pet.speciesEnum).where((t) => t.key == item.refId).firstOrNull;
-        await showVaccineSheet(context, pet, template: t);
-      case 'medicine':
-        final meds = ref.read(medicinesProvider(pet.id)).value ?? const [];
-        final m = meds.where((m) => m.id == item.refId).firstOrNull;
-        if (m != null && item.at != null) await showDoseActions(context, ref, pet, m, item.at!);
-      case 'refill':
-        context.push('/shop');
-      case 'deworming':
-      case 'flea_tick':
-        await showEventSheet(context, pet, item.kind);
-      default:
-        context.go('/health');
-    }
+/// What tapping a due item does (Health list, Home "Next up"): log the
+/// vaccine, act on the dose, reorder food, or open the event sheet.
+Future<void> openDueItem(BuildContext context, WidgetRef ref, Pet pet, DueItem item) async {
+  switch (item.kind) {
+    case 'vaccine':
+      final t = templatesFor(pet.speciesEnum).where((t) => t.key == item.refId).firstOrNull;
+      await showVaccineSheet(context, pet, template: t);
+    case 'medicine':
+      final meds = ref.read(medicinesProvider(pet.id)).value ?? const [];
+      final m = meds.where((m) => m.id == item.refId).firstOrNull;
+      if (m != null && item.at != null) await showDoseActions(context, ref, pet, m, item.at!);
+    case 'refill':
+      context.push('/shop');
+    case 'deworming':
+    case 'flea_tick':
+      await showEventSheet(context, pet, item.kind);
+    default:
+      context.go('/health');
   }
 }
 

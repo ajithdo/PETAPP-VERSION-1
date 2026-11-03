@@ -101,10 +101,11 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
 
   /// Design 2 top-bar SOS: a soft red pill that fills while held.
   Widget _pill(BuildContext context, PawColors paw, bool easy) {
-    final h = easy ? TapTarget.easy : TapTarget.min;
+    // The pill is 8 px shorter than the tap area around it.
+    final target = easy ? TapTarget.easy : TapTarget.min;
     final radius = BorderRadius.circular(Radii.full);
-    return Container(
-      height: h,
+    final pill = Container(
+      height: target - Space.sm,
       decoration: BoxDecoration(
         color: paw.sosContainer,
         borderRadius: radius,
@@ -112,7 +113,7 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
       ),
       child: ClipRRect(
         borderRadius: radius,
-        child: Stack(children: [
+        child: Stack(alignment: Alignment.center, children: [
           Positioned.fill(
             child: ExcludeSemantics(
               child: AnimatedBuilder(
@@ -144,6 +145,7 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
         ]),
       ),
     );
+    return SizedBox(height: target, child: Center(widthFactor: 1, child: pill));
   }
 
   /// Big round SOS (SOS screen): solid red with a ring that fills while held.

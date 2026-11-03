@@ -244,7 +244,7 @@ class _Reviews extends ConsumerWidget {
                     children: [
                       Icon(Icons.verified_rounded, size: 14, color: context.paw.success),
                       const SizedBox(width: 4),
-                      Text(l.verifiedBooking, style: context.text.labelSmall),
+                      Flexible(child: Text(l.verifiedBooking, style: context.text.labelSmall)),
                     ],
                   ),
                   if (r.text.isNotEmpty) Padding(padding: const EdgeInsets.only(top: 4), child: Text(r.text)),

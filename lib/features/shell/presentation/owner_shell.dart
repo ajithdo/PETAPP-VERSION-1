@@ -145,8 +145,14 @@ class OwnerTopBar extends ConsumerWidget {
         child: phone
             ? Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 Row(children: [
-                  const PawSetuLogo(size: TapTarget.min - Space.sm, withName: true),
-                  const Spacer(),
+                  const Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: PawSetuLogo(size: TapTarget.min - Space.sm, withName: true),
+                    ),
+                  ),
+                  const SizedBox(width: Space.sm),
                   ...actions,
                 ]),
                 const PetSwitcher(),

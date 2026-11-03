@@ -83,7 +83,11 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
                 await batch.commit();
               }
             },
-            child: Text(l.markAllRead),
+            child: ConstrainedBox(
+              // Room for the title and the settings button at large text sizes.
+              constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * StatusChip.maxWidthShare),
+              child: Text(l.markAllRead, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center),
+            ),
           ),
           IconButton(
             tooltip: l.settings,

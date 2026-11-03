@@ -13,7 +13,8 @@ import 'package:flutter/material.dart';
 // - Secondary grey is #6B635D, not #78716C, which was too faint on sand.
 // - Inputs and outlined controls get a darker border (3:1); the warm
 //   #E7E2DA border is kept for cards only.
-// - Amber and green buttons use the darker shades so white text reads.
+// - Amber and green are a little darker so white text reads on them and
+//   they read as text on the sand background too.
 // - The smallest text is 12 px (uppercase labels); everything else is 13 px+.
 
 /// Colours for one brightness. Read with `context.paw`.
@@ -138,7 +139,7 @@ class PawColors extends ThemeExtension<PawColors> {
     actionPressed: Color(0xFF9A4224),
     actionContainer: Color(0xFFFBEDE7),
     onActionContainer: Color(0xFF9A3412),
-    accent: Color(0xFFB45309),
+    accent: Color(0xFFA84D08),
     onAccent: Color(0xFFFFFFFF),
     onAccentContainer: Color(0xFF78350F),
     background: Color(0xFFFAF8F5),
@@ -149,10 +150,10 @@ class PawColors extends ThemeExtension<PawColors> {
     focus: Color(0xFFB9532E),
     textPrimary: Color(0xFF1C1917),
     textSecondary: Color(0xFF6B635D),
-    success: Color(0xFF15803D),
+    success: Color(0xFF157A3A),
     successContainer: Color(0xFFDCFCE7),
     onSuccessContainer: Color(0xFF166534),
-    warning: Color(0xFFB45309),
+    warning: Color(0xFFA84D08),
     warningContainer: Color(0xFFFFFBEB),
     onWarningContainer: Color(0xFF78350F),
     warningBorder: Color(0xFFFDE68A),
@@ -430,7 +431,10 @@ class TypeScale {
   static const label = TypeToken(15, 20, FontWeight.w600);
   static const labelMedium = TypeToken(13, 18, FontWeight.w600);
 
-  /// Uppercase micro labels ("AVAILABLE SLOT"): the smallest text in the app.
+  /// Small labels and tags: the smallest text in the app.
+  static const labelSmall = TypeToken(12, 16, FontWeight.w600);
+
+  /// Uppercase micro labels ("AVAILABLE SLOT").
   static const overline = TypeToken(12, 16, FontWeight.w700, tracking: 0.6);
 
   /// Monospace for times, IDs and doses.
@@ -488,6 +492,20 @@ class IconSizes {
   static const double md = 20;
   static const double lg = 24;
   static const double xl = 32;
+}
+
+/// Fixed sizes of a few components.
+class Sizes {
+  /// Home quick-action tiles (normal and Easy mode).
+  static const double quickTile = 108;
+  static const double quickTileEasy = 140;
+
+  /// Pet photo on the Home pet card.
+  static const double heroAvatar = 72;
+
+  /// Today card progress ring (normal and Easy mode).
+  static const double todayRing = 68;
+  static const double todayRingEasy = 84;
 }
 
 /// Minimum touch target (48 px; 56 px in Easy mode).

@@ -78,7 +78,7 @@ class SectionHeader extends StatelessWidget {
             child: Semantics(header: true, child: Text(title, style: context.text.titleMedium)),
           ),
           if (trailing != null) Text(trailing!, style: context.text.labelMedium?.copyWith(color: context.paw.brand)),
-          if (action != null) TextButton(onPressed: onAction, child: Text(action!)),
+          if (action != null) Flexible(child: TextButton(onPressed: onAction, child: Text(action!, textAlign: TextAlign.end))),
         ],
       ),
     );
@@ -116,10 +116,15 @@ class StatusChip extends StatelessWidget {
     );
   }
 
+  /// A chip never takes more than this share of the screen width, so it fits
+  /// beside a title even at large text sizes (the label then shortens).
+  static const double maxWidthShare = 0.45;
+
   @override
   Widget build(BuildContext context) {
     final c = colorsFor(context.paw, context.colors.primary, tone);
     return Container(
+      constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * maxWidthShare),
       padding: const EdgeInsets.symmetric(horizontal: Space.sm + 2, vertical: Space.xs),
       decoration: BoxDecoration(
         color: c.tint,
@@ -131,7 +136,7 @@ class StatusChip extends StatelessWidget {
           if (icon != null) ...[Icon(icon, size: IconSizes.sm - 2, color: c.text), const SizedBox(width: Space.xs)],
           Flexible(
             child: Text(label,
-                style: context.text.labelMedium?.copyWith(color: c.text, fontWeight: FontWeight.w700),
+                style: context.text.labelSmall?.copyWith(color: c.text, fontWeight: FontWeight.w700),
                 overflow: TextOverflow.ellipsis),
           ),
         ],
@@ -200,7 +205,7 @@ class PawAlertCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final paw = context.paw;
     final (bg, border, solid, onSolid, ink) = switch (tone) {
-      ChipTone.error => (paw.errorContainer, paw.sosBorder, paw.sos, paw.onSos, paw.onErrorContainer),
+      ChipTone.error => (paw.errorContainer, paw.sosBorder, paw.error, context.colors.onError, paw.onErrorContainer),
       ChipTone.success => (paw.successContainer, paw.successContainer, paw.success, paw.surface, paw.onSuccessContainer),
       ChipTone.info => (paw.primaryContainer, paw.primaryContainer, paw.brand, paw.onBrand, paw.onPrimaryContainer),
       _ => (paw.warningContainer, paw.warningBorder, paw.warning, paw.onAccent, paw.onWarningContainer),
@@ -237,6 +242,10 @@ class PawAlertCard extends StatelessWidget {
           const SizedBox(width: Space.md),
           Expanded(child: text),
           if (button != null && wide) ...[const SizedBox(width: Space.md), button],
+          if (button == null && onTap != null) ...[
+            const SizedBox(width: Space.sm),
+            Icon(Icons.chevron_right_rounded, color: paw.textSecondary),
+          ],
         ]),
         if (button != null && !wide) ...[const SizedBox(height: Space.md), button],
       ]),

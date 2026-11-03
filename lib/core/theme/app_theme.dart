@@ -99,7 +99,7 @@ class AppTheme {
       bodySmall: s(TypeScale.bodySmall, ts),
       labelLarge: s(TypeScale.label),
       labelMedium: s(TypeScale.labelMedium),
-      labelSmall: s(TypeScale.overline, ts),
+      labelSmall: s(TypeScale.labelSmall, ts),
     );
     final extraText = PawTextStyles(
       mono: styleFor(TypeScale.mono, locale, tp, family: FontFamilies.mono),
@@ -108,7 +108,6 @@ class AppTheme {
 
     final target = easyMode ? TapTarget.easy : TapTarget.min;
     const pill = StadiumBorder();
-    const buttonPadding = EdgeInsets.symmetric(horizontal: Space.xl - 4, vertical: Space.md);
     final focusRing = BorderSide(color: paw.focus, width: 2);
     final controlSide = BorderSide(color: paw.controlBorder);
     RoundedRectangleBorder rounded(double r, [BorderSide side = BorderSide.none]) =>
@@ -163,8 +162,8 @@ class AppTheme {
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
+          // Padding is left to Material, which narrows it as text grows.
           minimumSize: WidgetStatePropertyAll(Size(64, target)),
-          padding: const WidgetStatePropertyAll(buttonPadding),
           shape: const WidgetStatePropertyAll(pill),
           textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
           elevation: const WidgetStatePropertyAll(0),
@@ -183,7 +182,6 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
           minimumSize: WidgetStatePropertyAll(Size(64, target)),
-          padding: const WidgetStatePropertyAll(buttonPadding),
           shape: const WidgetStatePropertyAll(pill),
           textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
           backgroundColor: WidgetStatePropertyAll(paw.surface),
@@ -200,7 +198,6 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
           minimumSize: WidgetStatePropertyAll(Size(TapTarget.min, target)),
-          padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: Space.md)),
           shape: const WidgetStatePropertyAll(pill),
           textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
           foregroundColor: byState(paw.brand, disabled: disabledText),
@@ -212,7 +209,6 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           minimumSize: Size(64, target),
-          padding: buttonPadding,
           shape: pill,
           elevation: 0,
           backgroundColor: paw.surface,

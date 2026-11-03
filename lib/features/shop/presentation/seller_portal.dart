@@ -604,7 +604,7 @@ class _SellerReviews extends ConsumerWidget {
                   for (var i = 0; i < 5; i++) Icon(i < r.rating ? Icons.star_rounded : Icons.star_border_rounded, size: 16, color: context.paw.accent),
                   const SizedBox(width: Space.sm),
                   Expanded(child: Text(r.ownerName, style: context.text.labelLarge)),
-                  Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall),
+                  Flexible(child: Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall, textAlign: TextAlign.end)),
                 ]),
                 Text(products[r.targetId]?.name ?? '', style: context.text.bodySmall),
                 if (r.text.isNotEmpty) Padding(padding: const EdgeInsets.only(top: Space.xs), child: Text(r.text)),

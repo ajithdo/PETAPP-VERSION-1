@@ -130,6 +130,10 @@ class PawIconButton extends StatelessWidget {
         backgroundColor: paw.surface,
         side: BorderSide(color: paw.outline),
         shape: const CircleBorder(),
+        // A 40 px circle with a full 48 px tap area around it.
+        minimumSize: const Size.square(TapTarget.min - Space.sm),
+        fixedSize: const Size.square(TapTarget.min - Space.sm),
+        tapTargetSize: MaterialTapTargetSize.padded,
       ),
       icon: Badge.count(count: n, isLabelVisible: n > 0, child: Icon(icon, size: IconSizes.md + 2)),
     );

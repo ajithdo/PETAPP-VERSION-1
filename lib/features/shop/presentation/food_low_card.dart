@@ -62,9 +62,13 @@ class _FoodLowCard extends ConsumerWidget {
           ),
         ]),
         const SizedBox(height: Space.md),
-        Row(children: [
+        Wrap(
+          alignment: WrapAlignment.spaceBetween,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: Space.sm,
+          runSpacing: Space.sm,
+          children: [
           TextButton(onPressed: () => editFoodPlan(context, ref, pet), child: Text(l.foodEditPortion)),
-          const Spacer(),
           FilledButton.icon(
             onPressed: product.inStock ? () => showQuickReorder(context, ref, product: product, pet: pet) : () => context.push('/shop/product/${product.id}'),
             icon: const Icon(Icons.replay_rounded),

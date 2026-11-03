@@ -20,7 +20,7 @@ void main() {
           if (r < 4.5) low.add('$what ${r.toStringAsFixed(2)}');
         }
 
-        for (final (name, bg) in [('page', p.background), ('card', p.surface)]) {
+        for (final (name, bg) in [('page', p.background), ('card', p.surface), ('sand', p.surfaceSubtle)]) {
           aa(p.textPrimary, bg, 'text on $name');
           aa(p.textSecondary, bg, 'secondary text on $name');
           aa(cs.primary, bg, 'links and text buttons on $name');
@@ -31,6 +31,30 @@ void main() {
             final c = StatusChip.colorsFor(p, cs.primary, tone);
             aa(c.text, Color.alphaBlend(c.tint, bg), '${tone.name} chip on $name');
           }
+        }
+        // Design 2 pairs.
+        aa(p.onAction, p.action, 'coral main buttons');
+        aa(p.onAction, p.actionPressed, 'coral main buttons, pressed');
+        aa(p.onBrand, p.brand, 'brand-teal fills');
+        aa(p.onActionContainer, p.actionContainer, 'text on coral tint');
+        aa(p.onSosContainer, p.sosContainer, 'SOS pill');
+        aa(p.onWarningContainer, p.warningContainer, 'warning alert card');
+        aa(p.onSuccessContainer, p.successContainer, 'success alert card');
+        aa(p.onErrorContainer, p.errorContainer, 'error alert card');
+        aa(p.textPrimary, p.warningContainer, 'title on warning alert card');
+        aa(p.textPrimary, p.errorContainer, 'title on error alert card');
+        aa(p.onAccentContainer, Color.alphaBlend(p.accent.withValues(alpha: Opacities.chip), p.surface), 'icons on amber tint');
+        aa(p.onAccent, p.warning, 'icon on the warning alert circle');
+        aa(cs.onError, p.error, 'icon on the error alert circle');
+        // Borders of inputs and the focus ring need 3:1 (WCAG 1.4.11).
+        void ui(Color fg, Color bg, String what) {
+          final r = contrastRatio(fg, bg);
+          if (r < 3) low.add('$what ${r.toStringAsFixed(2)}');
+        }
+
+        for (final (name, bg) in [('page', p.background), ('card', p.surface)]) {
+          ui(p.controlBorder, bg, 'input border on $name');
+          ui(p.focus, bg, 'focus ring on $name');
         }
         aa(cs.onPrimary, cs.primary, 'filled buttons');
         aa(p.onAccent, p.accent, 'accent buttons');
