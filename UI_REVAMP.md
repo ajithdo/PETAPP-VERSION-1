@@ -1,6 +1,8 @@
 # PawSetu UI revamp: running plan
 
-Branch: `ui-revamp`. Figma file: [PawSetu – Design System v2](https://www.figma.com/design/RdduLVvn2mYCDQjCcIMBg8), page **"PetSetu v2"**.
+Branch: `ui-revamp`.
+
+> **Owner instruction, 3 Nov 2026: "Don't consider the Figma designs."** The Figma file and the design-system proposal in section 2 below are **not used** for anything. Design 2 is the owner's Stitch design in `docs/design-2/`. Figma steps are dropped from this work. The Figma file still exists, unused: [PawSetu – Design System v2](https://www.figma.com/design/RdduLVvn2mYCDQjCcIMBg8). It should only be deleted if the owner asks.
 
 PawSetu is an all-in-one pet care app for pet parents in India: health and vaccines, daily routines, vet and grooming bookings, a pet shop and emergency help, in English, Hindi and Telugu.
 
@@ -9,7 +11,7 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 **Names we use (set by the owner, 3 Nov 2026):**
 - **Design 1** is the look the app has today: the code on branch `claude/inspiring-lovelace-1eo1xz` at commit `97c1346`. The Netlify demo shows the same look if it was last published from this code (not checked). The screenshots in `docs/ui-revamp/before/` are Design 1. To get Design 1 back at any time, use the app code from that commit.
 - **Design 2** is the design the owner made in Google Stitch and shared on 3 Nov 2026. The files, pictures and review are in `docs/design-2/` (see `docs/design-2/REVIEW.md`). It is **not in the app yet**. Build it only when the owner says go, on its own branch, keeping Design 1 safe.
-- The design system proposed in this plan (Figma page "PetSetu v2", Foundations frame) is **not** Design 2. It is only a proposal and is on hold.
+- The design system proposed in section 2 of this plan (and its Figma board) is **not** Design 2 and is **dropped**. Do not use it.
 - The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is neither Design 1 nor Design 2.
 
 **Design 1 is the permanent backup (owner's rule, 3 Nov 2026).** The owner is making a new design (Design 2). If Design 2 turns out worse and the owner says "go back to Design 1", the app must return to Design 1 and work fully, with no errors.
@@ -23,11 +25,12 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 | Step | State |
 |---|---|
 | 1. Audit (read-only) | ✅ Done 3 Nov 2026 |
-| 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ✅ Proposed 3 Nov 2026: [Foundations frame](https://www.figma.com/design/RdduLVvn2mYCDQjCcIMBg8?node-id=2-2) (node `2:2` on page `1:2` "PetSetu v2"). It is drawn as plain frames; real Figma variables, text styles and components come in step 3. **On hold:** the owner is making their own Design 2 |
-| 3. Build the foundation (one token file, shared components, Figma variables/styles/components) | ⏸ Not started. The owner said: do not implement in the app until they say so |
+| 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ❌ Dropped 3 Nov 2026: the owner said not to consider the Figma designs. Replaced by the owner's Design 2 (`docs/design-2/`) |
+| 2b. Review of the owner's Design 2 | ✅ Done 3 Nov 2026: `docs/design-2/REVIEW.md`. Waiting for the owner's answers and "go" |
+| 3. Build the foundation from Design 2 (one token file, shared components; no Figma) | ⏸ Not started. The owner said: do not implement in the app until they say so |
 | 4. Redesign screen by screen | ⏸ Not started. Stop after the first screen for a before/after check |
 
-**Rules for this work:** UI/UX only (no business logic, API calls, data models or routing). Commit after each screen. In Figma, only add to the "PetSetu v2" page. Ask before adding any library, font or tool. Keep features and content; suggest copy and flow changes in the list at the bottom instead of making them.
+**Rules for this work:** UI/UX only (no business logic, API calls, data models or routing). Commit after each screen. No Figma work (owner, 3 Nov 2026). Ask before adding any library, font or tool. Keep features and content; suggest copy and flow changes in the list at the bottom instead of making them.
 
 **Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`) and chose to keep the current design (Design 1). This proposal keeps that look (teal brand, the logo, Plus Jakarta Sans, a warm off-white page) and makes it consistent. It is not a new visual direction.
 
@@ -128,7 +131,7 @@ Also noted:
 
 ---
 
-## 2. Proposal (waiting for approval)
+## 2. Proposal (DROPPED: owner said not to consider it; kept only as a record)
 
 ### Colour
 One brand colour (the current teal) with a full tint scale, one neutral scale, and status colours. Apricot stays only as a small **highlight** because it is in the logo: streaks, birthdays, offers. It is never used for text, buttons or card backgrounds.
@@ -229,9 +232,9 @@ See the checklist below.
 
 ## 3. Screen checklist
 
-Tick a screen when it is rebuilt with shared components and tokens, its loading/empty/error states are covered, it has been checked at 360/390 px and desktop in light/dark, English/Telugu and Easy mode, it has been added to Figma, and it is committed with before/after screenshots.
+Tick a screen when it is rebuilt with shared components and tokens, its loading/empty/error states are covered, it has been checked at 360/390 px and desktop in light/dark, English/Telugu and Easy mode, and it is committed with before/after screenshots.
 
-- [ ] 0. Foundation: one token file, shared components, Figma variables/styles/components
+- [ ] 0. Foundation: one token file (Design 2 values), shared components
 - [ ] 1. Home (pet parent) **← stop here for a before/after check**
 - [ ] 2. Today and routine: Today card, quick log sheet, routine screen, walk tracker
 - [ ] 3. Health tab and its sheets (vaccines, medicines, deworming, vet visits, weight, symptoms), medical card
@@ -248,7 +251,7 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [ ] 14. Expenses, Plus, refer a friend, privacy, help and complaints
 - [ ] 15. Partner portal and seller portal
 - [ ] 16. Admin panel
-- [ ] 17. Final sweep: hard-coded-value search is clean, Figma matches code, before/after summary
+- [ ] 17. Final sweep: hard-coded-value search is clean, Design 1 still restorable, before/after summary
 
 ---
 
