@@ -13,11 +13,15 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 - The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is neither Design 1 nor Design 2.
 
 **Owner requirement for Design 2 (3 Nov 2026):** when Design 2 is built into the app, Design 1 must stay available, and the app must work fully in whichever design is selected. Planned approach (not built yet; build only when the owner says go):
-- A "Design" choice (Design 1 / Design 2), saved on the device like the light/dark choice in Settings → Appearance (`lib/core/settings/settings_controller.dart`). It switches instantly, with no restart.
+- A "Design" choice (Design 1 / Design 2), saved on the device the same way as the light/dark choice (`lib/core/settings/settings_controller.dart`). It switches instantly, with no restart.
 - Design 1's look is kept as it is today. Design 2 is added next to it. Features, data, navigation and text are shared, so both designs show the same content and work with the same data.
 - Checks before any release: automated tests open every main screen in both designs (light and dark; English, Hindi and Telugu), plus `flutter analyze` and the existing tests. A change is only done when both designs pass.
 - If Design 2 changes only the look (colours, fonts, shapes, buttons, cards), one switch covers the whole app. If it changes a screen's layout, that screen needs two versions, and new features must be built for both designs.
-- Still to decide with the owner: who can switch (every user in Settings, or only the owner/admin), and which design is the default.
+- **Decided by the owner (3 Nov 2026):**
+  - **Only the admin can switch.** The choice goes in Admin → Settings, not in the pet parent's Settings. Normal users never see it.
+  - The switch is a **preview tool**, saved on the admin's own device or browser. It does not change the app for anyone else. To see a design across the whole app, the admin picks it, then signs in as a demo pet parent in the same browser.
+  - **Everyone sees Design 1 by default** (what the app has today).
+  - When the owner picks the final design, it becomes the design for everyone. Then the other design and the switch can be removed, but only after asking the owner.
 
 ## Status
 
