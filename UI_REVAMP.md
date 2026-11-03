@@ -8,7 +8,8 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 
 **Names we use (set by the owner, 3 Nov 2026):**
 - **Design 1** is the look the app has today: the code on branch `claude/inspiring-lovelace-1eo1xz` at commit `97c1346`. The Netlify demo shows the same look if it was last published from this code (not checked). The screenshots in `docs/ui-revamp/before/` are Design 1. To get Design 1 back at any time, use the app code from that commit.
-- **Design 2** is the new design system proposed in this plan (Figma page "PetSetu v2"). It is not in the app yet.
+- **Design 2** is the design the owner is making themselves (started 3 Nov 2026). It is not in the app yet. Wait for the owner to share it.
+- The design system proposed in this plan (Figma page "PetSetu v2", Foundations frame) is **not** Design 2. It is only a proposal and is on hold.
 - The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is neither Design 1 nor Design 2.
 
 ## Status
@@ -16,13 +17,13 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 | Step | State |
 |---|---|
 | 1. Audit (read-only) | ✅ Done 3 Nov 2026 |
-| 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ✅ Proposed 3 Nov 2026: [Foundations frame](https://www.figma.com/design/RdduLVvn2mYCDQjCcIMBg8?node-id=2-2) (node `2:2` on page `1:2` "PetSetu v2"). It is drawn as plain frames; real Figma variables, text styles and components come in step 3. **Waiting for the owner's go-ahead** |
+| 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ✅ Proposed 3 Nov 2026: [Foundations frame](https://www.figma.com/design/RdduLVvn2mYCDQjCcIMBg8?node-id=2-2) (node `2:2` on page `1:2` "PetSetu v2"). It is drawn as plain frames; real Figma variables, text styles and components come in step 3. **On hold:** the owner is making their own Design 2 |
 | 3. Build the foundation (one token file, shared components, Figma variables/styles/components) | ⏸ Not started. The owner said: do not implement in the app until they say so |
 | 4. Redesign screen by screen | ⏸ Not started. Stop after the first screen for a before/after check |
 
 **Rules for this work:** UI/UX only (no business logic, API calls, data models or routing). Commit after each screen. In Figma, only add to the "PetSetu v2" page. Ask before adding any library, font or tool. Keep features and content; suggest copy and flow changes in the list at the bottom instead of making them.
 
-**Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`) and chose to keep the current design (Design 1). Design 2 keeps that look (teal brand, the logo, Plus Jakarta Sans, a warm off-white page) and makes it consistent. It is not a new visual direction.
+**Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`) and chose to keep the current design (Design 1). This proposal keeps that look (teal brand, the logo, Plus Jakarta Sans, a warm off-white page) and makes it consistent. It is not a new visual direction.
 
 ---
 
