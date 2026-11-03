@@ -1,0 +1,2007 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>PawSetu Warm Clinical Redesign</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Review copy of the PawSetu redesign: live-site audit, DESIGN.md system, interactive mock-ups and speed plan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Telugu:wght@400;600&display=swap">
+<style>
+/* Layout: one 1240px reading column; the Screens section widens to 1440px so each
+   screen shows a real-size phone (375px) beside a scaled 1440px desktop rendered
+   from the same markup with container queries. */
+:root {
+  --canvas: #FAF8F5; --surface: #FFFFFF; --sand: #F3EFEA; --line: #E7E2DA; --line-strong: #D9D2C7;
+  --ink: #23201C; --ink-2: #6B645B;
+  --coral: #E05A47; --cta: #C4452F; --cta-hover: #B03C28; --on-cta: #FFFFFF; --coral-text: #B03C28; --coral-tint: #FCEBE7;
+  --teal: #1F4E46; --teal-deep: #1F4E46; --sage: #E6F0ED; --sage-line: #CFE0DA; --on-teal: #FFFFFF;
+  --amber: #D97706; --amber-text: #92400E; --amber-tint: #FDF1DF;
+  --emerald: #15803D; --emerald-text: #166534; --emerald-tint: #E7F4EC;
+  --crimson: #DC2626; --crimson-text: #B91C1C; --crimson-tint: #FDECEC; --on-crimson: #FFFFFF;
+  --tag-amber: #F4A261; --tag-lavender: #9B8AFB;
+  --shadow: 0 4px 20px -2px rgba(24, 24, 27, 0.05);
+  --shadow-float: 0 12px 32px -8px rgba(24, 24, 27, 0.14);
+  --glass: rgba(250, 248, 245, 0.82); --glass-surface: rgba(255, 255, 255, 0.84); --scrim: rgba(35, 32, 28, 0.36);
+  --map-road: #FFFFFF; --map-block: #ECE6DC; --map-major: #F5D5C6; --map-park: #DDEAE0; --map-water: #D7E6EC;
+  --skel-a: #EFEAE3; --skel-b: #F9F6F2;
+  --code-bg: #F3EFEA;
+  --f-display: "Plus Jakarta Sans", "Noto Sans Devanagari", "Noto Sans Telugu", system-ui, sans-serif;
+  --f-body: "DM Sans", "Noto Sans Devanagari", "Noto Sans Telugu", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --canvas: #121316; --surface: #1B1C20; --sand: #26272C; --line: #303238; --line-strong: #3C3E45;
+    --ink: #F2EEE8; --ink-2: #ABA59C;
+    --coral: #F07A66; --cta: #EE6E5A; --cta-hover: #F4826F; --on-cta: #1A0C08; --coral-text: #F08A78; --coral-tint: #3A1E19;
+    --teal: #8FD1C1; --teal-deep: #1F4E46; --sage: #173A33; --sage-line: #24524A; --on-teal: #FFFFFF;
+    --amber: #F5B041; --amber-text: #F5C070; --amber-tint: #3A2A12;
+    --emerald: #5BD68A; --emerald-text: #86E0A6; --emerald-tint: #15301F;
+    --crimson: #DC2626; --crimson-text: #FCA5A5; --crimson-tint: #3A1717; --on-crimson: #FFFFFF;
+    --shadow: none; --shadow-float: 0 12px 32px -8px rgba(0, 0, 0, 0.55);
+    --glass: rgba(18, 19, 22, 0.82); --glass-surface: rgba(27, 28, 32, 0.86); --scrim: rgba(0, 0, 0, 0.55);
+    --map-road: #2B2D33; --map-block: #202126; --map-major: #4A2C25; --map-park: #1B2E28; --map-water: #18272F;
+    --skel-a: #222328; --skel-b: #2C2D33;
+    --code-bg: #1B1C20;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --canvas: #121316; --surface: #1B1C20; --sand: #26272C; --line: #303238; --line-strong: #3C3E45;
+  --ink: #F2EEE8; --ink-2: #ABA59C;
+  --coral: #F07A66; --cta: #EE6E5A; --cta-hover: #F4826F; --on-cta: #1A0C08; --coral-text: #F08A78; --coral-tint: #3A1E19;
+  --teal: #8FD1C1; --teal-deep: #1F4E46; --sage: #173A33; --sage-line: #24524A; --on-teal: #FFFFFF;
+  --amber: #F5B041; --amber-text: #F5C070; --amber-tint: #3A2A12;
+  --emerald: #5BD68A; --emerald-text: #86E0A6; --emerald-tint: #15301F;
+  --crimson: #DC2626; --crimson-text: #FCA5A5; --crimson-tint: #3A1717; --on-crimson: #FFFFFF;
+  --shadow: none; --shadow-float: 0 12px 32px -8px rgba(0, 0, 0, 0.55);
+  --glass: rgba(18, 19, 22, 0.82); --glass-surface: rgba(27, 28, 32, 0.86); --scrim: rgba(0, 0, 0, 0.55);
+  --map-road: #2B2D33; --map-block: #202126; --map-major: #4A2C25; --map-park: #1B2E28; --map-water: #18272F;
+  --skel-a: #222328; --skel-b: #2C2D33;
+  --code-bg: #1B1C20;
+  color-scheme: dark;
+}
+
+/* ---------- Page ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--canvas); color: var(--ink); font: 400 16px/1.55 var(--f-body); font-optical-sizing: auto; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--glass); }
+::selection { background: var(--coral-tint); color: var(--ink); }
+a { color: var(--coral-text); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; border-radius: 6px; }
+h1, h2, h3, h4 { font-family: var(--f-display); letter-spacing: -0.02em; text-wrap: balance; margin: 0; overflow-wrap: break-word; min-width: 0; }
+p { margin: 0; }
+.mono, code, pre, kbd { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.num { font-variant-numeric: tabular-nums; }
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap-wide { max-width: 1480px; }
+.wrap-wide > .sec-h, .wrap-wide .scr-intro { margin-inline-start: max(0px, calc((100% - 1208px) / 2)); }
+.loc-t .city { display: none; }
+@container app (min-width: 768px) { .loc-t .city { display: inline; } }
+.muted { color: var(--ink-2); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.pg-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--glass); backdrop-filter: blur(14px) saturate(1.3); -webkit-backdrop-filter: blur(14px) saturate(1.3); border-bottom: 1px solid var(--line); }
+.pg-head .wrap { display: flex; align-items: center; gap: 16px; min-height: 60px; padding-block: 8px; flex-wrap: wrap; }
+.pg-brand { display: flex; align-items: center; gap: 10px; font: 700 17px/1 var(--f-display); letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+.pg-brand small { font: 500 14px/1 var(--f-body); color: var(--ink-2); letter-spacing: 0; }
+.pg-nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
+.pg-nav a { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: 14px; padding: 8px 10px; border-radius: 9999px; transition: background-color .2s var(--ease), color .2s var(--ease); }
+.pg-nav a:hover { background: var(--sand); color: var(--ink); }
+.seg { display: inline-flex; padding: 3px; background: var(--sand); border: 1px solid var(--line); border-radius: 9999px; gap: 2px; }
+.seg button { appearance: none; border: 0; background: transparent; color: var(--ink-2); font: 500 13px/1 var(--f-body); padding: 8px 12px; border-radius: 9999px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; min-height: 32px; transition: background-color .2s var(--ease), color .2s var(--ease); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+.seg .i { width: 16px; height: 16px; }
+@media (max-width: 720px) { .pg-nav { display: none; } .seg-wrap { margin-left: auto; } }
+@media (max-width: 560px) { .seg .lbl { display: none; } .seg button { padding: 8px 10px; } .pg-brand small { display: none; } .pg-head .wrap { flex-wrap: nowrap; } }
+
+.sec { padding-block: 72px; border-top: 1px solid var(--line); }
+.sec:first-of-type { border-top: 0; }
+.sec-h { display: grid; gap: 12px; margin-bottom: 36px; max-width: 760px; }
+.sec-h h2 { font-size: clamp(26px, 3.2vw, 34px); line-height: 1.15; font-weight: 700; }
+.lede { font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 64ch; }
+.sub-h { font-size: 21px; line-height: 1.25; font-weight: 700; margin: 44px 0 14px; }
+.sub-h:first-child { margin-top: 0; }
+.prose { max-width: 68ch; display: grid; gap: 12px; }
+
+.hero { padding-block: 56px 48px; display: grid; gap: 20px; }
+.hero h1 { font-size: clamp(34px, 5vw, 54px); line-height: 1.05; font-weight: 800; letter-spacing: -0.03em; max-width: 16ch; }
+.hero .lede { font-size: 19px; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.chip-note { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 9999px; background: var(--surface); border: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+.chip-note .i { width: 16px; height: 16px; color: var(--teal); }
+.chip-note.warn .i { color: var(--amber); }
+
+/* Tables */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 13px 16px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font-weight: 600; font-size: 13px; color: var(--ink-2); background: var(--sand); }
+td.r, th.r { text-align: right; }
+td .mono { font-size: 13.5px; }
+.tbl-min { min-width: 680px; }
+.score { font: 600 15px/1 var(--f-mono); }
+
+/* Severity marks */
+.sev { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 24px; padding: 0 8px; border-radius: 9999px; font: 600 12.5px/1 var(--f-mono); }
+.sev.p0 { background: var(--crimson-tint); color: var(--crimson-text); }
+.sev.p1 { background: var(--amber-tint); color: var(--amber-text); }
+.sev.p2 { background: var(--sand); color: var(--ink-2); }
+
+/* Screenshots */
+.shots { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.shots.phone { grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
+.shot { margin: 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.shot img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: var(--sand); }
+.shots:not(.phone) .shot img { aspect-ratio: 1200 / 750; object-fit: cover; object-position: top; }
+.shots.phone .shot img { aspect-ratio: 375 / 812; object-fit: cover; object-position: top; }
+.shot figcaption { font-size: 14px; color: var(--ink-2); line-height: 1.45; }
+.shot figcaption b { color: var(--ink); font-weight: 600; }
+
+/* Findings */
+.findings { display: grid; gap: 10px; }
+.finding { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.finding .sev { grid-row: span 2; margin-top: 2px; }
+.finding h4 { font: 600 16px/1.4 var(--f-body); letter-spacing: 0; }
+.finding p { font-size: 14.5px; color: var(--ink-2); }
+.finding code { font-size: 13px; background: var(--sand); padding: 1px 5px; border-radius: 5px; color: var(--ink); overflow-wrap: anywhere; }
+.two-col { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 980px) { .two-col { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+
+/* System: swatches */
+.sw-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.sw { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; align-items: center; padding: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.sw-chip { height: 56px; border-radius: 10px; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 1px solid var(--line); }
+.sw-chip span { display: block; }
+.sw b { display: block; font: 600 14.5px/1.3 var(--f-body); }
+.sw .mono { font-size: 12.5px; color: var(--ink-2); }
+.sw p { font-size: 13.5px; color: var(--ink-2); line-height: 1.4; }
+.sw-group { font: 600 15px/1.3 var(--f-body); margin: 24px 0 10px; color: var(--ink); }
+.sw-group:first-child { margin-top: 0; }
+
+.decision { display: grid; gap: 16px; padding: 20px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); margin-top: 24px; }
+.decision h3 { font-size: 19px; }
+.opts { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.opt { display: grid; gap: 10px; padding: 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--canvas); align-content: start; }
+.opt.rec { border-color: var(--coral); }
+.opt-h { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.opt-h b { font-weight: 600; }
+.ratio { font: 600 13px/1 var(--f-mono); padding: 5px 8px; border-radius: 9999px; }
+.ratio.pass { background: var(--emerald-tint); color: var(--emerald-text); }
+.ratio.fail { background: var(--crimson-tint); color: var(--crimson-text); }
+.opt p { font-size: 14px; color: var(--ink-2); }
+.demo-btn { height: 48px; border-radius: 12px; border: 0; font: 600 16px/1 var(--f-body); display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 20px; width: 100%; }
+
+/* Type specimen */
+.type-list { display: grid; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); overflow: hidden; }
+.type-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 16px 18px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.type-row:last-child { border-bottom: 0; }
+.type-row .meta { font: 500 12.5px/1.4 var(--f-mono); color: var(--ink-2); }
+@media (max-width: 560px) { .type-row { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+
+.tokens-row { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.panel { padding: 18px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); display: grid; gap: 14px; align-content: start; min-width: 0; }
+.panel h3 { font-size: 17px; }
+.space-bars { display: grid; gap: 6px; }
+.space-bars div { display: grid; grid-template-columns: 36px minmax(0, 1fr); align-items: center; gap: 10px; font: 500 12.5px/1 var(--f-mono); color: var(--ink-2); }
+.space-bars i { display: block; height: 10px; border-radius: 3px; background: var(--coral-tint); border: 1px solid var(--coral); }
+.radii { display: flex; flex-wrap: wrap; gap: 10px; }
+.radii div { width: 64px; height: 52px; background: var(--sand); border: 1px solid var(--line-strong); display: grid; place-items: end start; padding: 6px; font: 500 11.5px/1 var(--f-mono); color: var(--ink-2); }
+.elev { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+.elev div { height: 72px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); display: grid; place-items: center; font-size: 13px; color: var(--ink-2); text-align: center; padding: 6px; }
+.elev .e1 { box-shadow: var(--shadow); }
+.elev .e2 { box-shadow: var(--shadow-float); }
+
+.comp-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+.state-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.state-row figure { margin: 0; display: grid; gap: 6px; justify-items: start; }
+.state-row figcaption { font: 500 12px/1 var(--f-mono); color: var(--ink-2); }
+
+.code-block { position: relative; border: 1px solid var(--line); border-radius: 16px; background: var(--code-bg); overflow: hidden; }
+.code-block pre { margin: 0; padding: 18px; overflow: auto; max-height: 560px; font-size: 12.5px; line-height: 1.6; color: var(--ink); tab-size: 2; }
+.code-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px 10px 18px; border-bottom: 1px solid var(--line); background: var(--surface); font: 500 13px/1.3 var(--f-mono); color: var(--ink-2); flex-wrap: wrap; }
+.copy { appearance: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 13px/1 var(--f-body); padding: 8px 12px; border-radius: 9999px; cursor: pointer; display: inline-flex; gap: 6px; align-items: center; min-height: 36px; }
+.copy:hover { background: var(--sand); }
+.copy .i { width: 15px; height: 15px; }
+details.md { margin-top: 20px; }
+details.md > summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; padding: 10px 14px; border-radius: 9999px; border: 1px solid var(--line); background: var(--surface); }
+details.md > summary::-webkit-details-marker { display: none; }
+details.md > summary .i { transition: transform .2s var(--ease); width: 18px; height: 18px; }
+details.md[open] > summary .i { transform: rotate(90deg); }
+details.md[open] > summary { margin-bottom: 14px; }
+
+/* Screens stage */
+.scr-block { display: grid; gap: 18px; margin-bottom: 72px; }
+.scr-block:last-child { margin-bottom: 0; }
+.scr-intro { display: grid; gap: 8px; max-width: 760px; }
+.scr-intro h3 { font-size: 24px; line-height: 1.2; }
+.try { display: flex; gap: 8px; align-items: flex-start; font-size: 15px; color: var(--ink-2); }
+.try .i { width: 18px; height: 18px; color: var(--coral); flex: none; margin-top: 2px; }
+.stage { display: grid; gap: 28px; align-items: start; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1100px) { .stage { grid-template-columns: 377px minmax(0, 1fr); } }
+.dev { margin: 0; display: grid; gap: 10px; min-width: 0; }
+.dev-phone { width: 100%; max-width: 377px; justify-self: center; }
+@media (min-width: 1100px) { .dev-phone { justify-self: start; } }
+.dev figcaption { font: 500 12.5px/1.3 var(--f-mono); color: var(--ink-2); display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.scaler { position: relative; width: 100%; overflow: hidden; }
+.scaler > .screen { position: absolute; top: 0; left: 0; transform-origin: 0 0; transform: scale(var(--s, 1)); }
+.screen { background: var(--canvas); border: 1px solid var(--line-strong); overflow: hidden; box-shadow: var(--shadow-float); }
+.dev-phone .screen { width: 377px; height: 814px; border-radius: 30px; }
+.dev-desk .screen { width: 1442px; height: 902px; border-radius: 14px; }
+
+/* Speed section */
+.speed-grid { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 1000px) { .speed-grid { grid-template-columns: 377px minmax(0, 1fr); } }
+.state-panels { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); align-items: start; }
+.state-panels .panel { gap: 12px; }
+.state-panels h4 { font: 600 14px/1.3 var(--f-body); color: var(--ink-2); letter-spacing: 0; }
+.replay { justify-self: start; }
+
+/* Plan */
+.steps { counter-reset: s; display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 4px 12px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.steps li::before { content: counter(s); grid-row: span 2; width: 28px; height: 28px; border-radius: 50%; background: var(--sand); display: grid; place-items: center; font: 600 13px/1 var(--f-mono); color: var(--ink); }
+.steps b { font-weight: 600; }
+.steps p { font-size: 14.5px; color: var(--ink-2); }
+.steps code, .prose code, td code { font-size: 12.5px; background: var(--sand); padding: 1px 5px; border-radius: 5px; overflow-wrap: anywhere; }
+.asks { display: grid; gap: 10px; }
+.ask { padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); display: grid; gap: 4px; }
+.ask b { font-weight: 600; }
+.ask p { font-size: 14.5px; color: var(--ink-2); }
+.pg-foot { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 14px; }
+.pg-foot .wrap { display: grid; gap: 6px; }
+
+/* ================= PawSetu app mock-ups ================= */
+.i { width: 20px; height: 20px; flex: none; display: inline-block; vertical-align: middle; }
+.app { container: app / inline-size; position: relative; height: 100%; width: 100%; background: var(--canvas); color: var(--ink); font: 400 16px/1.5 var(--f-body); overflow: hidden; isolation: isolate; }
+:where(.app) :where(button, input, select) { font: inherit; color: inherit; }
+.app h1, .app h2, .app h3, .app h4 { font-family: var(--f-display); letter-spacing: -0.02em; }
+.shell { display: grid; grid-template-columns: minmax(0, 1fr); height: 100%; }
+.side { display: none; }
+.main { height: 100%; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+.top { position: sticky; top: 0; z-index: 8; background: var(--glass); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3); border-bottom: 1px solid transparent; transition: border-color .2s var(--ease); }
+.main.scrolled .top { border-bottom-color: var(--line); }
+.top-in { display: flex; align-items: center; gap: 6px; padding: 8px 12px 8px 16px; min-height: 60px; }
+.loc { appearance: none; border: 0; background: transparent; display: flex; align-items: center; gap: 8px; padding: 6px 10px 6px 6px; margin-left: -6px; border-radius: 12px; cursor: pointer; min-height: 48px; text-align: left; min-width: 0; transition: background-color .2s var(--ease); }
+.loc:hover { background: var(--sand); }
+.loc-pin { width: 36px; height: 36px; border-radius: 12px; background: var(--coral-tint); color: var(--coral-text); display: grid; place-items: center; flex: none; }
+.loc-pin .i { width: 18px; height: 18px; }
+.loc-t { display: grid; min-width: 0; }
+.loc-t small { font-size: 13px; color: var(--ink-2); line-height: 1.2; }
+.loc-t > span { font: 600 15px/1.25 var(--f-body); display: flex; align-items: center; gap: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.loc-t > span .i { width: 16px; height: 16px; }
+.top-act { margin-left: auto; display: flex; align-items: center; gap: 2px; }
+.icon-btn { appearance: none; border: 0; background: transparent; width: 48px; height: 48px; border-radius: 9999px; display: grid; place-items: center; cursor: pointer; position: relative; color: var(--ink); transition: background-color .2s var(--ease); flex: none; }
+.icon-btn:hover { background: var(--sand); }
+.icon-btn .dot { position: absolute; top: 9px; right: 9px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9999px; background: var(--cta); color: var(--on-cta); font: 600 11px/18px var(--f-body); box-shadow: 0 0 0 2px var(--canvas); }
+.sos { appearance: none; border: 0; background: var(--crimson); color: var(--on-crimson); font: 700 13px/1 var(--f-body); letter-spacing: 0.02em; height: 40px; min-width: 52px; padding: 0 12px; border-radius: 9999px; cursor: pointer; margin-left: 4px; }
+.sos:hover { filter: brightness(0.94); }
+.content { padding: 4px 16px 120px; display: grid; gap: 24px; min-width: 0; }
+.tabbar { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 9; height: 68px; display: flex; align-items: center; gap: 2px; padding: 6px; border-radius: 9999px; background: var(--glass-surface); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid var(--line); box-shadow: var(--shadow-float); }
+.tab { appearance: none; border: 0; background: transparent; flex: 1 1 0; min-width: 48px; height: 56px; border-radius: 9999px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--ink-2); font-size: 13px; font-weight: 500; cursor: pointer; transition: background-color .2s var(--ease), color .2s var(--ease); }
+.tab .i { width: 22px; height: 22px; }
+.tab.on { background: var(--coral-tint); color: var(--coral-text); font-weight: 600; }
+.tab:active { transform: scale(0.97); }
+
+.side-nav { display: grid; gap: 4px; }
+.nav-i { appearance: none; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px; border-radius: 14px; color: var(--ink-2); font-size: 13px; font-weight: 500; cursor: pointer; transition: background-color .2s var(--ease), color .2s var(--ease); text-align: center; }
+.nav-i:hover { background: var(--sand); color: var(--ink); }
+.nav-i.on { background: var(--coral-tint); color: var(--coral-text); font-weight: 600; }
+.nav-i .i { width: 22px; height: 22px; }
+.brand { display: flex; align-items: center; gap: 10px; font: 700 18px/1 var(--f-display); letter-spacing: -0.02em; color: var(--ink); padding: 4px 6px 16px; }
+.brand span { display: none; }
+.side-pets, .side-label { display: none; }
+.side-sos { margin-top: auto; }
+
+@container app (min-width: 768px) {
+  .shell { grid-template-columns: 88px minmax(0, 1fr); }
+  .side { display: flex; flex-direction: column; gap: 6px; padding: 16px 8px; border-right: 1px solid var(--line); background: var(--surface); min-height: 0; }
+  .brand { justify-content: center; }
+  .tabbar { display: none; }
+  .content { padding: 8px 24px 56px; }
+  .top-in { padding: 8px 24px; }
+  .top .sos { display: none; }
+  .side-sos .sos { width: 100%; margin: 0; height: 44px; }
+}
+@container app (min-width: 1200px) {
+  .shell { grid-template-columns: 248px minmax(0, 1fr); }
+  .side { padding: 22px 16px; }
+  .brand { justify-content: flex-start; }
+  .brand span { display: inline; }
+  .nav-i { flex-direction: row; justify-content: flex-start; gap: 12px; padding: 11px 14px; font-size: 15px; }
+  .side-label { display: block; font-size: 13px; color: var(--ink-2); padding: 18px 14px 6px; }
+  .side-pets { display: grid; gap: 2px; }
+  .side-pet { appearance: none; border: 0; background: transparent; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; cursor: pointer; font-size: 15px; font-weight: 500; text-align: left; }
+  .side-pet:hover { background: var(--sand); }
+  .side-pet small { margin-left: auto; color: var(--ink-2); font-size: 13px; font-weight: 400; }
+  .content, .top-in { max-width: 1200px; margin: 0 auto; width: 100%; }
+  .content { padding: 8px 32px 64px; gap: 28px; }
+  .top-in { padding: 10px 32px; }
+}
+
+/* Buttons */
+.btn { appearance: none; border: 1px solid transparent; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 18px; border-radius: 12px; font: 600 15px/1.2 var(--f-body); cursor: pointer; text-decoration: none; transition: background-color .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease), transform .12s var(--ease), opacity .2s var(--ease); white-space: nowrap; }
+.btn:active { transform: scale(0.98); }
+.btn .i { width: 18px; height: 18px; }
+.btn-cta { background: var(--cta); color: var(--on-cta); }
+.btn-cta:hover, .btn-cta.is-hover { background: var(--cta-hover); }
+.btn-sec { background: var(--surface); color: var(--ink); border-color: var(--line-strong); }
+.btn-sec:hover, .btn-sec.is-hover { background: var(--sand); }
+.btn-quiet { background: transparent; color: var(--coral-text); padding: 0 10px; }
+.btn-quiet:hover, .btn-quiet.is-hover { background: var(--coral-tint); }
+.btn-trust { background: var(--sage); color: var(--teal); border-color: var(--sage-line); }
+.btn-trust:hover { filter: brightness(0.97); }
+.btn-danger { background: var(--crimson); color: var(--on-crimson); }
+.btn-sm { min-height: 40px; padding: 0 14px; font-size: 14px; border-radius: 10px; }
+.btn-block { width: 100%; }
+.btn[disabled], .btn.is-disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+.btn.is-focus { outline: 2px solid var(--coral); outline-offset: 2px; }
+.btn.is-press { transform: scale(0.98); }
+.spin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Badges and pills */
+.badge { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px 0 8px; border-radius: 9999px; font: 600 12.5px/1 var(--f-body); white-space: nowrap; }
+.badge .i { width: 14px; height: 14px; }
+.b-open, .b-done { background: var(--emerald-tint); color: var(--emerald-text); }
+.b-ver, .b-booked { background: var(--sage); color: var(--teal); }
+.b-due, .b-check { background: var(--amber-tint); color: var(--amber-text); }
+.b-up { background: var(--sand); color: var(--ink); }
+.b-ask { background: var(--surface); color: var(--ink-2); border: 1px solid var(--line-strong); }
+.b-sos { background: var(--crimson-tint); color: var(--crimson-text); }
+.pills { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; padding: 4px 16px; margin: 0 -16px; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 28px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 28px), transparent 100%); }
+.pills::-webkit-scrollbar { display: none; }
+.pill { appearance: none; scroll-snap-align: start; flex: none; display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px 0 12px; border-radius: 9999px; border: 1px solid var(--line); background: var(--sand); color: var(--ink); font: 500 14.5px/1 var(--f-body); cursor: pointer; transition: background-color .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease); }
+.pill:hover { border-color: var(--line-strong); }
+.pill .i { width: 18px; height: 18px; color: var(--ink-2); }
+.pill.on { background: var(--coral-tint); border-color: var(--coral); color: var(--coral-text); font-weight: 600; }
+.pill.on .i { color: var(--coral-text); }
+.pill.sos-pill .i { color: var(--crimson-text); }
+
+/* Search */
+.search { display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 8px 0 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line-strong); box-shadow: var(--shadow); transition: border-color .2s var(--ease); }
+.search:focus-within { border-color: var(--coral); outline: 2px solid var(--coral-tint); }
+.search > .i { color: var(--ink-2); }
+.search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: 400 16px/1.3 var(--f-body); color: var(--ink); height: 100%; }
+.search input::placeholder { color: var(--ink-2); }
+.search .icon-btn { width: 44px; height: 44px; border-radius: 10px; background: var(--sand); }
+
+/* Cards */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.sec-head h2 { font-size: 20px; line-height: 1.25; font-weight: 700; }
+.sec-head .btn-quiet { min-height: 40px; font-size: 14px; }
+.greet h1 { font-size: 26px; line-height: 1.15; font-weight: 700; }
+.greet p { color: var(--ink-2); font-size: 15px; margin-top: 4px; }
+
+/* Home bento */
+.home-hero { display: grid; gap: 16px; min-width: 0; }
+.home-top { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); }
+.today { padding: 16px; display: grid; gap: 12px; }
+.today-h { display: flex; align-items: center; gap: 12px; }
+.today-h h3 { font-size: 17px; line-height: 1.3; }
+.today-h p { font-size: 13.5px; color: var(--ink-2); }
+.today-h .badge { margin-left: auto; }
+.checks { display: grid; gap: 2px; }
+.check { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 4px; border-radius: 10px; }
+.check .tick { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--line-strong); display: grid; place-items: center; flex: none; }
+.check.done .tick { background: var(--emerald); border-color: var(--emerald); color: var(--surface); }
+.check .tick .i { width: 14px; height: 14px; }
+.check .lbl { font-weight: 500; }
+.check .prog { margin-left: auto; font: 500 14px/1 var(--f-body); font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.check .icon-btn { width: 40px; height: 40px; background: var(--sand); }
+.next-row { display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 12px; background: var(--amber-tint); }
+.next-row .i { color: var(--amber); }
+.next-row b { font-weight: 600; font-size: 14.5px; display: block; color: var(--ink); }
+.next-row span { font-size: 13.5px; color: var(--amber-text); }
+.feed { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+.cc { overflow: hidden; display: grid; cursor: pointer; transition: border-color .2s var(--ease), box-shadow .2s var(--ease); }
+.cc:hover { border-color: var(--line-strong); box-shadow: var(--shadow-float); }
+.cc-cover { position: relative; aspect-ratio: 16 / 9; background: var(--map-block); }
+.cc-cover .map { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cc-badges { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; gap: 6px; justify-content: space-between; flex-wrap: wrap; }
+.cc-dist { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 4px; height: 28px; padding: 0 10px 0 8px; border-radius: 9999px; background: var(--glass-surface); backdrop-filter: blur(8px); border: 1px solid var(--line); font: 600 13px/1 var(--f-body); }
+.cc-dist .i { width: 14px; height: 14px; color: var(--coral); }
+.cc-body { padding: 14px 16px 16px; display: grid; gap: 10px; }
+.cc-name { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.cc-name h3 { font-size: 17px; line-height: 1.3; font-weight: 700; min-width: 0; }
+.rate { display: inline-flex; align-items: center; gap: 4px; font: 600 14px/1 var(--f-body); white-space: nowrap; }
+.rate .i { width: 15px; height: 15px; fill: currentColor; }
+.rate small { color: var(--ink-2); font-weight: 400; font-size: 13.5px; }
+.cc-area { font-size: 14px; color: var(--ink-2); margin-top: -6px; }
+.cc-slot { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px; background: var(--sand); font-size: 14px; }
+.cc-slot .i { width: 17px; height: 17px; color: var(--ink-2); }
+.cc-slot time, .cc-slot .mono, .cc-slot .val { font: 500 14px/1 var(--f-mono); color: var(--ink); margin-left: auto; }
+.cc-slot .val.plain { font: 500 14px/1 var(--f-body); }
+.cc-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.price { font-size: 14px; color: var(--ink-2); }
+.price b { font: 700 17px/1 var(--f-display); color: var(--ink); letter-spacing: -0.01em; }
+.help { padding: 16px; display: grid; gap: 10px; }
+.help-row { display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 12px; background: var(--sand); }
+.help-row .ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex: none; }
+.help-row .ic.red { background: var(--crimson-tint); color: var(--crimson-text); }
+.help-row .ic.teal { background: var(--sage); color: var(--teal); }
+.help-row b { display: block; font-weight: 600; font-size: 14.5px; }
+.help-row span { font-size: 13.5px; color: var(--ink-2); }
+.visit { padding: 16px; display: grid; gap: 10px; }
+.visit-row { display: flex; gap: 12px; align-items: center; }
+.visit-when { display: grid; place-items: center; width: 56px; height: 60px; border-radius: 12px; background: var(--sage); color: var(--teal); flex: none; }
+.visit-when b { font: 700 20px/1 var(--f-display); }
+.visit-when small { font: 500 12px/1 var(--f-mono); }
+.visit-row h4 { font: 600 15.5px/1.3 var(--f-body); letter-spacing: 0; }
+.visit-row p { font-size: 13.5px; color: var(--ink-2); }
+.visit-row .mono { font-size: 13px; color: var(--ink); }
+.empty { padding: 28px 20px; display: grid; gap: 10px; justify-items: center; text-align: center; border: 1px dashed var(--line-strong); border-radius: 16px; background: var(--surface); }
+.empty .ic { width: 48px; height: 48px; border-radius: 14px; background: var(--sand); display: grid; place-items: center; color: var(--ink-2); }
+.empty b { font: 600 16px/1.3 var(--f-body); }
+.empty p { font-size: 14px; color: var(--ink-2); max-width: 36ch; }
+.errbox { padding: 16px; display: grid; gap: 10px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.errbox .row { display: flex; gap: 10px; align-items: flex-start; }
+.errbox .i { color: var(--crimson-text); margin-top: 2px; }
+.errbox b { font-weight: 600; display: block; }
+.errbox p { font-size: 14px; color: var(--ink-2); }
+.loc-menu { position: absolute; top: 62px; left: 12px; z-index: 12; width: 280px; padding: 6px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-float); display: grid; }
+.loc-menu button { appearance: none; border: 0; background: transparent; display: flex; gap: 10px; align-items: center; min-height: 48px; padding: 0 10px; border-radius: 10px; text-align: left; cursor: pointer; font-size: 15px; }
+.loc-menu button:hover { background: var(--sand); }
+.loc-menu .i { color: var(--ink-2); width: 18px; height: 18px; }
+.loc-menu .on .i:last-child { margin-left: auto; color: var(--coral-text); }
+@container app (min-width: 768px) { .loc-menu { left: 112px; } .feed { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container app (min-width: 1200px) {
+  .loc-menu { left: max(280px, calc(50% - 600px + 124px + 32px)); }
+  .home-top { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: stretch; }
+  .home-hero { padding: 28px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); gap: 18px; align-content: start; }
+  .home-hero .pills { margin: 0; padding: 4px 0; -webkit-mask-image: none; mask-image: none; flex-wrap: wrap; overflow: visible; }
+  .greet h1 { font-size: 32px; }
+  .feed { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .home-bottom { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+}
+.home-bottom { display: grid; gap: 24px; }
+
+/* Clinic page */
+.clinic { display: grid; gap: 24px; min-width: 0; }
+.back { appearance: none; border: 0; background: transparent; display: inline-flex; align-items: center; gap: 6px; color: var(--ink-2); font: 500 14.5px/1 var(--f-body); cursor: pointer; padding: 10px 8px 10px 4px; border-radius: 10px; justify-self: start; min-height: 44px; }
+.back:hover { background: var(--sand); color: var(--ink); }
+.cl-cover { position: relative; margin: -4px -16px 0; aspect-ratio: 16 / 8; background: var(--map-block); overflow: hidden; }
+.cl-cover .map { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cl-cover .cover-note { position: absolute; right: 12px; bottom: 12px; font-size: 12.5px; padding: 6px 10px; border-radius: 9999px; background: var(--glass-surface); border: 1px solid var(--line); color: var(--ink-2); }
+.cl-head { display: grid; gap: 10px; }
+.cl-head h1 { font-size: 26px; line-height: 1.15; font-weight: 700; }
+.cl-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.cl-sub { color: var(--ink-2); font-size: 15px; }
+.cl-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.cl-actions .btn { flex: 1 1 auto; }
+.blk { display: grid; gap: 12px; }
+.blk h2 { font-size: 19px; line-height: 1.25; font-weight: 700; }
+.vets { display: grid; gap: 8px; grid-template-columns: minmax(0, 1fr); }
+.vet { display: flex; gap: 12px; align-items: center; padding: 12px; }
+.vet .ini { width: 44px; height: 44px; border-radius: 50%; background: var(--sage); color: var(--teal); display: grid; place-items: center; font: 600 15px/1 var(--f-display); flex: none; }
+.vet b { display: block; font-weight: 600; font-size: 15px; }
+.vet p { font-size: 13.5px; color: var(--ink-2); line-height: 1.4; }
+.vet .mono { font-size: 12.5px; color: var(--ink-2); }
+.vet .badge { margin-left: auto; }
+.svc { overflow: hidden; }
+.svc-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; padding: 13px 16px; border-bottom: 1px solid var(--line); }
+.svc-row:last-child { border-bottom: 0; }
+.svc-row b { font-weight: 500; }
+.svc-row span { font-size: 13.5px; color: var(--ink-2); }
+.svc-row .p { grid-row: span 2; align-self: center; font: 600 16px/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 6px 12px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); font-size: 14px; }
+.tag .i { width: 16px; height: 16px; color: var(--teal); }
+.loc-card { overflow: hidden; display: grid; }
+.loc-card .mapbox { position: relative; aspect-ratio: 16 / 7; background: var(--map-block); }
+.loc-card .mapbox .map { position: absolute; inset: 0; width: 100%; height: 100%; }
+.loc-card .attr { position: absolute; left: 8px; bottom: 6px; font-size: 11.5px; color: var(--ink-2); background: var(--glass-surface); padding: 2px 6px; border-radius: 6px; }
+.loc-info { padding: 14px 16px; display: grid; gap: 10px; }
+.hours { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; font-size: 14px; }
+.hours dt { color: var(--ink-2); }
+.hours dd { margin: 0; font-family: var(--f-mono); font-size: 13.5px; }
+.rev { padding: 14px 16px; display: grid; gap: 8px; }
+.rev-h { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 14px; }
+.rev-h b { font-weight: 600; }
+.stars { display: inline-flex; color: var(--ink); }
+.stars .i { width: 14px; height: 14px; fill: currentColor; }
+.stars .off { color: var(--line-strong); }
+.rev p { font-size: 15px; }
+.rev .reply { font-size: 14px; color: var(--teal); background: var(--sage); padding: 10px 12px; border-radius: 12px; }
+.cl-left { display: grid; gap: 28px; min-width: 0; }
+.cl-sticky-cta { position: absolute; left: 12px; right: 12px; bottom: 92px; z-index: 9; display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 18px; border-radius: 18px; background: var(--glass-surface); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--line); box-shadow: var(--shadow-float); }
+.cl-sticky-cta .t { display: grid; min-width: 0; }
+.cl-sticky-cta small { font-size: 13px; color: var(--ink-2); }
+.cl-sticky-cta b { font: 600 14.5px/1.3 var(--f-mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cl-sticky-cta .btn { margin-left: auto; }
+.mini-title { display: none; font: 700 16px/1.2 var(--f-display); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.main.past-cover .mini-title { display: block; }
+
+/* Booking panel; a bottom sheet on phones */
+.bp { display: grid; gap: 18px; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); align-content: start; min-width: 0; }
+.bp-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.bp-h h2 { font-size: 20px; line-height: 1.2; font-weight: 700; }
+.bp-h .icon-btn { display: none; }
+.bp-g { display: grid; gap: 10px; min-width: 0; }
+.bp-l { font: 600 14px/1.3 var(--f-body); color: var(--ink); display: flex; justify-content: space-between; gap: 8px; }
+.bp-l small { font-weight: 400; color: var(--ink-2); font-size: 13px; }
+.petpick { display: flex; gap: 8px; flex-wrap: wrap; }
+.pp { appearance: none; display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 16px 0 8px; border-radius: 9999px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font: 600 15px/1 var(--f-body); transition: border-color .2s var(--ease), background-color .2s var(--ease); }
+.pp:hover { border-color: var(--line-strong); }
+.pp.on { border-color: var(--coral); background: var(--coral-tint); color: var(--coral-text); }
+.pp small { font-weight: 400; color: var(--ink-2); font-size: 13px; }
+.svcs { display: grid; gap: 6px; }
+.sv { appearance: none; display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 12px; align-items: center; min-height: 52px; padding: 8px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; text-align: left; transition: border-color .2s var(--ease), background-color .2s var(--ease); }
+.sv:hover { border-color: var(--line-strong); }
+.sv .rd { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--line-strong); display: grid; place-items: center; }
+.sv.on { border-color: var(--coral); background: var(--coral-tint); }
+.sv.on .rd { border-color: var(--cta); }
+.sv.on .rd::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--cta); }
+.sv b { font-weight: 500; display: block; font-size: 15px; }
+.sv .meta { display: block; font: 500 12.5px/1.3 var(--f-mono); color: var(--ink-2); }
+.sv .p { font: 600 15px/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.more { appearance: none; border: 0; background: transparent; color: var(--coral-text); font: 600 14px/1 var(--f-body); cursor: pointer; justify-self: start; padding: 10px 6px; border-radius: 8px; min-height: 40px; }
+.more:hover { background: var(--coral-tint); }
+.days { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; padding: 2px 2px 6px; }
+.days::-webkit-scrollbar { display: none; }
+.day { appearance: none; flex: none; scroll-snap-align: start; width: 68px; min-height: 80px; display: grid; gap: 2px; justify-items: center; align-content: center; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; padding: 8px 4px; transition: border-color .2s var(--ease), background-color .2s var(--ease); }
+.day:hover { border-color: var(--line-strong); }
+.day small { font-size: 12.5px; color: var(--ink-2); font-weight: 500; }
+.day b { font: 700 20px/1.1 var(--f-display); }
+.day span { font: 500 11.5px/1.2 var(--f-mono); color: var(--emerald-text); }
+.day.full span { color: var(--ink-2); }
+.day.on { background: var(--cta); border-color: var(--cta); color: var(--on-cta); }
+.day.on small, .day.on span { color: var(--on-cta); opacity: 0.92; }
+.periods { display: flex; gap: 4px; padding: 3px; border-radius: 12px; background: var(--sand); }
+.per { appearance: none; flex: 1; border: 0; background: transparent; min-height: 44px; border-radius: 9px; cursor: pointer; display: grid; place-items: center; gap: 0; font: 500 13.5px/1.2 var(--f-body); color: var(--ink-2); padding: 4px 2px; transition: background-color .2s var(--ease), color .2s var(--ease); }
+.per small { font: 500 11.5px/1.2 var(--f-mono); }
+.per.on { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); font-weight: 600; }
+.per[disabled] { opacity: 0.45; cursor: default; }
+.slots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.slot { appearance: none; min-height: 44px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--surface); font: 500 13.5px/1 var(--f-mono); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 0 4px; transition: background-color .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease); font-variant-numeric: tabular-nums; }
+.slot:hover { border-color: var(--coral); }
+.slot.on { background: var(--cta); color: var(--on-cta); border-color: var(--cta); }
+.slot.on .i { width: 14px; height: 14px; }
+.slot[disabled] { background: var(--sand); color: var(--ink-2); border-color: transparent; text-decoration: line-through; cursor: not-allowed; }
+.slot-key { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); }
+.slot-key span { display: inline-flex; align-items: center; gap: 6px; }
+.slot-key i { width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--line-strong); background: var(--surface); display: inline-block; }
+.slot-key i.s { background: var(--cta); border-color: var(--cta); }
+.slot-key i.b { background: var(--sand); border-color: transparent; }
+.no-slots { font-size: 14px; color: var(--ink-2); padding: 12px; border-radius: 12px; background: var(--sand); }
+.sel { appearance: none; width: 100%; min-height: 48px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--surface); padding: 0 40px 0 14px; font: 400 15px/1 var(--f-body); color: var(--ink); background-image: linear-gradient(45deg, transparent 50%, var(--ink-2) 50%), linear-gradient(135deg, var(--ink-2) 50%, transparent 50%); background-position: calc(100% - 20px) 21px, calc(100% - 15px) 21px; background-size: 5px 5px; background-repeat: no-repeat; cursor: pointer; }
+.fee { display: grid; gap: 8px; padding: 14px 16px; border-radius: 14px; background: var(--sand); font-size: 14.5px; }
+.fee div { display: flex; justify-content: space-between; gap: 12px; }
+.fee .v { font-variant-numeric: tabular-nums; font-weight: 500; }
+.fee .free { color: var(--emerald-text); font-weight: 600; }
+.fee .tot { border-top: 1px solid var(--line-strong); padding-top: 10px; margin-top: 2px; font-weight: 600; font-size: 16px; }
+.fee .tot .v { font: 700 18px/1 var(--f-display); }
+.pay { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.pay button { appearance: none; min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font: 500 14px/1.2 var(--f-body); transition: border-color .2s var(--ease), background-color .2s var(--ease); }
+.pay button .i { width: 17px; height: 17px; }
+.pay button.on { border-color: var(--coral); background: var(--coral-tint); color: var(--coral-text); font-weight: 600; }
+.fine { font-size: 13px; color: var(--ink-2); text-align: center; }
+.bk-done { display: grid; gap: 16px; justify-items: center; text-align: center; padding: 8px 0 4px; }
+.done-check { width: 72px; height: 72px; border-radius: 50%; background: var(--emerald-tint); display: grid; place-items: center; }
+.done-check svg { width: 40px; height: 40px; }
+.done-check path { fill: none; stroke: var(--emerald); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw .4s .12s var(--ease) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.bk-done h2 { font-size: 22px; line-height: 1.2; }
+.bk-done > p { color: var(--ink-2); font-size: 15px; max-width: 34ch; }
+.sum { width: 100%; display: grid; margin: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-align: left; }
+.sum div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.sum div:last-child { border-bottom: 0; }
+.sum dt { color: var(--ink-2); }
+.sum dd { margin: 0; font-weight: 500; }
+.sum dd.mono { font-size: 14px; }
+.done-acts { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; width: 100%; }
+.done-acts .btn { flex: 1 1 140px; }
+.scrim { display: none; }
+@container app (max-width: 767.98px) {
+  .bp { position: absolute; left: 0; right: 0; bottom: 0; z-index: 11; max-height: 90%; overflow-y: auto; border-radius: 24px 24px 0 0; border-bottom: 0; padding: 8px 16px 24px; transform: translateY(102%); visibility: hidden; transition: transform .28s var(--ease), visibility 0s linear .28s; box-shadow: var(--shadow-float); }
+  .bp::before { content: ""; width: 40px; height: 4px; border-radius: 9999px; background: var(--line-strong); justify-self: center; margin-bottom: 4px; }
+  .bp-h { position: sticky; top: -8px; background: var(--surface); padding: 8px 0; z-index: 1; }
+  .bp-h .icon-btn { display: grid; }
+  .app.sheet-open .bp { transform: translateY(0); visibility: visible; transition: transform .28s var(--ease), visibility 0s; }
+  .app.sheet-open .scrim { display: block; position: absolute; inset: 0; z-index: 10; background: var(--scrim); border: 0; width: 100%; cursor: pointer; }
+}
+@container app (min-width: 768px) {
+  .cl-sticky-cta { display: none; }
+  .cl-cover { margin: 0; border-radius: 20px; aspect-ratio: 16 / 4; border: 1px solid var(--line); }
+  .vets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cl-head h1 { font-size: 32px; }
+}
+@container app (min-width: 1200px) {
+  .clinic { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px; align-items: start; }
+  .clinic > .back, .clinic > .cl-cover { grid-column: 1 / -1; }
+  .bp { position: sticky; top: 84px; max-height: 800px; overflow-y: auto; }
+}
+
+/* Pets and health */
+.petsw { display: flex; gap: 8px; align-items: center; overflow-x: auto; scrollbar-width: none; padding: 4px 2px; }
+.petsw::-webkit-scrollbar { display: none; }
+.ps { appearance: none; flex: none; display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 18px 0 8px; border-radius: 9999px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font: 600 15.5px/1 var(--f-body); transition: border-color .2s var(--ease), background-color .2s var(--ease); }
+.ps:hover { border-color: var(--line-strong); }
+.ps.on { border-color: var(--coral); background: var(--coral-tint); color: var(--coral-text); }
+.ps.add { padding: 0 16px 0 10px; border-style: dashed; color: var(--ink-2); font-weight: 500; }
+.ps.add .i { width: 18px; height: 18px; }
+.ava { --sz: 40px; width: var(--sz); height: var(--sz); border-radius: 50%; background: var(--sand); color: var(--ink); display: grid; place-items: center; flex: none; box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--tag, var(--line-strong)); }
+.ava .i { width: 58%; height: 58%; }
+.ava-amber { --tag: var(--tag-amber); }
+.ava-lavender { --tag: var(--tag-lavender); }
+.pets-grid { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); }
+.pass { position: relative; padding: 20px; border-radius: 20px; background: var(--sage); border: 1px solid var(--sage-line); display: grid; gap: 16px; overflow: hidden; }
+.pass::after { content: ""; position: absolute; right: -60px; top: -70px; width: 220px; height: 160px; border-radius: 50%; border: 10px solid var(--coral); opacity: 0.1; border-bottom-color: transparent; border-left-color: transparent; transform: rotate(-20deg); pointer-events: none; }
+.pass-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pass-top .t { display: flex; align-items: center; gap: 8px; font: 600 13.5px/1 var(--f-body); color: var(--teal); }
+.pass-top .t svg { width: 22px; height: 22px; }
+.pass-id { display: flex; gap: 16px; align-items: center; }
+.pass-id .ava { --sz: 72px; box-shadow: 0 0 0 3px var(--sage), 0 0 0 6px var(--tag); background: var(--surface); }
+.pass-id h2 { font-size: 30px; line-height: 1.1; font-weight: 700; }
+.pass-id p { font-size: 15px; color: var(--ink); opacity: 0.85; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--sage-line); }
+.fact { padding: 12px 0; display: grid; gap: 3px; align-content: start; border-bottom: 1px solid var(--sage-line); min-width: 0; }
+.fact.l { padding-right: 12px; border-right: 1px solid var(--sage-line); }
+.fact.r { padding-left: 14px; }
+.fact.wide { grid-column: 1 / -1; }
+.fact.last { border-bottom: 0; }
+.fact b.sm { font-size: 16px; line-height: 1.3; }
+.fact small { font-size: 13px; color: var(--teal); font-weight: 500; }
+.fact b { font: 700 19px/1.2 var(--f-display); letter-spacing: -0.01em; }
+.fact span { font-size: 13px; color: var(--ink-2); }
+.fact .mono { font: 600 13.5px/1.3 var(--f-mono); letter-spacing: 0; overflow-wrap: anywhere; }
+.fact .chipline { display: flex; align-items: center; gap: 6px; }
+.fact .mini { appearance: none; border: 0; background: transparent; color: var(--teal); width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; cursor: pointer; }
+.fact .mini:hover { background: var(--surface); }
+.fact .mini .i { width: 15px; height: 15px; }
+.spark { width: 100%; max-width: 140px; height: 38px; display: block; margin-top: 4px; }
+.spark .band { fill: var(--surface); opacity: 0.7; }
+.spark polyline { fill: none; stroke: var(--teal); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.spark circle { fill: var(--teal); }
+.pass-acts { display: flex; gap: 8px; flex-wrap: wrap; }
+.pass-acts .btn { flex: 1 1 auto; }
+.pass-vet { font-size: 14px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.pass-vet .i { width: 17px; height: 17px; color: var(--teal); }
+.filt { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 2px; }
+.filt::-webkit-scrollbar { display: none; }
+.filt button { appearance: none; flex: none; min-height: 40px; padding: 0 14px; border-radius: 9999px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font: 500 14px/1 var(--f-body); color: var(--ink-2); transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease); }
+.filt button.on { background: var(--ink); color: var(--canvas); border-color: var(--ink); }
+.tl-sec { display: grid; gap: 10px; }
+.tl-sec h3 { font: 600 15px/1.3 var(--f-body); color: var(--ink-2); letter-spacing: 0; }
+.tl { list-style: none; margin: 0; padding: 0; display: grid; position: relative; }
+.tl::before { content: ""; position: absolute; left: 11px; top: 14px; bottom: 14px; width: 2px; background: var(--line); border-radius: 2px; }
+.tl-i { position: relative; display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 0 14px; padding: 10px 0; }
+.tl-dot { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--canvas); position: relative; z-index: 1; margin-top: 12px; }
+.tl-dot::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--line-strong); box-shadow: 0 0 0 3px var(--canvas); }
+.s-due .tl-dot::after, .s-check .tl-dot::after { background: var(--amber); }
+.s-up .tl-dot::after { background: var(--surface); border: 2px solid var(--amber); width: 8px; height: 8px; }
+.s-booked .tl-dot::after { background: var(--teal); }
+.s-done .tl-dot::after { background: var(--emerald); }
+.s-ask .tl-dot::after { background: var(--surface); border: 2px dashed var(--ink-2); width: 8px; height: 8px; }
+.tl-card { padding: 14px 16px; display: grid; gap: 6px; min-width: 0; }
+.tl-top { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.tl-date { font: 500 13px/1.3 var(--f-mono); color: var(--ink-2); }
+.tl-card h4 { font: 600 16px/1.35 var(--f-body); letter-spacing: 0; }
+.tl-card p { font-size: 14px; color: var(--ink-2); line-height: 1.45; }
+.rx { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; padding: 10px 12px; border-radius: 12px; background: var(--sand); font-size: 13.5px; }
+.rx dt { color: var(--ink-2); }
+.rx dd { margin: 0; font-family: var(--f-mono); font-size: 13px; }
+.tl-acts { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+.tl-acts .btn { min-height: 40px; font-size: 14px; }
+.docs { overflow: hidden; }
+.docs-h { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 16px 6px; }
+.docs-h h3 { font-size: 17px; }
+.doc { display: flex; gap: 12px; align-items: center; padding: 10px 8px 10px 16px; border-top: 1px solid var(--line); }
+.doc:first-of-type { border-top: 0; }
+.doc .ic { width: 38px; height: 38px; border-radius: 10px; background: var(--sand); display: grid; place-items: center; color: var(--ink-2); flex: none; }
+.doc .ic .i { width: 18px; height: 18px; }
+.doc b { display: block; font-weight: 500; font-size: 14.5px; line-height: 1.3; }
+.doc span { font: 500 12.5px/1.3 var(--f-mono); color: var(--ink-2); }
+.doc .icon-btn { margin-left: auto; width: 44px; height: 44px; color: var(--ink-2); }
+@container app (min-width: 1200px) {
+  .pets-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px; align-items: start; }
+  .pets-left { display: grid; gap: 20px; }
+  .tl-i { grid-template-columns: 24px 132px minmax(0, 1fr); }
+  .tl-i .tl-date-col { display: block; padding-top: 16px; }
+  .tl-card .tl-date { display: none; }
+}
+.tl-date-col { display: none; font: 500 13px/1.35 var(--f-mono); color: var(--ink-2); }
+.pets-left { display: grid; gap: 20px; min-width: 0; }
+.pets-right { display: grid; gap: 20px; min-width: 0; }
+
+.toast { position: absolute; left: 50%; bottom: 96px; z-index: 14; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); padding: 12px 16px; border-radius: 14px; background: var(--ink); color: var(--canvas); font-size: 14px; box-shadow: var(--shadow-float); animation: toast-in .2s var(--ease); }
+@container app (min-width: 768px) { .toast { bottom: 24px; } }
+@keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+
+.cc-link { appearance: none; border: 0; background: none; padding: 0; margin: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; letter-spacing: inherit; }
+.cc-link:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.back-btn { display: none; }
+.loc-detail { display: contents; }
+.detail .back-btn { display: grid; margin-left: -8px; }
+.detail .loc-detail { display: none; }
+.mini-title { flex: 1; }
+.detail .content { padding-bottom: 200px; }
+.clinic > .back { display: none; }
+.docs-desk { display: none; }
+@container app (min-width: 768px) {
+  .detail .back-btn { display: none; }
+  .detail .loc-detail { display: contents; }
+  .main.past-cover .mini-title { display: none; }
+  .detail .content { padding-bottom: 56px; }
+  .clinic > .back { display: inline-flex; }
+}
+@container app (min-width: 1200px) { .docs-desk { display: block; } .docs-phone { display: none; } }
+
+/* Map, logo, skeletons */
+.map .m-road { fill: var(--map-road); }
+.map .m-block { fill: var(--map-block); }
+.map .m-park { fill: var(--map-park); }
+.map .m-water { fill: var(--map-water); }
+.map .m-major { fill: none; stroke: var(--map-major); stroke-width: 9; stroke-linecap: round; }
+.map .m-pin { fill: var(--coral); stroke: var(--surface); stroke-width: 2; }
+.map .m-pin-dot { fill: var(--surface); }
+.logo .lg-tile { fill: var(--teal-deep); }
+.logo .lg-arc { fill: none; stroke: var(--coral); stroke-width: 8; stroke-linecap: round; }
+.logo .lg-paw { fill: var(--on-teal); }
+.skel { background: linear-gradient(90deg, var(--skel-a) 0%, var(--skel-b) 45%, var(--skel-a) 90%); background-size: 220% 100%; animation: shimmer 1.5s ease-in-out infinite; border-radius: 10px; }
+@keyframes shimmer { from { background-position: 110% 0; } to { background-position: -110% 0; } }
+.sk-card { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); display: grid; }
+.sk-card .skel.cover { aspect-ratio: 16 / 9; border-radius: 0; }
+.sk-lines { padding: 14px 16px 16px; display: grid; gap: 10px; }
+.boot { position: absolute; inset: 0; z-index: 20; background: var(--canvas); display: grid; grid-template-rows: auto 1fr; transition: opacity .24s var(--ease); }
+.boot.out { opacity: 0; pointer-events: none; }
+.boot-top { display: flex; align-items: center; gap: 10px; padding: 14px 16px; }
+.boot-body { padding: 4px 16px; display: grid; gap: 16px; align-content: start; }
+.boot-tab { position: absolute; left: 12px; right: 12px; bottom: 12px; height: 68px; border-radius: 9999px; background: var(--surface); border: 1px solid var(--line); display: flex; align-items: center; justify-content: space-around; padding: 0 18px; }
+.boot-tab .skel { width: 36px; height: 36px; border-radius: 12px; }
+@media (prefers-reduced-motion: reduce) {
+  .skel, .spin { animation: none; }
+  .done-check path { animation: none; stroke-dashoffset: 0; }
+  .bp, .boot, .toast { transition: none; animation: none; }
+  .btn:active, .tab:active { transform: none; }
+}
+</style>
+
+<header class="pg-head">
+  <div class="wrap">
+    <a class="pg-brand" href="#top" data-jump="top"><span data-logo="28"></span>PawSetu <small>redesign review</small></a>
+    <nav class="pg-nav" aria-label="Sections">
+      <a href="#audit" data-jump="audit">Audit</a>
+      <a href="#system" data-jump="system">System</a>
+      <a href="#screens" data-jump="screens">Screens</a>
+      <a href="#speed" data-jump="speed">Speed</a>
+      <a href="#plan" data-jump="plan">Your decisions</a>
+    </nav>
+    <div class="seg-wrap"><div class="seg" role="group" aria-label="Colour theme">
+      <button type="button" id="th-system" data-theme-set="system" aria-pressed="true" aria-label="Auto theme"><span data-ic="Monitor"></span><span class="lbl">Auto</span></button>
+      <button type="button" id="th-light" data-theme-set="light" aria-pressed="false" aria-label="Light theme"><span data-ic="Sun"></span><span class="lbl">Light</span></button>
+      <button type="button" id="th-dark" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme"><span data-ic="Moon"></span><span class="lbl">Dark</span></button>
+    </div></div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap hero" aria-labelledby="h-hero">
+    <h1 id="h-hero">A calmer, faster PawSetu</h1>
+    <p class="lede">This is a review copy: nothing in the app has changed. It covers what the live demo does today, the proposed design system, working mock-ups of the main journey on a phone and a laptop, and the speed fixes. When you're happy, tell me what to change or say "go" and I'll build it into the app.</p>
+    <div class="hero-meta">
+      <span class="chip-note"><span data-ic="CalendarCheck"></span>Audited 3 Nov 2026 on pawsetu-demo.netlify.app</span>
+      <span class="chip-note"><span data-ic="Monitor"></span>1440 × 900 and 375 × 812</span>
+      <span class="chip-note"><span data-ic="PawPrint"></span>Mock-ups use the demo data: Priya, Bruno and Misty in Indiranagar</span>
+    </div>
+  </section>
+
+  <!-- ============ AUDIT ============ -->
+  <section class="sec" id="audit" aria-labelledby="h-audit">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2 id="h-audit">What the live site does today</h2>
+        <p class="lede">I opened the demo site in Chromium with Playwright, signed in as Priya and went Home, Book, clinic, booking, Bruno's profile and Health, at both sizes. Underneath, the app is solid: shared widgets, colour-contrast tests, three languages. What lets it down is the wait before anything appears, desktop layouts that are stretched phone screens, and booking screens where nothing stands out.</p>
+      </div>
+
+      <h3 class="sub-h">Measured on the live site</h3>
+      <div class="tbl-wrap"><table class="tbl-min">
+        <thead><tr><th scope="col">What</th><th scope="col">Result</th><th scope="col">Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>First visit on a slow phone profile (1.6 Mbps, 150 ms latency, CPU slowed 4×, cache off)</td><td><b class="num">32 s</b> of splash screen</td><td>Most people give up long before this on a mid-range Android phone.</td></tr>
+          <tr><td>Repeat visit, files already cached, no throttling</td><td><b class="num">3.9 s</b> of splash screen</td><td>Still slow on Wi-Fi; the spec asks for under 2 s.</td></tr>
+          <tr><td>Downloaded before the first screen</td><td><b class="num">5.0 MB</b> in 24 files: app code 2.2 MB, CanvasKit engine 1.9 MB</td><td>Everything is fetched before anything is drawn.</td></tr>
+          <tr><td>Fonts at start</td><td><b class="num">15</b> font files, 8 of them Hindi and Telugu (about 580 KB), with English selected</td><td>Hindi and Telugu fonts are only needed after someone switches language.</td></tr>
+          <tr><td>Caching</td><td><code>Cache-Control: max-age=0, must-revalidate</code> on every file</td><td>Every repeat visit asks the server about all files again.</td></tr>
+          <tr><td>Loading screens</td><td>Two in a row: the web splash (96 px logo, bar), then an in-app splash (72 px logo, spinner)</td><td>The logo jumps size and a spinner sits on a blank page.</td></tr>
+          <tr><td>Console</td><td>0 errors, 4 warnings (a WebGL "GPU stall due to ReadPixels")</td><td>Clean.</td></tr>
+          <tr><td>Sideways scrolling at 375 px</td><td>None</td><td>Good.</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="sub-h">Screenshots from the live site</h3>
+      <div class="shots">
+        <figure class="shot"><img src="shots/d-home.jpg" width="1200" height="750" alt="Live Home at 1440 pixels: a sidebar and one long column of white cards" loading="lazy"><figcaption><b>Home, desktop.</b> One long column; the pet card, checklist and next-up cards all carry the same weight. No search.</figcaption></figure>
+        <figure class="shot"><img src="shots/d-clinics.jpg" width="1200" height="750" alt="Live vet finder at 1440 pixels: three clinic rows stretched across the screen" loading="lazy"><figcaption><b>Vet finder, desktop.</b> Cards stretch to 1,170 px with the details in the left third. No next free time, no Book button.</figcaption></figure>
+        <figure class="shot"><img src="shots/d-place.jpg" width="1200" height="750" alt="Live clinic page: pink banner and three full-width buttons stacked" loading="lazy"><figcaption><b>Clinic page.</b> A pink gradient banner, then three stacked full-width buttons compete with "Book now".</figcaption></figure>
+        <figure class="shot"><img src="shots/d-bookflow.jpg" width="1200" height="750" alt="Live booking step 1 of 4 with a long list of services" loading="lazy"><figcaption><b>Booking, step 1 of 4.</b> A long radio list first; times come two steps later. Title and form columns don't line up.</figcaption></figure>
+        <figure class="shot"><img src="shots/d-pet.jpg" width="1200" height="750" alt="Live pet profile for Bruno without the sidebar" loading="lazy"><figcaption><b>Bruno's profile.</b> Opens outside the app frame, so the sidebar disappears.</figcaption></figure>
+        <figure class="shot"><img src="shots/d-book.jpg" width="1200" height="750" alt="Live Book tab with six category tiles" loading="lazy"><figcaption><b>Book tab.</b> Six equal tiles with hard-coded pink, sky and lilac icon colours.</figcaption></figure>
+      </div>
+      <div class="shots phone" style="margin-top:16px">
+        <figure class="shot"><img src="shots/m-home.jpg" width="375" height="812" alt="Live Home on a phone with the Netlify badge covering the Book and Shop tabs" loading="lazy"><figcaption><b>Home, phone.</b> The "Powered by Netlify" badge covers Book and Shop. A "Log Walk now" tooltip stays stuck after a tap.</figcaption></figure>
+        <figure class="shot"><img src="shots/m-clinics.jpg" width="375" height="812" alt="Live vet finder on a phone" loading="lazy"><figcaption><b>Vet finder, phone.</b> Gradient placeholder art; you open each clinic to compare times.</figcaption></figure>
+        <figure class="shot"><img src="shots/m-bookflow.jpg" width="375" height="812" alt="Live booking step 1 on a phone" loading="lazy"><figcaption><b>Booking, phone.</b> Seven services before you see a single time.</figcaption></figure>
+        <figure class="shot"><img src="shots/m-pet.jpg" width="375" height="812" alt="Live pet profile on a phone without the bottom bar" loading="lazy"><figcaption><b>Profile, phone.</b> No bottom bar; four equal stat tiles.</figcaption></figure>
+      </div>
+
+      <h3 class="sub-h">Findings</h3>
+      <p class="muted" style="margin-bottom:14px;font-size:15px">P0 stops people. P1 hurts every day. P2 is polish.</p>
+      <div class="two-col">
+        <div class="findings">
+          <div class="finding"><span class="sev p0">P0</span><h4>Slow first screen</h4><p>32 s of splash on a slow phone profile; 5.0 MB is downloaded before anything is drawn. Hindi and Telugu fonts load even in English.</p></div>
+          <div class="finding"><span class="sev p0">P0</span><h4>Netlify badge covers the phone tab bar</h4><p>At 375 px the badge sits on top of Book and Shop. Netlify injects it (<code>/.netlify/scripts/hud</code>); the app does not.</p></div>
+          <div class="finding"><span class="sev p1">P1</span><h4>Desktop is a stretched phone</h4><p>Clinic cards run 1,170 px wide; Home is a single column at 1440 px. Nothing uses the width for comparison.</p></div>
+          <div class="finding"><span class="sev p1">P1</span><h4>Clinic cards can't be compared</h4><p>No next free time, no Book button, gradient art with a medical cross (<code>media_image.dart:68</code>, <code>place_finder_screen.dart</code>).</p></div>
+          <div class="finding"><span class="sev p1">P1</span><h4>Too many equal buttons on the clinic page</h4><p>Call, Directions, Book now and Message are all full-width; the booking action doesn't lead.</p></div>
+          <div class="finding"><span class="sev p1">P1</span><h4>Booking puts times last</h4><p>Four steps; a seven-item service list comes first and the slot picker two screens later (<code>booking_flow_screen.dart</code>).</p></div>
+          <div class="finding"><span class="sev p1">P1</span><h4>The app frame disappears</h4><p>Pet profile, messages, notifications and settings open outside the shell, losing the sidebar and tab bar (<code>extra_routes.dart:77</code>).</p></div>
+        </div>
+        <div class="findings">
+          <div class="finding"><span class="sev p1">P1</span><h4>Pet switcher out of step with the page</h4><p>Opening <code>#/health?pet=pet_misty</code> shows Misty's records while the switcher still highlights Bruno.</p></div>
+          <div class="finding"><span class="sev p1">P1</span><h4>Home has no lead</h4><p>Pet card, checklist, next up and quick actions are all white cards of the same weight, and there is no search on Home.</p></div>
+          <div class="finding"><span class="sev p2">P2</span><h4>Stuck tooltip on phones</h4><p>"Log Walk now" stays on screen after tapping the play button.</p></div>
+          <div class="finding"><span class="sev p2">P2</span><h4>Raw route word as a page title</h4><p><code>#/book/find/vet</code> shows the title "vet" with "Nothing matches" instead of a proper page.</p></div>
+          <div class="finding"><span class="sev p2">P2</span><h4>Mixed date styles</h4><p>"30 Sept 2026" appears next to "14 Oct 2026"; the spec uses three-letter months.</p></div>
+          <div class="finding"><span class="sev p2">P2</span><h4>Fixed colours and sizes in screens</h4><p>98 hard-coded colours and 64 fixed text sizes in <code>lib/features</code>, e.g. the Book tiles (<code>book_home_screen.dart:22</code>).</p></div>
+          <div class="finding"><span class="sev p2">P2</span><h4>Bare spinners</h4><p>19 spinners remain (<code>splash_screen.dart:19</code>, <code>album_viewer.dart:44</code>, <code>inbox_screen.dart:373</code>); skeletons exist but are plain grey bars, not the real layout.</p></div>
+        </div>
+      </div>
+
+      <h3 class="sub-h">Scores</h3>
+      <div class="two-col">
+        <div class="tbl-wrap"><table>
+          <caption class="sr">Usability heuristics, scored 0 to 4</caption>
+          <thead><tr><th scope="col">Usability heuristic</th><th scope="col" class="r">Score</th><th scope="col">Main issue</th></tr></thead>
+          <tbody>
+            <tr><td>Visibility of status</td><td class="r score">2</td><td>32 s splash with no sense of progress</td></tr>
+            <tr><td>Match with the real world</td><td class="r score">3</td><td>Friendly words, ₹ and Indian dates; one raw route title</td></tr>
+            <tr><td>User control and freedom</td><td class="r score">3</td><td>Back works; the frame vanishes on detail pages</td></tr>
+            <tr><td>Consistency and standards</td><td class="r score">3</td><td>Shared widgets; hard-coded category colours</td></tr>
+            <tr><td>Error prevention</td><td class="r score">3</td><td>Confirms before deleting; request vs instant booking is clear</td></tr>
+            <tr><td>Recognition over recall</td><td class="r score">2</td><td>Cards hide the next free time; Me is a flat list of 14 links</td></tr>
+            <tr><td>Flexibility and efficiency</td><td class="r score">2</td><td>No search on Home; four steps to book</td></tr>
+            <tr><td>Aesthetic and minimal design</td><td class="r score">2</td><td>Equal-weight cards, empty desktop width, gradient art</td></tr>
+            <tr><td>Recovery from errors</td><td class="r score">3</td><td>Plain-word errors with Try again</td></tr>
+            <tr><td>Help and documentation</td><td class="r score">3</td><td>Help, first aid and Ask PawSetu are there</td></tr>
+            <tr><th scope="row">Total</th><td class="r score">26 / 40</td><td>Solid base, weak first impression</td></tr>
+          </tbody>
+        </table></div>
+        <div style="display:grid;gap:16px;align-content:start">
+          <div class="tbl-wrap"><table>
+            <caption class="sr">Technical audit, scored 0 to 4</caption>
+            <thead><tr><th scope="col">Technical check</th><th scope="col" class="r">Score</th><th scope="col">Why</th></tr></thead>
+            <tbody>
+              <tr><td>Accessibility</td><td class="r score">3</td><td>AA contrast tests, 48 px targets, screen-reader labels; stuck tooltip</td></tr>
+              <tr><td>Performance</td><td class="r score">1</td><td>5 MB before first paint, no caching, all fonts at start</td></tr>
+              <tr><td>Theming</td><td class="r score">3</td><td>Tokens and dark mode exist; 98 fixed colours in screens</td></tr>
+              <tr><td>Responsive</td><td class="r score">2</td><td>Fine at 375 px; stretched at 1440 px; frame lost on detail pages</td></tr>
+              <tr><td>Build integrity</td><td class="r score">3</td><td>Widgets reused widely; placeholder art and generic skeletons</td></tr>
+              <tr><th scope="row">Total</th><td class="r score">12 / 20</td><td></td></tr>
+            </tbody>
+          </table></div>
+          <p class="muted" style="font-size:14px">The Impeccable checker reads web page code, but Flutter draws the whole app on one canvas, so it can't look inside. These scores come from the browser walk-through and from reading the code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SYSTEM ============ -->
+  <section class="sec" id="system" aria-labelledby="h-system">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2 id="h-system">The system: warm clinical trust</h2>
+        <p class="lede">Daylight-warm surfaces, one coral voice for booking, and a deep forest teal used only when a vet or a record vouches for something. This page is itself built in the system, so the theme switch at the top shows dark mode everywhere.</p>
+      </div>
+
+      <h3 class="sub-h">Colour</h3>
+      <div id="swatches"></div>
+
+      <div class="decision" aria-labelledby="h-coral">
+        <h3 id="h-coral">Decision: how the coral carries button text</h3>
+        <p class="muted" style="font-size:15px;max-width:70ch">White text on your coral #E05A47 measures 3.67:1. WCAG AA needs 4.5:1 for button labels, so it can't be the filled button as briefed. Two ways to keep the coral:</p>
+        <div class="opts">
+          <div class="opt"><div class="opt-h"><b>As briefed</b><span class="ratio fail">3.67 : 1 fails</span></div><button type="button" class="demo-btn" style="background:#E05A47;color:#FFFFFF" tabindex="-1">Book visit</button><p>White on #E05A47.</p></div>
+          <div class="opt rec"><div class="opt-h"><b>A, recommended</b><span class="ratio pass">4.95 : 1</span></div><button type="button" class="demo-btn" style="background:#C4452F;color:#FFFFFF" tabindex="-1">Book visit</button><p>Buttons use a deeper coral #C4452F; #E05A47 stays for selected outlines, the map pin, focus rings and active tabs. This is what the mock-ups use.</p></div>
+          <div class="opt"><div class="opt-h"><b>B</b><span class="ratio pass">5.20 : 1</span></div><button type="button" class="demo-btn" style="background:#E05A47;color:#1A0C08" tabindex="-1">Book visit</button><p>Keep #E05A47 exactly and use a near-black label. Softer and more playful, less clinical.</p></div>
+        </div>
+      </div>
+
+      <h3 class="sub-h">Type</h3>
+      <div class="type-list">
+        <div class="type-row"><span class="meta">Display 32 / 700<br>Plus Jakarta Sans</span><span style="font:700 32px/1.15 var(--f-display);letter-spacing:-0.02em">Bruno's next visit</span></div>
+        <div class="type-row"><span class="meta">Title 24 / 700</span><span style="font:700 24px/1.2 var(--f-display);letter-spacing:-0.02em">Gulmohar Vet Studio</span></div>
+        <div class="type-row"><span class="meta">Heading 20 / 600</span><span style="font:600 20px/1.25 var(--f-display);letter-spacing:-0.015em">Services and prices</span></div>
+        <div class="type-row"><span class="meta">Body 16 / 400<br>DM Sans</span><span style="font:400 16px/1.5 var(--f-body)">Bruno's DHPPi + Lepto booster is due in 10 days. Gulmohar has a free slot this afternoon.</span></div>
+        <div class="type-row"><span class="meta">Label 14 / 500</span><span style="font:500 14px/1.3 var(--f-body)">Book visit&emsp;Open now&emsp;Verified</span></div>
+        <div class="type-row"><span class="meta">Caption 13 / 500</span><span style="font:500 13px/1.4 var(--f-body);color:var(--ink-2)">394 m away. Last given 13 Nov 2025.</span></div>
+        <div class="type-row"><span class="meta">Mono 14 / 500<br>JetBrains Mono</span><span style="font:500 14px/1.3 var(--f-mono);font-variant-numeric:tabular-nums">Tue 3 Nov, 4:40 PM&emsp;2 ml, weekly&emsp;DEMO-985-000-111</span></div>
+        <div class="type-row"><span class="meta">Telugu, 1.6 line height</span><span lang="te" style="font:600 18px/1.6 'Noto Sans Telugu',var(--f-body)">తర్వాత ఏమిటి&emsp;ఇప్పుడే బుక్ చేయండి&emsp;10 రోజుల్లో</span></div>
+        <div class="type-row"><span class="meta">Hindi, 1.6 line height</span><span lang="hi" style="font:600 18px/1.6 'Noto Sans Devanagari',var(--f-body)">आगे क्या है&emsp;अभी बुक करें&emsp;10 दिन में</span></div>
+      </div>
+
+      <h3 class="sub-h">Space, shape and depth</h3>
+      <div class="tokens-row">
+        <div class="panel"><h3>4 px grid, 8 px rhythm</h3><div class="space-bars" id="space-bars"></div></div>
+        <div class="panel"><h3>Radii</h3><div class="radii"><div style="border-radius:8px">8</div><div style="border-radius:12px">12</div><div style="border-radius:16px">16</div><div style="border-radius:20px">20</div><div style="border-radius:9999px;width:88px">pill</div></div><p class="muted" style="font-size:14px">12 inputs and chips, 16 cards, 20 hero panels and sheets, pill for badges and category chips.</p></div>
+        <div class="panel"><h3>Elevation</h3><div class="elev"><div class="e1">Raised: 1px warm line + soft shadow</div><div class="e2">Floating: tab bar, sheets, menus</div></div><p class="muted" style="font-size:14px">Dark mode drops shadows and steps up the surface tone instead.</p></div>
+      </div>
+
+      <h3 class="sub-h">Components and their states</h3>
+      <div class="comp-grid">
+        <div class="panel"><h3>Buttons</h3>
+          <div class="state-row">
+            <figure><button type="button" class="btn btn-cta" tabindex="-1">Book visit</button><figcaption>default</figcaption></figure>
+            <figure><button type="button" class="btn btn-cta is-hover" tabindex="-1">Book visit</button><figcaption>hover</figcaption></figure>
+            <figure><button type="button" class="btn btn-cta is-focus" tabindex="-1">Book visit</button><figcaption>focus</figcaption></figure>
+            <figure><button type="button" class="btn btn-cta is-press" tabindex="-1">Book visit</button><figcaption>pressed</figcaption></figure>
+            <figure><button type="button" class="btn btn-cta is-disabled" tabindex="-1">Book visit</button><figcaption>disabled</figcaption></figure>
+            <figure><button type="button" class="btn btn-cta" tabindex="-1"><span class="spin" aria-hidden="true"></span>Booking</button><figcaption>loading</figcaption></figure>
+          </div>
+          <div class="state-row">
+            <figure><button type="button" class="btn btn-sec" tabindex="-1"><span data-ic="Phone"></span>Call</button><figcaption>secondary</figcaption></figure>
+            <figure><button type="button" class="btn btn-trust" tabindex="-1"><span data-ic="Share2"></span>Share with vet</button><figcaption>trust</figcaption></figure>
+            <figure><button type="button" class="btn btn-quiet" tabindex="-1">See all</button><figcaption>quiet</figcaption></figure>
+            <figure><button type="button" class="sos" tabindex="-1" style="margin:0">SOS</button><figcaption>SOS</figcaption></figure>
+          </div>
+        </div>
+        <div class="panel"><h3>Badges</h3>
+          <div class="state-row">
+            <span class="badge b-ver"><span data-ic="BadgeCheck"></span>Verified</span>
+            <span class="badge b-open"><span data-ic="Clock"></span>Open now</span>
+            <span class="badge b-due"><span data-ic="Bell"></span>Due in 5 days</span>
+            <span class="badge b-done"><span data-ic="Check"></span>Done</span>
+            <span class="badge b-sos"><span data-ic="Siren"></span>24×7 emergency</span>
+            <span class="badge b-booked"><span data-ic="CalendarCheck"></span>Confirmed</span>
+            <span class="badge b-ask"><span data-ic="Stethoscope"></span>Ask your vet</span>
+          </div>
+          <p class="muted" style="font-size:14px">Status is always a tint, same-hue text and an icon, never colour alone.</p>
+          <h3 style="margin-top:6px">Category pills</h3>
+          <div class="state-row">
+            <span class="pill on" style="cursor:default"><span data-ic="Stethoscope"></span>Vets</span>
+            <span class="pill" style="cursor:default"><span data-ic="Syringe"></span>Vaccination</span>
+            <span class="pill sos-pill" style="cursor:default"><span data-ic="Siren"></span>24×7 emergency</span>
+          </div>
+        </div>
+        <div class="panel"><h3>Time slots</h3>
+          <div class="slots" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+            <button type="button" class="slot" tabindex="-1">4:40 PM</button>
+            <button type="button" class="slot on" tabindex="-1"><span data-ic="Check"></span>5:00 PM</button>
+            <button type="button" class="slot" disabled>5:20 PM</button>
+          </div>
+          <div class="slot-key"><span><i></i>Free</span><span><i class="s"></i>Your pick</span><span><i class="b"></i>Booked, struck through and skipped by keyboard</span></div>
+          <h3 style="margin-top:6px">Search</h3>
+          <div class="search"><span data-ic="Search"></span><input id="spec-search" type="search" placeholder="Search vets, grooming, symptoms or clinics" aria-label="Search sample"><span class="icon-btn" aria-hidden="true"><span data-ic="SlidersHorizontal"></span></span></div>
+        </div>
+      </div>
+
+      <h3 class="sub-h">Motion</h3>
+      <div class="tbl-wrap"><table class="tbl-min">
+        <thead><tr><th scope="col">Moment</th><th scope="col">Time</th><th scope="col">What moves</th></tr></thead>
+        <tbody>
+          <tr><td>Press</td><td class="mono">120 ms</td><td>Button scales to 98%, colour darkens</td></tr>
+          <tr><td>State change</td><td class="mono">200 ms</td><td>Chip, slot, tab and pet selection: colour and border only</td></tr>
+          <tr><td>Sheet, page</td><td class="mono">280 ms</td><td>Booking sheet slides up; pages fade through</td></tr>
+          <tr><td>The one authored moment</td><td class="mono">400 ms</td><td>The booking confirmation tick draws itself</td></tr>
+          <tr><td>Reduce motion on</td><td class="mono">0 ms</td><td>Everything changes at once; shimmer stops; nothing is hidden</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:14px;margin-top:10px">Curve: ease-out <span class="mono">cubic-bezier(0.2, 0.8, 0.2, 1)</span>, never overshooting. On phones, a selection click when picking a slot or pet and a light tap on confirming.</p>
+
+      <details class="md" id="design-md-box">
+        <summary><span data-ic="ChevronRight"></span>Read the full DESIGN.md</summary>
+        <div class="code-block">
+          <div class="code-top"><span>DESIGN.md (proposal, goes in the project root after approval)</span><button type="button" class="copy" data-copy="design-md"><span data-ic="Copy"></span><span>Copy</span></button></div>
+          <pre id="design-md"><code>---
+version: 1.0-proposal
+name: PawSetu — Warm Clinical Trust
+status: proposal for review (not applied to the app yet)
+description: &gt;-
+  A calm, editorial, high-trust system for Indian pet parents. Warm alabaster
+  canvas, white raised surfaces with a 1px warm border and a soft ambient
+  shadow, one terracotta coral voice for booking and active states, and a deep
+  forest teal reserved for medical trust (verified vets, vaccination status,
+  health records). Plus Jakarta Sans carries headings, DM Sans carries the
+  interface, JetBrains Mono carries times, dates, doses and IDs.
+
+colors:
+  light:
+    canvas: "#FAF8F5"        # Warm Alabaster: page background
+    surface: "#FFFFFF"       # cards, sheets, inputs
+    sand: "#F3EFEA"          # secondary containers, chips at rest, table bands
+    line: "#E7E2DA"          # 1px warm border on every raised surface
+    ink: "#23201C"           # primary text (15.3:1 on canvas)
+    ink-2: "#6B645B"         # secondary text (5.5:1 on canvas, 5.1:1 on sand)
+    coral: "#E05A47"         # brand coral: active pills, selected outlines, map pin, focus ring
+    coral-cta: "#C4452F"     # filled booking buttons with white label (4.95:1)
+    coral-cta-hover: "#B03C28"
+    coral-text: "#B03C28"    # coral words on light surfaces (5.2:1 on sand)
+    coral-tint: "#FCEBE7"    # selected chip / slot background
+    teal: "#1F4E46"          # Deep Forest Teal: verified, vaccinated, records (9.4:1 on white)
+    sage: "#E6F0ED"          # Soft Sage: trust containers (teal text 8.1:1)
+    amber: "#D97706"         # upcoming reminders: icons and dots only
+    amber-text: "#92400E"    # amber words, always on amber-tint
+    amber-tint: "#FDF1DF"
+    emerald: "#15803D"       # completed vaccinations (5.0:1 on white)
+    emerald-text: "#166534"  # on emerald-tint (6.3:1)
+    emerald-tint: "#E7F4EC"
+    crimson: "#DC2626"       # emergency care and SOS; white text 4.83:1
+    crimson-text: "#B91C1C"  # on crimson-tint (5.7:1)
+    crimson-tint: "#FDECEC"
+  dark:
+    canvas: "#121316"        # warm charcoal, never #000000
+    surface: "#1B1C20"
+    sand: "#26272C"
+    line: "#303238"
+    ink: "#F2EEE8"           # 14.7:1 on surface
+    ink-2: "#ABA59C"         # 7.0:1 on surface
+    coral: "#F07A66"
+    coral-cta: "#EE6E5A"     # filled button, label #1A0C08 (6.4:1)
+    coral-cta-hover: "#F4826F"
+    coral-text: "#F08A78"
+    coral-tint: "#3A1E19"
+    teal: "#8FD1C1"
+    sage: "#173A33"
+    amber: "#F5B041"
+    amber-text: "#F5C070"
+    amber-tint: "#3A2A12"
+    emerald: "#5BD68A"
+    emerald-text: "#86E0A6"
+    emerald-tint: "#15301F"
+    crimson: "#DC2626"       # SOS stays the same red in both modes, white text
+    crimson-text: "#FCA5A5"
+    crimson-tint: "#3A1717"
+  pet-tags:                  # unchanged from spec section 4, used only for pet identity rings
+    amber: "#F4A261"
+    lavender: "#9B8AFB"
+    sky: "#38BDF8"
+    rose: "#F472B6"
+    mint: "#34D399"
+    sand: "#D6B98C"
+
+typography:
+  families:
+    display: "'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Noto Sans Telugu', system-ui, sans-serif"
+    body: "'DM Sans', 'Noto Sans Devanagari', 'Noto Sans Telugu', system-ui, sans-serif"
+    mono: "'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace"
+  scale:                     # size / line height / weight / tracking
+    display: [32px, 1.15, 700, -0.02em]   # one per screen at most
+    title:   [24px, 1.2,  700, -0.02em]   # screen titles
+    heading: [20px, 1.25, 600, -0.015em]  # section heads
+    subhead: [17px, 1.35, 600, -0.01em]   # card titles, clinic names
+    body:    [16px, 1.5,  400, 0]
+    body-sm: [14px, 1.45, 400, 0]
+    label:   [14px, 1.3,  500, 0]         # buttons, chips, nav
+    caption: [13px, 1.4,  500, 0]         # never below 13px
+    mono:    [14px, 1.3,  500, 0]         # times, dates, doses, microchip and registration numbers; tabular figures
+  indic:
+    line-height: 1.6         # Hindi and Telugu
+    tracking: 0              # never negative tracking on Devanagari or Telugu
+    families: "Noto Sans Devanagari (hi), Noto Sans Telugu (te), loaded only for that language"
+
+spacing: [4, 8, 12, 16, 20, 24, 32, 40, 48, 64]   # 4px base, 8px rhythm
+gutter: { phone: 16px, tablet: 24px, desktop: 32px }
+container: 1200px
+
+radius:
+  xs: 8px        # tags inside cards, slot pills on phone
+  input: 12px    # inputs, chips, slot pills
+  card: 16px     # list cards, clinic cards
+  panel: 20px    # hero panels, pet passcard, sheets
+  pill: 9999px   # category pills, badges, nav indicator
+
+elevation:
+  raised:  "1px solid line + 0 4px 20px -2px rgba(24, 24, 27, 0.05)"
+  floating: "1px solid line + 0 12px 32px -8px rgba(24, 24, 27, 0.14)"   # bottom nav, sticky booking bar, menus
+  dark: "1px solid line, no shadow; floating layers step up to the next surface tone"
+
+motion:
+  press: 120ms
+  state: 200ms
+  sheet: 280ms
+  easing: "cubic-bezier(0.2, 0.8, 0.2, 1)"      # ease-out, never overshoots
+  reduced-motion: "state changes are instant; the confirmation tick appears without drawing"
+
+breakpoints:
+  compact: "&lt; 768px: floating bottom navigation, sticky location header"
+  medium: "768–1199px: 80px navigation rail, two-column grids"
+  expanded: "&gt;= 1200px: 248px sidebar, 1200px centred container, bento grids"
+
+touch-target: { min: 48px, easy-mode: 56px }
+---
+
+# PawSetu design system
+
+## 1. Atmosphere
+
+Warm clinical trust, playful care. The app should feel like a good
+neighbourhood clinic: daylight, clean counters, a vet who remembers your dog's
+name. Calm and editorial, never busy. Colour is rare and always means
+something: coral means "you can book or act here", teal means "a vet or a
+record vouches for this", amber, emerald and crimson mean "upcoming",
+"done" and "emergency".
+
+## 2. Colour roles
+
+- **Canvas, surface, sand.** The canvas is Warm Alabaster. Everything you can
+  touch sits on a white surface with a 1px warm border (`line`) and the soft
+  ambient shadow. Sand is for secondary containers: resting chips, the date
+  strip, grouped rows. Never put a card inside a card; use sand inside white.
+- **Coral** is the only call-to-action colour. One filled coral button per
+  screen (Book visit, Confirm booking). Active nav pills and selected chips
+  use the coral tint with coral text, not a solid fill.
+  `#E05A47` with white text measures 3.67:1, below WCAG AA for button
+  labels, so filled buttons use `coral-cta #C4452F` (4.95:1). `#E05A47`
+  stays the brand coral for outlines, indicators, the map pin and focus rings.
+- **Teal and sage** are medical trust only: verified clinic, vet council
+  number checked, vaccination up to date, records and prescriptions. Never
+  use teal for decoration or a generic button.
+- **Status:** amber (upcoming reminder), emerald (done), crimson (emergency,
+  24×7, SOS). Status is always tint background + same-hue text + an icon, so
+  it never relies on colour alone. Amber text never sits on white.
+- **Pet tags** stay as identity rings around pet avatars, nothing else.
+
+## 3. Typography
+
+- Plus Jakarta Sans 600–700 with −0.02em tracking for titles and headings;
+  DM Sans 400–500 for everything you read or tap; JetBrains Mono 500 with
+  tabular figures for appointment times, dates in timelines, doses
+  ("2 ml, weekly"), microchip and Veterinary Council numbers.
+- Minimum text size is 13px. Secondary text uses `ink-2`, never a lighter
+  grey. Headings are sentence case. No uppercase tracked labels, no eyebrows
+  above headings.
+- Hindi and Telugu switch to Noto Sans Devanagari / Noto Sans Telugu with
+  line height 1.6 and zero tracking. Layouts are checked in Telugu because
+  its words run longest.
+
+## 4. Layout
+
+- **Phone (&lt; 768px):** 16px gutters. A sticky header holds the location
+  selector ("Indiranagar, Bengaluru") and the notification bell. A floating,
+  translucent bottom bar (16px from the edges, 64px tall, 9999px radius)
+  holds Home, Health, Book, Shop and Me with a coral-tint pill behind the
+  active item. Content scrolls under it with 96px of bottom padding.
+- **Tablet (768–1199px):** an 80px navigation rail on the left; content in
+  two columns where the screen has two kinds of thing (feed + today).
+- **Desktop (&gt;= 1200px):** a 248px sidebar with the logo, the five
+  destinations, the pet switcher and SOS; content in a 1200px centred
+  container. Discovery and dashboards use bento grids (2/3 + 1/3, or
+  three equal columns of clinic cards). Nothing stretches edge to edge.
+- Every screen keeps the navigation, including pet profiles, messages and
+  settings.
+- Touch targets: every control has a 48px hit area (56px in Easy mode).
+  Compact chips, slots and small buttons may draw at 40–44px inside it,
+  using Flutter's padded tap target.
+
+## 5. Elevation and shape
+
+- Raised surfaces: 1px `line` border + `0 4px 20px -2px rgba(24,24,27,.05)`.
+  Floating layers (bottom bar, sticky booking bar, menus): stronger shadow
+  `0 12px 32px -8px rgba(24,24,27,.14)` and a translucent surface with a
+  16px backdrop blur. Dark mode drops shadows and steps up surface tones.
+- Radii: 12px inputs and chips, 16px cards, 20px hero panels and sheets,
+  9999px pills and badges. One radius per nesting level.
+
+## 6. Components
+
+- **Buttons:** primary (coral-cta fill), secondary (white, 1px line, ink
+  label), quiet (text only), danger (crimson). 48px tall (56px in Easy mode),
+  12px radius, label 14–16px/500. States: hover darkens 6%, pressed scales to
+  0.98, focus-visible shows a 2px coral ring offset 2px, disabled at 40%
+  opacity with no shadow, loading keeps the label width and swaps in a small
+  inline spinner.
+- **Category pills:** 44px tall inside a 48px hit area, 9999px radius, icon +
+  label. Resting: sand fill. Active: coral tint, coral text, 1px coral border.
+  The strip scrolls sideways with snap and a fade at the edge.
+- **Clinic card:** 16:9 cover (partner photo; a street map until the partner
+  uploads one), floating "Open now" and "Verified" badges, a distance pill,
+  name, area, rating with review count, "From ₹750", the next free slot in
+  mono, and one "Book visit" button. Whole card is a link; the button books.
+- **Slot pill:** 44px tall, mono time. Available: white + line. Selected:
+  coral-cta fill, white text, check icon. Booked: sand fill, ink-2 text,
+  strikethrough, not focusable, announced as "booked".
+- **Badges:** 24px tall pills with an icon: Verified (sage/teal), Open now
+  (emerald tint), Due soon (amber tint), Done (emerald tint), 24×7 and
+  Emergency (crimson tint).
+- **Pet passcard:** 20px radius panel on sage in light mode, with the pet's
+  tag ring, breed, age, weight with its 90-day trend, microchip in mono and
+  the vaccination status badge.
+- **Timeline:** a 2px line on the left with status dots; upcoming items first
+  (amber), then done (emerald), each row with date in mono, title, place and
+  a download action for its document.
+
+## 7. States
+
+- **Loading:** skeletons in the final layout (same sizes, same radii) with a
+  soft shimmer that stops under reduced motion. Never a spinner on a blank
+  screen. Images reserve their aspect ratio before they load.
+- **Empty:** keep the section frame and title, one plain sentence and one
+  action ("No vet visits yet. Add a visit").
+- **Error:** inside the block that failed: what failed, when data was last
+  good, and "Try again". Offline keeps cached data visible with a strip.
+- **Focus:** every control shows the coral focus ring on keyboard focus,
+  instantly.
+
+## 8. Motion
+
+200ms ease-out for state changes, 280ms for sheets, 120ms for presses. No
+bounce. One authored moment: the booking confirmation tick draws in 400ms.
+Haptics on phones: selection click on picking a slot or pet, light impact on
+confirming. Reduced motion makes everything instant.
+
+## 9. Do and don't
+
+- Do use the pet's name in copy ("Bruno's booster is due in 10 days").
+- Do show prices before the booking button, including fees, in ₹ with Indian
+  grouping (₹1,24,999).
+- Don't use coral for anything that isn't an action or an active state.
+- Don't use teal for anything that isn't medical trust.
+- Don't use pure black, pure grey text, gradients on text, emoji as icons or
+  stock photos.
+- Don't put more than one filled button on a screen.
+
+## 10. Responsive checks
+
+Check every screen at 360, 375, 768, 1024, 1440 and 1920 px, in light and
+dark, in English and Telugu, with Easy mode on and at 200% text. No
+horizontal scroll at any width.
+</code></pre>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ SCREENS ============ -->
+  <section class="sec" id="screens" aria-labelledby="h-screens">
+    <div class="wrap wrap-wide">
+      <div class="sec-h">
+        <h2 id="h-screens">The journey, on a phone and a laptop</h2>
+        <p class="lede">Each screen below is one piece of markup shown twice: at a real 375 px phone width, and at 1440 px scaled to fit. The layout switches at 768 px and 1200 px, exactly as it would in the app. Everything is clickable, and the two copies stay in step.</p>
+        <p class="muted" style="font-size:14px">Times assume it is Tuesday 3 Nov 2026, 4:05 PM. Booked slots are examples. Clinic covers show a drawn street map because the demo has no clinic photos; a partner's photo replaces it when uploaded.</p>
+      </div>
+
+      <div class="scr-block" id="scr-home">
+        <div class="scr-intro"><h3>Home and finding a vet</h3><p class="muted">Location and search first, then categories, Bruno's day and clinics you can book in one tap. On a laptop it becomes a bento: search beside today, clinics in three columns.</p><p class="try"><span data-ic="MousePointerClick"></span>Try a category such as 24×7 emergency, type "x-ray" into search, or press Book visit.</p></div>
+        <div class="stage">
+          <figure class="dev dev-phone"><div class="scaler" data-w="377" data-h="814"><div class="screen" data-mount="home"></div></div><figcaption><span>Phone, 375 × 812</span><span><span data-pct>100</span>%</span></figcaption></figure>
+          <figure class="dev dev-desk"><div class="scaler" data-w="1442" data-h="902"><div class="screen" data-mount="home"></div></div><figcaption><span>Desktop, 1440 × 900</span><span>shown at <span data-pct>60</span>%</span></figcaption></figure>
+        </div>
+      </div>
+
+      <div class="scr-block" id="scr-clinic">
+        <div class="scr-intro"><h3>Clinic page and booking</h3><p class="muted">Everything needed to decide on one page: vets with council numbers, prices, facilities, hours and the map. On a laptop the booking panel stays beside it; on a phone the header collapses as you scroll and booking opens as a sheet. One step from time to confirmation.</p><p class="try"><span data-ic="MousePointerClick"></span>Pick a day and a time, switch from Bruno to Misty, then confirm. On the phone, press Book visit first.</p></div>
+        <div class="stage">
+          <figure class="dev dev-phone"><div class="scaler" data-w="377" data-h="814"><div class="screen" data-mount="clinic"></div></div><figcaption><span>Phone, 375 × 812</span><span><span data-pct>100</span>%</span></figcaption></figure>
+          <figure class="dev dev-desk"><div class="scaler" data-w="1442" data-h="902"><div class="screen" data-mount="clinic"></div></div><figcaption><span>Desktop, 1440 × 900</span><span>shown at <span data-pct>60</span>%</span></figcaption></figure>
+        </div>
+      </div>
+
+      <div class="scr-block" id="scr-pets">
+        <div class="scr-intro"><h3>Bruno and Misty's health</h3><p class="muted">Switch pets with one tap. The passcard holds what a vet asks for first; the timeline puts what's due on top and every past visit, prescription and certificate below.</p><p class="try"><span data-ic="MousePointerClick"></span>Switch to Misty, filter by Vaccines, or press Book at Gulmohar on Bruno's booster.</p></div>
+        <div class="stage">
+          <figure class="dev dev-phone"><div class="scaler" data-w="377" data-h="814"><div class="screen" data-mount="pets"></div></div><figcaption><span>Phone, 375 × 812</span><span><span data-pct>100</span>%</span></figcaption></figure>
+          <figure class="dev dev-desk"><div class="scaler" data-w="1442" data-h="902"><div class="screen" data-mount="pets"></div></div><figcaption><span>Desktop, 1440 × 900</span><span>shown at <span data-pct>60</span>%</span></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPEED ============ -->
+  <section class="sec" id="speed" aria-labelledby="h-speed">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2 id="h-speed">Speed and loading</h2>
+        <p class="lede">Paint something useful in the first moment, never show a spinner on a blank page, and stop downloading what isn't needed yet.</p>
+      </div>
+      <div class="speed-grid">
+        <div style="display:grid;gap:12px">
+          <figure class="dev dev-phone" style="justify-self:start"><div class="scaler" data-w="377" data-h="814"><div class="screen" data-mount="boot"></div></div><figcaption><span>Proposed boot screen</span><span><span data-pct>100</span>%</span></figcaption></figure>
+          <button type="button" class="btn btn-sec replay" id="replay"><span data-ic="RefreshCw"></span>Replay the boot</button>
+        </div>
+        <div style="display:grid;gap:20px;min-width:0">
+          <div class="prose"><p>Today the web page shows a logo and a bar, then Flutter shows a second logo with a spinner. The proposal draws the shell of the first screen straight from <code>index.html</code> in the canvas colour, before any app code arrives. When Flutter paints its first real screen, the skeleton fades out over 240 ms and the real content is already in the same places, so nothing jumps.</p></div>
+          <div class="state-panels" id="state-panels"></div>
+        </div>
+      </div>
+
+      <h3 class="sub-h">What changes</h3>
+      <div class="tbl-wrap"><table class="tbl-min">
+        <thead><tr><th scope="col">Problem today</th><th scope="col">Change</th><th scope="col">Where</th></tr></thead>
+        <tbody>
+          <tr><td>Two splash screens; the logo jumps; spinner on blank</td><td>One boot screen in <code>index.html</code> that draws the first screen's skeleton (#FAF8F5, or #121316 in dark) and fades out on Flutter's first real frame; remove the in-app spinner splash</td><td><code>web/index.html</code>, <code>splash_screen.dart</code>, <code>router.dart</code></td></tr>
+          <tr><td>5 MB fetched before drawing</td><td>Preload <code>main.dart.js</code> from the page head (Flutter’s loader keeps choosing the right CanvasKit build for each browser); build and measure the WebAssembly version (<code>flutter build web --wasm</code>), which falls back to JavaScript in older browsers</td><td><code>web/index.html</code>, build command</td></tr>
+          <tr><td>Hindi and Telugu fonts load in English</td><td>Bundle only the Latin faces at start (Jakarta 600/700, DM Sans 400/500, JetBrains Mono 500); load Noto Devanagari or Telugu the first time that language is picked; drop unused weights</td><td><code>pubspec.yaml</code>, <code>app_theme.dart</code>, <code>settings_controller.dart</code></td></tr>
+          <tr><td>Nothing is cached between visits</td><td>Headers: fonts and icons cached for 30 days, CanvasKit for a day with background refresh, app code still checked every visit</td><td><code>netlify.toml</code> (new)</td></tr>
+          <tr><td>Spinners and generic grey bars</td><td>Skeletons shaped like the final layout: clinic card, passcard, timeline row, map tile; replace the 19 spinners</td><td><code>lib/core/widgets/states.dart</code> and the files listed in the audit</td></tr>
+          <tr><td>Layout jumps when images arrive</td><td>Every image slot has a fixed ratio (16:9 covers, 1:1 avatars) and a sand placeholder; cached images decoded at the slot's size</td><td><code>media_image.dart</code>, <code>pet_avatar.dart</code></td></tr>
+          <tr><td>Long lists and maps cost frames</td><td>Builder lists with fixed row heights where rows are fixed; repaint boundaries around maps and charts; no animated shadows</td><td>finder, timeline and inbox screens</td></tr>
+          <tr><td>Hover and keyboard focus are inconsistent</td><td>Hover on desktop, pressed state, and a 2 px coral focus ring on every control, in reading order</td><td><code>app_theme.dart</code>, <code>buttons.dart</code>, <code>cards.dart</code></td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:14px;margin-top:10px">I'll measure the 32 s and 3.9 s cases again after each change and report the real numbers; I'm not promising figures before measuring.</p>
+
+      <h3 class="sub-h">The boot screen in <code>index.html</code></h3>
+      <div class="code-block">
+        <div class="code-top"><span>web/index.html (excerpt, proposal)</span><button type="button" class="copy" data-copy="boot-code"><span data-ic="Copy"></span><span>Copy</span></button></div>
+        <pre id="boot-code"><code>&lt;head&gt;
+  &lt;!-- ...existing base href, icons and manifest... --&gt;
+  &lt;meta name="theme-color" content="#FAF8F5" media="(prefers-color-scheme: light)"&gt;
+  &lt;meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)"&gt;
+  &lt;link rel="preload" href="main.dart.js" as="script"&gt;
+  &lt;style&gt;
+    html, body { margin: 0; background: #FAF8F5; }
+    #boot { position: fixed; inset: 0; background: #FAF8F5;
+            transition: opacity .24s cubic-bezier(.2, .8, .2, 1); }
+    #boot .sk { border-radius: 12px;
+      background: linear-gradient(90deg, #EFEAE3 0%, #F9F6F2 45%, #EFEAE3 90%);
+      background-size: 220% 100%; animation: sk 1.5s ease-in-out infinite; }
+    @keyframes sk { from { background-position: 110% 0; } to { background-position: -110% 0; } }
+    @media (prefers-color-scheme: dark) {
+      html, body, #boot { background: #121316; }
+      #boot .sk { background-image: linear-gradient(90deg, #222328 0%, #2C2D33 45%, #222328 90%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #boot .sk { animation: none; }
+      #boot { transition: none; }
+    }
+    #boot.out { opacity: 0; pointer-events: none; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="boot" role="status" aria-label="PawSetu is loading"&gt;
+    &lt;!-- The first screen's shape drawn with .sk blocks: header, search,
+         category chips, two cards and the tab bar on phones; the same
+         blocks beside a sidebar from 768 px. Logo inline as SVG. --&gt;
+  &lt;/div&gt;
+  &lt;script&gt;
+    // Fired when Flutter paints its first frame. With the in-app spinner
+    // splash removed, that first frame is the real first screen.
+    window.addEventListener('flutter-first-frame', function () {
+      var b = document.getElementById('boot');
+      if (!b) return;
+      b.classList.add('out');
+      setTimeout(function () { b.remove(); }, 300);
+    });
+  &lt;/script&gt;
+  &lt;script src="flutter_bootstrap.js" async&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLAN ============ -->
+  <section class="sec" id="plan" aria-labelledby="h-plan">
+    <div class="wrap">
+      <div class="sec-h">
+        <h2 id="h-plan">If you approve</h2>
+        <p class="lede">I'd build it in this order, checking each step in Chrome and on the Android emulator, in light and dark, English and Telugu, Easy mode, at 360 px and desktop width.</p>
+      </div>
+      <div class="two-col">
+        <ol class="steps">
+          <li><b>Tokens, fonts and theme</b><p><code>tokens.dart</code>, <code>app_theme.dart</code>, fonts in <code>pubspec.yaml</code>, <code>DESIGN.md</code> in the project root, and section 4 of the spec updated to match.</p></li>
+          <li><b>App frame</b><p>Breakpoints at 768 and 1200 px in <code>layout.dart</code>; floating tab bar and location header; rail and sidebar; the frame kept on every screen (<code>owner_shell.dart</code>, <code>extra_routes.dart</code>).</p></li>
+          <li><b>Home and finding a vet</b><p>Search, category pills and the new clinic card (<code>home_screen.dart</code>, <code>place_finder_screen.dart</code>, shared widgets in <code>lib/core/widgets</code>).</p></li>
+          <li><b>Clinic page and booking</b><p>Split layout, booking panel and sheet, day strip and slot picker, fee breakdown and confirmation (<code>place_screen.dart</code>, <code>booking_flow_screen.dart</code>). Booking rules and prices stay as they are.</p></li>
+          <li><b>Pets and health</b><p>Pet switcher, passcard and timeline (<code>pet_profile_screen.dart</code>, health screens), and the switcher bug.</p></li>
+          <li><b>Speed</b><p>Boot screen, font loading, caching headers, skeletons and image slots.</p></li>
+          <li><b>Checks and hand-over</b><p><code>flutter analyze</code> and all tests, the layout sweep, screenshots, <code>docs/PROGRESS.md</code>, a commit and your "what to test" list.</p></li>
+        </ol>
+        <div class="asks">
+          <div class="ask"><b>1. Button coral: A or B?</b><p>A uses #C4452F with white text (recommended, shown here). B keeps #E05A47 with a near-black label.</p></div>
+          <div class="ask"><b>2. Body font: DM Sans or Inter?</b><p>DM Sans is shown here; it's warmer next to Plus Jakarta Sans. Inter is a little more compact.</p></div>
+          <div class="ask"><b>3. Keep "Bruno's day" on Home?</b><p>Shown here beside discovery. The other option is a pure discovery Home with today's checklist moved to Health.</p></div>
+          <div class="ask"><b>4. Update the spec?</b><p>Section 4 of the spec says teal is the main colour. This proposal makes coral the action colour and teal the medical-trust colour. OK to change the spec to match?</p></div>
+          <div class="ask"><b>5. The Netlify badge</b><p>It comes from Netlify, not the app. I'll look up how to switch it off for the site, and leave room above it until then.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pg-foot">
+  <div class="wrap">
+    <p>Prepared for the PawSetu owner, 3 Nov 2026. Demo data only: no real clinics, vets or pet parents.</p>
+    <p>Icons: Lucide (ISC licence). Fonts: Plus Jakarta Sans, DM Sans, JetBrains Mono, Noto Sans Devanagari and Telugu (SIL Open Font License).</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var reduceMotion = function () { return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; };
+
+  /* ---------- Icons (Lucide data drawn as inline SVG) ---------- */
+  function ic(name, cls) {
+    var L = window.lucide, node = L && L.icons && L.icons[name];
+    if (!node) return '<span class="i ' + (cls || '') + '" aria-hidden="true"></span>';
+    var kids = node[2].map(function (n) {
+      return '<' + n[0] + ' ' + Object.keys(n[1]).map(function (k) { return k + '="' + n[1][k] + '"'; }).join(' ') + '></' + n[0] + '>';
+    }).join('');
+    return '<svg class="i ' + (cls || '') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + kids + '</svg>';
+  }
+  function logo(size) {
+    return '<svg class="logo" width="' + size + '" height="' + size + '" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><rect width="100" height="100" rx="28" class="lg-tile"/><path d="M16 45 A34 25 0 0 1 84 45" class="lg-arc"/><ellipse cx="50" cy="67.9" rx="11" ry="8.8" class="lg-paw"/><circle cx="37.7" cy="56.2" r="4.4" class="lg-paw"/><circle cx="45.7" cy="49.7" r="4.4" class="lg-paw"/><circle cx="54.3" cy="49.7" r="4.4" class="lg-paw"/><circle cx="62.3" cy="56.2" r="4.4" class="lg-paw"/></svg>';
+  }
+
+  /* ---------- Seeded helpers and the drawn street map ---------- */
+  function rng(seed) { var s = (seed >>> 0) || 1; return function () { s ^= s << 13; s >>>= 0; s ^= s >>> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; }; }
+  function hash(str) { var h = 2166136261; for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function mapSVG(seed, w, h) {
+    w = w || 320; h = h || 180;
+    var r = rng(Math.imul(seed, 2654435761));
+    var ang = (r() * 36 - 18).toFixed(1), gx = 30 + Math.floor(r() * 12), gy = 24 + Math.floor(r() * 10), g = [];
+    for (var x = -w * 0.5; x < w * 1.5; x += gx) for (var y = -h * 0.6; y < h * 1.6; y += gy) {
+      if (r() < 0.1) continue;
+      g.push('<rect x="' + (x + 3).toFixed(1) + '" y="' + (y + 3).toFixed(1) + '" width="' + (gx - 6) + '" height="' + (gy - 6) + '" rx="2" class="m-block"/>');
+    }
+    var px = Math.floor(r() * (w - 110)) + 10, py = Math.floor(r() * (h - 80)) + 6;
+    g.push('<rect x="' + px + '" y="' + py + '" width="' + (gx * 2 - 6) + '" height="' + (gy * 2 - 6) + '" rx="8" class="m-park"/>');
+    var my = Math.floor(h * 0.25 + r() * h * 0.5), dy = Math.floor(r() * 50 - 25);
+    g.push('<path d="M' + (-w) + ' ' + my + ' L' + (w * 2) + ' ' + (my + dy) + '" class="m-major"/>');
+    var water = r() < 0.45 ? '<ellipse cx="' + (r() < 0.5 ? -20 : w + 20) + '" cy="' + Math.floor(r() * h) + '" rx="' + Math.floor(70 + r() * 40) + '" ry="' + Math.floor(45 + r() * 25) + '" class="m-water"/>' : '';
+    return '<svg class="map" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect x="-10" y="-10" width="' + (w + 20) + '" height="' + (h + 20) + '" class="m-road"/><g transform="rotate(' + ang + ' ' + w / 2 + ' ' + h / 2 + ')">' + g.join('') + '</g>' + water + '<g transform="translate(' + w / 2 + ' ' + (h / 2 + 12) + ')"><path d="M0 0C-8 -10 -13 -16 -13 -23a13 13 0 1 1 26 0c0 7 -5 13 -13 23z" class="m-pin"/><circle cy="-23" r="4.6" class="m-pin-dot"/></g></svg>';
+  }
+
+  /* ---------- Demo data (from lib/core/demo/seed) ---------- */
+  var NOW = 16 * 60 + 5; // Tue 3 Nov 2026, 4:05 PM
+  var WK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var DAYS = [];
+  for (var di = 0; di < 14; di++) { var dd = new Date(Date.UTC(2026, 10, 3 + di)); DAYS.push({ dow: dd.getUTCDay(), wk: WK[dd.getUTCDay()], dd: dd.getUTCDate(), mon: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][dd.getUTCMonth()] }); }
+  var inr = function (n) { return '₹' + n.toLocaleString('en-IN'); };
+  var t12 = function (m) { var h = Math.floor(m / 60) % 24, mm = m % 60, ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return h + ':' + String(mm).padStart(2, '0') + ' ' + ap; };
+  var dayWord = function (d) { return d === 0 ? 'Today' : d === 1 ? 'Tomorrow' : DAYS[d].wk + ' ' + DAYS[d].dd + ' ' + DAYS[d].mon; };
+  var dayFull = function (d) { return DAYS[d].wk + ' ' + DAYS[d].dd + ' ' + DAYS[d].mon; };
+
+  var SERVICES = {
+    consultation: { name: 'Consultation', min: 20 },
+    vaccination: { name: 'Vaccination', min: 30, price: 650 },
+    lab: { name: 'Lab tests', min: 30, price: 1200 },
+    dental: { name: 'Dental cleaning', min: 30, price: 2200 },
+    xray: { name: 'X-ray', min: 30, price: 1500 },
+    home: { name: 'Home visit', min: 30, price: 1200 },
+    surgery: { name: 'Surgery consult', min: 120, price: 6500, request: true },
+    grooming: { name: 'Grooming', price: 900 },
+    boarding: { name: 'Boarding', price: 800 }
+  };
+  var CL = {
+    gulmohar: { id: 'gulmohar', name: 'Gulmohar Vet Studio', area: 'Indiranagar', city: 'Bengaluru', address: '60, Main Road, Indiranagar, Bengaluru 560038', dist: '394 m', rating: 4.8, reviews: 28, fee: 750, mode: 'instant', h24: false, tele: true, online: true, langs: 'English and Hindi', species: 'Dogs and cats', seed: 11, homeKm: 8,
+      services: ['consultation', 'vaccination', 'lab', 'dental', 'xray', 'home', 'surgery'],
+      vets: [{ n: 'Dr. Farhan Reddy', q: 'BVSc & AH, PG Dip. Small Animal Practice', y: 17, reg: 'DEMO-VC-0007' }, { n: 'Dr. Sneha Gupta', q: 'BVSc & AH', y: 13, reg: 'DEMO-VC-0008' }, { n: 'Dr. Aditya Das', q: 'BVSc & AH, MVSc (Medicine)', y: 9, reg: 'DEMO-VC-0009' }, { n: 'Dr. Pooja Khan', q: 'BVSc & AH, MVSc (Surgery)', y: 11, reg: 'DEMO-VC-0010' }],
+      revs: [{ who: 'Priya Sharma', s: 5, d: '14 Oct 2026', t: 'Very gentle with Bruno and explained the X-ray clearly. Short wait.', reply: 'Thank you, Priya! Give Bruno a hug from all of us.' }, { who: 'Aditya N.', s: 4, d: '30 Sep 2026', t: 'Good doctors. Parking is a bit hard on weekends.' }] },
+    namma: { id: 'namma', name: 'Namma Pet Hospital', area: 'Koramangala', city: 'Bengaluru', dist: '6.4 km', rating: 4.5, reviews: 22, fee: 900, mode: 'instant', h24: true, tele: true, online: true, langs: 'English and Hindi', species: 'Dogs, cats, birds and rabbits', seed: 23,
+      services: ['consultation', 'vaccination', 'lab', 'xray', 'surgery', 'boarding'],
+      vets: [{ n: 'Dr. Naveen Bose', q: 'BVSc & AH, PG Dip. Small Animal Practice', reg: 'DEMO-VC-0011' }, { n: 'Dr. Ishita Singh', q: 'BVSc & AH', reg: 'DEMO-VC-0012' }, { n: 'Dr. Sanjay Varma', q: 'BVSc & AH, MVSc (Medicine)', reg: 'DEMO-VC-0013' }], revs: [] },
+    whitefield: { id: 'whitefield', name: 'Whitefield Wag Clinic', area: 'Whitefield', city: 'Bengaluru', dist: '10.9 km', rating: 4.1, reviews: 12, fee: 500, mode: 'request', h24: false, tele: false, online: false, langs: 'English', species: 'Dogs and cats', seed: 37,
+      services: ['consultation', 'vaccination', 'lab', 'grooming', 'boarding'],
+      vets: [{ n: 'Dr. Divya Kulkarni', q: 'BVSc & AH, MVSc (Surgery)', reg: 'DEMO-VC-0014' }], revs: [] }
+  };
+  var ORDER = ['gulmohar', 'namma', 'whitefield'];
+
+  var PETS = {
+    bruno: { id: 'bruno', name: 'Bruno', species: 'dog', tag: 'amber', short: '3 yrs', breed: 'Labrador Retriever', sex: 'Male, neutered', age: '3 yrs 2 mo', born: 'Born Sep 2023', weight: 29.0, weights: [28.2, 28.5, 28.4, 28.8, 29.1, 29.0], band: [25, 36], trend: '+0.8 kg in 90 days. Healthy range 25–36 kg.', chip: 'DEMO-985-000-111', allergies: 'Chicken', diet: 'Dry food + home-cooked', vet: 'Gulmohar Vet Studio',
+      status: { cls: 'b-due', icon: 'Bell', text: '2 boosters due 13 Nov' },
+      up: [
+        { id: 'b-flea', date: 'Sun 8 Nov', st: 'due', type: 'care', title: 'Flea and tick prevention', meta: 'Monthly. Last given 9 Oct 2026.', badge: 'Due in 5 days', acts: [{ l: 'Mark done', a: 'mark-done', k: 'sec' }] },
+        { date: 'Thu 12 Nov, 10:00 AM', st: 'up', type: 'care', title: 'Grooming', meta: 'Your reminder.', badge: 'Reminder' },
+        { date: 'Fri 13 Nov', st: 'due', type: 'vaccine', title: 'DHPPi + Lepto booster', meta: 'Yearly. Last given 13 Nov 2025 at Gulmohar Vet Studio.', badge: 'Due in 10 days', acts: [{ l: 'Book at Gulmohar', a: 'book-vacc', k: 'cta' }] },
+        { date: 'Fri 13 Nov', st: 'due', type: 'vaccine', title: 'Anti-rabies booster', meta: 'Yearly. Last given 13 Nov 2025. Can be given at the same visit.', badge: 'Due in 10 days' },
+        { date: 'Fri 13 Nov', st: 'up', type: 'care', title: 'Deworming', meta: 'Every 3 months. Last given 15 Aug 2026.', badge: 'Upcoming' },
+        { date: 'Optional', st: 'ask', type: 'vaccine', title: 'Kennel cough', meta: 'For boarding or daycare.', badge: 'Ask your vet' }
+      ],
+      past: [
+        { date: '22 Oct 2026', st: 'done', type: 'visit', title: 'Tele-vet consultation with Dr. Sameer Khan', meta: 'Golconda Gate Pet Clinic. Mild sprain, left wrist (carpus). Rest for 5 days, short toilet walks only.', rx: [['Medicine', 'Meloxicam oral suspension (SAMPLE)'], ['Dose', 'As marked on the syringe'], ['How often', 'Once a day, 5 days']], acts: [{ l: 'Prescription', a: 'toast', m: 'Downloads the prescription PDF.', i: 'Download', k: 'sec' }] },
+        { date: '9 Oct 2026', st: 'done', type: 'care', title: 'Flea and tick prevention', meta: 'Spot-on (sample).', badge: 'Done' },
+        { date: '23 Sep 2026', st: 'done', type: 'doc', title: 'Complete blood count (CBC)', meta: 'Lab report and bill from Gulmohar Vet Studio, tagged ear infection.', acts: [{ l: 'Lab report', a: 'toast', m: 'Downloads the lab report PDF.', i: 'Download', k: 'sec' }] },
+        { date: '15 Aug 2026', st: 'done', type: 'care', title: 'Deworming tablet (sample)', badge: 'Done' },
+        { date: '6 Jul 2026', st: 'done', type: 'visit', title: 'Annual check-up', meta: 'Gulmohar Vet Studio. Healthy. Mild ear infection, ear drops for 7 days.' },
+        { date: '13 Nov 2025', st: 'done', type: 'vaccine', title: 'DHPPi + Lepto and anti-rabies boosters', meta: 'Gulmohar Vet Studio.', badge: 'Done', acts: [{ l: '2 certificates', a: 'toast', m: 'Downloads both vaccination certificates.', i: 'Download', k: 'sec' }] },
+        { date: '13 Nov 2024', st: 'done', type: 'vaccine', title: 'DHPPi + Lepto booster', meta: 'Gulmohar Vet Studio.', badge: 'Done' },
+        { date: 'Oct–Dec 2023', st: 'done', type: 'vaccine', title: 'Puppy vaccines, 4 doses', meta: 'DHPPi + Lepto doses 1–3 and anti-rabies dose 1. Vaxipet and Rabivet (samples), Gulmohar Vet Studio.', badge: 'Done' }
+      ],
+      docs: [{ t: 'Prescription, Meloxicam', d: '22 Oct 2026', i: 'Pill' }, { t: 'Complete blood count (CBC)', d: '23 Sep 2026', i: 'FlaskConical' }, { t: 'Gulmohar Vet Studio bill', d: '23 Sep 2026', i: 'FileText' }, { t: 'Dog licence', d: '17 Apr 2026', i: 'IdCard' }, { t: 'Shield Pet Cover (sample) policy', d: '7 Jan 2026', i: 'ShieldCheck' }, { t: 'Anti-rabies certificate', d: '13 Nov 2025', i: 'Syringe' }, { t: 'DHPPi + Lepto certificate', d: '13 Nov 2025', i: 'Syringe' }] },
+    misty: { id: 'misty', name: 'Misty', species: 'cat', tag: 'lavender', short: '5 yrs', breed: 'Persian', sex: 'Female, spayed', age: '5 yrs', born: 'Born Nov 2021', weight: 4.2, weights: [4.3, 4.3, 4.2, 4.2, 4.2], band: [3, 5.5], trend: '−0.1 kg in 90 days. Healthy range 3.0–5.5 kg.', chip: null, allergies: 'None noted', diet: 'Wet + dry cat food', vet: 'Gulmohar Vet Studio',
+      status: { cls: 'b-done', icon: 'Check', text: 'Vaccinations up to date' },
+      up: [
+        { date: 'Thu 5 Nov, 7:00 PM', st: 'up', type: 'med', title: 'Hairball gel', dose: '2 ml, weekly', meta: 'Every Thursday evening.', badge: 'Medicine' },
+        { date: 'Fri 6 Nov, 11:00 AM', st: 'booked', type: 'visit', title: 'Vaccination at Gulmohar Vet Studio', meta: 'Booked and confirmed.', badge: 'Confirmed' },
+        { date: 'Fri 13 Nov', st: 'up', type: 'care', title: 'Flea and tick prevention', meta: 'Monthly. Last given 14 Oct 2026.', badge: 'Upcoming' },
+        { date: 'Thu 3 Dec', st: 'up', type: 'care', title: 'Deworming', meta: 'Every 3 months. Last given 4 Sep 2026.', badge: 'Upcoming' },
+        { date: '7 Jan 2027', st: 'up', type: 'vaccine', title: 'Anti-rabies booster', meta: 'Yearly. Last given 7 Jan 2026.', badge: 'Upcoming' },
+        { date: 'At Friday’s visit', st: 'ask', type: 'vaccine', title: 'FVRCP booster', meta: 'Every 1–3 years, as your vet advises. Last given 3 Dec 2024.', badge: 'Ask your vet' }
+      ],
+      past: [
+        { date: '1 Nov 2026', st: 'check', type: 'doc', title: 'Lab report', meta: 'Uploaded, waiting for you to check the details we read.', badge: 'Needs checking', acts: [{ l: 'Check details', a: 'toast', m: 'Opens "We found these details" to confirm.', k: 'sec' }] },
+        { date: '14 Oct 2026', st: 'done', type: 'care', title: 'Spot-on tick and flea (sample)', badge: 'Done' },
+        { date: '4 Sep 2026', st: 'done', type: 'care', title: 'Deworming tablet (sample)', badge: 'Done' },
+        { date: '7 Jan 2026', st: 'done', type: 'vaccine', title: 'Anti-rabies booster', meta: 'Gulmohar Vet Studio.', badge: 'Done', acts: [{ l: 'Certificate', a: 'toast', m: 'Downloads the anti-rabies certificate.', i: 'Download', k: 'sec' }] },
+        { date: '3 Dec 2024', st: 'done', type: 'vaccine', title: 'FVRCP booster', meta: 'Gulmohar Vet Studio.', badge: 'Done' },
+        { date: 'Dec 2021–Feb 2022', st: 'done', type: 'vaccine', title: 'Kitten vaccines, 4 doses', meta: 'FVRCP doses 1–3 and anti-rabies dose 1, Gulmohar Vet Studio.', badge: 'Done' }
+      ],
+      docs: [{ t: 'Lab report', d: '1 Nov 2026', i: 'FlaskConical', check: true }, { t: 'Anti-rabies certificate', d: '7 Jan 2026', i: 'Syringe' }, { t: 'Adoption papers', d: '12 Jan 2022', i: 'FileText' }] }
+  };
+
+  /* ---------- State ---------- */
+  function freshClinic(id, extra) {
+    var o = { id: id, svc: 'consultation', day: 0, per: null, slot: null, picks: [], pet: 'bruno', pay: 'clinic', vet: 'any', done: false, sheet: false, more: false };
+    for (var k in (extra || {})) o[k] = extra[k];
+    return o;
+  }
+  var S = { home: { cat: 'vets', q: '', loc: false, meal: 1, play: 20 }, clinic: freshClinic('gulmohar'), pets: { pet: 'bruno', filt: 'all' } };
+
+  /* ---------- Slots (rules from booking_rules.dart: hours, slot length, 30 min lead time) ---------- */
+  function hoursFor(c, d) { if (c.h24) return [0, 1440]; return DAYS[d].dow === 0 ? [600, 840] : [540, 1200]; }
+  function isBooked(cid, d, t) {
+    if (cid === 'gulmohar' && d === 0 && t === 1000) return false;
+    if (cid === 'namma' && d === 0 && t === 1000) return true;
+    return hash(cid + '|' + d + '|' + t) % 100 < 30;
+  }
+  function slotsFor(c, svcKey, d) {
+    var svc = SERVICES[svcKey], step = svc.min >= 30 ? 30 : 20, hr = hoursFor(c, d), out = [];
+    for (var t = hr[0]; t + svc.min <= hr[1]; t += step) {
+      if (d === 0 && t < NOW + 30) continue;
+      out.push({ t: t, booked: isBooked(c.id, d, t) });
+    }
+    return out;
+  }
+  function periodOf(t, h24) { if (h24 && (t >= 1260 || t < 360)) return 'night'; if (t < 720) return 'morning'; if (t < 1020) return 'afternoon'; return 'evening'; }
+  function nextFree(c) {
+    for (var d = 0; d < 14; d++) { var f = slotsFor(c, 'consultation', d).filter(function (x) { return !x.booked; })[0]; if (f) return { d: d, t: f.t }; }
+    return null;
+  }
+
+  /* ---------- Shared bits ---------- */
+  function avatar(p, size) { return '<span class="ava ava-' + p.tag + '" style="--sz:' + size + 'px" aria-hidden="true">' + ic(p.species === 'dog' ? 'Dog' : 'Cat') + '</span>'; }
+  function stars(n) { var s = ''; for (var i = 1; i <= 5; i++) s += ic('Star', i <= n ? '' : 'off'); return '<span class="stars" aria-label="' + n + ' out of 5">' + s + '</span>'; }
+  function initials(n) { return n.replace('Dr. ', '').split(' ').map(function (w) { return w[0]; }).join(''); }
+  var NAV = [['home', 'House', 'Home'], ['health', 'HeartPulse', 'Health'], ['book', 'CalendarDays', 'Book'], ['shop', 'ShoppingBag', 'Shop'], ['me', 'UserRound', 'Me']];
+
+  function topLoc() {
+    return '<button type="button" class="loc" data-act="loc" aria-haspopup="menu" aria-expanded="' + S.home.loc + '"><span class="loc-pin">' + ic('MapPin') + '</span><span class="loc-t"><small>Your area</small><span>Indiranagar<span class="city">, Bengaluru</span> ' + ic('ChevronDown') + '</span></span></button>';
+  }
+  function shell(active, content, opts) {
+    opts = opts || {};
+    var side = '<aside class="side" aria-label="PawSetu"><div class="brand">' + logo(32) + '<span>PawSetu</span></div><nav class="side-nav" aria-label="Main">' +
+      NAV.map(function (n) { return '<button type="button" class="nav-i' + (n[0] === active ? ' on' : '') + '" data-act="nav" data-to="' + n[0] + '"' + (n[0] === active ? ' aria-current="page"' : '') + '>' + ic(n[1]) + '<span>' + n[2] + '</span></button>'; }).join('') +
+      '</nav><div class="side-label">My pets</div><div class="side-pets">' +
+      ['bruno', 'misty'].map(function (k) { return '<button type="button" class="side-pet" data-act="nav-pet" data-pet="' + k + '">' + avatar(PETS[k], 28) + PETS[k].name + '<small>' + PETS[k].short + '</small></button>'; }).join('') +
+      '</div><div class="side-sos"><button type="button" class="sos" data-act="sos">SOS</button></div></aside>';
+    var top = '<header class="top"><div class="top-in">' + (opts.top || topLoc()) + '<div class="top-act"><button type="button" class="icon-btn" aria-label="Messages" data-act="toast" data-msg="Messages: your chats with clinics and providers.">' + ic('MessageCircle') + '</button><button type="button" class="icon-btn" aria-label="Notifications, 2 new" data-act="toast" data-msg="The notification centre opens here.">' + ic('Bell') + '<span class="dot">2</span></button><button type="button" class="sos" data-act="sos">SOS</button></div></div></header>';
+    var tabs = '<nav class="tabbar" aria-label="Main">' + NAV.map(function (n) { return '<button type="button" class="tab' + (n[0] === active ? ' on' : '') + '" data-act="nav" data-to="' + n[0] + '"' + (n[0] === active ? ' aria-current="page"' : '') + '>' + ic(n[1]) + '<span>' + n[2] + '</span></button>'; }).join('') + '</nav>';
+    var menu = (S.home.loc && active === 'home') ? '<div class="loc-menu" role="menu"><button type="button" role="menuitem" data-act="loc-pick">' + ic('LocateFixed') + 'Use my current location</button><button type="button" role="menuitem" class="on" data-act="loc-pick">' + ic('House') + 'Indiranagar, Bengaluru' + ic('Check') + '</button><button type="button" role="menuitem" data-act="loc-pick">' + ic('MapPin') + 'Choose another area</button></div>' : '';
+    return '<div class="app' + (opts.cls ? ' ' + opts.cls : '') + '"><div class="shell">' + side + '<div class="main">' + top + '<div class="content">' + content + '</div></div></div>' + (opts.after || '') + tabs + menu + (opts.overlay || '') + '</div>';
+  }
+
+  /* ---------- Home ---------- */
+  var CATS = [
+    { id: 'vets', l: 'Vets', i: 'Stethoscope', f: function () { return true; } },
+    { id: 'vacc', l: 'Vaccination', i: 'Syringe', f: function (c) { return c.services.indexOf('vaccination') > -1; } },
+    { id: 'sos', l: '24×7 emergency', i: 'Siren', cls: ' sos-pill', f: function (c) { return c.h24; } },
+    { id: 'groom', l: 'Grooming', i: 'Scissors', f: function (c) { return c.services.indexOf('grooming') > -1; } },
+    { id: 'board', l: 'Boarding', i: 'Hotel', f: function (c) { return c.services.indexOf('boarding') > -1; } },
+    { id: 'tele', l: 'Tele-vet', i: 'Video', f: function (c) { return c.tele; } }
+  ];
+  var SYN = { 'x ray': 'xray', 'x-ray': 'xray', 'xray': 'xray', 'scan': 'xray', 'ultrasound': 'xray', 'teeth': 'dental', 'tooth': 'dental', 'dental': 'dental', 'vaccin': 'vaccination', 'shot': 'vaccination', 'booster': 'vaccination', 'blood': 'lab', 'lab': 'lab', 'groom': 'grooming', 'bath': 'grooming', 'haircut': 'grooming', 'board': 'boarding', 'stay': 'boarding', 'surgery': 'surgery', 'operation': 'surgery', 'home visit': 'home' };
+  var SYMPTOMS = ['limp', 'vomit', 'itch', 'cough', 'diarr', 'fever', 'tick', 'flea', 'ear', 'eye', 'skin', 'not eating', 'sick', 'pain', 'wound', 'injur', 'sprain', 'lump'];
+  function matchQ(c, q) {
+    q = q.trim().toLowerCase();
+    if (!q) return true;
+    var hay = [c.name, c.area, c.city].concat(c.services.map(function (k) { return SERVICES[k].name; })).concat(c.h24 ? ['24x7', '24×7', 'emergency', 'night'] : []).concat(c.tele ? ['video', 'tele-vet', 'online'] : []).join(' ').toLowerCase();
+    if (hay.indexOf(q) > -1) return true;
+    for (var k in SYN) if (q.indexOf(k) > -1) return c.services.indexOf(SYN[k]) > -1;
+    return SYMPTOMS.some(function (s) { return q.indexOf(s) > -1; });
+  }
+  function catsHTML() {
+    return CATS.map(function (c) { var on = c.id === S.home.cat; return '<button type="button" class="pill' + (on ? ' on' : '') + (c.cls || '') + '" data-act="cat" data-id="' + c.id + '" aria-pressed="' + on + '">' + ic(c.i) + c.l + '</button>'; }).join('');
+  }
+  function cardHTML(c) {
+    var req = c.mode === 'request', nf = req ? null : nextFree(c);
+    return '<article class="card cc" data-act="open-clinic" data-id="' + c.id + '">' +
+      '<div class="cc-cover">' + mapSVG(c.seed) + '<div class="cc-badges">' + (c.h24 ? '<span class="badge b-sos">' + ic('Siren') + '24×7 emergency</span>' : '<span class="badge b-open">' + ic('Clock') + 'Open now</span>') + '<span class="badge b-ver">' + ic('BadgeCheck') + 'Verified</span></div><span class="cc-dist">' + ic('MapPin') + c.dist + ' away</span></div>' +
+      '<div class="cc-body"><div class="cc-name"><h3><button type="button" class="cc-link" data-act="open-clinic" data-id="' + c.id + '">' + c.name + '</button></h3><span class="rate" aria-label="Rated ' + c.rating + ' from ' + c.reviews + ' reviews">' + ic('Star') + c.rating.toFixed(1) + ' <small>(' + c.reviews + ')</small></span></div>' +
+      '<p class="cc-area">Vet clinic in ' + c.area + '</p>' +
+      '<div class="cc-slot">' + ic(req ? 'MessageCircle' : 'Clock') + '<span>' + (req ? 'Request a time' : 'Next free') + '</span><span class="val' + (req ? ' plain' : '') + '">' + (req ? 'Replies within 2 h' : dayWord(nf.d) + ', ' + t12(nf.t)) + '</span></div>' +
+      '<div class="cc-foot"><span class="price">From <b>' + inr(c.fee) + '</b></span><button type="button" class="btn btn-cta btn-sm" data-act="book-clinic" data-id="' + c.id + '">' + (req ? 'Request visit' : 'Book visit') + '</button></div></div></article>';
+  }
+  function feedBlock() {
+    var h = S.home, cat = CATS.filter(function (x) { return x.id === h.cat; })[0];
+    var list = ORDER.map(function (id) { return CL[id]; }).filter(function (c) { return cat.f(c) && matchQ(c, h.q); });
+    var head = '<div class="sec-head"><h2>' + (cat.id === 'vets' ? 'Vets' : cat.l) + ' near Indiranagar</h2><button type="button" class="btn btn-quiet" data-act="toast" data-msg="Opens the map with open clinics and 24×7 care.">' + ic('Map') + 'Map</button></div>';
+    if (!list.length) {
+      return head + '<div class="empty"><span class="ic">' + ic('Search') + '</span><b>No clinics match “' + esc(h.q) + '”</b><p>Try a clinic name, an area or a service such as vaccination or X-ray.</p><button type="button" class="btn btn-sec btn-sm" data-act="clear-q">Clear search</button></div>';
+    }
+    return head + '<p class="muted" style="font-size:14px;margin-top:-6px">' + list.length + (list.length === 1 ? ' clinic' : ' clinics') + ', nearest first</p><div class="feed">' + list.map(cardHTML).join('') + '</div>';
+  }
+  function todayHTML() {
+    var h = S.home, left = (h.meal < 2 ? 1 : 0) + (h.play < 30 ? 1 : 0);
+    var row = function (done, lbl, prog, what, aria) { return '<div class="check' + (done ? ' done' : '') + '"><span class="tick">' + (done ? ic('Check') : '') + '</span><span class="lbl">' + lbl + '</span><span class="prog">' + prog + '</span>' + (done ? '' : '<button type="button" class="icon-btn" data-act="log" data-what="' + what + '" aria-label="' + aria + '">' + ic('Plus') + '</button>') + '</div>'; };
+    return '<section class="card today" aria-label="Bruno’s day"><div class="today-h">' + avatar(PETS.bruno, 44) + '<div><h3>Bruno’s day</h3><p>' + (left ? left + (left === 1 ? ' thing' : ' things') + ' left today' : 'All done for today') + '</p></div><span class="badge b-up">' + ic('Flame') + '30-day streak</span></div>' +
+      '<div class="checks">' + row(true, 'Walk', '2 of 2') + row(h.meal >= 2, 'Meal', h.meal + ' of 2', 'meal', 'Log a meal for Bruno') + row(h.play >= 30, 'Play', h.play + ' of 30 min', 'play', 'Log 10 minutes of play for Bruno') + '</div>' +
+      '<div class="next-row">' + ic('Bell') + '<div><b>Flea and tick prevention</b><span>Due in 5 days, Sun 8 Nov</span></div></div></section>';
+  }
+  function comingHTML() {
+    var rows = [['Thu', '5', 'Misty', 'Hairball gel', '2 ml, 7:00 PM', 'b-up', 'Medicine'], ['Fri', '6', 'Misty', 'Vaccination at Gulmohar Vet Studio', '11:00 AM', 'b-booked', 'Confirmed'], ['Sun', '8', 'Bruno', 'Flea and tick prevention', 'Due in 5 days', 'b-due', 'Due soon'], ['Fri', '13', 'Bruno', 'DHPPi + Lepto and anti-rabies boosters', 'Due in 10 days', 'b-due', 'Due soon']];
+    return '<section class="card visit" aria-label="Coming up"><div class="sec-head"><h2>Coming up</h2><button type="button" class="btn btn-quiet" data-act="nav" data-to="health">Health</button></div>' + rows.map(function (r) {
+      return '<div class="visit-row"><span class="visit-when"><small>' + r[0] + '</small><b>' + r[1] + '</b></span><div style="min-width:0;flex:1"><h4>' + r[3] + '</h4><p>' + r[2] + ', <span class="mono">' + r[4] + '</span></p></div><span class="badge ' + r[5] + '">' + r[6] + '</span></div>';
+    }).join('') + '</section>';
+  }
+  function helpHTML() {
+    return '<section class="card help" aria-label="Need help now"><h2 style="font-size:19px">Need help now?</h2>' +
+      '<div class="help-row"><span class="ic red">' + ic('Siren') + '</span><div style="flex:1;min-width:0"><b>Nearest 24×7 clinic</b><span>Namma Pet Hospital, 6.4 km</span></div><button type="button" class="btn btn-sec btn-sm" data-act="open-clinic" data-id="namma">Open</button></div>' +
+      '<div class="help-row"><span class="ic teal">' + ic('Video') + '</span><div style="flex:1;min-width:0"><b>Talk to a vet on video</b><span>Vets at Gulmohar and Namma</span></div><button type="button" class="btn btn-sec btn-sm" data-act="toast" data-msg="Tele-vet: describe the problem, then chat or video.">Start</button></div>' +
+      '<div class="help-row"><span class="ic red">' + ic('PawPrint') + '</span><div style="flex:1;min-width:0"><b>First aid and SOS</b><span>Hold SOS for 2 seconds</span></div></div></section>';
+  }
+  function homeContent() {
+    return '<div class="home-top"><div class="home-hero"><div class="greet"><h1>Good afternoon, Priya</h1><p>Find a vet, book grooming or check a symptom.</p></div>' +
+      '<div class="search">' + ic('Search') + '<input type="search" data-input="q" value="' + esc(S.home.q) + '" placeholder="Search vets, grooming, symptoms or clinics" aria-label="Search vets, grooming, symptoms or clinics" autocomplete="off"><button type="button" class="icon-btn" data-act="toast" data-msg="Filters: distance, open now, rating, fee, language and animals." aria-label="Filters">' + ic('SlidersHorizontal') + '</button></div>' +
+      '<div class="pills" role="group" aria-label="Categories" data-region="cats">' + catsHTML() + '</div></div>' + todayHTML() + '</div>' +
+      '<div class="blk" data-region="feed">' + feedBlock() + '</div><div class="home-bottom">' + comingHTML() + helpHTML() + '</div>';
+  }
+  function homeView() { return shell('home', homeContent()); }
+
+  /* ---------- Clinic page ---------- */
+  function clinicTop(c) {
+    return '<button type="button" class="icon-btn back-btn" data-act="nav" data-to="home" aria-label="Back to Home">' + ic('ArrowLeft') + '</button><span class="mini-title">' + c.name + '</span><span class="loc-detail">' + topLoc() + '</span>';
+  }
+  function tagsFor(c) {
+    var t = [];
+    if (c.h24) t.push(['Siren', '24×7 emergency']);
+    if (c.tele) t.push(['Video', 'Video consults']);
+    if (c.services.indexOf('xray') > -1) t.push(['ScanLine', 'X-ray and ultrasound']);
+    if (c.services.indexOf('surgery') > -1) t.push(['Hospital', 'Surgery']);
+    if (c.services.indexOf('dental') > -1) t.push(['Smile', 'Dental care']);
+    if (c.services.indexOf('home') > -1) t.push(['House', 'Home visits within ' + c.homeKm + ' km']);
+    if (c.services.indexOf('grooming') > -1) t.push(['Scissors', 'Grooming']);
+    if (c.services.indexOf('boarding') > -1) t.push(['Hotel', 'Boarding']);
+    t.push(['PawPrint', c.species]);
+    t.push(['Languages', c.langs]);
+    t.push(['Wallet', c.online ? 'Pay online or at the clinic' : 'Pay at the clinic']);
+    return t;
+  }
+  function clinicView() {
+    var s = S.clinic, c = CL[s.id], req = c.mode === 'request', nf = req ? null : nextFree(c);
+    var open = c.h24 ? '<span class="badge b-sos">' + ic('Siren') + 'Open 24 hours</span>' : '<span class="badge b-open">' + ic('Clock') + 'Open until 8:00 PM</span>';
+    var hours = c.h24 ? '<dt>Every day</dt><dd>Open 24 hours</dd>' : '<dt>Mon–Sat</dt><dd>9:00 AM – 8:00 PM</dd><dt>Sunday</dt><dd>10:00 AM – 2:00 PM</dd>';
+    var svcRows = c.services.map(function (k) {
+      var v = SERVICES[k], price = k === 'consultation' ? c.fee : v.price;
+      var how = v.min ? (v.min + ' min, ' + (v.request || req ? 'request to book' : 'instant booking')) : (req ? 'Request to book' : 'Ask the clinic');
+      if (k === 'home') how += ', plus ' + inr(300) + ' travel';
+      return '<div class="svc-row"><b>' + v.name + '</b><span class="p">' + inr(price) + '</span><span>' + how + '</span></div>';
+    }).join('');
+    var reviews = c.revs.length ? c.revs.map(function (r) {
+      return '<div class="card rev"><div class="rev-h">' + stars(r.s) + '<b>' + r.who + '</b><span class="mono muted" style="font-size:12.5px">' + r.d + '</span><span class="badge b-ver">' + ic('BadgeCheck') + 'Verified booking</span></div><p>' + r.t + '</p>' + (r.reply ? '<p class="reply">Reply from the clinic: ' + r.reply + '</p>' : '') + '</div>';
+    }).join('') : '<div class="card rev"><p class="muted" style="font-size:14.5px">Rated ' + c.rating + ' from ' + c.reviews + ' verified bookings. The demo data has no review text for this clinic.</p></div>';
+    var left = '<div class="cl-left"><div class="cl-head"><div class="cl-meta"><span class="badge b-ver">' + ic('BadgeCheck') + 'Verified clinic</span>' + open + '</div><h1>' + c.name + '</h1>' +
+      '<p class="cl-sub">Vet clinic in ' + c.area + ', ' + c.city + ', ' + c.dist + ' from you</p>' +
+      '<div class="cl-meta"><span class="rate">' + ic('Star') + c.rating + ' <small>' + c.reviews + ' reviews</small></span></div>' +
+      '<div class="cl-actions"><button type="button" class="btn btn-sec btn-sm" data-act="toast" data-msg="Demo: this would call the clinic through a masked number. No real call is placed.">' + ic('Phone') + 'Call</button><button type="button" class="btn btn-sec btn-sm" data-act="toast" data-msg="Opens directions in your maps app.">' + ic('Navigation') + 'Directions</button><button type="button" class="btn btn-sec btn-sm" data-act="toast" data-msg="Starts a chat with ' + esc(c.name) + '.">' + ic('MessageCircle') + 'Message</button></div></div>' +
+      '<div class="blk"><h2>Vets here</h2><div class="vets">' + c.vets.map(function (v) { return '<div class="card vet"><span class="ini" aria-hidden="true">' + initials(v.n) + '</span><div style="min-width:0"><b>' + v.n + '</b><p>' + v.q + (v.y ? ', ' + v.y + ' years' : '') + '</p><span class="mono">Council reg. ' + v.reg + '</span></div></div>'; }).join('') + '</div></div>' +
+      '<div class="blk"><h2>Services and prices</h2><div class="card svc">' + svcRows + '</div></div>' +
+      '<div class="blk"><h2>Good to know</h2><div class="tags">' + tagsFor(c).map(function (t) { return '<span class="tag">' + ic(t[0]) + t[1] + '</span>'; }).join('') + '</div><p class="muted" style="font-size:13.5px">Facility details such as a separate cat waiting area, parking or step-free access need new fields in the partner profile.</p></div>' +
+      '<div class="blk"><h2>Location and hours</h2><div class="card loc-card"><div class="mapbox">' + mapSVG(c.seed + 3, 400, 175) + '<span class="attr">In the app: OpenStreetMap</span></div><div class="loc-info"><p>' + (c.address || c.area + ', ' + c.city) + '</p><dl class="hours">' + hours + '</dl></div></div></div>' +
+      '<div class="blk"><h2>Reviews</h2>' + reviews + '</div></div>';
+    var content = '<div class="clinic"><button type="button" class="back" data-act="nav" data-to="home">' + ic('ArrowLeft') + 'Vets near Indiranagar</button><div class="cl-cover">' + mapSVG(c.seed + 7, 640, 200) + '<span class="cover-note">Clinic photos appear here</span></div>' + left +
+      '<section class="bp" data-region="book" aria-label="Book a visit">' + bookPanel() + '</section></div>';
+    var after = '<div class="cl-sticky-cta"><div class="t"><small>' + (req ? 'Request a time' : 'Next free') + '</small><b>' + (req ? 'From ' + inr(c.fee) : dayWord(nf.d) + ', ' + t12(nf.t)) + '</b></div><button type="button" class="btn btn-cta" data-act="sheet-open">' + (req ? 'Request visit' : 'Book visit') + '</button></div><button type="button" class="scrim" data-act="sheet-close" aria-label="Close booking" tabindex="-1"></button>';
+    return shell('book', content, { cls: 'detail' + (s.sheet ? ' sheet-open' : ''), after: after, top: clinicTop(c) });
+  }
+  function bookPanel() {
+    var s = S.clinic, c = CL[s.id];
+    if (s.done) return doneHTML();
+    var bookable = c.services.filter(function (k) { return SERVICES[k].min; });
+    if (bookable.indexOf(s.svc) < 0) s.svc = 'consultation';
+    var shown = s.more ? bookable : bookable.slice(0, 3);
+    if (shown.indexOf(s.svc) < 0) shown = shown.concat([s.svc]);
+    var req = c.mode === 'request' || !!SERVICES[s.svc].request;
+    var slots = slotsFor(c, s.svc, s.day);
+    var pers = [['morning', 'Morning'], ['afternoon', 'Afternoon'], ['evening', 'Evening']].concat(c.h24 ? [['night', 'Night']] : []).map(function (p) {
+      var inP = slots.filter(function (x) { return periodOf(x.t, c.h24) === p[0]; });
+      return { id: p[0], l: p[1], all: inP.length, free: inP.filter(function (x) { return !x.booked; }).length };
+    });
+    var per = s.per;
+    var perObj = pers.filter(function (p) { return p.id === per; })[0];
+    if (!perObj || !perObj.all) { var firstFree = pers.filter(function (p) { return p.free; })[0]; per = firstFree ? firstFree.id : pers[0].id; }
+    var list = slots.filter(function (x) { return periodOf(x.t, c.h24) === per; });
+    var price = s.svc === 'consultation' ? c.fee : SERVICES[s.svc].price, travel = s.svc === 'home' ? 300 : 0;
+    var pet = PETS[s.pet];
+
+    var h = '<div class="bp-h"><h2>' + (req ? 'Request a visit' : 'Book a visit') + '</h2><button type="button" class="icon-btn" data-act="sheet-close" aria-label="Close">' + ic('X') + '</button></div>';
+    h += '<div class="bp-g"><span class="bp-l">Who is it for?</span><div class="petpick" role="group" aria-label="Pet">' + ['bruno', 'misty'].map(function (k) { var on = k === s.pet; return '<button type="button" class="pp' + (on ? ' on' : '') + '" data-act="bp-pet" data-pet="' + k + '" aria-pressed="' + on + '">' + avatar(PETS[k], 36) + PETS[k].name + '</button>'; }).join('') + '</div></div>';
+    h += '<div class="bp-g"><span class="bp-l">Service</span><div class="svcs" role="radiogroup" aria-label="Service">' + shown.map(function (k) {
+      var on = k === s.svc, v = SERVICES[k], pr = k === 'consultation' ? c.fee : v.price;
+      return '<button type="button" role="radio" aria-checked="' + on + '" class="sv' + (on ? ' on' : '') + '" data-act="bp-svc" data-svc="' + k + '"><span class="rd"></span><span><b>' + v.name + '</b><span class="meta">' + v.min + ' min' + (v.request && c.mode !== 'request' ? ', request' : '') + '</span></span><span class="p">' + inr(pr) + '</span></button>';
+    }).join('') + '</div>' + (bookable.length > 3 ? '<button type="button" class="more" data-act="bp-more">' + (s.more ? 'Fewer services' : (bookable.length - 3) + ' more services') + '</button>' : '') + '</div>';
+    if (c.vets.length > 1) {
+      h += '<div class="bp-g"><label class="bp-l" for="vet-' + c.id + '">Vet</label><select class="sel" id="vet-' + c.id + '" data-input="vet"><option value="any">Any available vet</option>' + c.vets.map(function (v) { return '<option value="' + v.reg + '"' + (s.vet === v.reg ? ' selected' : '') + '>' + v.n + '</option>'; }).join('') + '</select></div>';
+    }
+    h += '<div class="bp-g"><span class="bp-l">Day <small>' + DAYS[s.day].wk + ' ' + DAYS[s.day].dd + ' ' + DAYS[s.day].mon + ' 2026</small></span><div class="days" role="radiogroup" aria-label="Day">' + DAYS.map(function (d, i) {
+      var free = slotsFor(c, s.svc, i).filter(function (x) { return !x.booked; }).length, on = i === s.day;
+      return '<button type="button" role="radio" aria-checked="' + on + '" class="day' + (on ? ' on' : '') + (free ? '' : ' full') + '" data-act="bp-day" data-day="' + i + '"><small>' + (i === 0 ? 'Today' : i === 1 ? 'Tmrw' : d.wk) + '</small><b>' + d.dd + '</b><span>' + (free ? free + ' free' : 'Full') + '</span></button>';
+    }).join('') + '</div></div>';
+    h += '<div class="bp-g"><span class="bp-l">Time' + (req ? ' <small>Pick up to 3 that suit you</small>' : '') + '</span><div class="periods" role="tablist" aria-label="Time of day">' + pers.map(function (p) {
+      var on = p.id === per;
+      return '<button type="button" role="tab" aria-selected="' + on + '" class="per' + (on ? ' on' : '') + '" data-act="bp-per" data-per="' + p.id + '"' + (p.all ? '' : ' disabled') + '>' + p.l + '<small>' + (p.all ? p.free + ' free' : 'none') + '</small></button>';
+    }).join('') + '</div>';
+    if (!list.length) {
+      h += '<p class="no-slots">' + (s.day === 0 ? 'No times left today. Try tomorrow.' : 'The clinic is closed then. Pick another day.') + '</p>';
+    } else {
+      h += '<div class="slots" role="group" aria-label="Times">' + list.map(function (x) {
+        var on = req ? s.picks.indexOf(x.t) > -1 : s.slot === x.t;
+        if (x.booked) return '<button type="button" class="slot" disabled aria-label="' + t12(x.t) + ', booked">' + t12(x.t) + '</button>';
+        return '<button type="button" class="slot' + (on ? ' on' : '') + '" data-act="bp-slot" data-t="' + x.t + '" aria-pressed="' + on + '">' + (on ? ic('Check') : '') + t12(x.t) + '</button>';
+      }).join('') + '</div>';
+    }
+    h += '<div class="slot-key"><span><i></i>Free</span><span><i class="s"></i>Your pick</span><span><i class="b"></i>Booked</span></div></div>';
+    h += '<div class="fee" aria-label="Price"><div><span>' + SERVICES[s.svc].name + '</span><span class="v">' + inr(price) + '</span></div>' + (travel ? '<div><span>Travel within ' + c.homeKm + ' km</span><span class="v">' + inr(travel) + '</span></div>' : '') + '<div><span>PawSetu booking fee</span><span class="free">Free</span></div><div class="tot"><span>' + (req ? 'Estimated total' : 'Total') + '</span><span class="v">' + inr(price + travel) + '</span></div></div>';
+    if (!req && c.online) {
+      h += '<div class="bp-g"><span class="bp-l">How you’ll pay</span><div class="pay" role="radiogroup" aria-label="Payment">' + [['clinic', 'Building2', 'At the clinic'], ['online', 'CreditCard', 'Online now']].map(function (p) { var on = s.pay === p[0]; return '<button type="button" role="radio" aria-checked="' + on + '" class="' + (on ? 'on' : '') + '" data-act="bp-pay" data-pay="' + p[0] + '">' + ic(p[1]) + p[2] + '</button>'; }).join('') + '</div></div>';
+    }
+    var label, ready;
+    if (req) { ready = s.picks.length > 0; label = ready ? 'Send request, ' + s.picks.length + ' of 3 times' : 'Pick up to 3 times'; }
+    else { ready = s.slot != null; label = ready ? 'Book ' + pet.name + ' for ' + t12(s.slot) : 'Pick a time'; }
+    h += '<button type="button" class="btn btn-cta btn-block" data-act="bp-confirm"' + (ready ? '' : ' disabled') + '>' + label + '</button>';
+    h += '<p class="fine">' + (req ? 'The clinic picks one of your times or suggests another. Unanswered requests expire after 2 hours.' : 'You can change or cancel it from My bookings.') + '</p>';
+    return h;
+  }
+  function doneHTML() {
+    var s = S.clinic, c = CL[s.id], p = PETS[s.pet], req = c.mode === 'request' || !!SERVICES[s.svc].request;
+    var price = (s.svc === 'consultation' ? c.fee : SERVICES[s.svc].price) + (s.svc === 'home' ? 300 : 0);
+    var vet = s.vet === 'any' ? 'Any available vet' : c.vets.filter(function (v) { return v.reg === s.vet; })[0].n;
+    var when = req ? s.picks.slice().sort(function (a, b) { return a - b; }).map(t12).join(', ') + ', ' + dayFull(s.day) : dayFull(s.day) + ', ' + t12(s.slot);
+    return '<div class="bp-h"><span></span><button type="button" class="icon-btn" data-act="sheet-close" aria-label="Close">' + ic('X') + '</button></div><div class="bk-done" role="status"><span class="done-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span>' +
+      '<h2>' + (req ? 'Request sent for ' + p.name : p.name + '’s visit is booked') + '</h2><p>' + (req ? c.name + ' usually replies within 2 hours. We’ll tell you which time they pick.' : 'It’s in My bookings with directions and a chat with the clinic.') + '</p>' +
+      '<dl class="sum"><div><dt>' + (req ? 'Times' : 'When') + '</dt><dd class="mono">' + when + '</dd></div><div><dt>Where</dt><dd>' + c.name + ', ' + c.area + '</dd></div><div><dt>For</dt><dd>' + p.name + ', ' + SERVICES[s.svc].name.toLowerCase() + '</dd></div>' + (c.vets.length > 1 ? '<div><dt>Vet</dt><dd>' + vet + '</dd></div>' : '') + '<div><dt>Price</dt><dd>' + inr(price) + (req ? ', paid at the clinic' : s.pay === 'online' ? ', paid online (demo payment)' : ', pay at the clinic') + '</dd></div></dl>' +
+      '<div class="done-acts"><button type="button" class="btn btn-sec" data-act="toast" data-msg="Adds the visit to your calendar as an .ics file.">' + ic('CalendarPlus') + 'Add to calendar</button><button type="button" class="btn btn-sec" data-act="toast" data-msg="Opens the chat with ' + esc(c.name) + '.">' + ic('MessageCircle') + 'Message clinic</button></div>' +
+      '<button type="button" class="btn btn-quiet" data-act="bp-again">Book another visit</button></div>';
+  }
+
+  /* ---------- Pets and health ---------- */
+  var FILTS = [['all', 'All'], ['vaccine', 'Vaccines'], ['care', 'Medicines and care'], ['visit', 'Visits'], ['doc', 'Documents']];
+  var BADGE = { due: ['b-due', 'Bell'], up: ['b-up', 'CalendarDays'], booked: ['b-booked', 'CalendarCheck'], done: ['b-done', 'Check'], ask: ['b-ask', 'Stethoscope'], check: ['b-check', 'Eye'] };
+  function spark(p) {
+    var W = 140, H = 38, lo = p.band[0], hi = p.band[1], ws = p.weights;
+    var pts = ws.map(function (v, i) { return [4 + i * (W - 8) / (ws.length - 1), H - 4 - (v - lo) / (hi - lo) * (H - 8)]; });
+    var last = pts[pts.length - 1];
+    return '<svg class="spark" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Weight over 90 days, from ' + ws[0] + ' to ' + ws[ws.length - 1] + ' kg, inside the healthy range"><rect class="band" x="0" y="0" width="' + W + '" height="' + H + '" rx="6"/><polyline points="' + pts.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' ') + '"/><circle cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="3"/></svg>';
+  }
+  function passHTML(p) {
+    var chip = p.chip ? '<div class="chipline"><span class="mono">' + p.chip + '</span><button type="button" class="mini" data-act="copy-chip" data-chip="' + p.chip + '" aria-label="Copy microchip number">' + ic('Copy') + '</button></div><span>Scan at any vet</span>' : '<b style="font-size:16px">Not added</b><span>Add it from the vet’s certificate</span>';
+    return '<section class="pass" aria-label="' + p.name + '’s health passcard"><div class="pass-top"><span class="t">' + logo(22) + 'Health passcard</span><span class="badge ' + p.status.cls + '">' + ic(p.status.icon) + p.status.text + '</span></div>' +
+      '<div class="pass-id">' + avatar(p, 72) + '<div style="min-width:0"><h2>' + p.name + '</h2><p>' + p.breed + '</p><p>' + p.sex + '</p></div></div>' +
+      '<div class="facts"><div class="fact l"><small>Age</small><b>' + p.age + '</b><span>' + p.born + '</span></div><div class="fact r"><small>Weight</small><b>' + p.weight.toFixed(1) + ' kg</b>' + spark(p) + '<span>' + p.trend + '</span></div><div class="fact wide"><small>Microchip</small>' + chip + '</div><div class="fact l last"><small>Allergies</small><b class="sm">' + p.allergies + '</b><span>' + p.diet + '</span></div><div class="fact r last"><small>Usual vet</small><b class="sm">' + p.vet + '</b><span>Indiranagar</span></div></div>' +
+      '<div class="pass-acts"><button type="button" class="btn btn-trust btn-sm" data-act="toast" data-msg="Makes a share link that stops working after 1 hour, 24 hours or 7 days.">' + ic('Share2') + 'Share with vet</button><button type="button" class="btn btn-sec btn-sm" data-act="toast" data-msg="The medical card works offline.">' + ic('IdCard') + 'Medical card</button></div></section>';
+  }
+  function itemHTML(e) {
+    var b = BADGE[e.st];
+    var acts = (e.acts || []).map(function (a) { return '<button type="button" class="btn btn-' + (a.k || 'sec') + ' btn-sm" data-act="' + a.a + '"' + (a.m ? ' data-msg="' + esc(a.m) + '"' : '') + (e.id ? ' data-id="' + e.id + '"' : '') + '>' + (a.i ? ic(a.i) : '') + a.l + '</button>'; }).join('');
+    var rx = e.rx ? '<dl class="rx">' + e.rx.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('') + '</dl>' : '';
+    var dose = e.dose ? '<p class="mono" style="color:var(--ink);font-size:13.5px">' + e.dose + '</p>' : '';
+    return '<li class="tl-i s-' + e.st + '"><span class="tl-dot" aria-hidden="true"></span><span class="tl-date-col">' + e.date + '</span><div class="card tl-card"><div class="tl-top"><span class="tl-date">' + e.date + '</span>' + (e.badge ? '<span class="badge ' + b[0] + '">' + ic(b[1]) + e.badge + '</span>' : '') + '</div><h4>' + e.title + '</h4>' + dose + (e.meta ? '<p>' + e.meta + '</p>' : '') + rx + (acts ? '<div class="tl-acts">' + acts + '</div>' : '') + '</div></li>';
+  }
+  function docsHTML(p, cls) {
+    return '<section class="card docs ' + cls + '" aria-label="Documents"><div class="docs-h"><h3>Documents</h3><button type="button" class="btn btn-quiet btn-sm" data-act="toast" data-msg="Opens the document vault. It asks for your vault PIN.">' + ic('Lock') + 'Vault</button></div>' + p.docs.map(function (d) {
+      return '<div class="doc"><span class="ic">' + ic(d.i) + '</span><div style="min-width:0;flex:1"><b>' + d.t + '</b><span>' + d.d + '</span></div>' + (d.check ? '<span class="badge b-check">' + ic('Eye') + 'Check</span>' : '') + '<button type="button" class="icon-btn" aria-label="Download ' + esc(d.t) + '" data-act="toast" data-msg="Downloads ' + esc(d.t) + ' as a PDF after the vault PIN.">' + ic('Download') + '</button></div>';
+    }).join('') + '</section>';
+  }
+  function petBody() {
+    var s = S.pets, p = PETS[s.pet], f = s.filt;
+    var ok = function (e) { return f === 'all' || (f === 'care' ? (e.type === 'care' || e.type === 'med') : e.type === f); };
+    var up = p.up.filter(ok), past = p.past.filter(ok);
+    var none = function (what) { return '<div class="empty" style="padding:20px"><b>Nothing ' + what + '</b><p>Change the filter to see more.</p></div>'; };
+    return '<div class="pets-left">' + passHTML(p) + docsHTML(p, 'docs-desk') + '</div><div class="pets-right"><div class="filt" role="group" aria-label="Show">' + FILTS.map(function (x) { var on = x[0] === f; return '<button type="button" class="' + (on ? 'on' : '') + '" data-act="filt" data-f="' + x[0] + '" aria-pressed="' + on + '">' + x[1] + '</button>'; }).join('') + '</div>' +
+      '<div class="tl-sec"><h3>Coming up</h3>' + (up.length ? '<ol class="tl">' + up.map(itemHTML).join('') + '</ol>' : none('coming up')) + '</div>' +
+      '<div class="tl-sec"><h3>History</h3>' + (past.length ? '<ol class="tl">' + past.map(itemHTML).join('') + '</ol>' : none('here yet')) + '</div>' + docsHTML(p, 'docs-phone') + '</div>';
+  }
+  function petsView() {
+    var s = S.pets;
+    var content = '<div class="greet"><h1>Health</h1><p>Records, reminders and documents for each pet.</p></div><div class="petsw" role="group" aria-label="Choose a pet">' + ['bruno', 'misty'].map(function (k) { var on = k === s.pet; return '<button type="button" class="ps' + (on ? ' on' : '') + '" data-act="pet" data-pet="' + k + '" aria-pressed="' + on + '">' + avatar(PETS[k], 40) + PETS[k].name + '</button>'; }).join('') + '<button type="button" class="ps add" data-act="toast" data-msg="Add a pet: only a name and species are needed.">' + ic('Plus') + 'Add pet</button></div><div class="pets-grid" data-region="pet">' + petBody() + '</div>';
+    return shell('health', content);
+  }
+
+  /* ---------- Boot screen preview ---------- */
+  function bootOverlay() {
+    var sk = function (w, h, r) { return '<div class="skel" style="width:' + w + ';height:' + h + 'px' + (r ? ';border-radius:' + r : '') + '"></div>'; };
+    return '<div class="boot" aria-hidden="true"><div class="boot-top">' + logo(36) + '<div style="display:grid;gap:6px">' + sk('64px', 10) + sk('150px', 14) + '</div><div style="margin-left:auto">' + sk('52px', 40, '9999px') + '</div></div><div class="boot-body">' + sk('240px', 28) + sk('270px', 14) + sk('100%', 56, '14px') + '<div style="display:flex;gap:8px">' + sk('84px', 44, '9999px') + sk('120px', 44, '9999px') + sk('120px', 44, '9999px') + '</div>' + sk('100%', 210, '16px') + '<div class="sk-card"><div class="skel cover"></div><div class="sk-lines">' + sk('60%', 16) + sk('40%', 12) + sk('100%', 40, '12px') + '</div></div></div><div class="boot-tab">' + sk('36px', 36) + sk('36px', 36) + sk('36px', 36) + sk('36px', 36) + sk('36px', 36) + '</div></div>';
+  }
+  var bootTimer = null;
+  function playBoot() {
+    $$('.screen[data-mount="boot"]').forEach(function (scr) {
+      scr.innerHTML = shell('home', homeContent(), { overlay: bootOverlay() });
+      var b = scr.querySelector('.boot');
+      clearTimeout(bootTimer);
+      bootTimer = setTimeout(function () { b.classList.add('out'); }, 1800);
+    });
+  }
+
+  /* ---------- Rendering and events ---------- */
+  var VIEWS = { home: homeView, clinic: clinicView, pets: petsView };
+  var REGIONS = { home: { feed: feedBlock, cats: catsHTML }, clinic: { book: bookPanel }, pets: { pet: petBody } };
+  function render(name) {
+    $$('.screen[data-mount="' + name + '"]').forEach(function (scr) {
+      var m = scr.querySelector('.main'), top = m ? m.scrollTop : 0;
+      scr.innerHTML = VIEWS[name]();
+      var m2 = scr.querySelector('.main'); if (m2) { m2.scrollTop = top; flagScroll(m2); }
+    });
+  }
+  function renderRegion(name, region) {
+    $$('.screen[data-mount="' + name + '"] [data-region="' + region + '"]').forEach(function (el) {
+      var keep = [el].concat($$('.days, .pills, .filt, .slots', el)).map(function (x) { return [x.scrollLeft, x.scrollTop]; });
+      el.innerHTML = REGIONS[name][region]();
+      [el].concat($$('.days, .pills, .filt, .slots', el)).forEach(function (x, i) { if (keep[i]) { x.scrollLeft = keep[i][0]; x.scrollTop = keep[i][1]; } });
+    });
+  }
+  function setSheet(open) {
+    S.clinic.sheet = open;
+    $$('.screen[data-mount="clinic"] .app').forEach(function (a) { a.classList.toggle('sheet-open', open); });
+  }
+  function jump(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
+  }
+  function toast(scr, msg) {
+    var app = scr && scr.querySelector('.app');
+    if (!app) return;
+    $$('.toast', app).forEach(function (t) { t.remove(); });
+    var el = document.createElement('div');
+    el.className = 'toast'; el.setAttribute('role', 'status'); el.textContent = msg;
+    app.appendChild(el);
+    setTimeout(function () { el.remove(); }, 3400);
+  }
+  function flagScroll(m) { m.classList.toggle('scrolled', m.scrollTop > 6); m.classList.toggle('past-cover', m.scrollTop > 150); }
+  document.addEventListener('scroll', function (e) { var m = e.target; if (m && m.classList && m.classList.contains('main')) flagScroll(m); }, true);
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-act]');
+    if (!t) return;
+    var scr = t.closest('.screen'), act = t.dataset.act, c = S.clinic;
+    switch (act) {
+      case 'nav':
+        if (t.dataset.to === 'home') jump('scr-home');
+        else if (t.dataset.to === 'health') jump('scr-pets');
+        else if (t.dataset.to === 'book') jump('scr-clinic');
+        else toast(scr, 'Shop and Me aren’t part of this review.');
+        break;
+      case 'nav-pet': S.pets.pet = t.dataset.pet; render('pets'); jump('scr-pets'); break;
+      case 'open-clinic': S.clinic = freshClinic(t.dataset.id); render('clinic'); jump('scr-clinic'); break;
+      case 'book-clinic': S.clinic = freshClinic(t.dataset.id, { sheet: true }); render('clinic'); jump('scr-clinic'); break;
+      case 'cat': S.home.cat = t.dataset.id; renderRegion('home', 'cats'); renderRegion('home', 'feed'); break;
+      case 'clear-q': S.home.q = ''; $$('[data-input="q"]').forEach(function (x) { x.value = ''; }); renderRegion('home', 'feed'); break;
+      case 'loc': S.home.loc = !S.home.loc; render('home'); break;
+      case 'loc-pick': S.home.loc = false; render('home'); toast(scr, 'Location is simulated in the demo.'); break;
+      case 'log':
+        if (t.dataset.what === 'meal') S.home.meal = Math.min(2, S.home.meal + 1); else S.home.play = Math.min(30, S.home.play + 10);
+        render('home'); toast(scr, t.dataset.what === 'meal' ? 'Meal logged for Bruno.' : '10 minutes of play logged for Bruno.');
+        break;
+      case 'toast': toast(scr, t.dataset.msg); break;
+      case 'sos': toast(scr, 'In the app you hold SOS for 2 seconds. Demo mode never calls a real number.'); break;
+      case 'sheet-open': setSheet(true); break;
+      case 'sheet-close': setSheet(false); if (c.done) { S.clinic = freshClinic(c.id); renderRegion('clinic', 'book'); } break;
+      case 'bp-pet': c.pet = t.dataset.pet; renderRegion('clinic', 'book'); break;
+      case 'bp-svc': c.svc = t.dataset.svc; c.slot = null; c.picks = []; c.per = null; renderRegion('clinic', 'book'); break;
+      case 'bp-more': c.more = !c.more; renderRegion('clinic', 'book'); break;
+      case 'bp-day': c.day = +t.dataset.day; c.slot = null; c.picks = []; c.per = null; renderRegion('clinic', 'book'); break;
+      case 'bp-per': c.per = t.dataset.per; renderRegion('clinic', 'book'); break;
+      case 'bp-slot':
+        var tm = +t.dataset.t, req = CL[c.id].mode === 'request' || !!SERVICES[c.svc].request;
+        if (req) { var ix = c.picks.indexOf(tm); if (ix > -1) c.picks.splice(ix, 1); else if (c.picks.length < 3) c.picks.push(tm); else toast(scr, 'You can offer up to 3 times.'); }
+        else c.slot = c.slot === tm ? null : tm;
+        c.per = periodOf(tm, CL[c.id].h24);
+        renderRegion('clinic', 'book');
+        break;
+      case 'bp-pay': c.pay = t.dataset.pay; renderRegion('clinic', 'book'); break;
+      case 'bp-confirm': c.done = true; renderRegion('clinic', 'book'); break;
+      case 'bp-again': S.clinic = freshClinic(c.id, { sheet: c.sheet }); renderRegion('clinic', 'book'); break;
+      case 'pet': S.pets.pet = t.dataset.pet; S.pets.filt = 'all'; render('pets'); break;
+      case 'filt': S.pets.filt = t.dataset.f; renderRegion('pets', 'pet'); break;
+      case 'mark-done':
+        var b = PETS.bruno, i = b.up.map(function (x) { return x.id; }).indexOf('b-flea');
+        if (i > -1) {
+          b.up.splice(i, 1);
+          b.up.splice(3, 0, { id: 'b-flea2', date: 'Thu 3 Dec', st: 'up', type: 'care', title: 'Flea and tick prevention', meta: 'Monthly. Last given today, 3 Nov 2026.', badge: 'Upcoming' });
+          b.past.unshift({ date: '3 Nov 2026', st: 'done', type: 'care', title: 'Flea and tick prevention', meta: 'Marked done by Priya.', badge: 'Done' });
+        }
+        render('pets'); toast(scr, 'Done. Next one is due Thu 3 Dec.');
+        break;
+      case 'book-vacc': S.clinic = freshClinic('gulmohar', { svc: 'vaccination', pet: S.pets.pet, sheet: true }); render('clinic'); jump('scr-clinic'); break;
+      case 'copy-chip':
+        var chip = t.dataset.chip;
+        var ok = function () { toast(scr, 'Microchip number copied.'); }, no = function () { toast(scr, 'Couldn’t copy. Select the number instead.'); };
+        try { navigator.clipboard.writeText(chip).then(ok, no); } catch (err) { no(); }
+        break;
+    }
+  });
+  document.addEventListener('input', function (e) {
+    var t = e.target;
+    if (t.dataset && t.dataset.input === 'q') {
+      S.home.q = t.value;
+      $$('.screen[data-mount="home"] [data-input="q"]').forEach(function (x) { if (x !== t) x.value = t.value; });
+      renderRegion('home', 'feed');
+    }
+  });
+  document.addEventListener('change', function (e) {
+    var t = e.target;
+    if (t.dataset && t.dataset.input === 'vet') { S.clinic.vet = t.value; renderRegion('clinic', 'book'); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && S.clinic.sheet) setSheet(false);
+  });
+
+  /* ---------- Page: icons, swatches, theme, scaling, copy ---------- */
+  function fillStatic() {
+    $$('[data-ic]').forEach(function (el) { el.outerHTML = ic(el.dataset.ic); });
+    $$('[data-logo]').forEach(function (el) { el.outerHTML = logo(+el.dataset.logo); });
+    var SW = [
+      ['Surfaces', [['canvas', '#FAF8F5', '#121316', 'Page background, Warm Alabaster', ''], ['surface', '#FFFFFF', '#1B1C20', 'Cards, sheets and inputs', ''], ['sand', '#F3EFEA', '#26272C', 'Secondary containers, resting chips', ''], ['line', '#E7E2DA', '#303238', '1px warm border on raised surfaces', '']]],
+      ['Text', [['ink', '#23201C', '#F2EEE8', 'Main text', '15.3 : 1 on canvas'], ['ink-2', '#6B645B', '#ABA59C', 'Secondary text', '5.5 : 1 on canvas, 5.1 on sand']]],
+      ['Coral: actions and active states', [['coral', '#E05A47', '#F07A66', 'Brand coral: selected outlines, active tab, map pin, focus ring', 'For shapes, not small text'], ['coral-cta', '#C4452F', '#EE6E5A', 'Filled booking buttons', 'White label 4.95 : 1; dark label 6.4 : 1'], ['coral-tint', '#FCEBE7', '#3A1E19', 'Selected chip, slot and tab background', 'Coral text on it 5.2 : 1']]],
+      ['Teal: medical trust only', [['teal', '#1F4E46', '#8FD1C1', 'Verified vets, vaccination status, records', '9.4 : 1 on white'], ['sage', '#E6F0ED', '#173A33', 'Trust containers and the passcard', 'Teal text on it 8.1 : 1']]],
+      ['Status', [['amber', '#D97706', '#F5B041', 'Upcoming reminders, icons and dots', 'Words use #92400E on #FDF1DF, 6.4 : 1'], ['emerald', '#15803D', '#5BD68A', 'Completed vaccinations', '5.0 : 1 on white'], ['crimson', '#DC2626', '#DC2626', 'Emergency, 24×7 and SOS', 'White text 4.8 : 1']]]
+    ];
+    var box = document.getElementById('swatches');
+    if (box) box.innerHTML = SW.map(function (g) {
+      return '<p class="sw-group">' + g[0] + '</p><div class="sw-grid">' + g[1].map(function (s) {
+        return '<div class="sw"><span class="sw-chip" title="Light ' + s[1] + ', dark ' + s[2] + '"><span style="background:' + s[1] + '"></span><span style="background:' + s[2] + '"></span></span><div style="min-width:0"><b>' + s[0] + '</b><span class="mono">' + s[1] + ' / ' + s[2] + '</span><p>' + s[3] + (s[4] ? '. ' + s[4] + '.' : '.') + '</p></div></div>';
+      }).join('') + '</div>';
+    }).join('');
+    var bars = document.getElementById('space-bars');
+    if (bars) bars.innerHTML = [4, 8, 12, 16, 20, 24, 32, 40, 48, 64].map(function (n) { return '<div><span>' + n + '</span><i style="width:' + Math.min(100, n * 1.5) + '%"></i></div>'; }).join('');
+    var sp = document.getElementById('state-panels');
+    if (sp) {
+      var sk = function (w, h, r) { return '<div class="skel" style="width:' + w + ';height:' + h + 'px' + (r ? ';border-radius:' + r : '') + '"></div>'; };
+      sp.innerHTML =
+        '<div class="panel"><h4>Clinic card, loading</h4><div class="sk-card"><div class="skel cover"></div><div class="sk-lines">' + sk('70%', 16) + sk('45%', 12) + sk('100%', 40, '12px') + '<div style="display:flex;justify-content:space-between">' + sk('30%', 18) + sk('38%', 40, '10px') + '</div></div></div></div>' +
+        '<div class="panel"><h4>Passcard, loading</h4><div style="padding:18px;border-radius:20px;background:var(--sage);display:grid;gap:14px"><div style="display:flex;gap:14px;align-items:center">' + sk('64px', 64, '50%') + '<div style="display:grid;gap:8px;flex:1">' + sk('50%', 22) + sk('70%', 12) + '</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">' + sk('100%', 40) + sk('100%', 40) + sk('100%', 40) + sk('100%', 40) + '</div></div></div>' +
+        '<div class="panel"><h4>Map, loading</h4><div style="position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden">' + '<div class="skel" style="position:absolute;inset:0;border-radius:0"></div><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-60%);color:var(--ink-2)">' + ic('MapPin') + '</span></div><p class="muted" style="font-size:13.5px">The list shows first; the map fills in behind it.</p></div>' +
+        '<div class="panel"><h4>Empty</h4><div class="empty"><span class="ic">' + ic('Siren') + '</span><b>No 24×7 clinics within 5 km</b><p>The nearest is Namma Pet Hospital, 6.4 km away.</p><button type="button" class="btn btn-sec btn-sm" tabindex="-1">Show up to 15 km</button></div></div>' +
+        '<div class="panel"><h4>Error</h4><div class="errbox"><div class="row">' + ic('CircleAlert') + '<div><b>Couldn’t load clinics</b><p>Showing the list from 4:02 PM. Check your connection.</p></div></div><button type="button" class="btn btn-sec btn-sm" tabindex="-1" style="justify-self:start">' + ic('RefreshCw') + 'Try again</button></div></div>' +
+        '<div class="panel"><h4>Offline</h4><div class="errbox" style="background:var(--sand)"><div class="row">' + ic('WifiOff') + '<div><b>You’re offline</b><p>Bruno’s records, the medical card and first aid still work. Logs sync later.</p></div></div></div></div>';
+    }
+  }
+  function applyTheme(mode) {
+    var root = document.documentElement;
+    if (mode === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', mode);
+    $$('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.themeSet === mode)); });
+    try { localStorage.setItem('pawsetu-review-theme', mode); } catch (err) { /* storage blocked */ }
+  }
+  document.addEventListener('click', function (e) {
+    var tb = e.target.closest('[data-theme-set]'); if (tb) applyTheme(tb.dataset.themeSet);
+    var jl = e.target.closest('[data-jump]'); if (jl) { e.preventDefault(); if (jl.dataset.jump === 'top') window.scrollTo({ top: 0, behavior: reduceMotion() ? 'auto' : 'smooth' }); else jump(jl.dataset.jump); }
+    var cp = e.target.closest('[data-copy]');
+    if (cp) {
+      var src = document.getElementById(cp.dataset.copy), label = cp.querySelector('span:last-child');
+      var done = function (txt) { if (label) { label.textContent = txt; setTimeout(function () { label.textContent = 'Copy'; }, 1800); } };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents(src); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); done('Selected, press Ctrl+C'); };
+      try { navigator.clipboard.writeText(src.textContent).then(function () { done('Copied'); }, fallback); } catch (err) { fallback(); }
+    }
+    if (e.target.closest('#replay')) playBoot();
+  });
+  function fit() {
+    $$('.scaler').forEach(function (sc) {
+      var w = +sc.dataset.w, h = +sc.dataset.h, avail = sc.parentElement.clientWidth, s = Math.min(1, avail / w);
+      sc.style.setProperty('--s', s.toFixed(4)); sc.style.height = Math.round(h * s) + 'px';
+      var pct = sc.parentElement.querySelector('[data-pct]'); if (pct) pct.textContent = Math.round(s * 100);
+    });
+  }
+
+  function start() {
+    fillStatic();
+    try { var saved = localStorage.getItem('pawsetu-review-theme'); if (saved) applyTheme(saved); } catch (err) { /* storage blocked */ }
+    $$('.screen[data-mount="boot"]').forEach(function (s) { s.setAttribute('inert', ''); });
+    render('home'); render('clinic'); render('pets'); playBoot();
+    fit();
+    if (window.ResizeObserver) { var ro = new ResizeObserver(fit); $$('.dev').forEach(function (d) { ro.observe(d); }); } else window.addEventListener('resize', fit);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+
+</script>
+</body></html>
