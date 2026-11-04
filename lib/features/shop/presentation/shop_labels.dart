@@ -43,21 +43,21 @@ IconData categoryIcon(String c) => switch (c) {
     };
 
 Color categoryColor(String c) => const {
-      'food': Color(0xFFF4A261),
-      'treats': Color(0xFFD6B98C),
-      'toys': Color(0xFF38BDF8),
-      'grooming': Color(0xFFF472B6),
-      'health_hygiene': Color(0xFF34D399),
-      'beds': Color(0xFF9B8AFB),
-      'collars_leashes': PrintColors.brand,
-      'bowls_feeders': Color(0xFFF59E0B),
-      'litter_cat': Color(0xFF64748B),
-      'bird_food_cages': Color(0xFF22C55E),
-      'rabbit_care': Color(0xFF84CC16),
-      'clothing': Color(0xFFEC4899),
-      'travel': Color(0xFF0EA5E9),
+      'food': CategoryColors.amber,
+      'treats': CategoryColors.gold,
+      'toys': CategoryColors.sky,
+      'grooming': CategoryColors.rose,
+      'health_hygiene': CategoryColors.teal,
+      'beds': CategoryColors.plum,
+      'collars_leashes': CategoryColors.teal,
+      'bowls_feeders': CategoryColors.clay,
+      'litter_cat': CategoryColors.slate,
+      'bird_food_cages': CategoryColors.olive,
+      'rabbit_care': CategoryColors.olive,
+      'clothing': CategoryColors.rose,
+      'travel': CategoryColors.ocean,
     }[c] ??
-    PrintColors.brand;
+    CategoryColors.teal;
 
 String speciesName(BuildContext context, String s) {
   final l = context.l10n;
@@ -154,16 +154,16 @@ IconData expenseIcon(String c) => switch (c) {
     };
 
 Color expenseColor(String c) => const {
-      'vet': PrintColors.brand,
-      'grooming': Color(0xFFF472B6),
-      'training': Color(0xFF0EA5E9),
-      'boarding': Color(0xFF9B8AFB),
-      'walking': Color(0xFF34D399),
-      'food': Color(0xFFF4A261),
-      'supplies': Color(0xFFF59E0B),
-      'insurance': Color(0xFF6D5BD0),
+      'vet': CategoryColors.teal,
+      'grooming': CategoryColors.rose,
+      'training': CategoryColors.ocean,
+      'boarding': CategoryColors.plum,
+      'walking': CategoryColors.teal,
+      'food': CategoryColors.amber,
+      'supplies': CategoryColors.clay,
+      'insurance': CategoryColors.violet,
     }[c] ??
-    const Color(0xFF94A3B8);
+    CategoryColors.slate;
 
 String couponMessage(BuildContext context, CouponResult r, {int minOrder = 0}) {
   final l = context.l10n;

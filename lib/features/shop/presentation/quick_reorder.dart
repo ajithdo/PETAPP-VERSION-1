@@ -56,7 +56,7 @@ class _QuickReorderState extends ConsumerState<_QuickReorder> {
       Text(widget.pet == null ? l.shopReorderTitle : l.shopReorderFor(widget.pet!.name), style: context.text.titleMedium),
       const SizedBox(height: Space.md),
       Row(children: [
-        ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: 64, radius: 12),
+        ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbLg, radius: Radii.md),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -108,7 +108,7 @@ class _QuickReorderState extends ConsumerState<_QuickReorder> {
   Widget _line(BuildContext context, String a, String b, {bool bold = false}) {
     final style = bold ? context.text.titleSmall : context.text.bodyMedium;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
+      padding: const EdgeInsets.symmetric(vertical: Space.xxs),
       child: Row(children: [Expanded(child: Text(a, style: style)), Text(b, style: style)]),
     );
   }

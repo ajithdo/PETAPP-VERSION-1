@@ -370,6 +370,9 @@ class PetTagColors {
 /// teal and sand. Use them for icons and tints, not for body text; pass them
 /// through [readableOn] when they colour text or sit on a dark surface.
 class CategoryColors {
+  /// Text or icons drawn on top of a category colour.
+  static const onCategory = Color(0xFFFFFFFF);
+
   static const teal = Color(0xFF2F7D6D);
   static const amber = Color(0xFFB7791F);
   static const clay = Color(0xFFB0643C);
@@ -386,6 +389,10 @@ class CategoryColors {
 /// Soft two-colour washes for the illustrated placeholder photos in the demo
 /// (light tone first, deep tone second).
 class SeedArtColors {
+  /// Mixed into a category colour for the placeholder product art.
+  static const light = Color(0xFFFFFFFF);
+  static const shadow = Color(0xFF000000);
+
   static const pairs = [
     [Color(0xFFE6F0ED), Color(0xFF18453E)],
     [Color(0xFFFDE7D3), Color(0xFFF4A261)],
@@ -408,6 +415,11 @@ class PrintColors {
   static const brand = Color(0xFF18453E);
   static const brandTint = Color(0xFFE6F0ED);
   static const alert = Color(0xFFB91C1C);
+  static const rule = Color(0xFFE7E2DA);
+
+  /// "Demo" note on printed pages.
+  static const note = Color(0xFFFFFBEB);
+  static const onNote = Color(0xFF78350F);
 }
 
 /// Photo and video screens (crop, viewer, video call) stay dark in both
@@ -608,7 +620,8 @@ class Sizes {
   static const double todayRing = 68;
   static const double todayRingEasy = 84;
 
-  /// Avatars in rows and headers.
+  /// Avatars inside chips, and in rows and headers.
+  static const double avatarChip = 24;
   static const double avatarXs = 28;
   static const double avatarSm = 40;
   static const double avatarMd = 48;
@@ -625,9 +638,33 @@ class Sizes {
   static const double birthdayGlow = 168;
   static const double birthdayAvatar = 128;
 
-  /// Small square photo thumbnail, and the larger one in forms.
+  /// Square product or photo thumbnails, smallest to largest.
+  static const double thumbSm = 44;
   static const double thumb = 56;
   static const double thumbLg = 64;
+  static const double thumbXl = 72;
+
+  /// Shop: a compact product card in a row, the text block under a product
+  /// picture, the picture's width-to-height ratio, the buy-again tile and
+  /// the reorder card.
+  static const double productCardCompact = 158;
+  static const double productTextBlock = 128;
+  static const double productArtAspect = 1.15;
+  static const double buyAgainTile = 112;
+  static const double reorderCard = 300;
+
+  /// Pin code box (6 digits).
+  static const double pinField = 160;
+
+  /// Order progress: the rail and its round step marker.
+  static const double stepRail = 28;
+  static const double stepDot = 22;
+
+  /// Colour key square beside a chart label.
+  static const double legendDot = 10;
+
+  /// Taller chart (money over time).
+  static const double chartHeightLg = 220;
 
   /// Strip of day buttons in the booking flow.
   static const double dateStrip = 76;

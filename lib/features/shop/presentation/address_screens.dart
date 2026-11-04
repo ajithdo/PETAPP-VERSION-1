@@ -27,7 +27,7 @@ class AddressesScreen extends ConsumerWidget {
         value: ref.watch(addressesProvider),
         data: (list) => list.isEmpty
             ? EmptyState(title: l.addrNone, message: l.addrNoneBody, actionLabel: l.addrAdd, onAction: () => editAddress(context, ref))
-            : PageBody(maxWidth: 720, children: [
+            : PageBody(maxWidth: Space.formWidth, children: [
                 const SizedBox(height: Space.md),
                 for (final a in list)
                   Padding(
@@ -53,7 +53,7 @@ class AddressesScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
-                const SizedBox(height: 80),
+                const SizedBox(height: Space.fabClearance),
               ]),
       ),
     );

@@ -79,7 +79,7 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(children: [
                 ActionChip(
-                  avatar: const Icon(Icons.tune_outlined, size: 18),
+                  avatar: const Icon(Icons.tune_outlined, size: IconSizes.chip),
                   label: Text(_f.activeCount == 0 ? l.filters : l.shopFiltersCount(_f.activeCount)),
                   onPressed: () => _openFilters(brands),
                 ),

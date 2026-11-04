@@ -50,12 +50,12 @@ class _FoodLowCard extends ConsumerWidget {
       color: Color.lerp(context.paw.accent, context.paw.surface, Theme.of(context).brightness == Brightness.dark ? 0.8 : 0.86),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ProductArt(category: product.category, photoUrl: product.photoUrl, seed: product.imageSeed, size: 56, radius: 12),
+          ProductArt(category: product.category, photoUrl: product.photoUrl, seed: product.imageSeed, size: Sizes.thumb, radius: Radii.md),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(out ? l.foodRanOut(pet.name) : l.foodRunsOutIn(pet.name, roundDays(daysLeft)), style: context.text.titleSmall),
-              const SizedBox(height: 2),
+              const SizedBox(height: Space.xxs),
               Text(product.name, style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
               Text(l.foodPortionLine(pet.dailyPortionG ?? 0, Fmt.weight(pet.foodBagKg ?? 0)), style: context.text.bodySmall),
             ]),
@@ -91,7 +91,7 @@ class _OnTheWay extends StatelessWidget {
     return PawCard(
       onTap: () => context.push('/shop/orders/${order.id}'),
       child: Row(children: [
-        Icon(Icons.local_shipping_outlined, color: context.colors.primary, size: 32),
+        Icon(Icons.local_shipping_outlined, color: context.colors.primary, size: IconSizes.xl),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -121,14 +121,14 @@ Future<void> editFoodPlan(BuildContext context, WidgetRef ref, Pet pet) async {
             controller: portion,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            suffix: const Padding(padding: EdgeInsets.all(14), child: Text('g')),
+            suffix: const Padding(padding: EdgeInsets.all(Space.md + Space.xxs), child: Text('g')),
             helper: l.foodSuggested(suggested),
           ),
           PawTextField(
             label: l.foodBagSize,
             controller: bag,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            suffix: const Padding(padding: EdgeInsets.all(14), child: Text('kg')),
+            suffix: const Padding(padding: EdgeInsets.all(Space.md + Space.xxs), child: Text('kg')),
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,

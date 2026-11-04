@@ -57,14 +57,14 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
             (byMonth[DateTime(e.date.year, e.date.month)] ??= []).add(e);
           }
           final keys = byMonth.keys.toList()..sort((a, b) => b.compareTo(a));
-          return PageBody(maxWidth: 900, children: [
+          return PageBody(maxWidth: Space.wideWidth, children: [
             const SizedBox(height: Space.md),
             if (pets.length > 1)
               Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
                 ChoiceChip(label: Text(l.allPets), selected: _petId == null, onSelected: (_) => setState(() => _petId = null)),
                 for (final p in pets.where((p) => !p.archived))
                   ChoiceChip(
-                    avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
+                    avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarChip),
                     label: Text(p.name),
                     selected: _petId == p.id,
                     onSelected: (_) => setState(() => _petId = p.id),
@@ -90,17 +90,17 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: Space.xs),
                       child: Row(children: [
-                        CircleAvatar(radius: 16, backgroundColor: expenseColor(c).withValues(alpha: 0.18), child: Icon(expenseIcon(c), size: 18, color: expenseColor(c))),
+                        CircleAvatar(radius: 16, backgroundColor: expenseColor(c).withValues(alpha: Opacities.tintStrong), child: Icon(expenseIcon(c), size: IconSizes.chip, color: expenseColor(c))),
                         const SizedBox(width: Space.md),
                         Expanded(
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                             Text(expenseCategoryLabel(context, c), style: context.text.bodyMedium),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: Space.xs),
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
+                              borderRadius: BorderRadius.circular(Radii.xs),
                               child: LinearProgressIndicator(
                                 value: periodTotal == 0 ? 0 : totals[c]! / periodTotal,
-                                minHeight: 6,
+                                minHeight: Sizes.progressBar,
                                 color: expenseColor(c),
                                 backgroundColor: context.paw.outline,
                               ),
@@ -118,7 +118,7 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
               Padding(padding: const EdgeInsets.only(top: Space.lg), child: EmptyState(compact: true, title: l.expNone, message: l.expNoneBody))
             else
               ..._expenseList(keys, byMonth, pets),
-            const SizedBox(height: 80),
+            const SizedBox(height: Space.fabClearance),
           ]);
         },
       ),
@@ -162,7 +162,7 @@ class _MonthChart extends StatelessWidget {
           label: l.expChartSemantics(months.map((m) => '${Fmt.monthYear(m.month, context.lang)} ${Fmt.inr(m.total)}').join(', ')),
           excludeSemantics: true,
           child: SizedBox(
-            height: 220,
+            height: Sizes.chartHeightLg,
             child: BarChart(
               BarChartData(
                 maxY: top,
@@ -172,14 +172,14 @@ class _MonthChart extends StatelessWidget {
                   touchTooltipData: BarTouchTooltipData(
                     getTooltipItem: (group, _, _, _) => BarTooltipItem(
                       '${Fmt.monthYear(months[group.x].month, context.lang)}\n${Fmt.inr(months[group.x].total)}',
-                      const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                      const TextStyle(color: CategoryColors.onCategory, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
                 gridData: FlGridData(
                   drawVerticalLine: false,
                   horizontalInterval: top / 4,
-                  getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: 1),
+                  getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: Strokes.hairline),
                 ),
                 borderData: FlBorderData(show: false),
                 titlesData: FlTitlesData(
@@ -212,7 +212,7 @@ class _MonthChart extends StatelessWidget {
                       BarChartRodData(
                         toY: months[i].total.toDouble(),
                         width: months.length > 6 ? 14 : 24,
-                        borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
+                        borderRadius: const BorderRadius.vertical(top: Radius.circular(Radii.xs)),
                         rodStackItems: _stack(months[i], cats),
                         color: Colors.transparent,
                       ),
@@ -226,8 +226,8 @@ class _MonthChart extends StatelessWidget {
         Wrap(spacing: Space.md, runSpacing: Space.xs, children: [
           for (final c in cats)
             Row(mainAxisSize: MainAxisSize.min, children: [
-              Container(width: 10, height: 10, decoration: BoxDecoration(color: expenseColor(c), borderRadius: BorderRadius.circular(3))),
-              const SizedBox(width: 4),
+              Container(width: Sizes.legendDot, height: Sizes.legendDot, decoration: BoxDecoration(color: expenseColor(c), borderRadius: BorderRadius.circular(Radii.xs))),
+              const SizedBox(width: Space.xs),
               Text(expenseCategoryLabel(context, c), style: context.text.bodySmall),
             ]),
         ]),
@@ -271,7 +271,7 @@ class _ExpenseTile extends ConsumerWidget {
           ? () => editExpense(context, ref, existing: e)
           : (e.source == 'order' && e.sourceId != null ? () => context.push('/shop/orders/${e.sourceId}') : null),
       child: Row(children: [
-        CircleAvatar(radius: 18, backgroundColor: expenseColor(e.category).withValues(alpha: 0.18), child: Icon(expenseIcon(e.category), size: 18, color: expenseColor(e.category))),
+        CircleAvatar(radius: 18, backgroundColor: expenseColor(e.category).withValues(alpha: Opacities.tintStrong), child: Icon(expenseIcon(e.category), size: IconSizes.chip, color: expenseColor(e.category))),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -343,7 +343,7 @@ class _ExpenseFormState extends ConsumerState<_ExpenseForm> {
         Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
           for (final c in expenseCategories)
             ChoiceChip(
-              avatar: Icon(expenseIcon(c), size: 18),
+              avatar: Icon(expenseIcon(c), size: IconSizes.chip),
               label: Text(expenseCategoryLabel(context, c)),
               selected: _category == c,
               onSelected: (_) => setState(() => _category = c),

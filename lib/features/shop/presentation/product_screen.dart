@@ -91,7 +91,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
         InfoNote(l.shopAffiliateNote(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_outlined)
       else ...[
         Row(children: [
-          Icon(Icons.storefront_outlined, size: 18, color: context.paw.textSecondary),
+          Icon(Icons.storefront_outlined, size: IconSizes.chip, color: context.paw.textSecondary),
           const SizedBox(width: Space.xs),
           Expanded(child: Text(l.shopSoldBy(seller?.name ?? '', seller?.city ?? ''), style: context.text.bodyMedium)),
         ]),
@@ -116,7 +116,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
         const SizedBox(height: Space.xs),
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
-            width: 160,
+            width: Sizes.pinField,
             child: PawTextField(
               label: l.addrPin,
               controller: _pin,
@@ -139,7 +139,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           ),
         ]),
         Row(children: [
-          Icon(p.returnable ? Icons.assignment_return_outlined : Icons.block_outlined, size: 18, color: context.paw.textSecondary),
+          Icon(p.returnable ? Icons.assignment_return_outlined : Icons.block_outlined, size: IconSizes.chip, color: context.paw.textSecondary),
           const SizedBox(width: Space.xs),
           Expanded(child: Text(p.returnable ? l.shopReturnable(returnWindowDays) : l.shopNotReturnable, style: context.text.bodySmall)),
         ]),
@@ -155,7 +155,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           Expanded(flex: 6, child: info),
         ])
       else ...[
-        Center(child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 420), child: art)),
+        Center(child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: Sizes.emptyStateWidth), child: art)),
         const SizedBox(height: Space.md),
         info,
       ],
@@ -195,7 +195,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
   Widget _spec(BuildContext context, String k, String v) => Padding(
         padding: const EdgeInsets.symmetric(vertical: Space.xs),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(width: 120, child: Text(k, style: context.text.bodySmall)),
+          SizedBox(width: Sizes.labelColumn, child: Text(k, style: context.text.bodySmall)),
           Expanded(child: Text(v, style: context.text.bodyMedium)),
         ]),
       );
@@ -214,7 +214,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           child: PawCard(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
-                for (var i = 0; i < 5; i++) Icon(i < r.rating ? Icons.star_rounded : Icons.star_border_rounded, size: 16, color: context.paw.accent),
+                for (var i = 0; i < 5; i++) Icon(i < r.rating ? Icons.star_rounded : Icons.star_border_rounded, size: IconSizes.sm, color: context.paw.accent),
                 const SizedBox(width: Space.sm),
                 Expanded(child: Text(r.ownerName, style: context.text.labelLarge)),
                 Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall),
@@ -245,7 +245,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
         child: Center(
           heightFactor: 1,
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 720),
+            constraints: const BoxConstraints(maxWidth: Space.formWidth),
             child: p.isAffiliate
                 ? PrimaryButton(label: l.shopBuyOn(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_outlined, onPressed: () => _openPartner(p, store))
                 : Row(children: [

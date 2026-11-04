@@ -93,7 +93,7 @@ class _SellerDashboard extends ConsumerWidget {
               child: PawCard(
                 onTap: () => context.push('/partner/product/${p.id}'),
                 child: Row(children: [
-                  ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: 44, radius: 10),
+                  ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbSm, radius: Radii.md),
                   const SizedBox(width: Space.md),
                   Expanded(child: Text(p.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
                   StatusChip(l.selStockLeft(p.stock ?? 0), tone: (p.stock ?? 0) == 0 ? ChipTone.error : ChipTone.warning),
@@ -142,7 +142,7 @@ class _SellerProductsState extends ConsumerState<_SellerProducts> {
               padding: const EdgeInsets.all(Space.sm),
               onTap: () => context.push('/partner/product/${p.id}'),
               child: Row(children: [
-                ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: 56, radius: 12),
+                ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumb, radius: Radii.md),
                 const SizedBox(width: Space.md),
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -223,7 +223,7 @@ class _ProductEditScreenState extends ConsumerState<ProductEditScreen> {
       appBar: AppBar(title: Text(id == null ? l.selAddProduct : l.selEditProduct)),
       body: Form(
         key: _form,
-        child: PageBody(maxWidth: 720, children: [
+        child: PageBody(maxWidth: Space.formWidth, children: [
           const SizedBox(height: Space.md),
           PawTextField(label: l.selProductName, controller: _name, validator: (v) => (v ?? '').trim().isEmpty ? l.fieldRequired : null),
           PawTextField(label: l.shopBrand, controller: _brand),
@@ -344,7 +344,7 @@ class _CsvImportScreenState extends ConsumerState<CsvImportScreen> {
     final ok = _rows.where((r) => r.ok).length;
     return Scaffold(
       appBar: AppBar(title: Text(l.selCsvUpload)),
-      body: PageBody(maxWidth: 900, children: [
+      body: PageBody(maxWidth: Space.wideWidth, children: [
         const SizedBox(height: Space.md),
         InfoNote(l.selCsvHelp(productCsvColumns.join(', '))),
         const SizedBox(height: Space.md),
@@ -371,7 +371,7 @@ class _CsvImportScreenState extends ConsumerState<CsvImportScreen> {
         TextField(
           controller: _text,
           maxLines: 8,
-          style: const TextStyle(fontFamily: 'monospace', fontSize: 13),
+          style: context.textX.mono,
           decoration: InputDecoration(labelText: l.selCsvPaste, alignLabelWithHint: true),
           onChanged: (v) => setState(() => _rows = parseProductCsv(v)),
         ),
@@ -601,7 +601,7 @@ class _SellerReviews extends ConsumerWidget {
             child: PawCard(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Row(children: [
-                  for (var i = 0; i < 5; i++) Icon(i < r.rating ? Icons.star_rounded : Icons.star_border_rounded, size: 16, color: context.paw.accent),
+                  for (var i = 0; i < 5; i++) Icon(i < r.rating ? Icons.star_rounded : Icons.star_border_rounded, size: IconSizes.sm, color: context.paw.accent),
                   const SizedBox(width: Space.sm),
                   Expanded(child: Text(r.ownerName, style: context.text.labelLarge)),
                   Flexible(child: Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall, textAlign: TextAlign.end)),
@@ -647,7 +647,7 @@ class _SellerProfile extends ConsumerWidget {
     final l = context.l10n;
     return _needSeller(ref, (s) {
       final raw = s.raw;
-      return PageBody(maxWidth: 720, children: [
+      return PageBody(maxWidth: Space.formWidth, children: [
         const SizedBox(height: Space.md),
         PawCard(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -713,7 +713,7 @@ class SellerOrderScreen extends ConsumerWidget {
           if (o == null) return EmptyState(title: l.ordNotFound);
           final next = sellerNextStatuses(o.status);
           final a = Address.fromMap(o.address);
-          return PageBody(maxWidth: 820, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.md),
             Row(children: [
               Expanded(child: Text(l.ordNumber(shortOrderNo(o.id)), style: context.text.titleMedium)),
@@ -748,7 +748,7 @@ class SellerOrderScreen extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: Space.xs),
                     child: Row(children: [
-                      ProductArt(category: i.category, seed: i.imageSeed, size: 44, radius: 10),
+                      ProductArt(category: i.category, seed: i.imageSeed, size: Sizes.thumbSm, radius: Radii.md),
                       const SizedBox(width: Space.md),
                       Expanded(child: Text('${i.name} × ${i.qty}')),
                       Text(Fmt.inr(i.amount)),
@@ -789,6 +789,6 @@ class SellerOrderScreen extends ConsumerWidget {
 
   Widget _row(BuildContext context, String a, String b, {bool bold = false}) {
     final style = bold ? context.text.titleSmall : context.text.bodyMedium;
-    return Padding(padding: const EdgeInsets.symmetric(vertical: 2), child: Row(children: [Expanded(child: Text(a, style: style)), Text(b, style: style)]));
+    return Padding(padding: const EdgeInsets.symmetric(vertical: Space.xxs), child: Row(children: [Expanded(child: Text(a, style: style)), Text(b, style: style)]));
   }
 }

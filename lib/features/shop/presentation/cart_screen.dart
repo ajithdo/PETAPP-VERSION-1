@@ -80,7 +80,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
 
           return Column(children: [
             Expanded(
-              child: PageBody(maxWidth: 900, children: [
+              child: PageBody(maxWidth: Space.wideWidth, children: [
                 const SizedBox(height: Space.md),
                 for (final g in price.groups) ...[
                   Padding(
@@ -104,7 +104,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                     Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
                       for (final p in pets)
                         ChoiceChip(
-                          avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
+                          avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarChip),
                           label: Text(p.name),
                           selected: p.id == pet?.id,
                           onSelected: (_) => setState(() => _petId = p.id),
@@ -163,7 +163,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                   decoration: BoxDecoration(color: context.paw.surface, border: Border(top: BorderSide(color: context.paw.outline))),
                   child: Center(
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 720),
+                      constraints: const BoxConstraints(maxWidth: Space.formWidth),
                       child: Row(children: [
                         Expanded(
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
@@ -208,7 +208,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
         child: Row(children: [
           InkWell(
             onTap: () => context.push('/shop/product/${p.id}'),
-            child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: 64, radius: 12),
+            child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbLg, radius: Radii.md),
           ),
           const SizedBox(width: Space.sm),
           Expanded(
@@ -247,7 +247,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
       Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Expanded(child: PawTextField(label: l.couponCode, controller: _coupon, hint: 'WELCOME10', onSubmitted: (_) => _apply())),
         const SizedBox(width: Space.sm),
-        Padding(padding: const EdgeInsets.only(top: 6), child: FilledButton.tonal(onPressed: _apply, child: Text(l.couponApply))),
+        Padding(padding: const EdgeInsets.only(top: Space.xs + Space.xxs), child: FilledButton.tonal(onPressed: _apply, child: Text(l.couponApply))),
       ]),
       if (msg != null) Text(msg, style: context.text.bodySmall?.copyWith(color: context.paw.error)),
     ]);
@@ -280,7 +280,15 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final l = context.l10n;
     Widget line(String a, String b, {Color? color, bool bold = false}) {
       final style = (bold ? context.text.titleSmall : context.text.bodyMedium)?.copyWith(color: color);
-      return Padding(padding: const EdgeInsets.symmetric(vertical: 3), child: Row(children: [Expanded(child: Text(a, style: style)), Text(b, style: style)]));
+      // Amounts in the mono face; the total in the action colour (Design 2).
+      final amount = context.textX.mono.copyWith(
+        color: bold ? context.paw.action : (color ?? context.paw.textPrimary),
+        fontWeight: bold ? FontWeight.w700 : null,
+      );
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: Space.xxs),
+        child: Row(children: [Expanded(child: Text(a, style: style)), const SizedBox(width: Space.md), Text(b, style: amount)]),
+      );
     }
 
     final freeAbove = plus ? s.plusFreeDeliveryAbove : s.freeDeliveryAbove;
