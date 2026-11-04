@@ -3250,6 +3250,12 @@ abstract class AppLocalizations {
   /// **'Choose a pet'**
   String get choosePetForHealth;
 
+  /// Pill on the Health pass when nothing is due or overdue.
+  ///
+  /// In en, this message translates to:
+  /// **'All up to date'**
+  String get healthAllClear;
+
   /// No description provided for @itemsNeedAttention.
   ///
   /// In en, this message translates to:

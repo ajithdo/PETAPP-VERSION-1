@@ -525,6 +525,7 @@
   "indicativeNote": "अनुमानित है, हमेशा अपने पशु चिकित्सक से पुष्टि करें।",
   "healthOf": "{name} की सेहत",
   "choosePetForHealth": "एक पालतू चुनें",
+  "healthAllClear": "सब कुछ समय पर है",
   "itemsNeedAttention": "{count} पर ध्यान दें",
   "nextUp": "आगे क्या है",
   "nothingDue": "{name} के लिए अभी कुछ बकाया नहीं।",

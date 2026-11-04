@@ -603,6 +603,7 @@ class Sizes {
   /// Bar and line charts.
   static const double chartHeight = 200;
   static const double chartAxisLeft = 36;
+  static const double chartAxisLeftWide = 40;
   static const double chartAxisBottom = 28;
   static const double barThin = 6;
   static const double barWide = 18;
@@ -614,6 +615,10 @@ class Sizes {
   /// Walk route map inside a sheet, and the smaller one in a card.
   static const double routeMap = 280;
   static const double routeMapSmall = 220;
+
+  /// Timeline rail width and the dot on it.
+  static const double timelineRail = 24;
+  static const double timelineDot = 12;
 
   /// Width of the number between a stepper's minus and plus buttons.
   static const double stepperValue = 40;
@@ -699,6 +704,9 @@ class Opacities {
 
   /// Dimmed part of a loading placeholder, and disabled art.
   static const double muted = 0.40;
+
+  /// Secondary text on the dark pass card (checked for 4.5:1 in use).
+  static const double onDarkMuted = 0.78;
 }
 
 /// Motion timings.

@@ -1793,6 +1793,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get choosePetForHealth => 'Choose a pet';
 
   @override
+  String get healthAllClear => 'All up to date';
+
+  @override
   String itemsNeedAttention(int count) {
     return '$count need attention';
   }

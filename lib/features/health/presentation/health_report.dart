@@ -283,7 +283,7 @@ class MedicalCardScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: PageBody(maxWidth: 560, children: [
+      body: PageBody(maxWidth: Sizes.sheetMaxWidth, children: [
         const SizedBox(height: Space.sm),
         MedicalSummaryCard(petId: petId),
         const SizedBox(height: Space.lg),
@@ -310,38 +310,29 @@ class MedicalSummaryCard extends ConsumerWidget {
     final clinic = ref.watch(_clinicProvider(pet.clinicId)).value;
     final rabies = vaccines.where((v) => v.key.startsWith('rabies')).toList();
     final now = DateTime.now();
-    Widget row(IconData icon, String k, String v, {Color? color}) => ListTile(
-          dense: true,
-          leading: Icon(icon, color: color ?? context.colors.primary),
-          title: Text(k, style: context.text.bodySmall),
-          subtitle: Text(v, style: context.text.bodyLarge?.copyWith(fontWeight: FontWeight.w600, color: color)),
-        );
-    return PawCard(
-      borderColor: context.paw.sos,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Row(children: [
-          PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 72),
-          const SizedBox(width: Space.lg),
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(pet.name, style: context.text.headlineSmall),
-              Text('${speciesLabel(context, pet.species)} · ${pet.breedName(context.lang)}', style: context.text.bodySmall),
-              Text([petAgeLabel(context, pet), if (pet.weightKg != null) Fmt.weight(pet.weightKg!, grams: pet.isBird)].where((s) => s.isNotEmpty).join(' · '),
-                  style: context.text.bodySmall),
-            ]),
-          ),
-        ]),
-        const Divider(height: Space.xl),
-        row(Icons.no_food_outlined, l.allergies, pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', '),
-            color: pet.allergies.isEmpty ? null : context.paw.error),
-        row(Icons.medication_outlined, l.currentMedicines, meds.isEmpty ? l.none : meds.map((m) => '${m.name} (${frequencyLabel(context, m)})').join(', ')),
-        row(Icons.vaccines_outlined, l.rabiesVaccine, rabies.isEmpty ? l.notRecorded : l.givenOn(Fmt.date(rabies.first.givenDate, context.lang))),
-        row(Icons.memory_outlined, l.microchip, pet.microchip ?? l.notAdded),
-        row(Icons.local_hospital_outlined, l.regularClinic, clinic == null ? l.notAdded : '${clinic['name']} · ${clinic['phone']}'),
-        row(Icons.person_outlined, l.owner, '${user?.name ?? ''} · ${user?.phone ?? ''}'),
-        const SizedBox(height: Space.sm),
-        Text(l.medicalCardUpdated(Fmt.dateTime(now, context.lang)), style: context.text.labelSmall),
-      ]),
+    final allergies = pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', ');
+    return PassCard(
+      overline: l.medicalCard,
+      overlineIcon: Icons.medical_information_outlined,
+      title: pet.name,
+      subtitle: [
+        '${speciesLabel(context, pet.species)} · ${pet.breedName(context.lang)}',
+        [petAgeLabel(context, pet), if (pet.weightKg != null) Fmt.weight(pet.weightKg!, grams: pet.isBird)].where((s) => s.isNotEmpty).join(' · '),
+      ].where((s) => s.isNotEmpty).join('\n'),
+      leading: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.heroAvatar, name: pet.name),
+      badges: [
+        if (pet.allergies.isNotEmpty)
+          PassCard.badge(context, '${l.allergies}: $allergies', icon: Icons.no_food_outlined, tone: ChipTone.error),
+      ],
+      rows: [
+        PassRow(label: l.allergies, value: allergies),
+        PassRow(label: l.currentMedicines, value: meds.isEmpty ? l.none : meds.map((m) => '${m.name} (${frequencyLabel(context, m)})').join(', ')),
+        PassRow(label: l.rabiesVaccine, value: rabies.isEmpty ? l.notRecorded : l.givenOn(Fmt.date(rabies.first.givenDate, context.lang))),
+        PassRow(label: l.microchip, value: pet.microchip ?? l.notAdded, mono: pet.microchip != null),
+        PassRow(label: l.regularClinic, value: clinic == null ? l.notAdded : '${clinic['name']} · ${clinic['phone']}'),
+        PassRow(label: l.owner, value: '${user?.name ?? ''} · ${user?.phone ?? ''}'),
+      ],
+      footnote: l.medicalCardUpdated(Fmt.dateTime(now, context.lang)),
     );
   }
 }

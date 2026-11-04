@@ -1771,6 +1771,9 @@ class AppLocalizationsTe extends AppLocalizations {
   String get choosePetForHealth => 'ఒక పెంపుడు జంతువును ఎంచుకోండి';
 
   @override
+  String get healthAllClear => 'అన్నీ సమయానికి ఉన్నాయి';
+
+  @override
   String itemsNeedAttention(int count) {
     return '$count గమనించాలి';
   }

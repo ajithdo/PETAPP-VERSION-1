@@ -298,7 +298,7 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [x] 1. Home (pet parent), 4 Nov 2026. The owner approved the direction on 4 Nov 2026 ("implement Design 2 in app")
 - [x] Icons: the whole app now uses outlined icons (Design 2). Icons that show a state stay filled: rating stars, done ticks, liked hearts, verified badges, filled play/pause, and the selected bottom tab (4 Nov 2026)
 - [x] 2. Today and routine: Today card, quick log sheet, routine screen, walk tracker (4 Nov 2026). Log types use the new muted category colours; walk stats sit in one card with small uppercase labels; charts and widths use tokens
-- [ ] 3. Health tab and its sheets (vaccines, medicines, deworming, vet visits, weight, symptoms), medical card
+- [x] 3. Health tab and its sheets (vaccines, medicines, deworming, vet visits, weight, symptoms), medical card (4 Nov 2026). New shared `PassCard` (Design 2 health pass) and `TimelineTile`. Health opens with the pet's pass (age, weight, microchip, "All up to date" or "N need attention", Medical card and Health report buttons); Next up leads with an alert card; vaccines are a timeline; deworming and flea/tick are soft sand cards; the medical card is a pass
 - [ ] 4. Pet profile, my pets, add/edit pet, breed picker, birthday
 - [ ] 5. Book tab, clinic finder (list and map), clinic page, booking flow, booking done, my bookings, booking detail
 - [ ] 6. SOS, first aid, "Is it safe?" (the SOS look stays instantly recognisable)

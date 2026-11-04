@@ -1762,6 +1762,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get choosePetForHealth => 'एक पालतू चुनें';
 
   @override
+  String get healthAllClear => 'सब कुछ समय पर है';
+
+  @override
   String itemsNeedAttention(int count) {
     return '$count पर ध्यान दें';
   }

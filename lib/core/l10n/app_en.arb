@@ -1066,6 +1066,8 @@
     }
   },
   "choosePetForHealth": "Choose a pet",
+  "healthAllClear": "All up to date",
+  "@healthAllClear": {"description": "Pill on the Health pass when nothing is due or overdue."},
   "itemsNeedAttention": "{count} need attention",
   "@itemsNeedAttention": {
     "placeholders": {
