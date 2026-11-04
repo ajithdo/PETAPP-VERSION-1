@@ -2453,6 +2453,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get openNow => 'अभी खुला';
 
   @override
+  String get nextFreeSlot => 'अगला खाली समय';
+
+  @override
   String get openNowChip => 'अभी खुला';
 
   @override

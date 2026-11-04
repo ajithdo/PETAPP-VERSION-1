@@ -112,8 +112,8 @@ Left out (features the app doesn't have): blood group, ambulance, live ICU/blood
 
 **Checklist (tick as each is committed):**
 - [x] A. Menus: desktop top bar with pill buttons; phone floating dark bottom bar (4 Nov 2026)
-- [ ] B. Home: picture-style top (location, search, chips, dark booster card, nearby vets), pet's day below
-- [ ] C. Clinic list: photo-top cards with badges, rating, next slot box, price and Book visit
+- [x] B. Home: picture-style top (location, search, chips, dark booster card, nearby vets), pet's day below (4 Nov 2026; Easy mode keeps the simple Home)
+- [x] C. Clinic list: photo-top cards with badges, rating, next slot box, price and Book visit (4 Nov 2026; 2 or 3 columns on wide screens; the map preview keeps a compact card)
 - [ ] D. Clinic page: photo header, rating pill, action pills, vet on duty, facility tiles, booking panel (right column on desktop) and a short confirm screen
 - [ ] E. Booking confirmed: booking pass with Date / Time / Doctor / Amount tiles, clinic row with Navigate, Add to calendar
 - [ ] F. Health: 2 columns on desktop (pass + emergency info | tabs, booster alert, timeline with certificate buttons, deworming cards)

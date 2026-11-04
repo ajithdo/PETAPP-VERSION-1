@@ -2463,6 +2463,9 @@ class AppLocalizationsTe extends AppLocalizations {
   String get openNow => 'ఇప్పుడు తెరిచి ఉంది';
 
   @override
+  String get nextFreeSlot => 'తదుపరి ఖాళీ సమయం';
+
+  @override
   String get openNowChip => 'తెరిచి ఉంది';
 
   @override

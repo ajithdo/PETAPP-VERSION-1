@@ -4468,6 +4468,12 @@ abstract class AppLocalizations {
   /// **'Open now'**
   String get openNow;
 
+  /// Label on a clinic card before the earliest bookable time.
+  ///
+  /// In en, this message translates to:
+  /// **'Next free slot'**
+  String get nextFreeSlot;
+
   /// No description provided for @openNowChip.
   ///
   /// In en, this message translates to:

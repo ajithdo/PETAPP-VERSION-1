@@ -9,6 +9,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../../pets/presentation/pet_labels.dart';
+import 'home_discovery.dart';
 import 'home_sections.dart';
 
 /// Home (spec 5), Design 2: greeting, the pet card, today's plan, what's due
@@ -43,26 +44,31 @@ class HomeScreen extends ConsumerWidget {
         }
         final wide = context.screenSize == ScreenSize.desktop && !easy;
         final s = homeSections(context, ref, pet: pet, pets: active, easy: easy);
+        // Outside Easy mode Home opens with the Design 2 "explore" top
+        // (search, quick links, health status, nearest vets); the pet's day
+        // follows under the greeting.
+        final discovery = easy ? const <Widget>[] : homeDiscoveryTop(context, ref, pet: pet, pets: active, wide: wide);
         final greeting = Padding(
-          padding: const EdgeInsets.only(top: Space.md, bottom: Space.lg),
+          padding: EdgeInsets.only(top: easy ? Space.md : Space.xl, bottom: Space.lg),
           child: Semantics(
             header: true,
             child: Text(
               '$greet${user?.firstName.isNotEmpty == true ? ', ${user!.firstName}' : ''}',
-              style: wide ? context.text.displayMedium : context.text.headlineMedium,
+              style: easy ? context.text.headlineMedium : context.text.headlineSmall,
             ),
           ),
         );
         final petCard = pet != null ? PetHeroCard(pet: pet) : AllPetsCard(pets: active);
 
         if (!wide) {
-          return PageBody(children: [greeting, ...s.top, petCard, ...s.phoneOrder]);
+          return PageBody(children: [...s.top, ...discovery, greeting, petCard, ...s.phoneOrder]);
         }
         Widget column(List<Widget> children) =>
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children);
         return PageBody(children: [
-          greeting,
           ...s.top,
+          ...discovery,
+          greeting,
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Expanded(flex: 7, child: column([petCard, ...s.main])),
             const SizedBox(width: Space.xl),

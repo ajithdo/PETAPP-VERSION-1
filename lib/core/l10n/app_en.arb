@@ -1526,6 +1526,8 @@
   "sortSlot": "Earliest slot",
   "sortFee": "Lowest fee",
   "openNow": "Open now",
+  "nextFreeSlot": "Next free slot",
+  "@nextFreeSlot": {"description": "Label on a clinic card before the earliest bookable time."},
   "openNowChip": "Open now",
   "closedChip": "Closed",
   "open24x7": "24x7",

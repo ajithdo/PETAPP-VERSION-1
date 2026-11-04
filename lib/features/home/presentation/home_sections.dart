@@ -26,6 +26,8 @@ import 'home_extras.dart';
   required List<Pet> pets,
   required bool easy,
 }) {
+  // Outside Easy mode the most urgent item is in the dark card at the top.
+  final skip = !easy;
   final l = context.l10n;
   final focus = pet ?? pets.first;
   final quickActions = [
@@ -58,14 +60,14 @@ import 'home_extras.dart';
       SectionHeader(l.todayAllPets),
       for (final p in pets) Padding(padding: const EdgeInsets.only(bottom: Space.md), child: _MiniToday(pet: p)),
     ];
-    final next = nextUpSection(context, ref, pets: pets);
-    final side = [...nextUpSection(context, ref, pets: pets, flush: true), ...quickActions];
+    final next = nextUpSection(context, ref, pets: pets, skipFirst: skip);
+    final side = [...nextUpSection(context, ref, pets: pets, flush: true, skipFirst: skip), ...quickActions];
     return (top: top, main: today, side: side, phoneOrder: [...today, ...next, ...quickActions]);
   }
 
   final top = [...lostPetSection(context, ref, [pet]), ...adminHomeSection(context, ref)];
   final today = [const SizedBox(height: Space.lg), TodayCard(pet: pet, big: easy)];
-  final next = nextUpSection(context, ref, pets: [pet]);
+  final next = nextUpSection(context, ref, pets: [pet], skipFirst: skip);
   final tips = [
     if (!easy && pet.species == 'dog') ...[SectionHeader(l.walkWeather), HeatCard(pet: pet)],
     if (!easy) ...foodLowSection(context, ref, pet),
@@ -74,7 +76,7 @@ import 'home_extras.dart';
   return (
     top: top,
     main: [...today, ...quickActions],
-    side: [...nextUpSection(context, ref, pets: [pet], flush: true), ...tips],
+    side: [...nextUpSection(context, ref, pets: [pet], flush: true, skipFirst: skip), ...tips],
     phoneOrder: [...today, ...next, ...quickActions, ...tips],
   );
 }

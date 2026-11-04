@@ -806,6 +806,11 @@ class Sizes {
   static const double placePhotoWidth = 92;
   static const double placePhotoHeight = 112;
 
+  /// Picture on top of a place card in a list, and the narrowest card in a
+  /// grid of them.
+  static const double placeCardPhoto = 168;
+  static const double placeCardMinWidth = 320;
+
   /// Photo header on a place page.
   static const double placeHeader = 200;
 

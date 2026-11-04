@@ -2496,6 +2496,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get openNow => 'Open now';
 
   @override
+  String get nextFreeSlot => 'Next free slot';
+
+  @override
   String get openNowChip => 'Open now';
 
   @override
