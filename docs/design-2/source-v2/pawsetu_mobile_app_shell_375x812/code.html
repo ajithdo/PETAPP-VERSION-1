@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>PawSetu - Mobile App Shell (375x812)</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { 'coral': '#E05A47', 'forest-teal': '#18453E', 'soft-sage': '#E6F0ED', 'soft-sand': '#F3EFEA', 'warm-border': '#E7E2DA', 'status-upcoming': '#D97706', 'status-completed': '#15803D', 'status-emergency': '#DC2626', 'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-surface-subtle': '#F4EFEA',
+            'light-outline': '#EAE5DC',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            'body': ['"Inter"', '-apple-system', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+          boxShadow: {
+            'subtle-card': '0 1px 3px 0 rgba(28,25,23,0.03), 0 6px 16px -2px rgba(28,25,23,0.05)',
+            'floating-dock': '0 8px 32px 0 rgba(24, 69, 62, 0.16), 0 2px 8px 0 rgba(28, 25, 23, 0.06)',
+          }
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <style>
+    * { -webkit-font-smoothing: antialiased; }
+    body { -webkit-tap-highlight-color: transparent; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-[#FAF8F5] text-stone-900 min-h-[884px] font-body antialiased flex flex-col pb-28 select-none" data-stitch-vh="min-h-[884px]===min-h-screen">
+
+  <!-- iOS Simulated Status Bar -->
+  <div class="sticky top-0 z-50 bg-[#FAF8F5]/90 backdrop-blur-md px-6 pt-3 pb-1 flex items-center justify-between text-stone-900 text-[13px] font-semibold">
+    <span>9:41</span>
+    <div class="flex items-center gap-1.5 text-stone-800">
+      <span class="material-symbols-outlined text-[15px]">signal_cellular_alt</span>
+      <span class="material-symbols-outlined text-[15px]">wifi</span>
+      <span class="material-symbols-outlined text-[17px]">battery_full</span>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky Header: Location Selector & Quick Actions -->
+  <header class="sticky top-[30px] z-40 bg-[#FAF8F5]/90 backdrop-blur-md px-4 py-2.5 border-b border-[#EAE5DC]/80">
+    <div class="flex items-center justify-between">
+      
+      <!-- Location Pill Trigger -->
+      <button type="button" class="flex items-center gap-2 px-3 py-1.5 bg-white rounded-full border border-[#EAE5DC] shadow-sm active:scale-95 transition">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span class="text-[12px] font-bold text-stone-800">Indiranagar, Bengaluru</span>
+        <span class="material-symbols-outlined text-stone-400 text-[16px]">keyboard_arrow_down</span>
+      </button>
+
+      <!-- Action Cluster: Notifications + SOS -->
+      <div class="flex items-center gap-2">
+        <button type="button" aria-label="Notifications" class="w-9 h-9 rounded-full bg-white border border-[#EAE5DC] flex items-center justify-center text-stone-700 shadow-sm relative active:scale-95 transition">
+          <span class="material-symbols-outlined text-[18px]">notifications</span>
+          <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-coral ring-2 ring-white"></span>
+        </button>
+
+        <a href="../emergency-triage/EmergencyTriage.html" class="px-3 py-1.5 rounded-full bg-rose-50 text-status-emergency border border-rose-200 text-[11px] font-extrabold flex items-center gap-1 shadow-sm active:scale-95 transition">
+          <span class="material-symbols-outlined text-[14px]">emergency</span>
+          <span>SOS</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Multi-Pet Quick Switcher Segmented Strip -->
+    <div class="flex items-center gap-2 mt-3 overflow-x-auto no-scrollbar pb-0.5">
+      <!-- Bruno Active -->
+      <button type="button" class="inline-flex items-center gap-2 pl-1.5 pr-3 py-1 bg-forest-teal text-white rounded-full shadow-sm flex-shrink-0 active:scale-95 transition">
+        <img src="https://lh3.googleusercontent.com/aida/AEtjO1XGLg2qU28LEV0ZBHrz6yoD9YicJosz-9TqQUThEM0FNluzeX10On2sw5CQFYGSHV54ZDv6DnhIPSlWRKxthhj88SFwsNJGAI1WaFwOdMZlHqTsLyAw0eQleMEHB3YoOlzYwMm1eucSonbQmuDAFahKurKAyH1T_lusQqSWDE-VooE8ET_EMHeJZlWeZUBVqGZr_H8R2vx7gpYABjFIYEyJdekfGc4Xk0cmk8dtkdbMYZUNc4RMwzIje-geL5U" alt="Bruno" class="w-6 h-6 rounded-full object-cover ring-2 ring-white/30" data-stitch-original-src="5fe0244cd4dde074===../../images/pet_bruno_portrait.jpg">
+        <span class="font-headline text-[12px] font-bold tracking-tight">Bruno</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      </button>
+
+      <!-- Misty Inactive -->
+      <button type="button" class="inline-flex items-center gap-2 pl-1.5 pr-3 py-1 bg-white text-stone-600 border border-[#EAE5DC] rounded-full shadow-sm flex-shrink-0 active:scale-95 transition">
+        <img src="https://lh3.googleusercontent.com/aida/AEtjO1UfmqZVFeTe9ceHTcEbQB37XtnSdeoGHe7jOHLW_N2nXgTxRGysDYlUL1IHwhlEk5w7lclqTIe5nf8TXa57u_vLtukQ-ej7a3ugPM-x5bsy15xohBrYu_VkCM7sZG-tsWaN-iOA0RxR7dZPARJhZgYHpPCscbbcsUPO08Pys7CWweGxa_TIRIGpTKHgwLZy-MF9rLNWmyH6TtC_DETOQuErnOH0QoW4_hehsvL0Jm7LZwYEDNwst2zpnjdpoYw" alt="Misty" class="w-6 h-6 rounded-full object-cover" data-stitch-original-src="cd2d7707c7859824===../../images/pet_misty_portrait.jpg">
+        <span class="font-headline text-[12px] font-medium">Misty</span>
+      </button>
+
+      <!-- Add Pet Button -->
+      <a href="../onboarding-pet/OnboardingPet.html" class="inline-flex items-center gap-1 px-3 py-1 bg-stone-100/80 text-stone-500 rounded-full text-[11px] font-semibold border border-dashed border-stone-300 flex-shrink-0 active:scale-95 transition">
+        <span class="material-symbols-outlined text-[13px]">add</span>
+        <span>New Pet</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Scrollable Feed -->
+  <main class="flex-1 px-4 pt-4 space-y-5">
+
+    <!-- Search Hero Bar -->
+    <div class="relative">
+      <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-[18px]">search</span>
+      <input type="search" placeholder="Find vets, vaccines, symptoms..." class="w-full pl-10 pr-10 py-3 bg-white border border-[#EAE5DC] rounded-2xl text-[13px] text-stone-900 placeholder:text-stone-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-forest-teal/40 focus:border-forest-teal transition">
+      <a href="../map-discovery/MapDiscovery.html" class="absolute right-3 top-1/2 -translate-y-1/2 text-forest-teal p-1">
+        <span class="material-symbols-outlined text-[18px]">map</span>
+      </a>
+    </div>
+
+    <!-- Tactile Horizontal Category Chips -->
+    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+      <button type="button" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-stone-900 text-white rounded-xl text-[12px] font-bold shadow-sm flex-shrink-0 active:scale-95 transition">
+        <span class="material-symbols-outlined text-[15px] text-emerald-400">local_hospital</span>
+        <span>Vet Clinics</span>
+      </button>
+
+      <a href="../medical-records/MedicalRecords.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-stone-700 border border-[#EAE5DC] rounded-xl text-[12px] font-medium shadow-sm flex-shrink-0 active:scale-95 transition">
+        <span class="material-symbols-outlined text-[15px] text-stone-500">vaccines</span>
+        <span>Vaccine Vault</span>
+      </a>
+
+      <a href="../tele-vet/TeleVet.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-stone-700 border border-[#EAE5DC] rounded-xl text-[12px] font-medium shadow-sm flex-shrink-0 active:scale-95 transition">
+        <span class="material-symbols-outlined text-[15px] text-coral">videocam</span>
+        <span>Tele-Vet</span>
+      </a>
+
+      <button type="button" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-stone-700 border border-[#EAE5DC] rounded-xl text-[12px] font-medium shadow-sm flex-shrink-0 active:scale-95 transition">
+        <span class="material-symbols-outlined text-[15px] text-stone-500">content_cut</span>
+        <span>Grooming</span>
+      </button>
+    </div>
+
+    <!-- Active Pet Health Passcard Snapshot Widget -->
+    <div class="bg-gradient-to-br from-[#0F352E] to-[#174D3B] text-white rounded-2xl p-4 shadow-lg border border-emerald-900/60 space-y-3 relative overflow-hidden">
+      <div class="absolute -right-6 -top-6 w-24 h-24 bg-emerald-500/15 rounded-full blur-xl pointer-events-none"></div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-emerald-400 text-[18px]">verified</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-300">Bruno&#39;s Health Status</span>
+        </div>
+        <span class="font-code text-[11px] text-emerald-200/60">RFID: 982 000 412</span>
+      </div>
+
+      <div class="flex items-center justify-between gap-3 pt-1">
+        <div>
+          <h3 class="font-headline font-bold text-[18px] text-white leading-tight">Booster Due in 10 Days</h3>
+          <p class="text-[12px] text-emerald-100/70 mt-0.5">Anti-Rabies &amp; DHPPi Annual Booster</p>
+        </div>
+        <a href="../clinic-booking/ClinicBooking.html" class="px-3.5 py-2 bg-coral text-white rounded-xl text-[12px] font-bold shadow-md hover:opacity-95 active:scale-95 transition flex-shrink-0">
+          Book ₹750
+        </a>
+      </div>
+    </div>
+
+    <!-- Nearby Verified Clinics Feed Section -->
+    <div class="space-y-3.5">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="font-headline font-bold text-[17px] text-stone-900 leading-tight">Verified Vets Nearby</h2>
+          <span class="text-[11px] text-stone-500 font-medium">Ranked by real-time queue &amp; distance</span>
+        </div>
+        <a href="../map-discovery/MapDiscovery.html" class="text-[12px] text-forest-teal font-bold flex items-center gap-0.5">
+          <span>Map</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Mobile Clinic Card 1: Gulmohar Vet Studio -->
+      <article class="bg-white rounded-2xl border border-[#EAE5DC] overflow-hidden shadow-subtle-card space-y-3">
+        <div class="relative w-full aspect-[16/9] bg-stone-100">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1WuXaJPb5ClzUB0c6XypccqLXPZejsFwHmFraT7AYnU8ZW2nGvOGHROI843hyBrH7lTfc4Kvj-tqJBmxnTGsRHYtxYH18Gv34W1_D2i5-jvqPVeDpMMm2k0WRs-doKpdY0FfwWTTCgHHJazKeoyoJHSXaFWtQaXGBxeicrHE9bFkC-IEM2gvM4iIbq_diwHxUS39UHVxwtqtuJ1937UG8CatDihh-yVabpgFrs2q4RdpVdvFgAcgVKLb89tx-2k9zRFh08" alt="Gulmohar Vet Studio" class="w-full h-full object-cover" data-stitch-original-src="300048b6be891a12===../../images/clinic_exterior_gulmohar.jpg">
+          <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded-full bg-white/95 text-forest-teal text-[10px] font-extrabold shadow-sm">
+              Verified Studio
+            </span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-bold shadow-sm">
+              Open Now
+            </span>
+          </div>
+          <span class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-stone-900/80 backdrop-blur-sm text-white text-[10px] font-code font-bold">
+            1.2 km away
+          </span>
+        </div>
+
+        <div class="px-4 pb-4 space-y-3">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <h3 class="font-headline font-bold text-[16px] text-stone-900">Gulmohar Vet Studio</h3>
+              <p class="text-[12px] text-stone-500">100 Feet Rd, Indiranagar · Dr. Sameer Khan</p>
+            </div>
+            <div class="flex items-center gap-0.5 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
+              <span class="material-symbols-outlined text-amber-500 text-[13px]" style="font-variation-settings: &#39;FILL&#39; 1;">star</span>
+              <span class="font-bold text-[11px] text-amber-950">4.8</span>
+              <span class="text-[10px] text-amber-700">(128)</span>
+            </div>
+          </div>
+
+          <!-- Next Available Slot Indicator -->
+          <div class="p-2.5 rounded-xl bg-[#E6F0ED]/60 border border-forest-teal/15 flex items-center justify-between text-[12px]">
+            <span class="text-forest-teal font-medium">Next available slot:</span>
+            <span class="font-code font-bold text-forest-teal">Today, 4:30 PM</span>
+          </div>
+
+          <div class="pt-2 border-t border-stone-100 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] uppercase text-stone-400 block font-semibold">Consultation</span>
+              <span class="font-headline font-extrabold text-[17px] text-stone-900">₹750</span>
+            </div>
+            <a href="../clinic-booking/ClinicBooking.html" class="px-4 py-2 bg-light-primary text-white rounded-xl text-[12px] font-bold shadow-sm active:scale-95 transition">
+              Book In-Clinic
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Mobile Clinic Card 2: Namma Pet Hospital -->
+      <article class="bg-white rounded-2xl border border-[#EAE5DC] overflow-hidden shadow-subtle-card space-y-3">
+        <div class="relative w-full aspect-[16/9] bg-stone-100">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1UsbVgLYy0Wg5lyyEEpSCMqog6K0PlXkVC-eVQi5-IxgT066Gck-jNeERktJyg4biGFQcPj5kNHn8SoylN7AHozOMuNMmRS-iLzwRuq7sNx8xmlEfI_tiLKwC9NYqEiPfjuGNPqamBYuVcLxrehjd93owb80AF2IDsOAXPd-CL28dGEiTlNFxZJnGBvSq_6dI34hW97-h0W8Q1OKdsNQmduHvlr9wVCS3P6sYfkyzosNGef5k974IuzUWrvVmHNMII" alt="Namma Pet Hospital" class="w-full h-full object-cover" data-stitch-original-src="4ee277c0dcd909f5===../../images/clinic_exterior_namma.jpg">
+          <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded-full bg-rose-600 text-white text-[10px] font-extrabold shadow-sm">
+              24×7 Trauma Care
+            </span>
+          </div>
+          <span class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-stone-900/80 backdrop-blur-sm text-white text-[10px] font-code font-bold">
+            4.3 km away
+          </span>
+        </div>
+
+        <div class="px-4 pb-4 space-y-3">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <h3 class="font-headline font-bold text-[16px] text-stone-900">Namma Pet Hospital</h3>
+              <p class="text-[12px] text-stone-500">80 Feet Rd, Koramangala · Full Surgical ICU</p>
+            </div>
+            <div class="flex items-center gap-0.5 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
+              <span class="material-symbols-outlined text-amber-500 text-[13px]" style="font-variation-settings: &#39;FILL&#39; 1;">star</span>
+              <span class="font-bold text-[11px] text-amber-950">4.7</span>
+              <span class="text-[10px] text-amber-700">(210)</span>
+            </div>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-[#E6F0ED]/60 border border-forest-teal/15 flex items-center justify-between text-[12px]">
+            <span class="text-forest-teal font-medium">Next available slot:</span>
+            <span class="font-code font-bold text-forest-teal">Today, 5:15 PM</span>
+          </div>
+
+          <div class="pt-2 border-t border-stone-100 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] uppercase text-stone-400 block font-semibold">Consultation</span>
+              <span class="font-headline font-extrabold text-[17px] text-stone-900">₹900</span>
+            </div>
+            <a href="../clinic-booking/ClinicBooking.html" class="px-4 py-2 bg-light-primary text-white rounded-xl text-[12px] font-bold shadow-sm active:scale-95 transition">
+              Book In-Clinic
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- iOS Floating Translucent Bottom Navigation Dock (50px Pill) -->
+  <nav class="fixed bottom-4 inset-x-4 z-50">
+    <div class="bg-stone-900/90 backdrop-blur-xl border border-white/10 rounded-full px-3 py-2 shadow-floating-dock flex items-center justify-around text-white">
+      
+      <!-- Home Active Tab -->
+      <a href="../home-discovery/HomeDiscovery.html" class="flex flex-col items-center justify-center py-1 px-3 text-emerald-400">
+        <span class="material-symbols-outlined text-[20px]">explore</span>
+        <span class="text-[10px] font-bold mt-0.5">Explore</span>
+      </a>
+
+      <!-- Health Vault -->
+      <a href="../medical-records/MedicalRecords.html" class="flex flex-col items-center justify-center py-1 px-3 text-stone-400 hover:text-white transition">
+        <span class="material-symbols-outlined text-[20px]">favorite</span>
+        <span class="text-[10px] font-medium mt-0.5">Records</span>
+      </a>
+
+      <!-- Tele-Vet -->
+      <a href="../tele-vet/TeleVet.html" class="flex flex-col items-center justify-center py-1 px-3 text-stone-400 hover:text-white transition">
+        <span class="material-symbols-outlined text-[20px]">videocam</span>
+        <span class="text-[10px] font-medium mt-0.5">Tele-Vet</span>
+      </a>
+
+      <!-- Appointments -->
+      <a href="../clinic-booking/ClinicBooking.html" class="flex flex-col items-center justify-center py-1 px-3 text-stone-400 hover:text-white transition">
+        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+        <span class="text-[10px] font-medium mt-0.5">Bookings</span>
+      </a>
+
+      <!-- Profile -->
+      <a href="../pet-parent-profile/PetParentProfile.html" class="flex flex-col items-center justify-center py-1 px-3 text-stone-400 hover:text-white transition">
+        <span class="material-symbols-outlined text-[20px]">person</span>
+        <span class="text-[10px] font-medium mt-0.5">Account</span>
+      </a>
+
+    </div>
+  </nav>
+
+
+
+</body></html>

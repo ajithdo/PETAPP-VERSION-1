@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSetu - Clinic Profile &amp; Slot Booking</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { 'coral': '#E05A47', 'forest-teal': '#18453E', 'soft-sage': '#E6F0ED', 'soft-sand': '#F3EFEA', 'warm-border': '#E7E2DA', 'status-upcoming': '#D97706', 'status-completed': '#15803D', 'status-emergency': '#DC2626', 'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-secondary': '#C84735',
+            'light-on-secondary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-on-surface-elevated': '#1C1917',
+            'light-surface-subtle': '#F3EFEA',
+            'light-outline': '#E7E2DA',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '28px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <style>
+    * { -webkit-font-smoothing: antialiased; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface min-h-[1024px] font-body antialiased flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Shared Global Shell Header -->
+  <header class="sticky top-0 z-40 bg-light-surface/95 backdrop-blur-md border-b border-light-outline">
+    <div class="max-w-[1240px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <a href="../home-discovery/HomeDiscovery.html" class="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-light-outline bg-light-surface-elevated hover:bg-light-surface-subtle transition text-light-on-surface font-label text-label-md">
+          <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+          <span>Back to Clinics</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-2 pl-2">
+          <span class="text-stone-400">/</span>
+          <span class="font-headline font-bold text-light-on-surface text-[16px]">Gulmohar Vet Studio</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-soft-sage text-forest-teal text-[12px] font-bold border border-forest-teal/20">
+          <span class="material-symbols-outlined text-[15px]">verified</span>
+          Verified Partner
+        </span>
+        <button type="button" aria-label="Share" class="w-10 h-10 rounded-full border border-light-outline bg-light-surface-elevated text-light-on-surface flex items-center justify-center">
+          <span class="material-symbols-outlined text-[20px]">share</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Split Screen Layout: Left Clinic Specs & Right Frictionless Booking Widget -->
+  <main class="flex-1 max-w-[1240px] w-full mx-auto px-6 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- Left Column: Clinic Hero, Specialists, Hygiene, and Services (7 Cols) -->
+      <section class="lg:col-span-7 space-y-8">
+        
+        <!-- Hero Image Banner -->
+        <div class="relative rounded-2xl overflow-hidden border border-light-outline bg-soft-sand aspect-[16/9] shadow-sm">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1WuXaJPb5ClzUB0c6XypccqLXPZejsFwHmFraT7AYnU8ZW2nGvOGHROI843hyBrH7lTfc4Kvj-tqJBmxnTGsRHYtxYH18Gv34W1_D2i5-jvqPVeDpMMm2k0WRs-doKpdY0FfwWTTCgHHJazKeoyoJHSXaFWtQaXGBxeicrHE9bFkC-IEM2gvM4iIbq_diwHxUS39UHVxwtqtuJ1937UG8CatDihh-yVabpgFrs2q4RdpVdvFgAcgVKLb89tx-2k9zRFh08" alt="Gulmohar Vet Studio facility" class="w-full h-full object-cover" data-stitch-original-src="300048b6be891a12===../../images/clinic_exterior_gulmohar.jpg">
+          <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+            <span class="px-3 py-1.5 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[12px] font-bold">
+              100 Feet Rd, Indiranagar · 1.2 km away
+            </span>
+            <span class="px-3 py-1.5 rounded-full bg-emerald-600 text-white text-[12px] font-bold">
+              Open Today: 9:00 AM – 8:30 PM
+            </span>
+          </div>
+        </div>
+
+        <!-- Title, Rating, and Quick Actions -->
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-2">
+            <h1 class="font-headline text-[32px] font-bold text-light-on-surface tracking-tight">Gulmohar Vet Studio</h1>
+            <div class="flex items-center gap-1.5 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200">
+              <span class="material-symbols-outlined text-amber-500 text-[18px]" style="font-variation-settings: &#39;FILL&#39; 1;">star</span>
+              <span class="font-headline font-bold text-amber-950 text-[16px]">4.8</span>
+              <span class="text-amber-800 text-[13px]">(128 verified pet reviews)</span>
+            </div>
+          </div>
+          <p class="text-body-md text-stone-600">
+            Dedicated veterinary medicine, feline-friendly examination suites, diagnostic imaging, and preventive surgical care led by Dr. Sameer Khan.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap gap-3 mt-4">
+            <button type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-light-surface-elevated border border-light-outline hover:bg-light-surface-subtle font-label text-[13px] font-semibold text-light-on-surface transition">
+              <span class="material-symbols-outlined text-forest-teal text-[18px]">phone</span>
+              <span>Call +91 80 4122 8990</span>
+            </button>
+            <button type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-light-surface-elevated border border-light-outline hover:bg-light-surface-subtle font-label text-[13px] font-semibold text-light-on-surface transition">
+              <span class="material-symbols-outlined text-coral text-[18px]">directions</span>
+              <span>Get Directions</span>
+            </button>
+            <button type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-light-surface-elevated border border-light-outline hover:bg-light-surface-subtle font-label text-[13px] font-semibold text-light-on-surface transition">
+              <span class="material-symbols-outlined text-stone-500 text-[18px]">chat</span>
+              <span>Message Clinic</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Attending Veterinarian Card -->
+        <div class="bg-light-surface-elevated rounded-2xl border border-light-outline p-5 shadow-sm">
+          <span class="text-[11px] uppercase tracking-wider text-forest-teal font-bold block mb-3">Attending Veterinarian On Duty</span>
+          <div class="flex items-center gap-4">
+            <img src="https://lh3.googleusercontent.com/aida/AEtjO1WyPwdHef_0O9V2bYk8Xmj74q8CK0AUavaooTiS6BJRhOUYimswVcZjTDHT9gaO0le59TNJ_l58PYQU3Hpz7bx-07JjEV6dW1AQ-KC02RXev9uTZZnzl9hJmxSRF3LyFyWId4NQWuDuWJzbmdSbIedD8jH0zo1K5DQVvap4LtMdvJeb6HK3SxXOdv32tOe8pEpaZ8rT8kLkGuezRhuf6WyGVXCERRKB4iseTaeB2jqliO-vkzFvpcXNdgPvBA" alt="Dr. Sameer Khan" class="w-16 h-16 rounded-full object-cover ring-2 ring-forest-teal/20" data-stitch-original-src="ab30b12fb98e4c9b===../../images/vet_doctor_sameer.jpg">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-headline font-bold text-[18px] text-light-on-surface">Dr. Sameer Khan, MVSc</h3>
+                <span class="px-2 py-0.5 rounded-full bg-soft-sage text-forest-teal text-[10px] font-bold">12 Yrs Exp</span>
+              </div>
+              <p class="text-body-sm text-stone-600 mt-0.5">Specialist in Small Animal Internal Medicine &amp; Orthopedic Health</p>
+              <span class="text-[12px] text-emerald-700 font-semibold flex items-center gap-1 mt-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                In-Clinic Today for Physical Consultations
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hygiene & Facility Protocols Bento -->
+        <div class="bg-light-surface-subtle rounded-2xl p-4 sm:p-6 border border-light-outline">
+          <h3 class="font-headline font-bold text-[16px] sm:text-[18px] text-light-on-surface mb-3 sm:mb-4">Clinic Facility &amp; Hygiene Standards</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3">
+            <div class="bg-light-surface-elevated p-3 rounded-xl border border-light-outline flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-forest-teal text-[20px] flex-shrink-0">sanitizer</span>
+              <span class="text-[12px] font-semibold text-light-on-surface">Hospital-Grade Sterilization</span>
+            </div>
+            <div class="bg-light-surface-elevated p-3 rounded-xl border border-light-outline flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-forest-teal text-[20px] flex-shrink-0">pets</span>
+              <span class="text-[12px] font-semibold text-light-on-surface">Separate Cat Waiting Zone</span>
+            </div>
+            <div class="bg-light-surface-elevated p-3 rounded-xl border border-light-outline flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-forest-teal text-[20px] flex-shrink-0">vaccines</span>
+              <span class="text-[12px] font-semibold text-light-on-surface">Cold-Chain Vaccines</span>
+            </div>
+            <div class="bg-light-surface-elevated p-3 rounded-xl border border-light-outline flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-forest-teal text-[20px] flex-shrink-0">local_pharmacy</span>
+              <span class="text-[12px] font-semibold text-light-on-surface">On-Site Pet Pharmacy</span>
+            </div>
+            <div class="bg-light-surface-elevated p-3 rounded-xl border border-light-outline flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-forest-teal text-[20px] flex-shrink-0">radiology</span>
+              <span class="text-[12px] font-semibold text-light-on-surface">Instant Digital X-Ray</span>
+            </div>
+            <div class="bg-light-surface-elevated p-3 rounded-xl border border-light-outline flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-forest-teal text-[20px] flex-shrink-0">credit_card</span>
+              <span class="text-[12px] font-semibold text-light-on-surface">Direct Insurance Billing</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right Column: Frictionless Interactive Appointment Booking Drawer (5 Cols) -->
+      <aside class="lg:col-span-5 sticky top-28 bg-light-surface-elevated rounded-2xl border border-light-outline p-6 shadow-[0_4px_24px_-4px_rgba(28,25,23,0.08)] space-y-6">
+        
+        <!-- Header -->
+        <div class="border-b border-light-outline pb-4">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[12px] font-bold uppercase tracking-wider text-forest-teal">Frictionless Booking</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-status-completed text-[11px] font-bold border border-emerald-200">Instant Confirmation</span>
+          </div>
+          <h2 class="font-headline text-headline-sm font-bold text-light-on-surface">Schedule an In-Clinic Visit</h2>
+        </div>
+
+        <!-- 1. Pet Selector Header -->
+        <div>
+          <label class="font-label text-label-md font-bold text-light-on-surface mb-2 block">
+            Who is this appointment for?
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <!-- Bruno Selected -->
+            <button type="button" class="p-3 rounded-xl border-2 border-forest-teal bg-soft-sage/40 flex items-center gap-3 text-left transition">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1XGLg2qU28LEV0ZBHrz6yoD9YicJosz-9TqQUThEM0FNluzeX10On2sw5CQFYGSHV54ZDv6DnhIPSlWRKxthhj88SFwsNJGAI1WaFwOdMZlHqTsLyAw0eQleMEHB3YoOlzYwMm1eucSonbQmuDAFahKurKAyH1T_lusQqSWDE-VooE8ET_EMHeJZlWeZUBVqGZr_H8R2vx7gpYABjFIYEyJdekfGc4Xk0cmk8dtkdbMYZUNc4RMwzIje-geL5U" alt="Bruno" class="w-10 h-10 rounded-full object-cover" data-stitch-original-src="5fe0244cd4dde074===../../images/pet_bruno_portrait.jpg">
+              <div>
+                <span class="font-headline font-bold text-[14px] text-light-on-surface block leading-tight">Bruno</span>
+                <span class="text-[11px] text-forest-teal font-semibold">Golden Retriever</span>
+              </div>
+            </button>
+
+            <!-- Misty Option -->
+            <button type="button" class="p-3 rounded-xl border border-light-outline bg-light-surface-subtle hover:bg-stone-200/50 flex items-center gap-3 text-left transition opacity-70">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1UfmqZVFeTe9ceHTcEbQB37XtnSdeoGHe7jOHLW_N2nXgTxRGysDYlUL1IHwhlEk5w7lclqTIe5nf8TXa57u_vLtukQ-ej7a3ugPM-x5bsy15xohBrYu_VkCM7sZG-tsWaN-iOA0RxR7dZPARJhZgYHpPCscbbcsUPO08Pys7CWweGxa_TIRIGpTKHgwLZy-MF9rLNWmyH6TtC_DETOQuErnOH0QoW4_hehsvL0Jm7LZwYEDNwst2zpnjdpoYw" alt="Misty" class="w-10 h-10 rounded-full object-cover" data-stitch-original-src="cd2d7707c7859824===../../images/pet_misty_portrait.jpg">
+              <div>
+                <span class="font-headline font-bold text-[14px] text-light-on-surface block leading-tight">Misty</span>
+                <span class="text-[11px] text-stone-500">Persian Cat</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Care Service Category Selection -->
+        <div>
+          <label class="font-label text-label-md font-bold text-light-on-surface mb-2 block">
+            Select Visit Reason
+          </label>
+          <div class="space-y-2">
+            <label class="flex items-center justify-between p-3 rounded-xl border-2 border-coral bg-rose-50/20 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="service" checked class="text-coral focus:ring-coral">
+                <div>
+                  <span class="font-label font-bold text-[14px] text-light-on-surface block">Comprehensive Health Checkup</span>
+                  <span class="text-[11px] text-stone-500">Physical exam, vitals, weight check, ear/teeth check</span>
+                </div>
+              </div>
+              <span class="font-headline font-bold text-[15px] text-light-on-surface">₹750</span>
+            </label>
+
+            <label class="flex items-center justify-between p-3 rounded-xl border border-light-outline hover:border-forest-teal bg-white cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="service" class="text-coral focus:ring-coral">
+                <div>
+                  <span class="font-label font-bold text-[14px] text-light-on-surface block">Booster Shot Vaccination</span>
+                  <span class="text-[11px] text-stone-500">DHPPi + Anti-Rabies administered with certificate</span>
+                </div>
+              </div>
+              <span class="font-headline font-bold text-[15px] text-light-on-surface">₹650</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 3. Horizontal Date Scroller -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="font-label text-label-md font-bold text-light-on-surface">Choose Date</label>
+            <span class="text-[11px] text-forest-teal font-semibold">November 2026</span>
+          </div>
+          <div class="grid grid-cols-4 gap-2">
+            <!-- Today Active -->
+            <button type="button" class="py-2.5 px-2 rounded-xl bg-forest-teal text-white flex flex-col items-center justify-center shadow-sm">
+              <span class="text-[10px] uppercase font-bold text-emerald-200">Today</span>
+              <span class="font-headline font-bold text-[16px]">3 Nov</span>
+            </button>
+            <button type="button" class="py-2.5 px-2 rounded-xl bg-light-surface-subtle border border-light-outline hover:border-forest-teal text-light-on-surface flex flex-col items-center justify-center transition">
+              <span class="text-[10px] uppercase font-semibold text-stone-500">Wed</span>
+              <span class="font-headline font-bold text-[16px]">4 Nov</span>
+            </button>
+            <button type="button" class="py-2.5 px-2 rounded-xl bg-light-surface-subtle border border-light-outline hover:border-forest-teal text-light-on-surface flex flex-col items-center justify-center transition">
+              <span class="text-[10px] uppercase font-semibold text-stone-500">Thu</span>
+              <span class="font-headline font-bold text-[16px]">5 Nov</span>
+            </button>
+            <button type="button" class="py-2.5 px-2 rounded-xl bg-light-surface-subtle border border-light-outline hover:border-forest-teal text-light-on-surface flex flex-col items-center justify-center transition">
+              <span class="text-[10px] uppercase font-semibold text-stone-500">Fri</span>
+              <span class="font-headline font-bold text-[16px]">6 Nov</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Grouped Time-Slot Pills (Morning, Afternoon, Evening) -->
+        <div>
+          <label class="font-label text-label-md font-bold text-light-on-surface mb-2 block">
+            Available Time Slot
+          </label>
+          <div class="space-y-3">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-stone-400 font-bold block mb-1.5">Afternoon Slots</span>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" disabled class="py-2 rounded-lg bg-light-surface-subtle text-stone-400 text-[12px] font-code line-through cursor-not-allowed">
+                  2:30 PM
+                </button>
+                <button type="button" disabled class="py-2 rounded-lg bg-light-surface-subtle text-stone-400 text-[12px] font-code line-through cursor-not-allowed">
+                  3:15 PM
+                </button>
+                <button type="button" class="py-2 rounded-lg bg-light-primary text-white font-code text-[12px] font-bold shadow-sm ring-2 ring-coral/30">
+                  4:30 PM
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-stone-400 font-bold block mb-1.5">Evening Slots</span>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" class="py-2 rounded-lg bg-white border border-light-outline hover:border-forest-teal font-code text-[12px] text-light-on-surface font-semibold transition">
+                  5:15 PM
+                </button>
+                <button type="button" class="py-2 rounded-lg bg-white border border-light-outline hover:border-forest-teal font-code text-[12px] text-light-on-surface font-semibold transition">
+                  6:00 PM
+                </button>
+                <button type="button" class="py-2 rounded-lg bg-white border border-light-outline hover:border-forest-teal font-code text-[12px] text-light-on-surface font-semibold transition">
+                  6:45 PM
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fee Breakdown & Total -->
+        <div class="p-4 rounded-xl bg-light-surface-subtle border border-light-outline space-y-2 text-body-sm">
+          <div class="flex justify-between text-stone-600">
+            <span>Consultation Fee (Dr. Sameer Khan)</span>
+            <span class="font-code font-semibold text-light-on-surface">₹750</span>
+          </div>
+          <div class="flex justify-between text-stone-600">
+            <span>Facility Hygiene &amp; Sterilization Fee</span>
+            <span class="text-status-completed font-semibold">FREE</span>
+          </div>
+          <div class="flex justify-between text-stone-600">
+            <span>Digital Medical Record Entry</span>
+            <span class="text-status-completed font-semibold">INCLUDED</span>
+          </div>
+          <div class="pt-2 border-t border-light-outline flex justify-between font-bold text-light-on-surface text-[16px]">
+            <span>Total Payable</span>
+            <span class="font-headline text-[18px] text-coral">₹750</span>
+          </div>
+        </div>
+
+        <!-- Confirmation Trigger CTA -->
+        <div class="space-y-2">
+          <a href="../medical-records/MedicalRecords.html" class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-light-primary text-white font-label text-[15px] font-bold shadow-md hover:opacity-95 active:scale-[0.98] transition">
+            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+            <span>Confirm Booking for Bruno</span>
+          </a>
+          <p class="text-center text-[11px] text-stone-500">
+            Free cancellation up to 2 hours before your slot. No upfront prepayment required.
+          </p>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="mt-auto border-t border-light-outline bg-light-surface py-6 text-center text-body-sm text-light-on-surface-subtle">
+    <div class="max-w-[1240px] mx-auto px-6 flex items-center justify-between">
+      <span>PawSetu Clinical Care Assurance · 100% Encrypted Medical Logs</span>
+      <a href="../home-discovery/HomeDiscovery.html" class="hover:underline">Explore More Clinics</a>
+    </div>
+  </footer>
+
+
+
+</body></html>

@@ -98,6 +98,34 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 
 ---
 
+## Design 2.1: match the owner's finished pictures (from 4 Nov 2026, evening)
+
+The owner sent finished pictures of the 12 Design 2 screens (`docs/design-2/screens-v2/`, Stitch files in `docs/design-2/source-v2/`; 4 of them changed a little: clinic list, clinic page, booking confirmed, SOS) and said: "make UI like this". The live website is on Design 2; Design 1 is on hold (see above).
+
+**Owner's answers (4 Nov 2026):**
+1. Home: **both**. The top of Home looks like the picture (location pill, search, chips, dark booster card, nearby vets); the pet's day (Today card, Next up) stays below.
+2. Menus: **both like the pictures**. Desktop gets a top bar with pill buttons; phones get a floating dark bottom bar. The 5 tabs stay (Home, Health, Book, Shop, Me).
+3. Booking: **on the clinic page**. Pet, reason, date, time and price on the clinic page; notes, photos and payment on one short confirm screen after it.
+4. Photos: **keep drawn pictures** (no new image files).
+
+Left out (features the app doesn't have): blood group, ambulance, live ICU/blood-bank status, QR kiosk check-in, WhatsApp pass, Kannada, "verified" claims.
+
+**Checklist (tick as each is committed):**
+- [ ] A. Menus: desktop top bar with pill buttons; phone floating dark bottom bar
+- [ ] B. Home: picture-style top (location, search, chips, dark booster card, nearby vets), pet's day below
+- [ ] C. Clinic list: photo-top cards with badges, rating, next slot box, price and Book visit
+- [ ] D. Clinic page: photo header, rating pill, action pills, vet on duty, facility tiles, booking panel (right column on desktop) and a short confirm screen
+- [ ] E. Booking confirmed: booking pass with Date / Time / Doctor / Amount tiles, clinic row with Navigate, Add to calendar
+- [ ] F. Health: 2 columns on desktop (pass + emergency info | tabs, booster alert, timeline with certificate buttons, deworming cards)
+- [ ] G. SOS: red alert card, dark pet card, hospital cards with dark call button and Map
+- [ ] H. Map: list beside the map on desktop
+- [ ] I. Account: profile card, family with role badges, preferences card
+- [ ] J. Add pet: form in one card, two boxes per row on desktop
+- [ ] K. Tele-vet: video card, doctor card, notes panel
+- [ ] L. Certificate: medical card and health report like the certificate picture
+- [ ] M. Clinic portal: dark top bar, number tiles, queue table
+- [ ] N. Checks, pictures, preview link for the owner
+
 ## Design 2 everywhere (4 Nov 2026)
 
 **What changed on every screen:** outlined icons; labels above form boxes; red only for emergencies; times, prices, IDs and codes in JetBrains Mono; every colour, size and gap from `tokens.dart`.
