@@ -99,9 +99,9 @@ class _Body extends ConsumerWidget {
     final policies = ref.watch(petPoliciesProvider(doc.petId)).value ?? const [];
     final policy = policies.where((p) => p.docId == doc.id).firstOrNull;
     Widget row(String k, String v) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6),
+          padding: const EdgeInsets.symmetric(vertical: Space.xs + Space.xxs),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(width: 132, child: Text(k, style: context.text.bodySmall)),
+            SizedBox(width: Sizes.labelColumn, child: Text(k, style: context.text.bodySmall)),
             Expanded(child: Text(v, style: context.text.bodyMedium)),
           ]),
         );
@@ -130,11 +130,11 @@ class _Body extends ConsumerWidget {
             (l.clinicName, ex.clinicName),
           ];
     final confirmedAt = parseDate(doc.extracted?['confirmedAt']);
-    return PageBody(maxWidth: 820, children: [
+    return PageBody(maxWidth: Space.readingWidth, children: [
       const SizedBox(height: Space.md),
       if (doc.needsReview && canEdit) ...[
         PawCard(
-          color: context.paw.accent.withValues(alpha: 0.16),
+          color: context.paw.accent.withValues(alpha: Opacities.focus),
           onTap: () => context.push('/vault/doc/${doc.id}/read'),
           child: Row(children: [
             Icon(Icons.auto_awesome_outlined, color: context.paw.onAccentContainer),

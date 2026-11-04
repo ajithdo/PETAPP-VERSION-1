@@ -29,7 +29,7 @@ class ShareLinksScreen extends ConsumerWidget {
           final now = DateTime.now();
           final active = links.where((k) => k.isActive(now)).toList();
           final old = links.where((k) => !k.isActive(now)).toList();
-          return PageBody(maxWidth: 820, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.sm),
             InfoNote(l.vaultLinksNote, icon: Icons.shield_outlined),
             if (active.isNotEmpty) ...[

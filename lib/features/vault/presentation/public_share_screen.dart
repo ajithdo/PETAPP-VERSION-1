@@ -90,10 +90,10 @@ class _PublicShareScreenState extends ConsumerState<PublicShareScreen> {
           children: [
             Center(
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 960),
+                constraints: const BoxConstraints(maxWidth: Space.wideWidth),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                   Row(children: [
-                    const PawSetuLogo(size: 40, withName: true),
+                    const PawSetuLogo(size: Sizes.logo, withName: true),
                     const Spacer(),
                     StatusChip(l.vaultViewOnly, tone: ChipTone.info, icon: Icons.visibility_outlined),
                   ]),
@@ -115,7 +115,7 @@ class _PublicShareScreenState extends ConsumerState<PublicShareScreen> {
   Widget _header(BuildContext context, ShareView v, String title) {
     final l = context.l10n;
     return Row(children: [
-      PetAvatar(species: v.species, colorTag: 'amber', size: 56),
+      PetAvatar(species: v.species, colorTag: 'amber', size: Sizes.thumb),
       const SizedBox(width: Space.md),
       Expanded(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -137,7 +137,7 @@ class _PublicShareScreenState extends ConsumerState<PublicShareScreen> {
           PawCard(
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               Row(children: [
-                DocTypeBadge(type: d.type, size: 36),
+                DocTypeBadge(type: d.type, size: Sizes.docBadge),
                 const SizedBox(width: Space.sm),
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -147,7 +147,7 @@ class _PublicShareScreenState extends ConsumerState<PublicShareScreen> {
                 ),
               ]),
               const SizedBox(height: Space.md),
-              SizedBox(height: 300, child: DocPreview(doc: d, petName: v.petName, onTap: () => openDocViewer(context, d, v.petName))),
+              SizedBox(height: Sizes.docPreview, child: DocPreview(doc: d, petName: v.petName, onTap: () => openDocViewer(context, d, v.petName))),
             ]),
           ),
       ]),
@@ -169,7 +169,7 @@ class _PublicShareScreenState extends ConsumerState<PublicShareScreen> {
           items: g.items,
           onTap: (i) => Navigator.of(context).push(MaterialPageRoute<void>(
             builder: (_) => Scaffold(
-              backgroundColor: Colors.black,
+              backgroundColor: MediaColors.background,
               body: MediaPager(items: v.items, initialIndex: v.items.indexOf(i), petName: v.petName),
             ),
           )),
@@ -187,10 +187,10 @@ class _PublicShareScreenState extends ConsumerState<PublicShareScreen> {
     };
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 420),
+        constraints: const BoxConstraints(maxWidth: Sizes.emptyStateWidth),
         child: PawCard(
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            const Illustration(Scene.vault, size: 96),
+            const Illustration(Scene.vault, size: Sizes.illustrationSm),
             const SizedBox(height: Space.md),
             Text(l.vaultEnterSharePin, style: context.text.titleMedium, textAlign: TextAlign.center),
             const SizedBox(height: Space.xs),

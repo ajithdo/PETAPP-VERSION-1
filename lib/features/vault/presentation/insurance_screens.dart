@@ -78,12 +78,12 @@ class _InsuranceScreenState extends ConsumerState<InsuranceScreen> {
             );
           }
           final sorted = [...list]..sort((a, b) => (a.renewal ?? DateTime(2100)).compareTo(b.renewal ?? DateTime(2100)));
-          return PageBody(maxWidth: 820, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.md),
             for (final p in sorted) _PolicyTile(policy: p, pet: byId[p.petId]),
             const SizedBox(height: Space.md),
             InfoNote(l.vaultInsuranceNote),
-            const SizedBox(height: 72),
+            const SizedBox(height: Space.fabClearance),
           ]);
         },
       ),
@@ -107,7 +107,7 @@ class _PolicyTile extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
             if (pet != null) ...[
-              PetAvatar(species: pet!.species, colorTag: pet!.colorTag, photoUrl: pet!.photoUrl, size: 40),
+              PetAvatar(species: pet!.species, colorTag: pet!.colorTag, photoUrl: pet!.photoUrl, size: Sizes.avatarSm),
               const SizedBox(width: Space.md),
             ],
             Expanded(
@@ -191,12 +191,12 @@ class PolicyScreen extends ConsumerWidget {
         data: (p) {
           if (p == null) return EmptyState(scene: Scene.search, title: l.vaultDocMissing);
           final doc = p.docId == null ? null : ref.watch(docProvider(p.docId!)).value;
-          return PageBody(maxWidth: 820, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.md),
             PawCard(
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 Row(children: [
-                  if (pet != null) PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 44),
+                  if (pet != null) PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarMd),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -217,10 +217,10 @@ class PolicyScreen extends ConsumerWidget {
                 Text(l.vaultCoverLeft(Fmt.inr(p.coverLeft)), style: context.text.bodyMedium),
                 const SizedBox(height: Space.xs),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(Radii.sm),
                   child: LinearProgressIndicator(
                     value: p.cover == 0 ? 0 : p.coverLeft / p.cover,
-                    minHeight: 8,
+                    minHeight: Sizes.progressBar,
                     color: context.paw.success,
                     backgroundColor: context.paw.outline,
                   ),
@@ -251,7 +251,7 @@ class PolicyScreen extends ConsumerWidget {
                       Expanded(child: Text(c.title, style: context.text.titleSmall)),
                       StatusChip(claimStatusLabel(context, c.status), tone: claimStatusTone(c.status)),
                     ]),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: Space.xxs),
                     Text(
                       [
                         Fmt.date(c.date, context.lang),
@@ -264,8 +264,8 @@ class PolicyScreen extends ConsumerWidget {
                     Row(children: [
                       Expanded(
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: LinearProgressIndicator(value: checklistProgress(c.checklist), minHeight: 6, backgroundColor: context.paw.outline),
+                          borderRadius: BorderRadius.circular(Radii.sm),
+                          child: LinearProgressIndicator(value: checklistProgress(c.checklist), minHeight: Sizes.progressBar, backgroundColor: context.paw.outline),
                         ),
                       ),
                       const SizedBox(width: Space.sm),
@@ -279,7 +279,7 @@ class PolicyScreen extends ConsumerWidget {
               ),
             const SizedBox(height: Space.md),
             InfoNote(l.vaultInsuranceNote),
-            const SizedBox(height: 72),
+            const SizedBox(height: Space.fabClearance),
           ]);
         },
       ),
@@ -371,7 +371,7 @@ class _PolicySheetState extends ConsumerState<_PolicySheet> {
         Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
           for (final p in pets)
             ChoiceChip(
-              avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
+              avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarChip),
               showCheckmark: false,
               label: Text(p.name),
               selected: p.id == _pet.id,
@@ -496,7 +496,7 @@ class _ClaimSheetState extends ConsumerState<_ClaimSheet> {
         const SizedBox(height: Space.sm),
         for (final d in docs)
           ListTile(
-            leading: DocTypeBadge(type: d.type, size: 36),
+            leading: DocTypeBadge(type: d.type, size: Sizes.docBadge),
             title: Text(d.title),
             subtitle: Text(docTypeLabel(ctx, d.type)),
             onTap: () => Navigator.pop(ctx, d),

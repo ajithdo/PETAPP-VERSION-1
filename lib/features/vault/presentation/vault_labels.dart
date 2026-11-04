@@ -34,17 +34,22 @@ IconData docTypeIcon(String type) => switch (type) {
       _ => Icons.description_outlined,
     };
 
-Color docTypeColor(BuildContext context, String type) => switch (type) {
-      'vaccination' => context.colors.primary,
-      'insurance' => PetTagColors.of('lavender'),
-      'lab' => PetTagColors.of('sky'),
-      'prescription' => context.paw.success,
-      'invoice' => context.paw.accent,
-      'licence' => PetTagColors.of('sand'),
-      'adoption' => PetTagColors.of('rose'),
-      'travel' => PetTagColors.of('mint'),
-      _ => context.paw.textSecondary,
-    };
+/// Icon colour for a kind of document, readable (3:1) on cards in light
+/// and dark mode.
+Color docTypeColor(BuildContext context, String type) {
+  Color cat(Color c) => readableOn(c, [context.paw.surface], ratio: 3);
+  return switch (type) {
+    'vaccination' => context.paw.brand,
+    'insurance' => cat(CategoryColors.plum),
+    'lab' => cat(CategoryColors.sky),
+    'prescription' => context.paw.success,
+    'invoice' => context.paw.accent,
+    'licence' => cat(CategoryColors.gold),
+    'adoption' => cat(CategoryColors.rose),
+    'travel' => cat(CategoryColors.teal),
+    _ => context.paw.textSecondary,
+  };
+}
 
 /// Expiry chip, or null when the document never expires.
 Widget? expiryChip(BuildContext context, DateTime? expiry, {DateTime? now}) {
@@ -135,7 +140,7 @@ class DocTypeBadge extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      decoration: BoxDecoration(color: c.withValues(alpha: 0.16), borderRadius: BorderRadius.circular(Radii.md)),
+      decoration: BoxDecoration(color: c.withValues(alpha: Opacities.focus), borderRadius: BorderRadius.circular(Radii.md)),
       child: Icon(docTypeIcon(type), color: c, size: size * 0.52),
     );
   }

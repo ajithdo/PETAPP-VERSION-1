@@ -306,7 +306,7 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [x] 8. Messages inbox, chat, tele-vet (home, new, consent, call), Ask PawSetu, prescription (4 Nov 2026). All values from tokens; the video call stays dark in both themes with a forest glow (new call colours in `MediaColors`), the call timer in mono; photo viewer uses media colours
 - [x] 9. Me, settings, notification settings, notifications centre (4 Nov 2026). Tokens only; form labels above the box and outlined icons from the shared pieces
 - [x] 10. Sign-in, sign-up, forgot password, phone code, demo accounts, verify email, welcome, setup (4 Nov 2026). Tokens only (logo sizes, sign-in card width, welcome dots, setup species tiles); fields have labels above the box
-- [ ] 11. Vault (gate, list, document, read details, shares, insurance, public share)
+- [x] 11. Vault (gate, list, document, read details, shares, insurance, public share) (4 Nov 2026). Tokens only; document kinds use readable category colours (the old pastel icons were below 3:1); PIN pad, scan frame and viewers use tokens and media colours
 - [ ] 12. Album, album viewer, memory card
 - [ ] 13. Family, join invite, lost pet (list, detail, public page), devices (list, add, detail)
 - [ ] 14. Expenses, Plus, refer a friend, privacy, help and complaints

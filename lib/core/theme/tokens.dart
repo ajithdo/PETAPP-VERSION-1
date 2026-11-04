@@ -734,6 +734,22 @@ class Sizes {
   static const double logo = 36;
   static const double logoLg = 56;
 
+  /// Document type badge (in rows, and big on a preview).
+  static const double docBadge = 36;
+  static const double docBadgeLg = 64;
+
+  /// Document preview inside a page (normal and smaller).
+  static const double docPreview = 300;
+  static const double docPreviewSm = 220;
+
+  /// Round drag handle on the scan crop frame.
+  static const double handle = 22;
+
+  /// Vault PIN pad: a dot, a key, and a key with its padding.
+  static const double pinDot = 16;
+  static const double pinKey = 68;
+  static const double pinKeyCell = 80;
+
   /// The logo on the splash screen.
   static const double logoXl = 72;
 

@@ -111,7 +111,7 @@ class _VaultShareSheetState extends ConsumerState<_VaultShareSheet> {
           contentPadding: EdgeInsets.zero,
           value: _docs.contains(d.id),
           onChanged: (v) => setState(() => v == true ? _docs.add(d.id) : _docs.remove(d.id)),
-          secondary: DocTypeBadge(type: d.type, size: 36),
+          secondary: DocTypeBadge(type: d.type, size: Sizes.docBadge),
           title: Text(d.title, maxLines: 2, overflow: TextOverflow.ellipsis),
           subtitle: Text(docTypeLabel(context, d.type)),
         ),
@@ -164,7 +164,7 @@ class ShareLinkResult extends ConsumerWidget {
     final l = context.l10n;
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(children: [
-        Icon(Icons.check_circle_rounded, color: context.paw.success, size: 28),
+        Icon(Icons.check_circle_rounded, color: context.paw.success, size: IconSizes.action),
         const SizedBox(width: Space.sm),
         Expanded(child: Text(title ?? l.vaultLinkReady, style: context.text.titleMedium)),
       ]),
@@ -220,7 +220,7 @@ class ShareLinkResult extends ConsumerWidget {
       Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
         for (final ch in [Channel.whatsapp, Channel.sms, Channel.email])
           ActionChip(
-            avatar: Icon(switch (ch) { Channel.email => Icons.email_outlined, Channel.sms => Icons.sms_outlined, _ => Icons.chat_outlined }, size: 18),
+            avatar: Icon(switch (ch) { Channel.email => Icons.email_outlined, Channel.sms => Icons.sms_outlined, _ => Icons.chat_outlined }, size: IconSizes.chip),
             label: Text(switch (ch) { Channel.email => l.chEmail, Channel.sms => l.chSms, _ => l.chWhatsApp }),
             onPressed: () => sendShareMessage(context, ref, ch, message),
           ),

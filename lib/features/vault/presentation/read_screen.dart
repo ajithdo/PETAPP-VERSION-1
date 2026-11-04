@@ -241,12 +241,12 @@ class _AutoReadScreenState extends ConsumerState<AutoReadScreen> {
       appBar: AppBar(title: Text(_reading ? l.vaultReading : (_found ? l.vaultCheckDetails : l.vaultAddDetails))),
       body: doc == null && !_reading
           ? EmptyState(scene: Scene.search, title: l.vaultDocMissing, actionLabel: l.documentVault, onAction: () => context.go('/me/vault'))
-          : PageBody(maxWidth: 720, children: [
+          : PageBody(maxWidth: Space.formWidth, children: [
               const SizedBox(height: Space.md),
               if (doc != null)
                 Center(
                   child: SizedBox(
-                    height: 220,
+                    height: Sizes.docPreviewSm,
                     child: DocPreview(doc: doc, petName: _pet?.name ?? '', onTap: () => openDocViewer(context, doc, _pet?.name ?? '')),
                   ),
                 ),
@@ -271,7 +271,7 @@ class _AutoReadScreenState extends ConsumerState<AutoReadScreen> {
         PawTextField(label: label, controller: c(key), keyboardType: kb, prefixText: prefix);
     return [
       PawCard(
-        color: _found ? context.paw.primaryContainer.withValues(alpha: 0.6) : null,
+        color: _found ? context.paw.primaryContainer.withValues(alpha: Opacities.half) : null,
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Icon(_found ? Icons.auto_awesome_outlined : Icons.edit_note_outlined, color: context.colors.primary),
           const SizedBox(width: Space.md),
@@ -300,7 +300,7 @@ class _AutoReadScreenState extends ConsumerState<AutoReadScreen> {
             DropdownMenuItem(
               value: t,
               child: Row(children: [
-                Icon(docTypeIcon(t), size: 20),
+                Icon(docTypeIcon(t), size: IconSizes.md),
                 const SizedBox(width: Space.sm),
                 Flexible(child: Text(docTypeLabel(context, t), overflow: TextOverflow.ellipsis)),
               ]),

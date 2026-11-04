@@ -92,10 +92,10 @@ class _ScanCropScreenState extends State<ScanCropScreen> {
   Widget build(BuildContext context) {
     final l = context.l10n;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: MediaColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
+        backgroundColor: MediaColors.background,
+        foregroundColor: MediaColors.foreground,
         title: Text(l.vaultScanTitle),
       ),
       body: _failed
@@ -132,16 +132,16 @@ class _ScanCropScreenState extends State<ScanCropScreen> {
                                     child: GestureDetector(
                                       onPanUpdate: (d) => _move(i, d.delta, box),
                                       child: Container(
-                                        width: 48,
-                                        height: 48,
+                                        width: TapTarget.min,
+                                        height: TapTarget.min,
                                         alignment: Alignment.center,
                                         child: Container(
-                                          width: 22,
-                                          height: 22,
+                                          width: Sizes.handle,
+                                          height: Sizes.handle,
                                           decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: MediaColors.foreground,
                                             shape: BoxShape.circle,
-                                            border: Border.all(color: context.colors.primary, width: 4),
+                                            border: Border.all(color: context.colors.primary, width: Strokes.ring),
                                           ),
                                         ),
                                       ),
@@ -160,7 +160,7 @@ class _ScanCropScreenState extends State<ScanCropScreen> {
                       color: context.paw.surface,
                       padding: EdgeInsets.all(context.gutter),
                       child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 640),
+                        constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
                         child: Column(mainAxisSize: MainAxisSize.min, children: [
                           Text(_found ? l.vaultScanAuto : l.vaultScanHint, style: context.text.bodySmall, textAlign: TextAlign.center),
                           SwitchListTile(
@@ -190,7 +190,7 @@ class _CropPainter extends CustomPainter {
       ..addRect(Offset.zero & size)
       ..addRect(rect)
       ..fillType = PathFillType.evenOdd;
-    canvas.drawPath(outside, Paint()..color = Colors.black.withValues(alpha: 0.55));
+    canvas.drawPath(outside, Paint()..color = MediaColors.scrim);
     canvas.drawRect(rect, Paint()
       ..color = color
       ..style = PaintingStyle.stroke

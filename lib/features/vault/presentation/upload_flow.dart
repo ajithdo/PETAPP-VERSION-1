@@ -52,7 +52,7 @@ Future<void> showUploadSheet(BuildContext context, WidgetRef ref, {Pet? pet, boo
           Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
             for (final p in pets)
               ChoiceChip(
-                avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
+                avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarChip),
                 label: Text(p.name),
                 showCheckmark: false,
                 selected: chosen.id == p.id,
@@ -84,7 +84,7 @@ Future<void> showUploadSheet(BuildContext context, WidgetRef ref, {Pet? pet, boo
         ),
         for (final k in uploadSamples)
           ListTile(
-            leading: DocTypeBadge(type: sampleDocType(k), size: 36),
+            leading: DocTypeBadge(type: sampleDocType(k), size: Sizes.docBadge),
             title: Text(sampleTitle(ctx, k)),
             onTap: () => Navigator.pop(ctx, 'sample:$k'),
           ),
