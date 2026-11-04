@@ -4468,6 +4468,12 @@ abstract class AppLocalizations {
   /// **'Open now'**
   String get openNow;
 
+  /// Button on the clinic page booking card that continues to the confirm screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Book for {name}'**
+  String bookFor(String name);
+
   /// Label on a clinic card before the earliest bookable time.
   ///
   /// In en, this message translates to:

@@ -2496,6 +2496,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get openNow => 'Open now';
 
   @override
+  String bookFor(String name) {
+    return 'Book for $name';
+  }
+
+  @override
   String get nextFreeSlot => 'Next free slot';
 
   @override

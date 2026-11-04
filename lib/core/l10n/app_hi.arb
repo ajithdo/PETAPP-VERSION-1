@@ -728,6 +728,7 @@
   "sortSlot": "सबसे जल्दी स्लॉट",
   "sortFee": "सबसे कम फ़ीस",
   "openNow": "अभी खुला",
+  "bookFor": "{name} के लिए बुक करें",
   "nextFreeSlot": "अगला खाली समय",
   "openNowChip": "अभी खुला",
   "closedChip": "बंद",

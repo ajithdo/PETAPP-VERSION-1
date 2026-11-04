@@ -2463,6 +2463,11 @@ class AppLocalizationsTe extends AppLocalizations {
   String get openNow => 'ఇప్పుడు తెరిచి ఉంది';
 
   @override
+  String bookFor(String name) {
+    return '$name కోసం బుక్ చేయండి';
+  }
+
+  @override
   String get nextFreeSlot => 'తదుపరి ఖాళీ సమయం';
 
   @override

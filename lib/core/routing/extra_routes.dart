@@ -47,7 +47,16 @@ final bookRoutes = <RouteBase>[
   GoRoute(
     path: 'new/:placeId',
     builder: (_, s) =>
-        BookingFlowScreen(placeId: s.pathParameters['placeId']!, serviceId: s.uri.queryParameters['service'], petId: s.uri.queryParameters['pet']),
+        BookingFlowScreen(
+          placeId: s.pathParameters['placeId']!,
+          serviceId: s.uri.queryParameters['service'],
+          petId: s.uri.queryParameters['pet'],
+          // Set by the booking card on the clinic page (Design 2).
+          slot: DateTime.tryParse(s.uri.queryParameters['slot'] ?? ''),
+          proposed: [
+            for (final t in (s.uri.queryParameters['times'] ?? '').split(',')) ?DateTime.tryParse(t),
+          ],
+        ),
   ),
   GoRoute(
     path: 'done/:id',

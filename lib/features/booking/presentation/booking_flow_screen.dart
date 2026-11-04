@@ -16,14 +16,23 @@ import '../data/booking_repository.dart';
 import '../data/places_repository.dart';
 import '../domain/booking_rules.dart';
 import 'booking_labels.dart';
+import 'my_bookings_screen.dart';
+import '../../../core/widgets/paw_map.dart';
 
 /// Booking in at most 4 screens (spec 7.6): pet and service → date and
 /// slot → notes, photos and payment → confirm with the full price.
+///
+/// When the clinic page's booking card already chose the pet, service and
+/// time ([slot] or the request's [proposed] times), this is one short screen:
+/// notes, photos and payment, the summary and the confirm button (Design 2,
+/// owner's choice 4 Nov 2026).
 class BookingFlowScreen extends ConsumerStatefulWidget {
-  const BookingFlowScreen({super.key, required this.placeId, this.serviceId, this.petId});
+  const BookingFlowScreen({super.key, required this.placeId, this.serviceId, this.petId, this.slot, this.proposed = const []});
   final String placeId;
   final String? serviceId;
   final String? petId;
+  final DateTime? slot;
+  final List<DateTime> proposed;
   @override
   ConsumerState<BookingFlowScreen> createState() => _BookingFlowScreenState();
 }
@@ -42,11 +51,20 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
   String _payment = 'online';
   bool _busy = false;
 
+  /// Opened from the clinic page with everything but the details chosen.
+  bool get _short => widget.slot != null || widget.proposed.isNotEmpty;
+
   @override
   void initState() {
     super.initState();
     _petId = widget.petId;
     _serviceId = widget.serviceId;
+    if (_short) {
+      _slot = widget.slot;
+      _proposed.addAll(widget.proposed);
+      _day = widget.slot ?? widget.proposed.first;
+      _step = 3;
+    }
   }
 
   @override
@@ -70,7 +88,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
     final titles = [l.stepWhoWhat, l.stepWhen, l.stepDetails, l.stepConfirm];
 
     return PopScope(
-      canPop: _step == 0,
+      canPop: _step == 0 || _short,
       onPopInvokedWithResult: (did, _) {
         if (!did) setState(() => _step--);
       },
@@ -84,17 +102,19 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Semantics(
-                      label: l.stepOf(_step + 1, 4),
-                      child: LinearProgressIndicator(
-                        value: (_step + 1) / 4,
-                        minHeight: Sizes.progressBar,
-                        borderRadius: BorderRadius.circular(Radii.xs),
+                    if (!_short) ...[
+                      Semantics(
+                        label: l.stepOf(_step + 1, 4),
+                        child: LinearProgressIndicator(
+                          value: (_step + 1) / 4,
+                          minHeight: Sizes.progressBar,
+                          borderRadius: BorderRadius.circular(Radii.xs),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: Space.sm),
-                    Text(l.stepOf(_step + 1, 4).toUpperCase(), style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
-                    const SizedBox(height: Space.xxs),
+                      const SizedBox(height: Space.sm),
+                      Text(l.stepOf(_step + 1, 4).toUpperCase(), style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
+                      const SizedBox(height: Space.xxs),
+                    ],
                     Text(titles[_step], style: context.text.titleLarge),
                   ],
                 ),
@@ -109,6 +129,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                           if (_step == 0) ..._whoWhat(context, place, pets, service),
                           if (_step == 1 && service != null) ..._when(context, place, service),
                           if (_step == 2 && service != null) ..._details(context, place, service),
+                          if (_short && service != null) ...[..._extras(context, place), ..._details(context, place, service), const SizedBox(height: Space.lg)],
                           if (_step == 3 && service != null && pet != null) ..._confirm(context, place, service, pet),
                         ],
                       ),
@@ -120,7 +141,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                     constraints: const BoxConstraints(maxWidth: Space.formWidth),
                     child: Row(
                       children: [
-                        if (_step > 0) ...[
+                        if (_step > 0 && !_short) ...[
                           Expanded(
                             child: SecondaryButton(label: l.back, onPressed: () => setState(() => _step--)),
                           ),
@@ -203,7 +224,6 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
 
   List<Widget> _whoWhat(BuildContext context, Place place, List<Pet> pets, PlaceService? service) {
     final l = context.l10n;
-    final vets = place.kind == 'clinic' ? (ref.watch(vetsProvider(place.id)).value ?? const <Vet>[]) : const <Vet>[];
     return [
       FieldLabel(l.whichPet),
       Wrap(
@@ -233,6 +253,15 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
             _proposed.clear();
           }),
         ),
+      ..._extras(context, place),
+    ];
+  }
+
+  /// Vet choice and home visit (step 1, or the top of the short screen).
+  List<Widget> _extras(BuildContext context, Place place) {
+    final l = context.l10n;
+    final vets = place.kind == 'clinic' ? (ref.watch(vetsProvider(place.id)).value ?? const <Vet>[]) : const <Vet>[];
+    return [
       if (vets.isNotEmpty) ...[
         const SizedBox(height: Space.md),
         LabeledField(
@@ -285,7 +314,8 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
     return [
       if (request) ...[InfoNote(l.requestExplainer(place.requestWindowHours)), const SizedBox(height: Space.md)],
       SizedBox(
-        height: Sizes.dateStrip,
+        // Taller with big text so the two lines of each day always fit.
+          height: Sizes.dateStrip * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: [
@@ -457,7 +487,9 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
   }
 }
 
-/// Booking done: confirmed or request sent, with add-to-calendar.
+/// Booking done (Design 2 "booking confirmed" pass): who and where, the date,
+/// time, vet and amount as tiles, the clinic with directions, and add to
+/// calendar.
 class BookingDoneScreen extends ConsumerWidget {
   const BookingDoneScreen({super.key, required this.bookingId});
   final String bookingId;
@@ -465,48 +497,147 @@ class BookingDoneScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final paw = context.paw;
     final b = ref.watch(bookingProvider(bookingId)).value;
     if (b == null) return const Scaffold(body: SkeletonList());
     final request = b.status == 'pending';
+    final pet = ref.watch(petProvider(b.petId)).value;
+    final place = ref.watch(placeProvider(b.providerId)).value;
+    Widget tile(String label, String value, {bool mono = false, Color? color}) => Container(
+          padding: const EdgeInsets.all(Space.md),
+          decoration: BoxDecoration(color: paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.lg)),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+            Text(label.toUpperCase(), style: context.textX.overline.copyWith(color: paw.textSecondary)),
+            const SizedBox(height: Space.xs),
+            Text(
+              value,
+              style: mono
+                  ? context.textX.mono.copyWith(color: color ?? paw.textPrimary, fontWeight: FontWeight.w700)
+                  : context.text.titleSmall?.copyWith(color: color ?? paw.textPrimary),
+            ),
+          ]),
+        );
+    final payment = switch (b.paymentStatus) {
+      'paid' => l.paidOnline,
+      _ => b.paymentOption == 'online' ? l.paymentPending : l.payAtVisit,
+    };
+    final when = request ? (b.proposedTimes.toList()..sort()).map((t) => Fmt.dateTime(t, context.lang)).join('\n') : Fmt.dateTime(b.start, context.lang);
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: [
+          TextButton.icon(onPressed: () => context.go('/book'), icon: const Icon(Icons.close_outlined), label: Text(l.close)),
+          const SizedBox(width: Space.sm),
+        ],
+      ),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: Sizes.narrowPage),
-            child: SingleChildScrollView(
+            constraints: const BoxConstraints(maxWidth: Space.formWidth),
+            child: ListView(
               padding: EdgeInsets.all(context.gutter),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Illustration(Scene.success, size: Sizes.illustration),
-                  const SizedBox(height: Space.lg),
-                  Semantics(
-                    header: true,
-                    child: Text(request ? l.requestSentTitle : l.bookingConfirmedTitle, style: context.text.headlineSmall, textAlign: TextAlign.center),
+              children: [
+                Center(
+                  child: Container(
+                    width: Sizes.heroAvatar,
+                    height: Sizes.heroAvatar,
+                    decoration: BoxDecoration(color: request ? paw.primaryContainer : paw.successContainer, shape: BoxShape.circle),
+                    child: Icon(request ? Icons.hourglass_top_outlined : Icons.check_circle_outlined, size: IconSizes.xxxl, color: request ? paw.brand : paw.success),
                   ),
-                  const SizedBox(height: Space.sm),
-                  Text(
-                    request ? l.requestSentBody(b.providerName) : l.bookingConfirmedBody(b.petName, b.providerName, Fmt.dateTime(b.start, context.lang)),
-                    textAlign: TextAlign.center,
-                    style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary),
-                  ),
-                  const SizedBox(height: Space.xl),
-                  PassCard(
-                    overline: request ? l.requestSentTitle : l.bookingConfirmedTitle,
-                    overlineIcon: request ? Icons.hourglass_top_outlined : Icons.event_available_outlined,
-                    title: b.providerName,
-                    subtitle: b.petName,
-                    rows: [
-                      PassRow(label: l.when, value: Fmt.dateTime(b.start, context.lang)),
+                ),
+                const SizedBox(height: Space.lg),
+                Semantics(
+                  header: true,
+                  child: Text(request ? l.requestSentTitle : l.bookingConfirmedTitle, style: context.text.headlineMedium, textAlign: TextAlign.center),
+                ),
+                const SizedBox(height: Space.sm),
+                Text(
+                  request ? l.requestSentBody(b.providerName) : l.bookingConfirmedBody(b.petName, b.providerName, Fmt.dateTime(b.start, context.lang)),
+                  textAlign: TextAlign.center,
+                  style: context.text.bodyLarge?.copyWith(color: paw.textSecondary),
+                ),
+                const SizedBox(height: Space.xl),
+                PawCard(
+                  padding: const EdgeInsets.all(Space.lg),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                    Row(children: [
+                      PetAvatar(
+                        species: pet?.species ?? b.petSpecies,
+                        colorTag: pet?.colorTag,
+                        photoUrl: pet?.photoUrl,
+                        size: Sizes.heroAvatar,
+                        name: b.petName,
+                      ),
+                      const SizedBox(width: Space.md),
+                      Expanded(
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Text(b.petName, style: context.text.titleLarge),
+                          Text(serviceLabel(context, b.serviceId), style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),
+                          if (pet?.microchip?.isNotEmpty == true)
+                            Text('${l.microchip}: ${pet!.microchip}', style: context.textX.mono.copyWith(color: paw.textSecondary)),
+                        ]),
+                      ),
+                    ]),
+                    const SizedBox(height: Space.lg),
+                    const Divider(height: Strokes.hairline),
+                    const SizedBox(height: Space.lg),
+                    LayoutBuilder(builder: (context, c) {
+                      final cols = c.maxWidth >= Sizes.sheetMaxWidth ? 4 : 2;
+                      final w = (c.maxWidth - Space.sm * (cols - 1)) / cols;
+                      return Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
+                        SizedBox(width: w, child: tile(request ? l.preferredTimes : l.when, when, mono: true, color: paw.onActionContainer)),
+                        SizedBox(width: w, child: tile(l.where, b.providerName)),
+                        if (b.vetName?.isNotEmpty == true) SizedBox(width: w, child: tile(l.vet, b.vetName!)),
+                        SizedBox(width: w, child: tile(l.totalToPay, '${Fmt.inr(b.total)} · $payment')),
+                      ]);
+                    }),
+                    if (place != null) ...[
+                      const SizedBox(height: Space.lg),
+                      Container(
+                        padding: const EdgeInsets.all(Space.md),
+                        decoration: BoxDecoration(
+                          color: Color.alphaBlend(paw.primaryContainer.withValues(alpha: Opacities.half), paw.surface),
+                          borderRadius: BorderRadius.circular(Radii.lg),
+                          border: Border.all(color: paw.outline),
+                        ),
+                        child: Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          spacing: Space.md,
+                          runSpacing: Space.sm,
+                          children: [
+                            Row(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+                              Icon(Icons.place_outlined, color: paw.brand),
+                              const SizedBox(width: Space.sm),
+                              ConstrainedBox(
+                                constraints: const BoxConstraints(maxWidth: Sizes.placeCardMinWidth),
+                                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                  Text(place.name, style: context.text.titleSmall?.copyWith(color: paw.brand)),
+                                  Text(place.address, style: context.text.bodySmall),
+                                ]),
+                              ),
+                            ]),
+                            FilledButton.icon(
+                              style: FilledButton.styleFrom(backgroundColor: paw.brand, foregroundColor: paw.onBrand, iconColor: paw.onBrand),
+                              onPressed: () => openDirections(place.lat, place.lng, label: place.name),
+                              icon: const Icon(Icons.directions_outlined, size: IconSizes.md),
+                              label: Text(l.directions),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
-                  ),
-                  const SizedBox(height: Space.xl),
-                  PrimaryButton(label: l.viewBooking, onPressed: () => context.pushReplacement('/book/bookings/${b.id}')),
-                  const SizedBox(height: Space.sm),
-                  SecondaryButton(label: l.backToBook, onPressed: () => context.go('/book')),
-                ],
-              ),
+                    if (!request) ...[
+                      const SizedBox(height: Space.md),
+                      SecondaryButton(label: l.addToCalendar, icon: Icons.event_outlined, onPressed: () => shareBookingToCalendar(context, b)),
+                    ],
+                  ]),
+                ),
+                const SizedBox(height: Space.xl),
+                PrimaryButton(label: l.viewBooking, onPressed: () => context.pushReplacement('/book/bookings/${b.id}')),
+                const SizedBox(height: Space.sm),
+                SecondaryButton(label: l.backToBook, onPressed: () => context.go('/book')),
+              ],
             ),
           ),
         ),

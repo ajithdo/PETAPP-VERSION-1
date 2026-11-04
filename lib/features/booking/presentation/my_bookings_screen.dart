@@ -81,6 +81,24 @@ class MyBookingsScreen extends ConsumerWidget {
   }
 }
 
+/// Shares the booking as a calendar file (.ics) so it can be added to any
+/// calendar app.
+void shareBookingToCalendar(BuildContext context, Booking b) {
+  final ics = icsFor(
+    uid: b.id,
+    title: '${serviceLabel(context, b.serviceId)} · ${b.petName} · ${b.providerName}',
+    start: b.start,
+    end: b.end,
+    location: (b.raw['providerAddress'] as String?) ?? b.providerName,
+  );
+  SharePlus.instance.share(
+    ShareParams(
+      files: [XFile.fromData(Uint8List.fromList(utf8.encode(ics)), mimeType: 'text/calendar', name: 'pawsetu-booking.ics')],
+      fileNameOverrides: const ['pawsetu-booking.ics'],
+    ),
+  );
+}
+
 class BookingDetailScreen extends ConsumerWidget {
   const BookingDetailScreen({super.key, required this.bookingId, this.partnerView = false, this.partnerActions});
   final String bookingId;
@@ -236,21 +254,7 @@ class BookingDetailScreen extends ConsumerWidget {
         SecondaryButton(
           label: l.addToCalendar,
           icon: Icons.event_outlined,
-          onPressed: () {
-            final ics = icsFor(
-              uid: b.id,
-              title: '${serviceLabel(context, b.serviceId)} · ${b.petName} · ${b.providerName}',
-              start: b.start,
-              end: b.end,
-              location: (b.raw['providerAddress'] as String?) ?? b.providerName,
-            );
-            SharePlus.instance.share(
-              ShareParams(
-                files: [XFile.fromData(Uint8List.fromList(utf8.encode(ics)), mimeType: 'text/calendar', name: 'pawsetu-booking.ics')],
-                fileNameOverrides: const ['pawsetu-booking.ics'],
-              ),
-            );
-          },
+          onPressed: () => shareBookingToCalendar(context, b),
         ),
         const SizedBox(height: Space.sm),
       ],

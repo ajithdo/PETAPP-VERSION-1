@@ -2453,6 +2453,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get openNow => 'अभी खुला';
 
   @override
+  String bookFor(String name) {
+    return '$name के लिए बुक करें';
+  }
+
+  @override
   String get nextFreeSlot => 'अगला खाली समय';
 
   @override
