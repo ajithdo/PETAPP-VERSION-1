@@ -434,8 +434,22 @@ class MediaColors {
   /// Dark wash behind text or buttons laid over a photo (black at 54%).
   static const scrim = Color(0x8A000000);
 
-  /// Round buttons over video (white at 24%).
+  /// Round buttons over video (white at 24%), and switched-off ones.
   static const control = Color(0x3DFFFFFF);
+  static const controlDisabled = Color(0x1AFFFFFF);
+
+  /// Video call: page, the forest glow behind the other person, the
+  /// picture-in-picture tile, the avatar and its icon, and the small lines.
+  static const callBackground = Color(0xFF0E1715);
+  static const callGlow = Color(0xFF18453E);
+  static const callTile = Color(0xFF1A2422);
+  static const callAvatar = Color(0xFF52B7A5);
+  static const onCallAvatar = Color(0xFF0A2923);
+  static const callSubtitle = Color(0xFFCDEAE3);
+  static const callWarning = Color(0xFFFBBF24);
+  static const callGood = Color(0xFF4ADE80);
+  static const callDemo = Color(0x33FBBF24);
+  static const onCallDemo = Color(0xFFFDE68A);
 }
 
 /// WCAG contrast ratio between two opaque colours (1 to 21).
@@ -689,6 +703,32 @@ class Sizes {
   /// Tiny trend line beside a label.
   static const double sparklineWidth = 120;
   static const double sparklineHeight = 40;
+
+  /// Video call: the other person's avatar, the self view, the round
+  /// buttons (end call is bigger) and the label under each button.
+  static const double callAvatar = 128;
+  static const double selfViewWidth = 104;
+  static const double selfViewHeight = 140;
+  static const double callButton = 58;
+  static const double callButtonEnd = 68;
+  static const double callLabel = 76;
+
+  /// Photo tile in an attachment grid.
+  static const double photoTile = 84;
+
+  /// Chat: widest message bubble, the unread dot, the list pane on wide
+  /// screens, and the side panels in the vet's consult screen.
+  static const double bubbleMaxWidth = 460;
+  static const double dot = 8;
+  static const double listPane = 380;
+  static const double sidePanel = 340;
+  static const double sidePanelWide = 360;
+
+  /// Narrow label column (short labels).
+  static const double labelColumnSm = 96;
+
+  /// Voice note waveform width.
+  static const double voiceWave = 120;
 
   /// Big tappable SOS option.
   static const double sosOption = 96;

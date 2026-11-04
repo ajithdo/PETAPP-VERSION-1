@@ -67,22 +67,22 @@ class TeleVetHomeScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.teleVet)),
       body: AsyncView<List<Consultation>>(
         value: mine,
-        data: (_) => PageBody(maxWidth: 760, children: [
+        data: (_) => PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.sm),
           PawCard(
-            color: context.paw.primaryContainer.withValues(alpha: 0.55),
+            color: context.paw.primaryContainer.withValues(alpha: Opacities.half),
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               Row(children: [
                 Container(
                   padding: const EdgeInsets.all(Space.md),
                   decoration: BoxDecoration(color: context.paw.surface, shape: BoxShape.circle),
-                  child: Icon(Icons.video_call_outlined, color: context.colors.primary, size: 32),
+                  child: Icon(Icons.video_call_outlined, color: context.colors.primary, size: IconSizes.xl),
                 ),
                 const SizedBox(width: Space.md),
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text(l.tvHomeTitle, style: context.text.titleLarge),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: Space.xxs),
                     Text(l.tvHomeBody, style: context.text.bodyMedium),
                   ]),
                 ),
@@ -128,8 +128,8 @@ class TeleVetHomeScreen extends ConsumerWidget {
           ],
           const SizedBox(height: Space.lg),
           PawCard(
-            color: context.paw.sos.withValues(alpha: 0.06),
-            borderColor: context.paw.sos.withValues(alpha: 0.4),
+            color: context.paw.sos.withValues(alpha: Opacities.highlight),
+            borderColor: context.paw.sos.withValues(alpha: Opacities.muted),
             padding: const EdgeInsets.all(Space.md),
             child: Row(children: [
               Icon(Icons.emergency_outlined, color: context.paw.sos),
@@ -157,7 +157,7 @@ class _AllowanceCard extends StatelessWidget {
     Widget line(IconData icon, String text) => Padding(
           padding: const EdgeInsets.only(top: Space.sm),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Icon(icon, size: 20, color: context.colors.primary),
+            Icon(icon, size: IconSizes.md, color: context.colors.primary),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(text, style: context.text.bodyMedium)),
           ]),
@@ -212,7 +212,7 @@ class ConsultCard extends StatelessWidget {
       onTap: () => context.push(partnerView ? '/partner/consult/${c.id}' : '/messages/${c.conversationId}'),
       padding: const EdgeInsets.all(Space.md),
       child: Row(children: [
-        PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: 44),
+        PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: Sizes.avatarMd),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -231,8 +231,8 @@ class ConsultCard extends StatelessWidget {
         Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
           StatusChip(status, tone: tone),
           if (c.prescriptionId != null) ...[
-            const SizedBox(height: 4),
-            Icon(Icons.receipt_long_outlined, size: 18, color: context.colors.primary, semanticLabel: l.rxTitle),
+            const SizedBox(height: Space.xs),
+            Icon(Icons.receipt_long_outlined, size: IconSizes.chip, color: context.colors.primary, semanticLabel: l.rxTitle),
           ],
         ]),
       ]),
@@ -283,7 +283,7 @@ class _TeleVetConsentScreenState extends ConsumerState<TeleVetConsentScreen> {
       body: SafeArea(
         child: Column(children: [
           Expanded(
-            child: PageBody(maxWidth: 680, children: [
+            child: PageBody(maxWidth: Space.formWidth, children: [
               const SizedBox(height: Space.sm),
               Text(l.tvConsentIntro, style: context.text.bodyLarge),
               const SizedBox(height: Space.md),
@@ -309,7 +309,7 @@ class _TeleVetConsentScreenState extends ConsumerState<TeleVetConsentScreen> {
           Padding(
             padding: EdgeInsets.all(context.gutter),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 680),
+              constraints: const BoxConstraints(maxWidth: Space.formWidth),
               child: PrimaryButton(label: l.tvConsentContinue, loading: _busy, onPressed: _agree ? _accept : null),
             ),
           ),

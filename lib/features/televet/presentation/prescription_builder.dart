@@ -183,12 +183,12 @@ class _PrescriptionBuilderScreenState extends ConsumerState<PrescriptionBuilderS
       body: SafeArea(
         child: Column(children: [
           Expanded(
-            child: PageBody(maxWidth: 760, children: [
+            child: PageBody(maxWidth: Space.readingWidth, children: [
               const SizedBox(height: Space.sm),
               PawCard(
                 padding: const EdgeInsets.all(Space.md),
                 child: Row(children: [
-                  PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: 44),
+                  PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: Sizes.avatarMd),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -266,7 +266,7 @@ class _PrescriptionBuilderScreenState extends ConsumerState<PrescriptionBuilderS
           Padding(
             padding: EdgeInsets.all(context.gutter),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 760),
+              constraints: const BoxConstraints(maxWidth: Space.readingWidth),
               child: Row(children: [
                 Expanded(child: SecondaryButton(label: l.rxPreview, icon: Icons.visibility_outlined, onPressed: () => _preview(c, vetDoc, clinic.value))),
                 const SizedBox(width: Space.md),

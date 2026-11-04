@@ -123,10 +123,10 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         button: true,
         label: l.msgChatInfo,
         child: InkWell(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(Radii.md),
           onTap: () => _info(context, c, me),
           child: Row(children: [
-            ConversationAvatar(conversation: c, viewerUid: me.uid, size: 40),
+            ConversationAvatar(conversation: c, viewerUid: me.uid, size: Sizes.avatarSm),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
@@ -139,7 +139,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                 ),
               ]),
             ),
-            if (muted) Padding(padding: const EdgeInsets.only(left: 4), child: Icon(Icons.notifications_off_outlined, size: 18, color: context.paw.textSecondary)),
+            if (muted) Padding(padding: const EdgeInsets.only(left: Space.xs), child: Icon(Icons.notifications_off_outlined, size: IconSizes.chip, color: context.paw.textSecondary)),
           ]),
         ),
       ),

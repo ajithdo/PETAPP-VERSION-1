@@ -87,11 +87,11 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
               padding: EdgeInsets.symmetric(horizontal: context.gutter),
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 720),
+                  constraints: const BoxConstraints(maxWidth: Space.formWidth),
                   child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                     Semantics(
                       label: l.stepOf(_step + 1, 3),
-                      child: LinearProgressIndicator(value: (_step + 1) / 3, minHeight: 6, borderRadius: BorderRadius.circular(3)),
+                      child: LinearProgressIndicator(value: (_step + 1) / 3, minHeight: Sizes.progressBar, borderRadius: BorderRadius.circular(Radii.xs)),
                     ),
                     const SizedBox(height: Space.sm),
                     Text('${l.stepOf(_step + 1, 3)} · ${titles[_step]}', style: context.text.titleMedium),
@@ -102,7 +102,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
             Expanded(
               child: pets.isEmpty
                   ? EmptyState(title: l.tvNoPet, actionLabel: l.addPet, onAction: () => context.push('/pets/new'))
-                  : PageBody(maxWidth: 720, children: [
+                  : PageBody(maxWidth: Space.formWidth, children: [
                       const SizedBox(height: Space.md),
                       if (_step == 0) ..._petStep(context, pets),
                       if (_step == 1 && pet != null) ..._problemStep(context, pet),
@@ -113,7 +113,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
               Padding(
                 padding: EdgeInsets.all(context.gutter),
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 720),
+                  constraints: const BoxConstraints(maxWidth: Space.formWidth),
                   child: Row(children: [
                     if (_step > 0) ...[
                       Expanded(child: SecondaryButton(label: l.back, onPressed: () => setState(() => _step--))),
@@ -148,7 +148,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
             semanticLabel: p.name,
             padding: const EdgeInsets.all(Space.md),
             child: Row(children: [
-              PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 48),
+              PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarMd),
               const SizedBox(width: Space.md),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -182,7 +182,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
         const SizedBox(height: Space.md),
         PawCard(
           borderColor: context.paw.sos,
-          color: context.paw.sos.withValues(alpha: 0.07),
+          color: context.paw.sos.withValues(alpha: Opacities.pressed),
           padding: const EdgeInsets.all(Space.md),
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Row(children: [
@@ -209,7 +209,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
       Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
         for (final p in _photos)
           Stack(children: [
-            ClipRRect(borderRadius: BorderRadius.circular(12), child: MediaImage(url: p, width: 84, height: 84)),
+            ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: p, width: Sizes.photoTile, height: Sizes.photoTile)),
             Positioned(
               right: 0,
               top: 0,
@@ -217,14 +217,14 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                 tooltip: l.remove,
                 visualDensity: VisualDensity.compact,
                 onPressed: () => setState(() => _photos.remove(p)),
-                icon: const Icon(Icons.close_outlined, size: 16),
+                icon: const Icon(Icons.close_outlined, size: IconSizes.sm),
               ),
             ),
           ]),
         if (_photos.length < 4)
           SizedBox(
-            width: 84,
-            height: 84,
+            width: Sizes.photoTile,
+            height: Sizes.photoTile,
             child: OutlinedButton(
               onPressed: _addPhoto,
               style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
@@ -323,7 +323,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
         const SizedBox(height: Space.md),
         AsyncView<List<Map<String, dynamic>>>(
           value: vets,
-          loading: const Skeleton(height: 120, radius: Radii.card),
+          loading: const Skeleton(height: Sizes.skeletonCard, radius: Radii.card),
           data: (vs) => Column(children: [
             for (final v in vs.take(8))
               Padding(
@@ -335,7 +335,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                   padding: const EdgeInsets.all(Space.md),
                   child: Row(children: [
                     CircleAvatar(
-                      backgroundColor: context.paw.accent.withValues(alpha: 0.25),
+                      backgroundColor: context.paw.accent.withValues(alpha: Opacities.selection),
                       child: Text(((v['name'] as String?) ?? 'V').replaceAll('Dr. ', '').characters.first, style: context.text.titleMedium),
                     ),
                     const SizedBox(width: Space.md),
@@ -404,7 +404,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
   }
 
   Widget _row(BuildContext context, String k, String v, {bool bold = false}) => Padding(
-        padding: const EdgeInsets.only(bottom: 4),
+        padding: const EdgeInsets.only(bottom: Space.xs),
         child: Row(children: [
           Expanded(child: Text(k, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary))),
           Flexible(child: Text(v, textAlign: TextAlign.end, style: bold ? context.text.titleSmall : context.text.bodyMedium)),

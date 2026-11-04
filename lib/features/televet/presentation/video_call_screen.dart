@@ -110,7 +110,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                 ? l.tvWaitingVetJoin
                 : formatSeconds(_seconds);
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1214),
+      backgroundColor: MediaColors.callBackground,
       body: Stack(children: [
         // "Remote video": an animated placeholder (no real camera in V1).
         Positioned.fill(
@@ -121,7 +121,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                 gradient: RadialGradient(
                   center: Alignment(0, -0.2 + 0.05 * math.sin(_pulse.value * math.pi)),
                   radius: 1.1,
-                  colors: const [Color(0xFF134E4A), Color(0xFF0B1214)],
+                  colors: const [MediaColors.callGlow, MediaColors.callBackground],
                 ),
               ),
               child: Center(
@@ -131,13 +131,13 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                     scale: context.reduceMotion ? 1 : 1 + 0.03 * _pulse.value,
                     child: Column(mainAxisSize: MainAxisSize.min, children: [
                       CircleAvatar(
-                        radius: 64,
-                        backgroundColor: const Color(0xFF2DD4BF),
-                        child: Icon(isOwner ? Icons.medical_services_outlined : Icons.pets_outlined, size: 60, color: const Color(0xFF04201D)),
+                        radius: Sizes.callAvatar / 2,
+                        backgroundColor: MediaColors.callAvatar,
+                        child: Icon(isOwner ? Icons.medical_services_outlined : Icons.pets_outlined, size: IconSizes.hero, color: MediaColors.onCallAvatar),
                       ),
                       const SizedBox(height: Space.lg),
-                      Text(other, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700)),
-                      if (c != null && !isOwner) Text(c.petName, style: const TextStyle(color: Color(0xFFCCFBF1), fontSize: 15)),
+                      Text(other, style: context.text.titleLarge?.copyWith(color: MediaColors.foreground)),
+                      if (c != null && !isOwner) Text(c.petName, style: context.text.bodyMedium?.copyWith(color: MediaColors.callSubtitle)),
                     ]),
                   ),
                 ),
@@ -153,22 +153,22 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(color: const Color(0x33F4A261), borderRadius: BorderRadius.circular(100)),
-                    child: Text(l.tvDemoCall, style: const TextStyle(color: Color(0xFFF6BD8A), fontSize: 12, fontWeight: FontWeight.w700)),
+                    padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
+                    decoration: BoxDecoration(color: MediaColors.callDemo, borderRadius: BorderRadius.circular(Radii.full)),
+                    child: Text(l.tvDemoCall, style: context.text.labelSmall?.copyWith(color: MediaColors.onCallDemo, fontWeight: FontWeight.w700)),
                   ),
                   const SizedBox(height: Space.sm),
                   Semantics(
                     liveRegion: true,
-                    child: Text(status, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600, fontFeatures: [FontFeature.tabularFigures()])),
+                    child: Text(status, style: context.textX.mono.copyWith(color: MediaColors.foreground, fontSize: context.text.titleMedium?.fontSize, fontWeight: FontWeight.w700)),
                   ),
                   if (_weak && _connected)
                     Padding(
                       padding: const EdgeInsets.only(top: Space.xs),
                       child: Row(children: [
-                        const Icon(Icons.signal_cellular_alt_1_bar_outlined, color: Color(0xFFFBBF24), size: 18),
-                        const SizedBox(width: 4),
-                        Flexible(child: Text(l.tvWeakNetwork, style: const TextStyle(color: Color(0xFFFBBF24), fontSize: 13))),
+                        const Icon(Icons.signal_cellular_alt_1_bar_outlined, color: MediaColors.callWarning, size: IconSizes.chip),
+                        const SizedBox(width: Space.xs),
+                        Flexible(child: Text(l.tvWeakNetwork, style: context.text.bodySmall?.copyWith(color: MediaColors.callWarning))),
                       ]),
                     )
                   else if (_connected)
@@ -176,7 +176,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                       padding: const EdgeInsets.only(top: Space.xs),
                       child: Semantics(
                         label: l.tvGoodNetwork,
-                        child: const Icon(Icons.signal_cellular_alt_outlined, color: Color(0xFF4ADE80), size: 18),
+                        child: const Icon(Icons.signal_cellular_alt_outlined, color: MediaColors.callGood, size: IconSizes.chip),
                       ),
                     ),
                 ]),
@@ -185,21 +185,21 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
               Semantics(
                 label: _cameraOn ? l.tvSelfView : l.tvCameraOff,
                 child: Container(
-                  width: 104,
-                  height: 140,
+                  width: Sizes.selfViewWidth,
+                  height: Sizes.selfViewHeight,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF172124),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.white24),
+                    color: MediaColors.callTile,
+                    borderRadius: BorderRadius.circular(Radii.lg),
+                    border: Border.all(color: MediaColors.control),
                   ),
                   child: Center(
                     child: _cameraOn
                         ? Column(mainAxisSize: MainAxisSize.min, children: [
-                            PetFace(species: c?.petSpecies ?? 'dog', color: const Color(0xFFF4A261), size: 56),
-                            const SizedBox(height: 4),
-                            Text(_frontCamera ? l.tvFrontCamera : l.tvBackCamera, style: const TextStyle(color: Colors.white70, fontSize: 11)),
+                            PetFace(species: c?.petSpecies ?? 'dog', color: PetTagColors.of('amber'), size: Sizes.thumb),
+                            const SizedBox(height: Space.xs),
+                            Text(_frontCamera ? l.tvFrontCamera : l.tvBackCamera, style: context.text.labelSmall?.copyWith(color: MediaColors.foregroundMuted)),
                           ])
-                        : const Icon(Icons.videocam_off_outlined, color: Colors.white54),
+                        : const Icon(Icons.videocam_off_outlined, color: MediaColors.foregroundMuted),
                   ),
                 ),
               ),
@@ -214,7 +214,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
               padding: const EdgeInsets.only(bottom: Space.xl, left: Space.md, right: Space.md),
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 if (_error != null)
-                  Padding(padding: const EdgeInsets.only(bottom: Space.md), child: Text(l.tvCallLiveLater, style: const TextStyle(color: Colors.white70), textAlign: TextAlign.center)),
+                  Padding(padding: const EdgeInsets.only(bottom: Space.md), child: Text(l.tvCallLiveLater, style: context.text.bodyMedium?.copyWith(color: MediaColors.foregroundMuted), textAlign: TextAlign.center)),
                 Wrap(alignment: WrapAlignment.center, spacing: Space.md, runSpacing: Space.md, children: [
                   _CallButton(
                     icon: _muted ? Icons.mic_off_outlined : Icons.mic_outlined,
@@ -260,15 +260,15 @@ class _CallButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = danger ? context.paw.sos : (active ? Colors.white : Colors.white.withValues(alpha: 0.16));
-    final fg = danger ? Colors.white : (active ? const Color(0xFF0B1214) : Colors.white);
+    final bg = danger ? context.paw.sos : (active ? MediaColors.foreground : MediaColors.control);
+    final fg = danger ? context.paw.onSos : (active ? MediaColors.callBackground : MediaColors.foreground);
     return Semantics(
       button: true,
       label: label,
       excludeSemantics: true,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Material(
-          color: onTap == null ? Colors.white10 : bg,
+          color: onTap == null ? MediaColors.controlDisabled : bg,
           shape: const CircleBorder(),
           child: InkWell(
             customBorder: const CircleBorder(),
@@ -278,13 +278,13 @@ class _CallButton extends StatelessWidget {
                     HapticFeedback.selectionClick();
                     onTap!();
                   },
-            child: SizedBox(width: danger ? 68 : 58, height: danger ? 68 : 58, child: Icon(icon, color: fg, size: 28)),
+            child: SizedBox(width: danger ? Sizes.callButtonEnd : Sizes.callButton, height: danger ? Sizes.callButtonEnd : Sizes.callButton, child: Icon(icon, color: fg, size: IconSizes.action)),
           ),
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: Space.xs + Space.xxs),
         SizedBox(
-          width: 76,
-          child: Text(label, textAlign: TextAlign.center, maxLines: 2, style: const TextStyle(color: Colors.white, fontSize: 12)),
+          width: Sizes.callLabel,
+          child: Text(label, textAlign: TextAlign.center, maxLines: 2, style: context.text.labelSmall?.copyWith(color: MediaColors.foreground)),
         ),
       ]),
     );

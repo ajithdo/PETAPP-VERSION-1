@@ -50,14 +50,14 @@ class MessagesHome extends ConsumerWidget {
       appBar: AppBar(title: Text(l.messages)),
       body: Row(children: [
         SizedBox(
-          width: 380,
+          width: Sizes.listPane,
           child: InboxPane(
             selectedId: selectedId,
             showAssistant: owner,
             onOpen: (id) => selectedId == null ? context.push('/messages/$id') : context.replace('/messages/$id'),
           ),
         ),
-        const VerticalDivider(width: 1),
+        const VerticalDivider(width: Strokes.hairline),
         Expanded(
           child: selectedId == null
               ? EmptyState(title: l.msgPickChat, message: l.msgPickChatHint, scene: Scene.chat)
@@ -149,7 +149,7 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
                           _onQuery(all);
                         },
                       ),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full)),
                 isDense: true,
               ),
             ),
@@ -159,7 +159,7 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
           ]),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.only(bottom: 96),
+              padding: const EdgeInsets.only(bottom: Space.fabClearance),
               children: [
                 if (widget.showAssistant && _filter == 'all' && q.isEmpty) const _AskPawSetuTile(),
                 if (list.isEmpty && hits.isEmpty)
@@ -207,7 +207,7 @@ class _AskPawSetuTile extends ConsumerWidget {
       padding: EdgeInsets.fromLTRB(context.gutter, Space.xs, context.gutter, Space.sm),
       child: PawCard(
         onTap: () => context.push('/ask'),
-        color: context.paw.primaryContainer.withValues(alpha: 0.6),
+        color: context.paw.primaryContainer.withValues(alpha: Opacities.half),
         padding: const EdgeInsets.all(Space.md),
         child: Row(children: [
           CircleAvatar(backgroundColor: context.colors.primary, child: Icon(Icons.auto_awesome_outlined, color: context.colors.onPrimary)),
@@ -254,7 +254,7 @@ class ConversationTile extends StatelessWidget {
       selected: selected,
       label: [title, if (unread > 0) l.msgUnreadCount(unread)].join(', '),
       child: Material(
-        color: selected ? context.paw.primaryContainer.withValues(alpha: 0.5) : Colors.transparent,
+        color: selected ? context.paw.primaryContainer.withValues(alpha: Opacities.half) : Colors.transparent,
         child: InkWell(
           onTap: onTap,
           child: Padding(
@@ -273,11 +273,11 @@ class ConversationTile extends StatelessWidget {
                     Text(chatTime(c.lastAt, context.lang),
                         style: context.text.labelSmall?.copyWith(color: bold ? context.colors.primary : null, fontWeight: bold ? FontWeight.w700 : null)),
                   ]),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: Space.xxs),
                   Row(children: [
-                    if (c.isTeleVet) ...[StatusChip(l.teleVet, tone: ChipTone.accent), const SizedBox(width: 6)],
-                    if (c.isEnquiry) ...[StatusChip(l.msgEnquiry, tone: ChipTone.info), const SizedBox(width: 6)],
-                    if (icon != null) ...[Icon(icon, size: 16, color: context.paw.textSecondary), const SizedBox(width: 4)],
+                    if (c.isTeleVet) ...[StatusChip(l.teleVet, tone: ChipTone.accent), const SizedBox(width: Space.xs + Space.xxs)],
+                    if (c.isEnquiry) ...[StatusChip(l.msgEnquiry, tone: ChipTone.info), const SizedBox(width: Space.xs + Space.xxs)],
+                    if (icon != null) ...[Icon(icon, size: IconSizes.sm, color: context.paw.textSecondary), const SizedBox(width: Space.xs)],
                     Expanded(
                       child: Text(
                         [if (mine && c.lastType != 'system') l.msgYouPrefix, if (c.petName.isNotEmpty && me.uid != c.ownerId) c.petName, text]
@@ -289,11 +289,11 @@ class ConversationTile extends StatelessWidget {
                       ),
                     ),
                     if (c.mutedFor(me.uid)) ...[
-                      const SizedBox(width: 4),
-                      Icon(Icons.notifications_off_outlined, size: 16, color: context.paw.textSecondary, semanticLabel: l.msgMuted),
+                      const SizedBox(width: Space.xs),
+                      Icon(Icons.notifications_off_outlined, size: IconSizes.sm, color: context.paw.textSecondary, semanticLabel: l.msgMuted),
                     ],
                     if (unread > 0) ...[
-                      const SizedBox(width: 6),
+                      const SizedBox(width: Space.xs + Space.xxs),
                       Badge.count(count: unread, backgroundColor: context.colors.primary, textColor: context.colors.onPrimary),
                     ],
                   ]),
@@ -399,10 +399,10 @@ class _PartnerChatSectionState extends ConsumerState<PartnerChatSection> {
       }
       return Row(children: [
         SizedBox(
-          width: 360,
+          width: Sizes.sidePanelWide,
           child: InboxPane(showAssistant: false, selectedId: _selected, onOpen: (id) => setState(() => _selected = id)),
         ),
-        const VerticalDivider(width: 1),
+        const VerticalDivider(width: Strokes.hairline),
         Expanded(
           child: _selected == null
               ? EmptyState(title: l.msgPickChat, message: l.msgPickChatHintPartner, scene: Scene.chat)

@@ -28,10 +28,10 @@ class TeleVetBar extends ConsumerWidget {
     Widget strip({required Widget leading, required String title, String? subtitle, List<Widget> trailing = const [], Color? color}) => Material(
           color: color ?? context.colors.surfaceContainerLow,
           child: Padding(
-            padding: EdgeInsets.fromLTRB(context.gutter, Space.sm, context.gutter - 4, Space.sm),
+            padding: EdgeInsets.fromLTRB(context.gutter, Space.sm, context.gutter - Space.xs, Space.sm),
             child: Center(
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 860),
+                constraints: const BoxConstraints(maxWidth: Space.readingWidth),
                 child: LayoutBuilder(builder: (context, box) => Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   alignment: WrapAlignment.spaceBetween,
@@ -77,7 +77,7 @@ class TeleVetBar extends ConsumerWidget {
       return strip(
         leading: scheduled
             ? Icon(Icons.schedule_outlined, color: context.colors.primary)
-            : SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2.5, color: context.colors.primary)),
+            : SizedBox(width: IconSizes.lg, height: IconSizes.lg, child: CircularProgressIndicator(strokeWidth: Strokes.spinner, color: context.colors.primary)),
         title: scheduled ? l.tvScheduledTitle(Fmt.dateTime(c.scheduledAt!, lang)) : l.tvFindingVet(c.petName),
         subtitle: scheduled ? l.tvScheduledHint : l.tvFindingVetHint,
         trailing: [if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Icons.bolt_outlined)],
@@ -108,7 +108,7 @@ class TeleVetBar extends ConsumerWidget {
     final limits = c.limits;
     return strip(
       leading: CircleAvatar(
-        backgroundColor: context.paw.accent.withValues(alpha: 0.25),
+        backgroundColor: context.paw.accent.withValues(alpha: Opacities.selection),
         child: Text(c.vetName.replaceAll('Dr. ', '').characters.firstOrNull ?? 'V', style: context.text.titleMedium),
       ),
       title: c.vetName,

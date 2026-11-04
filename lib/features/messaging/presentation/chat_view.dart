@@ -249,7 +249,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
                     padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.sm),
                     itemCount: items.length,
                     itemBuilder: (_, i) => Center(
-                      child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 860), child: items[items.length - 1 - i]),
+                      child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: Space.readingWidth), child: items[items.length - 1 - i]),
                     ),
                   ),
           ),
@@ -289,10 +289,10 @@ class _ChatViewState extends ConsumerState<ChatView> {
       child: SafeArea(
         top: false,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(context.gutter - 8, Space.xs, context.gutter - 8, Space.sm),
+          padding: EdgeInsets.fromLTRB(context.gutter - Space.sm, Space.xs, context.gutter - Space.sm, Space.sm),
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 860),
+              constraints: const BoxConstraints(maxWidth: Space.readingWidth),
               child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 if (counted && limits != null)
                   Padding(
@@ -335,7 +335,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
                         decoration: InputDecoration(
                           hintText: l.msgTypeHint,
                           isDense: true,
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.xxl)),
                           contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md),
                         ),
                       ),
@@ -352,7 +352,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
                         tooltip: l.msgSend,
                         onPressed: _sending ? null : () => _sendText(c, consult, me),
                         icon: _sending
-                            ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                            ? const SizedBox(width: IconSizes.chip, height: IconSizes.chip, child: CircularProgressIndicator(strokeWidth: Strokes.focus))
                             : const Icon(Icons.send_outlined),
                       ),
                   ]),
@@ -404,7 +404,7 @@ class _RedFlagBanner extends ConsumerWidget {
     final l = context.l10n;
     return Container(
       width: double.infinity,
-      color: context.paw.sos.withValues(alpha: 0.1),
+      color: context.paw.sos.withValues(alpha: Opacities.tint),
       padding: EdgeInsets.fromLTRB(context.gutter, Space.sm, Space.sm, Space.sm),
       child: Row(children: [
         Icon(Icons.emergency_outlined, color: context.paw.sos),
@@ -435,7 +435,7 @@ Future<void> showTeleVetLimitNotice(BuildContext context, TeleVetCheck check, Co
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(children: [
         CircleAvatar(
-          backgroundColor: ctx.paw.accent.withValues(alpha: 0.2),
+          backgroundColor: ctx.paw.accent.withValues(alpha: Opacities.tintStrong),
           child: Icon(check.block == TeleVetBlock.tooManyWords ? Icons.short_text_outlined : Icons.chat_bubble_outlined, color: ctx.paw.onAccentContainer),
         ),
         const SizedBox(width: Space.md),

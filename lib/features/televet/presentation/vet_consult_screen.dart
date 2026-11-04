@@ -55,11 +55,11 @@ class VetConsultScreen extends ConsumerWidget {
           return Scaffold(
             appBar: AppBar(title: title, actions: actions),
             body: Row(children: [
-              SizedBox(width: 340, child: PetHistoryPanel(consultation: c)),
-              const VerticalDivider(width: 1),
+              SizedBox(width: Sizes.sidePanel, child: PetHistoryPanel(consultation: c)),
+              const VerticalDivider(width: Strokes.hairline),
               Expanded(child: chat),
-              const VerticalDivider(width: 1),
-              SizedBox(width: 360, child: VetToolsPanel(consultation: c)),
+              const VerticalDivider(width: Strokes.hairline),
+              SizedBox(width: Sizes.sidePanelWide, child: VetToolsPanel(consultation: c)),
             ]),
           );
         }
@@ -108,7 +108,7 @@ class _AcceptBannerState extends ConsumerState<_AcceptBanner> {
   Widget build(BuildContext context) {
     final l = context.l10n;
     return Material(
-      color: context.paw.accent.withValues(alpha: 0.15),
+      color: context.paw.accent.withValues(alpha: Opacities.chip),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.sm),
         child: Row(children: [
@@ -148,15 +148,15 @@ class PetHistoryPanel extends ConsumerWidget {
     final events = full ? (ref.watch(petEventsForVetProvider(c.petId)).value ?? const <Map<String, dynamic>>[]) : const <Map<String, dynamic>>[];
     final vaccines = full ? (ref.watch(petVaccinesForVetProvider(c.petId)).value ?? const <Map<String, dynamic>>[]) : const <Map<String, dynamic>>[];
     Widget kv(String k, String v) => Padding(
-          padding: const EdgeInsets.only(bottom: 4),
+          padding: const EdgeInsets.only(bottom: Space.xs),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(width: 96, child: Text(k, style: context.text.bodySmall)),
+            SizedBox(width: Sizes.labelColumnSm, child: Text(k, style: context.text.bodySmall)),
             Expanded(child: Text(v.isEmpty ? '–' : v, style: context.text.bodyMedium)),
           ]),
         );
     return ListView(padding: const EdgeInsets.all(Space.lg), children: [
       Row(children: [
-        PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 56),
+        PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.thumb),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -190,7 +190,7 @@ class PetHistoryPanel extends ConsumerWidget {
           for (final p in c.photos)
             InkWell(
               onTap: () => PhotoViewerScreen.open(context, p),
-              child: ClipRRect(borderRadius: BorderRadius.circular(10), child: MediaImage(url: p, width: 72, height: 72)),
+              child: ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: p, width: Sizes.thumbXl, height: Sizes.thumbXl)),
             ),
         ]),
       ],
@@ -312,7 +312,7 @@ class _VetToolsPanelState extends ConsumerState<VetToolsPanel> {
       SectionHeader(l.rxTitle),
       if (c.prescriptionId != null) ...[
         PawCard(
-          color: context.paw.success.withValues(alpha: 0.08),
+          color: context.paw.success.withValues(alpha: Opacities.pressed),
           padding: const EdgeInsets.all(Space.md),
           child: Row(children: [
             Icon(Icons.check_circle_rounded, color: context.paw.success),

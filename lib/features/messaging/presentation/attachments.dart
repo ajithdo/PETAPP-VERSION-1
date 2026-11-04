@@ -106,7 +106,7 @@ Future<Uint8List> samplePdf(BuildContext context, String title) async {
       Center(
         child: Transform.rotate(
           angle: -0.35,
-          child: Text(l.msgSampleStamp, style: const TextStyle(fontSize: 72, fontWeight: FontWeight.w800, color: Color(0x33B91C1C))),
+          child: Text(l.msgSampleStamp, style: TextStyle(fontSize: 72, fontWeight: FontWeight.w800, color: PrintColors.alert.withValues(alpha: Opacities.tintStrong))),
         ),
       ),
       const SizedBox(height: 60),
@@ -134,11 +134,11 @@ class PhotoViewerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: MediaColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-        title: caption == null ? null : Text(caption!, style: const TextStyle(color: Colors.white)),
+        backgroundColor: MediaColors.background,
+        foregroundColor: MediaColors.foreground,
+        title: caption == null ? null : Text(caption!, style: const TextStyle(color: MediaColors.foreground)),
       ),
       body: SafeArea(
         child: InteractiveViewer(

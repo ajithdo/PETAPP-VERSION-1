@@ -86,7 +86,7 @@ class _QueueCardState extends ConsumerState<_QueueCard> {
       padding: const EdgeInsets.all(Space.md),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: 44),
+          PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: Sizes.avatarMd),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
