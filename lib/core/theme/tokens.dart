@@ -780,6 +780,10 @@ class Sizes {
   static const double galleryPreview = 300;
   static const double galleryPreviewSm = 260;
 
+  /// Floating bottom bar on phones, and the top bar on wide screens.
+  static const double dock = 64;
+  static const double header = 72;
+
   /// Big tappable SOS option.
   static const double sosOption = 96;
 

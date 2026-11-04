@@ -111,7 +111,7 @@ The owner sent finished pictures of the 12 Design 2 screens (`docs/design-2/scre
 Left out (features the app doesn't have): blood group, ambulance, live ICU/blood-bank status, QR kiosk check-in, WhatsApp pass, Kannada, "verified" claims.
 
 **Checklist (tick as each is committed):**
-- [ ] A. Menus: desktop top bar with pill buttons; phone floating dark bottom bar
+- [x] A. Menus: desktop top bar with pill buttons; phone floating dark bottom bar (4 Nov 2026)
 - [ ] B. Home: picture-style top (location, search, chips, dark booster card, nearby vets), pet's day below
 - [ ] C. Clinic list: photo-top cards with badges, rating, next slot box, price and Book visit
 - [ ] D. Clinic page: photo header, rating pill, action pills, vet on duty, facility tiles, booking panel (right column on desktop) and a short confirm screen
