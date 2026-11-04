@@ -11,7 +11,9 @@ import 'illustrations.dart';
 
 /// Shows an image from any of our URL kinds:
 ///  - mem://id        standalone demo upload
-///  - seed:kind:n     illustrated placeholder for demo data (no real photos)
+///  - seed:kind:n     placeholder for demo data: a bundled demo photo where
+///                     there is one, otherwise an illustration
+///  - asset:path      a photo bundled with the app (demo pets)
 ///  - http(s)://...   Cloud Storage or network, kept in a disk cache on
 ///                     phones (the browser's cache on the web) and decoded
 ///                     at the size shown
@@ -27,6 +29,9 @@ class MediaImage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     if (url.startsWith('seed:')) {
       return SeedArt(seed: url, width: width, height: height);
+    }
+    if (url.startsWith('asset:')) {
+      return Image.asset(url.substring(6), width: width, height: height, fit: fit, semanticLabel: semanticLabel, gaplessPlayback: true);
     }
     if (url.startsWith('mem://')) {
       final cached = DemoStorageService.cached(url);
@@ -73,6 +78,11 @@ class SeedArt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Demo photos (public domain) for clinics, providers and album pictures.
+    final photo = demoPhotoFor(seed);
+    if (photo != null) {
+      return SizedBox(width: width, height: height, child: Image.asset(photo, width: width, height: height, fit: BoxFit.cover, gaplessPlayback: true));
+    }
     final parts = seed.split(':');
     final n = int.tryParse(parts.last) ?? seed.hashCode;
     final pal = SeedArtColors.pairs[n.abs() % SeedArtColors.pairs.length];
@@ -106,4 +116,19 @@ class SeedArt extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The bundled demo photo for a placeholder seed ("seed:clinic:3",
+/// "seed:provider:1", "seed:album:dog:2"), or null to draw the illustration.
+String? demoPhotoFor(String seed) {
+  final parts = seed.split(':');
+  if (parts.length < 3) return null;
+  final n = (int.tryParse(parts.last) ?? seed.hashCode).abs();
+  return switch (parts[1]) {
+    'clinic' => 'assets/images/demo/places/clinic_${n % 6}.jpg',
+    'provider' => 'assets/images/demo/places/provider_${n % 6}.jpg',
+    'album' when parts.length > 3 && parts[2] == 'dog' => 'assets/images/demo/album/dog_${n % 4}.jpg',
+    'album' when parts.length > 3 && parts[2] == 'cat' => 'assets/images/demo/album/cat_${n % 3}.jpg',
+    _ => null,
+  };
 }

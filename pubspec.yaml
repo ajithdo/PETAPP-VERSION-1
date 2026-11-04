@@ -97,6 +97,10 @@ flutter:
 
   assets:
     - assets/images/
+    # Demo photos (public domain, see docs/design-2/demo-photo-credits.md).
+    - assets/images/demo/pets/
+    - assets/images/demo/album/
+    - assets/images/demo/places/
 
   fonts:
     - family: PlusJakartaSans
