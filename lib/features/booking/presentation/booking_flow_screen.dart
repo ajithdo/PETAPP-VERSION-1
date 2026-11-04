@@ -371,7 +371,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
               child: MediaImage(url: p, width: 64, height: 64),
             ),
           ActionChip(
-            avatar: const Icon(Icons.add_a_photo_rounded, size: 18),
+            avatar: const Icon(Icons.add_a_photo_outlined, size: 18),
             label: Text(l.addPhoto),
             onPressed: () async {
               final pick = await pickImage(context, ImageSource.gallery);

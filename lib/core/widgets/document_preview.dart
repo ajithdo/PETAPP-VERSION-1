@@ -65,7 +65,7 @@ class _DocumentPreviewScreenState extends State<DocumentPreviewScreen> {
         title: Text(widget.title),
         actions: [
           if (_images != null)
-            IconButton(tooltip: l.sharePdf, onPressed: _share, icon: const Icon(Icons.ios_share_rounded)),
+            IconButton(tooltip: l.sharePdf, onPressed: _share, icon: const Icon(Icons.ios_share_outlined)),
         ],
       ),
       body: _error != null
@@ -105,7 +105,7 @@ class _DocumentPreviewScreenState extends State<DocumentPreviewScreen> {
                       padding: EdgeInsets.all(context.gutter),
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 640),
-                        child: PrimaryButton(label: l.sharePdf, icon: Icons.ios_share_rounded, onPressed: _share),
+                        child: PrimaryButton(label: l.sharePdf, icon: Icons.ios_share_outlined, onPressed: _share),
                       ),
                     ),
                   ),
@@ -174,7 +174,7 @@ class _MiniLogo extends StatelessWidget {
         width: 26,
         height: 26,
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(7)),
-        child: const Icon(Icons.pets_rounded, size: 18, color: Color(0xFF0F766E)),
+        child: const Icon(Icons.pets_outlined, size: 18, color: Color(0xFF0F766E)),
       );
 }
 

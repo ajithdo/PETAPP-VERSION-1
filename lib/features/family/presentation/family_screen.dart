@@ -118,7 +118,7 @@ class _PetMembersCard extends ConsumerWidget {
             trailing: canManage
                 ? FilledButton.tonalIcon(
                     onPressed: () => _invite(context, ref, others.length),
-                    icon: const Icon(Icons.person_add_rounded),
+                    icon: const Icon(Icons.person_add_outlined),
                     label: Text(l.invite),
                   )
                 : null,
@@ -154,13 +154,13 @@ class _PetMembersCard extends ConsumerWidget {
             ),
           for (final inv in sent)
             ListTile(
-              leading: const CircleAvatar(child: Icon(Icons.hourglass_top_rounded)),
+              leading: const CircleAvatar(child: Icon(Icons.hourglass_top_outlined)),
               title: Text(inv.contact ?? l.inviteLink),
               subtitle: Text(l.invitePending(petRoleLabel(context, inv.role))),
               trailing: canManage
                   ? IconButton(
                       tooltip: l.cancelInvite,
-                      icon: const Icon(Icons.close_rounded),
+                      icon: const Icon(Icons.close_outlined),
                       onPressed: () => ref.read(familyRepositoryProvider).cancelInvite(inv.id),
                     )
                   : null,
@@ -209,13 +209,13 @@ class _PetMembersCard extends ConsumerWidget {
             const SizedBox(height: Space.md),
             PrimaryButton(
               label: l.share,
-              icon: Icons.share_rounded,
+              icon: Icons.share_outlined,
               onPressed: () => SharePlus.instance.share(ShareParams(text: l.inviteShareText(pet.name, link))),
             ),
             const SizedBox(height: Space.sm),
             SecondaryButton(
               label: l.copyLink,
-              icon: Icons.copy_rounded,
+              icon: Icons.copy_outlined,
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: link));
                 Navigator.pop(ctx);
@@ -290,9 +290,9 @@ class _InviteSheetState extends State<_InviteSheet> {
           const SizedBox(height: Space.md),
           SegmentedButton<String>(
             segments: [
-              ButtonSegment(value: 'phone', label: Text(l.phone), icon: const Icon(Icons.phone_rounded)),
-              ButtonSegment(value: 'email', label: Text(l.email), icon: const Icon(Icons.mail_rounded)),
-              ButtonSegment(value: 'link', label: Text(l.link), icon: const Icon(Icons.link_rounded)),
+              ButtonSegment(value: 'phone', label: Text(l.phone), icon: const Icon(Icons.phone_outlined)),
+              ButtonSegment(value: 'email', label: Text(l.email), icon: const Icon(Icons.mail_outlined)),
+              ButtonSegment(value: 'link', label: Text(l.link), icon: const Icon(Icons.link_outlined)),
             ],
             selected: {_how},
             onSelectionChanged: (s) => setState(() {
@@ -322,7 +322,7 @@ class _InviteSheetState extends State<_InviteSheet> {
           ),
           if (_sitter)
             OutlinedButton.icon(
-              icon: const Icon(Icons.event_rounded),
+              icon: const Icon(Icons.event_outlined),
               label: Text(l.accessUntil(Fmt.date(_until, context.lang))),
               onPressed: () async {
                 final d = await showDatePicker(
@@ -415,7 +415,7 @@ class _ActivityFeed extends ConsumerWidget {
 
   Widget _petAvatar(String petId) {
     final p = pets.where((p) => p.id == petId).firstOrNull;
-    if (p == null) return const CircleAvatar(child: Icon(Icons.pets_rounded));
+    if (p == null) return const CircleAvatar(child: Icon(Icons.pets_outlined));
     return PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 40);
   }
 }

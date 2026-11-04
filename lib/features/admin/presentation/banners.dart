@@ -70,7 +70,7 @@ class PromoBanner extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(Space.lg),
             child: Row(children: [
-              Icon(accent ? Icons.local_offer_rounded : Icons.campaign_rounded, color: fg, size: 32),
+              Icon(accent ? Icons.local_offer_outlined : Icons.campaign_outlined, color: fg, size: 32),
               const SizedBox(width: Space.md),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -78,7 +78,7 @@ class PromoBanner extends StatelessWidget {
                   if (banner.body.isNotEmpty) Text(banner.body, style: context.text.bodyMedium?.copyWith(color: fg)),
                 ]),
               ),
-              if (open) Icon(Icons.chevron_right_rounded, color: fg),
+              if (open) Icon(Icons.chevron_right_outlined, color: fg),
             ]),
           ),
         ),

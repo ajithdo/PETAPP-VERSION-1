@@ -30,7 +30,7 @@ class HelpListScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.helpAndComplaints)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.push('$base/new'),
-        icon: const Icon(Icons.add_comment_rounded),
+        icon: const Icon(Icons.add_comment_outlined),
         label: Text(l.hpRaise),
       ),
       body: const HelpListBody(),
@@ -61,7 +61,7 @@ class HelpListBody extends ConsumerWidget {
       PawCard(
         color: context.paw.primaryContainer,
         child: Row(children: [
-          Icon(Icons.support_agent_rounded, size: 40, color: context.colors.primary),
+          Icon(Icons.support_agent_outlined, size: 40, color: context.colors.primary),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -74,7 +74,7 @@ class HelpListBody extends ConsumerWidget {
       ),
       if (embedded) ...[
         const SizedBox(height: Space.md),
-        PrimaryButton(label: l.hpRaise, icon: Icons.add_comment_rounded, onPressed: () => context.push('$base/new')),
+        PrimaryButton(label: l.hpRaise, icon: Icons.add_comment_outlined, onPressed: () => context.push('$base/new')),
       ],
       SectionHeader(l.hpYourTickets),
       AsyncView<List<Ticket>>(
@@ -284,7 +284,7 @@ class _NewTicketScreenState extends ConsumerState<NewTicketScreen> {
         const SizedBox(height: Space.sm),
         PawTextField(label: l.hpDetails, controller: _body, maxLines: 5, helper: l.hpDetailsHelp, onChanged: (_) => setState(() {})),
         const SizedBox(height: Space.md),
-        PrimaryButton(label: l.hpSend, icon: Icons.send_rounded, loading: _busy, onPressed: ok ? () => _send(user, link) : null),
+        PrimaryButton(label: l.hpSend, icon: Icons.send_outlined, loading: _busy, onPressed: ok ? () => _send(user, link) : null),
         const SizedBox(height: Space.sm),
         Text(user.isPlus ? l.hpReplyTimePlus : l.hpReplyTime, style: context.text.bodySmall, textAlign: TextAlign.center),
       ]),

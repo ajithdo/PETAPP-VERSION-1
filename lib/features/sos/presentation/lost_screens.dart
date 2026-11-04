@@ -45,7 +45,7 @@ class LostHomeScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.lostPetMode)),
       body: PageBody(maxWidth: 760, children: [
         const SizedBox(height: Space.md),
-        InfoNote(l.lostIntro, icon: Icons.qr_code_2_rounded),
+        InfoNote(l.lostIntro, icon: Icons.qr_code_2_outlined),
         const SizedBox(height: Space.lg),
         if (pets.isEmpty)
           EmptyState(title: l.noPetsTitle, scene: Scene.lost, compact: true)
@@ -64,11 +64,11 @@ class LostHomeScreen extends ConsumerWidget {
                       Text(p.name, style: context.text.titleMedium),
                       const SizedBox(height: Space.xs),
                       p.lost != null
-                          ? StatusChip(l.lostSinceShort(Fmt.dateTime(_lostSince(p) ?? DateTime.now(), context.lang)), tone: ChipTone.error, icon: Icons.travel_explore_rounded)
-                          : StatusChip(l.lostSafeAtHome, tone: ChipTone.success, icon: Icons.home_rounded),
+                          ? StatusChip(l.lostSinceShort(Fmt.dateTime(_lostSince(p) ?? DateTime.now(), context.lang)), tone: ChipTone.error, icon: Icons.travel_explore_outlined)
+                          : StatusChip(l.lostSafeAtHome, tone: ChipTone.success, icon: Icons.home_outlined),
                     ]),
                   ),
-                  const Icon(Icons.chevron_right_rounded),
+                  const Icon(Icons.chevron_right_outlined),
                 ]),
               ),
             ),
@@ -99,9 +99,9 @@ class PetLostScreen extends ConsumerWidget {
           const SizedBox(height: Space.md),
           if (report != null) _Sightings(report: report),
           const SizedBox(height: Space.md),
-          PrimaryButton(label: l.lostMakePoster, icon: Icons.picture_as_pdf_rounded, onPressed: () => _openPoster(context, ref, pet)),
+          PrimaryButton(label: l.lostMakePoster, icon: Icons.picture_as_pdf_outlined, onPressed: () => _openPoster(context, ref, pet)),
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.lostShareLink, icon: Icons.share_rounded, onPressed: () => _sharePage(context, ref, pet)),
+          SecondaryButton(label: l.lostShareLink, icon: Icons.share_outlined, onPressed: () => _sharePage(context, ref, pet)),
           const SizedBox(height: Space.sm),
           FilledButton.icon(
             style: FilledButton.styleFrom(backgroundColor: context.paw.success, minimumSize: const Size.fromHeight(52)),
@@ -117,7 +117,7 @@ class PetLostScreen extends ConsumerWidget {
               const SizedBox(height: Space.xs),
               Text(l.lostIfMissingBody, style: context.text.bodyMedium),
               const SizedBox(height: Space.md),
-              PrimaryButton(label: l.lostMarkLost(pet.name), icon: Icons.campaign_rounded, danger: true, onPressed: () => showMarkLostSheet(context, ref, pet)),
+              PrimaryButton(label: l.lostMarkLost(pet.name), icon: Icons.campaign_outlined, danger: true, onPressed: () => showMarkLostSheet(context, ref, pet)),
             ]),
           ),
           const SizedBox(height: Space.lg),
@@ -146,7 +146,7 @@ class _LostBanner extends StatelessWidget {
       borderColor: context.paw.sos,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Icon(Icons.travel_explore_rounded, color: context.paw.sos, size: 32),
+          Icon(Icons.travel_explore_outlined, color: context.paw.sos, size: 32),
           const SizedBox(width: Space.md),
           Expanded(child: Text(l.lostBannerTitle(pet.name), style: context.text.titleLarge?.copyWith(color: context.paw.sos))),
         ]),
@@ -175,7 +175,7 @@ class _Sightings extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       SectionHeader(l.lostSightings),
       if (s.isEmpty)
-        InfoNote(l.lostNoSightings, icon: Icons.visibility_rounded)
+        InfoNote(l.lostNoSightings, icon: Icons.visibility_outlined)
       else ...[
         if (pts.isNotEmpty || home != null)
           ClipRRect(
@@ -187,8 +187,8 @@ class _Sightings extends StatelessWidget {
                 zoom: 14,
                 fitPoints: [...pts, ?home],
                 markers: [
-                  if (home != null) pinMarker(home, color: context.paw.sos, icon: Icons.home_rounded),
-                  for (final p in pts) pinMarker(p, color: context.colors.primary, icon: Icons.visibility_rounded),
+                  if (home != null) pinMarker(home, color: context.paw.sos, icon: Icons.home_outlined),
+                  for (final p in pts) pinMarker(p, color: context.colors.primary, icon: Icons.visibility_outlined),
                 ],
               ),
             ),
@@ -199,12 +199,12 @@ class _Sightings extends StatelessWidget {
           child: Column(children: [
             for (final x in s)
               ListTile(
-                leading: const Icon(Icons.visibility_rounded),
+                leading: const Icon(Icons.visibility_outlined),
                 title: Text([if (x.area.isNotEmpty) x.area, if (x.note.isNotEmpty) x.note].join(' · ').ifEmpty(l.lostSightingNoDetails)),
                 subtitle: Text([Fmt.dateTime(x.at, context.lang), if (x.name.isNotEmpty) x.name].join(' · ')),
                 trailing: x.lat == null
                     ? null
-                    : IconButton(tooltip: l.directions, icon: const Icon(Icons.directions_rounded), onPressed: () => openDirections(x.lat!, x.lng!)),
+                    : IconButton(tooltip: l.directions, icon: const Icon(Icons.directions_outlined), onPressed: () => openDirections(x.lat!, x.lng!)),
               ),
           ]),
         ),
@@ -259,13 +259,13 @@ class _QrCardState extends ConsumerState<_QrCard> {
         const SizedBox(height: Space.sm),
         SelectableText(url, textAlign: TextAlign.center, style: context.text.bodySmall),
         const SizedBox(height: Space.md),
-        PrimaryButton(label: l.qrPrintTags, icon: Icons.print_rounded, onPressed: () => _openTags(context, widget.pet, url)),
+        PrimaryButton(label: l.qrPrintTags, icon: Icons.print_outlined, onPressed: () => _openTags(context, widget.pet, url)),
         const SizedBox(height: Space.sm),
         Row(children: [
           Expanded(
             child: SecondaryButton(
               label: l.copyLink,
-              icon: Icons.copy_rounded,
+              icon: Icons.copy_outlined,
               onPressed: () async {
                 await Clipboard.setData(ClipboardData(text: url));
                 if (context.mounted) showToast(context, l.copied);
@@ -274,7 +274,7 @@ class _QrCardState extends ConsumerState<_QrCard> {
           ),
           const SizedBox(width: Space.sm),
           Expanded(
-            child: SecondaryButton(label: l.qrOpenPage, icon: Icons.open_in_new_rounded, onPressed: () => context.push('/lost/$token')),
+            child: SecondaryButton(label: l.qrOpenPage, icon: Icons.open_in_new_outlined, onPressed: () => context.push('/lost/$token')),
           ),
         ]),
       ]),
@@ -400,7 +400,7 @@ class _MarkLostFormState extends State<_MarkLostForm> {
       Text(l.lostWhereSeen, style: context.text.labelLarge),
       const SizedBox(height: Space.xs),
       if (_gps != null)
-        StatusChip(l.lostUsingGps, tone: ChipTone.success, icon: Icons.my_location_rounded)
+        StatusChip(l.lostUsingGps, tone: ChipTone.success, icon: Icons.my_location_outlined)
       else
         DropdownButtonFormField<Area>(
           initialValue: _area,
@@ -416,7 +416,7 @@ class _MarkLostFormState extends State<_MarkLostForm> {
         alignment: AlignmentDirectional.centerStart,
         child: TextButton.icon(
           onPressed: _locating ? null : (_gps == null ? _useGps : () => setState(() => _gps = null)),
-          icon: _locating ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(Icons.my_location_rounded),
+          icon: _locating ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(Icons.my_location_outlined),
           label: Text(_gps == null ? l.useMyLocation : l.chooseArea),
         ),
       ),
@@ -439,7 +439,7 @@ class _MarkLostFormState extends State<_MarkLostForm> {
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.lostMarkLostConfirm,
-        icon: Icons.campaign_rounded,
+        icon: Icons.campaign_outlined,
         danger: true,
         onPressed: () => Navigator.pop(
           context,

@@ -36,7 +36,7 @@ import 'home_extras.dart';
       children: [
         QuickActionTile(icon: Icons.medical_services_outlined, label: l.qaBookVet, onTap: () => context.go('/book')),
         QuickActionTile(
-          icon: focus.species == 'dog' ? Icons.directions_walk_rounded : Icons.edit_note_rounded,
+          icon: focus.species == 'dog' ? Icons.directions_walk_outlined : Icons.edit_note_outlined,
           label: focus.species == 'dog' ? l.qaLogWalk : l.logSomething,
           onTap: () => focus.species == 'dog' ? context.push('/walk/${focus.id}') : showQuickLog(context, ref, focus),
         ),
@@ -102,7 +102,7 @@ class _MiniToday extends ConsumerWidget {
         ProgressRing(progress: p.fraction, size: TapTarget.min - Space.xs, stroke: Space.xs + Space.xxs),
         IconButton(
           tooltip: context.l10n.logSomething,
-          icon: Icon(Icons.add_circle_outline_rounded, color: context.colors.primary),
+          icon: Icon(Icons.add_circle_outlined, color: context.colors.primary),
           onPressed: () => showQuickLog(context, ref, pet),
         ),
       ]),

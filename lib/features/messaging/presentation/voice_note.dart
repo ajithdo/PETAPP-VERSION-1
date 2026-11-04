@@ -284,7 +284,7 @@ class _RecordingBarState extends State<RecordingBar> {
     final l = context.l10n;
     final secs = widget.recorder.elapsed.inSeconds;
     return Row(children: [
-      IconButton(tooltip: l.msgCancelRecording, onPressed: widget.onCancel, icon: Icon(Icons.delete_outline_rounded, color: context.paw.error)),
+      IconButton(tooltip: l.msgCancelRecording, onPressed: widget.onCancel, icon: Icon(Icons.delete_outlined, color: context.paw.error)),
       Icon(Icons.fiber_manual_record_rounded, color: context.paw.sos, size: 16),
       const SizedBox(width: Space.sm),
       Expanded(
@@ -295,7 +295,7 @@ class _RecordingBarState extends State<RecordingBar> {
           overflow: TextOverflow.ellipsis,
         ),
       ),
-      IconButton.filled(tooltip: l.msgSendVoice, onPressed: widget.onSend, icon: const Icon(Icons.send_rounded)),
+      IconButton.filled(tooltip: l.msgSendVoice, onPressed: widget.onSend, icon: const Icon(Icons.send_outlined)),
     ]);
   }
 }

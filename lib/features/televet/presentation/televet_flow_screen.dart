@@ -157,7 +157,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                       style: context.text.bodySmall),
                 ]),
               ),
-              Icon(p.id == _petId ? Icons.radio_button_checked_rounded : Icons.radio_button_off_rounded, color: context.colors.primary),
+              Icon(p.id == _petId ? Icons.radio_button_checked_rounded : Icons.radio_button_off_outlined, color: context.colors.primary),
             ]),
           ),
         ),
@@ -186,7 +186,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
           padding: const EdgeInsets.all(Space.md),
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Row(children: [
-              Icon(Icons.emergency_rounded, color: context.paw.sos),
+              Icon(Icons.emergency_outlined, color: context.paw.sos),
               const SizedBox(width: Space.sm),
               Expanded(child: Text(l.aiRedFlagTitle, style: context.text.titleSmall)),
             ]),
@@ -196,7 +196,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
             FilledButton.icon(
               style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
               onPressed: () => openSos(context, ref),
-              icon: const Icon(Icons.emergency_rounded),
+              icon: const Icon(Icons.emergency_outlined),
               label: Text(l.sosGetHelp),
             ),
             TextButton(onPressed: () => setState(() => _ignoreRedFlag = true), child: Text(l.tvContinueToVet)),
@@ -217,7 +217,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                 tooltip: l.remove,
                 visualDensity: VisualDensity.compact,
                 onPressed: () => setState(() => _photos.remove(p)),
-                icon: const Icon(Icons.close_rounded, size: 16),
+                icon: const Icon(Icons.close_outlined, size: 16),
               ),
             ),
           ]),
@@ -228,7 +228,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
             child: OutlinedButton(
               onPressed: _addPhoto,
               style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
-              child: Semantics(label: l.addPhoto, child: const Icon(Icons.add_a_photo_rounded)),
+              child: Semantics(label: l.addPhoto, child: const Icon(Icons.add_a_photo_outlined)),
             ),
           ),
       ]),
@@ -242,8 +242,8 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
     final source = await showPawSheet<ImageSource>(context, builder: (ctx) {
       final l = ctx.l10n;
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        ListTile(leading: const Icon(Icons.photo_library_rounded), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, ImageSource.gallery)),
-        ListTile(leading: const Icon(Icons.photo_camera_rounded), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, ImageSource.camera)),
+        ListTile(leading: const Icon(Icons.photo_library_outlined), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, ImageSource.gallery)),
+        ListTile(leading: const Icon(Icons.photo_camera_outlined), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, ImageSource.camera)),
       ]);
     });
     if (source == null || !mounted) return;
@@ -294,9 +294,9 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                 ]),
               ),
               if (locked)
-                StatusChip(l.planPlus, tone: ChipTone.accent, icon: Icons.lock_rounded)
+                StatusChip(l.planPlus, tone: ChipTone.accent, icon: Icons.lock_outlined)
               else
-                Icon(_how == key ? Icons.radio_button_checked_rounded : Icons.radio_button_off_rounded, color: context.colors.primary),
+                Icon(_how == key ? Icons.radio_button_checked_rounded : Icons.radio_button_off_outlined, color: context.colors.primary),
             ]),
           ),
         );
@@ -306,16 +306,16 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
     final slots = [for (var i = 0; i < 8; i++) firstSlot.add(Duration(minutes: 30 * i))];
 
     return [
-      option('chat_now', Icons.chat_rounded, l.tvChatNow, l.tvChatNowHint),
-      option('video_now', Icons.videocam_rounded, l.tvVideoNow, user.isPlus ? l.tvVideoNowHint : l.tvVideoPlusOnly, locked: !limits.video),
-      option('choose', Icons.person_search_rounded, l.tvChooseVet, l.tvChooseVetHint),
+      option('chat_now', Icons.chat_outlined, l.tvChatNow, l.tvChatNowHint),
+      option('video_now', Icons.videocam_outlined, l.tvVideoNow, user.isPlus ? l.tvVideoNowHint : l.tvVideoPlusOnly, locked: !limits.video),
+      option('choose', Icons.person_search_outlined, l.tvChooseVet, l.tvChooseVetHint),
       if (_how == 'choose') ...[
         const SizedBox(height: Space.sm),
         if (limits.video)
           SegmentedButton<String>(
             segments: [
-              ButtonSegment(value: 'chat', icon: const Icon(Icons.chat_rounded), label: Text(l.tvModeChat)),
-              ButtonSegment(value: 'video', icon: const Icon(Icons.videocam_rounded), label: Text(l.tvModeVideo)),
+              ButtonSegment(value: 'chat', icon: const Icon(Icons.chat_outlined), label: Text(l.tvModeChat)),
+              ButtonSegment(value: 'video', icon: const Icon(Icons.videocam_outlined), label: Text(l.tvModeVideo)),
             ],
             selected: {_chooseMode},
             onSelectionChanged: (s) => setState(() => _chooseMode = s.first),
@@ -358,7 +358,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                         ),
                       ]),
                     ),
-                    Icon(_vetId == v['id'] ? Icons.radio_button_checked_rounded : Icons.radio_button_off_rounded, color: context.colors.primary),
+                    Icon(_vetId == v['id'] ? Icons.radio_button_checked_rounded : Icons.radio_button_off_outlined, color: context.colors.primary),
                   ]),
                 ),
               ),

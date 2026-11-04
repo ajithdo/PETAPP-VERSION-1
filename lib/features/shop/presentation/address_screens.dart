@@ -20,7 +20,7 @@ class AddressesScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.addrBook)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => editAddress(context, ref),
-        icon: const Icon(Icons.add_location_alt_rounded),
+        icon: const Icon(Icons.add_location_alt_outlined),
         label: Text(l.addrAdd),
       ),
       body: AsyncView<List<Address>>(
@@ -74,7 +74,7 @@ class AddressCard extends StatelessWidget {
       onTap: onTap,
       borderColor: selected ? context.colors.primary : null,
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Icon(a.label.toLowerCase() == 'work' ? Icons.work_rounded : Icons.home_rounded, color: context.colors.primary),
+        Icon(a.label.toLowerCase() == 'work' ? Icons.work_outlined : Icons.home_outlined, color: context.colors.primary),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -111,7 +111,7 @@ Future<Address?> pickAddress(BuildContext context, WidgetRef ref, {String? selec
           ),
         SecondaryButton(
           label: l.addrAdd,
-          icon: Icons.add_location_alt_rounded,
+          icon: Icons.add_location_alt_outlined,
           onPressed: () async {
             final a = await editAddress(ctx, ref);
             if (a != null && ctx.mounted) Navigator.pop(ctx, a);

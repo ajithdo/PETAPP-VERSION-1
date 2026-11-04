@@ -31,10 +31,10 @@ Future<(String type, PickedFile file)?> pickChatAttachment(BuildContext context)
     builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Text(l.msgAttachTitle, style: ctx.text.titleMedium),
       const SizedBox(height: Space.md),
-      ListTile(leading: const Icon(Icons.photo_library_rounded), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, 'gallery')),
-      ListTile(leading: const Icon(Icons.photo_camera_rounded), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
+      ListTile(leading: const Icon(Icons.photo_library_outlined), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, 'gallery')),
+      ListTile(leading: const Icon(Icons.photo_camera_outlined), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
       ListTile(
-        leading: const Icon(Icons.picture_as_pdf_rounded),
+        leading: const Icon(Icons.picture_as_pdf_outlined),
         title: Text(l.msgAttachPdf),
         subtitle: Text(l.msgAttachPdfHint),
         onTap: () => Navigator.pop(ctx, 'pdf'),

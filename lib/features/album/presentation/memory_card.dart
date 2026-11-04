@@ -31,10 +31,10 @@ List<Widget> homeMemorySection(BuildContext context, WidgetRef ref, Pet pet) {
       card = PawCard(
         onTap: () => context.push('/pets/${pet.id}/album?add=1'),
         child: Row(children: [
-          Icon(Icons.add_a_photo_rounded, color: context.paw.accent, size: 32),
+          Icon(Icons.add_a_photo_outlined, color: context.paw.accent, size: 32),
           const SizedBox(width: Space.md),
           Expanded(child: Text(l.albumAddFirst(pet.name), style: context.text.titleSmall)),
-          const Icon(Icons.chevron_right_rounded),
+          const Icon(Icons.chevron_right_outlined),
         ]),
       );
     } else {
@@ -87,7 +87,7 @@ class _MemoryCard extends StatelessWidget {
             ]),
           ),
         ),
-        const Padding(padding: EdgeInsets.only(right: Space.sm), child: Icon(Icons.chevron_right_rounded)),
+        const Padding(padding: EdgeInsets.only(right: Space.sm), child: Icon(Icons.chevron_right_outlined)),
       ]),
     );
   }

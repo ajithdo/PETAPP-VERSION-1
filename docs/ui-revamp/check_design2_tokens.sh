@@ -17,6 +17,17 @@ FILES=(
   lib/features/home/presentation/home_sections.dart
   lib/features/home/presentation/home_extras.dart
   lib/features/routine/presentation/today_card.dart
+  lib/core/widgets/states.dart
+  lib/core/widgets/inputs.dart
+  lib/core/widgets/offline_banner.dart
+  lib/core/widgets/pet_avatar.dart
+  lib/core/widgets/media_image.dart
+  lib/core/widgets/photo_picker.dart
+  lib/features/routine/presentation/heat_card.dart
+  lib/features/routine/presentation/quick_log_sheet.dart
+  lib/features/routine/presentation/routine_labels.dart
+  lib/features/routine/presentation/routine_screen.dart
+  lib/features/routine/presentation/walk_tracker_screen.dart
 )
-grep -nE "Color\(0x|Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]" "${FILES[@]}" | grep -v "^\s*//"
+grep -nE "Color\(0x|(^|[^A-Za-z])Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]" "${FILES[@]}" | grep -v "^\s*//"
 echo "checked ${#FILES[@]} files; matches above (none = clean)"

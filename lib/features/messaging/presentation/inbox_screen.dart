@@ -40,7 +40,7 @@ class MessagesHome extends ConsumerWidget {
         floatingActionButton: owner
             ? FloatingActionButton.extended(
                 onPressed: () => context.push('/televet'),
-                icon: const Icon(Icons.video_call_rounded),
+                icon: const Icon(Icons.video_call_outlined),
                 label: Text(l.qaAskVet),
               )
             : null,
@@ -138,12 +138,12 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
               onChanged: (_) => _onQuery(all),
               decoration: InputDecoration(
                 hintText: l.msgSearchHint,
-                prefixIcon: const Icon(Icons.search_rounded),
+                prefixIcon: const Icon(Icons.search_outlined),
                 suffixIcon: q.isEmpty
                     ? null
                     : IconButton(
                         tooltip: l.msgClearSearch,
-                        icon: const Icon(Icons.close_rounded),
+                        icon: const Icon(Icons.close_outlined),
                         onPressed: () {
                           _q.clear();
                           _onQuery(all);
@@ -181,7 +181,7 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
                   for (final m in hits)
                     ListTile(
                       contentPadding: EdgeInsets.symmetric(horizontal: context.gutter),
-                      leading: const Icon(Icons.chat_bubble_outline_rounded),
+                      leading: const Icon(Icons.chat_bubble_outlined),
                       title: Text(byId[m.conversationId]!.titleFor(me.uid), maxLines: 1, overflow: TextOverflow.ellipsis),
                       subtitle: Text(m.type == 'pdf' ? (m.fileName ?? '') : m.text, maxLines: 2, overflow: TextOverflow.ellipsis),
                       trailing: Text(chatTime(m.createdAt, context.lang), style: context.text.labelSmall),
@@ -210,7 +210,7 @@ class _AskPawSetuTile extends ConsumerWidget {
         color: context.paw.primaryContainer.withValues(alpha: 0.6),
         padding: const EdgeInsets.all(Space.md),
         child: Row(children: [
-          CircleAvatar(backgroundColor: context.colors.primary, child: Icon(Icons.auto_awesome_rounded, color: context.colors.onPrimary)),
+          CircleAvatar(backgroundColor: context.colors.primary, child: Icon(Icons.auto_awesome_outlined, color: context.colors.onPrimary)),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -218,7 +218,7 @@ class _AskPawSetuTile extends ConsumerWidget {
               Text(a.unlimited ? l.aiTileHintPlus : l.aiTileHint(a.left), style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
             ]),
           ),
-          const Icon(Icons.chevron_right_rounded),
+          const Icon(Icons.chevron_right_outlined),
         ]),
       ),
     );
@@ -240,10 +240,10 @@ class ConversationTile extends StatelessWidget {
     final unread = c.unreadFor(me.uid);
     final mine = c.lastSenderId == me.uid;
     final (IconData? icon, String text) = switch (c.lastType) {
-      'photo' => (Icons.photo_rounded, l.msgPreviewPhoto),
-      'voice' => (Icons.mic_rounded, l.msgPreviewVoice),
-      'pdf' => (Icons.picture_as_pdf_rounded, c.lastMessage.isEmpty ? l.msgPreviewPdf : c.lastMessage),
-      'prescription' => (Icons.receipt_long_rounded, l.rxSentPreview),
+      'photo' => (Icons.photo_outlined, l.msgPreviewPhoto),
+      'voice' => (Icons.mic_outlined, l.msgPreviewVoice),
+      'pdf' => (Icons.picture_as_pdf_outlined, c.lastMessage.isEmpty ? l.msgPreviewPdf : c.lastMessage),
+      'prescription' => (Icons.receipt_long_outlined, l.rxSentPreview),
       'system' => (null, c.lastMessage.isEmpty ? l.msgNoMessagesYet : c.lastMessage),
       _ => (null, c.lastMessage),
     };
@@ -290,7 +290,7 @@ class ConversationTile extends StatelessWidget {
                     ),
                     if (c.mutedFor(me.uid)) ...[
                       const SizedBox(width: 4),
-                      Icon(Icons.notifications_off_rounded, size: 16, color: context.paw.textSecondary, semanticLabel: l.msgMuted),
+                      Icon(Icons.notifications_off_outlined, size: 16, color: context.paw.textSecondary, semanticLabel: l.msgMuted),
                     ],
                     if (unread > 0) ...[
                       const SizedBox(width: 6),

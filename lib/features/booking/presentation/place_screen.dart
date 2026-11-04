@@ -62,8 +62,8 @@ class PlaceScreen extends ConsumerWidget {
                         children: [
                           if (p.reviewCount > 0) StatusChip('★ ${p.rating.toStringAsFixed(1)} · ${l.reviewsCount(p.reviewCount)}', tone: ChipTone.accent),
                           StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
-                          if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_rounded),
-                          if (p.teleVet) StatusChip(l.teleVet, tone: ChipTone.info, icon: Icons.video_call_rounded),
+                          if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_outlined),
+                          if (p.teleVet) StatusChip(l.teleVet, tone: ChipTone.info, icon: Icons.video_call_outlined),
                           for (final s in p.species)
                             StatusChip(switch (s) {
                               'cat' => l.speciesCat,
@@ -77,22 +77,22 @@ class PlaceScreen extends ConsumerWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: SecondaryButton(label: l.call, icon: Icons.call_rounded, onPressed: () => callNumber(context, ref, p.phone)),
+                            child: SecondaryButton(label: l.call, icon: Icons.call_outlined, onPressed: () => callNumber(context, ref, p.phone)),
                           ),
                           const SizedBox(width: Space.sm),
                           Expanded(
                             child: SecondaryButton(
                               label: l.directions,
-                              icon: Icons.directions_rounded,
+                              icon: Icons.directions_outlined,
                               onPressed: () => openDirections(p.lat, p.lng, label: p.name),
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(height: Space.sm),
-                      PrimaryButton(label: l.bookNow, icon: Icons.event_available_rounded, onPressed: () => context.push('/book/new/${p.id}')),
+                      PrimaryButton(label: l.bookNow, icon: Icons.event_available_outlined, onPressed: () => context.push('/book/new/${p.id}')),
                   const SizedBox(height: Space.sm),
-                  SecondaryButton(label: l.message, icon: Icons.chat_rounded, onPressed: () => context.push('/messages/new?place=${p.id}')),
+                  SecondaryButton(label: l.message, icon: Icons.chat_outlined, onPressed: () => context.push('/messages/new?place=${p.id}')),
                       if (p.about != null) ...[const SizedBox(height: Space.lg), Text(p.about!)],
                       SectionHeader(l.hoursTitle),
                       PawCard(
@@ -133,7 +133,7 @@ class PlaceScreen extends ConsumerWidget {
                               ),
                             if (p.homeVisit)
                               ListTile(
-                                leading: const Icon(Icons.home_rounded),
+                                leading: const Icon(Icons.home_outlined),
                                 title: Text(l.homeVisitAvailable(p.radiusKm)),
                                 trailing: Text('+ ${Fmt.inr(p.homeVisitFee)}'),
                               ),
@@ -196,7 +196,7 @@ class _VetsList extends ConsumerWidget {
                 ListTile(
                   leading: CircleAvatar(
                     backgroundColor: context.paw.primaryContainer,
-                    child: Icon(Icons.medical_services_rounded, color: context.colors.primary),
+                    child: Icon(Icons.medical_services_outlined, color: context.colors.primary),
                   ),
                   title: Text(v.name),
                   subtitle: Text('${v.qualification} · ${l.yearsExperience(v.experienceYears)}\n${l.regNo(v.regNo)}'),

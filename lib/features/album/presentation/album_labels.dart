@@ -18,10 +18,10 @@ String milestoneLabel(BuildContext context, String kind, {String? custom}) {
 String itemMilestoneLabel(BuildContext context, AlbumItem i) => milestoneLabel(context, i.milestone ?? 'custom', custom: i.milestoneTitle);
 
 IconData milestoneIcon(String kind) => switch (kind) {
-      'birthday' => Icons.cake_rounded,
-      'gotcha' => Icons.home_rounded,
-      'first_walk' => Icons.directions_walk_rounded,
-      'first_vaccine' => Icons.vaccines_rounded,
+      'birthday' => Icons.cake_outlined,
+      'gotcha' => Icons.home_outlined,
+      'first_walk' => Icons.directions_walk_outlined,
+      'first_vaccine' => Icons.vaccines_outlined,
       _ => Icons.star_rounded,
     };
 

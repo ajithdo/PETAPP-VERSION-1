@@ -138,14 +138,14 @@ class _VaultShareSheetState extends ConsumerState<_VaultShareSheet> {
           controller: _pin,
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(6)],
-          prefixIcon: Icons.pin_rounded,
+          prefixIcon: Icons.pin_outlined,
         ),
       if (_error != null) ...[
         Text(_error!, style: context.text.bodySmall?.copyWith(color: context.paw.error)),
         const SizedBox(height: Space.sm),
       ],
       const SizedBox(height: Space.sm),
-      PrimaryButton(label: l.vaultCreateLink, icon: Icons.link_rounded, loading: _busy, onPressed: _create),
+      PrimaryButton(label: l.vaultCreateLink, icon: Icons.link_outlined, loading: _busy, onPressed: _create),
     ]);
   }
 }
@@ -183,14 +183,14 @@ class ShareLinkResult extends ConsumerWidget {
       ),
       if (pin != null) ...[
         const SizedBox(height: Space.sm),
-        InfoNote(l.vaultAddPinHint, icon: Icons.pin_rounded),
+        InfoNote(l.vaultAddPinHint, icon: Icons.pin_outlined),
       ],
       const SizedBox(height: Space.md),
       Row(children: [
         Expanded(
           child: SecondaryButton(
             label: l.copyLink,
-            icon: Icons.copy_rounded,
+            icon: Icons.copy_outlined,
             onPressed: () async {
               await Clipboard.setData(ClipboardData(text: url));
               if (context.mounted) showToast(context, l.copied);
@@ -201,7 +201,7 @@ class ShareLinkResult extends ConsumerWidget {
         Expanded(
           child: SecondaryButton(
             label: l.share,
-            icon: Icons.ios_share_rounded,
+            icon: Icons.ios_share_outlined,
             onPressed: () async {
               try {
                 await SharePlus.instance.share(ShareParams(text: message));
@@ -220,7 +220,7 @@ class ShareLinkResult extends ConsumerWidget {
       Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
         for (final ch in [Channel.whatsapp, Channel.sms, Channel.email])
           ActionChip(
-            avatar: Icon(switch (ch) { Channel.email => Icons.email_rounded, Channel.sms => Icons.sms_rounded, _ => Icons.chat_rounded }, size: 18),
+            avatar: Icon(switch (ch) { Channel.email => Icons.email_outlined, Channel.sms => Icons.sms_outlined, _ => Icons.chat_outlined }, size: 18),
             label: Text(switch (ch) { Channel.email => l.chEmail, Channel.sms => l.chSms, _ => l.chWhatsApp }),
             onPressed: () => sendShareMessage(context, ref, ch, message),
           ),

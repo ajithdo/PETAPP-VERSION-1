@@ -22,7 +22,7 @@ class MyPetsScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.myPets)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.push('/pets/new'),
-        icon: const Icon(Icons.add_rounded),
+        icon: const Icon(Icons.add_outlined),
         label: Text(l.addPet),
       ),
       body: AsyncView(
@@ -44,7 +44,7 @@ class MyPetsScreen extends ConsumerWidget {
             if (!(user?.isPlus ?? false))
               Padding(
                 padding: const EdgeInsets.only(top: Space.sm),
-                child: InfoNote(l.petsUsed(owned, limit), icon: Icons.workspace_premium_rounded),
+                child: InfoNote(l.petsUsed(owned, limit), icon: Icons.workspace_premium_outlined),
               ),
             const SizedBox(height: Space.md),
             ResponsiveGrid(minItemWidth: 300, children: [for (final p in active) _PetTile(pet: p, uid: user?.uid ?? '')]),
@@ -93,7 +93,7 @@ class _PetTile extends StatelessWidget {
             ],
           ]),
         ),
-        Icon(pet.archived ? Icons.favorite_rounded : Icons.chevron_right_rounded,
+        Icon(pet.archived ? Icons.favorite_rounded : Icons.chevron_right_outlined,
             color: pet.archived ? context.paw.accent : null),
       ]),
     );

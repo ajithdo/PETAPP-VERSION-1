@@ -109,7 +109,7 @@ class PetHeroCard extends StatelessWidget {
             StatusChip(lifeStageLabel(context, pet), tone: ChipTone.info),
           ]),
         ),
-        Icon(Icons.chevron_right_rounded, color: context.paw.textSecondary),
+        Icon(Icons.chevron_right_outlined, color: context.paw.textSecondary),
       ]),
     );
   }

@@ -80,7 +80,7 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
                         PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 32),
                         const SizedBox(width: Space.sm),
                         Flexible(child: title),
-                        const Icon(Icons.expand_more_rounded),
+                        const Icon(Icons.expand_more_outlined),
                       ]),
                     ),
                   ),
@@ -89,11 +89,11 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
           actions: [
             IconButton(
               tooltip: l.albumFamilyLink,
-              icon: const Icon(Icons.group_rounded),
+              icon: const Icon(Icons.group_outlined),
               onPressed: () => showFamilyLinkSheet(context, ref, p, albumNames(items.value ?? const [])),
             ),
             if (p.birthday != null)
-              IconButton(tooltip: l.albumBirthdayScreenTitle, icon: const Icon(Icons.cake_rounded), onPressed: () => context.push('/pets/${p.id}/birthday')),
+              IconButton(tooltip: l.albumBirthdayScreenTitle, icon: const Icon(Icons.cake_outlined), onPressed: () => context.push('/pets/${p.id}/birthday')),
           ],
           bottom: TabBar(
             isScrollable: context.isPhone,
@@ -104,7 +104,7 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
         floatingActionButton: canLog
             ? FloatingActionButton.extended(
                 onPressed: () => showAddMemorySheet(context, ref, p),
-                icon: const Icon(Icons.add_a_photo_rounded),
+                icon: const Icon(Icons.add_a_photo_outlined),
                 label: Text(l.albumAdd),
               )
             : null,
@@ -202,7 +202,7 @@ class MemoryTile extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                     decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(8)),
                     child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 16),
+                      const Icon(Icons.play_arrow_outlined, color: Colors.white, size: 16),
                       Text(videoLength(item.durationSec), style: const TextStyle(color: Colors.white, fontSize: 11)),
                     ]),
                   ),
@@ -214,7 +214,7 @@ class MemoryTile extends StatelessWidget {
                 Positioned(
                   right: 6,
                   bottom: 6,
-                  child: Icon(selected! ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
+                  child: Icon(selected! ? Icons.check_circle_rounded : Icons.radio_button_unchecked_outlined,
                       color: selected! ? context.colors.primary : Colors.white, shadows: const [Shadow(blurRadius: 4)]),
                 ),
             ]),
@@ -303,7 +303,7 @@ class OnThisDayCard extends StatelessWidget {
       color: context.paw.accent.withValues(alpha: 0.14),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Icon(Icons.history_rounded, color: context.paw.onAccentContainer),
+          Icon(Icons.history_outlined, color: context.paw.onAccentContainer),
           const SizedBox(width: Space.sm),
           Text(l.albumOnThisDay, style: context.text.titleMedium),
         ]),
@@ -345,7 +345,7 @@ class BirthdayCard extends StatelessWidget {
       color: today ? context.paw.accent.withValues(alpha: 0.28) : context.paw.primaryContainer.withValues(alpha: 0.6),
       onTap: () => context.push('/pets/${pet.id}/birthday'),
       child: Row(children: [
-        Icon(Icons.cake_rounded, color: today ? context.paw.onAccentContainer : context.colors.primary, size: 36),
+        Icon(Icons.cake_outlined, color: today ? context.paw.onAccentContainer : context.colors.primary, size: 36),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -401,7 +401,7 @@ class _TimelineTab extends ConsumerWidget {
         PawCard(
           padding: EdgeInsets.zero,
           child: SwitchListTile(
-            secondary: Icon(Icons.cake_rounded, color: context.paw.accent),
+            secondary: Icon(Icons.cake_outlined, color: context.paw.accent),
             title: Text(l.albumBirthdayReminder(pet.name)),
             subtitle: Text(reminderOn ? l.albumBirthdayReminderOn : Fmt.date(nextBirthday(pet.birthday, DateTime.now())!, context.lang)),
             value: reminderOn,
@@ -416,7 +416,7 @@ class _TimelineTab extends ConsumerWidget {
         ),
       ],
       SectionHeader(l.albumTimeline, action: canLog ? l.albumAddMilestone : null, onAction: () => showMemoryEditSheet(context, ref, pet, milestone: 'custom')),
-      if (pet.birthday != null) _TimelineEntry(icon: Icons.child_friendly_rounded, color: context.colors.primary, title: l.albumTimelineBorn(pet.name), date: pet.birthday!),
+      if (pet.birthday != null) _TimelineEntry(icon: Icons.child_friendly_outlined, color: context.colors.primary, title: l.albumTimelineBorn(pet.name), date: pet.birthday!),
       for (final m in ms)
         _TimelineEntry(
           badge: m.milestone,
@@ -517,7 +517,7 @@ class _AlbumsTab extends ConsumerWidget {
               await ref.read(albumRepositoryProvider).addToAlbum(picked, name);
               if (context.mounted) showToast(context, l.albumAddedToAlbum(name));
             },
-            icon: const Icon(Icons.create_new_folder_rounded),
+            icon: const Icon(Icons.create_new_folder_outlined),
             label: Text(l.albumNewAlbum),
           ),
         ),
@@ -537,7 +537,7 @@ class _AlbumsTab extends ConsumerWidget {
                   AspectRatio(
                     aspectRatio: 1.3,
                     child: inAlbum.isEmpty
-                        ? ColoredBox(color: context.paw.primaryContainer, child: Icon(Icons.photo_album_rounded, color: context.colors.primary, size: 40))
+                        ? ColoredBox(color: context.paw.primaryContainer, child: Icon(Icons.photo_album_outlined, color: context.colors.primary, size: 40))
                         : MediaImage(url: inAlbum.first.url!),
                   ),
                   Padding(
@@ -617,9 +617,9 @@ class AlbumDetailScreen extends ConsumerWidget {
                 }
               },
               itemBuilder: (_) => [
-                PopupMenuItem(value: 'add', child: ListTile(leading: const Icon(Icons.add_photo_alternate_rounded), title: Text(l.albumAddToAlbum))),
-                PopupMenuItem(value: 'rename', child: ListTile(leading: const Icon(Icons.edit_rounded), title: Text(l.albumRenameAlbum))),
-                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.folder_delete_rounded), title: Text(l.albumDeleteAlbum))),
+                PopupMenuItem(value: 'add', child: ListTile(leading: const Icon(Icons.add_photo_alternate_outlined), title: Text(l.albumAddToAlbum))),
+                PopupMenuItem(value: 'rename', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.albumRenameAlbum))),
+                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.folder_delete_outlined), title: Text(l.albumDeleteAlbum))),
               ],
             ),
         ],

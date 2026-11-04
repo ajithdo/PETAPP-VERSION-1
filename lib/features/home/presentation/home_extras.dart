@@ -42,7 +42,7 @@ List<Widget> nextUpSection(BuildContext context, WidgetRef ref, {required List<P
       header,
       PawCard(
         child: Row(children: [
-          Icon(Icons.check_circle_outline_rounded, color: context.paw.success),
+          Icon(Icons.check_circle_outlined, color: context.paw.success),
           const SizedBox(width: Space.md),
           Expanded(child: Text(l.nothingDueAll, style: context.text.bodyMedium)),
         ]),

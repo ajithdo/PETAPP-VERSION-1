@@ -100,7 +100,7 @@ class ChoiceRow<T> extends StatelessWidget {
         for (final o in options)
           ChoiceChip(
             label: Text(label(o)),
-            avatar: icons == null ? null : Icon(icons!(o), size: 18),
+            avatar: icons == null ? null : Icon(icons!(o), size: IconSizes.chip),
             selected: o == selected,
             showCheckmark: icons == null,
             onSelected: (_) => onSelected(o),

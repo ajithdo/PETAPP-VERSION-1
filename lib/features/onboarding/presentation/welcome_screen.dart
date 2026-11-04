@@ -100,7 +100,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                   PrimaryButton(
                     expand: false,
                     label: last ? l.getStarted : l.next,
-                    icon: last ? null : Icons.arrow_forward_rounded,
+                    icon: last ? null : Icons.arrow_forward_outlined,
                     onPressed: last
                         ? _finish
                         : () => _page.nextPage(
@@ -115,7 +115,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                     width: double.infinity,
                     child: OutlinedButton.icon(
                       onPressed: () => _finish(to: '/demo'),
-                      icon: const Icon(Icons.science_rounded),
+                      icon: const Icon(Icons.science_outlined),
                       label: Text(l.exploreDemo),
                     ),
                   ),
@@ -145,7 +145,7 @@ class LanguageMenu extends ConsumerWidget {
         PopupMenuItem(value: 'te', child: Text('తెలుగు')),
       ],
       child: Chip(
-        avatar: const Icon(Icons.translate_rounded, size: 18),
+        avatar: const Icon(Icons.translate_outlined, size: 18),
         label: Text(languageName(locale)),
       ),
     );

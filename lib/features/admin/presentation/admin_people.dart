@@ -145,11 +145,11 @@ class _PartnerCardState extends ConsumerState<_PartnerCard> {
           Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
             Text(l.admRegNo(p.regNo ?? '–'), style: context.text.bodyMedium),
             if (p.regNo == null)
-              StatusChip(l.admRegMissing, tone: ChipTone.error, icon: Icons.error_outline_rounded)
+              StatusChip(l.admRegMissing, tone: ChipTone.error, icon: Icons.error_outlined)
             else if (regNoLooksValid(p.regNo))
-              StatusChip(l.admRegLooksRight, tone: ChipTone.success, icon: Icons.check_circle_outline_rounded)
+              StatusChip(l.admRegLooksRight, tone: ChipTone.success, icon: Icons.check_circle_outlined)
             else
-              StatusChip(l.admRegCheck, tone: ChipTone.warning, icon: Icons.warning_amber_rounded),
+              StatusChip(l.admRegCheck, tone: ChipTone.warning, icon: Icons.warning_amber_outlined),
           ]),
           if (p.regNo != null)
             Padding(padding: const EdgeInsets.only(top: 2), child: Text(l.admRegHint, style: context.text.bodySmall)),
@@ -163,7 +163,7 @@ class _PartnerCardState extends ConsumerState<_PartnerCard> {
           Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
             for (final d in p.kycDocs)
               ActionChip(
-                avatar: const Icon(Icons.description_rounded, size: 18),
+                avatar: const Icon(Icons.description_outlined, size: 18),
                 label: Text(d),
                 onPressed: () => _showDoc(context, p, d),
               ),
@@ -175,10 +175,10 @@ class _PartnerCardState extends ConsumerState<_PartnerCard> {
         const SizedBox(height: Space.md),
         Wrap(spacing: Space.sm, runSpacing: Space.sm, alignment: WrapAlignment.end, children: [
           if (p.status != 'approved')
-            PrimaryButton(label: p.status == 'pending' ? l.admApprove : l.admReinstate, icon: Icons.check_rounded, expand: false, loading: _busy, onPressed: () => _decide('approve')),
-          if (p.status == 'pending') SecondaryButton(label: l.admReject, icon: Icons.close_rounded, expand: false, onPressed: _busy ? null : () => _decide('reject')),
+            PrimaryButton(label: p.status == 'pending' ? l.admApprove : l.admReinstate, icon: Icons.check_outlined, expand: false, loading: _busy, onPressed: () => _decide('approve')),
+          if (p.status == 'pending') SecondaryButton(label: l.admReject, icon: Icons.close_outlined, expand: false, onPressed: _busy ? null : () => _decide('reject')),
           if (p.status == 'approved')
-            SecondaryButton(label: l.admSuspend, icon: Icons.block_rounded, expand: false, onPressed: _busy ? null : () => _decide('suspend')),
+            SecondaryButton(label: l.admSuspend, icon: Icons.block_outlined, expand: false, onPressed: _busy ? null : () => _decide('suspend')),
         ]),
       ]),
     );
@@ -199,7 +199,7 @@ class _PartnerCardState extends ConsumerState<_PartnerCard> {
               border: Border.all(color: ctx.paw.outline),
             ),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Icon(Icons.description_rounded, size: 56, color: ctx.colors.primary),
+              Icon(Icons.description_outlined, size: 56, color: ctx.colors.primary),
               const SizedBox(height: Space.sm),
               Text(p.name, style: ctx.text.titleSmall, textAlign: TextAlign.center),
               Text(ctx.l10n.admSampleStamp, style: ctx.text.labelLarge?.copyWith(color: ctx.paw.error, letterSpacing: 2)),
@@ -255,7 +255,7 @@ class _AdminUsersState extends ConsumerState<AdminUsers> {
           const SizedBox(height: Space.md),
           PawTextField(
             label: l.admSearchUsers,
-            prefixIcon: Icons.search_rounded,
+            prefixIcon: Icons.search_outlined,
             onChanged: (v) => setState(() => _q = v),
           ),
           const SizedBox(height: Space.sm),
@@ -312,14 +312,14 @@ class _UserTile extends ConsumerWidget {
               const SizedBox(height: 4),
               Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
                 StatusChip(roleLabel(context, role), tone: role == UserRole.admin ? ChipTone.accent : (role.isPartner ? ChipTone.info : ChipTone.neutral)),
-                if (plan == 'plus') StatusChip(l.planPlus, tone: ChipTone.accent, icon: Icons.workspace_premium_rounded),
+                if (plan == 'plus') StatusChip(l.planPlus, tone: ChipTone.accent, icon: Icons.workspace_premium_outlined),
                 if (plan == 'trial') StatusChip(l.plusTrialChip, tone: ChipTone.accent),
-                if (suspended) StatusChip(l.admStatusSuspended, tone: ChipTone.error, icon: Icons.block_rounded),
+                if (suspended) StatusChip(l.admStatusSuspended, tone: ChipTone.error, icon: Icons.block_outlined),
                 if (user['deletionRequestedAt'] != null) StatusChip(l.admDeletionPending, tone: ChipTone.warning),
               ]),
             ]),
           ),
-          const Icon(Icons.chevron_right_rounded),
+          const Icon(Icons.chevron_right_outlined),
         ]),
       ),
     );
@@ -437,12 +437,12 @@ class _UserSheetState extends ConsumerState<_UserSheet> {
       if (isMe) Padding(padding: const EdgeInsets.only(top: 4), child: Text(l.admNotYourself, style: context.text.bodySmall)),
       const SizedBox(height: Space.sm),
       if (_role != current)
-        PrimaryButton(label: l.admSaveRole, icon: Icons.save_rounded, loading: _busy, onPressed: _saveRole),
+        PrimaryButton(label: l.admSaveRole, icon: Icons.save_outlined, loading: _busy, onPressed: _saveRole),
       const SizedBox(height: Space.sm),
       if (!isMe)
         suspended
-            ? SecondaryButton(label: l.admUnsuspend, icon: Icons.lock_open_rounded, onPressed: _busy ? null : () => _toggleSuspend(false))
-            : PrimaryButton(label: l.admSuspendUser, icon: Icons.block_rounded, danger: true, onPressed: _busy ? null : () => _toggleSuspend(true)),
+            ? SecondaryButton(label: l.admUnsuspend, icon: Icons.lock_open_outlined, onPressed: _busy ? null : () => _toggleSuspend(false))
+            : PrimaryButton(label: l.admSuspendUser, icon: Icons.block_outlined, danger: true, onPressed: _busy ? null : () => _toggleSuspend(true)),
       const SizedBox(height: Space.sm),
       TextButton(onPressed: () => Navigator.pop(context), child: Text(l.close)),
     ]);

@@ -67,7 +67,7 @@ class PortalScaffold extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Space.lg),
           child: ListTile(
-            leading: const Icon(Icons.settings_rounded),
+            leading: const Icon(Icons.settings_outlined),
             title: Text(context.l10n.settings),
             onTap: () => context.push('/settings'),
           ),
@@ -75,7 +75,7 @@ class PortalScaffold extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Space.lg),
           child: ListTile(
-            leading: const Icon(Icons.logout_rounded),
+            leading: const Icon(Icons.logout_outlined),
             title: Text(context.l10n.signOut),
             onTap: () => ref.read(authServiceProvider).signOut(),
           ),
@@ -93,7 +93,7 @@ class PortalScaffold extends ConsumerWidget {
             // On a phone the name would squeeze the page title: initial only.
             child: wide
                 ? Chip(
-                    avatar: const Icon(Icons.person_rounded, size: 18),
+                    avatar: const Icon(Icons.person_outlined, size: 18),
                     label: Text(user.name, overflow: TextOverflow.ellipsis),
                   )
                 : Tooltip(

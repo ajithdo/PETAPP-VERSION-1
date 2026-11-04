@@ -48,7 +48,7 @@ class TodayCard extends ConsumerWidget {
                   ),
                   if (s > 1) ...[
                     const SizedBox(height: Space.sm),
-                    StatusChip(l.streakDays(s), tone: ChipTone.accent, icon: Icons.local_fire_department_rounded),
+                    StatusChip(l.streakDays(s), tone: ChipTone.accent, icon: Icons.local_fire_department_outlined),
                   ],
                 ]),
               ),
@@ -67,7 +67,7 @@ class TodayCard extends ConsumerWidget {
               children: [
                 OutlinedButton.icon(
                   onPressed: () => showQuickLog(context, ref, pet),
-                  icon: const Icon(Icons.add_rounded),
+                  icon: const Icon(Icons.add_outlined),
                   label: Text(l.logSomething),
                 ),
                 TextButton(onPressed: () => context.push('/pets/${pet.id}/routine'), child: Text(l.seeAll)),
@@ -97,7 +97,7 @@ class _ChecklistRow extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Space.xxs),
       child: Row(children: [
-        Icon(complete ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
+        Icon(complete ? Icons.check_circle_rounded : Icons.radio_button_unchecked_outlined,
             color: complete ? paw.success : paw.controlBorder, size: big ? IconSizes.action : IconSizes.lg),
         const SizedBox(width: Space.md),
         Icon(logTypeIcon(type), size: IconSizes.md, color: paw.textSecondary),
@@ -110,7 +110,7 @@ class _ChecklistRow extends ConsumerWidget {
         ),
         IconButton(
           tooltip: l.logNow(logTypeLabel(context, type)),
-          icon: Icon(type == LogType.walk ? Icons.play_circle_outline_rounded : Icons.add_circle_outline_rounded,
+          icon: Icon(type == LogType.walk ? Icons.play_circle_outlined : Icons.add_circle_outlined,
               color: paw.brand, size: big ? IconSizes.xxl : IconSizes.action),
           onPressed: () async {
             if (type == LogType.walk) {

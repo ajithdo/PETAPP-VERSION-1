@@ -99,7 +99,7 @@ class _AskScreenState extends ConsumerState<AskScreen> {
               child: StatusChip(
                 a.unlimited ? l.aiUnlimited : l.aiLeft(a.left, a.limit),
                 tone: a.unlimited ? ChipTone.success : (a.left <= 1 ? ChipTone.warning : ChipTone.info),
-                icon: a.unlimited ? Icons.all_inclusive_rounded : Icons.help_outline_rounded,
+                icon: a.unlimited ? Icons.all_inclusive_outlined : Icons.help_outlined,
               ),
             ),
           ),
@@ -159,7 +159,7 @@ class _AskScreenState extends ConsumerState<AskScreen> {
                       onPressed: _busy || _ctrl.text.trim().isEmpty ? null : () => _ask(_ctrl.text),
                       icon: _busy
                           ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                          : const Icon(Icons.send_rounded),
+                          : const Icon(Icons.send_outlined),
                     ),
                   ]),
                 ),
@@ -240,7 +240,7 @@ class _AnswerCard extends StatelessWidget {
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-            Icon(Icons.auto_awesome_rounded, color: context.colors.primary, size: 20),
+            Icon(Icons.auto_awesome_outlined, color: context.colors.primary, size: 20),
             Text(l.aiTitle, style: context.text.labelLarge?.copyWith(color: context.colors.primary)),
             StatusChip(l.demoBadge, tone: ChipTone.accent),
           ]),
@@ -252,7 +252,7 @@ class _AnswerCard extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: TextButton.icon(
               onPressed: () => context.push('/televet'),
-              icon: const Icon(Icons.video_call_rounded),
+              icon: const Icon(Icons.video_call_outlined),
               label: Text(l.aiTalkToVet),
             ),
           ),
@@ -277,7 +277,7 @@ class _RedFlagCard extends ConsumerWidget {
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(Icons.emergency_rounded, color: context.paw.sos),
+            Icon(Icons.emergency_outlined, color: context.paw.sos),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(l.aiRedFlagTitle, style: context.text.titleMedium)),
           ]),
@@ -289,12 +289,12 @@ class _RedFlagCard extends ConsumerWidget {
             child: FilledButton.icon(
               style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
               onPressed: () => openSos(context, ref),
-              icon: const Icon(Icons.emergency_rounded),
+              icon: const Icon(Icons.emergency_outlined),
               label: Text(l.sosGetHelp),
             ),
           ),
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.aiTalkToVetNow, icon: Icons.video_call_rounded, onPressed: () => context.push('/televet/new')),
+          SecondaryButton(label: l.aiTalkToVetNow, icon: Icons.video_call_outlined, onPressed: () => context.push('/televet/new')),
         ]),
       ),
     );
@@ -315,7 +315,7 @@ class _LimitCard extends StatelessWidget {
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(Icons.hourglass_bottom_rounded, color: context.paw.onAccentContainer),
+            Icon(Icons.hourglass_bottom_outlined, color: context.paw.onAccentContainer),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(l.aiLimitTitle(limit), style: context.text.titleSmall)),
           ]),
@@ -324,11 +324,11 @@ class _LimitCard extends StatelessWidget {
           const SizedBox(height: Space.md),
           PrimaryButton(
             label: l.seePlus,
-            icon: Icons.workspace_premium_rounded,
+            icon: Icons.workspace_premium_outlined,
             onPressed: () => showPlusPrompt(context, title: l.aiLimitTitle(limit), body: l.plusPerkAi),
           ),
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.aiTalkToVet, icon: Icons.video_call_rounded, onPressed: () => context.push('/televet')),
+          SecondaryButton(label: l.aiTalkToVet, icon: Icons.video_call_outlined, onPressed: () => context.push('/televet')),
         ]),
       ),
     );

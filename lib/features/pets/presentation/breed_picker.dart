@@ -71,24 +71,24 @@ class _BreedSheetState extends State<_BreedSheet> {
                   ])
                 : TextField(
                     autofocus: false,
-                    decoration: InputDecoration(prefixIcon: const Icon(Icons.search_rounded), hintText: l.searchBreeds),
+                    decoration: InputDecoration(prefixIcon: const Icon(Icons.search_outlined), hintText: l.searchBreeds),
                     onChanged: (v) => setState(() => _q = v),
                   ),
           ),
           if (widget.species == Species.bird)
             Padding(
               padding: const EdgeInsets.fromLTRB(Space.lg, 0, Space.lg, Space.sm),
-              child: InfoNote(l.birdLegalNote, icon: Icons.gavel_rounded),
+              child: InfoNote(l.birdLegalNote, icon: Icons.gavel_outlined),
             ),
           Expanded(
             child: ListView(controller: scroll, children: [
               ListTile(
-                leading: const Icon(Icons.diversity_3_rounded),
+                leading: const Icon(Icons.diversity_3_outlined),
                 title: Text(l.breedMixed),
                 onTap: () => Navigator.pop(context, (id: mixedBreedId, other: null)),
               ),
               ListTile(
-                leading: const Icon(Icons.edit_rounded),
+                leading: const Icon(Icons.edit_outlined),
                 title: Text(l.breedOther),
                 onTap: () => setState(() => _typing = true),
               ),

@@ -23,15 +23,15 @@ String docTypeLabel(BuildContext context, String type) {
 }
 
 IconData docTypeIcon(String type) => switch (type) {
-      'vaccination' => Icons.vaccines_rounded,
-      'insurance' => Icons.health_and_safety_rounded,
-      'lab' => Icons.biotech_rounded,
-      'prescription' => Icons.medication_rounded,
-      'invoice' => Icons.receipt_long_rounded,
-      'licence' => Icons.badge_rounded,
-      'adoption' => Icons.volunteer_activism_rounded,
-      'travel' => Icons.flight_rounded,
-      _ => Icons.description_rounded,
+      'vaccination' => Icons.vaccines_outlined,
+      'insurance' => Icons.health_and_safety_outlined,
+      'lab' => Icons.biotech_outlined,
+      'prescription' => Icons.medication_outlined,
+      'invoice' => Icons.receipt_long_outlined,
+      'licence' => Icons.badge_outlined,
+      'adoption' => Icons.volunteer_activism_outlined,
+      'travel' => Icons.flight_outlined,
+      _ => Icons.description_outlined,
     };
 
 Color docTypeColor(BuildContext context, String type) => switch (type) {
@@ -52,8 +52,8 @@ Widget? expiryChip(BuildContext context, DateTime? expiry, {DateTime? now}) {
   final st = expiryState(expiry, now ?? DateTime.now());
   return switch (st) {
     ExpiryState.none => null,
-    ExpiryState.expired => StatusChip(l.vaultExpired, tone: ChipTone.error, icon: Icons.event_busy_rounded),
-    ExpiryState.soon => StatusChip(l.vaultExpiresSoon, tone: ChipTone.warning, icon: Icons.schedule_rounded),
+    ExpiryState.expired => StatusChip(l.vaultExpired, tone: ChipTone.error, icon: Icons.event_busy_outlined),
+    ExpiryState.soon => StatusChip(l.vaultExpiresSoon, tone: ChipTone.warning, icon: Icons.schedule_outlined),
     ExpiryState.valid => null,
   };
 }
@@ -108,9 +108,9 @@ Widget renewalChip(BuildContext context, DateTime? renewal) {
 
 Widget linkStatusChip(BuildContext context, ShareLink link) {
   final l = context.l10n;
-  if (link.revoked) return StatusChip(l.vaultLinkRevoked, tone: ChipTone.neutral, icon: Icons.link_off_rounded);
+  if (link.revoked) return StatusChip(l.vaultLinkRevoked, tone: ChipTone.neutral, icon: Icons.link_off_outlined);
   if (link.isExpired(DateTime.now())) return StatusChip(l.vaultLinkExpired, tone: ChipTone.warning);
-  return StatusChip(l.vaultLinkActive, tone: ChipTone.success, icon: Icons.link_rounded);
+  return StatusChip(l.vaultLinkActive, tone: ChipTone.success, icon: Icons.link_outlined);
 }
 
 String shareExpiryLabel(BuildContext context, ShareExpiry e) {

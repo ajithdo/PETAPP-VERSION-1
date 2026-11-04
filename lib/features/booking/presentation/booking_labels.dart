@@ -43,12 +43,12 @@ String kindLabel(BuildContext context, String kind) {
 }
 
 IconData kindIcon(String kind) => switch (kind) {
-  'clinic' => Icons.local_hospital_rounded,
-  'groomer' => Icons.content_cut_rounded,
-  'trainer' => Icons.sports_rounded,
-  'boarder' => Icons.house_rounded,
-  'walker' => Icons.directions_walk_rounded,
-  _ => Icons.storefront_rounded,
+  'clinic' => Icons.local_hospital_outlined,
+  'groomer' => Icons.content_cut_outlined,
+  'trainer' => Icons.sports_outlined,
+  'boarder' => Icons.house_outlined,
+  'walker' => Icons.directions_walk_outlined,
+  _ => Icons.storefront_outlined,
 };
 
 (String, ChipTone) bookingStatus(BuildContext context, String s) {

@@ -19,11 +19,11 @@ String doseLabel(BuildContext context, String key) {
 (String, ChipTone, IconData) statusChip(BuildContext context, DoseStatus s) {
   final l = context.l10n;
   return switch (s) {
-    DoseStatus.done => (l.statusDone, ChipTone.success, Icons.check_rounded),
-    DoseStatus.overdue => (l.statusOverdue, ChipTone.error, Icons.error_rounded),
-    DoseStatus.dueSoon => (l.statusDueSoon, ChipTone.warning, Icons.schedule_rounded),
-    DoseStatus.upcoming => (l.statusUpcoming, ChipTone.info, Icons.event_rounded),
-    DoseStatus.askVet => (l.statusAskVet, ChipTone.neutral, Icons.help_outline_rounded),
+    DoseStatus.done => (l.statusDone, ChipTone.success, Icons.check_outlined),
+    DoseStatus.overdue => (l.statusOverdue, ChipTone.error, Icons.error_outlined),
+    DoseStatus.dueSoon => (l.statusDueSoon, ChipTone.warning, Icons.schedule_outlined),
+    DoseStatus.upcoming => (l.statusUpcoming, ChipTone.info, Icons.event_outlined),
+    DoseStatus.askVet => (l.statusAskVet, ChipTone.neutral, Icons.help_outlined),
   };
 }
 
@@ -66,13 +66,13 @@ String dueWhen(BuildContext context, DueItem i) {
 }
 
 IconData dueIcon(String kind) => switch (kind) {
-      'vaccine' => Icons.vaccines_rounded,
-      'medicine' => Icons.medication_rounded,
-      'refill' => Icons.inventory_2_rounded,
-      'deworming' => Icons.bug_report_rounded,
-      'flea_tick' => Icons.pest_control_rounded,
-      'booking' => Icons.event_available_rounded,
-      _ => Icons.alarm_rounded,
+      'vaccine' => Icons.vaccines_outlined,
+      'medicine' => Icons.medication_outlined,
+      'refill' => Icons.inventory_2_outlined,
+      'deworming' => Icons.bug_report_outlined,
+      'flea_tick' => Icons.pest_control_outlined,
+      'booking' => Icons.event_available_outlined,
+      _ => Icons.alarm_outlined,
     };
 
 String symptomLabel(BuildContext context, String? s) {

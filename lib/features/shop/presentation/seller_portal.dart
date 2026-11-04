@@ -64,10 +64,10 @@ class _SellerDashboard extends ConsumerWidget {
         if (s.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
         const SizedBox(height: Space.lg),
         ResponsiveGrid(minItemWidth: 200, children: [
-          StatTile(label: l.selToPack, value: '${toPack.length}', icon: Icons.inventory_2_rounded, color: toPack.isEmpty ? null : context.paw.warning),
-          StatTile(label: l.selOnTheWay, value: '$moving', icon: Icons.local_shipping_rounded),
-          StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Icons.account_balance_wallet_rounded),
-          StatTile(label: l.selLowStock, value: '${low.length}', icon: Icons.warning_amber_rounded, color: low.isEmpty ? null : context.paw.error),
+          StatTile(label: l.selToPack, value: '${toPack.length}', icon: Icons.inventory_2_outlined, color: toPack.isEmpty ? null : context.paw.warning),
+          StatTile(label: l.selOnTheWay, value: '$moving', icon: Icons.local_shipping_outlined),
+          StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Icons.account_balance_wallet_outlined),
+          StatTile(label: l.selLowStock, value: '${low.length}', icon: Icons.warning_amber_outlined, color: low.isEmpty ? null : context.paw.error),
         ]),
         if (returns > 0) ...[
           const SizedBox(height: Space.md),
@@ -75,10 +75,10 @@ class _SellerDashboard extends ConsumerWidget {
             onTap: () => context.go('/partner/returns'),
             borderColor: context.paw.warning,
             child: Row(children: [
-              Icon(Icons.assignment_return_rounded, color: context.paw.warning),
+              Icon(Icons.assignment_return_outlined, color: context.paw.warning),
               const SizedBox(width: Space.md),
               Expanded(child: Text(l.selReturnsWaiting(returns))),
-              const Icon(Icons.chevron_right_rounded),
+              const Icon(Icons.chevron_right_outlined),
             ]),
           ),
         ],
@@ -124,12 +124,12 @@ class _SellerProductsState extends ConsumerState<_SellerProducts> {
       return PageBody(children: [
         const SizedBox(height: Space.md),
         Wrap(spacing: Space.sm, runSpacing: Space.sm, crossAxisAlignment: WrapCrossAlignment.center, children: [
-          FilledButton.icon(onPressed: () => context.push('/partner/product/new'), icon: const Icon(Icons.add_rounded), label: Text(l.selAddProduct)),
-          OutlinedButton.icon(onPressed: () => context.push('/partner/products/import'), icon: const Icon(Icons.upload_file_rounded), label: Text(l.selCsvUpload)),
+          FilledButton.icon(onPressed: () => context.push('/partner/product/new'), icon: const Icon(Icons.add_outlined), label: Text(l.selAddProduct)),
+          OutlinedButton.icon(onPressed: () => context.push('/partner/products/import'), icon: const Icon(Icons.upload_file_outlined), label: Text(l.selCsvUpload)),
         ]),
         const SizedBox(height: Space.md),
         TextField(
-          decoration: InputDecoration(prefixIcon: const Icon(Icons.search_rounded), hintText: l.selSearchProducts),
+          decoration: InputDecoration(prefixIcon: const Icon(Icons.search_outlined), hintText: l.selSearchProducts),
           onChanged: (v) => setState(() => _q = v),
         ),
         const SizedBox(height: Space.sm),
@@ -282,7 +282,7 @@ class _ProductEditScreenState extends ConsumerState<ProductEditScreen> {
           ]),
           PawTextField(label: l.selDescription, controller: _desc, maxLines: 4),
           SwitchListTile(contentPadding: EdgeInsets.zero, value: _active, title: Text(l.selVisible), subtitle: Text(l.selVisibleHint), onChanged: (v) => setState(() => _active = v)),
-          InfoNote(l.selNoRxNote, icon: Icons.medication_rounded),
+          InfoNote(l.selNoRxNote, icon: Icons.medication_outlined),
           const SizedBox(height: Space.md),
           PrimaryButton(label: l.save, loading: _busy, onPressed: _save),
         ]),
@@ -349,13 +349,13 @@ class _CsvImportScreenState extends ConsumerState<CsvImportScreen> {
         InfoNote(l.selCsvHelp(productCsvColumns.join(', '))),
         const SizedBox(height: Space.md),
         Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
-          FilledButton.icon(onPressed: _pick, icon: const Icon(Icons.file_open_rounded), label: Text(l.selCsvChoose)),
+          FilledButton.icon(onPressed: _pick, icon: const Icon(Icons.file_open_outlined), label: Text(l.selCsvChoose)),
           OutlinedButton.icon(
             onPressed: () => setState(() {
               _text.text = sampleProductCsv;
               _rows = parseProductCsv(_text.text);
             }),
-            icon: const Icon(Icons.description_rounded),
+            icon: const Icon(Icons.description_outlined),
             label: Text(l.selCsvSample),
           ),
           OutlinedButton.icon(
@@ -363,7 +363,7 @@ class _CsvImportScreenState extends ConsumerState<CsvImportScreen> {
               await Clipboard.setData(const ClipboardData(text: sampleProductCsv));
               if (context.mounted) showToast(context, l.selCsvCopied);
             },
-            icon: const Icon(Icons.copy_rounded),
+            icon: const Icon(Icons.copy_outlined),
             label: Text(l.selCsvCopyTemplate),
           ),
         ]),
@@ -384,7 +384,7 @@ class _CsvImportScreenState extends ConsumerState<CsvImportScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
                 borderColor: r.ok ? null : context.paw.error,
                 child: Row(children: [
-                  Icon(r.ok ? Icons.check_circle_rounded : Icons.error_rounded, color: r.ok ? context.paw.success : context.paw.error),
+                  Icon(r.ok ? Icons.check_circle_rounded : Icons.error_outlined, color: r.ok ? context.paw.success : context.paw.error),
                   const SizedBox(width: Space.sm),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -522,15 +522,15 @@ class _SellerPayouts extends ConsumerWidget {
       DemoBanner(l.selPayoutDemo),
       const SizedBox(height: Space.md),
       ResponsiveGrid(minItemWidth: 200, children: [
-        StatTile(label: l.selPayoutPending, value: Fmt.inr(sum('pending') + sum('on_hold')), icon: Icons.hourglass_top_rounded),
-        StatTile(label: l.selPayoutReady, value: Fmt.inr(ready), icon: Icons.account_balance_rounded, color: ready > 0 ? context.paw.success : null),
+        StatTile(label: l.selPayoutPending, value: Fmt.inr(sum('pending') + sum('on_hold')), icon: Icons.hourglass_top_outlined),
+        StatTile(label: l.selPayoutReady, value: Fmt.inr(ready), icon: Icons.account_balance_outlined, color: ready > 0 ? context.paw.success : null),
         StatTile(label: l.selPayoutPaid, value: Fmt.inr(sum('paid')), icon: Icons.check_circle_rounded),
-        StatTile(label: l.selCommissionPaid, value: Fmt.inr(orders.where((o) => payoutState(o, now) == 'paid').fold(0, (a, o) => a + o.commission)), icon: Icons.percent_rounded),
+        StatTile(label: l.selCommissionPaid, value: Fmt.inr(orders.where((o) => payoutState(o, now) == 'paid').fold(0, (a, o) => a + o.commission)), icon: Icons.percent_outlined),
       ]),
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.selRunPayout(Fmt.inr(ready)),
-        icon: Icons.payments_rounded,
+        icon: Icons.payments_outlined,
         onPressed: ready == 0
             ? null
             : () async {
@@ -615,7 +615,7 @@ class _SellerReviews extends ConsumerWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton.icon(
                       onPressed: () => _reply(context, ref, r),
-                      icon: const Icon(Icons.reply_rounded),
+                      icon: const Icon(Icons.reply_outlined),
                       label: Text(l.reply),
                     ),
                   ),
@@ -670,7 +670,7 @@ class _SellerProfile extends ConsumerWidget {
             child: PawCard(
               padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
               child: Row(children: [
-                const Icon(Icons.description_rounded),
+                const Icon(Icons.description_outlined),
                 const SizedBox(width: Space.md),
                 Expanded(child: Text('$d')),
                 StatusChip(l.selVerified, tone: ChipTone.success, icon: Icons.verified_rounded),
@@ -678,7 +678,7 @@ class _SellerProfile extends ConsumerWidget {
             ),
           ),
         const SizedBox(height: Space.md),
-        InfoNote(l.selNoRxNote, icon: Icons.medication_rounded),
+        InfoNote(l.selNoRxNote, icon: Icons.medication_outlined),
       ]);
     });
   }

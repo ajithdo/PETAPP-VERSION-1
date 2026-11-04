@@ -22,8 +22,8 @@ List<PetSection> petSections(BuildContext context, Pet pet) {
   final l = context.l10n;
   return [
     PetSection(Icons.favorite_rounded, l.tabHealth, l.petSectionHealth, '/health?pet=${pet.id}', context.paw.error),
-    PetSection(Icons.directions_walk_rounded, l.routine, l.petSectionRoutine, '/pets/${pet.id}/routine', context.colors.primary),
-    PetSection(Icons.lock_rounded, l.documentVault, l.petSectionDocs, petVaultLink(pet.id), context.paw.warning),
-    PetSection(Icons.photo_library_rounded, l.memoryAlbum, l.petSectionMemories, petAlbumLink(pet.id), context.paw.accent),
+    PetSection(Icons.directions_walk_outlined, l.routine, l.petSectionRoutine, '/pets/${pet.id}/routine', context.colors.primary),
+    PetSection(Icons.lock_outlined, l.documentVault, l.petSectionDocs, petVaultLink(pet.id), context.paw.warning),
+    PetSection(Icons.photo_library_outlined, l.memoryAlbum, l.petSectionMemories, petAlbumLink(pet.id), context.paw.accent),
   ];
 }

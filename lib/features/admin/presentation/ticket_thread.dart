@@ -39,7 +39,7 @@ class TicketThread extends StatelessWidget {
                 ),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Row(mainAxisSize: MainAxisSize.min, children: [
-                    if (m.fromAdmin) ...[Icon(Icons.support_agent_rounded, size: 16, color: context.colors.primary), const SizedBox(width: 4)],
+                    if (m.fromAdmin) ...[Icon(Icons.support_agent_outlined, size: 16, color: context.colors.primary), const SizedBox(width: 4)],
                     Flexible(
                       child: Text(m.fromAdmin ? (adminView ? m.byName : l.hpSupportTeam) : m.byName,
                           style: context.text.labelMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -76,7 +76,7 @@ class TicketSummary extends StatelessWidget {
         StatusChip(ticketStatusLabel(context, t.status), tone: ticketStatusTone(t.status)),
         StatusChip(ticketTopicLabel(context, t.topic)),
         if (t.linkType != 'other') StatusChip(t.linkLabel.isEmpty ? linkTypeLabel(context, t.linkType) : t.linkLabel, icon: linkTypeIcon(t.linkType)),
-        if (refund != null) StatusChip(l.hpRefunded(Fmt.inr((refund['amount'] as num?) ?? 0, context.lang)), tone: ChipTone.success, icon: Icons.currency_rupee_rounded),
+        if (refund != null) StatusChip(l.hpRefunded(Fmt.inr((refund['amount'] as num?) ?? 0, context.lang)), tone: ChipTone.success, icon: Icons.currency_rupee_outlined),
       ]),
       const SizedBox(height: Space.xs),
       Text(
@@ -139,7 +139,7 @@ class _TicketComposerState extends State<TicketComposer> {
         alignment: Alignment.centerRight,
         child: PrimaryButton(
           label: l.msgSend,
-          icon: Icons.send_rounded,
+          icon: Icons.send_outlined,
           expand: false,
           loading: _busy,
           onPressed: _ctrl.text.trim().isEmpty ? null : _send,

@@ -22,10 +22,10 @@ class FirstAidListScreen extends ConsumerWidget {
       ),
       body: PageBody(maxWidth: 760, children: [
         const SizedBox(height: Space.md),
-        InfoNote(l.firstAidEmergencyNote, icon: Icons.emergency_rounded, tone: ChipTone.error),
+        InfoNote(l.firstAidEmergencyNote, icon: Icons.emergency_outlined, tone: ChipTone.error),
         const SizedBox(height: Space.sm),
         Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-          StatusChip(l.firstAidOffline, tone: ChipTone.info, icon: Icons.offline_bolt_rounded),
+          StatusChip(l.firstAidOffline, tone: ChipTone.info, icon: Icons.offline_bolt_outlined),
           const DraftLabel(),
         ]),
         safetyGap,
@@ -36,7 +36,7 @@ class FirstAidListScreen extends ConsumerWidget {
         PawCard(
           onTap: () => context.push('/toxic-check'),
           child: Row(children: [
-            Icon(Icons.no_food_rounded, color: context.paw.warning, size: 32),
+            Icon(Icons.no_food_outlined, color: context.paw.warning, size: 32),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -44,7 +44,7 @@ class FirstAidListScreen extends ConsumerWidget {
                 Text(l.toxTileHint, style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
         const SizedBox(height: Space.xxl),
@@ -76,7 +76,7 @@ class _GuideTile extends StatelessWidget {
             Text(t.signs, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodySmall),
           ]),
         ),
-        const Icon(Icons.chevron_right_rounded),
+        const Icon(Icons.chevron_right_outlined),
       ]),
     );
   }
@@ -106,9 +106,9 @@ class FirstAidGuideScreen extends ConsumerWidget {
       body: PageBody(maxWidth: 680, children: [
         const SizedBox(height: Space.md),
         const DraftLabel(),
-        heading(Icons.visibility_rounded, l.firstAidSigns, context.colors.primary),
+        heading(Icons.visibility_outlined, l.firstAidSigns, context.colors.primary),
         Text(t.signs, style: context.text.bodyLarge),
-        heading(Icons.checklist_rounded, l.firstAidWhatToDo, context.paw.success),
+        heading(Icons.checklist_outlined, l.firstAidWhatToDo, context.paw.success),
         PawCard(
           child: Column(children: [
             for (var i = 0; i < t.steps.length; i++)
@@ -126,22 +126,22 @@ class FirstAidGuideScreen extends ConsumerWidget {
               ),
           ]),
         ),
-        heading(Icons.block_rounded, l.firstAidAvoid, context.paw.error),
+        heading(Icons.block_outlined, l.firstAidAvoid, context.paw.error),
         for (final a in t.avoid)
           Padding(
             padding: const EdgeInsets.only(bottom: Space.sm),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Icon(Icons.close_rounded, size: 20, color: context.paw.error),
+              Icon(Icons.close_outlined, size: 20, color: context.paw.error),
               const SizedBox(width: Space.sm),
               Expanded(child: Text(a, style: context.text.bodyLarge)),
             ]),
           ),
-        heading(Icons.local_hospital_rounded, l.firstAidWhenVet, context.paw.sos),
-        InfoNote(t.vet, icon: Icons.local_hospital_rounded, tone: ChipTone.error),
+        heading(Icons.local_hospital_outlined, l.firstAidWhenVet, context.paw.sos),
+        InfoNote(t.vet, icon: Icons.local_hospital_outlined, tone: ChipTone.error),
         safetyGap,
-        PrimaryButton(label: l.sosGetHelp, icon: Icons.emergency_rounded, danger: true, onPressed: () => openSos(context, ref)),
+        PrimaryButton(label: l.sosGetHelp, icon: Icons.emergency_outlined, danger: true, onPressed: () => openSos(context, ref)),
         const SizedBox(height: Space.sm),
-        SecondaryButton(label: l.firstAidTalkToVet, icon: Icons.video_call_rounded, onPressed: () => context.push('/televet')),
+        SecondaryButton(label: l.firstAidTalkToVet, icon: Icons.video_call_outlined, onPressed: () => context.push('/televet')),
         const SizedBox(height: Space.xxl),
       ]),
     );

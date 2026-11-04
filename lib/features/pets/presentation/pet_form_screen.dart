@@ -252,7 +252,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
                 final bytes = await pickSquarePhoto(context);
                 if (bytes != null) setState(() => _photo = bytes);
               },
-              icon: const Icon(Icons.photo_camera_rounded),
+              icon: const Icon(Icons.photo_camera_outlined),
             ),
           ),
         ]),
@@ -263,7 +263,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
         child: PawTextField(
           label: l.petName,
           controller: _name,
-          prefixIcon: Icons.pets_rounded,
+          prefixIcon: Icons.pets_outlined,
           autofocus: !_isEdit,
           textInputAction: TextInputAction.next,
           validator: (v) => (v == null || v.trim().isEmpty) ? l.fieldRequired : null,
@@ -298,12 +298,12 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
             });
           }
         },
-        icon: const Icon(Icons.search_rounded),
+        icon: const Icon(Icons.search_outlined),
         label: Text(breedText, overflow: TextOverflow.ellipsis),
       ),
       if (_species == 'bird') ...[
         const SizedBox(height: Space.md),
-        InfoNote(l.birdLegalNote, icon: Icons.gavel_rounded),
+        InfoNote(l.birdLegalNote, icon: Icons.gavel_outlined),
       ],
       const SizedBox(height: Space.lg),
       Text(l.colourTag, style: context.text.titleSmall),
@@ -327,7 +327,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
                   shape: BoxShape.circle,
                   border: Border.all(color: e.key == _color ? context.paw.textPrimary : Colors.transparent, width: 3),
                 ),
-                child: e.key == _color ? const Icon(Icons.check_rounded, color: Colors.white) : null,
+                child: e.key == _color ? const Icon(Icons.check_outlined, color: Colors.white) : null,
               ),
             ),
           ),
@@ -347,8 +347,8 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       const SizedBox(height: Space.sm),
       SegmentedButton<bool>(
         segments: [
-          ButtonSegment(value: false, label: Text(l.exactDate), icon: const Icon(Icons.cake_rounded)),
-          ButtonSegment(value: true, label: Text(l.approxAge), icon: const Icon(Icons.timelapse_rounded)),
+          ButtonSegment(value: false, label: Text(l.exactDate), icon: const Icon(Icons.cake_outlined)),
+          ButtonSegment(value: true, label: Text(l.approxAge), icon: const Icon(Icons.timelapse_outlined)),
         ],
         selected: {_useApprox},
         onSelectionChanged: (s) => setState(() => _useApprox = s.first),
@@ -357,7 +357,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       if (!_useApprox)
         OutlinedButton.icon(
           style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-          icon: const Icon(Icons.calendar_today_rounded),
+          icon: const Icon(Icons.calendar_today_outlined),
           label: Text(_birthday == null ? l.chooseDate : Fmt.date(_birthday!, context.lang)),
           onPressed: () async {
             final d = await showDatePicker(
@@ -404,7 +404,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
         controller: _weight,
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]'))],
-        prefixIcon: Icons.monitor_weight_rounded,
+        prefixIcon: Icons.monitor_weight_outlined,
       ),
       Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),

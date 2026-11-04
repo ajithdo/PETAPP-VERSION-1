@@ -81,7 +81,7 @@ class PawMap extends StatelessWidget {
 }
 
 /// Round pin used on maps.
-Marker pinMarker(LatLng p, {required Color color, IconData icon = Icons.place_rounded, double size = 40, String? label}) => Marker(
+Marker pinMarker(LatLng p, {required Color color, IconData icon = Icons.place_outlined, double size = 40, String? label}) => Marker(
       point: p,
       width: size,
       height: size,

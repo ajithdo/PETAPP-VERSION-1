@@ -123,13 +123,13 @@ class _PartnerSignupScreenState extends ConsumerState<PartnerSignupScreen> {
             PawTextField(
               label: l.businessName,
               controller: _business,
-              prefixIcon: Icons.storefront_rounded,
+              prefixIcon: Icons.storefront_outlined,
               validator: (v) => (v == null || v.trim().isEmpty) ? l.fieldRequired : null,
             ),
             DropdownButtonFormField<String>(
               initialValue: _area,
               isExpanded: true,
-              decoration: InputDecoration(labelText: l.areaCity, prefixIcon: const Icon(Icons.place_rounded)),
+              decoration: InputDecoration(labelText: l.areaCity, prefixIcon: const Icon(Icons.place_outlined)),
               items: [
                 for (final e in areas.entries) DropdownMenuItem(value: e.key, child: Text('${e.value.name}, ${e.value.city}')),
               ],
@@ -140,16 +140,16 @@ class _PartnerSignupScreenState extends ConsumerState<PartnerSignupScreen> {
               label: l.businessPhone,
               controller: _phone,
               keyboardType: TextInputType.phone,
-              prefixIcon: Icons.call_rounded,
+              prefixIcon: Icons.call_outlined,
               validator: (v) => (v == null || v.replaceAll(RegExp(r'\D'), '').length < 10) ? l.phoneInvalid : null,
             ),
-            PawTextField(label: l.businessAddress, controller: _address, prefixIcon: Icons.home_work_rounded),
+            PawTextField(label: l.businessAddress, controller: _address, prefixIcon: Icons.home_work_outlined),
             if (_kind == 'clinic')
               PawTextField(
                 label: l.vcRegNumber,
                 controller: _vcReg,
                 helper: l.vcRegHelp,
-                prefixIcon: Icons.verified_user_rounded,
+                prefixIcon: Icons.verified_user_outlined,
                 validator: (v) => (v == null || v.trim().isEmpty) ? l.fieldRequired : null,
               ),
             const SizedBox(height: Space.sm),
@@ -160,16 +160,16 @@ class _PartnerSignupScreenState extends ConsumerState<PartnerSignupScreen> {
             for (final d in _docs)
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                leading: Icon(Icons.description_rounded, color: context.colors.primary),
+                leading: Icon(Icons.description_outlined, color: context.colors.primary),
                 title: Text(d.name),
                 trailing: IconButton(
                   tooltip: l.remove,
-                  icon: const Icon(Icons.close_rounded),
+                  icon: const Icon(Icons.close_outlined),
                   onPressed: () => setState(() => _docs.remove(d)),
                 ),
               ),
             Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
-              OutlinedButton.icon(onPressed: _addDoc, icon: const Icon(Icons.upload_file_rounded), label: Text(l.uploadKyc)),
+              OutlinedButton.icon(onPressed: _addDoc, icon: const Icon(Icons.upload_file_outlined), label: Text(l.uploadKyc)),
               if (demo)
                 TextButton(
                   onPressed: () => setState(() => _docs.add((name: l.sampleIdProof, bytes: null))),
@@ -183,14 +183,14 @@ class _PartnerSignupScreenState extends ConsumerState<PartnerSignupScreen> {
               PawTextField(
                 label: l.yourName,
                 controller: _name,
-                prefixIcon: Icons.person_outline_rounded,
+                prefixIcon: Icons.person_outlined,
                 validator: (v) => (v == null || v.trim().isEmpty) ? l.fieldRequired : null,
               ),
               PawTextField(
                 label: l.email,
                 controller: _email,
                 keyboardType: TextInputType.emailAddress,
-                prefixIcon: Icons.mail_outline_rounded,
+                prefixIcon: Icons.mail_outlined,
                 validator: (v) => validateEmail(context, v),
               ),
               PawTextField(
@@ -198,7 +198,7 @@ class _PartnerSignupScreenState extends ConsumerState<PartnerSignupScreen> {
                 controller: _password,
                 obscure: true,
                 helper: l.passwordHelper,
-                prefixIcon: Icons.lock_outline_rounded,
+                prefixIcon: Icons.lock_outlined,
                 validator: (v) => (v == null || v.length < 6) ? l.authErrWeakPassword : null,
               ),
             ],
@@ -206,7 +206,7 @@ class _PartnerSignupScreenState extends ConsumerState<PartnerSignupScreen> {
         ),
         const SizedBox(height: Space.md),
         if (_error != null) ...[
-          InfoNote(_error!, icon: Icons.error_outline_rounded, tone: ChipTone.error),
+          InfoNote(_error!, icon: Icons.error_outlined, tone: ChipTone.error),
           const SizedBox(height: Space.md),
         ],
         PrimaryButton(label: l.submitApplication, loading: _busy, onPressed: _submit),

@@ -121,7 +121,7 @@ Future<void> showShareMemorySheet(BuildContext context, WidgetRef ref, AlbumItem
         const SizedBox(height: Space.sm),
         PrimaryButton(
           label: l.albumShareToApps,
-          icon: Icons.ios_share_rounded,
+          icon: Icons.ios_share_outlined,
           loading: busy,
           onPressed: () async {
             setState(() => busy = true);
@@ -204,7 +204,7 @@ class _FamilyLinkSheetState extends ConsumerState<_FamilyLinkSheet> {
       const SizedBox(height: Space.lg),
       PrimaryButton(
         label: l.vaultCreateLink,
-        icon: Icons.link_rounded,
+        icon: Icons.link_outlined,
         loading: _busy,
         onPressed: () async {
           setState(() => _busy = true);

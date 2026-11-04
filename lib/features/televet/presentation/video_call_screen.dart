@@ -133,7 +133,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                       CircleAvatar(
                         radius: 64,
                         backgroundColor: const Color(0xFF2DD4BF),
-                        child: Icon(isOwner ? Icons.medical_services_rounded : Icons.pets_rounded, size: 60, color: const Color(0xFF04201D)),
+                        child: Icon(isOwner ? Icons.medical_services_outlined : Icons.pets_outlined, size: 60, color: const Color(0xFF04201D)),
                       ),
                       const SizedBox(height: Space.lg),
                       Text(other, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700)),
@@ -166,7 +166,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                     Padding(
                       padding: const EdgeInsets.only(top: Space.xs),
                       child: Row(children: [
-                        const Icon(Icons.signal_cellular_alt_1_bar_rounded, color: Color(0xFFFBBF24), size: 18),
+                        const Icon(Icons.signal_cellular_alt_1_bar_outlined, color: Color(0xFFFBBF24), size: 18),
                         const SizedBox(width: 4),
                         Flexible(child: Text(l.tvWeakNetwork, style: const TextStyle(color: Color(0xFFFBBF24), fontSize: 13))),
                       ]),
@@ -176,7 +176,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                       padding: const EdgeInsets.only(top: Space.xs),
                       child: Semantics(
                         label: l.tvGoodNetwork,
-                        child: const Icon(Icons.signal_cellular_alt_rounded, color: Color(0xFF4ADE80), size: 18),
+                        child: const Icon(Icons.signal_cellular_alt_outlined, color: Color(0xFF4ADE80), size: 18),
                       ),
                     ),
                 ]),
@@ -199,7 +199,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                             const SizedBox(height: 4),
                             Text(_frontCamera ? l.tvFrontCamera : l.tvBackCamera, style: const TextStyle(color: Colors.white70, fontSize: 11)),
                           ])
-                        : const Icon(Icons.videocam_off_rounded, color: Colors.white54),
+                        : const Icon(Icons.videocam_off_outlined, color: Colors.white54),
                   ),
                 ),
               ),
@@ -217,29 +217,29 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                   Padding(padding: const EdgeInsets.only(bottom: Space.md), child: Text(l.tvCallLiveLater, style: const TextStyle(color: Colors.white70), textAlign: TextAlign.center)),
                 Wrap(alignment: WrapAlignment.center, spacing: Space.md, runSpacing: Space.md, children: [
                   _CallButton(
-                    icon: _muted ? Icons.mic_off_rounded : Icons.mic_rounded,
+                    icon: _muted ? Icons.mic_off_outlined : Icons.mic_outlined,
                     label: _muted ? l.tvUnmute : l.tvMute,
                     active: _muted,
                     onTap: () => setState(() => _muted = !_muted),
                   ),
                   _CallButton(
-                    icon: _cameraOn ? Icons.videocam_rounded : Icons.videocam_off_rounded,
+                    icon: _cameraOn ? Icons.videocam_outlined : Icons.videocam_off_outlined,
                     label: _cameraOn ? l.tvCameraOffAction : l.tvCameraOnAction,
                     active: !_cameraOn,
                     onTap: () => setState(() => _cameraOn = !_cameraOn),
                   ),
                   _CallButton(
-                    icon: Icons.cameraswitch_rounded,
+                    icon: Icons.cameraswitch_outlined,
                     label: l.tvSwitchCamera,
                     onTap: _cameraOn ? () => setState(() => _frontCamera = !_frontCamera) : null,
                   ),
                   _CallButton(
-                    icon: _speaker ? Icons.volume_up_rounded : Icons.hearing_rounded,
+                    icon: _speaker ? Icons.volume_up_outlined : Icons.hearing_outlined,
                     label: _speaker ? l.tvSpeakerOn : l.tvSpeakerOff,
                     active: !_speaker,
                     onTap: () => setState(() => _speaker = !_speaker),
                   ),
-                  _CallButton(icon: Icons.call_end_rounded, label: l.tvEndCall, danger: true, onTap: () => _end(c)),
+                  _CallButton(icon: Icons.call_end_outlined, label: l.tvEndCall, danger: true, onTap: () => _end(c)),
                 ]),
               ]),
             ),

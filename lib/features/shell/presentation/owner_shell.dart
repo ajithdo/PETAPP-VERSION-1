@@ -25,11 +25,12 @@ class OwnerShell extends ConsumerWidget {
     final path = GoRouterState.of(context).uri.path;
     final showTopBar = _tabRoots.contains(path);
     final destinations = [
-      (Icons.home_outlined, Icons.home_rounded, l.tabHome),
-      (Icons.favorite_border_rounded, Icons.favorite_rounded, l.tabHealth),
-      (Icons.event_outlined, Icons.event_rounded, l.tabBook),
-      (Icons.shopping_bag_outlined, Icons.shopping_bag_rounded, l.tabShop),
-      (Icons.person_outline_rounded, Icons.person_rounded, l.tabMe),
+      // Outlined when idle, filled when selected (Design 2 tab bar).
+      (Icons.home_outlined, Icons.home, l.tabHome),
+      (Icons.favorite_border, Icons.favorite, l.tabHealth),
+      (Icons.event_outlined, Icons.event, l.tabBook),
+      (Icons.shopping_bag_outlined, Icons.shopping_bag, l.tabShop),
+      (Icons.person_outlined, Icons.person, l.tabMe),
     ];
     void go(int i) => shell.goBranch(i, initialLocation: i == shell.currentIndex);
 
@@ -123,14 +124,14 @@ class OwnerTopBar extends ConsumerWidget {
     final phone = context.isPhone;
     final actions = [
       PawIconButton(
-        icon: Icons.chat_bubble_outline_rounded,
+        icon: Icons.chat_bubble_outlined,
         tooltip: l.messages,
         badge: msgs,
         onPressed: () => context.push('/messages'),
       ),
       const SizedBox(width: Space.xs),
       PawIconButton(
-        icon: Icons.notifications_none_rounded,
+        icon: Icons.notifications_none_outlined,
         tooltip: l.notifications,
         badge: notes,
         onPressed: () => context.push('/notifications'),
@@ -193,7 +194,7 @@ class PetSwitcher extends ConsumerWidget {
             child: PawPill(
               label: l.allPets,
               selected: all,
-              leading: Icon(Icons.pets_rounded, size: IconSizes.sm, color: context.paw.brand),
+              leading: Icon(Icons.pets_outlined, size: IconSizes.sm, color: context.paw.brand),
               onTap: () => notifier.selectPet('all'),
             ),
           ),
@@ -211,7 +212,7 @@ class PetSwitcher extends ConsumerWidget {
         PawPill(
           label: l.addPet,
           outlined: true,
-          leading: Icon(Icons.add_rounded, size: IconSizes.sm, color: context.paw.textSecondary),
+          leading: Icon(Icons.add_outlined, size: IconSizes.sm, color: context.paw.textSecondary),
           onTap: () => context.push('/pets/new'),
         ),
       ]),

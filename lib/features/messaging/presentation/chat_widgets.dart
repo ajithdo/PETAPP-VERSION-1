@@ -15,9 +15,9 @@ import 'attachments.dart';
 import 'voice_note.dart';
 
 IconData conversationIcon(Conversation c) => switch (c.type) {
-      'televet' => Icons.video_call_rounded,
-      'assistant' => Icons.auto_awesome_rounded,
-      _ => c.providerKind == 'vet' ? Icons.medical_services_rounded : kindIcon(c.providerKind),
+      'televet' => Icons.video_call_outlined,
+      'assistant' => Icons.auto_awesome_outlined,
+      _ => c.providerKind == 'vet' ? Icons.medical_services_outlined : kindIcon(c.providerKind),
     };
 
 /// Round avatar for a conversation: the provider's icon for pet parents,
@@ -180,7 +180,7 @@ class MessageBubble extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(color: context.paw.error.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(10)),
-                child: Icon(Icons.picture_as_pdf_rounded, color: context.paw.error),
+                child: Icon(Icons.picture_as_pdf_outlined, color: context.paw.error),
               ),
               const SizedBox(width: Space.sm),
               Flexible(
@@ -226,7 +226,7 @@ class MessageBubble extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(Icons.shield_rounded, size: 13, color: context.paw.textSecondary),
+                    Icon(Icons.shield_outlined, size: 13, color: context.paw.textSecondary),
                     const SizedBox(width: 4),
                     Flexible(child: Text(l.msgNumberHidden, style: context.text.labelSmall)),
                   ]),
@@ -242,7 +242,7 @@ class MessageBubble extends ConsumerWidget {
                   const SizedBox(width: 4),
                   Semantics(
                     label: read ? l.msgRead : l.msgSent,
-                    child: Icon(read ? Icons.done_all_rounded : Icons.done_rounded, size: 16, color: read ? context.colors.primary : context.paw.textSecondary),
+                    child: Icon(read ? Icons.done_all_outlined : Icons.done_outlined, size: 16, color: read ? context.colors.primary : context.paw.textSecondary),
                   ),
                 ],
               ]),
@@ -267,7 +267,7 @@ class MessageBubble extends ConsumerWidget {
             padding: const EdgeInsets.all(Space.md),
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               Row(children: [
-                Icon(Icons.receipt_long_rounded, color: context.colors.primary),
+                Icon(Icons.receipt_long_outlined, color: context.colors.primary),
                 const SizedBox(width: Space.sm),
                 Expanded(child: Text(l.rxCardTitle(m.senderName), style: context.text.titleSmall)),
               ]),
@@ -275,7 +275,7 @@ class MessageBubble extends ConsumerWidget {
               const SizedBox(height: Space.sm),
               FilledButton.tonalIcon(
                 onPressed: m.prescriptionId == null ? null : () => context.push('/prescriptions/${m.prescriptionId}'),
-                icon: const Icon(Icons.picture_as_pdf_rounded),
+                icon: const Icon(Icons.picture_as_pdf_outlined),
                 label: Text(l.rxView),
               ),
               const SizedBox(height: 2),
@@ -309,7 +309,7 @@ class MessageBubble extends ConsumerWidget {
               padding: const EdgeInsets.all(Space.md),
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 Row(children: [
-                  Icon(emergency ? Icons.emergency_rounded : Icons.local_hospital_rounded, color: c),
+                  Icon(emergency ? Icons.emergency_outlined : Icons.local_hospital_outlined, color: c),
                   const SizedBox(width: Space.sm),
                   Expanded(
                     child: Text(
@@ -324,13 +324,13 @@ class MessageBubble extends ConsumerWidget {
                   FilledButton.icon(
                     style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
                     onPressed: () => openSos(context, ref),
-                    icon: const Icon(Icons.emergency_rounded),
+                    icon: const Icon(Icons.emergency_outlined),
                     label: Text(l.sosGetHelp),
                   )
                 else
                   FilledButton.tonalIcon(
                     onPressed: () => context.push(recommendClinicId != null ? '/book/place/$recommendClinicId' : '/book/find/clinic'),
-                    icon: const Icon(Icons.event_available_rounded),
+                    icon: const Icon(Icons.event_available_outlined),
                     label: Text(l.tvBookVisit),
                   ),
               ]),
@@ -342,17 +342,17 @@ class MessageBubble extends ConsumerWidget {
 
     final (IconData icon, String text) = switch (m.event) {
       'booking_chat' => (
-          Icons.event_note_rounded,
+          Icons.event_note_outlined,
           l.msgSysBookingChat(meta['petName'] as String? ?? '', timeOf('start')),
         ),
       'tv_started' => (
-          Icons.video_call_rounded,
+          Icons.video_call_outlined,
           parseDate(meta['scheduledAt']) != null ? l.msgSysTvScheduled(timeOf('scheduledAt')) : (meta['mode'] == 'video' ? l.msgSysTvStartedVideo : l.msgSysTvStarted),
         ),
-      'tv_joined' => (Icons.how_to_reg_rounded, l.msgSysVetJoined(meta['name'] as String? ?? '', timeOf('endsAt'))),
+      'tv_joined' => (Icons.how_to_reg_outlined, l.msgSysVetJoined(meta['name'] as String? ?? '', timeOf('endsAt'))),
       'tv_ended' => (Icons.check_circle_rounded, l.msgSysTvEnded),
-      'call_ended' => (Icons.videocam_off_rounded, l.msgSysCallEnded(formatSeconds((meta['seconds'] as num?)?.toInt() ?? 0))),
-      _ => (Icons.info_outline_rounded, m.text),
+      'call_ended' => (Icons.videocam_off_outlined, l.msgSysCallEnded(formatSeconds((meta['seconds'] as num?)?.toInt() ?? 0))),
+      _ => (Icons.info_outlined, m.text),
     };
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Space.sm),
@@ -412,7 +412,7 @@ class ChatSafetyNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Space.sm),
-      child: InfoNote(context.l10n.msgSafetyNote, icon: Icons.shield_rounded),
+      child: InfoNote(context.l10n.msgSafetyNote, icon: Icons.shield_outlined),
     );
   }
 }

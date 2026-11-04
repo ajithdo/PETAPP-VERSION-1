@@ -15,15 +15,15 @@ class AdminShell extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final sections = [
-      PortalSection('dashboard', Icons.insights_rounded, l.aDashboard),
+      PortalSection('dashboard', Icons.insights_outlined, l.aDashboard),
       PortalSection('approvals', Icons.verified_rounded, l.aApprovals),
-      PortalSection('users', Icons.people_rounded, l.aUsers),
-      PortalSection('catalogue', Icons.category_rounded, l.aCatalogue),
-      PortalSection('complaints', Icons.support_agent_rounded, l.aComplaints),
-      PortalSection('moderation', Icons.flag_rounded, l.aModeration),
-      PortalSection('settings', Icons.tune_rounded, l.aSettings),
-      PortalSection('outbox', Icons.outbox_rounded, l.aOutbox),
-      PortalSection('audit', Icons.history_rounded, l.aAudit),
+      PortalSection('users', Icons.people_outlined, l.aUsers),
+      PortalSection('catalogue', Icons.category_outlined, l.aCatalogue),
+      PortalSection('complaints', Icons.support_agent_outlined, l.aComplaints),
+      PortalSection('moderation', Icons.flag_outlined, l.aModeration),
+      PortalSection('settings', Icons.tune_outlined, l.aSettings),
+      PortalSection('outbox', Icons.outbox_outlined, l.aOutbox),
+      PortalSection('audit', Icons.history_outlined, l.aAudit),
     ];
     final current = sections.any((s) => s.key == section) ? section : 'dashboard';
     final body = adminSectionBody(context, ref, current) ??

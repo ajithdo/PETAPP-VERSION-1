@@ -53,14 +53,14 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
         actions: [
           IconButton(
             tooltip: l.vaultLockSettings,
-            icon: const Icon(Icons.lock_outline_rounded),
+            icon: const Icon(Icons.lock_outlined),
             onPressed: () => showVaultLockSheet(context, ref),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => showUploadSheet(context, ref, pet: defaultPet, fixedPet: fixed != null),
-        icon: const Icon(Icons.add_rounded),
+        icon: const Icon(Icons.add_outlined),
         label: Text(l.vaultAddDocument),
       ),
       body: AsyncView<List<VaultDoc>>(
@@ -88,12 +88,12 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
               FilledButton.tonalIcon(
                 onPressed: () => context.push(fixed == null ? '/vault/insurance' : '/vault/insurance?pet=${fixed.id}'),
-                icon: const Icon(Icons.health_and_safety_rounded),
+                icon: const Icon(Icons.health_and_safety_outlined),
                 label: Text(l.vaultInsuranceTitle),
               ),
               FilledButton.tonalIcon(
                 onPressed: () => context.push('/vault/shares'),
-                icon: const Icon(Icons.link_rounded),
+                icon: const Icon(Icons.link_outlined),
                 label: Text(l.vaultShareLinks),
               ),
             ]),
@@ -105,12 +105,12 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
               onChanged: (_) => setState(() {}),
               decoration: InputDecoration(
                 hintText: l.vaultSearchHint,
-                prefixIcon: const Icon(Icons.search_rounded),
+                prefixIcon: const Icon(Icons.search_outlined),
                 suffixIcon: _search.text.isEmpty
                     ? null
                     : IconButton(
                         tooltip: l.vaultClearSearch,
-                        icon: const Icon(Icons.close_rounded),
+                        icon: const Icon(Icons.close_outlined),
                         onPressed: () => setState(_search.clear),
                       ),
               ),
@@ -172,7 +172,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
               ],
             ],
             const SizedBox(height: Space.lg),
-            InfoNote(l.vaultSecureNote, icon: Icons.shield_rounded),
+            InfoNote(l.vaultSecureNote, icon: Icons.shield_outlined),
             const SizedBox(height: 72),
           ]);
         },
@@ -202,7 +202,7 @@ class DocTile extends StatelessWidget {
       if (doc.expiry != null) expiryText(context, doc.expiry!) else l.vaultAddedOn(Fmt.date(doc.createdAt, context.lang)),
     ].join(' · ');
     final chip = doc.needsReview
-        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Icons.auto_awesome_rounded)
+        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Icons.auto_awesome_outlined)
         : expiryChip(context, doc.expiry);
     return Padding(
       padding: const EdgeInsets.only(bottom: Space.sm),
@@ -226,7 +226,7 @@ class DocTile extends StatelessWidget {
               ],
             ]),
           ),
-          const Icon(Icons.chevron_right_rounded),
+          const Icon(Icons.chevron_right_outlined),
         ]),
       ),
     );
@@ -249,7 +249,7 @@ class StorageMeter extends ConsumerWidget {
       child: PawCard(
         padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.md),
         child: Row(children: [
-          Icon(Icons.cloud_rounded, color: color),
+          Icon(Icons.cloud_outlined, color: color),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -287,7 +287,7 @@ Future<bool> ensureStorageRoom(BuildContext context, WidgetRef ref, int bytes) a
     await showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        icon: Icon(Icons.cloud_off_rounded, color: ctx.paw.warning, size: 32),
+        icon: Icon(Icons.cloud_off_outlined, color: ctx.paw.warning, size: 32),
         title: Text(l.vaultStorageFullTitle),
         content: Text(l.vaultStorageFullBodyPlus(used, limit)),
         actions: [FilledButton(onPressed: () => Navigator.pop(ctx), child: Text(l.ok))],

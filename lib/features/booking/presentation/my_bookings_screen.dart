@@ -218,7 +218,7 @@ class BookingDetailScreen extends ConsumerWidget {
               const SizedBox(height: Space.sm),
               TextButton.icon(
                 onPressed: () => context.push('${partnerView ? '/help' : '/me/help'}/new?booking=${b.id}'),
-                icon: const Icon(Icons.support_agent_rounded),
+                icon: const Icon(Icons.support_agent_outlined),
                 label: Text(context.l10n.hpGetHelpBooking),
               ),
             ],
@@ -235,7 +235,7 @@ class BookingDetailScreen extends ConsumerWidget {
       if (b.status == 'confirmed') ...[
         SecondaryButton(
           label: l.addToCalendar,
-          icon: Icons.event_rounded,
+          icon: Icons.event_outlined,
           onPressed: () {
             final ics = icsFor(
               uid: b.id,
@@ -258,18 +258,18 @@ class BookingDetailScreen extends ConsumerWidget {
         Row(
           children: [
             Expanded(
-              child: SecondaryButton(label: l.call, icon: Icons.call_rounded, onPressed: () => callNumber(context, ref, place.phone)),
+              child: SecondaryButton(label: l.call, icon: Icons.call_outlined, onPressed: () => callNumber(context, ref, place.phone)),
             ),
             const SizedBox(width: Space.sm),
             Expanded(
-              child: SecondaryButton(label: l.message, icon: Icons.chat_rounded, onPressed: () => context.push('/messages/new?booking=${b.id}')),
+              child: SecondaryButton(label: l.message, icon: Icons.chat_outlined, onPressed: () => context.push('/messages/new?booking=${b.id}')),
             ),
           ],
         ),
         const SizedBox(height: Space.sm),
       ],
       if (b.status == 'confirmed' && b.start.isAfter(DateTime.now()) && place != null) ...[
-        SecondaryButton(label: l.reschedule, icon: Icons.edit_calendar_rounded, onPressed: () => _reschedule(context, ref, b, place)),
+        SecondaryButton(label: l.reschedule, icon: Icons.edit_calendar_outlined, onPressed: () => _reschedule(context, ref, b, place)),
         const SizedBox(height: Space.sm),
       ],
       if (b.isActive && b.start.isAfter(DateTime.now()))

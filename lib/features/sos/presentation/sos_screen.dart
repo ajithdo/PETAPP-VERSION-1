@@ -193,7 +193,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         title: Text(l.sosTitle),
         leading: IconButton(
           tooltip: l.close,
-          icon: const Icon(Icons.close_rounded),
+          icon: const Icon(Icons.close_outlined),
           onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
         ),
       ),
@@ -202,11 +202,11 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         _LocationLine(spot: spot, locating: _locating, onChange: _changeArea, onRetry: _locate),
         if (clinics.savedAt != null) ...[
           const SizedBox(height: Space.sm),
-          InfoNote(l.sosSavedClinics(Fmt.dateTime(clinics.savedAt!, context.lang)), icon: Icons.wifi_off_rounded, tone: ChipTone.warning),
+          InfoNote(l.sosSavedClinics(Fmt.dateTime(clinics.savedAt!, context.lang)), icon: Icons.wifi_off_outlined, tone: ChipTone.warning),
         ],
         const SizedBox(height: Space.lg),
         _BigOption(
-          icon: Icons.call_rounded,
+          icon: Icons.call_outlined,
           title: l.sosCallNearest,
           subtitle: nearest == null ? l.sosFinding : '${nearest.clinic.name} · ${Fmt.km(nearest.km)}',
           filled: true,
@@ -227,7 +227,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         ],
         const SizedBox(height: Space.md),
         _BigOption(
-          icon: Icons.near_me_rounded,
+          icon: Icons.near_me_outlined,
           title: l.sosGetAddress,
           subtitle: nearest == null ? l.sosFinding : nearest.clinic.fullAddress,
           filled: false,
@@ -252,7 +252,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         PawCard(
           onTap: () => context.push('/first-aid'),
           child: Row(children: [
-            Icon(Icons.medical_services_rounded, color: context.paw.sos, size: 32),
+            Icon(Icons.medical_services_outlined, color: context.paw.sos, size: 32),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -260,7 +260,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
                 Text(l.firstAidOfflineHint, style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
         const SizedBox(height: Space.xxl),
@@ -294,7 +294,7 @@ class _LocationLine extends StatelessWidget {
       child: Row(children: [
         locating
             ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
-            : Icon(s?.source == SosSource.gps ? Icons.my_location_rounded : Icons.location_off_rounded,
+            : Icon(s?.source == SosSource.gps ? Icons.my_location_outlined : Icons.location_off_outlined,
                 color: s?.source == SosSource.gps ? context.paw.success : context.paw.warning),
         const SizedBox(width: Space.md),
         Expanded(
@@ -304,7 +304,7 @@ class _LocationLine extends StatelessWidget {
           ]),
         ),
         if (!locating) ...[
-          if (s?.source != SosSource.gps) IconButton(tooltip: l.sosTryLocation, icon: const Icon(Icons.refresh_rounded), onPressed: onRetry),
+          if (s?.source != SosSource.gps) IconButton(tooltip: l.sosTryLocation, icon: const Icon(Icons.refresh_outlined), onPressed: onRetry),
           TextButton(onPressed: onChange, child: Text(l.sosChangeArea)),
         ],
       ]),
@@ -348,7 +348,7 @@ class _BigOption extends StatelessWidget {
                     Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodyMedium?.copyWith(color: fg)),
                   ]),
                 ),
-                Icon(expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded, color: fg),
+                Icon(expanded ? Icons.expand_less_outlined : Icons.expand_more_outlined, color: fg),
               ]),
             ),
           ),
@@ -381,7 +381,7 @@ class _ClinicCallTile extends StatelessWidget {
       trailing: IconButton.filled(
         tooltip: l.sosCallClinic(c.name),
         style: IconButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, minimumSize: const Size(48, 48)),
-        icon: const Icon(Icons.call_rounded),
+        icon: const Icon(Icons.call_outlined),
         onPressed: onCall,
       ),
     );
@@ -419,20 +419,20 @@ class _AddressCard extends StatelessWidget {
               interactive: false,
               fitPoints: [LatLng(c.lat, c.lng), LatLng(spot.lat, spot.lng)],
               markers: [
-                pinMarker(LatLng(c.lat, c.lng), color: context.paw.sos, icon: Icons.local_hospital_rounded),
+                pinMarker(LatLng(c.lat, c.lng), color: context.paw.sos, icon: Icons.local_hospital_outlined),
                 dotMarker(LatLng(spot.lat, spot.lng), context.colors.primary),
               ],
             ),
           ),
         ),
         const SizedBox(height: Space.md),
-        PrimaryButton(label: l.openInMaps, icon: Icons.directions_rounded, onPressed: () => openDirections(c.lat, c.lng, label: c.name)),
+        PrimaryButton(label: l.openInMaps, icon: Icons.directions_outlined, onPressed: () => openDirections(c.lat, c.lng, label: c.name)),
         const SizedBox(height: Space.sm),
         Row(children: [
           Expanded(
             child: SecondaryButton(
               label: l.copy,
-              icon: Icons.copy_rounded,
+              icon: Icons.copy_outlined,
               onPressed: () async {
                 await Clipboard.setData(ClipboardData(text: text));
                 if (context.mounted) showToast(context, l.copied);
@@ -443,7 +443,7 @@ class _AddressCard extends StatelessWidget {
           Expanded(
             child: SecondaryButton(
               label: l.share,
-              icon: Icons.share_rounded,
+              icon: Icons.share_outlined,
               onPressed: () async {
                 try {
                   await SharePlus.instance.share(ShareParams(text: text));

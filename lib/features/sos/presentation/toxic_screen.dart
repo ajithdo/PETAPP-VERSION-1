@@ -65,12 +65,12 @@ class _ToxicCheckScreenState extends ConsumerState<ToxicCheckScreen> {
           onChanged: (_) => setState(() {}),
           textInputAction: TextInputAction.search,
           decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.search_rounded),
+            prefixIcon: const Icon(Icons.search_outlined),
             hintText: l.toxSearchHint,
             labelText: l.toxSearchLabel,
             suffixIcon: _search.text.isEmpty
                 ? null
-                : IconButton(tooltip: l.clearSearch, icon: const Icon(Icons.close_rounded), onPressed: () => setState(_search.clear)),
+                : IconButton(tooltip: l.clearSearch, icon: const Icon(Icons.close_outlined), onPressed: () => setState(_search.clear)),
           ),
         ),
         const SizedBox(height: Space.md),
@@ -152,11 +152,11 @@ Future<void> _showToxItem(BuildContext context, ToxItem item, String? species) {
           ),
       if (level == ToxLevel.danger) ...[
         const SizedBox(height: Space.md),
-        InfoNote(l.toxAteIt, icon: Icons.emergency_rounded, tone: ChipTone.error),
+        InfoNote(l.toxAteIt, icon: Icons.emergency_outlined, tone: ChipTone.error),
         const SizedBox(height: Space.sm),
         PrimaryButton(
           label: l.sosGetHelp,
-          icon: Icons.emergency_rounded,
+          icon: Icons.emergency_outlined,
           danger: true,
           onPressed: () {
             Navigator.pop(ctx);
@@ -166,7 +166,7 @@ Future<void> _showToxItem(BuildContext context, ToxItem item, String? species) {
         const SizedBox(height: Space.sm),
         SecondaryButton(
           label: l.toxPoisoningGuide,
-          icon: Icons.medical_services_rounded,
+          icon: Icons.medical_services_outlined,
           onPressed: () {
             Navigator.pop(ctx);
             context.push('/first-aid/poisoning');

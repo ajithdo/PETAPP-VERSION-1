@@ -74,7 +74,7 @@ class _AlbumVideoViewState extends ConsumerState<AlbumVideoView> {
     if (_failed) {
       return Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Icon(Icons.videocam_off_rounded, color: Colors.white70, size: 48),
+          const Icon(Icons.videocam_off_outlined, color: Colors.white70, size: 48),
           const SizedBox(height: Space.sm),
           Text(l.albumVideoFailed, style: const TextStyle(color: Colors.white70), textAlign: TextAlign.center),
         ]),
@@ -122,7 +122,7 @@ class _PlayButton extends StatelessWidget {
         iconSize: 40,
         style: IconButton.styleFrom(backgroundColor: Colors.black54, foregroundColor: Colors.white, minimumSize: const Size(72, 72)),
         onPressed: onTap,
-        icon: Icon(playing ? Icons.pause_rounded : Icons.play_arrow_rounded),
+        icon: Icon(playing ? Icons.pause_outlined : Icons.play_arrow_outlined),
       ),
     );
   }

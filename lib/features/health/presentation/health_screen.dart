@@ -61,7 +61,7 @@ class _PetDueTile extends ConsumerWidget {
         const SizedBox(width: Space.md),
         Expanded(child: Text(pet.name, style: context.text.titleSmall)),
         if (urgent > 0) StatusChip(context.l10n.itemsNeedAttention(urgent), tone: ChipTone.warning),
-        const Icon(Icons.chevron_right_rounded),
+        const Icon(Icons.chevron_right_outlined),
       ]),
     );
   }
@@ -86,12 +86,12 @@ class HealthBody extends ConsumerWidget {
       Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
         FilledButton.tonalIcon(
           onPressed: () => context.push('/pets/${pet.id}/report'),
-          icon: const Icon(Icons.picture_as_pdf_rounded),
+          icon: const Icon(Icons.picture_as_pdf_outlined),
           label: Text(l.healthReport),
         ),
         FilledButton.tonalIcon(
           onPressed: () => context.push('/pets/${pet.id}/card'),
-          icon: const Icon(Icons.badge_rounded),
+          icon: const Icon(Icons.badge_outlined),
           label: Text(l.medicalCard),
         ),
       ]),
@@ -186,7 +186,7 @@ Future<void> showDoseActions(BuildContext context, WidgetRef ref, Pet pet, Medic
       Text('${m.name} · ${pet.name}', style: ctx.text.titleMedium),
       Text('${m.dose} ${unitLabel(ctx, m.unit)} · ${Fmt.dateTime(dose, ctx.lang)}${m.withFood ? ' · ${l.withFood}' : ''}', style: ctx.text.bodySmall),
       const SizedBox(height: Space.lg),
-      PrimaryButton(label: l.given, icon: Icons.check_rounded, onPressed: () => log('given')),
+      PrimaryButton(label: l.given, icon: Icons.check_outlined, onPressed: () => log('given')),
       const SizedBox(height: Space.sm),
       Row(children: [
         Expanded(child: SecondaryButton(label: l.skip, onPressed: () => log('skipped'))),
@@ -223,10 +223,10 @@ class _VaccinesSection extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(vertical: Space.xs),
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               if (s.needsCatchUp)
-                Padding(padding: const EdgeInsets.all(Space.md), child: InfoNote(l.catchUpNote, icon: Icons.support_agent_rounded)),
+                Padding(padding: const EdgeInsets.all(Space.md), child: InfoNote(l.catchUpNote, icon: Icons.support_agent_outlined)),
               for (final i in s.items)
                 ListTile(
-                  leading: Icon(Icons.vaccines_rounded, color: i.status == DoseStatus.overdue ? context.paw.error : context.colors.primary),
+                  leading: Icon(Icons.vaccines_outlined, color: i.status == DoseStatus.overdue ? context.paw.error : context.colors.primary),
                   title: Text('${i.template.name} · ${doseLabel(context, i.template.doseLabel)}'),
                   subtitle: Text(_subtitle(context, i)),
                   trailing: statusChipWidget(context, i.status),
@@ -234,7 +234,7 @@ class _VaccinesSection extends ConsumerWidget {
                 ),
               for (final r in recs.where((r) => r.key == 'other'))
                 ListTile(
-                  leading: const Icon(Icons.vaccines_rounded),
+                  leading: const Icon(Icons.vaccines_outlined),
                   title: Text(r.name),
                   subtitle: Text(Fmt.date(r.givenDate, context.lang)),
                   trailing: statusChipWidget(context, DoseStatus.done),
@@ -280,7 +280,7 @@ class _MedicinesSection extends ConsumerWidget {
                 ListTile(
                   leading: CircleAvatar(
                     backgroundColor: context.paw.primaryContainer,
-                    child: Icon(Icons.medication_rounded, color: context.colors.primary),
+                    child: Icon(Icons.medication_outlined, color: context.colors.primary),
                   ),
                   title: Text(m.name),
                   subtitle: Text([
@@ -469,7 +469,7 @@ class _EventsSection extends ConsumerWidget {
           if (events.isEmpty) Padding(padding: const EdgeInsets.all(Space.md), child: Text(isSymptom ? l.noSymptoms : l.noVisits)),
           for (final e in events.take(5))
             ListTile(
-              leading: Icon(isSymptom ? Icons.sick_rounded : Icons.local_hospital_rounded,
+              leading: Icon(isSymptom ? Icons.sick_outlined : Icons.local_hospital_outlined,
                   color: isSymptom && e.severity >= 3 ? context.paw.error : context.colors.primary),
               title: Text(isSymptom ? '${symptomLabel(context, e.symptom)} · ${_sev(context, e.severity)}' : e.title),
               subtitle: Text([
@@ -486,7 +486,7 @@ class _EventsSection extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(Space.sm),
               child: TextButton.icon(
-                icon: const Icon(Icons.share_rounded),
+                icon: const Icon(Icons.share_outlined),
                 label: Text(l.shareWithVet),
                 onPressed: () {
                   final lines = [
@@ -526,12 +526,12 @@ class _RemindersSection extends ConsumerWidget {
           if (list.isEmpty) Padding(padding: const EdgeInsets.all(Space.md), child: Text(l.noReminders)),
           for (final r in list)
             ListTile(
-              leading: const Icon(Icons.alarm_rounded),
+              leading: const Icon(Icons.alarm_outlined),
               title: Text(r.title),
               subtitle: Text(Fmt.dateTime(r.at, context.lang)),
               trailing: IconButton(
                 tooltip: l.markDone,
-                icon: const Icon(Icons.check_circle_outline_rounded),
+                icon: const Icon(Icons.check_circle_outlined),
                 onPressed: () async {
                   final repo = ref.read(healthRepositoryProvider);
                   if (r.repeat == 'monthly' || r.repeat == 'yearly') {

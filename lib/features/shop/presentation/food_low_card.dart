@@ -71,7 +71,7 @@ class _FoodLowCard extends ConsumerWidget {
           TextButton(onPressed: () => editFoodPlan(context, ref, pet), child: Text(l.foodEditPortion)),
           FilledButton.icon(
             onPressed: product.inStock ? () => showQuickReorder(context, ref, product: product, pet: pet) : () => context.push('/shop/product/${product.id}'),
-            icon: const Icon(Icons.replay_rounded),
+            icon: const Icon(Icons.replay_outlined),
             label: Text(product.inStock ? l.shopReorderPrice(Fmt.inr(product.price)) : l.shopOutOfStock),
           ),
         ]),
@@ -91,7 +91,7 @@ class _OnTheWay extends StatelessWidget {
     return PawCard(
       onTap: () => context.push('/shop/orders/${order.id}'),
       child: Row(children: [
-        Icon(Icons.local_shipping_rounded, color: context.colors.primary, size: 32),
+        Icon(Icons.local_shipping_outlined, color: context.colors.primary, size: 32),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -132,7 +132,7 @@ Future<void> editFoodPlan(BuildContext context, WidgetRef ref, Pet pet) async {
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.event_rounded),
+            leading: const Icon(Icons.event_outlined),
             title: Text(l.foodOpenedOn),
             subtitle: Text(Fmt.date(opened, ctx.lang)),
             onTap: () async {

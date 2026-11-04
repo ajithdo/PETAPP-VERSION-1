@@ -102,7 +102,7 @@ class PartnerStoreBadge extends StatelessWidget {
   final String? store;
   @override
   Widget build(BuildContext context) =>
-      StatusChip(store == null ? context.l10n.shopPartnerStore : context.l10n.shopSoldOn(store!), tone: ChipTone.info, icon: Icons.open_in_new_rounded);
+      StatusChip(store == null ? context.l10n.shopPartnerStore : context.l10n.shopSoldOn(store!), tone: ChipTone.info, icon: Icons.open_in_new_outlined);
 }
 
 /// Grid tile for product lists.
@@ -221,7 +221,7 @@ class QtyStepper extends StatelessWidget {
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         IconButton(
           tooltip: qty <= 1 ? l.shopRemoveItem(itemName) : l.shopLessOf(itemName),
-          icon: Icon(qty <= 1 ? Icons.delete_outline_rounded : Icons.remove_rounded),
+          icon: Icon(qty <= 1 ? Icons.delete_outlined : Icons.remove_outlined),
           onPressed: () => onChanged(qty - 1),
         ),
         Semantics(
@@ -231,7 +231,7 @@ class QtyStepper extends StatelessWidget {
         ),
         IconButton(
           tooltip: l.shopMoreOf(itemName),
-          icon: const Icon(Icons.add_rounded),
+          icon: const Icon(Icons.add_outlined),
           onPressed: qty >= max ? null : () => onChanged(qty + 1),
         ),
       ]),
@@ -248,7 +248,7 @@ class CartButton extends ConsumerWidget {
     return IconButton(
       tooltip: n == 0 ? context.l10n.shopCart : context.l10n.shopCartWithCount(n),
       onPressed: () => context.push('/shop/cart'),
-      icon: Badge(isLabelVisible: n > 0, label: Text('$n'), child: const Icon(Icons.shopping_cart_rounded)),
+      icon: Badge(isLabelVisible: n > 0, label: Text('$n'), child: const Icon(Icons.shopping_cart_outlined)),
     );
   }
 }

@@ -133,7 +133,7 @@ class _LockScreenState extends ConsumerState<_LockScreen> {
       ),
       if (bio && bioOn) ...[
         const SizedBox(height: Space.md),
-        SecondaryButton(label: l.vaultUseBiometrics, icon: Icons.fingerprint_rounded, onPressed: _biometric),
+        SecondaryButton(label: l.vaultUseBiometrics, icon: Icons.fingerprint_outlined, onPressed: _biometric),
       ],
       const SizedBox(height: Space.sm),
       TextButton(onPressed: _forgot, child: Text(l.vaultForgotPin)),
@@ -202,7 +202,7 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
           value: notifier.biometricsOn,
           onChanged: (v) => setState(() => notifier.setBiometrics(v)),
           title: Text(l.vaultBiometricsToggle),
-          secondary: const Icon(Icons.fingerprint_rounded),
+          secondary: const Icon(Icons.fingerprint_outlined),
         ),
       ],
       const SizedBox(height: Space.md),
@@ -388,7 +388,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
         Text(l.vaultLockSettings, style: ctx.text.titleMedium),
         const SizedBox(height: Space.sm),
         ListTile(
-          leading: const Icon(Icons.lock_rounded),
+          leading: const Icon(Icons.lock_outlined),
           title: Text(l.vaultLockNow),
           onTap: () {
             Navigator.pop(ctx);
@@ -396,7 +396,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
           },
         ),
         ListTile(
-          leading: const Icon(Icons.pin_rounded),
+          leading: const Icon(Icons.pin_outlined),
           title: Text(l.vaultChangePin),
           onTap: () {
             Navigator.pop(ctx);
@@ -405,7 +405,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
         ),
         if (bio)
           SwitchListTile(
-            secondary: const Icon(Icons.fingerprint_rounded),
+            secondary: const Icon(Icons.fingerprint_outlined),
             value: notifier.biometricsOn,
             title: Text(l.vaultBiometricsToggle),
             onChanged: (v) => setState(() => notifier.setBiometrics(v)),

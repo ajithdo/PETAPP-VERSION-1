@@ -48,7 +48,7 @@ class MeScreen extends ConsumerWidget {
             ListTile(
               leading: Icon(items[i].icon, color: context.colors.primary),
               title: Text(items[i].label),
-              trailing: const Icon(Icons.chevron_right_rounded),
+              trailing: const Icon(Icons.chevron_right_outlined),
               onTap: () => context.push(items[i].route),
             ),
             if (i < items.length - 1) const Divider(indent: 56),
@@ -58,7 +58,7 @@ class MeScreen extends ConsumerWidget {
       const SizedBox(height: Space.lg),
       SecondaryButton(
         label: l.signOut,
-        icon: Icons.logout_rounded,
+        icon: Icons.logout_outlined,
         onPressed: () async {
           final ok = await confirmAction(context, title: l.signOutConfirm, danger: false, confirmLabel: l.signOut);
           if (ok) await ref.read(authServiceProvider).signOut();

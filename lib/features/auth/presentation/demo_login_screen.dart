@@ -57,15 +57,15 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
   }
 
   IconData _icon(String role) => switch (role) {
-        'vet' => Icons.medical_services_rounded,
-        'clinic_admin' => Icons.local_hospital_rounded,
-        'groomer' => Icons.content_cut_rounded,
-        'trainer' => Icons.sports_rounded,
-        'boarder' => Icons.house_rounded,
-        'walker' => Icons.directions_walk_rounded,
-        'seller' => Icons.storefront_rounded,
-        'admin' => Icons.admin_panel_settings_rounded,
-        _ => Icons.pets_rounded,
+        'vet' => Icons.medical_services_outlined,
+        'clinic_admin' => Icons.local_hospital_outlined,
+        'groomer' => Icons.content_cut_outlined,
+        'trainer' => Icons.sports_outlined,
+        'boarder' => Icons.house_outlined,
+        'walker' => Icons.directions_walk_outlined,
+        'seller' => Icons.storefront_outlined,
+        'admin' => Icons.admin_panel_settings_outlined,
+        _ => Icons.pets_outlined,
       };
 
   Future<void> _login(String uid) async {
@@ -104,7 +104,7 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
       color: context.paw.accent.withValues(alpha: 0.10),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          Icon(Icons.science_rounded, color: context.paw.textPrimary),
+          Icon(Icons.science_outlined, color: context.paw.textPrimary),
           const SizedBox(width: Space.sm),
           Expanded(child: Semantics(header: true, child: Text(l.demoAccountsTitle, style: context.text.titleLarge))),
         ]),
@@ -147,7 +147,7 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
         if (_busyUid == a.uid)
           const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
         else
-          const Icon(Icons.login_rounded),
+          const Icon(Icons.login_outlined),
       ]),
     );
   }

@@ -365,6 +365,55 @@ class PetTagColors {
   static Color of(String? key) => all[key] ?? all['amber']!;
 }
 
+/// Colours that tell kinds of things apart (routine log types, chart
+/// series, document kinds). Muted mid-tones that sit with Design 2's forest
+/// teal and sand. Use them for icons and tints, not for body text; pass them
+/// through [readableOn] when they colour text or sit on a dark surface.
+class CategoryColors {
+  static const teal = Color(0xFF2F7D6D);
+  static const amber = Color(0xFFB7791F);
+  static const clay = Color(0xFFB0643C);
+  static const sky = Color(0xFF3B82A6);
+  static const olive = Color(0xFF5F7F2A);
+  static const plum = Color(0xFF7C5CBF);
+  static const rose = Color(0xFFC2557A);
+  static const ocean = Color(0xFF2B6CB0);
+  static const gold = Color(0xFFA77B06);
+  static const slate = Color(0xFF64748B);
+  static const violet = Color(0xFF6D4FC2);
+}
+
+/// Soft two-colour washes for the illustrated placeholder photos in the demo
+/// (light tone first, deep tone second).
+class SeedArtColors {
+  static const pairs = [
+    [Color(0xFFE6F0ED), Color(0xFF18453E)],
+    [Color(0xFFFDE7D3), Color(0xFFF4A261)],
+    [Color(0xFFDDD6FE), Color(0xFF9B8AFB)],
+    [Color(0xFFBAE6FD), Color(0xFF38BDF8)],
+    [Color(0xFFFBCFE8), Color(0xFFF472B6)],
+    [Color(0xFFBBF7D0), Color(0xFF34D399)],
+    [Color(0xFFF5E6CC), Color(0xFFD6B98C)],
+    [Color(0xFFF3EFEA), Color(0xFFB9532E)],
+  ];
+}
+
+/// Photo and video screens (crop, viewer, video call) stay dark in both
+/// themes so pictures look true.
+class MediaColors {
+  static const background = Color(0xFF000000);
+  static const foreground = Color(0xFFFFFFFF);
+
+  /// Hints and secondary labels on photos (white at 70%).
+  static const foregroundMuted = Color(0xB3FFFFFF);
+
+  /// Dark wash behind text or buttons laid over a photo (black at 54%).
+  static const scrim = Color(0x8A000000);
+
+  /// Round buttons over video (white at 24%).
+  static const control = Color(0x3DFFFFFF);
+}
+
 /// WCAG contrast ratio between two opaque colours (1 to 21).
 double contrastRatio(Color a, Color b) {
   final la = a.computeLuminance(), lb = b.computeLuminance();
@@ -463,6 +512,15 @@ class Space {
 
   /// Reading width for single-column pages (Home, lists, forms) on desktop.
   static const double readingWidth = 840;
+
+  /// Narrower pages: forms, settings and step-by-step flows.
+  static const double formWidth = 720;
+
+  /// Wider single-column pages with charts or two-up cards.
+  static const double wideWidth = 960;
+
+  /// Room left under a list so a floating button never covers the last row.
+  static const double fabClearance = 80;
 }
 
 /// Corners.
@@ -502,6 +560,12 @@ class IconSizes {
   static const double action = 28;
   static const double xl = 32;
   static const double xxl = 36;
+
+  /// Leading icon inside a chip (Material's chip size).
+  static const double chip = 18;
+
+  /// Large icon above an empty, error or success message.
+  static const double hero = 56;
 }
 
 /// Fixed sizes of a few components.
@@ -525,6 +589,42 @@ class Sizes {
   /// Today card progress ring (normal and Easy mode).
   static const double todayRing = 68;
   static const double todayRingEasy = 84;
+
+  /// Avatars in rows and headers.
+  static const double avatarSm = 40;
+  static const double avatarMd = 48;
+
+  /// Small square photo thumbnail.
+  static const double thumb = 56;
+
+  /// Widest an empty or error message gets.
+  static const double emptyStateWidth = 420;
+
+  /// Bar and line charts.
+  static const double chartHeight = 200;
+  static const double chartAxisLeft = 36;
+  static const double chartAxisBottom = 28;
+  static const double barThin = 6;
+  static const double barWide = 18;
+
+  /// Tiny trend line beside a label.
+  static const double sparklineWidth = 120;
+  static const double sparklineHeight = 40;
+
+  /// Walk route map inside a sheet, and the smaller one in a card.
+  static const double routeMap = 280;
+  static const double routeMapSmall = 220;
+
+  /// Width of the number between a stepper's minus and plus buttons.
+  static const double stepperValue = 40;
+
+  /// Illustrations above empty states (compact and normal).
+  static const double illustrationSm = 110;
+  static const double illustration = 160;
+
+  /// The square photo crop frame stays between these sizes.
+  static const double cropMin = 200;
+  static const double cropMax = 520;
 }
 
 /// Minimum touch target (48 px; 56 px in Easy mode).
@@ -562,6 +662,16 @@ class Strokes {
 
   /// The SOS hold ring.
   static const double ring = 4;
+
+  /// Pet avatar ring (normal and selected).
+  static const double avatarRing = 2;
+  static const double avatarRingSelected = 3;
+
+  /// Lines in charts and trend lines.
+  static const double chart = 3;
+
+  /// Dashed goal lines in charts (dash, gap).
+  static const List<int> dash = [6, 4];
 }
 
 /// Letter spacing for short all-caps or brand words ("SOS").
@@ -586,6 +696,9 @@ class Opacities {
 
   /// Border of a tinted note.
   static const double border = 0.30;
+
+  /// Dimmed part of a loading placeholder, and disabled art.
+  static const double muted = 0.40;
 }
 
 /// Motion timings.

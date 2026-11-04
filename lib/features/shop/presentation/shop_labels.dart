@@ -26,20 +26,20 @@ String categoryLabel(BuildContext context, String c) {
 }
 
 IconData categoryIcon(String c) => switch (c) {
-      'food' => Icons.set_meal_rounded,
-      'treats' => Icons.cookie_rounded,
-      'toys' => Icons.sports_baseball_rounded,
-      'grooming' => Icons.shower_rounded,
-      'health_hygiene' => Icons.health_and_safety_rounded,
-      'beds' => Icons.bed_rounded,
-      'collars_leashes' => Icons.link_rounded,
-      'bowls_feeders' => Icons.rice_bowl_rounded,
-      'litter_cat' => Icons.cleaning_services_rounded,
-      'bird_food_cages' => Icons.flutter_dash_rounded,
-      'rabbit_care' => Icons.grass_rounded,
-      'clothing' => Icons.checkroom_rounded,
-      'travel' => Icons.luggage_rounded,
-      _ => Icons.shopping_bag_rounded,
+      'food' => Icons.set_meal_outlined,
+      'treats' => Icons.cookie_outlined,
+      'toys' => Icons.sports_baseball_outlined,
+      'grooming' => Icons.shower_outlined,
+      'health_hygiene' => Icons.health_and_safety_outlined,
+      'beds' => Icons.bed_outlined,
+      'collars_leashes' => Icons.link_outlined,
+      'bowls_feeders' => Icons.rice_bowl_outlined,
+      'litter_cat' => Icons.cleaning_services_outlined,
+      'bird_food_cages' => Icons.flutter_dash_outlined,
+      'rabbit_care' => Icons.grass_outlined,
+      'clothing' => Icons.checkroom_outlined,
+      'travel' => Icons.luggage_outlined,
+      _ => Icons.shopping_bag_outlined,
     };
 
 Color categoryColor(String c) => const {
@@ -89,15 +89,15 @@ String sortLabel(BuildContext context, ProductSort s) {
 (String, ChipTone, IconData) orderStatusInfo(BuildContext context, String s) {
   final l = context.l10n;
   return switch (s) {
-    'placed' => (l.ordPlaced, ChipTone.info, Icons.receipt_long_rounded),
-    'packed' => (l.ordPacked, ChipTone.info, Icons.inventory_2_rounded),
-    'shipped' => (l.ordShipped, ChipTone.accent, Icons.local_shipping_rounded),
-    'out_for_delivery' => (l.ordOutForDelivery, ChipTone.accent, Icons.delivery_dining_rounded),
+    'placed' => (l.ordPlaced, ChipTone.info, Icons.receipt_long_outlined),
+    'packed' => (l.ordPacked, ChipTone.info, Icons.inventory_2_outlined),
+    'shipped' => (l.ordShipped, ChipTone.accent, Icons.local_shipping_outlined),
+    'out_for_delivery' => (l.ordOutForDelivery, ChipTone.accent, Icons.delivery_dining_outlined),
     'delivered' => (l.ordDelivered, ChipTone.success, Icons.check_circle_rounded),
-    'cancelled' => (l.ordCancelled, ChipTone.neutral, Icons.cancel_rounded),
-    'return_requested' => (l.ordReturnRequested, ChipTone.warning, Icons.assignment_return_rounded),
-    'returned' => (l.ordReturned, ChipTone.neutral, Icons.assignment_returned_rounded),
-    'return_rejected' => (l.ordReturnRejected, ChipTone.error, Icons.block_rounded),
+    'cancelled' => (l.ordCancelled, ChipTone.neutral, Icons.cancel_outlined),
+    'return_requested' => (l.ordReturnRequested, ChipTone.warning, Icons.assignment_return_outlined),
+    'returned' => (l.ordReturned, ChipTone.neutral, Icons.assignment_returned_outlined),
+    'return_rejected' => (l.ordReturnRejected, ChipTone.error, Icons.block_outlined),
     _ => (s, ChipTone.neutral, Icons.circle_outlined),
   };
 }
@@ -142,15 +142,15 @@ String expenseCategoryLabel(BuildContext context, String c) {
 }
 
 IconData expenseIcon(String c) => switch (c) {
-      'vet' => Icons.local_hospital_rounded,
-      'grooming' => Icons.content_cut_rounded,
-      'training' => Icons.sports_rounded,
-      'boarding' => Icons.house_rounded,
-      'walking' => Icons.directions_walk_rounded,
-      'food' => Icons.set_meal_rounded,
-      'supplies' => Icons.shopping_bag_rounded,
-      'insurance' => Icons.health_and_safety_rounded,
-      _ => Icons.receipt_rounded,
+      'vet' => Icons.local_hospital_outlined,
+      'grooming' => Icons.content_cut_outlined,
+      'training' => Icons.sports_outlined,
+      'boarding' => Icons.house_outlined,
+      'walking' => Icons.directions_walk_outlined,
+      'food' => Icons.set_meal_outlined,
+      'supplies' => Icons.shopping_bag_outlined,
+      'insurance' => Icons.health_and_safety_outlined,
+      _ => Icons.receipt_outlined,
     };
 
 Color expenseColor(String c) => const {

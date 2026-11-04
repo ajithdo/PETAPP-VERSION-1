@@ -39,7 +39,7 @@ class DevicesScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.connectedDevices)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.push('/me/devices/add'),
-        icon: const Icon(Icons.add_rounded),
+        icon: const Icon(Icons.add_outlined),
         label: Text(l.devAdd),
       ),
       body: AsyncView<List<Device>>(
@@ -108,7 +108,7 @@ List<LatLng> _zoneBox(SafeZone z, double factor) {
   return [LatLng(z.lat + dLat, z.lng), LatLng(z.lat - dLat, z.lng), LatLng(z.lat, z.lng + dLng), LatLng(z.lat, z.lng - dLng)];
 }
 
-IconData _batteryIcon(int b) => b < 20 ? Icons.battery_alert_rounded : (b < 60 ? Icons.battery_4_bar_rounded : Icons.battery_full_rounded);
+IconData _batteryIcon(int b) => b < 20 ? Icons.battery_alert_outlined : (b < 60 ? Icons.battery_4_bar_outlined : Icons.battery_full_outlined);
 
 String _summaryLine(BuildContext context, Device d, DeviceSnapshot s) {
   final l = context.l10n;
@@ -230,7 +230,7 @@ class _PairDeviceScreenState extends ConsumerState<PairDeviceScreen> {
         if (type != null && _pet != null) ...[
           SectionHeader(l.devStepFind),
           if (_found == null)
-            PrimaryButton(label: _scanning ? l.devSearching : l.devSearch, icon: Icons.bluetooth_searching_rounded, loading: _scanning, onPressed: _scanning ? null : _scan)
+            PrimaryButton(label: _scanning ? l.devSearching : l.devSearch, icon: Icons.bluetooth_searching_outlined, loading: _scanning, onPressed: _scanning ? null : _scan)
           else
             PawCard(
               padding: const EdgeInsets.symmetric(vertical: Space.xs),
@@ -266,7 +266,7 @@ class _PairDeviceScreenState extends ConsumerState<PairDeviceScreen> {
             Text(l.devSafeZoneHint, style: context.text.bodySmall),
           ],
           const SizedBox(height: Space.lg),
-          PrimaryButton(label: l.devPair, icon: Icons.link_rounded, loading: _saving, onPressed: _saving ? null : _save),
+          PrimaryButton(label: l.devPair, icon: Icons.link_outlined, loading: _saving, onPressed: _saving ? null : _save),
         ],
         const SizedBox(height: Space.xxl),
       ]),
@@ -449,7 +449,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
                 Text('${d.vendor} · ${d.serial}', style: context.text.bodySmall),
                 const SizedBox(height: Space.xs),
                 Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-                  StatusChip(l.devConnected, tone: ChipTone.success, icon: Icons.bluetooth_connected_rounded),
+                  StatusChip(l.devConnected, tone: ChipTone.success, icon: Icons.bluetooth_connected_outlined),
                   StatusChip('${s.battery}%', tone: s.battery < 20 ? ChipTone.error : ChipTone.neutral, icon: _batteryIcon(s.battery)),
                   if (demo) StatusChip(l.demoTitle, tone: ChipTone.info),
                 ]),
@@ -470,7 +470,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
         Center(
           child: TextButton.icon(
             onPressed: () => _remove(d),
-            icon: Icon(Icons.link_off_rounded, color: context.paw.error),
+            icon: Icon(Icons.link_off_outlined, color: context.paw.error),
             label: Text(l.devRemove, style: TextStyle(color: context.paw.error)),
           ),
         ),
@@ -492,7 +492,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
           color: context.paw.sos.withValues(alpha: 0.1),
           borderColor: context.paw.sos,
           child: Row(children: [
-            Icon(Icons.warning_rounded, color: context.paw.sos, size: 32),
+            Icon(Icons.warning_outlined, color: context.paw.sos, size: 32),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -505,7 +505,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
       else
         PawCard(
           child: Row(children: [
-            Icon(Icons.verified_user_rounded, color: context.paw.success, size: 32),
+            Icon(Icons.verified_user_outlined, color: context.paw.success, size: 32),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.devInsideZone(fix.metersFromHome.round()), style: context.text.titleMedium)),
           ]),
@@ -531,8 +531,8 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
               ),
             ],
             markers: [
-              pinMarker(LatLng(z.lat, z.lng), color: context.colors.primary, icon: Icons.home_rounded, size: 34),
-              pinMarker(LatLng(fix.lat, fix.lng), color: out ? context.paw.sos : context.paw.accent, icon: Icons.pets_rounded),
+              pinMarker(LatLng(z.lat, z.lng), color: context.colors.primary, icon: Icons.home_outlined, size: 34),
+              pinMarker(LatLng(fix.lat, fix.lng), color: out ? context.paw.sos : context.paw.accent, icon: Icons.pets_outlined),
             ],
           ),
         ),
@@ -541,9 +541,9 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
       Text(l.devUpdated(Fmt.time(s.at, context.lang)), style: context.text.labelSmall),
       const SizedBox(height: Space.md),
       Row(children: [
-        Expanded(child: SecondaryButton(label: l.devLocate, icon: Icons.my_location_rounded, onPressed: () => _command(d, DeviceCommand.locate))),
+        Expanded(child: SecondaryButton(label: l.devLocate, icon: Icons.my_location_outlined, onPressed: () => _command(d, DeviceCommand.locate))),
         const SizedBox(width: Space.sm),
-        Expanded(child: SecondaryButton(label: l.devEditZone, icon: Icons.radar_rounded, onPressed: () => _editZone(d))),
+        Expanded(child: SecondaryButton(label: l.devEditZone, icon: Icons.radar_outlined, onPressed: () => _editZone(d))),
       ]),
       if (demo) ...[
         const SizedBox(height: Space.lg),
@@ -554,8 +554,8 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
             Text(l.devDemoControlsHint, style: context.text.bodySmall),
             const SizedBox(height: Space.md),
             out
-                ? SecondaryButton(label: l.devDemoComeHome(petName), icon: Icons.home_rounded, onPressed: () => _command(d, DeviceCommand.demoReturnHome))
-                : PrimaryButton(label: l.devDemoWalkOut(petName), icon: Icons.directions_walk_rounded, danger: true, onPressed: () => _command(d, DeviceCommand.demoLeaveZone)),
+                ? SecondaryButton(label: l.devDemoComeHome(petName), icon: Icons.home_outlined, onPressed: () => _command(d, DeviceCommand.demoReturnHome))
+                : PrimaryButton(label: l.devDemoWalkOut(petName), icon: Icons.directions_walk_outlined, danger: true, onPressed: () => _command(d, DeviceCommand.demoLeaveZone)),
           ]),
         ),
       ],
@@ -595,7 +595,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
           child: Column(children: [
             for (final x in day.sessions)
               ListTile(
-                leading: Icon(x.kind == 'walk' ? Icons.directions_walk_rounded : Icons.sports_baseball_rounded),
+                leading: Icon(x.kind == 'walk' ? Icons.directions_walk_outlined : Icons.sports_baseball_outlined),
                 title: Text(x.kind == 'walk' ? l.devWalkSession(x.minutes, x.km.toStringAsFixed(1)) : l.devPlaySession(x.minutes)),
                 subtitle: Text(Fmt.time(x.start, context.lang)),
                 trailing: Icon(Icons.check_circle_rounded, color: context.paw.success, semanticLabel: l.devInRoutine),
@@ -629,11 +629,11 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
           padding: const EdgeInsets.symmetric(vertical: Space.xs),
           child: Column(children: [
             for (final m in f.meals)
-              ListTile(leading: const Icon(Icons.set_meal_rounded), title: Text(l.devMealGrams(m.grams)), subtitle: Text(Fmt.time(m.at, context.lang))),
+              ListTile(leading: const Icon(Icons.set_meal_outlined), title: Text(l.devMealGrams(m.grams)), subtitle: Text(Fmt.time(m.at, context.lang))),
           ]),
         ),
       const SizedBox(height: Space.md),
-      PrimaryButton(label: l.devFeedNow, icon: Icons.restaurant_rounded, onPressed: () => _command(d, DeviceCommand.feedNow)),
+      PrimaryButton(label: l.devFeedNow, icon: Icons.restaurant_outlined, onPressed: () => _command(d, DeviceCommand.feedNow)),
     ];
   }
 
@@ -656,7 +656,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
           Text(l.devFilterDays(f.filterDaysLeft), style: context.text.bodySmall),
         ]),
       ),
-      if (f.refillSoon) ...[const SizedBox(height: Space.sm), InfoNote(l.devRefillSoon, icon: Icons.water_drop_rounded, tone: ChipTone.warning)],
+      if (f.refillSoon) ...[const SizedBox(height: Space.sm), InfoNote(l.devRefillSoon, icon: Icons.water_drop_outlined, tone: ChipTone.warning)],
     ];
   }
 
@@ -671,7 +671,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
               decoration: BoxDecoration(color: context.colors.surfaceContainerHighest, borderRadius: BorderRadius.circular(Radii.card)),
               child: Center(
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Icon(Icons.videocam_off_rounded, size: 48, color: context.paw.textSecondary),
+                  Icon(Icons.videocam_off_outlined, size: 48, color: context.paw.textSecondary),
                   const SizedBox(height: Space.sm),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: Space.lg),
@@ -682,7 +682,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
             ),
           ),
           const SizedBox(height: Space.md),
-          PrimaryButton(label: l.devSnapshot, icon: Icons.photo_camera_rounded, onPressed: () => _command(d, DeviceCommand.snapshot)),
+          PrimaryButton(label: l.devSnapshot, icon: Icons.photo_camera_outlined, onPressed: () => _command(d, DeviceCommand.snapshot)),
         ]),
       ),
     ];
@@ -699,8 +699,8 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
           if (x.lastVisit != null) Text(l.devLastVisit(Fmt.time(x.lastVisit!, context.lang)), style: context.text.bodyMedium),
           const SizedBox(height: Space.sm),
           x.needsCleaning
-              ? StatusChip(l.devCleanSoon, tone: ChipTone.warning, icon: Icons.cleaning_services_rounded)
-              : StatusChip(l.devLitterClean, tone: ChipTone.success, icon: Icons.check_rounded),
+              ? StatusChip(l.devCleanSoon, tone: ChipTone.warning, icon: Icons.cleaning_services_outlined)
+              : StatusChip(l.devLitterClean, tone: ChipTone.success, icon: Icons.check_outlined),
         ]),
       ),
     ];

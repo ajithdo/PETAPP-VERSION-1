@@ -63,7 +63,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                   label: l.email,
                   controller: _email,
                   keyboardType: TextInputType.emailAddress,
-                  prefixIcon: Icons.mail_outline_rounded,
+                  prefixIcon: Icons.mail_outlined,
                   validator: (v) => validateEmail(context, v),
                   onSubmitted: (_) => _send(),
                 ),

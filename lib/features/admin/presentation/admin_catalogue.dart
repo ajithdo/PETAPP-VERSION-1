@@ -99,7 +99,7 @@ class _ProductsTabState extends ConsumerState<_ProductsTab> {
         }).toList();
         final visible = shown.take(60).toList();
         return PageBody(maxWidth: 1000, children: [
-          PawTextField(label: l.admSearchProducts, prefixIcon: Icons.search_rounded, onChanged: (v) => setState(() => _q = v)),
+          PawTextField(label: l.admSearchProducts, prefixIcon: Icons.search_outlined, onChanged: (v) => setState(() => _q = v)),
           const SizedBox(height: Space.sm),
           ChoiceRow<String>(
             options: const ['all', 'featured', 'hidden', 'low', 'affiliate'],
@@ -203,7 +203,7 @@ class _CategoriesTab extends ConsumerWidget {
                 ]),
               ),
               TextButton.icon(
-                icon: const Icon(Icons.edit_rounded, size: 18),
+                icon: const Icon(Icons.edit_outlined, size: 18),
                 label: Text(l.edit),
                 onPressed: () async {
                   final v = await askNumber(context,
@@ -242,7 +242,7 @@ class _SellersTab extends ConsumerWidget {
               child: PawCard(
                 padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
                 child: Row(children: [
-                  const CircleAvatar(child: Icon(Icons.storefront_rounded, size: 20)),
+                  const CircleAvatar(child: Icon(Icons.storefront_outlined, size: 20)),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -260,7 +260,7 @@ class _SellersTab extends ConsumerWidget {
                   StatusChip(partnerStatusLabel(context, s.status), tone: partnerStatusTone(s.status)),
                   IconButton(
                     tooltip: l.admEditMargin,
-                    icon: const Icon(Icons.percent_rounded),
+                    icon: const Icon(Icons.percent_outlined),
                     onPressed: () async {
                       final v = await askNumber(context,
                           title: l.admMarginFor(s.name), initial: s.commissionPercent is num ? (s.commissionPercent as num).toInt() : null, suffix: '%', allowEmpty: true, max: 90, helper: l.admEmptyDefault);
@@ -307,7 +307,7 @@ class _PlacesTabState extends ConsumerState<_PlacesTab> {
     return PageBody(maxWidth: 1000, children: [
       InfoNote(l.admPlacesNote),
       const SizedBox(height: Space.md),
-      PawTextField(label: l.searchByNameOrArea, prefixIcon: Icons.search_rounded, onChanged: (v) => setState(() => _q = v)),
+      PawTextField(label: l.searchByNameOrArea, prefixIcon: Icons.search_outlined, onChanged: (v) => setState(() => _q = v)),
       const SizedBox(height: Space.md),
       for (final (col, kind, m) in shown.take(60))
         Padding(
@@ -334,7 +334,7 @@ class _PlacesTabState extends ConsumerState<_PlacesTab> {
               ),
               IconButton(
                 tooltip: l.admEditMargin,
-                icon: const Icon(Icons.percent_rounded),
+                icon: const Icon(Icons.percent_outlined),
                 onPressed: () async {
                   final v = await askNumber(context,
                       title: l.admRateFor('${m['name'] ?? ''}'),
@@ -378,7 +378,7 @@ class _PartnersTab extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
                 onTap: () => _editPartner(context, ref, p),
                 child: Row(children: [
-                  const CircleAvatar(child: Icon(Icons.link_rounded, size: 20)),
+                  const CircleAvatar(child: Icon(Icons.link_outlined, size: 20)),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -387,12 +387,12 @@ class _PartnersTab extends ConsumerWidget {
                       Text(l.admPartnerLine('${p.commissionPercent}', p.clicks), style: context.text.bodySmall),
                     ]),
                   ),
-                  const Icon(Icons.edit_rounded),
+                  const Icon(Icons.edit_outlined),
                 ]),
               ),
             ),
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.admAddPartner, icon: Icons.add_rounded, onPressed: () => _editPartner(context, ref, null)),
+          SecondaryButton(label: l.admAddPartner, icon: Icons.add_outlined, onPressed: () => _editPartner(context, ref, null)),
         ]);
       },
     );
@@ -457,12 +457,12 @@ class _BannersTab extends ConsumerWidget {
                 PromoBanner(banner: b, preview: true),
                 const SizedBox(height: Space.sm),
                 Row(children: [
-                  StatusChip(b.placement == 'shop' ? l.admPlaceShop : l.admPlaceHome, icon: b.placement == 'shop' ? Icons.storefront_rounded : Icons.home_rounded),
+                  StatusChip(b.placement == 'shop' ? l.admPlaceShop : l.admPlaceHome, icon: b.placement == 'shop' ? Icons.storefront_outlined : Icons.home_outlined),
                   const SizedBox(width: Space.xs),
-                  StatusChip(bannerAudienceLabel(context, b.audience), icon: Icons.people_rounded),
+                  StatusChip(bannerAudienceLabel(context, b.audience), icon: Icons.people_outlined),
                   const SizedBox(width: Space.sm),
                   if (b.link.isNotEmpty) Expanded(child: Text(b.link, style: context.text.bodySmall, maxLines: 1, overflow: TextOverflow.ellipsis)) else const Spacer(),
-                  IconButton(tooltip: l.edit, icon: const Icon(Icons.edit_rounded), onPressed: () => editBanner(context, ref, b)),
+                  IconButton(tooltip: l.edit, icon: const Icon(Icons.edit_outlined), onPressed: () => editBanner(context, ref, b)),
                   Semantics(
                     label: l.admBannerShown,
                     child: Switch(
@@ -478,7 +478,7 @@ class _BannersTab extends ConsumerWidget {
               ]),
             ),
           ),
-        SecondaryButton(label: l.admNewBanner, icon: Icons.add_rounded, onPressed: () => editBanner(context, ref, null)),
+        SecondaryButton(label: l.admNewBanner, icon: Icons.add_outlined, onPressed: () => editBanner(context, ref, null)),
       ]),
     );
   }

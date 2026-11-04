@@ -102,12 +102,12 @@ class SocialButtons extends StatelessWidget {
     final showApple = kIsWeb || defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS;
     return Column(
       children: [
-        SecondaryButton(label: l.continueWithGoogle, icon: Icons.g_mobiledata_rounded, onPressed: busy ? null : onGoogle),
+        SecondaryButton(label: l.continueWithGoogle, icon: Icons.g_mobiledata_outlined, onPressed: busy ? null : onGoogle),
         const SizedBox(height: Space.sm),
-        SecondaryButton(label: l.continueWithPhone, icon: Icons.phone_iphone_rounded, onPressed: busy ? null : onPhone),
+        SecondaryButton(label: l.continueWithPhone, icon: Icons.phone_iphone_outlined, onPressed: busy ? null : onPhone),
         if (showApple) ...[
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.continueWithApple, icon: Icons.apple_rounded, onPressed: busy ? null : onApple),
+          SecondaryButton(label: l.continueWithApple, icon: Icons.apple_outlined, onPressed: busy ? null : onApple),
         ],
       ],
     );

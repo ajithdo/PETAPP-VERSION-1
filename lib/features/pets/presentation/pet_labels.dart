@@ -46,7 +46,7 @@ String petRoleLabel(BuildContext context, String role) => switch (role) {
     };
 
 IconData speciesIcon(String species) => switch (species) {
-      'bird' => Icons.flutter_dash_rounded,
-      'rabbit' => Icons.cruelty_free_rounded,
-      _ => Icons.pets_rounded,
+      'bird' => Icons.flutter_dash_outlined,
+      'rabbit' => Icons.cruelty_free_outlined,
+      _ => Icons.pets_outlined,
     };

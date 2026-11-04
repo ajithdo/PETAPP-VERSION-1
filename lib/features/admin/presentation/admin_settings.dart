@@ -152,7 +152,7 @@ class _NumRow extends ConsumerWidget {
       trailing: Row(mainAxisSize: MainAxisSize.min, children: [
         Text(shown, style: context.text.titleSmall?.copyWith(color: value == null ? context.paw.textSecondary : null)),
         const SizedBox(width: Space.xs),
-        const Icon(Icons.edit_rounded, size: 18),
+        const Icon(Icons.edit_outlined, size: 18),
       ]),
       onTap: () async {
         final v = await askNumber(context,
@@ -363,7 +363,7 @@ Future<void> editCoupon(BuildContext context, WidgetRef ref, Coupon? c) async {
         const SizedBox(height: Space.sm),
         ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: const Icon(Icons.event_rounded),
+          leading: const Icon(Icons.event_outlined),
           title: Text(l.admCouponValidTill),
           subtitle: Text(Fmt.date(till, ctx.lang)),
           onTap: () async {
@@ -427,7 +427,7 @@ class _VaccineCard extends ConsumerWidget {
                       ? l.admEveryYears(t.everyYears)
                       : l.admWeeksRange(t.fromWeeks ?? 0, t.toWeeks ?? 0),
             ),
-            trailing: t.optional ? null : Icon(overrides.containsKey(t.key) ? Icons.edit_note_rounded : Icons.edit_rounded, size: 18, color: overrides.containsKey(t.key) ? context.paw.accent : null),
+            trailing: t.optional ? null : Icon(overrides.containsKey(t.key) ? Icons.edit_note_outlined : Icons.edit_outlined, size: 18, color: overrides.containsKey(t.key) ? context.paw.accent : null),
             onTap: t.optional ? null : () => _edit(context, ref, t, overrides.containsKey(t.key)),
           ),
       ]),
@@ -466,9 +466,9 @@ class _ContentReview extends ConsumerWidget {
     final l = context.l10n;
     final review = (cfg['contentReview'] as Map?) ?? const {};
     final areas = <(String, String, IconData)>[
-      ('firstAid', l.admAreaFirstAid, Icons.healing_rounded),
-      ('toxic', l.admAreaToxic, Icons.no_food_rounded),
-      ('vaccines', l.admAreaVaccines, Icons.vaccines_rounded),
+      ('firstAid', l.admAreaFirstAid, Icons.healing_outlined),
+      ('toxic', l.admAreaToxic, Icons.no_food_outlined),
+      ('vaccines', l.admAreaVaccines, Icons.vaccines_outlined),
     ];
     return PawCard(
       padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.xs),

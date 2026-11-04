@@ -62,7 +62,7 @@ class _InsuranceScreenState extends ConsumerState<InsuranceScreen> {
           ? null
           : FloatingActionButton.extended(
               onPressed: () => showPolicySheet(context, ref, pet: addFor, choosePet: widget.petId == null),
-              icon: const Icon(Icons.add_rounded),
+              icon: const Icon(Icons.add_outlined),
               label: Text(l.vaultAddPolicy),
             ),
       body: AsyncView<List<InsurancePolicy>>(
@@ -173,8 +173,8 @@ class PolicyScreen extends ConsumerWidget {
                 }
               },
               itemBuilder: (_) => [
-                PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_rounded), title: Text(l.vaultEditPolicy))),
-                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outline_rounded), title: Text(l.delete))),
+                PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.vaultEditPolicy))),
+                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outlined), title: Text(l.delete))),
               ],
             ),
         ],
@@ -183,7 +183,7 @@ class PolicyScreen extends ConsumerWidget {
           ? null
           : FloatingActionButton.extended(
               onPressed: () => showClaimSheet(context, ref, policy),
-              icon: const Icon(Icons.add_rounded),
+              icon: const Icon(Icons.add_outlined),
               label: Text(l.vaultNewClaim),
             ),
       body: AsyncView<InsurancePolicy?>(
@@ -234,7 +234,7 @@ class PolicyScreen extends ConsumerWidget {
               PawCard(
                 onTap: pet == null ? null : () => showPolicySheet(context, ref, pet: pet, existing: p),
                 child: Row(children: [
-                  const Icon(Icons.attach_file_rounded),
+                  const Icon(Icons.attach_file_outlined),
                   const SizedBox(width: Space.md),
                   Expanded(child: Text(l.vaultLinkDoc)),
                 ]),
@@ -390,7 +390,7 @@ class _PolicySheetState extends ConsumerState<_PolicySheet> {
       PawTextField(label: l.vaultFieldPremium, controller: _premium, keyboardType: TextInputType.number, prefixText: '₹ ', inputFormatters: [FilteringTextInputFormatter.digitsOnly]),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-        icon: const Icon(Icons.event_rounded),
+        icon: const Icon(Icons.event_outlined),
         label: Text('${l.vaultFieldCoverStart}: ${_start == null ? '–' : Fmt.date(_start!, context.lang)}'),
         onPressed: () async {
           final d = await pick(_start);
@@ -400,7 +400,7 @@ class _PolicySheetState extends ConsumerState<_PolicySheet> {
       const SizedBox(height: Space.sm),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-        icon: const Icon(Icons.event_repeat_rounded),
+        icon: const Icon(Icons.event_repeat_outlined),
         label: Text('${l.vaultFieldRenewal}: ${_renewal == null ? '–' : Fmt.date(_renewal!, context.lang)}'),
         onPressed: () async {
           final d = await pick(_renewal);
@@ -421,7 +421,7 @@ class _PolicySheetState extends ConsumerState<_PolicySheet> {
       const SizedBox(height: Space.md),
       InfoNote(l.vaultRenewalReminderNote, icon: Icons.notifications_active_outlined),
       const SizedBox(height: Space.lg),
-      PrimaryButton(label: l.save, icon: Icons.check_rounded, loading: _busy, onPressed: _save),
+      PrimaryButton(label: l.save, icon: Icons.check_outlined, loading: _busy, onPressed: _save),
     ]);
   }
 }
@@ -529,7 +529,7 @@ class _ClaimSheetState extends ConsumerState<_ClaimSheet> {
         PawTextField(label: l.vaultSettledAmount, controller: _settled, keyboardType: TextInputType.number, prefixText: '₹ ', inputFormatters: [FilteringTextInputFormatter.digitsOnly]),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-        icon: const Icon(Icons.event_rounded),
+        icon: const Icon(Icons.event_outlined),
         label: Text('${l.vaultClaimDate}: ${Fmt.date(_date, context.lang)}'),
         onPressed: () async {
           final now = DateTime.now();
@@ -551,7 +551,7 @@ class _ClaimSheetState extends ConsumerState<_ClaimSheet> {
           subtitle: _attach[k] != null && docs[_attach[k]] != null ? Text(l.vaultAttached(docs[_attach[k]]!.title)) : null,
           secondary: IconButton(
             tooltip: l.vaultAttachDoc,
-            icon: Icon(_attach[k] != null ? Icons.attach_file_rounded : Icons.attach_file_outlined, color: _attach[k] != null ? context.colors.primary : null),
+            icon: Icon(_attach[k] != null ? Icons.attach_file_outlined : Icons.attach_file_outlined, color: _attach[k] != null ? context.colors.primary : null),
             onPressed: () => _attachDoc(k),
           ),
         ),
@@ -560,7 +560,7 @@ class _ClaimSheetState extends ConsumerState<_ClaimSheet> {
         Text(_error!, style: context.text.bodySmall?.copyWith(color: context.paw.error)),
       ],
       const SizedBox(height: Space.lg),
-      PrimaryButton(label: l.save, icon: Icons.check_rounded, loading: _busy, onPressed: () => _save()),
+      PrimaryButton(label: l.save, icon: Icons.check_outlined, loading: _busy, onPressed: () => _save()),
       for (final s in next) ...[
         const SizedBox(height: Space.sm),
         SecondaryButton(label: l.vaultMarkAs(claimStatusLabel(context, s)), onPressed: _busy ? null : () => _save(s)),

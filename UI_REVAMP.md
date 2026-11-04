@@ -28,7 +28,7 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 | 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ❌ Dropped 3 Nov 2026: the owner said not to consider the Figma designs. Replaced by the owner's Design 2 (`docs/design-2/`) |
 | 2b. Review of the owner's Design 2 | ✅ Done 3 Nov 2026: `docs/design-2/REVIEW.md`. The owner said "GO" (with Claude's 6 picks) on 3 Nov 2026 |
 | 3. Build the foundation from Design 2 (one token file, shared components; no Figma) | ✅ Done 4 Nov 2026 (see "Design 2 build notes" below) |
-| 4. Redesign screen by screen | 🟡 Home done 4 Nov 2026. **Stopped for the owner's before/after check** (`docs/ui-revamp/compare/`). Continue with screen 2 only after the owner confirms the direction |
+| 4. Redesign screen by screen | 🟡 In progress. Home done and approved 4 Nov 2026 ("implement Design 2 in app"); the rest goes ahead without stopping, ticked off in the checklist below |
 
 **Rules for this work:** UI/UX only (no business logic, API calls, data models or routing). Commit after each screen. No Figma work (owner, 3 Nov 2026). Ask before adding any library, font or tool. Keep features and content; suggest copy and flow changes in the list at the bottom instead of making them.
 
@@ -295,8 +295,9 @@ See the checklist below.
 Tick a screen when it is rebuilt with shared components and tokens, its loading/empty/error states are covered, it has been checked at 360/390 px and desktop in light/dark, English/Telugu and Easy mode, and it is committed with before/after screenshots.
 
 - [x] 0. Foundation: one token file (Design 2 values), shared components (4 Nov 2026)
-- [x] 1. Home (pet parent), 4 Nov 2026 **← stopped here for the owner's before/after check**
-- [ ] 2. Today and routine: Today card, quick log sheet, routine screen, walk tracker
+- [x] 1. Home (pet parent), 4 Nov 2026. The owner approved the direction on 4 Nov 2026 ("implement Design 2 in app")
+- [x] Icons: the whole app now uses outlined icons (Design 2). Icons that show a state stay filled: rating stars, done ticks, liked hearts, verified badges, filled play/pause, and the selected bottom tab (4 Nov 2026)
+- [x] 2. Today and routine: Today card, quick log sheet, routine screen, walk tracker (4 Nov 2026). Log types use the new muted category colours; walk stats sit in one card with small uppercase labels; charts and widths use tokens
 - [ ] 3. Health tab and its sheets (vaccines, medicines, deworming, vet visits, weight, symptoms), medical card
 - [ ] 4. Pet profile, my pets, add/edit pet, breed picker, birthday
 - [ ] 5. Book tab, clinic finder (list and map), clinic page, booking flow, booking done, my bookings, booking detail

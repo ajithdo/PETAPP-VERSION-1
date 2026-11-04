@@ -169,7 +169,7 @@ class _ScanCropScreenState extends State<ScanCropScreen> {
                             title: Text(l.vaultScanBw),
                             contentPadding: EdgeInsets.zero,
                           ),
-                          PrimaryButton(label: l.vaultUseScan, icon: Icons.check_rounded, loading: _busy, onPressed: _done),
+                          PrimaryButton(label: l.vaultUseScan, icon: Icons.check_outlined, loading: _busy, onPressed: _done),
                         ]),
                       ),
                     ),

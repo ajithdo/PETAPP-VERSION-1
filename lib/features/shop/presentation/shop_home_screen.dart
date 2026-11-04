@@ -75,7 +75,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
           const SizedBox(height: Space.sm),
           Row(children: [
             Expanded(child: Text(l.shopTitle, style: context.text.headlineSmall)),
-            IconButton(tooltip: l.ordMyOrders, onPressed: () => context.push('/shop/orders'), icon: Badge(isLabelVisible: open > 0, label: Text('$open'), child: const Icon(Icons.receipt_long_rounded))),
+            IconButton(tooltip: l.ordMyOrders, onPressed: () => context.push('/shop/orders'), icon: Badge(isLabelVisible: open > 0, label: Text('$open'), child: const Icon(Icons.receipt_long_outlined))),
             const CartButton(),
           ]),
           const SizedBox(height: Space.sm),
@@ -87,7 +87,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
               borderRadius: BorderRadius.circular(Radii.md),
               onTap: () => context.push('/shop/search?focus=1'),
               child: InputDecorator(
-                decoration: InputDecoration(prefixIcon: const Icon(Icons.search_rounded), hintText: l.shopSearchHint),
+                decoration: InputDecoration(prefixIcon: const Icon(Icons.search_outlined), hintText: l.shopSearchHint),
                 child: Text(l.shopSearchHint, style: context.text.bodyLarge?.copyWith(color: context.paw.textSecondary)),
               ),
             ),
@@ -95,7 +95,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
           const BannerStrip(placement: 'shop'),
           if (user != null && !user.isPlus) ...[
             const SizedBox(height: Space.sm),
-            InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Icons.workspace_premium_rounded, tone: ChipTone.accent),
+            InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Icons.workspace_premium_outlined, tone: ChipTone.accent),
           ],
           if (pet != null) ...[
             SectionHeader(l.shopForPet(pet.name)),
@@ -183,7 +183,7 @@ class _BuyAgainTile extends ConsumerWidget {
                 height: 34,
                 child: FilledButton.tonalIcon(
                   onPressed: p.inStock ? () => showQuickReorder(context, ref, product: p, pet: pet) : null,
-                  icon: const Icon(Icons.replay_rounded, size: 18),
+                  icon: const Icon(Icons.replay_outlined, size: 18),
                   label: Text(p.inStock ? l.shopReorder : l.shopOutOfStock),
                 ),
               ),
@@ -244,7 +244,7 @@ class _PartnerStores extends ConsumerWidget {
         PawCard(
           onTap: () => context.push('/shop/search?store=${s.id}'),
           child: Row(children: [
-            CircleAvatar(backgroundColor: context.paw.primaryContainer, child: Icon(Icons.storefront_rounded, color: context.colors.primary)),
+            CircleAvatar(backgroundColor: context.paw.primaryContainer, child: Icon(Icons.storefront_outlined, color: context.colors.primary)),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -252,7 +252,7 @@ class _PartnerStores extends ConsumerWidget {
                 Text(l.shopListings(products.where((p) => p.partnerId == s.id).length), style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
     ]);

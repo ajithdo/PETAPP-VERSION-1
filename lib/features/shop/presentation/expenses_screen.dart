@@ -37,7 +37,7 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
       appBar: AppBar(title: Text(l.expenses)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => editExpense(context, ref, petId: _petId),
-        icon: const Icon(Icons.add_rounded),
+        icon: const Icon(Icons.add_outlined),
         label: Text(l.expAdd),
       ),
       body: AsyncView<List<Expense>>(
@@ -72,9 +72,9 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
               ]),
             const SizedBox(height: Space.md),
             ResponsiveGrid(minItemWidth: 200, children: [
-              StatTile(label: l.expThisMonth, value: Fmt.inr(thisMonth.total), icon: Icons.calendar_today_rounded),
-              if (lastMonth != null) StatTile(label: l.expLastMonth, value: Fmt.inr(lastMonth.total), icon: Icons.history_rounded),
-              StatTile(label: l.expPeriodTotal(_months), value: Fmt.inr(periodTotal), icon: Icons.account_balance_wallet_rounded),
+              StatTile(label: l.expThisMonth, value: Fmt.inr(thisMonth.total), icon: Icons.calendar_today_outlined),
+              if (lastMonth != null) StatTile(label: l.expLastMonth, value: Fmt.inr(lastMonth.total), icon: Icons.history_outlined),
+              StatTile(label: l.expPeriodTotal(_months), value: Fmt.inr(periodTotal), icon: Icons.account_balance_wallet_outlined),
             ]),
             SectionHeader(l.expByMonth),
             Wrap(spacing: Space.sm, children: [
@@ -361,7 +361,7 @@ class _ExpenseFormState extends ConsumerState<_ExpenseForm> {
         ],
         ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: const Icon(Icons.event_rounded),
+          leading: const Icon(Icons.event_outlined),
           title: Text(l.date),
           subtitle: Text(Fmt.date(_date, context.lang)),
           onTap: () async {
@@ -381,7 +381,7 @@ class _ExpenseFormState extends ConsumerState<_ExpenseForm> {
               if (!mounted) return;
               Navigator.of(this.context).pop();
             },
-            icon: const Icon(Icons.delete_outline_rounded),
+            icon: const Icon(Icons.delete_outlined),
             label: Text(l.delete),
           ),
         ],

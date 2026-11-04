@@ -46,7 +46,7 @@ class AlbumViewerScreen extends ConsumerWidget {
         data: (list) {
           final items = filterItems(list, filter);
           if (items.isEmpty || pet == null) {
-            return Center(child: IconButton(tooltip: context.l10n.close, onPressed: () => context.pop(), icon: const Icon(Icons.close_rounded, color: Colors.white)));
+            return Center(child: IconButton(tooltip: context.l10n.close, onPressed: () => context.pop(), icon: const Icon(Icons.close_outlined, color: Colors.white)));
           }
           final start = items.indexWhere((i) => i.id == itemId);
           return MediaPager(items: items, initialIndex: start < 0 ? 0 : start, pet: pet);
@@ -117,7 +117,7 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xs),
             child: Row(children: [
-              IconButton(tooltip: l.albumClose, onPressed: _close, icon: const Icon(Icons.close_rounded, color: Colors.white)),
+              IconButton(tooltip: l.albumClose, onPressed: _close, icon: const Icon(Icons.close_outlined, color: Colors.white)),
               Expanded(
                 child: Text(l.albumOfCount(_index + 1, items.length),
                     style: const TextStyle(color: Colors.white70), textAlign: TextAlign.center),
@@ -132,7 +132,7 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
                 IconButton(
                   tooltip: l.albumShare,
                   onPressed: () => showShareMemorySheet(context, ref, item, pet),
-                  icon: const Icon(Icons.ios_share_rounded, color: Colors.white),
+                  icon: const Icon(Icons.ios_share_outlined, color: Colors.white),
                 ),
                 if (canLog)
                   PopupMenuButton<String>(
@@ -158,9 +158,9 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
                       }
                     },
                     itemBuilder: (_) => [
-                      PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_rounded), title: Text(l.albumEditCaption))),
-                      PopupMenuItem(value: 'album', child: ListTile(leading: const Icon(Icons.photo_album_rounded), title: Text(l.albumAddToAlbum))),
-                      PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outline_rounded), title: Text(l.albumDelete))),
+                      PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.albumEditCaption))),
+                      PopupMenuItem(value: 'album', child: ListTile(leading: const Icon(Icons.photo_album_outlined), title: Text(l.albumAddToAlbum))),
+                      PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outlined), title: Text(l.albumDelete))),
                     ],
                   ),
               ],
@@ -187,12 +187,12 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
               if (wide && _index > 0)
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: IconButton.filledTonal(tooltip: l.albumPrevious, onPressed: () => _go(-1), icon: const Icon(Icons.chevron_left_rounded)),
+                  child: IconButton.filledTonal(tooltip: l.albumPrevious, onPressed: () => _go(-1), icon: const Icon(Icons.chevron_left_outlined)),
                 ),
               if (wide && _index < items.length - 1)
                 Align(
                   alignment: Alignment.centerRight,
-                  child: IconButton.filledTonal(tooltip: l.next, onPressed: () => _go(1), icon: const Icon(Icons.chevron_right_rounded)),
+                  child: IconButton.filledTonal(tooltip: l.next, onPressed: () => _go(1), icon: const Icon(Icons.chevron_right_outlined)),
                 ),
             ]),
           ),

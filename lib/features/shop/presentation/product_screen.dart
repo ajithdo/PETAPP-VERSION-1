@@ -52,7 +52,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           if (p.value != null)
             IconButton(
               tooltip: l.share,
-              icon: const Icon(Icons.share_rounded),
+              icon: const Icon(Icons.share_outlined),
               onPressed: () => SharePlus.instance.share(ShareParams(text: l.shopShareText(p.value!.name, Fmt.inr(p.value!.price)))),
             ),
           const CartButton(),
@@ -88,10 +88,10 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
       Text(l.shopInclTaxes, style: context.text.bodySmall),
       const SizedBox(height: Space.md),
       if (p.isAffiliate)
-        InfoNote(l.shopAffiliateNote(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_rounded)
+        InfoNote(l.shopAffiliateNote(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_outlined)
       else ...[
         Row(children: [
-          Icon(Icons.storefront_rounded, size: 18, color: context.paw.textSecondary),
+          Icon(Icons.storefront_outlined, size: 18, color: context.paw.textSecondary),
           const SizedBox(width: Space.xs),
           Expanded(child: Text(l.shopSoldBy(seller?.name ?? '', seller?.city ?? ''), style: context.text.bodyMedium)),
         ]),
@@ -105,7 +105,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
       Text(l.shopSuitableFor, style: context.text.titleSmall),
       const SizedBox(height: Space.xs),
       Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
-        for (final s in p.species) StatusChip(speciesName(context, s), icon: Icons.pets_rounded),
+        for (final s in p.species) StatusChip(speciesName(context, s), icon: Icons.pets_outlined),
         for (final s in p.lifeStages) StatusChip(lifeStageTag(context, s)),
         if (p.species.contains('dog'))
           for (final s in p.breedSizes) StatusChip(breedSizeTag(context, s)),
@@ -139,7 +139,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           ),
         ]),
         Row(children: [
-          Icon(p.returnable ? Icons.assignment_return_rounded : Icons.block_rounded, size: 18, color: context.paw.textSecondary),
+          Icon(p.returnable ? Icons.assignment_return_outlined : Icons.block_outlined, size: 18, color: context.paw.textSecondary),
           const SizedBox(width: Space.xs),
           Expanded(child: Text(p.returnable ? l.shopReturnable(returnWindowDays) : l.shopNotReturnable, style: context.text.bodySmall)),
         ]),
@@ -164,7 +164,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
         PawCard(
           onTap: () => _subscribe(p),
           child: Row(children: [
-            Icon(Icons.autorenew_rounded, color: context.colors.primary),
+            Icon(Icons.autorenew_outlined, color: context.colors.primary),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -172,7 +172,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
                 Text(l.subsHint, style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
       ],
@@ -247,7 +247,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 720),
             child: p.isAffiliate
-                ? PrimaryButton(label: l.shopBuyOn(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_rounded, onPressed: () => _openPartner(p, store))
+                ? PrimaryButton(label: l.shopBuyOn(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_outlined, onPressed: () => _openPartner(p, store))
                 : Row(children: [
                     QtyStepper(qty: _qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => setState(() => _qty = q < 1 ? 1 : q)),
                     const SizedBox(width: Space.sm),
@@ -342,7 +342,7 @@ class _SubscribeSheetState extends ConsumerState<SubscribeSheet> {
       const SizedBox(height: Space.md),
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.location_on_rounded),
+        leading: const Icon(Icons.location_on_outlined),
         title: Text(address == null ? l.addrAddFirst : '${addressLabel(context, address.label)} · ${address.name}'),
         subtitle: address == null ? null : Text(address.oneLine, maxLines: 2, overflow: TextOverflow.ellipsis),
         trailing: TextButton(
@@ -353,7 +353,7 @@ class _SubscribeSheetState extends ConsumerState<SubscribeSheet> {
           child: Text(address == null ? l.add : l.change),
         ),
       ),
-      InfoNote(l.subsFirstOn(Fmt.date(first, context.lang)), icon: Icons.event_repeat_rounded),
+      InfoNote(l.subsFirstOn(Fmt.date(first, context.lang)), icon: Icons.event_repeat_outlined),
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.subsStart,

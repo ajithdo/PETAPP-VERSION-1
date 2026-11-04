@@ -134,7 +134,7 @@ class _Subscriptions extends ConsumerWidget {
                       Row(children: [
                         TextButton.icon(
                           onPressed: () => ref.read(orderRepositoryProvider).updateSubscription(s.id, {'active': !s.active}),
-                          icon: Icon(s.active ? Icons.pause_rounded : Icons.play_arrow_rounded),
+                          icon: Icon(s.active ? Icons.pause_outlined : Icons.play_arrow_outlined),
                           label: Text(s.active ? l.subsPause : l.subsResume),
                         ),
                         TextButton.icon(
@@ -142,7 +142,7 @@ class _Subscriptions extends ConsumerWidget {
                             final ok = await confirmAction(context, title: l.subsCancelQ, body: s.productName, confirmLabel: l.subsCancel);
                             if (ok) await ref.read(orderRepositoryProvider).deleteSubscription(s.id);
                           },
-                          icon: const Icon(Icons.close_rounded),
+                          icon: const Icon(Icons.close_outlined),
                           label: Text(l.subsCancel),
                         ),
                       ]),
@@ -165,7 +165,7 @@ class OrderPlacedScreen extends ConsumerWidget {
     final orders = ref.watch(orderGroupProvider(groupId)).value ?? const <ShopOrder>[];
     final pending = orders.any((o) => o.paymentStatus == 'pending');
     return Scaffold(
-      appBar: AppBar(title: Text(l.ordPlacedTitle), automaticallyImplyLeading: false, actions: [IconButton(tooltip: l.close, onPressed: () => context.go('/shop'), icon: const Icon(Icons.close_rounded))]),
+      appBar: AppBar(title: Text(l.ordPlacedTitle), automaticallyImplyLeading: false, actions: [IconButton(tooltip: l.close, onPressed: () => context.go('/shop'), icon: const Icon(Icons.close_outlined))]),
       body: PageBody(maxWidth: 720, children: [
         const SizedBox(height: Space.lg),
         const Center(child: Illustration(Scene.success, size: 140)),
@@ -226,7 +226,7 @@ class OrderDetailScreen extends ConsumerWidget {
         PawCard(
           borderColor: context.paw.warning,
           child: Row(children: [
-            Icon(Icons.hourglass_top_rounded, color: context.paw.warning),
+            Icon(Icons.hourglass_top_outlined, color: context.paw.warning),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.payPendingNote)),
             TextButton(
@@ -287,7 +287,7 @@ class OrderDetailScreen extends ConsumerWidget {
       ),
       const SizedBox(height: Space.lg),
       Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
-        OutlinedButton.icon(onPressed: () => openInvoice(context, o), icon: const Icon(Icons.picture_as_pdf_rounded), label: Text(l.ordInvoice)),
+        OutlinedButton.icon(onPressed: () => openInvoice(context, o), icon: const Icon(Icons.picture_as_pdf_outlined), label: Text(l.ordInvoice)),
         OutlinedButton.icon(
           onPressed: () async {
             final user = ref.read(currentUserProvider);
@@ -297,14 +297,14 @@ class OrderDetailScreen extends ConsumerWidget {
             }
             if (context.mounted) context.push('/shop/cart');
           },
-          icon: const Icon(Icons.replay_rounded),
+          icon: const Icon(Icons.replay_outlined),
           label: Text(l.shopBuyAgain),
         ),
         if (canCancel(o))
           OutlinedButton.icon(onPressed: () => _cancel(context, ref, o), icon: const Icon(Icons.cancel_outlined), label: Text(l.ordCancel)),
         if (canReturn(o, now))
-          OutlinedButton.icon(onPressed: () => _return(context, ref, o), icon: const Icon(Icons.assignment_return_rounded), label: Text(l.ordReturn)),
-        OutlinedButton.icon(onPressed: () => context.push('/me/help/new?order=${o.id}'), icon: const Icon(Icons.support_agent_rounded), label: Text(l.ordHelp)),
+          OutlinedButton.icon(onPressed: () => _return(context, ref, o), icon: const Icon(Icons.assignment_return_outlined), label: Text(l.ordReturn)),
+        OutlinedButton.icon(onPressed: () => context.push('/me/help/new?order=${o.id}'), icon: const Icon(Icons.support_agent_outlined), label: Text(l.ordHelp)),
       ]),
       if (o.status == 'delivered' && !canReturn(o, now) && o.items.any((i) => i.returnable))
         Padding(padding: const EdgeInsets.only(top: Space.sm), child: Text(l.ordReturnWindowOver(returnWindowDays), style: context.text.bodySmall)),
@@ -416,7 +416,7 @@ class _Step extends StatelessWidget {
                 width: 22,
                 height: 22,
                 decoration: BoxDecoration(shape: BoxShape.circle, color: done ? color : Colors.transparent, border: Border.all(color: color, width: 2)),
-                child: done ? Icon(error ? Icons.close_rounded : Icons.check_rounded, size: 14, color: Colors.white) : null,
+                child: done ? Icon(error ? Icons.close_outlined : Icons.check_outlined, size: 14, color: Colors.white) : null,
               ),
               if (!last) Expanded(child: Container(width: 2, color: done ? color : context.paw.outline)),
             ]),

@@ -249,7 +249,7 @@ class PawAlertCard extends StatelessWidget {
           if (button != null && wide) ...[const SizedBox(width: Space.md), button],
           if (button == null && onTap != null) ...[
             const SizedBox(width: Space.sm),
-            Icon(Icons.chevron_right_rounded, color: paw.textSecondary),
+            Icon(Icons.chevron_right_outlined, color: paw.textSecondary),
           ],
         ]),
         if (button != null && !wide) ...[const SizedBox(height: Space.md), button],
@@ -287,7 +287,7 @@ class DemoBanner extends StatelessWidget {
 
 /// "Indicative, always confirm with your vet" style note.
 class InfoNote extends StatelessWidget {
-  const InfoNote(this.text, {super.key, this.icon = Icons.info_outline_rounded, this.tone = ChipTone.info});
+  const InfoNote(this.text, {super.key, this.icon = Icons.info_outlined, this.tone = ChipTone.info});
   final String text;
   final IconData icon;
   final ChipTone tone;

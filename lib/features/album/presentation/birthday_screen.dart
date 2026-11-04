@@ -83,7 +83,7 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> with SingleTick
             ),
           ),
           const SizedBox(height: Space.lg),
-          Icon(Icons.cake_rounded, size: 44, color: context.paw.accent),
+          Icon(Icons.cake_outlined, size: 44, color: context.paw.accent),
           const SizedBox(height: Space.sm),
           Semantics(
             header: true,
@@ -108,7 +108,7 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> with SingleTick
           if (canLog)
             PrimaryButton(
               label: l.albumBirthdayAddPhoto,
-              icon: Icons.add_a_photo_rounded,
+              icon: Icons.add_a_photo_outlined,
               onPressed: () => showAddMemorySheet(context, ref, pet, milestone: 'birthday'),
             ),
           if (user != null && pet.ownerId == user.uid) ...[
@@ -116,7 +116,7 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> with SingleTick
             PawCard(
               padding: EdgeInsets.zero,
               child: SwitchListTile(
-                secondary: Icon(Icons.notifications_active_rounded, color: context.colors.primary),
+                secondary: Icon(Icons.notifications_active_outlined, color: context.colors.primary),
                 title: Text(l.albumBirthdayReminder(pet.name)),
                 subtitle: reminderOn ? Text(l.albumBirthdayReminderOn) : null,
                 value: reminderOn,

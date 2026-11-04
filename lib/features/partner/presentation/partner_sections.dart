@@ -87,9 +87,9 @@ class _Dashboard extends ConsumerWidget {
           ResponsiveGrid(
             minItemWidth: 200,
             children: [
-              StatTile(label: l.todaysBookings, value: '${today.length}', icon: Icons.event_available_rounded),
-              StatTile(label: l.requestsWaiting, value: '${requests.length}', icon: Icons.inbox_rounded, color: requests.isEmpty ? null : context.paw.warning),
-              StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Icons.account_balance_wallet_rounded),
+              StatTile(label: l.todaysBookings, value: '${today.length}', icon: Icons.event_available_outlined),
+              StatTile(label: l.requestsWaiting, value: '${requests.length}', icon: Icons.inbox_outlined, color: requests.isEmpty ? null : context.paw.warning),
+              StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Icons.account_balance_wallet_outlined),
               StatTile(
                 label: l.rating,
                 value: place.reviewCount == 0 ? '–' : '★ ${place.rating.toStringAsFixed(1)}',
@@ -176,7 +176,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
             runSpacing: Space.sm,
             children: [
               OutlinedButton.icon(
-                icon: Icon(isHoliday ? Icons.event_available_rounded : Icons.event_busy_rounded),
+                icon: Icon(isHoliday ? Icons.event_available_outlined : Icons.event_busy_outlined),
                 label: Text(isHoliday ? l.removeHoliday : l.markHoliday),
                 onPressed: () {
                   final hs = place.holidays.where((h) => !Fmt.sameDay(h, _day)).toList();
@@ -185,7 +185,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
                 },
               ),
               OutlinedButton.icon(
-                icon: const Icon(Icons.block_rounded),
+                icon: const Icon(Icons.block_outlined),
                 label: Text(l.blockTime),
                 onPressed: () async {
                   final t = await showTimePicker(context: context, initialTime: const TimeOfDay(hour: 13, minute: 0));
@@ -199,7 +199,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
                   if (context.mounted) showToast(context, l.timeBlocked(Fmt.time(start, context.lang)));
                 },
               ),
-              OutlinedButton.icon(icon: const Icon(Icons.schedule_rounded), label: Text(l.workingHours), onPressed: () => _hours(context, place)),
+              OutlinedButton.icon(icon: const Icon(Icons.schedule_outlined), label: Text(l.workingHours), onPressed: () => _hours(context, place)),
             ],
           ),
           SectionHeader(l.bookingsOn(Fmt.weekdayDate(_day, context.lang))),
@@ -368,7 +368,7 @@ class RequestCard extends ConsumerWidget {
               Expanded(
                 child: SecondaryButton(
                   label: l.suggestTime,
-                  icon: Icons.schedule_send_rounded,
+                  icon: Icons.schedule_send_outlined,
                   onPressed: () async {
                     final d = await showDatePicker(
                       context: context,
@@ -388,7 +388,7 @@ class RequestCard extends ConsumerWidget {
               Expanded(
                 child: SecondaryButton(
                   label: l.decline,
-                  icon: Icons.close_rounded,
+                  icon: Icons.close_outlined,
                   onPressed: () async {
                     final ok = await confirmAction(context, title: l.declineRequestQ(b.petName), confirmLabel: l.decline);
                     if (ok) await repo.decline(b);
@@ -436,7 +436,7 @@ class _Services extends ConsumerWidget {
                       ),
                     ),
                     Text(Fmt.inr(s.price), style: context.text.titleMedium),
-                    const Icon(Icons.edit_rounded),
+                    const Icon(Icons.edit_outlined),
                   ],
                 ),
               ),
@@ -522,7 +522,7 @@ class _Staff extends ConsumerWidget {
             ListTile(
               leading: CircleAvatar(
                 backgroundColor: context.paw.primaryContainer,
-                child: Icon(Icons.medical_services_rounded, color: context.colors.primary),
+                child: Icon(Icons.medical_services_outlined, color: context.colors.primary),
               ),
               title: Text(v.name),
               subtitle: Text('${v.qualification}\n${l.regNo(v.regNo)}'),
@@ -532,7 +532,7 @@ class _Staff extends ConsumerWidget {
           const SizedBox(height: Space.md),
           SecondaryButton(
             label: l.addVet,
-            icon: Icons.person_add_rounded,
+            icon: Icons.person_add_outlined,
             onPressed: () async {
               final name = TextEditingController();
               final reg = TextEditingController();
@@ -607,7 +607,7 @@ class _PartnerReviews extends ConsumerWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton.icon(
-                          icon: const Icon(Icons.reply_rounded),
+                          icon: const Icon(Icons.reply_outlined),
                           label: Text(l.reply),
                           onPressed: () async {
                             final c = TextEditingController();
@@ -653,9 +653,9 @@ class _Payouts extends ConsumerWidget {
         ResponsiveGrid(
           minItemWidth: 220,
           children: [
-            StatTile(label: l.totalPayouts, value: Fmt.inr(total), icon: Icons.account_balance_rounded),
-            StatTile(label: l.platformCommission, value: Fmt.inr(commission), icon: Icons.percent_rounded),
-            StatTile(label: l.completedBookings, value: '${done.length}', icon: Icons.task_alt_rounded),
+            StatTile(label: l.totalPayouts, value: Fmt.inr(total), icon: Icons.account_balance_outlined),
+            StatTile(label: l.platformCommission, value: Fmt.inr(commission), icon: Icons.percent_outlined),
+            StatTile(label: l.completedBookings, value: '${done.length}', icon: Icons.task_alt_outlined),
           ],
         ),
         SectionHeader(l.payoutHistory),
@@ -718,7 +718,7 @@ class _Profile extends ConsumerWidget {
               children: [
                 for (final d in ((place.raw['kycDocs'] as List?) ?? const []).cast<String>())
                   ListTile(
-                    leading: const Icon(Icons.description_rounded),
+                    leading: const Icon(Icons.description_outlined),
                     title: Text(d),
                     trailing: Icon(Icons.verified_rounded, color: context.paw.success),
                   ),
@@ -728,7 +728,7 @@ class _Profile extends ConsumerWidget {
           const SizedBox(height: Space.sm),
           SecondaryButton(
             label: l.uploadKyc,
-            icon: Icons.upload_file_rounded,
+            icon: Icons.upload_file_outlined,
             onPressed: () async {
               final pick = await pickImage(context, ImageSource.gallery);
               if (pick == null) return;
@@ -816,7 +816,7 @@ class PartnerBookingActions extends ConsumerWidget {
         if ((b.status == 'in_progress' || b.status == 'confirmed') && (b.kind == 'walker' || b.kind == 'boarder' || b.kind == 'groomer'))
           SecondaryButton(
             label: l.sendPhotoUpdate,
-            icon: Icons.add_a_photo_rounded,
+            icon: Icons.add_a_photo_outlined,
             onPressed: () async {
               final text = TextEditingController(text: l.defaultUpdateText(b.petName));
               final pick = await pickImage(context, ImageSource.gallery);

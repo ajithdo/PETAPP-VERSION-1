@@ -86,7 +86,7 @@ class _ReportCard extends ConsumerWidget {
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-          Icon(r.type == 'review' ? Icons.star_half_rounded : (r.type == 'chat' ? Icons.chat_rounded : Icons.flag_rounded), color: context.paw.warning),
+          Icon(r.type == 'review' ? Icons.star_half_rounded : (r.type == 'chat' ? Icons.chat_outlined : Icons.flag_outlined), color: context.paw.warning),
           Text(reportTypeLabel(context, r.type), style: context.text.titleSmall),
           StatusChip(reportReasonLabel(context, r.reason), tone: ChipTone.warning),
         ]),
@@ -111,12 +111,12 @@ class _ReportCard extends ConsumerWidget {
         const SizedBox(height: Space.md),
         Wrap(spacing: Space.sm, runSpacing: Space.sm, alignment: WrapAlignment.end, children: [
           if (r.status == 'open' && r.type == 'review')
-            PrimaryButton(label: l.admHideReview, icon: Icons.visibility_off_rounded, expand: false, onPressed: () => act('hide')),
+            PrimaryButton(label: l.admHideReview, icon: Icons.visibility_off_outlined, expand: false, onPressed: () => act('hide')),
           if (r.status == 'open' && r.type != 'review')
-            PrimaryButton(label: l.admMarkHandled, icon: Icons.task_alt_rounded, expand: false, onPressed: () => act('handled')),
-          if (r.status == 'open') SecondaryButton(label: l.admDismiss, icon: Icons.close_rounded, expand: false, onPressed: () => act('dismiss')),
+            PrimaryButton(label: l.admMarkHandled, icon: Icons.task_alt_outlined, expand: false, onPressed: () => act('handled')),
+          if (r.status == 'open') SecondaryButton(label: l.admDismiss, icon: Icons.close_outlined, expand: false, onPressed: () => act('dismiss')),
           if (r.status == 'actioned' && r.type == 'review')
-            SecondaryButton(label: l.admRestoreReview, icon: Icons.visibility_rounded, expand: false, onPressed: () => act('restore')),
+            SecondaryButton(label: l.admRestoreReview, icon: Icons.visibility_outlined, expand: false, onPressed: () => act('restore')),
         ]),
       ]),
     );
@@ -157,15 +157,15 @@ class _AdminOutboxState extends ConsumerState<AdminOutbox> {
         }
         return PageBody(maxWidth: 900, children: [
           const SizedBox(height: Space.md),
-          InfoNote(l.demoOutboxNote, icon: Icons.science_rounded, tone: ChipTone.accent),
+          InfoNote(l.demoOutboxNote, icon: Icons.science_outlined, tone: ChipTone.accent),
           const SizedBox(height: Space.md),
-          PawTextField(label: l.admSearchOutbox, prefixIcon: Icons.search_rounded, onChanged: (v) => setState(() => _q = v)),
+          PawTextField(label: l.admSearchOutbox, prefixIcon: Icons.search_outlined, onChanged: (v) => setState(() => _q = v)),
           const SizedBox(height: Space.sm),
           ChoiceRow<String?>(
             options: const [null, 'push', 'sms', 'whatsapp', 'email'],
             selected: _channel,
             label: (c) => c == null ? l.admAllCount(all.length) : '${outboxChannelLabel(context, c)} (${counts[c] ?? 0})',
-            icons: (c) => c == null ? Icons.all_inbox_rounded : outboxChannelIcon(c),
+            icons: (c) => c == null ? Icons.all_inbox_outlined : outboxChannelIcon(c),
             onSelected: (c) => setState(() => _channel = c),
           ),
           const SizedBox(height: Space.md),
@@ -239,7 +239,7 @@ class _AdminAuditState extends ConsumerState<AdminAudit> {
           const SizedBox(height: Space.md),
           InfoNote(l.admAuditNote),
           const SizedBox(height: Space.md),
-          PawTextField(label: l.admSearchAudit, prefixIcon: Icons.search_rounded, onChanged: (v) => setState(() => _q = v)),
+          PawTextField(label: l.admSearchAudit, prefixIcon: Icons.search_outlined, onChanged: (v) => setState(() => _q = v)),
           const SizedBox(height: Space.md),
           if (shown.isEmpty) EmptyState(title: l.admNothingHere, compact: true),
           for (final e in shown) _AuditTile(entry: e),
@@ -268,7 +268,7 @@ class _AuditTile extends StatelessWidget {
       child: PawCard(
         padding: const EdgeInsets.all(Space.md),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const CircleAvatar(radius: 18, child: Icon(Icons.history_rounded, size: 18)),
+          const CircleAvatar(radius: 18, child: Icon(Icons.history_outlined, size: 18)),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

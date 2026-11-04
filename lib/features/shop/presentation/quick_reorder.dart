@@ -69,7 +69,7 @@ class _QuickReorderState extends ConsumerState<_QuickReorder> {
       const Divider(height: Space.xl),
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.location_on_rounded),
+        leading: const Icon(Icons.location_on_outlined),
         title: Text(address == null ? l.addrAddFirst : '${address.label} · ${address.name}'),
         subtitle: address == null ? null : Text(address.oneLine, maxLines: 2, overflow: TextOverflow.ellipsis),
         trailing: TextButton(
@@ -82,7 +82,7 @@ class _QuickReorderState extends ConsumerState<_QuickReorder> {
       ),
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.local_shipping_rounded),
+        leading: const Icon(Icons.local_shipping_outlined),
         title: Text(l.shopDeliveryOn(Fmt.weekdayDate(slot.date, context.lang))),
         subtitle: Text(windowLabel(context, slot.window)),
       ),
@@ -98,7 +98,7 @@ class _QuickReorderState extends ConsumerState<_QuickReorder> {
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.shopPlaceOrderAmount(Fmt.inr(price.total)),
-        icon: Icons.check_rounded,
+        icon: Icons.check_outlined,
         loading: _busy,
         onPressed: address == null || price.isEmpty ? null : () => _place(address, slot, price.total),
       ),

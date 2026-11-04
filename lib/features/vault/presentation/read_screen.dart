@@ -273,7 +273,7 @@ class _AutoReadScreenState extends ConsumerState<AutoReadScreen> {
       PawCard(
         color: _found ? context.paw.primaryContainer.withValues(alpha: 0.6) : null,
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Icon(_found ? Icons.auto_awesome_rounded : Icons.edit_note_rounded, color: context.colors.primary),
+          Icon(_found ? Icons.auto_awesome_outlined : Icons.edit_note_outlined, color: context.colors.primary),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -288,7 +288,7 @@ class _AutoReadScreenState extends ConsumerState<AutoReadScreen> {
       DemoBanner(l.vaultDemoReadNote),
       if (mismatch) ...[
         const SizedBox(height: Space.sm),
-        InfoNote(l.vaultPetMismatch(petOnDoc, pet.name), tone: ChipTone.warning, icon: Icons.warning_amber_rounded),
+        InfoNote(l.vaultPetMismatch(petOnDoc, pet.name), tone: ChipTone.warning, icon: Icons.warning_amber_outlined),
       ],
       const SizedBox(height: Space.lg),
       DropdownButtonFormField<String>(
@@ -385,7 +385,7 @@ class _AutoReadScreenState extends ConsumerState<AutoReadScreen> {
         decoration: InputDecoration(
           labelText: l.vaultAddTag,
           hintText: l.vaultTagHint,
-          suffixIcon: IconButton(tooltip: l.vaultAddTag, icon: const Icon(Icons.add_rounded), onPressed: _addTag),
+          suffixIcon: IconButton(tooltip: l.vaultAddTag, icon: const Icon(Icons.add_outlined), onPressed: _addTag),
         ),
         onSubmitted: (_) => _addTag(),
       ),
@@ -394,7 +394,7 @@ class _AutoReadScreenState extends ConsumerState<AutoReadScreen> {
         InfoNote(l.vaultExpiryReminderNote, icon: Icons.notifications_active_outlined),
       ],
       const SizedBox(height: Space.xl),
-      PrimaryButton(label: l.vaultSaveDetails, icon: Icons.check_rounded, loading: _saving, onPressed: _save),
+      PrimaryButton(label: l.vaultSaveDetails, icon: Icons.check_outlined, loading: _saving, onPressed: _save),
       const SizedBox(height: Space.sm),
       TextButton(onPressed: _saving ? null : _skip, child: Text(l.vaultSkipDetails)),
     ];
@@ -426,7 +426,7 @@ class _DateField extends StatelessWidget {
         Expanded(
           child: OutlinedButton.icon(
             style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-            icon: const Icon(Icons.event_rounded),
+            icon: const Icon(Icons.event_outlined),
             label: Text('$label: ${value == null ? (clearLabel ?? '–') : Fmt.date(value!, context.lang)}', overflow: TextOverflow.ellipsis),
             onPressed: () async {
               final now = DateTime.now();
@@ -441,7 +441,7 @@ class _DateField extends StatelessWidget {
           ),
         ),
         if (value != null && clearLabel != null)
-          IconButton(tooltip: clearLabel, icon: const Icon(Icons.close_rounded), onPressed: () => onChanged(null)),
+          IconButton(tooltip: clearLabel, icon: const Icon(Icons.close_outlined), onPressed: () => onChanged(null)),
       ]),
     );
   }

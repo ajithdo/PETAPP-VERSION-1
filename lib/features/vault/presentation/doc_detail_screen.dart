@@ -37,7 +37,7 @@ class DocDetailScreen extends ConsumerWidget {
           if (doc != null && pet != null)
             IconButton(
               tooltip: l.vaultShareWithVet,
-              icon: const Icon(Icons.ios_share_rounded),
+              icon: const Icon(Icons.ios_share_outlined),
               onPressed: () => showVaultShareSheet(context, ref, pet: pet, initialDocIds: [doc.id]),
             ),
           if (canEdit)
@@ -48,10 +48,10 @@ class DocDetailScreen extends ConsumerWidget {
                 if (v == 'delete') await _delete(context, ref, doc, pet);
               },
               itemBuilder: (_) => [
-                PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_rounded), title: Text(l.vaultEditDetails))),
+                PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.vaultEditDetails))),
                 PopupMenuItem(
                   value: 'delete',
-                  child: ListTile(leading: Icon(Icons.delete_outline_rounded, color: context.paw.error), title: Text(l.vaultDeleteDoc)),
+                  child: ListTile(leading: Icon(Icons.delete_outlined, color: context.paw.error), title: Text(l.vaultDeleteDoc)),
                 ),
               ],
             ),
@@ -137,7 +137,7 @@ class _Body extends ConsumerWidget {
           color: context.paw.accent.withValues(alpha: 0.16),
           onTap: () => context.push('/vault/doc/${doc.id}/read'),
           child: Row(children: [
-            Icon(Icons.auto_awesome_rounded, color: context.paw.onAccentContainer),
+            Icon(Icons.auto_awesome_outlined, color: context.paw.onAccentContainer),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -145,7 +145,7 @@ class _Body extends ConsumerWidget {
                 Text(l.vaultCheckDetailsHint, style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
         const SizedBox(height: Space.md),
@@ -203,7 +203,7 @@ class _Body extends ConsumerWidget {
             Icon(Icons.favorite_rounded, color: context.paw.error),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.vaultLinkedVaccine(petName))),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
       ],
@@ -212,26 +212,26 @@ class _Body extends ConsumerWidget {
         PawCard(
           onTap: () => context.push(policy == null ? '/vault/insurance?pet=${doc.petId}&doc=${doc.id}' : '/vault/insurance/${policy.id}'),
           child: Row(children: [
-            Icon(Icons.health_and_safety_rounded, color: context.colors.primary),
+            Icon(Icons.health_and_safety_outlined, color: context.colors.primary),
             const SizedBox(width: Space.md),
             Expanded(child: Text(policy == null ? l.vaultTrackPolicy : l.vaultOpenPolicy)),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
       ],
       if (doc.link != null) ...[
         const SizedBox(height: Space.md),
-        SecondaryButton(label: l.vaultOpenInApp, icon: Icons.open_in_new_rounded, onPressed: () => context.push(doc.link!)),
+        SecondaryButton(label: l.vaultOpenInApp, icon: Icons.open_in_new_outlined, onPressed: () => context.push(doc.link!)),
       ],
       const SizedBox(height: Space.lg),
       if (pet != null)
         PrimaryButton(
           label: l.vaultShareWithVet,
-          icon: Icons.ios_share_rounded,
+          icon: Icons.ios_share_outlined,
           onPressed: () => showVaultShareSheet(context, ref, pet: pet!, initialDocIds: [doc.id]),
         ),
       const SizedBox(height: Space.md),
-      InfoNote(l.vaultSecureNote, icon: Icons.shield_rounded),
+      InfoNote(l.vaultSecureNote, icon: Icons.shield_outlined),
     ]);
   }
 }

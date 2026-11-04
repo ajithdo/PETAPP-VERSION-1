@@ -62,18 +62,18 @@ Future<void> showUploadSheet(BuildContext context, WidgetRef ref, {Pet? pet, boo
         ],
         const SizedBox(height: Space.md),
         ListTile(
-          leading: const Icon(Icons.document_scanner_rounded),
+          leading: const Icon(Icons.document_scanner_outlined),
           title: Text(l.vaultScanCamera),
           subtitle: Text(l.vaultScanCameraHint),
           onTap: () => Navigator.pop(ctx, 'scan'),
         ),
         ListTile(
-          leading: const Icon(Icons.photo_library_rounded),
+          leading: const Icon(Icons.photo_library_outlined),
           title: Text(l.vaultFromGallery),
           onTap: () => Navigator.pop(ctx, 'gallery'),
         ),
         ListTile(
-          leading: const Icon(Icons.picture_as_pdf_rounded),
+          leading: const Icon(Icons.picture_as_pdf_outlined),
           title: Text(l.vaultFromPdf),
           onTap: () => Navigator.pop(ctx, 'pdf'),
         ),

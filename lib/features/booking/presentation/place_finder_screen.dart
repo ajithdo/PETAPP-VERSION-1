@@ -197,7 +197,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
         actions: [
           IconButton(
             tooltip: _map ? l.listView : l.mapView,
-            icon: Icon(_map ? Icons.view_list_rounded : Icons.map_rounded),
+            icon: Icon(_map ? Icons.view_list_outlined : Icons.map_outlined),
             onPressed: () => setState(() => _map = !_map),
           ),
         ],
@@ -215,7 +215,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                     TextField(
                       controller: _search,
                       onChanged: (_) => setState(() {}),
-                      decoration: InputDecoration(prefixIcon: const Icon(Icons.search_rounded), hintText: l.searchByNameOrArea),
+                      decoration: InputDecoration(prefixIcon: const Icon(Icons.search_outlined), hintText: l.searchByNameOrArea),
                     ),
                     const SizedBox(height: Space.sm),
                     SingleChildScrollView(
@@ -223,19 +223,19 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                       child: Row(
                         children: [
                           ActionChip(
-                            avatar: Icon(origin.fromGps ? Icons.my_location_rounded : Icons.place_rounded, size: 18),
+                            avatar: Icon(origin.fromGps ? Icons.my_location_outlined : Icons.place_outlined, size: 18),
                             label: Text(origin.label),
                             onPressed: () => pickArea(context, ref),
                           ),
                           const SizedBox(width: Space.sm),
                           ActionChip(
-                            avatar: const Icon(Icons.gps_fixed_rounded, size: 18),
+                            avatar: const Icon(Icons.gps_fixed_outlined, size: 18),
                             label: Text(l.useMyLocation),
                             onPressed: () => useMyLocation(context, ref),
                           ),
                           const SizedBox(width: Space.sm),
                           ActionChip(
-                            avatar: Badge.count(count: _f.count, isLabelVisible: _f.count > 0, child: const Icon(Icons.tune_rounded, size: 18)),
+                            avatar: Badge.count(count: _f.count, isLabelVisible: _f.count > 0, child: const Icon(Icons.tune_outlined, size: 18)),
                             label: Text(l.filters),
                             onPressed: _openFilters,
                           ),
@@ -250,7 +250,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                               PopupMenuItem(value: 'slot', child: Text(l.sortSlot)),
                               PopupMenuItem(value: 'fee', child: Text(l.sortFee)),
                             ],
-                            child: Chip(avatar: const Icon(Icons.sort_rounded, size: 18), label: Text(l.sortBy)),
+                            child: Chip(avatar: const Icon(Icons.sort_outlined, size: 18), label: Text(l.sortBy)),
                           ),
                           if (_isClinic) ...[
                             const SizedBox(width: Space.sm),
@@ -304,7 +304,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                                     button: true,
                                     label: e.$1.name,
                                     child: Icon(
-                                      Icons.location_on_rounded,
+                                      Icons.location_on_outlined,
                                       size: 44,
                                       color: e.$1.is24x7 ? context.paw.sos : context.colors.primary,
                                       shadows: const [Shadow(blurRadius: 4, color: Colors.black26)],
@@ -473,7 +473,7 @@ class PlaceCard extends StatelessWidget {
                     children: [
                       if (p.reviewCount > 0) StatusChip('★ ${p.rating.toStringAsFixed(1)} (${p.reviewCount})', tone: ChipTone.accent),
                       StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
-                      if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_rounded),
+                      if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_outlined),
                       if (p.kind == 'clinic') StatusChip(l.feeFrom(Fmt.inr(p.fee)), tone: ChipTone.info),
                       if (p.kind != 'clinic' && p.services.isNotEmpty)
                         StatusChip(l.feeFrom(Fmt.inr(p.services.map((s) => s.price).reduce((a, b) => a < b ? a : b))), tone: ChipTone.info),

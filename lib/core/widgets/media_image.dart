@@ -49,7 +49,7 @@ class MediaImage extends ConsumerWidget {
       errorWidget: (context, _, _) => SizedBox(
         width: width,
         height: height,
-        child: Icon(Icons.broken_image_rounded, color: context.paw.textSecondary),
+        child: Icon(Icons.broken_image_outlined, color: context.paw.textSecondary),
       ),
     );
     return semanticLabel == null ? image : Semantics(image: true, label: semanticLabel, child: image);
@@ -71,22 +71,11 @@ class SeedArt extends StatelessWidget {
   final double? width;
   final double? height;
 
-  static const _palettes = [
-    [Color(0xFF99F6E4), Color(0xFF0F766E)],
-    [Color(0xFFFDE7D3), Color(0xFFF4A261)],
-    [Color(0xFFDDD6FE), Color(0xFF9B8AFB)],
-    [Color(0xFFBAE6FD), Color(0xFF38BDF8)],
-    [Color(0xFFFBCFE8), Color(0xFFF472B6)],
-    [Color(0xFFBBF7D0), Color(0xFF34D399)],
-    [Color(0xFFF5E6CC), Color(0xFFD6B98C)],
-    [Color(0xFFCCFBF1), Color(0xFFF4A261)],
-  ];
-
   @override
   Widget build(BuildContext context) {
     final parts = seed.split(':');
     final n = int.tryParse(parts.last) ?? seed.hashCode;
-    final pal = _palettes[n.abs() % _palettes.length];
+    final pal = SeedArtColors.pairs[n.abs() % SeedArtColors.pairs.length];
     final species = parts.length > 3 ? parts[2] : null;
     final kind = parts.length > 1 ? parts[1] : '';
     return SizedBox(
@@ -106,11 +95,11 @@ class SeedArt extends StatelessWidget {
             return Center(child: PetFace(species: species, color: pal[1], size: s * 0.7));
           }
           final icon = switch (kind) {
-            'clinic' => Icons.local_hospital_rounded,
-            'product' => Icons.shopping_bag_rounded,
-            'provider' => Icons.content_cut_rounded,
-            'doc' => Icons.description_rounded,
-            _ => Icons.pets_rounded,
+            'clinic' => Icons.local_hospital_outlined,
+            'product' => Icons.shopping_bag_outlined,
+            'provider' => Icons.content_cut_outlined,
+            'doc' => Icons.description_outlined,
+            _ => Icons.pets_outlined,
           };
           return Center(child: Icon(icon, size: s * 0.38, color: pal[1]));
         }),

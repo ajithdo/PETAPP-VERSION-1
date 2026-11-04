@@ -19,12 +19,12 @@ class BookHomeScreen extends ConsumerWidget {
     final bookings = ref.watch(myBookingsProvider).value ?? const <Booking>[];
     final upcoming = bookings.where((b) => b.isActive && b.end.isAfter(DateTime.now())).toList()..sort((a, b) => a.start.compareTo(b.start));
     final tiles = [
-      (Icons.local_hospital_rounded, l.kindVet, '/book/find/clinic', context.colors.primary),
-      (Icons.video_call_rounded, l.teleVet, '/televet', context.paw.accent),
-      (Icons.content_cut_rounded, l.kindGrooming, '/book/find/groomer', const Color(0xFFF472B6)),
-      (Icons.sports_rounded, l.kindTraining, '/book/find/trainer', const Color(0xFF0EA5E9)),
-      (Icons.house_rounded, l.kindBoarding, '/book/find/boarder', const Color(0xFF9B8AFB)),
-      (Icons.directions_walk_rounded, l.kindWalking, '/book/find/walker', const Color(0xFF34D399)),
+      (Icons.local_hospital_outlined, l.kindVet, '/book/find/clinic', context.colors.primary),
+      (Icons.video_call_outlined, l.teleVet, '/televet', context.paw.accent),
+      (Icons.content_cut_outlined, l.kindGrooming, '/book/find/groomer', const Color(0xFFF472B6)),
+      (Icons.sports_outlined, l.kindTraining, '/book/find/trainer', const Color(0xFF0EA5E9)),
+      (Icons.house_outlined, l.kindBoarding, '/book/find/boarder', const Color(0xFF9B8AFB)),
+      (Icons.directions_walk_outlined, l.kindWalking, '/book/find/walker', const Color(0xFF34D399)),
     ];
     return PageBody(
       children: [
@@ -43,7 +43,7 @@ class BookHomeScreen extends ConsumerWidget {
             children: [
               CircleAvatar(
                 backgroundColor: context.paw.primaryContainer,
-                child: Icon(Icons.map_rounded, color: context.colors.primary),
+                child: Icon(Icons.map_outlined, color: context.colors.primary),
               ),
               const SizedBox(width: Space.md),
               Expanded(
@@ -55,7 +55,7 @@ class BookHomeScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right_rounded),
+              const Icon(Icons.chevron_right_outlined),
             ],
           ),
         ),
