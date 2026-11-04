@@ -14,6 +14,8 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 - The design system proposed in section 2 of this plan (and its Figma board) is **not** Design 2 and is **dropped**. Do not use it.
 - The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is neither Design 1 nor Design 2.
 
+**Live now (4 Nov 2026): Design 2.** The owner said "be on Design 2 but put Design 1 in hold. I will improve Design 2". https://pawsetu-demo.netlify.app shows Design 2 (Netlify deploy `6aeb4edc6809a9e375d86932`, from `ui-revamp`). Design 1 is on hold: Netlify deploy `6ae91e4fc7fd9b9bf45ac64f` and Git commit `97c1346`.
+
 **Design 1 is the permanent backup (owner's rule, 3 Nov 2026).** The owner is making a new design (Design 2). If Design 2 turns out worse and the owner says "go back to Design 1", the app must return to Design 1 and work fully, with no errors.
 - **Where Design 1 is saved:** commit `97c1346` on GitHub. It is the tip of branch `claude/inspiring-lovelace-1eo1xz` and is also in the history of `ui-revamp`. The screenshots in `docs/ui-revamp/before/` show how it looks. (A `design-1` Git tag was tried, but GitHub refused tag pushes from this session; the commit itself is the backup.)
 - **Checked working on 3 Nov 2026:** `flutter analyze` found no issues, all 204 tests passed (including the layout sweep across roles, languages and screen sizes), and the web build succeeded.
