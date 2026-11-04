@@ -124,7 +124,7 @@ Left out (features the app doesn't have): blood group, ambulance, live ICU/blood
 - [x] K. Tele-vet: on desktop the call is a rounded card with the vet card under it and the visit details beside it; phones keep the full-screen call (4 Nov 2026)
 - [x] L. Certificate: printed tables have a forest header row and striped rows (health report, prescription, invoice); the medical card is the dark pass (4 Nov 2026)
 - [x] M. Clinic portal: dark forest top bar; number tiles (everywhere) have a small uppercase label over a big number (4 Nov 2026). The queue table layout is left for later
-- [ ] N. Checks, pictures, preview link for the owner
+- [x] N. Checks, pictures, preview link for the owner (4 Nov 2026). A full booking from the clinic page (pick day and time → Book for Bruno → Confirm → demo payment → Booking confirmed) was clicked through in the browser with no errors
 
 ## Design 2 everywhere (4 Nov 2026)
 

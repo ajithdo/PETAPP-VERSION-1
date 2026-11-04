@@ -99,7 +99,11 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: context.gutter),
-                child: Column(
+                // Lined up with the form below on wide screens.
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: Space.formWidth),
+                    child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     if (!_short) ...[
@@ -117,6 +121,8 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                     ],
                     Text(titles[_step], style: context.text.titleLarge),
                   ],
+                    ),
+                  ),
                 ),
               ),
               Expanded(
