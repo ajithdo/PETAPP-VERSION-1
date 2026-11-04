@@ -40,7 +40,7 @@ class _FamilyScreenState extends ConsumerState<FamilyScreen> {
           bottom: TabBar(tabs: [Tab(text: l.people), Tab(text: l.activity)]),
         ),
         body: TabBarView(children: [
-          PageBody(maxWidth: 800, children: [
+          PageBody(maxWidth: Space.readingWidth, children: [
             if (invites.isNotEmpty) ...[
               SectionHeader(l.invitesForYou),
               for (final inv in invites) _ReceivedInvite(invite: inv, user: user),
@@ -67,7 +67,7 @@ class _ReceivedInvite extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: Space.md),
       child: PawCard(
-        color: context.paw.primaryContainer.withValues(alpha: 0.5),
+        color: context.paw.primaryContainer.withValues(alpha: Opacities.half),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(l.inviteReceived(invite.invitedByName, invite.petName, petRoleLabel(context, invite.role)),
               style: context.text.bodyLarge),
@@ -112,7 +112,7 @@ class _PetMembersCard extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: Space.sm),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           ListTile(
-            leading: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 44),
+            leading: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarMd),
             title: Text(pet.name, style: context.text.titleMedium),
             subtitle: Text(l.peopleCount(pet.members.length)),
             trailing: canManage
@@ -239,7 +239,7 @@ class _InviteSheet extends StatefulWidget {
         context: context,
         isScrollControlled: true,
         useSafeArea: true,
-        constraints: const BoxConstraints(maxWidth: 640),
+        constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
         builder: (_) => _InviteSheet(pet: pet),
       );
 
@@ -399,7 +399,7 @@ class _ActivityFeed extends ConsumerWidget {
       value: stream,
       data: (items) {
         if (items.isEmpty) return EmptyState(title: l.noActivityTitle, message: l.noActivityBody, scene: Scene.chat);
-        return PageBody(maxWidth: 800, children: [
+        return PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.md),
           for (final a in items)
             ListTile(
@@ -416,7 +416,7 @@ class _ActivityFeed extends ConsumerWidget {
   Widget _petAvatar(String petId) {
     final p = pets.where((p) => p.id == petId).firstOrNull;
     if (p == null) return const CircleAvatar(child: Icon(Icons.pets_outlined));
-    return PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 40);
+    return PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarSm);
   }
 }
 

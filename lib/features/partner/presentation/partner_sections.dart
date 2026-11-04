@@ -151,7 +151,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
         children: [
           const SizedBox(height: Space.md),
           SizedBox(
-            height: 64,
+            height: Sizes.dateStrip,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
@@ -304,7 +304,7 @@ class _Requests extends ConsumerWidget {
     final waiting = all.where((b) => b.status == 'suggested').toList();
     if (pending.isEmpty && waiting.isEmpty) return EmptyState(title: l.noRequestsPartner, scene: Scene.empty);
     return PageBody(
-      maxWidth: 800,
+      maxWidth: Space.readingWidth,
       children: [
         const SizedBox(height: Space.md),
         for (final b in pending)
@@ -339,10 +339,10 @@ class RequestCard extends ConsumerWidget {
         children: [
           Text('${b.petName} · ${b.ownerName}', style: context.text.titleMedium),
           Text('${serviceLabel(context, b.serviceId)} · ${Fmt.inr(b.total)}', style: context.text.bodySmall),
-          if (b.notes?.isNotEmpty == true) Padding(padding: const EdgeInsets.only(top: 4), child: Text('"${b.notes}"')),
+          if (b.notes?.isNotEmpty == true) Padding(padding: const EdgeInsets.only(top: Space.xs), child: Text('"${b.notes}"')),
           if (b.respondBy != null)
             Padding(
-              padding: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(top: Space.xs),
               child: Text(l.replyBefore(Fmt.time(b.respondBy!, context.lang)), style: context.text.bodySmall?.copyWith(color: context.paw.warning)),
             ),
           const SizedBox(height: Space.sm),
@@ -353,7 +353,7 @@ class RequestCard extends ConsumerWidget {
             children: [
               for (final t in b.proposedTimes)
                 ActionChip(
-                  avatar: Icon(Icons.check_circle_rounded, color: context.paw.success, size: 18),
+                  avatar: Icon(Icons.check_circle_rounded, color: context.paw.success, size: IconSizes.chip),
                   label: Text(Fmt.dateTime(t, context.lang)),
                   onPressed: () async {
                     await repo.accept(b, t);
@@ -411,7 +411,7 @@ class _Services extends ConsumerWidget {
     return _needsPlace(
       ref,
       (place) => PageBody(
-        maxWidth: 800,
+        maxWidth: Space.readingWidth,
         children: [
           const SizedBox(height: Space.md),
           InfoNote(l.servicesHelp),
@@ -515,7 +515,7 @@ class _Staff extends ConsumerWidget {
     return _needsPlace(ref, (place) {
       final vets = ref.watch(vetsProvider(place.id)).value ?? const <Vet>[];
       return PageBody(
-        maxWidth: 800,
+        maxWidth: Space.readingWidth,
         children: [
           const SizedBox(height: Space.md),
           for (final v in vets)
@@ -581,7 +581,7 @@ class _PartnerReviews extends ConsumerWidget {
       final reviews = ref.watch(reviewsProvider(place.id)).value ?? const <Review>[];
       if (reviews.isEmpty) return EmptyState(title: l.noReviewsYet);
       return PageBody(
-        maxWidth: 800,
+        maxWidth: Space.readingWidth,
         children: [
           const SizedBox(height: Space.md),
           for (final r in reviews)
@@ -645,7 +645,7 @@ class _Payouts extends ConsumerWidget {
     final total = done.fold<int>(0, (s, b) => s + b.payout);
     final commission = done.fold<int>(0, (s, b) => s + b.commission);
     return PageBody(
-      maxWidth: 900,
+      maxWidth: Space.wideWidth,
       children: [
         const SizedBox(height: Space.md),
         DemoBanner(l.demoPayoutsNote),
@@ -669,7 +669,7 @@ class _Payouts extends ConsumerWidget {
                   title: Text('${b.petName} · ${serviceLabel(context, b.serviceId)}'),
                   subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text('${Fmt.date(b.start, context.lang)} · ${l.commissionLine(Fmt.inr(b.commission))}'),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: Space.xs),
                     StatusChip(
                       b.start.isBefore(DateTime.now().subtract(const Duration(days: 3))) ? l.settled : l.payoutPending,
                       tone: b.start.isBefore(DateTime.now().subtract(const Duration(days: 3))) ? ChipTone.success : ChipTone.warning,
@@ -693,7 +693,7 @@ class _Profile extends ConsumerWidget {
     return _needsPlace(
       ref,
       (place) => PageBody(
-        maxWidth: 800,
+        maxWidth: Space.readingWidth,
         children: [
           const SizedBox(height: Space.md),
           PawCard(
@@ -760,7 +760,7 @@ class _Emergency extends ConsumerWidget {
     return _needsPlace(ref, (place) {
       final phone = TextEditingController(text: place.emergencyPhone ?? '');
       return PageBody(
-        maxWidth: 720,
+        maxWidth: Space.formWidth,
         children: [
           const SizedBox(height: Space.md),
           InfoNote(l.emergencySettingsHelp),

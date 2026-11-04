@@ -308,10 +308,10 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [x] 10. Sign-in, sign-up, forgot password, phone code, demo accounts, verify email, welcome, setup (4 Nov 2026). Tokens only (logo sizes, sign-in card width, welcome dots, setup species tiles); fields have labels above the box
 - [x] 11. Vault (gate, list, document, read details, shares, insurance, public share) (4 Nov 2026). Tokens only; document kinds use readable category colours (the old pastel icons were below 3:1); PIN pad, scan frame and viewers use tokens and media colours
 - [x] 12. Album, album viewer, memory card (4 Nov 2026). Tokens only; labels and buttons over photos use media colours so they read on any picture; the birthday screen uses tokens except its confetti artwork
-- [ ] 13. Family, join invite, lost pet (list, detail, public page), devices (list, add, detail)
-- [ ] 14. Expenses, Plus, refer a friend, privacy, help and complaints
-- [ ] 15. Partner portal and seller portal
-- [ ] 16. Admin panel
+- [x] 13. Family, join invite, lost pet (list, detail, public page), devices (list, add, detail) (4 Nov 2026). Tokens only (lost pet and devices were done with SOS)
+- [x] 14. Expenses, Plus, refer a friend, privacy, help and complaints (4 Nov 2026). Tokens only; referral and coupon codes in mono
+- [x] 15. Partner portal and seller portal (4 Nov 2026). Tokens only; product thumbnails, order rows and the vet consult panels use size tokens
+- [x] 16. Admin panel (4 Nov 2026). Tokens only; coupon codes in mono
 - [ ] 17. Final sweep: hard-coded-value search is clean, Design 1 still restorable, before/after summary
 
 ---

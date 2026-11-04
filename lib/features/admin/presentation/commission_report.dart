@@ -65,7 +65,7 @@ class _CommissionReportScreenState extends ConsumerState<CommissionReportScreen>
       ),
       body: report == null
           ? const SkeletonList()
-          : PageBody(maxWidth: 1000, children: [
+          : PageBody(maxWidth: Space.wideWidth, children: [
               const SizedBox(height: Space.md),
               ChoiceRow<DateTime>(
                 options: months,

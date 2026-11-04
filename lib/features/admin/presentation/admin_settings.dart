@@ -34,7 +34,7 @@ class AdminSettings extends ConsumerWidget {
         final byType = (commission['bookingTypePercent'] as Map?) ?? const {};
         final updated = parseDate(cfg['updatedAt']);
         num n(Map m, String k, num d) => (m[k] as num?) ?? d;
-        return PageBody(maxWidth: 900, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
           InfoNote(updated == null ? l.admSettingsNote : '${l.admSettingsNote} ${l.admLastChanged(Fmt.dateTime(updated, context.lang))}'),
           SectionHeader(l.admPlanPrices),
@@ -114,7 +114,7 @@ class _Group extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.xs),
         child: Column(children: [
           for (var i = 0; i < children.length; i++) ...[
-            if (i > 0) const Divider(height: 1),
+            if (i > 0) const Divider(height: Strokes.hairline),
             children[i],
           ],
         ]),
@@ -152,7 +152,7 @@ class _NumRow extends ConsumerWidget {
       trailing: Row(mainAxisSize: MainAxisSize.min, children: [
         Text(shown, style: context.text.titleSmall?.copyWith(color: value == null ? context.paw.textSecondary : null)),
         const SizedBox(width: Space.xs),
-        const Icon(Icons.edit_outlined, size: 18),
+        const Icon(Icons.edit_outlined, size: IconSizes.chip),
       ]),
       onTap: () async {
         final v = await askNumber(context,
@@ -189,7 +189,7 @@ class _LimitsTable extends ConsumerWidget {
       ('videoSeconds', l.admLimitVideo, l.admSecondsUnit),
     ];
     Widget cell(String plan, String key, String label, num? v, String? unit) => SizedBox(
-          width: 92,
+          width: Sizes.planColumn,
           child: TextButton(
             onPressed: () async {
               final x = await askNumber(context, title: '$label · ${plan == 'free' ? l.planFree : l.planPlus}', initial: v?.toInt(), suffix: unit, max: 100000);
@@ -198,7 +198,7 @@ class _LimitsTable extends ConsumerWidget {
               await ref.read(adminRepositoryProvider).updateConfig(admin, {'limits.$plan.$key': x}, what: 'limits');
               if (context.mounted) showToast(context, l.admSavedLive);
             },
-            style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 4)),
+            style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: Space.xs)),
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(v == null ? '–' : (v >= 999 ? l.admUnlimited : Fmt.number(v, context.lang)), textAlign: TextAlign.center, maxLines: 1),
@@ -210,8 +210,8 @@ class _LimitsTable extends ConsumerWidget {
       child: Column(children: [
         Row(children: [
           Expanded(child: Text(l.admLimit, style: context.text.labelLarge)),
-          SizedBox(width: 92, child: Text(l.planFree, style: context.text.labelLarge, textAlign: TextAlign.center)),
-          SizedBox(width: 92, child: Text(l.planPlus, style: context.text.labelLarge?.copyWith(color: context.paw.accent), textAlign: TextAlign.center)),
+          SizedBox(width: Sizes.planColumn, child: Text(l.planFree, style: context.text.labelLarge, textAlign: TextAlign.center)),
+          SizedBox(width: Sizes.planColumn, child: Text(l.planPlus, style: context.text.labelLarge?.copyWith(color: context.paw.accent), textAlign: TextAlign.center)),
         ]),
         const Divider(),
         for (final (key, label, unit) in rows)
@@ -285,7 +285,7 @@ class _CouponList extends ConsumerWidget {
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Wrap(spacing: Space.sm, crossAxisAlignment: WrapCrossAlignment.center, children: [
-                    Text(c.code, style: context.text.titleSmall?.copyWith(letterSpacing: 1)),
+                    Text(c.code, style: context.textX.mono.copyWith(letterSpacing: Tracking.id, fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
                     if (c.validTill != null && c.validTill!.isBefore(now)) StatusChip(l.couponExpired, tone: ChipTone.error),
                   ]),
                   Text(c.description, style: context.text.bodySmall),
@@ -427,7 +427,7 @@ class _VaccineCard extends ConsumerWidget {
                       ? l.admEveryYears(t.everyYears)
                       : l.admWeeksRange(t.fromWeeks ?? 0, t.toWeeks ?? 0),
             ),
-            trailing: t.optional ? null : Icon(overrides.containsKey(t.key) ? Icons.edit_note_outlined : Icons.edit_outlined, size: 18, color: overrides.containsKey(t.key) ? context.paw.accent : null),
+            trailing: t.optional ? null : Icon(overrides.containsKey(t.key) ? Icons.edit_note_outlined : Icons.edit_outlined, size: IconSizes.chip, color: overrides.containsKey(t.key) ? context.paw.accent : null),
             onTap: t.optional ? null : () => _edit(context, ref, t, overrides.containsKey(t.key)),
           ),
       ]),

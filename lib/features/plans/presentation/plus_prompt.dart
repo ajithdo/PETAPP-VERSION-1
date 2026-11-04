@@ -10,7 +10,7 @@ Future<void> showPlusPrompt(BuildContext context, {required String title, requir
     final l = ctx.l10n;
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(children: [
-        Icon(Icons.workspace_premium_outlined, color: ctx.paw.accent, size: 32),
+        Icon(Icons.workspace_premium_outlined, color: ctx.paw.accent, size: IconSizes.xl),
         const SizedBox(width: Space.md),
         Expanded(child: Text(title, style: ctx.text.titleMedium)),
       ]),
@@ -21,7 +21,7 @@ Future<void> showPlusPrompt(BuildContext context, {required String title, requir
         Padding(
           padding: const EdgeInsets.only(bottom: Space.sm),
           child: Row(children: [
-            Icon(Icons.check_circle_rounded, color: ctx.paw.success, size: 20),
+            Icon(Icons.check_circle_rounded, color: ctx.paw.success, size: IconSizes.md),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(perk)),
           ]),

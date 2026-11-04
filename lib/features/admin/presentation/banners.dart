@@ -70,7 +70,7 @@ class PromoBanner extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(Space.lg),
             child: Row(children: [
-              Icon(accent ? Icons.local_offer_outlined : Icons.campaign_outlined, color: fg, size: 32),
+              Icon(accent ? Icons.local_offer_outlined : Icons.campaign_outlined, color: fg, size: IconSizes.xl),
               const SizedBox(width: Space.md),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

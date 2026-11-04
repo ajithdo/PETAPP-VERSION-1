@@ -44,7 +44,7 @@ class _AdminModerationState extends ConsumerState<AdminModeration> {
       onRetry: () => ref.invalidate(adminReportsProvider),
       data: (all) {
         final shown = all.where((r) => (r.status == 'open') == _open).toList();
-        return PageBody(maxWidth: 900, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
           ChoiceRow<bool>(
             options: const [true, false],
@@ -95,7 +95,7 @@ class _ReportCard extends ConsumerWidget {
           Container(
             margin: const EdgeInsets.only(top: Space.sm),
             padding: const EdgeInsets.all(Space.md),
-            decoration: BoxDecoration(color: context.colors.surfaceContainerHighest, borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: context.colors.surfaceContainerHighest, borderRadius: BorderRadius.circular(Radii.md)),
             child: Text('“${r.excerpt}”', style: context.text.bodyMedium?.copyWith(fontStyle: FontStyle.italic)),
           ),
         if (r.details.isNotEmpty) Padding(padding: const EdgeInsets.only(top: Space.sm), child: Text(l.admReporterSays(r.details), style: context.text.bodySmall)),
@@ -155,7 +155,7 @@ class _AdminOutboxState extends ConsumerState<AdminOutbox> {
         for (final m in all) {
           counts['${m['channel']}'] = (counts['${m['channel']}'] ?? 0) + 1;
         }
-        return PageBody(maxWidth: 900, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
           InfoNote(l.demoOutboxNote, icon: Icons.science_outlined, tone: ChipTone.accent),
           const SizedBox(height: Space.md),
@@ -193,7 +193,7 @@ class _OutboxTile extends StatelessWidget {
       child: PawCard(
         padding: const EdgeInsets.all(Space.md),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          CircleAvatar(radius: 18, child: Icon(outboxChannelIcon(channel), size: 18)),
+          CircleAvatar(radius: 18, child: Icon(outboxChannelIcon(channel), size: IconSizes.chip)),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -201,7 +201,7 @@ class _OutboxTile extends StatelessWidget {
               if (at != null) Text(Fmt.dateTime(at, context.lang), style: context.text.labelSmall),
               if (subject != null && subject.isNotEmpty) Text(subject, style: context.text.titleSmall),
               Text('${msg['body'] ?? ''}', style: context.text.bodySmall, maxLines: 4, overflow: TextOverflow.ellipsis),
-              if (msg['type'] is String) Padding(padding: const EdgeInsets.only(top: 4), child: StatusChip('${msg['type']}')),
+              if (msg['type'] is String) Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip('${msg['type']}')),
             ]),
           ),
         ]),
@@ -235,7 +235,7 @@ class _AdminAuditState extends ConsumerState<AdminAudit> {
         final shown = q.isEmpty
             ? all
             : all.where((e) => '${e['actorName']} ${e['action']} ${auditActionLabel(context, '${e['action']}')} ${e['targetId']} ${e['details']}'.toLowerCase().contains(q)).toList();
-        return PageBody(maxWidth: 900, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
           InfoNote(l.admAuditNote),
           const SizedBox(height: Space.md),
@@ -268,7 +268,7 @@ class _AuditTile extends StatelessWidget {
       child: PawCard(
         padding: const EdgeInsets.all(Space.md),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const CircleAvatar(radius: 18, child: Icon(Icons.history_outlined, size: 18)),
+          const CircleAvatar(radius: 18, child: Icon(Icons.history_outlined, size: IconSizes.chip)),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

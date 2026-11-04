@@ -113,6 +113,29 @@ FILES=(
   lib/features/album/presentation/album_share.dart
   lib/features/album/presentation/album_viewer.dart
   lib/features/album/presentation/memory_card.dart
+  lib/features/admin/presentation/admin_catalogue.dart
+  lib/features/admin/presentation/admin_complaints.dart
+  lib/features/admin/presentation/admin_dashboard.dart
+  lib/features/admin/presentation/admin_inputs.dart
+  lib/features/admin/presentation/admin_logs.dart
+  lib/features/admin/presentation/admin_people.dart
+  lib/features/admin/presentation/admin_sections.dart
+  lib/features/admin/presentation/admin_settings.dart
+  lib/features/admin/presentation/admin_shell.dart
+  lib/features/admin/presentation/banners.dart
+  lib/features/admin/presentation/commission_report.dart
+  lib/features/admin/presentation/help_screens.dart
+  lib/features/admin/presentation/privacy_screen.dart
+  lib/features/admin/presentation/support_labels.dart
+  lib/features/admin/presentation/ticket_thread.dart
+  lib/features/family/presentation/family_screen.dart
+  lib/features/family/presentation/join_screen.dart
+  lib/features/partner/presentation/partner_extra_sections.dart
+  lib/features/partner/presentation/partner_sections.dart
+  lib/features/partner/presentation/partner_shell.dart
+  lib/features/partner/presentation/partner_signup_screen.dart
+  lib/features/plans/presentation/plus_prompt.dart
+  lib/features/plans/presentation/plus_screen.dart
 )
 grep -nE "Color\(0x|(^|[^A-Za-z])Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]" "${FILES[@]}" | grep -v "^\s*//"
 echo "checked ${#FILES[@]} files; matches above (none = clean)"

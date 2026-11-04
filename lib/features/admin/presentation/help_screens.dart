@@ -56,17 +56,17 @@ class HelpListBody extends ConsumerWidget {
       (l.hpFaqUrgentQ, l.hpFaqUrgentA),
       (l.hpFaqDataQ, l.hpFaqDataA),
     ];
-    return PageBody(maxWidth: 800, children: [
+    return PageBody(maxWidth: Space.readingWidth, children: [
       const SizedBox(height: Space.md),
       PawCard(
         color: context.paw.primaryContainer,
         child: Row(children: [
-          Icon(Icons.support_agent_outlined, size: 40, color: context.colors.primary),
+          Icon(Icons.support_agent_outlined, size: IconSizes.xxxl, color: context.colors.primary),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(l.hpIntroTitle, style: context.text.titleMedium),
-              const SizedBox(height: 2),
+              const SizedBox(height: Space.xxs),
               Text(user?.isPlus == true ? l.hpIntroPlus : l.hpIntroBody, style: context.text.bodyMedium),
             ]),
           ),
@@ -80,7 +80,7 @@ class HelpListBody extends ConsumerWidget {
       AsyncView<List<Ticket>>(
         value: tickets,
         onRetry: () => ref.invalidate(myTicketsProvider),
-        loading: const Skeleton(height: 96),
+        loading: const Skeleton(height: Sizes.skeletonCard),
         data: (list) => list.isEmpty
             ? PawCard(child: Text(l.hpNoTickets))
             : Column(children: [
@@ -233,7 +233,7 @@ class _NewTicketScreenState extends ConsumerState<NewTicketScreen> {
     final ok = _body.text.trim().length >= 10;
     return Scaffold(
       appBar: AppBar(title: Text(l.hpRaise)),
-      body: PageBody(maxWidth: 700, children: [
+      body: PageBody(maxWidth: Space.formWidth, children: [
         const SizedBox(height: Space.md),
         Text(l.hpAbout, style: context.text.titleSmall),
         const SizedBox(height: Space.xs),
@@ -308,7 +308,7 @@ class TicketScreen extends ConsumerWidget {
         value: ticket,
         data: (t) {
           if (t == null || user == null || t.uid != user.uid) return EmptyState(title: l.admTicketMissing);
-          return PageBody(maxWidth: 800, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.md),
             PawCard(child: TicketSummary(ticket: t)),
             SectionHeader(l.admConversation),

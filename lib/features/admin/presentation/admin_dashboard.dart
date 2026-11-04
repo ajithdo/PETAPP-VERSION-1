@@ -34,7 +34,7 @@ class _AdminDashboardState extends ConsumerState<AdminDashboard> {
           StatRange.week => Fmt.dateShort(d, lang),
           StatRange.month => Fmt.monthShort(d, lang),
         };
-    return PageBody(maxWidth: 1200, children: [
+    return PageBody(maxWidth: Space.maxContentWidth, children: [
       const SizedBox(height: Space.md),
       ResponsiveGrid(minItemWidth: 170, spacing: Space.sm, children: [
         StatTile(label: l.admUsers(totals.owners, totals.partners), value: Fmt.number(totals.users, lang), icon: Icons.people_alt_outlined),
@@ -130,13 +130,13 @@ class _ChartCard extends StatelessWidget {
         Wrap(spacing: Space.md, children: [
           for (final (name, color) in legend)
             Row(mainAxisSize: MainAxisSize.min, children: [
-              Container(width: 10, height: 10, decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(3))),
-              const SizedBox(width: 4),
+              Container(width: Sizes.legendDot, height: Sizes.legendDot, decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(Radii.xs))),
+              const SizedBox(width: Space.xs),
               Text(name, style: context.text.labelSmall),
             ]),
         ]),
         const SizedBox(height: Space.md),
-        SizedBox(height: 200, child: child),
+        SizedBox(height: Sizes.chartHeight, child: child),
       ]),
     );
   }
@@ -190,13 +190,13 @@ class _Bars extends StatelessWidget {
       maxY: top,
       minY: 0,
       barTouchData: const BarTouchData(enabled: true),
-      gridData: FlGridData(drawVerticalLine: false, horizontalInterval: top / 4, getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: 1)),
+      gridData: FlGridData(drawVerticalLine: false, horizontalInterval: top / 4, getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: Strokes.hairline)),
       borderData: FlBorderData(show: false),
       titlesData: _titles(context, periods, label, top),
       barGroups: [
         for (var i = 0; i < periods.length; i++)
           BarChartGroupData(x: i, barsSpace: 2, barRods: [
-            for (final s in series) BarChartRodData(toY: s.$1(periods[i]), color: s.$2, width: width, borderRadius: const BorderRadius.vertical(top: Radius.circular(3))),
+            for (final s in series) BarChartRodData(toY: s.$1(periods[i]), color: s.$2, width: width, borderRadius: const BorderRadius.vertical(top: Radius.circular(Radii.xs))),
           ]),
       ],
     ));
@@ -218,7 +218,7 @@ class _Lines extends StatelessWidget {
       minY: 0,
       minX: 0,
       maxX: (periods.length - 1).toDouble().clamp(1, 999),
-      gridData: FlGridData(drawVerticalLine: false, horizontalInterval: top / 4, getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: 1)),
+      gridData: FlGridData(drawVerticalLine: false, horizontalInterval: top / 4, getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: Strokes.hairline)),
       borderData: FlBorderData(show: false),
       titlesData: _titles(context, periods, label, top),
       lineBarsData: [

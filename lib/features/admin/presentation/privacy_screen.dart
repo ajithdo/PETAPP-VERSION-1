@@ -77,7 +77,7 @@ class _PrivacyScreenState extends ConsumerState<PrivacyScreen> {
     ];
     return Scaffold(
       appBar: AppBar(title: Text(l.privacyCentre)),
-      body: PageBody(maxWidth: 800, children: [
+      body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
         if (deletion != null) ...[
           InfoNote(l.prvDeletionPending(Fmt.date(deletionDate(deletion), context.lang)), tone: ChipTone.error, icon: Icons.warning_amber_outlined),
@@ -95,7 +95,7 @@ class _PrivacyScreenState extends ConsumerState<PrivacyScreen> {
         PawCard(
           color: context.paw.primaryContainer,
           child: Row(children: [
-            Icon(Icons.privacy_tip_outlined, size: 40, color: context.colors.primary),
+            Icon(Icons.privacy_tip_outlined, size: IconSizes.xxxl, color: context.colors.primary),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.prvIntro, style: context.text.bodyMedium)),
           ]),
@@ -154,9 +154,9 @@ class SuspendedScreen extends ConsumerWidget {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(Space.xl),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 480),
+              constraints: const BoxConstraints(maxWidth: Sizes.narrowPage),
               child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Icon(Icons.block_outlined, size: 72, color: context.paw.error),
+                Icon(Icons.block_outlined, size: IconSizes.hero, color: context.paw.error),
                 const SizedBox(height: Space.lg),
                 Text(l.suspTitle, style: context.text.headlineSmall, textAlign: TextAlign.center),
                 const SizedBox(height: Space.sm),

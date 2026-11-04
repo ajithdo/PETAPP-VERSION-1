@@ -753,6 +753,9 @@ class Sizes {
   static const double pinKey = 68;
   static const double pinKeyCell = 80;
 
+  /// Plan comparison column.
+  static const double planColumn = 88;
+
   /// Album: the photo picker preview, a memory tile, the memory card, the
   /// badge cell under a milestone and the share card picture.
   static const double albumPick = 160;
@@ -896,6 +899,10 @@ class Strokes {
 /// Letter spacing for short all-caps or brand words ("SOS").
 class Tracking {
   static const double wide = 0.5;
+
+  /// IDs and coupon codes, and big codes people read out or type.
+  static const double id = 1;
+  static const double code = 4;
 }
 
 /// Opacities for tints, overlays and soft borders.

@@ -53,7 +53,7 @@ class _AdminComplaintsState extends ConsumerState<AdminComplaints> {
           return s && f;
         }).toList();
         final waiting = all.where((t) => t.status != 'resolved' && !t.awaitingUser).length;
-        return PageBody(maxWidth: 900, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
           ResponsiveGrid(minItemWidth: 160, spacing: Space.sm, children: [
             StatTile(label: l.hpStatusOpen, value: '${all.where((t) => t.status == 'open').length}', icon: Icons.mark_email_unread_outlined, color: context.paw.warning),
@@ -113,7 +113,7 @@ class TicketCard extends StatelessWidget {
       onTap: onTap,
       padding: const EdgeInsets.all(Space.md),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        CircleAvatar(child: Icon(linkTypeIcon(t.linkType), size: 20)),
+        CircleAvatar(child: Icon(linkTypeIcon(t.linkType), size: IconSizes.md)),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -134,7 +134,7 @@ class TicketCard extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-            const SizedBox(height: 4),
+            const SizedBox(height: Space.xs),
             Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
               StatusChip(ticketStatusLabel(context, t.status), tone: ticketStatusTone(t.status)),
               if (adminView && needsAdmin) StatusChip(l.admNeedsReply, tone: ChipTone.error, icon: Icons.reply_outlined),
@@ -192,7 +192,7 @@ class _AdminTicketScreenState extends ConsumerState<AdminTicketScreen> {
             for (final u in ref.watch(adminUsersProvider).value ?? const <Map<String, dynamic>>[])
               if (u['role'] == 'admin') (u['name'] as String?) ?? '',
           ];
-          return PageBody(maxWidth: 900, children: [
+          return PageBody(maxWidth: Space.wideWidth, children: [
             const SizedBox(height: Space.md),
             PawCard(child: TicketSummary(ticket: t, showPerson: true)),
             const SizedBox(height: Space.md),
@@ -261,7 +261,7 @@ class _LinkedItem extends ConsumerWidget {
     final link = ref.watch(ticketLinkProvider('${t.linkType}/${t.linkId}'));
     return AsyncView<Map<String, dynamic>?>(
       value: link,
-      loading: const Skeleton(height: 96),
+      loading: const Skeleton(height: Sizes.skeletonCard),
       data: (d) {
         if (d == null) return InfoNote(l.admLinkMissing(linkTypeLabel(context, t.linkType)));
         final paid = (d['total'] as num?)?.toInt() ?? 0;

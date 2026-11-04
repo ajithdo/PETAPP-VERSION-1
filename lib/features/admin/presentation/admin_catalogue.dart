@@ -40,7 +40,7 @@ class _AdminCatalogueState extends ConsumerState<AdminCatalogue> {
     };
     return Column(children: [
       ContentWidth(
-        maxWidth: 1000,
+        maxWidth: Space.wideWidth,
         child: Padding(
           padding: const EdgeInsets.only(top: Space.md, bottom: Space.sm),
           child: ChoiceRow<String>(
@@ -98,7 +98,7 @@ class _ProductsTabState extends ConsumerState<_ProductsTab> {
           return ok && (q.isEmpty || '${p.name} ${p.brand} ${sellers[p.sellerId] ?? ''}'.toLowerCase().contains(q));
         }).toList();
         final visible = shown.take(60).toList();
-        return PageBody(maxWidth: 1000, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           PawTextField(label: l.admSearchProducts, prefixIcon: Icons.search_outlined, onChanged: (v) => setState(() => _q = v)),
           const SizedBox(height: Space.sm),
           ChoiceRow<String>(
@@ -184,7 +184,7 @@ class _CategoriesTab extends ConsumerWidget {
     final l = context.l10n;
     final cfg = ref.watch(appSettingsDocProvider).value;
     final s = ShopSettings.fromConfig(cfg);
-    return PageBody(maxWidth: 1000, children: [
+    return PageBody(maxWidth: Space.wideWidth, children: [
       InfoNote(l.admCategoryNote(s.foodMarginPercent.toString(), s.otherMarginPercent.toString())),
       const SizedBox(height: Space.md),
       for (final c in shopCategories)
@@ -203,7 +203,7 @@ class _CategoriesTab extends ConsumerWidget {
                 ]),
               ),
               TextButton.icon(
-                icon: const Icon(Icons.edit_outlined, size: 18),
+                icon: const Icon(Icons.edit_outlined, size: IconSizes.chip),
                 label: Text(l.edit),
                 onPressed: () async {
                   final v = await askNumber(context,
@@ -233,7 +233,7 @@ class _SellersTab extends ConsumerWidget {
       value: sellers,
       data: (raw) {
         final list = [for (final m in raw) Seller(m['id'] as String, m)]..sort((a, b) => a.name.compareTo(b.name));
-        return PageBody(maxWidth: 1000, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           InfoNote(l.admSellerNote),
           const SizedBox(height: Space.md),
           for (final s in list)
@@ -242,7 +242,7 @@ class _SellersTab extends ConsumerWidget {
               child: PawCard(
                 padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
                 child: Row(children: [
-                  const CircleAvatar(child: Icon(Icons.storefront_outlined, size: 20)),
+                  const CircleAvatar(child: Icon(Icons.storefront_outlined, size: IconSizes.md)),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -304,7 +304,7 @@ class _PlacesTabState extends ConsumerState<_PlacesTab> {
     ]..sort((a, b) => '${a.$3['name']}'.compareTo('${b.$3['name']}'));
     final q = _q.trim().toLowerCase();
     final shown = q.isEmpty ? all : all.where((e) => '${e.$3['name']} ${e.$3['city'] ?? ''}'.toLowerCase().contains(q)).toList();
-    return PageBody(maxWidth: 1000, children: [
+    return PageBody(maxWidth: Space.wideWidth, children: [
       InfoNote(l.admPlacesNote),
       const SizedBox(height: Space.md),
       PawTextField(label: l.searchByNameOrArea, prefixIcon: Icons.search_outlined, onChanged: (v) => setState(() => _q = v)),
@@ -315,7 +315,7 @@ class _PlacesTabState extends ConsumerState<_PlacesTab> {
           child: PawCard(
             padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
             child: Row(children: [
-              CircleAvatar(child: Icon(partnerKindIcon(kind), size: 20)),
+              CircleAvatar(child: Icon(partnerKindIcon(kind), size: IconSizes.md)),
               const SizedBox(width: Space.md),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -368,7 +368,7 @@ class _PartnersTab extends ConsumerWidget {
       value: partners,
       data: (raw) {
         final list = [for (final m in raw) PartnerStore(m['id'] as String, m)]..sort((a, b) => a.name.compareTo(b.name));
-        return PageBody(maxWidth: 1000, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           InfoNote(l.admPartnersNote),
           const SizedBox(height: Space.md),
           for (final p in list)
@@ -378,7 +378,7 @@ class _PartnersTab extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
                 onTap: () => _editPartner(context, ref, p),
                 child: Row(children: [
-                  const CircleAvatar(child: Icon(Icons.link_outlined, size: 20)),
+                  const CircleAvatar(child: Icon(Icons.link_outlined, size: IconSizes.md)),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -445,7 +445,7 @@ class _BannersTab extends ConsumerWidget {
     final banners = ref.watch(bannersProvider);
     return AsyncView<List<PromoBannerData>>(
       value: banners,
-      data: (list) => PageBody(maxWidth: 1000, children: [
+      data: (list) => PageBody(maxWidth: Space.wideWidth, children: [
         InfoNote(l.admBannersNote),
         const SizedBox(height: Space.md),
         if (list.isEmpty) EmptyState(title: l.admNothingHere, compact: true),

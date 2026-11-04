@@ -24,30 +24,30 @@ class TicketThread extends StatelessWidget {
           return Align(
             alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 560),
+              constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
               child: Container(
                 margin: const EdgeInsets.only(bottom: Space.sm),
                 padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
                 decoration: BoxDecoration(
                   color: bg,
                   borderRadius: BorderRadius.only(
-                    topLeft: const Radius.circular(16),
-                    topRight: const Radius.circular(16),
+                    topLeft: const Radius.circular(Radii.lg),
+                    topRight: const Radius.circular(Radii.lg),
                     bottomLeft: Radius.circular(mine ? 16 : 4),
                     bottomRight: Radius.circular(mine ? 4 : 16),
                   ),
                 ),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Row(mainAxisSize: MainAxisSize.min, children: [
-                    if (m.fromAdmin) ...[Icon(Icons.support_agent_outlined, size: 16, color: context.colors.primary), const SizedBox(width: 4)],
+                    if (m.fromAdmin) ...[Icon(Icons.support_agent_outlined, size: IconSizes.sm, color: context.colors.primary), const SizedBox(width: Space.xs)],
                     Flexible(
                       child: Text(m.fromAdmin ? (adminView ? m.byName : l.hpSupportTeam) : m.byName,
                           style: context.text.labelMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
                     ),
                   ]),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: Space.xxs),
                   Text(m.text, style: context.text.bodyMedium),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: Space.xxs),
                   Text(Fmt.dateTime(m.at, context.lang), style: context.text.labelSmall?.copyWith(color: context.paw.textSecondary)),
                 ]),
               ),
