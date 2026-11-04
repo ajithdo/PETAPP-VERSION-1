@@ -125,7 +125,7 @@ class A4Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const teal = Color(0xFF0F766E);
+    const teal = PrintColors.brand;
     return Container(
       color: Colors.white,
       width: a4Logical.width,
@@ -141,7 +141,7 @@ class A4Page extends StatelessWidget {
             const Spacer(),
             Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
               Text(title, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w700)),
-              Text(subtitle, style: const TextStyle(color: Color(0xFFCCFBF1), fontSize: 9)),
+              Text(subtitle, style: const TextStyle(color: PrintColors.brandTint, fontSize: 9)),
             ]),
           ]),
         ),
@@ -149,7 +149,7 @@ class A4Page extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(32, 18, 32, 8),
             child: DefaultTextStyle.merge(
-              style: const TextStyle(color: Color(0xFF1C2B2D), fontSize: 10, height: 1.35),
+              style: const TextStyle(color: PrintColors.ink, fontSize: 10, height: 1.35),
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
             ),
           ),
@@ -158,8 +158,8 @@ class A4Page extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(32, 8, 32, 14),
           decoration: const BoxDecoration(border: Border(top: BorderSide(color: Color(0xFFE5E1DA)))),
           child: Row(children: [
-            Expanded(child: Text(footer, style: const TextStyle(color: Color(0xFF5B6B6E), fontSize: 8))),
-            if (pageLabel != null) Text(pageLabel!, style: const TextStyle(color: Color(0xFF5B6B6E), fontSize: 8)),
+            Expanded(child: Text(footer, style: const TextStyle(color: PrintColors.muted, fontSize: 8))),
+            if (pageLabel != null) Text(pageLabel!, style: const TextStyle(color: PrintColors.muted, fontSize: 8)),
           ]),
         ),
       ]),
@@ -174,7 +174,7 @@ class _MiniLogo extends StatelessWidget {
         width: 26,
         height: 26,
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(7)),
-        child: const Icon(Icons.pets_outlined, size: 18, color: Color(0xFF0F766E)),
+        child: const Icon(Icons.pets_outlined, size: 18, color: PrintColors.brand),
       );
 }
 
@@ -187,7 +187,7 @@ class A4Section extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.only(top: 12),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Text(title.toUpperCase(), style: const TextStyle(color: Color(0xFF0F766E), fontSize: 9, fontWeight: FontWeight.w700, letterSpacing: 0.8)),
+          Text(title.toUpperCase(), style: const TextStyle(color: PrintColors.brand, fontSize: 9, fontWeight: FontWeight.w700, letterSpacing: 0.8)),
           const SizedBox(height: 4),
           child,
         ]),

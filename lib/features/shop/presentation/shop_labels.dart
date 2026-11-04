@@ -49,7 +49,7 @@ Color categoryColor(String c) => const {
       'grooming': Color(0xFFF472B6),
       'health_hygiene': Color(0xFF34D399),
       'beds': Color(0xFF9B8AFB),
-      'collars_leashes': Color(0xFF0F766E),
+      'collars_leashes': PrintColors.brand,
       'bowls_feeders': Color(0xFFF59E0B),
       'litter_cat': Color(0xFF64748B),
       'bird_food_cages': Color(0xFF22C55E),
@@ -57,7 +57,7 @@ Color categoryColor(String c) => const {
       'clothing': Color(0xFFEC4899),
       'travel': Color(0xFF0EA5E9),
     }[c] ??
-    const Color(0xFF0F766E);
+    PrintColors.brand;
 
 String speciesName(BuildContext context, String s) {
   final l = context.l10n;
@@ -154,7 +154,7 @@ IconData expenseIcon(String c) => switch (c) {
     };
 
 Color expenseColor(String c) => const {
-      'vet': Color(0xFF0F766E),
+      'vet': PrintColors.brand,
       'grooming': Color(0xFFF472B6),
       'training': Color(0xFF0EA5E9),
       'boarding': Color(0xFF9B8AFB),

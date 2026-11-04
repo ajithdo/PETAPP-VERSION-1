@@ -44,7 +44,7 @@ class DevicesScreen extends ConsumerWidget {
       ),
       body: AsyncView<List<Device>>(
         value: devices,
-        data: (list) => PageBody(maxWidth: 760, children: [
+        data: (list) => PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.md),
           if (ref.watch(appConfigProvider).isDemo) ...[DemoBanner(l.devDemoNote), const SizedBox(height: Space.md)],
           if (list.isEmpty)
@@ -55,7 +55,7 @@ class DevicesScreen extends ConsumerWidget {
                 padding: const EdgeInsets.only(bottom: Space.md),
                 child: _DeviceTile(device: d, pet: pets[d.petId]),
               ),
-          const SizedBox(height: 96),
+          const SizedBox(height: Space.fabClearance),
         ]),
       ),
     );
@@ -190,7 +190,7 @@ class _PairDeviceScreenState extends ConsumerState<PairDeviceScreen> {
     final type = _type;
     return Scaffold(
       appBar: AppBar(title: Text(l.devAdd)),
-      body: PageBody(maxWidth: 760, children: [
+      body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
         if (ref.watch(appConfigProvider).isDemo) ...[DemoBanner(l.devPairDemo), const SizedBox(height: Space.md)],
         SectionHeader(l.devStepType),
@@ -214,7 +214,7 @@ class _PairDeviceScreenState extends ConsumerState<PairDeviceScreen> {
           Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
             for (final p in pets)
               ChoiceChip(
-                avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
+                avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: IconSizes.lg),
                 label: Text(p.name),
                 selected: _pet?.id == p.id,
                 onSelected: deviceSuits(type, p.species)
@@ -289,7 +289,7 @@ class _Choice extends StatelessWidget {
         color: selected ? context.colors.primaryContainer : null,
         semanticLabel: title,
         child: Row(children: [
-          Icon(icon, color: context.colors.primary, size: 28),
+          Icon(icon, color: context.colors.primary, size: IconSizes.action),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -437,7 +437,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
     final demo = ref.watch(appConfigProvider).isDemo;
     return Scaffold(
       appBar: AppBar(title: Text(d.name)),
-      body: PageBody(maxWidth: 760, children: [
+      body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
         PawCard(
           child: Row(children: [
@@ -489,10 +489,10 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
     return [
       if (out || _alerted)
         PawCard(
-          color: context.paw.sos.withValues(alpha: 0.1),
+          color: context.paw.sosContainer,
           borderColor: context.paw.sos,
           child: Row(children: [
-            Icon(Icons.warning_outlined, color: context.paw.sos, size: 32),
+            Icon(Icons.warning_outlined, color: context.paw.sos, size: IconSizes.xl),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -505,7 +505,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
       else
         PawCard(
           child: Row(children: [
-            Icon(Icons.verified_user_outlined, color: context.paw.success, size: 32),
+            Icon(Icons.verified_user_outlined, color: context.paw.success, size: IconSizes.xl),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.devInsideZone(fix.metersFromHome.round()), style: context.text.titleMedium)),
           ]),
@@ -514,7 +514,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
       ClipRRect(
         borderRadius: BorderRadius.circular(Radii.card),
         child: SizedBox(
-          height: 260,
+          height: Sizes.routeMap,
           child: PawMap(
             key: ValueKey('zone-$out-${z.radiusM}'),
             center: LatLng(z.lat, z.lng),
@@ -525,13 +525,13 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
                 point: LatLng(z.lat, z.lng),
                 radius: z.radiusM.toDouble(),
                 useRadiusInMeter: true,
-                color: context.paw.success.withValues(alpha: 0.12),
+                color: context.paw.success.withValues(alpha: Opacities.chip),
                 borderColor: context.paw.success,
                 borderStrokeWidth: 2,
               ),
             ],
             markers: [
-              pinMarker(LatLng(z.lat, z.lng), color: context.colors.primary, icon: Icons.home_outlined, size: 34),
+              pinMarker(LatLng(z.lat, z.lng), color: context.colors.primary, icon: Icons.home_outlined, size: IconSizes.xxl),
               pinMarker(LatLng(fix.lat, fix.lng), color: out ? context.paw.sos : context.paw.accent, icon: Icons.pets_outlined),
             ],
           ),
@@ -574,7 +574,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
         child: Row(children: [
           ProgressRing(
             progress: (day.activeMinutes / day.goalMinutes).clamp(0.0, 1.0),
-            size: 84,
+            size: Sizes.todayRingEasy,
             center: Text('${day.activeMinutes}', style: context.text.titleLarge),
           ),
           const SizedBox(width: Space.lg),
@@ -618,7 +618,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
           const SizedBox(height: Space.sm),
           Text(l.devHopper(f.hopperPct), style: context.text.bodyMedium),
           const SizedBox(height: Space.xs),
-          LinearProgressIndicator(value: f.hopperPct / 100, minHeight: 10, borderRadius: BorderRadius.circular(8)),
+          LinearProgressIndicator(value: f.hopperPct / 100, minHeight: Sizes.meterBar, borderRadius: BorderRadius.circular(Radii.sm)),
         ]),
       ),
       SectionHeader(l.devMealsToday),
@@ -648,8 +648,8 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
           const SizedBox(height: Space.sm),
           LinearProgressIndicator(
             value: f.waterPct / 100,
-            minHeight: 12,
-            borderRadius: BorderRadius.circular(8),
+            minHeight: Sizes.meterBar,
+            borderRadius: BorderRadius.circular(Radii.sm),
             color: f.refillSoon ? context.paw.warning : context.colors.primary,
           ),
           const SizedBox(height: Space.sm),
@@ -671,7 +671,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
               decoration: BoxDecoration(color: context.colors.surfaceContainerHighest, borderRadius: BorderRadius.circular(Radii.card)),
               child: Center(
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Icon(Icons.videocam_off_outlined, size: 48, color: context.paw.textSecondary),
+                  Icon(Icons.videocam_off_outlined, size: IconSizes.hero, color: context.paw.textSecondary),
                   const SizedBox(height: Space.sm),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: Space.lg),

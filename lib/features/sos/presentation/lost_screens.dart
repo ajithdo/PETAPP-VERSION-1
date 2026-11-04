@@ -43,7 +43,7 @@ class LostHomeScreen extends ConsumerWidget {
     final pets = ref.watch(activePetsProvider);
     return Scaffold(
       appBar: AppBar(title: Text(l.lostPetMode)),
-      body: PageBody(maxWidth: 760, children: [
+      body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
         InfoNote(l.lostIntro, icon: Icons.qr_code_2_outlined),
         const SizedBox(height: Space.lg),
@@ -57,7 +57,7 @@ class LostHomeScreen extends ConsumerWidget {
                 onTap: () => context.push('/me/lost/${p.id}'),
                 borderColor: p.lost != null ? context.paw.sos : null,
                 child: Row(children: [
-                  PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 52),
+                  PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarMd),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -92,7 +92,7 @@ class PetLostScreen extends ConsumerWidget {
     final lost = pet.lost != null;
     return Scaffold(
       appBar: AppBar(title: Text(l.lostPetTitle(pet.name))),
-      body: PageBody(maxWidth: 720, children: [
+      body: PageBody(maxWidth: Space.formWidth, children: [
         const SizedBox(height: Space.md),
         if (lost) ...[
           _LostBanner(pet: pet, report: report),
@@ -142,11 +142,11 @@ class _LostBanner extends StatelessWidget {
     final area = report?.area ?? (pet.lost?['area'] as String?) ?? '';
     final note = report?.note ?? (pet.lost?['note'] as String?) ?? '';
     return PawCard(
-      color: context.paw.sos.withValues(alpha: 0.08),
+      color: context.paw.sosContainer,
       borderColor: context.paw.sos,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Icon(Icons.travel_explore_outlined, color: context.paw.sos, size: 32),
+          Icon(Icons.travel_explore_outlined, color: context.paw.sos, size: IconSizes.xl),
           const SizedBox(width: Space.md),
           Expanded(child: Text(l.lostBannerTitle(pet.name), style: context.text.titleLarge?.copyWith(color: context.paw.sos))),
         ]),
@@ -181,7 +181,7 @@ class _Sightings extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(Radii.card),
             child: SizedBox(
-              height: 200,
+              height: Sizes.mapMedium,
               child: PawMap(
                 center: pts.isNotEmpty ? pts.first : home!,
                 zoom: 14,
@@ -243,15 +243,15 @@ class _QrCardState extends ConsumerState<_QrCard> {
   Widget build(BuildContext context) {
     final l = context.l10n;
     final token = _token;
-    if (token == null) return const Skeleton(height: 220);
+    if (token == null) return const Skeleton(height: Sizes.qr);
     final url = petTagUrl(token);
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Center(
           child: Container(
             padding: const EdgeInsets.all(Space.md),
-            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(Radii.card)),
-            child: QrImageView(data: url, size: 180, backgroundColor: Colors.white, semanticsLabel: l.qrForPet(widget.pet.name)),
+            decoration: BoxDecoration(color: PrintColors.paper, borderRadius: BorderRadius.circular(Radii.card)),
+            child: QrImageView(data: url, size: Sizes.qr, backgroundColor: PrintColors.paper, semanticsLabel: l.qrForPet(widget.pet.name)),
           ),
         ),
         const SizedBox(height: Space.md),
@@ -416,7 +416,7 @@ class _MarkLostFormState extends State<_MarkLostForm> {
         alignment: AlignmentDirectional.centerStart,
         child: TextButton.icon(
           onPressed: _locating ? null : (_gps == null ? _useGps : () => setState(() => _gps = null)),
-          icon: _locating ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(Icons.my_location_outlined),
+          icon: _locating ? const SizedBox(width: IconSizes.sm, height: IconSizes.sm, child: CircularProgressIndicator(strokeWidth: Strokes.focus)) : const Icon(Icons.my_location_outlined),
           label: Text(_gps == null ? l.useMyLocation : l.chooseArea),
         ),
       ),
@@ -483,17 +483,17 @@ class _TagsPage extends StatelessWidget {
     Widget tag() => Container(
           margin: const EdgeInsets.all(8),
           padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(border: Border.all(color: const Color(0xFF0F766E), width: 1.5), borderRadius: BorderRadius.circular(14)),
+          decoration: BoxDecoration(border: Border.all(color: PrintColors.brand, width: 1.5), borderRadius: BorderRadius.circular(14)),
           child: Row(children: [
-            QrImageView(data: url, size: 92, backgroundColor: Colors.white, padding: EdgeInsets.zero),
+            QrImageView(data: url, size: 92, backgroundColor: PrintColors.paper, padding: EdgeInsets.zero),
             const SizedBox(width: 10),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                Text(pet.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Color(0xFF1C2B2D))),
+                Text(pet.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: PrintColors.ink)),
                 const SizedBox(height: 2),
-                Text(l.qrTagScanLine, style: const TextStyle(fontSize: 10, color: Color(0xFF1C2B2D))),
+                Text(l.qrTagScanLine, style: const TextStyle(fontSize: 10, color: PrintColors.ink)),
                 const SizedBox(height: 4),
-                const Text('PawSetu', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w700, color: Color(0xFF0F766E))),
+                const Text('PawSetu', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w700, color: PrintColors.brand)),
               ]),
             ),
           ]),
@@ -533,8 +533,8 @@ class _PosterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    const ink = Color(0xFF1C2B2D);
-    const red = Color(0xFFC62828);
+    const ink = PrintColors.ink;
+    const red = PrintColors.alert;
     final since = _lostSince(pet);
     final area = (pet.lost?['area'] as String?) ?? '';
     final note = (pet.lost?['note'] as String?) ?? '';
@@ -545,14 +545,14 @@ class _PosterPage extends StatelessWidget {
       if (pet.gender != null) genderLabel(context, pet.gender),
     ].join(' · ');
     return Container(
-      color: Colors.white,
+      color: PrintColors.paper,
       padding: const EdgeInsets.all(28),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Container(
           color: red,
           padding: const EdgeInsets.symmetric(vertical: 14),
           child: Text(l.posterHeadline(speciesLabel(context, pet.species)).toUpperCase(),
-              textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.w900, letterSpacing: 2)),
+              textAlign: TextAlign.center, style: const TextStyle(color: PrintColors.paper, fontSize: 40, fontWeight: FontWeight.w900, letterSpacing: 2)),
         ),
         const SizedBox(height: 18),
         Center(child: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 200)),
@@ -566,7 +566,7 @@ class _PosterPage extends StatelessWidget {
         if (note.isNotEmpty) Padding(padding: const EdgeInsets.only(top: 4), child: Text(note, textAlign: TextAlign.center, style: const TextStyle(fontSize: 14, color: ink))),
         const Spacer(),
         Row(children: [
-          QrImageView(data: url, size: 130, backgroundColor: Colors.white, padding: EdgeInsets.zero),
+          QrImageView(data: url, size: 130, backgroundColor: PrintColors.paper, padding: EdgeInsets.zero),
           const SizedBox(width: 18),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
@@ -574,12 +574,12 @@ class _PosterPage extends StatelessWidget {
               const SizedBox(height: 4),
               Text(l.posterScanBody, style: const TextStyle(fontSize: 12, color: ink)),
               const SizedBox(height: 6),
-              Text(url, style: const TextStyle(fontSize: 9, color: Color(0xFF5B6B6E))),
+              Text(url, style: const TextStyle(fontSize: 9, color: PrintColors.muted)),
             ]),
           ),
         ]),
         const SizedBox(height: 10),
-        const Text('PawSetu', textAlign: TextAlign.center, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Color(0xFF0F766E))),
+        const Text('PawSetu', textAlign: TextAlign.center, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: PrintColors.brand)),
       ]),
     );
   }

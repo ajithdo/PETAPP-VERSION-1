@@ -68,7 +68,7 @@ class HealthReportScreen extends ConsumerWidget {
     Widget kv(String k, String value) => Padding(
           padding: const EdgeInsets.only(bottom: 3),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(width: 92, child: Text(k, style: const TextStyle(color: Color(0xFF5B6B6E), fontSize: 9))),
+            SizedBox(width: 92, child: Text(k, style: const TextStyle(color: PrintColors.muted, fontSize: 9))),
             Expanded(child: Text(value, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600))),
           ]),
         );
@@ -85,7 +85,7 @@ class HealthReportScreen extends ConsumerWidget {
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(pet.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
-              Text('${speciesLabel(context, pet.species)} · ${pet.breedName(lang)}', style: const TextStyle(fontSize: 11, color: Color(0xFF5B6B6E))),
+              Text('${speciesLabel(context, pet.species)} · ${pet.breedName(lang)}', style: const TextStyle(fontSize: 11, color: PrintColors.muted)),
               const SizedBox(height: 8),
               Row(children: [
                 Expanded(child: Column(children: [
@@ -238,7 +238,7 @@ class _WeightPainter extends CustomPainter {
     for (var k = 0; k <= 4; k++) {
       final v = lo + (hi - lo) * k / 4;
       canvas.drawLine(Offset(left, y(v)), Offset(size.width, y(v)), grid);
-      tp.text = TextSpan(text: v.toStringAsFixed(grams ? 0 : 1), style: const TextStyle(fontSize: 8, color: Color(0xFF5B6B6E)));
+      tp.text = TextSpan(text: v.toStringAsFixed(grams ? 0 : 1), style: const TextStyle(fontSize: 8, color: PrintColors.muted));
       tp.layout();
       tp.paint(canvas, Offset(0, y(v) - 5));
     }
@@ -249,12 +249,12 @@ class _WeightPainter extends CustomPainter {
     for (var i = 0; i < vals.length; i++) {
       i == 0 ? path.moveTo(x(i), y(vals[i])) : path.lineTo(x(i), y(vals[i]));
     }
-    canvas.drawPath(path, Paint()..color = const Color(0xFF0F766E)..style = PaintingStyle.stroke..strokeWidth = 2.5);
+    canvas.drawPath(path, Paint()..color = PrintColors.brand..style = PaintingStyle.stroke..strokeWidth = 2.5);
     for (var i = 0; i < vals.length; i++) {
-      canvas.drawCircle(Offset(x(i), y(vals[i])), 3, Paint()..color = const Color(0xFF0F766E));
+      canvas.drawCircle(Offset(x(i), y(vals[i])), 3, Paint()..color = PrintColors.brand);
     }
     for (final i in {0, vals.length - 1}) {
-      tp.text = TextSpan(text: Fmt.dateShort(logs[i].at), style: const TextStyle(fontSize: 8, color: Color(0xFF5B6B6E)));
+      tp.text = TextSpan(text: Fmt.dateShort(logs[i].at), style: const TextStyle(fontSize: 8, color: PrintColors.muted));
       tp.layout();
       tp.paint(canvas, Offset((x(i) - tp.width / 2).clamp(left, size.width - tp.width), h + 6));
     }

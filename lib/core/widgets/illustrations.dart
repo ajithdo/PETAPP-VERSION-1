@@ -9,11 +9,11 @@ import '../theme/tokens.dart';
 /// Used only for onboarding, empty states and success screens (spec 4).
 enum Scene { welcomeCare, welcomeHealth, welcomeBridge, empty, success, search, lost, memory, shop, chat, vault }
 
-const _teal = Color(0xFF0F766E);
+const _teal = Color(0xFF18453E);
 const _tealLight = Color(0xFF5EEAD4);
 const _apricot = Color(0xFFF4A261);
 const _apricotLight = Color(0xFFFDE7D3);
-const _ink = Color(0xFF1C2B2D);
+const _ink = Color(0xFF1C1917);
 
 class Illustration extends StatelessWidget {
   const Illustration(this.scene, {super.key, this.size = 180});

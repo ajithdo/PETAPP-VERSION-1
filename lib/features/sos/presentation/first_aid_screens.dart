@@ -20,7 +20,7 @@ class FirstAidListScreen extends ConsumerWidget {
         title: Text(l.firstAidTitle),
         actions: [Padding(padding: const EdgeInsets.only(right: Space.md), child: SosButton(onActivate: () => openSos(context, ref)))],
       ),
-      body: PageBody(maxWidth: 760, children: [
+      body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
         InfoNote(l.firstAidEmergencyNote, icon: Icons.emergency_outlined, tone: ChipTone.error),
         const SizedBox(height: Space.sm),
@@ -36,7 +36,7 @@ class FirstAidListScreen extends ConsumerWidget {
         PawCard(
           onTap: () => context.push('/toxic-check'),
           child: Row(children: [
-            Icon(Icons.no_food_outlined, color: context.paw.warning, size: 32),
+            Icon(Icons.no_food_outlined, color: context.paw.warning, size: IconSizes.xl),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -66,7 +66,7 @@ class _GuideTile extends StatelessWidget {
       child: Row(children: [
         CircleAvatar(
           radius: 24,
-          backgroundColor: context.paw.sos.withValues(alpha: 0.12),
+          backgroundColor: context.paw.sosContainer,
           child: Icon(firstAidIcon(id), color: context.paw.sos),
         ),
         const SizedBox(width: Space.md),
@@ -103,7 +103,7 @@ class FirstAidGuideScreen extends ConsumerWidget {
         title: Text(t.title),
         actions: [Padding(padding: const EdgeInsets.only(right: Space.md), child: SosButton(onActivate: () => openSos(context, ref)))],
       ),
-      body: PageBody(maxWidth: 680, children: [
+      body: PageBody(maxWidth: Space.formWidth, children: [
         const SizedBox(height: Space.md),
         const DraftLabel(),
         heading(Icons.visibility_outlined, l.firstAidSigns, context.colors.primary),
@@ -131,7 +131,7 @@ class FirstAidGuideScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: Space.sm),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Icon(Icons.close_outlined, size: 20, color: context.paw.error),
+              Icon(Icons.close_outlined, size: IconSizes.md, color: context.paw.error),
               const SizedBox(width: Space.sm),
               Expanded(child: Text(a, style: context.text.bodyLarge)),
             ]),

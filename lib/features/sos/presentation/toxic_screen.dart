@@ -58,7 +58,7 @@ class _ToxicCheckScreenState extends ConsumerState<ToxicCheckScreen> {
         title: Text(l.toxTitle),
         actions: [Padding(padding: const EdgeInsets.only(right: Space.md), child: SosButton(onActivate: () => openSos(context, ref)))],
       ),
-      body: PageBody(maxWidth: 760, children: [
+      body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
         TextField(
           controller: _search,

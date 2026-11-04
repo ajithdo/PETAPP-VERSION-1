@@ -36,7 +36,7 @@ class Watermark extends StatelessWidget {
             PawSetuLogo(size: size * 0.05),
             SizedBox(width: size * 0.012),
             Text(context.l10n.albumWatermarkText,
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(color: const Color(0xFF0F766E), fontSize: size * 0.03, fontWeight: FontWeight.w700)),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(color: PrintColors.brand, fontSize: size * 0.03, fontWeight: FontWeight.w700)),
           ]),
         ),
       ),

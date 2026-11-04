@@ -398,6 +398,18 @@ class SeedArtColors {
   ];
 }
 
+/// Fixed colours for printed or shared documents (health report, invoice,
+/// prescription, sample documents, lost poster, QR tag). They stay the same
+/// in dark mode, because paper is always white.
+class PrintColors {
+  static const paper = Color(0xFFFFFFFF);
+  static const ink = Color(0xFF1C1917);
+  static const muted = Color(0xFF57534E);
+  static const brand = Color(0xFF18453E);
+  static const brandTint = Color(0xFFE6F0ED);
+  static const alert = Color(0xFFB91C1C);
+}
+
 /// Photo and video screens (crop, viewer, video call) stay dark in both
 /// themes so pictures look true.
 class MediaColors {
@@ -490,6 +502,9 @@ class TypeScale {
   static const mono = TypeToken(13, 18, FontWeight.w500);
 
   static const double indicLineHeight = 1.6;
+
+  /// Line height for big numbers stacked tight (date squares).
+  static const double tightLineHeight = 1.0;
 }
 
 /// 4 px spacing grid.
@@ -560,6 +575,9 @@ class IconSizes {
   static const double action = 28;
   static const double xl = 32;
   static const double xxl = 36;
+
+  /// Icon in a big emergency option.
+  static const double xxxl = 40;
 
   /// Leading icon inside a chip (Material's chip size).
   static const double chip = 18;
@@ -635,6 +653,21 @@ class Sizes {
   static const double sparklineWidth = 120;
   static const double sparklineHeight = 40;
 
+  /// Big tappable SOS option.
+  static const double sosOption = 96;
+
+  /// Small spinner beside a line of text.
+  static const double spinner = 22;
+
+  /// Small map inside a card.
+  static const double mapSmall = 180;
+
+  /// Medium map inside a page.
+  static const double mapMedium = 200;
+
+  /// QR code shown on screen.
+  static const double qr = 180;
+
   /// Map pin for a place.
   static const double mapPin = 44;
 
@@ -671,8 +704,10 @@ class Sizes {
   /// Photo circle on the add/edit pet form.
   static const double formAvatar = 112;
 
-  /// Thin progress bar for steps in a flow.
+  /// Thin progress bar for steps in a flow, and the thicker level meter
+  /// (food hopper, battery).
   static const double progressBar = 6;
+  static const double meterBar = 12;
 
   /// Timeline rail width and the dot on it.
   static const double timelineRail = 24;

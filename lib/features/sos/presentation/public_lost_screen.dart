@@ -104,9 +104,9 @@ class _PublicLostScreenState extends ConsumerState<PublicLostScreen> {
           children: [
             Center(
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 640),
+                constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                  const Align(alignment: AlignmentDirectional.centerStart, child: PawSetuLogo(size: 40, withName: true)),
+                  const Align(alignment: AlignmentDirectional.centerStart, child: PawSetuLogo(size: Sizes.avatarSm, withName: true)),
                   const SizedBox(height: Space.lg),
                   if (_failed)
                     ErrorState(onRetry: _open)
@@ -181,7 +181,7 @@ class _PetHeader extends StatelessWidget {
           ]),
         ),
       const SizedBox(height: Space.lg),
-      Center(child: PetAvatar(species: view.species, colorTag: p['colorTag'] as String?, photoUrl: p['photoUrl'] as String?, size: 140)),
+      Center(child: PetAvatar(species: view.species, colorTag: p['colorTag'] as String?, photoUrl: p['photoUrl'] as String?, size: Sizes.profileAvatar)),
       const SizedBox(height: Space.md),
       Text(lost != null ? l.finderHelloLost(view.name) : l.finderHello(view.name), textAlign: TextAlign.center, style: context.text.headlineSmall),
       const SizedBox(height: Space.xs),

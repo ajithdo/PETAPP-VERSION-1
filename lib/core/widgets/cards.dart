@@ -344,7 +344,7 @@ class DateBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(Radii.md),
       ),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min, children: [
-        Text(day, style: context.text.titleLarge?.copyWith(color: fg, height: 1)),
+        Text(day, style: context.text.titleLarge?.copyWith(color: fg, height: TypeScale.tightLineHeight)),
         const SizedBox(height: Space.xxs),
         Text(month.toUpperCase(), style: context.textX.overline.copyWith(color: fg)),
       ]),
