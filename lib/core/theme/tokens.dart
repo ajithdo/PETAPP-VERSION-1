@@ -591,6 +591,7 @@ class Sizes {
   static const double todayRingEasy = 84;
 
   /// Avatars in rows and headers.
+  static const double avatarXs = 28;
   static const double avatarSm = 40;
   static const double avatarMd = 48;
   static const double avatarLg = 60;
@@ -606,8 +607,18 @@ class Sizes {
   static const double birthdayGlow = 168;
   static const double birthdayAvatar = 128;
 
-  /// Small square photo thumbnail.
+  /// Small square photo thumbnail, and the larger one in forms.
   static const double thumb = 56;
+  static const double thumbLg = 64;
+
+  /// Strip of day buttons in the booking flow.
+  static const double dateStrip = 76;
+
+  /// Narrow centred pages (booking done, success screens).
+  static const double narrowPage = 480;
+
+  /// Big success picture.
+  static const double successArt = 180;
 
   /// Widest an empty or error message gets.
   static const double emptyStateWidth = 420;
@@ -623,6 +634,28 @@ class Sizes {
   /// Tiny trend line beside a label.
   static const double sparklineWidth = 120;
   static const double sparklineHeight = 40;
+
+  /// Map pin for a place.
+  static const double mapPin = 44;
+
+  /// Photo on the left of a place card.
+  static const double placePhotoWidth = 92;
+  static const double placePhotoHeight = 112;
+
+  /// Photo header on a place page.
+  static const double placeHeader = 200;
+
+  /// Date square at the start of a booking row.
+  static const double dateBadge = 52;
+
+  /// Width of the label column in label/value rows.
+  static const double labelColumn = 120;
+
+  /// Photo beside an update in a list.
+  static const double updatePhoto = 96;
+
+  /// Live map inside a booking.
+  static const double liveMap = 240;
 
   /// Walk route map inside a sheet, and the smaller one in a card.
   static const double routeMap = 280;

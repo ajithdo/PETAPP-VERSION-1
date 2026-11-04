@@ -317,3 +317,56 @@ class InfoNote extends StatelessWidget {
     );
   }
 }
+
+/// A small sage square with the day number over the short month ("13 /
+/// NOV"), at the start of a booking or event row (Design 2).
+class DateBadge extends StatelessWidget {
+  const DateBadge({super.key, required this.day, required this.month, this.muted = false});
+
+  /// Day of the month, e.g. "13".
+  final String day;
+
+  /// Short month name, e.g. "Nov".
+  final String month;
+
+  /// Past items use the sand background.
+  final bool muted;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    final fg = muted ? paw.textSecondary : paw.onPrimaryContainer;
+    return Container(
+      constraints: const BoxConstraints(minWidth: Sizes.dateBadge, minHeight: Sizes.dateBadge),
+      padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xs),
+      decoration: BoxDecoration(
+        color: muted ? paw.surfaceSubtle : paw.primaryContainer,
+        borderRadius: BorderRadius.circular(Radii.md),
+      ),
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min, children: [
+        Text(day, style: context.text.titleLarge?.copyWith(color: fg, height: 1)),
+        const SizedBox(height: Space.xxs),
+        Text(month.toUpperCase(), style: context.textX.overline.copyWith(color: fg)),
+      ]),
+    );
+  }
+}
+
+/// Five stars for a review, filled in amber up to [rating] (out of 5).
+class RatingStars extends StatelessWidget {
+  const RatingStars(this.rating, {super.key, this.size = IconSizes.sm});
+  final int rating;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.paw.accent;
+    return Semantics(
+      label: '$rating/5',
+      excludeSemantics: true,
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        for (var i = 0; i < 5; i++) Icon(i < rating ? Icons.star_rounded : Icons.star_border_rounded, size: size, color: c),
+      ]),
+    );
+  }
+}

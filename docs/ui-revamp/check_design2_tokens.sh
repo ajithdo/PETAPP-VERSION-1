@@ -40,6 +40,12 @@ FILES=(
   lib/features/pets/presentation/pet_form_screen.dart
   lib/features/pets/presentation/pet_labels.dart
   lib/features/pets/presentation/pet_profile_screen.dart
+  lib/features/booking/presentation/book_home_screen.dart
+  lib/features/booking/presentation/booking_flow_screen.dart
+  lib/features/booking/presentation/booking_labels.dart
+  lib/features/booking/presentation/my_bookings_screen.dart
+  lib/features/booking/presentation/place_finder_screen.dart
+  lib/features/booking/presentation/place_screen.dart
 )
 grep -nE "Color\(0x|(^|[^A-Za-z])Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]" "${FILES[@]}" | grep -v "^\s*//"
 echo "checked ${#FILES[@]} files; matches above (none = clean)"

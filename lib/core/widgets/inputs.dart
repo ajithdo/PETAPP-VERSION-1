@@ -312,3 +312,121 @@ class ChoiceTiles<T> extends StatelessWidget {
     });
   }
 }
+
+/// A tappable card for one choice in a list (service, payment method).
+/// The chosen card has a soft coral wash and border (Design 2).
+class OptionCard extends StatelessWidget {
+  const OptionCard({
+    super.key,
+    required this.title,
+    required this.selected,
+    required this.onTap,
+    this.subtitle,
+    this.trailing,
+  });
+
+  final String title;
+  final String? subtitle;
+
+  /// Usually a price, shown on the right.
+  final String? trailing;
+  final bool selected;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    final radius = BorderRadius.circular(Radii.lg);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: Space.sm),
+      child: Semantics(
+        inMutuallyExclusiveGroup: true,
+        checked: selected,
+        button: true,
+        label: [title, ?subtitle, ?trailing].join(', '),
+        excludeSemantics: true,
+        child: Material(
+          color: selected ? paw.actionContainer : paw.surface,
+          shape: RoundedRectangleBorder(
+            borderRadius: radius,
+            side: selected ? BorderSide(color: paw.action, width: Strokes.focus) : BorderSide(color: paw.outline),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: onTap == null
+                ? null
+                : () {
+                    HapticFeedback.selectionClick();
+                    onTap!();
+                  },
+            child: Padding(
+              padding: const EdgeInsets.all(Space.md),
+              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Icon(
+                  selected ? Icons.radio_button_checked : Icons.radio_button_unchecked_outlined,
+                  color: selected ? paw.action : paw.controlBorder,
+                ),
+                const SizedBox(width: Space.md),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(title, style: context.text.titleSmall?.copyWith(color: selected ? paw.onActionContainer : paw.textPrimary)),
+                    if (subtitle != null) ...[
+                      const SizedBox(height: Space.xxs),
+                      Text(subtitle!, style: context.text.bodySmall),
+                    ],
+                  ]),
+                ),
+                if (trailing != null) ...[
+                  const SizedBox(width: Space.md),
+                  Text(trailing!, style: context.textX.mono.copyWith(fontWeight: FontWeight.w700, color: paw.textPrimary)),
+                ],
+              ]),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A sand box listing charges, with the total on the last line in the
+/// action colour (Design 2 price summary).
+class PriceSummary extends StatelessWidget {
+  const PriceSummary({super.key, required this.lines, required this.totalLabel, required this.total});
+
+  /// (label, amount) pairs above the total.
+  final List<(String, String)> lines;
+  final String totalLabel;
+  final String total;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    Widget row(String k, String v, {bool bold = false}) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: Space.xs),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Expanded(child: Text(k, style: bold ? context.text.titleSmall : context.text.bodyMedium)),
+            const SizedBox(width: Space.md),
+            Text(
+              v,
+              style: bold
+                  ? context.textX.mono.copyWith(fontWeight: FontWeight.w700, color: paw.action)
+                  : context.textX.mono.copyWith(color: paw.textPrimary),
+            ),
+          ]),
+        );
+    return Container(
+      padding: const EdgeInsets.all(Space.lg),
+      decoration: BoxDecoration(
+        color: paw.surfaceSubtle,
+        borderRadius: BorderRadius.circular(Radii.lg),
+        border: Border.all(color: paw.outline),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        for (final (k, v) in lines) row(k, v),
+        const Divider(height: Space.lg),
+        row(totalLabel, total, bold: true),
+      ]),
+    );
+  }
+}

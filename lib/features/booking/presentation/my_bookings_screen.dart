@@ -56,7 +56,7 @@ class MyBookingsScreen extends ConsumerWidget {
               }
               final limit = ref.watch(listLimitProvider(key));
               return PageBody(
-                maxWidth: 800,
+                maxWidth: Space.readingWidth,
                 children: [
                   const SizedBox(height: Space.md),
                   for (final b in items.take(limit))
@@ -101,17 +101,17 @@ class BookingDetailScreen extends ConsumerWidget {
           final place = ref.watch(placeProvider(b.providerId)).value;
           final s = bookingStatus(context, b.status);
           Widget row(String k, String v) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
+            padding: const EdgeInsets.symmetric(vertical: Space.xs),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(width: 120, child: Text(k, style: context.text.bodySmall)),
+                SizedBox(width: Sizes.labelColumn, child: Text(k, style: context.text.bodySmall)),
                 Expanded(child: Text(v, style: context.text.bodyMedium)),
               ],
             ),
           );
           return PageBody(
-            maxWidth: 800,
+            maxWidth: Space.readingWidth,
             children: [
               const SizedBox(height: Space.md),
               PawCard(
@@ -160,7 +160,7 @@ class BookingDetailScreen extends ConsumerWidget {
               if (b.status == 'suggested' && b.suggestedTime != null && !partnerView) ...[
                 const SizedBox(height: Space.md),
                 PawCard(
-                  color: context.paw.accent.withValues(alpha: 0.15),
+                  color: context.paw.accent.withValues(alpha: Opacities.chip),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -194,7 +194,7 @@ class BookingDetailScreen extends ConsumerWidget {
                       padding: EdgeInsets.zero,
                       child: Row(
                         children: [
-                          if (u['photoUrl'] != null) SizedBox(width: 96, height: 96, child: MediaImage(url: u['photoUrl'] as String, width: 96, height: 96)),
+                          if (u['photoUrl'] != null) SizedBox(width: Sizes.updatePhoto, height: Sizes.updatePhoto, child: MediaImage(url: u['photoUrl'] as String, width: Sizes.updatePhoto, height: Sizes.updatePhoto)),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(Space.md),
@@ -436,7 +436,7 @@ class _LiveWalkState extends State<_LiveWalk> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(
-          height: 240,
+          height: Sizes.liveMap,
           child: PawMap(
             center: pts.last,
             zoom: 15,

@@ -223,19 +223,19 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                       child: Row(
                         children: [
                           ActionChip(
-                            avatar: Icon(origin.fromGps ? Icons.my_location_outlined : Icons.place_outlined, size: 18),
+                            avatar: Icon(origin.fromGps ? Icons.my_location_outlined : Icons.place_outlined, size: IconSizes.chip),
                             label: Text(origin.label),
                             onPressed: () => pickArea(context, ref),
                           ),
                           const SizedBox(width: Space.sm),
                           ActionChip(
-                            avatar: const Icon(Icons.gps_fixed_outlined, size: 18),
+                            avatar: const Icon(Icons.gps_fixed_outlined, size: IconSizes.chip),
                             label: Text(l.useMyLocation),
                             onPressed: () => useMyLocation(context, ref),
                           ),
                           const SizedBox(width: Space.sm),
                           ActionChip(
-                            avatar: Badge.count(count: _f.count, isLabelVisible: _f.count > 0, child: const Icon(Icons.tune_outlined, size: 18)),
+                            avatar: Badge.count(count: _f.count, isLabelVisible: _f.count > 0, child: const Icon(Icons.tune_outlined, size: IconSizes.chip)),
                             label: Text(l.filters),
                             onPressed: _openFilters,
                           ),
@@ -250,7 +250,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                               PopupMenuItem(value: 'slot', child: Text(l.sortSlot)),
                               PopupMenuItem(value: 'fee', child: Text(l.sortFee)),
                             ],
-                            child: Chip(avatar: const Icon(Icons.sort_outlined, size: 18), label: Text(l.sortBy)),
+                            child: Chip(avatar: const Icon(Icons.sort_outlined, size: IconSizes.chip), label: Text(l.sortBy)),
                           ),
                           if (_isClinic) ...[
                             const SizedBox(width: Space.sm),
@@ -296,18 +296,18 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                             for (final e in list)
                               Marker(
                                 point: LatLng(e.$1.lat, e.$1.lng),
-                                width: 44,
-                                height: 44,
+                                width: Sizes.mapPin,
+                                height: Sizes.mapPin,
                                 child: GestureDetector(
                                   onTap: () => _preview(e.$1, e.$2),
                                   child: Semantics(
                                     button: true,
                                     label: e.$1.name,
                                     child: Icon(
-                                      Icons.location_on_outlined,
-                                      size: 44,
-                                      color: e.$1.is24x7 ? context.paw.sos : context.colors.primary,
-                                      shadows: const [Shadow(blurRadius: 4, color: Colors.black26)],
+                                      Icons.location_on,
+                                      size: Sizes.mapPin,
+                                      color: e.$1.is24x7 ? context.paw.sos : context.paw.brand,
+                                      shadows: [Shadow(blurRadius: Space.xs, color: context.paw.ink.withValues(alpha: Opacities.border))],
                                     ),
                                   ),
                                 ),
@@ -456,7 +456,7 @@ class PlaceCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(width: 92, height: 112, child: SeedArt(seed: 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}')),
+          SizedBox(width: Sizes.placePhotoWidth, height: Sizes.placePhotoHeight, child: SeedArt(seed: 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}')),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(Space.md),
@@ -464,14 +464,14 @@ class PlaceCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(p.name, style: context.text.titleSmall, maxLines: 2, overflow: TextOverflow.ellipsis),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: Space.xxs),
                   Text([p.area, if (km != null) Fmt.km(km!)].join(' · '), style: context.text.bodySmall),
                   const SizedBox(height: Space.xs),
                   Wrap(
-                    spacing: 6,
-                    runSpacing: 4,
+                    spacing: Space.xs + Space.xxs,
+                    runSpacing: Space.xs,
                     children: [
-                      if (p.reviewCount > 0) StatusChip('★ ${p.rating.toStringAsFixed(1)} (${p.reviewCount})', tone: ChipTone.accent),
+                      if (p.reviewCount > 0) StatusChip('${p.rating.toStringAsFixed(1)} (${p.reviewCount})', tone: ChipTone.accent, icon: Icons.star_rounded),
                       StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
                       if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_outlined),
                       if (p.kind == 'clinic') StatusChip(l.feeFrom(Fmt.inr(p.fee)), tone: ChipTone.info),

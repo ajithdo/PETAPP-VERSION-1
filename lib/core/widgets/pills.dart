@@ -56,10 +56,15 @@ class PawPill extends StatelessWidget {
                 onTap: onTap,
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(leading == null ? Space.md + Space.xxs : Space.xs + Space.xxs, Space.xs + Space.xxs, Space.md + Space.xxs, Space.xs + Space.xxs),
-                  child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    if (leading != null) ...[leading!, const SizedBox(width: Space.sm)],
-                    Text(label, style: text),
-                  ]),
+                  child: LayoutBuilder(builder: (context, c) {
+                    // In a wrap the label shortens to fit; in a scrolling
+                    // row (unbounded width) it keeps its full length.
+                    final t = Text(label, style: text, maxLines: 1, overflow: TextOverflow.ellipsis);
+                    return Row(mainAxisSize: MainAxisSize.min, children: [
+                      if (leading != null) ...[leading!, const SizedBox(width: Space.sm)],
+                      c.hasBoundedWidth ? Flexible(child: t) : t,
+                    ]);
+                  }),
                 ),
               ),
             ),

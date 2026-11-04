@@ -43,12 +43,12 @@ class PlaceScreen extends ConsumerWidget {
             slivers: [
               SliverAppBar(
                 pinned: true,
-                expandedHeight: 200,
+                expandedHeight: Sizes.placeHeader,
                 flexibleSpace: FlexibleSpaceBar(background: SeedArt(seed: 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}')),
               ),
               SliverToBoxAdapter(
                 child: ContentWidth(
-                  maxWidth: 900,
+                  maxWidth: Space.wideWidth,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -57,10 +57,10 @@ class PlaceScreen extends ConsumerWidget {
                       Text('${kindLabel(context, p.kind)} · ${p.area}, ${p.city}', style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
                       const SizedBox(height: Space.sm),
                       Wrap(
-                        spacing: 6,
-                        runSpacing: 6,
+                        spacing: Space.xs + Space.xxs,
+                        runSpacing: Space.xs + Space.xxs,
                         children: [
-                          if (p.reviewCount > 0) StatusChip('★ ${p.rating.toStringAsFixed(1)} · ${l.reviewsCount(p.reviewCount)}', tone: ChipTone.accent),
+                          if (p.reviewCount > 0) StatusChip('${p.rating.toStringAsFixed(1)} · ${l.reviewsCount(p.reviewCount)}', tone: ChipTone.accent, icon: Icons.star_rounded),
                           StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
                           if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_outlined),
                           if (p.teleVet) StatusChip(l.teleVet, tone: ChipTone.info, icon: Icons.video_call_outlined),
@@ -74,25 +74,32 @@ class PlaceScreen extends ConsumerWidget {
                         ],
                       ),
                       const SizedBox(height: Space.lg),
-                      Row(
+                      PrimaryButton(label: l.bookNow, icon: Icons.event_available_outlined, onPressed: () => context.push('/book/new/${p.id}')),
+                      const SizedBox(height: Space.md),
+                      Wrap(
+                        spacing: Space.sm,
+                        runSpacing: Space.sm,
                         children: [
-                          Expanded(
-                            child: SecondaryButton(label: l.call, icon: Icons.call_outlined, onPressed: () => callNumber(context, ref, p.phone)),
+                          PawPill(
+                            label: l.call,
+                            outlined: true,
+                            leading: Icon(Icons.call_outlined, size: IconSizes.md, color: context.paw.brand),
+                            onTap: () => callNumber(context, ref, p.phone),
                           ),
-                          const SizedBox(width: Space.sm),
-                          Expanded(
-                            child: SecondaryButton(
-                              label: l.directions,
-                              icon: Icons.directions_outlined,
-                              onPressed: () => openDirections(p.lat, p.lng, label: p.name),
-                            ),
+                          PawPill(
+                            label: l.directions,
+                            outlined: true,
+                            leading: Icon(Icons.directions_outlined, size: IconSizes.md, color: context.paw.brand),
+                            onTap: () => openDirections(p.lat, p.lng, label: p.name),
+                          ),
+                          PawPill(
+                            label: l.message,
+                            outlined: true,
+                            leading: Icon(Icons.chat_outlined, size: IconSizes.md, color: context.paw.brand),
+                            onTap: () => context.push('/messages/new?place=${p.id}'),
                           ),
                         ],
                       ),
-                      const SizedBox(height: Space.sm),
-                      PrimaryButton(label: l.bookNow, icon: Icons.event_available_outlined, onPressed: () => context.push('/book/new/${p.id}')),
-                  const SizedBox(height: Space.sm),
-                  SecondaryButton(label: l.message, icon: Icons.chat_outlined, onPressed: () => context.push('/messages/new?place=${p.id}')),
                       if (p.about != null) ...[const SizedBox(height: Space.lg), Text(p.about!)],
                       SectionHeader(l.hoursTitle),
                       PawCard(
@@ -128,7 +135,7 @@ class PlaceScreen extends ConsumerWidget {
                                     s.payments.map((x) => x == 'online' ? l.payOnline : l.payAtCentre).join(' / '),
                                   ].join(' · '),
                                 ),
-                                trailing: Text(Fmt.inr(s.price), style: context.text.titleSmall),
+                                trailing: Text(Fmt.inr(s.price), style: context.textX.mono.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
                                 onTap: () => context.push('/book/new/${p.id}?service=${s.id}'),
                               ),
                             if (p.homeVisit)
@@ -147,7 +154,7 @@ class PlaceScreen extends ConsumerWidget {
                             child: Row(
                               children: [
                                 Expanded(child: Text(pk['name'] as String)),
-                                Text(Fmt.inr(pk['price'] as num), style: context.text.titleSmall),
+                                Text(Fmt.inr(pk['price'] as num), style: context.textX.mono.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
                               ],
                             ),
                           ),
@@ -155,7 +162,7 @@ class PlaceScreen extends ConsumerWidget {
                       if (p.kind == 'clinic') _VetsList(clinicId: p.id),
                       SectionHeader(l.location),
                       SizedBox(
-                        height: 200,
+                        height: Sizes.placeHeader,
                         child: PawMap(
                           center: LatLng(p.lat, p.lng),
                           zoom: 15,
@@ -231,28 +238,28 @@ class _Reviews extends ConsumerWidget {
                 children: [
                   Wrap(
                     spacing: Space.sm,
-                    runSpacing: 2,
+                    runSpacing: Space.xxs,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      Text('★' * r.rating, style: TextStyle(color: context.paw.accent)),
+                      RatingStars(r.rating),
                       Text(r.ownerName, style: context.text.labelMedium),
                       Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall),
                     ],
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: Space.xs),
                   Row(
                     children: [
-                      Icon(Icons.verified_rounded, size: 14, color: context.paw.success),
-                      const SizedBox(width: 4),
+                      Icon(Icons.verified_rounded, size: IconSizes.xs, color: context.paw.success),
+                      const SizedBox(width: Space.xs),
                       Flexible(child: Text(l.verifiedBooking, style: context.text.labelSmall)),
                     ],
                   ),
-                  if (r.text.isNotEmpty) Padding(padding: const EdgeInsets.only(top: 4), child: Text(r.text)),
+                  if (r.text.isNotEmpty) Padding(padding: const EdgeInsets.only(top: Space.xs), child: Text(r.text)),
                   if (r.reply != null)
                     Container(
                       margin: const EdgeInsets.only(top: Space.sm),
                       padding: const EdgeInsets.all(Space.sm),
-                      decoration: BoxDecoration(color: context.paw.primaryContainer.withValues(alpha: 0.5), borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(color: context.paw.primaryContainer.withValues(alpha: Opacities.half), borderRadius: BorderRadius.circular(Radii.md)),
                       child: Text('${l.replyFrom(place.name)}: ${r.reply}', style: context.text.bodySmall),
                     ),
                 ],
