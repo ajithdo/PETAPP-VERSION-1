@@ -445,6 +445,8 @@ class TypeScale {
 
 /// 4 px spacing grid.
 class Space {
+  /// Hairline gap (2 px) for fine optical adjustments.
+  static const double xxs = 2;
   static const double xs = 4;
   static const double sm = 8;
   static const double md = 12;
@@ -465,6 +467,8 @@ class Space {
 
 /// Corners.
 class Radii {
+  /// Checkboxes.
+  static const double xs = 4;
   static const double sm = 6;
 
   /// Inputs, search fields, date boxes.
@@ -488,10 +492,16 @@ class Radii {
 
 /// Icon sizes.
 class IconSizes {
+  /// Inside chips and tags.
+  static const double xs = 14;
   static const double sm = 16;
   static const double md = 20;
   static const double lg = 24;
+
+  /// Round "log" and "play" buttons in lists.
+  static const double action = 28;
   static const double xl = 32;
+  static const double xxl = 36;
 }
 
 /// Fixed sizes of a few components.
@@ -502,6 +512,15 @@ class Sizes {
 
   /// Pet photo on the Home pet card.
   static const double heroAvatar = 72;
+
+  /// Smallest height of a quick-action tile at any text size.
+  static const double quickTileMin = 96;
+
+  /// Loading placeholder for a card.
+  static const double skeletonCard = 120;
+
+  /// Widest a bottom sheet gets on tablets and desktop.
+  static const double sheetMaxWidth = 640;
 
   /// Today card progress ring (normal and Easy mode).
   static const double todayRing = 68;
@@ -528,10 +547,35 @@ class Shadows {
       ];
 }
 
+/// Line widths.
+class Strokes {
+  static const double hairline = 1;
+
+  /// Selected or highlighted borders.
+  static const double strong = 1.5;
+
+  /// Focus rings and the selected pill.
+  static const double focus = 2;
+
+  /// Loading spinners inside buttons.
+  static const double spinner = 2.5;
+
+  /// The SOS hold ring.
+  static const double ring = 4;
+}
+
+/// Letter spacing for short all-caps or brand words ("SOS").
+class Tracking {
+  static const double wide = 0.5;
+}
+
 /// Opacities for tints, overlays and soft borders.
 class Opacities {
   static const double hover = 0.04;
+  static const double highlight = 0.06;
   static const double pressed = 0.08;
+  static const double focus = 0.16;
+  static const double selection = 0.24;
 
   /// Soft background behind an icon or a note.
   static const double tint = 0.10;

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Proof search for the Design 2 rule "no hand-typed style values outside
+# lib/core/theme/tokens.dart". Lists every literal colour, font size, gap,
+# corner, icon size, stroke, opacity or letter spacing in the files that have
+# been moved to Design 2. An empty result means they use tokens only.
+# usage: bash docs/ui-revamp/check_design2_tokens.sh
+cd "$(dirname "$0")/../.."
+FILES=(
+  lib/core/theme/app_theme.dart
+  lib/core/widgets/buttons.dart
+  lib/core/widgets/cards.dart
+  lib/core/widgets/pills.dart
+  lib/core/widgets/sos_button.dart
+  lib/core/widgets/dialogs.dart
+  lib/features/shell/presentation/owner_shell.dart
+  lib/features/home/presentation/home_screen.dart
+  lib/features/home/presentation/home_sections.dart
+  lib/features/home/presentation/home_extras.dart
+  lib/features/routine/presentation/today_card.dart
+)
+grep -nE "Color\(0x|Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]" "${FILES[@]}" | grep -v "^\s*//"
+echo "checked ${#FILES[@]} files; matches above (none = clean)"

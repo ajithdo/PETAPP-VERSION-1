@@ -108,7 +108,7 @@ class AppTheme {
 
     final target = easyMode ? TapTarget.easy : TapTarget.min;
     const pill = StadiumBorder();
-    final focusRing = BorderSide(color: paw.focus, width: 2);
+    final focusRing = BorderSide(color: paw.focus, width: Strokes.focus);
     final controlSide = BorderSide(color: paw.controlBorder);
     RoundedRectangleBorder rounded(double r, [BorderSide side = BorderSide.none]) =>
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(r), side: side);
@@ -138,9 +138,9 @@ class AppTheme {
       visualDensity: VisualDensity.standard,
       materialTapTargetSize: MaterialTapTargetSize.padded,
       splashFactory: InkSparkle.splashFactory,
-      focusColor: paw.focus.withValues(alpha: 0.16),
-      hoverColor: paw.textPrimary.withValues(alpha: 0.04),
-      highlightColor: paw.textPrimary.withValues(alpha: 0.06),
+      focusColor: paw.focus.withValues(alpha: Opacities.focus),
+      hoverColor: paw.textPrimary.withValues(alpha: Opacities.hover),
+      highlightColor: paw.textPrimary.withValues(alpha: Opacities.highlight),
       dividerColor: paw.outline,
       iconTheme: IconThemeData(color: tp, size: IconSizes.lg),
       appBarTheme: AppBarTheme(
@@ -174,9 +174,9 @@ class AppTheme {
           }),
           foregroundColor: byState(paw.onAction, disabled: disabledText),
           iconColor: byState(paw.onAction, disabled: disabledText),
-          overlayColor: WidgetStatePropertyAll(paw.onAction.withValues(alpha: 0.08)),
+          overlayColor: WidgetStatePropertyAll(paw.onAction.withValues(alpha: Opacities.pressed)),
           side: WidgetStateProperty.resolveWith(
-              (st) => st.contains(WidgetState.focused) ? BorderSide(color: tp, width: 2) : null),
+              (st) => st.contains(WidgetState.focused) ? BorderSide(color: tp, width: Strokes.focus) : null),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -187,7 +187,7 @@ class AppTheme {
           backgroundColor: WidgetStatePropertyAll(paw.surface),
           foregroundColor: byState(tp, disabled: disabledText),
           iconColor: byState(paw.brand, disabled: disabledText),
-          overlayColor: WidgetStatePropertyAll(paw.brand.withValues(alpha: 0.06)),
+          overlayColor: WidgetStatePropertyAll(paw.brand.withValues(alpha: Opacities.highlight)),
           side: WidgetStateProperty.resolveWith((st) {
             if (st.contains(WidgetState.focused)) return focusRing;
             if (st.contains(WidgetState.disabled)) return BorderSide(color: paw.outline);
@@ -202,7 +202,7 @@ class AppTheme {
           textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
           foregroundColor: byState(paw.brand, disabled: disabledText),
           iconColor: byState(paw.brand, disabled: disabledText),
-          overlayColor: WidgetStatePropertyAll(paw.brand.withValues(alpha: 0.08)),
+          overlayColor: WidgetStatePropertyAll(paw.brand.withValues(alpha: Opacities.pressed)),
           side: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.focused) ? focusRing : null),
         ),
       ),
@@ -245,10 +245,10 @@ class AppTheme {
             (st) => st.contains(WidgetState.selected) ? paw.onBrand : (st.contains(WidgetState.disabled) ? ts : tp))),
         secondaryLabelStyle: textTheme.labelMedium?.copyWith(color: paw.onBrand),
         checkmarkColor: paw.onBrand,
-        iconTheme: IconThemeData(color: paw.brand, size: IconSizes.md - 2),
+        iconTheme: IconThemeData(color: paw.brand, size: IconSizes.sm),
         deleteIconColor: ts,
         // 48 px tall with the default label: an easy finger-sized target.
-        padding: const EdgeInsets.symmetric(horizontal: Space.sm + 2, vertical: Space.sm),
+        padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.sm),
         showCheckmark: true,
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -271,7 +271,7 @@ class AppTheme {
       ),
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: paw.brand,
-        selectionColor: paw.brand.withValues(alpha: 0.24),
+        selectionColor: paw.brand.withValues(alpha: Opacities.selection),
         selectionHandleColor: paw.brand,
       ),
       bottomSheetTheme: BottomSheetThemeData(
@@ -313,7 +313,7 @@ class AppTheme {
         height: easyMode ? 76 : 68,
         iconTheme: WidgetStateProperty.resolveWith((st) => IconThemeData(
               color: st.contains(WidgetState.selected) ? paw.brand : ts,
-              size: easyMode ? IconSizes.xl - 2 : IconSizes.lg,
+              size: easyMode ? IconSizes.xl : IconSizes.lg,
             )),
         labelTextStyle: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.selected)
             ? textTheme.labelMedium!.copyWith(color: paw.brand, fontWeight: FontWeight.w700)
@@ -387,8 +387,8 @@ class AppTheme {
       checkboxTheme: CheckboxThemeData(
         fillColor: byState(Colors.transparent, selected: paw.brand),
         checkColor: WidgetStatePropertyAll(paw.onBrand),
-        side: BorderSide(color: paw.controlBorder, width: 1.5),
-        shape: rounded(Radii.sm - 2),
+        side: BorderSide(color: paw.controlBorder, width: Strokes.strong),
+        shape: rounded(Radii.xs),
       ),
       radioTheme: RadioThemeData(fillColor: byState(paw.controlBorder, selected: paw.brand)),
       sliderTheme: SliderThemeData(

@@ -32,7 +32,7 @@ class PawPill extends StatelessWidget {
     final radius = BorderRadius.circular(Radii.full);
     final fill = selected ? paw.surface : (outlined ? Colors.transparent : paw.surfaceSubtle);
     final side = selected
-        ? BorderSide(color: paw.brand, width: 2)
+        ? BorderSide(color: paw.brand, width: Strokes.focus)
         : BorderSide(color: outlined ? paw.controlBorder : paw.outline);
     final text = context.text.labelLarge?.copyWith(
       color: selected ? paw.textPrimary : paw.textSecondary,
@@ -55,7 +55,7 @@ class PawPill extends StatelessWidget {
               child: InkWell(
                 onTap: onTap,
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(leading == null ? Space.md + 2 : Space.xs + 2, Space.xs + 2, Space.md + 2, Space.xs + 2),
+                  padding: EdgeInsets.fromLTRB(leading == null ? Space.md + Space.xxs : Space.xs + Space.xxs, Space.xs + Space.xxs, Space.md + Space.xxs, Space.xs + Space.xxs),
                   child: Row(mainAxisSize: MainAxisSize.min, children: [
                     if (leading != null) ...[leading!, const SizedBox(width: Space.sm)],
                     Text(label, style: text),

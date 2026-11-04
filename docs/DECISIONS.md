@@ -205,3 +205,22 @@ Dev tools for the coding agent only; nothing here ships in the app. React-only t
 - **Docs lookup:** Context7 (hosted MCP server in `.mcp.json`).
 
 **Redesign proposal kept, not adopted (3 Nov 2026).** A full redesign ("Neel", indigo cotton) was proposed with Impeccable and three alternatives. The owner decided to keep the current design and to save the proposal for reference only, in `docs/design-proposals/`. It must not be implemented unless the owner asks. The five smaller improvements to the current design (navigation stays visible, grouped "Me" menu, calmer Home, small celebrations, bigger readable text) are still planned.
+
+## Design 2 (UI revamp, from 4 Nov 2026)
+
+The owner made Design 2 in Google Stitch (`docs/design-2/`) and approved building it on branch `ui-revamp`. Design 1 stays restorable from commit `97c1346` (see `UI_REVAMP.md`).
+
+**One token file.** Every colour, font, size, gap, corner, stroke, opacity, shadow and timing is in `lib/core/theme/tokens.dart`. `app_theme.dart` maps them onto Material 3:
+- `primary` is the brand forest teal
+- filled buttons use the coral "action" colour
+- `secondary` is coral and `tertiary` is amber
+
+`docs/ui-revamp/check_design2_tokens.sh` lists any value typed directly in the converted files.
+
+**Fonts added (owner approved, 3 Nov 2026).** Static TTFs of Inter (400/500/600/700) and JetBrains Mono (500/700), downloaded from Google Fonts. Both are SIL Open Font License, with the licence texts in `assets/fonts/OFL-*.txt`.
+- English uses Plus Jakarta Sans for headings, Inter for body text and JetBrains Mono for times and IDs.
+- Hindi and Telugu use Noto Sans everywhere (Inter has no Indic letters), with line height 1.6 and no negative letter spacing.
+
+**Icons.** Still Flutter's built-in Material icons; outlined versions are used where Design 2 shows outlines. No icon package was added (Material Symbols would need one).
+
+**Readability over exact Stitch values.** The Stitch colours were nudged where they failed WCAG AA. `test/core/contrast_test.dart` checks every pair, including the new 3:1 rule for input borders and the focus ring.

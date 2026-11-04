@@ -44,7 +44,7 @@ class PawCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
           borderRadius: radius,
-          side: borderColor == null ? BorderSide(color: paw.outline) : BorderSide(color: borderColor!, width: 1.5),
+          side: borderColor == null ? BorderSide(color: paw.outline) : BorderSide(color: borderColor!, width: Strokes.strong),
         ),
         child: onTap == null
             ? Padding(padding: padding, child: child)
@@ -78,7 +78,12 @@ class SectionHeader extends StatelessWidget {
             child: Semantics(header: true, child: Text(title, style: context.text.titleMedium)),
           ),
           if (trailing != null) Text(trailing!, style: context.text.labelMedium?.copyWith(color: context.paw.brand)),
-          if (action != null) Flexible(child: TextButton(onPressed: onAction, child: Text(action!, textAlign: TextAlign.end))),
+          if (action != null)
+            ConstrainedBox(
+              // Keeps room for the title at large text sizes.
+              constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * StatusChip.maxWidthShare),
+              child: TextButton(onPressed: onAction, child: Text(action!, textAlign: TextAlign.end)),
+            ),
         ],
       ),
     );
@@ -125,7 +130,7 @@ class StatusChip extends StatelessWidget {
     final c = colorsFor(context.paw, context.colors.primary, tone);
     return Container(
       constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * maxWidthShare),
-      padding: const EdgeInsets.symmetric(horizontal: Space.sm + 2, vertical: Space.xs),
+      padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
       decoration: BoxDecoration(
         color: c.tint,
         borderRadius: BorderRadius.circular(Radii.full),
@@ -133,7 +138,7 @@ class StatusChip extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (icon != null) ...[Icon(icon, size: IconSizes.sm - 2, color: c.text), const SizedBox(width: Space.xs)],
+          if (icon != null) ...[Icon(icon, size: IconSizes.xs, color: c.text), const SizedBox(width: Space.xs)],
           Flexible(
             child: Text(label,
                 style: context.text.labelSmall?.copyWith(color: c.text, fontWeight: FontWeight.w700),
@@ -163,7 +168,7 @@ class StatTile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (icon != null) Icon(icon, color: color ?? context.colors.primary, size: IconSizes.lg - 2),
+            if (icon != null) Icon(icon, color: color ?? context.colors.primary, size: IconSizes.lg),
             if (icon != null) const SizedBox(height: Space.sm),
             Text(value, style: context.text.titleLarge, maxLines: 1, overflow: TextOverflow.ellipsis),
             Text(label, style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
@@ -217,7 +222,7 @@ class PawAlertCard extends StatelessWidget {
     final text = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       if (overline != null)
         Text(overline!.toUpperCase(), style: context.textX.overline.copyWith(color: ink)),
-      if (overline != null) const SizedBox(height: Space.xs / 2),
+      if (overline != null) const SizedBox(height: Space.xxs),
       Text(title, style: context.text.titleSmall?.copyWith(color: paw.textPrimary)),
       if (message != null) ...[
         const SizedBox(height: Space.xs),
@@ -271,7 +276,7 @@ class DemoBanner extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(Icons.science_outlined, size: IconSizes.md - 2, color: paw.onAccentContainer),
+          Icon(Icons.science_outlined, size: IconSizes.sm, color: paw.onAccentContainer),
           const SizedBox(width: Space.sm),
           Expanded(child: Text(text, style: context.text.bodySmall?.copyWith(color: paw.textPrimary))),
         ],

@@ -25,7 +25,7 @@ class TodayCard extends ConsumerWidget {
     final logs = ref.watch(petLogsProvider(pet.id));
     return PawCard(
       child: logs.when(
-        loading: () => const Skeleton(height: 120),
+        loading: () => const Skeleton(height: Sizes.skeletonCard),
         error: (_, _) => Text(l.errorBody),
         data: (all) {
           final p = TodayProgress(pet: pet, logs: all);
@@ -41,7 +41,7 @@ class TodayCard extends ConsumerWidget {
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(l.todayFor(pet.name), style: context.text.titleMedium),
-                  const SizedBox(height: Space.xs / 2),
+                  const SizedBox(height: Space.xxs),
                   Text(
                     p.fraction >= 1 ? l.allDoneToday(pet.name) : l.tasksLeft(p.items.where((i) => i.$2 < i.$3).length),
                     style: context.text.bodySmall,
@@ -95,10 +95,10 @@ class _ChecklistRow extends ConsumerWidget {
     final label = type == LogType.play ? l.playProgress(done, goal) : '${logTypeLabel(context, type)} · $done / $goal';
     final paw = context.paw;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: Space.xs / 2),
+      padding: const EdgeInsets.symmetric(vertical: Space.xxs),
       child: Row(children: [
         Icon(complete ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
-            color: complete ? paw.success : paw.controlBorder, size: big ? IconSizes.xl - 4 : IconSizes.lg - 2),
+            color: complete ? paw.success : paw.controlBorder, size: big ? IconSizes.action : IconSizes.lg),
         const SizedBox(width: Space.md),
         Icon(logTypeIcon(type), size: IconSizes.md, color: paw.textSecondary),
         const SizedBox(width: Space.sm),
@@ -111,7 +111,7 @@ class _ChecklistRow extends ConsumerWidget {
         IconButton(
           tooltip: l.logNow(logTypeLabel(context, type)),
           icon: Icon(type == LogType.walk ? Icons.play_circle_outline_rounded : Icons.add_circle_outline_rounded,
-              color: paw.brand, size: big ? IconSizes.xl + 4 : IconSizes.xl - 4),
+              color: paw.brand, size: big ? IconSizes.xxl : IconSizes.action),
           onPressed: () async {
             if (type == LogType.walk) {
               context.push('/walk/${pet.id}');

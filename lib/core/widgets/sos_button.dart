@@ -127,17 +127,17 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Space.md + 2),
+            padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
-              Icon(Icons.emergency_outlined, size: IconSizes.md - 2, color: paw.onSosContainer),
-              const SizedBox(width: Space.xs + 2),
+              Icon(Icons.emergency_outlined, size: IconSizes.sm, color: paw.onSosContainer),
+              const SizedBox(width: Space.xs + Space.xxs),
               Text(
                 'SOS',
                 style: context.text.labelLarge?.copyWith(
                   color: paw.onSosContainer,
                   fontWeight: FontWeight.w800,
                   fontFamily: FontFamilies.heading,
-                  letterSpacing: 0.5,
+                  letterSpacing: Tracking.wide,
                 ),
               ),
             ]),
@@ -151,9 +151,10 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
   /// Big round SOS (SOS screen): solid red with a ring that fills while held.
   Widget _circle(PawColors paw) {
     const size = TapTarget.easy + Space.lg;
+    const ringGap = Space.xs + Space.xxs;
     return SizedBox(
-      width: size + 6,
-      height: size + 6,
+      width: size + ringGap,
+      height: size + ringGap,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -161,11 +162,11 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
             child: AnimatedBuilder(
               animation: _c,
               builder: (_, _) => SizedBox(
-                width: size + 6,
-                height: size + 6,
+                width: size + ringGap,
+                height: size + ringGap,
                 child: CircularProgressIndicator(
                   value: _c.value,
-                  strokeWidth: 4,
+                  strokeWidth: Strokes.ring,
                   color: paw.sos,
                   backgroundColor: Colors.transparent,
                 ),
@@ -184,7 +185,7 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
                 fontWeight: FontWeight.w800,
                 fontSize: TypeScale.title.size,
                 fontFamily: FontFamilies.heading,
-                letterSpacing: 0.5,
+                letterSpacing: Tracking.wide,
               ),
             ),
           ),

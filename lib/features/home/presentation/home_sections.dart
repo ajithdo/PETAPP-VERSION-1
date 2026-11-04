@@ -59,7 +59,8 @@ import 'home_extras.dart';
       for (final p in pets) Padding(padding: const EdgeInsets.only(bottom: Space.md), child: _MiniToday(pet: p)),
     ];
     final next = nextUpSection(context, ref, pets: pets);
-    return (top: top, main: today, side: [...next, ...quickActions], phoneOrder: [...today, ...next, ...quickActions]);
+    final side = [...nextUpSection(context, ref, pets: pets, flush: true), ...quickActions];
+    return (top: top, main: today, side: side, phoneOrder: [...today, ...next, ...quickActions]);
   }
 
   final top = [...lostPetSection(context, ref, [pet]), ...adminHomeSection(context, ref)];
@@ -73,7 +74,7 @@ import 'home_extras.dart';
   return (
     top: top,
     main: [...today, ...quickActions],
-    side: [...next, ...tips],
+    side: [...nextUpSection(context, ref, pets: [pet], flush: true), ...tips],
     phoneOrder: [...today, ...next, ...quickActions, ...tips],
   );
 }
@@ -98,7 +99,7 @@ class _MiniToday extends ConsumerWidget {
             Text(open == 0 ? context.l10n.allDoneToday(pet.name) : context.l10n.tasksLeft(open), style: context.text.bodySmall),
           ]),
         ),
-        ProgressRing(progress: p.fraction, size: TapTarget.min - Space.xs, stroke: Space.xs + 2),
+        ProgressRing(progress: p.fraction, size: TapTarget.min - Space.xs, stroke: Space.xs + Space.xxs),
         IconButton(
           tooltip: context.l10n.logSomething,
           icon: Icon(Icons.add_circle_outline_rounded, color: context.colors.primary),

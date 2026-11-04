@@ -75,7 +75,7 @@ class OwnerShell extends ConsumerWidget {
                     NavigationRailDestination(icon: Icon(d.$1), selectedIcon: Icon(d.$2), label: Text(d.$3)),
                 ],
               ),
-              VerticalDivider(width: 1, color: context.paw.outline),
+              VerticalDivider(width: Strokes.hairline, color: context.paw.outline),
               Expanded(child: body),
             ]),
           ),
@@ -193,7 +193,7 @@ class PetSwitcher extends ConsumerWidget {
             child: PawPill(
               label: l.allPets,
               selected: all,
-              leading: Icon(Icons.pets_rounded, size: IconSizes.md - 2, color: context.paw.brand),
+              leading: Icon(Icons.pets_rounded, size: IconSizes.sm, color: context.paw.brand),
               onTap: () => notifier.selectPet('all'),
             ),
           ),
@@ -211,7 +211,7 @@ class PetSwitcher extends ConsumerWidget {
         PawPill(
           label: l.addPet,
           outlined: true,
-          leading: Icon(Icons.add_rounded, size: IconSizes.md - 2, color: context.paw.textSecondary),
+          leading: Icon(Icons.add_rounded, size: IconSizes.sm, color: context.paw.textSecondary),
           onTap: () => context.push('/pets/new'),
         ),
       ]),

@@ -67,7 +67,7 @@ Future<T?> showPawSheet<T>(BuildContext context, {required Widget Function(Build
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
-    constraints: const BoxConstraints(maxWidth: 640),
+    constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
     builder: (ctx) => Padding(
       padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(ctx).bottom),
       child: scroll

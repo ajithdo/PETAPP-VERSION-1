@@ -68,9 +68,9 @@ class PrimaryButton extends StatelessWidget {
     final style = danger ? FilledButton.styleFrom(backgroundColor: dangerColor(context), foregroundColor: paw.onSos) : null;
     final child = loading
         ? SizedBox(
-            width: IconSizes.md + 2,
-            height: IconSizes.md + 2,
-            child: CircularProgressIndicator(strokeWidth: 2.5, color: danger ? paw.onSos : paw.onAction),
+            width: IconSizes.md,
+            height: IconSizes.md,
+            child: CircularProgressIndicator(strokeWidth: Strokes.spinner, color: danger ? paw.onSos : paw.onAction),
           )
         : Text(label, textAlign: TextAlign.center);
     final onTap = loading || onPressed == null
@@ -135,7 +135,7 @@ class PawIconButton extends StatelessWidget {
         fixedSize: const Size.square(TapTarget.min - Space.sm),
         tapTargetSize: MaterialTapTargetSize.padded,
       ),
-      icon: Badge.count(count: n, isLabelVisible: n > 0, child: Icon(icon, size: IconSizes.md + 2)),
+      icon: Badge.count(count: n, isLabelVisible: n > 0, child: Icon(icon, size: IconSizes.md)),
     );
   }
 }
@@ -176,18 +176,18 @@ class QuickActionTile extends StatelessWidget {
                 onTap();
               },
               child: Container(
-                constraints: const BoxConstraints(minHeight: 96),
+                constraints: const BoxConstraints(minHeight: Sizes.quickTileMin),
                 padding: const EdgeInsets.all(Space.md),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(Space.md - 2),
+                      padding: const EdgeInsets.all(Space.sm + Space.xxs),
                       decoration: BoxDecoration(
-                        color: color == null ? paw.primaryContainer : c.withValues(alpha: 0.12),
+                        color: color == null ? paw.primaryContainer : c.withValues(alpha: Opacities.tint),
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(icon, color: c, size: IconSizes.lg + 2),
+                      child: Icon(icon, color: c, size: IconSizes.lg),
                     ),
                     const SizedBox(height: Space.sm),
                     Text(label,

@@ -26,13 +26,73 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 |---|---|
 | 1. Audit (read-only) | ✅ Done 3 Nov 2026 |
 | 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ❌ Dropped 3 Nov 2026: the owner said not to consider the Figma designs. Replaced by the owner's Design 2 (`docs/design-2/`) |
-| 2b. Review of the owner's Design 2 | ✅ Done 3 Nov 2026: `docs/design-2/REVIEW.md`. Waiting for the owner's answers and "go" |
-| 3. Build the foundation from Design 2 (one token file, shared components; no Figma) | ⏸ Not started. The owner said: do not implement in the app until they say so |
-| 4. Redesign screen by screen | ⏸ Not started. Stop after the first screen for a before/after check |
+| 2b. Review of the owner's Design 2 | ✅ Done 3 Nov 2026: `docs/design-2/REVIEW.md`. The owner said "GO" (with Claude's 6 picks) on 3 Nov 2026 |
+| 3. Build the foundation from Design 2 (one token file, shared components; no Figma) | ✅ Done 4 Nov 2026 (see "Design 2 build notes" below) |
+| 4. Redesign screen by screen | 🟡 Home done 4 Nov 2026. **Stopped for the owner's before/after check** (`docs/ui-revamp/compare/`). Continue with screen 2 only after the owner confirms the direction |
 
 **Rules for this work:** UI/UX only (no business logic, API calls, data models or routing). Commit after each screen. No Figma work (owner, 3 Nov 2026). Ask before adding any library, font or tool. Keep features and content; suggest copy and flow changes in the list at the bottom instead of making them.
 
-**Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`) and chose to keep the current design (Design 1). This proposal keeps that look (teal brand, the logo, Plus Jakarta Sans, a warm off-white page) and makes it consistent. It is not a new visual direction.
+**Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`). Later that day the owner made their own Design 2 in Google Stitch and said "GO" to build it, with Claude's 6 picks (`docs/design-2/REVIEW.md`). Sections 1 and 2 below are the earlier audit and the dropped proposal, kept as a record.
+
+## Design 2 build notes (4 Nov 2026)
+
+**The owner's 6 picks (approved with "GO"):**
+1. Colours and text sizes are adjusted slightly so everything is readable.
+2. The app keeps its 5 tabs, styled the Design 2 way.
+3. Features the app doesn't have (blood group, ambulance, live hospital status, Kannada) are left out.
+4. Screens Design 2 doesn't cover are designed in its style.
+5. Inter and JetBrains Mono are added. Hindi and Telugu keep Noto Sans.
+6. Flutter's built-in icons are used, with no new icon package.
+
+**Where things live:**
+- Every value (colours for light, dark and high contrast; fonts; type scale; spacing; corners; icon sizes; strokes; opacities; shadows; motion; component sizes) is in one file, `lib/core/theme/tokens.dart`.
+- `lib/core/theme/app_theme.dart` builds the Material theme from those tokens only.
+- Proof search: `bash docs/ui-revamp/check_design2_tokens.sh`. It lists any typed-in style value in the files moved to Design 2; it came back empty on 4 Nov 2026.
+
+**Colour roles:**
+- Brand is deep forest teal `#18453E`, used for navigation, links, selected chips, progress and verified/health information.
+- Main actions use terracotta coral `#B9532E` (Book, Confirm, Save, Reorder).
+- SOS red `#DC2626` is used only for emergencies.
+- Amber is for ratings, Plus, streaks and "due soon"; green for done.
+- Readability changes from Stitch's values:
+  - coral `#C84735` became `#B9532E`, so it no longer looks like the SOS red
+  - grey text `#78716C` became `#6B635D`
+  - inputs got a 3:1 border `#8F877F`
+  - amber and green are a little darker
+  - no text is under 12 px
+
+**Shared pieces restyled (every screen gets these):**
+- buttons: coral pill main button, white pill secondary, round icon buttons
+- cards (white, 20 px corners, warm border, soft shadow; they shrink slightly when pressed)
+- the new alert card (Design 2's "Booster due" card), status chips and the new pet pills
+- the SOS pill (same press-and-hold safety), dialogs and the dark-mode delete-button fix
+- bottom tabs and the desktop side menu
+- the logo in Design 2 colours
+- a visible coral focus ring for keyboard users
+
+**Home (screen 1), same content as before:**
+- New top bar: logo, messages, bell and SOS, with pet pills below (All pets, each pet, Add pet).
+- Greeting, then the pet card.
+- Today card, with a smaller Log button that no longer stretches.
+- "Next up": the most urgent item is an alert card, and up to 2 more follow as rows.
+- Quick actions, walk weather, food running low and "On this day".
+- On desktop the page has 2 columns (your day on the left; Next up and tips on the right), instead of one 1,040 px-wide column.
+- Easy mode stays one column with bigger text.
+
+**Checks on 4 Nov 2026:**
+- `flutter analyze`: no issues.
+- All 204 tests pass. The layout sweep covers every main screen in 3 languages at 360 px with double text, tablet, desktop, Easy mode and dark mode. The colour test now also checks the Design 2 pairs, plus a 3:1 check for borders and the focus ring.
+- The web build succeeded.
+- Pictures:
+  - after, phone 390 / 360 Telugu / Easy mode / dark, and desktop light / dark: `docs/ui-revamp/after/`
+  - side by side with Design 1: `docs/ui-revamp/compare/`
+
+**Not done yet (later screens):**
+- The other screens already use the new colours, fonts, buttons and cards, but their layouts are still Design 1. Each one gets its turn in the checklist.
+- Field labels above the box (Design 2 forms) come with the forms screens.
+- The app icon and the website loading screen still use Design 1 colours. They can change with the final sweep.
+
+**Fixes to other screens:** the new font made a few rows too wide at double text size. These were fixed with layout-only changes: place reviews, seller reviews, the notifications "Mark all read" button, the food-running-low buttons, and chip and link widths.
 
 ---
 
@@ -234,8 +294,8 @@ See the checklist below.
 
 Tick a screen when it is rebuilt with shared components and tokens, its loading/empty/error states are covered, it has been checked at 360/390 px and desktop in light/dark, English/Telugu and Easy mode, and it is committed with before/after screenshots.
 
-- [ ] 0. Foundation: one token file (Design 2 values), shared components
-- [ ] 1. Home (pet parent) **← stop here for a before/after check**
+- [x] 0. Foundation: one token file (Design 2 values), shared components (4 Nov 2026)
+- [x] 1. Home (pet parent), 4 Nov 2026 **← stopped here for the owner's before/after check**
 - [ ] 2. Today and routine: Today card, quick log sheet, routine screen, walk tracker
 - [ ] 3. Health tab and its sheets (vaccines, medicines, deworming, vet visits, weight, symptoms), medical card
 - [ ] 4. Pet profile, my pets, add/edit pet, breed picker, birthday

@@ -103,7 +103,7 @@ class PetHeroCard extends StatelessWidget {
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(pet.name, style: context.text.titleLarge),
-            const SizedBox(height: Space.xs / 2),
+            const SizedBox(height: Space.xxs),
             Text(facts.join(' · '), style: context.text.bodySmall),
             const SizedBox(height: Space.sm),
             StatusChip(lifeStageLabel(context, pet), tone: ChipTone.info),
