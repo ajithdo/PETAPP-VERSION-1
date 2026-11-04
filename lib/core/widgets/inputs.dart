@@ -410,7 +410,7 @@ class PriceSummary extends StatelessWidget {
             Text(
               v,
               style: bold
-                  ? context.textX.mono.copyWith(fontWeight: FontWeight.w700, color: paw.action)
+                  ? context.textX.mono.copyWith(fontWeight: FontWeight.w700, color: paw.onActionContainer)
                   : context.textX.mono.copyWith(color: paw.textPrimary),
             ),
           ]),

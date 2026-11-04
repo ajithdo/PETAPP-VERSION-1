@@ -282,7 +282,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
       final style = (bold ? context.text.titleSmall : context.text.bodyMedium)?.copyWith(color: color);
       // Amounts in the mono face; the total in the action colour (Design 2).
       final amount = context.textX.mono.copyWith(
-        color: bold ? context.paw.action : (color ?? context.paw.textPrimary),
+        color: bold ? context.paw.onActionContainer : (color ?? context.paw.textPrimary),
         fontWeight: bold ? FontWeight.w700 : null,
       );
       return Padding(

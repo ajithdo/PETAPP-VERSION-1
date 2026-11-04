@@ -46,6 +46,23 @@ void main() {
         aa(p.onAccentContainer, Color.alphaBlend(p.accent.withValues(alpha: Opacities.chip), p.surface), 'icons on amber tint');
         aa(p.onAccent, p.warning, 'icon on the warning alert circle');
         aa(cs.onError, p.error, 'icon on the error alert circle');
+        // The health pass (deep teal card): title, secondary text, values on
+        // its darker panel, and the light buttons on it.
+        final dark = b == Brightness.dark;
+        final passBg = dark ? p.primaryContainer : p.brand;
+        final passFg = dark ? p.onPrimaryContainer : p.onBrand;
+        final passPanel = Color.alphaBlend(p.ink.withValues(alpha: Opacities.tintStrong), passBg);
+        final passMuted = readableOn(passFg.withValues(alpha: Opacities.onDarkMuted), [passBg]);
+        aa(passFg, passBg, 'title on the health pass');
+        aa(Color.alphaBlend(passMuted, passBg), passBg, 'secondary text on the health pass');
+        aa(passFg, passPanel, 'values on the health pass panel');
+        aa(passBg, passFg, 'buttons on the health pass');
+        // Option cards and the price summary.
+        aa(p.onActionContainer, p.actionContainer, 'chosen option card');
+        aa(p.onActionContainer, p.surfaceSubtle, 'total in the price summary');
+        aa(p.onActionContainer, p.surface, 'total in the cart bill');
+        // Choice tiles (chosen species).
+        aa(p.onPrimaryContainer, p.primaryContainer, 'chosen choice tile');
         // Borders of inputs and the focus ring need 3:1 (WCAG 1.4.11).
         void ui(Color fg, Color bg, String what) {
           final r = contrastRatio(fg, bg);

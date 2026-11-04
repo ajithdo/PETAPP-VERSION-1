@@ -28,7 +28,7 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 | 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ❌ Dropped 3 Nov 2026: the owner said not to consider the Figma designs. Replaced by the owner's Design 2 (`docs/design-2/`) |
 | 2b. Review of the owner's Design 2 | ✅ Done 3 Nov 2026: `docs/design-2/REVIEW.md`. The owner said "GO" (with Claude's 6 picks) on 3 Nov 2026 |
 | 3. Build the foundation from Design 2 (one token file, shared components; no Figma) | ✅ Done 4 Nov 2026 (see "Design 2 build notes" below) |
-| 4. Redesign screen by screen | 🟡 In progress. Home done and approved 4 Nov 2026 ("implement Design 2 in app"); the rest goes ahead without stopping, ticked off in the checklist below |
+| 4. Redesign screen by screen | ✅ Done 4 Nov 2026: every screen group in the checklist below. Before/after pictures in `docs/ui-revamp/compare/screens/` |
 
 **Rules for this work:** UI/UX only (no business logic, API calls, data models or routing). Commit after each screen. No Figma work (owner, 3 Nov 2026). Ask before adding any library, font or tool. Keep features and content; suggest copy and flow changes in the list at the bottom instead of making them.
 
@@ -95,6 +95,24 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 **Fixes to other screens:** the new font made a few rows too wide at double text size. These were fixed with layout-only changes: place reviews, seller reviews, the notifications "Mark all read" button, the food-running-low buttons, and chip and link widths.
 
 ---
+
+## Design 2 everywhere (4 Nov 2026)
+
+**What changed on every screen:** outlined icons; labels above form boxes; red only for emergencies; times, prices, IDs and codes in JetBrains Mono; every colour, size and gap from `tokens.dart`.
+
+**New shared pieces** (`lib/core/widgets/`): `PassCard` (health pass, medical card, booking confirmed), `TimelineTile` (vaccines), `ChoiceTiles` (species), `OptionCard` (service and payment), `PriceSummary`, `DateBadge` (bookings), `RatingStars`, `FieldLabel`, `LabeledField`, `PawPickerField`.
+
+**Files that keep fixed values on purpose** (listed at the top of the proof search): the token and theme files, generated translations, printed A4 pages (they use `PrintColors`) and drawn artwork.
+
+**Checks:** `flutter analyze` clean; 204 tests pass (layout sweep in 3 languages at 360 px with double text, tablet, desktop, Easy mode and dark mode; colour test including the pass, option cards and price summary); web build with no page errors on the 17 main screens.
+
+### Further improvements (not done; owner to decide)
+1. **App icon pictures** on phones and in the browser tab are still the Design 1 artwork. New icons need image files for Android, iOS and the web. The logo inside the app already uses Design 2 colours.
+2. **Shop "For Bruno" filter** still uses Material choice chips; it could use the pet pills from the top bar for consistency.
+3. **Family and caregiver access** could follow Design 2's role cards with on/off switches per permission (today it is a list).
+4. **Clinic portal queue** could follow Design 2's queue manager layout (today it uses the shared cards and tokens only).
+5. **Health pass buttons** stack on small phones; a single "Share" button that opens Medical card / Health report would keep the pass shorter.
+6. **Photo headers** on clinic pages are the demo's placeholder art; real clinic photos would make Design 2's photo-led cards shine.
 
 ## 1. Audit
 
@@ -312,7 +330,7 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [x] 14. Expenses, Plus, refer a friend, privacy, help and complaints (4 Nov 2026). Tokens only; referral and coupon codes in mono
 - [x] 15. Partner portal and seller portal (4 Nov 2026). Tokens only; product thumbnails, order rows and the vet consult panels use size tokens
 - [x] 16. Admin panel (4 Nov 2026). Tokens only; coupon codes in mono
-- [ ] 17. Final sweep: hard-coded-value search is clean, Design 1 still restorable, before/after summary
+- [x] 17. Final sweep: hard-coded-value search is clean, Design 1 still restorable, before/after summary (4 Nov 2026). `bash docs/ui-revamp/check_design2_tokens.sh` checks all 238 Dart files that should use tokens and finds none. Design 1 is still commit `97c1346`. Website loading screen and browser colours are Design 2. Before/after for all 17 screens at phone and desktop width: `docs/ui-revamp/compare/screens/`; after pictures alone: `docs/ui-revamp/after/screens/`
 
 ---
 
@@ -335,4 +353,5 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 6. Product cards: show the discount once (the badge only).
 7. Demo account tiles: shorten the descriptions so they fit without "…" (e.g. "Bengaluru · Plus · Bruno and Misty").
 8. Clinic finder: an unknown kind in the address shows the raw word ("vet"); suggest falling back to "Find care near you".
-9. Health tab: "Health report" and "Medical card" could move into the top bar as icon buttons, or into a "Share" sheet, so "Next up" comes first.
+9. Health tab: "Health report" and "Medical card" are now buttons on the health pass. They could move into one "Share" sheet so the pass is shorter.
+10. Health pass: Design 2 shows "PawSetu verified health pass". The app doesn't verify records, so the pass is titled "Bruno's health". A new label like "Health pass" could be added if wanted.

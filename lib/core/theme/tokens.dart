@@ -434,6 +434,9 @@ class MediaColors {
   /// Dark wash behind text or buttons laid over a photo (black at 54%).
   static const scrim = Color(0x8A000000);
 
+  /// Soft shadow under map pins (black at 26%).
+  static const mapShadow = Color(0x42000000);
+
   /// Light panel behind a small badge on a photo (white at 88%).
   static const photoPanel = Color(0xE0FFFFFF);
 
@@ -889,8 +892,9 @@ class Strokes {
   static const double avatarRing = 2;
   static const double avatarRingSelected = 3;
 
-  /// Lines in charts and trend lines.
+  /// Lines in charts and trend lines, and walk routes on maps.
   static const double chart = 3;
+  static const double route = 5;
 
   /// Dashed goal lines in charts (dash, gap).
   static const List<int> dash = [6, 4];

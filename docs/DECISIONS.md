@@ -215,12 +215,21 @@ The owner made Design 2 in Google Stitch (`docs/design-2/`) and approved buildin
 - filled buttons use the coral "action" colour
 - `secondary` is coral and `tertiary` is amber
 
-`docs/ui-revamp/check_design2_tokens.sh` lists any value typed directly in the converted files.
 
 **Fonts added (owner approved, 3 Nov 2026).** Static TTFs of Inter (400/500/600/700) and JetBrains Mono (500/700), downloaded from Google Fonts. Both are SIL Open Font License, with the licence texts in `assets/fonts/OFL-*.txt`.
 - English uses Plus Jakarta Sans for headings, Inter for body text and JetBrains Mono for times and IDs.
 - Hindi and Telugu use Noto Sans everywhere (Inter has no Indic letters), with line height 1.6 and no negative letter spacing.
 
-**Icons.** Still Flutter's built-in Material icons; outlined versions are used where Design 2 shows outlines. No icon package was added (Material Symbols would need one).
+**Icons.** Still Flutter's built-in Material icons, now the *outlined* set everywhere (Design 2 uses outlined Material Symbols). Icons that show a state stay filled: rating stars, done ticks, liked hearts, verified badges, filled play/pause, and the selected bottom tab. No icon package was added (Material Symbols would need one).
+
+**Colour families beyond the theme (4 Nov 2026).** Also in `tokens.dart`:
+- `CategoryColors`: muted mid-tones for kinds of things (log types, shop and expense categories, document kinds, Book tiles). Screens pass them through `readableOn(..., ratio: 3)` so icons read on cards in light and dark mode.
+- `MediaColors`: photo, video and scan screens stay dark in both themes (crop, viewers, video call with a forest glow).
+- `PrintColors`: printed pages (health report, prescription, invoice, sample documents, lost poster, QR tag) are always on white paper, in the Design 2 forest instead of the Design 1 teal.
+- `SeedArtColors`: washes for the demo's placeholder photos.
+
+**Shared Design 2 components (4 Nov 2026), in `lib/core/widgets/`:** `PassCard`/`PassRow` (health pass, medical card, booking confirmed), `TimelineTile` (vaccines), `PawAlertCard`, `PawPill`, `ChoiceTiles` (species), `OptionCard` (service and payment choices), `PriceSummary`, `DateBadge`, `RatingStars`, `FieldLabel`, `LabeledField` and `PawPickerField`. `PawTextField` now shows its label above the box; `MergeSemantics` keeps label and field read out together (checked with a semantics test).
+
+**Proof search.** `docs/ui-revamp/check_design2_tokens.sh` now checks every Dart file in `lib/` except the token/theme files, generated translations, printed pages and drawn artwork (listed with reasons at the top of the script). It returns no matches.
 
 **Readability over exact Stitch values.** The Stitch colours were nudged where they failed WCAG AA. `test/core/contrast_test.dart` checks every pair, including the new 3:1 rule for input borders and the focus ring.

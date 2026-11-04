@@ -1,141 +1,28 @@
 #!/usr/bin/env bash
 # Proof search for the Design 2 rule "no hand-typed style values outside
 # lib/core/theme/tokens.dart". Lists every literal colour, font size, gap,
-# corner, icon size, stroke, opacity or letter spacing in the files that have
-# been moved to Design 2. An empty result means they use tokens only.
+# corner, icon size, stroke, opacity or letter spacing in the app's Dart
+# files. An empty result means the screens use tokens only.
+#
+# Left out on purpose (they must keep fixed values):
+#   lib/core/theme/                       the token file and the theme built from it
+#   lib/core/l10n/gen/                    generated translations
+#   Printed pages, laid out in points for A4 paper and always white:
+#     lib/core/widgets/document_preview.dart        A4 page frame
+#     lib/features/health/presentation/health_report.dart   health report (its on-screen medical card uses tokens)
+#     lib/features/televet/presentation/prescription_pdf.dart
+#     lib/features/shop/presentation/invoice.dart
+#     lib/features/vault/presentation/sample_docs.dart       demo sample documents
+#     lib/features/messaging/presentation/attachments.dart   demo "SAMPLE" PDF (its photo viewer uses tokens)
+#     lib/features/sos/presentation/lost_screens.dart        printable lost poster and QR tag (its screens use tokens)
+#   Drawn artwork with its own palette:
+#     lib/core/widgets/illustrations.dart, lib/core/widgets/logo.dart,
+#     lib/features/album/presentation/birthday_screen.dart (confetti)
+# Printed pages take their colours from PrintColors in tokens.dart.
+#
 # usage: bash docs/ui-revamp/check_design2_tokens.sh
 cd "$(dirname "$0")/../.."
-FILES=(
-  lib/core/theme/app_theme.dart
-  lib/core/widgets/buttons.dart
-  lib/core/widgets/cards.dart
-  lib/core/widgets/pills.dart
-  lib/core/widgets/sos_button.dart
-  lib/core/widgets/dialogs.dart
-  lib/features/shell/presentation/owner_shell.dart
-  lib/features/home/presentation/home_screen.dart
-  lib/features/home/presentation/home_sections.dart
-  lib/features/home/presentation/home_extras.dart
-  lib/features/routine/presentation/today_card.dart
-  lib/core/widgets/states.dart
-  lib/core/widgets/inputs.dart
-  lib/core/widgets/offline_banner.dart
-  lib/core/widgets/pet_avatar.dart
-  lib/core/widgets/media_image.dart
-  lib/core/widgets/photo_picker.dart
-  lib/features/routine/presentation/heat_card.dart
-  lib/features/routine/presentation/quick_log_sheet.dart
-  lib/features/routine/presentation/routine_labels.dart
-  lib/features/routine/presentation/routine_screen.dart
-  lib/features/routine/presentation/walk_tracker_screen.dart
-  lib/core/widgets/pass_card.dart
-  lib/core/widgets/timeline.dart
-  lib/features/health/presentation/health_screen.dart
-  lib/features/health/presentation/health_sheets.dart
-  lib/features/health/presentation/health_labels.dart
-  lib/core/routing/pet_links.dart
-  lib/features/pets/presentation/archive_sheet.dart
-  lib/features/pets/presentation/breed_picker.dart
-  lib/features/pets/presentation/my_pets_screen.dart
-  lib/features/pets/presentation/pet_form_screen.dart
-  lib/features/pets/presentation/pet_labels.dart
-  lib/features/pets/presentation/pet_profile_screen.dart
-  lib/features/booking/presentation/book_home_screen.dart
-  lib/features/booking/presentation/booking_flow_screen.dart
-  lib/features/booking/presentation/booking_labels.dart
-  lib/features/booking/presentation/my_bookings_screen.dart
-  lib/features/booking/presentation/place_finder_screen.dart
-  lib/features/booking/presentation/place_screen.dart
-  lib/features/sos/presentation/devices_screens.dart
-  lib/features/sos/presentation/first_aid_screens.dart
-  lib/features/sos/presentation/public_lost_screen.dart
-  lib/features/sos/presentation/safety_labels.dart
-  lib/features/sos/presentation/sos_screen.dart
-  lib/features/sos/presentation/toxic_screen.dart
-  lib/features/shop/presentation/address_screens.dart
-  lib/features/shop/presentation/cart_screen.dart
-  lib/features/shop/presentation/expenses_screen.dart
-  lib/features/shop/presentation/food_low_card.dart
-  lib/features/shop/presentation/order_screens.dart
-  lib/features/shop/presentation/product_list_screen.dart
-  lib/features/shop/presentation/product_screen.dart
-  lib/features/shop/presentation/product_widgets.dart
-  lib/features/shop/presentation/quick_reorder.dart
-  lib/features/shop/presentation/seller_portal.dart
-  lib/features/shop/presentation/shop_home_screen.dart
-  lib/features/shop/presentation/shop_labels.dart
-  lib/features/assistant/presentation/ask_screen.dart
-  lib/features/assistant/presentation/assistant_labels.dart
-  lib/features/messaging/presentation/chat_screen.dart
-  lib/features/messaging/presentation/chat_view.dart
-  lib/features/messaging/presentation/chat_widgets.dart
-  lib/features/messaging/presentation/inbox_screen.dart
-  lib/features/messaging/presentation/voice_note.dart
-  lib/features/televet/presentation/prescription_builder.dart
-  lib/features/televet/presentation/televet_bar.dart
-  lib/features/televet/presentation/televet_flow_screen.dart
-  lib/features/televet/presentation/televet_home_screen.dart
-  lib/features/televet/presentation/vet_consult_screen.dart
-  lib/features/televet/presentation/vet_queue_section.dart
-  lib/features/televet/presentation/video_call_screen.dart
-  lib/features/auth/presentation/auth_widgets.dart
-  lib/features/auth/presentation/demo_login_screen.dart
-  lib/features/auth/presentation/forgot_password_screen.dart
-  lib/features/auth/presentation/phone_sign_in_screen.dart
-  lib/features/auth/presentation/sign_in_screen.dart
-  lib/features/auth/presentation/sign_up_screen.dart
-  lib/features/auth/presentation/verify_email_screen.dart
-  lib/features/notifications/presentation/notification_screens.dart
-  lib/features/onboarding/presentation/setup_screens.dart
-  lib/features/onboarding/presentation/welcome_screen.dart
-  lib/features/settings/presentation/design_gallery_screen.dart
-  lib/features/settings/presentation/settings_screen.dart
-  lib/features/shell/presentation/coming_soon_screen.dart
-  lib/features/shell/presentation/me_screen.dart
-  lib/features/shell/presentation/portal_scaffold.dart
-  lib/features/shell/presentation/sos_launcher.dart
-  lib/features/shell/presentation/splash_screen.dart
-  lib/features/vault/presentation/doc_detail_screen.dart
-  lib/features/vault/presentation/doc_preview.dart
-  lib/features/vault/presentation/insurance_screens.dart
-  lib/features/vault/presentation/public_share_screen.dart
-  lib/features/vault/presentation/read_screen.dart
-  lib/features/vault/presentation/scan_screen.dart
-  lib/features/vault/presentation/share_sheet.dart
-  lib/features/vault/presentation/shares_screen.dart
-  lib/features/vault/presentation/upload_flow.dart
-  lib/features/vault/presentation/vault_gate.dart
-  lib/features/vault/presentation/vault_labels.dart
-  lib/features/vault/presentation/vault_screen.dart
-  lib/features/album/presentation/album_add.dart
-  lib/features/album/presentation/album_labels.dart
-  lib/features/album/presentation/album_screen.dart
-  lib/features/album/presentation/album_share.dart
-  lib/features/album/presentation/album_viewer.dart
-  lib/features/album/presentation/memory_card.dart
-  lib/features/admin/presentation/admin_catalogue.dart
-  lib/features/admin/presentation/admin_complaints.dart
-  lib/features/admin/presentation/admin_dashboard.dart
-  lib/features/admin/presentation/admin_inputs.dart
-  lib/features/admin/presentation/admin_logs.dart
-  lib/features/admin/presentation/admin_people.dart
-  lib/features/admin/presentation/admin_sections.dart
-  lib/features/admin/presentation/admin_settings.dart
-  lib/features/admin/presentation/admin_shell.dart
-  lib/features/admin/presentation/banners.dart
-  lib/features/admin/presentation/commission_report.dart
-  lib/features/admin/presentation/help_screens.dart
-  lib/features/admin/presentation/privacy_screen.dart
-  lib/features/admin/presentation/support_labels.dart
-  lib/features/admin/presentation/ticket_thread.dart
-  lib/features/family/presentation/family_screen.dart
-  lib/features/family/presentation/join_screen.dart
-  lib/features/partner/presentation/partner_extra_sections.dart
-  lib/features/partner/presentation/partner_sections.dart
-  lib/features/partner/presentation/partner_shell.dart
-  lib/features/partner/presentation/partner_signup_screen.dart
-  lib/features/plans/presentation/plus_prompt.dart
-  lib/features/plans/presentation/plus_screen.dart
-)
-grep -nE "Color\(0x|(^|[^A-Za-z])Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]" "${FILES[@]}" | grep -v "^\s*//"
-echo "checked ${#FILES[@]} files; matches above (none = clean)"
+EXEMPT='^lib/core/theme/|^lib/core/l10n/gen/|document_preview\.dart|health_report\.dart|prescription_pdf\.dart|/invoice\.dart|sample_docs\.dart|messaging/presentation/attachments\.dart|sos/presentation/lost_screens\.dart|widgets/illustrations\.dart|widgets/logo\.dart|album/presentation/birthday_screen\.dart'
+mapfile -t FILES < <(find lib -name '*.dart' | sort | grep -vE "$EXEMPT")
+grep -nE "Color\(0x|(^|[^A-Za-z])Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]|height: [0-9]" "${FILES[@]}" | grep -v "^\S*:\s*//"
+echo "checked ${#FILES[@]} files (every Dart file in lib except the ones listed at the top); matches above (none = clean)"

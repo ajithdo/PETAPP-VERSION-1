@@ -46,4 +46,11 @@ Tick a box only when the phase's "Done when" list works and the end-of-phase che
   - Inter and JetBrains Mono fonts were added.
   - 204 tests pass, including the 3-language large-text layout sweep and a stricter colour test.
   - Before/after pictures are in `docs/ui-revamp/compare/`.
-  - Waiting for the owner's check before the next screens.
+  - The owner approved the direction ("implement Design 2 in app").
+- **4 Nov 2026 — UI revamp, Design 2: every screen.** Still on branch `ui-revamp` (Design 1 safe at `97c1346`).
+  - Every screen group from the plan is moved to Design 2: Today and routine, Health and the medical card, Pets and forms, Book, SOS and safety, Shop, Messages and tele-vet, Me and settings, sign-in and setup, the vault, the album, family, Plus and help, the partner and seller portals, and the admin panel.
+  - New shared pieces: the health pass (also used for the medical card and "booking confirmed"), a vaccine timeline, species tiles, option cards for services and payment, a sand price summary, date squares on bookings, star ratings, and form labels above the box everywhere.
+  - Outlined icons across the app; red is kept for emergencies only; times, prices, IDs and codes use JetBrains Mono.
+  - Printed pages and the website loading screen use the Design 2 forest instead of the Design 1 teal.
+  - The proof search now covers all 238 Dart files that should use tokens and finds none typed by hand. 204 tests pass (the colour test checks the new pass, option card and price summary colours; one coral total on sand was darkened because it measured 4.2:1).
+  - Not changed: the app icon pictures on phones and in the browser tab are still the Design 1 artwork (see "further improvements" in `UI_REVAMP.md`).
