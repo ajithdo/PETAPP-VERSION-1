@@ -434,6 +434,9 @@ class MediaColors {
   /// Dark wash behind text or buttons laid over a photo (black at 54%).
   static const scrim = Color(0x8A000000);
 
+  /// Light panel behind a small badge on a photo (white at 88%).
+  static const photoPanel = Color(0xE0FFFFFF);
+
   /// Round buttons over video (white at 24%), and switched-off ones.
   static const control = Color(0x3DFFFFFF);
   static const controlDisabled = Color(0x1AFFFFFF);
@@ -749,6 +752,14 @@ class Sizes {
   static const double pinDot = 16;
   static const double pinKey = 68;
   static const double pinKeyCell = 80;
+
+  /// Album: the photo picker preview, a memory tile, the memory card, the
+  /// badge cell under a milestone and the share card picture.
+  static const double albumPick = 160;
+  static const double memoryTile = 120;
+  static const double memoryCard = 112;
+  static const double badgeCell = 76;
+  static const double shareCard = 200;
 
   /// The logo on the splash screen.
   static const double logoXl = 72;

@@ -307,7 +307,7 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [x] 9. Me, settings, notification settings, notifications centre (4 Nov 2026). Tokens only; form labels above the box and outlined icons from the shared pieces
 - [x] 10. Sign-in, sign-up, forgot password, phone code, demo accounts, verify email, welcome, setup (4 Nov 2026). Tokens only (logo sizes, sign-in card width, welcome dots, setup species tiles); fields have labels above the box
 - [x] 11. Vault (gate, list, document, read details, shares, insurance, public share) (4 Nov 2026). Tokens only; document kinds use readable category colours (the old pastel icons were below 3:1); PIN pad, scan frame and viewers use tokens and media colours
-- [ ] 12. Album, album viewer, memory card
+- [x] 12. Album, album viewer, memory card (4 Nov 2026). Tokens only; labels and buttons over photos use media colours so they read on any picture; the birthday screen uses tokens except its confetti artwork
 - [ ] 13. Family, join invite, lost pet (list, detail, public page), devices (list, add, detail)
 - [ ] 14. Expenses, Plus, refer a friend, privacy, help and complaints
 - [ ] 15. Partner portal and seller portal

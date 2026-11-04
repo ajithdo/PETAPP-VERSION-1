@@ -31,7 +31,7 @@ class Watermark extends StatelessWidget {
         padding: EdgeInsets.all(size * 0.03),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: size * 0.02, vertical: size * 0.012),
-          decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.88), borderRadius: BorderRadius.circular(size)),
+          decoration: BoxDecoration(color: MediaColors.photoPanel, borderRadius: BorderRadius.circular(size)),
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             PawSetuLogo(size: size * 0.05),
             SizedBox(width: size * 0.012),
@@ -98,11 +98,11 @@ Future<void> showShareMemorySheet(BuildContext context, WidgetRef ref, AlbumItem
           child: ClipRRect(
             borderRadius: BorderRadius.circular(Radii.md),
             child: SizedBox(
-              width: 200,
-              height: 200,
+              width: Sizes.shareCard,
+              height: Sizes.shareCard,
               child: Stack(children: [
                 Positioned.fill(child: MediaImage(url: item.url!, semanticLabel: item.caption)),
-                if (watermark && !(item.isVideo && !item.url!.startsWith('seed:'))) const Positioned.fill(child: Watermark(size: 200)),
+                if (watermark && !(item.isVideo && !item.url!.startsWith('seed:'))) const Positioned.fill(child: Watermark(size: Sizes.shareCard)),
               ]),
             ),
           ),

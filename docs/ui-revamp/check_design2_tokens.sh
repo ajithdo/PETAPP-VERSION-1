@@ -107,6 +107,12 @@ FILES=(
   lib/features/vault/presentation/vault_gate.dart
   lib/features/vault/presentation/vault_labels.dart
   lib/features/vault/presentation/vault_screen.dart
+  lib/features/album/presentation/album_add.dart
+  lib/features/album/presentation/album_labels.dart
+  lib/features/album/presentation/album_screen.dart
+  lib/features/album/presentation/album_share.dart
+  lib/features/album/presentation/album_viewer.dart
+  lib/features/album/presentation/memory_card.dart
 )
 grep -nE "Color\(0x|(^|[^A-Za-z])Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]" "${FILES[@]}" | grep -v "^\s*//"
 echo "checked ${#FILES[@]} files; matches above (none = clean)"

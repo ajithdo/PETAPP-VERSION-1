@@ -55,7 +55,7 @@ class MilestoneBadge extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: c.withValues(alpha: earned ? 0.2 : 0.5),
-        border: Border.all(color: c, width: 2),
+        border: Border.all(color: c, width: Strokes.focus),
       ),
       child: Icon(milestoneIcon(kind), size: size * 0.5, color: earned ? c : context.paw.textSecondary),
     );
