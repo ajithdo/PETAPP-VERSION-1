@@ -116,7 +116,8 @@ class _PetMembersCard extends ConsumerWidget {
             title: Text(pet.name, style: context.text.titleMedium),
             subtitle: Text(l.peopleCount(pet.members.length)),
             trailing: canManage
-                ? FilledButton.tonalIcon(
+                ? FilledButton.icon(
+                    style: FilledButton.styleFrom(backgroundColor: context.paw.brand, foregroundColor: context.paw.onBrand, iconColor: context.paw.onBrand),
                     onPressed: () => _invite(context, ref, others.length),
                     icon: const Icon(Icons.person_add_outlined),
                     label: Text(l.invite),
@@ -124,33 +125,60 @@ class _PetMembersCard extends ConsumerWidget {
                 : null,
           ),
           const Divider(),
+          // Design 2 caregiver rows: initials, name, a coloured role badge and
+          // what the access covers.
           for (final e in pet.members.entries)
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: context.paw.primaryContainer,
-                child: Text(e.value.name.isEmpty ? '?' : e.value.name.characters.first),
-              ),
-              title: Text(e.value.name + (e.key == user.uid ? ' (${l.you})' : '')),
-              subtitle: e.value.expiresAt == null
-                  ? null
-                  : Text(
-                      e.value.expiresAt!.isBefore(DateTime.now())
-                          ? l.accessEnded
-                          : l.accessUntil(Fmt.dateTime(e.value.expiresAt!, context.lang)),
-                      style: context.text.bodySmall?.copyWith(color: context.paw.warning),
-                    ),
-              trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                StatusChip(petRoleLabel(context, e.value.role), tone: e.key == pet.ownerId ? ChipTone.accent : ChipTone.neutral),
-                if (canManage && e.key != pet.ownerId && e.key != user.uid)
-                  PopupMenuButton<String>(
-                    tooltip: l.moreOptions,
-                    onSelected: (v) => _memberAction(context, ref, v, e.key, e.value),
-                    itemBuilder: (_) => [
-                      PopupMenuItem(value: 'role', child: Text(l.changeRole)),
-                      PopupMenuItem(value: 'remove', child: Text(l.removeAccess)),
-                    ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.xs),
+              child: Container(
+                padding: const EdgeInsets.all(Space.md),
+                decoration: BoxDecoration(
+                  color: context.paw.surfaceSubtle,
+                  borderRadius: BorderRadius.circular(Radii.lg),
+                  border: Border.all(color: context.paw.outline),
+                ),
+                child: Row(children: [
+                  CircleAvatar(
+                    radius: Sizes.avatarMd / 2,
+                    backgroundColor: context.paw.outline,
+                    child: Text(initials(e.value.name), style: context.text.titleSmall?.copyWith(color: context.paw.textSecondary)),
                   ),
-              ]),
+                  const SizedBox(width: Space.md),
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
+                        Text(e.value.name + (e.key == user.uid ? ' (${l.you})' : ''), style: context.text.titleSmall),
+                        StatusChip(
+                          petRoleLabel(context, e.value.role),
+                          tone: e.key == pet.ownerId
+                              ? ChipTone.accent
+                              : e.value.expiresAt != null
+                                  ? ChipTone.warning
+                                  : (e.value.role == 'coowner' ? ChipTone.success : ChipTone.info),
+                        ),
+                      ]),
+                      if (e.value.expiresAt != null) ...[
+                        const SizedBox(height: Space.xxs),
+                        Text(
+                          e.value.expiresAt!.isBefore(DateTime.now())
+                              ? l.accessEnded
+                              : l.accessUntil(Fmt.dateTime(e.value.expiresAt!, context.lang)),
+                          style: context.text.bodySmall,
+                        ),
+                      ],
+                    ]),
+                  ),
+                  if (canManage && e.key != pet.ownerId && e.key != user.uid)
+                    PopupMenuButton<String>(
+                      tooltip: l.moreOptions,
+                      onSelected: (v) => _memberAction(context, ref, v, e.key, e.value),
+                      itemBuilder: (_) => [
+                        PopupMenuItem(value: 'role', child: Text(l.changeRole)),
+                        PopupMenuItem(value: 'remove', child: Text(l.removeAccess)),
+                      ],
+                    ),
+                ]),
+              ),
             ),
           for (final inv in sent)
             ListTile(

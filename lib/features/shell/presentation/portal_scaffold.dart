@@ -83,7 +83,17 @@ class PortalScaffold extends ConsumerWidget {
       ],
     );
 
+    // Design 2 clinic portal: a deep forest top bar with light text.
+    final paw = context.paw;
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    final barBg = dark ? paw.primaryContainer : paw.brand;
+    final barFg = dark ? paw.onPrimaryContainer : paw.onBrand;
     final appBar = AppBar(
+      backgroundColor: barBg,
+      foregroundColor: barFg,
+      iconTheme: IconThemeData(color: barFg),
+      actionsIconTheme: IconThemeData(color: barFg),
+      titleTextStyle: context.text.titleLarge?.copyWith(color: barFg),
       title: Text(sections[idx].label),
       actions: [
         ...actions,
@@ -93,12 +103,14 @@ class PortalScaffold extends ConsumerWidget {
             // On a phone the name would squeeze the page title: initial only.
             child: wide
                 ? Chip(
-                    avatar: const Icon(Icons.person_outlined, size: IconSizes.chip),
-                    label: Text(user.name, overflow: TextOverflow.ellipsis),
+                    backgroundColor: Color.alphaBlend(barFg.withValues(alpha: Opacities.chip), barBg),
+                    side: BorderSide(color: barFg.withValues(alpha: Opacities.border)),
+                    avatar: Icon(Icons.person_outlined, size: IconSizes.chip, color: barFg),
+                    label: Text(user.name, overflow: TextOverflow.ellipsis, style: context.text.labelLarge?.copyWith(color: barFg)),
                   )
                 : Tooltip(
                     message: user.name,
-                    child: CircleAvatar(radius: 16, child: Text(user.name.isEmpty ? '?' : user.name.characters.first.toUpperCase())),
+                    child: CircleAvatar(radius: Sizes.avatarXs / 2, child: Text(user.name.isEmpty ? '?' : user.name.characters.first.toUpperCase())),
                   ),
           ),
       ],

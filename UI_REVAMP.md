@@ -117,13 +117,13 @@ Left out (features the app doesn't have): blood group, ambulance, live ICU/blood
 - [x] D. Clinic page: photo header, rating pill, action pills, vet on duty, booking panel (right column on desktop) and a short confirm screen (4 Nov 2026). Facility tiles left out: the app has no facility data. Tapping a service picks it in the booking card. The old 4-step booking still works when opened without a chosen time (e.g. from other links)
 - [x] E. Booking confirmed: booking pass with When / Where / Vet / Amount tiles, clinic row with Directions, Add to calendar (4 Nov 2026)
 - [x] F. Health: 2 columns on desktop (pass, emergency info, weight, reminders | next up with Book on vaccines, timeline with Certificate buttons, deworming cards side by side, medicines, visits, symptoms) (4 Nov 2026). No tabs: every section stays visible
-- [ ] G. SOS: red alert card, dark pet card, hospital cards with dark call button and Map
-- [ ] H. Map: list beside the map on desktop
-- [ ] I. Account: profile card, family with role badges, preferences card
-- [ ] J. Add pet: form in one card, two boxes per row on desktop
-- [ ] K. Tele-vet: video card, doctor card, notes panel
-- [ ] L. Certificate: medical card and health report like the certificate picture
-- [ ] M. Clinic portal: dark top bar, number tiles, queue table
+- [x] G. SOS: light bar with a red title, solid red main option, hospital cards with a status chip, a dark call button and Map; the medical card is the dark pet card (4 Nov 2026)
+- [x] H. Map: list beside the map on desktop (4 Nov 2026)
+- [x] I. Account: profile card (initials, plan, city, pets), menu icons in sage circles; family rows on sand with coloured role badges and a forest Invite button (4 Nov 2026)
+- [x] J. Add pet: each step in one white card; markings/microchip and allergies/diet side by side on wider screens (4 Nov 2026)
+- [x] K. Tele-vet: on desktop the call is a rounded card with the vet card under it and the visit details beside it; phones keep the full-screen call (4 Nov 2026)
+- [x] L. Certificate: printed tables have a forest header row and striped rows (health report, prescription, invoice); the medical card is the dark pass (4 Nov 2026)
+- [x] M. Clinic portal: dark forest top bar; number tiles (everywhere) have a small uppercase label over a big number (4 Nov 2026). The queue table layout is left for later
 - [ ] N. Checks, pictures, preview link for the owner
 
 ## Design 2 everywhere (4 Nov 2026)

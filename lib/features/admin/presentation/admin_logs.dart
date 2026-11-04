@@ -193,7 +193,7 @@ class _OutboxTile extends StatelessWidget {
       child: PawCard(
         padding: const EdgeInsets.all(Space.md),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          CircleAvatar(radius: 18, child: Icon(outboxChannelIcon(channel), size: IconSizes.chip)),
+          CircleAvatar(radius: Sizes.docBadge / 2, child: Icon(outboxChannelIcon(channel), size: IconSizes.chip)),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -268,7 +268,7 @@ class _AuditTile extends StatelessWidget {
       child: PawCard(
         padding: const EdgeInsets.all(Space.md),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const CircleAvatar(radius: 18, child: Icon(Icons.history_outlined, size: IconSizes.chip)),
+          const CircleAvatar(radius: Sizes.docBadge / 2, child: Icon(Icons.history_outlined, size: IconSizes.chip)),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

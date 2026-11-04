@@ -417,6 +417,9 @@ class PrintColors {
   static const alert = Color(0xFFB91C1C);
   static const rule = Color(0xFFE7E2DA);
 
+  /// Every other row in a printed table.
+  static const zebra = Color(0xFFFAF8F5);
+
   /// "Demo" note on printed pages.
   static const note = Color(0xFFFFFBEB);
   static const onNote = Color(0xFF78350F);

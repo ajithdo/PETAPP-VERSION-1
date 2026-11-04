@@ -65,7 +65,7 @@ class _GuideTile extends StatelessWidget {
       semanticLabel: t.title,
       child: Row(children: [
         CircleAvatar(
-          radius: 24,
+          radius: Sizes.avatarMd / 2,
           backgroundColor: context.paw.sosContainer,
           child: Icon(firstAidIcon(id), color: context.paw.sos),
         ),
@@ -116,7 +116,7 @@ class FirstAidGuideScreen extends ConsumerWidget {
                 padding: EdgeInsets.only(bottom: i == t.steps.length - 1 ? 0 : Space.md),
                 child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   CircleAvatar(
-                    radius: 14,
+                    radius: Sizes.avatarXs / 2,
                     backgroundColor: context.colors.primary,
                     child: Text('${i + 1}', style: context.text.labelLarge?.copyWith(color: context.colors.onPrimary)),
                   ),

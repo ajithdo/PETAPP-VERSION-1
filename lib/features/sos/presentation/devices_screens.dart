@@ -78,7 +78,7 @@ class _DeviceTile extends ConsumerWidget {
       borderColor: out ? context.paw.sos : null,
       child: Row(children: [
         CircleAvatar(
-          radius: 26,
+          radius: Sizes.avatarMd / 2,
           backgroundColor: context.colors.primaryContainer,
           child: Icon(deviceIcon(device.type), color: context.colors.primary),
         ),
@@ -441,7 +441,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
         const SizedBox(height: Space.md),
         PawCard(
           child: Row(children: [
-            CircleAvatar(radius: 28, backgroundColor: context.colors.primaryContainer, child: Icon(deviceIcon(d.type), color: context.colors.primary)),
+            CircleAvatar(radius: Sizes.thumb / 2, backgroundColor: context.colors.primaryContainer, child: Icon(deviceIcon(d.type), color: context.colors.primary)),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

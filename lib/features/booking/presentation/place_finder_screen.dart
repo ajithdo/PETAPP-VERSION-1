@@ -290,7 +290,11 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                     : _map
                     ? Padding(
                         padding: EdgeInsets.fromLTRB(context.gutter, 0, context.gutter, context.gutter),
-                        child: PawMap(
+                        // Desktop (Design 2 vet map): the list beside the map.
+                        child: Builder(builder: (context) {
+                          final map = ClipRRect(
+                            borderRadius: BorderRadius.circular(Radii.card),
+                            child: PawMap(
                           center: LatLng(origin.lat, origin.lng),
                           zoom: 12,
                           markers: [
@@ -316,6 +320,27 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                               ),
                           ],
                         ),
+                          );
+                          if (context.screenSize != ScreenSize.desktop) return map;
+                          return Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                            Expanded(child: map),
+                            const SizedBox(width: Space.lg),
+                            SizedBox(
+                              width: Sizes.listPane,
+                              child: ListView(children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: Space.sm),
+                                  child: Text(l.resultsCount(list.length), style: context.text.titleSmall),
+                                ),
+                                for (final e in list)
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: Space.sm),
+                                    child: PlaceCard(place: e.$1, km: e.$2, compact: true),
+                                  ),
+                              ]),
+                            ),
+                          ]);
+                        }),
                       )
                     : ListView(
                         padding: EdgeInsets.fromLTRB(context.gutter, 0, context.gutter, context.gutter),

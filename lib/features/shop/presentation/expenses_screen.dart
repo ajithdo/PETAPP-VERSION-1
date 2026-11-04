@@ -90,7 +90,7 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: Space.xs),
                       child: Row(children: [
-                        CircleAvatar(radius: 16, backgroundColor: expenseColor(c).withValues(alpha: Opacities.tintStrong), child: Icon(expenseIcon(c), size: IconSizes.chip, color: expenseColor(c))),
+                        CircleAvatar(radius: Sizes.avatarXs / 2, backgroundColor: expenseColor(c).withValues(alpha: Opacities.tintStrong), child: Icon(expenseIcon(c), size: IconSizes.chip, color: expenseColor(c))),
                         const SizedBox(width: Space.md),
                         Expanded(
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -271,7 +271,7 @@ class _ExpenseTile extends ConsumerWidget {
           ? () => editExpense(context, ref, existing: e)
           : (e.source == 'order' && e.sourceId != null ? () => context.push('/shop/orders/${e.sourceId}') : null),
       child: Row(children: [
-        CircleAvatar(radius: 18, backgroundColor: expenseColor(e.category).withValues(alpha: Opacities.tintStrong), child: Icon(expenseIcon(e.category), size: IconSizes.chip, color: expenseColor(e.category))),
+        CircleAvatar(radius: Sizes.docBadge / 2, backgroundColor: expenseColor(e.category).withValues(alpha: Opacities.tintStrong), child: Icon(expenseIcon(e.category), size: IconSizes.chip, color: expenseColor(e.category))),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

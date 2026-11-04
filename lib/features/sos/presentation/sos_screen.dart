@@ -187,17 +187,16 @@ class _SosScreenState extends ConsumerState<SosScreen> {
     final nearest = ranked.isEmpty ? null : ranked.first;
 
     return Scaffold(
+      // Design 2 emergency line: a light bar with the title in SOS red.
       appBar: AppBar(
-        backgroundColor: context.paw.sos,
-        foregroundColor: context.paw.onSos,
-        title: Text(l.sosTitle),
+        title: Text(l.sosTitle, style: context.text.titleLarge?.copyWith(color: context.paw.sos)),
         leading: IconButton(
           tooltip: l.close,
           icon: const Icon(Icons.close_outlined),
           onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
         ),
       ),
-      body: PageBody(maxWidth: Sizes.sheetMaxWidth, children: [
+      body: PageBody(maxWidth: context.isPhone ? Sizes.sheetMaxWidth : Space.wideWidth, children: [
         const SizedBox(height: Space.md),
         _LocationLine(spot: spot, locating: _locating, onChange: _changeArea, onRetry: _locate),
         if (clinics.savedAt != null) ...[
@@ -218,11 +217,9 @@ class _SosScreenState extends ConsumerState<SosScreen> {
           if (ranked.isEmpty)
             _locating || spot == null ? const SkeletonList(count: 3, itemHeight: 64) : EmptyState(title: l.sosNoClinics, compact: true)
           else
-            PawCard(
-              padding: const EdgeInsets.symmetric(vertical: Space.xs),
-              child: Column(children: [
-                for (final r in ranked.take(6)) _ClinicCallTile(r: r, onCall: () => _call(r.clinic)),
-              ]),
+            ResponsiveGrid(
+              minItemWidth: Sizes.placeCardMinWidth,
+              children: [for (final r in ranked.take(6)) _ClinicCallTile(r: r, onCall: () => _call(r.clinic))],
             ),
         ],
         const SizedBox(height: Space.md),
@@ -378,23 +375,54 @@ class _ClinicCallTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = context.l10n;
     final c = r.clinic;
-    return ListTile(
-      onTap: onCall,
-      minVerticalPadding: Space.md,
-      title: Text(c.name, style: context.text.titleSmall),
-      subtitle: Padding(
-        padding: const EdgeInsets.only(top: Space.xs),
-        child: Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-          Text(Fmt.km(r.km), style: context.textX.mono.copyWith(color: context.paw.textSecondary)),
-          StatusChip(c.is24x7 ? l.open24x7 : (r.open ? l.openNow : l.closedNow), tone: r.open ? ChipTone.success : ChipTone.neutral),
+    final paw = context.paw;
+    // Design 2 hospital card: status chip, name and distance, then a dark
+    // call button and a Map button.
+    return PawCard(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: StatusChip(
+            c.is24x7 ? l.open24x7 : (r.open ? l.openNow : l.closedNow),
+            tone: c.is24x7 ? ChipTone.error : (r.open ? ChipTone.success : ChipTone.neutral),
+            icon: c.is24x7 ? Icons.emergency_outlined : null,
+          ),
+        ),
+        const SizedBox(height: Space.sm),
+        Text(c.name, style: context.text.titleMedium),
+        const SizedBox(height: Space.xxs),
+        Text('${c.area} · ${l.sosAway(Fmt.km(r.km))}', style: context.text.bodySmall),
+        const SizedBox(height: Space.md),
+        const Divider(height: Strokes.hairline),
+        const SizedBox(height: Space.md),
+        Row(children: [
+          Expanded(
+            child: Semantics(
+              label: l.sosCallClinic(c.name),
+              button: true,
+              excludeSemantics: true,
+              child: FilledButton.icon(
+                style: FilledButton.styleFrom(
+                  backgroundColor: paw.inverseSurface,
+                  foregroundColor: paw.onInverseSurface,
+                  iconColor: paw.onInverseSurface,
+                  minimumSize: const Size.fromHeight(TapTarget.min),
+                ),
+                onPressed: onCall,
+                icon: const Icon(Icons.call_outlined, size: IconSizes.md),
+                label: Text('${l.call} · ${c.callNumber}', maxLines: 1, overflow: TextOverflow.ellipsis),
+              ),
+            ),
+          ),
+          const SizedBox(width: Space.sm),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(minimumSize: const Size(0, TapTarget.min)),
+            onPressed: () => openDirections(c.lat, c.lng, label: c.name),
+            icon: Icon(Icons.near_me_outlined, size: IconSizes.md, color: paw.sos),
+            label: Text(l.mapView),
+          ),
         ]),
-      ),
-      trailing: IconButton.filled(
-        tooltip: l.sosCallClinic(c.name),
-        style: IconButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, minimumSize: const Size.square(TapTarget.min)),
-        icon: const Icon(Icons.call_outlined),
-        onPressed: onCall,
-      ),
+      ]),
     );
   }
 }

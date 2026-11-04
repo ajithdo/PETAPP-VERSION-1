@@ -163,15 +163,24 @@ class StatTile extends StatelessWidget {
     return Semantics(
       label: '$label: $value',
       excludeSemantics: true,
+      // Design 2 number tile: a small uppercase label over a big number.
       child: PawCard(
-        padding: const EdgeInsets.all(Space.md),
+        padding: const EdgeInsets.all(Space.lg),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (icon != null) Icon(icon, color: color ?? context.colors.primary, size: IconSizes.lg),
-            if (icon != null) const SizedBox(height: Space.sm),
-            Text(value, style: context.text.titleLarge, maxLines: 1, overflow: TextOverflow.ellipsis),
-            Text(label, style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
+            Row(children: [
+              if (icon != null) ...[Icon(icon, color: color ?? context.paw.brand, size: IconSizes.sm), const SizedBox(width: Space.xs + Space.xxs)],
+              Expanded(
+                child: Text(label.toUpperCase(), maxLines: 2, overflow: TextOverflow.ellipsis, style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
+              ),
+            ]),
+            const SizedBox(height: Space.sm),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(value, style: context.text.headlineMedium?.copyWith(color: color == null ? context.paw.textPrimary : readableOn(color!, [context.paw.surface])), maxLines: 1),
+            ),
           ],
         ),
       ),

@@ -212,7 +212,15 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
             Expanded(
               child: PageBody(maxWidth: Space.formWidth, children: [
                 const SizedBox(height: Space.lg),
-                if (_step == 0) ..._basics(context) else ..._about(context),
+                // Design 2: the whole step sits in one white card.
+                PawCard(
+                  padding: EdgeInsets.all(context.isPhone ? Space.lg : Space.xl),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: _step == 0 ? _basics(context) : _about(context),
+                  ),
+                ),
+                const SizedBox(height: Space.lg),
               ]),
             ),
             Padding(
@@ -430,16 +438,14 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
           subtitle: Text(l.moreDetailsHint, style: context.text.bodySmall),
           childrenPadding: const EdgeInsets.only(top: Space.sm),
           children: [
-            PawTextField(label: l.markings, controller: _markings),
-            PawTextField(label: l.microchip, controller: _microchip),
+            _pair(context, PawTextField(label: l.markings, controller: _markings), PawTextField(label: l.microchip, controller: _microchip)),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               value: _neutered,
               onChanged: (v) => setState(() => _neutered = v),
               title: Text(l.neutered),
             ),
-            PawTextField(label: l.allergies, controller: _allergies, helper: l.allergiesHint),
-            PawTextField(label: l.dietType, controller: _diet),
+            _pair(context, PawTextField(label: l.allergies, controller: _allergies, helper: l.allergiesHint), PawTextField(label: l.dietType, controller: _diet)),
             LabeledField(
               label: l.regularClinic,
               child: DropdownButtonFormField<String?>(
@@ -459,6 +465,17 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       ),
     ];
   }
+}
+
+/// Two form boxes side by side on wider screens, one under the other on
+/// phones (Design 2 pet form).
+Widget _pair(BuildContext context, Widget a, Widget b) {
+  if (context.isPhone) return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [a, b]);
+  return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    Expanded(child: a),
+    const SizedBox(width: Space.md),
+    Expanded(child: b),
+  ]);
 }
 
 String colourName(BuildContext context, String key) {

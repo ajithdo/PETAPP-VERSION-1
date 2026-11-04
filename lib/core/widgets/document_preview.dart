@@ -91,7 +91,7 @@ class _DocumentPreviewScreenState extends State<DocumentPreviewScreen> {
                               child: Container(
                                 margin: const EdgeInsets.only(bottom: Space.lg),
                                 constraints: const BoxConstraints(maxWidth: 700),
-                                decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 12)]),
+                                decoration: BoxDecoration(boxShadow: Shadows.overlay(PrintColors.ink)),
                                 child: Image.memory(img, semanticLabel: widget.title),
                               ),
                             ),
@@ -127,7 +127,7 @@ class A4Page extends StatelessWidget {
   Widget build(BuildContext context) {
     const teal = PrintColors.brand;
     return Container(
-      color: Colors.white,
+      color: PrintColors.paper,
       width: a4Logical.width,
       height: a4Logical.height,
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -137,10 +137,10 @@ class A4Page extends StatelessWidget {
           child: Row(children: [
             const _MiniLogo(),
             const SizedBox(width: 10),
-            const Text('PawSetu', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700, fontFamily: 'PlusJakartaSans')),
+            const Text('PawSetu', style: TextStyle(color: PrintColors.paper, fontSize: 18, fontWeight: FontWeight.w700, fontFamily: 'PlusJakartaSans')),
             const Spacer(),
             Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-              Text(title, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w700)),
+              Text(title, style: const TextStyle(color: PrintColors.paper, fontSize: 15, fontWeight: FontWeight.w700)),
               Text(subtitle, style: const TextStyle(color: PrintColors.brandTint, fontSize: 9)),
             ]),
           ]),
@@ -156,7 +156,7 @@ class A4Page extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(32, 8, 32, 14),
-          decoration: const BoxDecoration(border: Border(top: BorderSide(color: Color(0xFFE5E1DA)))),
+          decoration: const BoxDecoration(border: Border(top: BorderSide(color: PrintColors.rule))),
           child: Row(children: [
             Expanded(child: Text(footer, style: const TextStyle(color: PrintColors.muted, fontSize: 8))),
             if (pageLabel != null) Text(pageLabel!, style: const TextStyle(color: PrintColors.muted, fontSize: 8)),
@@ -173,7 +173,7 @@ class _MiniLogo extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         width: 26,
         height: 26,
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(7)),
+        decoration: BoxDecoration(color: PrintColors.paper, borderRadius: BorderRadius.circular(7)),
         child: const Icon(Icons.pets_outlined, size: 18, color: PrintColors.brand),
       );
 }
@@ -201,24 +201,34 @@ class A4Table extends StatelessWidget {
   final List<int>? flex;
   @override
   Widget build(BuildContext context) {
-    Widget row(List<String> cells, {bool head = false}) => Container(
-          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+    // Design 2 certificate table: a forest header row with white text, then
+    // rows on alternating white and warm off-white.
+    Widget row(List<String> cells, {bool head = false, bool shade = false}) => Container(
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
           decoration: BoxDecoration(
-            color: head ? const Color(0xFFF1EDE8) : null,
-            border: const Border(bottom: BorderSide(color: Color(0xFFE5E1DA))),
+            color: head ? PrintColors.brand : (shade ? PrintColors.zebra : PrintColors.paper),
+            borderRadius: head ? const BorderRadius.vertical(top: Radius.circular(6)) : null,
+            border: head ? null : const Border(bottom: BorderSide(color: PrintColors.rule)),
           ),
           child: Row(children: [
             for (var i = 0; i < cells.length; i++)
               Expanded(
                 flex: flex?[i] ?? 1,
-                child: Text(cells[i], style: TextStyle(fontSize: head ? 8.5 : 9.5, fontWeight: head ? FontWeight.w700 : FontWeight.w400)),
+                child: Text(
+                  cells[i],
+                  style: TextStyle(
+                    fontSize: head ? 8.5 : 9.5,
+                    fontWeight: head ? FontWeight.w700 : FontWeight.w400,
+                    color: head ? PrintColors.paper : PrintColors.ink,
+                  ),
+                ),
               ),
           ]),
         );
     return Column(children: [
       row(header, head: true),
       if (rows.isEmpty) row([for (final _ in header) '–']),
-      for (final r in rows) row(r),
+      for (var i = 0; i < rows.length; i++) row(rows[i], shade: i.isOdd),
     ]);
   }
 }

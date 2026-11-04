@@ -125,7 +125,7 @@ class ProductCard extends ConsumerWidget {
         AspectRatio(
           aspectRatio: compact ? 1.3 : 1.15,
           child: Stack(fit: StackFit.expand, children: [
-            ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: 14),
+            ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.lg),
             if (p.discountPercent >= 10)
               Positioned(
                 left: 6,

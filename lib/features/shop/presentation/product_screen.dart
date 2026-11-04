@@ -77,7 +77,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
     if (!_pinTouched && _pin.text.isEmpty && addresses.isNotEmpty) _pin.text = addresses.first.pin;
     final estimate = deliveryEstimate(_pin.text, p.deliveryDays, DateTime.now());
 
-    final art = AspectRatio(aspectRatio: 1, child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: 20, label: p.name));
+    final art = AspectRatio(aspectRatio: 1, child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.card, label: p.name));
     final info = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(p.brand, style: context.text.labelLarge?.copyWith(color: context.paw.textSecondary)),
       Text(p.name, style: context.text.titleLarge),

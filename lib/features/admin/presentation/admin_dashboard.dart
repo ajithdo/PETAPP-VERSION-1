@@ -253,7 +253,7 @@ class _TopList extends StatelessWidget {
             ListTile(
               dense: true,
               contentPadding: EdgeInsets.zero,
-              leading: CircleAvatar(radius: 14, child: Text('${i + 1}', style: context.text.labelMedium)),
+              leading: CircleAvatar(radius: Sizes.avatarXs / 2, child: Text('${i + 1}', style: context.text.labelMedium)),
               title: Text(items[i].$1, maxLines: 1, overflow: TextOverflow.ellipsis),
               trailing: Text('${items[i].$2} $unit', style: context.text.labelMedium),
             ),

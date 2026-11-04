@@ -458,7 +458,7 @@ class _TimelineEntry extends StatelessWidget {
           child: Column(children: [
             badge != null
                 ? MilestoneBadge(kind: badge!, size: Sizes.avatarSm)
-                : CircleAvatar(radius: 20, backgroundColor: (color ?? context.colors.primary).withValues(alpha: Opacities.tintStrong), child: Icon(icon, color: color)),
+                : CircleAvatar(radius: Sizes.avatarSm / 2, backgroundColor: (color ?? context.colors.primary).withValues(alpha: Opacities.tintStrong), child: Icon(icon, color: color)),
             if (!last) Expanded(child: Container(width: Strokes.focus, color: context.paw.outline)),
           ]),
         ),

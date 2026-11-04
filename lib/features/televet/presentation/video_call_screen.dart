@@ -109,9 +109,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
             : waitingForVet
                 ? l.tvWaitingVetJoin
                 : formatSeconds(_seconds);
-    return Scaffold(
-      backgroundColor: MediaColors.callBackground,
-      body: Stack(children: [
+    final call = Stack(children: [
         // "Remote video": an animated placeholder (no real camera in V1).
         Positioned.fill(
           child: AnimatedBuilder(
@@ -245,7 +243,71 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
             ),
           ),
         ),
-      ]),
+      ]);
+    if (context.screenSize != ScreenSize.desktop) {
+      return Scaffold(backgroundColor: MediaColors.callBackground, body: call);
+    }
+    // Desktop (Design 2 tele-vet): the call in a rounded card on the page,
+    // who you are talking to under it, and what the visit is about beside it.
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(context.gutter),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(Radii.xxl),
+                    child: ColoredBox(color: MediaColors.callBackground, child: call),
+                  ),
+                ),
+                const SizedBox(height: Space.lg),
+                PawCard(
+                  child: Row(children: [
+                    CircleAvatar(
+                      radius: Sizes.avatarMd / 2,
+                      backgroundColor: context.paw.primaryContainer,
+                      child: Icon(isOwner ? Icons.medical_services_outlined : Icons.pets_outlined, color: context.paw.brand),
+                    ),
+                    const SizedBox(width: Space.md),
+                    Expanded(
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Text(other, style: context.text.titleLarge),
+                        if (c != null)
+                          Text([if (c.clinicName.isNotEmpty) c.clinicName, c.petName].join(' · '), style: context.text.bodyMedium),
+                      ]),
+                    ),
+                    StatusChip(l.tvVideoFeeLabel, tone: ChipTone.info, icon: Icons.videocam_outlined),
+                  ]),
+                ),
+              ]),
+            ),
+            const SizedBox(width: Space.xl),
+            SizedBox(
+              width: Sizes.sidePanelWide,
+              child: PawCard(
+                padding: const EdgeInsets.all(Space.lg),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                  Text(l.teleVet.toUpperCase(), style: context.textX.overline.copyWith(color: context.paw.brand)),
+                  const SizedBox(height: Space.xs),
+                  Text(c?.petName ?? '', style: context.text.titleLarge),
+                  const SizedBox(height: Space.lg),
+                  Container(
+                    padding: const EdgeInsets.all(Space.md),
+                    decoration: BoxDecoration(color: context.paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.lg)),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(l.tvProblemLabel.toUpperCase(), style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
+                      const SizedBox(height: Space.xs),
+                      Text((c?.problem.isNotEmpty ?? false) ? c!.problem : '–', style: context.text.bodyLarge),
+                    ]),
+                  ),
+                ]),
+              ),
+            ),
+          ]),
+        ),
+      ),
     );
   }
 }
