@@ -56,7 +56,7 @@ class PortalScaffold extends ConsumerWidget {
       children: [
         const Padding(
           padding: EdgeInsets.fromLTRB(Space.xl, Space.xl, Space.lg, Space.sm),
-          child: PawSetuLogo(size: 36, withName: true),
+          child: PawSetuLogo(size: Sizes.logo, withName: true),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(Space.xl, 0, Space.lg, Space.md),
@@ -93,7 +93,7 @@ class PortalScaffold extends ConsumerWidget {
             // On a phone the name would squeeze the page title: initial only.
             child: wide
                 ? Chip(
-                    avatar: const Icon(Icons.person_outlined, size: 18),
+                    avatar: const Icon(Icons.person_outlined, size: IconSizes.chip),
                     label: Text(user.name, overflow: TextOverflow.ellipsis),
                   )
                 : Tooltip(
@@ -107,8 +107,8 @@ class PortalScaffold extends ConsumerWidget {
     if (wide) {
       return Scaffold(
         body: Row(children: [
-          SizedBox(width: 280, child: nav),
-          const VerticalDivider(width: 1),
+          SizedBox(width: Sizes.portalNav, child: nav),
+          const VerticalDivider(width: Strokes.hairline),
           Expanded(child: Scaffold(appBar: appBar, body: body)),
         ]),
       );

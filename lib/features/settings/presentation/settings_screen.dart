@@ -45,7 +45,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(l.settings)),
-      body: PageBody(maxWidth: 720, children: [
+      body: PageBody(maxWidth: Space.formWidth, children: [
         group(l.language, [
           RadioGroup<String>(
             groupValue: s.locale,
@@ -126,7 +126,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 leading: const Icon(Icons.restart_alt_outlined),
                 title: Text(l.resetDemoData),
                 subtitle: Text(l.resetDemoDataHint),
-                trailing: _resetting ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5)) : null,
+                trailing: _resetting ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner)) : null,
                 onTap: _resetting
                     ? null
                     : () async {

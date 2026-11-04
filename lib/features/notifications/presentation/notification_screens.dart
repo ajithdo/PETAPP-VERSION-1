@@ -119,7 +119,7 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
                   : ListView.separated(
                       padding: EdgeInsets.symmetric(horizontal: context.gutter),
                       itemCount: list.length + (more ? 1 : 0),
-                      separatorBuilder: (_, _) => const Divider(height: 1),
+                      separatorBuilder: (_, _) => const Divider(height: Strokes.hairline),
                       itemBuilder: (context, i) {
                         if (i == list.length) {
                           return ShowMoreButton(onPressed: () => ref.read(listLimitProvider('notifications').notifier).more());
@@ -128,7 +128,7 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
                         final unread = d['read'] != true;
                         return ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: unread ? context.paw.primaryContainer : context.paw.outline.withValues(alpha: 0.5),
+                            backgroundColor: unread ? context.paw.primaryContainer : context.paw.outline.withValues(alpha: Opacities.half),
                             child: Icon(_icon(d['type'] as String?), color: context.colors.primary),
                           ),
                           title: Text((d['title'] as String?) ?? '', style: unread ? const TextStyle(fontWeight: FontWeight.w700) : null),
@@ -174,7 +174,7 @@ class NotificationSettingsScreen extends ConsumerWidget {
     String hour(int h) => Fmt.time(DateTime(2000, 1, 1, h), context.lang);
     return Scaffold(
       appBar: AppBar(title: Text(l.notificationChannels)),
-      body: PageBody(maxWidth: 720, children: [
+      body: PageBody(maxWidth: Space.formWidth, children: [
         if (isDemo) ...[const SizedBox(height: Space.sm), DemoBanner(l.channelsDemoNote)],
         const SizedBox(height: Space.sm),
         OutlinedButton.icon(

@@ -46,7 +46,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       subtitle: _sent ? null : l.resetSubtitle,
       children: _sent
           ? [
-              const Center(child: Illustration(Scene.success, size: 140)),
+              const Center(child: Illustration(Scene.success, size: Sizes.illustrationSm)),
               const SizedBox(height: Space.md),
               Text(l.resetSent(_email.text.trim()), textAlign: TextAlign.center, style: context.text.bodyLarge),
               if (ref.read(appConfigProvider).isDemo) ...[

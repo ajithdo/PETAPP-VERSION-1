@@ -101,7 +101,7 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
     ];
     if (!widget.embedded) return PageBody(maxWidth: widget.maxWidth, children: [DemoBanner(l.demoLoginNote), ...content]);
     return PawCard(
-      color: context.paw.accent.withValues(alpha: 0.10),
+      color: context.paw.accent.withValues(alpha: Opacities.tint),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
           Icon(Icons.science_outlined, color: context.paw.textPrimary),
@@ -137,7 +137,7 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
                 StatusChip(l.demoBadge, tone: ChipTone.accent),
               ],
             ]),
-            const SizedBox(height: 2),
+            const SizedBox(height: Space.xxs),
             Text(_describe(context, a),
                 style: context.text.bodySmall,
                 maxLines: compact ? 2 : null,
@@ -145,7 +145,7 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
           ]),
         ),
         if (_busyUid == a.uid)
-          const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
+          const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner))
         else
           const Icon(Icons.login_outlined),
       ]),

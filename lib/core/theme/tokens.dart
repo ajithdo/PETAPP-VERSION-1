@@ -730,6 +730,23 @@ class Sizes {
   /// Voice note waveform width.
   static const double voiceWave = 120;
 
+  /// The logo in headers, and the bigger one on sign-in.
+  static const double logo = 36;
+  static const double logoLg = 56;
+
+  /// The logo on the splash screen.
+  static const double logoXl = 72;
+
+  /// Side menu width in the partner, seller and admin portals.
+  static const double portalNav = 280;
+
+  /// Sign-in card width on wide screens.
+  static const double authCard = 440;
+
+  /// Previews in the design gallery.
+  static const double galleryPreview = 300;
+  static const double galleryPreviewSm = 260;
+
   /// Big tappable SOS option.
   static const double sosOption = 96;
 

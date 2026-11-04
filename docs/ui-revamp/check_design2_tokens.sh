@@ -78,6 +78,23 @@ FILES=(
   lib/features/televet/presentation/vet_consult_screen.dart
   lib/features/televet/presentation/vet_queue_section.dart
   lib/features/televet/presentation/video_call_screen.dart
+  lib/features/auth/presentation/auth_widgets.dart
+  lib/features/auth/presentation/demo_login_screen.dart
+  lib/features/auth/presentation/forgot_password_screen.dart
+  lib/features/auth/presentation/phone_sign_in_screen.dart
+  lib/features/auth/presentation/sign_in_screen.dart
+  lib/features/auth/presentation/sign_up_screen.dart
+  lib/features/auth/presentation/verify_email_screen.dart
+  lib/features/notifications/presentation/notification_screens.dart
+  lib/features/onboarding/presentation/setup_screens.dart
+  lib/features/onboarding/presentation/welcome_screen.dart
+  lib/features/settings/presentation/design_gallery_screen.dart
+  lib/features/settings/presentation/settings_screen.dart
+  lib/features/shell/presentation/coming_soon_screen.dart
+  lib/features/shell/presentation/me_screen.dart
+  lib/features/shell/presentation/portal_scaffold.dart
+  lib/features/shell/presentation/sos_launcher.dart
+  lib/features/shell/presentation/splash_screen.dart
 )
 grep -nE "Color\(0x|(^|[^A-Za-z])Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]" "${FILES[@]}" | grep -v "^\s*//"
 echo "checked ${#FILES[@]} files; matches above (none = clean)"

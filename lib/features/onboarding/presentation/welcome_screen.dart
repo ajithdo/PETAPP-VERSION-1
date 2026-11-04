@@ -43,12 +43,12 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 560),
+            constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
             child: Column(children: [
               Padding(
                 padding: EdgeInsets.all(context.gutter),
                 child: const Row(children: [
-                  PawSetuLogo(size: 36, withName: true),
+                  PawSetuLogo(size: Sizes.logo, withName: true),
                   Spacer(),
                   LanguageMenu(),
                 ]),
@@ -82,13 +82,13 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 for (var i = 0; i < slides.length; i++)
                   AnimatedContainer(
-                    duration: const Duration(milliseconds: 250),
-                    margin: const EdgeInsets.all(4),
-                    width: i == _index ? 24 : 8,
-                    height: 8,
+                    duration: Motion.enter,
+                    margin: const EdgeInsets.all(Space.xs),
+                    width: i == _index ? Space.xl : Sizes.dot,
+                    height: Sizes.dot,
                     decoration: BoxDecoration(
                       color: i == _index ? context.colors.primary : context.paw.outline,
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(Radii.xs),
                     ),
                   ),
               ]),
@@ -145,7 +145,7 @@ class LanguageMenu extends ConsumerWidget {
         PopupMenuItem(value: 'te', child: Text('తెలుగు')),
       ],
       child: Chip(
-        avatar: const Icon(Icons.translate_outlined, size: 18),
+        avatar: const Icon(Icons.translate_outlined, size: IconSizes.chip),
         label: Text(languageName(locale)),
       ),
     );

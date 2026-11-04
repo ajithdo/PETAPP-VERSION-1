@@ -35,7 +35,7 @@ class AuthScaffold extends StatelessWidget {
                 children: [
                   if (trailing != null) Align(alignment: Alignment.centerRight, child: trailing!),
                   if (!showBack && trailing == null) const SizedBox(height: Space.lg),
-                  const Center(child: PawSetuLogo(size: 56)),
+                  const Center(child: PawSetuLogo(size: Sizes.logoLg)),
                   const SizedBox(height: Space.lg),
                   Semantics(
                     header: true,
@@ -51,7 +51,7 @@ class AuthScaffold extends StatelessWidget {
                   if (top != null) ...[top!, const SizedBox(height: Space.xl)],
                   Center(
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 440),
+                      constraints: const BoxConstraints(maxWidth: Sizes.authCard),
                       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
                     ),
                   ),

@@ -19,11 +19,11 @@ class DesignGalleryScreen extends ConsumerWidget {
     final p = context.paw;
     Widget swatch(String name, Color c) => Column(children: [
           Container(
-            width: 56,
-            height: 56,
-            decoration: BoxDecoration(color: c, borderRadius: BorderRadius.circular(14), border: Border.all(color: p.outline)),
+            width: Sizes.thumb,
+            height: Sizes.thumb,
+            decoration: BoxDecoration(color: c, borderRadius: BorderRadius.circular(Radii.lg), border: Border.all(color: p.outline)),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: Space.xs),
           Text(name, style: context.text.labelSmall),
         ]);
 
@@ -38,9 +38,9 @@ class DesignGalleryScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: PageBody(maxWidth: 900, children: [
+      body: PageBody(maxWidth: Space.wideWidth, children: [
         const SectionHeader('Brand'),
-        const Row(children: [PawSetuLogo(size: 56, withName: true)]),
+        const Row(children: [PawSetuLogo(size: Sizes.logoLg, withName: true)]),
         const SectionHeader('Colours'),
         Wrap(spacing: Space.md, runSpacing: Space.md, children: [
           swatch('Primary', context.colors.primary),
@@ -92,10 +92,10 @@ class DesignGalleryScreen extends ConsumerWidget {
         const DemoBanner('Demo payment. No money is charged.'),
         const SectionHeader('Pet avatars'),
         const Wrap(spacing: Space.md, children: [
-          PetAvatar(species: 'dog', colorTag: 'amber', size: 64),
-          PetAvatar(species: 'cat', colorTag: 'lavender', size: 64),
-          PetAvatar(species: 'bird', colorTag: 'mint', size: 64),
-          PetAvatar(species: 'rabbit', colorTag: 'rose', size: 64, selected: true),
+          PetAvatar(species: 'dog', colorTag: 'amber', size: Sizes.thumbLg),
+          PetAvatar(species: 'cat', colorTag: 'lavender', size: Sizes.thumbLg),
+          PetAvatar(species: 'bird', colorTag: 'mint', size: Sizes.thumbLg),
+          PetAvatar(species: 'rabbit', colorTag: 'rose', size: Sizes.thumbLg, selected: true),
         ]),
         const SectionHeader('Progress ring and SOS'),
         Row(children: [
@@ -125,15 +125,15 @@ class DesignGalleryScreen extends ConsumerWidget {
         ]),
         const SectionHeader('Illustrations'),
         Wrap(spacing: Space.md, runSpacing: Space.md, children: [
-          for (final s in Scene.values) Illustration(s, size: 110),
+          for (final s in Scene.values) Illustration(s, size: Sizes.illustrationSm),
         ]),
         const SectionHeader('States'),
         SizedBox(
-          height: 300,
+          height: Sizes.galleryPreview,
           child: EmptyState(title: 'No memories yet', message: 'Add Bruno\'s first photo.', actionLabel: 'Add photo', onAction: () {}, compact: true),
         ),
-        SizedBox(height: 260, child: ErrorState(onRetry: () {})),
-        const Skeleton(height: 84, radius: Radii.card),
+        SizedBox(height: Sizes.galleryPreviewSm, child: ErrorState(onRetry: () {})),
+        const Skeleton(height: Sizes.skeletonCard, radius: Radii.card),
       ]),
     );
   }

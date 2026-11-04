@@ -26,7 +26,7 @@ class _SetupFrame extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 560),
+            constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
             child: Column(children: [
               Expanded(
                 child: ListView(
@@ -36,8 +36,8 @@ class _SetupFrame extends StatelessWidget {
                       label: context.l10n.stepOf(step, 3),
                       child: LinearProgressIndicator(
                         value: step / 3,
-                        minHeight: 6,
-                        borderRadius: BorderRadius.circular(3),
+                        minHeight: Sizes.progressBar,
+                        borderRadius: BorderRadius.circular(Radii.xs),
                       ),
                     ),
                     const SizedBox(height: Space.xl),
@@ -189,7 +189,7 @@ class _SetupFirstPetScreenState extends ConsumerState<SetupFirstPetScreen> {
           for (final sp in const ['dog', 'cat', 'bird', 'rabbit'])
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(4),
+                padding: const EdgeInsets.all(Space.xs),
                 child: Semantics(
                   selected: sp == _species,
                   button: true,
@@ -205,11 +205,11 @@ class _SetupFirstPetScreenState extends ConsumerState<SetupFirstPetScreen> {
                         borderRadius: BorderRadius.circular(Radii.card),
                         border: Border.all(
                           color: sp == _species ? context.colors.primary : context.paw.outline,
-                          width: sp == _species ? 2 : 1,
+                          width: sp == _species ? Strokes.focus : Strokes.hairline,
                         ),
                       ),
                       child: Column(children: [
-                        PetFace(species: sp, color: const Color(0xFFF4A261), size: 52),
+                        PetFace(species: sp, color: PetTagColors.of('amber'), size: Sizes.avatarMd),
                         const SizedBox(height: Space.xs),
                         Text(speciesLabel(context, sp), style: context.text.labelMedium, textAlign: TextAlign.center),
                       ]),

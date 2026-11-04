@@ -304,8 +304,8 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [x] 6. SOS, first aid, "Is it safe?" (the SOS look stays instantly recognisable) (4 Nov 2026). The main SOS option stays solid red; the second is a soft red card with a red border (Design 2 emergency card); pet pills; distances in mono; lost pet, devices and first aid use tokens. Printed pages (health report, prescription, invoice, sample documents, lost poster, QR tag) now use new `PrintColors` in the Design 2 forest instead of the Design 1 teal
 - [x] 7. Shop home, search, product, cart, order placed, orders, order detail, addresses, food-low card (4 Nov 2026). Product and expense colours come from the category palette; cart amounts in mono with the total in coral; order progress uses brand and token sizes; the 34 px "Reorder" button now has a full tap area; the invoice uses print colours
 - [x] 8. Messages inbox, chat, tele-vet (home, new, consent, call), Ask PawSetu, prescription (4 Nov 2026). All values from tokens; the video call stays dark in both themes with a forest glow (new call colours in `MediaColors`), the call timer in mono; photo viewer uses media colours
-- [ ] 9. Me, settings, notification settings, notifications centre
-- [ ] 10. Sign-in, sign-up, forgot password, phone code, demo accounts, verify email, welcome, setup
+- [x] 9. Me, settings, notification settings, notifications centre (4 Nov 2026). Tokens only; form labels above the box and outlined icons from the shared pieces
+- [x] 10. Sign-in, sign-up, forgot password, phone code, demo accounts, verify email, welcome, setup (4 Nov 2026). Tokens only (logo sizes, sign-in card width, welcome dots, setup species tiles); fields have labels above the box
 - [ ] 11. Vault (gate, list, document, read details, shares, insurance, public share)
 - [ ] 12. Album, album viewer, memory card
 - [ ] 13. Family, join invite, lost pet (list, detail, public page), devices (list, add, detail)
