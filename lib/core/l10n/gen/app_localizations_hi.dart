@@ -2453,6 +2453,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get openNow => 'अभी खुला';
 
   @override
+  String get certificate => 'प्रमाणपत्र';
+
+  @override
+  String get emergencyInfo => 'आपातकालीन जानकारी';
+
+  @override
   String bookFor(String name) {
     return '$name के लिए बुक करें';
   }

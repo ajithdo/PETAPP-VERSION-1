@@ -806,6 +806,9 @@ class Sizes {
   static const double placePhotoWidth = 92;
   static const double placePhotoHeight = 112;
 
+  /// Narrowest small card in a grid (deworming and flea/tick, side by side).
+  static const double miniCardMin = 260;
+
   /// Picture on top of a place card in a list, and the narrowest card in a
   /// grid of them.
   static const double placeCardPhoto = 168;

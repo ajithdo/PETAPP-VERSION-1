@@ -116,7 +116,7 @@ Left out (features the app doesn't have): blood group, ambulance, live ICU/blood
 - [x] C. Clinic list: photo-top cards with badges, rating, next slot box, price and Book visit (4 Nov 2026; 2 or 3 columns on wide screens; the map preview keeps a compact card)
 - [x] D. Clinic page: photo header, rating pill, action pills, vet on duty, booking panel (right column on desktop) and a short confirm screen (4 Nov 2026). Facility tiles left out: the app has no facility data. Tapping a service picks it in the booking card. The old 4-step booking still works when opened without a chosen time (e.g. from other links)
 - [x] E. Booking confirmed: booking pass with When / Where / Vet / Amount tiles, clinic row with Directions, Add to calendar (4 Nov 2026)
-- [ ] F. Health: 2 columns on desktop (pass + emergency info | tabs, booster alert, timeline with certificate buttons, deworming cards)
+- [x] F. Health: 2 columns on desktop (pass, emergency info, weight, reminders | next up with Book on vaccines, timeline with Certificate buttons, deworming cards side by side, medicines, visits, symptoms) (4 Nov 2026). No tabs: every section stays visible
 - [ ] G. SOS: red alert card, dark pet card, hospital cards with dark call button and Map
 - [ ] H. Map: list beside the map on desktop
 - [ ] I. Account: profile card, family with role badges, preferences card

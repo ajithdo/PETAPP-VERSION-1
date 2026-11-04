@@ -10,6 +10,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
+import '../../booking/data/places_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../../pets/presentation/pet_labels.dart';
 import '../../routine/data/routine_repository.dart';
@@ -81,10 +82,9 @@ class HealthBody extends ConsumerWidget {
     final urgent = (due.value ?? const <DueItem>[])
         .where((i) => i.status == DoseStatus.overdue || i.status == DoseStatus.dueSoon)
         .length;
-    return PageBody(maxWidth: Space.wideWidth, children: [
-      const SizedBox(height: Space.sm),
-      _HealthPass(pet: pet, urgent: due.hasValue ? urgent : null),
-      SectionHeader(l.nextUp),
+    final wide = context.screenSize == ScreenSize.desktop;
+    final nextUp = <Widget>[
+      SectionHeader(l.nextUp, padding: wide ? const EdgeInsets.only(bottom: Space.sm) : null),
       AsyncView(
         value: due,
         loading: const Skeleton(height: Sizes.skeletonCard, radius: Radii.card),
@@ -110,6 +110,9 @@ class HealthBody extends ConsumerWidget {
               title: dueTitle(context, first),
               semanticLabel: [status, dueTitle(context, first), when].where((s) => s.isNotEmpty).join(', '),
               onTap: () => openDueItem(context, ref, pet, first),
+              // Vaccines are given at a clinic: book one straight from here.
+              actionLabel: first.kind == 'vaccine' ? l.bookNow : null,
+              onAction: first.kind == 'vaccine' ? () => context.push('/book/find/clinic') : null,
             ),
             if (top.length > 1) ...[
               const SizedBox(height: Space.md),
@@ -121,13 +124,44 @@ class HealthBody extends ConsumerWidget {
           ]);
         },
       ),
-      _VaccinesSection(pet: pet, canCare: canCare),
-      _MedicinesSection(pet: pet, canCare: canCare),
-      if (pet.species == 'dog' || pet.species == 'cat') _PreventionSection(pet: pet, canCare: canCare),
-      _WeightSection(pet: pet),
-      _EventsSection(pet: pet, type: 'vet_visit', canCare: canCare),
-      _EventsSection(pet: pet, type: 'symptom', canCare: canCare),
-      _RemindersSection(pet: pet),
+    ];
+    final pass = _HealthPass(pet: pet, urgent: due.hasValue ? urgent : null);
+    final emergency = _EmergencyInfo(pet: pet);
+    final vaccines = _VaccinesSection(pet: pet, canCare: canCare);
+    final medicines = _MedicinesSection(pet: pet, canCare: canCare);
+    final prevention = <Widget>[if (pet.species == 'dog' || pet.species == 'cat') _PreventionSection(pet: pet, canCare: canCare)];
+    final weight = _WeightSection(pet: pet);
+    final visits = _EventsSection(pet: pet, type: 'vet_visit', canCare: canCare);
+    final symptoms = _EventsSection(pet: pet, type: 'symptom', canCare: canCare);
+    final reminders = _RemindersSection(pet: pet);
+    Widget column(List<Widget> c) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: c);
+    // Desktop (Design 2 records vault): the pass and emergency info on the
+    // left, what's due and the records on the right.
+    final body = wide
+        ? <Widget>[
+            const SizedBox(height: Space.lg),
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(flex: 5, child: column([pass, const SizedBox(height: Space.lg), emergency, weight, reminders])),
+              const SizedBox(width: Space.xl),
+              Expanded(flex: 7, child: column([...nextUp, vaccines, ...prevention, medicines, visits, symptoms])),
+            ]),
+          ]
+        : <Widget>[
+            const SizedBox(height: Space.sm),
+            pass,
+            const SizedBox(height: Space.md),
+            emergency,
+            ...nextUp,
+            vaccines,
+            medicines,
+            ...prevention,
+            weight,
+            visits,
+            symptoms,
+            reminders,
+          ];
+    return PageBody(maxWidth: wide ? Space.maxContentWidth : Space.wideWidth, children: [
+      ...body,
       const SizedBox(height: Space.lg),
       Builder(builder: (context) {
         final by = ((ref.watch(appSettingsDocProvider).value?['contentReview'] as Map?)?['vaccines'] as String?) ?? '';
@@ -238,10 +272,11 @@ class _VaccinesSection extends ConsumerWidget {
                 title: '${i.template.name} · ${doseLabel(context, i.template.doseLabel)}',
                 subtitle: _subtitle(context, i),
                 status: i.status,
+                certificateDocId: i.record?.certificateDocId,
                 onTap: canCare && i.status != DoseStatus.done ? () => showVaccineSheet(context, pet, template: i.template) : null,
               ),
             for (final r in recs.where((r) => r.key == 'other'))
-              _VaccineStep(title: r.name, subtitle: Fmt.date(r.givenDate, context.lang), status: DoseStatus.done),
+              _VaccineStep(title: r.name, subtitle: Fmt.date(r.givenDate, context.lang), status: DoseStatus.done, certificateDocId: r.certificateDocId),
           ];
           return PawCard(
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -386,11 +421,15 @@ class _PreventionSection extends ConsumerWidget {
       SectionHeader(l.prevention),
       PawCard(
         padding: const EdgeInsets.all(Space.md),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          row('deworming', l.deworming, dw, last('deworming')),
-          const SizedBox(height: Space.sm),
-          row('flea_tick', l.fleaTick, ft, last('flea_tick')),
-        ]),
+        // Side by side when there is room (Design 2), stacked on phones.
+        child: ResponsiveGrid(
+          minItemWidth: Sizes.miniCardMin,
+          spacing: Space.sm,
+          children: [
+            row('deworming', l.deworming, dw, last('deworming')),
+            row('flea_tick', l.fleaTick, ft, last('flea_tick')),
+          ],
+        ),
       ),
       const SizedBox(height: Space.xs),
       Text(l.tickFeverNote, style: context.text.bodySmall),
@@ -631,15 +670,18 @@ class _HealthPass extends StatelessWidget {
 
 /// One vaccine on the Health timeline: its status, name and dates.
 class _VaccineStep extends StatelessWidget {
-  const _VaccineStep({required this.title, required this.subtitle, required this.status, this.onTap});
+  const _VaccineStep({required this.title, required this.subtitle, required this.status, this.onTap, this.certificateDocId});
   final String title;
   final String subtitle;
   final DoseStatus status;
   final VoidCallback? onTap;
 
+  /// The certificate saved in the vault, if one was attached.
+  final String? certificateDocId;
+
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    final text = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       statusChipWidget(context, status),
       const SizedBox(height: Space.xs + Space.xxs),
       Text(title, style: context.text.titleSmall),
@@ -648,5 +690,67 @@ class _VaccineStep extends StatelessWidget {
         Text(subtitle, style: context.text.bodySmall),
       ],
     ]);
+    if (certificateDocId == null) return text;
+    return Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.start, spacing: Space.sm, runSpacing: Space.xs, children: [
+      text,
+      OutlinedButton.icon(
+        onPressed: () => context.push('/vault/doc/$certificateDocId'),
+        icon: const Icon(Icons.description_outlined, size: IconSizes.md),
+        label: Text(context.l10n.certificate),
+      ),
+    ]);
+  }
+}
+
+/// Design 2 emergency card on Health: allergies and the regular clinic at a
+/// glance, with the medical card one tap away.
+class _EmergencyInfo extends ConsumerWidget {
+  const _EmergencyInfo({required this.pet});
+  final Pet pet;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final clinic = pet.clinicId == null ? null : ref.watch(placeProvider(pet.clinicId!)).value;
+    final allergies = pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', ');
+    return Container(
+      padding: const EdgeInsets.all(Space.lg),
+      decoration: BoxDecoration(
+        color: paw.sosContainer,
+        borderRadius: BorderRadius.circular(Radii.card),
+        border: Border.all(color: paw.sosBorder),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(children: [
+          Icon(Icons.medical_information_outlined, color: paw.onSosContainer),
+          const SizedBox(width: Space.sm),
+          Expanded(child: Text(l.emergencyInfo, style: context.text.titleMedium?.copyWith(color: paw.onSosContainer))),
+        ]),
+        const SizedBox(height: Space.sm),
+        Text.rich(TextSpan(children: [
+          TextSpan(text: '${l.allergies}: ', style: context.text.bodyMedium?.copyWith(color: paw.textPrimary)),
+          TextSpan(
+            text: allergies,
+            style: context.text.bodyMedium?.copyWith(
+              color: pet.allergies.isEmpty ? paw.textPrimary : paw.onSosContainer,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ])),
+        const SizedBox(height: Space.md),
+        Divider(height: Strokes.hairline, color: paw.sosBorder),
+        const SizedBox(height: Space.sm),
+        Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.sm, children: [
+          Text('${l.regularClinic}: ${clinic?.name ?? l.notAdded}', style: context.text.bodySmall?.copyWith(color: paw.textPrimary)),
+          TextButton.icon(
+            style: TextButton.styleFrom(foregroundColor: paw.onSosContainer),
+            onPressed: () => context.push('/pets/${pet.id}/card'),
+            icon: const Icon(Icons.arrow_forward_outlined, size: IconSizes.md),
+            label: Text(l.medicalCard),
+          ),
+        ]),
+      ]),
+    );
   }
 }

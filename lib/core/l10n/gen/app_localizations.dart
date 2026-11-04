@@ -4468,6 +4468,18 @@ abstract class AppLocalizations {
   /// **'Open now'**
   String get openNow;
 
+  /// Button on a vaccine in the Health timeline that opens its certificate.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate'**
+  String get certificate;
+
+  /// Title of the Health card with allergies and the regular clinic, for emergencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency info'**
+  String get emergencyInfo;
+
   /// Button on the clinic page booking card that continues to the confirm screen.
   ///
   /// In en, this message translates to:
