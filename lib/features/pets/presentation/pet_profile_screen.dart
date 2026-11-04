@@ -62,8 +62,8 @@ class _Profile extends ConsumerWidget {
       SliverAppBar(
         pinned: true,
         // Taller with big text so the name and breed never get cut off.
-        expandedHeight: 220 + 60 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
-        backgroundColor: Color.alphaBlend(tag.withValues(alpha: 0.18), context.paw.background),
+        expandedHeight: Sizes.profileHeader + Sizes.profileHeaderPerText * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
+        backgroundColor: Color.alphaBlend(tag.withValues(alpha: Opacities.chip), context.paw.background),
         actions: [
           if (canEdit)
             IconButton(
@@ -96,12 +96,12 @@ class _Profile extends ConsumerWidget {
         flexibleSpace: FlexibleSpaceBar(
           background: SafeArea(
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const SizedBox(height: 32),
+              const SizedBox(height: Space.xxl),
               PetAvatar(
                 species: pet.species,
                 colorTag: pet.colorTag,
                 photoUrl: pet.photoUrl,
-                size: MediaQuery.textScalerOf(context).scale(1) > 1.5 ? 104 : 132,
+                size: MediaQuery.textScalerOf(context).scale(1) > 1.5 ? Sizes.profileAvatarSm : Sizes.profileAvatar,
                 heroTag: 'pet-${pet.id}',
                 name: pet.name,
               ),
@@ -123,7 +123,7 @@ class _Profile extends ConsumerWidget {
       ),
       SliverToBoxAdapter(
         child: ContentWidth(
-          maxWidth: 900,
+          maxWidth: Space.wideWidth,
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             const SizedBox(height: Space.lg),
             if (pet.archived) ...[
@@ -149,8 +149,8 @@ class _Profile extends ConsumerWidget {
                   onTap: () => context.push(s.route),
                   child: Row(children: [
                     CircleAvatar(
-                      backgroundColor: s.color.withValues(alpha: 0.15),
-                      child: Icon(s.icon, color: s.color),
+                      backgroundColor: s.color.withValues(alpha: Opacities.chip),
+                      child: Icon(s.icon, color: s.color, size: IconSizes.md),
                     ),
                     const SizedBox(width: Space.md),
                     Expanded(
@@ -224,9 +224,9 @@ class _MemorialBanner extends StatelessWidget {
     final l = context.l10n;
     final memorial = pet.memorial;
     return PawCard(
-      color: context.paw.accent.withValues(alpha: 0.14),
+      color: context.paw.accent.withValues(alpha: Opacities.chip),
       child: Row(children: [
-        Icon(memorial ? Icons.favorite_rounded : Icons.home_outlined, color: context.paw.accent, size: 32),
+        Icon(memorial ? Icons.favorite_rounded : Icons.home_outlined, color: context.paw.accent, size: IconSizes.xl),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

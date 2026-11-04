@@ -52,7 +52,7 @@ class MyPetsScreen extends ConsumerWidget {
               SectionHeader(l.inLovingMemory),
               ResponsiveGrid(minItemWidth: 300, children: [for (final p in memorial) _PetTile(pet: p, uid: user?.uid ?? '')]),
             ],
-            const SizedBox(height: 80),
+            const SizedBox(height: Space.fabClearance),
           ]);
         },
       ),
@@ -71,11 +71,11 @@ class _PetTile extends StatelessWidget {
     final role = pet.roleOf(uid);
     return PawCard(
       onTap: () => context.push('/pets/${pet.id}'),
-      color: pet.archived ? context.paw.surface.withValues(alpha: 0.8) : null,
+      color: pet.archived ? context.paw.surface.withValues(alpha: Opacities.faded) : null,
       child: Row(children: [
         Opacity(
-          opacity: pet.archived ? 0.75 : 1,
-          child: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 60, name: pet.name),
+          opacity: pet.archived ? Opacities.fadedArt : 1,
+          child: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarLg, name: pet.name),
         ),
         const SizedBox(width: Space.md),
         Expanded(

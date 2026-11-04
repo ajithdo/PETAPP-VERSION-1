@@ -194,7 +194,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
             Text(l.aiRedFlagBody(redFlagLabel(context, flag)), style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary)),
             const SizedBox(height: Space.sm),
             FilledButton.icon(
-              style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
+              style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
               onPressed: () => openSos(context, ref),
               icon: const Icon(Icons.emergency_outlined),
               label: Text(l.sosGetHelp),

@@ -411,7 +411,7 @@ class _RedFlagBanner extends ConsumerWidget {
         const SizedBox(width: Space.sm),
         Expanded(child: Text(l.aiRedFlagShort(redFlagLabel(context, flag)), style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary))),
         FilledButton(
-          style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
+          style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
           onPressed: () => openSos(context, ref),
           child: Text(l.sosTitle),
         ),

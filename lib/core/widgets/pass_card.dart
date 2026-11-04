@@ -87,7 +87,7 @@ class PassCard extends StatelessWidget {
     final c = colorsOf(context);
     return FilledButton.icon(
       onPressed: onPressed,
-      style: FilledButton.styleFrom(backgroundColor: c.fg, foregroundColor: c.bg),
+      style: FilledButton.styleFrom(backgroundColor: c.fg, foregroundColor: c.bg, iconColor: c.bg),
       icon: Icon(icon, size: IconSizes.md),
       label: Text(label),
     );
@@ -148,7 +148,7 @@ class PassCard extends StatelessWidget {
         ],
         if (actions.isNotEmpty) ...[
           const SizedBox(height: Space.lg),
-          Wrap(spacing: Space.sm, runSpacing: Space.sm, alignment: WrapAlignment.end, children: actions),
+          Wrap(spacing: Space.sm, runSpacing: Space.sm, children: actions),
         ],
         if (footnote != null) ...[
           const SizedBox(height: Space.md),

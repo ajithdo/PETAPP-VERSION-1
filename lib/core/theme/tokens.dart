@@ -593,6 +593,18 @@ class Sizes {
   /// Avatars in rows and headers.
   static const double avatarSm = 40;
   static const double avatarMd = 48;
+  static const double avatarLg = 60;
+
+  /// Pet profile header: base height, extra height per step of text size,
+  /// and the photo (smaller at very large text).
+  static const double profileHeader = 220;
+  static const double profileHeaderPerText = 60;
+  static const double profileAvatar = 132;
+  static const double profileAvatarSm = 104;
+
+  /// Birthday screen: the glow behind the photo, and the photo.
+  static const double birthdayGlow = 168;
+  static const double birthdayAvatar = 128;
 
   /// Small square photo thumbnail.
   static const double thumb = 56;
@@ -615,6 +627,19 @@ class Sizes {
   /// Walk route map inside a sheet, and the smaller one in a card.
   static const double routeMap = 280;
   static const double routeMapSmall = 220;
+
+  /// Smallest height of a form box, and of a picker that looks like one.
+  static const double fieldHeight = 52;
+
+  /// Choice tiles (species picker): narrowest tile and smallest height.
+  static const double choiceTileMin = 88;
+  static const double choiceTileHeight = 84;
+
+  /// Photo circle on the add/edit pet form.
+  static const double formAvatar = 112;
+
+  /// Thin progress bar for steps in a flow.
+  static const double progressBar = 6;
 
   /// Timeline rail width and the dot on it.
   static const double timelineRail = 24;
@@ -704,6 +729,13 @@ class Opacities {
 
   /// Dimmed part of a loading placeholder, and disabled art.
   static const double muted = 0.40;
+
+  /// Archived or paused items (cards and their photos).
+  static const double faded = 0.80;
+  static const double fadedArt = 0.75;
+
+  /// Light wash of a container colour.
+  static const double half = 0.50;
 
   /// Secondary text on the dark pass card (checked for 4.5:1 in use).
   static const double onDarkMuted = 0.78;

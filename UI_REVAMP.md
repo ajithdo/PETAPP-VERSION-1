@@ -299,7 +299,7 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [x] Icons: the whole app now uses outlined icons (Design 2). Icons that show a state stay filled: rating stars, done ticks, liked hearts, verified badges, filled play/pause, and the selected bottom tab (4 Nov 2026)
 - [x] 2. Today and routine: Today card, quick log sheet, routine screen, walk tracker (4 Nov 2026). Log types use the new muted category colours; walk stats sit in one card with small uppercase labels; charts and widths use tokens
 - [x] 3. Health tab and its sheets (vaccines, medicines, deworming, vet visits, weight, symptoms), medical card (4 Nov 2026). New shared `PassCard` (Design 2 health pass) and `TimelineTile`. Health opens with the pet's pass (age, weight, microchip, "All up to date" or "N need attention", Medical card and Health report buttons); Next up leads with an alert card; vaccines are a timeline; deworming and flea/tick are soft sand cards; the medical card is a pass
-- [ ] 4. Pet profile, my pets, add/edit pet, breed picker, birthday
+- [x] 4. Pet profile, my pets, add/edit pet, breed picker, birthday (4 Nov 2026). Forms app-wide now have the label above the box (`PawTextField`, new `FieldLabel`, `LabeledField`, `PawPickerField`); the add/edit pet form has big species tiles (`ChoiceTiles`), a "Step 1 of 2" label and picker boxes for breed and birthday; pet care tiles keep red for emergencies only
 - [ ] 5. Book tab, clinic finder (list and map), clinic page, booking flow, booking done, my bookings, booking detail
 - [ ] 6. SOS, first aid, "Is it safe?" (the SOS look stays instantly recognisable)
 - [ ] 7. Shop home, search, product, cart, order placed, orders, order detail, addresses, food-low card

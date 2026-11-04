@@ -33,6 +33,13 @@ FILES=(
   lib/features/health/presentation/health_screen.dart
   lib/features/health/presentation/health_sheets.dart
   lib/features/health/presentation/health_labels.dart
+  lib/core/routing/pet_links.dart
+  lib/features/pets/presentation/archive_sheet.dart
+  lib/features/pets/presentation/breed_picker.dart
+  lib/features/pets/presentation/my_pets_screen.dart
+  lib/features/pets/presentation/pet_form_screen.dart
+  lib/features/pets/presentation/pet_labels.dart
+  lib/features/pets/presentation/pet_profile_screen.dart
 )
 grep -nE "Color\(0x|(^|[^A-Za-z])Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]" "${FILES[@]}" | grep -v "^\s*//"
 echo "checked ${#FILES[@]} files; matches above (none = clean)"

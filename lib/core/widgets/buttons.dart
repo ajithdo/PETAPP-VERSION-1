@@ -65,7 +65,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
-    final style = danger ? FilledButton.styleFrom(backgroundColor: dangerColor(context), foregroundColor: paw.onSos) : null;
+    final style = danger ? FilledButton.styleFrom(backgroundColor: dangerColor(context), foregroundColor: paw.onSos, iconColor: paw.onSos) : null;
     final child = loading
         ? SizedBox(
             width: IconSizes.md,

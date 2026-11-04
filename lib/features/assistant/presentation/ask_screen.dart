@@ -287,7 +287,7 @@ class _RedFlagCard extends ConsumerWidget {
           SizedBox(
             height: 56,
             child: FilledButton.icon(
-              style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
+              style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
               onPressed: () => openSos(context, ref),
               icon: const Icon(Icons.emergency_outlined),
               label: Text(l.sosGetHelp),

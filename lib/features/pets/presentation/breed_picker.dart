@@ -14,7 +14,7 @@ Future<BreedChoice?> pickBreed(BuildContext context, Species species) {
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
-    constraints: const BoxConstraints(maxWidth: 640),
+    constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
     builder: (ctx) => _BreedSheet(species: species),
   );
 }

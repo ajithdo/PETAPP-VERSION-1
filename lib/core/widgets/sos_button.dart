@@ -67,7 +67,7 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(ctx.l10n.cancel)),
           FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: ctx.paw.sos, foregroundColor: ctx.paw.onSos),
+            style: FilledButton.styleFrom(backgroundColor: ctx.paw.sos, foregroundColor: ctx.paw.onSos, iconColor: ctx.paw.onSos),
             onPressed: () => Navigator.pop(ctx, true),
             child: Text(ctx.l10n.sosGetHelp),
           ),
