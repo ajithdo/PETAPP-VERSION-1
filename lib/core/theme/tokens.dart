@@ -817,8 +817,13 @@ class Sizes {
   static const double placeCardPhoto = 168;
   static const double placeCardMinWidth = 320;
 
-  /// Photo header on a place page.
+  /// Photo header on a place page (phones: full width under the app bar).
   static const double placeHeader = 200;
+
+  /// Rounded photo on a place page on tablets and desktops: width-to-height
+  /// ratio, and the tallest it gets.
+  static const double placePhotoAspect = 16 / 10;
+  static const double placePhotoMaxHeight = 440;
 
   /// Date square at the start of a booking row.
   static const double dateBadge = 52;

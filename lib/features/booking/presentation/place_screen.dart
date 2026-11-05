@@ -13,6 +13,8 @@ import '../data/places_repository.dart';
 import '../domain/booking_rules.dart';
 import 'booking_labels.dart';
 import 'booking_panel.dart';
+import 'place_finder_screen.dart' show searchOriginProvider;
+import '../../routine/domain/routine.dart' show distanceKm;
 
 /// Calls a phone number, or shows the demo dialog in demo mode (never dials).
 Future<void> callNumber(BuildContext context, WidgetRef ref, String phone) async {
@@ -49,9 +51,20 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
           }
           final open = isOpenNow(p.hours, DateTime.now());
           final today = hoursOn(p.hours, DateTime.now());
+          final hoursText = p.is24x7
+              ? l.open24x7Long
+              : today == null
+              ? l.closedToday
+              : l.todayHours(Fmt.time(today.open, context.lang), Fmt.time(today.close, context.lang));
           final wide = context.screenSize == ScreenSize.desktop;
+          // Phones show the photo full width under the app bar; wider screens
+          // show it as a rounded picture in the page (owner's Design 2
+          // picture), because a full-width strip would only show a sliver.
+          final phone = context.screenSize == ScreenSize.phone;
+          final photo = SeedArt(seed: 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}');
           final panel = BookingPanel(key: _panel, place: p);
           final header = <Widget>[
+            if (!phone) ...[const SizedBox(height: Space.lg), _PhotoCard(place: p, photo: photo, open: open, hours: hoursText)],
             const SizedBox(height: Space.lg),
             Text(p.name, style: context.text.headlineMedium),
             const SizedBox(height: Space.xxs),
@@ -108,13 +121,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    p.is24x7
-                        ? l.open24x7Long
-                        : today == null
-                        ? l.closedToday
-                        : l.todayHours(Fmt.time(today.open, context.lang), Fmt.time(today.close, context.lang)),
-                  ),
+                  Text(hoursText),
                   const SizedBox(height: Space.xs),
                   Text(p.address, style: context.text.bodySmall),
                   if (p.emergencyPhone != null)
@@ -181,11 +188,10 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
           Widget column(List<Widget> c) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: c);
           return CustomScrollView(
             slivers: [
-              SliverAppBar(
-                pinned: true,
-                expandedHeight: Sizes.placeHeader,
-                flexibleSpace: FlexibleSpaceBar(background: SeedArt(seed: 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}')),
-              ),
+              if (phone)
+                SliverAppBar(pinned: true, expandedHeight: Sizes.placeHeader, flexibleSpace: FlexibleSpaceBar(background: photo))
+              else
+                SliverAppBar(pinned: true, title: Text(p.name, maxLines: 1, overflow: TextOverflow.ellipsis)),
               SliverToBoxAdapter(
                 child: ContentWidth(
                   maxWidth: wide ? Space.maxContentWidth : Space.wideWidth,
@@ -201,6 +207,50 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// The place's photo as a rounded picture with its area and distance at the
+/// bottom left and today's hours at the bottom right (tablets and desktops).
+class _PhotoCard extends ConsumerWidget {
+  const _PhotoCard({required this.place, required this.photo, required this.open, required this.hours});
+  final Place place;
+  final Widget photo;
+  final bool open;
+  final String hours;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final origin = ref.watch(searchOriginProvider);
+    final km = distanceKm(origin.lat, origin.lng, place.lat, place.lng);
+    Widget tag(String text, Color bg, Color fg) => Container(
+          padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.xs + Space.xxs),
+          decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(Radii.full)),
+          child: Text(text, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.text.labelMedium?.copyWith(color: fg, fontWeight: FontWeight.w700)),
+        );
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: Sizes.placePhotoMaxHeight),
+      child: AspectRatio(
+        aspectRatio: Sizes.placePhotoAspect,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(Radii.card),
+          child: Stack(fit: StackFit.expand, children: [
+            ExcludeSemantics(child: photo),
+            Positioned(
+              left: Space.md,
+              right: Space.md,
+              bottom: Space.md,
+              child: Wrap(alignment: WrapAlignment.spaceBetween, spacing: Space.sm, runSpacing: Space.xs, children: [
+                tag('${place.area} · ${l.sosAway(Fmt.km(km))}', MediaColors.scrim, MediaColors.foreground),
+                tag(hours, open ? paw.success : MediaColors.scrim, open ? paw.surface : MediaColors.foreground),
+              ]),
+            ),
+          ]),
+        ),
       ),
     );
   }
