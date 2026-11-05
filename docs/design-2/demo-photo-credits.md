@@ -20,9 +20,9 @@ Public-domain (CC0) photos found through Openverse (openverse.org) for the demo 
 - `album/cat_2.jpg`: "Free cute persian cat image" by unknown (cc0), https://www.rawpixel.com/image/5909641/image-public-domain-cat-cute
 - `places/clinic_0.jpg`: "Free yorkshire terrier dog held" by unknown (cc0), https://www.rawpixel.com/image/5925163/photo-image-background-public-domain-dog
 - `places/clinic_1.jpg`: "" by unknown (cc0), https://www.rawpixel.com/image/5961393/free-public-domain-cc0-photo
-- `places/clinic_2.jpg`: "Cherry Point Sailors, Soldiers Cross" by U.S. Navy Medicine (cc0), https://www.rawpixel.com/image/8732113/photo-image-public-domain-doctor-person
+- `places/clinic_2.jpg`: "Veterinarian treating little kitten clinic" by unknown (cc0), https://www.rawpixel.com/image/6111355/photo-image-public-domain-blue-vaccine
 - `places/clinic_3.jpg`: "U.S. Department of Agriculture (USDA)" by U.S. Department of Agriculture (cc0), https://www.rawpixel.com/image/3259422/free-photo-image-dog-animal-canine
-- `places/clinic_4.jpg`: "Pterygium Eye Surgery Santo Domingo" by U.S. Navy Medicine (cc0), https://www.rawpixel.com/image/11072885/photo-image-face-person-eye
+- `places/clinic_4.jpg`: "Animales" by Daquella manera (cc0), https://www.flickr.com/photos/62518311@N00/446452014
 - `places/clinic_5.jpg`: "At the Vet" by darko149 (cc0), https://www.flickr.com/photos/203346469@N03/54934706747
 - `places/provider_0.jpg`: "Free person grooming white fluffy" by unknown (cc0), https://www.rawpixel.com/image/5906436/photo-image-background-public-domain-person
 - `places/provider_1.jpg`: "Animal Dog" by Matt Bango (cc0), https://stocksnap.io/photo/animal-dog-ZO5GDP2QY1
