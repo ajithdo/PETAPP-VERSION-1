@@ -108,7 +108,7 @@ The owner sent finished pictures of the 12 Design 2 screens (`docs/design-2/scre
 1. Home: **both**. The top of Home looks like the picture (location pill, search, chips, dark booster card, nearby vets); the pet's day (Today card, Next up) stays below.
 2. Menus: **both like the pictures**. Desktop gets a top bar with pill buttons; phones get a floating dark bottom bar. The 5 tabs stay (Home, Health, Book, Shop, Me).
 3. Booking: **on the clinic page**. Pet, reason, date, time and price on the clinic page; notes, photos and payment on one short confirm screen after it.
-4. Photos: **keep drawn pictures** (no new image files).
+4. Photos: first **keep drawn pictures**; changed on 5 Nov 2026 to **free stock photos** (owner's choice). 28 public-domain photos for the demo pets, clinics, services and album are in `assets/images/demo/` (sources in `docs/design-2/demo-photo-credits.md`). Not live until the owner says so.
 
 Left out (features the app doesn't have): blood group, ambulance, live ICU/blood-bank status, QR kiosk check-in, WhatsApp pass, Kannada, "verified" claims.
 
@@ -144,7 +144,7 @@ Left out (features the app doesn't have): blood group, ambulance, live ICU/blood
 3. **Family and caregiver access** could follow Design 2's role cards with on/off switches per permission (today it is a list).
 4. **Clinic portal queue** could follow Design 2's queue manager layout (today it uses the shared cards and tokens only).
 5. **Health pass buttons** stack on small phones; a single "Share" button that opens Medical card / Health report would keep the pass shorter.
-6. **Photo headers** on clinic pages are the demo's placeholder art; real clinic photos would make Design 2's photo-led cards shine.
+6. ~~Photo headers on clinic pages are placeholder art~~ Done 5 Nov 2026 with free demo photos. On tablets and desktops the clinic photo is now a rounded picture with the area, distance and today's hours on it, as in the owner's picture; phones keep the full-width photo. Real clinics will need their own photos (and a way to upload them) in the Live version.
 
 ## 1. Audit
 

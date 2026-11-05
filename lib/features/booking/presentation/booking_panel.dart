@@ -147,7 +147,8 @@ class BookingPanelState extends ConsumerState<BookingPanel> {
                       selected: sel,
                       label: Column(mainAxisSize: MainAxisSize.min, children: [
                         Text(i == 0 ? l.today : Fmt.weekdayDate(d, context.lang).split(',').first),
-                        Text(Fmt.dateShort(d, context.lang), style: context.text.labelSmall),
+                        // The selected day is dark, so its date uses the same light text as the day name.
+                        Text(Fmt.dateShort(d, context.lang), style: context.text.labelSmall?.copyWith(color: sel ? context.paw.onBrand : null)),
                       ]),
                       onSelected: (_) => setState(() {
                         _day = d;
