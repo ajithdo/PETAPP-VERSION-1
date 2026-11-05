@@ -413,7 +413,10 @@ void seedPlaces(Add add, DateTime now) {
       'teleVet': c.payments.contains('online'),
       'languages': c.langs,
       'vetIds': vetIds,
-      'photoSeed': r.next(6),
+      // Demo photo number in list order, so clinics in the same city never
+      // share a photo. r.next(6) is still drawn so the rest of the demo data
+      // stays exactly the same.
+      'photoSeed': [r.next(6), _clinics.indexOf(c) % 6].last,
       'slotMinutes': 20,
       'bufferMinutes': 5,
       'capacityPerSlot': c.vets > 2 ? 2 : 1,
