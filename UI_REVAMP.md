@@ -15,6 +15,7 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 - The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is neither Design 1 nor Design 2.
 
 **Live now (4 Nov 2026, evening): Design 2.** The owner said: "make it live on app and this will be the design 2". So **Design 2 now means the version built from the owner's finished pictures** (the "Design 2.1" checklist below), live at https://pawsetu-demo.netlify.app (Netlify deploy `6aeb9fa520b9ccd8a8cff421`, code on branch `ui-revamp` from commit `87796d5` onward).
+- **6 Nov 2026: Design 2 with demo photos is live** (owner: "make it live"): Netlify deploy `6aed1666861c99567614c8c1`, code on `ui-revamp` at `37cda87`. Design 2 without photos is kept as deploy `6aeb9fa520b9ccd8a8cff421`.
 - The earlier Design 2 draft (before the finished pictures) is superseded. It is still saved as Netlify deploy `6aeb4edc6809a9e375d86932` and Git commit `d656437`, if ever needed.
 - **Design 1 stays on hold:** Netlify deploy `6ae91e4fc7fd9b9bf45ac64f` and Git commit `97c1346` on branch `claude/inspiring-lovelace-1eo1xz` (untouched).
 
@@ -108,7 +109,7 @@ The owner sent finished pictures of the 12 Design 2 screens (`docs/design-2/scre
 1. Home: **both**. The top of Home looks like the picture (location pill, search, chips, dark booster card, nearby vets); the pet's day (Today card, Next up) stays below.
 2. Menus: **both like the pictures**. Desktop gets a top bar with pill buttons; phones get a floating dark bottom bar. The 5 tabs stay (Home, Health, Book, Shop, Me).
 3. Booking: **on the clinic page**. Pet, reason, date, time and price on the clinic page; notes, photos and payment on one short confirm screen after it.
-4. Photos: first **keep drawn pictures**; changed on 5 Nov 2026 to **free stock photos** (owner's choice). 28 public-domain photos for the demo pets, clinics, services and album are in `assets/images/demo/` (sources in `docs/design-2/demo-photo-credits.md`). Not live until the owner says so.
+4. Photos: first **keep drawn pictures**; changed on 5 Nov 2026 to **free stock photos** (owner's choice). 28 public-domain photos for the demo pets, clinics, services and album are in `assets/images/demo/` (sources in `docs/design-2/demo-photo-credits.md`). Live since 6 Nov 2026 (owner: "make it live").
 
 Left out (features the app doesn't have): blood group, ambulance, live ICU/blood-bank status, QR kiosk check-in, WhatsApp pass, Kannada, "verified" claims.
 
