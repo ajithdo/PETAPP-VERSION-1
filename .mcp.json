@@ -34,11 +34,9 @@
     },
     "chrome-devtools": {
       "type": "stdio",
-      "command": "npx",
+      "command": "node",
       "args": [
-        "chrome-devtools-mcp@latest",
-        "--no-usage-statistics",
-        "--no-performance-crux"
+        ".claude/mcp/chrome-devtools.mjs"
       ],
       "env": {}
     },
