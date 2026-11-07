@@ -15,7 +15,7 @@ import '../data/televet_repository.dart';
 import '../data/video_service.dart';
 
 /// Tele-vet video call (spec 7.7): mute, camera on/off, switch camera,
-/// speaker, end, timer and a weak-network indicator. Version 1 is a
+/// speaker, end, timer and a weak-network indicator. DEMO VERSION 1 is a
 /// simulated call: no camera, microphone or network is used.
 class VideoCallScreen extends ConsumerStatefulWidget {
   const VideoCallScreen({super.key, required this.consultationId});
@@ -110,7 +110,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                 ? l.tvWaitingVetJoin
                 : formatSeconds(_seconds);
     final call = Stack(children: [
-        // "Remote video": an animated placeholder (no real camera in V1).
+        // "Remote video": an animated placeholder (no real camera in DEMO VERSION 1).
         Positioned.fill(
           child: AnimatedBuilder(
             animation: _pulse,
@@ -247,7 +247,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
     if (context.screenSize != ScreenSize.desktop) {
       return Scaffold(backgroundColor: MediaColors.callBackground, body: call);
     }
-    // Desktop (Design 2 tele-vet): the call in a rounded card on the page,
+    // Desktop (UI Design 2 tele-vet): the call in a rounded card on the page,
     // who you are talking to under it, and what the visit is about beside it.
     return Scaffold(
       body: SafeArea(

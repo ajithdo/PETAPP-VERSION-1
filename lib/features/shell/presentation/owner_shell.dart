@@ -13,7 +13,7 @@ import 'sos_launcher.dart';
 
 const _tabRoots = ['/home', '/health', '/book', '/shop', '/me'];
 
-/// Owner app frame (Design 2): a floating dark bottom bar on phones and a
+/// Owner app frame (UI Design 2): a floating dark bottom bar on phones and a
 /// top bar with pill tabs on tablets and desktop, plus the pet pills on every
 /// main tab.
 class OwnerShell extends ConsumerWidget {
@@ -26,7 +26,7 @@ class OwnerShell extends ConsumerWidget {
     final path = GoRouterState.of(context).uri.path;
     final showTopBar = _tabRoots.contains(path);
     final destinations = [
-      // Outlined when idle, filled when selected (Design 2 tab bar).
+      // Outlined when idle, filled when selected (UI Design 2 tab bar).
       (Icons.home_outlined, Icons.home, l.tabHome),
       (Icons.favorite_border, Icons.favorite, l.tabHealth),
       (Icons.event_outlined, Icons.event, l.tabBook),
@@ -47,7 +47,7 @@ class OwnerShell extends ConsumerWidget {
       );
     }
     // Tablet and desktop: one top bar with the logo, the tabs as pill
-    // buttons and the quick actions (Design 2), above every page.
+    // buttons and the quick actions (UI Design 2), above every page.
     return Scaffold(
       body: SafeArea(
         child: Column(children: [
@@ -59,7 +59,7 @@ class OwnerShell extends ConsumerWidget {
   }
 }
 
-/// Design 2 phone menu: a floating dark bar with the five tabs.
+/// UI Design 2 phone menu: a floating dark bar with the five tabs.
 class _PhoneDock extends StatelessWidget {
   const _PhoneDock({required this.destinations, required this.selected, required this.onSelect});
   final List<(IconData, IconData, String)> destinations;
@@ -123,7 +123,7 @@ class _PhoneDock extends StatelessWidget {
   }
 }
 
-/// Design 2 wide-screen top bar: the logo, the tabs as pill buttons in a sand
+/// UI Design 2 wide-screen top bar: the logo, the tabs as pill buttons in a sand
 /// track (the chosen one in forest teal), and messages, notifications and SOS.
 class _WideHeader extends ConsumerWidget {
   const _WideHeader({required this.destinations, required this.selected, required this.onSelect});
@@ -270,7 +270,7 @@ final unreadMessagesProvider = StreamProvider<int>((ref) {
       .map((s) => s.docs.fold<int>(0, (sum, d) => sum + (((d.data()['unread'] as Map?)?[user.uid] as num?)?.toInt() ?? 0)));
 });
 
-/// Design 2 top bar: the PawSetu mark (phones), messages, notifications and
+/// UI Design 2 top bar: the PawSetu mark (phones), messages, notifications and
 /// the SOS pill on one row, and the pet pills below (on wider screens the
 /// pills sit on the same row).
 class OwnerTopBar extends ConsumerWidget {

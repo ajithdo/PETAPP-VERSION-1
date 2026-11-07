@@ -297,7 +297,7 @@ int stepIndex(String status) {
 }
 
 /// Seller payout state: held during the return window, then paid in the
-/// weekly payout (simulated in Version 1).
+/// weekly payout (simulated in DEMO VERSION 1).
 String payoutState(ShopOrder o, DateTime now) {
   if (o.status == 'cancelled' || o.status == 'returned') return 'none';
   if (o.payoutStatus == 'paid') return 'paid';

@@ -1,5 +1,5 @@
 /// Indicative vaccination schedules (spec section 11). Admin-editable in
-/// Version 2 and to be reviewed by a vet before launch. Pure Dart.
+/// FINAL VERSION and to be reviewed by a vet before launch. Pure Dart.
 library;
 
 import '../../pets/domain/breeds.dart';

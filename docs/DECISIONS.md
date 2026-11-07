@@ -206,9 +206,9 @@ Dev tools for the coding agent only; nothing here ships in the app. React-only t
 
 **Redesign proposal kept, not adopted (3 Nov 2026).** A full redesign ("Neel", indigo cotton) was proposed with Impeccable and three alternatives. The owner decided to keep the current design and to save the proposal for reference only, in `docs/design-proposals/`. It must not be implemented unless the owner asks. The five smaller improvements to the current design (navigation stays visible, grouped "Me" menu, calmer Home, small celebrations, bigger readable text) are still planned.
 
-## New look: Design 2, built as UI Designs 2, 3 and 4 (UI revamp, from 4 Nov 2026)
+## New look: UI Design 2, refined into UI Designs 3 and 4 (UI revamp, from 4 Nov 2026)
 
-The owner made Design 2 in Google Stitch (`docs/design-2/`) and approved building it on branch `ui-revamp`. UI Design 1 stays restorable from commit `97c1346` (see `UI_REVAMP.md`).
+The owner made UI Design 2 in Google Stitch (`docs/ui-designs/`) and approved building it on branch `ui-revamp`. UI Design 1 stays restorable from commit `97c1346` (see `UI_REVAMP.md`).
 
 **One token file.** Every colour, font, size, gap, corner, stroke, opacity, shadow and timing is in `lib/core/theme/tokens.dart`. `app_theme.dart` maps them onto Material 3:
 - `primary` is the brand forest teal
@@ -220,20 +220,20 @@ The owner made Design 2 in Google Stitch (`docs/design-2/`) and approved buildin
 - English uses Plus Jakarta Sans for headings, Inter for body text and JetBrains Mono for times and IDs.
 - Hindi and Telugu use Noto Sans everywhere (Inter has no Indic letters), with line height 1.6 and no negative letter spacing.
 
-**Icons.** Still Flutter's built-in Material icons, now the *outlined* set everywhere (Design 2 uses outlined Material Symbols). Icons that show a state stay filled: rating stars, done ticks, liked hearts, verified badges, filled play/pause, and the selected bottom tab. No icon package was added (Material Symbols would need one).
+**Icons.** Still Flutter's built-in Material icons, now the *outlined* set everywhere (UI Design 2 uses outlined Material Symbols). Icons that show a state stay filled: rating stars, done ticks, liked hearts, verified badges, filled play/pause, and the selected bottom tab. No icon package was added (Material Symbols would need one).
 
 **Colour families beyond the theme (4 Nov 2026).** Also in `tokens.dart`:
 - `CategoryColors`: muted mid-tones for kinds of things (log types, shop and expense categories, document kinds, Book tiles). Screens pass them through `readableOn(..., ratio: 3)` so icons read on cards in light and dark mode.
 - `MediaColors`: photo, video and scan screens stay dark in both themes (crop, viewers, video call with a forest glow).
-- `PrintColors`: printed pages (health report, prescription, invoice, sample documents, lost poster, QR tag) are always on white paper, in the Design 2 forest instead of the UI Design 1 teal.
+- `PrintColors`: printed pages (health report, prescription, invoice, sample documents, lost poster, QR tag) are always on white paper, in the UI Design 2 forest instead of the UI Design 1 teal.
 - `SeedArtColors`: washes for the demo's placeholder photos.
 
-**Shared Design 2 components (4 Nov 2026), in `lib/core/widgets/`:** `PassCard`/`PassRow` (health pass, medical card, booking confirmed), `TimelineTile` (vaccines), `PawAlertCard`, `PawPill`, `ChoiceTiles` (species), `OptionCard` (service and payment choices), `PriceSummary`, `DateBadge`, `RatingStars`, `FieldLabel`, `LabeledField` and `PawPickerField`. `PawTextField` now shows its label above the box; `MergeSemantics` keeps label and field read out together (checked with a semantics test).
+**Shared UI Design 2 components (4 Nov 2026), in `lib/core/widgets/`:** `PassCard`/`PassRow` (health pass, medical card, booking confirmed), `TimelineTile` (vaccines), `PawAlertCard`, `PawPill`, `ChoiceTiles` (species), `OptionCard` (service and payment choices), `PriceSummary`, `DateBadge`, `RatingStars`, `FieldLabel`, `LabeledField` and `PawPickerField`. `PawTextField` now shows its label above the box; `MergeSemantics` keeps label and field read out together (checked with a semantics test).
 
-**Proof search.** `docs/ui-revamp/check_design2_tokens.sh` now checks every Dart file in `lib/` except the token/theme files, generated translations, printed pages and drawn artwork (listed with reasons at the top of the script). It returns no matches.
+**Proof search.** `docs/ui-revamp/check_ui_design_tokens.sh` now checks every Dart file in `lib/` except the token/theme files, generated translations, printed pages and drawn artwork (listed with reasons at the top of the script). It returns no matches.
 
 **Readability over exact Stitch values.** The Stitch colours were nudged where they failed WCAG AA. `test/core/contrast_test.dart` checks every pair, including the new 3:1 rule for input borders and the focus ring.
 
-**UI Design 3 (4 Nov 2026, owner's answers).** Home keeps the pet's day under a Design 2 "explore" top; wide screens use a top bar with pill tabs instead of the side menu, phones a floating dark bar (same 5 tabs); booking is chosen on the clinic page (`BookingPanel`) and finished on one short confirm screen (`BookingFlowScreen` with `slot`/`times` in the link; the 4-step flow still works without them); the demo keeps drawn pictures. Features only in the pictures (blood group, ambulance, live hospital status, QR kiosk check-in, WhatsApp pass, Kannada, "verified" claims, facility lists, patient queue table) are left out.
+**UI Design 3 (4 Nov 2026, owner's answers).** Home keeps the pet's day under a UI Design 2 "explore" top; wide screens use a top bar with pill tabs instead of the side menu, phones a floating dark bar (same 5 tabs); booking is chosen on the clinic page (`BookingPanel`) and finished on one short confirm screen (`BookingFlowScreen` with `slot`/`times` in the link; the 4-step flow still works without them); the demo keeps drawn pictures. Features only in the pictures (blood group, ambulance, live hospital status, QR kiosk check-in, WhatsApp pass, Kannada, "verified" claims, facility lists, patient queue table) are left out.
 
-**Demo photos (4 Nov 2026, owner's choice "free stock photos").** 28 public-domain (CC0) photos found through Openverse are bundled in `assets/images/demo/` (about 1.4 MB): one for each demo pet (set as `photoUrl: asset:...` in the demo data), 6 clinic and 6 provider pictures, and 7 album pictures. `MediaImage` shows `asset:` links, and `SeedArt` uses a bundled photo for clinic, provider and dog/cat album seeds (other seeds keep the illustration). Sources are listed in `docs/design-2/demo-photo-credits.md`. CC0 needs no credit. The photos from the owner's Stitch files could not be used: they sit behind a Google login.
+**Demo photos (4 Nov 2026, owner's choice "free stock photos").** 28 public-domain (CC0) photos found through Openverse are bundled in `assets/images/demo/` (about 1.4 MB): one for each demo pet (set as `photoUrl: asset:...` in the demo data), 6 clinic and 6 provider pictures, and 7 album pictures. `MediaImage` shows `asset:` links, and `SeedArt` uses a bundled photo for clinic, provider and dog/cat album seeds (other seeds keep the illustration). Sources are listed in `docs/ui-designs/demo-photo-credits.md`. CC0 needs no credit. The photos from the owner's Stitch files could not be used: they sit behind a Google login.

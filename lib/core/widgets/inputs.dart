@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../theme/tokens.dart';
 
-/// Text field with its label above the box (Design 2) and inline validation.
+/// Text field with its label above the box (UI Design 2) and inline validation.
 class PawTextField extends StatelessWidget {
   const PawTextField({
     super.key,
@@ -51,7 +51,7 @@ class PawTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
-    // Design 2: the label sits above the box. MergeSemantics keeps it read
+    // UI Design 2: the label sits above the box. MergeSemantics keeps it read
     // out together with the field.
     return Padding(
       padding: const EdgeInsets.only(bottom: Space.md),
@@ -123,7 +123,7 @@ class ChoiceRow<T> extends StatelessWidget {
   }
 }
 
-/// The bold label above a form control (Design 2 forms).
+/// The bold label above a form control (UI Design 2 forms).
 class FieldLabel extends StatelessWidget {
   const FieldLabel(this.text, {super.key, this.hint});
   final String text;
@@ -238,7 +238,7 @@ class PawPickerField extends StatelessWidget {
   }
 }
 
-/// Big single-choice tiles with an icon above a label (Design 2 species
+/// Big single-choice tiles with an icon above a label (UI Design 2 species
 /// picker). The chosen tile is sage with a forest border.
 class ChoiceTiles<T> extends StatelessWidget {
   const ChoiceTiles({
@@ -314,7 +314,7 @@ class ChoiceTiles<T> extends StatelessWidget {
 }
 
 /// A tappable card for one choice in a list (service, payment method).
-/// The chosen card has a soft coral wash and border (Design 2).
+/// The chosen card has a soft coral wash and border (UI Design 2).
 class OptionCard extends StatelessWidget {
   const OptionCard({
     super.key,
@@ -390,7 +390,7 @@ class OptionCard extends StatelessWidget {
 }
 
 /// A sand box listing charges, with the total on the last line in the
-/// action colour (Design 2 price summary).
+/// action colour (UI Design 2 price summary).
 class PriceSummary extends StatelessWidget {
   const PriceSummary({super.key, required this.lines, required this.totalLabel, required this.total});
 

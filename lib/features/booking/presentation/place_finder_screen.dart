@@ -290,7 +290,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                     : _map
                     ? Padding(
                         padding: EdgeInsets.fromLTRB(context.gutter, 0, context.gutter, context.gutter),
-                        // Desktop (Design 2 vet map): the list beside the map.
+                        // Desktop (UI Design 2 vet map): the list beside the map.
                         child: Builder(builder: (context) {
                           final map = ClipRRect(
                             borderRadius: BorderRadius.circular(Radii.card),
@@ -349,7 +349,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                             padding: const EdgeInsets.only(bottom: Space.sm),
                             child: Text(l.resultsCount(list.length), style: context.text.bodySmall),
                           ),
-                          // One column on phones, 2 or 3 on wider screens (Design 2).
+                          // One column on phones, 2 or 3 on wider screens (UI Design 2).
                           ResponsiveGrid(
                             minItemWidth: Sizes.placeCardMinWidth,
                             children: [for (final e in list) PlaceCard(place: e.$1, km: e.$2)],
@@ -467,7 +467,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
   }
 }
 
-/// A clinic or provider in a list (Design 2): the picture on top with "open"
+/// A clinic or provider in a list (UI Design 2): the picture on top with "open"
 /// and distance badges, then the name and rating, the next free slot, the
 /// price and a Book button. [compact] is the smaller side-by-side card used
 /// in the map preview.

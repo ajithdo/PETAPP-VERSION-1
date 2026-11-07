@@ -1,15 +1,15 @@
-# Design 2: review (3 Nov 2026)
+# UI Design 2: review (3 Nov 2026)
 
-The owner made Design 2 in Google Stitch and shared it as a zip on 3 Nov 2026. This folder is the record of it.
+The owner made UI Design 2 in Google Stitch and shared it as a zip on 3 Nov 2026. This folder is the record of it.
 
-- `source/`: the files exactly as received. There are 12 screens (`*/code.html`), the design rules (`pawsetu_design_system.md`) and Stitch's Flutter notes (`pawsetu_flutter_design_tokens_engine_architecture.md`).
-- `screens/`: pictures of each screen at phone width (390 px, `_m.png`) and desktop width (1440 px, `_d.png`). The photos in the designs are hosted by Google and didn't load, so they show as grey boxes.
+- `ui-design-2-source/`: the files exactly as received. There are 12 screens (`*/code.html`), the design rules (`pawsetu_design_system.md`) and Stitch's Flutter notes (`pawsetu_flutter_design_tokens_engine_architecture.md`).
+- `ui-design-2-screens/`: pictures of each screen at phone width (390 px, `_m.png`) and desktop width (1440 px, `_d.png`). The photos in the designs are hosted by Google and didn't load, so they show as grey boxes.
 
 **Status:** reviewed, **not built**. UI Design 1 stays in the app until the owner says go (see `UI_REVAMP.md`).
 
-## What Design 2 is
+## What UI Design 2 is
 
-| | UI Design 1 (app today) | Design 2 |
+| | UI Design 1 (app today) | UI Design 2 |
 |---|---|---|
 | Main action colour | Teal `#0F766E` | Terracotta coral `#C84735` (dark mode `#FF7A66`) |
 | Trust / verified colour | Teal | Deep forest teal `#18453E` with soft sage `#E6F0ED` |
@@ -55,7 +55,7 @@ The owner made Design 2 in Google Stitch and shared it as a zip on 3 Nov 2026. T
 7. **Not shown:** dark mode, Hindi and Telugu, Easy mode, and loading, empty and error states. The rules describe them, but no screen shows them.
 
 ## Things that change how the app works, not just how it looks (owner decides)
-- **Bottom tabs.** Design 2 has 4 tabs (Explore, Health, Bookings, Profile). The app has 5 (Home, Health, Book, Shop, Me). Design 2 has no Shop tab, and its home is clinic search instead of the pet's day (Today, routine, reminders).
+- **Bottom tabs.** UI Design 2 has 4 tabs (Explore, Health, Bookings, Profile). The app has 5 (Home, Health, Book, Shop, Me). UI Design 2 has no Shop tab, and its home is clinic search instead of the pet's day (Today, routine, reminders).
 - **Things in the designs that the app doesn't have:**
   - pet blood group
   - pet ambulance requests and ambulance dispatch
@@ -63,7 +63,7 @@ The owner made Design 2 in Google Stitch and shared it as a zip on 3 Nov 2026. T
   - Kannada language (the app has English, Hindi and Telugu)
 
   These would be new features, not a redesign.
-- **Screens Design 2 doesn't cover:**
+- **Screens UI Design 2 doesn't cover:**
   - Home / Today and routine
   - Shop (8 screens)
   - Album
@@ -76,10 +76,10 @@ The owner made Design 2 in Google Stitch and shared it as a zip on 3 Nov 2026. T
   - Admin
   - Groomer, trainer, boarder and walker partner screens
 
-  These would be designed in the same style from the Design 2 rules.
+  These would be designed in the same style from the UI Design 2 rules.
 
 ## New fonts or packages (need the owner's OK)
 - **Inter** and **JetBrains Mono** would be bundled in the app (both are free and open-licence). Neither has Hindi or Telugu letters, so those languages keep Noto Sans.
 - Material Symbols icons would need a new package. Flutter's built-in outlined Material Icons look almost the same and need nothing new. Recommendation: use the built-in ones.
 - Stitch's note suggests a branded loading screen for the website (`web/index.html`). This is a look-only change and is fine to include.
-- Stitch's note puts tokens in `lib/theme/pawsetu_tokens.dart`. This project keeps all tokens in one file, `lib/core/theme/tokens.dart`, so Design 2's values would go there instead.
+- Stitch's note puts tokens in `lib/theme/pawsetu_tokens.dart`. This project keeps all tokens in one file, `lib/core/theme/tokens.dart`, so UI Design 2's values would go there instead.

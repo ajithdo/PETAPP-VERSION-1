@@ -254,7 +254,7 @@ class DemoAuthService implements AuthService {
   }
 }
 
-/// Firebase Auth (emulator in Version 1, real project in Version 2).
+/// Firebase Auth (emulator in DEMO VERSION 1, real project in FINAL VERSION).
 /// Roles come from custom claims set by the ensureProfile/setUserRole functions.
 class FirebaseAuthService implements AuthService {
   FirebaseAuthService(this._auth, this._db, this._functions, {required this.demoLoginEnabled}) {

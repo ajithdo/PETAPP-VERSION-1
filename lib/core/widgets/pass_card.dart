@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../theme/tokens.dart';
 import 'cards.dart';
 
-/// Design 2 "pass": a deep forest-teal card that sums up a pet or a booking
+/// UI Design 2 "pass": a deep forest-teal card that sums up a pet or a booking
 /// (Health tab, medical card, booking confirmed). Light text on the brand
 /// colour in light mode; a deep teal surface in dark mode.
 class PassCard extends StatelessWidget {

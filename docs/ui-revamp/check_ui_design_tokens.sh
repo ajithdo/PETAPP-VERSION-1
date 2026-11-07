@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Proof search for the Design 2 rule "no hand-typed style values outside
+# Proof search for the UI Design 2 rule "no hand-typed style values outside
 # lib/core/theme/tokens.dart". Lists every literal colour, font size, gap,
 # corner, icon size, stroke, opacity or letter spacing in the app's Dart
 # files. An empty result means the screens use tokens only.
@@ -20,7 +20,7 @@
 #     lib/features/album/presentation/birthday_screen.dart (confetti)
 # Printed pages take their colours from PrintColors in tokens.dart.
 #
-# usage: bash docs/ui-revamp/check_design2_tokens.sh
+# usage: bash docs/ui-revamp/check_ui_design_tokens.sh
 cd "$(dirname "$0")/../.."
 EXEMPT='^lib/core/theme/|^lib/core/l10n/gen/|document_preview\.dart|health_report\.dart|prescription_pdf\.dart|/invoice\.dart|sample_docs\.dart|messaging/presentation/attachments\.dart|sos/presentation/lost_screens\.dart|widgets/illustrations\.dart|widgets/logo\.dart|album/presentation/birthday_screen\.dart'
 mapfile -t FILES < <(find lib -name '*.dart' | sort | grep -vE "$EXEMPT")

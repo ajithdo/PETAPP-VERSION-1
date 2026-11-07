@@ -99,7 +99,7 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
     );
   }
 
-  /// Design 2 top-bar SOS: a soft red pill that fills while held.
+  /// UI Design 2 top-bar SOS: a soft red pill that fills while held.
   Widget _pill(BuildContext context, PawColors paw, bool easy) {
     // The pill is 8 px shorter than the tap area around it.
     final target = easy ? TapTarget.easy : TapTarget.min;

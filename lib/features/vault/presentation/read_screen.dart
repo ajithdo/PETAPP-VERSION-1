@@ -19,7 +19,7 @@ import 'vault_labels.dart';
 final documentReaderProvider = Provider<DocumentReader>((ref) => const SimulatedDocumentReader());
 
 /// "We found these details. Save them?" (spec 7.9). Reads the document
-/// (simulated in Version 1), lets the owner fix anything, then saves the
+/// (simulated in DEMO VERSION 1), lets the owner fix anything, then saves the
 /// details and, for vaccine certificates, records the vaccine in the
 /// pet's health records. Also used to edit details later.
 class AutoReadScreen extends ConsumerStatefulWidget {

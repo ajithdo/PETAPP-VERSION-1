@@ -1,6 +1,6 @@
-/// "Ask PawSetu" (spec 7.14). Version 1 answers 20 common questions with
+/// "Ask PawSetu" (spec 7.14). DEMO VERSION 1 answers 20 common questions with
 /// scripted, vet-reviewed-style text (in the ARB files) and checks every
-/// question for red-flag symptoms first. Version 2 swaps the matcher for
+/// question for red-flag symptoms first. FINAL VERSION swaps the matcher for
 /// Gemini behind the same [AssistantReply] shape.
 ///
 /// Pure Dart: shared by the app, the unit tests and the Cloud Function port.

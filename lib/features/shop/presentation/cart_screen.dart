@@ -280,7 +280,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final l = context.l10n;
     Widget line(String a, String b, {Color? color, bool bold = false}) {
       final style = (bold ? context.text.titleSmall : context.text.bodyMedium)?.copyWith(color: color);
-      // Amounts in the mono face; the total in the action colour (Design 2).
+      // Amounts in the mono face; the total in the action colour (UI Design 2).
       final amount = context.textX.mono.copyWith(
         color: bold ? context.paw.onActionContainer : (color ?? context.paw.textPrimary),
         fontWeight: bold ? FontWeight.w700 : null,

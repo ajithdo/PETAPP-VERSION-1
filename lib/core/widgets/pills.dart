@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../theme/tokens.dart';
 import 'buttons.dart';
 
-/// Design 2 selectable pill (pet switcher, filters): white with a brand
+/// UI Design 2 selectable pill (pet switcher, filters): white with a brand
 /// border when selected, soft sand when not. The tap area is at least 48 px
 /// tall even though the pill itself is smaller.
 class PawPill extends StatelessWidget {

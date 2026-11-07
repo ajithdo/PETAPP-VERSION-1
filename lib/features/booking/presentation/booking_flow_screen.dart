@@ -24,7 +24,7 @@ import '../../../core/widgets/paw_map.dart';
 ///
 /// When the clinic page's booking card already chose the pet, service and
 /// time ([slot] or the request's [proposed] times), this is one short screen:
-/// notes, photos and payment, the summary and the confirm button (Design 2,
+/// notes, photos and payment, the summary and the confirm button (UI Design 2,
 /// owner's choice 4 Nov 2026).
 class BookingFlowScreen extends ConsumerStatefulWidget {
   const BookingFlowScreen({super.key, required this.placeId, this.serviceId, this.petId, this.slot, this.proposed = const []});
@@ -494,7 +494,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
   }
 }
 
-/// Booking done (Design 2 "booking confirmed" pass): who and where, the date,
+/// Booking done (UI Design 2 "booking confirmed" pass): who and where, the date,
 /// time, vet and amount as tiles, the clinic with directions, and add to
 /// calendar.
 class BookingDoneScreen extends ConsumerWidget {

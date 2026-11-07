@@ -31,7 +31,7 @@ import '../../routine/domain/routine.dart';
   return items.first;
 }
 
-/// Design 2 top of Home ("Explore"): where you are, a search box, quick
+/// UI Design 2 top of Home ("Explore"): where you are, a search box, quick
 /// links, the pet's health status and the nearest vets. The pet's day
 /// follows below it (owner's choice, 4 Nov 2026).
 List<Widget> homeDiscoveryTop(BuildContext context, WidgetRef ref, {required Pet? pet, required List<Pet> pets, required bool wide}) {
@@ -212,7 +212,7 @@ class _SearchBox extends StatelessWidget {
   }
 }
 
-/// Design 2 dark card on Home: the most urgent care item ("Booster due in 10
+/// UI Design 2 dark card on Home: the most urgent care item ("Booster due in 10
 /// days") with a coral Book button, or "All up to date".
 class _HealthStatusCard extends ConsumerWidget {
   const _HealthStatusCard({required this.pet, required this.pets});

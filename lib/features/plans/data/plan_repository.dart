@@ -45,7 +45,7 @@ class PlanRepository {
       'kind': 'plus',
       'period': yearly ? 'yearly' : 'monthly',
       'amount': amount,
-      'tax': 0, // GST placeholder (Version 2)
+      'tax': 0, // GST placeholder (FINAL VERSION)
       'status': 'paid',
       'demo': true,
       'at': now,

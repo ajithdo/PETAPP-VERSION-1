@@ -80,7 +80,7 @@ class AppUser {
   final Map<String, dynamic> consents;
   final String? referralCode;
 
-  /// Plus renews at [planRenewsAt] unless turned off (Version 1: demo).
+  /// Plus renews at [planRenewsAt] unless turned off (DEMO VERSION 1: demo).
   final bool autoRenew;
 
   /// monthly or yearly

@@ -29,7 +29,7 @@ class DeviceSnapshot {
 
 enum DeviceCommand { feedNow, locate, snapshot, demoLeaveZone, demoReturnHome }
 
-/// Where device data comes from (spec 7.13). Version 1 uses
+/// Where device data comes from (spec 7.13). DEMO VERSION 1 uses
 /// [DemoDeviceProvider]. A real vendor gets its own class: cloud vendors send
 /// readings to a Cloud Functions webhook that writes devices/{id}.data, and
 /// Bluetooth devices are read on the phone. See docs/DECISIONS.md, Phase 9.
@@ -111,7 +111,7 @@ class DemoDeviceProvider implements DeviceProvider {
   }
 }
 
-/// Version 2 plugs real vendors in here. Until then live mode explains that
+/// FINAL VERSION plugs real vendors in here. Until then live mode explains that
 /// devices are not connected yet.
 class LiveDeviceProvider implements DeviceProvider {
   @override
