@@ -175,6 +175,20 @@
       "skillPath": ".agents/skills/impeccable/SKILL.md",
       "computedHash": "2b16bd26632e294094da7e6d2352dce4c1efec66d3b90c88f0e059b28e2d6e04"
     },
+    "netlify-config": {
+      "source": "netlify/context-and-tools",
+      "sourceType": "github",
+      "skillPath": "skills/netlify-config/SKILL.md",
+      "computedHash": "daebdde2be73f2b2477335ad2b05eadfc4d9fcde7ed3f71e2f5b5bb20c28cd79",
+      "installMode": "copy"
+    },
+    "netlify-deploy": {
+      "source": "netlify/context-and-tools",
+      "sourceType": "github",
+      "skillPath": "skills/netlify-deploy/SKILL.md",
+      "computedHash": "ccf6a9cab730312cbba4490ee8825e8999b9ccd1e9364c06750199a08f3aeeb4",
+      "installMode": "copy"
+    },
     "receiving-code-review": {
       "source": "obra/superpowers",
       "sourceType": "github",
