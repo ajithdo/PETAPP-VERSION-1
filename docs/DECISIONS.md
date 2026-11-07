@@ -205,3 +205,19 @@ Dev tools for the coding agent only; nothing here ships in the app. React-only t
 - **Docs lookup:** Context7 (hosted MCP server in `.mcp.json`).
 
 **Redesign proposal kept, not adopted (3 Nov 2026).** A full redesign ("Neel", indigo cotton) was proposed with Impeccable and three alternatives. The owner decided to keep the current design and to save the proposal for reference only, in `docs/design-proposals/`. It must not be implemented unless the owner asks. The five smaller improvements to the current design (navigation stays visible, grouped "Me" menu, calmer Home, small celebrations, bigger readable text) are still planned.
+
+## Curated agent setup (7 Nov 2026)
+
+Replaces the toolkit above where they differ. Dev tools for the coding agent only; nothing here ships in the app.
+
+- **Why everything is committed.** Cloud sessions only get what is in the repo (`CLAUDE.md`, `.claude/skills`, `.claude/agents`, the hooks and permissions in `.claude/settings.json`, `.mcp.json`); they don't install plugins listed under `enabledPlugins`. So skills are real copied files and tool servers live in `.mcp.json`.
+- **Skills (37).** Installed with `npx skills add <repo> -a claude-code --copy`, so `skills-lock.json` records each source. Each skill folder carries its repo's LICENSE (Impeccable also its NOTICE).
+  - 14 official Flutter/Dart skills from flutter/agent-plugins (1.0.7) and 5 official Firebase skills from firebase/skills (1.1.0).
+  - Superpowers 7.0.2 (obra/superpowers): all 15, refreshed.
+  - Impeccable 4.8.0 (pbakaus/impeccable), updated with `npx impeccable update --project --no-hooks`. It is the only design skill and reviews Flutter from source. Its design hook stays off. Its engine program downloads per computer on first use, so `scripts/bin/` is in `.gitignore`, as in Impeccable's own repo.
+  - netlify-deploy and netlify-config, for the Netlify demo.
+- **Archived.** The other 103 skills (marketing, Matt Pocock's workflow skills, competing design skills, other Netlify skills, webapp-testing and 3D) were moved with `git mv` to `docs/archived-skills/`; see its README to restore one. `webapp-testing` went because Flutter web draws on a canvas; the Dart tools check the app instead.
+- **Tool servers (`.mcp.json`).** The official Dart and Flutter MCP server (`dart mcp-server`: run the app, hot reload, inspect widgets, read runtime errors, run tests, analyze, search pub.dev) and the Firebase MCP server (`npx -y firebase-tools@latest mcp --dir .`), next to Context7, Playwright and Chrome DevTools. The `dart-flutter` plugin was removed from `.claude/settings.json` so local sessions don't load its skills and the Dart server twice. The Dart server runs with `--enable flutter_app_lifecycle --enable run_tests`: in version 1.2.2, `launch_app`, `stop_app`, `list_devices`, `list_running_apps`, `get_app_logs` and `run_tests` are off by default, and `CLAUDE.md` and the hot-reload rule need them.
+- **Security plugin.** `security-guidance@claude-plugins-official` is enabled in `.claude/settings.json` for local sessions; it is installed on each computer with `claude plugin install security-guidance@claude-plugins-official --scope project`.
+- **Permissions (`.claude/settings.json`).** Analyze, test, pub get, gen-l10n, web build, format, build_runner, the l10n merge script, everyday git commands and all Dart server tools run without asking. Pushing, `git reset --hard`, deleting branches, Firebase and Netlify deploys and deleting files always ask first.
+- **`CLAUDE.md`** imports `AGENTS.md` (Claude Code reads `CLAUDE.md`, not `AGENTS.md`), says which tool to use for which job, and carries the official Flutter hot-reload rule.
