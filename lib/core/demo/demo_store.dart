@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/plans/data/plan_expiry.dart';
 import 'seed/seed.dart';
 import 'seed/seed_people.dart' show demoAccounts;
 
@@ -24,6 +25,7 @@ class DemoStore {
   /// until it is in, so a save never drops it.
   SeedData? _later;
   bool _resetting = false;
+  bool _checkingPlans = false;
 
   static const _key = 'demo_db_v1';
   static const _seedVersionKey = 'demo_seed_version';
@@ -55,15 +57,40 @@ class DemoStore {
     final (first, later) = splitForStartup(data, DateTime.now());
     await loadInto(store.db, first);
     store._later = later;
+    // Saved data keeps the dates of the day it was made, and there is no
+    // server here to renew Plus each night: catch up before the first
+    // screen, so Priya's monthly Plus doesn't run out a few weeks later.
+    await store._checkPlans();
     SchedulerBinding.instance.addPostFrameCallback((_) => store._loadLater());
     // No copy of the database at start-up (it takes a moment on a phone):
     // the first save writes it once.
     store._lastHash = 0;
     // Saving copies the whole database, so do it now and then and whenever
     // the app goes to the background or the tab is hidden, not constantly.
-    store._timer = Timer.periodic(const Duration(seconds: 20), (_) => store.save());
-    store._lifecycle = AppLifecycleListener(onHide: store.save, onPause: store.save, onDetach: store.save);
+    // The plan check also runs then and when the app comes back, in case it
+    // stayed open past a renewal date.
+    store._timer = Timer.periodic(const Duration(seconds: 20), (_) => store._tick());
+    store._lifecycle = AppLifecycleListener(onResume: store._checkPlans, onHide: store.save, onPause: store.save, onDetach: store.save);
     return store;
+  }
+
+  Future<void> _tick() async {
+    await _checkPlans();
+    await save();
+  }
+
+  /// The nightly plan check the server does with Firebase (see
+  /// [runPlanExpiry]).
+  Future<void> _checkPlans() async {
+    if (_checkingPlans || _resetting) return;
+    _checkingPlans = true;
+    try {
+      await runPlanExpiry(db, DateTime.now());
+    } catch (e) {
+      debugPrint('Demo plan check failed: $e');
+    } finally {
+      _checkingPlans = false;
+    }
   }
 
   /// Collections no first screen needs (the admin dashboard fills in a

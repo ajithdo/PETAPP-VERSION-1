@@ -13,7 +13,11 @@ void main() {
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
     db = FakeFirebaseFirestore();
-    await DemoStore.loadInto(db, DemoSeed.build(DateTime(2026, 10, 14)));
+    // Made today, like the app's first start: Priya's Plus is checked
+    // against today's date, and with data made on a fixed day her month ran
+    // out 23 days later (7 Nov 2026). Old saved data is caught up by the
+    // demo's plan check (plan_expiry_test.dart, demo_store_test.dart).
+    await DemoStore.loadInto(db, DemoSeed.build(DateTime.now()));
     auth = DemoAuthService(db, await SharedPreferences.getInstance());
   });
 
