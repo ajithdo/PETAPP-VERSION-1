@@ -1762,6 +1762,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get choosePetForHealth => 'एक पालतू चुनें';
 
   @override
+  String get healthAllClear => 'सब कुछ समय पर है';
+
+  @override
   String itemsNeedAttention(int count) {
     return '$count पर ध्यान दें';
   }
@@ -2448,6 +2451,20 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get openNow => 'अभी खुला';
+
+  @override
+  String get certificate => 'प्रमाणपत्र';
+
+  @override
+  String get emergencyInfo => 'आपातकालीन जानकारी';
+
+  @override
+  String bookFor(String name) {
+    return '$name के लिए बुक करें';
+  }
+
+  @override
+  String get nextFreeSlot => 'अगला खाली समय';
 
   @override
   String get openNowChip => 'अभी खुला';

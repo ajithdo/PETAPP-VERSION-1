@@ -3,23 +3,40 @@ import 'package:flutter/material.dart';
 
 import 'tokens.dart';
 
-/// Builds the Material 3 theme from the design tokens (spec section 4).
+/// Builds the Material 3 theme from the design tokens (Design 2,
+/// lib/core/theme/tokens.dart). No colour or size is typed here directly.
 class AppTheme {
-  static const _jakarta = 'PlusJakartaSans';
-  static const _deva = 'NotoSansDevanagari';
-  static const _telugu = 'NotoSansTelugu';
+  static bool _indic(String locale) => locale == 'hi' || locale == 'te';
 
+  /// Body font for a language.
   static String fontFor(String locale) => switch (locale) {
-        'hi' => _deva,
-        'te' => _telugu,
-        _ => _jakarta,
+        'hi' => FontFamilies.devanagari,
+        'te' => FontFamilies.telugu,
+        _ => FontFamilies.body,
       };
 
   static List<String> fallbackFor(String locale) => switch (locale) {
-        'hi' => const [_jakarta, _telugu],
-        'te' => const [_jakarta, _deva],
-        _ => const [_deva, _telugu],
+        'hi' => const [FontFamilies.body, FontFamilies.heading, FontFamilies.telugu],
+        'te' => const [FontFamilies.body, FontFamilies.heading, FontFamilies.devanagari],
+        _ => const [FontFamilies.heading, FontFamilies.devanagari, FontFamilies.telugu],
       };
+
+  /// A text style for [t] in [locale]: headings in Plus Jakarta Sans and body
+  /// in Inter for English; Noto Sans with taller lines for Hindi and Telugu.
+  static TextStyle styleFor(TypeToken t, String locale, Color color, {String? family}) {
+    final indic = _indic(locale);
+    final f = family ?? (indic ? fontFor(locale) : (t.heading ? FontFamilies.heading : FontFamilies.body));
+    final lh = t.lineHeight / t.size;
+    return TextStyle(
+      fontFamily: f,
+      fontFamilyFallback: [if (family != null) fontFor(locale), ...fallbackFor(locale)],
+      fontSize: t.size,
+      fontWeight: t.weight,
+      height: indic && lh < TypeScale.indicLineHeight ? TypeScale.indicLineHeight : lh,
+      letterSpacing: indic && t.tracking < 0 ? 0 : t.tracking,
+      color: color,
+    );
+  }
 
   static ThemeData build({
     required Brightness brightness,
@@ -31,72 +48,82 @@ class AppTheme {
     var paw = light ? PawColors.light : PawColors.dark;
     if (highContrast) paw = paw.highContrast(brightness);
 
-    final primary = light ? const Color(0xFF0F766E) : const Color(0xFF2DD4BF);
-    final onPrimary = light ? const Color(0xFFFFFFFF) : const Color(0xFF04201D);
-
     final scheme = ColorScheme(
       brightness: brightness,
-      primary: primary,
-      onPrimary: onPrimary,
+      primary: paw.brand,
+      onPrimary: paw.onBrand,
       primaryContainer: paw.primaryContainer,
-      onPrimaryContainer: light ? const Color(0xFF053B36) : const Color(0xFFCCFBF1),
-      secondary: paw.accent,
-      onSecondary: paw.onAccent,
-      secondaryContainer: light ? const Color(0xFFFDE7D3) : const Color(0xFF4A2E14),
-      onSecondaryContainer: light ? const Color(0xFF4A2508) : const Color(0xFFFDE7D3),
-      tertiary: const Color(0xFF9B8AFB),
-      onTertiary: const Color(0xFF1B1240),
+      onPrimaryContainer: paw.onPrimaryContainer,
+      secondary: paw.action,
+      onSecondary: paw.onAction,
+      secondaryContainer: paw.actionContainer,
+      onSecondaryContainer: paw.onActionContainer,
+      tertiary: paw.accent,
+      onTertiary: paw.onAccent,
       error: paw.error,
-      onError: light ? Colors.white : const Color(0xFF3B0A0A),
+      onError: light ? paw.surface : paw.errorContainer,
+      errorContainer: paw.errorContainer,
+      onErrorContainer: paw.onErrorContainer,
       surface: paw.surface,
       onSurface: paw.textPrimary,
       onSurfaceVariant: paw.textSecondary,
-      surfaceContainerLowest: paw.background,
-      surfaceContainerLow: light ? const Color(0xFFF5F2EE) : const Color(0xFF131B1D),
-      surfaceContainer: light ? const Color(0xFFF1EDE8) : const Color(0xFF1B2629),
-      surfaceContainerHigh: light ? const Color(0xFFEBE6E0) : const Color(0xFF213033),
-      surfaceContainerHighest: light ? const Color(0xFFE5E1DA) : const Color(0xFF2A3639),
-      outline: paw.outline,
+      surfaceContainerLowest: paw.surface,
+      surfaceContainerLow: paw.background,
+      surfaceContainer: paw.surfaceSubtle,
+      surfaceContainerHigh: paw.surfaceSubtle,
+      surfaceContainerHighest: paw.surfaceSubtle,
+      outline: paw.controlBorder,
       outlineVariant: paw.outline,
-      shadow: Colors.black,
-      inverseSurface: light ? const Color(0xFF1C2B2D) : const Color(0xFFE8EEEE),
-      onInverseSurface: light ? const Color(0xFFE8EEEE) : const Color(0xFF1C2B2D),
-      inversePrimary: light ? const Color(0xFF2DD4BF) : const Color(0xFF0F766E),
+      shadow: paw.ink,
+      scrim: paw.ink,
+      inverseSurface: paw.inverseSurface,
+      onInverseSurface: paw.onInverseSurface,
+      inversePrimary: light ? PawColors.dark.brand : PawColors.light.brand,
     );
 
-    final family = fontFor(locale);
-    final height = (locale == 'hi' || locale == 'te') ? 1.6 : 1.4;
-    TextStyle s(double size, FontWeight w, Color c) => TextStyle(
-          fontFamily: family,
-          fontFamilyFallback: fallbackFor(locale),
-          fontSize: size,
-          fontWeight: w,
-          height: height,
-          color: c,
-        );
     final tp = paw.textPrimary;
     final ts = paw.textSecondary;
+    TextStyle s(TypeToken t, [Color? c]) => styleFor(t, locale, c ?? tp);
     final textTheme = TextTheme(
-      displayLarge: s(40, FontWeight.w700, tp),
-      displayMedium: s(36, FontWeight.w700, tp),
-      displaySmall: s(32, FontWeight.w700, tp),
-      headlineLarge: s(28, FontWeight.w700, tp),
-      headlineMedium: s(24, FontWeight.w700, tp),
-      headlineSmall: s(22, FontWeight.w700, tp),
-      titleLarge: s(22, FontWeight.w700, tp),
-      titleMedium: s(18, FontWeight.w600, tp),
-      titleSmall: s(16, FontWeight.w600, tp),
-      bodyLarge: s(16, FontWeight.w400, tp),
-      bodyMedium: s(16, FontWeight.w400, tp),
-      bodySmall: s(13, FontWeight.w400, ts),
-      labelLarge: s(16, FontWeight.w600, tp),
-      labelMedium: s(13, FontWeight.w600, tp),
-      labelSmall: s(12, FontWeight.w500, ts),
+      displayLarge: s(TypeScale.display),
+      displayMedium: s(TypeScale.headlineLarge),
+      displaySmall: s(TypeScale.displayPhone),
+      headlineLarge: s(TypeScale.headlineLarge),
+      headlineMedium: s(TypeScale.headline),
+      headlineSmall: s(TypeScale.headlineMedium),
+      titleLarge: s(TypeScale.title),
+      titleMedium: s(TypeScale.titleMedium),
+      titleSmall: s(TypeScale.titleSmall),
+      bodyLarge: s(TypeScale.bodyLarge),
+      bodyMedium: s(TypeScale.body),
+      bodySmall: s(TypeScale.bodySmall, ts),
+      labelLarge: s(TypeScale.label),
+      labelMedium: s(TypeScale.labelMedium),
+      labelSmall: s(TypeScale.labelSmall, ts),
+    );
+    final extraText = PawTextStyles(
+      mono: styleFor(TypeScale.mono, locale, tp, family: FontFamilies.mono),
+      overline: s(TypeScale.overline, ts),
     );
 
-    final minButton = Size(64, easyMode ? 56 : 48);
-    final buttonShape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.button));
-    final cardShadow = light ? Colors.black.withValues(alpha: 0.06) : Colors.transparent;
+    final target = easyMode ? TapTarget.easy : TapTarget.min;
+    const pill = StadiumBorder();
+    final focusRing = BorderSide(color: paw.focus, width: Strokes.focus);
+    final controlSide = BorderSide(color: paw.controlBorder);
+    RoundedRectangleBorder rounded(double r, [BorderSide side = BorderSide.none]) =>
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(r), side: side);
+    OutlineInputBorder field(Color c, [double w = 1]) => OutlineInputBorder(
+          borderRadius: BorderRadius.circular(Radii.input),
+          borderSide: BorderSide(color: c, width: w),
+        );
+    WidgetStateProperty<T> byState<T>(T normal, {T? selected, T? disabled}) =>
+        WidgetStateProperty.resolveWith((st) {
+          if (disabled != null && st.contains(WidgetState.disabled)) return disabled;
+          if (selected != null && st.contains(WidgetState.selected)) return selected;
+          return normal;
+        });
+    final disabledFill = paw.surfaceSubtle;
+    final disabledText = ts;
 
     return ThemeData(
       useMaterial3: true,
@@ -104,13 +131,18 @@ class AppTheme {
       colorScheme: scheme,
       scaffoldBackgroundColor: paw.background,
       canvasColor: paw.background,
-      fontFamily: family,
+      fontFamily: fontFor(locale),
       fontFamilyFallback: fallbackFor(locale),
       textTheme: textTheme,
-      extensions: [paw],
+      extensions: [paw, extraText],
       visualDensity: VisualDensity.standard,
       materialTapTargetSize: MaterialTapTargetSize.padded,
       splashFactory: InkSparkle.splashFactory,
+      focusColor: paw.focus.withValues(alpha: Opacities.focus),
+      hoverColor: paw.textPrimary.withValues(alpha: Opacities.hover),
+      highlightColor: paw.textPrimary.withValues(alpha: Opacities.highlight),
+      dividerColor: paw.outline,
+      iconTheme: IconThemeData(color: tp, size: IconSizes.lg),
       appBarTheme: AppBarTheme(
         backgroundColor: paw.background,
         foregroundColor: tp,
@@ -118,82 +150,136 @@ class AppTheme {
         scrolledUnderElevation: 0,
         centerTitle: false,
         titleTextStyle: textTheme.titleLarge,
+        shape: Border(bottom: BorderSide(color: paw.outline)),
       ),
       cardTheme: CardThemeData(
         color: paw.surface,
-        elevation: light ? 2 : 0,
-        shadowColor: cardShadow,
+        elevation: 0,
+        shadowColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         margin: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Radii.card),
-          side: light ? BorderSide.none : BorderSide(color: paw.outline),
-        ),
+        shape: rounded(Radii.card, BorderSide(color: paw.outline)),
       ),
       filledButtonTheme: FilledButtonThemeData(
-        style: FilledButton.styleFrom(
-          minimumSize: minButton,
-          shape: buttonShape,
-          textStyle: textTheme.labelLarge,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        style: ButtonStyle(
+          // Padding is left to Material, which narrows it as text grows.
+          minimumSize: WidgetStatePropertyAll(Size(64, target)),
+          shape: const WidgetStatePropertyAll(pill),
+          textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
+          elevation: const WidgetStatePropertyAll(0),
+          backgroundColor: WidgetStateProperty.resolveWith((st) {
+            if (st.contains(WidgetState.disabled)) return disabledFill;
+            if (st.contains(WidgetState.pressed)) return paw.actionPressed;
+            return paw.action;
+          }),
+          foregroundColor: byState(paw.onAction, disabled: disabledText),
+          iconColor: byState(paw.onAction, disabled: disabledText),
+          overlayColor: WidgetStatePropertyAll(paw.onAction.withValues(alpha: Opacities.pressed)),
+          side: WidgetStateProperty.resolveWith(
+              (st) => st.contains(WidgetState.focused) ? BorderSide(color: tp, width: Strokes.focus) : null),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          minimumSize: minButton,
-          shape: buttonShape,
-          side: BorderSide(color: highContrast ? paw.textPrimary : paw.outline, width: 1.5),
-          foregroundColor: primary,
-          textStyle: textTheme.labelLarge,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        style: ButtonStyle(
+          minimumSize: WidgetStatePropertyAll(Size(64, target)),
+          shape: const WidgetStatePropertyAll(pill),
+          textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
+          backgroundColor: WidgetStatePropertyAll(paw.surface),
+          foregroundColor: byState(tp, disabled: disabledText),
+          iconColor: byState(paw.brand, disabled: disabledText),
+          overlayColor: WidgetStatePropertyAll(paw.brand.withValues(alpha: Opacities.highlight)),
+          side: WidgetStateProperty.resolveWith((st) {
+            if (st.contains(WidgetState.focused)) return focusRing;
+            if (st.contains(WidgetState.disabled)) return BorderSide(color: paw.outline);
+            return controlSide;
+          }),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          minimumSize: Size(48, easyMode ? 56 : 48),
-          shape: buttonShape,
+        style: ButtonStyle(
+          minimumSize: WidgetStatePropertyAll(Size(TapTarget.min, target)),
+          shape: const WidgetStatePropertyAll(pill),
+          textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
+          foregroundColor: byState(paw.brand, disabled: disabledText),
+          iconColor: byState(paw.brand, disabled: disabledText),
+          overlayColor: WidgetStatePropertyAll(paw.brand.withValues(alpha: Opacities.pressed)),
+          side: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.focused) ? focusRing : null),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(64, target),
+          shape: pill,
+          elevation: 0,
+          backgroundColor: paw.surface,
+          foregroundColor: paw.brand,
           textStyle: textTheme.labelLarge,
         ),
       ),
       iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(minimumSize: Size.square(easyMode ? 56 : 48)),
+        style: ButtonStyle(
+          minimumSize: WidgetStatePropertyAll(Size.square(target)),
+          foregroundColor: byState(tp, selected: paw.brand, disabled: disabledText),
+          side: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.focused) ? focusRing : null),
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: paw.action,
+        foregroundColor: paw.onAction,
+        elevation: 2,
+        focusElevation: 2,
+        hoverElevation: 3,
+        highlightElevation: 1,
+        shape: pill,
+        extendedTextStyle: textTheme.labelLarge,
       ),
       chipTheme: ChipThemeData(
-        shape: const StadiumBorder(),
-        side: BorderSide(color: paw.outline),
-        backgroundColor: paw.surface,
-        selectedColor: paw.primaryContainer,
-        labelStyle: textTheme.labelMedium,
+        shape: StadiumBorder(side: BorderSide(color: paw.outline)),
+        side: WidgetStateBorderSide.resolveWith((st) {
+          if (st.contains(WidgetState.focused)) return focusRing;
+          if (st.contains(WidgetState.selected)) return BorderSide(color: paw.brand);
+          return BorderSide(color: paw.outline);
+        }),
+        color: byState(paw.surface, selected: paw.brand, disabled: disabledFill),
+        labelStyle: textTheme.labelMedium?.copyWith(color: WidgetStateColor.resolveWith(
+            (st) => st.contains(WidgetState.selected) ? paw.onBrand : (st.contains(WidgetState.disabled) ? ts : tp))),
+        secondaryLabelStyle: textTheme.labelMedium?.copyWith(color: paw.onBrand),
+        checkmarkColor: paw.onBrand,
+        iconTheme: IconThemeData(color: paw.brand, size: IconSizes.sm),
+        deleteIconColor: ts,
         // 48 px tall with the default label: an easy finger-sized target.
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.sm),
+        showCheckmark: true,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: paw.surface,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Radii.button),
-          borderSide: BorderSide(color: paw.outline),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Radii.button),
-          borderSide: BorderSide(color: highContrast ? paw.textSecondary : paw.outline),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Radii.button),
-          borderSide: BorderSide(color: primary, width: 2),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Radii.button),
-          borderSide: BorderSide(color: paw.error),
-        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.lg),
+        border: field(paw.controlBorder),
+        enabledBorder: field(paw.controlBorder),
+        focusedBorder: field(paw.focus, 2),
+        errorBorder: field(paw.error),
+        focusedErrorBorder: field(paw.error, 2),
+        disabledBorder: field(paw.outline),
         labelStyle: textTheme.bodyMedium?.copyWith(color: ts),
+        floatingLabelStyle: textTheme.labelMedium?.copyWith(color: tp),
         hintStyle: textTheme.bodyMedium?.copyWith(color: ts),
+        helperStyle: textTheme.bodySmall,
+        errorStyle: textTheme.bodySmall?.copyWith(color: paw.error),
+        prefixIconColor: ts,
+        suffixIconColor: ts,
+      ),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: paw.brand,
+        selectionColor: paw.brand.withValues(alpha: Opacities.selection),
+        selectionHandleColor: paw.brand,
       ),
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: paw.surface,
         surfaceTintColor: Colors.transparent,
         showDragHandle: true,
+        dragHandleColor: paw.controlBorder,
+        elevation: 0,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(Radii.sheet)),
         ),
@@ -201,43 +287,114 @@ class AppTheme {
       dialogTheme: DialogThemeData(
         backgroundColor: paw.surface,
         surfaceTintColor: Colors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.card)),
+        shape: rounded(Radii.card),
+        titleTextStyle: textTheme.titleLarge,
+        contentTextStyle: textTheme.bodyMedium,
+      ),
+      popupMenuTheme: PopupMenuThemeData(
+        color: paw.surface,
+        surfaceTintColor: Colors.transparent,
+        shape: rounded(Radii.md, BorderSide(color: paw.outline)),
+        textStyle: textTheme.bodyMedium,
+      ),
+      menuTheme: MenuThemeData(
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll(paw.surface),
+          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+          shape: WidgetStatePropertyAll(rounded(Radii.md, BorderSide(color: paw.outline))),
+        ),
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: paw.surface,
         surfaceTintColor: Colors.transparent,
+        elevation: 0,
         indicatorColor: paw.primaryContainer,
+        indicatorShape: pill,
         height: easyMode ? 76 : 68,
-        labelTextStyle: WidgetStatePropertyAll(textTheme.labelMedium),
+        iconTheme: WidgetStateProperty.resolveWith((st) => IconThemeData(
+              color: st.contains(WidgetState.selected) ? paw.brand : ts,
+              size: easyMode ? IconSizes.xl : IconSizes.lg,
+            )),
+        labelTextStyle: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.selected)
+            ? textTheme.labelMedium!.copyWith(color: paw.brand, fontWeight: FontWeight.w700)
+            : textTheme.labelMedium!.copyWith(color: ts, fontWeight: FontWeight.w500)),
       ),
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: paw.surface,
         indicatorColor: paw.primaryContainer,
-        selectedLabelTextStyle: textTheme.labelMedium?.copyWith(color: primary),
-        unselectedLabelTextStyle: textTheme.labelMedium?.copyWith(color: ts),
+        indicatorShape: pill,
+        selectedIconTheme: IconThemeData(color: paw.brand),
+        unselectedIconTheme: IconThemeData(color: ts),
+        selectedLabelTextStyle: textTheme.labelLarge?.copyWith(color: paw.brand, fontWeight: FontWeight.w700),
+        unselectedLabelTextStyle: textTheme.labelLarge?.copyWith(color: ts, fontWeight: FontWeight.w500),
       ),
       navigationDrawerTheme: NavigationDrawerThemeData(
         backgroundColor: paw.surface,
         indicatorColor: paw.primaryContainer,
         surfaceTintColor: Colors.transparent,
       ),
+      tabBarTheme: TabBarThemeData(
+        labelColor: paw.brand,
+        unselectedLabelColor: ts,
+        indicatorColor: paw.brand,
+        dividerColor: paw.outline,
+        labelStyle: textTheme.labelLarge,
+        unselectedLabelStyle: textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w500),
+      ),
+      segmentedButtonTheme: SegmentedButtonThemeData(
+        style: ButtonStyle(
+          minimumSize: WidgetStatePropertyAll(Size(TapTarget.min, target)),
+          shape: const WidgetStatePropertyAll(pill),
+          side: WidgetStatePropertyAll(controlSide),
+          backgroundColor: byState(paw.surface, selected: paw.brand),
+          foregroundColor: byState(tp, selected: paw.onBrand),
+          iconColor: byState(tp, selected: paw.onBrand),
+          textStyle: WidgetStatePropertyAll(textTheme.labelMedium),
+        ),
+      ),
       dividerTheme: DividerThemeData(color: paw.outline, space: 1, thickness: 1),
       listTileTheme: ListTileThemeData(
-        minVerticalPadding: 12,
+        minVerticalPadding: Space.md,
         minTileHeight: easyMode ? 64 : 56,
         iconColor: ts,
         titleTextStyle: textTheme.bodyLarge,
         subtitleTextStyle: textTheme.bodySmall,
+        shape: rounded(Radii.md),
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.button)),
+        backgroundColor: paw.inverseSurface,
+        contentTextStyle: textTheme.bodyMedium?.copyWith(color: paw.onInverseSurface),
+        actionTextColor: light ? PawColors.dark.brand : PawColors.light.brand,
+        shape: rounded(Radii.md),
+        elevation: 0,
+      ),
+      tooltipTheme: TooltipThemeData(
+        decoration: BoxDecoration(color: paw.inverseSurface, borderRadius: BorderRadius.circular(Radii.sm)),
+        textStyle: textTheme.bodySmall?.copyWith(color: paw.onInverseSurface),
+      ),
+      badgeTheme: BadgeThemeData(backgroundColor: paw.sos, textColor: paw.onSos),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: paw.brand,
+        linearTrackColor: paw.surfaceSubtle,
+        circularTrackColor: Colors.transparent,
       ),
       switchTheme: SwitchThemeData(
-        thumbColor: WidgetStateProperty.resolveWith(
-            (s) => s.contains(WidgetState.selected) ? onPrimary : paw.textSecondary),
-        trackColor: WidgetStateProperty.resolveWith(
-            (s) => s.contains(WidgetState.selected) ? primary : paw.outline),
+        thumbColor: byState(paw.controlBorder, selected: paw.onBrand),
+        trackColor: byState(paw.surfaceSubtle, selected: paw.brand),
+        trackOutlineColor: byState(paw.controlBorder, selected: paw.brand),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: byState(Colors.transparent, selected: paw.brand),
+        checkColor: WidgetStatePropertyAll(paw.onBrand),
+        side: BorderSide(color: paw.controlBorder, width: Strokes.strong),
+        shape: rounded(Radii.xs),
+      ),
+      radioTheme: RadioThemeData(fillColor: byState(paw.controlBorder, selected: paw.brand)),
+      sliderTheme: SliderThemeData(
+        activeTrackColor: paw.brand,
+        inactiveTrackColor: paw.surfaceSubtle,
+        thumbColor: paw.brand,
       ),
       pageTransitionsTheme: const PageTransitionsTheme(builders: {
         TargetPlatform.android: FadeForwardsPageTransitionsBuilder(),

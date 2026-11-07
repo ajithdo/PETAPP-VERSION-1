@@ -3250,6 +3250,12 @@ abstract class AppLocalizations {
   /// **'Choose a pet'**
   String get choosePetForHealth;
 
+  /// Pill on the Health pass when nothing is due or overdue.
+  ///
+  /// In en, this message translates to:
+  /// **'All up to date'**
+  String get healthAllClear;
+
   /// No description provided for @itemsNeedAttention.
   ///
   /// In en, this message translates to:
@@ -4461,6 +4467,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open now'**
   String get openNow;
+
+  /// Button on a vaccine in the Health timeline that opens its certificate.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate'**
+  String get certificate;
+
+  /// Title of the Health card with allergies and the regular clinic, for emergencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency info'**
+  String get emergencyInfo;
+
+  /// Button on the clinic page booking card that continues to the confirm screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Book for {name}'**
+  String bookFor(String name);
+
+  /// Label on a clinic card before the earliest bookable time.
+  ///
+  /// In en, this message translates to:
+  /// **'Next free slot'**
+  String get nextFreeSlot;
 
   /// No description provided for @openNowChip.
   ///

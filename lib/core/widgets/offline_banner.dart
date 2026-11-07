@@ -31,7 +31,7 @@ class OfflineBanner extends ConsumerWidget {
     return Column(children: [
       Expanded(child: MediaQuery.removePadding(context: context, removeBottom: true, child: child)),
       Material(
-        color: Color.alphaBlend(context.paw.warning.withValues(alpha: 0.18), context.paw.surface),
+        color: Color.alphaBlend(context.paw.warning.withValues(alpha: Opacities.tintStrong), context.paw.surface),
         child: SafeArea(
           top: false,
           child: Semantics(
@@ -39,7 +39,7 @@ class OfflineBanner extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.sm),
               child: Row(children: [
-                Icon(Icons.cloud_off_rounded, size: 20, color: context.paw.textPrimary),
+                Icon(Icons.cloud_off_outlined, size: IconSizes.md, color: context.paw.textPrimary),
                 const SizedBox(width: Space.sm),
                 Expanded(child: Text(context.l10n.offlineBanner, style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary))),
               ]),

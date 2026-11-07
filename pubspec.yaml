@@ -97,6 +97,10 @@ flutter:
 
   assets:
     - assets/images/
+    # Demo photos (public domain, see docs/design-2/demo-photo-credits.md).
+    - assets/images/demo/pets/
+    - assets/images/demo/album/
+    - assets/images/demo/places/
 
   fonts:
     - family: PlusJakartaSans
@@ -108,6 +112,22 @@ flutter:
         - asset: assets/fonts/PlusJakartaSans-600.ttf
           weight: 600
         - asset: assets/fonts/PlusJakartaSans-700.ttf
+          weight: 700
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-400.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-500.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-600.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-700.ttf
+          weight: 700
+    - family: JetBrainsMono
+      fonts:
+        - asset: assets/fonts/JetBrainsMono-500.ttf
+          weight: 500
+        - asset: assets/fonts/JetBrainsMono-700.ttf
           weight: 700
     - family: NotoSansDevanagari
       fonts:

@@ -190,21 +190,43 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
           child: Column(children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: context.gutter),
-              child: Semantics(
-                label: l.stepOf(_step + 1, 2),
-                child: LinearProgressIndicator(value: (_step + 1) / 2, minHeight: 6, borderRadius: BorderRadius.circular(3)),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: Space.formWidth),
+                child: Semantics(
+                  label: l.stepOf(_step + 1, 2),
+                  excludeSemantics: true,
+                  child: Row(children: [
+                    Expanded(
+                      child: LinearProgressIndicator(
+                        value: (_step + 1) / 2,
+                        minHeight: Sizes.progressBar,
+                        borderRadius: BorderRadius.circular(Radii.xs),
+                      ),
+                    ),
+                    const SizedBox(width: Space.md),
+                    Text(l.stepOf(_step + 1, 2), style: context.text.labelMedium?.copyWith(color: context.paw.textSecondary)),
+                  ]),
+                ),
               ),
             ),
             Expanded(
-              child: PageBody(maxWidth: 640, children: [
+              child: PageBody(maxWidth: Space.formWidth, children: [
                 const SizedBox(height: Space.lg),
-                if (_step == 0) ..._basics(context) else ..._about(context),
+                // Design 2: the whole step sits in one white card.
+                PawCard(
+                  padding: EdgeInsets.all(context.isPhone ? Space.lg : Space.xl),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: _step == 0 ? _basics(context) : _about(context),
+                  ),
+                ),
+                const SizedBox(height: Space.lg),
               ]),
             ),
             Padding(
               padding: EdgeInsets.all(context.gutter),
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 640),
+                constraints: const BoxConstraints(maxWidth: Space.formWidth),
                 child: Row(children: [
                   if (_step == 1) ...[
                     Expanded(child: SecondaryButton(label: l.back, onPressed: () => setState(() => _step = 0))),
@@ -241,8 +263,8 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       Center(
         child: Stack(children: [
           _photo != null
-              ? ClipOval(child: Image.memory(_photo!, width: 112, height: 112, fit: BoxFit.cover, semanticLabel: context.l10n.vaultPhoto))
-              : PetAvatar(species: _species, colorTag: _color, photoUrl: _photoUrl, size: 112),
+              ? ClipOval(child: Image.memory(_photo!, width: Sizes.formAvatar, height: Sizes.formAvatar, fit: BoxFit.cover, semanticLabel: context.l10n.vaultPhoto))
+              : PetAvatar(species: _species, colorTag: _color, photoUrl: _photoUrl, size: Sizes.formAvatar),
           Positioned(
             right: 0,
             bottom: 0,
@@ -252,7 +274,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
                 final bytes = await pickSquarePhoto(context);
                 if (bytes != null) setState(() => _photo = bytes);
               },
-              icon: const Icon(Icons.photo_camera_rounded),
+              icon: const Icon(Icons.photo_camera_outlined),
             ),
           ),
         ]),
@@ -263,18 +285,17 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
         child: PawTextField(
           label: l.petName,
           controller: _name,
-          prefixIcon: Icons.pets_rounded,
+          prefixIcon: Icons.pets_outlined,
           autofocus: !_isEdit,
           textInputAction: TextInputAction.next,
           validator: (v) => (v == null || v.trim().isEmpty) ? l.fieldRequired : null,
         ),
       ),
-      Text(l.species, style: context.text.titleSmall),
-      const SizedBox(height: Space.sm),
-      ChoiceRow<String>(
+      FieldLabel(l.species),
+      ChoiceTiles<String>(
         options: const ['dog', 'cat', 'bird', 'rabbit'],
         selected: _species,
-        icons: speciesIcon,
+        icon: speciesIcon,
         label: (s) => speciesLabel(context, s),
         onSelected: (s) => setState(() {
           if (s != _species) {
@@ -285,11 +306,12 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
         }),
       ),
       const SizedBox(height: Space.lg),
-      Text(l.breed, style: context.text.titleSmall),
-      const SizedBox(height: Space.sm),
-      OutlinedButton.icon(
-        style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-        onPressed: () async {
+      PawPickerField(
+        label: l.breed,
+        value: _breedId == null ? null : breedText,
+        placeholder: l.chooseBreed,
+        icon: Icons.search_outlined,
+        onTap: () async {
           final b = await pickBreed(context, species);
           if (b != null) {
             setState(() {
@@ -298,18 +320,13 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
             });
           }
         },
-        icon: const Icon(Icons.search_rounded),
-        label: Text(breedText, overflow: TextOverflow.ellipsis),
       ),
       if (_species == 'bird') ...[
         const SizedBox(height: Space.md),
-        InfoNote(l.birdLegalNote, icon: Icons.gavel_rounded),
+        InfoNote(l.birdLegalNote, icon: Icons.gavel_outlined),
       ],
       const SizedBox(height: Space.lg),
-      Text(l.colourTag, style: context.text.titleSmall),
-      const SizedBox(height: 2),
-      Text(l.colourTagHint, style: context.text.bodySmall),
-      const SizedBox(height: Space.sm),
+      FieldLabel(l.colourTag, hint: l.colourTagHint),
       Wrap(spacing: Space.md, runSpacing: Space.md, children: [
         for (final e in PetTagColors.all.entries)
           Semantics(
@@ -320,14 +337,17 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
               customBorder: const CircleBorder(),
               onTap: () => setState(() => _color = e.key),
               child: Container(
-                width: 48,
-                height: 48,
+                width: TapTarget.min,
+                height: TapTarget.min,
                 decoration: BoxDecoration(
                   color: e.value,
                   shape: BoxShape.circle,
-                  border: Border.all(color: e.key == _color ? context.paw.textPrimary : Colors.transparent, width: 3),
+                  border: Border.all(
+                    color: e.key == _color ? context.paw.textPrimary : context.paw.outline,
+                    width: e.key == _color ? Strokes.avatarRingSelected : Strokes.hairline,
+                  ),
                 ),
-                child: e.key == _color ? const Icon(Icons.check_rounded, color: Colors.white) : null,
+                child: e.key == _color ? Icon(Icons.check_outlined, color: readableOn(context.paw.ink, [e.value], ratio: 3)) : null,
               ),
             ),
           ),
@@ -340,26 +360,27 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
     final clinics = ref.watch(_clinicNamesProvider).value ?? const <(String, String)>[];
     return [
       Text(l.petAboutTitle(_name.text.trim()), style: context.text.titleLarge),
-      const SizedBox(height: 2),
+      const SizedBox(height: Space.xxs),
       Text(l.petAboutSubtitle, style: context.text.bodySmall),
       const SizedBox(height: Space.lg),
-      Text(l.birthday, style: context.text.titleSmall),
-      const SizedBox(height: Space.sm),
+      FieldLabel(l.birthday),
       SegmentedButton<bool>(
         segments: [
-          ButtonSegment(value: false, label: Text(l.exactDate), icon: const Icon(Icons.cake_rounded)),
-          ButtonSegment(value: true, label: Text(l.approxAge), icon: const Icon(Icons.timelapse_rounded)),
+          ButtonSegment(value: false, label: Text(l.exactDate), icon: const Icon(Icons.cake_outlined)),
+          ButtonSegment(value: true, label: Text(l.approxAge), icon: const Icon(Icons.timelapse_outlined)),
         ],
         selected: {_useApprox},
         onSelectionChanged: (s) => setState(() => _useApprox = s.first),
       ),
       const SizedBox(height: Space.md),
       if (!_useApprox)
-        OutlinedButton.icon(
-          style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-          icon: const Icon(Icons.calendar_today_rounded),
-          label: Text(_birthday == null ? l.chooseDate : Fmt.date(_birthday!, context.lang)),
-          onPressed: () async {
+        PawPickerField(
+          label: l.birthday,
+          icon: Icons.calendar_today_outlined,
+          value: _birthday == null ? null : Fmt.date(_birthday!, context.lang),
+          placeholder: l.chooseDate,
+          trailingIcon: Icons.edit_calendar_outlined,
+          onTap: () async {
             final d = await showDatePicker(
               context: context,
               firstDate: DateTime(1990),
@@ -372,26 +393,29 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       else
         Row(children: [
           Expanded(
-            child: DropdownButtonFormField<int>(
-              initialValue: _approxYears,
-              decoration: InputDecoration(labelText: l.years),
-              items: [for (var i = 0; i <= 25; i++) DropdownMenuItem(value: i, child: Text('$i'))],
-              onChanged: (v) => setState(() => _approxYears = v ?? 0),
+            child: LabeledField(
+              label: l.years,
+              child: DropdownButtonFormField<int>(
+                initialValue: _approxYears,
+                items: [for (var i = 0; i <= 25; i++) DropdownMenuItem(value: i, child: Text('$i'))],
+                onChanged: (v) => setState(() => _approxYears = v ?? 0),
+              ),
             ),
           ),
           const SizedBox(width: Space.md),
           Expanded(
-            child: DropdownButtonFormField<int>(
-              initialValue: _approxMonths,
-              decoration: InputDecoration(labelText: l.months),
-              items: [for (var i = 0; i <= 11; i++) DropdownMenuItem(value: i, child: Text('$i'))],
-              onChanged: (v) => setState(() => _approxMonths = v ?? 0),
+            child: LabeledField(
+              label: l.months,
+              child: DropdownButtonFormField<int>(
+                initialValue: _approxMonths,
+                items: [for (var i = 0; i <= 11; i++) DropdownMenuItem(value: i, child: Text('$i'))],
+                onChanged: (v) => setState(() => _approxMonths = v ?? 0),
+              ),
             ),
           ),
         ]),
-      const SizedBox(height: Space.lg),
-      Text(l.gender, style: context.text.titleSmall),
-      const SizedBox(height: Space.sm),
+      const SizedBox(height: Space.md),
+      FieldLabel(l.gender),
       ChoiceRow<String>(
         options: const ['male', 'female', 'unknown'],
         selected: _gender,
@@ -404,7 +428,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
         controller: _weight,
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]'))],
-        prefixIcon: Icons.monitor_weight_rounded,
+        prefixIcon: Icons.monitor_weight_outlined,
       ),
       Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
@@ -414,27 +438,26 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
           subtitle: Text(l.moreDetailsHint, style: context.text.bodySmall),
           childrenPadding: const EdgeInsets.only(top: Space.sm),
           children: [
-            PawTextField(label: l.markings, controller: _markings),
-            PawTextField(label: l.microchip, controller: _microchip),
+            _pair(context, PawTextField(label: l.markings, controller: _markings), PawTextField(label: l.microchip, controller: _microchip)),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               value: _neutered,
               onChanged: (v) => setState(() => _neutered = v),
               title: Text(l.neutered),
             ),
-            PawTextField(label: l.allergies, controller: _allergies, helper: l.allergiesHint),
-            PawTextField(label: l.dietType, controller: _diet),
-            DropdownButtonFormField<String?>(
-              initialValue: clinics.any((c) => c.$1 == _clinicId) ? _clinicId : null,
-              isExpanded: true,
-              decoration: InputDecoration(labelText: l.regularClinic),
-              items: [
-                DropdownMenuItem<String?>(value: null, child: Text(l.none)),
-                for (final c in clinics) DropdownMenuItem(value: c.$1, child: Text(c.$2, overflow: TextOverflow.ellipsis)),
-              ],
-              onChanged: (v) => setState(() => _clinicId = v),
+            _pair(context, PawTextField(label: l.allergies, controller: _allergies, helper: l.allergiesHint), PawTextField(label: l.dietType, controller: _diet)),
+            LabeledField(
+              label: l.regularClinic,
+              child: DropdownButtonFormField<String?>(
+                initialValue: clinics.any((c) => c.$1 == _clinicId) ? _clinicId : null,
+                isExpanded: true,
+                items: [
+                  DropdownMenuItem<String?>(value: null, child: Text(l.none)),
+                  for (final c in clinics) DropdownMenuItem(value: c.$1, child: Text(c.$2, overflow: TextOverflow.ellipsis)),
+                ],
+                onChanged: (v) => setState(() => _clinicId = v),
+              ),
             ),
-            const SizedBox(height: Space.md),
             PawTextField(label: l.temperament, controller: _temperament, maxLines: 3),
             InfoNote(l.insuranceInVault),
           ],
@@ -442,6 +465,17 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       ),
     ];
   }
+}
+
+/// Two form boxes side by side on wider screens, one under the other on
+/// phones (Design 2 pet form).
+Widget _pair(BuildContext context, Widget a, Widget b) {
+  if (context.isPhone) return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [a, b]);
+  return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    Expanded(child: a),
+    const SizedBox(width: Space.md),
+    Expanded(child: b),
+  ]);
 }
 
 String colourName(BuildContext context, String key) {

@@ -80,7 +80,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
       automaticallyImplyLeading: false,
       leading: IconButton(
         tooltip: l.msgClose,
-        icon: const Icon(Icons.close_rounded),
+        icon: const Icon(Icons.close_outlined),
         onPressed: () => setState(() {
           _searching = false;
           _search.clear();
@@ -123,10 +123,10 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         button: true,
         label: l.msgChatInfo,
         child: InkWell(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(Radii.md),
           onTap: () => _info(context, c, me),
           child: Row(children: [
-            ConversationAvatar(conversation: c, viewerUid: me.uid, size: 40),
+            ConversationAvatar(conversation: c, viewerUid: me.uid, size: Sizes.avatarSm),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
@@ -139,34 +139,34 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                 ),
               ]),
             ),
-            if (muted) Padding(padding: const EdgeInsets.only(left: 4), child: Icon(Icons.notifications_off_rounded, size: 18, color: context.paw.textSecondary)),
+            if (muted) Padding(padding: const EdgeInsets.only(left: Space.xs), child: Icon(Icons.notifications_off_outlined, size: IconSizes.chip, color: context.paw.textSecondary)),
           ]),
         ),
       ),
       actions: [
-        IconButton(tooltip: l.msgCallMasked, icon: const Icon(Icons.call_rounded), onPressed: () => _call(context, c, me)),
+        IconButton(tooltip: l.msgCallMasked, icon: const Icon(Icons.call_outlined), onPressed: () => _call(context, c, me)),
         PopupMenuButton<String>(
           tooltip: l.msgMore,
           onSelected: (v) => _menu(context, v, c, consult, me),
           itemBuilder: (_) => [
-            PopupMenuItem(value: 'search', child: ListTile(leading: const Icon(Icons.search_rounded), title: Text(l.msgSearchInChat))),
+            PopupMenuItem(value: 'search', child: ListTile(leading: const Icon(Icons.search_outlined), title: Text(l.msgSearchInChat))),
             PopupMenuItem(
               value: 'mute',
               child: ListTile(
-                leading: Icon(muted ? Icons.notifications_active_rounded : Icons.notifications_off_rounded),
+                leading: Icon(muted ? Icons.notifications_active_outlined : Icons.notifications_off_outlined),
                 title: Text(muted ? l.msgUnmute : l.msgMute),
               ),
             ),
             if (c.bookingId != null)
-              PopupMenuItem(value: 'booking', child: ListTile(leading: const Icon(Icons.event_note_rounded), title: Text(l.bookingDetails))),
+              PopupMenuItem(value: 'booking', child: ListTile(leading: const Icon(Icons.event_note_outlined), title: Text(l.bookingDetails))),
             if (consult != null && me.role == UserRole.vet)
-              PopupMenuItem(value: 'vettools', child: ListTile(leading: const Icon(Icons.medical_information_rounded), title: Text(l.tvOpenVetTools))),
-            PopupMenuItem(value: 'report', child: ListTile(leading: const Icon(Icons.flag_rounded), title: Text(l.msgReport))),
+              PopupMenuItem(value: 'vettools', child: ListTile(leading: const Icon(Icons.medical_information_outlined), title: Text(l.tvOpenVetTools))),
+            PopupMenuItem(value: 'report', child: ListTile(leading: const Icon(Icons.flag_outlined), title: Text(l.msgReport))),
             PopupMenuItem(
               value: 'block',
-              child: ListTile(leading: const Icon(Icons.block_rounded), title: Text(blockedByMe ? l.msgUnblock : l.msgBlock)),
+              child: ListTile(leading: const Icon(Icons.block_outlined), title: Text(blockedByMe ? l.msgUnblock : l.msgBlock)),
             ),
-            PopupMenuItem(value: 'help', child: ListTile(leading: const Icon(Icons.support_agent_rounded), title: Text(l.msgGetHelp))),
+            PopupMenuItem(value: 'help', child: ListTile(leading: const Icon(Icons.support_agent_outlined), title: Text(l.msgGetHelp))),
           ],
         ),
       ],
@@ -244,7 +244,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             ]),
           ),
           PawTextField(label: l.msgReportDetails, controller: details, maxLines: 3),
-          PrimaryButton(label: l.msgReportSend, icon: Icons.flag_rounded, onPressed: () => Navigator.pop(ctx, true)),
+          PrimaryButton(label: l.msgReportSend, icon: Icons.flag_outlined, onPressed: () => Navigator.pop(ctx, true)),
         ]);
       });
     });
@@ -266,15 +266,15 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             contentPadding: EdgeInsets.zero,
             leading: CircleAvatar(
               backgroundColor: ctx.paw.primaryContainer,
-              child: Icon(p == c.ownerId ? Icons.person_rounded : Icons.storefront_rounded, color: ctx.colors.primary),
+              child: Icon(p == c.ownerId ? Icons.person_outlined : Icons.storefront_outlined, color: ctx.colors.primary),
             ),
             title: Text(p == me.uid ? l.msgYou(c.nameOf(p)) : c.nameOf(p)),
             subtitle: Text(maskedPhone(p == c.ownerId ? c.ownerPhone : c.providerPhone)),
           ),
         if (c.petName.isNotEmpty)
-          ListTile(contentPadding: EdgeInsets.zero, leading: const Icon(Icons.pets_rounded), title: Text(c.petName)),
+          ListTile(contentPadding: EdgeInsets.zero, leading: const Icon(Icons.pets_outlined), title: Text(c.petName)),
         const SizedBox(height: Space.sm),
-        InfoNote(l.msgMaskedInfo, icon: Icons.shield_rounded),
+        InfoNote(l.msgMaskedInfo, icon: Icons.shield_outlined),
       ]);
     });
   }

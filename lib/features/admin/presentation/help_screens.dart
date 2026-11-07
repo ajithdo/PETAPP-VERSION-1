@@ -30,7 +30,7 @@ class HelpListScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.helpAndComplaints)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.push('$base/new'),
-        icon: const Icon(Icons.add_comment_rounded),
+        icon: const Icon(Icons.add_comment_outlined),
         label: Text(l.hpRaise),
       ),
       body: const HelpListBody(),
@@ -56,17 +56,17 @@ class HelpListBody extends ConsumerWidget {
       (l.hpFaqUrgentQ, l.hpFaqUrgentA),
       (l.hpFaqDataQ, l.hpFaqDataA),
     ];
-    return PageBody(maxWidth: 800, children: [
+    return PageBody(maxWidth: Space.readingWidth, children: [
       const SizedBox(height: Space.md),
       PawCard(
         color: context.paw.primaryContainer,
         child: Row(children: [
-          Icon(Icons.support_agent_rounded, size: 40, color: context.colors.primary),
+          Icon(Icons.support_agent_outlined, size: IconSizes.xxxl, color: context.colors.primary),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(l.hpIntroTitle, style: context.text.titleMedium),
-              const SizedBox(height: 2),
+              const SizedBox(height: Space.xxs),
               Text(user?.isPlus == true ? l.hpIntroPlus : l.hpIntroBody, style: context.text.bodyMedium),
             ]),
           ),
@@ -74,13 +74,13 @@ class HelpListBody extends ConsumerWidget {
       ),
       if (embedded) ...[
         const SizedBox(height: Space.md),
-        PrimaryButton(label: l.hpRaise, icon: Icons.add_comment_rounded, onPressed: () => context.push('$base/new')),
+        PrimaryButton(label: l.hpRaise, icon: Icons.add_comment_outlined, onPressed: () => context.push('$base/new')),
       ],
       SectionHeader(l.hpYourTickets),
       AsyncView<List<Ticket>>(
         value: tickets,
         onRetry: () => ref.invalidate(myTicketsProvider),
-        loading: const Skeleton(height: 96),
+        loading: const Skeleton(height: Sizes.skeletonCard),
         data: (list) => list.isEmpty
             ? PawCard(child: Text(l.hpNoTickets))
             : Column(children: [
@@ -233,7 +233,7 @@ class _NewTicketScreenState extends ConsumerState<NewTicketScreen> {
     final ok = _body.text.trim().length >= 10;
     return Scaffold(
       appBar: AppBar(title: Text(l.hpRaise)),
-      body: PageBody(maxWidth: 700, children: [
+      body: PageBody(maxWidth: Space.formWidth, children: [
         const SizedBox(height: Space.md),
         Text(l.hpAbout, style: context.text.titleSmall),
         const SizedBox(height: Space.xs),
@@ -284,7 +284,7 @@ class _NewTicketScreenState extends ConsumerState<NewTicketScreen> {
         const SizedBox(height: Space.sm),
         PawTextField(label: l.hpDetails, controller: _body, maxLines: 5, helper: l.hpDetailsHelp, onChanged: (_) => setState(() {})),
         const SizedBox(height: Space.md),
-        PrimaryButton(label: l.hpSend, icon: Icons.send_rounded, loading: _busy, onPressed: ok ? () => _send(user, link) : null),
+        PrimaryButton(label: l.hpSend, icon: Icons.send_outlined, loading: _busy, onPressed: ok ? () => _send(user, link) : null),
         const SizedBox(height: Space.sm),
         Text(user.isPlus ? l.hpReplyTimePlus : l.hpReplyTime, style: context.text.bodySmall, textAlign: TextAlign.center),
       ]),
@@ -308,7 +308,7 @@ class TicketScreen extends ConsumerWidget {
         value: ticket,
         data: (t) {
           if (t == null || user == null || t.uid != user.uid) return EmptyState(title: l.admTicketMissing);
-          return PageBody(maxWidth: 800, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.md),
             PawCard(child: TicketSummary(ticket: t)),
             SectionHeader(l.admConversation),

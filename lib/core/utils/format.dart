@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart' show StringCharacters;
 import 'package:intl/intl.dart';
 
 /// India-first formatting (spec section 1): ₹ with Indian digit grouping,
@@ -46,4 +47,13 @@ class Fmt {
   if (to.day < from.day) months--;
   if (months < 0) months = 0;
   return (years: months ~/ 12, months: months % 12);
+}
+
+/// Up to two initials for an avatar ("Priya Sharma" → "PS").
+String initials(String name) {
+  final parts = name.trim().split(RegExp(r'\s+')).where((p) => p.isNotEmpty).toList();
+  if (parts.isEmpty) return '?';
+  final first = parts.first.characters.first;
+  final last = parts.length > 1 ? parts.last.characters.first : '';
+  return (first + last).toUpperCase();
 }

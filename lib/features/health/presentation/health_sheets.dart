@@ -18,7 +18,7 @@ Future<T?> _sheet<T>(BuildContext context, Widget child) => showModalBottomSheet
       context: context,
       isScrollControlled: true,
       useSafeArea: true,
-      constraints: const BoxConstraints(maxWidth: 640),
+      constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
       builder: (_) => child,
     );
 
@@ -52,7 +52,7 @@ class _DateButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
       style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft),
-      icon: const Icon(Icons.event_rounded),
+      icon: const Icon(Icons.event_outlined),
       label: Text(withTime ? Fmt.dateTime(date, context.lang) : Fmt.date(date, context.lang)),
       onPressed: () async {
         final now = DateTime.now();
@@ -135,11 +135,11 @@ class _VaccineSheetState extends ConsumerState<_VaccineSheet> {
         if (_certUrl != null)
           Padding(
             padding: const EdgeInsets.only(right: Space.md),
-            child: ClipRRect(borderRadius: BorderRadius.circular(8), child: MediaImage(url: _certUrl!, width: 56, height: 56)),
+            child: ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: _certUrl!, width: Sizes.thumb, height: Sizes.thumb)),
           ),
         Expanded(
           child: OutlinedButton.icon(
-            icon: const Icon(Icons.document_scanner_rounded),
+            icon: const Icon(Icons.document_scanner_outlined),
             label: Text(_certUrl == null ? l.attachCertificate : l.certificateAttached),
             onPressed: () async {
               final p = await pickImage(context, ImageSource.gallery);
@@ -282,7 +282,7 @@ class _MedicineSheetState extends ConsumerState<_MedicineSheet> {
         for (var i = 0; i < shown.length; i++)
           InputChip(
             label: Text(Fmt.time(DateTime(2000, 1, 1, shown[i].hour, shown[i].minute), context.lang)),
-            avatar: const Icon(Icons.schedule_rounded, size: 18),
+            avatar: const Icon(Icons.schedule_outlined, size: IconSizes.chip),
             onPressed: () async {
               final t = await showTimePicker(context: context, initialTime: shown[i]);
               if (t != null) setState(() => _times[i] = t);
@@ -291,7 +291,7 @@ class _MedicineSheetState extends ConsumerState<_MedicineSheet> {
           ),
         if (_freq == 'custom')
           ActionChip(
-            avatar: const Icon(Icons.add_rounded, size: 18),
+            avatar: const Icon(Icons.add_outlined, size: IconSizes.chip),
             label: Text(l.addTime),
             onPressed: () => setState(() => _times = [..._times, const TimeOfDay(hour: 14, minute: 0)]),
           ),
@@ -437,16 +437,16 @@ class _EventSheetState extends ConsumerState<_EventSheet> {
         ),
         const SizedBox(height: Space.md),
         if (_severity == 3) ...[
-          InfoNote(l.severeSymptomNote, icon: Icons.emergency_rounded, tone: ChipTone.error),
+          InfoNote(l.severeSymptomNote, icon: Icons.emergency_outlined, tone: ChipTone.error),
           const SizedBox(height: Space.md),
         ],
       ],
       PawTextField(label: l.noteOptional, controller: _notes, maxLines: 3),
       if (t == 'symptom' || t == 'vet_visit')
         Wrap(spacing: Space.sm, children: [
-          for (final p in _photos) ClipRRect(borderRadius: BorderRadius.circular(8), child: MediaImage(url: p, width: 56, height: 56)),
+          for (final p in _photos) ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: p, width: Sizes.thumb, height: Sizes.thumb)),
           ActionChip(
-            avatar: const Icon(Icons.add_a_photo_rounded, size: 18),
+            avatar: const Icon(Icons.add_a_photo_outlined, size: IconSizes.chip),
             label: Text(l.addPhoto),
             onPressed: () async {
               final p = await pickImage(context, ImageSource.gallery);

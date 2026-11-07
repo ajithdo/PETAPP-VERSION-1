@@ -111,7 +111,7 @@ class _VaultShareSheetState extends ConsumerState<_VaultShareSheet> {
           contentPadding: EdgeInsets.zero,
           value: _docs.contains(d.id),
           onChanged: (v) => setState(() => v == true ? _docs.add(d.id) : _docs.remove(d.id)),
-          secondary: DocTypeBadge(type: d.type, size: 36),
+          secondary: DocTypeBadge(type: d.type, size: Sizes.docBadge),
           title: Text(d.title, maxLines: 2, overflow: TextOverflow.ellipsis),
           subtitle: Text(docTypeLabel(context, d.type)),
         ),
@@ -138,14 +138,14 @@ class _VaultShareSheetState extends ConsumerState<_VaultShareSheet> {
           controller: _pin,
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(6)],
-          prefixIcon: Icons.pin_rounded,
+          prefixIcon: Icons.pin_outlined,
         ),
       if (_error != null) ...[
         Text(_error!, style: context.text.bodySmall?.copyWith(color: context.paw.error)),
         const SizedBox(height: Space.sm),
       ],
       const SizedBox(height: Space.sm),
-      PrimaryButton(label: l.vaultCreateLink, icon: Icons.link_rounded, loading: _busy, onPressed: _create),
+      PrimaryButton(label: l.vaultCreateLink, icon: Icons.link_outlined, loading: _busy, onPressed: _create),
     ]);
   }
 }
@@ -164,7 +164,7 @@ class ShareLinkResult extends ConsumerWidget {
     final l = context.l10n;
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(children: [
-        Icon(Icons.check_circle_rounded, color: context.paw.success, size: 28),
+        Icon(Icons.check_circle_rounded, color: context.paw.success, size: IconSizes.action),
         const SizedBox(width: Space.sm),
         Expanded(child: Text(title ?? l.vaultLinkReady, style: context.text.titleMedium)),
       ]),
@@ -183,14 +183,14 @@ class ShareLinkResult extends ConsumerWidget {
       ),
       if (pin != null) ...[
         const SizedBox(height: Space.sm),
-        InfoNote(l.vaultAddPinHint, icon: Icons.pin_rounded),
+        InfoNote(l.vaultAddPinHint, icon: Icons.pin_outlined),
       ],
       const SizedBox(height: Space.md),
       Row(children: [
         Expanded(
           child: SecondaryButton(
             label: l.copyLink,
-            icon: Icons.copy_rounded,
+            icon: Icons.copy_outlined,
             onPressed: () async {
               await Clipboard.setData(ClipboardData(text: url));
               if (context.mounted) showToast(context, l.copied);
@@ -201,7 +201,7 @@ class ShareLinkResult extends ConsumerWidget {
         Expanded(
           child: SecondaryButton(
             label: l.share,
-            icon: Icons.ios_share_rounded,
+            icon: Icons.ios_share_outlined,
             onPressed: () async {
               try {
                 await SharePlus.instance.share(ShareParams(text: message));
@@ -220,7 +220,7 @@ class ShareLinkResult extends ConsumerWidget {
       Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
         for (final ch in [Channel.whatsapp, Channel.sms, Channel.email])
           ActionChip(
-            avatar: Icon(switch (ch) { Channel.email => Icons.email_rounded, Channel.sms => Icons.sms_rounded, _ => Icons.chat_rounded }, size: 18),
+            avatar: Icon(switch (ch) { Channel.email => Icons.email_outlined, Channel.sms => Icons.sms_outlined, _ => Icons.chat_outlined }, size: IconSizes.chip),
             label: Text(switch (ch) { Channel.email => l.chEmail, Channel.sms => l.chSms, _ => l.chWhatsApp }),
             onPressed: () => sendShareMessage(context, ref, ch, message),
           ),

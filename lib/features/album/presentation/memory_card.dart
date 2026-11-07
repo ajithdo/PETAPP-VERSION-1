@@ -31,10 +31,10 @@ List<Widget> homeMemorySection(BuildContext context, WidgetRef ref, Pet pet) {
       card = PawCard(
         onTap: () => context.push('/pets/${pet.id}/album?add=1'),
         child: Row(children: [
-          Icon(Icons.add_a_photo_rounded, color: context.paw.accent, size: 32),
+          Icon(Icons.add_a_photo_outlined, color: context.paw.accent, size: IconSizes.xl),
           const SizedBox(width: Space.md),
           Expanded(child: Text(l.albumAddFirst(pet.name), style: context.text.titleSmall)),
-          const Icon(Icons.chevron_right_rounded),
+          const Icon(Icons.chevron_right_outlined),
         ]),
       );
     } else {
@@ -64,11 +64,11 @@ class _MemoryCard extends StatelessWidget {
       semanticLabel: [item.caption, when].where((s) => s.isNotEmpty).join(', '),
       child: Row(children: [
         SizedBox(
-          width: 112,
-          height: 112,
+          width: Sizes.memoryCard,
+          height: Sizes.memoryCard,
           child: Stack(fit: StackFit.expand, children: [
             MediaImage(url: item.url!, fit: BoxFit.cover),
-            if (item.isVideo) const Center(child: Icon(Icons.play_circle_fill_rounded, color: Colors.white, size: 36)),
+            if (item.isVideo) const Center(child: Icon(Icons.play_circle_fill_rounded, color: MediaColors.foreground, size: IconSizes.xxl)),
           ]),
         ),
         const SizedBox(width: Space.md),
@@ -78,16 +78,16 @@ class _MemoryCard extends StatelessWidget {
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (item.milestone != null)
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
+                  padding: const EdgeInsets.only(bottom: Space.xs),
                   child: StatusChip(itemMilestoneLabel(context, item), tone: ChipTone.accent, icon: milestoneIcon(item.milestone!)),
                 ),
               Text(item.caption.isEmpty ? l.albumOfPet(pet.name) : item.caption, style: context.text.titleSmall, maxLines: 2, overflow: TextOverflow.ellipsis),
-              const SizedBox(height: 2),
+              const SizedBox(height: Space.xxs),
               Text(when, style: context.text.bodySmall),
             ]),
           ),
         ),
-        const Padding(padding: EdgeInsets.only(right: Space.sm), child: Icon(Icons.chevron_right_rounded)),
+        const Padding(padding: EdgeInsets.only(right: Space.sm), child: Icon(Icons.chevron_right_outlined)),
       ]),
     );
   }

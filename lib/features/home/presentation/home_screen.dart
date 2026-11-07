@@ -9,9 +9,12 @@ import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../../pets/presentation/pet_labels.dart';
+import 'home_discovery.dart';
 import 'home_sections.dart';
 
-/// Home (spec 5). Sections fill in as later phases land.
+/// Home (spec 5), Design 2: greeting, the pet card, today's plan, what's due
+/// next and quick actions. One column on phones and in Easy mode; on desktop
+/// the day sits on the left and "Next up" and tips on the right.
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
@@ -39,19 +42,45 @@ class HomeScreen extends ConsumerWidget {
             onAction: () => context.push('/pets/new'),
           );
         }
+        final wide = context.screenSize == ScreenSize.desktop && !easy;
+        final s = homeSections(context, ref, pet: pet, pets: active, easy: easy);
+        // Outside Easy mode Home opens with the Design 2 "explore" top
+        // (search, quick links, health status, nearest vets); the pet's day
+        // follows under the greeting.
+        final discovery = easy ? const <Widget>[] : homeDiscoveryTop(context, ref, pet: pet, pets: active, wide: wide);
+        final greeting = Padding(
+          padding: EdgeInsets.only(top: easy ? Space.md : Space.xl, bottom: Space.lg),
+          child: Semantics(
+            header: true,
+            child: Text(
+              '$greet${user?.firstName.isNotEmpty == true ? ', ${user!.firstName}' : ''}',
+              style: easy ? context.text.headlineMedium : context.text.headlineSmall,
+            ),
+          ),
+        );
+        final petCard = pet != null ? PetHeroCard(pet: pet) : AllPetsCard(pets: active);
+
+        if (!wide) {
+          return PageBody(children: [...s.top, ...discovery, greeting, petCard, ...s.phoneOrder]);
+        }
+        Widget column(List<Widget> children) =>
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children);
         return PageBody(children: [
-          const SizedBox(height: Space.sm),
-          Text('$greet${user?.firstName.isNotEmpty == true ? ', ${user!.firstName}' : ''}', style: context.text.headlineSmall),
-          const SizedBox(height: Space.md),
-          if (pet != null) PetHeroCard(pet: pet) else AllPetsCard(pets: active),
-          ...homeSections(context, ref, pet: pet, pets: active, easy: easy),
+          ...s.top,
+          ...discovery,
+          greeting,
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Expanded(flex: 7, child: column([petCard, ...s.main])),
+            const SizedBox(width: Space.xl),
+            Expanded(flex: 5, child: column(s.side)),
+          ]),
         ]);
       },
     );
   }
 }
 
-/// Selected pet's card: photo, name, age, weight, colour tag.
+/// Selected pet's card: photo, name, breed, age, weight and life stage.
 class PetHeroCard extends StatelessWidget {
   const PetHeroCard({super.key, required this.pet});
   final Pet pet;
@@ -64,17 +93,15 @@ class PetHeroCard extends StatelessWidget {
       petAgeLabel(context, pet),
       if (pet.weightKg != null) l.weightValue(pet.isBird ? '${(pet.weightKg! * 1000).round()} g' : '${pet.weightKg!.toStringAsFixed(1)} kg'),
     ].where((s) => s.isNotEmpty).toList();
-    final tag = PetTagColors.of(pet.colorTag);
     return PawCard(
       onTap: () => context.push('/pets/${pet.id}'),
       semanticLabel: l.openPetProfile(pet.name),
-      color: Color.alphaBlend(tag.withValues(alpha: 0.12), context.paw.surface),
       child: Row(children: [
         PetAvatar(
           species: pet.species,
           colorTag: pet.colorTag,
           photoUrl: pet.photoUrl,
-          size: 76,
+          size: Sizes.heroAvatar,
           heroTag: 'pet-${pet.id}',
           name: pet.name,
         ),
@@ -82,18 +109,19 @@ class PetHeroCard extends StatelessWidget {
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(pet.name, style: context.text.titleLarge),
-            const SizedBox(height: 2),
+            const SizedBox(height: Space.xxs),
             Text(facts.join(' · '), style: context.text.bodySmall),
             const SizedBox(height: Space.sm),
             StatusChip(lifeStageLabel(context, pet), tone: ChipTone.info),
           ]),
         ),
-        const Icon(Icons.chevron_right_rounded),
+        Icon(Icons.chevron_right_outlined, color: context.paw.textSecondary),
       ]),
     );
   }
 }
 
+/// "All pets" card: every pet's photo and name; tap one to switch to it.
 class AllPetsCard extends ConsumerWidget {
   const AllPetsCard({super.key, required this.pets});
   final List<Pet> pets;
@@ -106,16 +134,21 @@ class AllPetsCard extends ConsumerWidget {
         const SizedBox(height: Space.md),
         Wrap(spacing: Space.md, runSpacing: Space.md, children: [
           for (final p in pets)
-            InkWell(
-              borderRadius: BorderRadius.circular(Radii.card),
-              onTap: () => ref.read(settingsProvider.notifier).selectPet(p.id),
-              child: Padding(
-                padding: const EdgeInsets.all(4),
-                child: Column(children: [
-                  PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 56, name: p.name),
-                  const SizedBox(height: 4),
-                  Text(p.name, style: context.text.labelMedium),
-                ]),
+            Semantics(
+              button: true,
+              label: p.name,
+              excludeSemantics: true,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(Radii.md),
+                onTap: () => ref.read(settingsProvider.notifier).selectPet(p.id),
+                child: Padding(
+                  padding: const EdgeInsets.all(Space.xs),
+                  child: Column(children: [
+                    PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: TapTarget.easy, name: p.name),
+                    const SizedBox(height: Space.xs),
+                    Text(p.name, style: context.text.labelMedium),
+                  ]),
+                ),
               ),
             ),
         ]),

@@ -62,7 +62,7 @@ class _InsuranceScreenState extends ConsumerState<InsuranceScreen> {
           ? null
           : FloatingActionButton.extended(
               onPressed: () => showPolicySheet(context, ref, pet: addFor, choosePet: widget.petId == null),
-              icon: const Icon(Icons.add_rounded),
+              icon: const Icon(Icons.add_outlined),
               label: Text(l.vaultAddPolicy),
             ),
       body: AsyncView<List<InsurancePolicy>>(
@@ -78,12 +78,12 @@ class _InsuranceScreenState extends ConsumerState<InsuranceScreen> {
             );
           }
           final sorted = [...list]..sort((a, b) => (a.renewal ?? DateTime(2100)).compareTo(b.renewal ?? DateTime(2100)));
-          return PageBody(maxWidth: 820, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.md),
             for (final p in sorted) _PolicyTile(policy: p, pet: byId[p.petId]),
             const SizedBox(height: Space.md),
             InfoNote(l.vaultInsuranceNote),
-            const SizedBox(height: 72),
+            const SizedBox(height: Space.fabClearance),
           ]);
         },
       ),
@@ -107,7 +107,7 @@ class _PolicyTile extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
             if (pet != null) ...[
-              PetAvatar(species: pet!.species, colorTag: pet!.colorTag, photoUrl: pet!.photoUrl, size: 40),
+              PetAvatar(species: pet!.species, colorTag: pet!.colorTag, photoUrl: pet!.photoUrl, size: Sizes.avatarSm),
               const SizedBox(width: Space.md),
             ],
             Expanded(
@@ -173,8 +173,8 @@ class PolicyScreen extends ConsumerWidget {
                 }
               },
               itemBuilder: (_) => [
-                PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_rounded), title: Text(l.vaultEditPolicy))),
-                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outline_rounded), title: Text(l.delete))),
+                PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.vaultEditPolicy))),
+                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outlined), title: Text(l.delete))),
               ],
             ),
         ],
@@ -183,7 +183,7 @@ class PolicyScreen extends ConsumerWidget {
           ? null
           : FloatingActionButton.extended(
               onPressed: () => showClaimSheet(context, ref, policy),
-              icon: const Icon(Icons.add_rounded),
+              icon: const Icon(Icons.add_outlined),
               label: Text(l.vaultNewClaim),
             ),
       body: AsyncView<InsurancePolicy?>(
@@ -191,12 +191,12 @@ class PolicyScreen extends ConsumerWidget {
         data: (p) {
           if (p == null) return EmptyState(scene: Scene.search, title: l.vaultDocMissing);
           final doc = p.docId == null ? null : ref.watch(docProvider(p.docId!)).value;
-          return PageBody(maxWidth: 820, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.md),
             PawCard(
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 Row(children: [
-                  if (pet != null) PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 44),
+                  if (pet != null) PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarMd),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -217,10 +217,10 @@ class PolicyScreen extends ConsumerWidget {
                 Text(l.vaultCoverLeft(Fmt.inr(p.coverLeft)), style: context.text.bodyMedium),
                 const SizedBox(height: Space.xs),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(Radii.sm),
                   child: LinearProgressIndicator(
                     value: p.cover == 0 ? 0 : p.coverLeft / p.cover,
-                    minHeight: 8,
+                    minHeight: Sizes.progressBar,
                     color: context.paw.success,
                     backgroundColor: context.paw.outline,
                   ),
@@ -234,7 +234,7 @@ class PolicyScreen extends ConsumerWidget {
               PawCard(
                 onTap: pet == null ? null : () => showPolicySheet(context, ref, pet: pet, existing: p),
                 child: Row(children: [
-                  const Icon(Icons.attach_file_rounded),
+                  const Icon(Icons.attach_file_outlined),
                   const SizedBox(width: Space.md),
                   Expanded(child: Text(l.vaultLinkDoc)),
                 ]),
@@ -251,7 +251,7 @@ class PolicyScreen extends ConsumerWidget {
                       Expanded(child: Text(c.title, style: context.text.titleSmall)),
                       StatusChip(claimStatusLabel(context, c.status), tone: claimStatusTone(c.status)),
                     ]),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: Space.xxs),
                     Text(
                       [
                         Fmt.date(c.date, context.lang),
@@ -264,8 +264,8 @@ class PolicyScreen extends ConsumerWidget {
                     Row(children: [
                       Expanded(
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: LinearProgressIndicator(value: checklistProgress(c.checklist), minHeight: 6, backgroundColor: context.paw.outline),
+                          borderRadius: BorderRadius.circular(Radii.sm),
+                          child: LinearProgressIndicator(value: checklistProgress(c.checklist), minHeight: Sizes.progressBar, backgroundColor: context.paw.outline),
                         ),
                       ),
                       const SizedBox(width: Space.sm),
@@ -279,7 +279,7 @@ class PolicyScreen extends ConsumerWidget {
               ),
             const SizedBox(height: Space.md),
             InfoNote(l.vaultInsuranceNote),
-            const SizedBox(height: 72),
+            const SizedBox(height: Space.fabClearance),
           ]);
         },
       ),
@@ -371,7 +371,7 @@ class _PolicySheetState extends ConsumerState<_PolicySheet> {
         Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
           for (final p in pets)
             ChoiceChip(
-              avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
+              avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarChip),
               showCheckmark: false,
               label: Text(p.name),
               selected: p.id == _pet.id,
@@ -390,7 +390,7 @@ class _PolicySheetState extends ConsumerState<_PolicySheet> {
       PawTextField(label: l.vaultFieldPremium, controller: _premium, keyboardType: TextInputType.number, prefixText: '₹ ', inputFormatters: [FilteringTextInputFormatter.digitsOnly]),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-        icon: const Icon(Icons.event_rounded),
+        icon: const Icon(Icons.event_outlined),
         label: Text('${l.vaultFieldCoverStart}: ${_start == null ? '–' : Fmt.date(_start!, context.lang)}'),
         onPressed: () async {
           final d = await pick(_start);
@@ -400,7 +400,7 @@ class _PolicySheetState extends ConsumerState<_PolicySheet> {
       const SizedBox(height: Space.sm),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-        icon: const Icon(Icons.event_repeat_rounded),
+        icon: const Icon(Icons.event_repeat_outlined),
         label: Text('${l.vaultFieldRenewal}: ${_renewal == null ? '–' : Fmt.date(_renewal!, context.lang)}'),
         onPressed: () async {
           final d = await pick(_renewal);
@@ -421,7 +421,7 @@ class _PolicySheetState extends ConsumerState<_PolicySheet> {
       const SizedBox(height: Space.md),
       InfoNote(l.vaultRenewalReminderNote, icon: Icons.notifications_active_outlined),
       const SizedBox(height: Space.lg),
-      PrimaryButton(label: l.save, icon: Icons.check_rounded, loading: _busy, onPressed: _save),
+      PrimaryButton(label: l.save, icon: Icons.check_outlined, loading: _busy, onPressed: _save),
     ]);
   }
 }
@@ -496,7 +496,7 @@ class _ClaimSheetState extends ConsumerState<_ClaimSheet> {
         const SizedBox(height: Space.sm),
         for (final d in docs)
           ListTile(
-            leading: DocTypeBadge(type: d.type, size: 36),
+            leading: DocTypeBadge(type: d.type, size: Sizes.docBadge),
             title: Text(d.title),
             subtitle: Text(docTypeLabel(ctx, d.type)),
             onTap: () => Navigator.pop(ctx, d),
@@ -529,7 +529,7 @@ class _ClaimSheetState extends ConsumerState<_ClaimSheet> {
         PawTextField(label: l.vaultSettledAmount, controller: _settled, keyboardType: TextInputType.number, prefixText: '₹ ', inputFormatters: [FilteringTextInputFormatter.digitsOnly]),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-        icon: const Icon(Icons.event_rounded),
+        icon: const Icon(Icons.event_outlined),
         label: Text('${l.vaultClaimDate}: ${Fmt.date(_date, context.lang)}'),
         onPressed: () async {
           final now = DateTime.now();
@@ -551,7 +551,7 @@ class _ClaimSheetState extends ConsumerState<_ClaimSheet> {
           subtitle: _attach[k] != null && docs[_attach[k]] != null ? Text(l.vaultAttached(docs[_attach[k]]!.title)) : null,
           secondary: IconButton(
             tooltip: l.vaultAttachDoc,
-            icon: Icon(_attach[k] != null ? Icons.attach_file_rounded : Icons.attach_file_outlined, color: _attach[k] != null ? context.colors.primary : null),
+            icon: Icon(_attach[k] != null ? Icons.attach_file_outlined : Icons.attach_file_outlined, color: _attach[k] != null ? context.colors.primary : null),
             onPressed: () => _attachDoc(k),
           ),
         ),
@@ -560,7 +560,7 @@ class _ClaimSheetState extends ConsumerState<_ClaimSheet> {
         Text(_error!, style: context.text.bodySmall?.copyWith(color: context.paw.error)),
       ],
       const SizedBox(height: Space.lg),
-      PrimaryButton(label: l.save, icon: Icons.check_rounded, loading: _busy, onPressed: () => _save()),
+      PrimaryButton(label: l.save, icon: Icons.check_outlined, loading: _busy, onPressed: () => _save()),
       for (final s in next) ...[
         const SizedBox(height: Space.sm),
         SecondaryButton(label: l.vaultMarkAs(claimStatusLabel(context, s)), onPressed: _busy ? null : () => _save(s)),

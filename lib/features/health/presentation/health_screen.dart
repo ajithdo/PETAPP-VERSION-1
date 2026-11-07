@@ -10,7 +10,9 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
+import '../../booking/data/places_repository.dart';
 import '../../pets/domain/pet.dart';
+import '../../pets/presentation/pet_labels.dart';
 import '../../routine/data/routine_repository.dart';
 import '../../routine/domain/routine.dart';
 import '../../routine/presentation/quick_log_sheet.dart';
@@ -57,11 +59,11 @@ class _PetDueTile extends ConsumerWidget {
     return PawCard(
       onTap: () => ref.read(settingsProvider.notifier).selectPet(pet.id),
       child: Row(children: [
-        PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 48),
+        PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarMd),
         const SizedBox(width: Space.md),
         Expanded(child: Text(pet.name, style: context.text.titleSmall)),
         if (urgent > 0) StatusChip(context.l10n.itemsNeedAttention(urgent), tone: ChipTone.warning),
-        const Icon(Icons.chevron_right_rounded),
+        const Icon(Icons.chevron_right_outlined),
       ]),
     );
   }
@@ -77,44 +79,89 @@ class HealthBody extends ConsumerWidget {
     final user = ref.watch(currentUserProvider)!;
     final canCare = pet.canCare(user.uid);
     final due = ref.watch(petDueProvider(pet));
-    return PageBody(maxWidth: 960, children: [
-      const SizedBox(height: Space.sm),
-      Row(children: [
-        Expanded(child: Text(l.healthOf(pet.name), style: context.text.headlineSmall)),
-      ]),
-      const SizedBox(height: Space.md),
-      Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
-        FilledButton.tonalIcon(
-          onPressed: () => context.push('/pets/${pet.id}/report'),
-          icon: const Icon(Icons.picture_as_pdf_rounded),
-          label: Text(l.healthReport),
-        ),
-        FilledButton.tonalIcon(
-          onPressed: () => context.push('/pets/${pet.id}/card'),
-          icon: const Icon(Icons.badge_rounded),
-          label: Text(l.medicalCard),
-        ),
-      ]),
-      SectionHeader(l.nextUp),
+    final urgent = (due.value ?? const <DueItem>[])
+        .where((i) => i.status == DoseStatus.overdue || i.status == DoseStatus.dueSoon)
+        .length;
+    final wide = context.screenSize == ScreenSize.desktop;
+    final nextUp = <Widget>[
+      SectionHeader(l.nextUp, padding: wide ? const EdgeInsets.only(bottom: Space.sm) : null),
       AsyncView(
         value: due,
-        loading: const Skeleton(height: 120, radius: Radii.card),
+        loading: const Skeleton(height: Sizes.skeletonCard, radius: Radii.card),
         data: (items) {
           final top = items.where((i) => i.status != DoseStatus.upcoming).take(5).toList();
-          if (top.isEmpty) return PawCard(child: Text(l.nothingDue(pet.name)));
-          return PawCard(
-            padding: const EdgeInsets.symmetric(vertical: Space.xs),
-            child: Column(children: [for (final i in top) DueTile(item: i, pet: pet)]),
-          );
+          if (top.isEmpty) {
+            return PawCard(
+              child: Row(children: [
+                Icon(Icons.check_circle_outlined, color: context.paw.success),
+                const SizedBox(width: Space.md),
+                Expanded(child: Text(l.nothingDue(pet.name), style: context.text.bodyMedium)),
+              ]),
+            );
+          }
+          final first = top.first;
+          final when = dueWhen(context, first);
+          final status = statusChip(context, first.status).$1;
+          return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            PawAlertCard(
+              tone: first.status == DoseStatus.overdue ? ChipTone.error : ChipTone.warning,
+              icon: dueIcon(first.kind),
+              overline: when.isEmpty ? status : when,
+              title: dueTitle(context, first),
+              semanticLabel: [status, dueTitle(context, first), when].where((s) => s.isNotEmpty).join(', '),
+              onTap: () => openDueItem(context, ref, pet, first),
+              // Vaccines are given at a clinic: book one straight from here.
+              actionLabel: first.kind == 'vaccine' ? l.bookNow : null,
+              onAction: first.kind == 'vaccine' ? () => context.push('/book/find/clinic') : null,
+            ),
+            if (top.length > 1) ...[
+              const SizedBox(height: Space.md),
+              PawCard(
+                padding: const EdgeInsets.symmetric(vertical: Space.xs),
+                child: Column(children: [for (final i in top.skip(1)) DueTile(item: i, pet: pet)]),
+              ),
+            ],
+          ]);
         },
       ),
-      _VaccinesSection(pet: pet, canCare: canCare),
-      _MedicinesSection(pet: pet, canCare: canCare),
-      if (pet.species == 'dog' || pet.species == 'cat') _PreventionSection(pet: pet, canCare: canCare),
-      _WeightSection(pet: pet),
-      _EventsSection(pet: pet, type: 'vet_visit', canCare: canCare),
-      _EventsSection(pet: pet, type: 'symptom', canCare: canCare),
-      _RemindersSection(pet: pet),
+    ];
+    final pass = _HealthPass(pet: pet, urgent: due.hasValue ? urgent : null);
+    final emergency = _EmergencyInfo(pet: pet);
+    final vaccines = _VaccinesSection(pet: pet, canCare: canCare);
+    final medicines = _MedicinesSection(pet: pet, canCare: canCare);
+    final prevention = <Widget>[if (pet.species == 'dog' || pet.species == 'cat') _PreventionSection(pet: pet, canCare: canCare)];
+    final weight = _WeightSection(pet: pet);
+    final visits = _EventsSection(pet: pet, type: 'vet_visit', canCare: canCare);
+    final symptoms = _EventsSection(pet: pet, type: 'symptom', canCare: canCare);
+    final reminders = _RemindersSection(pet: pet);
+    Widget column(List<Widget> c) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: c);
+    // Desktop (Design 2 records vault): the pass and emergency info on the
+    // left, what's due and the records on the right.
+    final body = wide
+        ? <Widget>[
+            const SizedBox(height: Space.lg),
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(flex: 5, child: column([pass, const SizedBox(height: Space.lg), emergency, weight, reminders])),
+              const SizedBox(width: Space.xl),
+              Expanded(flex: 7, child: column([...nextUp, vaccines, ...prevention, medicines, visits, symptoms])),
+            ]),
+          ]
+        : <Widget>[
+            const SizedBox(height: Space.sm),
+            pass,
+            const SizedBox(height: Space.md),
+            emergency,
+            ...nextUp,
+            vaccines,
+            medicines,
+            ...prevention,
+            weight,
+            visits,
+            symptoms,
+            reminders,
+          ];
+    return PageBody(maxWidth: wide ? Space.maxContentWidth : Space.wideWidth, children: [
+      ...body,
       const SizedBox(height: Space.lg),
       Builder(builder: (context) {
         final by = ((ref.watch(appSettingsDocProvider).value?['contentReview'] as Map?)?['vaccines'] as String?) ?? '';
@@ -137,7 +184,7 @@ class DueTile extends ConsumerWidget {
     final when = dueWhen(context, item);
     return ListTile(
       leading: showPet
-          ? PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 40)
+          ? PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarSm)
           : CircleAvatar(
               backgroundColor: context.paw.primaryContainer,
               child: Icon(dueIcon(item.kind), color: context.colors.primary),
@@ -145,27 +192,29 @@ class DueTile extends ConsumerWidget {
       title: Text(showPet ? '${pet.name} · $title' : title),
       subtitle: when.isEmpty ? null : Text(when),
       trailing: statusChipWidget(context, item.status),
-      onTap: () => _act(context, ref),
+      onTap: () => openDueItem(context, ref, pet, item),
     );
   }
+}
 
-  Future<void> _act(BuildContext context, WidgetRef ref) async {
-    switch (item.kind) {
-      case 'vaccine':
-        final t = templatesFor(pet.speciesEnum).where((t) => t.key == item.refId).firstOrNull;
-        await showVaccineSheet(context, pet, template: t);
-      case 'medicine':
-        final meds = ref.read(medicinesProvider(pet.id)).value ?? const [];
-        final m = meds.where((m) => m.id == item.refId).firstOrNull;
-        if (m != null && item.at != null) await showDoseActions(context, ref, pet, m, item.at!);
-      case 'refill':
-        context.push('/shop');
-      case 'deworming':
-      case 'flea_tick':
-        await showEventSheet(context, pet, item.kind);
-      default:
-        context.go('/health');
-    }
+/// What tapping a due item does (Health list, Home "Next up"): log the
+/// vaccine, act on the dose, reorder food, or open the event sheet.
+Future<void> openDueItem(BuildContext context, WidgetRef ref, Pet pet, DueItem item) async {
+  switch (item.kind) {
+    case 'vaccine':
+      final t = templatesFor(pet.speciesEnum).where((t) => t.key == item.refId).firstOrNull;
+      await showVaccineSheet(context, pet, template: t);
+    case 'medicine':
+      final meds = ref.read(medicinesProvider(pet.id)).value ?? const [];
+      final m = meds.where((m) => m.id == item.refId).firstOrNull;
+      if (m != null && item.at != null) await showDoseActions(context, ref, pet, m, item.at!);
+    case 'refill':
+      context.push('/shop');
+    case 'deworming':
+    case 'flea_tick':
+      await showEventSheet(context, pet, item.kind);
+    default:
+      context.go('/health');
   }
 }
 
@@ -184,7 +233,7 @@ Future<void> showDoseActions(BuildContext context, WidgetRef ref, Pet pet, Medic
       Text('${m.name} · ${pet.name}', style: ctx.text.titleMedium),
       Text('${m.dose} ${unitLabel(ctx, m.unit)} · ${Fmt.dateTime(dose, ctx.lang)}${m.withFood ? ' · ${l.withFood}' : ''}', style: ctx.text.bodySmall),
       const SizedBox(height: Space.lg),
-      PrimaryButton(label: l.given, icon: Icons.check_rounded, onPressed: () => log('given')),
+      PrimaryButton(label: l.given, icon: Icons.check_outlined, onPressed: () => log('given')),
       const SizedBox(height: Space.sm),
       Row(children: [
         Expanded(child: SecondaryButton(label: l.skip, onPressed: () => log('skipped'))),
@@ -208,7 +257,7 @@ class _VaccinesSection extends ConsumerWidget {
       SectionHeader(l.vaccinations, action: canCare ? l.record : null, onAction: () => showVaccineSheet(context, pet)),
       AsyncView(
         value: records,
-        loading: const Skeleton(height: 160, radius: Radii.card),
+        loading: const Skeleton(height: Sizes.skeletonCard, radius: Radii.card),
         data: (recs) {
           if (pet.species == 'rabbit' || pet.species == 'bird') {
             return PawCard(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -217,25 +266,31 @@ class _VaccinesSection extends ConsumerWidget {
             ]));
           }
           final s = buildSchedule(species: pet.speciesEnum, birthday: pet.birthday, records: recs, now: DateTime.now());
+          final steps = <_VaccineStep>[
+            for (final i in s.items)
+              _VaccineStep(
+                title: '${i.template.name} · ${doseLabel(context, i.template.doseLabel)}',
+                subtitle: _subtitle(context, i),
+                status: i.status,
+                certificateDocId: i.record?.certificateDocId,
+                onTap: canCare && i.status != DoseStatus.done ? () => showVaccineSheet(context, pet, template: i.template) : null,
+              ),
+            for (final r in recs.where((r) => r.key == 'other'))
+              _VaccineStep(title: r.name, subtitle: Fmt.date(r.givenDate, context.lang), status: DoseStatus.done, certificateDocId: r.certificateDocId),
+          ];
           return PawCard(
-            padding: const EdgeInsets.symmetric(vertical: Space.xs),
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              if (s.needsCatchUp)
-                Padding(padding: const EdgeInsets.all(Space.md), child: InfoNote(l.catchUpNote, icon: Icons.support_agent_rounded)),
-              for (final i in s.items)
-                ListTile(
-                  leading: Icon(Icons.vaccines_rounded, color: i.status == DoseStatus.overdue ? context.paw.error : context.colors.primary),
-                  title: Text('${i.template.name} · ${doseLabel(context, i.template.doseLabel)}'),
-                  subtitle: Text(_subtitle(context, i)),
-                  trailing: statusChipWidget(context, i.status),
-                  onTap: canCare && i.status != DoseStatus.done ? () => showVaccineSheet(context, pet, template: i.template) : null,
-                ),
-              for (final r in recs.where((r) => r.key == 'other'))
-                ListTile(
-                  leading: const Icon(Icons.vaccines_rounded),
-                  title: Text(r.name),
-                  subtitle: Text(Fmt.date(r.givenDate, context.lang)),
-                  trailing: statusChipWidget(context, DoseStatus.done),
+              if (s.needsCatchUp) ...[
+                InfoNote(l.catchUpNote, icon: Icons.support_agent_outlined),
+                const SizedBox(height: Space.lg),
+              ],
+              for (var k = 0; k < steps.length; k++)
+                TimelineTile(
+                  tone: statusChip(context, steps[k].status).$2,
+                  isFirst: k == 0,
+                  isLast: k == steps.length - 1,
+                  onTap: steps[k].onTap,
+                  child: steps[k],
                 ),
             ]),
           );
@@ -267,7 +322,7 @@ class _MedicinesSection extends ConsumerWidget {
       SectionHeader(l.medicines, action: canCare ? l.add : null, onAction: () => showMedicineSheet(context, pet)),
       AsyncView(
         value: ref.watch(medicinesProvider(pet.id)),
-        loading: const Skeleton(height: 80, radius: Radii.card),
+        loading: const Skeleton(height: Sizes.skeletonCard, radius: Radii.card),
         data: (meds) {
           if (meds.isEmpty) return PawCard(child: Text(l.noMedicines(pet.name)));
           final now = DateTime.now();
@@ -278,7 +333,7 @@ class _MedicinesSection extends ConsumerWidget {
                 ListTile(
                   leading: CircleAvatar(
                     backgroundColor: context.paw.primaryContainer,
-                    child: Icon(Icons.medication_rounded, color: context.colors.primary),
+                    child: Icon(Icons.medication_outlined, color: context.colors.primary),
                   ),
                   title: Text(m.name),
                   subtitle: Text([
@@ -329,26 +384,52 @@ class _PreventionSection extends ConsumerWidget {
             ? DoseStatus.overdue
             : (next.isBefore(now.add(const Duration(days: 7))) ? DoseStatus.dueSoon : DoseStatus.upcoming),
       );
-      return ListTile(
-        leading: Icon(dueIcon(type), color: context.colors.primary),
-        title: Text(title),
-        subtitle: Text([
-          if (lastDate != null) l.lastDone(Fmt.date(lastDate, context.lang)),
-          l.nextDue(Fmt.date(next, context.lang)),
-        ].join(' · ')),
-        trailing: statusChipWidget(context, item.status),
-        onTap: canCare ? () => showEventSheet(context, pet, type) : null,
+      final paw = context.paw;
+      return Material(
+        color: paw.surfaceSubtle,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.lg), side: BorderSide(color: paw.outline)),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: canCare ? () => showEventSheet(context, pet, type) : null,
+          child: Padding(
+            padding: const EdgeInsets.all(Space.md),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Icon(dueIcon(type), color: paw.brand),
+              const SizedBox(width: Space.md),
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(title, style: context.text.titleSmall),
+                  const SizedBox(height: Space.xxs),
+                  Text(
+                    [
+                      if (lastDate != null) l.lastDone(Fmt.date(lastDate, context.lang)),
+                      l.nextDue(Fmt.date(next, context.lang)),
+                    ].join(' · '),
+                    style: context.text.bodySmall,
+                  ),
+                ]),
+              ),
+              const SizedBox(width: Space.sm),
+              statusChipWidget(context, item.status),
+            ]),
+          ),
+        ),
       );
     }
 
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       SectionHeader(l.prevention),
       PawCard(
-        padding: const EdgeInsets.symmetric(vertical: Space.xs),
-        child: Column(children: [
-          row('deworming', l.deworming, dw, last('deworming')),
-          row('flea_tick', l.fleaTick, ft, last('flea_tick')),
-        ]),
+        padding: const EdgeInsets.all(Space.md),
+        // Side by side when there is room (Design 2), stacked on phones.
+        child: ResponsiveGrid(
+          minItemWidth: Sizes.miniCardMin,
+          spacing: Space.sm,
+          children: [
+            row('deworming', l.deworming, dw, last('deworming')),
+            row('flea_tick', l.fleaTick, ft, last('flea_tick')),
+          ],
+        ),
       ),
       const SizedBox(height: Space.xs),
       Text(l.tickFeverNote, style: context.text.bodySmall),
@@ -375,11 +456,11 @@ class _WeightSection extends ConsumerWidget {
             ? Text(l.weightNeedsTwo)
             : Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 SizedBox(
-                  height: 180,
+                  height: Sizes.chartHeight,
                   child: LineChart(LineChartData(
                     minY: _min(pts, range, scale),
                     maxY: _max(pts, range, scale),
-                    gridData: FlGridData(drawVerticalLine: false, getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: 1)),
+                    gridData: FlGridData(drawVerticalLine: false, getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: Strokes.hairline)),
                     borderData: FlBorderData(show: false),
                     titlesData: FlTitlesData(
                       topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -387,7 +468,7 @@ class _WeightSection extends ConsumerWidget {
                       bottomTitles: AxisTitles(
                         sideTitles: SideTitles(
                           showTitles: true,
-                          reservedSize: 26,
+                          reservedSize: Sizes.chartAxisBottom,
                           interval: (pts.length / 3).ceilToDouble().clamp(1, 99),
                           getTitlesWidget: (v, meta) {
                             final i = v.toInt();
@@ -399,7 +480,7 @@ class _WeightSection extends ConsumerWidget {
                       leftTitles: AxisTitles(
                         sideTitles: SideTitles(
                           showTitles: true,
-                          reservedSize: 40,
+                          reservedSize: Sizes.chartAxisLeftWide,
                           getTitlesWidget: (v, meta) => SideTitleWidget(meta: meta, child: Text(v.toStringAsFixed(pet.isBird ? 0 : 1), style: context.text.labelSmall)),
                         ),
                       ),
@@ -407,13 +488,13 @@ class _WeightSection extends ConsumerWidget {
                     rangeAnnotations: range == null
                         ? null
                         : RangeAnnotations(horizontalRangeAnnotations: [
-                            HorizontalRangeAnnotation(y1: range.min * scale, y2: range.max * scale, color: context.paw.success.withValues(alpha: 0.12)),
+                            HorizontalRangeAnnotation(y1: range.min * scale, y2: range.max * scale, color: context.paw.success.withValues(alpha: Opacities.chip)),
                           ]),
                     lineBarsData: [
                       LineChartBarData(
                         spots: [for (var i = 0; i < pts.length; i++) FlSpot(i.toDouble(), pts[i].weightKg! * scale)],
                         color: context.colors.primary,
-                        barWidth: 3,
+                        barWidth: Strokes.chart,
                         isCurved: true,
                         dotData: const FlDotData(show: true),
                       ),
@@ -467,7 +548,7 @@ class _EventsSection extends ConsumerWidget {
           if (events.isEmpty) Padding(padding: const EdgeInsets.all(Space.md), child: Text(isSymptom ? l.noSymptoms : l.noVisits)),
           for (final e in events.take(5))
             ListTile(
-              leading: Icon(isSymptom ? Icons.sick_rounded : Icons.local_hospital_rounded,
+              leading: Icon(isSymptom ? Icons.sick_outlined : Icons.local_hospital_outlined,
                   color: isSymptom && e.severity >= 3 ? context.paw.error : context.colors.primary),
               title: Text(isSymptom ? '${symptomLabel(context, e.symptom)} · ${_sev(context, e.severity)}' : e.title),
               subtitle: Text([
@@ -478,13 +559,13 @@ class _EventsSection extends ConsumerWidget {
               ].join(' · '), maxLines: 2, overflow: TextOverflow.ellipsis),
               trailing: e.photos.isEmpty
                   ? null
-                  : ClipRRect(borderRadius: BorderRadius.circular(8), child: MediaImage(url: e.photos.first, width: 44, height: 44)),
+                  : ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: e.photos.first, width: Sizes.avatarSm, height: Sizes.avatarSm)),
             ),
           if (isSymptom && events.isNotEmpty)
             Padding(
               padding: const EdgeInsets.all(Space.sm),
               child: TextButton.icon(
-                icon: const Icon(Icons.share_rounded),
+                icon: const Icon(Icons.share_outlined),
                 label: Text(l.shareWithVet),
                 onPressed: () {
                   final lines = [
@@ -524,12 +605,12 @@ class _RemindersSection extends ConsumerWidget {
           if (list.isEmpty) Padding(padding: const EdgeInsets.all(Space.md), child: Text(l.noReminders)),
           for (final r in list)
             ListTile(
-              leading: const Icon(Icons.alarm_rounded),
+              leading: const Icon(Icons.alarm_outlined),
               title: Text(r.title),
               subtitle: Text(Fmt.dateTime(r.at, context.lang)),
               trailing: IconButton(
                 tooltip: l.markDone,
-                icon: const Icon(Icons.check_circle_outline_rounded),
+                icon: const Icon(Icons.check_circle_outlined),
                 onPressed: () async {
                   final repo = ref.read(healthRepositoryProvider);
                   if (r.repeat == 'monthly' || r.repeat == 'yearly') {
@@ -546,5 +627,130 @@ class _RemindersSection extends ConsumerWidget {
         ]),
       ),
     ]);
+  }
+}
+
+/// The Design 2 health pass at the top of the Health tab: who the pet is, the
+/// key facts, whether anything needs attention, and the card and report.
+class _HealthPass extends StatelessWidget {
+  const _HealthPass({required this.pet, required this.urgent});
+  final Pet pet;
+
+  /// Items overdue or due soon; null while loading.
+  final int? urgent;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final breed = pet.breedName(context.lang);
+    final age = petAgeLabel(context, pet);
+    return PassCard(
+      title: l.healthOf(pet.name),
+      titleIsHeader: true,
+      subtitle: breed.isEmpty ? null : breed,
+      leading: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarMd, name: pet.name),
+      badges: [
+        if (urgent != null)
+          urgent! > 0
+              ? PassCard.badge(context, l.itemsNeedAttention(urgent!), icon: Icons.schedule_outlined, tone: ChipTone.warning)
+              : PassCard.badge(context, l.healthAllClear),
+      ],
+      rows: [
+        if (age.isNotEmpty) PassRow(label: l.age, value: age),
+        if (pet.weightKg != null) PassRow(label: l.weight, value: Fmt.weight(pet.weightKg!, grams: pet.isBird)),
+        if (pet.microchip?.isNotEmpty == true) PassRow(label: l.microchip, value: pet.microchip!, mono: true),
+      ],
+      actions: [
+        PassCard.action(context, label: l.medicalCard, icon: Icons.badge_outlined, onPressed: () => context.push('/pets/${pet.id}/card')),
+        PassCard.action(context, label: l.healthReport, icon: Icons.picture_as_pdf_outlined, onPressed: () => context.push('/pets/${pet.id}/report')),
+      ],
+    );
+  }
+}
+
+/// One vaccine on the Health timeline: its status, name and dates.
+class _VaccineStep extends StatelessWidget {
+  const _VaccineStep({required this.title, required this.subtitle, required this.status, this.onTap, this.certificateDocId});
+  final String title;
+  final String subtitle;
+  final DoseStatus status;
+  final VoidCallback? onTap;
+
+  /// The certificate saved in the vault, if one was attached.
+  final String? certificateDocId;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      statusChipWidget(context, status),
+      const SizedBox(height: Space.xs + Space.xxs),
+      Text(title, style: context.text.titleSmall),
+      if (subtitle.isNotEmpty) ...[
+        const SizedBox(height: Space.xxs),
+        Text(subtitle, style: context.text.bodySmall),
+      ],
+    ]);
+    if (certificateDocId == null) return text;
+    return Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.start, spacing: Space.sm, runSpacing: Space.xs, children: [
+      text,
+      OutlinedButton.icon(
+        onPressed: () => context.push('/vault/doc/$certificateDocId'),
+        icon: const Icon(Icons.description_outlined, size: IconSizes.md),
+        label: Text(context.l10n.certificate),
+      ),
+    ]);
+  }
+}
+
+/// Design 2 emergency card on Health: allergies and the regular clinic at a
+/// glance, with the medical card one tap away.
+class _EmergencyInfo extends ConsumerWidget {
+  const _EmergencyInfo({required this.pet});
+  final Pet pet;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final clinic = pet.clinicId == null ? null : ref.watch(placeProvider(pet.clinicId!)).value;
+    final allergies = pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', ');
+    return Container(
+      padding: const EdgeInsets.all(Space.lg),
+      decoration: BoxDecoration(
+        color: paw.sosContainer,
+        borderRadius: BorderRadius.circular(Radii.card),
+        border: Border.all(color: paw.sosBorder),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(children: [
+          Icon(Icons.medical_information_outlined, color: paw.onSosContainer),
+          const SizedBox(width: Space.sm),
+          Expanded(child: Text(l.emergencyInfo, style: context.text.titleMedium?.copyWith(color: paw.onSosContainer))),
+        ]),
+        const SizedBox(height: Space.sm),
+        Text.rich(TextSpan(children: [
+          TextSpan(text: '${l.allergies}: ', style: context.text.bodyMedium?.copyWith(color: paw.textPrimary)),
+          TextSpan(
+            text: allergies,
+            style: context.text.bodyMedium?.copyWith(
+              color: pet.allergies.isEmpty ? paw.textPrimary : paw.onSosContainer,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ])),
+        const SizedBox(height: Space.md),
+        Divider(height: Strokes.hairline, color: paw.sosBorder),
+        const SizedBox(height: Space.sm),
+        Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.sm, children: [
+          Text('${l.regularClinic}: ${clinic?.name ?? l.notAdded}', style: context.text.bodySmall?.copyWith(color: paw.textPrimary)),
+          TextButton.icon(
+            style: TextButton.styleFrom(foregroundColor: paw.onSosContainer),
+            onPressed: () => context.push('/pets/${pet.id}/card'),
+            icon: const Icon(Icons.arrow_forward_outlined, size: IconSizes.md),
+            label: Text(l.medicalCard),
+          ),
+        ]),
+      ]),
+    );
   }
 }

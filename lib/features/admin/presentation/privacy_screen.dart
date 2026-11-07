@@ -77,14 +77,14 @@ class _PrivacyScreenState extends ConsumerState<PrivacyScreen> {
     ];
     return Scaffold(
       appBar: AppBar(title: Text(l.privacyCentre)),
-      body: PageBody(maxWidth: 800, children: [
+      body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
         if (deletion != null) ...[
-          InfoNote(l.prvDeletionPending(Fmt.date(deletionDate(deletion), context.lang)), tone: ChipTone.error, icon: Icons.warning_amber_rounded),
+          InfoNote(l.prvDeletionPending(Fmt.date(deletionDate(deletion), context.lang)), tone: ChipTone.error, icon: Icons.warning_amber_outlined),
           const SizedBox(height: Space.sm),
           PrimaryButton(
             label: l.prvCancelDeletion,
-            icon: Icons.restore_rounded,
+            icon: Icons.restore_outlined,
             onPressed: () async {
               await repo.cancelDeletion(user);
               if (context.mounted) showToast(context, l.prvDeletionCancelled);
@@ -95,7 +95,7 @@ class _PrivacyScreenState extends ConsumerState<PrivacyScreen> {
         PawCard(
           color: context.paw.primaryContainer,
           child: Row(children: [
-            Icon(Icons.privacy_tip_rounded, size: 40, color: context.colors.primary),
+            Icon(Icons.privacy_tip_outlined, size: IconSizes.xxxl, color: context.colors.primary),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.prvIntro, style: context.text.bodyMedium)),
           ]),
@@ -119,7 +119,7 @@ class _PrivacyScreenState extends ConsumerState<PrivacyScreen> {
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Text(l.prvDownloadBody, style: context.text.bodyMedium),
             const SizedBox(height: Space.md),
-            PrimaryButton(label: l.prvDownloadButton, icon: Icons.download_rounded, loading: _exporting, onPressed: _export),
+            PrimaryButton(label: l.prvDownloadButton, icon: Icons.download_outlined, loading: _exporting, onPressed: _export),
             if (_exportSummary != null) ...[const SizedBox(height: Space.sm), InfoNote(_exportSummary!, tone: ChipTone.success)],
           ]),
         ),
@@ -129,7 +129,7 @@ class _PrivacyScreenState extends ConsumerState<PrivacyScreen> {
             Text(l.prvDeleteBody(deletionGraceDays), style: context.text.bodyMedium),
             const SizedBox(height: Space.md),
             if (deletion == null)
-              PrimaryButton(label: l.prvDeleteButton, icon: Icons.delete_forever_rounded, danger: true, onPressed: _delete)
+              PrimaryButton(label: l.prvDeleteButton, icon: Icons.delete_forever_outlined, danger: true, onPressed: _delete)
             else
               Text(l.prvDeletionPending(Fmt.date(deletionDate(deletion), context.lang)), style: context.text.bodySmall?.copyWith(color: context.paw.error)),
           ]),
@@ -154,9 +154,9 @@ class SuspendedScreen extends ConsumerWidget {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(Space.xl),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 480),
+              constraints: const BoxConstraints(maxWidth: Sizes.narrowPage),
               child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Icon(Icons.block_rounded, size: 72, color: context.paw.error),
+                Icon(Icons.block_outlined, size: IconSizes.hero, color: context.paw.error),
                 const SizedBox(height: Space.lg),
                 Text(l.suspTitle, style: context.text.headlineSmall, textAlign: TextAlign.center),
                 const SizedBox(height: Space.sm),
@@ -164,13 +164,13 @@ class SuspendedScreen extends ConsumerWidget {
                 const SizedBox(height: Space.xl),
                 PrimaryButton(
                   label: l.suspContact,
-                  icon: Icons.email_rounded,
+                  icon: Icons.email_outlined,
                   onPressed: () => showDemoDialog(context, title: l.suspContact, body: l.suspContactBody),
                 ),
                 const SizedBox(height: Space.sm),
                 SecondaryButton(
                   label: l.signOut,
-                  icon: Icons.logout_rounded,
+                  icon: Icons.logout_outlined,
                   onPressed: () async {
                     await ref.read(authServiceProvider).signOut();
                     if (context.mounted) context.go('/signin');

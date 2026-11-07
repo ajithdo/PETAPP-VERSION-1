@@ -62,7 +62,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 controller: _name,
                 autofill: const [AutofillHints.name],
                 textInputAction: TextInputAction.next,
-                prefixIcon: Icons.person_outline_rounded,
+                prefixIcon: Icons.person_outlined,
                 validator: (v) => (v == null || v.trim().isEmpty) ? l.fieldRequired : null,
               ),
               PawTextField(
@@ -71,7 +71,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 keyboardType: TextInputType.emailAddress,
                 autofill: const [AutofillHints.email],
                 textInputAction: TextInputAction.next,
-                prefixIcon: Icons.mail_outline_rounded,
+                prefixIcon: Icons.mail_outlined,
                 validator: (v) => validateEmail(context, v),
               ),
               PawTextField(
@@ -80,12 +80,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 obscure: _hide,
                 helper: l.passwordHelper,
                 autofill: const [AutofillHints.newPassword],
-                prefixIcon: Icons.lock_outline_rounded,
+                prefixIcon: Icons.lock_outlined,
                 onSubmitted: (_) => _submit(),
                 validator: (v) => (v == null || v.length < 6) ? l.authErrWeakPassword : null,
                 suffix: IconButton(
                   tooltip: _hide ? l.showPassword : l.hidePassword,
-                  icon: Icon(_hide ? Icons.visibility_rounded : Icons.visibility_off_rounded),
+                  icon: Icon(_hide ? Icons.visibility_outlined : Icons.visibility_off_outlined),
                   onPressed: () => setState(() => _hide = !_hide),
                 ),
               ),
@@ -93,7 +93,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           ),
         ),
         if (_error != null) ...[
-          InfoNote(_error!, icon: Icons.error_outline_rounded, tone: ChipTone.error),
+          InfoNote(_error!, icon: Icons.error_outlined, tone: ChipTone.error),
           const SizedBox(height: Space.md),
         ],
         PrimaryButton(label: l.createAccount, loading: _busy, onPressed: _submit),
@@ -103,7 +103,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         Center(
           child: TextButton.icon(
             onPressed: () => context.push('/partner-signup'),
-            icon: const Icon(Icons.storefront_rounded),
+            icon: const Icon(Icons.storefront_outlined),
             label: Text(l.partnerSignupLink),
           ),
         ),

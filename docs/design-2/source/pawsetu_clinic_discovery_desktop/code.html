@@ -1,0 +1,482 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSetu - Clinic Discovery</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'coral': '#E05A47',
+            'forest-teal': '#18453E',
+            'soft-sage': '#E6F0ED',
+            'soft-sand': '#F3EFEA',
+            'warm-border': '#E7E2DA',
+            'status-upcoming': '#D97706',
+            'status-completed': '#15803D',
+            'status-emergency': '#DC2626',
+            'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-secondary': '#18453E',
+            'light-on-secondary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-on-surface-elevated': '#1C1917',
+            'light-surface-subtle': '#F3EFEA',
+            'light-on-surface-subtle': '#44403C',
+            'light-outline': '#E7E2DA',
+            'light-error': '#DC2626',
+            'light-on-error': '#FFFFFF',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '28px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+          fontSize: {
+            'display-lg': ['40px', { lineHeight: '48px', letterSpacing: '-0.8px', fontWeight: '700' }],
+            'display-lg-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.5px', fontWeight: '700' }],
+            'headline-lg': ['32px', { lineHeight: '38px', letterSpacing: '-0.6px', fontWeight: '700' }],
+            'headline-md': ['24px', { lineHeight: '30px', letterSpacing: '-0.3px', fontWeight: '600' }],
+            'headline-sm': ['20px', { lineHeight: '26px', letterSpacing: '-0.2px', fontWeight: '600' }],
+            'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+            'body-md': ['15px', { lineHeight: '22px', fontWeight: '400' }],
+            'body-sm': ['13px', { lineHeight: '18px', fontWeight: '400' }],
+            'label-lg': ['15px', { lineHeight: '20px', fontWeight: '600' }],
+            'label-md': ['13px', { lineHeight: '18px', fontWeight: '500' }],
+            'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.3px', fontWeight: '600' }],
+            'code-md': ['13px', { lineHeight: '18px', fontWeight: '500' }],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <style>
+    /* Prevent layout shifts & set smooth animations */
+    * { -webkit-font-smoothing: antialiased; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface min-h-[1024px] font-body antialiased flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Desktop Global Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-light-surface/95 backdrop-blur-md border-b border-light-outline">
+    <div class="max-w-[1240px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      
+      <!-- Brand & Location Trigger -->
+      <div class="flex items-center gap-8">
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-forest-teal text-white flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-[24px]">pets</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-headline font-bold text-[22px] tracking-tight text-light-on-surface leading-tight">PawSetu</span>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-forest-teal">Veterinary &amp; Care</span>
+          </div>
+        </a>
+
+        <!-- Location Dropdown Selector -->
+        <button type="button" class="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-light-surface-subtle border border-light-outline hover:border-forest-teal/30 transition text-left">
+          <span class="material-symbols-outlined text-coral text-[18px]">location_on</span>
+          <span class="text-body-sm font-semibold text-light-on-surface">Indiranagar, Bengaluru</span>
+          <span class="material-symbols-outlined text-stone-400 text-[18px]">expand_more</span>
+        </button>
+      </div>
+
+      <!-- Center Primary Navigation -->
+      <nav class="hidden lg:flex items-center gap-1 bg-light-surface-subtle/80 p-1.5 rounded-full border border-light-outline">
+        <a href="#discovery" class="px-4 py-2 rounded-full bg-forest-teal text-white font-label text-label-md shadow-sm flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">local_hospital</span>
+          <span data-design-text-token="label-md">Vet Clinics</span>
+        </a>
+        <a href="#health" class="px-4 py-2 rounded-full text-light-on-surface hover:text-forest-teal font-label text-label-md transition flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">favorite</span>
+          <span data-design-text-token="label-md">Health Vault</span>
+        </a>
+        <a href="#bookings" class="px-4 py-2 rounded-full text-light-on-surface hover:text-forest-teal font-label text-label-md transition flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+          <span data-design-text-token="label-md">Appointments</span>
+        </a>
+        <a href="#emergency" class="px-4 py-2 rounded-full text-status-emergency font-label text-label-md hover:bg-rose-50 transition flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">e911_emergency</span>
+          <span data-design-text-token="label-md">24/7 SOS</span>
+        </a>
+      </nav>
+
+      <!-- Right User & Active Pet Switcher -->
+      <div class="flex items-center gap-3">
+        <!-- Active Pet Chip -->
+        <div class="hidden sm:flex items-center gap-2.5 px-3 py-1.5 bg-light-surface-elevated rounded-full border border-light-outline shadow-sm">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1XxUq1bOZRiIA2H6VxFO2poRcUT2izixzVyL73fv2iSZRSvkZ0JBJ0jin1r55P7HsHFzmHQMG_tzjNUkmnQDbFQMrzuvLDR06OcupUF1vD7x9L5k-Cdt00vNEtSuvNCV7rHH3UQS3Te_x5xoCkL4bGCTqjoJVhw9bdMIjmJu3_-IXwafoNSiwE8L25mBq7MBqwvb48TUMHrR35iwa6dvTjhscPM7CWOI3bwNuVKNByzQSdx4re8KsFa6rJbWjg" alt="Bruno" class="w-7 h-7 rounded-full object-cover ring-2 ring-soft-sage" data-stitch-original-src="c2a13ef3ba31c4d4===../../images/pet_bruno_portrait.jpg">
+          <div class="flex flex-col pr-1">
+            <span class="font-label text-[12px] font-bold text-light-on-surface leading-none">Bruno</span>
+            <span class="text-[10px] text-stone-500 font-medium">3 yrs · 29.4 kg</span>
+          </div>
+          <span class="material-symbols-outlined text-stone-400 text-[16px]">unfold_more</span>
+        </div>
+
+        <!-- Quick Notifications -->
+        <button type="button" aria-label="Notifications" class="w-10 h-10 rounded-full border border-light-outline bg-light-surface-elevated text-light-on-surface flex items-center justify-center hover:bg-light-surface-subtle transition relative">
+          <span class="material-symbols-outlined text-[20px]">notifications</span>
+          <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-coral"></span>
+        </button>
+
+        <!-- User Profile Avatar -->
+        <button type="button" class="flex items-center gap-2 pl-2">
+          <div class="w-10 h-10 rounded-full bg-soft-sand border border-light-outline flex items-center justify-center font-bold text-forest-teal">
+            PS
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Container: Max 1200px Desktop Content Flow -->
+  <main class="flex-1 max-w-[1240px] w-full mx-auto px-6 py-8">
+    
+    <!-- Hero & Search Section -->
+    <section class="mb-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-soft-sage text-forest-teal text-[12px] font-bold mb-3 border border-forest-teal/15">
+            <span class="material-symbols-outlined text-[15px]">verified_user</span>
+            <span>Over 45+ Verified Veterinary Clinics in Bengaluru</span>
+          </div>
+          <h1 class="font-headline text-display-lg text-light-on-surface tracking-tight">
+            Find certified care for <span class="text-coral underline decoration-coral/30 underline-offset-8">Bruno</span>
+          </h1>
+          <p class="text-body-lg text-light-on-surface-subtle mt-2 max-w-2xl">
+            Book in-clinic consultations, routine booster vaccinations, and transparently priced procedures with zero hidden facility fees.
+          </p>
+        </div>
+
+        <!-- Instant SOS Hotline Trigger -->
+        <div class="flex-shrink-0">
+          <button type="button" class="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-rose-50 border border-rose-200 text-status-emergency font-label text-label-md font-bold shadow-sm hover:bg-rose-100 transition">
+            <span class="material-symbols-outlined text-[20px]">emergency</span>
+            <span>24/7 Urgent Care Triage</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Search Bar & Instant Filters Hero -->
+      <div class="bg-light-surface-elevated rounded-2xl border border-light-outline p-3 shadow-[0_4px_24px_-4px_rgba(28,25,23,0.06)] flex flex-col md:flex-row items-center gap-3">
+        <div class="relative flex-1 w-full">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 text-[22px]">search</span>
+          <input type="search" placeholder="Search clinics by name, specialty (Orthopedic, Dermatology), or procedure..." value="Indiranagar &amp; Koramangala" class="w-full pl-12 pr-4 py-3 bg-transparent border-0 rounded-xl font-body text-body-md text-light-on-surface placeholder:text-stone-400 focus:ring-2 focus:ring-forest-teal">
+        </div>
+        <div class="flex items-center gap-2 w-full md:w-auto border-t md:border-t-0 md:border-l border-light-outline pt-2 md:pt-0 md:pl-3">
+          <button type="button" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-light-surface-subtle hover:bg-stone-200/60 text-light-on-surface text-body-sm font-semibold transition">
+            <span class="material-symbols-outlined text-[18px]">tune</span>
+            <span>Filters</span>
+          </button>
+          <button type="button" class="flex-1 md:flex-initial inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-light-primary text-white font-label text-label-md shadow-sm hover:opacity-95 transition">
+            <span>Search</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Filter Pills -->
+      <div class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pt-4">
+        <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-forest-teal text-white rounded-full font-label text-label-md shadow-sm flex-shrink-0">
+          <span class="material-symbols-outlined text-[18px]">medical_services</span>
+          <span>General OPD &amp; Consultation</span>
+        </button>
+        <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-light-surface-elevated text-light-on-surface border border-light-outline rounded-full font-label text-label-md hover:bg-light-surface-subtle transition flex-shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-stone-500">vaccines</span>
+          <span>Vaccinations</span>
+        </button>
+        <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-light-surface-elevated text-light-on-surface border border-light-outline rounded-full font-label text-label-md hover:bg-light-surface-subtle transition flex-shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-stone-500">content_cut</span>
+          <span>Medical Grooming</span>
+        </button>
+        <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-light-surface-elevated text-light-on-surface border border-light-outline rounded-full font-label text-label-md hover:bg-light-surface-subtle transition flex-shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-stone-500">radiology</span>
+          <span>X-Ray &amp; Diagnostic Lab</span>
+        </button>
+        <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-light-surface-elevated text-light-on-surface border border-light-outline rounded-full font-label text-label-md hover:bg-light-surface-subtle transition flex-shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-emerald-600">verified</span>
+          <span>Top Rated (4.8+)</span>
+        </button>
+        <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-light-surface-elevated text-light-on-surface border border-light-outline rounded-full font-label text-label-md hover:bg-light-surface-subtle transition flex-shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-coral">bolt</span>
+          <span>Slots Available Today</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Results Header -->
+    <div class="flex items-center justify-between mb-6 pb-3 border-b border-light-outline">
+      <div class="flex items-baseline gap-3">
+        <h2 class="font-headline text-headline-md text-light-on-surface font-bold">Recommended Clinics Nearby</h2>
+        <span class="text-body-sm text-light-on-surface-subtle font-medium">3 verified veterinary centers near Indiranagar</span>
+      </div>
+      <div class="flex items-center gap-2 text-body-sm">
+        <span class="text-light-on-surface-subtle">Sort by:</span>
+        <select class="bg-transparent border-0 font-label text-label-md text-light-on-surface font-semibold focus:ring-0 cursor-pointer pr-6">
+          <option>Distance (Closest first)</option>
+          <option>Rating (Highest first)</option>
+          <option>Consultation Price</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Multi-Column Bento Feed of Redesigned Clinic Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Clinic Card 1: Gulmohar Vet Studio -->
+      <article class="bg-light-surface-elevated rounded-2xl border border-light-outline overflow-hidden shadow-[0_2px_12px_-2px_rgba(28,25,23,0.06)] hover:border-coral transition duration-tap flex flex-col group">
+        <!-- Media Banner with Aspect Ratio to eliminate CLS -->
+        <div class="relative w-full aspect-[16/9] overflow-hidden bg-soft-sand">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1XQWj9QxRE0aIahy-moq7y3-oQn72rZ6Wg5EE0fxHgwtRqQR8xgePgFEhuwFuO0_E81KfNDtjsV9PBZ6YtCimqQcnZGBDi_Mi2raSABRwk6OJTSS9Dq3M5JFd3T1JYrrMhlY_RoGd28HbR40Pq0ZFkMFcqLSXd38Z7ZXwNMs1eTEMmwjcXogpgbRctJYX5a54VcW6pshHu9cT0i6yFv5W4OyNU1aLgYVqM9wCL9KjseT-dBNJP4ALVKQD0HxjMSy7ygtsw" alt="Gulmohar Vet Studio modern clinic interior" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" data-stitch-original-src="5e6eba5391075b8b===../../images/clinic_exterior_gulmohar.jpg">
+          <div class="absolute top-3 left-3 flex items-center gap-1.5">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-forest-teal text-[11px] font-bold shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">verified</span>
+              Verified Studio
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/90 backdrop-blur-sm text-white text-[11px] font-bold shadow-sm">
+              Open Now
+            </span>
+          </div>
+          <div class="absolute bottom-3 right-3 px-2 py-1 rounded-md bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-[13px]">near_me</span>
+            <span>1.2 km away</span>
+          </div>
+        </div>
+
+        <!-- Content Body -->
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <h3 class="font-headline text-headline-sm text-light-on-surface font-bold group-hover:text-coral transition">
+                Gulmohar Vet Studio
+              </h3>
+              <div class="flex items-center gap-1 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
+                <span class="material-symbols-outlined text-amber-500 text-[15px]" style="font-variation-settings: &#39;FILL&#39; 1;">star</span>
+                <span class="font-label text-label-sm text-amber-950 font-bold">4.8</span>
+                <span class="text-[11px] text-amber-700">(128)</span>
+              </div>
+            </div>
+            
+            <p class="text-body-sm text-light-on-surface-subtle mb-3">
+              100 Feet Rd, 12th Main, Indiranagar · Canine &amp; Feline Specialists
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="px-2 py-0.5 rounded-md bg-soft-sand text-stone-600 text-[11px] font-medium">Digital X-Ray</span>
+              <span class="px-2 py-0.5 rounded-md bg-soft-sand text-stone-600 text-[11px] font-medium">Tele-Vet Available</span>
+              <span class="px-2 py-0.5 rounded-md bg-soft-sand text-stone-600 text-[11px] font-medium">In-House Lab</span>
+            </div>
+
+            <!-- Slot Preview Pill -->
+            <div class="p-2.5 rounded-xl bg-soft-sage/60 border border-forest-teal/15 flex items-center justify-between text-body-sm mb-4">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-forest-teal text-[18px]">event_available</span>
+                <span class="text-forest-teal font-medium text-[13px]">Next Available:</span>
+              </div>
+              <span class="font-code text-code-md text-forest-teal font-bold">Today, 4:30 PM</span>
+            </div>
+          </div>
+
+          <!-- Price & Action CTA -->
+          <div class="pt-3 border-t border-light-outline flex items-center justify-between">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-light-on-surface-subtle font-semibold block">Consultation</span>
+              <span class="font-headline text-[20px] text-light-on-surface font-extrabold">₹750</span>
+            </div>
+            <a href="../clinic-booking/ClinicBooking.html" class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-light-primary text-white font-label text-label-md rounded-xl shadow-sm hover:opacity-95 active:scale-[0.98] transition">
+              <span>Book Visit</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Clinic Card 2: Namma Pet Hospital -->
+      <article class="bg-light-surface-elevated rounded-2xl border border-light-outline overflow-hidden shadow-[0_2px_12px_-2px_rgba(28,25,23,0.06)] hover:border-coral transition duration-tap flex flex-col group">
+        <div class="relative w-full aspect-[16/9] overflow-hidden bg-soft-sand">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1UuWDRP4bSCqVDfj6YzV0YIIoK2xB1BN5GaNs9rcKFA36SzRI55EF8aMyH4vvgpMyojFIYLpcLgm85P3AQaMm1tO2OaxogRn05XjQ3x5h4sILepMahYY_wfKCKNC44fgrOXSoLBPbfJiFvNRV6z6vO_FADg3Fq7zTIiAi4IGH-T4IeKVCGADTDfxEAsq1rEad7ZTNZcVtMOFGbz_24ttKotRBcYGfkINU3PosRZfA5yTrri7gAdl4-SG0l7sWlGG0c" alt="Namma Pet Hospital 24/7 care facility" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" data-stitch-original-src="6b7fac0af6ee2f7e===../../images/clinic_exterior_namma.jpg">
+          <div class="absolute top-3 left-3 flex items-center gap-1.5">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-forest-teal text-[11px] font-bold shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">verified</span>
+              Hospital
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-rose-600/90 backdrop-blur-sm text-white text-[11px] font-bold shadow-sm">
+              24×7 Emergency
+            </span>
+          </div>
+          <div class="absolute bottom-3 right-3 px-2 py-1 rounded-md bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-[13px]">near_me</span>
+            <span>4.3 km away</span>
+          </div>
+        </div>
+
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <h3 class="font-headline text-headline-sm text-light-on-surface font-bold group-hover:text-coral transition">
+                Namma Pet Hospital
+              </h3>
+              <div class="flex items-center gap-1 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
+                <span class="material-symbols-outlined text-amber-500 text-[15px]" style="font-variation-settings: &#39;FILL&#39; 1;">star</span>
+                <span class="font-label text-label-sm text-amber-950 font-bold">4.7</span>
+                <span class="text-[11px] text-amber-700">(210)</span>
+              </div>
+            </div>
+            
+            <p class="text-body-sm text-light-on-surface-subtle mb-3">
+              80 Feet Rd, 4th Block, Koramangala · Full Surgical Facility
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="px-2 py-0.5 rounded-md bg-soft-sand text-stone-600 text-[11px] font-medium">ICU Beds</span>
+              <span class="px-2 py-0.5 rounded-md bg-soft-sand text-stone-600 text-[11px] font-medium">Ultrasound</span>
+              <span class="px-2 py-0.5 rounded-md bg-soft-sand text-stone-600 text-[11px] font-medium">Pet Pharmacy</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-soft-sage/60 border border-forest-teal/15 flex items-center justify-between text-body-sm mb-4">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-forest-teal text-[18px]">event_available</span>
+                <span class="text-forest-teal font-medium text-[13px]">Next Available:</span>
+              </div>
+              <span class="font-code text-code-md text-forest-teal font-bold">Today, 5:15 PM</span>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-light-outline flex items-center justify-between">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-light-on-surface-subtle font-semibold block">Consultation</span>
+              <span class="font-headline text-[20px] text-light-on-surface font-extrabold">₹900</span>
+            </div>
+            <a href="../clinic-booking/ClinicBooking.html" class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-light-primary text-white font-label text-label-md rounded-xl shadow-sm hover:opacity-95 active:scale-[0.98] transition">
+              <span>Book Visit</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Clinic Card 3: Whitefield Wag & Wellness -->
+      <article class="bg-light-surface-elevated rounded-2xl border border-light-outline overflow-hidden shadow-[0_2px_12px_-2px_rgba(28,25,23,0.06)] hover:border-coral transition duration-tap flex flex-col group">
+        <div class="relative w-full aspect-[16/9] overflow-hidden bg-soft-sand">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1USsLt4zhW_B6AUPlxbJnh4U3paQMkKR2UL2jvEwcUv1uAchzRencfeSodkW_quHYOwgzxvwedj-15m_wUcOw8iV5yHjqDsCAxs-RMDHrYBa7wOgckI1mejJfbCp5wvXyVfv94AMUZjjq45Y0UhDoB-JcGTyF5Jl0Ehezn-k4864MBGhZu6bLeIW44z26E4VwPB5NS4NqVBYbk8LJXIxPzziFVYhvEAQKVk87VQFIsbCibNnXS1HXvCzPIsWOCkAlc4HZ-h1w" alt="Whitefield Wag Clinic sunlit wellness center" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" data-stitch-original-src="6cd2ead6ff4468c7===../../images/clinic_exterior_whitefield.jpg">
+          <div class="absolute top-3 left-3 flex items-center gap-1.5">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-forest-teal text-[11px] font-bold shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">verified</span>
+              Wellness Center
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/90 backdrop-blur-sm text-white text-[11px] font-bold shadow-sm">
+              Open Now
+            </span>
+          </div>
+          <div class="absolute bottom-3 right-3 px-2 py-1 rounded-md bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-[13px]">near_me</span>
+            <span>6.8 km away</span>
+          </div>
+        </div>
+
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <h3 class="font-headline text-headline-sm text-light-on-surface font-bold group-hover:text-coral transition">
+                Whitefield Wag Clinic
+              </h3>
+              <div class="flex items-center gap-1 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
+                <span class="material-symbols-outlined text-amber-500 text-[15px]" style="font-variation-settings: &#39;FILL&#39; 1;">star</span>
+                <span class="font-label text-label-sm text-amber-950 font-bold">4.6</span>
+                <span class="text-[11px] text-amber-700">(84)</span>
+              </div>
+            </div>
+            
+            <p class="text-body-sm text-light-on-surface-subtle mb-3">
+              ECC Road, Whitefield · Preventive Health &amp; Dental
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="px-2 py-0.5 rounded-md bg-soft-sand text-stone-600 text-[11px] font-medium">Dental Scaling</span>
+              <span class="px-2 py-0.5 rounded-md bg-soft-sand text-stone-600 text-[11px] font-medium">Vaccination Drive</span>
+              <span class="px-2 py-0.5 rounded-md bg-soft-sand text-stone-600 text-[11px] font-medium">Spay &amp; Neuter</span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-soft-sage/60 border border-forest-teal/15 flex items-center justify-between text-body-sm mb-4">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-forest-teal text-[18px]">event_available</span>
+                <span class="text-forest-teal font-medium text-[13px]">Next Available:</span>
+              </div>
+              <span class="font-code text-code-md text-forest-teal font-bold">Tomorrow, 10:00 AM</span>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-light-outline flex items-center justify-between">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-light-on-surface-subtle font-semibold block">Consultation</span>
+              <span class="font-headline text-[20px] text-light-on-surface font-extrabold">₹650</span>
+            </div>
+            <a href="../clinic-booking/ClinicBooking.html" class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-light-primary text-white font-label text-label-md rounded-xl shadow-sm hover:opacity-95 active:scale-[0.98] transition">
+              <span>Book Visit</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Quick Health Summary Banner for Active Pet -->
+    <div class="mt-12 bg-gradient-to-r from-forest-teal to-[#265e54] rounded-2xl p-6 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
+      <div class="flex items-center gap-5">
+        <img src="https://lh3.googleusercontent.com/aida/AEtjO1XxUq1bOZRiIA2H6VxFO2poRcUT2izixzVyL73fv2iSZRSvkZ0JBJ0jin1r55P7HsHFzmHQMG_tzjNUkmnQDbFQMrzuvLDR06OcupUF1vD7x9L5k-Cdt00vNEtSuvNCV7rHH3UQS3Te_x5xoCkL4bGCTqjoJVhw9bdMIjmJu3_-IXwafoNSiwE8L25mBq7MBqwvb48TUMHrR35iwa6dvTjhscPM7CWOI3bwNuVKNByzQSdx4re8KsFa6rJbWjg" alt="Bruno" class="w-16 h-16 rounded-full object-cover ring-4 ring-white/20" data-stitch-original-src="c2a13ef3ba31c4d4===../../images/pet_bruno_portrait.jpg">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2 py-0.5 rounded-full bg-white/20 text-[11px] font-bold uppercase tracking-wider">Health Alert</span>
+            <span class="text-amber-300 text-body-sm font-semibold">Upcoming Booster</span>
+          </div>
+          <h3 class="font-headline text-headline-sm font-bold">Bruno’s Anti-Rabies &amp; DHPPi Booster is due in 10 days</h3>
+          <p class="text-white/80 text-body-sm">Last administered at Gulmohar Vet Studio on Nov 10, 2023.</p>
+        </div>
+      </div>
+      <a href="../medical-records/MedicalRecords.html" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-forest-teal font-label text-label-md font-bold shadow-sm hover:bg-soft-sand transition flex-shrink-0">
+        <span class="material-symbols-outlined text-[18px]">history_edu</span>
+        <span>View Bruno’s Vaccine Vault</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Sticky Bottom Bar for Mobile or Viewport Helper -->
+  <footer class="mt-auto border-t border-light-outline bg-light-surface py-6 text-center text-body-sm text-light-on-surface-subtle">
+    <div class="max-w-[1240px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-status-completed"></span>
+        <span>Live Veterinary Network Connected · Indiranagar Node</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#privacy" class="hover:underline">Privacy &amp; Records Encryption</a>
+        <a href="#vets" class="hover:underline">Join as a Verified Clinic</a>
+        <a href="#support" class="hover:underline">Pet Parent Support</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+</body></html>

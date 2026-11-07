@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/l10n/gen/app_localizations.dart';
+import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/document_preview.dart';
 import '../../../core/widgets/widgets.dart';
@@ -83,7 +84,7 @@ class _InvoicePage extends StatelessWidget {
               if (o.discount > 0) _row(l.cartCouponDiscountCode(o.coupon ?? ''), '− ${inr(o.discount)}'),
               _row(l.shopDeliveryFee, o.deliveryFee == 0 ? l.shopFree : inr(o.deliveryFee)),
               _row(l.invTax, l.invTaxPlaceholder),
-              const Divider(height: 10, color: Color(0xFFE5E1DA)),
+              const Divider(height: 10, color: PrintColors.rule),
               _row(l.ordTotal, inr(o.total), bold: true),
             ]),
           ),
@@ -91,8 +92,8 @@ class _InvoicePage extends StatelessWidget {
         const Spacer(),
         Container(
           padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(color: const Color(0xFFFFF4E5), borderRadius: BorderRadius.circular(6)),
-          child: Text(l.invDemoNote, style: const TextStyle(color: Color(0xFF8A4B08), fontSize: 9)),
+          decoration: BoxDecoration(color: PrintColors.note, borderRadius: BorderRadius.circular(6)),
+          child: Text(l.invDemoNote, style: const TextStyle(color: PrintColors.onNote, fontSize: 9)),
         ),
       ],
     );

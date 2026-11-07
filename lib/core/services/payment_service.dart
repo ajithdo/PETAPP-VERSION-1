@@ -24,7 +24,7 @@ class DemoPaymentService implements PaymentService {
       final l = ctx.l10n;
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          Icon(Icons.payments_rounded, color: ctx.colors.primary, size: 32),
+          Icon(Icons.payments_outlined, color: ctx.colors.primary, size: IconSizes.xl),
           const SizedBox(width: Space.md),
           Expanded(child: Text(l.demoPaymentTitle, style: ctx.text.titleMedium)),
         ]),

@@ -39,14 +39,14 @@ class AlbumViewerScreen extends ConsumerWidget {
     final all = ref.watch(petAlbumProvider(petId));
     final pet = ref.watch(petProvider(petId)).value;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: MediaColors.background,
       body: all.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, _) => ErrorState(onRetry: () => ref.invalidate(petAlbumProvider(petId))),
         data: (list) {
           final items = filterItems(list, filter);
           if (items.isEmpty || pet == null) {
-            return Center(child: IconButton(tooltip: context.l10n.close, onPressed: () => context.pop(), icon: const Icon(Icons.close_rounded, color: Colors.white)));
+            return Center(child: IconButton(tooltip: context.l10n.close, onPressed: () => context.pop(), icon: const Icon(Icons.close_outlined, color: MediaColors.foreground)));
           }
           final start = items.indexWhere((i) => i.id == itemId);
           return MediaPager(items: items, initialIndex: start < 0 ? 0 : start, pet: pet);
@@ -117,27 +117,27 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xs),
             child: Row(children: [
-              IconButton(tooltip: l.albumClose, onPressed: _close, icon: const Icon(Icons.close_rounded, color: Colors.white)),
+              IconButton(tooltip: l.albumClose, onPressed: _close, icon: const Icon(Icons.close_outlined, color: MediaColors.foreground)),
               Expanded(
                 child: Text(l.albumOfCount(_index + 1, items.length),
-                    style: const TextStyle(color: Colors.white70), textAlign: TextAlign.center),
+                    style: const TextStyle(color: MediaColors.foregroundMuted), textAlign: TextAlign.center),
               ),
               if (pet != null) ...[
                 IconButton(
                   tooltip: item.favourite ? l.albumUnfavourite : l.albumFavourite,
                   onPressed: canLog ? () => ref.read(albumRepositoryProvider).toggleFavourite(item) : null,
                   icon: Icon(item.favourite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
-                      color: item.favourite ? PetTagColors.of('rose') : Colors.white),
+                      color: item.favourite ? PetTagColors.of('rose') : MediaColors.foreground),
                 ),
                 IconButton(
                   tooltip: l.albumShare,
                   onPressed: () => showShareMemorySheet(context, ref, item, pet),
-                  icon: const Icon(Icons.ios_share_rounded, color: Colors.white),
+                  icon: const Icon(Icons.ios_share_outlined, color: MediaColors.foreground),
                 ),
                 if (canLog)
                   PopupMenuButton<String>(
                     tooltip: l.moreOptions,
-                    iconColor: Colors.white,
+                    iconColor: MediaColors.foreground,
                     onSelected: (v) async {
                       if (v == 'edit') {
                         await showMemoryEditSheet(context, ref, pet, existing: item);
@@ -158,9 +158,9 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
                       }
                     },
                     itemBuilder: (_) => [
-                      PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_rounded), title: Text(l.albumEditCaption))),
-                      PopupMenuItem(value: 'album', child: ListTile(leading: const Icon(Icons.photo_album_rounded), title: Text(l.albumAddToAlbum))),
-                      PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outline_rounded), title: Text(l.albumDelete))),
+                      PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.albumEditCaption))),
+                      PopupMenuItem(value: 'album', child: ListTile(leading: const Icon(Icons.photo_album_outlined), title: Text(l.albumAddToAlbum))),
+                      PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outlined), title: Text(l.albumDelete))),
                     ],
                   ),
               ],
@@ -187,12 +187,12 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
               if (wide && _index > 0)
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: IconButton.filledTonal(tooltip: l.albumPrevious, onPressed: () => _go(-1), icon: const Icon(Icons.chevron_left_rounded)),
+                  child: IconButton.filledTonal(tooltip: l.albumPrevious, onPressed: () => _go(-1), icon: const Icon(Icons.chevron_left_outlined)),
                 ),
               if (wide && _index < items.length - 1)
                 Align(
                   alignment: Alignment.centerRight,
-                  child: IconButton.filledTonal(tooltip: l.next, onPressed: () => _go(1), icon: const Icon(Icons.chevron_right_rounded)),
+                  child: IconButton.filledTonal(tooltip: l.next, onPressed: () => _go(1), icon: const Icon(Icons.chevron_right_outlined)),
                 ),
             ]),
           ),
@@ -202,27 +202,27 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
             padding: EdgeInsets.fromLTRB(context.gutter, Space.md, context.gutter, Space.lg),
             child: Center(
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 720),
+                constraints: const BoxConstraints(maxWidth: Space.formWidth),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
                   if (item.milestone != null)
                     Padding(
                       padding: const EdgeInsets.only(bottom: Space.xs),
                       child: Row(children: [
-                        MilestoneBadge(kind: item.milestone!, size: 24),
+                        MilestoneBadge(kind: item.milestone!, size: Sizes.avatarChip),
                         const SizedBox(width: Space.sm),
-                        Flexible(child: Text(itemMilestoneLabel(context, item), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700))),
+                        Flexible(child: Text(itemMilestoneLabel(context, item), style: const TextStyle(color: MediaColors.foreground, fontWeight: FontWeight.w700))),
                       ]),
                     ),
                   if (item.caption.isNotEmpty)
-                    Text(item.caption, style: const TextStyle(color: Colors.white, fontSize: 16), maxLines: 3, overflow: TextOverflow.ellipsis),
-                  const SizedBox(height: 2),
+                    Text(item.caption, style: context.text.bodyLarge?.copyWith(color: MediaColors.foreground), maxLines: 3, overflow: TextOverflow.ellipsis),
+                  const SizedBox(height: Space.xxs),
                   Text(
                     [
                       Fmt.date(item.takenAt, context.lang),
                       if (item.isVideo) videoLength(item.durationSec),
                       if (pet != null && item.byName.isNotEmpty) l.albumAddedBy(item.byName),
                     ].join(' · '),
-                    style: const TextStyle(color: Colors.white70, fontSize: 13),
+                    style: context.text.bodySmall?.copyWith(color: MediaColors.foregroundMuted),
                   ),
                 ]),
               ),

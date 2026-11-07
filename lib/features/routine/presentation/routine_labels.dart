@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/layout.dart';
 import '../domain/routine.dart';
 
@@ -21,32 +22,36 @@ String logTypeLabel(BuildContext context, LogType t) {
 }
 
 IconData logTypeIcon(LogType t) => switch (t) {
-      LogType.walk => Icons.directions_walk_rounded,
-      LogType.play => Icons.sports_baseball_rounded,
-      LogType.meal => Icons.restaurant_rounded,
-      LogType.water => Icons.water_drop_rounded,
-      LogType.potty => Icons.grass_rounded,
-      LogType.sleep => Icons.bedtime_rounded,
-      LogType.grooming => Icons.content_cut_rounded,
-      LogType.training => Icons.school_rounded,
-      LogType.mood => Icons.mood_rounded,
-      LogType.weight => Icons.monitor_weight_rounded,
-      LogType.behaviour => Icons.psychology_rounded,
+      LogType.walk => Icons.directions_walk_outlined,
+      LogType.play => Icons.sports_baseball_outlined,
+      LogType.meal => Icons.restaurant_outlined,
+      LogType.water => Icons.water_drop_outlined,
+      LogType.potty => Icons.grass_outlined,
+      LogType.sleep => Icons.bedtime_outlined,
+      LogType.grooming => Icons.content_cut_outlined,
+      LogType.training => Icons.school_outlined,
+      LogType.mood => Icons.mood_outlined,
+      LogType.weight => Icons.monitor_weight_outlined,
+      LogType.behaviour => Icons.psychology_outlined,
     };
 
-Color logTypeColor(LogType t) => switch (t) {
-      LogType.walk => const Color(0xFF0F766E),
-      LogType.play => const Color(0xFFF4A261),
-      LogType.meal => const Color(0xFFD97706),
-      LogType.water => const Color(0xFF38BDF8),
-      LogType.potty => const Color(0xFF65A30D),
-      LogType.sleep => const Color(0xFF9B8AFB),
-      LogType.grooming => const Color(0xFFF472B6),
-      LogType.training => const Color(0xFF0EA5E9),
-      LogType.mood => const Color(0xFFEAB308),
-      LogType.weight => const Color(0xFF64748B),
-      LogType.behaviour => const Color(0xFF8B5CF6),
-    };
+/// Icon colour for a kind of log, readable (3:1) on cards in light and dark.
+Color logTypeColor(BuildContext context, LogType t) {
+  final c = switch (t) {
+    LogType.walk => CategoryColors.teal,
+    LogType.play => CategoryColors.clay,
+    LogType.meal => CategoryColors.amber,
+    LogType.water => CategoryColors.sky,
+    LogType.potty => CategoryColors.olive,
+    LogType.sleep => CategoryColors.plum,
+    LogType.grooming => CategoryColors.rose,
+    LogType.training => CategoryColors.ocean,
+    LogType.mood => CategoryColors.gold,
+    LogType.weight => CategoryColors.slate,
+    LogType.behaviour => CategoryColors.violet,
+  };
+  return readableOn(c, [context.paw.surface], ratio: 3);
+}
 
 String moodLabel(BuildContext context, String? mood) {
   final l = context.l10n;
@@ -62,13 +67,13 @@ String moodLabel(BuildContext context, String? mood) {
 }
 
 IconData moodIcon(String? mood) => switch (mood) {
-      'happy' => Icons.sentiment_very_satisfied_rounded,
-      'calm' => Icons.self_improvement_rounded,
-      'playful' => Icons.celebration_rounded,
-      'tired' => Icons.bedtime_rounded,
-      'anxious' => Icons.sentiment_dissatisfied_rounded,
-      'unwell' => Icons.sick_rounded,
-      _ => Icons.mood_rounded,
+      'happy' => Icons.sentiment_very_satisfied_outlined,
+      'calm' => Icons.self_improvement_outlined,
+      'playful' => Icons.celebration_outlined,
+      'tired' => Icons.bedtime_outlined,
+      'anxious' => Icons.sentiment_dissatisfied_outlined,
+      'unwell' => Icons.sick_outlined,
+      _ => Icons.mood_outlined,
     };
 
 String behaviourLabel(BuildContext context, String tag) {

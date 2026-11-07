@@ -12,9 +12,11 @@ import '../../../core/utils/format.dart';
 import '../../../core/widgets/paw_map.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../routine/domain/routine.dart';
+import '../data/booking_repository.dart';
 import '../data/places_repository.dart';
 import '../domain/booking_rules.dart';
 import 'booking_labels.dart';
+import 'booking_slots.dart';
 
 /// Where the user is searching from: GPS, or a chosen city and area.
 class SearchOrigin {
@@ -197,7 +199,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
         actions: [
           IconButton(
             tooltip: _map ? l.listView : l.mapView,
-            icon: Icon(_map ? Icons.view_list_rounded : Icons.map_rounded),
+            icon: Icon(_map ? Icons.view_list_outlined : Icons.map_outlined),
             onPressed: () => setState(() => _map = !_map),
           ),
         ],
@@ -215,7 +217,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                     TextField(
                       controller: _search,
                       onChanged: (_) => setState(() {}),
-                      decoration: InputDecoration(prefixIcon: const Icon(Icons.search_rounded), hintText: l.searchByNameOrArea),
+                      decoration: InputDecoration(prefixIcon: const Icon(Icons.search_outlined), hintText: l.searchByNameOrArea),
                     ),
                     const SizedBox(height: Space.sm),
                     SingleChildScrollView(
@@ -223,19 +225,19 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                       child: Row(
                         children: [
                           ActionChip(
-                            avatar: Icon(origin.fromGps ? Icons.my_location_rounded : Icons.place_rounded, size: 18),
+                            avatar: Icon(origin.fromGps ? Icons.my_location_outlined : Icons.place_outlined, size: IconSizes.chip),
                             label: Text(origin.label),
                             onPressed: () => pickArea(context, ref),
                           ),
                           const SizedBox(width: Space.sm),
                           ActionChip(
-                            avatar: const Icon(Icons.gps_fixed_rounded, size: 18),
+                            avatar: const Icon(Icons.gps_fixed_outlined, size: IconSizes.chip),
                             label: Text(l.useMyLocation),
                             onPressed: () => useMyLocation(context, ref),
                           ),
                           const SizedBox(width: Space.sm),
                           ActionChip(
-                            avatar: Badge.count(count: _f.count, isLabelVisible: _f.count > 0, child: const Icon(Icons.tune_rounded, size: 18)),
+                            avatar: Badge.count(count: _f.count, isLabelVisible: _f.count > 0, child: const Icon(Icons.tune_outlined, size: IconSizes.chip)),
                             label: Text(l.filters),
                             onPressed: _openFilters,
                           ),
@@ -250,7 +252,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                               PopupMenuItem(value: 'slot', child: Text(l.sortSlot)),
                               PopupMenuItem(value: 'fee', child: Text(l.sortFee)),
                             ],
-                            child: Chip(avatar: const Icon(Icons.sort_rounded, size: 18), label: Text(l.sortBy)),
+                            child: Chip(avatar: const Icon(Icons.sort_outlined, size: IconSizes.chip), label: Text(l.sortBy)),
                           ),
                           if (_isClinic) ...[
                             const SizedBox(width: Space.sm),
@@ -288,7 +290,11 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                     : _map
                     ? Padding(
                         padding: EdgeInsets.fromLTRB(context.gutter, 0, context.gutter, context.gutter),
-                        child: PawMap(
+                        // Desktop (Design 2 vet map): the list beside the map.
+                        child: Builder(builder: (context) {
+                          final map = ClipRRect(
+                            borderRadius: BorderRadius.circular(Radii.card),
+                            child: PawMap(
                           center: LatLng(origin.lat, origin.lng),
                           zoom: 12,
                           markers: [
@@ -296,24 +302,45 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                             for (final e in list)
                               Marker(
                                 point: LatLng(e.$1.lat, e.$1.lng),
-                                width: 44,
-                                height: 44,
+                                width: Sizes.mapPin,
+                                height: Sizes.mapPin,
                                 child: GestureDetector(
                                   onTap: () => _preview(e.$1, e.$2),
                                   child: Semantics(
                                     button: true,
                                     label: e.$1.name,
                                     child: Icon(
-                                      Icons.location_on_rounded,
-                                      size: 44,
-                                      color: e.$1.is24x7 ? context.paw.sos : context.colors.primary,
-                                      shadows: const [Shadow(blurRadius: 4, color: Colors.black26)],
+                                      Icons.location_on,
+                                      size: Sizes.mapPin,
+                                      color: e.$1.is24x7 ? context.paw.sos : context.paw.brand,
+                                      shadows: [Shadow(blurRadius: Space.xs, color: context.paw.ink.withValues(alpha: Opacities.border))],
                                     ),
                                   ),
                                 ),
                               ),
                           ],
                         ),
+                          );
+                          if (context.screenSize != ScreenSize.desktop) return map;
+                          return Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                            Expanded(child: map),
+                            const SizedBox(width: Space.lg),
+                            SizedBox(
+                              width: Sizes.listPane,
+                              child: ListView(children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: Space.sm),
+                                  child: Text(l.resultsCount(list.length), style: context.text.titleSmall),
+                                ),
+                                for (final e in list)
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: Space.sm),
+                                    child: PlaceCard(place: e.$1, km: e.$2, compact: true),
+                                  ),
+                              ]),
+                            ),
+                          ]);
+                        }),
                       )
                     : ListView(
                         padding: EdgeInsets.fromLTRB(context.gutter, 0, context.gutter, context.gutter),
@@ -322,11 +349,11 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                             padding: const EdgeInsets.only(bottom: Space.sm),
                             child: Text(l.resultsCount(list.length), style: context.text.bodySmall),
                           ),
-                          for (final e in list)
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: Space.md),
-                              child: PlaceCard(place: e.$1, km: e.$2),
-                            ),
+                          // One column on phones, 2 or 3 on wider screens (Design 2).
+                          ResponsiveGrid(
+                            minItemWidth: Sizes.placeCardMinWidth,
+                            children: [for (final e in list) PlaceCard(place: e.$1, km: e.$2)],
+                          ),
                         ],
                       ),
               ),
@@ -342,7 +369,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
       context,
       builder: (ctx) => Padding(
         padding: const EdgeInsets.only(bottom: Space.md),
-        child: PlaceCard(place: p, km: km),
+        child: PlaceCard(place: p, km: km, compact: true),
       ),
     );
   }
@@ -440,51 +467,131 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
   }
 }
 
-class PlaceCard extends StatelessWidget {
-  const PlaceCard({super.key, required this.place, this.km});
+/// A clinic or provider in a list (Design 2): the picture on top with "open"
+/// and distance badges, then the name and rating, the next free slot, the
+/// price and a Book button. [compact] is the smaller side-by-side card used
+/// in the map preview.
+class PlaceCard extends ConsumerWidget {
+  const PlaceCard({super.key, required this.place, this.km, this.compact = false});
   final Place place;
   final double? km;
+  final bool compact;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final p = place;
+    final paw = context.paw;
     final open = isOpenNow(p.hours, DateTime.now());
-    return PawCard(
-      padding: EdgeInsets.zero,
-      onTap: () => context.push('/book/place/${p.id}'),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(width: 92, height: 112, child: SeedArt(seed: 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}')),
+    final fee = p.kind == 'clinic' || p.services.isEmpty ? p.fee : p.services.map((s) => s.price).reduce((a, b) => a < b ? a : b);
+    final seed = 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}';
+    final rating = p.reviewCount > 0 ? StatusChip('${p.rating.toStringAsFixed(1)} (${p.reviewCount})', tone: ChipTone.accent, icon: Icons.star_rounded) : null;
+    void openPlace() => context.push('/book/place/${p.id}');
+    if (compact) {
+      return PawCard(
+        padding: EdgeInsets.zero,
+        onTap: openPlace,
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          SizedBox(width: Sizes.placePhotoWidth, height: Sizes.placePhotoHeight, child: SeedArt(seed: seed)),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(Space.md),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(p.name, style: context.text.titleSmall, maxLines: 2, overflow: TextOverflow.ellipsis),
-                  const SizedBox(height: 2),
-                  Text([p.area, if (km != null) Fmt.km(km!)].join(' · '), style: context.text.bodySmall),
-                  const SizedBox(height: Space.xs),
-                  Wrap(
-                    spacing: 6,
-                    runSpacing: 4,
-                    children: [
-                      if (p.reviewCount > 0) StatusChip('★ ${p.rating.toStringAsFixed(1)} (${p.reviewCount})', tone: ChipTone.accent),
-                      StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
-                      if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_rounded),
-                      if (p.kind == 'clinic') StatusChip(l.feeFrom(Fmt.inr(p.fee)), tone: ChipTone.info),
-                      if (p.kind != 'clinic' && p.services.isNotEmpty)
-                        StatusChip(l.feeFrom(Fmt.inr(p.services.map((s) => s.price).reduce((a, b) => a < b ? a : b))), tone: ChipTone.info),
-                    ],
-                  ),
-                ],
-              ),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(p.name, style: context.text.titleSmall, maxLines: 2, overflow: TextOverflow.ellipsis),
+                const SizedBox(height: Space.xxs),
+                Text([p.area, if (km != null) Fmt.km(km!)].join(' · '), style: context.text.bodySmall),
+                const SizedBox(height: Space.xs),
+                Wrap(spacing: Space.xs + Space.xxs, runSpacing: Space.xs, children: [
+                  ?rating,
+                  StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
+                  if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_outlined),
+                ]),
+              ]),
             ),
           ),
-        ],
-      ),
+        ]),
+      );
+    }
+    final next = nextFreeSlot(p, ref.watch(providerBookingsProvider(p.id)).value ?? const [], DateTime.now());
+    Widget badge(String text, Color bg, Color fg) => Container(
+          padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
+          decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(Radii.full)),
+          child: Text(text, style: context.text.labelSmall?.copyWith(color: fg, fontWeight: FontWeight.w700)),
+        );
+    return PawCard(
+      padding: EdgeInsets.zero,
+      onTap: openPlace,
+      semanticLabel: [p.name, p.area, if (km != null) l.sosAway(Fmt.km(km!)), if (p.reviewCount > 0) '${p.rating.toStringAsFixed(1)} ★'].join(', '),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        SizedBox(
+          height: Sizes.placeCardPhoto,
+          child: Stack(fit: StackFit.expand, children: [
+            SeedArt(seed: seed),
+            Positioned(
+              left: Space.md,
+              top: Space.md,
+              right: Space.md,
+              child: Wrap(spacing: Space.xs + Space.xxs, runSpacing: Space.xs, children: [
+                if (p.is24x7) badge(l.open24x7, paw.sos, paw.onSos),
+                if (open) badge(l.openNowChip, paw.success, paw.surface),
+              ]),
+            ),
+            if (km != null)
+              Positioned(
+                right: Space.md,
+                bottom: Space.md,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
+                  decoration: BoxDecoration(color: MediaColors.scrim, borderRadius: BorderRadius.circular(Radii.sm)),
+                  child: Text(l.sosAway(Fmt.km(km!)), style: context.textX.mono.copyWith(color: MediaColors.foreground)),
+                ),
+              ),
+          ]),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(Space.lg),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(child: Text(p.name, style: context.text.titleMedium, maxLines: 2, overflow: TextOverflow.ellipsis)),
+              if (rating != null) ...[const SizedBox(width: Space.sm), rating],
+            ]),
+            const SizedBox(height: Space.xxs),
+            Text('${p.area}, ${p.city}', style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
+            if (next != null) ...[
+              const SizedBox(height: Space.md),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm + Space.xxs),
+                decoration: BoxDecoration(
+                  color: Color.alphaBlend(paw.primaryContainer.withValues(alpha: Opacities.half), paw.surface),
+                  borderRadius: BorderRadius.circular(Radii.md),
+                  border: Border.all(color: paw.outline),
+                ),
+                child: Wrap(alignment: WrapAlignment.spaceBetween, spacing: Space.sm, runSpacing: Space.xxs, children: [
+                  Text(l.nextFreeSlot, style: context.text.bodySmall?.copyWith(color: paw.textPrimary)),
+                  Text(slotLabel(context, next), style: context.textX.mono.copyWith(color: paw.textPrimary, fontWeight: FontWeight.w700)),
+                ]),
+              ),
+            ],
+            const SizedBox(height: Space.md),
+            const Divider(height: Strokes.hairline),
+            const SizedBox(height: Space.md),
+            Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.end,
+              spacing: Space.md,
+              runSpacing: Space.sm,
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+                  Text((p.kind == 'clinic' ? l.consultationFee : l.feeFrom('')).toUpperCase().trim(),
+                      style: context.textX.overline.copyWith(color: paw.textSecondary)),
+                  Text(Fmt.inr(fee), style: context.text.titleLarge),
+                ]),
+                PrimaryButton(label: l.bookNow, icon: Icons.arrow_forward_outlined, expand: false, onPressed: openPlace),
+              ],
+            ),
+          ]),
+        ),
+      ]),
     );
   }
 }

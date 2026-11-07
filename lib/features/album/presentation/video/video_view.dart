@@ -74,9 +74,9 @@ class _AlbumVideoViewState extends ConsumerState<AlbumVideoView> {
     if (_failed) {
       return Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Icon(Icons.videocam_off_rounded, color: Colors.white70, size: 48),
+          const Icon(Icons.videocam_off_outlined, color: MediaColors.foregroundMuted, size: IconSizes.hero),
           const SizedBox(height: Space.sm),
-          Text(l.albumVideoFailed, style: const TextStyle(color: Colors.white70), textAlign: TextAlign.center),
+          Text(l.albumVideoFailed, style: const TextStyle(color: MediaColors.foregroundMuted), textAlign: TextAlign.center),
         ]),
       );
     }
@@ -99,7 +99,7 @@ class _AlbumVideoViewState extends ConsumerState<AlbumVideoView> {
           Expanded(child: VideoProgressIndicator(c, allowScrubbing: true, colors: VideoProgressColors(playedColor: context.colors.primary))),
           const SizedBox(width: Space.sm),
           Text('${videoLength(c.value.position.inSeconds)} / ${videoLength(c.value.duration.inSeconds)}',
-              style: const TextStyle(color: Colors.white70)),
+              style: const TextStyle(color: MediaColors.foregroundMuted)),
         ]),
       ),
     ]);
@@ -120,9 +120,9 @@ class _PlayButton extends StatelessWidget {
       child: IconButton.filled(
         tooltip: playing ? l.albumPause : l.albumPlay,
         iconSize: 40,
-        style: IconButton.styleFrom(backgroundColor: Colors.black54, foregroundColor: Colors.white, minimumSize: const Size(72, 72)),
+        style: IconButton.styleFrom(backgroundColor: MediaColors.scrim, foregroundColor: MediaColors.foreground, minimumSize: const Size(72, 72)),
         onPressed: onTap,
-        icon: Icon(playing ? Icons.pause_rounded : Icons.play_arrow_rounded),
+        icon: Icon(playing ? Icons.pause_outlined : Icons.play_arrow_outlined),
       ),
     );
   }
@@ -183,17 +183,17 @@ class _SimulatedVideoState extends State<_SimulatedVideo> with SingleTickerProvi
         child: Row(children: [
           Expanded(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(value: _a.value, minHeight: 4, color: context.colors.primary, backgroundColor: Colors.white24),
+              borderRadius: BorderRadius.circular(Radii.xs),
+              child: LinearProgressIndicator(value: _a.value, minHeight: Space.xs, color: context.colors.primary, backgroundColor: MediaColors.control),
             ),
           ),
           const SizedBox(width: Space.sm),
-          Text('${videoLength((_a.value * total).round())} / ${videoLength(total)}', style: const TextStyle(color: Colors.white70)),
+          Text('${videoLength((_a.value * total).round())} / ${videoLength(total)}', style: const TextStyle(color: MediaColors.foregroundMuted)),
         ]),
       ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: Space.lg),
-        child: Text(l.albumDemoVideo, style: const TextStyle(color: Colors.white60, fontSize: 12), textAlign: TextAlign.center),
+        child: Text(l.albumDemoVideo, style: context.text.labelSmall?.copyWith(color: MediaColors.foregroundMuted), textAlign: TextAlign.center),
       ),
     ]);
   }

@@ -1793,6 +1793,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get choosePetForHealth => 'Choose a pet';
 
   @override
+  String get healthAllClear => 'All up to date';
+
+  @override
   String itemsNeedAttention(int count) {
     return '$count need attention';
   }
@@ -2491,6 +2494,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get openNow => 'Open now';
+
+  @override
+  String get certificate => 'Certificate';
+
+  @override
+  String get emergencyInfo => 'Emergency info';
+
+  @override
+  String bookFor(String name) {
+    return 'Book for $name';
+  }
+
+  @override
+  String get nextFreeSlot => 'Next free slot';
 
   @override
   String get openNowChip => 'Open now';

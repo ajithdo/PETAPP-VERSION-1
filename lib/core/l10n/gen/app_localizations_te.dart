@@ -1771,6 +1771,9 @@ class AppLocalizationsTe extends AppLocalizations {
   String get choosePetForHealth => 'ఒక పెంపుడు జంతువును ఎంచుకోండి';
 
   @override
+  String get healthAllClear => 'అన్నీ సమయానికి ఉన్నాయి';
+
+  @override
   String itemsNeedAttention(int count) {
     return '$count గమనించాలి';
   }
@@ -2458,6 +2461,20 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get openNow => 'ఇప్పుడు తెరిచి ఉంది';
+
+  @override
+  String get certificate => 'సర్టిఫికెట్';
+
+  @override
+  String get emergencyInfo => 'అత్యవసర సమాచారం';
+
+  @override
+  String bookFor(String name) {
+    return '$name కోసం బుక్ చేయండి';
+  }
+
+  @override
+  String get nextFreeSlot => 'తదుపరి ఖాళీ సమయం';
 
   @override
   String get openNowChip => 'తెరిచి ఉంది';

@@ -75,7 +75,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
           const SizedBox(height: Space.sm),
           Row(children: [
             Expanded(child: Text(l.shopTitle, style: context.text.headlineSmall)),
-            IconButton(tooltip: l.ordMyOrders, onPressed: () => context.push('/shop/orders'), icon: Badge(isLabelVisible: open > 0, label: Text('$open'), child: const Icon(Icons.receipt_long_rounded))),
+            IconButton(tooltip: l.ordMyOrders, onPressed: () => context.push('/shop/orders'), icon: Badge(isLabelVisible: open > 0, label: Text('$open'), child: const Icon(Icons.receipt_long_outlined))),
             const CartButton(),
           ]),
           const SizedBox(height: Space.sm),
@@ -84,10 +84,10 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
             label: l.shopSearchHint,
             excludeSemantics: true,
             child: InkWell(
-              borderRadius: BorderRadius.circular(Radii.button),
+              borderRadius: BorderRadius.circular(Radii.md),
               onTap: () => context.push('/shop/search?focus=1'),
               child: InputDecorator(
-                decoration: InputDecoration(prefixIcon: const Icon(Icons.search_rounded), hintText: l.shopSearchHint),
+                decoration: InputDecoration(prefixIcon: const Icon(Icons.search_outlined), hintText: l.shopSearchHint),
                 child: Text(l.shopSearchHint, style: context.text.bodyLarge?.copyWith(color: context.paw.textSecondary)),
               ),
             ),
@@ -95,7 +95,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
           const BannerStrip(placement: 'shop'),
           if (user != null && !user.isPlus) ...[
             const SizedBox(height: Space.sm),
-            InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Icons.workspace_premium_rounded, tone: ChipTone.accent),
+            InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Icons.workspace_premium_outlined, tone: ChipTone.accent),
           ],
           if (pet != null) ...[
             SectionHeader(l.shopForPet(pet.name)),
@@ -107,7 +107,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
                     ChoiceChip(
                       label: Text(p.name),
                       selected: p.id == pet.id,
-                      avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
+                      avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarChip),
                       onSelected: (_) => setState(() => _petId = p.id),
                     ),
                 ]),
@@ -119,7 +119,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
           if (again.isNotEmpty) ...[
             SectionHeader(l.shopBuyAgain, action: l.ordMyOrders, onAction: () => context.push('/shop/orders')),
             SizedBox(
-              height: 112 * MediaQuery.textScalerOf(context).scale(1) + 24,
+              height: Sizes.buyAgainTile * MediaQuery.textScalerOf(context).scale(1) + Space.xl,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: again.length,
@@ -167,25 +167,22 @@ class _BuyAgainTile extends ConsumerWidget {
     final l = context.l10n;
     final p = product;
     return SizedBox(
-      width: 300,
+      width: Sizes.reorderCard,
       child: PawCard(
         padding: const EdgeInsets.all(Space.sm),
         onTap: () => context.push('/shop/product/${p.id}'),
         child: Row(children: [
-          ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: 72, radius: 12),
+          ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbXl, radius: Radii.md),
           const SizedBox(width: Space.sm),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
               Text(p.name, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600), maxLines: 2, overflow: TextOverflow.ellipsis),
               Text(Fmt.inr(p.price), style: context.text.bodySmall),
               const SizedBox(height: Space.xs),
-              SizedBox(
-                height: 34,
-                child: FilledButton.tonalIcon(
-                  onPressed: p.inStock ? () => showQuickReorder(context, ref, product: p, pet: pet) : null,
-                  icon: const Icon(Icons.replay_rounded, size: 18),
-                  label: Text(p.inStock ? l.shopReorder : l.shopOutOfStock),
-                ),
+              FilledButton.tonalIcon(
+                onPressed: p.inStock ? () => showQuickReorder(context, ref, product: p, pet: pet) : null,
+                icon: const Icon(Icons.replay_outlined, size: IconSizes.chip),
+                label: Text(p.inStock ? l.shopReorder : l.shopOutOfStock),
               ),
             ]),
           ),
@@ -211,14 +208,14 @@ class _CategoryGrid extends StatelessWidget {
           for (final cat in shopCategories)
             Material(
               color: Color.lerp(categoryColor(cat), context.paw.surface, Theme.of(context).brightness == Brightness.dark ? 0.75 : 0.85),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(Radii.lg),
               child: InkWell(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(Radii.lg),
                 onTap: () => context.push('/shop/search?cat=$cat'),
                 child: Padding(
                   padding: const EdgeInsets.all(Space.sm),
                   child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Icon(categoryIcon(cat), color: categoryColor(cat), size: 30),
+                    Icon(categoryIcon(cat), color: categoryColor(cat), size: IconSizes.xl),
                     const SizedBox(height: Space.xs),
                     Text(categoryLabel(context, cat), style: context.text.labelMedium, textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
                   ]),
@@ -244,7 +241,7 @@ class _PartnerStores extends ConsumerWidget {
         PawCard(
           onTap: () => context.push('/shop/search?store=${s.id}'),
           child: Row(children: [
-            CircleAvatar(backgroundColor: context.paw.primaryContainer, child: Icon(Icons.storefront_rounded, color: context.colors.primary)),
+            CircleAvatar(backgroundColor: context.paw.primaryContainer, child: Icon(Icons.storefront_outlined, color: context.colors.primary)),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -252,7 +249,7 @@ class _PartnerStores extends ConsumerWidget {
                 Text(l.shopListings(products.where((p) => p.partnerId == s.id).length), style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
     ]);

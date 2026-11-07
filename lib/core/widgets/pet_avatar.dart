@@ -28,7 +28,10 @@ class PetAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ring = PetTagColors.of(colorTag);
-    final inner = size - (size > 60 ? 8 : 6);
+    final big = size > Sizes.heroAvatar - Space.md;
+    final gap = big ? Space.xxs + Strokes.hairline : Space.xxs;
+    final ringWidth = selected ? Strokes.avatarRingSelected : Strokes.avatarRing;
+    final inner = size - 2 * (gap + Strokes.avatarRing);
     Widget face = ClipOval(
       child: photoUrl != null
           ? MediaImage(url: photoUrl!, width: inner, height: inner, fit: BoxFit.cover)
@@ -41,10 +44,10 @@ class PetAvatar extends StatelessWidget {
       child: Container(
         width: size,
         height: size,
-        padding: EdgeInsets.all(size > 60 ? 3 : 2),
+        padding: EdgeInsets.all(gap),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: ring, width: selected ? 3 : 2),
+          border: Border.all(color: ring, width: ringWidth),
           color: context.paw.surface,
         ),
         child: face,

@@ -98,7 +98,7 @@ class _PhoneSignInScreenState extends ConsumerState<PhoneSignInScreen> {
             autofocus: true,
           ),
         if (_error != null) ...[
-          InfoNote(_error!, icon: Icons.error_outline_rounded, tone: ChipTone.error),
+          InfoNote(_error!, icon: Icons.error_outlined, tone: ChipTone.error),
           const SizedBox(height: Space.md),
         ],
         PrimaryButton(

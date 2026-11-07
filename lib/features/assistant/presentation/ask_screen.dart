@@ -99,7 +99,7 @@ class _AskScreenState extends ConsumerState<AskScreen> {
               child: StatusChip(
                 a.unlimited ? l.aiUnlimited : l.aiLeft(a.left, a.limit),
                 tone: a.unlimited ? ChipTone.success : (a.left <= 1 ? ChipTone.warning : ChipTone.info),
-                icon: a.unlimited ? Icons.all_inclusive_rounded : Icons.help_outline_rounded,
+                icon: a.unlimited ? Icons.all_inclusive_outlined : Icons.help_outlined,
               ),
             ),
           ),
@@ -113,10 +113,10 @@ class _AskScreenState extends ConsumerState<AskScreen> {
                   reverse: true,
                   padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.md),
                   children: [
-                    for (final w in items.reversed) Center(child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 760), child: w)),
+                    for (final w in items.reversed) Center(child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: Space.readingWidth), child: w)),
                     Center(
                       child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 760),
+                        constraints: const BoxConstraints(maxWidth: Space.readingWidth),
                         child: Padding(padding: const EdgeInsets.only(bottom: Space.md), child: InfoNote(l.aiDisclaimer)),
                       ),
                     ),
@@ -132,10 +132,10 @@ class _AskScreenState extends ConsumerState<AskScreen> {
           child: SafeArea(
             top: false,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(context.gutter, Space.xs, context.gutter - 8, Space.sm),
+              padding: EdgeInsets.fromLTRB(context.gutter, Space.xs, context.gutter - Space.sm, Space.sm),
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 760),
+                  constraints: const BoxConstraints(maxWidth: Space.readingWidth),
                   child: Row(children: [
                     Expanded(
                       child: TextField(
@@ -148,8 +148,8 @@ class _AskScreenState extends ConsumerState<AskScreen> {
                         decoration: InputDecoration(
                           hintText: l.aiHint,
                           isDense: true,
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: 15),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.xxl)),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md + Space.xxs),
                         ),
                       ),
                     ),
@@ -158,8 +158,8 @@ class _AskScreenState extends ConsumerState<AskScreen> {
                       tooltip: l.aiAsk,
                       onPressed: _busy || _ctrl.text.trim().isEmpty ? null : () => _ask(_ctrl.text),
                       icon: _busy
-                          ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                          : const Icon(Icons.send_rounded),
+                          ? const SizedBox(width: IconSizes.chip, height: IconSizes.chip, child: CircularProgressIndicator(strokeWidth: Strokes.focus))
+                          : const Icon(Icons.send_outlined),
                     ),
                   ]),
                 ),
@@ -179,9 +179,9 @@ class _Intro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    return PageBody(maxWidth: 760, children: [
+    return PageBody(maxWidth: Space.readingWidth, children: [
       const SizedBox(height: Space.lg),
-      const Center(child: Illustration(Scene.chat, size: 120)),
+      const Center(child: Illustration(Scene.chat, size: Sizes.illustrationSm)),
       const SizedBox(height: Space.md),
       Text(l.aiIntroTitle, style: context.text.titleLarge, textAlign: TextAlign.center),
       const SizedBox(height: Space.xs),
@@ -206,15 +206,15 @@ class _QuestionBubble extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        margin: const EdgeInsets.only(top: Space.md, bottom: Space.xs, left: 48),
+        margin: const EdgeInsets.only(top: Space.md, bottom: Space.xs, left: Space.x3l),
         padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
         decoration: BoxDecoration(
           color: context.paw.primaryContainer,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(18),
-            topRight: Radius.circular(18),
-            bottomLeft: Radius.circular(18),
-            bottomRight: Radius.circular(4),
+            topLeft: Radius.circular(Radii.xl),
+            topRight: Radius.circular(Radii.xl),
+            bottomLeft: Radius.circular(Radii.xl),
+            bottomRight: Radius.circular(Radii.xs),
           ),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
@@ -235,12 +235,12 @@ class _AnswerCard extends StatelessWidget {
     final l = context.l10n;
     final known = topic != null;
     return Padding(
-      padding: const EdgeInsets.only(right: 24, bottom: Space.xs),
+      padding: const EdgeInsets.only(right: Space.xl, bottom: Space.xs),
       child: PawCard(
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-            Icon(Icons.auto_awesome_rounded, color: context.colors.primary, size: 20),
+            Icon(Icons.auto_awesome_outlined, color: context.colors.primary, size: IconSizes.md),
             Text(l.aiTitle, style: context.text.labelLarge?.copyWith(color: context.colors.primary)),
             StatusChip(l.demoBadge, tone: ChipTone.accent),
           ]),
@@ -252,7 +252,7 @@ class _AnswerCard extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: TextButton.icon(
               onPressed: () => context.push('/televet'),
-              icon: const Icon(Icons.video_call_rounded),
+              icon: const Icon(Icons.video_call_outlined),
               label: Text(l.aiTalkToVet),
             ),
           ),
@@ -273,11 +273,11 @@ class _RedFlagCard extends ConsumerWidget {
       padding: const EdgeInsets.only(bottom: Space.xs),
       child: PawCard(
         borderColor: context.paw.sos,
-        color: context.paw.sos.withValues(alpha: 0.07),
+        color: context.paw.sos.withValues(alpha: Opacities.pressed),
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(Icons.emergency_rounded, color: context.paw.sos),
+            Icon(Icons.emergency_outlined, color: context.paw.sos),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(l.aiRedFlagTitle, style: context.text.titleMedium)),
           ]),
@@ -285,16 +285,16 @@ class _RedFlagCard extends ConsumerWidget {
           Text(l.aiRedFlagBody(redFlagLabel(context, flag))),
           const SizedBox(height: Space.md),
           SizedBox(
-            height: 56,
+            height: TapTarget.easy,
             child: FilledButton.icon(
-              style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
+              style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
               onPressed: () => openSos(context, ref),
-              icon: const Icon(Icons.emergency_rounded),
+              icon: const Icon(Icons.emergency_outlined),
               label: Text(l.sosGetHelp),
             ),
           ),
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.aiTalkToVetNow, icon: Icons.video_call_rounded, onPressed: () => context.push('/televet/new')),
+          SecondaryButton(label: l.aiTalkToVetNow, icon: Icons.video_call_outlined, onPressed: () => context.push('/televet/new')),
         ]),
       ),
     );
@@ -311,11 +311,11 @@ class _LimitCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Space.sm),
       child: PawCard(
-        color: context.paw.accent.withValues(alpha: 0.12),
+        color: context.paw.accent.withValues(alpha: Opacities.chip),
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(Icons.hourglass_bottom_rounded, color: context.paw.onAccent),
+            Icon(Icons.hourglass_bottom_outlined, color: context.paw.onAccentContainer),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(l.aiLimitTitle(limit), style: context.text.titleSmall)),
           ]),
@@ -324,11 +324,11 @@ class _LimitCard extends StatelessWidget {
           const SizedBox(height: Space.md),
           PrimaryButton(
             label: l.seePlus,
-            icon: Icons.workspace_premium_rounded,
+            icon: Icons.workspace_premium_outlined,
             onPressed: () => showPlusPrompt(context, title: l.aiLimitTitle(limit), body: l.plusPerkAi),
           ),
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.aiTalkToVet, icon: Icons.video_call_rounded, onPressed: () => context.push('/televet')),
+          SecondaryButton(label: l.aiTalkToVet, icon: Icons.video_call_outlined, onPressed: () => context.push('/televet')),
         ]),
       ),
     );

@@ -50,14 +50,14 @@ class DocPreview extends ConsumerWidget {
       button: onTap != null,
       child: Material(
         color: context.paw.background,
-        borderRadius: BorderRadius.circular(Radii.button),
+        borderRadius: BorderRadius.circular(Radii.md),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onTap,
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: context.paw.outline),
-              borderRadius: BorderRadius.circular(Radii.button),
+              borderRadius: BorderRadius.circular(Radii.md),
             ),
             child: Center(child: body),
           ),
@@ -75,7 +75,7 @@ class _Placeholder extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(Space.xl),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          DocTypeBadge(type: type, size: 64),
+          DocTypeBadge(type: type, size: Sizes.docBadgeLg),
           const SizedBox(height: Space.md),
           Text(text, textAlign: TextAlign.center, style: context.text.bodySmall),
         ]),
@@ -119,10 +119,10 @@ Future<void> openDocViewer(BuildContext context, VaultDoc doc, String petName) {
   return Navigator.of(context).push(MaterialPageRoute<void>(
     fullscreenDialog: true,
     builder: (ctx) => Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: MediaColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
+        backgroundColor: MediaColors.background,
+        foregroundColor: MediaColors.foreground,
         title: Text(doc.title, overflow: TextOverflow.ellipsis),
       ),
       body: InteractiveViewer(
@@ -131,7 +131,7 @@ Future<void> openDocViewer(BuildContext context, VaultDoc doc, String petName) {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(Space.lg),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 820),
+              constraints: const BoxConstraints(maxWidth: Space.readingWidth),
               child: DocPreview(doc: doc, petName: petName),
             ),
           ),

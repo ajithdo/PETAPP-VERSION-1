@@ -47,7 +47,16 @@ final bookRoutes = <RouteBase>[
   GoRoute(
     path: 'new/:placeId',
     builder: (_, s) =>
-        BookingFlowScreen(placeId: s.pathParameters['placeId']!, serviceId: s.uri.queryParameters['service'], petId: s.uri.queryParameters['pet']),
+        BookingFlowScreen(
+          placeId: s.pathParameters['placeId']!,
+          serviceId: s.uri.queryParameters['service'],
+          petId: s.uri.queryParameters['pet'],
+          // Set by the booking card on the clinic page (Design 2).
+          slot: DateTime.tryParse(s.uri.queryParameters['slot'] ?? ''),
+          proposed: [
+            for (final t in (s.uri.queryParameters['times'] ?? '').split(',')) ?DateTime.tryParse(t),
+          ],
+        ),
   ),
   GoRoute(
     path: 'done/:id',
@@ -140,19 +149,19 @@ class MeMenuItem {
 List<MeMenuItem> meMenu(BuildContext context) {
   final l = context.l10n;
   return [
-    MeMenuItem(Icons.pets_rounded, l.myPets, '/me/pets'),
-    MeMenuItem(Icons.family_restroom_rounded, l.familySharing, '/me/family'),
-    MeMenuItem(Icons.lock_rounded, l.documentVault, '/me/vault'),
-    MeMenuItem(Icons.photo_library_rounded, l.memoryAlbum, '/me/album'),
-    MeMenuItem(Icons.watch_rounded, l.connectedDevices, '/me/devices'),
-    MeMenuItem(Icons.qr_code_2_rounded, l.lostPetMode, '/me/lost'),
-    MeMenuItem(Icons.account_balance_wallet_rounded, l.expenses, '/me/expenses'),
-    MeMenuItem(Icons.receipt_long_rounded, l.ordMyOrders, '/shop/orders'),
-    MeMenuItem(Icons.location_on_rounded, l.addrBook, '/me/addresses'),
-    MeMenuItem(Icons.workspace_premium_rounded, l.pawsetuPlus, '/me/plus'),
-    MeMenuItem(Icons.card_giftcard_rounded, l.referTitle, '/me/refer'),
-    MeMenuItem(Icons.settings_rounded, l.settings, '/me/settings'),
-    MeMenuItem(Icons.support_agent_rounded, l.helpAndComplaints, '/me/help'),
-    MeMenuItem(Icons.privacy_tip_rounded, l.privacyCentre, '/me/privacy'),
+    MeMenuItem(Icons.pets_outlined, l.myPets, '/me/pets'),
+    MeMenuItem(Icons.family_restroom_outlined, l.familySharing, '/me/family'),
+    MeMenuItem(Icons.lock_outlined, l.documentVault, '/me/vault'),
+    MeMenuItem(Icons.photo_library_outlined, l.memoryAlbum, '/me/album'),
+    MeMenuItem(Icons.watch_outlined, l.connectedDevices, '/me/devices'),
+    MeMenuItem(Icons.qr_code_2_outlined, l.lostPetMode, '/me/lost'),
+    MeMenuItem(Icons.account_balance_wallet_outlined, l.expenses, '/me/expenses'),
+    MeMenuItem(Icons.receipt_long_outlined, l.ordMyOrders, '/shop/orders'),
+    MeMenuItem(Icons.location_on_outlined, l.addrBook, '/me/addresses'),
+    MeMenuItem(Icons.workspace_premium_outlined, l.pawsetuPlus, '/me/plus'),
+    MeMenuItem(Icons.card_giftcard_outlined, l.referTitle, '/me/refer'),
+    MeMenuItem(Icons.settings_outlined, l.settings, '/me/settings'),
+    MeMenuItem(Icons.support_agent_outlined, l.helpAndComplaints, '/me/help'),
+    MeMenuItem(Icons.privacy_tip_outlined, l.privacyCentre, '/me/privacy'),
   ];
 }

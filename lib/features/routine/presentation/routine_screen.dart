@@ -45,7 +45,7 @@ class RoutineScreen extends ConsumerWidget {
         floatingActionButton: canLog
             ? FloatingActionButton.extended(
                 onPressed: () => showQuickLog(context, ref, pet),
-                icon: const Icon(Icons.add_rounded),
+                icon: const Icon(Icons.add_outlined),
                 label: Text(l.logSomething),
               )
             : null,
@@ -75,7 +75,7 @@ class _LogTab extends ConsumerWidget {
           byDay.putIfAbsent(Fmt.dayOnly(g.at), () => []).add(g);
         }
         final days = byDay.keys.toList()..sort((a, b) => b.compareTo(a));
-        return PageBody(maxWidth: 800, children: [
+        return PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.md),
           TodayCard(pet: pet),
           if (logs.isEmpty)
@@ -87,7 +87,7 @@ class _LogTab extends ConsumerWidget {
               child: Column(children: [for (final g in byDay[d]!) _LogTile(log: g, pet: pet)]),
             ),
           ],
-          const SizedBox(height: 80),
+          const SizedBox(height: Space.fabClearance),
         ]);
       },
     );
@@ -117,10 +117,11 @@ class _LogTile extends ConsumerWidget {
     final l = context.l10n;
     final detail = _detail(context);
     final sub = [Fmt.time(log.at, context.lang), log.byName.split(' ').first, if (log.note != null) log.note!].join(' · ');
+    final c = logTypeColor(context, log.type);
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: logTypeColor(log.type).withValues(alpha: 0.15),
-        child: Icon(logTypeIcon(log.type), color: logTypeColor(log.type)),
+        backgroundColor: c.withValues(alpha: Opacities.chip),
+        child: Icon(logTypeIcon(log.type), color: c, size: IconSizes.md),
       ),
       title: Text([logTypeLabel(context, log.type), if (detail.isNotEmpty) detail].join(' · ')),
       subtitle: Text(sub, maxLines: 2, overflow: TextOverflow.ellipsis),
@@ -138,7 +139,7 @@ class _LogTile extends ConsumerWidget {
           ? () => showPawSheet<void>(context, builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 Text('${logTypeLabel(ctx, LogType.walk)} · ${Fmt.dateTime(log.at, ctx.lang)}', style: ctx.text.titleMedium),
                 const SizedBox(height: Space.md),
-                WalkRouteView(log: log, height: 280),
+                WalkRouteView(log: log, height: Sizes.routeMap),
                 const SizedBox(height: Space.md),
                 Text('${Fmt.km(log.distanceKm)} · ${l.minutesShort(log.minutes)} · ${log.byName}'),
               ]))
@@ -176,7 +177,7 @@ class _ChartsTabState extends ConsumerState<_ChartsTab> {
         for (final g in logs.where((g) => g.type == LogType.mood && !g.at.isBefore(days.first))) {
           moodCounts[g.mood ?? ''] = (moodCounts[g.mood ?? ''] ?? 0) + 1;
         }
-        return PageBody(maxWidth: 900, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
           Center(
             child: SegmentedButton<int>(
@@ -187,21 +188,21 @@ class _ChartsTabState extends ConsumerState<_ChartsTab> {
           ),
           const SizedBox(height: Space.md),
           ResponsiveGrid(minItemWidth: 180, children: [
-            if (isDog) StatTile(label: l.totalWalked, value: Fmt.km(walksTotal), icon: Icons.directions_walk_rounded),
-            StatTile(label: l.streak, value: l.daysCount(streak(logs.map((g) => g.at), DateTime.now())), icon: Icons.local_fire_department_rounded, color: context.paw.accent),
-            StatTile(label: l.mealsLogged, value: '${meals.fold<double>(0, (a, b) => a + b).round()}', icon: Icons.restaurant_rounded),
+            if (isDog) StatTile(label: l.totalWalked, value: Fmt.km(walksTotal), icon: Icons.directions_walk_outlined),
+            StatTile(label: l.streak, value: l.daysCount(streak(logs.map((g) => g.at), DateTime.now())), icon: Icons.local_fire_department_outlined, color: context.paw.accent),
+            StatTile(label: l.mealsLogged, value: '${meals.fold<double>(0, (a, b) => a + b).round()}', icon: Icons.restaurant_outlined),
           ]),
           SectionHeader(isDog ? l.chartWalkKm : l.chartPlayMinutes),
           _BarChartCard(values: activity, days: days, color: context.colors.primary, goal: isDog ? null : pet.dailyPlan.playMinutes.toDouble()),
           SectionHeader(l.chartMeals),
-          _BarChartCard(values: meals, days: days, color: logTypeColor(LogType.meal), goal: pet.dailyPlan.meals.toDouble()),
+          _BarChartCard(values: meals, days: days, color: logTypeColor(context, LogType.meal), goal: pet.dailyPlan.meals.toDouble()),
           SectionHeader(l.chartMood),
           PawCard(
             child: moodCounts.isEmpty
                 ? Text(l.noMoodLogs)
                 : Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
                     for (final e in (moodCounts.entries.toList()..sort((a, b) => b.value.compareTo(a.value))))
-                      Chip(avatar: Icon(moodIcon(e.key), size: 18), label: Text('${moodLabel(context, e.key)} · ${e.value}')),
+                      Chip(avatar: Icon(moodIcon(e.key), size: IconSizes.chip), label: Text('${moodLabel(context, e.key)} · ${e.value}')),
                   ]),
           ),
         ]);
@@ -225,7 +226,7 @@ class _BarChartCard extends StatelessWidget {
     final text = context.text.labelSmall;
     return PawCard(
       child: SizedBox(
-        height: 200,
+        height: Sizes.chartHeight,
         child: BarChart(
           BarChartData(
             maxY: top,
@@ -234,13 +235,13 @@ class _BarChartCard extends StatelessWidget {
             gridData: FlGridData(
               drawVerticalLine: false,
               horizontalInterval: top / 4,
-              getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: 1),
+              getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: Strokes.hairline),
             ),
             borderData: FlBorderData(show: false),
             extraLinesData: goal == null
                 ? null
                 : ExtraLinesData(horizontalLines: [
-                    HorizontalLine(y: goal!, color: context.paw.accent, strokeWidth: 2, dashArray: [6, 4]),
+                    HorizontalLine(y: goal!, color: context.paw.accent, strokeWidth: Strokes.focus, dashArray: Strokes.dash),
                   ]),
             titlesData: FlTitlesData(
               topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -248,7 +249,7 @@ class _BarChartCard extends StatelessWidget {
               leftTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
-                  reservedSize: 36,
+                  reservedSize: Sizes.chartAxisLeft,
                   interval: top / 4,
                   getTitlesWidget: (v, meta) => SideTitleWidget(
                     meta: meta,
@@ -259,7 +260,7 @@ class _BarChartCard extends StatelessWidget {
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
-                  reservedSize: 28,
+                  reservedSize: Sizes.chartAxisBottom,
                   getTitlesWidget: (v, meta) {
                     final i = v.toInt();
                     if (i < 0 || i >= days.length || (days.length - 1 - i) % step != 0) return const SizedBox.shrink();
@@ -274,8 +275,8 @@ class _BarChartCard extends StatelessWidget {
                   BarChartRodData(
                     toY: values[i],
                     color: color,
-                    width: days.length > 10 ? 6 : 18,
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
+                    width: days.length > 10 ? Sizes.barThin : Sizes.barWide,
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(Radii.xs)),
                   ),
                 ]),
             ],
@@ -316,7 +317,7 @@ class _BehaviourTab extends ConsumerWidget {
           return d > 0 ? l.trendUp : (d < 0 ? l.trendDown : l.trendSteady);
         }
 
-        return PageBody(maxWidth: 800, children: [
+        return PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.md),
           for (final e in tags.entries)
             Padding(
@@ -330,8 +331,8 @@ class _BehaviourTab extends ConsumerWidget {
                     ]),
                   ),
                   SizedBox(
-                    width: 120,
-                    height: 40,
+                    width: Sizes.sparklineWidth,
+                    height: Sizes.sparklineHeight,
                     child: LineChart(LineChartData(
                       minY: 0,
                       maxY: 3.5,
@@ -343,7 +344,7 @@ class _BehaviourTab extends ConsumerWidget {
                         LineChartBarData(
                           spots: [for (var i = 0; i < e.value.length; i++) FlSpot(i.toDouble(), e.value[i].$2.toDouble())],
                           color: context.colors.primary,
-                          barWidth: 3,
+                          barWidth: Strokes.chart,
                           isCurved: true,
                           dotData: const FlDotData(show: true),
                         ),
@@ -355,7 +356,7 @@ class _BehaviourTab extends ConsumerWidget {
             ),
           SecondaryButton(
             label: l.shareWithTrainerVet,
-            icon: Icons.share_rounded,
+            icon: Icons.share_outlined,
             onPressed: () {
               final lines = [
                 l.behaviourSummaryTitle(pet.name),
@@ -388,13 +389,13 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
         IconButton(
           tooltip: context.l10n.decrease,
           onPressed: value > min ? () => on(value - step) : null,
-          icon: const Icon(Icons.remove_circle_outline_rounded),
+          icon: const Icon(Icons.remove_circle_outlined),
         ),
-        SizedBox(width: 40, child: Text('$value', textAlign: TextAlign.center, style: context.text.titleMedium)),
+        SizedBox(width: Sizes.stepperValue, child: Text('$value', textAlign: TextAlign.center, style: context.text.titleMedium)),
         IconButton(
           tooltip: context.l10n.increase,
           onPressed: value < max ? () => on(value + step) : null,
-          icon: const Icon(Icons.add_circle_outline_rounded),
+          icon: const Icon(Icons.add_circle_outlined),
         ),
       ]),
     );
@@ -406,7 +407,7 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
     final pet = widget.pet;
     final g = suggestedGoals(species: pet.speciesEnum, size: pet.size, lifeStage: pet.lifeStage());
     final canEdit = pet.canCare(ref.watch(currentUserProvider)?.uid ?? '');
-    return PageBody(maxWidth: 720, children: [
+    return PageBody(maxWidth: Space.formWidth, children: [
       const SizedBox(height: Space.md),
       Text(l.dailyPlanFor(pet.name), style: context.text.titleMedium),
       const SizedBox(height: Space.xs),
@@ -429,7 +430,7 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
       const SizedBox(height: Space.sm),
       TextButton.icon(
         onPressed: () => setState(() => _plan = DailyPlan(walks: g.walks, meals: g.meals, playMinutes: g.playMinutes)),
-        icon: const Icon(Icons.auto_fix_high_rounded),
+        icon: const Icon(Icons.auto_fix_high_outlined),
         label: Text(l.useSuggested),
       ),
       const SizedBox(height: Space.md),
@@ -446,7 +447,7 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
       InfoNote(l.planReminderNote),
       if (pet.species == 'dog') ...[
         const SizedBox(height: Space.lg),
-        SecondaryButton(label: l.startWalk, icon: Icons.directions_walk_rounded, onPressed: () => context.push('/walk/${pet.id}')),
+        SecondaryButton(label: l.startWalk, icon: Icons.directions_walk_outlined, onPressed: () => context.push('/walk/${pet.id}')),
       ],
     ]);
   }

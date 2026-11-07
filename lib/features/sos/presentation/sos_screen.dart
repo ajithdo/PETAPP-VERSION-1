@@ -187,26 +187,25 @@ class _SosScreenState extends ConsumerState<SosScreen> {
     final nearest = ranked.isEmpty ? null : ranked.first;
 
     return Scaffold(
+      // Design 2 emergency line: a light bar with the title in SOS red.
       appBar: AppBar(
-        backgroundColor: context.paw.sos,
-        foregroundColor: context.paw.onSos,
-        title: Text(l.sosTitle),
+        title: Text(l.sosTitle, style: context.text.titleLarge?.copyWith(color: context.paw.sos)),
         leading: IconButton(
           tooltip: l.close,
-          icon: const Icon(Icons.close_rounded),
+          icon: const Icon(Icons.close_outlined),
           onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
         ),
       ),
-      body: PageBody(maxWidth: 640, children: [
+      body: PageBody(maxWidth: context.isPhone ? Sizes.sheetMaxWidth : Space.wideWidth, children: [
         const SizedBox(height: Space.md),
         _LocationLine(spot: spot, locating: _locating, onChange: _changeArea, onRetry: _locate),
         if (clinics.savedAt != null) ...[
           const SizedBox(height: Space.sm),
-          InfoNote(l.sosSavedClinics(Fmt.dateTime(clinics.savedAt!, context.lang)), icon: Icons.wifi_off_rounded, tone: ChipTone.warning),
+          InfoNote(l.sosSavedClinics(Fmt.dateTime(clinics.savedAt!, context.lang)), icon: Icons.wifi_off_outlined, tone: ChipTone.warning),
         ],
         const SizedBox(height: Space.lg),
         _BigOption(
-          icon: Icons.call_rounded,
+          icon: Icons.call_outlined,
           title: l.sosCallNearest,
           subtitle: nearest == null ? l.sosFinding : '${nearest.clinic.name} · ${Fmt.km(nearest.km)}',
           filled: true,
@@ -218,16 +217,14 @@ class _SosScreenState extends ConsumerState<SosScreen> {
           if (ranked.isEmpty)
             _locating || spot == null ? const SkeletonList(count: 3, itemHeight: 64) : EmptyState(title: l.sosNoClinics, compact: true)
           else
-            PawCard(
-              padding: const EdgeInsets.symmetric(vertical: Space.xs),
-              child: Column(children: [
-                for (final r in ranked.take(6)) _ClinicCallTile(r: r, onCall: () => _call(r.clinic)),
-              ]),
+            ResponsiveGrid(
+              minItemWidth: Sizes.placeCardMinWidth,
+              children: [for (final r in ranked.take(6)) _ClinicCallTile(r: r, onCall: () => _call(r.clinic))],
             ),
         ],
         const SizedBox(height: Space.md),
         _BigOption(
-          icon: Icons.near_me_rounded,
+          icon: Icons.near_me_outlined,
           title: l.sosGetAddress,
           subtitle: nearest == null ? l.sosFinding : nearest.clinic.fullAddress,
           filled: false,
@@ -244,7 +241,13 @@ class _SosScreenState extends ConsumerState<SosScreen> {
           Padding(
             padding: const EdgeInsets.only(bottom: Space.sm),
             child: Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-              for (final p in pets) ChoiceChip(label: Text(p.name), selected: p.id == petId, onSelected: (_) => setState(() => _petId = p.id)),
+              for (final p in pets)
+                PawPill(
+                  label: p.name,
+                  leading: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarXs),
+                  selected: p.id == petId,
+                  onTap: () => setState(() => _petId = p.id),
+                ),
             ]),
           ),
         if (petId != null) MedicalSummaryCard(petId: petId) else EmptyState(title: l.noPetsTitle, compact: true),
@@ -252,7 +255,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         PawCard(
           onTap: () => context.push('/first-aid'),
           child: Row(children: [
-            Icon(Icons.medical_services_rounded, color: context.paw.sos, size: 32),
+            Icon(Icons.medical_services_outlined, color: context.paw.sos, size: IconSizes.xl),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -260,7 +263,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
                 Text(l.firstAidOfflineHint, style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
         const SizedBox(height: Space.xxl),
@@ -293,8 +296,8 @@ class _LocationLine extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md),
       child: Row(children: [
         locating
-            ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
-            : Icon(s?.source == SosSource.gps ? Icons.my_location_rounded : Icons.location_off_rounded,
+            ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner))
+            : Icon(s?.source == SosSource.gps ? Icons.my_location_outlined : Icons.location_off_outlined,
                 color: s?.source == SosSource.gps ? context.paw.success : context.paw.warning),
         const SizedBox(width: Space.md),
         Expanded(
@@ -304,7 +307,7 @@ class _LocationLine extends StatelessWidget {
           ]),
         ),
         if (!locating) ...[
-          if (s?.source != SosSource.gps) IconButton(tooltip: l.sosTryLocation, icon: const Icon(Icons.refresh_rounded), onPressed: onRetry),
+          if (s?.source != SosSource.gps) IconButton(tooltip: l.sosTryLocation, icon: const Icon(Icons.refresh_outlined), onPressed: onRetry),
           TextButton(onPressed: onChange, child: Text(l.sosChangeArea)),
         ],
       ]),
@@ -324,31 +327,36 @@ class _BigOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.paw;
-    final fg = filled ? p.onSos : p.sos;
+    // Design 2 emergency card: solid red for the main action, a soft red
+    // wash with a red border for the second one.
+    final fg = filled ? p.onSos : p.onSosContainer;
     return Semantics(
       button: true,
       expanded: expanded,
       child: Material(
-        color: filled ? p.sos : context.colors.surface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.card), side: BorderSide(color: p.sos, width: 2)),
+        color: filled ? p.sos : p.sosContainer,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Radii.card),
+          side: BorderSide(color: filled ? p.sos : p.sosBorder, width: Strokes.focus),
+        ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onTap,
           child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 96),
+            constraints: const BoxConstraints(minHeight: Sizes.sosOption),
             child: Padding(
               padding: const EdgeInsets.all(Space.lg),
               child: Row(children: [
-                Icon(icon, size: 40, color: fg),
+                Icon(icon, size: IconSizes.xxxl, color: fg),
                 const SizedBox(width: Space.lg),
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
                     Text(title, style: context.text.titleLarge?.copyWith(color: fg, fontWeight: FontWeight.w800)),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: Space.xxs),
                     Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodyMedium?.copyWith(color: fg)),
                   ]),
                 ),
-                Icon(expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded, color: fg),
+                Icon(expanded ? Icons.expand_less_outlined : Icons.expand_more_outlined, color: fg),
               ]),
             ),
           ),
@@ -367,23 +375,54 @@ class _ClinicCallTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = context.l10n;
     final c = r.clinic;
-    return ListTile(
-      onTap: onCall,
-      minVerticalPadding: Space.md,
-      title: Text(c.name, style: context.text.titleSmall),
-      subtitle: Padding(
-        padding: const EdgeInsets.only(top: Space.xs),
-        child: Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-          Text(Fmt.km(r.km), style: context.text.bodySmall),
-          StatusChip(c.is24x7 ? l.open24x7 : (r.open ? l.openNow : l.closedNow), tone: r.open ? ChipTone.success : ChipTone.neutral),
+    final paw = context.paw;
+    // Design 2 hospital card: status chip, name and distance, then a dark
+    // call button and a Map button.
+    return PawCard(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: StatusChip(
+            c.is24x7 ? l.open24x7 : (r.open ? l.openNow : l.closedNow),
+            tone: c.is24x7 ? ChipTone.error : (r.open ? ChipTone.success : ChipTone.neutral),
+            icon: c.is24x7 ? Icons.emergency_outlined : null,
+          ),
+        ),
+        const SizedBox(height: Space.sm),
+        Text(c.name, style: context.text.titleMedium),
+        const SizedBox(height: Space.xxs),
+        Text('${c.area} · ${l.sosAway(Fmt.km(r.km))}', style: context.text.bodySmall),
+        const SizedBox(height: Space.md),
+        const Divider(height: Strokes.hairline),
+        const SizedBox(height: Space.md),
+        Row(children: [
+          Expanded(
+            child: Semantics(
+              label: l.sosCallClinic(c.name),
+              button: true,
+              excludeSemantics: true,
+              child: FilledButton.icon(
+                style: FilledButton.styleFrom(
+                  backgroundColor: paw.inverseSurface,
+                  foregroundColor: paw.onInverseSurface,
+                  iconColor: paw.onInverseSurface,
+                  minimumSize: const Size.fromHeight(TapTarget.min),
+                ),
+                onPressed: onCall,
+                icon: const Icon(Icons.call_outlined, size: IconSizes.md),
+                label: Text('${l.call} · ${c.callNumber}', maxLines: 1, overflow: TextOverflow.ellipsis),
+              ),
+            ),
+          ),
+          const SizedBox(width: Space.sm),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(minimumSize: const Size(0, TapTarget.min)),
+            onPressed: () => openDirections(c.lat, c.lng, label: c.name),
+            icon: Icon(Icons.near_me_outlined, size: IconSizes.md, color: paw.sos),
+            label: Text(l.mapView),
+          ),
         ]),
-      ),
-      trailing: IconButton.filled(
-        tooltip: l.sosCallClinic(c.name),
-        style: IconButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, minimumSize: const Size(48, 48)),
-        icon: const Icon(Icons.call_rounded),
-        onPressed: onCall,
-      ),
+      ]),
     );
   }
 }
@@ -412,27 +451,27 @@ class _AddressCard extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(Radii.card),
           child: SizedBox(
-            height: 180,
+            height: Sizes.mapSmall,
             child: PawMap(
               center: LatLng(c.lat, c.lng),
               zoom: 13,
               interactive: false,
               fitPoints: [LatLng(c.lat, c.lng), LatLng(spot.lat, spot.lng)],
               markers: [
-                pinMarker(LatLng(c.lat, c.lng), color: context.paw.sos, icon: Icons.local_hospital_rounded),
+                pinMarker(LatLng(c.lat, c.lng), color: context.paw.sos, icon: Icons.local_hospital_outlined),
                 dotMarker(LatLng(spot.lat, spot.lng), context.colors.primary),
               ],
             ),
           ),
         ),
         const SizedBox(height: Space.md),
-        PrimaryButton(label: l.openInMaps, icon: Icons.directions_rounded, onPressed: () => openDirections(c.lat, c.lng, label: c.name)),
+        PrimaryButton(label: l.openInMaps, icon: Icons.directions_outlined, onPressed: () => openDirections(c.lat, c.lng, label: c.name)),
         const SizedBox(height: Space.sm),
         Row(children: [
           Expanded(
             child: SecondaryButton(
               label: l.copy,
-              icon: Icons.copy_rounded,
+              icon: Icons.copy_outlined,
               onPressed: () async {
                 await Clipboard.setData(ClipboardData(text: text));
                 if (context.mounted) showToast(context, l.copied);
@@ -443,7 +482,7 @@ class _AddressCard extends StatelessWidget {
           Expanded(
             child: SecondaryButton(
               label: l.share,
-              icon: Icons.share_rounded,
+              icon: Icons.share_outlined,
               onPressed: () async {
                 try {
                   await SharePlus.instance.share(ShareParams(text: text));

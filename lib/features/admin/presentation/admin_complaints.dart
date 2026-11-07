@@ -53,12 +53,12 @@ class _AdminComplaintsState extends ConsumerState<AdminComplaints> {
           return s && f;
         }).toList();
         final waiting = all.where((t) => t.status != 'resolved' && !t.awaitingUser).length;
-        return PageBody(maxWidth: 900, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
           ResponsiveGrid(minItemWidth: 160, spacing: Space.sm, children: [
-            StatTile(label: l.hpStatusOpen, value: '${all.where((t) => t.status == 'open').length}', icon: Icons.mark_email_unread_rounded, color: context.paw.warning),
-            StatTile(label: l.hpStatusInProgress, value: '${all.where((t) => t.status == 'in_progress').length}', icon: Icons.pending_rounded),
-            StatTile(label: l.admNeedsReply, value: '$waiting', icon: Icons.reply_rounded, color: waiting > 0 ? context.paw.error : null),
+            StatTile(label: l.hpStatusOpen, value: '${all.where((t) => t.status == 'open').length}', icon: Icons.mark_email_unread_outlined, color: context.paw.warning),
+            StatTile(label: l.hpStatusInProgress, value: '${all.where((t) => t.status == 'in_progress').length}', icon: Icons.pending_outlined),
+            StatTile(label: l.admNeedsReply, value: '$waiting', icon: Icons.reply_outlined, color: waiting > 0 ? context.paw.error : null),
             StatTile(label: l.hpStatusResolved, value: '${all.where((t) => t.status == 'resolved').length}', icon: Icons.check_circle_rounded, color: context.paw.success),
           ]),
           const SizedBox(height: Space.md),
@@ -113,7 +113,7 @@ class TicketCard extends StatelessWidget {
       onTap: onTap,
       padding: const EdgeInsets.all(Space.md),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        CircleAvatar(child: Icon(linkTypeIcon(t.linkType), size: 20)),
+        CircleAvatar(child: Icon(linkTypeIcon(t.linkType), size: IconSizes.md)),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -134,16 +134,16 @@ class TicketCard extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-            const SizedBox(height: 4),
+            const SizedBox(height: Space.xs),
             Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
               StatusChip(ticketStatusLabel(context, t.status), tone: ticketStatusTone(t.status)),
-              if (adminView && needsAdmin) StatusChip(l.admNeedsReply, tone: ChipTone.error, icon: Icons.reply_rounded),
-              if (!adminView && t.awaitingUser) StatusChip(l.hpNewReply, tone: ChipTone.info, icon: Icons.mark_chat_unread_rounded),
+              if (adminView && needsAdmin) StatusChip(l.admNeedsReply, tone: ChipTone.error, icon: Icons.reply_outlined),
+              if (!adminView && t.awaitingUser) StatusChip(l.hpNewReply, tone: ChipTone.info, icon: Icons.mark_chat_unread_outlined),
               if (t.refund != null) StatusChip(l.hpRefunded(Fmt.inr((t.refund!['amount'] as num?) ?? 0, context.lang)), tone: ChipTone.success),
             ]),
           ]),
         ),
-        const Icon(Icons.chevron_right_rounded),
+        const Icon(Icons.chevron_right_outlined),
       ]),
     );
   }
@@ -192,7 +192,7 @@ class _AdminTicketScreenState extends ConsumerState<AdminTicketScreen> {
             for (final u in ref.watch(adminUsersProvider).value ?? const <Map<String, dynamic>>[])
               if (u['role'] == 'admin') (u['name'] as String?) ?? '',
           ];
-          return PageBody(maxWidth: 900, children: [
+          return PageBody(maxWidth: Space.wideWidth, children: [
             const SizedBox(height: Space.md),
             PawCard(child: TicketSummary(ticket: t, showPerson: true)),
             const SizedBox(height: Space.md),
@@ -261,7 +261,7 @@ class _LinkedItem extends ConsumerWidget {
     final link = ref.watch(ticketLinkProvider('${t.linkType}/${t.linkId}'));
     return AsyncView<Map<String, dynamic>?>(
       value: link,
-      loading: const Skeleton(height: 96),
+      loading: const Skeleton(height: Sizes.skeletonCard),
       data: (d) {
         if (d == null) return InfoNote(l.admLinkMissing(linkTypeLabel(context, t.linkType)));
         final paid = (d['total'] as num?)?.toInt() ?? 0;
@@ -302,7 +302,7 @@ class _LinkedItem extends ConsumerWidget {
                   alignment: Alignment.centerLeft,
                   child: SecondaryButton(
                     label: l.admRefundButton,
-                    icon: Icons.currency_rupee_rounded,
+                    icon: Icons.currency_rupee_outlined,
                     expand: false,
                     onPressed: paid <= 0 ? null : () => _refund(context, ref, paid),
                   ),

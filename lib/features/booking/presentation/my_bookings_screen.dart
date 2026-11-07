@@ -56,7 +56,7 @@ class MyBookingsScreen extends ConsumerWidget {
               }
               final limit = ref.watch(listLimitProvider(key));
               return PageBody(
-                maxWidth: 800,
+                maxWidth: Space.readingWidth,
                 children: [
                   const SizedBox(height: Space.md),
                   for (final b in items.take(limit))
@@ -81,6 +81,24 @@ class MyBookingsScreen extends ConsumerWidget {
   }
 }
 
+/// Shares the booking as a calendar file (.ics) so it can be added to any
+/// calendar app.
+void shareBookingToCalendar(BuildContext context, Booking b) {
+  final ics = icsFor(
+    uid: b.id,
+    title: '${serviceLabel(context, b.serviceId)} · ${b.petName} · ${b.providerName}',
+    start: b.start,
+    end: b.end,
+    location: (b.raw['providerAddress'] as String?) ?? b.providerName,
+  );
+  SharePlus.instance.share(
+    ShareParams(
+      files: [XFile.fromData(Uint8List.fromList(utf8.encode(ics)), mimeType: 'text/calendar', name: 'pawsetu-booking.ics')],
+      fileNameOverrides: const ['pawsetu-booking.ics'],
+    ),
+  );
+}
+
 class BookingDetailScreen extends ConsumerWidget {
   const BookingDetailScreen({super.key, required this.bookingId, this.partnerView = false, this.partnerActions});
   final String bookingId;
@@ -101,17 +119,17 @@ class BookingDetailScreen extends ConsumerWidget {
           final place = ref.watch(placeProvider(b.providerId)).value;
           final s = bookingStatus(context, b.status);
           Widget row(String k, String v) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
+            padding: const EdgeInsets.symmetric(vertical: Space.xs),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(width: 120, child: Text(k, style: context.text.bodySmall)),
+                SizedBox(width: Sizes.labelColumn, child: Text(k, style: context.text.bodySmall)),
                 Expanded(child: Text(v, style: context.text.bodyMedium)),
               ],
             ),
           );
           return PageBody(
-            maxWidth: 800,
+            maxWidth: Space.readingWidth,
             children: [
               const SizedBox(height: Space.md),
               PawCard(
@@ -160,7 +178,7 @@ class BookingDetailScreen extends ConsumerWidget {
               if (b.status == 'suggested' && b.suggestedTime != null && !partnerView) ...[
                 const SizedBox(height: Space.md),
                 PawCard(
-                  color: context.paw.accent.withValues(alpha: 0.15),
+                  color: context.paw.accent.withValues(alpha: Opacities.chip),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -194,7 +212,7 @@ class BookingDetailScreen extends ConsumerWidget {
                       padding: EdgeInsets.zero,
                       child: Row(
                         children: [
-                          if (u['photoUrl'] != null) SizedBox(width: 96, height: 96, child: MediaImage(url: u['photoUrl'] as String, width: 96, height: 96)),
+                          if (u['photoUrl'] != null) SizedBox(width: Sizes.updatePhoto, height: Sizes.updatePhoto, child: MediaImage(url: u['photoUrl'] as String, width: Sizes.updatePhoto, height: Sizes.updatePhoto)),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(Space.md),
@@ -218,7 +236,7 @@ class BookingDetailScreen extends ConsumerWidget {
               const SizedBox(height: Space.sm),
               TextButton.icon(
                 onPressed: () => context.push('${partnerView ? '/help' : '/me/help'}/new?booking=${b.id}'),
-                icon: const Icon(Icons.support_agent_rounded),
+                icon: const Icon(Icons.support_agent_outlined),
                 label: Text(context.l10n.hpGetHelpBooking),
               ),
             ],
@@ -235,22 +253,8 @@ class BookingDetailScreen extends ConsumerWidget {
       if (b.status == 'confirmed') ...[
         SecondaryButton(
           label: l.addToCalendar,
-          icon: Icons.event_rounded,
-          onPressed: () {
-            final ics = icsFor(
-              uid: b.id,
-              title: '${serviceLabel(context, b.serviceId)} · ${b.petName} · ${b.providerName}',
-              start: b.start,
-              end: b.end,
-              location: (b.raw['providerAddress'] as String?) ?? b.providerName,
-            );
-            SharePlus.instance.share(
-              ShareParams(
-                files: [XFile.fromData(Uint8List.fromList(utf8.encode(ics)), mimeType: 'text/calendar', name: 'pawsetu-booking.ics')],
-                fileNameOverrides: const ['pawsetu-booking.ics'],
-              ),
-            );
-          },
+          icon: Icons.event_outlined,
+          onPressed: () => shareBookingToCalendar(context, b),
         ),
         const SizedBox(height: Space.sm),
       ],
@@ -258,18 +262,18 @@ class BookingDetailScreen extends ConsumerWidget {
         Row(
           children: [
             Expanded(
-              child: SecondaryButton(label: l.call, icon: Icons.call_rounded, onPressed: () => callNumber(context, ref, place.phone)),
+              child: SecondaryButton(label: l.call, icon: Icons.call_outlined, onPressed: () => callNumber(context, ref, place.phone)),
             ),
             const SizedBox(width: Space.sm),
             Expanded(
-              child: SecondaryButton(label: l.message, icon: Icons.chat_rounded, onPressed: () => context.push('/messages/new?booking=${b.id}')),
+              child: SecondaryButton(label: l.message, icon: Icons.chat_outlined, onPressed: () => context.push('/messages/new?booking=${b.id}')),
             ),
           ],
         ),
         const SizedBox(height: Space.sm),
       ],
       if (b.status == 'confirmed' && b.start.isAfter(DateTime.now()) && place != null) ...[
-        SecondaryButton(label: l.reschedule, icon: Icons.edit_calendar_rounded, onPressed: () => _reschedule(context, ref, b, place)),
+        SecondaryButton(label: l.reschedule, icon: Icons.edit_calendar_outlined, onPressed: () => _reschedule(context, ref, b, place)),
         const SizedBox(height: Space.sm),
       ],
       if (b.isActive && b.start.isAfter(DateTime.now()))
@@ -436,7 +440,7 @@ class _LiveWalkState extends State<_LiveWalk> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(
-          height: 240,
+          height: Sizes.liveMap,
           child: PawMap(
             center: pts.last,
             zoom: 15,

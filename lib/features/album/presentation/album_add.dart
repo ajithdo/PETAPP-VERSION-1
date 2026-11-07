@@ -20,6 +20,9 @@ import '../domain/album.dart';
 import 'album_labels.dart';
 import 'video/video_source.dart';
 
+/// Longest side, in pixels, that album photos are scaled to.
+const double _photoMaxSide = 2000;
+
 /// A picked file waiting to be saved.
 class PickedMedia {
   const PickedMedia({required this.bytes, required this.contentType, required this.ext, this.durationSec = 0, this.takenAt});
@@ -39,22 +42,22 @@ Future<void> showAddMemorySheet(BuildContext context, WidgetRef ref, Pet pet, {S
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Text(l.albumAddTitle(pet.name), style: ctx.text.titleMedium),
       const SizedBox(height: Space.md),
-      ListTile(leading: const Icon(Icons.photo_camera_rounded), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
-      ListTile(leading: const Icon(Icons.photo_library_rounded), title: Text(l.albumChoosePhotos), onTap: () => Navigator.pop(ctx, 'photos')),
+      ListTile(leading: const Icon(Icons.photo_camera_outlined), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
+      ListTile(leading: const Icon(Icons.photo_library_outlined), title: Text(l.albumChoosePhotos), onTap: () => Navigator.pop(ctx, 'photos')),
       ListTile(
-        leading: const Icon(Icons.videocam_rounded),
+        leading: const Icon(Icons.videocam_outlined),
         title: Text(l.albumRecordVideo),
         subtitle: Text(l.albumVideoMaxSec(limit)),
         onTap: () => Navigator.pop(ctx, 'record'),
       ),
       ListTile(
-        leading: const Icon(Icons.video_library_rounded),
+        leading: const Icon(Icons.video_library_outlined),
         title: Text(l.albumChooseVideo),
         subtitle: Text(l.albumVideoMaxSec(limit)),
         onTap: () => Navigator.pop(ctx, 'video'),
       ),
       if (milestone == null)
-        ListTile(leading: const Icon(Icons.emoji_events_rounded), title: Text(l.albumAddMilestone), onTap: () => Navigator.pop(ctx, 'milestone')),
+        ListTile(leading: const Icon(Icons.emoji_events_outlined), title: Text(l.albumAddMilestone), onTap: () => Navigator.pop(ctx, 'milestone')),
       const SizedBox(height: Space.sm),
       Text(l.albumStorageNote, style: ctx.text.bodySmall),
     ]);
@@ -67,12 +70,12 @@ Future<void> showAddMemorySheet(BuildContext context, WidgetRef ref, Pet pet, {S
       case 'milestone':
         await showMemoryEditSheet(context, ref, pet, milestone: 'custom');
       case 'camera':
-        final f = await picker.pickImage(source: ImageSource.camera, maxWidth: 2000, maxHeight: 2000, imageQuality: 80);
+        final f = await picker.pickImage(source: ImageSource.camera, maxWidth: _photoMaxSide, maxHeight: _photoMaxSide, imageQuality: 80);
         if (f == null || !context.mounted) return;
         final m = PickedMedia(bytes: await f.readAsBytes(), contentType: 'image/jpeg', ext: 'jpg', takenAt: DateTime.now());
         if (context.mounted) await showMemoryEditSheet(context, ref, pet, media: m, milestone: milestone);
       case 'photos':
-        final files = await picker.pickMultiImage(maxWidth: 2000, maxHeight: 2000, imageQuality: 80, limit: 20);
+        final files = await picker.pickMultiImage(maxWidth: _photoMaxSide, maxHeight: _photoMaxSide, imageQuality: 80, limit: 20);
         if (files.isEmpty || !context.mounted) return;
         if (files.length == 1) {
           final f = files.first;
@@ -255,21 +258,21 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
       if (!noMedia)
         Center(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(Radii.button),
+            borderRadius: BorderRadius.circular(Radii.md),
             child: SizedBox(
-              width: 160,
-              height: 160,
+              width: Sizes.albumPick,
+              height: Sizes.albumPick,
               child: m != null
                   ? (m.isVideo
                       ? ColoredBox(
                           color: context.paw.primaryContainer,
                           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                            Icon(Icons.videocam_rounded, size: 48, color: context.colors.primary),
+                            Icon(Icons.videocam_outlined, size: IconSizes.hero, color: context.colors.primary),
                             Text(videoLength(m.durationSec), style: context.text.titleSmall),
                           ]),
                         )
                       : Image.memory(m.bytes, fit: BoxFit.cover, semanticLabel: context.l10n.vaultPhoto))
-                  : MediaImage(url: e!.url!, width: 160, height: 160),
+                  : MediaImage(url: e!.url!, width: Sizes.albumPick, height: Sizes.albumPick),
             ),
           ),
         ),
@@ -277,7 +280,7 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
       PawTextField(label: l.albumCaption, hint: l.albumCaptionHint, controller: _caption, maxLines: 3),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-        icon: const Icon(Icons.event_rounded),
+        icon: const Icon(Icons.event_outlined),
         label: Text('${l.albumDateTaken}: ${Fmt.date(_taken, context.lang)}'),
         onPressed: () async {
           final now = DateTime.now();
@@ -293,7 +296,7 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
           ChoiceChip(label: Text(l.albumNoMilestone), selected: _milestone == null, onSelected: (_) => setState(() => _milestone = null)),
         for (final k in milestoneKinds)
           ChoiceChip(
-            avatar: Icon(milestoneIcon(k), size: 18),
+            avatar: Icon(milestoneIcon(k), size: IconSizes.chip),
             showCheckmark: false,
             label: Text(milestoneLabel(context, k)),
             selected: _milestone == k,
@@ -310,10 +313,10 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
       Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
         for (final a in allAlbums)
           FilterChip(label: Text(a), selected: _albums.contains(a), onSelected: (v) => setState(() => v ? _albums.add(a) : _albums.remove(a))),
-        ActionChip(avatar: const Icon(Icons.add_rounded, size: 18), label: Text(l.albumNewAlbum), onPressed: _newAlbum),
+        ActionChip(avatar: const Icon(Icons.add_outlined, size: IconSizes.chip), label: Text(l.albumNewAlbum), onPressed: _newAlbum),
       ]),
       const SizedBox(height: Space.xl),
-      PrimaryButton(label: l.save, icon: Icons.check_rounded, loading: _busy, onPressed: _save),
+      PrimaryButton(label: l.save, icon: Icons.check_outlined, loading: _busy, onPressed: _save),
     ]);
   }
 }
@@ -352,8 +355,8 @@ Future<void> showAddToAlbumSheet(BuildContext context, WidgetRef ref, Pet pet, L
       Text(l.albumAddToAlbum, style: ctx.text.titleMedium),
       const SizedBox(height: Space.sm),
       for (final n in names)
-        ListTile(leading: const Icon(Icons.photo_album_rounded), title: Text(n), onTap: () => Navigator.pop(ctx, n)),
-      ListTile(leading: const Icon(Icons.add_rounded), title: Text(l.albumNewAlbum), onTap: () => Navigator.pop(ctx, '')),
+        ListTile(leading: const Icon(Icons.photo_album_outlined), title: Text(n), onTap: () => Navigator.pop(ctx, n)),
+      ListTile(leading: const Icon(Icons.add_outlined), title: Text(l.albumNewAlbum), onTap: () => Navigator.pop(ctx, '')),
     ]);
   });
   if (picked == null || !context.mounted) return;

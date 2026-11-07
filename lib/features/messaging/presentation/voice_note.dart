@@ -200,14 +200,14 @@ class _VoiceNotePlayerState extends ConsumerState<VoiceNotePlayer> {
         tooltip: _playing ? l.msgPause : l.msgPlayVoice,
         onPressed: _loading ? null : _toggle,
         icon: _loading
-            ? SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: widget.color))
-            : Icon(_playing ? Icons.pause_circle_filled_rounded : Icons.play_circle_fill_rounded, color: widget.color, size: 34),
+            ? SizedBox(width: IconSizes.md, height: IconSizes.md, child: CircularProgressIndicator(strokeWidth: Strokes.focus, color: widget.color))
+            : Icon(_playing ? Icons.pause_circle_filled_rounded : Icons.play_circle_fill_rounded, color: widget.color, size: IconSizes.xxl),
       ),
       SizedBox(
-        width: 120,
+        width: Sizes.voiceWave,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
           _Wave(progress: progress, color: widget.color),
-          const SizedBox(height: 2),
+          const SizedBox(height: Space.xxs),
           Text(formatSeconds(shown), style: context.text.labelSmall),
         ]),
       ),
@@ -225,17 +225,17 @@ class _Wave extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 24,
+      height: IconSizes.lg,
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         for (var i = 0; i < _heights.length; i++)
           Expanded(
             child: Center(
               child: Container(
-                width: 3,
+                width: Strokes.chart,
                 height: _heights[i].toDouble(),
                 decoration: BoxDecoration(
-                  color: i / _heights.length <= progress ? color : color.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(2),
+                  color: i / _heights.length <= progress ? color : color.withValues(alpha: Opacities.border),
+                  borderRadius: BorderRadius.circular(Radii.xs),
                 ),
               ),
             ),
@@ -284,8 +284,8 @@ class _RecordingBarState extends State<RecordingBar> {
     final l = context.l10n;
     final secs = widget.recorder.elapsed.inSeconds;
     return Row(children: [
-      IconButton(tooltip: l.msgCancelRecording, onPressed: widget.onCancel, icon: Icon(Icons.delete_outline_rounded, color: context.paw.error)),
-      Icon(Icons.fiber_manual_record_rounded, color: context.paw.sos, size: 16),
+      IconButton(tooltip: l.msgCancelRecording, onPressed: widget.onCancel, icon: Icon(Icons.delete_outlined, color: context.paw.error)),
+      Icon(Icons.fiber_manual_record_rounded, color: context.paw.sos, size: IconSizes.sm),
       const SizedBox(width: Space.sm),
       Expanded(
         child: Text(
@@ -295,7 +295,7 @@ class _RecordingBarState extends State<RecordingBar> {
           overflow: TextOverflow.ellipsis,
         ),
       ),
-      IconButton.filled(tooltip: l.msgSendVoice, onPressed: widget.onSend, icon: const Icon(Icons.send_rounded)),
+      IconButton.filled(tooltip: l.msgSendVoice, onPressed: widget.onSend, icon: const Icon(Icons.send_outlined)),
     ]);
   }
 }
