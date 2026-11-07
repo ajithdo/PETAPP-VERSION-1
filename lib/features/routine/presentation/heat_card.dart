@@ -7,7 +7,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../pets/domain/pet.dart';
 import '../domain/routine.dart';
 
-/// Walk-weather tip with heat safety (spec 7.3). Version 1 uses demo
+/// Walk-weather tip with heat safety (spec 7.3). DEMO VERSION 1 uses demo
 /// temperatures; flat-faced breeds get stronger warnings.
 class HeatCard extends ConsumerWidget {
   const HeatCard({super.key, required this.pet, this.compact = false});

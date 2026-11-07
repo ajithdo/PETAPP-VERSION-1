@@ -83,7 +83,7 @@ class PortalScaffold extends ConsumerWidget {
       ],
     );
 
-    // Design 2 clinic portal: a deep forest top bar with light text.
+    // UI Design 2 clinic portal: a deep forest top bar with light text.
     final paw = context.paw;
     final dark = Theme.of(context).brightness == Brightness.dark;
     final barBg = dark ? paw.primaryContainer : paw.brand;

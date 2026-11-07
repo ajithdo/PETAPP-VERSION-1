@@ -201,7 +201,7 @@ class A4Table extends StatelessWidget {
   final List<int>? flex;
   @override
   Widget build(BuildContext context) {
-    // Design 2 certificate table: a forest header row with white text, then
+    // UI Design 2 certificate table: a forest header row with white text, then
     // rows on alternating white and warm off-white.
     Widget row(List<String> cells, {bool head = false, bool shade = false}) => Container(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),

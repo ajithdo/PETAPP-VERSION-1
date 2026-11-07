@@ -25,7 +25,7 @@ Future<void> callNumber(BuildContext context, WidgetRef ref, String phone) async
   await launchUrl(Uri.parse('tel:${phone.replaceAll(' ', '')}'));
 }
 
-/// Clinic or provider page (spec 7.5), Design 2: the photo, the clinic's
+/// Clinic or provider page (spec 7.5), UI Design 2: the photo, the clinic's
 /// details and the booking card. On desktop the booking card is the right
 /// column; on phones it follows the call / directions / message pills.
 class PlaceScreen extends ConsumerStatefulWidget {
@@ -58,7 +58,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
               : l.todayHours(Fmt.time(today.open, context.lang), Fmt.time(today.close, context.lang));
           final wide = context.screenSize == ScreenSize.desktop;
           // Phones show the photo full width under the app bar; wider screens
-          // show it as a rounded picture in the page (owner's Design 2
+          // show it as a rounded picture in the page (owner's UI Design 2
           // picture), because a full-width strip would only show a sliver.
           final phone = context.screenSize == ScreenSize.phone;
           final photo = SeedArt(seed: 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}');

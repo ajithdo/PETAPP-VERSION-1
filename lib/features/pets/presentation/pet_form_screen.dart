@@ -212,7 +212,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
             Expanded(
               child: PageBody(maxWidth: Space.formWidth, children: [
                 const SizedBox(height: Space.lg),
-                // Design 2: the whole step sits in one white card.
+                // UI Design 2: the whole step sits in one white card.
                 PawCard(
                   padding: EdgeInsets.all(context.isPhone ? Space.lg : Space.xl),
                   child: Column(
@@ -468,7 +468,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
 }
 
 /// Two form boxes side by side on wider screens, one under the other on
-/// phones (Design 2 pet form).
+/// phones (UI Design 2 pet form).
 Widget _pair(BuildContext context, Widget a, Widget b) {
   if (context.isPhone) return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [a, b]);
   return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [

@@ -8,7 +8,7 @@ import '../theme/tokens.dart';
 Color dangerColor(BuildContext context) =>
     Theme.of(context).brightness == Brightness.light ? context.paw.error : context.paw.sos;
 
-/// Shrinks its child slightly while pressed (Design 2 "tap" motion).
+/// Shrinks its child slightly while pressed (UI Design 2 "tap" motion).
 /// Does nothing when the system asks for reduced motion.
 class PressScale extends StatefulWidget {
   const PressScale({super.key, required this.child, this.enabled = true});

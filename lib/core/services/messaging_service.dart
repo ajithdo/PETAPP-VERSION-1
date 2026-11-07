@@ -3,7 +3,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 
 /// Outgoing SMS, WhatsApp, email and push messages.
 /// Demo: every message is logged to the Demo Outbox (admin can read it).
-/// Live (Version 2, L3): the sendMessage Cloud Function talks to the providers.
+/// Live (FINAL VERSION, L3): the sendMessage Cloud Function talks to the providers.
 enum Channel { push, email, sms, whatsapp }
 
 abstract class MessagingService {

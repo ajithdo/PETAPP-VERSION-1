@@ -13,7 +13,7 @@ import '../domain/booking_rules.dart';
 import 'booking_labels.dart';
 import 'booking_slots.dart';
 
-/// Design 2 booking card on the clinic page (owner's choice, 4 Nov 2026):
+/// UI Design 2 booking card on the clinic page (owner's choice, 4 Nov 2026):
 /// pick the pet, the visit reason, the day and the time, see the price, then
 /// continue to one short screen for notes, photos and payment.
 class BookingPanel extends ConsumerStatefulWidget {

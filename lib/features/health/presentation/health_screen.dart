@@ -135,7 +135,7 @@ class HealthBody extends ConsumerWidget {
     final symptoms = _EventsSection(pet: pet, type: 'symptom', canCare: canCare);
     final reminders = _RemindersSection(pet: pet);
     Widget column(List<Widget> c) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: c);
-    // Desktop (Design 2 records vault): the pass and emergency info on the
+    // Desktop (UI Design 2 records vault): the pass and emergency info on the
     // left, what's due and the records on the right.
     final body = wide
         ? <Widget>[
@@ -421,7 +421,7 @@ class _PreventionSection extends ConsumerWidget {
       SectionHeader(l.prevention),
       PawCard(
         padding: const EdgeInsets.all(Space.md),
-        // Side by side when there is room (Design 2), stacked on phones.
+        // Side by side when there is room (UI Design 2), stacked on phones.
         child: ResponsiveGrid(
           minItemWidth: Sizes.miniCardMin,
           spacing: Space.sm,
@@ -630,7 +630,7 @@ class _RemindersSection extends ConsumerWidget {
   }
 }
 
-/// The Design 2 health pass at the top of the Health tab: who the pet is, the
+/// The UI Design 2 health pass at the top of the Health tab: who the pet is, the
 /// key facts, whether anything needs attention, and the card and report.
 class _HealthPass extends StatelessWidget {
   const _HealthPass({required this.pet, required this.urgent});
@@ -702,7 +702,7 @@ class _VaccineStep extends StatelessWidget {
   }
 }
 
-/// Design 2 emergency card on Health: allergies and the regular clinic at a
+/// UI Design 2 emergency card on Health: allergies and the regular clinic at a
 /// glance, with the medical card one tap away.
 class _EmergencyInfo extends ConsumerWidget {
   const _EmergencyInfo({required this.pet});

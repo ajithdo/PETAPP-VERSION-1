@@ -1,6 +1,6 @@
-/// Simulated document reading for Version 1 (spec 7.9). The sample documents
+/// Simulated document reading for DEMO VERSION 1 (spec 7.9). The sample documents
 /// have realistic printed values; "reading" one returns exactly what is
-/// printed on it. Version 2 swaps this for Gemini via Firebase AI Logic
+/// printed on it. FINAL VERSION swaps this for Gemini via Firebase AI Logic
 /// behind [DocumentReader].
 library;
 
@@ -262,7 +262,7 @@ String guessTypeFromName(String? fileName) {
   return 'other';
 }
 
-/// Reads documents. V1 = [SimulatedDocumentReader]; V2 = Gemini.
+/// Reads documents. DEMO VERSION 1 = [SimulatedDocumentReader]; FINAL VERSION = Gemini.
 abstract class DocumentReader {
   Future<ExtractedDetails> read({String? sampleKey, String? fileName, required String petName, required DateTime issuedOn});
 }

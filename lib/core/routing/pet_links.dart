@@ -21,7 +21,7 @@ class PetSection {
 List<PetSection> petSections(BuildContext context, Pet pet) {
   final l = context.l10n;
   return [
-    // Red stays for emergencies (Design 2), so Health uses the brand teal.
+    // Red stays for emergencies (UI Design 2), so Health uses the brand teal.
     PetSection(Icons.favorite_border, l.tabHealth, l.petSectionHealth, '/health?pet=${pet.id}', context.paw.brand),
     PetSection(Icons.directions_walk_outlined, l.routine, l.petSectionRoutine, '/pets/${pet.id}/routine', context.paw.success),
     PetSection(Icons.lock_outlined, l.documentVault, l.petSectionDocs, petVaultLink(pet.id), context.paw.accent),

@@ -2,12 +2,12 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-// Design tokens: Design 2, "Warm Clinical Trust & Playful Care"
-// (docs/design-2/). Every colour, font, size, gap, corner, shadow and timing
+// Design tokens: UI Design 2, "Warm Clinical Trust & Playful Care"
+// (docs/ui-designs/). Every colour, font, size, gap, corner, shadow and timing
 // in the app comes from this file. Never hard-code these values in widgets.
 //
 // Changes from the Stitch design rules, made so everything stays readable
-// (docs/design-2/REVIEW.md):
+// (docs/ui-designs/REVIEW.md):
 // - The coral moves slightly towards terracotta (#C84735 to #B9532E), so the
 //   everyday "Book" buttons no longer look like the SOS red.
 // - Secondary grey is #6B635D, not #78716C, which was too faint on sand.
@@ -366,7 +366,7 @@ class PetTagColors {
 }
 
 /// Colours that tell kinds of things apart (routine log types, chart
-/// series, document kinds). Muted mid-tones that sit with Design 2's forest
+/// series, document kinds). Muted mid-tones that sit with UI Design 2's forest
 /// teal and sand. Use them for icons and tints, not for body text; pass them
 /// through [readableOn] when they colour text or sit on a dark surface.
 class CategoryColors {
@@ -510,7 +510,7 @@ class TypeToken {
   final bool heading;
 }
 
-/// The type scale (Design 2). Hindi and Telugu use the same sizes with at
+/// The type scale (UI Design 2). Hindi and Telugu use the same sizes with at
 /// least 1.6 line height ([indicLineHeight]) and no negative tracking.
 class TypeScale {
   static const display = TypeToken(40, 48, FontWeight.w700, tracking: -0.8, heading: true);

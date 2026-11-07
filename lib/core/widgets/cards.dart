@@ -4,7 +4,7 @@ import '../theme/tokens.dart';
 import 'buttons.dart';
 
 /// White card with 20 px corners, a 1 px warm border and a soft shadow in
-/// light mode (Design 2). Tappable cards shrink slightly when pressed.
+/// light mode (UI Design 2). Tappable cards shrink slightly when pressed.
 class PawCard extends StatelessWidget {
   const PawCard({
     super.key,
@@ -163,7 +163,7 @@ class StatTile extends StatelessWidget {
     return Semantics(
       label: '$label: $value',
       excludeSemantics: true,
-      // Design 2 number tile: a small uppercase label over a big number.
+      // UI Design 2 number tile: a small uppercase label over a big number.
       child: PawCard(
         padding: const EdgeInsets.all(Space.lg),
         child: Column(
@@ -188,7 +188,7 @@ class StatTile extends StatelessWidget {
   }
 }
 
-/// Design 2 alert card (e.g. "Booster due in 10 days"): a tinted card with
+/// UI Design 2 alert card (e.g. "Booster due in 10 days"): a tinted card with
 /// an icon in a solid circle, a small uppercase line, a title, an optional
 /// message and an optional button.
 class PawAlertCard extends StatelessWidget {
@@ -328,7 +328,7 @@ class InfoNote extends StatelessWidget {
 }
 
 /// A small sage square with the day number over the short month ("13 /
-/// NOV"), at the start of a booking or event row (Design 2).
+/// NOV"), at the start of a booking or event row (UI Design 2).
 class DateBadge extends StatelessWidget {
   const DateBadge({super.key, required this.day, required this.month, this.muted = false});
 
