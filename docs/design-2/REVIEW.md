@@ -5,11 +5,11 @@ The owner made Design 2 in Google Stitch and shared it as a zip on 3 Nov 2026. T
 - `source/`: the files exactly as received. There are 12 screens (`*/code.html`), the design rules (`pawsetu_design_system.md`) and Stitch's Flutter notes (`pawsetu_flutter_design_tokens_engine_architecture.md`).
 - `screens/`: pictures of each screen at phone width (390 px, `_m.png`) and desktop width (1440 px, `_d.png`). The photos in the designs are hosted by Google and didn't load, so they show as grey boxes.
 
-**Status:** reviewed, **not built**. Design 1 stays in the app until the owner says go (see `UI_REVAMP.md`).
+**Status:** reviewed, **not built**. UI Design 1 stays in the app until the owner says go (see `UI_REVAMP.md`).
 
 ## What Design 2 is
 
-| | Design 1 (app today) | Design 2 |
+| | UI Design 1 (app today) | Design 2 |
 |---|---|---|
 | Main action colour | Teal `#0F766E` | Terracotta coral `#C84735` (dark mode `#FF7A66`) |
 | Trust / verified colour | Teal | Deep forest teal `#18453E` with soft sage `#E6F0ED` |

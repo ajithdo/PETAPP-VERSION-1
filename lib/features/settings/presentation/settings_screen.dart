@@ -146,7 +146,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ListTile(
             leading: const Icon(Icons.info_outlined),
             title: const Text('PawSetu'),
-            subtitle: Text(l.aboutVersion('1.0.0 (Version 1 demo)')),
+            subtitle: Text(l.aboutVersion('1.0.0 (DEMO VERSION 1)')),
             onTap: () {
               _aboutTaps++;
               if (_aboutTaps >= 5) {
