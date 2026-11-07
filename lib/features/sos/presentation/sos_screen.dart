@@ -187,7 +187,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
     final nearest = ranked.isEmpty ? null : ranked.first;
 
     return Scaffold(
-      // Design 2 emergency line: a light bar with the title in SOS red.
+      // UI Design 2 emergency line: a light bar with the title in SOS red.
       appBar: AppBar(
         title: Text(l.sosTitle, style: context.text.titleLarge?.copyWith(color: context.paw.sos)),
         leading: IconButton(
@@ -327,7 +327,7 @@ class _BigOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.paw;
-    // Design 2 emergency card: solid red for the main action, a soft red
+    // UI Design 2 emergency card: solid red for the main action, a soft red
     // wash with a red border for the second one.
     final fg = filled ? p.onSos : p.onSosContainer;
     return Semantics(
@@ -376,7 +376,7 @@ class _ClinicCallTile extends StatelessWidget {
     final l = context.l10n;
     final c = r.clinic;
     final paw = context.paw;
-    // Design 2 hospital card: status chip, name and distance, then a dark
+    // UI Design 2 hospital card: status chip, name and distance, then a dark
     // call button and a Map button.
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [

@@ -23,7 +23,7 @@ class MeScreen extends ConsumerWidget {
     final pets = ref.watch(activePetsProvider);
     return PageBody(children: [
       const SizedBox(height: Space.sm),
-      // Design 2 account card: initials in a forest circle, the name and
+      // UI Design 2 account card: initials in a forest circle, the name and
       // plan, where you are, and your pets.
       PawCard(
         padding: const EdgeInsets.all(Space.lg),

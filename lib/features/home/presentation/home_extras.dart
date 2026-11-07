@@ -16,7 +16,7 @@ export '../../sos/sos_slots.dart' show lostPetSection;
 export '../../vault/vault_slots.dart' show addPhotoLink, latestMemorySection;
 
 /// Home "Next up": vaccines, medicines and care due soonest (spec 5).
-/// The most urgent item is a Design 2 alert card; up to two more follow as
+/// The most urgent item is a UI Design 2 alert card; up to two more follow as
 /// rows. [flush] drops the space above the title (top of a desktop column).
 /// With [skipFirst] the most urgent item is left out, because Home already
 /// shows it in the dark health card at the top; only the next ones are listed.

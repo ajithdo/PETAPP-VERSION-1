@@ -2,27 +2,27 @@
 
 Branch: `ui-revamp`.
 
-> **Owner instruction, 3 Nov 2026: "Don't consider the Figma designs."** The Figma file and the design-system proposal in section 2 below are **not used** for anything. Design 2 is the owner's Stitch design in `docs/design-2/`. Figma steps are dropped from this work. The Figma file still exists, unused: [PawSetu – Design System v2](https://www.figma.com/design/RdduLVvn2mYCDQjCcIMBg8). It should only be deleted if the owner asks.
+> **Owner instruction, 3 Nov 2026: "Don't consider the Figma designs."** The Figma file and the design-system proposal in section 2 below are **not used** for anything. UI Design 2 is the owner's Stitch design in `docs/ui-designs/`. Figma steps are dropped from this work. The Figma file still exists, unused: [PawSetu – Design System v2](https://www.figma.com/design/RdduLVvn2mYCDQjCcIMBg8). It should only be deleted if the owner asks.
 
 PawSetu is an all-in-one pet care app for pet parents in India: health and vaccines, daily routines, vet and grooming bookings, a pet shop and emergency help, in English, Hindi and Telugu.
 
 **Look and feel:** friendly, warm and trustworthy. Clean and modern, not cartoonish.
 
-**Names we use (set by the owner, 3 Nov 2026):**
-- **Design 1** is the look the app has today: the code on branch `claude/inspiring-lovelace-1eo1xz` at commit `97c1346`. The Netlify demo shows the same look if it was last published from this code (not checked). The screenshots in `docs/ui-revamp/before/` are Design 1. To get Design 1 back at any time, use the app code from that commit.
-- **Design 2** is the design the owner made in Google Stitch and shared on 3 Nov 2026. The files, pictures and review are in `docs/design-2/` (see `docs/design-2/REVIEW.md`). It is **not in the app yet**. Build it only when the owner says go, on its own branch, keeping Design 1 safe.
-- The design system proposed in section 2 of this plan (and its Figma board) is **not** Design 2 and is **dropped**. Do not use it.
-- The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is neither Design 1 nor Design 2.
+**Names we use (renamed by the owner on 7 Nov 2026; the full table is under "Names" in `docs/PROGRESS.md`):**
+- **UI Design 1** is the original teal look: the code at commit `97c1346` (tip of `claude/zen-ramanujan-4g7djn`, GitHub's main branch) and Netlify deploy `6ae91e4fc7fd9b9bf45ac64f`. The screenshots in `docs/ui-revamp/before/` are UI Design 1. To get it back at any time, use the app code from that commit.
+- The new look started from the design the owner made in Google Stitch and shared on 3 Nov 2026 (`docs/ui-designs/`, see `docs/ui-designs/REVIEW.md`). Three website versions were built from it:
+  - **UI Design 2**: the first draft on every screen. Netlify deploy `6aeb4edc6809a9e375d86932`, code `cdf563e`. Backup.
+  - **UI Design 3**: matches the owner's finished pictures (the "UI Design 3" checklist below), with drawn pictures. Netlify deploy `6aeb9fa520b9ccd8a8cff421`, code `87796d5`. Backup.
+  - **UI Design 4**: UI Design 3 plus 28 free demo photos. Netlify deploy `6aed1666861c99567614c8c1`, code `37cda87`. **Live.**
+- The design system proposed in section 2 of this plan (and its Figma board) is **not** UI Design 2 and is **dropped**. Do not use it.
+- The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is not one of the UI Designs.
 
-**Live now (4 Nov 2026, evening): Design 2.** The owner said: "make it live on app and this will be the design 2". So **Design 2 now means the version built from the owner's finished pictures** (the "Design 2.1" checklist below), live at https://pawsetu-demo.netlify.app (Netlify deploy `6aeb9fa520b9ccd8a8cff421`, code on branch `ui-revamp` from commit `87796d5` onward).
-- **6 Nov 2026: Design 2 with demo photos is live** (owner: "make it live"): Netlify deploy `6aed1666861c99567614c8c1`, code on `ui-revamp` at `37cda87`. Design 2 without photos is kept as deploy `6aeb9fa520b9ccd8a8cff421`.
-- The earlier Design 2 draft (before the finished pictures) is superseded. It is still saved as Netlify deploy `6aeb4edc6809a9e375d86932` and Git commit `d656437`, if ever needed.
-- **Design 1 stays on hold:** Netlify deploy `6ae91e4fc7fd9b9bf45ac64f` and Git commit `97c1346` on branch `claude/inspiring-lovelace-1eo1xz` (untouched).
+**Live now (since 6 Nov 2026): UI Design 4** at https://pawsetu-demo.netlify.app. UI Designs 2 and 3 are backups; **UI Design 1 stays on hold** (Netlify deploy `6ae91e4fc7fd9b9bf45ac64f`, Git commit `97c1346`).
 
-**Design 1 is the permanent backup (owner's rule, 3 Nov 2026).** The owner is making a new design (Design 2). If Design 2 turns out worse and the owner says "go back to Design 1", the app must return to Design 1 and work fully, with no errors.
-- **Where Design 1 is saved:** commit `97c1346` on GitHub. It is the tip of branch `claude/inspiring-lovelace-1eo1xz` and is also in the history of `ui-revamp`. The screenshots in `docs/ui-revamp/before/` show how it looks. (A `design-1` Git tag was tried, but GitHub refused tag pushes from this session; the commit itself is the backup.)
+**UI Design 1 is the permanent backup (owner's rule, 3 Nov 2026).** The owner is making a new design (UI Design 2). If UI Design 2 turns out worse and the owner says "go back to UI Design 1", the app must return to UI Design 1 and work fully, with no errors.
+- **Where UI Design 1 is saved:** commit `97c1346` on GitHub. It is the tip of branch `claude/zen-ramanujan-4g7djn` (GitHub's main branch; the older branch `claude/inspiring-lovelace-1eo1xz` is gone) and is also in the history of `ui-revamp`. The screenshots in `docs/ui-revamp/before/` show how it looks. (Git tags were tried on 3 and 7 Nov 2026, but GitHub refuses tag pushes from cloud sessions; the commit itself is the backup.)
 - **Checked working on 3 Nov 2026:** `flutter analyze` found no issues, all 204 tests passed (including the layout sweep across roles, languages and screen sizes), and the web build succeeded.
-- **Rules while Design 2 is built:** Design 2 work goes on its own branch, never onto Design 1's commit. Never delete, rewrite or force-push the commit or branch that holds Design 1.
+- **Rules while UI Design 2 is built:** UI Design 2 work goes on its own branch, never onto UI Design 1's commit. Never delete, rewrite or force-push the commit or branch that holds UI Design 1.
 - **How to go back when the owner asks:** put the app's look back to `97c1346`. Keep any features or fixes added since then, unless the owner says to drop them. Then run `flutter analyze`, all tests and a web build, and click through the main screens in light and dark, English and Telugu, Easy mode, and at 360 px and desktop widths. Only report "done" when all of these pass.
 
 ## Status
@@ -30,29 +30,29 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 | Step | State |
 |---|---|
 | 1. Audit (read-only) | ✅ Done 3 Nov 2026 |
-| 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ❌ Dropped 3 Nov 2026: the owner said not to consider the Figma designs. Replaced by the owner's Design 2 (`docs/design-2/`) |
-| 2b. Review of the owner's Design 2 | ✅ Done 3 Nov 2026: `docs/design-2/REVIEW.md`. The owner said "GO" (with Claude's 6 picks) on 3 Nov 2026 |
-| 3. Build the foundation from Design 2 (one token file, shared components; no Figma) | ✅ Done 4 Nov 2026 (see "Design 2 build notes" below) |
+| 2. Proposal (tokens, components, order) + Figma "Foundations" frame | ❌ Dropped 3 Nov 2026: the owner said not to consider the Figma designs. Replaced by the owner's UI Design 2 (`docs/ui-designs/`) |
+| 2b. Review of the owner's UI Design 2 | ✅ Done 3 Nov 2026: `docs/ui-designs/REVIEW.md`. The owner said "GO" (with Claude's 6 picks) on 3 Nov 2026 |
+| 3. Build the foundation from UI Design 2 (one token file, shared components; no Figma) | ✅ Done 4 Nov 2026 (see "UI Design 2 build notes" below) |
 | 4. Redesign screen by screen | ✅ Done 4 Nov 2026: every screen group in the checklist below. Before/after pictures in `docs/ui-revamp/compare/screens/` |
 
 **Rules for this work:** UI/UX only (no business logic, API calls, data models or routing). Commit after each screen. No Figma work (owner, 3 Nov 2026). Ask before adding any library, font or tool. Keep features and content; suggest copy and flow changes in the list at the bottom instead of making them.
 
-**Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`). Later that day the owner made their own Design 2 in Google Stitch and said "GO" to build it, with Claude's 6 picks (`docs/design-2/REVIEW.md`). Sections 1 and 2 below are the earlier audit and the dropped proposal, kept as a record.
+**Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`). Later that day the owner made their own UI Design 2 in Google Stitch and said "GO" to build it, with Claude's 6 picks (`docs/ui-designs/REVIEW.md`). Sections 1 and 2 below are the earlier audit and the dropped proposal, kept as a record.
 
-## Design 2 build notes (4 Nov 2026)
+## UI Design 2 build notes (4 Nov 2026)
 
 **The owner's 6 picks (approved with "GO"):**
 1. Colours and text sizes are adjusted slightly so everything is readable.
-2. The app keeps its 5 tabs, styled the Design 2 way.
+2. The app keeps its 5 tabs, styled the UI Design 2 way.
 3. Features the app doesn't have (blood group, ambulance, live hospital status, Kannada) are left out.
-4. Screens Design 2 doesn't cover are designed in its style.
+4. Screens UI Design 2 doesn't cover are designed in its style.
 5. Inter and JetBrains Mono are added. Hindi and Telugu keep Noto Sans.
 6. Flutter's built-in icons are used, with no new icon package.
 
 **Where things live:**
 - Every value (colours for light, dark and high contrast; fonts; type scale; spacing; corners; icon sizes; strokes; opacities; shadows; motion; component sizes) is in one file, `lib/core/theme/tokens.dart`.
 - `lib/core/theme/app_theme.dart` builds the Material theme from those tokens only.
-- Proof search: `bash docs/ui-revamp/check_design2_tokens.sh`. It lists any typed-in style value in the files moved to Design 2; it came back empty on 4 Nov 2026.
+- Proof search: `bash docs/ui-revamp/check_ui_design_tokens.sh`. It lists any typed-in style value in the files moved to UI Design 2; it came back empty on 4 Nov 2026.
 
 **Colour roles:**
 - Brand is deep forest teal `#18453E`, used for navigation, links, selected chips, progress and verified/health information.
@@ -69,10 +69,10 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 **Shared pieces restyled (every screen gets these):**
 - buttons: coral pill main button, white pill secondary, round icon buttons
 - cards (white, 20 px corners, warm border, soft shadow; they shrink slightly when pressed)
-- the new alert card (Design 2's "Booster due" card), status chips and the new pet pills
+- the new alert card (UI Design 2's "Booster due" card), status chips and the new pet pills
 - the SOS pill (same press-and-hold safety), dialogs and the dark-mode delete-button fix
 - bottom tabs and the desktop side menu
-- the logo in Design 2 colours
+- the logo in UI Design 2 colours
 - a visible coral focus ring for keyboard users
 
 **Home (screen 1), same content as before:**
@@ -86,30 +86,30 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 
 **Checks on 4 Nov 2026:**
 - `flutter analyze`: no issues.
-- All 204 tests pass. The layout sweep covers every main screen in 3 languages at 360 px with double text, tablet, desktop, Easy mode and dark mode. The colour test now also checks the Design 2 pairs, plus a 3:1 check for borders and the focus ring.
+- All 204 tests pass. The layout sweep covers every main screen in 3 languages at 360 px with double text, tablet, desktop, Easy mode and dark mode. The colour test now also checks the UI Design 2 pairs, plus a 3:1 check for borders and the focus ring.
 - The web build succeeded.
 - Pictures:
   - after, phone 390 / 360 Telugu / Easy mode / dark, and desktop light / dark: `docs/ui-revamp/after/`
-  - side by side with Design 1: `docs/ui-revamp/compare/`
+  - side by side with UI Design 1: `docs/ui-revamp/compare/`
 
 **Not done yet (later screens):**
-- The other screens already use the new colours, fonts, buttons and cards, but their layouts are still Design 1. Each one gets its turn in the checklist.
-- Field labels above the box (Design 2 forms) come with the forms screens.
-- The app icon and the website loading screen still use Design 1 colours. They can change with the final sweep.
+- The other screens already use the new colours, fonts, buttons and cards, but their layouts are still UI Design 1. Each one gets its turn in the checklist.
+- Field labels above the box (UI Design 2 forms) come with the forms screens.
+- The app icon and the website loading screen still use UI Design 1 colours. They can change with the final sweep.
 
 **Fixes to other screens:** the new font made a few rows too wide at double text size. These were fixed with layout-only changes: place reviews, seller reviews, the notifications "Mark all read" button, the food-running-low buttons, and chip and link widths.
 
 ---
 
-## Design 2.1 (now simply "Design 2"): match the owner's finished pictures (from 4 Nov 2026, evening)
+## UI Design 3: match the owner's finished pictures (from 4 Nov 2026, evening)
 
-The owner sent finished pictures of the 12 Design 2 screens (`docs/design-2/screens-v2/`, Stitch files in `docs/design-2/source-v2/`; 4 of them changed a little: clinic list, clinic page, booking confirmed, SOS) and said: "make UI like this". The live website is on Design 2; Design 1 is on hold (see above).
+The owner sent finished pictures of the 12 UI Design 2 screens (`docs/ui-designs/ui-design-3-screens/`, Stitch files in `docs/ui-designs/ui-design-3-source/`; 4 of them changed a little: clinic list, clinic page, booking confirmed, SOS) and said: "make UI like this". The live website is on UI Design 2; UI Design 1 is on hold (see above).
 
 **Owner's answers (4 Nov 2026):**
 1. Home: **both**. The top of Home looks like the picture (location pill, search, chips, dark booster card, nearby vets); the pet's day (Today card, Next up) stays below.
 2. Menus: **both like the pictures**. Desktop gets a top bar with pill buttons; phones get a floating dark bottom bar. The 5 tabs stay (Home, Health, Book, Shop, Me).
 3. Booking: **on the clinic page**. Pet, reason, date, time and price on the clinic page; notes, photos and payment on one short confirm screen after it.
-4. Photos: first **keep drawn pictures**; changed on 5 Nov 2026 to **free stock photos** (owner's choice). 28 public-domain photos for the demo pets, clinics, services and album are in `assets/images/demo/` (sources in `docs/design-2/demo-photo-credits.md`). Live since 6 Nov 2026 (owner: "make it live").
+4. Photos: first **keep drawn pictures**; changed on 5 Nov 2026 to **free stock photos** (owner's choice). 28 public-domain photos for the demo pets, clinics, services and album are in `assets/images/demo/` (sources in `docs/ui-designs/demo-photo-credits.md`). Live since 6 Nov 2026 (owner: "make it live").
 
 Left out (features the app doesn't have): blood group, ambulance, live ICU/blood-bank status, QR kiosk check-in, WhatsApp pass, Kannada, "verified" claims.
 
@@ -129,7 +129,7 @@ Left out (features the app doesn't have): blood group, ambulance, live ICU/blood
 - [x] M. Clinic portal: dark forest top bar; number tiles (everywhere) have a small uppercase label over a big number (4 Nov 2026). The queue table layout is left for later
 - [x] N. Checks, pictures, preview link for the owner (4 Nov 2026). A full booking from the clinic page (pick day and time → Book for Bruno → Confirm → demo payment → Booking confirmed) was clicked through in the browser with no errors
 
-## Design 2 everywhere (4 Nov 2026)
+## UI Design 2 everywhere (4 Nov 2026)
 
 **What changed on every screen:** outlined icons; labels above form boxes; red only for emergencies; times, prices, IDs and codes in JetBrains Mono; every colour, size and gap from `tokens.dart`.
 
@@ -140,10 +140,10 @@ Left out (features the app doesn't have): blood group, ambulance, live ICU/blood
 **Checks:** `flutter analyze` clean; 204 tests pass (layout sweep in 3 languages at 360 px with double text, tablet, desktop, Easy mode and dark mode; colour test including the pass, option cards and price summary); web build with no page errors on the 17 main screens.
 
 ### Further improvements (not done; owner to decide)
-1. **App icon pictures** on phones and in the browser tab are still the Design 1 artwork. New icons need image files for Android, iOS and the web. The logo inside the app already uses Design 2 colours.
+1. **App icon pictures** on phones and in the browser tab are still the UI Design 1 artwork. New icons need image files for Android, iOS and the web. The logo inside the app already uses UI Design 2 colours.
 2. **Shop "For Bruno" filter** still uses Material choice chips; it could use the pet pills from the top bar for consistency.
-3. **Family and caregiver access** could follow Design 2's role cards with on/off switches per permission (today it is a list).
-4. **Clinic portal queue** could follow Design 2's queue manager layout (today it uses the shared cards and tokens only).
+3. **Family and caregiver access** could follow UI Design 2's role cards with on/off switches per permission (today it is a list).
+4. **Clinic portal queue** could follow UI Design 2's queue manager layout (today it uses the shared cards and tokens only).
 5. **Health pass buttons** stack on small phones; a single "Share" button that opens Medical card / Health report would keep the pass shorter.
 6. ~~Photo headers on clinic pages are placeholder art~~ Done 5 Nov 2026 with free demo photos. On tablets and desktops the clinic photo is now a rounded picture with the area, distance and today's hours on it, as in the owner's picture; phones keep the full-width photo. Real clinics will need their own photos (and a way to upload them) in the Live version.
 
@@ -345,14 +345,14 @@ See the checklist below.
 
 Tick a screen when it is rebuilt with shared components and tokens, its loading/empty/error states are covered, it has been checked at 360/390 px and desktop in light/dark, English/Telugu and Easy mode, and it is committed with before/after screenshots.
 
-- [x] 0. Foundation: one token file (Design 2 values), shared components (4 Nov 2026)
+- [x] 0. Foundation: one token file (UI Design 2 values), shared components (4 Nov 2026)
 - [x] 1. Home (pet parent), 4 Nov 2026. The owner approved the direction on 4 Nov 2026 ("implement Design 2 in app")
-- [x] Icons: the whole app now uses outlined icons (Design 2). Icons that show a state stay filled: rating stars, done ticks, liked hearts, verified badges, filled play/pause, and the selected bottom tab (4 Nov 2026)
+- [x] Icons: the whole app now uses outlined icons (UI Design 2). Icons that show a state stay filled: rating stars, done ticks, liked hearts, verified badges, filled play/pause, and the selected bottom tab (4 Nov 2026)
 - [x] 2. Today and routine: Today card, quick log sheet, routine screen, walk tracker (4 Nov 2026). Log types use the new muted category colours; walk stats sit in one card with small uppercase labels; charts and widths use tokens
-- [x] 3. Health tab and its sheets (vaccines, medicines, deworming, vet visits, weight, symptoms), medical card (4 Nov 2026). New shared `PassCard` (Design 2 health pass) and `TimelineTile`. Health opens with the pet's pass (age, weight, microchip, "All up to date" or "N need attention", Medical card and Health report buttons); Next up leads with an alert card; vaccines are a timeline; deworming and flea/tick are soft sand cards; the medical card is a pass
+- [x] 3. Health tab and its sheets (vaccines, medicines, deworming, vet visits, weight, symptoms), medical card (4 Nov 2026). New shared `PassCard` (UI Design 2 health pass) and `TimelineTile`. Health opens with the pet's pass (age, weight, microchip, "All up to date" or "N need attention", Medical card and Health report buttons); Next up leads with an alert card; vaccines are a timeline; deworming and flea/tick are soft sand cards; the medical card is a pass
 - [x] 4. Pet profile, my pets, add/edit pet, breed picker, birthday (4 Nov 2026). Forms app-wide now have the label above the box (`PawTextField`, new `FieldLabel`, `LabeledField`, `PawPickerField`); the add/edit pet form has big species tiles (`ChoiceTiles`), a "Step 1 of 2" label and picker boxes for breed and birthday; pet care tiles keep red for emergencies only
 - [x] 5. Book tab, clinic finder (list and map), clinic page, booking flow, booking done, my bookings, booking detail (4 Nov 2026). New shared `OptionCard` (coral radio cards), `PriceSummary` (sand box, total in coral, prices in mono), `DateBadge` and `RatingStars`. Booking flow: step label, pet pills, service and payment option cards, mono time slots; booking done shows a pass; booking rows start with a date square; clinic page puts Book first with Call / Directions / Message pills; amber filled stars; brand map pins
-- [x] 6. SOS, first aid, "Is it safe?" (the SOS look stays instantly recognisable) (4 Nov 2026). The main SOS option stays solid red; the second is a soft red card with a red border (Design 2 emergency card); pet pills; distances in mono; lost pet, devices and first aid use tokens. Printed pages (health report, prescription, invoice, sample documents, lost poster, QR tag) now use new `PrintColors` in the Design 2 forest instead of the Design 1 teal
+- [x] 6. SOS, first aid, "Is it safe?" (the SOS look stays instantly recognisable) (4 Nov 2026). The main SOS option stays solid red; the second is a soft red card with a red border (UI Design 2 emergency card); pet pills; distances in mono; lost pet, devices and first aid use tokens. Printed pages (health report, prescription, invoice, sample documents, lost poster, QR tag) now use new `PrintColors` in the UI Design 2 forest instead of the UI Design 1 teal
 - [x] 7. Shop home, search, product, cart, order placed, orders, order detail, addresses, food-low card (4 Nov 2026). Product and expense colours come from the category palette; cart amounts in mono with the total in coral; order progress uses brand and token sizes; the 34 px "Reorder" button now has a full tap area; the invoice uses print colours
 - [x] 8. Messages inbox, chat, tele-vet (home, new, consent, call), Ask PawSetu, prescription (4 Nov 2026). All values from tokens; the video call stays dark in both themes with a forest glow (new call colours in `MediaColors`), the call timer in mono; photo viewer uses media colours
 - [x] 9. Me, settings, notification settings, notifications centre (4 Nov 2026). Tokens only; form labels above the box and outlined icons from the shared pieces
@@ -363,7 +363,7 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 - [x] 14. Expenses, Plus, refer a friend, privacy, help and complaints (4 Nov 2026). Tokens only; referral and coupon codes in mono
 - [x] 15. Partner portal and seller portal (4 Nov 2026). Tokens only; product thumbnails, order rows and the vet consult panels use size tokens
 - [x] 16. Admin panel (4 Nov 2026). Tokens only; coupon codes in mono
-- [x] 17. Final sweep: hard-coded-value search is clean, Design 1 still restorable, before/after summary (4 Nov 2026). `bash docs/ui-revamp/check_design2_tokens.sh` checks all 238 Dart files that should use tokens and finds none. Design 1 is still commit `97c1346`. Website loading screen and browser colours are Design 2. Before/after for all 17 screens at phone and desktop width: `docs/ui-revamp/compare/screens/`; after pictures alone: `docs/ui-revamp/after/screens/`
+- [x] 17. Final sweep: hard-coded-value search is clean, UI Design 1 still restorable, before/after summary (4 Nov 2026). `bash docs/ui-revamp/check_ui_design_tokens.sh` checks all 238 Dart files that should use tokens and finds none. UI Design 1 is still commit `97c1346`. Website loading screen and browser colours are UI Design 2. Before/after for all 17 screens at phone and desktop width: `docs/ui-revamp/compare/screens/`; after pictures alone: `docs/ui-revamp/after/screens/`
 
 ---
 
@@ -387,4 +387,4 @@ Tick a screen when it is rebuilt with shared components and tokens, its loading/
 7. Demo account tiles: shorten the descriptions so they fit without "…" (e.g. "Bengaluru · Plus · Bruno and Misty").
 8. Clinic finder: an unknown kind in the address shows the raw word ("vet"); suggest falling back to "Find care near you".
 9. Health tab: "Health report" and "Medical card" are now buttons on the health pass. They could move into one "Share" sheet so the pass is shorter.
-10. Health pass: Design 2 shows "PawSetu verified health pass". The app doesn't verify records, so the pass is titled "Bruno's health". A new label like "Health pass" could be added if wanted.
+10. Health pass: UI Design 2 shows "PawSetu verified health pass". The app doesn't verify records, so the pass is titled "Bruno's health". A new label like "Health pass" could be added if wanted.

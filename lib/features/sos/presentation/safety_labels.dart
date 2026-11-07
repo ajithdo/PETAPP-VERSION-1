@@ -144,7 +144,7 @@ IconData deviceIcon(DeviceType t) => switch (t) {
       DeviceType.litterBox => Icons.inventory_2_outlined,
     };
 
-/// The "Draft, to be reviewed by a vet" label (Version 1 content). Once the
+/// The "Draft, to be reviewed by a vet" label (DEMO VERSION 1 content). Once the
 /// admin records a vet's review (Settings → Content review), it shows who
 /// reviewed it instead. [area] is firstAid or toxic.
 class DraftLabel extends ConsumerWidget {

@@ -12,7 +12,7 @@ import '../../pets/presentation/pet_labels.dart';
 import 'home_discovery.dart';
 import 'home_sections.dart';
 
-/// Home (spec 5), Design 2: greeting, the pet card, today's plan, what's due
+/// Home (spec 5), UI Design 2: greeting, the pet card, today's plan, what's due
 /// next and quick actions. One column on phones and in Easy mode; on desktop
 /// the day sits on the left and "Next up" and tips on the right.
 class HomeScreen extends ConsumerWidget {
@@ -44,7 +44,7 @@ class HomeScreen extends ConsumerWidget {
         }
         final wide = context.screenSize == ScreenSize.desktop && !easy;
         final s = homeSections(context, ref, pet: pet, pets: active, easy: easy);
-        // Outside Easy mode Home opens with the Design 2 "explore" top
+        // Outside Easy mode Home opens with the UI Design 2 "explore" top
         // (search, quick links, health status, nearest vets); the pet's day
         // follows under the greeting.
         final discovery = easy ? const <Widget>[] : homeDiscoveryTop(context, ref, pet: pet, pets: active, wide: wide);

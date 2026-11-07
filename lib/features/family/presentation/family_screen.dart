@@ -125,7 +125,7 @@ class _PetMembersCard extends ConsumerWidget {
                 : null,
           ),
           const Divider(),
-          // Design 2 caregiver rows: initials, name, a coloured role badge and
+          // UI Design 2 caregiver rows: initials, name, a coloured role badge and
           // what the access covers.
           for (final e in pet.members.entries)
             Padding(

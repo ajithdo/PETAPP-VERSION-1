@@ -1,11 +1,11 @@
 # PawSetu QA report (Phase 11)
 
-Version 1, demo mode. Checked on 15 October 2026 on the branch
+DEMO VERSION 1. Checked on 15 October 2026 on the branch
 `claude/zen-ramanujan-4g7djn`.
 
 **Result: no open critical issues.** Everything found in this pass was fixed,
 except the limits listed at the end, which are not critical for the demo and
-are planned for Version 2.
+are planned for FINAL VERSION.
 
 ## What was checked
 
@@ -74,7 +74,7 @@ with no issues.
     ended sitter access also removes the pet from their list
     (`expireFamilyAccess`).
 
-Also with the real Firebase backend (Version 2): booking expenses are kept in
+Also with the real Firebase backend (FINAL VERSION): booking expenses are kept in
 step by `syncBookingExpense`, clinic, groomer and vet ratings by
 `onReviewCreated`, and two vault queries were narrowed so the rules allow
 them.
@@ -135,7 +135,7 @@ refund), so some are deliberately written in Hindi or Telugu letters.
 | Lost pet mode and QR tag | खोया पालतू मोड और QR टैग | తప్పిపోయిన పెంపుడు జంతువు మోడ్, QR ట్యాగ్ | Natural? |
 | On this day (album) | आज के दिन | ఈ రోజున | Reads as "on this date in past years"? |
 
-## Known limits (not critical; planned for Version 2)
+## Known limits (not critical; planned for FINAL VERSION)
 
 | Limit | Why it is not critical now | Plan |
 |---|---|---|

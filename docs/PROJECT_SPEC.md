@@ -7,8 +7,8 @@ Platforms: Android app, iOS app and a responsive website, all from one Flutter c
 Market: India first. Currency INR (₹, Indian digit grouping e.g. ₹1,24,999), +91 phone numbers, IST, dates like 13 Oct 2026, 12-hour time, kilometres, kilograms (grams for birds).
 Languages: English (default), Hindi, Telugu. Switchable any time in Settings → Language, applied instantly. Every user-facing string is translated naturally (not word-by-word), including notifications, emails and PDFs.
 Versions:
-- Version 1 = DEMO MODE. Every feature works end to end with realistic fake data (section 12) and simulated outside services (payments, SMS, WhatsApp, email, video calls, document reading, AI, smart devices). No real money, no real messages, never dial real phone numbers.
-- Version 2 = LIVE MODE. Same app with real services switched on, done only when I say "Start Version 2" or "actual final version 2" (section 13).
+- DEMO VERSION 1 = DEMO MODE. Every feature works end to end with realistic fake data (section 12) and simulated outside services (payments, SMS, WhatsApp, email, video calls, document reading, AI, smart devices). No real money, no real messages, never dial real phone numbers.
+- FINAL VERSION = LIVE MODE. Same app with real services switched on, done only when I say "Start FINAL VERSION" (the older "Start Version 2" and "actual final version 2" also count) (section 13).
 User experience goal: very easy and never clumsy. One clear main action per screen, at most 4 steps for any booking or purchase, friendly words, nothing hidden behind confusing menus.
 
 # 2. AGENT RULES (copy into AGENTS.md)
@@ -25,13 +25,13 @@ User experience goal: very easy and never clumsy. One clear main action per scre
 - Then update docs/PROGRESS.md, commit to Git ("Phase N complete: ..."), and give me: (a) a 5-line summary, (b) a "what to test" checklist I can follow, (c) anything I must do.
 - If you are stuck on the same error after 3 attempts, stop, explain it in plain words and offer 2 options.
 - Never delete files outside this project. Ask me before anything destructive (force push, deleting data or Firebase projects, resetting Git).
-- Version 2 trigger: if I say "Start Version 2" or "actual final version 2", read section 13 and follow the Live plan, one Live phase (L1-L5) at a time, starting with a plan.
+- FINAL VERSION trigger: if I say "Start FINAL VERSION" (the older "Start Version 2" and "actual final version 2" also count), read section 13 and follow the Live plan, one Live phase (L1-L5) at a time, starting with a plan.
 
 # 3. TECH STACK
 - Flutter (latest stable), Dart, Material 3 with a custom theme.
 - State management: Riverpod. Navigation: go_router (proper web URLs and deep links). Models: freezed + json_serializable.
 - Firebase: Authentication, Cloud Firestore, Cloud Storage, Cloud Functions (TypeScript, Node LTS), Cloud Messaging, App Check, Remote Config (limits and feature flags), Analytics, Crashlytics (mobile), Hosting (website). Region asia-south1 (Mumbai).
-- Version 1 runs on the Firebase Local Emulator Suite with a seed script (section 12).
+- DEMO VERSION 1 runs on the Firebase Local Emulator Suite with a seed script (section 12).
 - Maps: OpenStreetMap via flutter_map; location via geolocator; directions open the phone's maps app by URL (no paid routing API). Show "© OpenStreetMap contributors" and follow the OSM tile usage policy (caching, proper user agent).
 - Notifications: firebase_messaging + flutter_local_notifications (scheduled reminders must work offline).
 - Biometrics: local_auth on mobile; vault PIN on all platforms.
@@ -88,7 +88,7 @@ Sign-in: email + password (with email verification and password reset), Google, 
 - Platform admin (me): section 10.
 All partners complete onboarding with KYC documents and need admin approval before they appear in the app. Vets must give their Veterinary Council registration number and certificate. Enforce roles with custom claims and security rules.
 
-# 7. FEATURES (all part of Version 1)
+# 7. FEATURES (all part of DEMO VERSION 1)
 
 7.1 Multi-pet profiles
 - Several pets per account (free plan limit 3, Plus unlimited; admin-configurable). An "All pets" view merges today's tasks.
@@ -110,7 +110,7 @@ Invite by phone, email or link; roles from section 6; activity feed of who did w
 - Behaviour and traits: tags (playful, calm, anxious, leash pulling, barking, aggression with dogs, separation anxiety, scratching furniture, etc.) with intensity, trends over time, shareable with trainer or vet.
 - Daily plan per pet (e.g. 2 walks, 2 meals, 20 min play) shown as Home checklist with reminders.
 - Suggested goals by species, breed size and age (editable), streaks, weekly and monthly charts.
-- Heat safety: show the temperature (demo values in V1) and warn when it is too hot to walk; stronger warnings for flat-faced breeds (Pug, Shih Tzu, Bulldogs, Persian); suggest early morning or evening.
+- Heat safety: show the temperature (demo values in DEMO VERSION 1) and warn when it is too hot to walk; stronger warnings for flat-faced breeds (Pug, Shih Tzu, Bulldogs, Persian); suggest early morning or evening.
 
 7.4 Health
 - Vaccinations: auto-generate an indicative schedule from species + birthday (templates in section 11). Status chips: Done, Due soon, Overdue. Record date, vaccine brand, batch number, vet, clinic, next due; attach certificate (saved to vault); edit anything. Unknown history → "Ask your vet for a catch-up plan" and let the user enter past vaccines.
@@ -120,7 +120,7 @@ Invite by phone, email or link; roles from section 6; activity feed of who did w
 - Weight chart with an indicative healthy range by species and breed size.
 - Symptom diary (vomiting, diarrhoea, not eating, limping, itching, coughing, etc.) with severity and photos; "Share with vet".
 - Custom reminders: licence renewal, insurance renewal, grooming due, nail trim, birthday.
-- Reminder channels: for each reminder type the user picks push, email, SMS and/or WhatsApp in Settings → Notifications, plus quiet hours. Default = push. V1: push and local notifications are real; email, SMS and WhatsApp go to the Demo Outbox.
+- Reminder channels: for each reminder type the user picks push, email, SMS and/or WhatsApp in Settings → Notifications, plus quiet hours. Default = push. DEMO VERSION 1: push and local notifications are real; email, SMS and WhatsApp go to the Demo Outbox.
 - Health report: one-tap PDF (profile, vaccines, medicines, allergies, recent visits, weight chart) to share, and an offline "medical card" screen.
 - Show "Indicative, always confirm with your vet" on schedules, ranges and AI answers.
 
@@ -136,7 +136,7 @@ Invite by phone, email or link; roles from section 6; activity feed of who did w
 - Flow (max 4 screens): pet → service and provider → date and slot → notes, symptoms, photos, payment option → confirm. Show the full price including any platform fee before confirming.
 - At-centre or home visit (provider sets service radius and travel fee).
 - Packages and subscriptions (e.g. monthly grooming).
-- Reschedule and cancel under the provider's cancellation policy; refunds to the original method (simulated in V1).
+- Reschedule and cancel under the provider's cancellation policy; refunds to the original method (simulated in DEMO VERSION 1).
 - Reminders 24 h and 2 h before; add to calendar (.ics).
 - Provider calendar: working hours, breaks, holidays, slot length, buffer time, capacity per slot, block time.
 - Dog walks booked in the app show the walker's live GPS route and photo updates; boarding shows daily photo updates.
@@ -147,7 +147,7 @@ Invite by phone, email or link; roles from section 6; activity feed of who did w
 - Start: choose pet → describe the problem (+ photos/videos) → "Chat now" (next available vet) or choose a vet and time.
 - Free plan (chat only), admin-configurable limits: 1 free consultation a month, up to 20 owner messages per consultation, up to 60 words per message, chat open 24 h. Show remaining allowance gently ("12 messages left").
 - Plus plan: longer chats (100 messages, 300 words, open 72 h), the vet sees the pet's full history (more context), video calls, priority queue, 10% off vet video fees. Show any vet fee before booking.
-- Video call screen: mute, camera on/off, switch camera, speaker, end, timer, weak-network indicator. V1: simulated call with a placeholder video; V2: real provider.
+- Video call screen: mute, camera on/off, switch camera, speaker, end, timer, weak-network indicator. DEMO VERSION 1: simulated call with a placeholder video; FINAL VERSION: real provider.
 - Vet side: queue, accept, pet history panel, private notes, e-prescription builder (medicine, dose, frequency, duration, instructions, follow-up date) → PDF with vet name, qualification, Veterinary Council registration number, clinic, date and signature; saved to the pet's records and vault.
 - Consent screen before the first consultation. Consultations are never anonymous. Vets can recommend an in-person visit or emergency care. Red-flag symptoms show SOS.
 - Rating after each consultation.
@@ -161,8 +161,8 @@ Invite by phone, email or link; roles from section 6; activity feed of who did w
 7.9 Document vault
 - Types: vaccination certificate, insurance policy, lab report, prescription, invoice, licence/registration, adoption/purchase papers, travel document, other. Stored per pet, with tags, search and expiry dates with reminders.
 - Lock: fingerprint/face (mobile) or a 4-6 digit vault PIN (all platforms). Auto-lock after 2 minutes in background. Reset PIN by signing in again.
-- Encryption: in transit and at rest. Previews generated securely. Nothing from the vault left in the gallery or cache. V2 adds envelope encryption with Cloud KMS (section 13).
-- Upload: camera scan with auto-crop, gallery, PDF. Auto-read: extract type, pet name, vaccine name, date given, next due, vet, policy number, expiry, then show "We found these details. Save them?" for the user to confirm before updating health records. V1: simulated extraction with realistic values for the sample documents; V2: Gemini via Firebase AI Logic.
+- Encryption: in transit and at rest. Previews generated securely. Nothing from the vault left in the gallery or cache. FINAL VERSION adds envelope encryption with Cloud KMS (section 13).
+- Upload: camera scan with auto-crop, gallery, PDF. Auto-read: extract type, pet name, vaccine name, date given, next due, vet, policy number, expiry, then show "We found these details. Save them?" for the user to confirm before updating health records. DEMO VERSION 1: simulated extraction with realistic values for the sample documents; FINAL VERSION: Gemini via Firebase AI Logic.
 - Share with a vet: expiring view-only link (1 hour / 24 hours / 7 days, optional PIN), revoke anytime, access log. Share via WhatsApp, SMS, email or copy.
 - Insurance tracker: policy details, cover, renewal date, claims with status and a claim-document checklist.
 
@@ -176,7 +176,7 @@ Invite by phone, email or link; roles from section 6; activity feed of who did w
 - Buy again like Zomato/Swiggy: a "Buy again" row with one-tap Reorder; a Home card "Bruno's food may run out in about 5 days. Reorder?" calculated from bag size ÷ daily portion (editable); optional auto-reorder every 2/4/6 weeks.
 - Seller portal: products (with CSV bulk upload), stock, orders, returns, payouts, reviews.
 - Commission per category and seller (section 8); affiliate clicks and estimated commission tracked.
-- V1 checkout: a Demo payment sheet ("Demo payment, no money is charged") with success, failure and pending outcomes. V2: Razorpay.
+- DEMO VERSION 1 checkout: a Demo payment sheet ("Demo payment, no money is charged") with success, failure and pending outcomes. FINAL VERSION: Razorpay.
 
 7.11 Memory album
 - Photos and videos per pet (video up to 60 s on free, 3 min on Plus), captions, date taken, auto-grouped by month, "On this day" memories.
@@ -198,13 +198,13 @@ Invite by phone, email or link; roles from section 6; activity feed of who did w
 
 7.13 Smart devices ("Connected devices")
 - Types: GPS collar, activity tracker, smart feeder, water fountain, pet camera, smart litter box.
-- V1: demo pairing flow and demo live data: collar location on the map with a "safe zone" geofence alert, steps and active minutes, feeding events, water level, camera placeholder, litter visits. Activity data flows into the routine tracker automatically.
+- DEMO VERSION 1: demo pairing flow and demo live data: collar location on the map with a "safe zone" geofence alert, steps and active minutes, feeding events, water level, camera placeholder, litter visits. Activity data flows into the routine tracker automatically.
 - Architecture: a DeviceProvider interface with DemoDeviceProvider; real vendors plug in later (cloud APIs via Cloud Functions webhooks, or Bluetooth LE). Document how to add one in docs/DECISIONS.md.
 
 7.14 Added features
 - Lost pet mode + QR tag: each pet gets a QR code (printable tag PDF). Scanning opens a public web page with the pet's photo, name, a "Contact my family" button (relay; real phone stays hidden) and "Share my location". The owner can mark the pet lost: opt-in alert to app users within 5 km, a printable poster PDF, and a "Found" status.
-- AI pet assistant ("Ask PawSetu"): care questions and symptom triage. Always says it is not a diagnosis, suggests a vet when unsure, and immediately shows SOS + tele-vet for red flags (breathing trouble, collapse, seizures, suspected poisoning, heavy bleeding, swollen belly, heatstroke, not passing urine). Free: 5 questions a month; Plus: unlimited. V1: scripted demo answers for 20 common questions; V2: Gemini.
-- First-aid guides (work offline): choking, poisoning, heatstroke, bleeding, fractures, seizures, burns, snake or insect bite, tick removal. Toxic food and plant checker (chocolate, grapes/raisins, onion/garlic, xylitol, alcohol, caffeine, avocado for birds, lilies for cats, etc.). Mark as "Draft, to be reviewed by a vet" in V1.
+- AI pet assistant ("Ask PawSetu"): care questions and symptom triage. Always says it is not a diagnosis, suggests a vet when unsure, and immediately shows SOS + tele-vet for red flags (breathing trouble, collapse, seizures, suspected poisoning, heavy bleeding, swollen belly, heatstroke, not passing urine). Free: 5 questions a month; Plus: unlimited. DEMO VERSION 1: scripted demo answers for 20 common questions; FINAL VERSION: Gemini.
+- First-aid guides (work offline): choking, poisoning, heatstroke, bleeding, fractures, seizures, burns, snake or insect bite, tick removal. Toxic food and plant checker (chocolate, grapes/raisins, onion/garlic, xylitol, alcohol, caffeine, avocado for birds, lilies for cats, etc.). Mark as "Draft, to be reviewed by a vet" in DEMO VERSION 1.
 - Expense tracker: bookings and orders added automatically, manual entries, monthly totals per pet and category, chart.
 - Notification centre: history, filters, mark all read.
 - Coupons and referral codes (created in admin).
@@ -215,7 +215,7 @@ Invite by phone, email or link; roles from section 6; activity feed of who did w
 - Plus perks: unlimited pets; video tele-vet + longer chats + full-history context; 10% off vet video fees; unlimited AI assistant; 25 GB storage; family sharing up to 8 people (free: 2); longer videos; priority support; free delivery above ₹499.
 - Booking commission default 10% (per service type and per provider). Marketplace margin default 8% on food, 15% on other categories (per category and per seller). Affiliate commission per partner.
 - Every transaction stores gross amount, platform fee/commission, tax fields (placeholder), payout amount and status.
-- V1: Plus purchase and all payments are simulated.
+- DEMO VERSION 1: Plus purchase and all payments are simulated.
 
 # 9. PARTNER PORTALS (web-first, responsive)
 - Clinic / provider portal: dashboard (today's bookings, requests waiting, earnings), calendar and slots, booking requests (accept / decline / suggest time), services and prices, booking mode and payment options per service, staff and vets, chat inbox, tele-vet queue and prescriptions (vets), reviews and replies, payouts, profile and KYC documents, emergency settings (24x7 flag, emergency phone).
@@ -226,7 +226,7 @@ Invite by phone, email or link; roles from section 6; activity feed of who did w
 - Approvals queue: clinics, vets (check registration numbers), groomers, trainers, boarding/sitters, walkers, sellers. View KYC documents; approve, reject with a reason, suspend.
 - Users: search, view, suspend, change roles.
 - Catalogue: products, categories, sellers, affiliate partners and links, featured products and banners.
-- Complaints and support tickets from users and partners, linked to the booking, order or chat; status (open, in progress, resolved); assign; reply; refunds (simulated in V1).
+- Complaints and support tickets from users and partners, linked to the booking, order or chat; status (open, in progress, resolved); assign; reply; refunds (simulated in DEMO VERSION 1).
 - Moderation: reviews, reported chats and reported content.
 - Settings: commission rates, plan prices and limits (pets, tele-vet messages and words, AI questions, storage, family members), vaccine schedule templates, first-aid content, coupons, banners, feature flags.
 - Demo Outbox: every simulated SMS, WhatsApp, email and push message.
@@ -252,7 +252,7 @@ Cat:
 Rabbit: no standard routine vaccine schedule widely available in India; show "Check with an exotic-animal vet"; health check every 6-12 months; deworming as advised; monthly nail trim.
 Bird: no routine vaccines for common pet birds; annual avian vet check; deworming as advised; nail and beak checks.
 
-# 12. DEMO DATA (Version 1)
+# 12. DEMO DATA (DEMO VERSION 1)
 Build a seed script in tools/seed/ that loads all of this into the emulators and can reset it with one command. Each phase adds the demo data for its own features.
 Rules: all people, clinics, sellers, phone numbers, emails and addresses are fictional. Phone numbers use +91 90000 000xx. Emails use @example.com. Clinic and brand names must not match real businesses. Registration numbers use the format DEMO-VC-0001. Use real city areas with approximate coordinates so maps work. Images: generated or simple illustrated placeholders, no copyrighted photos or logos. Sample documents are clearly stamped "SAMPLE".
 - 15 vet clinics: 3 each in Hyderabad, Bengaluru and Mumbai; 2 each in Chennai, Pune and Delhi NCR. Each has photos, address, coordinates, hours (5 are 24x7 emergency), rating 3.6-4.9 with 5-30 reviews, species treated (3 also treat birds and rabbits), services and prices (consultation ₹300-₹900), a mix of instant and request booking, a mix of payment options, languages spoken, and 1-4 vets (about 30 vets in total).
@@ -271,7 +271,7 @@ Rules: all people, clinics, sellers, phone numbers, emails and addresses are fic
 - Partner demo accounts: 1 clinic admin, 1 vet, 1 groomer, 1 trainer, 1 seller, 1 walker, each with matching data.
 - Demo login screen with one-tap buttons for every role, clearly labelled "Demo".
 
-# 13. VERSION 2: LIVE PLAN (do NOT start until I say "Start Version 2" or "actual final version 2")
+# 13. FINAL VERSION: LIVE PLAN (do NOT start until I say "Start FINAL VERSION" (the older "Start Version 2" and "actual final version 2" also count))
 Switch each service to live one Live phase at a time (L1-L5), starting each with a plan. Keep a separate demo/dev Firebase project (e.g. pawsetu-dev) and a production project (pawsetu-prod).
 - L1 Production base: Blaze plan with budget alerts, App Check enforced, security-rule tests, backups, production sign-in (phone OTP abuse protection, Google and Apple configured), admin 2-step verification, no demo data in production.
 - L2 Payments: Razorpay Orders + Checkout, webhook verification in Cloud Functions, refunds, Razorpay Route for partner payouts with partner KYC, payment options enforced on the server. For the Plus subscription inside the Android and iOS apps, follow current Google Play and Apple App Store billing rules (store billing where required); Razorpay on the website.

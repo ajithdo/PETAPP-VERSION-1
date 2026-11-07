@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'tokens.dart';
 
-/// Builds the Material 3 theme from the design tokens (Design 2,
+/// Builds the Material 3 theme from the design tokens (UI Design 2,
 /// lib/core/theme/tokens.dart). No colour or size is typed here directly.
 class AppTheme {
   static bool _indic(String locale) => locale == 'hi' || locale == 'te';

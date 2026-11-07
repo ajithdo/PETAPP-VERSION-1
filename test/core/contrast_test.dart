@@ -32,7 +32,7 @@ void main() {
             aa(c.text, Color.alphaBlend(c.tint, bg), '${tone.name} chip on $name');
           }
         }
-        // Design 2 pairs.
+        // UI Design 2 pairs.
         aa(p.onAction, p.action, 'coral main buttons');
         aa(p.onAction, p.actionPressed, 'coral main buttons, pressed');
         aa(p.onBrand, p.brand, 'brand-teal fills');

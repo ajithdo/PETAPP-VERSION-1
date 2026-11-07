@@ -200,7 +200,7 @@ class AdminRepository {
     await audit(admin, 'ticket_assign', 'tickets/${t.id}', {'assignee': assignee});
   }
 
-  /// A simulated refund (Version 1): recorded on the ticket and as a payment.
+  /// A simulated refund (DEMO VERSION 1): recorded on the ticket and as a payment.
   Future<void> refundTicket(AppUser admin, Ticket t, int amount) async {
     final now = DateTime.now();
     await _db.collection('tickets').doc(t.id).update({

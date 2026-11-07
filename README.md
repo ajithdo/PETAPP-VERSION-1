@@ -4,7 +4,7 @@ Every care your pet needs, in one place. A pet care app for India in
 English, Hindi and Telugu, built with Flutter (Android, iPhone and website)
 and Firebase.
 
-This is **Version 1, demo mode**: every person, clinic and shop is fictional,
+This is **DEMO VERSION 1**: every person, clinic and shop is fictional,
 no money is charged, and no real SMS, WhatsApp, email or phone call goes out.
 Simulated messages appear in the admin panel's Demo Outbox.
 
