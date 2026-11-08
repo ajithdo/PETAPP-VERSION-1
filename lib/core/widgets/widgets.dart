@@ -1,6 +1,7 @@
 export 'buttons.dart';
 export 'cards.dart';
 export 'dialogs.dart';
+export 'genda_band.dart';
 export 'illustrations.dart';
 export 'inputs.dart';
 export 'layout.dart';

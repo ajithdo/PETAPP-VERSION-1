@@ -47,14 +47,15 @@ class PassCard extends StatelessWidget {
   final String? footnote;
 
   static ({Color bg, Color fg, Color muted, Color panel}) colorsOf(BuildContext context) {
+    // UI Design 5: the pass sits on the deep cocoa band in both themes
+    // (calm register: no marigold fills).
     final paw = context.paw;
-    final dark = Theme.of(context).brightness == Brightness.dark;
-    final bg = dark ? paw.primaryContainer : paw.brand;
-    final fg = dark ? paw.onPrimaryContainer : paw.onBrand;
+    final bg = paw.band;
+    final fg = paw.onBand;
     return (
       bg: bg,
       fg: fg,
-      muted: readableOn(fg.withValues(alpha: Opacities.onDarkMuted), [bg]),
+      muted: paw.onBandMuted,
       panel: Color.alphaBlend(paw.ink.withValues(alpha: Opacities.tintStrong), bg),
     );
   }
@@ -64,7 +65,7 @@ class PassCard extends StatelessWidget {
     final c = colorsOf(context);
     final paw = context.paw;
     final dot = switch (tone) {
-      ChipTone.warning => paw.accent,
+      ChipTone.warning => paw.warning,
       ChipTone.error => paw.error,
       _ => paw.success,
     };
@@ -113,7 +114,7 @@ class PassCard extends StatelessWidget {
               Icon(overlineIcon, size: IconSizes.sm, color: c.fg),
               const SizedBox(width: Space.xs + Space.xxs),
             ],
-            Expanded(child: Text(overline!.toUpperCase(), style: context.textX.overline.copyWith(color: c.fg))),
+            Expanded(child: Text(overline!, style: context.textX.overline.copyWith(color: c.fg))),
           ]),
           const SizedBox(height: Space.md),
         ],

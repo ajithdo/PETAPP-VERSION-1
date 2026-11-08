@@ -27,7 +27,7 @@ class TimelineTile extends StatelessWidget {
     final paw = context.paw;
     final (fill, ring) = switch (tone) {
       ChipTone.success => (paw.success, paw.success),
-      ChipTone.warning => (paw.accent, paw.accent),
+      ChipTone.warning => (paw.warning, paw.warning),
       ChipTone.error => (paw.error, paw.error),
       ChipTone.info => (paw.brand, paw.brand),
       _ => (paw.surface, paw.controlBorder),

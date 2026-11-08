@@ -87,7 +87,8 @@ class ErrorState extends StatelessWidget {
   }
 }
 
-/// Grey placeholder block with a soft pulse (still when reduce motion is on).
+/// Warm-grey placeholder block with a soft pulse (still when reduce motion is
+/// on), shaped like the content that will appear.
 class Skeleton extends StatefulWidget {
   const Skeleton({super.key, this.height = 16, this.width, this.radius = 8});
   final double height;
@@ -110,7 +111,7 @@ class _SkeletonState extends State<Skeleton> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    final base = context.paw.outline;
+    final base = context.paw.surfaceSubtle;
     Widget box(double t) => Container(
           height: widget.height,
           width: widget.width,

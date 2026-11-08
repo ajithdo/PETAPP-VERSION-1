@@ -101,6 +101,7 @@ class AppTheme {
     final extraText = PawTextStyles(
       mono: styleFor(TypeScale.mono, locale, tp, family: FontFamilies.mono),
       overline: s(TypeScale.overline, ts),
+      dateNumber: s(TypeScale.dateNumber).copyWith(height: TypeScale.tightLineHeight + 0.08),
     );
 
     final target = easyMode ? TapTarget.easy : TapTarget.min;

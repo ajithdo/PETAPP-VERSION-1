@@ -1762,9 +1762,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get choosePetForHealth => 'एक पालतू चुनें';
 
   @override
-  String get healthAllClear => 'सब कुछ समय पर है';
-
-  @override
   String itemsNeedAttention(int count) {
     return '$count पर ध्यान दें';
   }
@@ -2345,6 +2342,15 @@ class AppLocalizationsHi extends AppLocalizations {
       'यह कार्ड बिना इंटरनेट के चलता है। डॉक्टर, बोर्डिंग सेंटर या एयरपोर्ट पर दिखाएँ।';
 
   @override
+  String get healthAllClear => 'सब कुछ समय पर है';
+
+  @override
+  String get certificate => 'प्रमाणपत्र';
+
+  @override
+  String get emergencyInfo => 'आपातकालीन जानकारी';
+
+  @override
   String get bookTitle => 'देखभाल बुक करें';
 
   @override
@@ -2451,20 +2457,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get openNow => 'अभी खुला';
-
-  @override
-  String get certificate => 'प्रमाणपत्र';
-
-  @override
-  String get emergencyInfo => 'आपातकालीन जानकारी';
-
-  @override
-  String bookFor(String name) {
-    return '$name के लिए बुक करें';
-  }
-
-  @override
-  String get nextFreeSlot => 'अगला खाली समय';
 
   @override
   String get openNowChip => 'अभी खुला';
@@ -3299,6 +3291,14 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get remove => 'हटाएँ';
+
+  @override
+  String bookFor(String name) {
+    return '$name के लिए बुक करें';
+  }
+
+  @override
+  String get nextFreeSlot => 'अगला खाली समय';
 
   @override
   String get aiTitle => 'PawSetu से पूछें';
@@ -10327,4 +10327,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String albumTitle(String pet) {
     return '$pet की यादें';
   }
+
+  @override
+  String gendaProgress(int done, int total) {
+    return '$total में से $done हो गए';
+  }
+
+  @override
+  String get gendaNothingPlanned => 'आज कुछ तय नहीं है। एक दिनचर्या जोड़ें।';
 }

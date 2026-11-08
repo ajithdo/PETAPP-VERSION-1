@@ -46,15 +46,13 @@ void main() {
         aa(p.onAccentContainer, Color.alphaBlend(p.accent.withValues(alpha: Opacities.chip), p.surface), 'icons on amber tint');
         aa(p.onAccent, p.warning, 'icon on the warning alert circle');
         aa(cs.onError, p.error, 'icon on the error alert circle');
-        // The health pass (deep teal card): title, secondary text, values on
-        // its darker panel, and the light buttons on it.
-        final dark = b == Brightness.dark;
-        final passBg = dark ? p.primaryContainer : p.brand;
-        final passFg = dark ? p.onPrimaryContainer : p.onBrand;
+        // The health pass (deep cocoa band in both themes): title, secondary
+        // text, values on its darker panel, and the light buttons on it.
+        final passBg = p.band;
+        final passFg = p.onBand;
         final passPanel = Color.alphaBlend(p.ink.withValues(alpha: Opacities.tintStrong), passBg);
-        final passMuted = readableOn(passFg.withValues(alpha: Opacities.onDarkMuted), [passBg]);
         aa(passFg, passBg, 'title on the health pass');
-        aa(Color.alphaBlend(passMuted, passBg), passBg, 'secondary text on the health pass');
+        aa(p.onBandMuted, passBg, 'secondary text on the health pass');
         aa(passFg, passPanel, 'values on the health pass panel');
         aa(passBg, passFg, 'buttons on the health pass');
         // Option cards and the price summary.
@@ -75,7 +73,7 @@ void main() {
         }
         aa(cs.onPrimary, cs.primary, 'filled buttons');
         aa(p.onAccent, p.accent, 'accent buttons');
-        aa(Colors.white, b == Brightness.light ? p.error : p.sos, 'danger buttons');
+        aa(b == Brightness.light ? p.surface : p.errorContainer, p.error, 'danger buttons (berry, never red)');
         aa(p.onSos, p.sos, 'SOS button');
         // UI Design 5 (Genda) pairs: the band on Home, marigold fills, the
         // marigold-ink accent, and the "done" tick and garland flowers (3:1).

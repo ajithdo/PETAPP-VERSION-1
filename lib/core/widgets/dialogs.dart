@@ -19,13 +19,7 @@ Future<void> showDemoDialog(BuildContext context, {required String title, requir
 
 /// Asks before anything destructive. Always used in Easy mode, and for
 /// deletes everywhere.
-Future<bool> confirmAction(
-  BuildContext context, {
-  required String title,
-  String? body,
-  String? confirmLabel,
-  bool danger = true,
-}) async {
+Future<bool> confirmAction(BuildContext context, {required String title, String? body, String? confirmLabel, bool danger = true}) async {
   final ok = await showDialog<bool>(
     context: context,
     builder: (ctx) => AlertDialog(
@@ -34,7 +28,7 @@ Future<bool> confirmAction(
       actions: [
         TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(ctx.l10n.cancel)),
         FilledButton(
-          style: danger ? FilledButton.styleFrom(backgroundColor: dangerColor(ctx), foregroundColor: ctx.paw.onSos, iconColor: ctx.paw.onSos) : null,
+          style: danger ? FilledButton.styleFrom(backgroundColor: dangerColor(ctx), foregroundColor: onDangerColor(ctx), iconColor: onDangerColor(ctx)) : null,
           onPressed: () => Navigator.pop(ctx, true),
           child: Text(confirmLabel ?? ctx.l10n.confirm),
         ),
@@ -52,13 +46,15 @@ void showToast(BuildContext context, String message, {String? actionLabel, VoidC
   final keep = actionLabel != null && MediaQuery.accessibleNavigationOf(context);
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
-    ..showSnackBar(SnackBar(
-      content: Text(message),
-      action: actionLabel == null ? null : SnackBarAction(label: actionLabel, onPressed: onAction ?? () {}),
-      duration: Duration(seconds: actionLabel == null ? 4 : 6),
-      persist: keep,
-      showCloseIcon: keep,
-    ));
+    ..showSnackBar(
+      SnackBar(
+        content: Text(message),
+        action: actionLabel == null ? null : SnackBarAction(label: actionLabel, onPressed: onAction ?? () {}),
+        duration: Duration(seconds: actionLabel == null ? 4 : 6),
+        persist: keep,
+        showCloseIcon: keep,
+      ),
+    );
 }
 
 /// Standard bottom sheet with rounded top corners and safe padding.
@@ -70,12 +66,7 @@ Future<T?> showPawSheet<T>(BuildContext context, {required Widget Function(Build
     constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
     builder: (ctx) => Padding(
       padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(ctx).bottom),
-      child: scroll
-          ? SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(Space.lg, 0, Space.lg, Space.xl),
-              child: builder(ctx),
-            )
-          : builder(ctx),
+      child: scroll ? SingleChildScrollView(padding: const EdgeInsets.fromLTRB(Space.lg, 0, Space.lg, Space.xl), child: builder(ctx)) : builder(ctx),
     ),
   );
 }

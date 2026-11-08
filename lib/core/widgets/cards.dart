@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../theme/tokens.dart';
 import 'buttons.dart';
 
-/// White card with 20 px corners, a 1 px warm border and a soft shadow in
-/// light mode (UI Design 2). Tappable cards shrink slightly when pressed.
+/// White card with 22 px corners (UI Design 5): a soft warm shadow and no
+/// border in light mode, a hairline edge in dark mode and high contrast.
+/// Tappable cards shrink slightly when pressed.
 class PawCard extends StatelessWidget {
   const PawCard({
     super.key,
@@ -36,7 +37,11 @@ class PawCard extends StatelessWidget {
     final paw = context.paw;
     final radius = BorderRadius.circular(Radii.card);
     final lightMode = Theme.of(context).brightness == Brightness.light;
-    final shadow = lightMode && !flat && (color == null || color == paw.surface);
+    final plain = color == null || color == paw.surface;
+    final shadow = lightMode && !flat && plain;
+    // Light mode: the shadow defines the card. Dark mode (no visible
+    // shadows) and tinted or flat cards: a hairline edge.
+    final edge = !lightMode || !plain || flat || MediaQuery.highContrastOf(context);
     Widget card = DecoratedBox(
       decoration: BoxDecoration(borderRadius: radius, boxShadow: shadow ? Shadows.card(paw.ink) : null),
       child: Material(
@@ -44,11 +49,14 @@ class PawCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
           borderRadius: radius,
-          side: borderColor == null ? BorderSide(color: paw.outline) : BorderSide(color: borderColor!, width: Strokes.strong),
+          side: borderColor != null ? BorderSide(color: borderColor!, width: Strokes.strong) : (edge ? BorderSide(color: paw.outline) : BorderSide.none),
         ),
         child: onTap == null
             ? Padding(padding: padding, child: child)
-            : InkWell(onTap: onTap, child: Padding(padding: padding, child: child)),
+            : InkWell(
+                onTap: onTap,
+                child: Padding(padding: padding, child: child),
+              ),
       ),
     );
     if (onTap != null) card = PressScale(child: card);
@@ -75,14 +83,17 @@ class SectionHeader extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Semantics(header: true, child: Text(title, style: context.text.titleMedium)),
+            child: Semantics(header: true, child: Text(title, style: context.text.titleLarge)),
           ),
           if (trailing != null) Text(trailing!, style: context.text.labelMedium?.copyWith(color: context.paw.brand)),
           if (action != null)
             ConstrainedBox(
               // Keeps room for the title at large text sizes.
               constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * StatusChip.maxWidthShare),
-              child: TextButton(onPressed: onAction, child: Text(action!, textAlign: TextAlign.end)),
+              child: TextButton(
+                onPressed: onAction,
+                child: Text(action!, textAlign: TextAlign.end),
+              ),
             ),
         ],
       ),
@@ -113,11 +124,7 @@ class StatusChip extends StatelessWidget {
     final tint = c.withValues(alpha: Opacities.chip);
     return (
       tint: tint,
-      text: readableOn(c, [
-        Color.alphaBlend(tint, p.background),
-        Color.alphaBlend(tint, p.surface),
-        Color.alphaBlend(tint, p.surfaceSubtle),
-      ]),
+      text: readableOn(c, [Color.alphaBlend(tint, p.background), Color.alphaBlend(tint, p.surface), Color.alphaBlend(tint, p.surfaceSubtle)]),
     );
   }
 
@@ -131,18 +138,17 @@ class StatusChip extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * maxWidthShare),
       padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
-      decoration: BoxDecoration(
-        color: c.tint,
-        borderRadius: BorderRadius.circular(Radii.full),
-      ),
+      decoration: BoxDecoration(color: c.tint, borderRadius: BorderRadius.circular(Radii.full)),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (icon != null) ...[Icon(icon, size: IconSizes.xs, color: c.text), const SizedBox(width: Space.xs)],
           Flexible(
-            child: Text(label,
-                style: context.text.labelSmall?.copyWith(color: c.text, fontWeight: FontWeight.w700),
-                overflow: TextOverflow.ellipsis),
+            child: Text(
+              label,
+              style: context.text.labelSmall?.copyWith(color: c.text, fontWeight: FontWeight.w700),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ],
       ),
@@ -163,23 +169,35 @@ class StatTile extends StatelessWidget {
     return Semantics(
       label: '$label: $value',
       excludeSemantics: true,
-      // UI Design 2 number tile: a small uppercase label over a big number.
+      // Number tile: a small label over a big number (sentence case: Hindi
+      // and Telugu can't be upper-cased).
       child: PawCard(
         padding: const EdgeInsets.all(Space.lg),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(children: [
-              if (icon != null) ...[Icon(icon, color: color ?? context.paw.brand, size: IconSizes.sm), const SizedBox(width: Space.xs + Space.xxs)],
-              Expanded(
-                child: Text(label.toUpperCase(), maxLines: 2, overflow: TextOverflow.ellipsis, style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
-              ),
-            ]),
+            Row(
+              children: [
+                if (icon != null) ...[Icon(icon, color: color ?? context.paw.brand, size: IconSizes.sm), const SizedBox(width: Space.xs + Space.xxs)],
+                Expanded(
+                  child: Text(
+                    label,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textX.overline.copyWith(color: context.paw.textSecondary),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: Space.sm),
             FittedBox(
               fit: BoxFit.scaleDown,
               alignment: Alignment.centerLeft,
-              child: Text(value, style: context.text.headlineMedium?.copyWith(color: color == null ? context.paw.textPrimary : readableOn(color!, [context.paw.surface])), maxLines: 1),
+              child: Text(
+                value,
+                style: context.text.headlineMedium?.copyWith(color: color == null ? context.paw.textPrimary : readableOn(color!, [context.paw.surface])),
+                maxLines: 1,
+              ),
             ),
           ],
         ),
@@ -188,9 +206,9 @@ class StatTile extends StatelessWidget {
   }
 }
 
-/// UI Design 2 alert card (e.g. "Booster due in 10 days"): a tinted card with
-/// an icon in a solid circle, a small uppercase line, a title, an optional
-/// message and an optional button.
+/// Alert card (e.g. "Booster due in 10 days"): a tinted card with an icon in
+/// a solid circle, a small line, a title, an optional message and an
+/// optional button.
 class PawAlertCard extends StatelessWidget {
   const PawAlertCard({
     super.key,
@@ -219,25 +237,22 @@ class PawAlertCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final paw = context.paw;
     final (bg, border, solid, onSolid, ink) = switch (tone) {
-      ChipTone.error => (paw.errorContainer, paw.sosBorder, paw.error, context.colors.onError, paw.onErrorContainer),
+      ChipTone.error => (paw.errorContainer, paw.error.withValues(alpha: Opacities.border), paw.error, context.colors.onError, paw.onErrorContainer),
       ChipTone.success => (paw.successContainer, paw.successContainer, paw.success, paw.surface, paw.onSuccessContainer),
       ChipTone.info => (paw.primaryContainer, paw.primaryContainer, paw.brand, paw.onBrand, paw.onPrimaryContainer),
       _ => (paw.warningContainer, paw.warningBorder, paw.warning, paw.onAccent, paw.onWarningContainer),
     };
     final wide = MediaQuery.sizeOf(context).width >= 480;
-    final button = actionLabel == null || onAction == null
-        ? null
-        : PrimaryButton(label: actionLabel!, onPressed: onAction, expand: !wide);
-    final text = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      if (overline != null)
-        Text(overline!.toUpperCase(), style: context.textX.overline.copyWith(color: ink)),
-      if (overline != null) const SizedBox(height: Space.xxs),
-      Text(title, style: context.text.titleSmall?.copyWith(color: paw.textPrimary)),
-      if (message != null) ...[
-        const SizedBox(height: Space.xs),
-        Text(message!, style: context.text.bodySmall?.copyWith(color: paw.textPrimary)),
+    final button = actionLabel == null || onAction == null ? null : PrimaryButton(label: actionLabel!, onPressed: onAction, expand: !wide);
+    final text = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (overline != null) Text(overline!, style: context.textX.overline.copyWith(color: ink)),
+        if (overline != null) const SizedBox(height: Space.xxs),
+        Text(title, style: context.text.titleSmall?.copyWith(color: paw.textPrimary)),
+        if (message != null) ...[const SizedBox(height: Space.xs), Text(message!, style: context.text.bodySmall?.copyWith(color: paw.textPrimary))],
       ],
-    ]);
+    );
     return PawCard(
       color: bg,
       flat: true,
@@ -245,24 +260,26 @@ class PawAlertCard extends StatelessWidget {
       onTap: onTap,
       semanticLabel: semanticLabel,
       padding: const EdgeInsets.all(Space.lg),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Row(children: [
-          Container(
-            width: IconSizes.xl + Space.sm,
-            height: IconSizes.xl + Space.sm,
-            decoration: BoxDecoration(color: solid, shape: BoxShape.circle),
-            child: Icon(icon, color: onSolid, size: IconSizes.md),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: IconSizes.xl + Space.sm,
+                height: IconSizes.xl + Space.sm,
+                decoration: BoxDecoration(color: solid, shape: BoxShape.circle),
+                child: Icon(icon, color: onSolid, size: IconSizes.md),
+              ),
+              const SizedBox(width: Space.md),
+              Expanded(child: text),
+              if (button != null && wide) ...[const SizedBox(width: Space.md), button],
+              if (button == null && onTap != null) ...[const SizedBox(width: Space.sm), Icon(Icons.chevron_right_outlined, color: paw.textSecondary)],
+            ],
           ),
-          const SizedBox(width: Space.md),
-          Expanded(child: text),
-          if (button != null && wide) ...[const SizedBox(width: Space.md), button],
-          if (button == null && onTap != null) ...[
-            const SizedBox(width: Space.sm),
-            Icon(Icons.chevron_right_outlined, color: paw.textSecondary),
-          ],
-        ]),
-        if (button != null && !wide) ...[const SizedBox(height: Space.md), button],
-      ]),
+          if (button != null && !wide) ...[const SizedBox(height: Space.md), button],
+        ],
+      ),
     );
   }
 }
@@ -287,7 +304,9 @@ class DemoBanner extends StatelessWidget {
         children: [
           Icon(Icons.science_outlined, size: IconSizes.sm, color: paw.onAccentContainer),
           const SizedBox(width: Space.sm),
-          Expanded(child: Text(text, style: context.text.bodySmall?.copyWith(color: paw.textPrimary))),
+          Expanded(
+            child: Text(text, style: context.text.bodySmall?.copyWith(color: paw.textPrimary)),
+          ),
         ],
       ),
     );
@@ -320,15 +339,18 @@ class InfoNote extends StatelessWidget {
         children: [
           Icon(icon, size: IconSizes.md, color: c),
           const SizedBox(width: Space.sm),
-          Expanded(child: Text(text, style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary))),
+          Expanded(
+            child: Text(text, style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary)),
+          ),
         ],
       ),
     );
   }
 }
 
-/// A small sage square with the day number over the short month ("13 /
-/// NOV"), at the start of a booking or event row (UI Design 2).
+/// Date block (DESIGN.md): a 56 px warm-grey square with the short month on
+/// top and the day number below ("Nov" / "13"), at the start of every
+/// scheduled row (vaccine, dose, booking), always in the same place.
 class DateBadge extends StatelessWidget {
   const DateBadge({super.key, required this.day, required this.month, this.muted = false});
 
@@ -338,30 +360,34 @@ class DateBadge extends StatelessWidget {
   /// Short month name, e.g. "Nov".
   final String month;
 
-  /// Past items use the sand background.
+  /// Past items: no fill, a hairline edge and quieter text.
   final bool muted;
 
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
-    final fg = muted ? paw.textSecondary : paw.onPrimaryContainer;
+    final fg = muted ? paw.textSecondary : paw.textPrimary;
     return Container(
       constraints: const BoxConstraints(minWidth: Sizes.dateBadge, minHeight: Sizes.dateBadge),
       padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xs),
       decoration: BoxDecoration(
-        color: muted ? paw.surfaceSubtle : paw.primaryContainer,
+        color: muted ? null : paw.surfaceSubtle,
+        border: muted ? Border.all(color: paw.outline) : null,
         borderRadius: BorderRadius.circular(Radii.md),
       ),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min, children: [
-        Text(day, style: context.text.titleLarge?.copyWith(color: fg, height: TypeScale.tightLineHeight)),
-        const SizedBox(height: Space.xxs),
-        Text(month.toUpperCase(), style: context.textX.overline.copyWith(color: fg)),
-      ]),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(month, style: context.text.labelSmall?.copyWith(color: muted ? paw.textSecondary : paw.textSecondary)),
+          Text(day, style: context.textX.dateNumber.copyWith(color: fg)),
+        ],
+      ),
     );
   }
 }
 
-/// Five stars for a review, filled in amber up to [rating] (out of 5).
+/// Five stars for a review, filled in marigold ink up to [rating] (out of 5).
 class RatingStars extends StatelessWidget {
   const RatingStars(this.rating, {super.key, this.size = IconSizes.sm});
   final int rating;
@@ -373,9 +399,10 @@ class RatingStars extends StatelessWidget {
     return Semantics(
       label: '$rating/5',
       excludeSemantics: true,
-      child: Row(mainAxisSize: MainAxisSize.min, children: [
-        for (var i = 0; i < 5; i++) Icon(i < rating ? Icons.star_rounded : Icons.star_border_rounded, size: size, color: c),
-      ]),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [for (var i = 0; i < 5; i++) Icon(i < rating ? Icons.star_rounded : Icons.star_border_rounded, size: size, color: c)],
+      ),
     );
   }
 }

@@ -1,0 +1,4 @@
+{
+  "gendaProgress": {"en": "{done} of {total} done", "hi": "{total} में से {done} हो गए", "te": "{total}లో {done} పూర్తయ్యాయి", "ph": {"done": "int", "total": "int"}},
+  "gendaNothingPlanned": {"en": "Nothing planned today. Add a routine.", "hi": "आज कुछ तय नहीं है। एक दिनचर्या जोड़ें।", "te": "ఈరోజు ఏమీ ప్లాన్ లేదు. ఒక దినచర్య జోడించండి."}
+}

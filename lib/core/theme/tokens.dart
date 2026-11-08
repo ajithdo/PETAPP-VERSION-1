@@ -905,7 +905,16 @@ class Sizes {
   static const double placePhotoMaxHeight = 440;
 
   /// Date square at the start of a booking row.
-  static const double dateBadge = 52;
+  static const double dateBadge = 56;
+
+  /// The garland on the Genda band (Home): full and compact (narrow screens,
+  /// big text). The pet photo inside is [garlandPhotoShare] of it.
+  static const double garland = 140;
+  static const double garlandCompact = 112;
+  static const double garlandPhotoShare = 0.63;
+
+  /// Height of the progress bar on the Genda band.
+  static const double gendaBar = 10;
 
   /// Width of the label column in label/value rows.
   static const double labelColumn = 120;
@@ -1053,20 +1062,25 @@ class Motion {
 
 /// Extra text styles that Material's TextTheme has no slot for.
 class PawTextStyles extends ThemeExtension<PawTextStyles> {
-  const PawTextStyles({required this.mono, required this.overline});
-
-  /// Times, IDs, batch numbers and doses.
+  const PawTextStyles({required this.mono, required this.overline, required this.dateNumber});
   final TextStyle mono;
-
-  /// Uppercase micro labels.
   final TextStyle overline;
 
-  @override
-  PawTextStyles copyWith({TextStyle? mono, TextStyle? overline}) => PawTextStyles(mono: mono ?? this.mono, overline: overline ?? this.overline);
+  /// The day number in a date block.
+  final TextStyle dateNumber;
 
   @override
-  PawTextStyles lerp(PawTextStyles? other, double t) =>
-      other == null ? this : PawTextStyles(mono: TextStyle.lerp(mono, other.mono, t)!, overline: TextStyle.lerp(overline, other.overline, t)!);
+  PawTextStyles copyWith({TextStyle? mono, TextStyle? overline, TextStyle? dateNumber}) =>
+      PawTextStyles(mono: mono ?? this.mono, overline: overline ?? this.overline, dateNumber: dateNumber ?? this.dateNumber);
+
+  @override
+  PawTextStyles lerp(PawTextStyles? other, double t) => other == null
+      ? this
+      : PawTextStyles(
+          mono: TextStyle.lerp(mono, other.mono, t)!,
+          overline: TextStyle.lerp(overline, other.overline, t)!,
+          dateNumber: TextStyle.lerp(dateNumber, other.dateNumber, t)!,
+        );
 }
 
 extension PawThemeX on BuildContext {

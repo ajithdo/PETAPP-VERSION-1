@@ -1066,8 +1066,6 @@
     }
   },
   "choosePetForHealth": "Choose a pet",
-  "healthAllClear": "All up to date",
-  "@healthAllClear": {"description": "Pill on the Health pass when nothing is due or overdue."},
   "itemsNeedAttention": "{count} need attention",
   "@itemsNeedAttention": {
     "placeholders": {
@@ -1491,6 +1489,9 @@
     }
   },
   "medicalCardOffline": "This card works without internet. Show it to a vet, a boarding centre or at the airport.",
+  "healthAllClear": "All up to date",
+  "certificate": "Certificate",
+  "emergencyInfo": "Emergency info",
   "bookTitle": "Book care",
   "findAVet": "Find a vet near you",
   "kindVet": "Vet clinic",
@@ -1526,14 +1527,6 @@
   "sortSlot": "Earliest slot",
   "sortFee": "Lowest fee",
   "openNow": "Open now",
-  "certificate": "Certificate",
-  "@certificate": {"description": "Button on a vaccine in the Health timeline that opens its certificate."},
-  "emergencyInfo": "Emergency info",
-  "@emergencyInfo": {"description": "Title of the Health card with allergies and the regular clinic, for emergencies."},
-  "bookFor": "Book for {name}",
-  "@bookFor": {"description": "Button on the clinic page booking card that continues to the confirm screen.", "placeholders": {"name": {"type": "String"}}},
-  "nextFreeSlot": "Next free slot",
-  "@nextFreeSlot": {"description": "Label on a clinic card before the earliest bookable time."},
   "openNowChip": "Open now",
   "closedChip": "Closed",
   "open24x7": "24x7",
@@ -2129,6 +2122,15 @@
   "submitApplication": "Submit application",
   "partnerApprovalNote": "After you submit, your listing waits for approval. You can set up services and prices meanwhile.",
   "remove": "Remove",
+  "bookFor": "Book for {name}",
+  "@bookFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "nextFreeSlot": "Next free slot",
   "aiTitle": "Ask PawSetu",
   "aiIntroTitle": "Quick answers to everyday pet questions",
   "aiIntroBody": "Ask about food, baths, vaccines, ticks and more. For anything serious, talk to a vet.",
@@ -7305,5 +7307,17 @@
         "type": "String"
       }
     }
-  }
+  },
+  "gendaProgress": "{done} of {total} done",
+  "@gendaProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "gendaNothingPlanned": "Nothing planned today. Add a routine."
 }
