@@ -331,6 +331,12 @@ class AppTheme {
         backgroundColor: paw.surface,
         indicatorColor: paw.brand,
         indicatorShape: pill,
+        // The selected item sits on the cocoa (marigold in dark) pill, so its
+        // icon and label switch to the on-brand colour.
+        iconTheme: WidgetStateProperty.resolveWith((st) => IconThemeData(color: st.contains(WidgetState.selected) ? paw.onBrand : ts)),
+        labelTextStyle: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.selected)
+            ? textTheme.labelLarge!.copyWith(color: paw.onBrand, fontWeight: FontWeight.w700)
+            : textTheme.labelLarge!.copyWith(color: tp, fontWeight: FontWeight.w500)),
         surfaceTintColor: Colors.transparent,
       ),
       tabBarTheme: TabBarThemeData(

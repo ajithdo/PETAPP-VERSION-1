@@ -1062,7 +1062,7 @@ class Motion {
   static const tap = Duration(milliseconds: 100);
   static const toggle = Duration(milliseconds: 150);
   static const enter = Duration(milliseconds: 250);
-  static const exit = Duration(milliseconds: 180);
+  static const exit = Duration(milliseconds: 200);
   static const Curve standard = Cubic(0.4, 0, 0.2, 1);
   static const Curve emphasized = Cubic(0.16, 1, 0.3, 1);
 
