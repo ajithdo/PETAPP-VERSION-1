@@ -4,9 +4,9 @@ Read this first after a usage reset, a restart or a context summary, then contin
 
 ## Status
 
-- **Phase:** 1 (brief) done. Waiting for the owner's GO, which they queued.
+- **Phase:** 2 done (direction chosen: **C. Genda**). Now Phase 3 (design rules).
 - **Work branch:** `claude/happy-wozniak-68a4q2` (push only this branch).
-- **Next step:** after GO → Phase 2: three directions. Mock Home, Health, Book and one portal screen as HTML with the app's real text, at 390 px and 1440 px, light and dark; screenshot with Playwright into `docs/ui-designs/ui-design-5-directions/`; make one compare page; check contrast, 13 px minimum, SOS-only red, Hindi/Telugu fit; run Impeccable critique on each; score and pick (rules in the brief, section 5); log the scores.
+- **Next step:** Phase 3: write DESIGN.md (tokens for light, dark, high contrast; components; states; text rules) from Genda, update PRODUCT.md if needed, PROJECT_SPEC.md section 4, and the CLAUDE.md line. Then Phase 4 (bundle fonts, tokens.dart, app_theme.dart, shared widgets, gallery).
 
 ## Plan (from the owner's prompt)
 
@@ -15,8 +15,8 @@ Read this first after a usage reset, a restart or a context summary, then contin
 | A | Check the Claude setup | done |
 | B | Names and branch | done |
 | 1 | Brief (`docs/ui-designs/ui-design-5-brief.md`) | done |
-| 2 | Three directions, pick one | next |
-| 3 | Design rules: DESIGN.md, PRODUCT.md, PROJECT_SPEC section 4, CLAUDE.md line | — |
+| 2 | Three directions, pick one | done: Genda |
+| 3 | Design rules: DESIGN.md, PRODUCT.md, PROJECT_SPEC section 4, CLAUDE.md line | next |
 | 4 | Foundation: tokens, theme, shared widgets, design gallery | — |
 | 5A | Shell: navigation, top bar, pet switcher, SOS | — |
 | 5B | Home, Health, Book, Shop, Me | — |
@@ -33,6 +33,8 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - **Part A (8 Nov).** The session had started on the old UI Design 1 branch, so the work branch was moved forward onto `ui-revamp` (fast-forward, nothing lost) and the setup branch's last commit (push rule) was merged in. Found and fixed: `skills-lock.json` listed 35 of the 37 skills; `netlify-deploy` and `netlify-config` were reinstalled from Netlify's own repo (`netlify/context-and-tools`) and its MIT LICENSE copied back. Everything else was already right (see the table in the owner's chat summary). After the worker restarted, the session loaded the new `.mcp.json`: the Dart and Firebase servers connected.
 - **Part B (8 Nov).** The naming branch `claude/modest-dijkstra-q2x165` was **already merged into `ui-revamp`** (by pull request #2, commit `b884e3a`), so it is in the work branch too; `docs/ui-designs` and `docs/ui-revamp/check_ui_design_tokens.sh` exist. UI Design 5 added to the Names table in `docs/PROGRESS.md`.
 - **Plus fix merged (owner's choice).** `claude/serene-pascal-kjqctd` merged into the work branch. Conflicts in `docs/DECISIONS.md` and `docs/PROGRESS.md` were settled by keeping both sets of notes; `test/core/demo_auth_test.dart` keeps both fixes (demo data made as of today; Priya checked as Plus on that date and by the real clock).
+- **Phase 2 (8 Nov).** GO received. Wrote `PRODUCT.md` (Impeccable needs it before any new look). Ran Impeccable's direction roll (seed:b45978419bb7395c): seven ideas from Indian pet parents' everyday world; the roll assigned the wall calendar. Mocked three directions with the app's real content (Home, Health, Book, clinic portal; 390 and 1440 px; light and dark; plus Hindi, Telugu and Easy mode): **A. Deewar** (wall calendar, ballpoint blue), **B. Muhar** (vaccination booklet, violet stamp), **C. Genda** (marigold garland, cocoa). Compare page `docs/ui-designs/ui-design-5-directions/index.html`; critique and scores in `CRITIQUE.md` there. Picked **Genda** (53 vs 50 vs 43.5). Direction contract in `.impeccable/surfaces/lib-app-dart.md`.
+- **UI Design 4 "before" pictures:** `tools/screens/capture.cjs` (Playwright on the web build; signs in by tapping the demo account) captured 84 screens of the unchanged UI Design 4 build into `docs/ui-revamp/ui-design-4-baseline/` (360 px and 1280 px; main tabs also dark, Telugu and Easy mode), for the side-by-side comparisons later.
 - **Checks:** before the merge `flutter analyze` clean, 204 of 204 tests pass; after the merge `flutter analyze` clean, 210 of 210 tests pass.
 
 ## Decisions (and why)
@@ -40,6 +42,12 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - 8 Nov: Work branch based on `ui-revamp` (UI Design 4 + setup), because UI Design 5 must build on the current app, and the session had started on UI Design 1.
 - 8 Nov: Owner's answers recorded in the brief (feel, Home, tabs, colours, fonts, pictures, how to pick, order of work, Plus fix).
 - 8 Nov: Design ideas that would change how the app works are not built; they go in the morning report as suggestions.
+
+- 8 Nov, Phase 2: **Genda chosen** by the owner's scoring order: readability (A 9, B 7.5, C 9), fit (A 7, B 6, C 9), distinct (A 9, B 9, C 8); weighted 50 / 43.5 / 53. The owner's tie-break (warmer) agrees. The roll had assigned A; the owner's own rules beat the roll (Impeccable allows this).
+- 8 Nov, Phase 2: **Supertails check.** Read Supertails' live site in a browser: theme colour `#EF6C00`, buttons `#FF9A16` (orange), plus navy and pastel lavender. Genda's first marigold header band was too close, so the band became cocoa and marigold is kept to the garland, progress and highlights.
+- 8 Nov, Phase 2: **Never letter-space or upper-case Hindi or Telugu** (it broke Telugu words in A and B). Goes into DESIGN.md.
+- 8 Nov, Phase 2: Impeccable's "decision page" (which waits for the owner to click) was not opened, because the owner is offline and delegated the choice; the three directions and the pick are on the compare page instead. Critique ran as a design review only (Flutter = native platform for Impeccable; its web detector doesn't apply).
+- 8 Nov, Phase 2: platform recorded as `android` in PRODUCT.md (one Flutter Material 3 app for Android, iOS and web; Android phones are the main device).
 
 ## Problems
 
