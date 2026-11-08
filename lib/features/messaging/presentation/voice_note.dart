@@ -285,7 +285,7 @@ class _RecordingBarState extends State<RecordingBar> {
     final secs = widget.recorder.elapsed.inSeconds;
     return Row(children: [
       IconButton(tooltip: l.msgCancelRecording, onPressed: widget.onCancel, icon: Icon(Icons.delete_outlined, color: context.paw.error)),
-      Icon(Icons.fiber_manual_record_rounded, color: context.paw.sos, size: IconSizes.sm),
+      Icon(Icons.fiber_manual_record_rounded, color: context.paw.error, size: IconSizes.sm),
       const SizedBox(width: Space.sm),
       Expanded(
         child: Text(

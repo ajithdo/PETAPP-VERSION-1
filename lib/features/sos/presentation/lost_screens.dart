@@ -187,7 +187,7 @@ class _Sightings extends StatelessWidget {
                 zoom: 14,
                 fitPoints: [...pts, ?home],
                 markers: [
-                  if (home != null) pinMarker(home, color: context.paw.sos, icon: Icons.home_outlined),
+                  if (home != null) pinMarker(home, color: context.paw.brand, icon: Icons.home_outlined),
                   for (final p in pts) pinMarker(p, color: context.colors.primary, icon: Icons.visibility_outlined),
                 ],
               ),

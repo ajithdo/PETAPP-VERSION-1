@@ -592,7 +592,7 @@ class BookingDoneScreen extends ConsumerWidget {
                       final cols = c.maxWidth >= Sizes.sheetMaxWidth ? 4 : 2;
                       final w = (c.maxWidth - Space.sm * (cols - 1)) / cols;
                       return Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
-                        SizedBox(width: w, child: tile(request ? l.preferredTimes : l.when, when, mono: true, color: paw.onActionContainer)),
+                        SizedBox(width: w, child: tile(request ? l.preferredTimes : l.when, when, color: paw.onActionContainer)),
                         SizedBox(width: w, child: tile(l.where, b.providerName)),
                         if (b.vetName?.isNotEmpty == true) SizedBox(width: w, child: tile(l.vet, b.vetName!)),
                         SizedBox(width: w, child: tile(l.totalToPay, '${Fmt.inr(b.total)} · $payment')),

@@ -219,7 +219,7 @@ The frontmatter is normative. Light and dark values are listed; high contrast da
 - **SOS** red (`sos`, `on-sos`, tint): emergency only.
 
 ### Named Rules
-**The One Red Rule.** `sos` is the only red in the app. Discounts, badges, errors, warnings, "24×7" labels and destructive actions use berry, amber-brown, cocoa or neutral, never red, coral or orange-red.
+**The One Red Rule.** `sos` is the only red in the app, and it means an emergency: the SOS button, the SOS screen's main action, a lost-pet alert and a pet leaving its safe zone. Discounts, badges, errors, warnings, "24×7" labels, map pins and destructive actions use berry, amber-brown, cocoa or neutral, never red, coral or orange-red.
 
 **The Marigold Is Not Ink Rule.** Marigold fills shapes (flowers, bars, badges); it is never the colour of text on a light ground.
 

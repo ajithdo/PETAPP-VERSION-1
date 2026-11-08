@@ -83,12 +83,13 @@ class PortalScaffold extends ConsumerWidget {
       ],
     );
 
-    // UI Design 2 clinic portal: a deep forest top bar with light text.
+    // UI Design 5 portals (calm register, like a business dashboard): the
+    // same quiet top bar as the rest of the app, with a hairline below.
     final paw = context.paw;
-    final dark = Theme.of(context).brightness == Brightness.dark;
-    final barBg = dark ? paw.primaryContainer : paw.brand;
-    final barFg = dark ? paw.onPrimaryContainer : paw.onBrand;
+    final barBg = paw.background;
+    final barFg = paw.textPrimary;
     final appBar = AppBar(
+      shape: Border(bottom: BorderSide(color: paw.outline)),
       backgroundColor: barBg,
       foregroundColor: barFg,
       iconTheme: IconThemeData(color: barFg),

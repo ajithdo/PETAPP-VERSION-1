@@ -6,7 +6,7 @@ Read this first after a usage reset, a restart or a context summary, then contin
 
 - **Phase:** Batches A and B done. Now Batch C (sign-in started).
 - **Work branch:** `claude/happy-wozniak-68a4q2` (push only this branch).
-- **Next step:** Batch C. Sign-in + demo accounts are restyled in code (pet photos on demo rows, full descriptions, no tinted box) but not yet screenshotted; continue with the clinic page (`place_screen.dart`), booking flow and booking confirmed (`booking_flow_screen.dart`, `booking_panel.dart`), pet profile + routine, SOS (`sos/presentation/sos_screen.dart`, first aid), tele-vet; then vault, album, messages, notifications, family, plans, settings, onboarding. Already swept app-wide: upper-cased labels (5), mono prices/slot times, 24x7 chip on the clinic page.
+- **Next step:** Batch C is restyled in code (sign-in + demo accounts, clinic page header, booking time, SOS calm with one red action and full phone numbers, first aid, tele-vet hang-up/recording colours, portal top bar). A build + capture of the remaining screens is in `docs/ui-revamp/ui-design-5-C-flows/`. Review those shots (vault, album, messages, notifications, family, plus, settings, ask, product, cart, welcome), fix what they show, run all tests, write `docs/ui-revamp/ui-design-5-C-flows/AUDIT.md` and the Batch C summary, commit. Then Batch D (portals + admin: check `portal_scaffold.dart` screens, tables in compact density), Batch E (motion, app icons), Phase 6.
 
 ## Plan (from the owner's prompt)
 
@@ -90,6 +90,10 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - 8 Nov, Batch B: admin offer banners on Home and Shop now sit below the pet's day and picks, as quiet cards (same banners, same links).
 - 8 Nov, Batch B: Shop's own pet chips were removed; the top-bar pet pills choose the pet (same behaviour, one control instead of two).
 - 8 Nov, Batch B: new strings (en/hi/te): shopAskVet, meGroupPets, meGroupMoney, meGroupHelp, withUnread.
+
+- 8 Nov, Batch C: SOS red is kept for emergencies only (the SOS button and its main action, lost-pet alerts, a pet leaving its safe zone, "Emergency? Go to SOS" notes, the vet's red-flag cases); the SOS screen's title, second option, first-aid list and map pins are now neutral. Video-call hang-up and the recording dot are berry (destructive), not red.
+- 8 Nov, Batch C: demo account rows on sign-in show the demo family's pet photo (Priya → Bruno, Ravi → Simba, Anjali → Coco, Arjun → Max, Rohan → Bruno, Meera → Max); partners keep an icon.
+- 8 Nov, Batch C: portal top bar is now the quiet light bar used everywhere (was a solid brand bar).
 
 ## Problems
 

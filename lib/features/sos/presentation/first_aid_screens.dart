@@ -66,8 +66,8 @@ class _GuideTile extends StatelessWidget {
       child: Row(children: [
         CircleAvatar(
           radius: Sizes.avatarMd / 2,
-          backgroundColor: context.paw.sosContainer,
-          child: Icon(firstAidIcon(id), color: context.paw.sos),
+          backgroundColor: context.paw.surfaceSubtle,
+          child: Icon(firstAidIcon(id), color: context.paw.textPrimary),
         ),
         const SizedBox(width: Space.md),
         Expanded(
@@ -136,7 +136,7 @@ class FirstAidGuideScreen extends ConsumerWidget {
               Expanded(child: Text(a, style: context.text.bodyLarge)),
             ]),
           ),
-        heading(Icons.local_hospital_outlined, l.firstAidWhenVet, context.paw.sos),
+        heading(Icons.local_hospital_outlined, l.firstAidWhenVet, context.paw.warning),
         InfoNote(t.vet, icon: Icons.local_hospital_outlined, tone: ChipTone.error),
         safetyGap,
         PrimaryButton(label: l.sosGetHelp, icon: Icons.emergency_outlined, danger: true, onPressed: () => openSos(context, ref)),

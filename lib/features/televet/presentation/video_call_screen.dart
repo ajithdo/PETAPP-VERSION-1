@@ -322,7 +322,7 @@ class _CallButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = danger ? context.paw.sos : (active ? MediaColors.foreground : MediaColors.control);
+    final bg = danger ? PawColors.light.error : (active ? MediaColors.foreground : MediaColors.control);
     final fg = danger ? context.paw.onSos : (active ? MediaColors.callBackground : MediaColors.foreground);
     return Semantics(
       button: true,

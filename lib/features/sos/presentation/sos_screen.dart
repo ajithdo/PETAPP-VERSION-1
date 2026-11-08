@@ -187,9 +187,10 @@ class _SosScreenState extends ConsumerState<SosScreen> {
     final nearest = ranked.isEmpty ? null : ranked.first;
 
     return Scaffold(
-      // UI Design 2 emergency line: a light bar with the title in SOS red.
+      // Calm register (UI Design 5): a plain title; red is kept for the one
+      // main action below.
       appBar: AppBar(
-        title: Text(l.sosTitle, style: context.text.titleLarge?.copyWith(color: context.paw.sos)),
+        title: Text(l.sosTitle, style: context.text.titleLarge, maxLines: 1, overflow: TextOverflow.ellipsis),
         leading: IconButton(
           tooltip: l.close,
           icon: const Icon(Icons.close_outlined),
@@ -255,7 +256,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         PawCard(
           onTap: () => context.push('/first-aid'),
           child: Row(children: [
-            Icon(Icons.medical_services_outlined, color: context.paw.sos, size: IconSizes.xl),
+            Icon(Icons.medical_services_outlined, color: context.paw.textPrimary, size: IconSizes.xl),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -327,17 +328,17 @@ class _BigOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.paw;
-    // UI Design 2 emergency card: solid red for the main action, a soft red
-    // wash with a red border for the second one.
-    final fg = filled ? p.onSos : p.onSosContainer;
+    // Solid red for the one main action (the only red); the second option is
+    // a plain card, so the red action stands alone.
+    final fg = filled ? p.onSos : p.textPrimary;
     return Semantics(
       button: true,
       expanded: expanded,
       child: Material(
-        color: filled ? p.sos : p.sosContainer,
+        color: filled ? p.sos : p.surface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Radii.card),
-          side: BorderSide(color: filled ? p.sos : p.sosBorder, width: Strokes.focus),
+          side: BorderSide(color: filled ? p.sos : p.controlBorder, width: filled ? Strokes.focus : Strokes.hairline),
         ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -384,7 +385,7 @@ class _ClinicCallTile extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: StatusChip(
             c.is24x7 ? l.open24x7 : (r.open ? l.openNow : l.closedNow),
-            tone: c.is24x7 ? ChipTone.error : (r.open ? ChipTone.success : ChipTone.neutral),
+            tone: c.is24x7 || r.open ? ChipTone.success : ChipTone.neutral,
             icon: c.is24x7 ? Icons.emergency_outlined : null,
           ),
         ),
@@ -395,33 +396,36 @@ class _ClinicCallTile extends StatelessWidget {
         const SizedBox(height: Space.md),
         const Divider(height: Strokes.hairline),
         const SizedBox(height: Space.md),
-        Row(children: [
-          Expanded(
-            child: Semantics(
-              label: l.sosCallClinic(c.name),
-              button: true,
-              excludeSemantics: true,
-              child: FilledButton.icon(
-                style: FilledButton.styleFrom(
-                  backgroundColor: paw.inverseSurface,
-                  foregroundColor: paw.onInverseSurface,
-                  iconColor: paw.onInverseSurface,
-                  minimumSize: const Size.fromHeight(TapTarget.min),
-                ),
-                onPressed: onCall,
-                icon: const Icon(Icons.call_outlined, size: IconSizes.md),
-                label: Text('${l.call} · ${c.callNumber}', maxLines: 1, overflow: TextOverflow.ellipsis),
+        // The number is never cut off: it shrinks to fit, and on narrow
+        // screens Call and Map stack at full width.
+        LayoutBuilder(builder: (context, box) {
+          final call = Semantics(
+            label: l.sosCallClinic(c.name),
+            button: true,
+            excludeSemantics: true,
+            child: FilledButton.icon(
+              style: FilledButton.styleFrom(
+                backgroundColor: paw.inverseSurface,
+                foregroundColor: paw.onInverseSurface,
+                iconColor: paw.onInverseSurface,
+                minimumSize: const Size.fromHeight(TapTarget.min),
               ),
+              onPressed: onCall,
+              icon: const Icon(Icons.call_outlined, size: IconSizes.md),
+              label: FittedBox(fit: BoxFit.scaleDown, child: Text('${l.call} · ${c.callNumber}', maxLines: 1)),
             ),
-          ),
-          const SizedBox(width: Space.sm),
-          OutlinedButton.icon(
+          );
+          final map = OutlinedButton.icon(
             style: OutlinedButton.styleFrom(minimumSize: const Size(0, TapTarget.min)),
             onPressed: () => openDirections(c.lat, c.lng, label: c.name),
-            icon: Icon(Icons.near_me_outlined, size: IconSizes.md, color: paw.sos),
+            icon: Icon(Icons.near_me_outlined, size: IconSizes.md, color: paw.textPrimary),
             label: Text(l.mapView),
-          ),
-        ]),
+          );
+          if (box.maxWidth < Sizes.placeCardMinWidth + Space.xxl) {
+            return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [call, const SizedBox(height: Space.sm), map]);
+          }
+          return Row(children: [Expanded(child: call), const SizedBox(width: Space.sm), map]);
+        }),
       ]),
     );
   }
@@ -458,7 +462,7 @@ class _AddressCard extends StatelessWidget {
               interactive: false,
               fitPoints: [LatLng(c.lat, c.lng), LatLng(spot.lat, spot.lng)],
               markers: [
-                pinMarker(LatLng(c.lat, c.lng), color: context.paw.sos, icon: Icons.local_hospital_outlined),
+                pinMarker(LatLng(c.lat, c.lng), color: context.paw.brand, icon: Icons.local_hospital_outlined),
                 dotMarker(LatLng(spot.lat, spot.lng), context.colors.primary),
               ],
             ),

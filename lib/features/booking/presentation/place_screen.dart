@@ -70,22 +70,33 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
             const SizedBox(height: Space.xxs),
             Text('${kindLabel(context, p.kind)} · ${p.area}, ${p.city}', style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
             const SizedBox(height: Space.sm),
-            Wrap(
-              spacing: Space.xs + Space.xxs,
-              runSpacing: Space.xs + Space.xxs,
-              children: [
-                if (p.reviewCount > 0) StatusChip('${p.rating.toStringAsFixed(1)} · ${l.reviewsCount(p.reviewCount)}', tone: ChipTone.accent, icon: Icons.star_rounded),
-                StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
-                if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.success, icon: Icons.schedule_rounded),
-                if (p.teleVet) StatusChip(l.teleVet, tone: ChipTone.info, icon: Icons.video_call_outlined),
+            // One chip (open now / 24x7 / closed), the rating as text, and
+            // the rest on a quiet line: no row of six chips (DESIGN.md).
+            Wrap(spacing: Space.md, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
+              p.is24x7
+                  ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Icons.schedule_rounded)
+                  : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
+              if (p.reviewCount > 0)
+                Row(mainAxisSize: MainAxisSize.min, children: [
+                  Icon(Icons.star_rounded, size: IconSizes.sm, color: context.paw.accent),
+                  const SizedBox(width: Space.xxs),
+                  Text(p.rating.toStringAsFixed(1), style: context.text.labelLarge),
+                  Text(' · ${l.reviewsCount(p.reviewCount)}', style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+                ]),
+            ]),
+            const SizedBox(height: Space.xs),
+            Text(
+              [
+                if (p.teleVet) l.teleVet,
                 for (final s in p.species)
-                  StatusChip(switch (s) {
+                  switch (s) {
                     'cat' => l.speciesCat,
                     'bird' => l.speciesBird,
                     'rabbit' => l.speciesRabbit,
                     _ => l.speciesDog,
-                  }),
-              ],
+                  },
+              ].join(' · '),
+              style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary),
             ),
             if (p.about != null) ...[const SizedBox(height: Space.md), Text(p.about!, style: context.text.bodyLarge)],
             const SizedBox(height: Space.lg),
