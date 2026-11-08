@@ -77,6 +77,17 @@ void main() {
         aa(p.onAccent, p.accent, 'accent buttons');
         aa(Colors.white, b == Brightness.light ? p.error : p.sos, 'danger buttons');
         aa(p.onSos, p.sos, 'SOS button');
+        // UI Design 5 (Genda) pairs: the band on Home, marigold fills, the
+        // marigold-ink accent, and the "done" tick and garland flowers (3:1).
+        aa(p.onBand, p.band, 'title on the Genda band');
+        aa(p.onBandMuted, p.band, 'secondary text on the Genda band');
+        aa(p.onMarigold, p.marigold, 'text on marigold fills');
+        aa(p.onAccentContainer, p.accentContainer, 'text on the marigold tint');
+        aa(p.accent, p.surface, 'marigold-ink text on cards');
+        ui(p.done, p.surface, 'done tick on cards');
+        ui(p.marigold, p.band, 'garland flowers on the band');
+        ui(p.onBandMuted, p.band, 'open garland flowers on the band');
+        aa(cs.onPrimary, cs.primary, 'selected navigation pill');
         aa(cs.onPrimaryContainer, cs.primaryContainer, 'text on highlighted cards');
         aa(cs.onSecondaryContainer, cs.secondaryContainer, 'text on warm cards');
         aa(cs.onInverseSurface, cs.inverseSurface, 'messages at the bottom');

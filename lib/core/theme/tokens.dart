@@ -2,20 +2,21 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-// Design tokens: UI Design 2, "Warm Clinical Trust & Playful Care"
-// (docs/ui-designs/). Every colour, font, size, gap, corner, shadow and timing
-// in the app comes from this file. Never hard-code these values in widgets.
+// Design tokens: UI Design 5, "Genda" (DESIGN.md at the project root).
+// Every colour, font, size, gap, corner, shadow and timing in the app comes
+// from this file. Never hard-code these values in widgets.
 //
-// Changes from the Stitch design rules, made so everything stays readable
-// (docs/ui-designs/REVIEW.md):
-// - The coral moves slightly towards terracotta (#C84735 to #B9532E), so the
-//   everyday "Book" buttons no longer look like the SOS red.
-// - Secondary grey is #6B635D, not #78716C, which was too faint on sand.
-// - Inputs and outlined controls get a darker border (3:1); the warm
-//   #E7E2DA border is kept for cards only.
-// - Amber and green are a little darker so white text reads on them and
-//   they read as text on the sand background too.
-// - The smallest text is 12 px (uppercase labels); everything else is 13 px+.
+// Genda is the marigold garland of an Indian home: cocoa ink and cocoa
+// buttons on white and warm-grey grounds, marigold only for flowers,
+// progress and celebration. Two registers: warm (Home, empty states,
+// onboarding, album) and calm (Health, records, tele-vet, SOS, portals).
+// - SOS red is the only red in the app. Errors are berry, warnings
+//   amber-brown, badges cocoa.
+// - Marigold is a fill, never text on a light ground; use [PawColors.accent]
+//   (marigold ink) for marigold-family text and icons.
+// - Every pair is checked in test/core/contrast_test.dart: text 4.5:1,
+//   borders, icons and focus 3:1, in light, dark and high contrast.
+// - The smallest text is 13 px.
 
 /// Colours for one brightness. Read with `context.paw`.
 class PawColors extends ThemeExtension<PawColors> {
@@ -58,41 +59,50 @@ class PawColors extends ThemeExtension<PawColors> {
     required this.inverseSurface,
     required this.onInverseSurface,
     required this.ink,
+    required this.marigold,
+    required this.onMarigold,
+    required this.accentContainer,
+    required this.band,
+    required this.onBand,
+    required this.onBandMuted,
+    required this.done,
   });
 
-  /// Deep forest teal: the brand, navigation, links, selected chips,
-  /// verified and health information.
+  /// Cocoa (marigold in dark mode): the brand, selected navigation, links,
+  /// selected chips, verified and health information.
   final Color brand;
   final Color onBrand;
 
-  /// Soft sage behind brand information (verified tags, life stage, tips).
+  /// Soft cocoa tint behind brand information (verified tags, life stage, tips).
   final Color primaryContainer;
   final Color onPrimaryContainer;
 
-  /// Terracotta coral: the one main action on a screen (Book, Confirm, Save).
+  /// Cocoa (marigold in dark mode): the one main action on a screen (Book,
+  /// Confirm, Save).
   final Color action;
   final Color onAction;
   final Color actionPressed;
   final Color actionContainer;
   final Color onActionContainer;
 
-  /// Amber highlight: ratings, Plus membership, streaks, birthdays.
+  /// Marigold ink: text and icons in the marigold family (ratings, Plus,
+  /// streaks, birthdays). Readable on white (4.5:1+).
   final Color accent;
   final Color onAccent;
 
   /// Icons and text on an amber tint.
   final Color onAccentContainer;
 
-  /// Warm alabaster page.
+  /// Warm-grey page behind cards.
   final Color background;
 
   /// White cards and sheets.
   final Color surface;
 
-  /// Soft sand for grouped areas and neutral chips.
+  /// Warm grey for grouped areas, date blocks and neutral chips.
   final Color surfaceSubtle;
 
-  /// Warm 1 px card border (decorative).
+  /// Hairline dividers and the 1 px card edge in dark mode (decorative).
   final Color outline;
 
   /// Border of inputs, outlined buttons and chips (3:1 on the page).
@@ -122,93 +132,126 @@ class PawColors extends ThemeExtension<PawColors> {
   final Color onSosContainer;
   final Color sosBorder;
 
-  /// Toasts and the dark health-pass card.
+  /// Snackbars and tooltips.
   final Color inverseSurface;
   final Color onInverseSurface;
 
-  /// Shadow colour.
+  /// Shadow colour (warm cocoa in light mode).
   final Color ink;
 
+  /// Marigold: garland flowers, progress bars, celebration, the Plus badge.
+  /// A fill, never text on a light ground.
+  final Color marigold;
+  final Color onMarigold;
+
+  /// Pale marigold behind marigold-family information (Plus, streaks).
+  final Color accentContainer;
+
+  /// The Genda band on Home and dark hero panels (health pass).
+  final Color band;
+  final Color onBand;
+
+  /// Quieter text and open garland flowers on the band.
+  final Color onBandMuted;
+
+  /// Filled "done" tick on everyday tasks (warm register). The calm register
+  /// uses [success].
+  final Color done;
+
   static const light = PawColors(
-    brand: Color(0xFF18453E),
+    brand: Color(0xFF4A2A12),
     onBrand: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFFE6F0ED),
-    onPrimaryContainer: Color(0xFF18453E),
-    action: Color(0xFFB9532E),
+    primaryContainer: Color(0xFFF4ECE3),
+    onPrimaryContainer: Color(0xFF4A2A12),
+    action: Color(0xFF4A2A12),
     onAction: Color(0xFFFFFFFF),
-    actionPressed: Color(0xFF9A4224),
-    actionContainer: Color(0xFFFBEDE7),
-    onActionContainer: Color(0xFF9A3412),
-    accent: Color(0xFFA84D08),
+    actionPressed: Color(0xFF2F1A0A),
+    actionContainer: Color(0xFFF4ECE3),
+    onActionContainer: Color(0xFF4A2A12),
+    accent: Color(0xFF8F5A00),
     onAccent: Color(0xFFFFFFFF),
-    onAccentContainer: Color(0xFF78350F),
-    background: Color(0xFFFAF8F5),
+    onAccentContainer: Color(0xFF6B4100),
+    background: Color(0xFFF6F5F3),
     surface: Color(0xFFFFFFFF),
-    surfaceSubtle: Color(0xFFF3EFEA),
-    outline: Color(0xFFE7E2DA),
-    controlBorder: Color(0xFF8F877F),
-    focus: Color(0xFFB9532E),
-    textPrimary: Color(0xFF1C1917),
-    textSecondary: Color(0xFF6B635D),
-    success: Color(0xFF157A3A),
-    successContainer: Color(0xFFDCFCE7),
-    onSuccessContainer: Color(0xFF166534),
-    warning: Color(0xFFA84D08),
-    warningContainer: Color(0xFFFFFBEB),
-    onWarningContainer: Color(0xFF78350F),
-    warningBorder: Color(0xFFFDE68A),
-    error: Color(0xFFB91C1C),
-    errorContainer: Color(0xFFFEF2F2),
-    onErrorContainer: Color(0xFF991B1B),
-    sos: Color(0xFFDC2626),
+    surfaceSubtle: Color(0xFFEFECE7),
+    outline: Color(0xFFE6E1DA),
+    controlBorder: Color(0xFF857A6C),
+    focus: Color(0xFFB26F00),
+    textPrimary: Color(0xFF231B12),
+    textSecondary: Color(0xFF5B5044),
+    success: Color(0xFF17703F),
+    successContainer: Color(0xFFE3F3E8),
+    onSuccessContainer: Color(0xFF13582F),
+    warning: Color(0xFF8A4B00),
+    warningContainer: Color(0xFFFFF1D6),
+    onWarningContainer: Color(0xFF6B3B00),
+    warningBorder: Color(0xFFE9C07A),
+    error: Color(0xFF8C1D6E),
+    errorContainer: Color(0xFFFBEAF5),
+    onErrorContainer: Color(0xFF6E1456),
+    sos: Color(0xFFC81E1E),
     onSos: Color(0xFFFFFFFF),
-    sosContainer: Color(0xFFFEF2F2),
-    onSosContainer: Color(0xFFB91C1C),
-    sosBorder: Color(0xFFFECACA),
-    inverseSurface: Color(0xFF292524),
-    onInverseSurface: Color(0xFFF5F5F4),
-    ink: Color(0xFF1C1917),
+    sosContainer: Color(0xFFFDECEC),
+    onSosContainer: Color(0xFFA3161A),
+    sosBorder: Color(0xFFF2B3B3),
+    inverseSurface: Color(0xFF2B231B),
+    onInverseSurface: Color(0xFFF4EEE5),
+    ink: Color(0xFF3C2300),
+    marigold: Color(0xFFF3A712),
+    onMarigold: Color(0xFF2A1A00),
+    accentContainer: Color(0xFFFFF0CC),
+    band: Color(0xFF3A2416),
+    onBand: Color(0xFFFFF6E5),
+    onBandMuted: Color(0xFFEAD7BA),
+    done: Color(0xFFB26F00),
   );
 
   static const dark = PawColors(
-    brand: Color(0xFF52B7A5),
-    onBrand: Color(0xFF0A2923),
-    primaryContainer: Color(0xFF1D3A35),
-    onPrimaryContainer: Color(0xFFCDEAE3),
-    action: Color(0xFFFF8A65),
-    onAction: Color(0xFF45120B),
-    actionPressed: Color(0xFFFFA586),
-    actionContainer: Color(0xFF3A1C12),
-    onActionContainer: Color(0xFFFFC9B5),
-    accent: Color(0xFFFBBF24),
-    onAccent: Color(0xFF3B2405),
-    onAccentContainer: Color(0xFFFDE68A),
-    background: Color(0xFF141517),
-    surface: Color(0xFF1C1D21),
-    surfaceSubtle: Color(0xFF24262B),
-    outline: Color(0xFF2E3138),
-    controlBorder: Color(0xFF6B6F78),
-    focus: Color(0xFFFF8A65),
-    textPrimary: Color(0xFFF5F5F4),
-    textSecondary: Color(0xFFB5AFAA),
-    success: Color(0xFF4ADE80),
-    successContainer: Color(0xFF12321F),
-    onSuccessContainer: Color(0xFFBBF7D0),
-    warning: Color(0xFFFBBF24),
-    warningContainer: Color(0xFF3A2A0A),
-    onWarningContainer: Color(0xFFFDE68A),
+    brand: Color(0xFFF5B53F),
+    onBrand: Color(0xFF2A1A00),
+    primaryContainer: Color(0xFF3A2D14),
+    onPrimaryContainer: Color(0xFFFFD98A),
+    action: Color(0xFFF5B53F),
+    onAction: Color(0xFF2A1A00),
+    actionPressed: Color(0xFFFFC965),
+    actionContainer: Color(0xFF3A2D14),
+    onActionContainer: Color(0xFFFFD98A),
+    accent: Color(0xFFF5B53F),
+    onAccent: Color(0xFF2A1A00),
+    onAccentContainer: Color(0xFFFFD98A),
+    background: Color(0xFF14110D),
+    surface: Color(0xFF1F1A14),
+    surfaceSubtle: Color(0xFF28221A),
+    outline: Color(0xFF3A3226),
+    controlBorder: Color(0xFF8A7F70),
+    focus: Color(0xFFF5B53F),
+    textPrimary: Color(0xFFF4EEE5),
+    textSecondary: Color(0xFFBDB2A3),
+    success: Color(0xFF6FD49A),
+    successContainer: Color(0xFF16301F),
+    onSuccessContainer: Color(0xFFBFEFD0),
+    warning: Color(0xFFFFC861),
+    warningContainer: Color(0xFF33270F),
+    onWarningContainer: Color(0xFFFFE2A3),
     warningBorder: Color(0xFF5C4410),
-    error: Color(0xFFF87171),
-    errorContainer: Color(0xFF3B1212),
-    onErrorContainer: Color(0xFFFECACA),
-    sos: Color(0xFFDC2626),
+    error: Color(0xFFF29BD3),
+    errorContainer: Color(0xFF3A1531),
+    onErrorContainer: Color(0xFFFFD3EF),
+    sos: Color(0xFFC81E1E),
     onSos: Color(0xFFFFFFFF),
     sosContainer: Color(0xFF3B1212),
-    onSosContainer: Color(0xFFFCA5A5),
+    onSosContainer: Color(0xFFFFB4B4),
     sosBorder: Color(0xFF7F1D1D),
-    inverseSurface: Color(0xFFE7E5E4),
-    onInverseSurface: Color(0xFF1C1917),
+    inverseSurface: Color(0xFFEDE6DC),
+    onInverseSurface: Color(0xFF231B12),
     ink: Color(0xFF000000),
+    marigold: Color(0xFFF5B53F),
+    onMarigold: Color(0xFF2A1A00),
+    accentContainer: Color(0xFF3A2D14),
+    band: Color(0xFF2B2214),
+    onBand: Color(0xFFF4EEE5),
+    onBandMuted: Color(0xFFCDBFA9),
+    done: Color(0xFFF5B53F),
   );
 
   /// High-contrast variants: darker text and borders for low vision.
@@ -216,9 +259,9 @@ class PawColors extends ThemeExtension<PawColors> {
     final light = b == Brightness.light;
     return copyWith(
       textPrimary: light ? const Color(0xFF000000) : const Color(0xFFFFFFFF),
-      textSecondary: light ? const Color(0xFF3F3A36) : const Color(0xFFE7E5E4),
-      outline: light ? const Color(0xFF8F877F) : const Color(0xFF6B6F78),
-      controlBorder: light ? const Color(0xFF57534E) : const Color(0xFFA8A29E),
+      textSecondary: light ? const Color(0xFF3B3127) : const Color(0xFFEDE6DC),
+      outline: light ? const Color(0xFF857A6C) : const Color(0xFF8A7F70),
+      controlBorder: light ? const Color(0xFF4F453A) : const Color(0xFFC9BEAE),
     );
   }
 
@@ -262,47 +305,60 @@ class PawColors extends ThemeExtension<PawColors> {
     Color? inverseSurface,
     Color? onInverseSurface,
     Color? ink,
-  }) =>
-      PawColors(
-        brand: brand ?? this.brand,
-        onBrand: onBrand ?? this.onBrand,
-        primaryContainer: primaryContainer ?? this.primaryContainer,
-        onPrimaryContainer: onPrimaryContainer ?? this.onPrimaryContainer,
-        action: action ?? this.action,
-        onAction: onAction ?? this.onAction,
-        actionPressed: actionPressed ?? this.actionPressed,
-        actionContainer: actionContainer ?? this.actionContainer,
-        onActionContainer: onActionContainer ?? this.onActionContainer,
-        accent: accent ?? this.accent,
-        onAccent: onAccent ?? this.onAccent,
-        onAccentContainer: onAccentContainer ?? this.onAccentContainer,
-        background: background ?? this.background,
-        surface: surface ?? this.surface,
-        surfaceSubtle: surfaceSubtle ?? this.surfaceSubtle,
-        outline: outline ?? this.outline,
-        controlBorder: controlBorder ?? this.controlBorder,
-        focus: focus ?? this.focus,
-        textPrimary: textPrimary ?? this.textPrimary,
-        textSecondary: textSecondary ?? this.textSecondary,
-        success: success ?? this.success,
-        successContainer: successContainer ?? this.successContainer,
-        onSuccessContainer: onSuccessContainer ?? this.onSuccessContainer,
-        warning: warning ?? this.warning,
-        warningContainer: warningContainer ?? this.warningContainer,
-        onWarningContainer: onWarningContainer ?? this.onWarningContainer,
-        warningBorder: warningBorder ?? this.warningBorder,
-        error: error ?? this.error,
-        errorContainer: errorContainer ?? this.errorContainer,
-        onErrorContainer: onErrorContainer ?? this.onErrorContainer,
-        sos: sos ?? this.sos,
-        onSos: onSos ?? this.onSos,
-        sosContainer: sosContainer ?? this.sosContainer,
-        onSosContainer: onSosContainer ?? this.onSosContainer,
-        sosBorder: sosBorder ?? this.sosBorder,
-        inverseSurface: inverseSurface ?? this.inverseSurface,
-        onInverseSurface: onInverseSurface ?? this.onInverseSurface,
-        ink: ink ?? this.ink,
-      );
+    Color? marigold,
+    Color? onMarigold,
+    Color? accentContainer,
+    Color? band,
+    Color? onBand,
+    Color? onBandMuted,
+    Color? done,
+  }) => PawColors(
+    brand: brand ?? this.brand,
+    onBrand: onBrand ?? this.onBrand,
+    primaryContainer: primaryContainer ?? this.primaryContainer,
+    onPrimaryContainer: onPrimaryContainer ?? this.onPrimaryContainer,
+    action: action ?? this.action,
+    onAction: onAction ?? this.onAction,
+    actionPressed: actionPressed ?? this.actionPressed,
+    actionContainer: actionContainer ?? this.actionContainer,
+    onActionContainer: onActionContainer ?? this.onActionContainer,
+    accent: accent ?? this.accent,
+    onAccent: onAccent ?? this.onAccent,
+    onAccentContainer: onAccentContainer ?? this.onAccentContainer,
+    background: background ?? this.background,
+    surface: surface ?? this.surface,
+    surfaceSubtle: surfaceSubtle ?? this.surfaceSubtle,
+    outline: outline ?? this.outline,
+    controlBorder: controlBorder ?? this.controlBorder,
+    focus: focus ?? this.focus,
+    textPrimary: textPrimary ?? this.textPrimary,
+    textSecondary: textSecondary ?? this.textSecondary,
+    success: success ?? this.success,
+    successContainer: successContainer ?? this.successContainer,
+    onSuccessContainer: onSuccessContainer ?? this.onSuccessContainer,
+    warning: warning ?? this.warning,
+    warningContainer: warningContainer ?? this.warningContainer,
+    onWarningContainer: onWarningContainer ?? this.onWarningContainer,
+    warningBorder: warningBorder ?? this.warningBorder,
+    error: error ?? this.error,
+    errorContainer: errorContainer ?? this.errorContainer,
+    onErrorContainer: onErrorContainer ?? this.onErrorContainer,
+    sos: sos ?? this.sos,
+    onSos: onSos ?? this.onSos,
+    sosContainer: sosContainer ?? this.sosContainer,
+    onSosContainer: onSosContainer ?? this.onSosContainer,
+    sosBorder: sosBorder ?? this.sosBorder,
+    inverseSurface: inverseSurface ?? this.inverseSurface,
+    onInverseSurface: onInverseSurface ?? this.onInverseSurface,
+    ink: ink ?? this.ink,
+    marigold: marigold ?? this.marigold,
+    onMarigold: onMarigold ?? this.onMarigold,
+    accentContainer: accentContainer ?? this.accentContainer,
+    band: band ?? this.band,
+    onBand: onBand ?? this.onBand,
+    onBandMuted: onBandMuted ?? this.onBandMuted,
+    done: done ?? this.done,
+  );
 
   @override
   PawColors lerp(PawColors? other, double t) {
@@ -347,6 +403,13 @@ class PawColors extends ThemeExtension<PawColors> {
       inverseSurface: l(inverseSurface, other.inverseSurface),
       onInverseSurface: l(onInverseSurface, other.onInverseSurface),
       ink: l(ink, other.ink),
+      marigold: l(marigold, other.marigold),
+      onMarigold: l(onMarigold, other.onMarigold),
+      accentContainer: l(accentContainer, other.accentContainer),
+      band: l(band, other.band),
+      onBand: l(onBand, other.onBand),
+      onBandMuted: l(onBandMuted, other.onBandMuted),
+      done: l(done, other.done),
     );
   }
 }
@@ -366,8 +429,8 @@ class PetTagColors {
 }
 
 /// Colours that tell kinds of things apart (routine log types, chart
-/// series, document kinds). Muted mid-tones that sit with UI Design 2's forest
-/// teal and sand. Use them for icons and tints, not for body text; pass them
+/// series, document kinds). Muted mid-tones that sit with UI Design 5's cocoa
+/// and marigold; none of them reads as red (SOS is the only red). Use them for icons and tints, not for body text; pass them
 /// through [readableOn] when they colour text or sit on a dark surface.
 class CategoryColors {
   /// Text or icons drawn on top of a category colour.
@@ -375,11 +438,11 @@ class CategoryColors {
 
   static const teal = Color(0xFF2F7D6D);
   static const amber = Color(0xFFB7791F);
-  static const clay = Color(0xFFB0643C);
+  static const clay = Color(0xFF8E6343);
   static const sky = Color(0xFF3B82A6);
   static const olive = Color(0xFF5F7F2A);
   static const plum = Color(0xFF7C5CBF);
-  static const rose = Color(0xFFC2557A);
+  static const rose = Color(0xFFA24D86);
   static const ocean = Color(0xFF2B6CB0);
   static const gold = Color(0xFFA77B06);
   static const slate = Color(0xFF64748B);
@@ -394,14 +457,14 @@ class SeedArtColors {
   static const shadow = Color(0xFF000000);
 
   static const pairs = [
-    [Color(0xFFE6F0ED), Color(0xFF18453E)],
+    [Color(0xFFF4ECE3), Color(0xFF4A2A12)],
     [Color(0xFFFDE7D3), Color(0xFFF4A261)],
     [Color(0xFFDDD6FE), Color(0xFF9B8AFB)],
     [Color(0xFFBAE6FD), Color(0xFF38BDF8)],
     [Color(0xFFFBCFE8), Color(0xFFF472B6)],
     [Color(0xFFBBF7D0), Color(0xFF34D399)],
     [Color(0xFFF5E6CC), Color(0xFFD6B98C)],
-    [Color(0xFFF3EFEA), Color(0xFFB9532E)],
+    [Color(0xFFEFECE7), Color(0xFF8F5A00)],
   ];
 }
 
@@ -410,15 +473,15 @@ class SeedArtColors {
 /// in dark mode, because paper is always white.
 class PrintColors {
   static const paper = Color(0xFFFFFFFF);
-  static const ink = Color(0xFF1C1917);
-  static const muted = Color(0xFF57534E);
-  static const brand = Color(0xFF18453E);
-  static const brandTint = Color(0xFFE6F0ED);
+  static const ink = Color(0xFF231B12);
+  static const muted = Color(0xFF5B5044);
+  static const brand = Color(0xFF4A2A12);
+  static const brandTint = Color(0xFFF4ECE3);
   static const alert = Color(0xFFB91C1C);
-  static const rule = Color(0xFFE7E2DA);
+  static const rule = Color(0xFFE6E1DA);
 
   /// Every other row in a printed table.
-  static const zebra = Color(0xFFFAF8F5);
+  static const zebra = Color(0xFFF6F5F3);
 
   /// "Demo" note on printed pages.
   static const note = Color(0xFFFFFBEB);
@@ -447,18 +510,18 @@ class MediaColors {
   static const control = Color(0x3DFFFFFF);
   static const controlDisabled = Color(0x1AFFFFFF);
 
-  /// Video call: page, the forest glow behind the other person, the
+  /// Video call: page, the cocoa glow behind the other person, the
   /// picture-in-picture tile, the avatar and its icon, and the small lines.
-  static const callBackground = Color(0xFF0E1715);
-  static const callGlow = Color(0xFF18453E);
-  static const callTile = Color(0xFF1A2422);
-  static const callAvatar = Color(0xFF52B7A5);
-  static const onCallAvatar = Color(0xFF0A2923);
-  static const callSubtitle = Color(0xFFCDEAE3);
-  static const callWarning = Color(0xFFFBBF24);
-  static const callGood = Color(0xFF4ADE80);
-  static const callDemo = Color(0x33FBBF24);
-  static const onCallDemo = Color(0xFFFDE68A);
+  static const callBackground = Color(0xFF14110D);
+  static const callGlow = Color(0xFF3A2416);
+  static const callTile = Color(0xFF1F1A14);
+  static const callAvatar = Color(0xFFF5B53F);
+  static const onCallAvatar = Color(0xFF2A1A00);
+  static const callSubtitle = Color(0xFFEAD7BA);
+  static const callWarning = Color(0xFFFFC861);
+  static const callGood = Color(0xFF6FD49A);
+  static const callDemo = Color(0x33FFC861);
+  static const onCallDemo = Color(0xFFFFE2A3);
 }
 
 /// WCAG contrast ratio between two opaque colours (1 to 21).
@@ -480,21 +543,27 @@ Color readableOn(Color fg, List<Color> backgrounds, {double ratio = 4.5}) {
   return c;
 }
 
-/// Font families (bundled in assets/fonts).
+/// Font families (bundled in assets/fonts; all SIL OFL).
 class FontFamilies {
-  /// Headings in English.
-  static const heading = 'PlusJakartaSans';
+  /// Titles in English and Hindi: Baloo 2 (Ek Type), 600 and 700.
+  static const heading = 'Baloo2';
 
-  /// Body text and labels in English.
-  static const body = 'Inter';
+  /// Titles in Telugu: Baloo Tammudu 2 (Ek Type), 600 and 700.
+  static const headingTelugu = 'BalooTammudu2';
+
+  /// Text and labels in English and Hindi: Hind (Indian Type Foundry).
+  static const body = 'Hind';
+
+  /// Text and labels in Telugu: Hind Guntur (Indian Type Foundry).
+  static const bodyTelugu = 'HindGuntur';
 
   /// Times, IDs, batch numbers and doses.
   static const mono = 'JetBrainsMono';
 
-  /// Hindi.
+  /// Fallback for Hindi.
   static const devanagari = 'NotoSansDevanagari';
 
-  /// Telugu.
+  /// Fallback for Telugu.
   static const telugu = 'NotoSansTelugu';
 }
 
@@ -506,37 +575,47 @@ class TypeToken {
   final FontWeight weight;
   final double tracking;
 
-  /// Set in the heading font (Plus Jakarta Sans) in English.
+  /// Set in the title font (Baloo 2, or Baloo Tammudu 2 in Telugu).
   final bool heading;
 }
 
-/// The type scale (UI Design 2). Hindi and Telugu use the same sizes with at
-/// least 1.6 line height ([indicLineHeight]) and no negative tracking.
+/// The type scale (UI Design 5, DESIGN.md "Typography"). A small set of steps:
+/// rank comes from these sizes and weights, never ad-hoc sizes. Hindi and
+/// Telugu use line height 1.6 or more ([indicLineHeight]), no letter-spacing
+/// and secondary text one step up ([indicSmallBump]). Nothing is under 13 px.
 class TypeScale {
-  static const display = TypeToken(40, 48, FontWeight.w700, tracking: -0.8, heading: true);
-  static const displayPhone = TypeToken(28, 34, FontWeight.w700, tracking: -0.5, heading: true);
-  static const headlineLarge = TypeToken(32, 38, FontWeight.w700, tracking: -0.6, heading: true);
-  static const headline = TypeToken(24, 30, FontWeight.w700, tracking: -0.4, heading: true);
-  static const headlineMedium = TypeToken(24, 30, FontWeight.w600, tracking: -0.3, heading: true);
-  static const title = TypeToken(20, 26, FontWeight.w700, tracking: -0.2, heading: true);
-  static const titleMedium = TypeToken(18, 24, FontWeight.w700, tracking: -0.2, heading: true);
-  static const titleSmall = TypeToken(16, 22, FontWeight.w700, tracking: -0.1, heading: true);
-  static const bodyLarge = TypeToken(16, 24, FontWeight.w400);
-  static const body = TypeToken(15, 22, FontWeight.w400);
-  static const bodySmall = TypeToken(13, 18, FontWeight.w400);
-  static const label = TypeToken(15, 20, FontWeight.w600);
-  static const labelMedium = TypeToken(13, 18, FontWeight.w600);
+  static const display = TypeToken(36, 44, FontWeight.w700, heading: true);
+  static const displayPhone = TypeToken(30, 38, FontWeight.w700, heading: true);
+  static const headlineLarge = TypeToken(30, 38, FontWeight.w700, heading: true);
+  static const headline = TypeToken(26, 34, FontWeight.w700, heading: true);
+  static const headlineMedium = TypeToken(24, 32, FontWeight.w600, heading: true);
+  static const title = TypeToken(21, 28, FontWeight.w700, heading: true);
+  static const titleMedium = TypeToken(18, 24, FontWeight.w700, heading: true);
+  static const titleSmall = TypeToken(17, 23, FontWeight.w600, heading: true);
+  static const bodyLarge = TypeToken(17, 26, FontWeight.w400);
+  static const body = TypeToken(16, 24, FontWeight.w400);
+  static const bodySmall = TypeToken(14, 20, FontWeight.w400);
+  static const label = TypeToken(16, 22, FontWeight.w600);
+  static const labelMedium = TypeToken(14, 20, FontWeight.w600);
 
-  /// Small labels and tags: the smallest text in the app.
-  static const labelSmall = TypeToken(12, 16, FontWeight.w600);
+  /// Badges, chart axes, small tags: the smallest text in the app (13 px).
+  static const labelSmall = TypeToken(13, 18, FontWeight.w600);
 
-  /// Uppercase micro labels ("AVAILABLE SLOT").
-  static const overline = TypeToken(12, 16, FontWeight.w700, tracking: 0.6);
+  /// Small section labels ("Next for Bruno"). Sentence case, never
+  /// upper-cased or letter-spaced (Hindi and Telugu can't be).
+  static const overline = TypeToken(13, 18, FontWeight.w700);
 
-  /// Monospace for times, IDs and doses.
-  static const mono = TypeToken(13, 18, FontWeight.w500);
+  /// Monospace for IDs, batch numbers and doses.
+  static const mono = TypeToken(14, 20, FontWeight.w500);
+
+  /// The day number in a date block ("13" over "Fri").
+  static const dateNumber = TypeToken(26, 28, FontWeight.w700, heading: true);
 
   static const double indicLineHeight = 1.6;
+
+  /// Hindi and Telugu letters sit smaller than Latin at the same size, so
+  /// text under 16 px gets this much more.
+  static const double indicSmallBump = 1;
 
   /// Line height for big numbers stacked tight (date squares).
   static const double tightLineHeight = 1.0;
@@ -577,14 +656,14 @@ class Space {
 class Radii {
   /// Checkboxes.
   static const double xs = 4;
-  static const double sm = 6;
+  static const double sm = 8;
 
   /// Inputs, search fields, date boxes.
   static const double md = 12;
   static const double lg = 16;
 
   /// Cards.
-  static const double xl = 20;
+  static const double xl = 22;
 
   /// Bottom sheets and dialogs.
   static const double xxl = 28;
@@ -594,7 +673,7 @@ class Radii {
 
   static const double card = xl;
   static const double button = full;
-  static const double input = md;
+  static const double input = lg;
   static const double sheet = xxl;
 }
 
@@ -882,14 +961,12 @@ class TapTarget {
 class Shadows {
   /// Cards (light mode only; dark mode uses surface tones and the border).
   static List<BoxShadow> card(Color ink) => [
-        BoxShadow(color: ink.withValues(alpha: 0.04), blurRadius: 3, offset: const Offset(0, 1)),
-        BoxShadow(color: ink.withValues(alpha: 0.06), blurRadius: 24, spreadRadius: -4, offset: const Offset(0, 8)),
-      ];
+    BoxShadow(color: ink.withValues(alpha: 0.06), blurRadius: 2, offset: const Offset(0, 1)),
+    BoxShadow(color: ink.withValues(alpha: 0.07), blurRadius: 18, offset: const Offset(0, 6)),
+  ];
 
   /// Sheets, dialogs and menus.
-  static List<BoxShadow> overlay(Color ink) => [
-        BoxShadow(color: ink.withValues(alpha: 0.14), blurRadius: 48, spreadRadius: -8, offset: const Offset(0, 20)),
-      ];
+  static List<BoxShadow> overlay(Color ink) => [BoxShadow(color: ink.withValues(alpha: 0.14), blurRadius: 48, spreadRadius: -8, offset: const Offset(0, 20))];
 }
 
 /// Line widths.
@@ -985,13 +1062,11 @@ class PawTextStyles extends ThemeExtension<PawTextStyles> {
   final TextStyle overline;
 
   @override
-  PawTextStyles copyWith({TextStyle? mono, TextStyle? overline}) =>
-      PawTextStyles(mono: mono ?? this.mono, overline: overline ?? this.overline);
+  PawTextStyles copyWith({TextStyle? mono, TextStyle? overline}) => PawTextStyles(mono: mono ?? this.mono, overline: overline ?? this.overline);
 
   @override
-  PawTextStyles lerp(PawTextStyles? other, double t) => other == null
-      ? this
-      : PawTextStyles(mono: TextStyle.lerp(mono, other.mono, t)!, overline: TextStyle.lerp(overline, other.overline, t)!);
+  PawTextStyles lerp(PawTextStyles? other, double t) =>
+      other == null ? this : PawTextStyles(mono: TextStyle.lerp(mono, other.mono, t)!, overline: TextStyle.lerp(overline, other.overline, t)!);
 }
 
 extension PawThemeX on BuildContext {

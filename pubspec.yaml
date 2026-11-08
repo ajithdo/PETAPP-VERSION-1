@@ -113,15 +113,37 @@ flutter:
           weight: 600
         - asset: assets/fonts/PlusJakartaSans-700.ttf
           weight: 700
-    - family: Inter
+    - family: Baloo2
       fonts:
-        - asset: assets/fonts/Inter-400.ttf
-          weight: 400
-        - asset: assets/fonts/Inter-500.ttf
-          weight: 500
-        - asset: assets/fonts/Inter-600.ttf
+        - asset: assets/fonts/Baloo2-600.ttf
           weight: 600
-        - asset: assets/fonts/Inter-700.ttf
+        - asset: assets/fonts/Baloo2-700.ttf
+          weight: 700
+    - family: BalooTammudu2
+      fonts:
+        - asset: assets/fonts/BalooTammudu2-600.ttf
+          weight: 600
+        - asset: assets/fonts/BalooTammudu2-700.ttf
+          weight: 700
+    - family: Hind
+      fonts:
+        - asset: assets/fonts/Hind-400.ttf
+          weight: 400
+        - asset: assets/fonts/Hind-500.ttf
+          weight: 500
+        - asset: assets/fonts/Hind-600.ttf
+          weight: 600
+        - asset: assets/fonts/Hind-700.ttf
+          weight: 700
+    - family: HindGuntur
+      fonts:
+        - asset: assets/fonts/HindGuntur-400.ttf
+          weight: 400
+        - asset: assets/fonts/HindGuntur-500.ttf
+          weight: 500
+        - asset: assets/fonts/HindGuntur-600.ttf
+          weight: 600
+        - asset: assets/fonts/HindGuntur-700.ttf
           weight: 700
     - family: JetBrainsMono
       fonts:
