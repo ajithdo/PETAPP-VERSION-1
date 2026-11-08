@@ -4,9 +4,9 @@ Read this first after a usage reset, a restart or a context summary, then contin
 
 ## Status
 
-- **Phase:** Batches A and B done. Now Batch C (sign-in started).
+- **Phase:** Batches A–D done, icons done. Now Phase 6 (finish).
 - **Work branch:** `claude/happy-wozniak-68a4q2` (push only this branch).
-- **Next step:** Batch C is restyled in code (sign-in + demo accounts, clinic page header, booking time, SOS calm with one red action and full phone numbers, first aid, tele-vet hang-up/recording colours, portal top bar). A build + capture of the remaining screens is in `docs/ui-revamp/ui-design-5-C-flows/`. Review those shots (vault, album, messages, notifications, family, plus, settings, ask, product, cart, welcome), fix what they show, run all tests, write `docs/ui-revamp/ui-design-5-C-flows/AUDIT.md` and the Batch C summary, commit. Then Batch D (portals + admin: check `portal_scaffold.dart` screens, tables in compact density), Batch E (motion, app icons), Phase 6.
+- **Next step:** Phase 6. Final UI Design 5 set (same 84 screens as the UI Design 4 'before' set) is in `docs/ui-revamp/ui-design-5-final/`. Do: (1) fresh-eyes review with the impeccable-finish-reviewer agent on key final screenshots, fix what matters, retest; (2) `docs/ui-revamp/compare-ui-design-5.html` (UI Design 4 baseline vs UI Design 5 final, same file names); (3) `.impeccable/design.json` sidecar; (4) docs: PROGRESS (Names table + entry), DECISIONS, UI_REVAMP.md; store screenshots in `docs/store/`; (5) web build + Netlify draft-deploy steps and the 'Powered by Netlify' badge steps in 'For you when you're back'; (6) morning report; (7) cancel remaining check-ins (ids in Check-ins below).
 
 ## Plan (from the owner's prompt)
 
@@ -20,10 +20,10 @@ Read this first after a usage reset, a restart or a context summary, then contin
 | 4 | Foundation | done |
 | 5A | Shell: navigation, top bar, pet switcher, SOS | done (audit 19/20) |
 | 5B | Home, Health, Book, Shop, Me | done (audit 19/20) |
-| 5C (next) | Sign-in + demo accounts first; then booking, pet profile + routine, SOS, tele-vet; then vault, album, messages, notifications, family, plans, settings, onboarding | — |
-| 5D | Partner portals and admin (before the rest of 5C only if the audit finds them much weaker) | — |
-| 5E | Motion and app icons | — |
-| 6 | Finish: critique, polish, fresh-eyes review, compare page, docs, store screenshots, web build | — |
+| 5C | Sign-in + demo accounts first; then booking, pet profile + routine, SOS, tele-vet; then vault, album, messages, notifications, family, plans, settings, onboarding | — |
+| 5D | Partner portals and admin (before the rest of 5C only if the audit finds them much weaker) | done (audit 19/20; not weaker, order kept) |
+| 5E | Motion and app icons | icons done; motion: garland bloom, progress bar, pet-photo hero, 200–300 ms tokens, reduce motion honoured |
+| 6 | Finish: critique, polish, fresh-eyes review, compare page, docs, store screenshots, web build | next |
 | — | Morning report (`docs/ui-designs/ui-design-5-morning-report.md`) | — |
 
 After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, light/dark, English/Telugu, Easy mode) in `docs/ui-revamp/ui-design-5-<batch>/` beside the UI Design 4 ones; token check empty; `flutter analyze` clean; all tests pass (including `test/qa/layout_sweep_test.dart` and the contrast test); commit, push, and the AGENTS.md summary here.
