@@ -8,8 +8,6 @@ import '../../booking/data/places_repository.dart';
 import '../../booking/presentation/place_finder_screen.dart';
 import '../../health/data/health_repository.dart';
 import '../../health/domain/vaccine_schedule.dart';
-import '../../health/presentation/health_labels.dart';
-import '../../health/presentation/health_screen.dart';
 import '../../pets/domain/pet.dart';
 import '../../routine/domain/routine.dart';
 
@@ -31,77 +29,26 @@ import '../../routine/domain/routine.dart';
   return items.first;
 }
 
-/// UI Design 2 top of Home ("Explore"): where you are, a search box, quick
-/// links, the pet's health status and the nearest vets. The pet's day
-/// follows below it (owner's choice, 4 Nov 2026).
-List<Widget> homeDiscoveryTop(BuildContext context, WidgetRef ref, {required Pet? pet, required List<Pet> pets, required bool wide}) {
+/// Home "Near you" (UI Design 5): below the pet's day, never above it
+/// (DESIGN.md, the Pet First rule). A section title with the map link, where
+/// you are and a search box, then the nearest clinics (2 on phones).
+List<Widget> homeNearby(BuildContext context, WidgetRef ref, {required bool wide}) {
   final l = context.l10n;
   final origin = ref.watch(searchOriginProvider);
   final clinics = ref.watch(clinicsProvider).value ?? const <Place>[];
   final nearest = [for (final c in clinics) (c, distanceKm(origin.lat, origin.lng, c.lat, c.lng))]..sort((a, b) => a.$2.compareTo(b.$2));
-  final shown = nearest.take(wide ? 3 : 2).toList();
+  final shown = nearest.take(2).toList();
   void find({bool map = false}) => context.push(map ? '/book/find/clinic?map=1' : '/book/find/clinic');
-
-  final location = _LocationPill(label: origin.label, onTap: find);
-  final search = _SearchBox(hint: l.findAVet, onTap: find, onMap: () => find(map: true), wide: wide);
-  final chips = Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
-    PawPill(
-      label: l.kindVet,
-      selected: true,
-      leading: Icon(Icons.local_hospital_outlined, size: IconSizes.md, color: context.paw.brand),
-      onTap: find,
-    ),
-    PawPill(
-      label: l.vaccinations,
-      outlined: true,
-      leading: Icon(Icons.vaccines_outlined, size: IconSizes.md, color: context.paw.brand),
-      onTap: () => context.go('/health'),
-    ),
-    PawPill(
-      label: l.teleVet,
-      outlined: true,
-      leading: Icon(Icons.videocam_outlined, size: IconSizes.md, color: context.paw.brand),
-      onTap: () => context.push('/televet'),
-    ),
-  ]);
-  final status = _HealthStatusCard(pet: pet, pets: pets);
-  final vets = [
-    SectionHeader(l.nearYou, action: l.mapView, onAction: () => find(map: true)),
+  return [
+    SectionHeader(l.nearYou, action: l.mapView, onAction: () => find(map: true), padding: wide ? const EdgeInsets.only(top: Space.xl, bottom: Space.sm) : null),
+    Align(alignment: Alignment.centerLeft, child: _LocationPill(label: origin.label, onTap: find)),
+    const SizedBox(height: Space.sm),
+    _SearchBox(hint: l.findAVet, onTap: find, onMap: () => find(map: true), wide: false),
+    const SizedBox(height: Space.md),
     if (shown.isEmpty)
       const Skeleton(height: Sizes.placeCardPhoto, radius: Radii.card)
-    else if (wide)
-      ResponsiveGrid(minItemWidth: Sizes.placeCardMinWidth, children: [for (final e in shown) PlaceCard(place: e.$1, km: e.$2)])
     else
       for (final e in shown) Padding(padding: const EdgeInsets.only(bottom: Space.md), child: PlaceCard(place: e.$1, km: e.$2)),
-  ];
-
-  if (wide) {
-    return [
-      const SizedBox(height: Space.lg),
-      Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-        Expanded(child: Semantics(header: true, child: Text(l.findAVet, style: context.text.displayMedium))),
-        const SizedBox(width: Space.lg),
-        location,
-      ]),
-      const SizedBox(height: Space.lg),
-      search,
-      const SizedBox(height: Space.md),
-      chips,
-      ...vets,
-      const SizedBox(height: Space.xl),
-      status,
-    ];
-  }
-  return [
-    const SizedBox(height: Space.sm),
-    Align(alignment: Alignment.centerLeft, child: location),
-    const SizedBox(height: Space.md),
-    search,
-    const SizedBox(height: Space.md),
-    chips,
-    const SizedBox(height: Space.lg),
-    status,
-    ...vets,
   ];
 }
 
@@ -118,8 +65,8 @@ class _LocationPill extends StatelessWidget {
       label: label,
       excludeSemantics: true,
       child: Material(
-        color: paw.surface,
-        shape: StadiumBorder(side: BorderSide(color: paw.outline)),
+        color: paw.surfaceSubtle,
+        shape: const StadiumBorder(),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onTap,
@@ -136,7 +83,7 @@ class _LocationPill extends StatelessWidget {
                 const SizedBox(width: Space.sm),
                 Flexible(child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.text.labelLarge)),
                 const SizedBox(width: Space.xs),
-                Icon(Icons.expand_more_outlined, size: IconSizes.md, color: paw.textSecondary),
+                Icon(Icons.expand_more_rounded, size: IconSizes.md, color: paw.textSecondary),
               ]),
             ),
           ),
@@ -161,12 +108,15 @@ class _SearchBox extends StatelessWidget {
     final light = Theme.of(context).brightness == Brightness.light;
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Radii.card),
+        borderRadius: BorderRadius.circular(Radii.full),
         boxShadow: light ? Shadows.card(paw.ink) : null,
       ),
       child: Material(
         color: paw.surface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.card), side: BorderSide(color: paw.outline)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Radii.full),
+          side: light ? BorderSide.none : BorderSide(color: paw.outline),
+        ),
         clipBehavior: Clip.antiAlias,
         child: Padding(
           padding: const EdgeInsets.all(Space.xs + Space.xxs),
@@ -177,7 +127,7 @@ class _SearchBox extends StatelessWidget {
                 label: hint,
                 excludeSemantics: true,
                 child: InkWell(
-                  borderRadius: BorderRadius.circular(Radii.lg),
+                  borderRadius: BorderRadius.circular(Radii.full),
                   onTap: onTap,
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(minHeight: TapTarget.min),
@@ -206,63 +156,6 @@ class _SearchBox extends StatelessWidget {
             ] else
               PawIconButton(icon: Icons.map_outlined, tooltip: l.clinicFinderMap, onPressed: onMap),
           ]),
-        ),
-      ),
-    );
-  }
-}
-
-/// UI Design 2 dark card on Home: the most urgent care item ("Booster due in 10
-/// days") with a coral Book button, or "All up to date".
-class _HealthStatusCard extends ConsumerWidget {
-  const _HealthStatusCard({required this.pet, required this.pets});
-  final Pet? pet;
-  final List<Pet> pets;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l = context.l10n;
-    final c = PassCard.colorsOf(context);
-    final focus = pet == null ? pets : [pet!];
-    final urgent = mostUrgentDue(ref, focus);
-    final who = urgent?.$1 ?? pet;
-    final overline = who == null ? l.nextUp : l.healthOf(who.name);
-    final title = urgent == null ? l.healthAllClear : dueTitle(context, urgent.$2);
-    final when = urgent == null ? l.nothingDueAll : dueWhen(context, urgent.$2);
-    final isVaccine = urgent?.$2.kind == 'vaccine';
-    final button = urgent == null
-        ? PassCard.action(context, label: l.tabHealth, icon: Icons.favorite_border, onPressed: () => context.go('/health'))
-        : isVaccine
-            ? PrimaryButton(label: l.bookNow, expand: false, onPressed: () => context.push('/book/find/clinic'))
-            : PassCard.action(context, label: l.tabHealth, icon: Icons.arrow_forward_outlined, onPressed: () => openDueItem(context, ref, urgent.$1, urgent.$2));
-    final text = Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-      Row(children: [
-        Icon(Icons.verified_user_outlined, size: IconSizes.sm, color: c.fg),
-        const SizedBox(width: Space.xs + Space.xxs),
-        Flexible(child: Text(overline.toUpperCase(), style: context.textX.overline.copyWith(color: c.fg))),
-      ]),
-      const SizedBox(height: Space.sm),
-      Text(title, style: context.text.titleLarge?.copyWith(color: c.fg)),
-      if (when.isNotEmpty) ...[
-        const SizedBox(height: Space.xxs),
-        Text(when, style: context.text.bodyMedium?.copyWith(color: c.muted)),
-      ],
-    ]);
-    return Semantics(
-      container: true,
-      child: Container(
-        padding: const EdgeInsets.all(Space.lg),
-        decoration: BoxDecoration(
-          color: c.bg,
-          borderRadius: BorderRadius.circular(Radii.card),
-          boxShadow: Theme.of(context).brightness == Brightness.light ? Shadows.card(context.paw.ink) : null,
-        ),
-        child: Wrap(
-          alignment: WrapAlignment.spaceBetween,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: Space.lg,
-          runSpacing: Space.md,
-          children: [text, button],
         ),
       ),
     );

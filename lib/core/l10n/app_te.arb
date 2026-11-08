@@ -2953,5 +2953,9 @@
   "albumTitle": "{pet} జ్ఞాపకాలు",
   "gendaProgress": "{total}లో {done} పూర్తయ్యాయి",
   "gendaNothingPlanned": "ఈరోజు ఏమీ ప్లాన్ లేదు. ఒక దినచర్య జోడించండి.",
-  "withUnread": "{label}, {count} చదవనివి"
+  "withUnread": "{label}, {count} చదవనివి",
+  "shopAskVet": "{name}కి ఏది సరిపోతుందో తెలియదా? వెట్‌ని అడగండి",
+  "meGroupPets": "పెంపుడు జంతువులు, కుటుంబం",
+  "meGroupMoney": "ఆర్డర్‌లు, డబ్బు",
+  "meGroupHelp": "సహాయం, సెట్టింగ్‌లు"
 }

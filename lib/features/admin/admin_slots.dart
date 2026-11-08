@@ -101,7 +101,9 @@ bool meItemVisible(WidgetRef ref, String route) => switch (route) {
       _ => true,
     };
 
-/// Home notices: account deletion pending, trial ending, and admin banners.
+/// Home notices: account deletion pending and trial ending (top of Home).
+/// Admin offer banners are not here: Home shows them below the pet's day
+/// with [BannerStrip] (UI Design 5, the Pet First rule).
 List<Widget> adminHomeSection(BuildContext context, WidgetRef ref) {
   final l = context.l10n;
   final user = ref.watch(currentUserProvider);
@@ -138,6 +140,5 @@ List<Widget> adminHomeSection(BuildContext context, WidgetRef ref) {
           ]),
         ),
       ),
-    const BannerStrip(placement: 'home'),
   ];
 }

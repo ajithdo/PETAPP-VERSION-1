@@ -10712,4 +10712,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String withUnread(String label, int count) {
     return '$label, $count unread';
   }
+
+  @override
+  String shopAskVet(String name) {
+    return 'Not sure what suits $name? Ask a vet';
+  }
+
+  @override
+  String get meGroupPets => 'Pets and family';
+
+  @override
+  String get meGroupMoney => 'Orders and money';
+
+  @override
+  String get meGroupHelp => 'Help and settings';
 }

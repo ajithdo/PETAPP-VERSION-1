@@ -2953,5 +2953,9 @@
   "albumTitle": "{pet} की यादें",
   "gendaProgress": "{total} में से {done} हो गए",
   "gendaNothingPlanned": "आज कुछ तय नहीं है। एक दिनचर्या जोड़ें।",
-  "withUnread": "{label}, {count} बिना पढ़े"
+  "withUnread": "{label}, {count} बिना पढ़े",
+  "shopAskVet": "{name} के लिए क्या ठीक रहेगा, पता नहीं? डॉक्टर से पूछें",
+  "meGroupPets": "पालतू और परिवार",
+  "meGroupMoney": "ऑर्डर और पैसे",
+  "meGroupHelp": "मदद और सेटिंग्स"
 }

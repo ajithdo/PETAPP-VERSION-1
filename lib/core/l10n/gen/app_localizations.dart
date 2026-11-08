@@ -17823,6 +17823,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{label}, {count} unread'**
   String withUnread(String label, int count);
+
+  /// No description provided for @shopAskVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure what suits {name}? Ask a vet'**
+  String shopAskVet(String name);
+
+  /// No description provided for @meGroupPets.
+  ///
+  /// In en, this message translates to:
+  /// **'Pets and family'**
+  String get meGroupPets;
+
+  /// No description provided for @meGroupMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders and money'**
+  String get meGroupMoney;
+
+  /// No description provided for @meGroupHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Help and settings'**
+  String get meGroupHelp;
 }
 
 class _AppLocalizationsDelegate

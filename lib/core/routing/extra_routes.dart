@@ -140,10 +140,14 @@ final partnerRoutes = <RouteBase>[
 ];
 
 class MeMenuItem {
-  const MeMenuItem(this.icon, this.label, this.route);
+  const MeMenuItem(this.icon, this.label, this.route, {this.group = 0});
   final IconData icon;
   final String label;
   final String route;
+
+  /// Which heading the item sits under on Me (UI Design 5): 0 pets and
+  /// family, 1 orders and money, 2 help and settings.
+  final int group;
 }
 
 List<MeMenuItem> meMenu(BuildContext context) {
@@ -153,15 +157,15 @@ List<MeMenuItem> meMenu(BuildContext context) {
     MeMenuItem(Icons.family_restroom_outlined, l.familySharing, '/me/family'),
     MeMenuItem(Icons.lock_outlined, l.documentVault, '/me/vault'),
     MeMenuItem(Icons.photo_library_outlined, l.memoryAlbum, '/me/album'),
-    MeMenuItem(Icons.watch_outlined, l.connectedDevices, '/me/devices'),
     MeMenuItem(Icons.qr_code_2_outlined, l.lostPetMode, '/me/lost'),
-    MeMenuItem(Icons.account_balance_wallet_outlined, l.expenses, '/me/expenses'),
-    MeMenuItem(Icons.receipt_long_outlined, l.ordMyOrders, '/shop/orders'),
-    MeMenuItem(Icons.location_on_outlined, l.addrBook, '/me/addresses'),
-    MeMenuItem(Icons.workspace_premium_outlined, l.pawsetuPlus, '/me/plus'),
-    MeMenuItem(Icons.card_giftcard_outlined, l.referTitle, '/me/refer'),
-    MeMenuItem(Icons.settings_outlined, l.settings, '/me/settings'),
-    MeMenuItem(Icons.support_agent_outlined, l.helpAndComplaints, '/me/help'),
-    MeMenuItem(Icons.privacy_tip_outlined, l.privacyCentre, '/me/privacy'),
+    MeMenuItem(Icons.watch_outlined, l.connectedDevices, '/me/devices'),
+    MeMenuItem(Icons.receipt_long_outlined, l.ordMyOrders, '/shop/orders', group: 1),
+    MeMenuItem(Icons.account_balance_wallet_outlined, l.expenses, '/me/expenses', group: 1),
+    MeMenuItem(Icons.location_on_outlined, l.addrBook, '/me/addresses', group: 1),
+    MeMenuItem(Icons.workspace_premium_outlined, l.pawsetuPlus, '/me/plus', group: 1),
+    MeMenuItem(Icons.card_giftcard_outlined, l.referTitle, '/me/refer', group: 1),
+    MeMenuItem(Icons.settings_outlined, l.settings, '/me/settings', group: 2),
+    MeMenuItem(Icons.support_agent_outlined, l.helpAndComplaints, '/me/help', group: 2),
+    MeMenuItem(Icons.privacy_tip_outlined, l.privacyCentre, '/me/privacy', group: 2),
   ];
 }

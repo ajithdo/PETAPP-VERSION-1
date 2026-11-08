@@ -7,6 +7,7 @@ import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/shop_repository.dart';
 import '../domain/shop_models.dart';
+import '../domain/shop_rules.dart';
 import 'shop_labels.dart';
 
 /// Product picture: the seller's photo, or an illustrated placeholder in
@@ -22,23 +23,19 @@ class ProductArt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = categoryColor(category);
-    final shade = (seed % 4) * 0.06;
+    // No photo: a calm category drawing on warm grey (UI Design 5), never a
+    // loud gradient placeholder.
+    final paw = context.paw;
+    final c = readableOn(categoryColor(category), [paw.surfaceSubtle], ratio: 3);
     Widget art;
     if (photoUrl != null && photoUrl!.isNotEmpty) {
       art = MediaImage(url: photoUrl!, fit: BoxFit.cover, semanticLabel: label);
     } else {
-      art = DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color.lerp(c, SeedArtColors.light, 0.82 - shade)!, Color.lerp(c, SeedArtColors.light, 0.55 - shade)!],
-          ),
-        ),
+      art = ColoredBox(
+        color: paw.surfaceSubtle,
         child: LayoutBuilder(builder: (context, box) {
-          final s = box.biggest.shortestSide.isFinite ? box.biggest.shortestSide : 80.0;
-          return Center(child: Icon(categoryIcon(category), size: s * 0.42, color: Color.lerp(c, SeedArtColors.shadow, 0.15)));
+          final s = box.biggest.shortestSide.isFinite ? box.biggest.shortestSide : Sizes.thumbXl;
+          return Center(child: Icon(categoryIcon(category), size: s * 0.38, color: c));
         }),
       );
       if (label != null) art = Semantics(image: true, label: label, child: art);
@@ -125,17 +122,8 @@ class ProductCard extends ConsumerWidget {
         AspectRatio(
           aspectRatio: compact ? 1.3 : 1.15,
           child: Stack(fit: StackFit.expand, children: [
+            // The discount is shown once, in the price line below.
             ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.lg),
-            if (p.discountPercent >= 10)
-              Positioned(
-                left: 6,
-                top: 6,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs, vertical: Space.xxs),
-                  decoration: BoxDecoration(color: context.paw.success, borderRadius: BorderRadius.circular(Radii.sm)),
-                  child: Text(l.shopOffPercent(p.discountPercent), style: context.text.labelSmall?.copyWith(color: context.paw.surface, fontWeight: FontWeight.w700)),
-                ),
-              ),
             if (!p.inStock)
               Positioned.fill(
                 child: Container(
@@ -151,6 +139,22 @@ class ProductCard extends ConsumerWidget {
         Text(p.name, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600), maxLines: 2, overflow: TextOverflow.ellipsis),
         const SizedBox(height: Space.xxs),
         PriceTag(price: p.price, mrp: p.mrp),
+        if (!p.isAffiliate && p.inStock) ...[
+          const SizedBox(height: Space.xxs),
+          // When it arrives, in plain words (UI Design 5 brief).
+          Row(children: [
+            Icon(Icons.local_shipping_outlined, size: IconSizes.sm, color: context.paw.success),
+            const SizedBox(width: Space.xs),
+            Flexible(
+              child: Text(
+                l.shopDeliveryOn(Fmt.dateShort(addWorkingDays(Fmt.dayOnly(DateTime.now()), p.deliveryDays), context.lang)),
+                style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ]),
+        ],
         const SizedBox(height: Space.xxs),
         if (p.isAffiliate) PartnerStoreBadge(store: store) else RatingLine(rating: p.rating, count: p.reviewCount),
       ]),

@@ -343,7 +343,7 @@ class _Stat extends StatelessWidget {
       label: '$label $value',
       excludeSemantics: true,
       child: Column(children: [
-        Text(label.toUpperCase(),
+        Text(label,
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

@@ -12,12 +12,15 @@ import '../domain/routine.dart';
 import 'quick_log_sheet.dart';
 import 'routine_labels.dart';
 
-/// Home "Today" card: the daily plan as a checklist with a progress ring.
-/// Each row has a one-tap log button.
+/// "Today" card: the daily plan as a checklist. Each row has a one-tap log
+/// button. With [header] (routine screen) it opens with a progress ring and
+/// the day's title; on Home the Genda band above already shows both, so the
+/// card starts with "Today" and the streak.
 class TodayCard extends ConsumerWidget {
-  const TodayCard({super.key, required this.pet, this.big = false});
+  const TodayCard({super.key, required this.pet, this.big = false, this.header = true});
   final Pet pet;
   final bool big;
+  final bool header;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,7 +33,14 @@ class TodayCard extends ConsumerWidget {
         data: (all) {
           final p = TodayProgress(pet: pet, logs: all);
           final s = streak(all.map((x) => x.at), DateTime.now());
+          final streakChip = s > 1 ? StatusChip(l.streakDays(s), tone: ChipTone.accent, icon: Icons.local_fire_department_outlined) : null;
           return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            if (!header)
+              Row(children: [
+                Expanded(child: Semantics(header: true, child: Text(l.today, style: context.text.titleLarge))),
+                ?streakChip,
+              ])
+            else
             Row(children: [
               ProgressRing(
                 progress: p.fraction,
@@ -46,15 +56,12 @@ class TodayCard extends ConsumerWidget {
                     p.fraction >= 1 ? l.allDoneToday(pet.name) : l.tasksLeft(p.items.where((i) => i.$2 < i.$3).length),
                     style: context.text.bodySmall,
                   ),
-                  if (s > 1) ...[
-                    const SizedBox(height: Space.sm),
-                    StatusChip(l.streakDays(s), tone: ChipTone.accent, icon: Icons.local_fire_department_outlined),
-                  ],
+                  if (streakChip != null) ...[const SizedBox(height: Space.sm), streakChip],
                 ]),
               ),
             ]),
-            const SizedBox(height: Space.md),
-            const Divider(),
+            SizedBox(height: header ? Space.md : Space.sm),
+            if (header) const Divider(),
             for (final item in p.items)
               _ChecklistRow(pet: pet, type: item.$1, done: item.$2, goal: item.$3, big: big),
             const Divider(),
@@ -94,24 +101,35 @@ class _ChecklistRow extends ConsumerWidget {
     final complete = done >= goal;
     final label = type == LogType.play ? l.playProgress(done, goal) : '${logTypeLabel(context, type)} · $done / $goal';
     final paw = context.paw;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: Space.xxs),
+    // UI Design 5 list row: the done tick leads (filled marigold-brown when
+    // the goal is met), the type and progress in the middle, and a one-tap
+    // log button at the end.
+    final tick = big ? IconSizes.action : IconSizes.xl - Space.xs;
+    return ConstrainedBox(
+      constraints: BoxConstraints(minHeight: big ? Sizes.listRowEasy : Sizes.listRow),
       child: Row(children: [
-        Icon(complete ? Icons.check_circle_rounded : Icons.radio_button_unchecked_outlined,
-            color: complete ? paw.success : paw.controlBorder, size: big ? IconSizes.action : IconSizes.lg),
+        Container(
+          width: tick,
+          height: tick,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: complete ? paw.done : null,
+            border: complete ? null : Border.all(color: paw.controlBorder, width: Strokes.focus),
+          ),
+          child: complete ? Icon(Icons.check_rounded, size: tick * 0.7, color: paw.onBrand) : null,
+        ),
         const SizedBox(width: Space.md),
         Icon(logTypeIcon(type), size: IconSizes.md, color: paw.textSecondary),
         const SizedBox(width: Space.sm),
         Expanded(
           child: Text(label,
-              style: (big ? context.text.bodyLarge : context.text.bodyMedium)?.copyWith(
+              style: (big ? context.text.titleMedium : context.text.titleSmall)?.copyWith(
                 color: complete ? paw.textSecondary : paw.textPrimary,
               )),
         ),
-        IconButton(
+        IconButton.filledTonal(
           tooltip: l.logNow(logTypeLabel(context, type)),
-          icon: Icon(type == LogType.walk ? Icons.play_circle_outlined : Icons.add_circle_outlined,
-              color: paw.brand, size: big ? IconSizes.xxl : IconSizes.action),
+          icon: Icon(type == LogType.walk ? Icons.play_arrow_rounded : Icons.add_rounded, size: big ? IconSizes.xl : IconSizes.lg),
           onPressed: () async {
             if (type == LogType.walk) {
               context.push('/walk/${pet.id}');

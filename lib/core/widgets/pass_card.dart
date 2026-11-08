@@ -108,16 +108,6 @@ class PassCard extends StatelessWidget {
         boxShadow: light ? Shadows.card(context.paw.ink) : null,
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        if (overline != null) ...[
-          Row(children: [
-            if (overlineIcon != null) ...[
-              Icon(overlineIcon, size: IconSizes.sm, color: c.fg),
-              const SizedBox(width: Space.xs + Space.xxs),
-            ],
-            Expanded(child: Text(overline!, style: context.textX.overline.copyWith(color: c.fg))),
-          ]),
-          const SizedBox(height: Space.md),
-        ],
         Row(children: [
           if (leading != null) ...[leading!, const SizedBox(width: Space.md)],
           Expanded(
@@ -126,6 +116,18 @@ class PassCard extends StatelessWidget {
               if (subtitle != null) ...[
                 const SizedBox(height: Space.xxs),
                 Text(subtitle!, style: context.text.bodySmall?.copyWith(color: c.muted)),
+              ],
+              // What the card is ("Medical card") follows the title, never
+              // as a small label above it (DESIGN.md).
+              if (overline != null) ...[
+                const SizedBox(height: Space.xs),
+                Row(children: [
+                  if (overlineIcon != null) ...[
+                    Icon(overlineIcon, size: IconSizes.sm, color: c.muted),
+                    const SizedBox(width: Space.xs + Space.xxs),
+                  ],
+                  Flexible(child: Text(overline!, style: context.text.labelMedium?.copyWith(color: c.muted))),
+                ]),
               ],
               if (badges.isNotEmpty) ...[
                 const SizedBox(height: Space.sm),
@@ -149,7 +151,25 @@ class PassCard extends StatelessWidget {
         ],
         if (actions.isNotEmpty) ...[
           const SizedBox(height: Space.lg),
-          Wrap(spacing: Space.sm, runSpacing: Space.sm, children: actions),
+          // Buttons share the width equally; on narrow screens or with big
+          // text they stack at full width (never two uneven buttons).
+          LayoutBuilder(builder: (context, box) {
+            final roomy = box.maxWidth >= Sizes.passActionsRow && MediaQuery.textScalerOf(context).scale(1) < 1.4;
+            if (actions.length > 1 && roomy) {
+              return Row(children: [
+                for (var i = 0; i < actions.length; i++) ...[
+                  if (i > 0) const SizedBox(width: Space.sm),
+                  Expanded(child: actions[i]),
+                ],
+              ]);
+            }
+            return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              for (var i = 0; i < actions.length; i++) ...[
+                if (i > 0) const SizedBox(height: Space.sm),
+                actions[i],
+              ],
+            ]);
+          }),
         ],
         if (footnote != null) ...[
           const SizedBox(height: Space.md),
@@ -181,7 +201,12 @@ class PassRow extends StatelessWidget {
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Expanded(child: Text(label, style: context.text.bodySmall?.copyWith(color: c.muted))),
         const SizedBox(width: Space.md),
-        Flexible(child: Text(value, textAlign: TextAlign.end, style: valueStyle)),
+        // IDs never break across lines: they shrink to fit instead.
+        Flexible(
+          child: mono
+              ? FittedBox(fit: BoxFit.scaleDown, alignment: Alignment.centerRight, child: Text(value, maxLines: 1, style: valueStyle))
+              : Text(value, textAlign: TextAlign.end, style: valueStyle),
+        ),
       ]),
     );
   }

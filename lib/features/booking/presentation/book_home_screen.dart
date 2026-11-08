@@ -18,24 +18,25 @@ class BookHomeScreen extends ConsumerWidget {
     final l = context.l10n;
     final bookings = ref.watch(myBookingsProvider).value ?? const <Booking>[];
     final upcoming = bookings.where((b) => b.isActive && b.end.isAfter(DateTime.now())).toList()..sort((a, b) => a.start.compareTo(b.start));
-    Color cat(Color c) => readableOn(c, [context.paw.surface], ratio: 3);
+    // One quiet style for every kind of care (UI Design 5): the pale
+    // marigold circle of the quick actions, not six different colours.
     final tiles = [
-      (Icons.local_hospital_outlined, l.kindVet, '/book/find/clinic', context.paw.brand),
-      (Icons.video_call_outlined, l.teleVet, '/televet', context.paw.accent),
-      (Icons.content_cut_outlined, l.kindGrooming, '/book/find/groomer', cat(CategoryColors.rose)),
-      (Icons.sports_outlined, l.kindTraining, '/book/find/trainer', cat(CategoryColors.ocean)),
-      (Icons.house_outlined, l.kindBoarding, '/book/find/boarder', cat(CategoryColors.plum)),
-      (Icons.directions_walk_outlined, l.kindWalking, '/book/find/walker', cat(CategoryColors.teal)),
+      (Icons.local_hospital_outlined, l.kindVet, '/book/find/clinic'),
+      (Icons.video_call_outlined, l.teleVet, '/televet'),
+      (Icons.content_cut_outlined, l.kindGrooming, '/book/find/groomer'),
+      (Icons.sports_outlined, l.kindTraining, '/book/find/trainer'),
+      (Icons.house_outlined, l.kindBoarding, '/book/find/boarder'),
+      (Icons.directions_walk_outlined, l.kindWalking, '/book/find/walker'),
     ];
     return PageBody(
       children: [
         const SizedBox(height: Space.sm),
-        Text(l.bookTitle, style: context.text.headlineSmall),
+        Semantics(header: true, child: Text(l.bookTitle, style: context.text.headlineMedium)),
         const SizedBox(height: Space.md),
         TileGrid(
           columns: context.isPhone ? 2 : 3,
           minTileHeight: Sizes.quickTile,
-          children: [for (final t in tiles) QuickActionTile(icon: t.$1, label: t.$2, color: t.$4, onTap: () => context.push(t.$3))],
+          children: [for (final t in tiles) QuickActionTile(icon: t.$1, label: t.$2, onTap: () => context.push(t.$3))],
         ),
         const SizedBox(height: Space.md),
         PawCard(
@@ -43,8 +44,8 @@ class BookHomeScreen extends ConsumerWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundColor: context.paw.primaryContainer,
-                child: Icon(Icons.map_outlined, color: context.colors.primary),
+                backgroundColor: context.paw.surfaceSubtle,
+                child: Icon(Icons.map_outlined, color: context.paw.textPrimary),
               ),
               const SizedBox(width: Space.md),
               Expanded(
@@ -98,7 +99,7 @@ class BookingCard extends StatelessWidget {
                 Text(
                   partnerView ? '${b.petName} · ${b.ownerName}' : b.providerName,
                   style: context.text.titleSmall,
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
@@ -114,7 +115,7 @@ class BookingCard extends StatelessWidget {
                   Flexible(
                     child: Text(
                       Fmt.time(b.start, context.lang),
-                      style: context.textX.mono.copyWith(color: context.paw.textSecondary),
+                      style: context.text.labelMedium?.copyWith(color: context.paw.textSecondary),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

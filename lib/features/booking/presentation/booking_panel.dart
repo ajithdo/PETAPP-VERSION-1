@@ -168,7 +168,7 @@ class BookingPanelState extends ConsumerState<BookingPanel> {
           Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
             for (final slot in slots)
               ChoiceChip(
-                label: Text(Fmt.time(slot.start, context.lang), style: context.textX.mono),
+                label: Text(Fmt.time(slot.start, context.lang)),
                 selected: request ? _proposed.contains(slot.start) : _slot == slot.start,
                 onSelected: !slot.available
                     ? null

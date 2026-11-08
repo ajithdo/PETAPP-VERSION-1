@@ -485,7 +485,15 @@ class PlaceCard extends ConsumerWidget {
     final open = isOpenNow(p.hours, DateTime.now());
     final fee = p.kind == 'clinic' || p.services.isEmpty ? p.fee : p.services.map((s) => s.price).reduce((a, b) => a < b ? a : b);
     final seed = 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}';
-    final rating = p.reviewCount > 0 ? StatusChip('${p.rating.toStringAsFixed(1)} (${p.reviewCount})', tone: ChipTone.accent, icon: Icons.star_rounded) : null;
+    // Rating as plain text with a marigold star (one chip per row at most).
+    final rating = p.reviewCount > 0
+        ? Row(mainAxisSize: MainAxisSize.min, children: [
+            Icon(Icons.star_rounded, size: IconSizes.sm, color: paw.accent),
+            const SizedBox(width: Space.xxs),
+            Text(p.rating.toStringAsFixed(1), style: context.text.labelLarge),
+            Text(' (${p.reviewCount})', style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+          ])
+        : null;
     void openPlace() => context.push('/book/place/${p.id}');
     if (compact) {
       return PawCard(
@@ -501,10 +509,12 @@ class PlaceCard extends ConsumerWidget {
                 const SizedBox(height: Space.xxs),
                 Text([p.area, if (km != null) Fmt.km(km!)].join(' · '), style: context.text.bodySmall),
                 const SizedBox(height: Space.xs),
-                Wrap(spacing: Space.xs + Space.xxs, runSpacing: Space.xs, children: [
+                Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
                   ?rating,
-                  StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
-                  if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_outlined),
+                  // One chip: 24x7 says more than "Open now". Never red.
+                  p.is24x7
+                      ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Icons.schedule_rounded)
+                      : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
                 ]),
               ]),
             ),
@@ -513,10 +523,17 @@ class PlaceCard extends ConsumerWidget {
       );
     }
     final next = nextFreeSlot(p, ref.watch(providerBookingsProvider(p.id)).value ?? const [], DateTime.now());
-    Widget badge(String text, Color bg, Color fg) => Container(
+    // Calm labels on the photo: a light panel with dark text (never red).
+    Widget badge(String text, {Color? dot}) => Container(
           padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
-          decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(Radii.full)),
-          child: Text(text, style: context.text.labelSmall?.copyWith(color: fg, fontWeight: FontWeight.w700)),
+          decoration: BoxDecoration(color: MediaColors.photoPanel, borderRadius: BorderRadius.circular(Radii.full)),
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
+            if (dot != null) ...[
+              Container(width: Sizes.dot, height: Sizes.dot, decoration: BoxDecoration(color: dot, shape: BoxShape.circle)),
+              const SizedBox(width: Space.xs + Space.xxs),
+            ],
+            Text(text, style: context.text.labelMedium?.copyWith(color: PrintColors.ink)),
+          ]),
         );
     return PawCard(
       padding: EdgeInsets.zero,
@@ -532,19 +549,17 @@ class PlaceCard extends ConsumerWidget {
               top: Space.md,
               right: Space.md,
               child: Wrap(spacing: Space.xs + Space.xxs, runSpacing: Space.xs, children: [
-                if (p.is24x7) badge(l.open24x7, paw.sos, paw.onSos),
-                if (open) badge(l.openNowChip, paw.success, paw.surface),
+                if (p.is24x7)
+                  badge(l.open24x7, dot: PawColors.light.success)
+                else if (open)
+                  badge(l.openNowChip, dot: PawColors.light.success),
               ]),
             ),
             if (km != null)
               Positioned(
                 right: Space.md,
                 bottom: Space.md,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
-                  decoration: BoxDecoration(color: MediaColors.scrim, borderRadius: BorderRadius.circular(Radii.sm)),
-                  child: Text(l.sosAway(Fmt.km(km!)), style: context.textX.mono.copyWith(color: MediaColors.foreground)),
-                ),
+                child: badge(l.sosAway(Fmt.km(km!))),
               ),
           ]),
         ),
@@ -552,28 +567,24 @@ class PlaceCard extends ConsumerWidget {
           padding: const EdgeInsets.all(Space.lg),
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Expanded(child: Text(p.name, style: context.text.titleMedium, maxLines: 2, overflow: TextOverflow.ellipsis)),
+              Expanded(child: Text(p.name, style: context.text.titleLarge, maxLines: 2, overflow: TextOverflow.ellipsis)),
               if (rating != null) ...[const SizedBox(width: Space.sm), rating],
             ]),
             const SizedBox(height: Space.xxs),
             Text('${p.area}, ${p.city}', style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
             if (next != null) ...[
-              const SizedBox(height: Space.md),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm + Space.xxs),
-                decoration: BoxDecoration(
-                  color: Color.alphaBlend(paw.primaryContainer.withValues(alpha: Opacities.half), paw.surface),
-                  borderRadius: BorderRadius.circular(Radii.md),
-                  border: Border.all(color: paw.outline),
+              const SizedBox(height: Space.sm),
+              Row(children: [
+                Icon(Icons.schedule_rounded, size: IconSizes.sm, color: paw.success),
+                const SizedBox(width: Space.xs + Space.xxs),
+                Flexible(
+                  child: Text.rich(TextSpan(children: [
+                    TextSpan(text: '${l.nextFreeSlot} · ', style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+                    TextSpan(text: slotLabel(context, next), style: context.text.labelMedium?.copyWith(color: paw.textPrimary)),
+                  ])),
                 ),
-                child: Wrap(alignment: WrapAlignment.spaceBetween, spacing: Space.sm, runSpacing: Space.xxs, children: [
-                  Text(l.nextFreeSlot, style: context.text.bodySmall?.copyWith(color: paw.textPrimary)),
-                  Text(slotLabel(context, next), style: context.textX.mono.copyWith(color: paw.textPrimary, fontWeight: FontWeight.w700)),
-                ]),
-              ),
+              ]),
             ],
-            const SizedBox(height: Space.md),
-            const Divider(height: Strokes.hairline),
             const SizedBox(height: Space.md),
             Wrap(
               alignment: WrapAlignment.spaceBetween,
@@ -581,12 +592,14 @@ class PlaceCard extends ConsumerWidget {
               spacing: Space.md,
               runSpacing: Space.sm,
               children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                  Text((p.kind == 'clinic' ? l.consultationFee : l.feeFrom('')).toUpperCase().trim(),
-                      style: context.textX.overline.copyWith(color: paw.textSecondary)),
-                  Text(Fmt.inr(fee), style: context.text.titleLarge),
-                ]),
-                PrimaryButton(label: l.bookNow, icon: Icons.arrow_forward_outlined, expand: false, onPressed: openPlace),
+                // The price up front, once: "₹750" with what it is for.
+                Text.rich(TextSpan(children: [
+                  TextSpan(text: Fmt.inr(fee), style: context.text.titleLarge),
+                  TextSpan(text: '  ${p.kind == 'clinic' ? l.consultationFee : l.feeFrom('').trim()}', style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+                ])),
+                // In a list every card has this button, so it is the quieter
+                // outlined one (one filled main action per screen).
+                SecondaryButton(label: l.bookNow, icon: Icons.arrow_forward_rounded, expand: false, onPressed: openPlace),
               ],
             ),
           ]),

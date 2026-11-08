@@ -116,7 +116,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                         ),
                       ),
                       const SizedBox(height: Space.sm),
-                      Text(l.stepOf(_step + 1, 4).toUpperCase(), style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
+                      Text(l.stepOf(_step + 1, 4), style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
                       const SizedBox(height: Space.xxs),
                     ],
                     Text(titles[_step], style: context.text.titleLarge),
@@ -362,7 +362,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
           children: [
             for (final slot in slots)
               ChoiceChip(
-                label: Text(Fmt.time(slot.start, context.lang), style: context.textX.mono),
+                label: Text(Fmt.time(slot.start, context.lang)),
                 selected: request ? _proposed.contains(slot.start) : _slot == slot.start,
                 onSelected: !slot.available
                     ? null
@@ -514,7 +514,7 @@ class BookingDoneScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(Space.md),
           decoration: BoxDecoration(color: paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.lg)),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-            Text(label.toUpperCase(), style: context.textX.overline.copyWith(color: paw.textSecondary)),
+            Text(label, style: context.textX.overline.copyWith(color: paw.textSecondary)),
             const SizedBox(height: Space.xs),
             Text(
               value,

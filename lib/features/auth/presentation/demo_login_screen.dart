@@ -56,6 +56,17 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
     };
   }
 
+  /// The demo families' pets (the bundled demo photos), so a visitor sees
+  /// who they will be looking after before signing in.
+  static const _petPhoto = {
+    'u_priya': 'assets/images/demo/pets/bruno.jpg',
+    'u_ravi': 'assets/images/demo/pets/simba.jpg',
+    'u_anjali': 'assets/images/demo/pets/coco.jpg',
+    'u_arjun': 'assets/images/demo/pets/max.jpg',
+    'u_rohan': 'assets/images/demo/pets/bruno.jpg',
+    'u_meera': 'assets/images/demo/pets/max.jpg',
+  };
+
   IconData _icon(String role) => switch (role) {
         'vet' => Icons.medical_services_outlined,
         'clinic_admin' => Icons.local_hospital_outlined,
@@ -100,54 +111,47 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
       Text(l.demoCredentials(demoPassword, demoOtp), style: context.text.bodySmall, textAlign: TextAlign.center),
     ];
     if (!widget.embedded) return PageBody(maxWidth: widget.maxWidth, children: [DemoBanner(l.demoLoginNote), ...content]);
-    return PawCard(
-      color: context.paw.accent.withValues(alpha: Opacities.tint),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Row(children: [
-          Icon(Icons.science_outlined, color: context.paw.textPrimary),
-          const SizedBox(width: Space.sm),
-          Expanded(child: Semantics(header: true, child: Text(l.demoAccountsTitle, style: context.text.titleLarge))),
-        ]),
-        const SizedBox(height: Space.xs),
-        Text(l.demoAccountsHint, style: context.text.bodyMedium),
-        ...content,
+    // On the sign-in page: a plain section (title, one line of help, the
+    // accounts as white cards), not a tinted box.
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Row(children: [
+        Icon(Icons.science_outlined, color: context.paw.textPrimary),
+        const SizedBox(width: Space.sm),
+        Expanded(child: Semantics(header: true, child: Text(l.demoAccountsTitle, style: context.text.titleLarge))),
       ]),
-    );
+      const SizedBox(height: Space.xs),
+      Text(l.demoAccountsHint, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
+      ...content,
+    ]);
   }
 
   Widget _tile(BuildContext context, DemoAccount a) {
     final l = context.l10n;
-    final compact = widget.embedded;
     return PawCard(
       onTap: _busyUid == null ? () => _login(a.uid) : null,
       semanticLabel: '${l.demoBadge}: ${a.name}. ${_describe(context, a)}',
       child: Row(children: [
-        CircleAvatar(
-          radius: compact ? 20 : 24,
-          backgroundColor: context.paw.primaryContainer,
-          child: Icon(_icon(a.role), color: context.colors.primary),
-        ),
+        _petPhoto[a.uid] != null
+            ? CircleAvatar(radius: Sizes.avatarMd / 2, backgroundImage: AssetImage(_petPhoto[a.uid]!))
+            : CircleAvatar(
+                radius: Sizes.avatarMd / 2,
+                backgroundColor: context.paw.surfaceSubtle,
+                child: Icon(_icon(a.role), color: context.paw.textPrimary),
+              ),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(children: [
-              Flexible(child: Text(a.name, style: context.text.titleSmall, overflow: TextOverflow.ellipsis)),
-              if (!compact) ...[
-                const SizedBox(width: Space.sm),
-                StatusChip(l.demoBadge, tone: ChipTone.accent),
-              ],
-            ]),
+            // The page already says these are demo accounts: no "Demo" chip
+            // on every row, and the full description (never cut with "…").
+            Text(a.name, style: context.text.titleSmall),
             const SizedBox(height: Space.xxs),
-            Text(_describe(context, a),
-                style: context.text.bodySmall,
-                maxLines: compact ? 2 : null,
-                overflow: compact ? TextOverflow.ellipsis : null),
+            Text(_describe(context, a), style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
           ]),
         ),
         if (_busyUid == a.uid)
           const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner))
         else
-          const Icon(Icons.login_outlined),
+          Icon(Icons.chevron_right_rounded, color: context.paw.textSecondary),
       ]),
     );
   }

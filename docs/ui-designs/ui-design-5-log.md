@@ -4,9 +4,9 @@ Read this first after a usage reset, a restart or a context summary, then contin
 
 ## Status
 
-- **Phase:** 4 done, Batch A done. Now Batch B (Home, Health, Book, Shop, Me).
+- **Phase:** Batches A and B done. Now Batch C (sign-in started).
 - **Work branch:** `claude/happy-wozniak-68a4q2` (push only this branch).
-- **Next step:** Batch B. Home first (`lib/features/home/presentation/`): greeting with date → GendaBand (photo with Hero tag `pet-<id>`, tap → `/pets/<id>`; flowers = walks goal + meals goal + 1 for play; done counted per goal) → TodayCard without its ring header (title Today + streak chip; rows: done tick, type, progress, log button) → Next up (no skipFirst; DueTile: date block, chip only when overdue) → 4 quick actions (Book a vet, Ask a vet, Shop, Add photo) → Near you (location pill, search box, 2 nearest clinics; no health-status card, no chip row) → tips. Desktop: left = band, today, quick actions; right = next up, near you, tips. Then Health (calm), Book, Shop, Me.
+- **Next step:** Batch C. Sign-in + demo accounts are restyled in code (pet photos on demo rows, full descriptions, no tinted box) but not yet screenshotted; continue with the clinic page (`place_screen.dart`), booking flow and booking confirmed (`booking_flow_screen.dart`, `booking_panel.dart`), pet profile + routine, SOS (`sos/presentation/sos_screen.dart`, first aid), tele-vet; then vault, album, messages, notifications, family, plans, settings, onboarding. Already swept app-wide: upper-cased labels (5), mono prices/slot times, 24x7 chip on the clinic page.
 
 ## Plan (from the owner's prompt)
 
@@ -19,8 +19,8 @@ Read this first after a usage reset, a restart or a context summary, then contin
 | 3 | Design rules: DESIGN.md, PRODUCT.md, PROJECT_SPEC section 4, CLAUDE.md line | done |
 | 4 | Foundation | done |
 | 5A | Shell: navigation, top bar, pet switcher, SOS | done (audit 19/20) |
-| 5B | Home, Health, Book, Shop, Me | next |
-| 5C | Sign-in + demo accounts first; then booking, pet profile + routine, SOS, tele-vet; then vault, album, messages, notifications, family, plans, settings, onboarding | — |
+| 5B | Home, Health, Book, Shop, Me | done (audit 19/20) |
+| 5C (next) | Sign-in + demo accounts first; then booking, pet profile + routine, SOS, tele-vet; then vault, album, messages, notifications, family, plans, settings, onboarding | — |
 | 5D | Partner portals and admin (before the rest of 5C only if the audit finds them much weaker) | — |
 | 5E | Motion and app icons | — |
 | 6 | Finish: critique, polish, fresh-eyes review, compare page, docs, store screenshots, web build | — |
@@ -39,6 +39,18 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - **Phase 4 (8 Nov).** Fonts bundled (Baloo 2 / Baloo Tammudu 2 static 600/700 cut with fonttools; Hind / Hind Guntur 400–700; OFL licences). `tokens.dart`: Genda colours (light, dark, high contrast), new type scale (13 px minimum, Indic bump), 22 px cards, warm shadow, date block 56 px, garland sizes, side nav 256 px; category, print and video-call colours without red or teal. `app_theme.dart`: Baloo titles / Hind text per language, no Indic letter-spacing, cocoa count badges (were SOS red), navigation indicator, chips, list rows. Widgets restyled (cards, buttons, pills, date block, health pass on the band, skeletons, timeline, drawings recoloured); danger buttons berry in both themes (dark used SOS red). New `GendaBand`/`Garland` with previews and 5 widget tests. Design gallery rebuilt (light/dark/high contrast switch); screenshots in `docs/ui-designs/ui-design-5-gallery/`. Contrast test has the new pairs and passes; analyzer clean; token check clean.
 - **Batch A (8 Nov), built.** `owner_shell.dart`: Material navigation bar on phones (labels always shown, cocoa pill), navigation rail on tablets, rail extended to 256 px side navigation on desktop (logo + 5 tabs); top bar with pet pills, messages, notifications and SOS on every size. SOS pill solid red with white text. Screenshots in `docs/ui-revamp/ui-design-5-A-shell/` (Home and Health hosts: 360/1280, light/dark, Telugu, Easy mode, tablet 800).
 - **Checks:** before the merge `flutter analyze` clean, 204 of 204 tests pass; after the merge `flutter analyze` clean, 210 of 210 tests pass.
+
+### Batch B summary (AGENTS.md format)
+(a) Five lines:
+1. Home now opens on the pet: greeting, Bruno in his garland with "2 of 5 done", today's checklist, next up, quick actions, then nearby clinics.
+2. Health is calm: one medical card button, even buttons, emergency info no longer red, chips only when something needs attention.
+3. Book: one style for all six kinds of care; clinic cards with price shown once, calm "24x7" and open labels, outlined "Book now".
+4. Shop: buy again first, picks for the pet with delivery dates, discount shown once, calm category tiles and product drawings, a quick "Ask a vet", offers as quiet cards.
+5. Me: three short groups. Checks: analyzer clean, 215/215 tests (incl. 200% sweep), token check clean, audit 19/20.
+
+(b) What to test: sign in as Priya → Home starts with "Good morning, Priya" and Bruno's garland; tick a walk on the routine screen and come back → one more flower opens. Health → one "Medical card" button; the emergency card is white, not red. Book → clinic cards have no red labels. Shop → each product shows its discount once and "Delivery on …". Me → three groups. Repeat in dark mode, in Telugu (Ravi Teja) and with Easy mode on.
+
+(c) Anything you must do: nothing for this batch.
 
 ### Batch A summary (AGENTS.md format)
 (a) Five lines:
@@ -73,6 +85,11 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - 8 Nov, Phase 4: `dart format` is run only on files I write, at `--page-width 160` (the project's style); a whole-folder format reflowed 14 untouched files, which were restored.
 - 8 Nov, Batch A: desktop side navigation holds only the 5 tabs; messages, notifications and SOS stay in the top bar so nothing appears twice (DESIGN.md corrected). No global search was added (the app has none; inventing it would be a feature).
 - 8 Nov, Batch A: **not done (owner's decision):** keeping the navigation visible on screens opened outside the tabs (pet profile, messages, SOS…). It would change how navigation and Back work; listed in the morning report as a suggestion.
+
+- 8 Nov, Batch B: Home's quick actions are Book a vet, Ask a vet, Shop and Add photo ("Log walk" moved out: the walk row on Home's checklist already starts a walk).
+- 8 Nov, Batch B: admin offer banners on Home and Shop now sit below the pet's day and picks, as quiet cards (same banners, same links).
+- 8 Nov, Batch B: Shop's own pet chips were removed; the top-bar pet pills choose the pet (same behaviour, one control instead of two).
+- 8 Nov, Batch B: new strings (en/hi/te): shopAskVet, meGroupPets, meGroupMoney, meGroupHelp, withUnread.
 
 ## Problems
 

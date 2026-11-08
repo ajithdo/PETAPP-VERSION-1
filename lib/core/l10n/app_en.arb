@@ -7330,5 +7330,16 @@
         "type": "int"
       }
     }
-  }
+  },
+  "shopAskVet": "Not sure what suits {name}? Ask a vet",
+  "@shopAskVet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "meGroupPets": "Pets and family",
+  "meGroupMoney": "Orders and money",
+  "meGroupHelp": "Help and settings"
 }

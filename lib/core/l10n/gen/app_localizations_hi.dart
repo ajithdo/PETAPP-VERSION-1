@@ -10340,4 +10340,18 @@ class AppLocalizationsHi extends AppLocalizations {
   String withUnread(String label, int count) {
     return '$label, $count बिना पढ़े';
   }
+
+  @override
+  String shopAskVet(String name) {
+    return '$name के लिए क्या ठीक रहेगा, पता नहीं? डॉक्टर से पूछें';
+  }
+
+  @override
+  String get meGroupPets => 'पालतू और परिवार';
+
+  @override
+  String get meGroupMoney => 'ऑर्डर और पैसे';
+
+  @override
+  String get meGroupHelp => 'मदद और सेटिंग्स';
 }

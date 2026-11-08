@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
+import '../../../core/widgets/cards.dart';
 
 /// Promotional banners set up in the admin panel (Catalogue → Banners) and
 /// shown on Home or in the Shop.
@@ -54,35 +55,30 @@ class PromoBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // UI Design 5: an offer is a normal card with a small marigold mark,
+    // never a loud coloured block (DESIGN.md, no loud promo banners).
+    final paw = context.paw;
     final accent = banner.tone == 'accent';
-    final bg = accent ? context.paw.accent : context.colors.primary;
-    final fg = accent ? context.paw.onAccent : context.colors.onPrimary;
     final open = banner.link.startsWith('/') && !preview;
-    return Semantics(
-      button: open,
-      label: banner.title,
-      child: Material(
-        color: bg,
-        borderRadius: BorderRadius.circular(Radii.card),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(Radii.card),
-          onTap: open ? () => context.push(banner.link) : null,
-          child: Padding(
-            padding: const EdgeInsets.all(Space.lg),
-            child: Row(children: [
-              Icon(accent ? Icons.local_offer_outlined : Icons.campaign_outlined, color: fg, size: IconSizes.xl),
-              const SizedBox(width: Space.md),
-              Expanded(
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(banner.title, style: context.text.titleMedium?.copyWith(color: fg)),
-                  if (banner.body.isNotEmpty) Text(banner.body, style: context.text.bodyMedium?.copyWith(color: fg)),
-                ]),
-              ),
-              if (open) Icon(Icons.chevron_right_outlined, color: fg),
-            ]),
-          ),
+    return PawCard(
+      onTap: open ? () => context.push(banner.link) : null,
+      semanticLabel: banner.title,
+      child: Row(children: [
+        Container(
+          width: IconSizes.xxxl,
+          height: IconSizes.xxxl,
+          decoration: BoxDecoration(color: paw.accentContainer, shape: BoxShape.circle),
+          child: Icon(accent ? Icons.local_offer_outlined : Icons.campaign_outlined, color: paw.onAccentContainer, size: IconSizes.md),
         ),
-      ),
+        const SizedBox(width: Space.md),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(banner.title, style: context.text.titleSmall),
+            if (banner.body.isNotEmpty) Text(banner.body, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+          ]),
+        ),
+        if (open) Icon(Icons.chevron_right_rounded, color: paw.textSecondary),
+      ]),
     );
   }
 }

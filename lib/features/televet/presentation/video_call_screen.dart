@@ -289,7 +289,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
               child: PawCard(
                 padding: const EdgeInsets.all(Space.lg),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                  Text(l.teleVet.toUpperCase(), style: context.textX.overline.copyWith(color: context.paw.brand)),
+                  Text(l.teleVet, style: context.textX.overline.copyWith(color: context.paw.brand)),
                   const SizedBox(height: Space.xs),
                   Text(c?.petName ?? '', style: context.text.titleLarge),
                   const SizedBox(height: Space.lg),
@@ -297,7 +297,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                     padding: const EdgeInsets.all(Space.md),
                     decoration: BoxDecoration(color: context.paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.lg)),
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Text(l.tvProblemLabel.toUpperCase(), style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
+                      Text(l.tvProblemLabel, style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
                       const SizedBox(height: Space.xs),
                       Text((c?.problem.isNotEmpty ?? false) ? c!.problem : '–', style: context.text.bodyLarge),
                     ]),

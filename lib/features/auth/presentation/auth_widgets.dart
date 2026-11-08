@@ -39,7 +39,7 @@ class AuthScaffold extends StatelessWidget {
                   const SizedBox(height: Space.lg),
                   Semantics(
                     header: true,
-                    child: Text(title, style: context.text.headlineSmall, textAlign: TextAlign.center),
+                    child: Text(title, style: context.text.headlineMedium, textAlign: TextAlign.center),
                   ),
                   if (subtitle != null) ...[
                     const SizedBox(height: Space.sm),

@@ -910,6 +910,13 @@ class Sizes {
   /// Date square at the start of a booking row.
   static const double dateBadge = 56;
 
+  /// Minimum list row height (DESIGN.md: 64 px; 76 px in Easy mode).
+  static const double listRow = 64;
+
+  /// Below this width the health pass stacks its buttons.
+  static const double passActionsRow = 320;
+  static const double listRowEasy = 76;
+
   /// The garland on the Genda band (Home): full and compact (narrow screens,
   /// big text). The pet photo inside is [garlandPhotoShare] of it.
   static const double garland = 140;

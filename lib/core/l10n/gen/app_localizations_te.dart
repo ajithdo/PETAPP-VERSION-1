@@ -10369,4 +10369,18 @@ class AppLocalizationsTe extends AppLocalizations {
   String withUnread(String label, int count) {
     return '$label, $count చదవనివి';
   }
+
+  @override
+  String shopAskVet(String name) {
+    return '$nameకి ఏది సరిపోతుందో తెలియదా? వెట్‌ని అడగండి';
+  }
+
+  @override
+  String get meGroupPets => 'పెంపుడు జంతువులు, కుటుంబం';
+
+  @override
+  String get meGroupMoney => 'ఆర్డర్‌లు, డబ్బు';
+
+  @override
+  String get meGroupHelp => 'సహాయం, సెట్టింగ్‌లు';
 }

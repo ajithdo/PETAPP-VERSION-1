@@ -182,16 +182,22 @@ class DueTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final title = dueTitle(context, item);
     final when = dueWhen(context, item);
+    // UI Design 5: every scheduled row leads with its date; a chip only when
+    // something is overdue (not "Due soon" on every row).
+    final at = item.at;
+    final Widget leading = showPet
+        ? PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarSm)
+        : at != null
+            ? DateBadge(day: '${at.day}', month: Fmt.monthShort(at, context.lang))
+            : CircleAvatar(
+                backgroundColor: context.paw.surfaceSubtle,
+                child: Icon(dueIcon(item.kind), color: context.paw.textPrimary),
+              );
     return ListTile(
-      leading: showPet
-          ? PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarSm)
-          : CircleAvatar(
-              backgroundColor: context.paw.primaryContainer,
-              child: Icon(dueIcon(item.kind), color: context.colors.primary),
-            ),
+      leading: leading,
       title: Text(showPet ? '${pet.name} · $title' : title),
       subtitle: when.isEmpty ? null : Text(when),
-      trailing: statusChipWidget(context, item.status),
+      trailing: item.status == DoseStatus.overdue ? statusChipWidget(context, item.status) : null,
       onTap: () => openDueItem(context, ref, pet, item),
     );
   }
@@ -681,14 +687,16 @@ class _VaccineStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // The timeline dot already shows the status; a chip only when the
+    // vaccine needs attention, and after the title (no label above it).
+    final attention = status == DoseStatus.overdue || status == DoseStatus.dueSoon;
     final text = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      statusChipWidget(context, status),
-      const SizedBox(height: Space.xs + Space.xxs),
       Text(title, style: context.text.titleSmall),
       if (subtitle.isNotEmpty) ...[
         const SizedBox(height: Space.xxs),
         Text(subtitle, style: context.text.bodySmall),
       ],
+      if (attention) ...[const SizedBox(height: Space.xs + Space.xxs), statusChipWidget(context, status)],
     ]);
     if (certificateDocId == null) return text;
     return Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.start, spacing: Space.sm, runSpacing: Space.xs, children: [
@@ -702,8 +710,9 @@ class _VaccineStep extends StatelessWidget {
   }
 }
 
-/// UI Design 2 emergency card on Health: allergies and the regular clinic at a
-/// glance, with the medical card one tap away.
+/// Emergency info on Health (calm register): allergies and the regular
+/// clinic at a glance, on a plain card. Not red: SOS is the only red, and the
+/// medical card is already one tap away on the pass above.
 class _EmergencyInfo extends ConsumerWidget {
   const _EmergencyInfo({required this.pet});
   final Pet pet;
@@ -713,43 +722,27 @@ class _EmergencyInfo extends ConsumerWidget {
     final l = context.l10n;
     final paw = context.paw;
     final clinic = pet.clinicId == null ? null : ref.watch(placeProvider(pet.clinicId!)).value;
-    final allergies = pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', ');
-    return Container(
-      padding: const EdgeInsets.all(Space.lg),
-      decoration: BoxDecoration(
-        color: paw.sosContainer,
-        borderRadius: BorderRadius.circular(Radii.card),
-        border: Border.all(color: paw.sosBorder),
-      ),
+    final allergic = pet.allergies.isNotEmpty;
+    final allergies = allergic ? pet.allergies.join(', ') : l.noKnownAllergies;
+    return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          Icon(Icons.medical_information_outlined, color: paw.onSosContainer),
+          Icon(Icons.medical_information_outlined, color: paw.textPrimary),
           const SizedBox(width: Space.sm),
-          Expanded(child: Text(l.emergencyInfo, style: context.text.titleMedium?.copyWith(color: paw.onSosContainer))),
+          Expanded(child: Semantics(header: true, child: Text(l.emergencyInfo, style: context.text.titleMedium))),
         ]),
-        const SizedBox(height: Space.sm),
-        Text.rich(TextSpan(children: [
-          TextSpan(text: '${l.allergies}: ', style: context.text.bodyMedium?.copyWith(color: paw.textPrimary)),
-          TextSpan(
-            text: allergies,
-            style: context.text.bodyMedium?.copyWith(
-              color: pet.allergies.isEmpty ? paw.textPrimary : paw.onSosContainer,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ])),
         const SizedBox(height: Space.md),
-        Divider(height: Strokes.hairline, color: paw.sosBorder),
-        const SizedBox(height: Space.sm),
-        Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.sm, children: [
-          Text('${l.regularClinic}: ${clinic?.name ?? l.notAdded}', style: context.text.bodySmall?.copyWith(color: paw.textPrimary)),
-          TextButton.icon(
-            style: TextButton.styleFrom(foregroundColor: paw.onSosContainer),
-            onPressed: () => context.push('/pets/${pet.id}/card'),
-            icon: const Icon(Icons.arrow_forward_outlined, size: IconSizes.md),
-            label: Text(l.medicalCard),
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          if (allergic) ...[Icon(Icons.warning_amber_rounded, size: IconSizes.md, color: paw.warning), const SizedBox(width: Space.xs + Space.xxs)],
+          Expanded(
+            child: Text.rich(TextSpan(children: [
+              TextSpan(text: '${l.allergies}: ', style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),
+              TextSpan(text: allergies, style: context.text.bodyMedium?.copyWith(color: paw.textPrimary, fontWeight: FontWeight.w700)),
+            ])),
           ),
         ]),
+        const SizedBox(height: Space.xs),
+        Text('${l.regularClinic}: ${clinic?.name ?? l.notAdded}', style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),
       ]),
     );
   }

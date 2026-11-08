@@ -5,16 +5,19 @@ import 'package:go_router/go_router.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../admin/admin_slots.dart' show adminHomeSection;
+import '../../admin/presentation/banners.dart' show BannerStrip;
 import '../../pets/domain/pet.dart';
 import '../../routine/data/routine_repository.dart';
 import '../../routine/presentation/heat_card.dart';
 import '../../routine/presentation/quick_log_sheet.dart';
 import '../../routine/presentation/today_card.dart';
+import 'home_discovery.dart';
 import 'home_extras.dart';
 
-/// Home sections after the pet card (spec 5): Today, Next up, quick actions,
-/// walk-weather tip, food running low and the latest memory.
-/// Easy mode shows a simpler Home: Today, Next up and 4 big quick actions.
+/// Home sections after the Genda band (spec 5, UI Design 5): Today, Next up,
+/// quick actions, then "Near you" and tips (walk weather, food running low,
+/// the latest memory). Easy mode shows a simpler Home: Today, Next up and 4
+/// big quick actions.
 ///
 /// [top] goes above everything (lost-pet alert, admin note). On desktop
 /// [main] sits under the pet card on the left and [side] on the right;
@@ -25,10 +28,13 @@ import 'home_extras.dart';
   required Pet? pet,
   required List<Pet> pets,
   required bool easy,
+  bool wide = false,
 }) {
-  // Outside Easy mode the most urgent item is in the dark card at the top.
-  final skip = !easy;
+  // Nothing above repeats the most urgent item any more, so Next up lists it.
+  const skip = false;
   final l = context.l10n;
+  // Offers set by the admin come after the pet's day and the quick actions.
+  final nearby = easy ? const <Widget>[] : [const BannerStrip(placement: 'home'), ...homeNearby(context, ref, wide: wide)];
   final focus = pet ?? pets.first;
   final quickActions = [
     SectionHeader(l.quickActions),
@@ -37,18 +43,9 @@ import 'home_extras.dart';
       minTileHeight: easy ? Sizes.quickTileEasy : Sizes.quickTile,
       children: [
         QuickActionTile(icon: Icons.medical_services_outlined, label: l.qaBookVet, onTap: () => context.go('/book')),
-        QuickActionTile(
-          icon: focus.species == 'dog' ? Icons.directions_walk_outlined : Icons.edit_note_outlined,
-          label: focus.species == 'dog' ? l.qaLogWalk : l.logSomething,
-          onTap: () => focus.species == 'dog' ? context.push('/walk/${focus.id}') : showQuickLog(context, ref, focus),
-        ),
         QuickActionTile(icon: Icons.support_agent_outlined, label: l.qaAskVet, onTap: () => context.push(askVetLink)),
-        QuickActionTile(
-          icon: Icons.add_a_photo_outlined,
-          label: l.qaAddPhoto,
-          color: context.paw.accent,
-          onTap: () => context.push(addPhotoLink(focus.id)),
-        ),
+        QuickActionTile(icon: Icons.shopping_bag_outlined, label: l.shopTitle, onTap: () => context.go('/shop')),
+        QuickActionTile(icon: Icons.add_a_photo_outlined, label: l.qaAddPhoto, onTap: () => context.push(addPhotoLink(focus.id))),
       ],
     ),
   ];
@@ -61,12 +58,12 @@ import 'home_extras.dart';
       for (final p in pets) Padding(padding: const EdgeInsets.only(bottom: Space.md), child: _MiniToday(pet: p)),
     ];
     final next = nextUpSection(context, ref, pets: pets, skipFirst: skip);
-    final side = [...nextUpSection(context, ref, pets: pets, flush: true, skipFirst: skip), ...quickActions];
-    return (top: top, main: today, side: side, phoneOrder: [...today, ...next, ...quickActions]);
+    final side = [...nextUpSection(context, ref, pets: pets, flush: true, skipFirst: skip), ...quickActions, ...nearby];
+    return (top: top, main: today, side: side, phoneOrder: [...today, ...next, ...quickActions, ...nearby]);
   }
 
   final top = [...lostPetSection(context, ref, [pet]), ...adminHomeSection(context, ref)];
-  final today = [const SizedBox(height: Space.lg), TodayCard(pet: pet, big: easy)];
+  final today = [const SizedBox(height: Space.lg), TodayCard(pet: pet, big: easy, header: false)];
   final next = nextUpSection(context, ref, pets: [pet], skipFirst: skip);
   final tips = [
     if (!easy && pet.species == 'dog') ...[SectionHeader(l.walkWeather), HeatCard(pet: pet)],
@@ -76,8 +73,8 @@ import 'home_extras.dart';
   return (
     top: top,
     main: [...today, ...quickActions],
-    side: [...nextUpSection(context, ref, pets: [pet], flush: true, skipFirst: skip), ...tips],
-    phoneOrder: [...today, ...next, ...quickActions, ...tips],
+    side: [...nextUpSection(context, ref, pets: [pet], flush: true, skipFirst: skip), ...nearby, ...tips],
+    phoneOrder: [...today, ...next, ...quickActions, ...nearby, ...tips],
   );
 }
 

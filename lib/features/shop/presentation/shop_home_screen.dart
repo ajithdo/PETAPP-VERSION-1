@@ -8,6 +8,7 @@ import '../../../core/utils/format.dart';
 import '../../../core/utils/read_once.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../admin/presentation/banners.dart';
+import '../../messaging/messaging_slots.dart' show askVetLink;
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../data/order_repository.dart';
@@ -74,7 +75,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
         return PageBody(children: [
           const SizedBox(height: Space.sm),
           Row(children: [
-            Expanded(child: Text(l.shopTitle, style: context.text.headlineSmall)),
+            Expanded(child: Semantics(header: true, child: Text(l.shopTitle, style: context.text.headlineMedium))),
             IconButton(tooltip: l.ordMyOrders, onPressed: () => context.push('/shop/orders'), icon: Badge(isLabelVisible: open > 0, label: Text('$open'), child: const Icon(Icons.receipt_long_outlined))),
             const CartButton(),
           ]),
@@ -84,42 +85,26 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
             label: l.shopSearchHint,
             excludeSemantics: true,
             child: InkWell(
-              borderRadius: BorderRadius.circular(Radii.md),
+              borderRadius: BorderRadius.circular(Radii.full),
               onTap: () => context.push('/shop/search?focus=1'),
               child: InputDecorator(
-                decoration: InputDecoration(prefixIcon: const Icon(Icons.search_outlined), hintText: l.shopSearchHint),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search_outlined),
+                  hintText: l.shopSearchHint,
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.paw.controlBorder)),
+                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.paw.controlBorder)),
+                ),
                 child: Text(l.shopSearchHint, style: context.text.bodyLarge?.copyWith(color: context.paw.textSecondary)),
               ),
             ),
           ),
-          const BannerStrip(placement: 'shop'),
-          if (user != null && !user.isPlus) ...[
-            const SizedBox(height: Space.sm),
-            InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Icons.workspace_premium_outlined, tone: ChipTone.accent),
-          ],
-          if (pet != null) ...[
-            SectionHeader(l.shopForPet(pet.name)),
-            if (pets.length > 1)
-              Padding(
-                padding: const EdgeInsets.only(bottom: Space.sm),
-                child: Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-                  for (final p in pets)
-                    ChoiceChip(
-                      label: Text(p.name),
-                      selected: p.id == pet.id,
-                      avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarChip),
-                      onSelected: (_) => setState(() => _petId = p.id),
-                    ),
-                ]),
-              ),
-            Text(_petLine(context, pet), style: context.text.bodySmall),
-            const SizedBox(height: Space.sm),
-            if (picks.isEmpty) PawCard(child: Text(l.shopNoPicks)) else ProductRow(products: picks),
-          ],
+          // Buy again first: reordering is the most common job (like an Indian
+          // pet shop's "order again"), then picks for the pet.
           if (again.isNotEmpty) ...[
             SectionHeader(l.shopBuyAgain, action: l.ordMyOrders, onAction: () => context.push('/shop/orders')),
             SizedBox(
-              height: Sizes.buyAgainTile * MediaQuery.textScalerOf(context).scale(1) + Space.xl,
+              // Taller for Hindi and Telugu, whose lines are taller.
+              height: (Sizes.buyAgainTile + (context.lang == 'en' ? 0 : Space.xl)) * MediaQuery.textScalerOf(context).scale(1) + Space.xl,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: again.length,
@@ -128,8 +113,34 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
               ),
             ),
           ],
+          if (pet != null) ...[
+            SectionHeader(l.shopForPet(pet.name)),
+            // The pet pills in the top bar choose the pet; no second set of
+            // pet chips here (nothing shown twice on a screen).
+            Text(_petLine(context, pet), style: context.text.bodySmall),
+            const SizedBox(height: Space.sm),
+            if (picks.isEmpty) PawCard(child: Text(l.shopNoPicks)) else ProductRow(products: picks),
+            const SizedBox(height: Space.md),
+            // A quick way to a vet before buying (owner's brief).
+            PawCard(
+              onTap: () => context.push(askVetLink),
+              child: Row(children: [
+                CircleAvatar(backgroundColor: context.paw.accentContainer, child: Icon(Icons.support_agent_outlined, color: context.paw.onAccentContainer)),
+                const SizedBox(width: Space.md),
+                Expanded(child: Text(l.shopAskVet(pet.name), style: context.text.titleSmall)),
+                Icon(Icons.chevron_right_rounded, color: context.paw.textSecondary),
+              ]),
+            ),
+          ],
           SectionHeader(l.shopCategories),
           _CategoryGrid(species: pet?.species),
+          // Offers and the Plus note sit below what the pet needs, as quiet
+          // cards (no loud promo banner).
+          const BannerStrip(placement: 'shop'),
+          if (user != null && !user.isPlus) ...[
+            const SizedBox(height: Space.sm),
+            InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Icons.workspace_premium_outlined, tone: ChipTone.accent),
+          ],
           if (featured.isNotEmpty) ...[
             SectionHeader(l.shopFeatured),
             ProductRow(products: featured),
@@ -206,8 +217,9 @@ class _CategoryGrid extends StatelessWidget {
         minTileHeight: 104,
         children: [
           for (final cat in shopCategories)
+            // Calm tiles: warm grey, the category's icon in its own colour.
             Material(
-              color: Color.lerp(categoryColor(cat), context.paw.surface, Theme.of(context).brightness == Brightness.dark ? 0.75 : 0.85),
+              color: context.paw.surfaceSubtle,
               borderRadius: BorderRadius.circular(Radii.lg),
               child: InkWell(
                 borderRadius: BorderRadius.circular(Radii.lg),
@@ -215,7 +227,7 @@ class _CategoryGrid extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(Space.sm),
                   child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Icon(categoryIcon(cat), color: categoryColor(cat), size: IconSizes.xl),
+                    Icon(categoryIcon(cat), color: readableOn(categoryColor(cat), [context.paw.surfaceSubtle], ratio: 3), size: IconSizes.xl),
                     const SizedBox(height: Space.xs),
                     Text(categoryLabel(context, cat), style: context.text.labelMedium, textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
                   ]),

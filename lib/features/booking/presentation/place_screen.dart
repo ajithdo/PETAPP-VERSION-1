@@ -76,7 +76,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
               children: [
                 if (p.reviewCount > 0) StatusChip('${p.rating.toStringAsFixed(1)} · ${l.reviewsCount(p.reviewCount)}', tone: ChipTone.accent, icon: Icons.star_rounded),
                 StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
-                if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.error, icon: Icons.emergency_outlined),
+                if (p.is24x7) StatusChip(l.open24x7, tone: ChipTone.success, icon: Icons.schedule_rounded),
                 if (p.teleVet) StatusChip(l.teleVet, tone: ChipTone.info, icon: Icons.video_call_outlined),
                 for (final s in p.species)
                   StatusChip(switch (s) {
@@ -144,7 +144,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
                           s.payments.map((x) => x == 'online' ? l.payOnline : l.payAtCentre).join(' / '),
                         ].join(' · '),
                       ),
-                      trailing: Text(Fmt.inr(s.price), style: context.textX.mono.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
+                      trailing: Text(Fmt.inr(s.price), style: context.text.labelLarge?.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
                       // Picks this service in the booking card.
                       onTap: () => _panel.currentState?.selectService(s.id),
                     ),
@@ -164,7 +164,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
                   child: Row(
                     children: [
                       Expanded(child: Text(pk['name'] as String)),
-                      Text(Fmt.inr(pk['price'] as num), style: context.textX.mono.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
+                      Text(Fmt.inr(pk['price'] as num), style: context.text.labelLarge?.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
                     ],
                   ),
                 ),

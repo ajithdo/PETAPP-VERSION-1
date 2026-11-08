@@ -247,9 +247,10 @@ class PawAlertCard extends StatelessWidget {
     final text = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (overline != null) Text(overline!, style: context.textX.overline.copyWith(color: ink)),
-        if (overline != null) const SizedBox(height: Space.xxs),
+        // The short line ("in 5 days", "Overdue") follows the title: no
+        // small label above a heading (DESIGN.md).
         Text(title, style: context.text.titleSmall?.copyWith(color: paw.textPrimary)),
+        if (overline != null) ...[const SizedBox(height: Space.xxs), Text(overline!, style: context.text.labelMedium?.copyWith(color: ink))],
         if (message != null) ...[const SizedBox(height: Space.xs), Text(message!, style: context.text.bodySmall?.copyWith(color: paw.textPrimary))],
       ],
     );
@@ -375,13 +376,18 @@ class DateBadge extends StatelessWidget {
         border: muted ? Border.all(color: paw.outline) : null,
         borderRadius: BorderRadius.circular(Radii.md),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(month, style: context.text.labelSmall?.copyWith(color: muted ? paw.textSecondary : paw.textSecondary)),
-          Text(day, style: context.textX.dateNumber.copyWith(color: fg)),
-        ],
+      // Shrinks to fit rather than overflow when the row is short (Hindi and
+      // Telugu lines are taller).
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(month, style: context.text.labelSmall?.copyWith(color: paw.textSecondary, height: TypeScale.tightLineHeight + 0.2)),
+            Text(day, style: context.textX.dateNumber.copyWith(color: fg)),
+          ],
+        ),
       ),
     );
   }

@@ -23,8 +23,8 @@ class MeScreen extends ConsumerWidget {
     final pets = ref.watch(activePetsProvider);
     return PageBody(children: [
       const SizedBox(height: Space.sm),
-      // UI Design 2 account card: initials in a forest circle, the name and
-      // plan, where you are, and your pets.
+      // Account card: initials in a cocoa circle, the name and plan, where
+      // you are, and your pets.
       PawCard(
         padding: const EdgeInsets.all(Space.lg),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -56,25 +56,12 @@ class MeScreen extends ConsumerWidget {
           ),
         ]),
       ),
-      const SizedBox(height: Space.lg),
-      PawCard(
-        padding: EdgeInsets.zero,
-        child: Column(children: [
-          for (var i = 0; i < items.length; i++) ...[
-            ListTile(
-              leading: CircleAvatar(
-                radius: Sizes.avatarSm / 2,
-                backgroundColor: context.paw.primaryContainer,
-                child: Icon(items[i].icon, color: context.paw.brand, size: IconSizes.md),
-              ),
-              title: Text(items[i].label),
-              trailing: const Icon(Icons.chevron_right_outlined),
-              onTap: () => context.push(items[i].route),
-            ),
-            if (i < items.length - 1) const Divider(indent: Space.lg + Sizes.avatarSm + Space.lg, height: Strokes.hairline),
-          ],
-        ]),
-      ),
+      // The menu in three short groups instead of one long list.
+      for (final (g, title) in [(0, l.meGroupPets), (1, l.meGroupMoney), (2, l.meGroupHelp)])
+        if (items.any((m) => m.group == g)) ...[
+          SectionHeader(title),
+          _MenuCard(items: items.where((m) => m.group == g).toList()),
+        ],
       const SizedBox(height: Space.lg),
       SecondaryButton(
         label: l.signOut,
@@ -85,5 +72,33 @@ class MeScreen extends ConsumerWidget {
         },
       ),
     ]);
+  }
+}
+
+class _MenuCard extends StatelessWidget {
+  const _MenuCard({required this.items});
+  final List<MeMenuItem> items;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return PawCard(
+      padding: EdgeInsets.zero,
+      child: Column(children: [
+        for (var i = 0; i < items.length; i++) ...[
+          ListTile(
+            leading: CircleAvatar(
+              radius: Sizes.avatarSm / 2,
+              backgroundColor: paw.surfaceSubtle,
+              child: Icon(items[i].icon, color: paw.textPrimary, size: IconSizes.md),
+            ),
+            title: Text(items[i].label),
+            trailing: Icon(Icons.chevron_right_rounded, color: paw.textSecondary),
+            onTap: () => context.push(items[i].route),
+          ),
+          if (i < items.length - 1) const Divider(indent: Space.lg + Sizes.avatarSm + Space.lg, height: Strokes.hairline),
+        ],
+      ]),
+    );
   }
 }
