@@ -1,6 +1,6 @@
 # UI Design 5 — morning report (8 Nov 2026)
 
-**In one line:** UI Design 5 "Genda" is designed, built across the whole app, checked and pushed to branch `claude/happy-wozniak-68a4q2`. UI Design 4 is still the live site; nothing was deployed.
+**In one line:** UI Design 5 "Genda" is designed, built across the whole app, checked and pushed to branch `claude/happy-wozniak-68a4q2`. UI Design 4 is still the live site; nothing was deployed. All phases finished at about 14:15 UTC (19:45 India time); the remaining hourly check-ins were cancelled.
 
 ## What's finished
 
@@ -17,7 +17,7 @@
 | Batch C — flows | Sign-in and demo accounts first, clinic page, booking, pet profile, routine, SOS, tele-vet, vault, album, messages, notifications, family, Plus, settings, onboarding | `docs/ui-revamp/ui-design-5-C-flows/` |
 | Batch D — portals and admin | Quiet top bar; sidebar fix | `docs/ui-revamp/ui-design-5-D-portals/` |
 | Batch E — motion and icons | Garland flowers open, progress bar, pet photo flies from Home to the profile, 200–300 ms, reduce motion respected; new app icons for Android, iPhone and web | `tools/icons/make_icons.py` |
-| Phase 6 — finish | Fresh-eyes review (Impeccable finish reviewer) and its fixes; compare page; docs; store screenshots | `docs/ui-revamp/compare-ui-design-5.html`, `docs/store/` |
+| Phase 6 — finish | Fresh-eyes review (2 rounds, 6 of 8 fixes resolved, see below); compare page; docs; store screenshots; web build checked | `docs/ui-revamp/compare-ui-design-5.html`, `docs/store/` |
 
 **Side by side with UI Design 4:** `docs/ui-revamp/compare-ui-design-5.html` (84 screens: phone and desktop; main tabs also in dark mode, Telugu and Easy mode). The pictures alone: `docs/ui-revamp/ui-design-4-baseline/` and `docs/ui-revamp/ui-design-5-final/` (same file names).
 
@@ -41,9 +41,27 @@ Scored in your order: readability (Genda 9, Deewar 9, Muhar 7.5), fit with your 
 9. **New text** (all in English, Hindi and Telugu): "{n} of {m} done", "Nothing planned today. Add a routine.", "Not sure what suits {pet}? Ask a vet", the three Me group titles, and "{label}, {n} unread" for screen readers.
 10. The one non-look change: the **demo Plus fix** you approved.
 
+## Fresh-eyes review (Impeccable finish reviewer, a separate agent)
+Round 1 asked for 8 fixes. After round 2:
+
+| Fix | Result |
+|---|---|
+| Task rows say who did it and when | resolved |
+| Desktop Home: next up and quick actions on the side, clinics as small rows | resolved |
+| Health "Next up" calm (no tinted fill) | resolved |
+| Product page buttons on one line, equal width | resolved |
+| SOS location line readable | resolved |
+| Me header (city and email on their own lines) | resolved |
+| Home band beside the text on phones | partial: the band is fixed, but the first "Next up" item still starts just below the first phone screen |
+| Product pictures | unresolved — your decision (see below) |
+| New: product page quantity stepper | on phones it now sits on its own row above the buttons; putting it back beside them at 360 px would shrink labels under 13 px, so it is left for the next round |
+
+Verdict: **fix** (not yet "ship"); the run stopped at the reviewer's two-round limit for unattended work.
+
 ## What's left (your decisions — not done, because they change how the app works or need material)
 - **Navigation on screens opened outside the tabs** (pet profile, messages, SOS…): they still open without the bottom bar / side menu. Keeping the menu there changes how navigation and Back work.
-- **Real product photos:** the shop shows calm drawings when a product has no photo. Real pack photos carry brand logos (not allowed); photos would need sourcing (free, no logos) or generating.
+- **Real product photos:** the shop shows calm drawings when a product has no photo (the reviewer says the big one on the product page looks like a missing picture). Real pack photos carry brand logos (not allowed); photos would need sourcing (free, no logos) or generating.
+- **Next round (small):** product page stepper beside the buttons on phones; a tighter Today card so the first "Next up" item shows on the first phone screen.
 
 To continue in a new Claude session, paste:
 > Read docs/ui-designs/ui-design-5-morning-report.md and docs/ui-designs/ui-design-5-log.md on branch claude/happy-wozniak-68a4q2. UI Design 5 is built. [Then say what you want, e.g. "Make a Netlify preview deploy of UI Design 5 — I approve a draft deploy, not production" or "Keep the navigation visible on screens outside the tabs".]
