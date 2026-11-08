@@ -4,9 +4,9 @@ Read this first after a usage reset, a restart or a context summary, then contin
 
 ## Status
 
-- **Phase:** Batches A–D done, icons done. Now Phase 6 (finish).
+- **Phase:** Phase 6 nearly done: review fixes, compare page, docs and morning report are committed.
 - **Work branch:** `claude/happy-wozniak-68a4q2` (push only this branch).
-- **Next step:** Phase 6. Final UI Design 5 set (same 84 screens as the UI Design 4 'before' set) is in `docs/ui-revamp/ui-design-5-final/`. Do: (1) fresh-eyes review with the impeccable-finish-reviewer agent on key final screenshots, fix what matters, retest; (2) `docs/ui-revamp/compare-ui-design-5.html` (UI Design 4 baseline vs UI Design 5 final, same file names); (3) `.impeccable/design.json` sidecar; (4) docs: PROGRESS (Names table + entry), DECISIONS, UI_REVAMP.md; store screenshots in `docs/store/`; (5) web build + Netlify draft-deploy steps and the 'Powered by Netlify' badge steps in 'For you when you're back'; (6) morning report; (7) cancel remaining check-ins (ids in Check-ins below).
+- **Next step:** when the final recapture (`docs/ui-revamp/ui-design-5-final/` + `docs/store/`) is done: send the 13 refreshed key screenshots to the finish reviewer for a verdict pass on its 8 fixes (product photos: kept as calm drawings, owner's decision); commit the screenshots; mark Phase 6 done in this log and the morning report; cancel the check-ins still waiting (ids below); post the morning report as the last message.
 
 ## Plan (from the owner's prompt)
 
@@ -23,7 +23,7 @@ Read this first after a usage reset, a restart or a context summary, then contin
 | 5C | Sign-in + demo accounts first; then booking, pet profile + routine, SOS, tele-vet; then vault, album, messages, notifications, family, plans, settings, onboarding | — |
 | 5D | Partner portals and admin (before the rest of 5C only if the audit finds them much weaker) | done (audit 19/20; not weaker, order kept) |
 | 5E | Motion and app icons | icons done; motion: garland bloom, progress bar, pet-photo hero, 200–300 ms tokens, reduce motion honoured |
-| 6 | Finish: critique, polish, fresh-eyes review, compare page, docs, store screenshots, web build | next |
+| 6 | Finish: critique, polish, fresh-eyes review, compare page, docs, store screenshots, web build | review fixes done; verdict pass pending |
 | — | Morning report (`docs/ui-designs/ui-design-5-morning-report.md`) | — |
 
 After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, light/dark, English/Telugu, Easy mode) in `docs/ui-revamp/ui-design-5-<batch>/` beside the UI Design 4 ones; token check empty; `flutter analyze` clean; all tests pass (including `test/qa/layout_sweep_test.dart` and the contrast test); commit, push, and the AGENTS.md summary here.
@@ -94,6 +94,9 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - 8 Nov, Batch C: SOS red is kept for emergencies only (the SOS button and its main action, lost-pet alerts, a pet leaving its safe zone, "Emergency? Go to SOS" notes, the vet's red-flag cases); the SOS screen's title, second option, first-aid list and map pins are now neutral. Video-call hang-up and the recording dot are berry (destructive), not red.
 - 8 Nov, Batch C: demo account rows on sign-in show the demo family's pet photo (Priya → Bruno, Ravi → Simba, Anjali → Coco, Arjun → Max, Rohan → Bruno, Meera → Max); partners keep an icon.
 - 8 Nov, Batch C: portal top bar is now the quiet light bar used everywhere (was a solid brand bar).
+
+- 8 Nov, Phase 6: finish reviewer (fresh agent) said **fix** with 8 items; 7 fixed (band beside text on phones, who/when on task rows, desktop side column, calm Health next-up, product action bar, SOS location line, Me header). Product photos not produced: no image generation in this session and real packs carry brand logos (owner's rule); kept calm drawings in the Genda palette, listed as an owner decision.
+- 8 Nov, Phase 6: the 'Powered by Netlify' badge is injected by Netlify (`/.netlify/scripts/hud?variant=public`), switched per project under Project configuration → General (docs.netlify.com/manage/projects/powered-by-netlify-badge/).
 
 ## Problems
 
