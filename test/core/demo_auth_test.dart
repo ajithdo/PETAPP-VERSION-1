@@ -9,12 +9,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   late FakeFirebaseFirestore db;
   late DemoAuthService auth;
-  // The demo data is built as of this date.
-  final seedDate = DateTime(2026, 10, 14);
+  // The demo data is built as of today, like the app's first start.
+  final now = DateTime.now();
+  final seedDate = DateTime(now.year, now.month, now.day);
 
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
     db = FakeFirebaseFirestore();
+    // Made today, like the app's first start: Priya's Plus is checked
+    // against today's date, and with data made on a fixed day her month ran
+    // out 23 days later (7 Nov 2026). Old saved data is caught up by the
+    // demo's plan check (plan_expiry_test.dart, demo_store_test.dart).
     await DemoStore.loadInto(db, DemoSeed.build(seedDate));
     auth = DemoAuthService(db, await SharedPreferences.getInstance());
   });
@@ -25,9 +30,10 @@ void main() {
     await auth.signInWithEmail('priya@example.com', 'demo1234');
     final u = await nextUser();
     expect(u!.name, 'Priya Sharma');
-    // Checked on the seed date: Plus renews 23 days after it, so checking
-    // against today's date would fail once that renewal date has passed.
+    // Plus on the day the demo data is made, and still Plus by the real
+    // clock (the plan check renews it; see plan_expiry_test.dart).
     expect(u.effectivePlanAt(seedDate), 'plus');
+    expect(u.isPlus, isTrue);
   });
 
   test('wrong password is refused', () async {
