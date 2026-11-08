@@ -26,7 +26,7 @@ class ProductArt extends StatelessWidget {
     // No photo: a calm category drawing on warm grey (UI Design 5), never a
     // loud gradient placeholder.
     final paw = context.paw;
-    final c = readableOn(categoryColor(category), [paw.surfaceSubtle], ratio: 3);
+    final c = paw.textSecondary;
     Widget art;
     if (photoUrl != null && photoUrl!.isNotEmpty) {
       art = MediaImage(url: photoUrl!, fit: BoxFit.cover, semanticLabel: label);

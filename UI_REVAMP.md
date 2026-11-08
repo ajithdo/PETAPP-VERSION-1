@@ -39,6 +39,18 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 
 **Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`). Later that day the owner made their own UI Design 2 in Google Stitch and said "GO" to build it, with Claude's 6 picks (`docs/ui-designs/REVIEW.md`). Sections 1 and 2 below are the earlier audit and the dropped proposal, kept as a record.
 
+## UI Design 5 "Genda" (8 Nov 2026) — built on `claude/happy-wozniak-68a4q2`, not live yet
+
+A new look, not a polish of UI Design 4. UI Design 4 stays live until the owner approves UI Design 5.
+
+- **Brief:** `docs/ui-designs/ui-design-5-brief.md` (owner's answers, 8 Nov). **Run log:** `docs/ui-designs/ui-design-5-log.md`. **Morning report:** `docs/ui-designs/ui-design-5-morning-report.md`.
+- **Directions:** three mocked with real content (A. Deewar wall calendar, B. Muhar vaccination booklet, C. Genda marigold garland); Genda chosen by the owner's scoring order. Compare page `docs/ui-designs/ui-design-5-directions/index.html`, scores in `CRITIQUE.md` there.
+- **Design rules:** `DESIGN.md` (root) and `PRODUCT.md`; sidecar `.impeccable/design.json`; direction contract `.impeccable/surfaces/lib-app-dart.md`. `docs/PROJECT_SPEC.md` section 4 summarises them.
+- **What changed:** cocoa action colour and marigold only as fill; SOS the only red (errors berry, badges cocoa); Baloo 2 / Baloo Tammudu 2 titles and Hind / Hind Guntur text, bundled; 13 px minimum, Hindi and Telugu never letter-spaced or upper-cased; 22 px cards with one warm shadow; Material navigation bar / rail / side navigation; Home opens on the pet's day with the Genda band (the pet's photo in a garland of one flower per task); calm register on Health, records, tele-vet, SOS and portals; new app icons (`tools/icons/make_icons.py`).
+- **Screenshots:** UI Design 4 "before" set `docs/ui-revamp/ui-design-4-baseline/`; UI Design 5 final set `docs/ui-revamp/ui-design-5-final/` (same 84 file names); per-batch folders `ui-design-5-A-shell`, `-B-tabs`, `-C-flows`, `-D-portals` (each with an `AUDIT.md`); design gallery `docs/ui-designs/ui-design-5-gallery/`. **Side by side:** `docs/ui-revamp/compare-ui-design-5.html`.
+- **Tools:** `tools/screens/capture.cjs` (Playwright screenshots of the web build, signed in as a demo account), `tools/icons/make_icons.py` (app icons).
+- **Not done (owner's decisions):** keeping the navigation on screens opened outside the tabs (changes navigation); real product photos (no brand logos allowed; would need sourcing or generating).
+
 ## UI Design 2 build notes (4 Nov 2026)
 
 **The owner's 6 picks (approved with "GO"):**

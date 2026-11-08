@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
+import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../pets/domain/pet.dart';
 import '../data/routine_repository.dart';
@@ -63,7 +64,14 @@ class TodayCard extends ConsumerWidget {
             SizedBox(height: header ? Space.md : Space.sm),
             if (header) const Divider(),
             for (final item in p.items)
-              _ChecklistRow(pet: pet, type: item.$1, done: item.$2, goal: item.$3, big: big),
+              _ChecklistRow(
+                pet: pet,
+                type: item.$1,
+                done: item.$2,
+                goal: item.$3,
+                big: big,
+                last: p.today.where((x) => x.type == item.$1).fold<RoutineLog?>(null, (a, b) => a == null || b.at.isAfter(a.at) ? b : a),
+              ),
             const Divider(),
             const SizedBox(height: Space.md),
             Wrap(
@@ -88,12 +96,15 @@ class TodayCard extends ConsumerWidget {
 }
 
 class _ChecklistRow extends ConsumerWidget {
-  const _ChecklistRow({required this.pet, required this.type, required this.done, required this.goal, required this.big});
+  const _ChecklistRow({required this.pet, required this.type, required this.done, required this.goal, required this.big, this.last});
   final Pet pet;
   final LogType type;
   final int done;
   final int goal;
   final bool big;
+
+  /// Today's latest log of this kind: who did it and when.
+  final RoutineLog? last;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -122,10 +133,18 @@ class _ChecklistRow extends ConsumerWidget {
         Icon(logTypeIcon(type), size: IconSizes.md, color: paw.textSecondary),
         const SizedBox(width: Space.sm),
         Expanded(
-          child: Text(label,
-              style: (big ? context.text.titleMedium : context.text.titleSmall)?.copyWith(
-                color: complete ? paw.textSecondary : paw.textPrimary,
-              )),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+            Text(label,
+                style: (big ? context.text.titleMedium : context.text.titleSmall)?.copyWith(
+                  color: complete ? paw.textSecondary : paw.textPrimary,
+                )),
+            // Who did it and when ("7:00 am · Rohan"), from today's log.
+            if (last != null)
+              Text(
+                [Fmt.time(last!.at, context.lang), if (last!.byName.isNotEmpty) last!.byName.split(' ').first].join(' · '),
+                style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
+              ),
+          ]),
         ),
         IconButton.filledTonal(
           tooltip: l.logNow(logTypeLabel(context, type)),

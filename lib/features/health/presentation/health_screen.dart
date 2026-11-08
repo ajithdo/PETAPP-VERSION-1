@@ -100,19 +100,19 @@ class HealthBody extends ConsumerWidget {
             );
           }
           final first = top.first;
-          final when = dueWhen(context, first);
-          final status = statusChip(context, first.status).$1;
+          // Calm register: a plain card with the date-led row (no tinted
+          // alert fill); vaccines can be booked from here.
           return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            PawAlertCard(
-              tone: first.status == DoseStatus.overdue ? ChipTone.error : ChipTone.warning,
-              icon: dueIcon(first.kind),
-              overline: when.isEmpty ? status : when,
-              title: dueTitle(context, first),
-              semanticLabel: [status, dueTitle(context, first), when].where((s) => s.isNotEmpty).join(', '),
-              onTap: () => openDueItem(context, ref, pet, first),
-              // Vaccines are given at a clinic: book one straight from here.
-              actionLabel: first.kind == 'vaccine' ? l.bookNow : null,
-              onAction: first.kind == 'vaccine' ? () => context.push('/book/find/clinic') : null,
+            PawCard(
+              padding: const EdgeInsets.symmetric(vertical: Space.xs),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                DueTile(item: first, pet: pet),
+                if (first.kind == 'vaccine')
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(Space.lg, 0, Space.lg, Space.md),
+                    child: SecondaryButton(label: l.bookNow, icon: Icons.calendar_month_outlined, onPressed: () => context.push('/book/find/clinic')),
+                  ),
+              ]),
             ),
             if (top.length > 1) ...[
               const SizedBox(height: Space.md),

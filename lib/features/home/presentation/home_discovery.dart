@@ -48,7 +48,9 @@ List<Widget> homeNearby(BuildContext context, WidgetRef ref, {required bool wide
     if (shown.isEmpty)
       const Skeleton(height: Sizes.placeCardPhoto, radius: Radii.card)
     else
-      for (final e in shown) Padding(padding: const EdgeInsets.only(bottom: Space.md), child: PlaceCard(place: e.$1, km: e.$2)),
+      // Compact rows with a small photo: clinics stay below the pet's day and
+      // never outshine the pet's own photo.
+      for (final e in shown) Padding(padding: const EdgeInsets.only(bottom: Space.sm), child: PlaceCard(place: e.$1, km: e.$2, compact: true)),
   ];
 }
 

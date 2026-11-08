@@ -44,7 +44,9 @@ class MeScreen extends ConsumerWidget {
                 StatusChip(user?.isPlus == true ? l.planPlus : l.planFree, tone: user?.isPlus == true ? ChipTone.accent : ChipTone.neutral),
               ]),
               const SizedBox(height: Space.xxs),
-              Text([?user?.city, user?.email ?? user?.phone].whereType<String>().where((x) => x.isNotEmpty).join(' · '), style: context.text.bodyMedium),
+              // One fact per line: no "Bengaluru ·" left hanging.
+              for (final line in [?user?.city, user?.email ?? user?.phone].whereType<String>().where((x) => x.isNotEmpty))
+                Text(line, style: context.text.bodyMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
               if (pets.isNotEmpty) ...[
                 const SizedBox(height: Space.xs),
                 Text(

@@ -65,7 +65,8 @@ class PrimaryButton extends StatelessWidget {
             height: IconSizes.md,
             child: CircularProgressIndicator(strokeWidth: Strokes.spinner, color: danger ? onDanger : paw.onAction),
           )
-        : Text(label, textAlign: TextAlign.center);
+        // A button label never wraps (DESIGN.md): it shrinks to fit instead.
+        : FittedBox(fit: BoxFit.scaleDown, child: Text(label, textAlign: TextAlign.center, maxLines: 1));
     final onTap = loading || onPressed == null
         ? null
         : () {
@@ -101,9 +102,9 @@ class SecondaryButton extends StatelessWidget {
         ? OutlinedButton.icon(
             onPressed: onPressed,
             icon: Icon(icon, size: IconSizes.md),
-            label: Text(label),
+            label: FittedBox(fit: BoxFit.scaleDown, child: Text(label, maxLines: 1)),
           )
-        : OutlinedButton(onPressed: onPressed, child: Text(label));
+        : OutlinedButton(onPressed: onPressed, child: FittedBox(fit: BoxFit.scaleDown, child: Text(label, maxLines: 1)));
     return PressScale(
       enabled: onPressed != null,
       child: expand ? SizedBox(width: double.infinity, child: btn) : btn,

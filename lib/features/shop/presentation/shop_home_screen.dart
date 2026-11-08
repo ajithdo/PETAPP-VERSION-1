@@ -217,7 +217,7 @@ class _CategoryGrid extends StatelessWidget {
         minTileHeight: 104,
         children: [
           for (final cat in shopCategories)
-            // Calm tiles: warm grey, the category's icon in its own colour.
+            // Calm tiles: warm grey with a cocoa icon (in the Genda palette).
             Material(
               color: context.paw.surfaceSubtle,
               borderRadius: BorderRadius.circular(Radii.lg),
@@ -227,7 +227,7 @@ class _CategoryGrid extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(Space.sm),
                   child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Icon(categoryIcon(cat), color: readableOn(categoryColor(cat), [context.paw.surfaceSubtle], ratio: 3), size: IconSizes.xl),
+                    Icon(categoryIcon(cat), color: context.paw.textPrimary, size: IconSizes.xl),
                     const SizedBox(height: Space.xs),
                     Text(categoryLabel(context, cat), style: context.text.labelMedium, textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
                   ]),

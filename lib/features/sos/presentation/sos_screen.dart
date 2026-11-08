@@ -293,25 +293,38 @@ class _LocationLine extends StatelessWidget {
                 SosSource.lastKnown => l.sosUsingLastKnown(Fmt.time(s.at ?? DateTime.now(), context.lang)),
                 SosSource.chosen => l.sosUsingArea(s.label),
               };
+    final status = Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      locating
+          ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner))
+          : Icon(s?.source == SosSource.gps ? Icons.my_location_outlined : Icons.location_off_outlined,
+              color: s?.source == SosSource.gps ? context.paw.success : context.paw.warning),
+      const SizedBox(width: Space.md),
+      Expanded(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(text, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
+          if (!locating && s != null && s.source != SosSource.gps) Text(l.sosLocationOffHint, style: context.text.bodySmall),
+        ]),
+      ),
+    ]);
+    final actions = <Widget>[
+      if (s?.source != SosSource.gps) IconButton(tooltip: l.sosTryLocation, icon: const Icon(Icons.refresh_outlined), onPressed: onRetry),
+      TextButton(onPressed: onChange, child: Text(l.sosChangeArea)),
+    ];
+    // In an emergency the status gets the full width: on phones the buttons
+    // go on their own line below it.
     return PawCard(
       padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md),
-      child: Row(children: [
-        locating
-            ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner))
-            : Icon(s?.source == SosSource.gps ? Icons.my_location_outlined : Icons.location_off_outlined,
-                color: s?.source == SosSource.gps ? context.paw.success : context.paw.warning),
-        const SizedBox(width: Space.md),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(text, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
-            if (!locating && s != null && s.source != SosSource.gps) Text(l.sosLocationOffHint, style: context.text.bodySmall),
-          ]),
-        ),
-        if (!locating) ...[
-          if (s?.source != SosSource.gps) IconButton(tooltip: l.sosTryLocation, icon: const Icon(Icons.refresh_outlined), onPressed: onRetry),
-          TextButton(onPressed: onChange, child: Text(l.sosChangeArea)),
-        ],
-      ]),
+      child: LayoutBuilder(builder: (context, box) {
+        if (locating) return status;
+        if (box.maxWidth < Sizes.placeCardMinWidth + Space.xxl) {
+          return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            status,
+            const SizedBox(height: Space.xs),
+            Row(mainAxisAlignment: MainAxisAlignment.end, children: actions),
+          ]);
+        }
+        return Row(children: [Expanded(child: status), ...actions]);
+      }),
     );
   }
 }

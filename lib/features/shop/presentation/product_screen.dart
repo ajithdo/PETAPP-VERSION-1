@@ -248,13 +248,24 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
             constraints: const BoxConstraints(maxWidth: Space.formWidth),
             child: p.isAffiliate
                 ? PrimaryButton(label: l.shopBuyOn(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_outlined, onPressed: () => _openPartner(p, store))
-                : Row(children: [
-                    QtyStepper(qty: _qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => setState(() => _qty = q < 1 ? 1 : q)),
-                    const SizedBox(width: Space.sm),
-                    Expanded(child: SecondaryButton(label: l.shopAddToCart, onPressed: p.inStock ? () => _add(p) : null)),
-                    const SizedBox(width: Space.sm),
-                    Expanded(child: PrimaryButton(label: l.shopBuyNow, onPressed: p.inStock ? () => _add(p, go: true) : null)),
-                  ]),
+                : LayoutBuilder(builder: (context, box) {
+                    final stepper = QtyStepper(qty: _qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => setState(() => _qty = q < 1 ? 1 : q));
+                    final buttons = Row(children: [
+                      Expanded(child: SecondaryButton(label: l.shopAddToCart, onPressed: p.inStock ? () => _add(p) : null)),
+                      const SizedBox(width: Space.sm),
+                      Expanded(child: PrimaryButton(label: l.shopBuyNow, onPressed: p.inStock ? () => _add(p, go: true) : null)),
+                    ]);
+                    // Phones and big text: the stepper on its own line above two
+                    // equal buttons, so no label breaks.
+                    if (box.maxWidth < Space.formWidth * 0.66 || MediaQuery.textScalerOf(context).scale(1) > 1.3) {
+                      return Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                        Align(alignment: Alignment.centerLeft, child: stepper),
+                        const SizedBox(height: Space.sm),
+                        buttons,
+                      ]);
+                    }
+                    return Row(children: [stepper, const SizedBox(width: Space.sm), Expanded(child: buttons)]);
+                  }),
           ),
         ),
       ),

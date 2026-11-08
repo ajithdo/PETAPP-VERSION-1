@@ -72,8 +72,10 @@ import 'home_extras.dart';
   ];
   return (
     top: top,
-    main: [...today, ...quickActions],
-    side: [...nextUpSection(context, ref, pets: [pet], flush: true, skipFirst: skip), ...nearby, ...tips],
+    // Desktop: the day on the left; next up, quick actions, nearby and tips
+    // on the right, so the pet stays the biggest picture.
+    main: today,
+    side: [...nextUpSection(context, ref, pets: [pet], flush: true, skipFirst: skip), ...quickActions, ...nearby, ...tips],
     phoneOrder: [...today, ...next, ...quickActions, ...nearby, ...tips],
   );
 }
