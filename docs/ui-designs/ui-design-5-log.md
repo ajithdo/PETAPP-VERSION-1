@@ -33,7 +33,7 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - **Part A (8 Nov).** The session had started on the old UI Design 1 branch, so the work branch was moved forward onto `ui-revamp` (fast-forward, nothing lost) and the setup branch's last commit (push rule) was merged in. Found and fixed: `skills-lock.json` listed 35 of the 37 skills; `netlify-deploy` and `netlify-config` were reinstalled from Netlify's own repo (`netlify/context-and-tools`) and its MIT LICENSE copied back. Everything else was already right (see the table in the owner's chat summary). After the worker restarted, the session loaded the new `.mcp.json`: the Dart and Firebase servers connected.
 - **Part B (8 Nov).** The naming branch `claude/modest-dijkstra-q2x165` was **already merged into `ui-revamp`** (by pull request #2, commit `b884e3a`), so it is in the work branch too; `docs/ui-designs` and `docs/ui-revamp/check_ui_design_tokens.sh` exist. UI Design 5 added to the Names table in `docs/PROGRESS.md`.
 - **Plus fix merged (owner's choice).** `claude/serene-pascal-kjqctd` merged into the work branch. Conflicts in `docs/DECISIONS.md` and `docs/PROGRESS.md` were settled by keeping both sets of notes; `test/core/demo_auth_test.dart` keeps both fixes (demo data made as of today; Priya checked as Plus on that date and by the real clock).
-- **Checks before the merge:** `flutter analyze` clean, 204 of 204 tests pass.
+- **Checks:** before the merge `flutter analyze` clean, 204 of 204 tests pass; after the merge `flutter analyze` clean, 210 of 210 tests pass.
 
 ## Decisions (and why)
 
@@ -47,7 +47,9 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 
 ## Check-ins
 
-- 16 one-time check-in messages are scheduled into this session, one every 60 minutes for 16 hours (ids listed below once made). Cancel any left when the work is finished.
+- 16 one-time check-in messages are scheduled into this session (made 8 Nov 08:31 UTC), one about every 60 minutes for 16 hours: 09:31, 10:31 … 18:31, 19:28, 20:31 … 23:31 UTC on 8 Nov and 00:31 UTC on 9 Nov (15:01 to 06:01 India time). Each one runs once and then switches itself off. **When everything is finished, cancel the ones still waiting** (delete_trigger with these ids):
+  trig_01GyXhDHLDF9HFyqoptmsMTx, trig_01N7AurCA82it4v85v12ZxkY, trig_01CqZegs7EGEQNWvTj6caRMu, trig_01VsukHhrUVJEKw2HkDhFX1a, trig_01WL1eFtwpAhYKspo4QyxLHC, trig_01UFd94XDNd24NvxD1sy3q1B, trig_01XXfmDa8HjuHiV5sAA1guuz, trig_019FUsZHf3tHS8mzF5jDHjaK, trig_01KPWG2zQc3uwXYeNN99ZYvB, trig_014kCgcC7ej8h6Apwy384BCq, trig_019S7wRYF6G2bjnpk1EGKdwm, trig_01HZfFdUPp1Cns1mmqq4ayLh, trig_017go7DTGAVSPN7S6twKjc6n, trig_013agTCzKiTc45neTJfg6q6M, trig_01GXZsgGZsGv5b2bv6oYeND9, trig_01749Wmtj2wsNgZus1rAQomB
+- A check-in that arrives while I'm working waits until the current step ends; it never interrupts.
 
 ## For you when you're back
 
