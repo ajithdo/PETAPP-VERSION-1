@@ -10707,4 +10707,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get gendaNothingPlanned => 'Nothing planned today. Add a routine.';
+
+  @override
+  String withUnread(String label, int count) {
+    return '$label, $count unread';
+  }
 }

@@ -17817,6 +17817,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing planned today. Add a routine.'**
   String get gendaNothingPlanned;
+
+  /// No description provided for @withUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'{label}, {count} unread'**
+  String withUnread(String label, int count);
 }
 
 class _AppLocalizationsDelegate

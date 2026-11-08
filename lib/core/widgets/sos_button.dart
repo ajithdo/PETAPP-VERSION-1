@@ -99,7 +99,8 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
     );
   }
 
-  /// UI Design 2 top-bar SOS: a soft red pill that fills while held.
+  /// Top-bar SOS (UI Design 5): a solid red pill with white text, the only
+  /// red in the app; a lighter sweep fills it while held.
   Widget _pill(BuildContext context, PawColors paw, bool easy) {
     // The pill is 8 px shorter than the tap area around it.
     final target = easy ? TapTarget.easy : TapTarget.min;
@@ -107,9 +108,8 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
     final pill = Container(
       height: target - Space.sm,
       decoration: BoxDecoration(
-        color: paw.sosContainer,
+        color: paw.sos,
         borderRadius: radius,
-        border: Border.all(color: paw.sosBorder),
       ),
       child: ClipRRect(
         borderRadius: radius,
@@ -121,7 +121,7 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
                 builder: (_, _) => FractionallySizedBox(
                   alignment: Alignment.centerLeft,
                   widthFactor: _c.value,
-                  child: ColoredBox(color: paw.sos.withValues(alpha: Opacities.tintStrong)),
+                  child: ColoredBox(color: paw.onSos.withValues(alpha: Opacities.tintStrong)),
                 ),
               ),
             ),
@@ -129,12 +129,12 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
-              Icon(Icons.emergency_outlined, size: IconSizes.sm, color: paw.onSosContainer),
+              Icon(Icons.emergency_rounded, size: IconSizes.sm, color: paw.onSos),
               const SizedBox(width: Space.xs + Space.xxs),
               Text(
                 'SOS',
                 style: context.text.labelLarge?.copyWith(
-                  color: paw.onSosContainer,
+                  color: paw.onSos,
                   fontWeight: FontWeight.w800,
                   fontFamily: FontFamilies.heading,
                   letterSpacing: Tracking.wide,

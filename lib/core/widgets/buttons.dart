@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../theme/tokens.dart';
+import 'layout.dart';
 
 /// Red for destructive buttons with white text: the dark theme's error red
 /// is too light for white text (2.8:1), so it uses the deeper SOS red.
@@ -125,8 +126,9 @@ class PawIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final paw = context.paw;
     final n = badge ?? 0;
+    // Screen readers hear the unread count too ("Messages, 2 unread").
     return IconButton(
-      tooltip: tooltip,
+      tooltip: n > 0 ? context.l10n.withUnread(tooltip, n) : tooltip,
       onPressed: onPressed,
       style: IconButton.styleFrom(
         backgroundColor: paw.surface,

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../theme/tokens.dart';
 
-/// PawSetu mark: a paw under a bridge arch, in a rounded forest-teal tile.
+/// PawSetu mark: a white paw under a marigold bridge arch, in a rounded
+/// cocoa tile (UI Design 5).
 /// The mark keeps its brand colours in light and dark mode.
 class PawSetuLogo extends StatelessWidget {
   const PawSetuLogo({super.key, this.size = 56, this.withName = false});

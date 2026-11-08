@@ -9,11 +9,11 @@ import '../theme/tokens.dart';
 /// Used only for onboarding, empty states and success screens (spec 4).
 enum Scene { welcomeCare, welcomeHealth, welcomeBridge, empty, success, search, lost, memory, shop, chat, vault }
 
-const _teal = Color(0xFF18453E);
-const _tealLight = Color(0xFF5EEAD4);
-const _apricot = Color(0xFFF4A261);
-const _apricotLight = Color(0xFFFDE7D3);
-const _ink = Color(0xFF1C1917);
+const _teal = Color(0xFF4A2A12); // cocoa (UI Design 5)
+const _tealLight = Color(0xFFEAD7BA); // warm cocoa tint
+const _apricot = Color(0xFFF3A712); // marigold
+const _apricotLight = Color(0xFFFFF0CC); // pale marigold
+const _ink = Color(0xFF231B12);
 
 class Illustration extends StatelessWidget {
   const Illustration(this.scene, {super.key, this.size = 180});
@@ -59,7 +59,7 @@ class _ScenePainter extends CustomPainter {
         _heart(canvas, Offset(s * 0.55, s * 0.24), s * 0.09, _apricot);
       case Scene.welcomeHealth:
         _rrect(canvas, Rect.fromLTWH(s * 0.22, s * 0.2, s * 0.56, s * 0.62), s * 0.06,
-            dark ? const Color(0xFF172124) : Colors.white);
+            dark ? const Color(0xFF1F1A14) : Colors.white);
         for (var i = 0; i < 3; i++) {
           final y = s * (0.34 + i * 0.15);
           _circle(canvas, Offset(s * 0.32, y), s * 0.035, i < 2 ? _teal : _apricotLight);
@@ -175,7 +175,7 @@ class _ScenePainter extends CustomPainter {
 
   void _clinic(Canvas c, Offset o, double r) {
     _rrect(c, Rect.fromCenter(center: o.translate(0, r * 0.1), width: r * 1.5, height: r * 1.5), r * 0.2,
-        dark ? const Color(0xFF172124) : Colors.white);
+        dark ? const Color(0xFF1F1A14) : Colors.white);
     final cross = Paint()..color = _teal;
     c.drawRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: o.translate(0, r * 0.1), width: r * 0.3, height: r * 0.9), Radius.circular(r * 0.08)), cross);
     c.drawRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: o.translate(0, r * 0.1), width: r * 0.9, height: r * 0.3), Radius.circular(r * 0.08)), cross);

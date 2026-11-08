@@ -60,7 +60,7 @@ All text meets WCAG AA (4.5:1) and borders, icons and focus rings 3:1, in light,
 Fonts (bundled, not loaded from the internet; SIL OFL): titles in Baloo 2 (English and Hindi) and Baloo Tammudu 2 (Telugu); text in Hind (English and Hindi) and Hind Guntur (Telugu); Noto Sans Devanagari and Noto Sans Telugu as fallbacks. Sizes: display 36, headline 26, title 21, title small 17, body 16, body small 14, label 16, smallest 13. Nothing under 13 px. Line height 1.5 (1.6 or more for Hindi and Telugu, which are never letter-spaced or upper-cased).
 Shapes: cards 22 px radius, photos in cards 16 px, inputs 16 px, buttons and chips fully rounded, bottom sheets 28 px top corners. One soft warm shadow on cards in light mode; a 1 px edge instead in dark mode.
 Spacing: 4-point grid. Screen padding 16 (phone) / 24 (tablet and desktop). Content max width 1200 px, centred.
-Icons: Material rounded icons, filled when selected.
+Icons: Material icons, outlined when idle and filled when selected.
 Pictures: photos for pets, clinics, providers and products; simple line drawings (cocoa lines, one marigold accent) only for onboarding, empty states and errors. Never use copyrighted characters, real brand logos or watermarked stock photos.
 Motion: 200-300 ms ease-out; hero animation for pet photos; respect the system "reduce motion" setting.
 Touch targets at least 48 px (56 px in Easy mode). Light haptic feedback on key actions (mobile).

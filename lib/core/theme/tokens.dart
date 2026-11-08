@@ -855,6 +855,9 @@ class Sizes {
   /// Side menu width in the partner, seller and admin portals.
   static const double portalNav = 280;
 
+  /// Desktop side navigation (DESIGN.md: 256 px, labels on one line).
+  static const double sideNav = 256;
+
   /// Sign-in card width on wide screens.
   static const double authCard = 440;
 

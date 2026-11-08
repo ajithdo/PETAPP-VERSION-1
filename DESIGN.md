@@ -280,16 +280,16 @@ The frontmatter is normative. Light and dark values are listed; high contrast da
 
 - Cards and the Genda band: 22 px corners. Photos inside cards: 16 px. Sheets: 28 px top corners. Inputs: 16 px. Buttons, chips, the SOS button, badges and the navigation indicator: fully round (pill).
 - Pet avatars are circles; in the pet switcher they sit inside the chip.
-- Icons: Material rounded set (`Icons.*_rounded`), 24 px, filled when selected.
+- Icons: Material icons, 24 px: outlined when idle, filled (rounded) when selected or for emphasis; one set per screen, never mixed with another icon family.
 
 ## Components
 
 ### Navigation and top bar
-- **Phone:** Material navigation bar with the 5 tabs (Home, Health, Book, Shop, Me), labels always visible, the selected tab marked by a cocoa pill (marigold in dark mode). Top bar: logo, messages, notifications, then the SOS button at the far end.
+- **Phone:** Material navigation bar with the 5 tabs (Home, Health, Book, Shop, Me), labels always visible, the selected tab marked by a cocoa pill with a white icon (marigold pill, dark icon, in dark mode). Top bar on the main tabs: logo, messages, notifications, then the SOS button at the far end; the pet pills below.
 - **Tablet:** navigation rail with icons and labels; top bar as on desktop.
-- **Desktop:** side navigation (256 px) with the 5 tabs, a divider, Messages and Notifications; labels on one line. Top bar: pet switcher on the left, search, messages, notifications and SOS on the right.
+- **Desktop:** side navigation (the navigation rail extended to 256 px) with the logo and the 5 tabs, labels on one line. Top bar: pet switcher on the left; messages, notifications and SOS on the right (they are not repeated in the side navigation).
 - **Portals and admin:** the same side navigation with the partner's sections and count badges; on phones a bottom bar with Today, Calendar, Requests, Chat and More. Top bar names the business and role, with a "Demo" tag.
-- Every screen inside the app keeps the navigation visible (no full-screen pages except photo viewers, the video call and onboarding).
+- The navigation is visible on the five tabs and the screens inside them. Screens opened from elsewhere (pet profile, messages, SOS…) currently open on their own with a back arrow; keeping the navigation on them too would change how the app's navigation works, so it is listed as a suggestion for the owner.
 
 ### Buttons
 - **The One Main Action Rule.** One filled cocoa button per screen (marigold in dark). Other actions are outlined or text buttons.

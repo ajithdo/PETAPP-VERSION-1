@@ -10364,4 +10364,9 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get gendaNothingPlanned =>
       'ఈరోజు ఏమీ ప్లాన్ లేదు. ఒక దినచర్య జోడించండి.';
+
+  @override
+  String withUnread(String label, int count) {
+    return '$label, $count చదవనివి';
+  }
 }

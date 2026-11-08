@@ -7319,5 +7319,16 @@
       }
     }
   },
-  "gendaNothingPlanned": "Nothing planned today. Add a routine."
+  "gendaNothingPlanned": "Nothing planned today. Add a routine.",
+  "withUnread": "{label}, {count} unread",
+  "@withUnread": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

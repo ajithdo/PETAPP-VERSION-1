@@ -4,9 +4,9 @@ Read this first after a usage reset, a restart or a context summary, then contin
 
 ## Status
 
-- **Phase:** 3 done (design rules). Now Phase 4 (foundation).
+- **Phase:** 4 done, Batch A done. Now Batch B (Home, Health, Book, Shop, Me).
 - **Work branch:** `claude/happy-wozniak-68a4q2` (push only this branch).
-- **Next step:** Phase 4: make static font files (Baloo 2, Baloo Tammudu 2 at 600/700; Hind, Hind Guntur at 400/500/600/700) into `assets/fonts` with their OFL licences, register them in `pubspec.yaml`; put the Genda values into `lib/core/theme/tokens.dart` (keep token names) and `app_theme.dart`; restyle `lib/core/widgets` (+ new: date block, Genda band with garland, status chip if missing); previews and tests for new widgets; update the design gallery (light, dark, high contrast) and save its screenshots; analyze, tests, token check; commit.
+- **Next step:** Batch B. Home first (`lib/features/home/presentation/`): greeting with date → GendaBand (photo with Hero tag `pet-<id>`, tap → `/pets/<id>`; flowers = walks goal + meals goal + 1 for play; done counted per goal) → TodayCard without its ring header (title Today + streak chip; rows: done tick, type, progress, log button) → Next up (no skipFirst; DueTile: date block, chip only when overdue) → 4 quick actions (Book a vet, Ask a vet, Shop, Add photo) → Near you (location pill, search box, 2 nearest clinics; no health-status card, no chip row) → tips. Desktop: left = band, today, quick actions; right = next up, near you, tips. Then Health (calm), Book, Shop, Me.
 
 ## Plan (from the owner's prompt)
 
@@ -17,9 +17,9 @@ Read this first after a usage reset, a restart or a context summary, then contin
 | 1 | Brief (`docs/ui-designs/ui-design-5-brief.md`) | done |
 | 2 | Three directions, pick one | done: Genda |
 | 3 | Design rules: DESIGN.md, PRODUCT.md, PROJECT_SPEC section 4, CLAUDE.md line | done |
-| 4 | Foundation | next |
-| 5A | Shell: navigation, top bar, pet switcher, SOS | — |
-| 5B | Home, Health, Book, Shop, Me | — |
+| 4 | Foundation | done |
+| 5A | Shell: navigation, top bar, pet switcher, SOS | done (audit 19/20) |
+| 5B | Home, Health, Book, Shop, Me | next |
 | 5C | Sign-in + demo accounts first; then booking, pet profile + routine, SOS, tele-vet; then vault, album, messages, notifications, family, plans, settings, onboarding | — |
 | 5D | Partner portals and admin (before the rest of 5C only if the audit finds them much weaker) | — |
 | 5E | Motion and app icons | — |
@@ -36,7 +36,21 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - **Phase 2 (8 Nov).** GO received. Wrote `PRODUCT.md` (Impeccable needs it before any new look). Ran Impeccable's direction roll (seed:b45978419bb7395c): seven ideas from Indian pet parents' everyday world; the roll assigned the wall calendar. Mocked three directions with the app's real content (Home, Health, Book, clinic portal; 390 and 1440 px; light and dark; plus Hindi, Telugu and Easy mode): **A. Deewar** (wall calendar, ballpoint blue), **B. Muhar** (vaccination booklet, violet stamp), **C. Genda** (marigold garland, cocoa). Compare page `docs/ui-designs/ui-design-5-directions/index.html`; critique and scores in `CRITIQUE.md` there. Picked **Genda** (53 vs 50 vs 43.5). Direction contract in `.impeccable/surfaces/lib-app-dart.md`.
 - **UI Design 4 "before" pictures:** `tools/screens/capture.cjs` (Playwright on the web build; signs in by tapping the demo account) captured 84 screens of the unchanged UI Design 4 build into `docs/ui-revamp/ui-design-4-baseline/` (360 px and 1280 px; main tabs also dark, Telugu and Easy mode), for the side-by-side comparisons later.
 - **Phase 3 (8 Nov).** `DESIGN.md` written (frontmatter tokens for light and dark plus prose rules: two registers, colours and states, type scale and the Indic rule, layout, elevation, shapes, every component, states, Easy mode, motion, writing numbers, do's and don'ts). Colour roles checked by script in light, dark and both high-contrast themes: every text pair 4.5:1+, borders, icons and focus 3:1+. `docs/PROJECT_SPEC.md` section 4 now summarises UI Design 5; `CLAUDE.md` has the line "Design rules: DESIGN.md (UI Design 5)".
+- **Phase 4 (8 Nov).** Fonts bundled (Baloo 2 / Baloo Tammudu 2 static 600/700 cut with fonttools; Hind / Hind Guntur 400–700; OFL licences). `tokens.dart`: Genda colours (light, dark, high contrast), new type scale (13 px minimum, Indic bump), 22 px cards, warm shadow, date block 56 px, garland sizes, side nav 256 px; category, print and video-call colours without red or teal. `app_theme.dart`: Baloo titles / Hind text per language, no Indic letter-spacing, cocoa count badges (were SOS red), navigation indicator, chips, list rows. Widgets restyled (cards, buttons, pills, date block, health pass on the band, skeletons, timeline, drawings recoloured); danger buttons berry in both themes (dark used SOS red). New `GendaBand`/`Garland` with previews and 5 widget tests. Design gallery rebuilt (light/dark/high contrast switch); screenshots in `docs/ui-designs/ui-design-5-gallery/`. Contrast test has the new pairs and passes; analyzer clean; token check clean.
+- **Batch A (8 Nov), built.** `owner_shell.dart`: Material navigation bar on phones (labels always shown, cocoa pill), navigation rail on tablets, rail extended to 256 px side navigation on desktop (logo + 5 tabs); top bar with pet pills, messages, notifications and SOS on every size. SOS pill solid red with white text. Screenshots in `docs/ui-revamp/ui-design-5-A-shell/` (Home and Health hosts: 360/1280, light/dark, Telugu, Easy mode, tablet 800).
 - **Checks:** before the merge `flutter analyze` clean, 204 of 204 tests pass; after the merge `flutter analyze` clean, 210 of 210 tests pass.
+
+### Batch A summary (AGENTS.md format)
+(a) Five lines:
+1. New foundation: Genda colours, Baloo + Hind fonts (bundled), 13 px minimum, 22 px cards, warm shadows, one red (SOS).
+2. Shared widgets restyled; new Genda band (pet photo in a marigold garland, one flower per task) with tests and previews.
+3. Shell: standard Material bottom bar on phones, rail on tablets, side navigation on desktop; SOS solid red; badges cocoa.
+4. Design gallery shows every component in light, dark and high contrast (`docs/ui-designs/ui-design-5-gallery/`).
+5. Checks: analyzer clean, 215 of 215 tests pass (incl. 200% text sweep in en/hi/te), token check clean, audit 19/20.
+
+(b) What to test: open the app on a phone width → the bottom bar has 5 labelled tabs with a dark pill on the selected one; the red SOS pill is top right; message and bell badges are brown, not red. Widen the window past 640 px → a rail on the left; past 1024 px → side navigation with the logo. Settings → Appearance → Dark and High contrast → everything stays readable. Settings → About → tap 5 times → the design gallery.
+
+(c) Anything you must do: nothing for this batch.
 
 ## Decisions (and why)
 
@@ -54,6 +68,11 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - 8 Nov, Phase 3: DESIGN.md is written now (owner's Phase 3), although Impeccable normally writes it after the build; at the finish the Impeccable documenter checks it against the built app and fixes any drift.
 - 8 Nov, Phase 3: desktop uses Material side navigation (256 px) instead of UI Design 4's top bar with pill tabs (that pattern wrapped menu items in UI Design 2); tablets a navigation rail; phones the standard bottom bar (not UI Design 4's floating dark bar).
 - 8 Nov, Phase 3: the smallest text rises from 12 px (UI Design 4's labelSmall and overline) to 13 px; Hindi and Telugu secondary text one step up (15 px).
+
+- 8 Nov, Phase 4: the translation merge tool (`tools/l10n/merge.dart`) rebuilds the ARB files from `lib/core/l10n/src/*.json`, but 5 strings had been added to the ARB files only (`bookFor`, `nextFreeSlot`, `healthAllClear`, `certificate`, `emergencyInfo`), so a merge dropped them. They were added to the source files; their translator notes ("@" descriptions) were lost, because the source format has no place for them.
+- 8 Nov, Phase 4: `dart format` is run only on files I write, at `--page-width 160` (the project's style); a whole-folder format reflowed 14 untouched files, which were restored.
+- 8 Nov, Batch A: desktop side navigation holds only the 5 tabs; messages, notifications and SOS stay in the top bar so nothing appears twice (DESIGN.md corrected). No global search was added (the app has none; inventing it would be a feature).
+- 8 Nov, Batch A: **not done (owner's decision):** keeping the navigation visible on screens opened outside the tabs (pet profile, messages, SOS…). It would change how navigation and Back work; listed in the morning report as a suggestion.
 
 ## Problems
 

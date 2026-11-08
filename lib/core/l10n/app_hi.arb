@@ -2952,5 +2952,6 @@
   "offlineBanner": "आप ऑफ़लाइन हैं। सेव की हुई जानकारी चलती रहेगी, और नई एंट्री इंटरनेट आने पर सेव हो जाएँगी।",
   "albumTitle": "{pet} की यादें",
   "gendaProgress": "{total} में से {done} हो गए",
-  "gendaNothingPlanned": "आज कुछ तय नहीं है। एक दिनचर्या जोड़ें।"
+  "gendaNothingPlanned": "आज कुछ तय नहीं है। एक दिनचर्या जोड़ें।",
+  "withUnread": "{label}, {count} बिना पढ़े"
 }
