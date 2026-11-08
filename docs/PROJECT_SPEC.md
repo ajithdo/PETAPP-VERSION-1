@@ -43,29 +43,33 @@ User experience goal: very easy and never clumsy. One clear main action per scre
 - Folders: lib/core (theme, shared widgets, services, l10n, routing, config) and lib/features/<feature>/{data,domain,presentation}. Cloud Functions in functions/. Seed data in tools/seed/.
 
 # 4. DESIGN SYSTEM
-Personality: calm, warm, trustworthy. Clean like Apple Health, warm like a friendly pet clinic, clinical and serious on medical screens. Never cluttered.
-Theme: Light, Dark, System default (Settings → Appearance). Default = System.
+UI Design 5 "Genda" (8 Nov 2026). The full rules, with every token, are in DESIGN.md at the project root; the values live in lib/core/theme/tokens.dart. This section is the summary.
+Personality: the pet's day as a small daily ritual. Calm and trustworthy on Health, records (vault, medical card, prescriptions, reports), tele-vet, SOS and the partner and admin portals; warm and friendly on Home, empty states, onboarding, the album and birthdays. Never cluttered.
+Signature: on Home, the selected pet's photo sits in a marigold garland with one flower per task today; flowers open as tasks are done.
+Theme: Light, Dark, System default (Settings → Appearance). Default = System. High contrast darkens text and borders.
 Colour tokens (light / dark):
-- Primary teal #0F766E / #2DD4BF; on-primary #FFFFFF / #04201D
-- Primary container #CCFBF1 / #134E4A
-- Warm accent apricot #F4A261 / #F6BD8A (highlights, celebrations, marketplace badges)
-- Background #FAF8F5 / #0E1415; Surface (cards) #FFFFFF / #172124; Outline #E5E1DA / #2A3639
-- Text primary #1C2B2D / #E8EEEE; text secondary #5B6B6E / #9FB0B2
-- Success #15803D / #4ADE80; Warning #B45309 / #FBBF24; Error #B91C1C / #F87171
-- SOS red #DC2626 in both modes, always with white text
+- Main action and brand: cocoa #4A2A12 with white text / marigold #F5B53F with #2A1A00 text
+- Genda band (Home, dark hero panels): #3A2416 / #2B2214, text #FFF6E5 / #F4EEE5
+- Marigold #F3A712 / #F5B53F for flowers, progress, celebration and Plus (a fill, never text); marigold text #8F5A00
+- Page #F6F5F3 / #14110D; cards #FFFFFF / #1F1A14; grouped areas #EFECE7 / #28221A; dividers #E6E1DA / #3A3226; control borders #857A6C / #8A7F70 (3:1)
+- Text #231B12 / #F4EEE5; secondary text #5B5044 / #BDB2A3
+- Success #17703F / #6FD49A; warning #8A4B00 / #FFC861; errors berry #8C1D6E / #F29BD3 (always with an icon and words)
+- SOS red #C81E1E in both modes, always with white text. SOS is the only red in the app: no red, coral or orange-red anywhere else.
 - Pet colour tags: amber #F4A261, lavender #9B8AFB, sky #38BDF8, rose #F472B6, mint #34D399, sand #D6B98C (user picks one per pet)
-All text must meet WCAG AA contrast in both modes.
-Fonts (bundled, not loaded from the internet): Plus Jakarta Sans for English; Noto Sans Devanagari for Hindi; Noto Sans Telugu for Telugu. Sizes: display 32, title 22, heading 18, body 16, caption 13. Line height 1.4 (1.6 for Hindi and Telugu).
-Shapes: cards 20 px radius, buttons 14 px, chips fully rounded, bottom sheets 28 px top corners. Soft shadows in light mode, tonal surfaces in dark mode.
-Spacing: 4-point grid. Screen padding 16 (phone) / 24 (tablet). Desktop content max width 1200 px, centred.
-Icons: Material Symbols Rounded.
-Illustrations: one consistent original style (soft, flat, rounded shapes in teal and apricot) for onboarding, empty states and success screens only. Generate them or draw simple vector art. Never use copyrighted characters, real brand logos or watermarked stock photos.
+All text meets WCAG AA (4.5:1) and borders, icons and focus rings 3:1, in light, dark and high contrast.
+Fonts (bundled, not loaded from the internet; SIL OFL): titles in Baloo 2 (English and Hindi) and Baloo Tammudu 2 (Telugu); text in Hind (English and Hindi) and Hind Guntur (Telugu); Noto Sans Devanagari and Noto Sans Telugu as fallbacks. Sizes: display 36, headline 26, title 21, title small 17, body 16, body small 14, label 16, smallest 13. Nothing under 13 px. Line height 1.5 (1.6 or more for Hindi and Telugu, which are never letter-spaced or upper-cased).
+Shapes: cards 22 px radius, photos in cards 16 px, inputs 16 px, buttons and chips fully rounded, bottom sheets 28 px top corners. One soft warm shadow on cards in light mode; a 1 px edge instead in dark mode.
+Spacing: 4-point grid. Screen padding 16 (phone) / 24 (tablet and desktop). Content max width 1200 px, centred.
+Icons: Material rounded icons, filled when selected.
+Pictures: photos for pets, clinics, providers and products; simple line drawings (cocoa lines, one marigold accent) only for onboarding, empty states and errors. Never use copyrighted characters, real brand logos or watermarked stock photos.
 Motion: 200-300 ms ease-out; hero animation for pet photos; respect the system "reduce motion" setting.
 Touch targets at least 48 px (56 px in Easy mode). Light haptic feedback on key actions (mobile).
+One main action per screen; at most one chip or badge per row; no label repeated on every row.
 States: every list has a friendly empty state with one call to action; loading uses skeleton placeholders; errors say what happened in plain words and offer "Try again".
-Forms: short, one topic per step, smart defaults, inline validation, never lose what the user typed.
-Easy mode (Settings → Accessibility, also offered during onboarding): text 25% larger, bigger buttons, a simpler Home (Today, Next due, 4 big quick actions, SOS), plain-language labels, no swipe-only actions, confirmation before deleting anything. Also: a text-size slider and a high-contrast option. Layouts must not break at 200% text size.
-Responsive: phone = bottom navigation; tablet = navigation rail; desktop/web = side navigation. Partner portals and admin use a sidebar with data tables, filters and search.
+Forms: short, one topic per step, label above each field, smart defaults, inline validation, never lose what the user typed.
+Numbers: ₹750, ₹3,899, ₹1,25,000 (Indian grouping); dates "Fri 13 Nov"; times "6:30 pm"; a discount shown once.
+Easy mode (Settings → Accessibility, also offered during onboarding): text 25% larger (base 19 px), 56 px buttons, a simpler Home (the pet's day, today's tasks, next due, 4 big quick actions, SOS), plain-language labels, no swipe-only actions, confirmation before deleting anything. Also: a text-size slider and a high-contrast option. Layouts must not break at 200% text size.
+Responsive: phone = bottom navigation bar; tablet = navigation rail; desktop/web = side navigation. Navigation stays visible on every screen. Partner portals and admin use a sidebar with data tables (compact density), filters and search.
 
 # 5. NAVIGATION AND KEY SCREENS (pet owner)
 Bottom tabs: Home · Health · Book · Shop · Me.

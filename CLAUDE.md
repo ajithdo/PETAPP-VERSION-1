@@ -1,5 +1,7 @@
 @AGENTS.md
 
+Design rules: DESIGN.md (UI Design 5)
+
 ## Which tool for which job
 - Screens, layout, colour, type, UX copy → the impeccable skill. It is the ONLY design skill. Review Flutter from source; its web detector doesn't apply.
 - Overflows, unbounded constraints, phone/tablet/desktop layouts → flutter-fix-layout-issues, flutter-build-responsive-layout.

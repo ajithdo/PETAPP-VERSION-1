@@ -4,9 +4,9 @@ Read this first after a usage reset, a restart or a context summary, then contin
 
 ## Status
 
-- **Phase:** 2 done (direction chosen: **C. Genda**). Now Phase 3 (design rules).
+- **Phase:** 3 done (design rules). Now Phase 4 (foundation).
 - **Work branch:** `claude/happy-wozniak-68a4q2` (push only this branch).
-- **Next step:** Phase 3: write DESIGN.md (tokens for light, dark, high contrast; components; states; text rules) from Genda, update PRODUCT.md if needed, PROJECT_SPEC.md section 4, and the CLAUDE.md line. Then Phase 4 (bundle fonts, tokens.dart, app_theme.dart, shared widgets, gallery).
+- **Next step:** Phase 4: make static font files (Baloo 2, Baloo Tammudu 2 at 600/700; Hind, Hind Guntur at 400/500/600/700) into `assets/fonts` with their OFL licences, register them in `pubspec.yaml`; put the Genda values into `lib/core/theme/tokens.dart` (keep token names) and `app_theme.dart`; restyle `lib/core/widgets` (+ new: date block, Genda band with garland, status chip if missing); previews and tests for new widgets; update the design gallery (light, dark, high contrast) and save its screenshots; analyze, tests, token check; commit.
 
 ## Plan (from the owner's prompt)
 
@@ -16,8 +16,8 @@ Read this first after a usage reset, a restart or a context summary, then contin
 | B | Names and branch | done |
 | 1 | Brief (`docs/ui-designs/ui-design-5-brief.md`) | done |
 | 2 | Three directions, pick one | done: Genda |
-| 3 | Design rules: DESIGN.md, PRODUCT.md, PROJECT_SPEC section 4, CLAUDE.md line | next |
-| 4 | Foundation: tokens, theme, shared widgets, design gallery | — |
+| 3 | Design rules: DESIGN.md, PRODUCT.md, PROJECT_SPEC section 4, CLAUDE.md line | done |
+| 4 | Foundation | next |
 | 5A | Shell: navigation, top bar, pet switcher, SOS | — |
 | 5B | Home, Health, Book, Shop, Me | — |
 | 5C | Sign-in + demo accounts first; then booking, pet profile + routine, SOS, tele-vet; then vault, album, messages, notifications, family, plans, settings, onboarding | — |
@@ -35,6 +35,7 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - **Plus fix merged (owner's choice).** `claude/serene-pascal-kjqctd` merged into the work branch. Conflicts in `docs/DECISIONS.md` and `docs/PROGRESS.md` were settled by keeping both sets of notes; `test/core/demo_auth_test.dart` keeps both fixes (demo data made as of today; Priya checked as Plus on that date and by the real clock).
 - **Phase 2 (8 Nov).** GO received. Wrote `PRODUCT.md` (Impeccable needs it before any new look). Ran Impeccable's direction roll (seed:b45978419bb7395c): seven ideas from Indian pet parents' everyday world; the roll assigned the wall calendar. Mocked three directions with the app's real content (Home, Health, Book, clinic portal; 390 and 1440 px; light and dark; plus Hindi, Telugu and Easy mode): **A. Deewar** (wall calendar, ballpoint blue), **B. Muhar** (vaccination booklet, violet stamp), **C. Genda** (marigold garland, cocoa). Compare page `docs/ui-designs/ui-design-5-directions/index.html`; critique and scores in `CRITIQUE.md` there. Picked **Genda** (53 vs 50 vs 43.5). Direction contract in `.impeccable/surfaces/lib-app-dart.md`.
 - **UI Design 4 "before" pictures:** `tools/screens/capture.cjs` (Playwright on the web build; signs in by tapping the demo account) captured 84 screens of the unchanged UI Design 4 build into `docs/ui-revamp/ui-design-4-baseline/` (360 px and 1280 px; main tabs also dark, Telugu and Easy mode), for the side-by-side comparisons later.
+- **Phase 3 (8 Nov).** `DESIGN.md` written (frontmatter tokens for light and dark plus prose rules: two registers, colours and states, type scale and the Indic rule, layout, elevation, shapes, every component, states, Easy mode, motion, writing numbers, do's and don'ts). Colour roles checked by script in light, dark and both high-contrast themes: every text pair 4.5:1+, borders, icons and focus 3:1+. `docs/PROJECT_SPEC.md` section 4 now summarises UI Design 5; `CLAUDE.md` has the line "Design rules: DESIGN.md (UI Design 5)".
 - **Checks:** before the merge `flutter analyze` clean, 204 of 204 tests pass; after the merge `flutter analyze` clean, 210 of 210 tests pass.
 
 ## Decisions (and why)
@@ -48,6 +49,11 @@ After each batch: Impeccable audit and fixes; screenshots (360 px and 1280 px, l
 - 8 Nov, Phase 2: **Never letter-space or upper-case Hindi or Telugu** (it broke Telugu words in A and B). Goes into DESIGN.md.
 - 8 Nov, Phase 2: Impeccable's "decision page" (which waits for the owner to click) was not opened, because the owner is offline and delegated the choice; the three directions and the pick are on the compare page instead. Critique ran as a design review only (Flutter = native platform for Impeccable; its web detector doesn't apply).
 - 8 Nov, Phase 2: platform recorded as `android` in PRODUCT.md (one Flutter Material 3 app for Android, iOS and web; Android phones are the main device).
+
+- 8 Nov, Phase 3: **form errors are berry (`#8C1D6E`), not red**, to keep SOS the only red (owner's rule 1). Errors always carry an icon and words.
+- 8 Nov, Phase 3: DESIGN.md is written now (owner's Phase 3), although Impeccable normally writes it after the build; at the finish the Impeccable documenter checks it against the built app and fixes any drift.
+- 8 Nov, Phase 3: desktop uses Material side navigation (256 px) instead of UI Design 4's top bar with pill tabs (that pattern wrapped menu items in UI Design 2); tablets a navigation rail; phones the standard bottom bar (not UI Design 4's floating dark bar).
+- 8 Nov, Phase 3: the smallest text rises from 12 px (UI Design 4's labelSmall and overline) to 13 px; Hindi and Telugu secondary text one step up (15 px).
 
 ## Problems
 
