@@ -205,3 +205,5 @@ Dev tools for the coding agent only; nothing here ships in the app. React-only t
 - **Docs lookup:** Context7 (hosted MCP server in `.mcp.json`).
 
 **Redesign proposal kept, not adopted (3 Nov 2026).** A full redesign ("Neel", indigo cotton) was proposed with Impeccable and three alternatives. The owner decided to keep the current design and to save the proposal for reference only, in `docs/design-proposals/`. It must not be implemented unless the owner asks. The five smaller improvements to the current design (navigation stays visible, grouped "Me" menu, calmer Home, small celebrations, bigger readable text) are still planned.
+
+**Second redesign proposal, waiting for a decision (10 Nov 2026).** "Toran" is a full redesign drawn as web-page mocks from the owner's 85 screenshots of the current look. It is saved in `docs/design-proposals/2026-11-10-toran-redesign/` and is not implemented. The app code and `lib/core/theme` are unchanged. The owner asked for it to stay in the folder and not be published or made live. Do not build it unless the owner asks.

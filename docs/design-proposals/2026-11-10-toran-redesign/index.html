@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PawSetu redesign gallery</title>
+<link rel="stylesheet" href="source/icons.css">
+<link rel="stylesheet" href="source/toran.css">
+<style>
+  /* Gallery page: a coffee-dark header, then every screen grouped the way the app is. */
+  body{background:var(--paper)}
+  .g-head{background:var(--espresso);color:var(--on-dark);padding:3rem max(1.25rem,calc((100vw - 76rem)/2)) 2.5rem}
+  .g-head h1{font-size:clamp(2.25rem,6vw,4rem);line-height:.98;font-weight:800;font-stretch:76%;letter-spacing:-.02em;margin:1.25rem 0 0;max-width:16ch}
+  .g-head p{color:var(--on-dark-2);font-size:1.0625rem;max-width:44rem;margin-top:1rem}
+  .g-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+  .g-nav a{padding:.5rem .875rem;border-radius:999px;border:1px solid var(--espresso-line);font-weight:600;font-size:.875rem}
+  .g-nav a:hover{background:var(--marigold);color:#2B1A12;border-color:var(--marigold)}
+  .g-main{padding:1rem max(1.25rem,calc((100vw - 76rem)/2)) 4rem}
+  .g-sec{padding-top:2.5rem}
+  .g-sec h2{font-size:1.75rem;font-weight:760;font-stretch:80%;letter-spacing:-.01em;margin:0 0 .25rem}
+  .g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr));gap:1.5rem 1.25rem;margin-top:1.25rem}
+  .g-card a.thumb{display:block;border-radius:1.25rem;overflow:hidden;box-shadow:var(--shadow-1);background:var(--surface);height:24rem;border:1px solid var(--line)}
+  .g-card a.thumb img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+  .g-card a.thumb:hover{box-shadow:var(--shadow-2)}
+  .g-card h3{font-size:1rem;font-weight:660;margin:.75rem 0 .125rem}
+  .g-links{display:flex;gap:.875rem;margin-top:.5rem;font-size:.8125rem}
+  .g-boards{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1.25rem;margin-top:1.25rem}
+  .g-boards a{display:block;border-radius:1rem;overflow:hidden;background:#1F140E;height:13rem}
+  .g-boards img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+</style>
+</head>
+<body>
+<header class="g-head">
+  <span class="brand" id="brand"></span>
+  <h1>The new look, every screen</h1>
+  <p>A design proposal for PawSetu. Nothing here is built into the app yet and nothing is published. Click any picture to see it full size, or open the live mock to resize it yourself.</p>
+  <nav class="g-nav" id="nav"></nav>
+</header>
+<main class="g-main" id="main"></main>
+<script src="source/screens-info.js"></script>
+<script>
+  const mark = `<svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#F8A80C"/><path d="M9 25.5v-4a11 11 0 0 1 22 0v4" fill="none" stroke="#2F1D14" stroke-width="3.6" stroke-linecap="round"/><g fill="#2F1D14"><ellipse cx="20" cy="27.6" rx="4.3" ry="3.5"/><circle cx="14.600" cy="23.400" r="1.750"/><circle cx="18.100" cy="20.600" r="1.850"/><circle cx="21.900" cy="20.600" r="1.850"/><circle cx="25.400" cy="23.400" r="1.750"/></g></svg>`;
+  document.getElementById('brand').innerHTML = mark + '<span>PawSetu</span>';
+  const GROUPS = [
+    ['Main tabs', 'tabs', ['home', 'health', 'book', 'shop', 'me']],
+    ['Getting started', 'start', ['welcome', 'signin', 'demo']],
+    ['Safety and vet help', 'help', ['sos', 'first-aid', 'televet', 'ask', 'messages', 'notifications']],
+    ['Booking', 'booking', ['clinic-finder', 'clinic-page', 'booking-details', 'my-bookings']],
+    ['Shop', 'shop', ['product', 'cart', 'cart-empty']],
+    ['Your pet', 'pet', ['pet-profile', 'routine', 'medical-card', 'vault', 'vault-open', 'album']],
+    ['Account', 'account', ['family', 'plus', 'settings']],
+    ['Partners and admin', 'pro', ['portal-clinic', 'portal-vet', 'portal-seller', 'admin']],
+  ];
+  const MODES = [['Dark mode', 'dark', 'dark-mode', '-phone', 'theme=dark'], ['Easy mode', 'easy', 'easy-mode', '', 'easy=1'], ['Telugu', 'telugu', 'telugu', '', 'lang=te&user=ravi']];
+  const BOARDS = ['01-overview', '02-before-and-after', '03-main-tabs', '04-start-and-safety', '05-vets-and-booking', '06-bookings-and-shop', '07-your-pet', '08-account-and-partners', '09-desktop-main-tabs', '10-desktop-flows', '11-desktop-partners-and-admin', '12-dark-mode', '13-easy-mode', '14-telugu'];
+  const card = (n, dir, suffix, q) => `<article class="g-card"><a class="thumb" href="screens/${dir}/${file(n)}${suffix}.png" target="_blank"><img loading="lazy" src="screens/${dir}/${file(n)}${suffix}.png" alt="${INFO[n][0]}"></a><h3>${INFO[n][0]}</h3><p class="c">${INFO[n][1]}</p><div class="g-links">${dir === 'phone' ? `<a class="link" href="screens/phone/${file(n)}.png" target="_blank">Phone</a><a class="link" href="screens/desktop/${file(n)}.png" target="_blank">Laptop</a>` : dir === 'dark-mode' ? `<a class="link" href="screens/dark-mode/${file(n)}-desktop.png" target="_blank">Laptop</a>` : ''}<a class="link" href="source/app.html?screen=${n}${q ? '&' + q : ''}" target="_blank">Live mock</a></div></article>`;
+  let nav = '<a href="#boards">Boards</a>', html = `<section class="g-sec" id="boards"><h2>Presentation boards</h2><p class="c">Start here. Fourteen boards that walk through the whole design.</p><div class="g-boards">${BOARDS.map((b) => `<a href="boards/${b}.jpg" target="_blank" title="${b}"><img loading="lazy" src="boards/${b}.jpg" alt="${b}"></a>`).join('')}</div></section>`;
+  for (const [title, id, names] of GROUPS) { nav += `<a href="#${id}">${title}</a>`; html += `<section class="g-sec" id="${id}"><h2>${title}</h2><div class="g-grid">${names.map((n) => card(n, 'phone', '', '')).join('')}</div></section>`; }
+  for (const [title, id, dir, suffix, q] of MODES) { nav += `<a href="#${id}">${title}</a>`; html += `<section class="g-sec" id="${id}"><h2>${title}</h2><div class="g-grid">${NAMES.slice(0, 5).map((n) => card(n, dir, suffix, q)).join('')}</div></section>`; }
+  document.getElementById('nav').innerHTML = nav;
+  document.getElementById('main').innerHTML = html;
+</script>
+</body>
+</html>
