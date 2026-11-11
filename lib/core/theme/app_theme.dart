@@ -3,39 +3,54 @@ import 'package:flutter/material.dart';
 
 import 'tokens.dart';
 
-/// Builds the Material 3 theme from the design tokens (UI Design 5 "Genda",
+/// Builds the Material 3 theme from the design tokens (UI Design 6 "Toran",
 /// DESIGN.md and lib/core/theme/tokens.dart). No colour or size is typed here
 /// directly.
 class AppTheme {
   static bool _indic(String locale) => locale == 'hi' || locale == 'te';
 
-  /// Text font for a language: Hind (English, Hindi) or Hind Guntur (Telugu).
+  /// Text font for a language. Bricolage Grotesque in every language; Hindi
+  /// and Telugu letters come from the Noto fallbacks.
   static String fontFor(String locale) => locale == 'te' ? FontFamilies.bodyTelugu : FontFamilies.body;
 
-  /// Title font for a language: Baloo 2 (English, Hindi) or Baloo Tammudu 2.
+  /// Title font for a language (the narrow, heavy Bricolage cut).
   static String headingFor(String locale) => locale == 'te' ? FontFamilies.headingTelugu : FontFamilies.heading;
 
+  /// Fallbacks: the script of the current language first.
   static List<String> fallbackFor(String locale) => switch (locale) {
-    'te' => const [FontFamilies.bodyTelugu, FontFamilies.telugu, FontFamilies.body, FontFamilies.devanagari],
-    'hi' => const [FontFamilies.body, FontFamilies.devanagari, FontFamilies.bodyTelugu, FontFamilies.telugu],
-    _ => const [FontFamilies.body, FontFamilies.devanagari, FontFamilies.bodyTelugu, FontFamilies.telugu],
+    'te' => const [FontFamilies.telugu, FontFamilies.devanagari],
+    _ => const [FontFamilies.devanagari, FontFamilies.telugu],
   };
 
-  /// A text style for [t] in [locale]: titles in Baloo, text in Hind. Hindi
-  /// and Telugu get taller lines, no letter-spacing, and small text one step
-  /// up (DESIGN.md, the Indic rule).
-  static TextStyle styleFor(TypeToken t, String locale, Color color, {String? family}) {
+  /// Hindi and Telugu titles sit a little smaller than English ones: the
+  /// letters are taller and the words longer (DESIGN.md, the Indic rule).
+  static const double _indicTitleScale = 0.88;
+
+  /// Line height for Hindi and Telugu titles (body text uses
+  /// [TypeScale.indicLineHeight]).
+  static const double _indicTitleLineHeight = 1.42;
+
+  /// A text style for [t] in [locale]: titles in the narrow heavy cut, text
+  /// in the regular cut. Hindi and Telugu get taller lines, no
+  /// letter-spacing, and small text one step up. [tabular] lines numbers up
+  /// in columns (times, IDs, doses).
+  static TextStyle styleFor(TypeToken t, String locale, Color color, {String? family, bool tabular = false}) {
     final indic = _indic(locale);
     final f = family ?? (t.heading ? headingFor(locale) : fontFor(locale));
-    final size = indic && t.size < 16 ? t.size + TypeScale.indicSmallBump : t.size;
+    final bigTitle = t.heading && t.size >= 20;
+    final size = indic
+        ? (t.size < 16 ? t.size + TypeScale.indicSmallBump : (bigTitle ? (t.size * _indicTitleScale).roundToDouble() : t.size))
+        : t.size;
     final lh = t.lineHeight / t.size;
+    final indicLh = t.heading ? _indicTitleLineHeight : TypeScale.indicLineHeight;
     return TextStyle(
       fontFamily: f,
       fontFamilyFallback: [if (family != null) fontFor(locale), ...fallbackFor(locale)],
       fontSize: size,
       fontWeight: t.weight,
-      height: indic && lh < TypeScale.indicLineHeight ? TypeScale.indicLineHeight : lh,
+      height: indic && lh < indicLh ? indicLh : lh,
       letterSpacing: indic ? 0 : t.tracking,
+      fontFeatures: tabular ? const [FontFeature.tabularFigures()] : null,
       color: color,
     );
   }
@@ -99,7 +114,7 @@ class AppTheme {
       labelSmall: s(TypeScale.labelSmall, ts),
     );
     final extraText = PawTextStyles(
-      mono: styleFor(TypeScale.mono, locale, tp, family: FontFamilies.mono),
+      mono: styleFor(TypeScale.mono, locale, tp, tabular: true),
       overline: s(TypeScale.overline, ts),
       dateNumber: s(TypeScale.dateNumber).copyWith(height: TypeScale.tightLineHeight + 0.08),
     );
@@ -187,7 +202,7 @@ class AppTheme {
           side: WidgetStateProperty.resolveWith((st) {
             if (st.contains(WidgetState.focused)) return focusRing;
             if (st.contains(WidgetState.disabled)) return BorderSide(color: paw.outline);
-            return controlSide;
+            return BorderSide(color: tp, width: Strokes.strong);
           }),
         ),
       ),
@@ -233,17 +248,17 @@ class AppTheme {
         shape: StadiumBorder(side: BorderSide(color: paw.controlBorder)),
         side: WidgetStateBorderSide.resolveWith((st) {
           if (st.contains(WidgetState.focused)) return focusRing;
-          if (st.contains(WidgetState.selected)) return BorderSide(color: paw.onPrimaryContainer);
+          if (st.contains(WidgetState.selected)) return BorderSide(color: paw.brand);
           return BorderSide(color: paw.controlBorder);
         }),
-        color: byState(paw.surface, selected: paw.primaryContainer, disabled: disabledFill),
+        color: byState(paw.surface, selected: paw.brand, disabled: disabledFill),
         labelStyle: textTheme.labelMedium?.copyWith(
           color: WidgetStateColor.resolveWith(
-            (st) => st.contains(WidgetState.selected) ? paw.onPrimaryContainer : (st.contains(WidgetState.disabled) ? ts : tp),
+            (st) => st.contains(WidgetState.selected) ? paw.onBrand : (st.contains(WidgetState.disabled) ? ts : tp),
           ),
         ),
-        secondaryLabelStyle: textTheme.labelMedium?.copyWith(color: paw.onPrimaryContainer),
-        checkmarkColor: paw.onPrimaryContainer,
+        secondaryLabelStyle: textTheme.labelMedium?.copyWith(color: paw.onBrand),
+        checkmarkColor: paw.onBrand,
         iconTheme: IconThemeData(color: paw.brand, size: IconSizes.sm),
         deleteIconColor: ts,
         // 48 px tall with the default label: an easy finger-sized target.
@@ -301,48 +316,50 @@ class AppTheme {
           shape: WidgetStatePropertyAll(rounded(Radii.md, BorderSide(color: paw.outline))),
         ),
       ),
+      // Toran: navigation sits on the dark kaapi band (a floating dock on
+      // phones, a side menu on wide screens) with a marigold pill for the
+      // current tab.
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: paw.surface,
+        backgroundColor: paw.band,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
-        indicatorColor: paw.brand,
+        indicatorColor: paw.marigold,
         indicatorShape: pill,
-        height: easyMode ? 84 : 76,
+        height: easyMode ? 80 : 68,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         iconTheme: WidgetStateProperty.resolveWith(
-          (st) => IconThemeData(color: st.contains(WidgetState.selected) ? paw.onBrand : ts, size: easyMode ? IconSizes.xl : IconSizes.lg),
+          (st) => IconThemeData(color: st.contains(WidgetState.selected) ? paw.onMarigold : paw.onBandMuted, size: easyMode ? IconSizes.xl : IconSizes.lg),
         ),
         labelTextStyle: WidgetStateProperty.resolveWith(
           (st) => st.contains(WidgetState.selected)
-              ? textTheme.labelMedium!.copyWith(color: tp, fontWeight: FontWeight.w700)
-              : textTheme.labelMedium!.copyWith(color: ts, fontWeight: FontWeight.w500),
+              ? textTheme.labelSmall!.copyWith(color: paw.onBand, fontWeight: FontWeight.w700)
+              : textTheme.labelSmall!.copyWith(color: paw.onBandMuted, fontWeight: FontWeight.w500),
         ),
       ),
       navigationRailTheme: NavigationRailThemeData(
-        backgroundColor: paw.surface,
-        indicatorColor: paw.brand,
+        backgroundColor: paw.band,
+        indicatorColor: paw.marigold,
         indicatorShape: pill,
-        selectedIconTheme: IconThemeData(color: paw.onBrand),
-        unselectedIconTheme: IconThemeData(color: ts),
-        selectedLabelTextStyle: textTheme.labelLarge?.copyWith(color: tp, fontWeight: FontWeight.w700),
-        unselectedLabelTextStyle: textTheme.labelLarge?.copyWith(color: ts, fontWeight: FontWeight.w500),
+        selectedIconTheme: IconThemeData(color: paw.onMarigold),
+        unselectedIconTheme: IconThemeData(color: paw.onBandMuted),
+        selectedLabelTextStyle: textTheme.labelLarge?.copyWith(color: paw.onBand, fontWeight: FontWeight.w700),
+        unselectedLabelTextStyle: textTheme.labelLarge?.copyWith(color: paw.onBandMuted, fontWeight: FontWeight.w500),
       ),
       navigationDrawerTheme: NavigationDrawerThemeData(
-        backgroundColor: paw.surface,
-        indicatorColor: paw.brand,
+        backgroundColor: paw.band,
+        indicatorColor: paw.marigold,
         indicatorShape: pill,
-        // The selected item sits on the cocoa (marigold in dark) pill, so its
-        // icon and label switch to the on-brand colour.
-        iconTheme: WidgetStateProperty.resolveWith((st) => IconThemeData(color: st.contains(WidgetState.selected) ? paw.onBrand : ts)),
+        // The selected item sits on the marigold pill.
+        iconTheme: WidgetStateProperty.resolveWith((st) => IconThemeData(color: st.contains(WidgetState.selected) ? paw.onMarigold : paw.onBandMuted)),
         labelTextStyle: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.selected)
-            ? textTheme.labelLarge!.copyWith(color: paw.onBrand, fontWeight: FontWeight.w700)
-            : textTheme.labelLarge!.copyWith(color: tp, fontWeight: FontWeight.w500)),
+            ? textTheme.labelLarge!.copyWith(color: paw.onMarigold, fontWeight: FontWeight.w700)
+            : textTheme.labelLarge!.copyWith(color: paw.onBandMuted, fontWeight: FontWeight.w500)),
         surfaceTintColor: Colors.transparent,
       ),
       tabBarTheme: TabBarThemeData(
         labelColor: paw.brand,
         unselectedLabelColor: ts,
-        indicatorColor: paw.brand,
+        indicatorColor: paw.marigold,
         dividerColor: paw.outline,
         labelStyle: textTheme.labelLarge,
         unselectedLabelStyle: textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w500),
@@ -381,11 +398,11 @@ class AppTheme {
       ),
       // Count badges are cocoa (marigold in dark): SOS is the only red.
       badgeTheme: BadgeThemeData(backgroundColor: paw.brand, textColor: paw.onBrand, textStyle: textTheme.labelSmall),
-      progressIndicatorTheme: ProgressIndicatorThemeData(color: paw.brand, linearTrackColor: paw.surfaceSubtle, circularTrackColor: Colors.transparent),
+      progressIndicatorTheme: ProgressIndicatorThemeData(color: paw.marigold, linearTrackColor: paw.surfaceSubtle, circularTrackColor: Colors.transparent),
       switchTheme: SwitchThemeData(
-        thumbColor: byState(paw.controlBorder, selected: paw.onBrand),
-        trackColor: byState(paw.surfaceSubtle, selected: paw.brand),
-        trackOutlineColor: byState(paw.controlBorder, selected: paw.brand),
+        thumbColor: byState(paw.controlBorder, selected: light ? paw.surface : paw.successContainer),
+        trackColor: byState(paw.surfaceSubtle, selected: paw.success),
+        trackOutlineColor: byState(paw.controlBorder, selected: paw.success),
       ),
       checkboxTheme: CheckboxThemeData(
         fillColor: byState(Colors.transparent, selected: paw.brand),
@@ -394,7 +411,7 @@ class AppTheme {
         shape: rounded(Radii.xs),
       ),
       radioTheme: RadioThemeData(fillColor: byState(paw.controlBorder, selected: paw.brand)),
-      sliderTheme: SliderThemeData(activeTrackColor: paw.brand, inactiveTrackColor: paw.surfaceSubtle, thumbColor: paw.brand),
+      sliderTheme: SliderThemeData(activeTrackColor: paw.brand, inactiveTrackColor: paw.surfaceSubtle, thumbColor: paw.marigold),
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: {TargetPlatform.android: FadeForwardsPageTransitionsBuilder(), TargetPlatform.iOS: CupertinoPageTransitionsBuilder()},
       ),

@@ -88,12 +88,10 @@ Future<void> _loadFonts() async {
     await loader.load();
   }
 
-  // UI Design 5 fonts (titles Baloo, text Hind), plus the printed-page font
-  // and the Noto fallbacks.
-  await family('Baloo2', [600, 700]);
-  await family('BalooTammudu2', [600, 700]);
-  await family('Hind', [400, 500, 600, 700]);
-  await family('HindGuntur', [400, 500, 600, 700]);
+  // UI Design 6 fonts (Bricolage Grotesque: text and titles), plus the
+  // printed-page font and the Noto fallbacks for Hindi and Telugu.
+  await family('Bricolage', [400, 500, 600, 700]);
+  await family('BricolageDisplay', [600, 700, 800]);
   await family('PlusJakartaSans', [400, 500, 600, 700]);
   await family('NotoSansDevanagari', [400, 500, 600, 700]);
   await family('NotoSansTelugu', [400, 500, 600, 700]);

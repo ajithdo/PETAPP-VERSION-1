@@ -17847,6 +17847,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Help and settings'**
   String get meGroupHelp;
+
+  /// No description provided for @gendaNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {task}'**
+  String gendaNext(String task);
+
+  /// No description provided for @bookIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Vets, groomers, trainers, boarding and walkers near you.'**
+  String get bookIntro;
+
+  /// No description provided for @bookVetSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-ups, vaccines, surgery'**
+  String get bookVetSub;
+
+  /// No description provided for @bookTeleSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat or video with a vet'**
+  String get bookTeleSub;
+
+  /// No description provided for @bookGroomSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Salon or home visit'**
+  String get bookGroomSub;
+
+  /// No description provided for @bookTrainSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Puppy basics to behaviour'**
+  String get bookTrainSub;
+
+  /// No description provided for @bookBoardSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Boarding and pet sitting'**
+  String get bookBoardSub;
+
+  /// No description provided for @bookWalkSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Live route and photos'**
+  String get bookWalkSub;
 }
 
 class _AppLocalizationsDelegate

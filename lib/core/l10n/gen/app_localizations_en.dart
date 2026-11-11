@@ -10726,4 +10726,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get meGroupHelp => 'Help and settings';
+
+  @override
+  String gendaNext(String task) {
+    return 'Next: $task';
+  }
+
+  @override
+  String get bookIntro =>
+      'Vets, groomers, trainers, boarding and walkers near you.';
+
+  @override
+  String get bookVetSub => 'Check-ups, vaccines, surgery';
+
+  @override
+  String get bookTeleSub => 'Chat or video with a vet';
+
+  @override
+  String get bookGroomSub => 'Salon or home visit';
+
+  @override
+  String get bookTrainSub => 'Puppy basics to behaviour';
+
+  @override
+  String get bookBoardSub => 'Boarding and pet sitting';
+
+  @override
+  String get bookWalkSub => 'Live route and photos';
 }

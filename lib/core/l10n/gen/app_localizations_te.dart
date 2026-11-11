@@ -10383,4 +10383,31 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get meGroupHelp => 'సహాయం, సెట్టింగ్‌లు';
+
+  @override
+  String gendaNext(String task) {
+    return 'తర్వాత: $task';
+  }
+
+  @override
+  String get bookIntro =>
+      'మీ దగ్గర్లోని వెట్‌లు, గ్రూమర్‌లు, ట్రైనర్‌లు, బోర్డింగ్, వాకర్‌లు.';
+
+  @override
+  String get bookVetSub => 'చెకప్‌లు, టీకాలు, శస్త్రచికిత్స';
+
+  @override
+  String get bookTeleSub => 'వెట్‌తో చాట్ లేదా వీడియో';
+
+  @override
+  String get bookGroomSub => 'సెలూన్ లేదా ఇంటి వద్ద';
+
+  @override
+  String get bookTrainSub => 'ప్రాథమిక శిక్షణ నుండి ప్రవర్తన వరకు';
+
+  @override
+  String get bookBoardSub => 'బోర్డింగ్, పెట్ సిట్టింగ్';
+
+  @override
+  String get bookWalkSub => 'లైవ్ రూట్, ఫోటోలు';
 }

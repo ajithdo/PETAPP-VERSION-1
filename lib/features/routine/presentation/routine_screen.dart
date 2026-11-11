@@ -8,6 +8,7 @@ import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../home/presentation/home_screen.dart' show PetDayBand;
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../data/routine_repository.dart';
@@ -77,7 +78,9 @@ class _LogTab extends ConsumerWidget {
         final days = byDay.keys.toList()..sort((a, b) => b.compareTo(a));
         return PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.md),
-          TodayCard(pet: pet),
+          PetDayBand(pet: pet),
+          const SizedBox(height: Space.md),
+          TodayCard(pet: pet, header: false),
           if (logs.isEmpty)
             EmptyState(title: l.noLogsTitle(pet.name), message: l.noLogsBody, compact: true),
           for (final d in days.take(7)) ...[

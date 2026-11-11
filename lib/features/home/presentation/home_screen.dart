@@ -13,6 +13,8 @@ import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../../routine/data/routine_repository.dart';
 import '../../routine/domain/routine.dart';
+import '../../routine/presentation/quick_log_sheet.dart';
+import '../../routine/presentation/routine_labels.dart';
 import 'home_sections.dart';
 
 /// Home (spec 5), UI Design 5 "Genda" (DESIGN.md): the pet's day first.
@@ -96,19 +98,40 @@ class PetDayBand extends ConsumerWidget {
     final done = math.min(p.count(LogType.walk), walks) +
         math.min(p.count(LogType.meal), meals) +
         (plan.playMinutes > 0 && p.playMinutes >= plan.playMinutes ? 1 : 0);
-    final photoSize = Sizes.garland * Sizes.garlandPhotoShare;
+    final archW = Sizes.garland * 104 / 148;
+    final archH = archW * Sizes.archAspect;
     final photo = Hero(
       tag: 'pet-${pet.id}',
       child: pet.photoUrl != null
-          ? MediaImage(url: pet.photoUrl!, width: photoSize, height: photoSize)
-          : PetFace(species: pet.species, color: PetTagColors.of(pet.colorTag), size: photoSize),
+          ? MediaImage(url: pet.photoUrl!, width: archW, height: archH)
+          : ColoredBox(
+              color: PetTagColors.of(pet.colorTag).withValues(alpha: Opacities.half),
+              child: Align(alignment: Alignment.bottomCenter, child: PetFace(species: pet.species, color: PetTagColors.of(pet.colorTag), size: archW)),
+            ),
     );
+    final l = context.l10n;
+    // The next task still open today, for the note beside the band on wide
+    // screens ("Next: walk").
+    final open = p.items.where((i) => i.$2 < i.$3).toList();
+    final next = open.isEmpty ? null : open.first;
     return GendaBand(
       petName: pet.name,
       dateLabel: Fmt.weekdayDate(DateTime.now(), context.lang),
       photo: photo,
       done: done.toInt(),
       total: total,
+      streakDays: streak(logs.map((g) => g.at), DateTime.now()),
+      aside: next == null
+          ? null
+          : Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+              Text(l.gendaNext(logTypeLabel(context, next.$1)), style: context.text.titleSmall?.copyWith(color: context.paw.onBand)),
+              const SizedBox(height: Space.sm),
+              FilledButton.icon(
+                onPressed: () => showQuickLog(context, ref, pet),
+                icon: const Icon(Icons.add_rounded),
+                label: Text(l.logSomething),
+              ),
+            ]),
       onTap: () => context.push('/pets/${pet.id}'),
     );
   }

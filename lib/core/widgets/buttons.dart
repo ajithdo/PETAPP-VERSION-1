@@ -112,8 +112,8 @@ class SecondaryButton extends StatelessWidget {
   }
 }
 
-/// Round icon button (top bar bell, messages, share): a white circle on the
-/// page, with a hairline edge in dark mode.
+/// Round icon button (top bar bell, messages, share): a soft tonal circle
+/// on the page (UI Design 6).
 class PawIconButton extends StatelessWidget {
   const PawIconButton({super.key, required this.icon, required this.tooltip, required this.onPressed, this.badge});
   final IconData icon;
@@ -132,8 +132,7 @@ class PawIconButton extends StatelessWidget {
       tooltip: n > 0 ? context.l10n.withUnread(tooltip, n) : tooltip,
       onPressed: onPressed,
       style: IconButton.styleFrom(
-        backgroundColor: paw.surface,
-        side: Theme.of(context).brightness == Brightness.light ? BorderSide.none : BorderSide(color: paw.outline),
+        backgroundColor: paw.surfaceSubtle,
         shape: const CircleBorder(),
         // A 40 px circle with a full 48 px tap area around it.
         minimumSize: const Size.square(TapTarget.min - Space.sm),
@@ -149,10 +148,11 @@ class PawIconButton extends StatelessWidget {
   }
 }
 
-/// Big quick-action tile (Home quick actions, Easy mode): an icon in a pale
-/// marigold circle above a short label, on a white card (warm register).
+/// Quick action (Home): a big tinted circle with the icon, and a short
+/// label under it (UI Design 6). In Easy mode ([wide]) it becomes a white
+/// card with the circle beside the label, so the words can be bigger.
 class QuickActionTile extends StatelessWidget {
-  const QuickActionTile({super.key, required this.icon, required this.label, required this.onTap, this.color});
+  const QuickActionTile({super.key, required this.icon, required this.label, required this.onTap, this.color, this.wide = false});
   final IconData icon;
   final String label;
   final VoidCallback onTap;
@@ -160,10 +160,21 @@ class QuickActionTile extends StatelessWidget {
   /// Icon colour; defaults to marigold ink on a pale marigold circle.
   final Color? color;
 
+  /// Easy mode: a card, circle on the left, label on the right.
+  final bool wide;
+
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
     final c = color ?? paw.onAccentContainer;
+    final light = Theme.of(context).brightness == Brightness.light;
+    final circle = Container(
+      width: Sizes.thumb,
+      height: Sizes.thumb,
+      decoration: BoxDecoration(color: color == null ? paw.accentContainer : c.withValues(alpha: Opacities.chip), shape: BoxShape.circle),
+      child: Icon(icon, color: c, size: IconSizes.lg),
+    );
+    final text = Text(label, textAlign: wide ? TextAlign.start : TextAlign.center, style: context.text.labelMedium, maxLines: 2, overflow: TextOverflow.ellipsis);
     final radius = BorderRadius.circular(Radii.card);
     return Semantics(
       button: true,
@@ -171,13 +182,10 @@ class QuickActionTile extends StatelessWidget {
       excludeSemantics: true,
       child: PressScale(
         child: DecoratedBox(
-          decoration: BoxDecoration(borderRadius: radius, boxShadow: Theme.of(context).brightness == Brightness.light ? Shadows.card(paw.ink) : null),
+          decoration: BoxDecoration(borderRadius: radius, boxShadow: wide && light ? Shadows.card(paw.ink) : null),
           child: Material(
-            color: paw.surface,
-            shape: RoundedRectangleBorder(
-              borderRadius: radius,
-              side: Theme.of(context).brightness == Brightness.light ? BorderSide.none : BorderSide(color: paw.outline),
-            ),
+            color: wide ? paw.surface : Colors.transparent,
+            shape: RoundedRectangleBorder(borderRadius: radius, side: wide && !light ? BorderSide(color: paw.outline) : BorderSide.none),
             clipBehavior: Clip.antiAlias,
             child: InkWell(
               onTap: () {
@@ -185,26 +193,42 @@ class QuickActionTile extends StatelessWidget {
                 onTap();
               },
               child: Container(
-                constraints: const BoxConstraints(minHeight: Sizes.quickTileMin),
-                padding: const EdgeInsets.all(Space.md),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(Space.sm + Space.xxs),
-                      decoration: BoxDecoration(
-                        color: color == null ? paw.accentContainer : c.withValues(alpha: Opacities.tint),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(icon, color: c, size: IconSizes.lg),
-                    ),
-                    const SizedBox(height: Space.sm),
-                    Text(label, textAlign: TextAlign.center, style: context.text.labelMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
-                  ],
-                ),
+                constraints: BoxConstraints(minHeight: wide ? Sizes.quickTileMin : 0),
+                padding: EdgeInsets.all(wide ? Space.md : Space.xs),
+                child: wide
+                    ? Row(children: [circle, const SizedBox(width: Space.md), Expanded(child: text)])
+                    : Column(mainAxisSize: MainAxisSize.min, children: [circle, const SizedBox(height: Space.sm), text]),
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A quiet text link ("See all", "Map", "Album"): ink text with a marigold
+/// underline (UI Design 6). At least 48 px tall to tap.
+class LinkButton extends StatelessWidget {
+  const LinkButton({super.key, required this.label, required this.onPressed, this.textAlign});
+  final String label;
+  final VoidCallback? onPressed;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(foregroundColor: paw.textPrimary, padding: const EdgeInsets.symmetric(horizontal: Space.sm)),
+      child: Text(
+        label,
+        textAlign: textAlign,
+        style: context.text.labelMedium?.copyWith(
+          color: paw.textPrimary,
+          decoration: TextDecoration.underline,
+          decorationColor: paw.marigold,
+          decorationThickness: 2,
         ),
       ),
     );

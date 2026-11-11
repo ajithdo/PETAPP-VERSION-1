@@ -52,7 +52,6 @@ class _Profile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final user = ref.watch(currentUserProvider)!;
-    final tag = PetTagColors.of(pet.colorTag);
     final canEdit = pet.canEdit(user.uid);
     final myRole = pet.roleOf(user.uid);
     final age = petAgeLabel(context, pet);
@@ -63,7 +62,7 @@ class _Profile extends ConsumerWidget {
         pinned: true,
         // Taller with big text so the name and breed never get cut off.
         expandedHeight: Sizes.profileHeader + Sizes.profileHeaderPerText * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
-        backgroundColor: Color.alphaBlend(tag.withValues(alpha: Opacities.chip), context.paw.background),
+        backgroundColor: context.paw.accentContainer,
         actions: [
           if (canEdit)
             IconButton(
@@ -94,7 +93,9 @@ class _Profile extends ConsumerWidget {
           ),
         ],
         flexibleSpace: FlexibleSpaceBar(
-          background: SafeArea(
+          background: CustomPaint(
+            painter: _DoorwayArcs(color: context.paw.onAccentContainer.withValues(alpha: Opacities.tint + 0.04)),
+            child: SafeArea(
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const SizedBox(height: Space.xxl),
               PetAvatar(
@@ -106,7 +107,7 @@ class _Profile extends ConsumerWidget {
                 name: pet.name,
               ),
               const SizedBox(height: Space.md),
-              Text(pet.name, style: context.text.headlineMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
+              Text(pet.name, style: context.text.headlineLarge, maxLines: 1, overflow: TextOverflow.ellipsis),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: Space.lg),
                 child: Text(
@@ -118,6 +119,7 @@ class _Profile extends ConsumerWidget {
                 ),
               ),
             ]),
+          ),
           ),
         ),
       ),
@@ -148,8 +150,10 @@ class _Profile extends ConsumerWidget {
                 PawCard(
                   onTap: () => context.push(s.route),
                   child: Row(children: [
-                    CircleAvatar(
-                      backgroundColor: s.color.withValues(alpha: Opacities.chip),
+                    Container(
+                      width: TapTarget.min - Space.xxs,
+                      height: TapTarget.min - Space.xxs,
+                      decoration: BoxDecoration(color: s.color.withValues(alpha: Opacities.chip), borderRadius: BorderRadius.circular(Radii.md)),
                       child: Icon(s.icon, color: s.color, size: IconSizes.md),
                     ),
                     const SizedBox(width: Space.md),
@@ -242,4 +246,32 @@ class _MemorialBanner extends StatelessWidget {
       ]),
     );
   }
+}
+
+/// Faint doorway outlines behind the pet's arch in the profile header.
+class _DoorwayArcs extends CustomPainter {
+  _DoorwayArcs({required this.color});
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final line = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = Strokes.strong
+      ..color = color;
+    final cx = size.width / 2;
+    final top = size.height * 0.2;
+    for (final w in [Sizes.profileAvatar * 1.6, Sizes.profileAvatar * 2.1]) {
+      final r = w / 2;
+      final path = Path()
+        ..moveTo(cx - r, size.height)
+        ..lineTo(cx - r, top + r)
+        ..arcToPoint(Offset(cx + r, top + r), radius: Radius.circular(r))
+        ..lineTo(cx + r, size.height);
+      canvas.drawPath(path, line);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_DoorwayArcs o) => o.color != color;
 }

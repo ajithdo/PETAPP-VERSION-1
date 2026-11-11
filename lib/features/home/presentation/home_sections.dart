@@ -36,16 +36,17 @@ import 'home_extras.dart';
   // Offers set by the admin come after the pet's day and the quick actions.
   final nearby = easy ? const <Widget>[] : [const BannerStrip(placement: 'home'), ...homeNearby(context, ref, wide: wide)];
   final focus = pet ?? pets.first;
+  final paw = context.paw;
   final quickActions = [
     SectionHeader(l.quickActions),
     TileGrid(
-      columns: context.isPhone ? 2 : 4,
-      minTileHeight: easy ? Sizes.quickTileEasy : Sizes.quickTile,
+      columns: easy ? 2 : 4,
+      minTileHeight: easy ? Sizes.quickTileMin : 0,
       children: [
-        QuickActionTile(icon: Icons.medical_services_outlined, label: l.qaBookVet, onTap: () => context.go('/book')),
-        QuickActionTile(icon: Icons.support_agent_outlined, label: l.qaAskVet, onTap: () => context.push(askVetLink)),
-        QuickActionTile(icon: Icons.shopping_bag_outlined, label: l.shopTitle, onTap: () => context.go('/shop')),
-        QuickActionTile(icon: Icons.add_a_photo_outlined, label: l.qaAddPhoto, onTap: () => context.push(addPhotoLink(focus.id))),
+        QuickActionTile(icon: Icons.medical_services_outlined, label: l.qaBookVet, wide: easy, onTap: () => context.go('/book')),
+        QuickActionTile(icon: Icons.support_agent_outlined, label: l.qaAskVet, wide: easy, color: paw.success, onTap: () => context.push(askVetLink)),
+        QuickActionTile(icon: Icons.shopping_bag_outlined, label: l.shopTitle, wide: easy, color: CategoryColors.ocean, onTap: () => context.go('/shop')),
+        QuickActionTile(icon: Icons.add_a_photo_outlined, label: l.qaAddPhoto, wide: easy, color: paw.textSecondary, onTap: () => context.push(addPhotoLink(focus.id))),
       ],
     ),
   ];
@@ -72,10 +73,10 @@ import 'home_extras.dart';
   ];
   return (
     top: top,
-    // Desktop: the day on the left; next up, quick actions, nearby and tips
-    // on the right, so the pet stays the biggest picture.
-    main: today,
-    side: [...nextUpSection(context, ref, pets: [pet], flush: true, skipFirst: skip), ...quickActions, ...nearby, ...tips],
+    // Desktop: the day and the tips on the left; next up, quick actions and
+    // nearby on the right, so the pet stays the biggest picture.
+    main: [...today, ...tips],
+    side: [...nextUpSection(context, ref, pets: [pet], flush: true, skipFirst: skip), ...quickActions, ...nearby],
     phoneOrder: [...today, ...next, ...quickActions, ...nearby, ...tips],
   );
 }

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../theme/tokens.dart';
 import 'buttons.dart';
 
-/// Selectable pill (pet switcher, filters), UI Design 5: filled with the
-/// text colour (white label) when selected, warm grey when not, outlined for
-/// "add". The tap area is at least 48 px tall even though the pill itself is
+/// Selectable pill (pet switcher, filters), UI Design 6: filled with the
+/// text colour when selected, a thin outline when not, a dashed-looking quiet
+/// outline for "add". The tap area is at least 48 px tall even though the pill itself is
 /// smaller.
 class PawPill extends StatelessWidget {
   const PawPill({super.key, required this.label, required this.onTap, this.leading, this.selected = false, this.outlined = false, this.semanticLabel});
@@ -23,9 +23,11 @@ class PawPill extends StatelessWidget {
   Widget build(BuildContext context) {
     final paw = context.paw;
     final radius = BorderRadius.circular(Radii.full);
-    final fill = selected ? paw.textPrimary : (outlined ? Colors.transparent : paw.surfaceSubtle);
-    final side = selected ? BorderSide(color: paw.textPrimary) : (outlined ? BorderSide(color: paw.controlBorder) : BorderSide.none);
-    final text = context.text.labelLarge?.copyWith(color: selected ? paw.surface : paw.textPrimary, fontWeight: selected ? FontWeight.w700 : FontWeight.w600);
+    final fill = selected ? paw.textPrimary : Colors.transparent;
+    final side = selected
+        ? BorderSide(color: paw.textPrimary)
+        : BorderSide(color: paw.controlBorder.withValues(alpha: outlined ? Opacities.muted : Opacities.half));
+    final text = context.text.labelLarge?.copyWith(color: selected ? paw.background : (outlined ? paw.textSecondary : paw.textPrimary), fontWeight: selected ? FontWeight.w700 : FontWeight.w600);
     return Semantics(
       button: true,
       selected: selected,

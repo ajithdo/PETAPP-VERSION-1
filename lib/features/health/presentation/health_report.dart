@@ -320,12 +320,9 @@ class MedicalSummaryCard extends ConsumerWidget {
         [petAgeLabel(context, pet), if (pet.weightKg != null) Fmt.weight(pet.weightKg!, grams: pet.isBird)].where((s) => s.isNotEmpty).join(' · '),
       ].where((s) => s.isNotEmpty).join('\n'),
       leading: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.heroAvatar, name: pet.name),
-      badges: [
-        if (pet.allergies.isNotEmpty)
-          PassCard.badge(context, '${l.allergies}: $allergies', icon: Icons.no_food_outlined, tone: ChipTone.error),
-      ],
+      alert: pet.allergies.isNotEmpty ? (l.allergies, allergies) : null,
       rows: [
-        PassRow(label: l.allergies, value: allergies),
+        if (pet.allergies.isEmpty) PassRow(label: l.allergies, value: allergies),
         PassRow(label: l.currentMedicines, value: meds.isEmpty ? l.none : meds.map((m) => '${m.name} (${frequencyLabel(context, m)})').join(', ')),
         PassRow(label: l.rabiesVaccine, value: rabies.isEmpty ? l.notRecorded : l.givenOn(Fmt.date(rabies.first.givenDate, context.lang))),
         PassRow(label: l.microchip, value: pet.microchip ?? l.notAdded, mono: pet.microchip != null),

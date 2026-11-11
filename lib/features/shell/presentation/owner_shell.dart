@@ -13,9 +13,10 @@ import 'sos_launcher.dart';
 
 const _tabRoots = ['/home', '/health', '/book', '/shop', '/me'];
 
-/// Owner app frame (UI Design 5, DESIGN.md "Navigation and top bar"): the
-/// Material navigation bar with the five tabs on phones, a navigation rail on
-/// tablets and side navigation on desktop. Messages, notifications and SOS
+/// Owner app frame (UI Design 6 "Toran", DESIGN.md "Navigation and top
+/// bar"): on phones the five tabs sit in a floating dark dock with a marigold
+/// pill for the current tab; on tablets a dark rail, and on desktop a dark
+/// side menu with the account at the bottom. Messages, notifications and SOS
 /// sit in the top bar on every size; the pet pills sit above each main tab.
 class OwnerShell extends ConsumerWidget {
   const OwnerShell({super.key, required this.shell});
@@ -45,12 +46,29 @@ class OwnerShell extends ConsumerWidget {
             Expanded(child: shell),
           ]),
         ),
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: shell.currentIndex,
-          onDestinationSelected: go,
-          destinations: [
-            for (final d in destinations) NavigationDestination(icon: Icon(d.$1), selectedIcon: Icon(d.$2), label: d.$3),
-          ],
+        // The dock floats a little above the bottom edge, on the page colour.
+        bottomNavigationBar: ColoredBox(
+          color: context.paw.background,
+          child: SafeArea(
+            top: false,
+            minimum: const EdgeInsets.fromLTRB(Space.md, Space.xs, Space.md, Space.md),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Radii.xl + Space.xxs),
+                boxShadow: [BoxShadow(color: context.paw.ink.withValues(alpha: Opacities.tintStrong), blurRadius: Space.xl, offset: const Offset(0, Space.sm))],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(Radii.xl + Space.xxs),
+                child: NavigationBar(
+                  selectedIndex: shell.currentIndex,
+                  onDestinationSelected: go,
+                  destinations: [
+                    for (final d in destinations) NavigationDestination(icon: Icon(d.$1), selectedIcon: Icon(d.$2), label: d.$3),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ),
       );
     }
@@ -66,8 +84,10 @@ class OwnerShell extends ConsumerWidget {
       groupAlignment: -1,
       leading: Padding(
         padding: const EdgeInsets.only(top: Space.sm, bottom: Space.lg),
-        child: PawSetuLogo(size: TapTarget.min - Space.sm, withName: desktop),
+        child: PawSetuLogo(size: TapTarget.min - Space.sm, withName: desktop, onDark: true),
       ),
+      trailingAtBottom: true,
+      trailing: desktop ? const _AccountCard() : null,
       destinations: [
         for (final d in destinations)
           NavigationRailDestination(icon: Icon(d.$1), selectedIcon: Icon(d.$2), label: Text(d.$3, maxLines: 1, overflow: TextOverflow.ellipsis)),
@@ -77,7 +97,6 @@ class OwnerShell extends ConsumerWidget {
       body: SafeArea(
         child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           rail,
-          VerticalDivider(width: Strokes.hairline, thickness: Strokes.hairline, color: context.paw.outline),
           Expanded(
             child: Column(children: [
               _WideTopBar(showPets: onTab),
@@ -85,6 +104,52 @@ class OwnerShell extends ConsumerWidget {
             ]),
           ),
         ]),
+      ),
+    );
+  }
+}
+
+/// The signed-in person at the foot of the desktop side menu: their initials,
+/// name and plan. Tapping it opens Me.
+class _AccountCard extends ConsumerWidget {
+  const _AccountCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final paw = context.paw;
+    final user = ref.watch(currentUserProvider);
+    if (user == null) return const SizedBox.shrink();
+    final initials = user.name.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).take(2).map((w) => w.characters.first.toUpperCase()).join();
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(Space.md, Space.lg, Space.md, Space.lg),
+      child: SizedBox(
+        width: Sizes.sideNav - 2 * Space.md,
+        child: Material(
+          color: paw.onBand.withValues(alpha: Opacities.tint),
+          borderRadius: BorderRadius.circular(Radii.xl),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(Radii.xl),
+            onTap: () => context.go('/me'),
+            child: Padding(
+              padding: const EdgeInsets.all(Space.sm + Space.xxs),
+              child: Row(children: [
+                CircleAvatar(
+                  radius: Space.lg + Space.xxs,
+                  backgroundColor: paw.marigold,
+                  child: Text(initials, style: context.text.labelLarge?.copyWith(color: paw.onMarigold, fontWeight: FontWeight.w700)),
+                ),
+                const SizedBox(width: Space.sm + Space.xxs),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(user.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.text.labelLarge?.copyWith(color: paw.onBand)),
+                    Text(user.isPlus ? context.l10n.pawsetuPlus : context.l10n.planFree,
+                        maxLines: 1, overflow: TextOverflow.ellipsis, style: context.text.labelSmall?.copyWith(color: paw.onBandMuted)),
+                  ]),
+                ),
+              ]),
+            ),
+          ),
+        ),
       ),
     );
   }

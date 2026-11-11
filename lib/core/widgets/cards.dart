@@ -85,15 +85,12 @@ class SectionHeader extends StatelessWidget {
           Expanded(
             child: Semantics(header: true, child: Text(title, style: context.text.titleLarge)),
           ),
-          if (trailing != null) Text(trailing!, style: context.text.labelMedium?.copyWith(color: context.paw.brand)),
+          if (trailing != null) Text(trailing!, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
           if (action != null)
             ConstrainedBox(
               // Keeps room for the title at large text sizes.
               constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * StatusChip.maxWidthShare),
-              child: TextButton(
-                onPressed: onAction,
-                child: Text(action!, textAlign: TextAlign.end),
-              ),
+              child: LinkButton(label: action!, onPressed: onAction, textAlign: TextAlign.end),
             ),
         ],
       ),
@@ -138,7 +135,7 @@ class StatusChip extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * maxWidthShare),
       padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
-      decoration: BoxDecoration(color: c.tint, borderRadius: BorderRadius.circular(Radii.full)),
+      decoration: BoxDecoration(color: c.tint, borderRadius: BorderRadius.circular(Radii.sm)),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -353,7 +350,7 @@ class InfoNote extends StatelessWidget {
 /// top and the day number below ("Nov" / "13"), at the start of every
 /// scheduled row (vaccine, dose, booking), always in the same place.
 class DateBadge extends StatelessWidget {
-  const DateBadge({super.key, required this.day, required this.month, this.muted = false});
+  const DateBadge({super.key, required this.day, required this.month, this.muted = false, this.tone});
 
   /// Day of the month, e.g. "13".
   final String day;
@@ -364,29 +361,59 @@ class DateBadge extends StatelessWidget {
   /// Past items: no fill, a hairline edge and quieter text.
   final bool muted;
 
+  /// [ChipTone.warning] (due soon) gives a marigold strip, [ChipTone.error]
+  /// (overdue) the red one. Otherwise the strip is ink.
+  final ChipTone? tone;
+
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
     final fg = muted ? paw.textSecondary : paw.textPrimary;
+    // UI Design 6: a tear-off calendar leaf. The month sits on a strip
+    // (ink, marigold when due soon, red when overdue), the day below it.
+    final (strip, onStrip) = muted
+        ? (paw.surfaceSubtle, paw.textSecondary)
+        : switch (tone) {
+            ChipTone.warning || ChipTone.accent => (paw.marigold, paw.onMarigold),
+            ChipTone.error => (paw.sos, paw.onSos),
+            _ => (paw.textPrimary, paw.background),
+          };
+    final radius = BorderRadius.circular(Radii.md);
     return Container(
-      constraints: const BoxConstraints(minWidth: Sizes.dateBadge, minHeight: Sizes.dateBadge),
-      padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xs),
+      constraints: const BoxConstraints(minWidth: Sizes.dateBadge - Space.sm, minHeight: Sizes.dateBadge),
       decoration: BoxDecoration(
-        color: muted ? null : paw.surfaceSubtle,
-        border: muted ? Border.all(color: paw.outline) : null,
-        borderRadius: BorderRadius.circular(Radii.md),
+        color: paw.surface,
+        border: Border.all(color: muted ? paw.outline : paw.controlBorder.withValues(alpha: Opacities.half)),
+        borderRadius: radius,
       ),
-      // Shrinks to fit rather than overflow when the row is short (Hindi and
-      // Telugu lines are taller).
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(month, style: context.text.labelSmall?.copyWith(color: paw.textSecondary, height: TypeScale.tightLineHeight + 0.2)),
-            Text(day, style: context.textX.dateNumber.copyWith(color: fg)),
-          ],
+      child: ClipRRect(
+        borderRadius: radius,
+        // Shrinks to fit rather than overflow when the row is short (Hindi
+        // and Telugu lines are taller).
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: IntrinsicWidth(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ColoredBox(
+                color: strip,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xxs),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(month, textAlign: TextAlign.center, style: context.text.labelSmall?.copyWith(color: onStrip, height: TypeScale.tightLineHeight + 0.15)),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xxs),
+                child: FittedBox(fit: BoxFit.scaleDown, child: Text(day, textAlign: TextAlign.center, style: context.textX.dateNumber.copyWith(color: fg))),
+              ),
+            ],
+          ),
+          ),
         ),
       ),
     );

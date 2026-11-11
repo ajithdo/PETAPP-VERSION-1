@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
+import '../../../core/utils/format.dart';
 import '../../../core/widgets/logo.dart';
 import '../../../core/widgets/widgets.dart';
 
@@ -56,17 +57,19 @@ class PortalScaffold extends ConsumerWidget {
       children: [
         const Padding(
           padding: EdgeInsets.fromLTRB(Space.xl, Space.xl, Space.lg, Space.sm),
-          child: PawSetuLogo(size: Sizes.logo, withName: true),
+          child: PawSetuLogo(size: Sizes.logo, withName: true, onDark: true),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(Space.xl, 0, Space.lg, Space.md),
-          child: Text(title, style: context.text.bodySmall),
+          child: Text(title, style: context.text.bodySmall?.copyWith(color: context.paw.onBandMuted)),
         ),
         for (final s in sections) NavigationDrawerDestination(icon: Icon(s.icon), label: Text(s.label)),
-        const Padding(padding: EdgeInsets.symmetric(horizontal: Space.xl, vertical: Space.sm), child: Divider()),
+        Padding(padding: const EdgeInsets.symmetric(horizontal: Space.xl, vertical: Space.sm), child: Divider(color: context.paw.onBand.withValues(alpha: Opacities.tint))),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Space.lg),
           child: ListTile(
+            iconColor: context.paw.onBandMuted,
+            textColor: context.paw.onBandMuted,
             leading: const Icon(Icons.settings_outlined),
             title: Text(context.l10n.settings),
             onTap: () => context.push('/settings'),
@@ -75,6 +78,8 @@ class PortalScaffold extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Space.lg),
           child: ListTile(
+            iconColor: context.paw.onBandMuted,
+            textColor: context.paw.onBandMuted,
             leading: const Icon(Icons.logout_outlined),
             title: Text(context.l10n.signOut),
             onTap: () => ref.read(authServiceProvider).signOut(),
@@ -83,8 +88,8 @@ class PortalScaffold extends ConsumerWidget {
       ],
     );
 
-    // UI Design 5 portals (calm register, like a business dashboard): the
-    // same quiet top bar as the rest of the app, with a hairline below.
+    // UI Design 6 portals: the dark kaapi menu of the main app, and the same
+    // quiet top bar, with a hairline below.
     final paw = context.paw;
     final barBg = paw.background;
     final barFg = paw.textPrimary;
@@ -111,7 +116,11 @@ class PortalScaffold extends ConsumerWidget {
                   )
                 : Tooltip(
                     message: user.name,
-                    child: CircleAvatar(radius: Sizes.avatarXs / 2, child: Text(user.name.isEmpty ? '?' : user.name.characters.first.toUpperCase())),
+                    child: CircleAvatar(
+                      radius: Sizes.avatarSm / 2,
+                      backgroundColor: paw.brand,
+                      child: Text(initials(user.name), style: context.text.labelLarge?.copyWith(color: paw.onBrand)),
+                    ),
                   ),
           ),
       ],
@@ -121,7 +130,6 @@ class PortalScaffold extends ConsumerWidget {
       return Scaffold(
         body: Row(children: [
           SizedBox(width: Sizes.portalNav, child: nav),
-          const VerticalDivider(width: Strokes.hairline),
           Expanded(child: Scaffold(appBar: appBar, body: body)),
         ]),
       );

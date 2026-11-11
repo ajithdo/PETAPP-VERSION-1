@@ -668,7 +668,7 @@ class _HealthPass extends StatelessWidget {
       ],
       actions: [
         PassCard.action(context, label: l.medicalCard, icon: Icons.badge_outlined, onPressed: () => context.push('/pets/${pet.id}/card')),
-        PassCard.action(context, label: l.healthReport, icon: Icons.picture_as_pdf_outlined, onPressed: () => context.push('/pets/${pet.id}/report')),
+        PassCard.action(context, label: l.healthReport, icon: Icons.picture_as_pdf_outlined, secondary: true, onPressed: () => context.push('/pets/${pet.id}/report')),
       ],
     );
   }

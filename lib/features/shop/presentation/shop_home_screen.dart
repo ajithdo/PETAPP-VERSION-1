@@ -75,7 +75,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
         return PageBody(children: [
           const SizedBox(height: Space.sm),
           Row(children: [
-            Expanded(child: Semantics(header: true, child: Text(l.shopTitle, style: context.text.headlineMedium))),
+            Expanded(child: Semantics(header: true, child: Text(l.shopTitle, style: context.text.headlineLarge))),
             IconButton(tooltip: l.ordMyOrders, onPressed: () => context.push('/shop/orders'), icon: Badge(isLabelVisible: open > 0, label: Text('$open'), child: const Icon(Icons.receipt_long_outlined))),
             const CartButton(),
           ]),
@@ -98,6 +98,8 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
               ),
             ),
           ),
+          const SizedBox(height: Space.lg),
+          _CategoryStrip(species: pet?.species),
           // Buy again first: reordering is the most common job (like an Indian
           // pet shop's "order again"), then picks for the pet.
           if (again.isNotEmpty) ...[
@@ -123,17 +125,23 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
             const SizedBox(height: Space.md),
             // A quick way to a vet before buying (owner's brief).
             PawCard(
+              color: context.paw.accentContainer,
+              flat: true,
+              borderColor: Colors.transparent,
               onTap: () => context.push(askVetLink),
               child: Row(children: [
-                CircleAvatar(backgroundColor: context.paw.accentContainer, child: Icon(Icons.support_agent_outlined, color: context.paw.onAccentContainer)),
+                Container(
+                  width: TapTarget.min,
+                  height: TapTarget.min,
+                  decoration: BoxDecoration(color: context.paw.marigold, borderRadius: BorderRadius.circular(Radii.md)),
+                  child: Icon(Icons.video_call_outlined, color: context.paw.onMarigold),
+                ),
                 const SizedBox(width: Space.md),
-                Expanded(child: Text(l.shopAskVet(pet.name), style: context.text.titleSmall)),
-                Icon(Icons.chevron_right_rounded, color: context.paw.textSecondary),
+                Expanded(child: Text(l.shopAskVet(pet.name), style: context.text.titleSmall?.copyWith(color: context.paw.onAccentContainer))),
+                Icon(Icons.chevron_right_rounded, color: context.paw.onAccentContainer),
               ]),
             ),
           ],
-          SectionHeader(l.shopCategories),
-          _CategoryGrid(species: pet?.species),
           // Offers and the Plus note sit below what the pet needs, as quiet
           // cards (no loud promo banner).
           const BannerStrip(placement: 'shop'),
@@ -177,25 +185,28 @@ class _BuyAgainTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final p = product;
+    final paw = context.paw;
     return SizedBox(
-      width: Sizes.reorderCard,
+      width: Sizes.reorderCard - Space.xxl,
       child: PawCard(
-        padding: const EdgeInsets.all(Space.sm),
+        padding: const EdgeInsets.all(Space.sm + Space.xxs),
         onTap: () => context.push('/shop/product/${p.id}'),
         child: Row(children: [
-          ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbXl, radius: Radii.md),
-          const SizedBox(width: Space.sm),
+          ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbLg, radius: Radii.md),
+          const SizedBox(width: Space.sm + Space.xxs),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-              Text(p.name, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600), maxLines: 2, overflow: TextOverflow.ellipsis),
+              Text(p.name, style: context.text.labelMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
+              const SizedBox(height: Space.xxs),
               Text(Fmt.inr(p.price), style: context.text.bodySmall),
-              const SizedBox(height: Space.xs),
-              FilledButton.tonalIcon(
-                onPressed: p.inStock ? () => showQuickReorder(context, ref, product: p, pet: pet) : null,
-                icon: const Icon(Icons.replay_outlined, size: IconSizes.chip),
-                label: Text(p.inStock ? l.shopReorder : l.shopOutOfStock),
-              ),
             ]),
+          ),
+          const SizedBox(width: Space.xs),
+          IconButton.filled(
+            tooltip: p.inStock ? l.shopReorder : l.shopOutOfStock,
+            style: IconButton.styleFrom(backgroundColor: paw.action, foregroundColor: paw.onAction),
+            onPressed: p.inStock ? () => showQuickReorder(context, ref, product: p, pet: pet) : null,
+            icon: const Icon(Icons.replay_rounded),
           ),
         ]),
       ),
@@ -203,40 +214,47 @@ class _BuyAgainTile extends ConsumerWidget {
   }
 }
 
-class _CategoryGrid extends StatelessWidget {
-  const _CategoryGrid({this.species});
+/// Categories as a strip of round tiles under the search (UI Design 6).
+class _CategoryStrip extends StatelessWidget {
+  const _CategoryStrip({this.species});
   final String? species;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, c) {
-      final cols = (c.maxWidth / 120).floor().clamp(3, 7);
-      return TileGrid(
-        columns: cols,
-        spacing: Space.sm,
-        minTileHeight: 104,
-        children: [
-          for (final cat in shopCategories)
-            // Calm tiles: warm grey with a cocoa icon (in the Genda palette).
-            Material(
-              color: context.paw.surfaceSubtle,
-              borderRadius: BorderRadius.circular(Radii.lg),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(Radii.lg),
-                onTap: () => context.push('/shop/search?cat=$cat'),
-                child: Padding(
-                  padding: const EdgeInsets.all(Space.sm),
-                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Icon(categoryIcon(cat), color: context.paw.textPrimary, size: IconSizes.xl),
-                    const SizedBox(height: Space.xs),
-                    Text(categoryLabel(context, cat), style: context.text.labelMedium, textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
-                  ]),
-                ),
+    final paw = context.paw;
+    return SizedBox(
+      height: (Sizes.thumb + Space.sm + Space.xxl) * MediaQuery.textScalerOf(context).scale(1) + (context.lang == 'en' ? 0 : Space.md),
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: shopCategories.length,
+        separatorBuilder: (_, _) => const SizedBox(width: Space.sm),
+        itemBuilder: (context, i) {
+          final cat = shopCategories[i];
+          return Semantics(
+            button: true,
+            label: categoryLabel(context, cat),
+            excludeSemantics: true,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(Radii.md),
+              onTap: () => context.push('/shop/search?cat=$cat'),
+              child: SizedBox(
+                width: Sizes.thumb + Space.lg,
+                child: Column(children: [
+                  Container(
+                    width: Sizes.thumb,
+                    height: Sizes.thumb,
+                    decoration: BoxDecoration(color: i == 0 ? paw.marigold : paw.surfaceSubtle, shape: BoxShape.circle),
+                    child: Icon(categoryIcon(cat), color: i == 0 ? paw.onMarigold : paw.textPrimary, size: IconSizes.lg),
+                  ),
+                  const SizedBox(height: Space.xs),
+                  Text(categoryLabel(context, cat), style: context.text.labelSmall?.copyWith(color: paw.textPrimary), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
+                ]),
               ),
             ),
-        ],
-      );
-    });
+          );
+        },
+      ),
+    );
   }
 }
 

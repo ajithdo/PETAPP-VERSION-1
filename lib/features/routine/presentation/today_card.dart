@@ -35,11 +35,14 @@ class TodayCard extends ConsumerWidget {
           final p = TodayProgress(pet: pet, logs: all);
           final s = streak(all.map((x) => x.at), DateTime.now());
           final streakChip = s > 1 ? StatusChip(l.streakDays(s), tone: ChipTone.accent, icon: Icons.local_fire_department_outlined) : null;
+          final left = p.items.where((i) => i.$2 < i.$3).length;
           return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            // Home: the band above shows the streak, so this says what's left.
             if (!header)
-              Row(children: [
+              Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
                 Expanded(child: Semantics(header: true, child: Text(l.today, style: context.text.titleLarge))),
-                ?streakChip,
+                const SizedBox(width: Space.sm),
+                Flexible(child: Text(left == 0 ? l.done : l.tasksLeft(left), style: context.text.bodySmall, textAlign: TextAlign.end)),
               ])
             else
             Row(children: [
@@ -72,20 +75,20 @@ class TodayCard extends ConsumerWidget {
                 big: big,
                 last: p.today.where((x) => x.type == item.$1).fold<RoutineLog?>(null, (a, b) => a == null || b.at.isAfter(a.at) ? b : a),
               ),
-            const Divider(),
-            const SizedBox(height: Space.md),
+            const SizedBox(height: Space.sm),
             Wrap(
               alignment: WrapAlignment.spaceBetween,
               crossAxisAlignment: WrapCrossAlignment.center,
               spacing: Space.sm,
               runSpacing: Space.sm,
               children: [
-                OutlinedButton.icon(
+                FilledButton.tonalIcon(
                   onPressed: () => showQuickLog(context, ref, pet),
-                  icon: const Icon(Icons.add_outlined),
+                  style: FilledButton.styleFrom(backgroundColor: context.paw.surfaceSubtle, foregroundColor: context.paw.textPrimary),
+                  icon: const Icon(Icons.add_rounded),
                   label: Text(l.logSomething),
                 ),
-                TextButton(onPressed: () => context.push('/pets/${pet.id}/routine'), child: Text(l.seeAll)),
+                LinkButton(label: l.seeAll, onPressed: () => context.push('/pets/${pet.id}/routine')),
               ],
             ),
           ]);
@@ -110,43 +113,39 @@ class _ChecklistRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final complete = done >= goal;
-    final label = type == LogType.play ? l.playProgress(done, goal) : '${logTypeLabel(context, type)} · $done / $goal';
     final paw = context.paw;
-    // UI Design 5 list row: the done tick leads (filled marigold-brown when
-    // the goal is met), the type and progress in the middle, and a one-tap
-    // log button at the end.
-    final tick = big ? IconSizes.action : IconSizes.xl - Space.xs;
-    return ConstrainedBox(
+    // UI Design 6 list row: the task tick leads (a ring that fills, then a
+    // marigold when done), the type and progress in the middle, and a
+    // one-tap log button at the end. Rows are split by hairlines.
+    final tick = big ? IconSizes.xxl : IconSizes.xl;
+    final count = type == LogType.play ? l.playProgress(done, goal) : '$done/$goal';
+    return Container(
       constraints: BoxConstraints(minHeight: big ? Sizes.listRowEasy : Sizes.listRow),
+      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: paw.outline))),
       child: Row(children: [
-        Container(
-          width: tick,
-          height: tick,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: complete ? paw.done : null,
-            border: complete ? null : Border.all(color: paw.controlBorder, width: Strokes.focus),
-          ),
-          child: complete ? Icon(Icons.check_rounded, size: tick * 0.7, color: paw.onBrand) : null,
-        ),
+        TaskTick(done: done, goal: goal, size: tick),
         const SizedBox(width: Space.md),
-        Icon(logTypeIcon(type), size: IconSizes.md, color: paw.textSecondary),
-        const SizedBox(width: Space.sm),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-            Text(label,
-                style: (big ? context.text.titleMedium : context.text.titleSmall)?.copyWith(
-                  color: complete ? paw.textSecondary : paw.textPrimary,
-                )),
-            // Who did it and when ("7:00 am · Rohan"), from today's log.
+            Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.sm, children: [
+              Icon(logTypeIcon(type), size: IconSizes.md, color: paw.textPrimary),
+              if (type != LogType.play) Text(logTypeLabel(context, type), style: (big ? context.text.titleMedium : context.text.titleSmall)),
+              Text(count, style: (big ? context.text.titleMedium : context.text.titleSmall)?.copyWith(color: paw.textSecondary)),
+            ]),
+            // Who did it and when ("7:00 am, Rohan"), from today's log.
             if (last != null)
               Text(
-                [Fmt.time(last!.at, context.lang), if (last!.byName.isNotEmpty) last!.byName.split(' ').first].join(' · '),
+                [Fmt.time(last!.at, context.lang), if (last!.byName.isNotEmpty) last!.byName.split(' ').first].join(', '),
                 style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
               ),
           ]),
         ),
-        IconButton.filledTonal(
+        IconButton.filled(
+          style: IconButton.styleFrom(
+            backgroundColor: type == LogType.walk && !complete ? paw.action : paw.surfaceSubtle,
+            foregroundColor: type == LogType.walk && !complete ? paw.onAction : paw.textPrimary,
+            minimumSize: Size.square(big ? TapTarget.easy : TapTarget.min),
+          ),
           tooltip: l.logNow(logTypeLabel(context, type)),
           icon: Icon(type == LogType.walk ? Icons.play_arrow_rounded : Icons.add_rounded, size: big ? IconSizes.xl : IconSizes.lg),
           onPressed: () async {

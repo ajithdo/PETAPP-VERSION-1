@@ -113,44 +113,6 @@ flutter:
           weight: 600
         - asset: assets/fonts/PlusJakartaSans-700.ttf
           weight: 700
-    - family: Baloo2
-      fonts:
-        - asset: assets/fonts/Baloo2-600.ttf
-          weight: 600
-        - asset: assets/fonts/Baloo2-700.ttf
-          weight: 700
-    - family: BalooTammudu2
-      fonts:
-        - asset: assets/fonts/BalooTammudu2-600.ttf
-          weight: 600
-        - asset: assets/fonts/BalooTammudu2-700.ttf
-          weight: 700
-    - family: Hind
-      fonts:
-        - asset: assets/fonts/Hind-400.ttf
-          weight: 400
-        - asset: assets/fonts/Hind-500.ttf
-          weight: 500
-        - asset: assets/fonts/Hind-600.ttf
-          weight: 600
-        - asset: assets/fonts/Hind-700.ttf
-          weight: 700
-    - family: HindGuntur
-      fonts:
-        - asset: assets/fonts/HindGuntur-400.ttf
-          weight: 400
-        - asset: assets/fonts/HindGuntur-500.ttf
-          weight: 500
-        - asset: assets/fonts/HindGuntur-600.ttf
-          weight: 600
-        - asset: assets/fonts/HindGuntur-700.ttf
-          weight: 700
-    - family: JetBrainsMono
-      fonts:
-        - asset: assets/fonts/JetBrainsMono-500.ttf
-          weight: 500
-        - asset: assets/fonts/JetBrainsMono-700.ttf
-          weight: 700
     - family: NotoSansDevanagari
       fonts:
         - asset: assets/fonts/NotoSansDevanagari-400.ttf
@@ -171,7 +133,27 @@ flutter:
           weight: 600
         - asset: assets/fonts/NotoSansTelugu-700.ttf
           weight: 700
-
+    # PawSetu "Toran" (UI Design 6): Bricolage Grotesque (SIL OFL), static cuts
+    # from the variable font. Text: width 100, optical size 14. Display: titles,
+    # narrower and heavier (see docs/DECISIONS.md).
+    - family: Bricolage
+      fonts:
+        - asset: assets/fonts/Bricolage-400.ttf
+          weight: 400
+        - asset: assets/fonts/Bricolage-500.ttf
+          weight: 500
+        - asset: assets/fonts/Bricolage-600.ttf
+          weight: 600
+        - asset: assets/fonts/Bricolage-700.ttf
+          weight: 700
+    - family: BricolageDisplay
+      fonts:
+        - asset: assets/fonts/BricolageDisplay-600.ttf
+          weight: 600
+        - asset: assets/fonts/BricolageDisplay-700.ttf
+          weight: 700
+        - asset: assets/fonts/BricolageDisplay-800.ttf
+          weight: 800
 # Patched copy (see third_party/fake_cloud_firestore/PAWSETU_PATCH.md) so the
 # standalone demo database also works in release web and APK builds.
 dependency_overrides:

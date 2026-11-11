@@ -7341,5 +7341,20 @@
   },
   "meGroupPets": "Pets and family",
   "meGroupMoney": "Orders and money",
-  "meGroupHelp": "Help and settings"
+  "meGroupHelp": "Help and settings",
+  "gendaNext": "Next: {task}",
+  "@gendaNext": {
+    "placeholders": {
+      "task": {
+        "type": "String"
+      }
+    }
+  },
+  "bookIntro": "Vets, groomers, trainers, boarding and walkers near you.",
+  "bookVetSub": "Check-ups, vaccines, surgery",
+  "bookTeleSub": "Chat or video with a vet",
+  "bookGroomSub": "Salon or home visit",
+  "bookTrainSub": "Puppy basics to behaviour",
+  "bookBoardSub": "Boarding and pet sitting",
+  "bookWalkSub": "Live route and photos"
 }

@@ -17,12 +17,14 @@
 #     lib/features/sos/presentation/lost_screens.dart        printable lost poster and QR tag (its screens use tokens)
 #   Drawn artwork with its own palette:
 #     lib/core/widgets/illustrations.dart, lib/core/widgets/logo.dart,
+#     lib/core/widgets/pack_shot.dart and map_sketch.dart (UI Design 6 drawn
+#     products and map preview; colours from PackColors and MapColors),
 #     lib/features/album/presentation/birthday_screen.dart (confetti)
 # Printed pages take their colours from PrintColors in tokens.dart.
 #
 # usage: bash docs/ui-revamp/check_ui_design_tokens.sh
 cd "$(dirname "$0")/../.."
-EXEMPT='^lib/core/theme/|^lib/core/l10n/gen/|document_preview\.dart|health_report\.dart|prescription_pdf\.dart|/invoice\.dart|sample_docs\.dart|messaging/presentation/attachments\.dart|sos/presentation/lost_screens\.dart|widgets/illustrations\.dart|widgets/logo\.dart|album/presentation/birthday_screen\.dart'
+EXEMPT='^lib/core/theme/|^lib/core/l10n/gen/|document_preview\.dart|health_report\.dart|prescription_pdf\.dart|/invoice\.dart|sample_docs\.dart|messaging/presentation/attachments\.dart|sos/presentation/lost_screens\.dart|widgets/illustrations\.dart|widgets/logo\.dart|widgets/pack_shot\.dart|widgets/map_sketch\.dart|album/presentation/birthday_screen\.dart'
 mapfile -t FILES < <(find lib -name '*.dart' | sort | grep -vE "$EXEMPT")
 grep -nE "Color\(0x|(^|[^A-Za-z])Colors\.(white|black|grey|red|green|blue|orange|amber|teal)|fontSize: [0-9]|letterSpacing: [0-9]|strokeWidth: [0-9]|alpha: 0\.|SizedBox\((height|width): [0-9]|(height|width|minHeight|maxWidth|size): [0-9]|EdgeInsets\.[a-zA-Z]+\([^)]*[^a-zA-Z.0-9][1-9][0-9]{0,2}[,)]|circular\([0-9]|(Space|IconSizes|Radii|TapTarget)\.[a-z0-9]+ [-+/*] [0-9]|height: [0-9]|radius: [0-9]+[,)]" "${FILES[@]}" | grep -v "^\S*:\s*//"
 echo "checked ${#FILES[@]} files (every Dart file in lib except the ones listed at the top); matches above (none = clean)"

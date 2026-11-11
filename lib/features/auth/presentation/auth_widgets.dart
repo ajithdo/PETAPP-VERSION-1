@@ -33,13 +33,17 @@ class AuthScaffold extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (trailing != null) Align(alignment: Alignment.centerRight, child: trailing!),
-                  if (!showBack && trailing == null) const SizedBox(height: Space.lg),
-                  const Center(child: PawSetuLogo(size: Sizes.logoLg)),
-                  const SizedBox(height: Space.lg),
+                  // UI Design 6: the mark and name on the left, the language
+                  // switch on the right, then a big title.
+                  Row(children: [
+                    const PawSetuLogo(size: Sizes.logo, withName: true),
+                    const Spacer(),
+                    ?trailing,
+                  ]),
+                  const SizedBox(height: Space.xl),
                   Semantics(
                     header: true,
-                    child: Text(title, style: context.text.headlineMedium, textAlign: TextAlign.center),
+                    child: Text(title, style: context.text.headlineLarge, textAlign: TextAlign.center),
                   ),
                   if (subtitle != null) ...[
                     const SizedBox(height: Space.sm),

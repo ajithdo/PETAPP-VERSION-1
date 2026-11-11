@@ -1,23 +1,25 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import '../theme/tokens.dart';
 
-/// PawSetu mark: a white paw under a marigold bridge arch, in a rounded
-/// cocoa tile (UI Design 5).
+/// PawSetu mark (UI Design 6 "Toran"): a paw under a marigold bridge arch
+/// ("setu"), in a rounded kaapi tile. On the dark band ([onDark]) the tile
+/// turns marigold and the arch and paw kaapi, so the mark still stands out.
 /// The mark keeps its brand colours in light and dark mode.
 class PawSetuLogo extends StatelessWidget {
-  const PawSetuLogo({super.key, this.size = 56, this.withName = false});
+  const PawSetuLogo({super.key, this.size = 56, this.withName = false, this.onDark = false});
   final double size;
   final bool withName;
+
+  /// Drawn on the dark kaapi band (side menu, portal menu).
+  final bool onDark;
 
   @override
   Widget build(BuildContext context) {
     final mark = Semantics(
       label: 'PawSetu',
       image: true,
-      child: SizedBox(width: size, height: size, child: CustomPaint(painter: _LogoPainter())),
+      child: SizedBox(width: size, height: size, child: CustomPaint(painter: _LogoPainter(onDark: onDark))),
     );
     if (!withName) return mark;
     return Row(
@@ -28,10 +30,10 @@ class PawSetuLogo extends StatelessWidget {
         Text('PawSetu',
             style: TextStyle(
               fontFamily: FontFamilies.heading,
-              fontWeight: FontWeight.w700,
-              fontSize: size * 0.5,
-              color: context.paw.textPrimary,
-              letterSpacing: -0.5,
+              fontWeight: FontWeight.w800,
+              fontSize: size * 0.56,
+              color: onDark ? context.paw.onBand : context.paw.textPrimary,
+              letterSpacing: -0.3,
             )),
       ],
     );
@@ -39,28 +41,35 @@ class PawSetuLogo extends StatelessWidget {
 }
 
 class _LogoPainter extends CustomPainter {
+  _LogoPainter({required this.onDark});
+  final bool onDark;
+
   @override
   void paint(Canvas canvas, Size size) {
-    final s = size.width;
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(Offset.zero & size, Radius.circular(s * 0.28)),
-      Paint()..color = PawColors.light.brand,
-    );
-    final arch = Paint()
-      ..color = PawColors.dark.action
+    // Drawn in a 40 × 40 grid (the mock's units).
+    final k = size.width / 40;
+    final tile = onDark ? PawColors.light.marigold : PawColors.light.band;
+    final arch = onDark ? PawColors.light.band : PawColors.light.marigold;
+    final paw = onDark ? PawColors.light.band : PawColors.light.onBand;
+    canvas.drawRRect(RRect.fromRectAndRadius(Offset.zero & size, Radius.circular(12 * k)), Paint()..color = tile);
+    final line = Paint()
+      ..color = arch
       ..style = PaintingStyle.stroke
-      ..strokeWidth = s * 0.08
+      ..strokeWidth = 3.6 * k
       ..strokeCap = StrokeCap.round;
-    canvas.drawArc(Rect.fromLTWH(s * 0.16, s * 0.2, s * 0.68, s * 0.5), math.pi, math.pi, false, arch);
-    final white = Paint()..color = PawColors.light.onBrand;
-    final o = Offset(s * 0.5, s * 0.62);
-    final r = s * 0.13;
-    canvas.drawOval(Rect.fromCenter(center: o.translate(0, r * 0.45), width: r * 1.7, height: r * 1.35), white);
-    for (final d in [const Offset(-0.95, -0.45), const Offset(-0.33, -0.95), const Offset(0.33, -0.95), const Offset(0.95, -0.45)]) {
-      canvas.drawCircle(o.translate(d.dx * r, d.dy * r), r * 0.34, white);
+    final path = Path()
+      ..moveTo(9 * k, 25.5 * k)
+      ..lineTo(9 * k, 21.5 * k)
+      ..arcToPoint(Offset(31 * k, 21.5 * k), radius: Radius.circular(11 * k))
+      ..lineTo(31 * k, 25.5 * k);
+    canvas.drawPath(path, line);
+    final fill = Paint()..color = paw;
+    canvas.drawOval(Rect.fromCenter(center: Offset(20 * k, 27.6 * k), width: 8.6 * k, height: 7 * k), fill);
+    for (final (x, y, r) in const [(14.6, 23.4, 1.75), (18.1, 20.6, 1.85), (21.9, 20.6, 1.85), (25.4, 23.4, 1.75)]) {
+      canvas.drawCircle(Offset(x * k, y * k), r * k, fill);
     }
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(_LogoPainter o) => o.onDark != onDark;
 }

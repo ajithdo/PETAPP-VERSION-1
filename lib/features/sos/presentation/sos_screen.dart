@@ -344,34 +344,50 @@ class _BigOption extends StatelessWidget {
     // Solid red for the one main action (the only red); the second option is
     // a plain card, so the red action stands alone.
     final fg = filled ? p.onSos : p.textPrimary;
+    // UI Design 6: the icon sits in a round badge (white on the red card,
+    // ink on the plain one), the title is big, and the red card glows.
+    final badgeBg = filled ? p.onSos : p.textPrimary;
+    final badgeFg = filled ? p.sos : p.background;
+    final radius = BorderRadius.circular(Radii.xxl);
     return Semantics(
       button: true,
       expanded: expanded,
-      child: Material(
-        color: filled ? p.sos : p.surface,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Radii.card),
-          side: BorderSide(color: filled ? p.sos : p.controlBorder, width: filled ? Strokes.focus : Strokes.hairline),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: radius,
+          boxShadow: filled ? [BoxShadow(color: p.sos.withValues(alpha: Opacities.muted), blurRadius: Space.xxl, spreadRadius: -Space.md, offset: const Offset(0, Space.lg))] : null,
         ),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onTap,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: Sizes.sosOption),
-            child: Padding(
-              padding: const EdgeInsets.all(Space.lg),
-              child: Row(children: [
-                Icon(icon, size: IconSizes.xxxl, color: fg),
-                const SizedBox(width: Space.lg),
-                Expanded(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                    Text(title, style: context.text.titleLarge?.copyWith(color: fg, fontWeight: FontWeight.w800)),
-                    const SizedBox(height: Space.xxs),
-                    Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodyMedium?.copyWith(color: fg)),
-                  ]),
-                ),
-                Icon(expanded ? Icons.expand_less_outlined : Icons.expand_more_outlined, color: fg),
-              ]),
+        child: Material(
+          color: filled ? p.sos : p.surface,
+          shape: RoundedRectangleBorder(
+            borderRadius: radius,
+            side: BorderSide(color: filled ? p.sos : p.controlBorder, width: filled ? Strokes.focus : Strokes.hairline),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: onTap,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: Sizes.sosOption),
+              child: Padding(
+                padding: const EdgeInsets.all(Space.lg + Space.xxs),
+                child: Row(children: [
+                  Container(
+                    width: Sizes.thumb,
+                    height: Sizes.thumb,
+                    decoration: BoxDecoration(color: badgeBg, shape: BoxShape.circle),
+                    child: Icon(icon, size: IconSizes.xl, color: badgeFg),
+                  ),
+                  const SizedBox(width: Space.md + Space.xxs),
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+                      Text(title, style: context.text.headlineSmall?.copyWith(color: fg)),
+                      const SizedBox(height: Space.xxs),
+                      Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodyMedium?.copyWith(color: fg)),
+                    ]),
+                  ),
+                  Icon(expanded ? Icons.expand_less_outlined : Icons.expand_more_outlined, color: fg),
+                ]),
+              ),
             ),
           ),
         ),

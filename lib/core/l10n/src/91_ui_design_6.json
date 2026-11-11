@@ -1,0 +1,45 @@
+{
+  "gendaNext": {
+    "en": "Next: {task}",
+    "hi": "अगला: {task}",
+    "te": "తర్వాత: {task}",
+    "ph": {
+      "task": "String"
+    }
+  },
+  "bookIntro": {
+    "en": "Vets, groomers, trainers, boarding and walkers near you.",
+    "hi": "आपके पास के डॉक्टर, ग्रूमर, ट्रेनर, बोर्डिंग और वॉकर।",
+    "te": "మీ దగ్గర్లోని వెట్‌లు, గ్రూమర్‌లు, ట్రైనర్‌లు, బోర్డింగ్, వాకర్‌లు."
+  },
+  "bookVetSub": {
+    "en": "Check-ups, vaccines, surgery",
+    "hi": "जाँच, टीके, सर्जरी",
+    "te": "చెకప్‌లు, టీకాలు, శస్త్రచికిత్స"
+  },
+  "bookTeleSub": {
+    "en": "Chat or video with a vet",
+    "hi": "डॉक्टर से चैट या वीडियो",
+    "te": "వెట్‌తో చాట్ లేదా వీడియో"
+  },
+  "bookGroomSub": {
+    "en": "Salon or home visit",
+    "hi": "सैलून या घर पर",
+    "te": "సెలూన్ లేదా ఇంటి వద్ద"
+  },
+  "bookTrainSub": {
+    "en": "Puppy basics to behaviour",
+    "hi": "बुनियादी सीख से व्यवहार तक",
+    "te": "ప్రాథమిక శిక్షణ నుండి ప్రవర్తన వరకు"
+  },
+  "bookBoardSub": {
+    "en": "Boarding and pet sitting",
+    "hi": "बोर्डिंग और पेट सिटिंग",
+    "te": "బోర్డింగ్, పెట్ సిట్టింగ్"
+  },
+  "bookWalkSub": {
+    "en": "Live route and photos",
+    "hi": "लाइव रास्ता और फ़ोटो",
+    "te": "లైవ్ రూట్, ఫోటోలు"
+  }
+}

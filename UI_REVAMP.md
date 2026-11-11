@@ -17,7 +17,7 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 - The design system proposed in section 2 of this plan (and its Figma board) is **not** UI Design 2 and is **dropped**. Do not use it.
 - The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is not one of the UI Designs.
 
-**Live now (since 6 Nov 2026): UI Design 4** at https://pawsetu-demo.netlify.app. UI Designs 2 and 3 are backups; **UI Design 1 stays on hold** (Netlify deploy `6ae91e4fc7fd9b9bf45ac64f`, Git commit `97c1346`).
+**Live now (since 11 Nov 2026): UI Design 6 "Toran"** at https://pawsetu-demo.netlify.app (Netlify deploy `6af484cba3e33413799663dc`). UI Design 4 (live 6–11 Nov) and UI Design 5 are backups. UI Designs 2 and 3 are backups; **UI Design 1 stays on hold** (Netlify deploy `6ae91e4fc7fd9b9bf45ac64f`, Git commit `97c1346`).
 
 **UI Design 1 is the permanent backup (owner's rule, 3 Nov 2026).** The owner is making a new design (UI Design 2). If UI Design 2 turns out worse and the owner says "go back to UI Design 1", the app must return to UI Design 1 and work fully, with no errors.
 - **Where UI Design 1 is saved:** commit `97c1346` on GitHub. It is the tip of branch `claude/zen-ramanujan-4g7djn` (GitHub's main branch; the older branch `claude/inspiring-lovelace-1eo1xz` is gone) and is also in the history of `ui-revamp`. The screenshots in `docs/ui-revamp/before/` show how it looks. (Git tags were tried on 3 and 7 Nov 2026, but GitHub refuses tag pushes from cloud sessions; the commit itself is the backup.)
@@ -39,7 +39,11 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 
 **Relation to earlier decisions:** On 3 Nov 2026 the owner turned down the full "Neel" redesign (`docs/design-proposals/`). Later that day the owner made their own UI Design 2 in Google Stitch and said "GO" to build it, with Claude's 6 picks (`docs/ui-designs/REVIEW.md`). Sections 1 and 2 below are the earlier audit and the dropped proposal, kept as a record.
 
-## UI Design 5 "Genda" (8 Nov 2026) — built on `claude/happy-wozniak-68a4q2`, not live yet
+## UI Design 6 "Toran" (11 Nov 2026) — built on `claude/vigilant-wozniak-p5w5co`
+
+The owner asked to make the Toran design proposal (`docs/design-proposals/2026-11-10-toran-redesign/`) live in the app, keep the brown "Genda" look saved as UI Design 5, and publish the new one. Built on top of UI Design 5. Rules: `DESIGN.md` (UI Design 6). UI Design 5's rules are in git history (commit `b0cf737`). Progress and the decision: `docs/PROGRESS.md` and `docs/DECISIONS.md`.
+
+## UI Design 5 "Genda" (8 Nov 2026) — built on `claude/happy-wozniak-68a4q2`, now a backup
 
 A new look, not a polish of UI Design 4. UI Design 4 stays live until the owner approves UI Design 5.
 

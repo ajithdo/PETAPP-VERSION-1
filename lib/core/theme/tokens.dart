@@ -159,99 +159,99 @@ class PawColors extends ThemeExtension<PawColors> {
   final Color done;
 
   static const light = PawColors(
-    brand: Color(0xFF4A2A12),
-    onBrand: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFFF4ECE3),
-    onPrimaryContainer: Color(0xFF4A2A12),
-    action: Color(0xFF4A2A12),
-    onAction: Color(0xFFFFFFFF),
-    actionPressed: Color(0xFF2F1A0A),
-    actionContainer: Color(0xFFF4ECE3),
-    onActionContainer: Color(0xFF4A2A12),
-    accent: Color(0xFF8F5A00),
+    brand: Color(0xFF2B1A12),
+    onBrand: Color(0xFFFBF7F1),
+    primaryContainer: Color(0xFFF4ECE0),
+    onPrimaryContainer: Color(0xFF2B1A12),
+    action: Color(0xFFF8A80C),
+    onAction: Color(0xFF2B1A12),
+    actionPressed: Color(0xFFE89A00),
+    actionContainer: Color(0xFFFDEFCC),
+    onActionContainer: Color(0xFF7A4400),
+    accent: Color(0xFF8A4F00),
     onAccent: Color(0xFFFFFFFF),
-    onAccentContainer: Color(0xFF6B4100),
-    background: Color(0xFFF6F5F3),
+    onAccentContainer: Color(0xFF744000),
+    background: Color(0xFFFBF7F1),
     surface: Color(0xFFFFFFFF),
-    surfaceSubtle: Color(0xFFEFECE7),
-    outline: Color(0xFFE6E1DA),
-    controlBorder: Color(0xFF857A6C),
+    surfaceSubtle: Color(0xFFF4ECE0),
+    outline: Color(0xFFEADFD0),
+    controlBorder: Color(0xFF8C7A6A),
     focus: Color(0xFFB26F00),
-    textPrimary: Color(0xFF231B12),
-    textSecondary: Color(0xFF5B5044),
-    success: Color(0xFF17703F),
-    successContainer: Color(0xFFE3F3E8),
-    onSuccessContainer: Color(0xFF13582F),
+    textPrimary: Color(0xFF2B1A12),
+    textSecondary: Color(0xFF66554A),
+    success: Color(0xFF2C6A43),
+    successContainer: Color(0xFFDDEDDD),
+    onSuccessContainer: Color(0xFF22553A),
     warning: Color(0xFF8A4B00),
-    warningContainer: Color(0xFFFFF1D6),
+    warningContainer: Color(0xFFFDEFCC),
     onWarningContainer: Color(0xFF6B3B00),
-    warningBorder: Color(0xFFE9C07A),
-    error: Color(0xFF8C1D6E),
-    errorContainer: Color(0xFFFBEAF5),
-    onErrorContainer: Color(0xFF6E1456),
-    sos: Color(0xFFC81E1E),
+    warningBorder: Color(0xFFF1C978),
+    error: Color(0xFFB4201B),
+    errorContainer: Color(0xFFFCE4E0),
+    onErrorContainer: Color(0xFF8E1712),
+    sos: Color(0xFFDC2626),
     onSos: Color(0xFFFFFFFF),
-    sosContainer: Color(0xFFFDECEC),
-    onSosContainer: Color(0xFFA3161A),
-    sosBorder: Color(0xFFF2B3B3),
-    inverseSurface: Color(0xFF2B231B),
-    onInverseSurface: Color(0xFFF4EEE5),
-    ink: Color(0xFF3C2300),
-    marigold: Color(0xFFF3A712),
-    onMarigold: Color(0xFF2A1A00),
-    accentContainer: Color(0xFFFFF0CC),
-    band: Color(0xFF3A2416),
-    onBand: Color(0xFFFFF6E5),
-    onBandMuted: Color(0xFFEAD7BA),
-    done: Color(0xFFB26F00),
+    sosContainer: Color(0xFFFCE4E0),
+    onSosContainer: Color(0xFFB4201B),
+    sosBorder: Color(0xFFF2B3AA),
+    inverseSurface: Color(0xFF2B1A12),
+    onInverseSurface: Color(0xFFFBF7F1),
+    ink: Color(0xFF2B1A12),
+    marigold: Color(0xFFF8A80C),
+    onMarigold: Color(0xFF2B1A12),
+    accentContainer: Color(0xFFFDEFCC),
+    band: Color(0xFF2F1D14),
+    onBand: Color(0xFFFBF2E3),
+    onBandMuted: Color(0xFFD7C3AC),
+    done: Color(0xFFC77700),
   );
 
   static const dark = PawColors(
-    brand: Color(0xFFF5B53F),
-    onBrand: Color(0xFF2A1A00),
-    primaryContainer: Color(0xFF3A2D14),
-    onPrimaryContainer: Color(0xFFFFD98A),
-    action: Color(0xFFF5B53F),
-    onAction: Color(0xFF2A1A00),
-    actionPressed: Color(0xFFFFC965),
-    actionContainer: Color(0xFF3A2D14),
-    onActionContainer: Color(0xFFFFD98A),
-    accent: Color(0xFFF5B53F),
-    onAccent: Color(0xFF2A1A00),
-    onAccentContainer: Color(0xFFFFD98A),
-    background: Color(0xFF14110D),
-    surface: Color(0xFF1F1A14),
-    surfaceSubtle: Color(0xFF28221A),
-    outline: Color(0xFF3A3226),
-    controlBorder: Color(0xFF8A7F70),
-    focus: Color(0xFFF5B53F),
-    textPrimary: Color(0xFFF4EEE5),
-    textSecondary: Color(0xFFBDB2A3),
-    success: Color(0xFF6FD49A),
-    successContainer: Color(0xFF16301F),
-    onSuccessContainer: Color(0xFFBFEFD0),
+    brand: Color(0xFFF8EFDF),
+    onBrand: Color(0xFF17100C),
+    primaryContainer: Color(0xFF2E2219),
+    onPrimaryContainer: Color(0xFFF8EFDF),
+    action: Color(0xFFFBB431),
+    onAction: Color(0xFF2B1A12),
+    actionPressed: Color(0xFFFFC64F),
+    actionContainer: Color(0xFF3A290E),
+    onActionContainer: Color(0xFFFCC864),
+    accent: Color(0xFFFCC864),
+    onAccent: Color(0xFF2B1A12),
+    onAccentContainer: Color(0xFFFCC864),
+    background: Color(0xFF17100C),
+    surface: Color(0xFF241A13),
+    surfaceSubtle: Color(0xFF2E2219),
+    outline: Color(0xFF3A2C21),
+    controlBorder: Color(0xFF8E7C6A),
+    focus: Color(0xFFFBB431),
+    textPrimary: Color(0xFFF8EFDF),
+    textSecondary: Color(0xFFCDBBA6),
+    success: Color(0xFF8AD0A0),
+    successContainer: Color(0xFF1D3325),
+    onSuccessContainer: Color(0xFFBFE8CC),
     warning: Color(0xFFFFC861),
-    warningContainer: Color(0xFF33270F),
+    warningContainer: Color(0xFF3A290E),
     onWarningContainer: Color(0xFFFFE2A3),
     warningBorder: Color(0xFF5C4410),
-    error: Color(0xFFF29BD3),
-    errorContainer: Color(0xFF3A1531),
-    onErrorContainer: Color(0xFFFFD3EF),
-    sos: Color(0xFFC81E1E),
+    error: Color(0xFFFF9285),
+    errorContainer: Color(0xFF3E1A15),
+    onErrorContainer: Color(0xFFFFC9C1),
+    sos: Color(0xFFDC2626),
     onSos: Color(0xFFFFFFFF),
-    sosContainer: Color(0xFF3B1212),
-    onSosContainer: Color(0xFFFFB4B4),
+    sosContainer: Color(0xFF3E1A15),
+    onSosContainer: Color(0xFFFF9285),
     sosBorder: Color(0xFF7F1D1D),
-    inverseSurface: Color(0xFFEDE6DC),
-    onInverseSurface: Color(0xFF231B12),
+    inverseSurface: Color(0xFFF8EFDF),
+    onInverseSurface: Color(0xFF17100C),
     ink: Color(0xFF000000),
-    marigold: Color(0xFFF5B53F),
-    onMarigold: Color(0xFF2A1A00),
-    accentContainer: Color(0xFF3A2D14),
-    band: Color(0xFF2B2214),
-    onBand: Color(0xFFF4EEE5),
-    onBandMuted: Color(0xFFCDBFA9),
-    done: Color(0xFFF5B53F),
+    marigold: Color(0xFFFBB431),
+    onMarigold: Color(0xFF2B1A12),
+    accentContainer: Color(0xFF3A290E),
+    band: Color(0xFF2C1E15),
+    onBand: Color(0xFFFBF2E3),
+    onBandMuted: Color(0xFFD7C3AC),
+    done: Color(0xFFFBB431),
   );
 
   /// High-contrast variants: darker text and borders for low vision.
@@ -259,9 +259,9 @@ class PawColors extends ThemeExtension<PawColors> {
     final light = b == Brightness.light;
     return copyWith(
       textPrimary: light ? const Color(0xFF000000) : const Color(0xFFFFFFFF),
-      textSecondary: light ? const Color(0xFF3B3127) : const Color(0xFFEDE6DC),
-      outline: light ? const Color(0xFF857A6C) : const Color(0xFF8A7F70),
-      controlBorder: light ? const Color(0xFF4F453A) : const Color(0xFFC9BEAE),
+      textSecondary: light ? const Color(0xFF3D2C22) : const Color(0xFFEFE3D2),
+      outline: light ? const Color(0xFF8C7A6A) : const Color(0xFF8E7C6A),
+      controlBorder: light ? const Color(0xFF4F3F33) : const Color(0xFFCDBBA6),
     );
   }
 
@@ -414,6 +414,62 @@ class PawColors extends ThemeExtension<PawColors> {
   }
 }
 
+/// The toran (UI Design 6): the marigold garland over a pet's doorway on
+/// Home and the routine page. Drawn colours, the same in light and dark (the
+/// garland always hangs on the dark kaapi band). Checked for 3:1 on the band
+/// in test/core/contrast_test.dart.
+class GarlandColors {
+  /// Outer petals (lighter) and inner petals of an open flower.
+  static const petalLight = Color(0xFFFFCB52);
+  static const petal = Color(0xFFF8A80C);
+
+  /// The heart of an open flower.
+  static const heart = Color(0xFFE08600);
+
+  /// The string the flowers hang on, and the mango leaves between them.
+  static const stem = Color(0xFF7DB56F);
+  static const leaf = Color(0xFF6DA862);
+
+  /// A bud (a task not done yet): a dark knot with a light edge.
+  static const bud = Color(0xFF4A3224);
+  static const budEdge = Color(0xB3FBF2E3);
+
+  /// The faint doorway outlines behind the arch.
+  static const doorway = Color(0x14FBF2E3);
+}
+
+/// The drawn map preview ([MapSketch]): a quiet, OpenStreetMap-like palette,
+/// the same in light and dark (it is a picture of a map).
+class MapColors {
+  static const land = Color(0xFFEFE7DA);
+  static const park = Color(0xFFD9E9CF);
+  static const water = Color(0xFFCFE3EE);
+  static const road = Color(0xFFFFFFFF);
+  static const you = Color(0xFF1F7FA8);
+  static const pin = Color(0xFF2F1D14);
+}
+
+/// Drawn product pictures ([PackShot]): a strong colour on its pale tint,
+/// the same in light and dark (they are pictures of packs).
+class PackColors {
+  static const pairs = <(Color, Color)>[
+    (Color(0xFFC2552D), Color(0xFFF9E2D2)),
+    (Color(0xFF2C6A43), Color(0xFFDDEDDD)),
+    (Color(0xFFF8A80C), Color(0xFFFDEFCC)),
+    (Color(0xFF7C6FD0), Color(0xFFE7E3FB)),
+    (Color(0xFFDC2626), Color(0xFFFCE4E0)),
+    (Color(0xFF1F7FA8), Color(0xFFDDECF5)),
+  ];
+  static const label = Color(0xFFFBF2E3);
+  static const strap = Color(0xFF2B1A12);
+  static const shade = Color(0x24000000);
+  static const shadow = Color(0x142B1A12);
+  static const lid = Color(0xFFD9D2C8);
+  static const lidInner = Color(0xFFEFEAE2);
+  static const ring = Color(0xFF9A897C);
+  static const kibble = Color(0xFF8A4F00);
+}
+
 /// Pet colour tags (section 4). Stored on the pet as the tag key.
 class PetTagColors {
   static const Map<String, Color> all = {
@@ -475,8 +531,8 @@ class PrintColors {
   static const paper = Color(0xFFFFFFFF);
   static const ink = Color(0xFF231B12);
   static const muted = Color(0xFF5B5044);
-  static const brand = Color(0xFF4A2A12);
-  static const brandTint = Color(0xFFF4ECE3);
+  static const brand = Color(0xFF2F1D14);
+  static const brandTint = Color(0xFFF4ECE0);
   static const alert = Color(0xFFB91C1C);
   static const rule = Color(0xFFE6E1DA);
 
@@ -513,9 +569,9 @@ class MediaColors {
   /// Video call: page, the cocoa glow behind the other person, the
   /// picture-in-picture tile, the avatar and its icon, and the small lines.
   static const callBackground = Color(0xFF14110D);
-  static const callGlow = Color(0xFF3A2416);
+  static const callGlow = Color(0xFF2F1D14);
   static const callTile = Color(0xFF1F1A14);
-  static const callAvatar = Color(0xFFF5B53F);
+  static const callAvatar = Color(0xFFF8A80C);
   static const onCallAvatar = Color(0xFF2A1A00);
   static const callSubtitle = Color(0xFFEAD7BA);
   static const callWarning = Color(0xFFFFC861);
@@ -544,26 +600,32 @@ Color readableOn(Color fg, List<Color> backgrounds, {double ratio = 4.5}) {
 }
 
 /// Font families (bundled in assets/fonts; all SIL OFL).
+///
+/// UI Design 6 "Toran": one family, Bricolage Grotesque, in two cuts made
+/// from the variable font. Hindi and Telugu letters come from Noto Sans
+/// (Bricolage has none), so mixed text like "Simba రోజు" keeps Latin in
+/// Bricolage and Telugu in Noto.
 class FontFamilies {
-  /// Titles in English and Hindi: Baloo 2 (Ek Type), 600 and 700.
-  static const heading = 'Baloo2';
+  /// Titles: Bricolage Grotesque, narrower and heavier (600, 700, 800).
+  static const heading = 'BricolageDisplay';
 
-  /// Titles in Telugu: Baloo Tammudu 2 (Ek Type), 600 and 700.
-  static const headingTelugu = 'BalooTammudu2';
+  /// Titles in Telugu: the same title font; Telugu letters fall back to Noto.
+  static const headingTelugu = heading;
 
-  /// Text and labels in English and Hindi: Hind (Indian Type Foundry).
-  static const body = 'Hind';
+  /// Text and labels: Bricolage Grotesque at full width (400 to 700).
+  static const body = 'Bricolage';
 
-  /// Text and labels in Telugu: Hind Guntur (Indian Type Foundry).
-  static const bodyTelugu = 'HindGuntur';
+  /// Text in Telugu: the same text font; Telugu letters fall back to Noto.
+  static const bodyTelugu = body;
 
-  /// Times, IDs, batch numbers and doses.
-  static const mono = 'JetBrainsMono';
+  /// Times, IDs, batch numbers and doses: the text font with tabular figures
+  /// (see [TypeScale.mono]); no separate monospace font.
+  static const mono = body;
 
-  /// Fallback for Hindi.
+  /// Hindi letters.
   static const devanagari = 'NotoSansDevanagari';
 
-  /// Fallback for Telugu.
+  /// Telugu letters.
   static const telugu = 'NotoSansTelugu';
 }
 
@@ -575,27 +637,27 @@ class TypeToken {
   final FontWeight weight;
   final double tracking;
 
-  /// Set in the title font (Baloo 2, or Baloo Tammudu 2 in Telugu).
+  /// Set in the title font (Bricolage Grotesque, the narrow heavy cut).
   final bool heading;
 }
 
-/// The type scale (UI Design 5, DESIGN.md "Typography"). A small set of steps:
+/// The type scale (UI Design 6, DESIGN.md "Typography"). A small set of steps:
 /// rank comes from these sizes and weights, never ad-hoc sizes. Hindi and
 /// Telugu use line height 1.6 or more ([indicLineHeight]), no letter-spacing
 /// and secondary text one step up ([indicSmallBump]). Nothing is under 13 px.
 class TypeScale {
-  static const display = TypeToken(36, 44, FontWeight.w700, heading: true);
-  static const displayPhone = TypeToken(30, 38, FontWeight.w700, heading: true);
-  static const headlineLarge = TypeToken(30, 38, FontWeight.w700, heading: true);
-  static const headline = TypeToken(26, 34, FontWeight.w700, heading: true);
-  static const headlineMedium = TypeToken(24, 32, FontWeight.w600, heading: true);
-  static const title = TypeToken(21, 28, FontWeight.w700, heading: true);
-  static const titleMedium = TypeToken(18, 24, FontWeight.w700, heading: true);
-  static const titleSmall = TypeToken(17, 23, FontWeight.w600, heading: true);
-  static const bodyLarge = TypeToken(17, 26, FontWeight.w400);
-  static const body = TypeToken(16, 24, FontWeight.w400);
+  static const display = TypeToken(40, 42, FontWeight.w800, tracking: -0.6, heading: true);
+  static const displayPhone = TypeToken(34, 36, FontWeight.w800, tracking: -0.5, heading: true);
+  static const headlineLarge = TypeToken(30, 33, FontWeight.w800, tracking: -0.4, heading: true);
+  static const headline = TypeToken(26, 29, FontWeight.w800, tracking: -0.3, heading: true);
+  static const headlineMedium = TypeToken(24, 28, FontWeight.w700, tracking: -0.2, heading: true);
+  static const title = TypeToken(21, 25, FontWeight.w700, tracking: -0.2, heading: true);
+  static const titleMedium = TypeToken(18, 22, FontWeight.w700, tracking: -0.1, heading: true);
+  static const titleSmall = TypeToken(17, 22, FontWeight.w600, heading: true);
+  static const bodyLarge = TypeToken(17, 25, FontWeight.w400);
+  static const body = TypeToken(16, 23, FontWeight.w400);
   static const bodySmall = TypeToken(14, 20, FontWeight.w400);
-  static const label = TypeToken(16, 22, FontWeight.w600);
+  static const label = TypeToken(15, 20, FontWeight.w600);
   static const labelMedium = TypeToken(14, 20, FontWeight.w600);
 
   /// Badges, chart axes, small tags: the smallest text in the app (13 px).
@@ -609,7 +671,7 @@ class TypeScale {
   static const mono = TypeToken(14, 20, FontWeight.w500);
 
   /// The day number in a date block ("13" over "Fri").
-  static const dateNumber = TypeToken(26, 28, FontWeight.w700, heading: true);
+  static const dateNumber = TypeToken(22, 26, FontWeight.w800, heading: true);
 
   static const double indicLineHeight = 1.6;
 
@@ -919,9 +981,13 @@ class Sizes {
 
   /// The garland on the Genda band (Home): full and compact (narrow screens,
   /// big text). The pet photo inside is [garlandPhotoShare] of it.
-  static const double garland = 140;
-  static const double garlandCompact = 112;
+  static const double garland = 148;
+  static const double garlandLarge = 176;
+  static const double garlandCompact = 120;
   static const double garlandPhotoShare = 0.63;
+
+  /// The pet's arch: height = width × [archAspect] (a half circle on top).
+  static const double archAspect = 1.24;
 
   /// Height of the progress bar on the Genda band.
   static const double gendaBar = 10;
@@ -980,8 +1046,8 @@ class TapTarget {
 class Shadows {
   /// Cards (light mode only; dark mode uses surface tones and the border).
   static List<BoxShadow> card(Color ink) => [
-    BoxShadow(color: ink.withValues(alpha: 0.06), blurRadius: 2, offset: const Offset(0, 1)),
-    BoxShadow(color: ink.withValues(alpha: 0.07), blurRadius: 18, offset: const Offset(0, 6)),
+    BoxShadow(color: ink.withValues(alpha: 0.05), offset: const Offset(0, 1)),
+    BoxShadow(color: ink.withValues(alpha: 0.22), blurRadius: 28, spreadRadius: -14, offset: const Offset(0, 10)),
   ];
 
   /// Sheets, dialogs and menus.

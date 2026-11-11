@@ -85,6 +85,11 @@ void main() {
         ui(p.done, p.surface, 'done tick on cards');
         ui(p.marigold, p.band, 'garland flowers on the band');
         ui(p.onBandMuted, p.band, 'open garland flowers on the band');
+        // UI Design 6 (Toran): the drawn garland and the dock.
+        ui(GarlandColors.petal, p.band, 'open marigolds on the band');
+        ui(GarlandColors.budEdge.withValues(alpha: 1), p.band, 'bud edges on the band');
+        aa(p.onMarigold, p.marigold, 'current tab on the dock');
+        aa(p.onBandMuted, p.band, 'other tabs on the dock');
         aa(cs.onPrimary, cs.primary, 'selected navigation pill');
         aa(cs.onPrimaryContainer, cs.primaryContainer, 'text on highlighted cards');
         aa(cs.onSecondaryContainer, cs.secondaryContainer, 'text on warm cards');

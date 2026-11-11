@@ -10354,4 +10354,31 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get meGroupHelp => 'मदद और सेटिंग्स';
+
+  @override
+  String gendaNext(String task) {
+    return 'अगला: $task';
+  }
+
+  @override
+  String get bookIntro =>
+      'आपके पास के डॉक्टर, ग्रूमर, ट्रेनर, बोर्डिंग और वॉकर।';
+
+  @override
+  String get bookVetSub => 'जाँच, टीके, सर्जरी';
+
+  @override
+  String get bookTeleSub => 'डॉक्टर से चैट या वीडियो';
+
+  @override
+  String get bookGroomSub => 'सैलून या घर पर';
+
+  @override
+  String get bookTrainSub => 'बुनियादी सीख से व्यवहार तक';
+
+  @override
+  String get bookBoardSub => 'बोर्डिंग और पेट सिटिंग';
+
+  @override
+  String get bookWalkSub => 'लाइव रास्ता और फ़ोटो';
 }

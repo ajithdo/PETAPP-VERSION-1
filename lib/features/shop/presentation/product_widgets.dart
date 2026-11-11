@@ -8,7 +8,6 @@ import '../../../core/widgets/widgets.dart';
 import '../data/shop_repository.dart';
 import '../domain/shop_models.dart';
 import '../domain/shop_rules.dart';
-import 'shop_labels.dart';
 
 /// Product picture: the seller's photo, or an illustrated placeholder in
 /// the category's colour (the demo has no product photos).
@@ -23,21 +22,16 @@ class ProductArt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // No photo: a calm category drawing on warm grey (UI Design 5), never a
-    // loud gradient placeholder.
-    final paw = context.paw;
-    final c = paw.textSecondary;
+    // No photo: a drawn pack, toy or bed for the category (UI Design 6),
+    // never a brand logo or a loud gradient placeholder.
     Widget art;
     if (photoUrl != null && photoUrl!.isNotEmpty) {
       art = MediaImage(url: photoUrl!, fit: BoxFit.cover, semanticLabel: label);
     } else {
-      art = ColoredBox(
-        color: paw.surfaceSubtle,
-        child: LayoutBuilder(builder: (context, box) {
-          final s = box.biggest.shortestSide.isFinite ? box.biggest.shortestSide : Sizes.thumbXl;
-          return Center(child: Icon(categoryIcon(category), size: s * 0.38, color: c));
-        }),
-      );
+      // Seeds that differ only by one would give neighbours the same colour,
+      // so spread them out (food packs in a row should look different).
+      final tone = (shopCategories.indexOf(category) * 2 + seed * 5 + (label?.length ?? 0)) % PackColors.pairs.length;
+      art = PackShot(kind: PackShot.kindFor(category, seed), tone: tone);
       if (label != null) art = Semantics(image: true, label: label, child: art);
     }
     return ClipRRect(

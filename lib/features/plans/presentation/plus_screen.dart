@@ -9,6 +9,7 @@ import '../../../core/providers.dart';
 import '../../../core/services/payment_service.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
+import '../../../core/widgets/logo.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/plan_repository.dart';
 import '../domain/plan_rules.dart';
@@ -148,20 +149,50 @@ class _StatusCard extends StatelessWidget {
       _ => (l.plusYouAreFree, l.plusFreeBody),
     };
     final plus = plan != 'free';
-    return PawCard(
-      color: plus ? context.paw.accent.withValues(alpha: Opacities.chip) : null,
-      borderColor: plus ? context.paw.accent : null,
-      child: Row(children: [
-        Icon(plus ? Icons.workspace_premium_outlined : Icons.pets_outlined, size: IconSizes.xxxl, color: plus ? context.paw.accent : context.colors.primary),
-        const SizedBox(width: Space.md),
-        Expanded(
+    final paw = context.paw;
+    if (!plus) {
+      return PawCard(
+        child: Row(children: [
+          Icon(Icons.pets_outlined, size: IconSizes.xxxl, color: paw.textPrimary),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(title, style: context.text.titleMedium),
+              const SizedBox(height: Space.xxs),
+              Text(body, style: context.text.bodyMedium),
+            ]),
+          ),
+        ]),
+      );
+    }
+    // UI Design 6: Plus is a marigold membership card.
+    return Container(
+      decoration: BoxDecoration(
+        color: paw.marigold,
+        borderRadius: BorderRadius.circular(Radii.xxl),
+        boxShadow: [BoxShadow(color: paw.marigold.withValues(alpha: Opacities.muted), blurRadius: Space.xxl, spreadRadius: -Space.md, offset: const Offset(0, Space.lg))],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: CustomPaint(
+        painter: _CardRings(color: paw.onMarigold.withValues(alpha: Opacities.tint)),
+        child: Padding(
+          padding: const EdgeInsets.all(Space.lg + Space.xxs),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(title, style: context.text.titleMedium),
-            const SizedBox(height: Space.xxs),
-            Text(body, style: context.text.bodyMedium),
+            Row(children: [
+              const PawSetuLogo(size: IconSizes.xl - Space.xxs),
+              const SizedBox(width: Space.sm),
+              Expanded(child: Text(l.pawsetuPlus, style: context.text.labelLarge?.copyWith(color: paw.onMarigold))),
+              Icon(Icons.workspace_premium_rounded, color: paw.onMarigold),
+            ]),
+            const SizedBox(height: Space.xl),
+            Text(title, style: context.text.headlineLarge?.copyWith(color: paw.onMarigold)),
+            const SizedBox(height: Space.md),
+            Divider(color: paw.onMarigold.withValues(alpha: Opacities.tintStrong), height: Strokes.hairline),
+            const SizedBox(height: Space.md),
+            Text(body, style: context.text.titleSmall?.copyWith(color: paw.onMarigold)),
           ]),
         ),
-      ]),
+      ),
     );
   }
 }
@@ -200,24 +231,55 @@ class _Comparison extends StatelessWidget {
           l.plusAbove(Fmt.inr((commission['freeDeliveryAbove'] as num?) ?? 499, context.lang))),
       (Icons.support_agent_outlined, l.plusRowSupport, l.plusStandard, l.plusPriority),
     ];
+    // The Plus column sits on a marigold wash so the eye reads down it.
+    final wash = context.paw.accentContainer;
+    final onWash = context.paw.onAccentContainer;
     return PawCard(
-      padding: const EdgeInsets.all(Space.md),
+      padding: const EdgeInsets.fromLTRB(Space.md, Space.xs, Space.md, Space.md),
       child: Column(children: [
-        Row(children: [
-          const Expanded(child: SizedBox()),
-          SizedBox(width: Sizes.planColumn, child: Text(l.planFree, style: context.text.labelLarge, textAlign: TextAlign.center)),
-          SizedBox(width: Sizes.planColumn, child: Text(l.planPlus, style: context.text.labelLarge?.copyWith(color: context.paw.accent), textAlign: TextAlign.center)),
-        ]),
-        const Divider(),
-        for (final (icon, label, f, p) in rows)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: Space.xs + Space.xxs),
-            child: Row(children: [
-              Icon(icon, size: IconSizes.md, color: context.colors.primary),
-              const SizedBox(width: Space.sm),
-              Expanded(child: Text(label, style: context.text.bodyMedium)),
-              SizedBox(width: Sizes.planColumn, child: Text(f, style: context.text.bodySmall, textAlign: TextAlign.center)),
-              SizedBox(width: Sizes.planColumn, child: Text(p, style: context.text.bodySmall?.copyWith(fontWeight: FontWeight.w700), textAlign: TextAlign.center)),
+        IntrinsicHeight(
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            const Expanded(child: SizedBox()),
+            SizedBox(width: Sizes.planColumn, child: Padding(padding: const EdgeInsets.symmetric(vertical: Space.sm), child: Text(l.planFree, style: context.text.labelLarge, textAlign: TextAlign.center))),
+            Container(
+              width: Sizes.planColumn,
+              padding: const EdgeInsets.symmetric(vertical: Space.sm),
+              decoration: BoxDecoration(color: wash, borderRadius: const BorderRadius.vertical(top: Radius.circular(Radii.md))),
+              child: Text(l.planPlus, style: context.text.labelLarge?.copyWith(color: onWash), textAlign: TextAlign.center),
+            ),
+          ]),
+        ),
+        for (var i = 0; i < rows.length; i++)
+          IntrinsicHeight(
+            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: Space.sm),
+                  decoration: BoxDecoration(border: Border(top: BorderSide(color: context.paw.outline))),
+                  child: Row(children: [
+                    Icon(rows[i].$1, size: IconSizes.md, color: context.paw.textSecondary),
+                    const SizedBox(width: Space.sm),
+                    Expanded(child: Text(rows[i].$2, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600))),
+                  ]),
+                ),
+              ),
+              Container(
+                width: Sizes.planColumn,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(vertical: Space.sm, horizontal: Space.xxs),
+                decoration: BoxDecoration(border: Border(top: BorderSide(color: context.paw.outline))),
+                child: Text(rows[i].$3, style: context.text.bodySmall, textAlign: TextAlign.center),
+              ),
+              Container(
+                width: Sizes.planColumn,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(vertical: Space.sm, horizontal: Space.xxs),
+                decoration: BoxDecoration(
+                  color: wash,
+                  borderRadius: i == rows.length - 1 ? const BorderRadius.vertical(bottom: Radius.circular(Radii.md)) : null,
+                ),
+                child: Text(rows[i].$4, style: context.text.bodySmall?.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary), textAlign: TextAlign.center),
+              ),
             ]),
           ),
       ]),
@@ -424,4 +486,20 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
             ]),
     );
   }
+}
+
+/// Two faint rings in the corner of the Plus card.
+class _CardRings extends CustomPainter {
+  _CardRings({required this.color});
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = Offset(size.width - Space.xxl, Space.lg);
+    canvas.drawCircle(c, Sizes.thumbXl, Paint()..style = PaintingStyle.stroke..strokeWidth = Strokes.strong..color = color);
+    canvas.drawCircle(c, Sizes.thumbXl + Space.xxl, Paint()..style = PaintingStyle.stroke..strokeWidth = Space.xxl..color = color.withValues(alpha: color.a * 0.6));
+  }
+
+  @override
+  bool shouldRepaint(_CardRings o) => o.color != color;
 }
