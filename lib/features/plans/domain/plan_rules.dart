@@ -43,6 +43,16 @@ DateTime trialEnd(DateTime start, PlanPrices p) => start.add(Duration(days: p.tr
 DateTime renewalDate(DateTime start, {required bool yearly}) =>
     yearly ? DateTime(start.year + 1, start.month, start.day, start.hour, start.minute) : DateTime(start.year, start.month + 1, start.day, start.hour, start.minute);
 
+/// The renewals a self-renewing paid period that ended at [end] has missed
+/// by [now], oldest first: [end] itself, then each month (or year) after it
+/// up to [now]. Each one is a (demo) payment; the period then runs to
+/// `renewalDate(last)`, which is after [now]. The server's nightly job
+/// renews one period a night; the standalone demo has no server and can be
+/// closed for months, so it catches up on all of them at once.
+List<DateTime> missedRenewals(DateTime end, DateTime now, {required bool yearly}) => [
+      for (var d = end; !d.isAfter(now); d = renewalDate(d, yearly: yearly)) d,
+    ];
+
 /// Whole days left in a trial or period (never negative).
 int daysLeft(DateTime? end, DateTime now) => end == null || !end.isAfter(now) ? 0 : (end.difference(now).inHours / 24).ceil();
 

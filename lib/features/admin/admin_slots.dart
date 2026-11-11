@@ -101,7 +101,9 @@ bool meItemVisible(WidgetRef ref, String route) => switch (route) {
       _ => true,
     };
 
-/// Home notices: account deletion pending, trial ending, and admin banners.
+/// Home notices: account deletion pending and trial ending (top of Home).
+/// Admin offer banners are not here: Home shows them below the pet's day
+/// with [BannerStrip] (UI Design 5, the Pet First rule).
 List<Widget> adminHomeSection(BuildContext context, WidgetRef ref) {
   final l = context.l10n;
   final user = ref.watch(currentUserProvider);
@@ -117,10 +119,10 @@ List<Widget> adminHomeSection(BuildContext context, WidgetRef ref) {
           borderColor: context.paw.error,
           onTap: () => context.push('/me/privacy'),
           child: Row(children: [
-            Icon(Icons.warning_amber_rounded, color: context.paw.error),
+            Icon(Icons.warning_amber_outlined, color: context.paw.error),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.prvDeletionPending(Fmt.date(deletionDate(deletion), context.lang)), style: context.text.bodyMedium)),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
       ),
@@ -131,13 +133,12 @@ List<Widget> adminHomeSection(BuildContext context, WidgetRef ref) {
           borderColor: context.paw.accent,
           onTap: () => context.push('/me/plus'),
           child: Row(children: [
-            Icon(Icons.workspace_premium_rounded, color: context.paw.accent),
+            Icon(Icons.workspace_premium_outlined, color: context.paw.accent),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.plusTrialEndingSoon(trialLeft), style: context.text.bodyMedium)),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
       ),
-    const BannerStrip(placement: 'home'),
   ];
 }

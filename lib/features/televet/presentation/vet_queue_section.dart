@@ -43,10 +43,10 @@ class VetQueueSection extends ConsumerWidget {
           Text(l.tvQueueHint, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
           const SizedBox(height: Space.lg),
           ResponsiveGrid(minItemWidth: 200, children: [
-            StatTile(label: l.tvWaiting, value: '${queued.length}', icon: Icons.hourglass_top_rounded, color: queued.isEmpty ? null : context.paw.warning),
-            StatTile(label: l.tvInProgress, value: '${active.length}', icon: Icons.forum_rounded),
-            StatTile(label: l.tvDoneToday, value: '$today', icon: Icons.task_alt_rounded, color: context.paw.success),
-            StatTile(label: l.tvPrescriptionsWritten, value: '$rx', icon: Icons.receipt_long_rounded, color: context.paw.accent),
+            StatTile(label: l.tvWaiting, value: '${queued.length}', icon: Icons.hourglass_top_outlined, color: queued.isEmpty ? null : context.paw.warning),
+            StatTile(label: l.tvInProgress, value: '${active.length}', icon: Icons.forum_outlined),
+            StatTile(label: l.tvDoneToday, value: '$today', icon: Icons.task_alt_outlined, color: context.paw.success),
+            StatTile(label: l.tvPrescriptionsWritten, value: '$rx', icon: Icons.receipt_long_outlined, color: context.paw.accent),
           ]),
           SectionHeader(l.tvWaiting),
           if (queued.isEmpty) PawCard(child: Text(l.tvQueueEmpty)),
@@ -86,7 +86,7 @@ class _QueueCardState extends ConsumerState<_QueueCard> {
       padding: const EdgeInsets.all(Space.md),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: 44),
+          PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: Sizes.avatarMd),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -100,9 +100,9 @@ class _QueueCardState extends ConsumerState<_QueueCard> {
         ]),
         const SizedBox(height: Space.sm),
         Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-          if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Icons.bolt_rounded),
-          StatusChip(c.isVideo ? l.tvModeVideo : l.tvModeChat, tone: ChipTone.info, icon: c.isVideo ? Icons.videocam_rounded : Icons.chat_rounded),
-          if (c.redFlag != null) StatusChip(l.tvUrgent, tone: ChipTone.error, icon: Icons.emergency_rounded),
+          if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Icons.bolt_outlined),
+          StatusChip(c.isVideo ? l.tvModeVideo : l.tvModeChat, tone: ChipTone.info, icon: c.isVideo ? Icons.videocam_outlined : Icons.chat_outlined),
+          if (c.redFlag != null) StatusChip(l.tvUrgent, tone: ChipTone.error, icon: Icons.emergency_outlined),
           if (c.vetUid != null) StatusChip(l.tvAskedForYou, tone: ChipTone.success),
         ]),
         const SizedBox(height: Space.sm),

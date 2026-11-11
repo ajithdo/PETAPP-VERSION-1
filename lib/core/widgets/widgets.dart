@@ -1,12 +1,16 @@
 export 'buttons.dart';
 export 'cards.dart';
 export 'dialogs.dart';
+export 'genda_band.dart';
 export 'illustrations.dart';
 export 'inputs.dart';
 export 'layout.dart';
 export 'media_image.dart';
 export 'offline_banner.dart';
+export 'pass_card.dart';
 export 'pet_avatar.dart';
+export 'pills.dart';
 export 'progress_ring.dart';
 export 'sos_button.dart';
 export 'states.dart';
+export 'timeline.dart';

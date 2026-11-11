@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSetu - Instant Tele-Vet Video Care</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'coral': '#E05A47',
+            'forest-teal': '#18453E',
+            'soft-sage': '#E6F0ED',
+            'soft-sand': '#F3EFEA',
+            'warm-border': '#E7E2DA',
+            'status-upcoming': '#D97706',
+            'status-completed': '#15803D',
+            'status-emergency': '#DC2626',
+            'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-secondary': '#18453E',
+            'light-on-secondary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-on-surface-elevated': '#1C1917',
+            'light-surface-subtle': '#F3EFEA',
+            'light-outline': '#E7E2DA',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '28px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <style>
+    * { -webkit-font-smoothing: antialiased; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface min-h-[1024px] font-body antialiased flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Shared Global Shell Header -->
+  <header class="sticky top-0 z-40 bg-light-surface/95 backdrop-blur-md border-b border-light-outline">
+    <div class="max-w-[1240px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-8">
+        <a href="../home-discovery/HomeDiscovery.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-forest-teal text-white flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-[24px]">pets</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-headline font-bold text-[22px] tracking-tight text-light-on-surface leading-tight">PawSetu</span>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-forest-teal">Tele-Vet Consultation</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="hidden lg:flex items-center gap-1 bg-light-surface-subtle/80 p-1.5 rounded-full border border-light-outline">
+        <a href="../home-discovery/HomeDiscovery.html" class="px-4 py-2 rounded-full text-light-on-surface hover:text-forest-teal font-label text-[13px] font-medium transition">
+          Vet Clinics
+        </a>
+        <a href="../medical-records/MedicalRecords.html" class="px-4 py-2 rounded-full text-light-on-surface hover:text-forest-teal font-label text-[13px] font-medium transition">
+          Health Vault
+        </a>
+        <a href="../tele-vet/TeleVet.html" class="px-4 py-2 rounded-full bg-forest-teal text-white font-label text-[13px] font-semibold shadow-sm">
+          Tele-Vet Video
+        </a>
+        <a href="../emergency-triage/EmergencyTriage.html" class="px-4 py-2 rounded-full text-status-emergency hover:bg-rose-50 font-label text-[13px] font-semibold transition">
+          24/7 SOS
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-status-completed text-[12px] font-bold rounded-full border border-emerald-200">
+          <span class="w-2 h-2 rounded-full bg-status-completed animate-pulse"></span>
+          3 Vets Online Now
+        </span>
+        <div class="w-10 h-10 rounded-full bg-soft-sand border border-light-outline flex items-center justify-center font-bold text-forest-teal">
+          PS
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Tele-Vet Consultation Layout (1200px max width) -->
+  <main class="flex-1 max-w-[1240px] w-full mx-auto px-6 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- Left Column: Video Room & Active Prescription Pad (7 Cols) -->
+      <section class="lg:col-span-7 space-y-6">
+
+        <!-- Active Video Simulation Container -->
+        <div class="relative bg-stone-950 rounded-2xl overflow-hidden aspect-[16/9] border border-stone-800 shadow-xl">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1VReKynD5jmNufNzataLBjDSDRndfqSVHvXxawdKYufm4hbVCfwHHonJmtEpsU7-7BIteaOgnZ2ZDPplLuT1NhLvex8evUPTSthfjanU-_NNu9JpH41TJq3XCsW8QTIwm_q87Jc4lQJpzkqfaxQvriVZ8Nrf39LPEJtq72yIfg56RUEjxtNyfEMM0fLviBYMRZI34YMsI7HmkE5YvZ55ZK7s6tvODKw-XS9XYl9NWxJEpYAW8kr49PvoPgmfUpNjhLOpA" alt="Dr. Ananya Ray Tele-Vet consult" class="w-full h-full object-cover" data-stitch-original-src="dac2957b80901cab===../../images/vet_tele_consult_doctor.jpg">
+          
+          <!-- Top Overlay Status -->
+          <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+            <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[12px] font-semibold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>Encrypted Video Call · 12:44</span>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-emerald-300 text-[12px] font-code">
+              HD 1080p · 60fps
+            </span>
+          </div>
+
+          <!-- Bottom Floating Pet Picture-in-Picture -->
+          <div class="absolute bottom-4 right-4 w-28 h-28 rounded-xl overflow-hidden border-2 border-white shadow-lg bg-stone-900">
+            <img src="https://lh3.googleusercontent.com/aida/AEtjO1XxUq1bOZRiIA2H6VxFO2poRcUT2izixzVyL73fv2iSZRSvkZ0JBJ0jin1r55P7HsHFzmHQMG_tzjNUkmnQDbFQMrzuvLDR06OcupUF1vD7x9L5k-Cdt00vNEtSuvNCV7rHH3UQS3Te_x5xoCkL4bGCTqjoJVhw9bdMIjmJu3_-IXwafoNSiwE8L25mBq7MBqwvb48TUMHrR35iwa6dvTjhscPM7CWOI3bwNuVKNByzQSdx4re8KsFa6rJbWjg" alt="Bruno Video Feed" class="w-full h-full object-cover" data-stitch-original-src="c2a13ef3ba31c4d4===../../images/pet_bruno_portrait.jpg">
+            <span class="absolute bottom-1 left-1.5 text-[10px] text-white font-bold bg-black/60 px-1.5 py-0.5 rounded">Bruno (You)</span>
+          </div>
+
+          <!-- Call Controls Floating Bar -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-stone-900/90 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 shadow-lg">
+            <button type="button" class="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition">
+              <span class="material-symbols-outlined text-[20px]">mic</span>
+            </button>
+            <button type="button" class="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition">
+              <span class="material-symbols-outlined text-[20px]">videocam</span>
+            </button>
+            <button type="button" class="w-10 h-10 rounded-full bg-rose-600 text-white flex items-center justify-center hover:bg-rose-700 transition">
+              <span class="material-symbols-outlined text-[20px]">call_end</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Attending Doctor Details -->
+        <div class="bg-light-surface-elevated rounded-2xl border border-light-outline p-6 shadow-sm">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="px-2.5 py-0.5 rounded-full bg-soft-sage text-forest-teal text-[11px] font-bold">Board-Certified Vet</span>
+                <span class="text-stone-500 text-[12px]">Council Reg: KVC-8491</span>
+              </div>
+              <h2 class="font-headline font-bold text-[20px] text-light-on-surface">Dr. Ananya Ray, BVSc &amp; AH</h2>
+              <p class="text-body-sm text-stone-600 mt-1">Specialist in Canine Gastroenterology &amp; Preventive Nutrition</p>
+            </div>
+            <div class="text-right">
+              <span class="text-[11px] text-stone-500 uppercase block">Consultation Cost</span>
+              <span class="font-headline font-bold text-[20px] text-forest-teal">₹499</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right Column: Live Clinical Rx Prescription Notes & Follow-up (5 Cols) -->
+      <aside class="lg:col-span-5 space-y-6">
+
+        <div class="bg-light-surface-elevated rounded-2xl border border-light-outline p-6 shadow-sm space-y-5">
+          <div class="border-b border-light-outline pb-4 flex items-center justify-between">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-forest-teal font-bold block">Live Clinical Session</span>
+              <h3 class="font-headline font-bold text-[18px] text-light-on-surface">Doctor’s Rx &amp; Advice Notes</h3>
+            </div>
+            <span class="material-symbols-outlined text-forest-teal text-[24px]">clinical_notes</span>
+          </div>
+
+          <!-- Symptom Review -->
+          <div class="bg-light-surface-subtle p-3.5 rounded-xl border border-light-outline">
+            <span class="text-[11px] font-bold text-stone-500 block uppercase">Reported Issue</span>
+            <p class="text-body-sm text-light-on-surface mt-1 font-medium">
+              Bruno exhibited mild lethargy and skipped breakfast following evening rain walk.
+            </p>
+          </div>
+
+          <!-- Preliminary Advice Generated Live -->
+          <div class="space-y-3">
+            <span class="text-[12px] font-bold text-light-on-surface block">Prescribed Supportive Care</span>
+            
+            <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50/50 flex items-start gap-3">
+              <span class="material-symbols-outlined text-emerald-700 text-[20px] flex-shrink-0">medication</span>
+              <div class="text-body-sm">
+                <strong class="text-emerald-950 block">Protexin Synbiotic D-C Capsule</strong>
+                <span class="text-emerald-800 text-[12px]">1 capsule once daily with light boiled chicken &amp; rice for 3 days.</span>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl border border-light-outline bg-light-surface-subtle flex items-start gap-3">
+              <span class="material-symbols-outlined text-forest-teal text-[20px] flex-shrink-0">water_drop</span>
+              <div class="text-body-sm">
+                <strong class="text-light-on-surface block">Oral Rehydration Electrolyte Solution</strong>
+                <span class="text-stone-600 text-[12px]">Offer 200ml every 4 hours. Keep outdoor play restricted until morning.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Actions -->
+          <div class="pt-4 border-t border-light-outline space-y-3">
+            <button type="button" class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-forest-teal text-white font-label text-[14px] font-bold shadow-sm hover:opacity-95 transition">
+              <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+              <span>Download Signed Digital Prescription</span>
+            </button>
+            <a href="../screens/home-discovery/HomeDiscovery.html" class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-light-outline text-stone-700 hover:bg-light-surface-subtle font-label text-[13px] font-semibold transition">
+              <span>Book Follow-up In-Clinic Visit if Needed</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="mt-auto border-t border-light-outline bg-light-surface py-6 text-center text-body-sm text-light-on-surface-subtle">
+    <div class="max-w-[1240px] mx-auto px-6 flex items-center justify-between">
+      <span>PawSetu Tele-Medicine Compliant · Tele-Triage Protocols</span>
+      <a href="../home-discovery/HomeDiscovery.html" class="hover:underline">Back to Discovery</a>
+    </div>
+  </footer>
+
+
+
+</body></html>

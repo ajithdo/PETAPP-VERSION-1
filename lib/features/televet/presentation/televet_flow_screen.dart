@@ -87,11 +87,11 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
               padding: EdgeInsets.symmetric(horizontal: context.gutter),
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 720),
+                  constraints: const BoxConstraints(maxWidth: Space.formWidth),
                   child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                     Semantics(
                       label: l.stepOf(_step + 1, 3),
-                      child: LinearProgressIndicator(value: (_step + 1) / 3, minHeight: 6, borderRadius: BorderRadius.circular(3)),
+                      child: LinearProgressIndicator(value: (_step + 1) / 3, minHeight: Sizes.progressBar, borderRadius: BorderRadius.circular(Radii.xs)),
                     ),
                     const SizedBox(height: Space.sm),
                     Text('${l.stepOf(_step + 1, 3)} · ${titles[_step]}', style: context.text.titleMedium),
@@ -102,7 +102,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
             Expanded(
               child: pets.isEmpty
                   ? EmptyState(title: l.tvNoPet, actionLabel: l.addPet, onAction: () => context.push('/pets/new'))
-                  : PageBody(maxWidth: 720, children: [
+                  : PageBody(maxWidth: Space.formWidth, children: [
                       const SizedBox(height: Space.md),
                       if (_step == 0) ..._petStep(context, pets),
                       if (_step == 1 && pet != null) ..._problemStep(context, pet),
@@ -113,7 +113,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
               Padding(
                 padding: EdgeInsets.all(context.gutter),
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 720),
+                  constraints: const BoxConstraints(maxWidth: Space.formWidth),
                   child: Row(children: [
                     if (_step > 0) ...[
                       Expanded(child: SecondaryButton(label: l.back, onPressed: () => setState(() => _step--))),
@@ -148,7 +148,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
             semanticLabel: p.name,
             padding: const EdgeInsets.all(Space.md),
             child: Row(children: [
-              PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 48),
+              PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarMd),
               const SizedBox(width: Space.md),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -157,7 +157,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                       style: context.text.bodySmall),
                 ]),
               ),
-              Icon(p.id == _petId ? Icons.radio_button_checked_rounded : Icons.radio_button_off_rounded, color: context.colors.primary),
+              Icon(p.id == _petId ? Icons.radio_button_checked_rounded : Icons.radio_button_off_outlined, color: context.colors.primary),
             ]),
           ),
         ),
@@ -182,11 +182,11 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
         const SizedBox(height: Space.md),
         PawCard(
           borderColor: context.paw.sos,
-          color: context.paw.sos.withValues(alpha: 0.07),
+          color: context.paw.sos.withValues(alpha: Opacities.pressed),
           padding: const EdgeInsets.all(Space.md),
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Row(children: [
-              Icon(Icons.emergency_rounded, color: context.paw.sos),
+              Icon(Icons.emergency_outlined, color: context.paw.sos),
               const SizedBox(width: Space.sm),
               Expanded(child: Text(l.aiRedFlagTitle, style: context.text.titleSmall)),
             ]),
@@ -194,9 +194,9 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
             Text(l.aiRedFlagBody(redFlagLabel(context, flag)), style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary)),
             const SizedBox(height: Space.sm),
             FilledButton.icon(
-              style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
+              style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
               onPressed: () => openSos(context, ref),
-              icon: const Icon(Icons.emergency_rounded),
+              icon: const Icon(Icons.emergency_outlined),
               label: Text(l.sosGetHelp),
             ),
             TextButton(onPressed: () => setState(() => _ignoreRedFlag = true), child: Text(l.tvContinueToVet)),
@@ -209,7 +209,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
       Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
         for (final p in _photos)
           Stack(children: [
-            ClipRRect(borderRadius: BorderRadius.circular(12), child: MediaImage(url: p, width: 84, height: 84)),
+            ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: p, width: Sizes.photoTile, height: Sizes.photoTile)),
             Positioned(
               right: 0,
               top: 0,
@@ -217,18 +217,18 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                 tooltip: l.remove,
                 visualDensity: VisualDensity.compact,
                 onPressed: () => setState(() => _photos.remove(p)),
-                icon: const Icon(Icons.close_rounded, size: 16),
+                icon: const Icon(Icons.close_outlined, size: IconSizes.sm),
               ),
             ),
           ]),
         if (_photos.length < 4)
           SizedBox(
-            width: 84,
-            height: 84,
+            width: Sizes.photoTile,
+            height: Sizes.photoTile,
             child: OutlinedButton(
               onPressed: _addPhoto,
               style: OutlinedButton.styleFrom(padding: EdgeInsets.zero),
-              child: Semantics(label: l.addPhoto, child: const Icon(Icons.add_a_photo_rounded)),
+              child: Semantics(label: l.addPhoto, child: const Icon(Icons.add_a_photo_outlined)),
             ),
           ),
       ]),
@@ -242,8 +242,8 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
     final source = await showPawSheet<ImageSource>(context, builder: (ctx) {
       final l = ctx.l10n;
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        ListTile(leading: const Icon(Icons.photo_library_rounded), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, ImageSource.gallery)),
-        ListTile(leading: const Icon(Icons.photo_camera_rounded), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, ImageSource.camera)),
+        ListTile(leading: const Icon(Icons.photo_library_outlined), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, ImageSource.gallery)),
+        ListTile(leading: const Icon(Icons.photo_camera_outlined), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, ImageSource.camera)),
       ]);
     });
     if (source == null || !mounted) return;
@@ -294,9 +294,9 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                 ]),
               ),
               if (locked)
-                StatusChip(l.planPlus, tone: ChipTone.accent, icon: Icons.lock_rounded)
+                StatusChip(l.planPlus, tone: ChipTone.accent, icon: Icons.lock_outlined)
               else
-                Icon(_how == key ? Icons.radio_button_checked_rounded : Icons.radio_button_off_rounded, color: context.colors.primary),
+                Icon(_how == key ? Icons.radio_button_checked_rounded : Icons.radio_button_off_outlined, color: context.colors.primary),
             ]),
           ),
         );
@@ -306,16 +306,16 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
     final slots = [for (var i = 0; i < 8; i++) firstSlot.add(Duration(minutes: 30 * i))];
 
     return [
-      option('chat_now', Icons.chat_rounded, l.tvChatNow, l.tvChatNowHint),
-      option('video_now', Icons.videocam_rounded, l.tvVideoNow, user.isPlus ? l.tvVideoNowHint : l.tvVideoPlusOnly, locked: !limits.video),
-      option('choose', Icons.person_search_rounded, l.tvChooseVet, l.tvChooseVetHint),
+      option('chat_now', Icons.chat_outlined, l.tvChatNow, l.tvChatNowHint),
+      option('video_now', Icons.videocam_outlined, l.tvVideoNow, user.isPlus ? l.tvVideoNowHint : l.tvVideoPlusOnly, locked: !limits.video),
+      option('choose', Icons.person_search_outlined, l.tvChooseVet, l.tvChooseVetHint),
       if (_how == 'choose') ...[
         const SizedBox(height: Space.sm),
         if (limits.video)
           SegmentedButton<String>(
             segments: [
-              ButtonSegment(value: 'chat', icon: const Icon(Icons.chat_rounded), label: Text(l.tvModeChat)),
-              ButtonSegment(value: 'video', icon: const Icon(Icons.videocam_rounded), label: Text(l.tvModeVideo)),
+              ButtonSegment(value: 'chat', icon: const Icon(Icons.chat_outlined), label: Text(l.tvModeChat)),
+              ButtonSegment(value: 'video', icon: const Icon(Icons.videocam_outlined), label: Text(l.tvModeVideo)),
             ],
             selected: {_chooseMode},
             onSelectionChanged: (s) => setState(() => _chooseMode = s.first),
@@ -323,7 +323,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
         const SizedBox(height: Space.md),
         AsyncView<List<Map<String, dynamic>>>(
           value: vets,
-          loading: const Skeleton(height: 120, radius: Radii.card),
+          loading: const Skeleton(height: Sizes.skeletonCard, radius: Radii.card),
           data: (vs) => Column(children: [
             for (final v in vs.take(8))
               Padding(
@@ -335,7 +335,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                   padding: const EdgeInsets.all(Space.md),
                   child: Row(children: [
                     CircleAvatar(
-                      backgroundColor: context.paw.accent.withValues(alpha: 0.25),
+                      backgroundColor: context.paw.accent.withValues(alpha: Opacities.selection),
                       child: Text(((v['name'] as String?) ?? 'V').replaceAll('Dr. ', '').characters.first, style: context.text.titleMedium),
                     ),
                     const SizedBox(width: Space.md),
@@ -358,7 +358,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                         ),
                       ]),
                     ),
-                    Icon(_vetId == v['id'] ? Icons.radio_button_checked_rounded : Icons.radio_button_off_rounded, color: context.colors.primary),
+                    Icon(_vetId == v['id'] ? Icons.radio_button_checked_rounded : Icons.radio_button_off_outlined, color: context.colors.primary),
                   ]),
                 ),
               ),
@@ -404,7 +404,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
   }
 
   Widget _row(BuildContext context, String k, String v, {bool bold = false}) => Padding(
-        padding: const EdgeInsets.only(bottom: 4),
+        padding: const EdgeInsets.only(bottom: Space.xs),
         child: Row(children: [
           Expanded(child: Text(k, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary))),
           Flexible(child: Text(v, textAlign: TextAlign.end, style: bold ? context.text.titleSmall : context.text.bodyMedium)),

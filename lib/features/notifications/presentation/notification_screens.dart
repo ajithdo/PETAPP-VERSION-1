@@ -37,19 +37,19 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
   String _filter = 'all';
 
   IconData _icon(String? type) => switch (type) {
-        'vaccines' => Icons.vaccines_rounded,
-        'medicines' => Icons.medication_rounded,
-        'deworming' => Icons.bug_report_rounded,
-        'bookings' => Icons.event_available_rounded,
-        'messages' => Icons.chat_rounded,
-        'orders' => Icons.local_shipping_rounded,
-        'lost' => Icons.travel_explore_rounded,
-        'device' => Icons.watch_rounded,
-        'sos' => Icons.emergency_rounded,
-        'support' => Icons.support_agent_rounded,
-        'account' => Icons.verified_user_rounded,
-        'plan' => Icons.workspace_premium_rounded,
-        _ => Icons.notifications_rounded,
+        'vaccines' => Icons.vaccines_outlined,
+        'medicines' => Icons.medication_outlined,
+        'deworming' => Icons.bug_report_outlined,
+        'bookings' => Icons.event_available_outlined,
+        'messages' => Icons.chat_outlined,
+        'orders' => Icons.local_shipping_outlined,
+        'lost' => Icons.travel_explore_outlined,
+        'device' => Icons.watch_outlined,
+        'sos' => Icons.emergency_outlined,
+        'support' => Icons.support_agent_outlined,
+        'account' => Icons.verified_user_outlined,
+        'plan' => Icons.workspace_premium_outlined,
+        _ => Icons.notifications_outlined,
       };
 
   bool _match(String? type) => switch (_filter) {
@@ -83,11 +83,15 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
                 await batch.commit();
               }
             },
-            child: Text(l.markAllRead),
+            child: ConstrainedBox(
+              // Room for the title and the settings button at large text sizes.
+              constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * StatusChip.maxWidthShare),
+              child: Text(l.markAllRead, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center),
+            ),
           ),
           IconButton(
             tooltip: l.settings,
-            icon: const Icon(Icons.tune_rounded),
+            icon: const Icon(Icons.tune_outlined),
             onPressed: () => context.push('/me/settings/notifications'),
           ),
         ],
@@ -115,7 +119,7 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
                   : ListView.separated(
                       padding: EdgeInsets.symmetric(horizontal: context.gutter),
                       itemCount: list.length + (more ? 1 : 0),
-                      separatorBuilder: (_, _) => const Divider(height: 1),
+                      separatorBuilder: (_, _) => const Divider(height: Strokes.hairline),
                       itemBuilder: (context, i) {
                         if (i == list.length) {
                           return ShowMoreButton(onPressed: () => ref.read(listLimitProvider('notifications').notifier).more());
@@ -124,7 +128,7 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
                         final unread = d['read'] != true;
                         return ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: unread ? context.paw.primaryContainer : context.paw.outline.withValues(alpha: 0.5),
+                            backgroundColor: unread ? context.paw.primaryContainer : context.paw.outline.withValues(alpha: Opacities.half),
                             child: Icon(_icon(d['type'] as String?), color: context.colors.primary),
                           ),
                           title: Text((d['title'] as String?) ?? '', style: unread ? const TextStyle(fontWeight: FontWeight.w700) : null),
@@ -159,22 +163,22 @@ class NotificationSettingsScreen extends ConsumerWidget {
     final n = ref.read(settingsProvider.notifier);
     final isDemo = ref.watch(appConfigProvider).isDemo;
     final types = [
-      ('vaccines', l.ntVaccines, Icons.vaccines_rounded),
-      ('medicines', l.ntMedicines, Icons.medication_rounded),
-      ('deworming', l.ntDeworming, Icons.bug_report_rounded),
-      ('bookings', l.ntBookings, Icons.event_available_rounded),
-      ('routine', l.ntRoutine, Icons.directions_walk_rounded),
-      ('custom', l.ntCustom, Icons.alarm_rounded),
+      ('vaccines', l.ntVaccines, Icons.vaccines_outlined),
+      ('medicines', l.ntMedicines, Icons.medication_outlined),
+      ('deworming', l.ntDeworming, Icons.bug_report_outlined),
+      ('bookings', l.ntBookings, Icons.event_available_outlined),
+      ('routine', l.ntRoutine, Icons.directions_walk_outlined),
+      ('custom', l.ntCustom, Icons.alarm_outlined),
     ];
     final channels = [('push', l.chPush), ('email', l.chEmail), ('sms', l.chSms), ('whatsapp', l.chWhatsApp)];
     String hour(int h) => Fmt.time(DateTime(2000, 1, 1, h), context.lang);
     return Scaffold(
       appBar: AppBar(title: Text(l.notificationChannels)),
-      body: PageBody(maxWidth: 720, children: [
+      body: PageBody(maxWidth: Space.formWidth, children: [
         if (isDemo) ...[const SizedBox(height: Space.sm), DemoBanner(l.channelsDemoNote)],
         const SizedBox(height: Space.sm),
         OutlinedButton.icon(
-          icon: const Icon(Icons.notifications_active_rounded),
+          icon: const Icon(Icons.notifications_active_outlined),
           label: Text(l.allowNotifications),
           onPressed: () async {
             final ok = await ref.read(notificationServiceProvider).requestPermission();

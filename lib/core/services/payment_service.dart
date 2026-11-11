@@ -10,7 +10,7 @@ import '../widgets/widgets.dart';
 enum PaymentOutcome { success, failure, pending, cancelled }
 
 /// Takes a payment. Demo shows a "Demo payment, no money is charged" sheet
-/// with success, failure and pending outcomes. Version 2 (L2) adds
+/// with success, failure and pending outcomes. FINAL VERSION (L2) adds
 /// RazorpayPaymentService: orders created and signatures verified in
 /// Cloud Functions.
 abstract class PaymentService {
@@ -24,7 +24,7 @@ class DemoPaymentService implements PaymentService {
       final l = ctx.l10n;
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          Icon(Icons.payments_rounded, color: ctx.colors.primary, size: 32),
+          Icon(Icons.payments_outlined, color: ctx.colors.primary, size: IconSizes.xl),
           const SizedBox(width: Space.md),
           Expanded(child: Text(l.demoPaymentTitle, style: ctx.text.titleMedium)),
         ]),
@@ -53,7 +53,7 @@ class DemoPaymentService implements PaymentService {
 class LivePaymentService implements PaymentService {
   @override
   Future<PaymentOutcome> pay(BuildContext context, {required int amount, required String description}) async {
-    await showDemoDialog(context, title: 'Razorpay', body: 'Live payments are switched on in Version 2 (L2).');
+    await showDemoDialog(context, title: 'Razorpay', body: 'Live payments are switched on in FINAL VERSION (L2).');
     return PaymentOutcome.cancelled;
   }
 }

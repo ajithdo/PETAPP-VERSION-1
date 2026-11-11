@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSetu - Multi-Pet Records Vault</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'coral': '#E05A47',
+            'forest-teal': '#18453E',
+            'soft-sage': '#E6F0ED',
+            'soft-sand': '#F3EFEA',
+            'warm-border': '#E7E2DA',
+            'status-upcoming': '#D97706',
+            'status-completed': '#15803D',
+            'status-emergency': '#DC2626',
+            'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-secondary': '#18453E',
+            'light-on-secondary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-on-surface-elevated': '#1C1917',
+            'light-surface-subtle': '#F3EFEA',
+            'light-outline': '#E7E2DA',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '28px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <style>
+    * { -webkit-font-smoothing: antialiased; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface min-h-[1024px] font-body antialiased flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Shared Global Shell Header -->
+  <header class="sticky top-0 z-40 bg-light-surface/95 backdrop-blur-md border-b border-light-outline">
+    <div class="max-w-[1240px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-8">
+        <a href="../home-discovery/HomeDiscovery.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-forest-teal text-white flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-[24px]">pets</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-headline font-bold text-[22px] tracking-tight text-light-on-surface leading-tight">PawSetu</span>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-forest-teal">Pet Health Records</span>
+          </div>
+        </a>
+
+        <!-- Location Dropdown Selector -->
+        <div class="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-light-surface-subtle border border-light-outline text-left">
+          <span class="material-symbols-outlined text-coral text-[18px]">location_on</span>
+          <span class="text-body-sm font-semibold text-light-on-surface">Indiranagar, Bengaluru</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-1 bg-light-surface-subtle/80 p-1.5 rounded-full border border-light-outline">
+        <a href="../home-discovery/HomeDiscovery.html" class="px-4 py-2 rounded-full text-light-on-surface hover:text-forest-teal font-label text-label-md transition flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">local_hospital</span>
+          <span>Vet Clinics</span>
+        </a>
+        <a href="../medical-records/MedicalRecords.html" class="px-4 py-2 rounded-full bg-forest-teal text-white font-label text-label-md shadow-sm flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">favorite</span>
+          <span>Health Vault</span>
+        </a>
+        <a href="../clinic-booking/ClinicBooking.html" class="px-4 py-2 rounded-full text-light-on-surface hover:text-forest-teal font-label text-label-md transition flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+          <span>Appointments</span>
+        </a>
+      </nav>
+
+      <!-- User cluster -->
+      <div class="flex items-center gap-3">
+        <button type="button" class="w-10 h-10 rounded-full border border-light-outline bg-light-surface-elevated text-light-on-surface flex items-center justify-center relative">
+          <span class="material-symbols-outlined text-[20px]">notifications</span>
+        </button>
+        <div class="w-10 h-10 rounded-full bg-soft-sand border border-light-outline flex items-center justify-center font-bold text-forest-teal">
+          PS
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-[1240px] w-full mx-auto px-6 py-8">
+
+    <!-- Top Pet Switcher Header Bar -->
+    <section class="mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-light-outline">
+        <div>
+          <h1 class="font-headline text-display-lg text-light-on-surface tracking-tight">Pet Health Passcard &amp; Vault</h1>
+          <p class="text-body-md text-stone-600 mt-1">Verified microchip credentials, immunization logs, and past diagnostic reports.</p>
+        </div>
+
+        <!-- Multi-Pet Switcher Interactive Avatar Pills -->
+        <div class="flex items-center gap-2 bg-light-surface-subtle p-1.5 rounded-2xl border border-light-outline self-start sm:self-auto">
+          <!-- Bruno Selected -->
+          <button type="button" class="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-forest-teal text-white font-label text-label-md shadow-sm">
+            <img src="https://lh3.googleusercontent.com/aida/AEtjO1XxUq1bOZRiIA2H6VxFO2poRcUT2izixzVyL73fv2iSZRSvkZ0JBJ0jin1r55P7HsHFzmHQMG_tzjNUkmnQDbFQMrzuvLDR06OcupUF1vD7x9L5k-Cdt00vNEtSuvNCV7rHH3UQS3Te_x5xoCkL4bGCTqjoJVhw9bdMIjmJu3_-IXwafoNSiwE8L25mBq7MBqwvb48TUMHrR35iwa6dvTjhscPM7CWOI3bwNuVKNByzQSdx4re8KsFa6rJbWjg" alt="Bruno" class="w-6 h-6 rounded-full object-cover ring-2 ring-white/30" data-stitch-original-src="c2a13ef3ba31c4d4===../../images/pet_bruno_portrait.jpg">
+            <span>Bruno (Dog)</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          </button>
+
+          <!-- Misty Tab -->
+          <button type="button" class="flex items-center gap-2.5 px-4 py-2 rounded-xl text-stone-600 hover:text-light-on-surface hover:bg-stone-200/50 font-label text-label-md transition">
+            <img src="https://lh3.googleusercontent.com/aida/AEtjO1UhdaOhCTwiRPInFNYqM1ly9Oq9vu7ACVzo6llp7Nmo2sfoj_gr5QhTndYX63ttoO8VqV8q9OMQYa0SNdy3ps9jDseXQua6LSbP-VWmdOUEgQo7P9rT1GVG8zNzIoyUqM3g1410mjFSnvvJ_jD8uDf4v5lebTZJBTFK5cMtcplDegfSGC0LujDBqR8UIw-FYhE5xICmfwAQ9SAlQCsO5QSuWVzFi8l4x6i5tIwhaHEEScZX7YBC0XbBuiIBEcA" alt="Misty" class="w-6 h-6 rounded-full object-cover" data-stitch-original-src="9d6eced9bfe3ac20===../../images/pet_misty_portrait.jpg">
+            <span>Misty (Cat)</span>
+          </button>
+
+          <!-- Add Pet Button -->
+          <button type="button" class="p-2 rounded-xl hover:bg-stone-200/50 text-stone-500 transition" aria-label="Add new pet">
+            <span class="material-symbols-outlined text-[20px]">add</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two-Column Layout: Left High-Craft Health Passcard & Right Medical Timeline -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- Left Column: Pet Health Passcard & Vitals Trend (4 Cols) -->
+      <aside class="lg:col-span-4 space-y-6">
+
+        <!-- High-Craft Digital Health Passcard -->
+        <div class="relative bg-gradient-to-br from-stone-900 via-stone-850 to-[#18453E] text-white rounded-2xl p-6 shadow-xl border border-stone-700/60 overflow-hidden">
+          <div class="absolute -right-8 -top-8 w-36 h-36 bg-forest-teal/30 rounded-full blur-2xl pointer-events-none"></div>
+
+          <!-- Card Top Bar -->
+          <div class="flex items-center justify-between mb-5">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-emerald-400 text-[20px]">verified</span>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-300">PawSetu Verified Health Pass</span>
+            </div>
+            <span class="font-code text-[11px] text-stone-400">ID: PS-9824</span>
+          </div>
+
+          <!-- Pet Identity Block -->
+          <div class="flex items-center gap-4 mb-6">
+            <img src="https://lh3.googleusercontent.com/aida/AEtjO1XxUq1bOZRiIA2H6VxFO2poRcUT2izixzVyL73fv2iSZRSvkZ0JBJ0jin1r55P7HsHFzmHQMG_tzjNUkmnQDbFQMrzuvLDR06OcupUF1vD7x9L5k-Cdt00vNEtSuvNCV7rHH3UQS3Te_x5xoCkL4bGCTqjoJVhw9bdMIjmJu3_-IXwafoNSiwE8L25mBq7MBqwvb48TUMHrR35iwa6dvTjhscPM7CWOI3bwNuVKNByzQSdx4re8KsFa6rJbWjg" alt="Bruno portrait" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-emerald-400/50 shadow-md" data-stitch-original-src="c2a13ef3ba31c4d4===../../images/pet_bruno_portrait.jpg">
+            <div>
+              <h2 class="font-headline font-bold text-[24px] text-white leading-tight">Bruno</h2>
+              <p class="text-stone-300 text-[13px]">Golden Retriever · Male</p>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold mt-1.5 border border-emerald-400/30">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                Vaccines Up-to-Date
+              </div>
+            </div>
+          </div>
+
+          <!-- Microchip & Physical Metrics Grid -->
+          <div class="bg-black/25 backdrop-blur-sm rounded-xl p-3.5 space-y-2.5 text-[12px] border border-white/10 font-medium">
+            <div class="flex justify-between items-center">
+              <span class="text-stone-400">Microchip Number</span>
+              <span class="font-code text-white font-semibold tracking-wider">982 000 412 884</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-stone-400">Age &amp; DOB</span>
+              <span class="text-white font-semibold">3 yrs 2 mo · Sep 2023</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-stone-400">Weight Trend</span>
+              <span class="text-white font-semibold">29.4 kg (+0.2 kg steady)</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-stone-400">Primary Veterinary Home</span>
+              <span class="text-emerald-300 font-semibold">Gulmohar Vet Studio</span>
+            </div>
+          </div>
+
+          <!-- Action Button Inside Pass -->
+          <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="text-[11px] text-stone-400">Last verified by Dr. Sameer Khan</span>
+            <button type="button" class="px-3 py-1.5 bg-white text-stone-900 rounded-lg text-[12px] font-bold flex items-center gap-1 hover:bg-stone-100 transition shadow-sm">
+              <span class="material-symbols-outlined text-[15px]">download</span>
+              <span>Export Pass</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Emergency Information Widget -->
+        <div class="bg-rose-50 border border-rose-200 rounded-2xl p-5 space-y-3">
+          <div class="flex items-center gap-2 text-status-emergency font-bold text-[14px]">
+            <span class="material-symbols-outlined text-[20px]">medical_information</span>
+            <span>Emergency Pet Triage Info</span>
+          </div>
+          <p class="text-body-sm text-stone-700">
+            Blood group: <strong class="font-code">DEA 1.1 Negative</strong>. Known allergies: <strong class="text-status-emergency">Chicken Protein</strong>.
+          </p>
+          <div class="pt-2 border-t border-rose-200/80 flex items-center justify-between text-body-sm font-semibold">
+            <span class="text-stone-600">24/7 ER Clinic</span>
+            <a href="../clinic-booking/ClinicBooking.html" class="text-status-emergency hover:underline">Namma Pet Hospital →</a>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- Right Column: Medical Timeline & Health Records (8 Cols) -->
+      <section class="lg:col-span-8 space-y-8">
+
+        <!-- Section Tabs: Vaccinations, Prescriptions, Lab Reports -->
+        <div class="flex items-center gap-3 border-b border-light-outline pb-3">
+          <button type="button" class="px-4 py-2 rounded-xl bg-forest-teal text-white font-label text-label-md font-bold shadow-sm">
+            Vaccination &amp; Preventive Timeline
+          </button>
+          <button type="button" class="px-4 py-2 rounded-xl bg-light-surface-elevated text-stone-600 hover:text-light-on-surface border border-light-outline font-label text-label-md font-medium transition">
+            Prescriptions &amp; Rx (3)
+          </button>
+          <button type="button" class="px-4 py-2 rounded-xl bg-light-surface-elevated text-stone-600 hover:text-light-on-surface border border-light-outline font-label text-label-md font-medium transition">
+            Lab Diagnostic Reports (2)
+          </button>
+        </div>
+
+        <!-- Upcoming Boosters & Critical Reminders Alert -->
+        <div class="bg-amber-50/80 border border-amber-200 rounded-2xl p-5 flex items-start justify-between gap-4">
+          <div class="flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+              <span class="material-symbols-outlined text-[22px]">notification_important</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-0.5">
+                <span class="font-headline font-bold text-[16px] text-amber-950">Upcoming Immunization Booster</span>
+                <span class="px-2 py-0.5 rounded-full bg-amber-200/80 text-amber-900 text-[11px] font-bold">Due in 10 Days</span>
+              </div>
+              <p class="text-body-sm text-amber-900/80">
+                DHPPi + Anti-Rabies annual booster is scheduled for Nov 13, 2026. Keep your pet’s immunity certified for travel and boarding.
+              </p>
+            </div>
+          </div>
+          <a href="../clinic-booking/ClinicBooking.html" class="px-4 py-2 bg-amber-600 text-white rounded-xl text-body-sm font-bold shadow-sm hover:bg-amber-700 transition flex-shrink-0">
+            Book Booster
+          </a>
+        </div>
+
+        <!-- Chronological Vaccination Timeline -->
+        <div class="bg-light-surface-elevated rounded-2xl border border-light-outline p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-headline font-bold text-headline-sm text-light-on-surface">Vaccination Chronology</h3>
+            <span class="text-body-sm text-forest-teal font-semibold">All Records Verified with Clinic Batch Numbers</span>
+          </div>
+
+          <div class="relative border-l-2 border-forest-teal/30 ml-4 pl-6 space-y-8">
+
+            <!-- Item 1: Upcoming Anti-Rabies Booster -->
+            <div class="relative group">
+              <div class="absolute -left-[33px] top-1 w-5 h-5 rounded-full bg-amber-500 border-4 border-white shadow-sm"></div>
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 text-[11px] font-bold uppercase">Upcoming</span>
+                    <span class="font-code text-code-md text-stone-500 font-semibold">13 Nov 2026</span>
+                  </div>
+                  <h4 class="font-headline font-bold text-[16px] text-light-on-surface">Anti-Rabies Booster Dose</h4>
+                  <p class="text-body-sm text-stone-600 mt-0.5">Recommended: Rabigen Mono / Defensor 3</p>
+                </div>
+                <a href="../clinic-booking/ClinicBooking.html" class="px-3.5 py-1.5 rounded-lg bg-light-surface-subtle border border-light-outline text-forest-teal font-label text-label-md font-bold hover:bg-forest-teal hover:text-white transition">
+                  Reserve Slot
+                </a>
+              </div>
+            </div>
+
+            <!-- Item 2: Completed DHPPi Dose 3 -->
+            <div class="relative group">
+              <div class="absolute -left-[33px] top-1 w-5 h-5 rounded-full bg-status-completed border-4 border-white shadow-sm"></div>
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-status-completed text-[11px] font-bold uppercase">Administered</span>
+                    <span class="font-code text-code-md text-stone-500 font-semibold">10 Nov 2023</span>
+                  </div>
+                  <h4 class="font-headline font-bold text-[16px] text-light-on-surface">DHPPi + Lepto (Dose 3)</h4>
+                  <p class="text-body-sm text-stone-600 mt-0.5">Administered at Gulmohar Vet Studio by Dr. Sameer Khan</p>
+                  <div class="flex items-center gap-3 mt-2 text-[12px] text-stone-500 font-code">
+                    <span>Batch: <strong class="text-light-on-surface">VXI-8842-BLR</strong></span>
+                    <span>·</span>
+                    <span>Valid until: 10 Nov 2024</span>
+                  </div>
+                </div>
+                <button type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-light-outline hover:bg-light-surface-subtle text-body-sm font-semibold transition">
+                  <span class="material-symbols-outlined text-[16px] text-forest-teal">download</span>
+                  <span>Certificate</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Item 3: Completed DHPPi Dose 2 -->
+            <div class="relative group">
+              <div class="absolute -left-[33px] top-1 w-5 h-5 rounded-full bg-status-completed border-4 border-white shadow-sm"></div>
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-status-completed text-[11px] font-bold uppercase">Administered</span>
+                    <span class="font-code text-code-md text-stone-500 font-semibold">18 Oct 2023</span>
+                  </div>
+                  <h4 class="font-headline font-bold text-[16px] text-light-on-surface">DHPPi + Lepto (Dose 2)</h4>
+                  <p class="text-body-sm text-stone-600 mt-0.5">Administered at Gulmohar Vet Studio by Dr. Sameer Khan</p>
+                  <div class="flex items-center gap-3 mt-2 text-[12px] text-stone-500 font-code">
+                    <span>Batch: <strong class="text-light-on-surface">VXI-7109-BLR</strong></span>
+                  </div>
+                </div>
+                <button type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-light-outline hover:bg-light-surface-subtle text-body-sm font-semibold transition">
+                  <span class="material-symbols-outlined text-[16px] text-forest-teal">download</span>
+                  <span>Certificate</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Deworming & Parasite Prevention Widget -->
+        <div class="bg-light-surface-elevated rounded-2xl border border-light-outline p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-forest-teal text-[22px]">pest_control</span>
+              <h3 class="font-headline font-bold text-[18px] text-light-on-surface">Deworming &amp; Tick-Flea Prevention</h3>
+            </div>
+            <span class="text-[12px] text-stone-500 font-medium">Quarterly Protocol</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-light-surface-subtle border border-light-outline">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-label font-bold text-[14px] text-light-on-surface">Simparica Trio</span>
+                <span class="text-status-completed text-[11px] font-bold bg-emerald-100 px-2 py-0.5 rounded">Active</span>
+              </div>
+              <p class="text-[12px] text-stone-600">Tick, flea, and heartworm monthly chewable.</p>
+              <span class="text-[11px] text-stone-500 font-code block mt-2">Next dose: 18 Nov 2026</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-light-surface-subtle border border-light-outline">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-label font-bold text-[14px] text-light-on-surface">Drontal Plus Dewormer</span>
+                <span class="text-amber-900 text-[11px] font-bold bg-amber-100 px-2 py-0.5 rounded">Due Soon</span>
+              </div>
+              <p class="text-[12px] text-stone-600">Intestinal parasite control (every 3 months).</p>
+              <span class="text-[11px] text-stone-500 font-code block mt-2">Next dose: 25 Nov 2026</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Shell Footer -->
+  <footer class="mt-auto border-t border-light-outline bg-light-surface py-6 text-center text-body-sm text-light-on-surface-subtle">
+    <div class="max-w-[1240px] mx-auto px-6 flex items-center justify-between">
+      <span>PawSetu Digital Medical Vault · End-to-End Clinic Synchronization</span>
+      <a href="../home-discovery/HomeDiscovery.html" class="hover:underline">Return to Clinic Discovery</a>
+    </div>
+  </footer>
+
+
+
+</body></html>

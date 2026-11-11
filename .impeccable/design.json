@@ -1,0 +1,339 @@
+{
+ "schemaVersion": 2,
+ "generatedAt": "2026-11-08T13:33:30Z",
+ "title": "Design System: PawSetu — UI Design 5 \"Genda\"",
+ "extensions": {
+  "colorMeta": {
+   "cocoa": {
+    "role": "primary",
+    "displayName": "Cocoa",
+    "canonical": "#4A2A12",
+    "tonalRamp": [
+     "#1E1107",
+     "#2C190B",
+     "#3B220E",
+     "#4A2A12",
+     "#806A59",
+     "#AE9F94",
+     "#D2CAC4",
+     "#EDEAE7"
+    ]
+   },
+   "band": {
+    "role": "primary",
+    "displayName": "Genda band",
+    "canonical": "#3A2416",
+    "tonalRamp": [
+     "#170E09",
+     "#23160D",
+     "#2E1D12",
+     "#3A2416",
+     "#75665C",
+     "#A69C96",
+     "#CEC8C5",
+     "#EBE9E8"
+    ]
+   },
+   "marigold": {
+    "role": "secondary",
+    "displayName": "Marigold",
+    "canonical": "#F3A712",
+    "tonalRamp": [
+     "#614307",
+     "#92640B",
+     "#C2860E",
+     "#F3A712",
+     "#F7C159",
+     "#FAD794",
+     "#FCE9C4",
+     "#FEF6E7"
+    ]
+   },
+   "marigold-ink": {
+    "role": "secondary",
+    "displayName": "Marigold ink",
+    "canonical": "#8F5A00",
+    "tonalRamp": [
+     "#392400",
+     "#563600",
+     "#724800",
+     "#8F5A00",
+     "#B18C4C",
+     "#CDB58C",
+     "#E3D6BF",
+     "#F4EEE6"
+    ]
+   },
+   "page": {
+    "role": "neutral",
+    "displayName": "Warm page",
+    "canonical": "#F6F5F3",
+    "tonalRamp": [
+     "#626261",
+     "#949392",
+     "#C5C4C2",
+     "#F6F5F3",
+     "#F9F8F7",
+     "#FBFAFA",
+     "#FDFCFC",
+     "#FEFEFE"
+    ]
+   },
+   "text": {
+    "role": "neutral",
+    "displayName": "Cocoa ink",
+    "canonical": "#231B12",
+    "tonalRamp": [
+     "#0E0B07",
+     "#15100B",
+     "#1C160E",
+     "#231B12",
+     "#655F59",
+     "#9C9894",
+     "#C8C6C4",
+     "#E9E8E7"
+    ]
+   },
+   "success": {
+    "role": "state",
+    "displayName": "Given green",
+    "canonical": "#17703F",
+    "tonalRamp": [
+     "#092D19",
+     "#0E4326",
+     "#125A32",
+     "#17703F",
+     "#5D9B79",
+     "#97BFA9",
+     "#C5DBCF",
+     "#E8F1EC"
+    ]
+   },
+   "warning": {
+    "role": "state",
+    "displayName": "Amber-brown",
+    "canonical": "#8A4B00",
+    "tonalRamp": [
+     "#371E00",
+     "#532D00",
+     "#6E3C00",
+     "#8A4B00",
+     "#AD814C",
+     "#CAAE8C",
+     "#E2D2BF",
+     "#F3EDE6"
+    ]
+   },
+   "error": {
+    "role": "state",
+    "displayName": "Berry",
+    "canonical": "#8C1D6E",
+    "tonalRamp": [
+     "#380C2C",
+     "#541142",
+     "#701758",
+     "#8C1D6E",
+     "#AE619A",
+     "#CB99BE",
+     "#E2C6DB",
+     "#F4E8F0"
+    ]
+   },
+   "sos": {
+    "role": "state",
+    "displayName": "SOS red (the only red)",
+    "canonical": "#C81E1E",
+    "tonalRamp": [
+     "#500C0C",
+     "#781212",
+     "#A01818",
+     "#C81E1E",
+     "#D86262",
+     "#E69A9A",
+     "#F1C7C7",
+     "#FAE8E8"
+    ]
+   }
+  },
+  "typographyMeta": {
+   "display": {
+    "displayName": "Display",
+    "purpose": "Desktop page heroes only (Baloo 2 700)."
+   },
+   "headline": {
+    "displayName": "Headline",
+    "purpose": "Page titles on phones (Baloo 2 / Baloo Tammudu 2)."
+   },
+   "title": {
+    "displayName": "Title",
+    "purpose": "Section titles."
+   },
+   "body": {
+    "displayName": "Body",
+    "purpose": "Default text (Hind / Hind Guntur)."
+   },
+   "label-small": {
+    "displayName": "Label small",
+    "purpose": "The smallest text in the app: 13 px."
+   },
+   "date-number": {
+    "displayName": "Date number",
+    "purpose": "The day in a date block."
+   }
+  },
+  "shadows": [
+   {
+    "name": "card",
+    "value": "0 1px 2px rgba(60,35,0,0.06), 0 6px 18px rgba(60,35,0,0.07)",
+    "purpose": "Every card in light mode; dark mode uses a 1 px hairline instead."
+   },
+   {
+    "name": "overlay",
+    "value": "0 20px 48px -8px rgba(60,35,0,0.14)",
+    "purpose": "Sheets, dialogs and menus."
+   }
+  ],
+  "motion": [
+   {
+    "name": "tap",
+    "value": "100ms",
+    "purpose": "Press feedback."
+   },
+   {
+    "name": "toggle",
+    "value": "150ms",
+    "purpose": "Switches and checks."
+   },
+   {
+    "name": "enter",
+    "value": "250ms cubic-bezier(0.16, 1, 0.3, 1)",
+    "purpose": "Things appearing; garland flowers opening; progress bar."
+   },
+   {
+    "name": "exit",
+    "value": "200ms cubic-bezier(0.4, 0, 0.2, 1)",
+    "purpose": "Things leaving."
+   },
+   {
+    "name": "reduce-motion",
+    "value": "instant or cross-fade",
+    "purpose": "When the system asks for reduced motion."
+   }
+  ],
+  "breakpoints": [
+   {
+    "name": "phone",
+    "value": "0–639px",
+    "purpose": "Bottom navigation bar"
+   },
+   {
+    "name": "tablet",
+    "value": "640–1023px",
+    "purpose": "Navigation rail"
+   },
+   {
+    "name": "desktop",
+    "value": "1024px+",
+    "purpose": "Side navigation 256 px"
+   }
+  ]
+ },
+ "components": [
+  {
+   "name": "Primary Button",
+   "kind": "button",
+   "refersTo": "button-primary",
+   "description": "The one filled action on a screen: cocoa pill, white label (marigold with dark label in dark mode).",
+   "html": "<button class=\"ds-btn-primary\">Book for Bruno</button>",
+   "css": ".ds-btn-primary{background:#4A2A12;color:#fff;height:48px;padding:0 24px;border:none;border-radius:999px;font:600 16px/22px Hind,sans-serif;transition:background .1s}.ds-btn-primary:hover{background:#3B220E}.ds-btn-primary:active{background:#2F1A0A}.ds-btn-primary:focus-visible{outline:2px solid #B26F00;outline-offset:2px}"
+  },
+  {
+   "name": "Secondary Button",
+   "kind": "button",
+   "refersTo": "button-secondary",
+   "description": "Every other action: white pill with a 3:1 border.",
+   "html": "<button class=\"ds-btn-secondary\">Mark as given</button>",
+   "css": ".ds-btn-secondary{background:#fff;color:#231B12;height:48px;padding:0 24px;border:1px solid #857A6C;border-radius:999px;font:600 16px/22px Hind,sans-serif}.ds-btn-secondary:hover{background:#F6F5F3}.ds-btn-secondary:focus-visible{outline:2px solid #B26F00;outline-offset:2px}"
+  },
+  {
+   "name": "SOS Pill",
+   "kind": "button",
+   "refersTo": "button-sos",
+   "description": "Always in the top bar; the only red in the app.",
+   "html": "<button class=\"ds-sos\">SOS</button>",
+   "css": ".ds-sos{background:#C81E1E;color:#fff;height:40px;padding:0 16px;border:none;border-radius:999px;font:800 16px/22px 'Baloo 2',sans-serif;letter-spacing:.5px}.ds-sos:focus-visible{outline:2px solid #B26F00;outline-offset:2px}"
+  },
+  {
+   "name": "Card",
+   "kind": "card",
+   "refersTo": "card",
+   "description": "White, 22 px corners, soft warm shadow, no border in light mode.",
+   "html": "<div class=\"ds-card\"><strong>Flea and tick prevention</strong><br><span>Friday 13 Nov · in 5 days</span></div>",
+   "css": ".ds-card{background:#fff;border-radius:22px;padding:16px;box-shadow:0 1px 2px rgba(60,35,0,.06),0 6px 18px rgba(60,35,0,.07);font:400 16px/24px Hind,sans-serif;color:#231B12}.ds-card span{color:#5B5044;font-size:14px}"
+  },
+  {
+   "name": "Status Chip",
+   "kind": "chip",
+   "refersTo": "chip-status-ok",
+   "description": "At most one per row; tint with readable text and an icon.",
+   "html": "<span class=\"ds-chip\">✓ Confirmed</span>",
+   "css": ".ds-chip{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 10px;border-radius:999px;background:#E3F3E8;color:#13582F;font:700 13px/18px Hind,sans-serif}"
+  },
+  {
+   "name": "Genda Band",
+   "kind": "custom",
+   "refersTo": "genda-band",
+   "description": "Home only: the pet's photo in a garland of one marigold flower per task, the date, the day's title and progress.",
+   "html": "<div class=\"ds-genda\"><div class=\"ds-garland\"></div><div><small>Sunday, 8 November</small><b>Bruno's day</b><span>2 of 5 done</span><i></i></div></div>",
+   "css": ".ds-genda{display:flex;gap:16px;align-items:center;background:#3A2416;color:#FFF6E5;border-radius:22px;padding:18px;font-family:Hind,sans-serif}.ds-garland{width:112px;height:112px;border-radius:50%;border:10px dotted #F3A712;flex:none}.ds-genda small{display:block;color:#EAD7BA;font-size:14px}.ds-genda b{display:block;font:700 21px/28px 'Baloo 2',sans-serif}.ds-genda i{display:block;height:10px;border-radius:5px;margin-top:8px;background:linear-gradient(90deg,#F3A712 40%,rgba(255,255,255,.16) 40%)}"
+  }
+ ],
+ "narrative": {
+  "northStar": "The pet's day, made into a small daily ritual",
+  "overview": "Genda is the marigold garland of an Indian home. In the app it appears once, where it matters: around the selected pet's photo on Home, one flower per task today, opening as each is done. Everything else is quiet: cocoa ink on white and warm-grey grounds, soft rounded cards, plain words.\n\nTwo registers share one system. The warm register (Home, empty states, onboarding, album) may fill shapes with marigold and use big Baloo titles. The calm register (Health, records, tele-vet, SOS, portals) has no marigold fills, green 'given' ticks and compact tables. SOS red is the only red.",
+  "keyCharacteristics": [
+   "Cocoa action colour, marigold only as fill",
+   "Baloo titles and Hind text in English, Hindi and Telugu",
+   "22 px cards with one soft warm shadow",
+   "Date blocks lead every scheduled row",
+   "One filled action per screen; at most one chip per row"
+  ],
+  "rules": [
+   {
+    "name": "The One Red Rule",
+    "body": "SOS red means an emergency, nothing else.",
+    "section": "colors"
+   },
+   {
+    "name": "The Marigold Is Not Ink Rule",
+    "body": "Marigold fills shapes; it is never text on a light ground.",
+    "section": "colors"
+   },
+   {
+    "name": "The 13 Rule",
+    "body": "No text under 13 px.",
+    "section": "typography"
+   },
+   {
+    "name": "The Indic Rule",
+    "body": "Hindi and Telugu: line height 1.6+, never letter-spaced or upper-cased, small text one step up.",
+    "section": "typography"
+   },
+   {
+    "name": "The One Shadow Rule",
+    "body": "Cards have one shadow recipe; elevation never decorates.",
+    "section": "elevation"
+   }
+  ],
+  "dos": [
+   "Lead with the selected pet and what it needs now",
+   "Use the calm register on Health, records, tele-vet, SOS and portals",
+   "Show a price and a discount once"
+  ],
+  "donts": [
+   "Don't use red, coral or orange-red outside emergencies",
+   "Don't put a small label above a heading",
+   "Don't repeat a label on every row"
+  ]
+ }
+}

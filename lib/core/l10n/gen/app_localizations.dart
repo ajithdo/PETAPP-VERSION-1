@@ -4252,6 +4252,24 @@ abstract class AppLocalizations {
   /// **'This card works without internet. Show it to a vet, a boarding centre or at the airport.'**
   String get medicalCardOffline;
 
+  /// No description provided for @healthAllClear.
+  ///
+  /// In en, this message translates to:
+  /// **'All up to date'**
+  String get healthAllClear;
+
+  /// No description provided for @certificate.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate'**
+  String get certificate;
+
+  /// No description provided for @emergencyInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency info'**
+  String get emergencyInfo;
+
   /// No description provided for @bookTitle.
   ///
   /// In en, this message translates to:
@@ -5931,6 +5949,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove'**
   String get remove;
+
+  /// No description provided for @bookFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Book for {name}'**
+  String bookFor(String name);
+
+  /// No description provided for @nextFreeSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Next free slot'**
+  String get nextFreeSlot;
 
   /// No description provided for @aiTitle.
   ///
@@ -17775,6 +17805,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{pet}\'s memories'**
   String albumTitle(String pet);
+
+  /// No description provided for @gendaProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} done'**
+  String gendaProgress(int done, int total);
+
+  /// No description provided for @gendaNothingPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing planned today. Add a routine.'**
+  String get gendaNothingPlanned;
+
+  /// No description provided for @withUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'{label}, {count} unread'**
+  String withUnread(String label, int count);
+
+  /// No description provided for @shopAskVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure what suits {name}? Ask a vet'**
+  String shopAskVet(String name);
+
+  /// No description provided for @meGroupPets.
+  ///
+  /// In en, this message translates to:
+  /// **'Pets and family'**
+  String get meGroupPets;
+
+  /// No description provided for @meGroupMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders and money'**
+  String get meGroupMoney;
+
+  /// No description provided for @meGroupHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Help and settings'**
+  String get meGroupHelp;
 }
 
 class _AppLocalizationsDelegate

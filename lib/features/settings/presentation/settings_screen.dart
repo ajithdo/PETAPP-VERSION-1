@@ -45,7 +45,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(l.settings)),
-      body: PageBody(maxWidth: 720, children: [
+      body: PageBody(maxWidth: Space.formWidth, children: [
         group(l.language, [
           RadioGroup<String>(
             groupValue: s.locale,
@@ -77,14 +77,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: s.easyMode,
             title: Text(l.easyMode),
             subtitle: Text(l.easyModeHint),
-            secondary: const Icon(Icons.accessibility_new_rounded),
+            secondary: const Icon(Icons.accessibility_new_outlined),
             onChanged: (v) {
               n.setEasyMode(v);
               _saveProfile({'easyMode': v});
             },
           ),
           ListTile(
-            leading: const Icon(Icons.format_size_rounded),
+            leading: const Icon(Icons.format_size_outlined),
             title: Text(l.textSize),
             subtitle: Slider(
               value: s.textScale,
@@ -101,32 +101,32 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: s.highContrast,
             title: Text(l.highContrast),
             subtitle: Text(l.highContrastHint),
-            secondary: const Icon(Icons.contrast_rounded),
+            secondary: const Icon(Icons.contrast_outlined),
             onChanged: n.setHighContrast,
           ),
         ]),
         group(l.notifications, [
           ListTile(
-            leading: const Icon(Icons.notifications_active_rounded),
+            leading: const Icon(Icons.notifications_active_outlined),
             title: Text(l.notificationChannels),
             subtitle: Text(l.notificationChannelsHint),
-            trailing: const Icon(Icons.chevron_right_rounded),
+            trailing: const Icon(Icons.chevron_right_outlined),
             onTap: () => context.push(notificationSettingsLink),
           ),
         ]),
         if (cfg.isDemo)
           group(l.demoData, [
             ListTile(
-              leading: const Icon(Icons.science_rounded),
+              leading: const Icon(Icons.science_outlined),
               title: Text(l.demoModeOn),
               subtitle: Text(cfg.isStandalone ? l.demoStandaloneHint : l.demoEmulatorHint),
             ),
             if (store != null)
               ListTile(
-                leading: const Icon(Icons.restart_alt_rounded),
+                leading: const Icon(Icons.restart_alt_outlined),
                 title: Text(l.resetDemoData),
                 subtitle: Text(l.resetDemoDataHint),
-                trailing: _resetting ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5)) : null,
+                trailing: _resetting ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner)) : null,
                 onTap: _resetting
                     ? null
                     : () async {
@@ -144,9 +144,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ]),
         group(l.about, [
           ListTile(
-            leading: const Icon(Icons.info_outline_rounded),
+            leading: const Icon(Icons.info_outlined),
             title: const Text('PawSetu'),
-            subtitle: Text(l.aboutVersion('1.0.0 (Version 1 demo)')),
+            subtitle: Text(l.aboutVersion('1.0.0 (DEMO VERSION 1)')),
             onTap: () {
               _aboutTaps++;
               if (_aboutTaps >= 5) {
@@ -156,14 +156,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.map_rounded),
+            leading: const Icon(Icons.map_outlined),
             title: Text(l.mapCredit),
           ),
         ]),
         const SizedBox(height: Space.xl),
         SecondaryButton(
           label: l.signOut,
-          icon: Icons.logout_rounded,
+          icon: Icons.logout_outlined,
           onPressed: () => ref.read(authServiceProvider).signOut(),
         ),
       ]),

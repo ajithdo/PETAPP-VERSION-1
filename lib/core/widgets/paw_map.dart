@@ -37,7 +37,7 @@ class PawMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fit = fitPoints != null && fitPoints!.length > 1
-        ? CameraFit.coordinates(coordinates: fitPoints!, padding: const EdgeInsets.all(32))
+        ? CameraFit.coordinates(coordinates: fitPoints!, padding: const EdgeInsets.all(Space.xxl))
         : null;
     return ClipRRect(
       borderRadius: BorderRadius.circular(Radii.card),
@@ -61,7 +61,7 @@ class PawMap extends StatelessWidget {
           if (routes.isNotEmpty)
             PolylineLayer(polylines: [
               for (final r in routes)
-                Polyline(points: r, strokeWidth: 5, color: context.colors.primary, borderStrokeWidth: 2, borderColor: Colors.white),
+                Polyline(points: r, strokeWidth: Strokes.route, color: context.colors.primary, borderStrokeWidth: Strokes.focus, borderColor: MediaColors.foreground),
             ]),
           if (markers.isNotEmpty) MarkerLayer(markers: markers),
           RichAttributionWidget(
@@ -81,26 +81,26 @@ class PawMap extends StatelessWidget {
 }
 
 /// Round pin used on maps.
-Marker pinMarker(LatLng p, {required Color color, IconData icon = Icons.place_rounded, double size = 40, String? label}) => Marker(
+Marker pinMarker(LatLng p, {required Color color, IconData icon = Icons.place_outlined, double size = 40, String? label}) => Marker(
       point: p,
       width: size,
       height: size,
       child: Semantics(
         label: label,
-        child: Icon(icon, color: color, size: size, shadows: const [Shadow(blurRadius: 4, color: Colors.black26)]),
+        child: Icon(icon, color: color, size: size, shadows: const [Shadow(blurRadius: Space.xs, color: MediaColors.mapShadow)]),
       ),
     );
 
 Marker dotMarker(LatLng p, Color color) => Marker(
       point: p,
-      width: 22,
-      height: 22,
+      width: Sizes.handle,
+      height: Sizes.handle,
       child: Container(
         decoration: BoxDecoration(
           color: color,
           shape: BoxShape.circle,
-          border: Border.all(color: Colors.white, width: 3),
-          boxShadow: const [BoxShadow(blurRadius: 4, color: Colors.black26)],
+          border: Border.all(color: MediaColors.foreground, width: Strokes.avatarRingSelected),
+          boxShadow: const [BoxShadow(blurRadius: Space.xs, color: MediaColors.mapShadow)],
         ),
       ),
     );

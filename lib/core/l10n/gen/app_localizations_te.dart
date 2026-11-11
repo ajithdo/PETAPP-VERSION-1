@@ -2352,6 +2352,15 @@ class AppLocalizationsTe extends AppLocalizations {
       'ఈ కార్డ్ ఇంటర్నెట్ లేకుండా పనిచేస్తుంది. వెట్, బోర్డింగ్ సెంటర్ లేదా ఎయిర్‌పోర్ట్‌లో చూపించండి.';
 
   @override
+  String get healthAllClear => 'అన్నీ సమయానికి ఉన్నాయి';
+
+  @override
+  String get certificate => 'సర్టిఫికెట్';
+
+  @override
+  String get emergencyInfo => 'అత్యవసర సమాచారం';
+
+  @override
   String get bookTitle => 'సంరక్షణ బుక్ చేయండి';
 
   @override
@@ -3297,6 +3306,14 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get remove => 'తీసివేయండి';
+
+  @override
+  String bookFor(String name) {
+    return '$name కోసం బుక్ చేయండి';
+  }
+
+  @override
+  String get nextFreeSlot => 'తదుపరి ఖాళీ సమయం';
 
   @override
   String get aiTitle => 'PawSetu ని అడగండి';
@@ -10338,4 +10355,32 @@ class AppLocalizationsTe extends AppLocalizations {
   String albumTitle(String pet) {
     return '$pet జ్ఞాపకాలు';
   }
+
+  @override
+  String gendaProgress(int done, int total) {
+    return '$totalలో $done పూర్తయ్యాయి';
+  }
+
+  @override
+  String get gendaNothingPlanned =>
+      'ఈరోజు ఏమీ ప్లాన్ లేదు. ఒక దినచర్య జోడించండి.';
+
+  @override
+  String withUnread(String label, int count) {
+    return '$label, $count చదవనివి';
+  }
+
+  @override
+  String shopAskVet(String name) {
+    return '$nameకి ఏది సరిపోతుందో తెలియదా? వెట్‌ని అడగండి';
+  }
+
+  @override
+  String get meGroupPets => 'పెంపుడు జంతువులు, కుటుంబం';
+
+  @override
+  String get meGroupMoney => 'ఆర్డర్‌లు, డబ్బు';
+
+  @override
+  String get meGroupHelp => 'సహాయం, సెట్టింగ్‌లు';
 }

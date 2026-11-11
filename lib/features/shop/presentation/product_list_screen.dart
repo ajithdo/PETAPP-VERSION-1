@@ -59,13 +59,13 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
               autofocus: widget.focus,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search_rounded),
+                prefixIcon: const Icon(Icons.search_outlined),
                 hintText: l.shopSearchHint,
                 suffixIcon: _search.text.isEmpty
                     ? null
                     : IconButton(
                         tooltip: l.shopClearSearch,
-                        icon: const Icon(Icons.close_rounded),
+                        icon: const Icon(Icons.close_outlined),
                         onPressed: () => setState(() {
                           _search.clear();
                           _f = _f.copyWith(query: '');
@@ -79,7 +79,7 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(children: [
                 ActionChip(
-                  avatar: const Icon(Icons.tune_rounded, size: 18),
+                  avatar: const Icon(Icons.tune_outlined, size: IconSizes.chip),
                   label: Text(_f.activeCount == 0 ? l.filters : l.shopFiltersCount(_f.activeCount)),
                   onPressed: () => _openFilters(brands),
                 ),

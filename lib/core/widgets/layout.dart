@@ -147,7 +147,7 @@ class ChipStrip extends StatelessWidget {
 
 /// "Show more" (or [label]) at the end of a long list.
 class ShowMoreButton extends StatelessWidget {
-  const ShowMoreButton({super.key, required this.onPressed, this.label, this.icon = Icons.expand_more_rounded});
+  const ShowMoreButton({super.key, required this.onPressed, this.label, this.icon = Icons.expand_more_outlined});
   final VoidCallback onPressed;
   final String? label;
   final IconData icon;

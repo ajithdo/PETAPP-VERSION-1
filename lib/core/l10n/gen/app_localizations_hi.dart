@@ -2342,6 +2342,15 @@ class AppLocalizationsHi extends AppLocalizations {
       'यह कार्ड बिना इंटरनेट के चलता है। डॉक्टर, बोर्डिंग सेंटर या एयरपोर्ट पर दिखाएँ।';
 
   @override
+  String get healthAllClear => 'सब कुछ समय पर है';
+
+  @override
+  String get certificate => 'प्रमाणपत्र';
+
+  @override
+  String get emergencyInfo => 'आपातकालीन जानकारी';
+
+  @override
   String get bookTitle => 'देखभाल बुक करें';
 
   @override
@@ -3282,6 +3291,14 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get remove => 'हटाएँ';
+
+  @override
+  String bookFor(String name) {
+    return '$name के लिए बुक करें';
+  }
+
+  @override
+  String get nextFreeSlot => 'अगला खाली समय';
 
   @override
   String get aiTitle => 'PawSetu से पूछें';
@@ -10310,4 +10327,31 @@ class AppLocalizationsHi extends AppLocalizations {
   String albumTitle(String pet) {
     return '$pet की यादें';
   }
+
+  @override
+  String gendaProgress(int done, int total) {
+    return '$total में से $done हो गए';
+  }
+
+  @override
+  String get gendaNothingPlanned => 'आज कुछ तय नहीं है। एक दिनचर्या जोड़ें।';
+
+  @override
+  String withUnread(String label, int count) {
+    return '$label, $count बिना पढ़े';
+  }
+
+  @override
+  String shopAskVet(String name) {
+    return '$name के लिए क्या ठीक रहेगा, पता नहीं? डॉक्टर से पूछें';
+  }
+
+  @override
+  String get meGroupPets => 'पालतू और परिवार';
+
+  @override
+  String get meGroupMoney => 'ऑर्डर और पैसे';
+
+  @override
+  String get meGroupHelp => 'मदद और सेटिंग्स';
 }

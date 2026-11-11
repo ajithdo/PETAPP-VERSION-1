@@ -22,7 +22,7 @@ class MyPetsScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.myPets)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.push('/pets/new'),
-        icon: const Icon(Icons.add_rounded),
+        icon: const Icon(Icons.add_outlined),
         label: Text(l.addPet),
       ),
       body: AsyncView(
@@ -44,7 +44,7 @@ class MyPetsScreen extends ConsumerWidget {
             if (!(user?.isPlus ?? false))
               Padding(
                 padding: const EdgeInsets.only(top: Space.sm),
-                child: InfoNote(l.petsUsed(owned, limit), icon: Icons.workspace_premium_rounded),
+                child: InfoNote(l.petsUsed(owned, limit), icon: Icons.workspace_premium_outlined),
               ),
             const SizedBox(height: Space.md),
             ResponsiveGrid(minItemWidth: 300, children: [for (final p in active) _PetTile(pet: p, uid: user?.uid ?? '')]),
@@ -52,7 +52,7 @@ class MyPetsScreen extends ConsumerWidget {
               SectionHeader(l.inLovingMemory),
               ResponsiveGrid(minItemWidth: 300, children: [for (final p in memorial) _PetTile(pet: p, uid: user?.uid ?? '')]),
             ],
-            const SizedBox(height: 80),
+            const SizedBox(height: Space.fabClearance),
           ]);
         },
       ),
@@ -71,11 +71,11 @@ class _PetTile extends StatelessWidget {
     final role = pet.roleOf(uid);
     return PawCard(
       onTap: () => context.push('/pets/${pet.id}'),
-      color: pet.archived ? context.paw.surface.withValues(alpha: 0.8) : null,
+      color: pet.archived ? context.paw.surface.withValues(alpha: Opacities.faded) : null,
       child: Row(children: [
         Opacity(
-          opacity: pet.archived ? 0.75 : 1,
-          child: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 60, name: pet.name),
+          opacity: pet.archived ? Opacities.fadedArt : 1,
+          child: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarLg, name: pet.name),
         ),
         const SizedBox(width: Space.md),
         Expanded(
@@ -93,7 +93,7 @@ class _PetTile extends StatelessWidget {
             ],
           ]),
         ),
-        Icon(pet.archived ? Icons.favorite_rounded : Icons.chevron_right_rounded,
+        Icon(pet.archived ? Icons.favorite_rounded : Icons.chevron_right_outlined,
             color: pet.archived ? context.paw.accent : null),
       ]),
     );

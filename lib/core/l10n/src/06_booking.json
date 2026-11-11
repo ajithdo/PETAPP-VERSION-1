@@ -278,5 +278,7 @@
   "yourAccount": {"en": "Your account", "hi": "आपका खाता", "te": "మీ ఖాతా"},
   "submitApplication": {"en": "Submit application", "hi": "आवेदन भेजें", "te": "దరఖాస్తు పంపండి"},
   "partnerApprovalNote": {"en": "After you submit, your listing waits for approval. You can set up services and prices meanwhile.", "hi": "भेजने के बाद आपकी लिस्टिंग मंज़ूरी का इंतज़ार करेगी। तब तक सेवाएँ और दाम सेट करें।", "te": "పంపిన తర్వాత మీ లిస్టింగ్ ఆమోదం కోసం వేచి ఉంటుంది. ఈలోగా సేవలు, ధరలు సెట్ చేసుకోవచ్చు."},
-  "remove": {"en": "Remove", "hi": "हटाएँ", "te": "తీసివేయండి"}
+  "remove": {"en": "Remove", "hi": "हटाएँ", "te": "తీసివేయండి"},
+  "bookFor": {"en": "Book for {name}", "hi": "{name} के लिए बुक करें", "te": "{name} కోసం బుక్ చేయండి", "ph": {"name": "String"}},
+  "nextFreeSlot": {"en": "Next free slot", "hi": "अगला खाली समय", "te": "తదుపరి ఖాళీ సమయం"}
 }

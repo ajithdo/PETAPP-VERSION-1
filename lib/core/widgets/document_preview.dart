@@ -65,7 +65,7 @@ class _DocumentPreviewScreenState extends State<DocumentPreviewScreen> {
         title: Text(widget.title),
         actions: [
           if (_images != null)
-            IconButton(tooltip: l.sharePdf, onPressed: _share, icon: const Icon(Icons.ios_share_rounded)),
+            IconButton(tooltip: l.sharePdf, onPressed: _share, icon: const Icon(Icons.ios_share_outlined)),
         ],
       ),
       body: _error != null
@@ -91,7 +91,7 @@ class _DocumentPreviewScreenState extends State<DocumentPreviewScreen> {
                               child: Container(
                                 margin: const EdgeInsets.only(bottom: Space.lg),
                                 constraints: const BoxConstraints(maxWidth: 700),
-                                decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 12)]),
+                                decoration: BoxDecoration(boxShadow: Shadows.overlay(PrintColors.ink)),
                                 child: Image.memory(img, semanticLabel: widget.title),
                               ),
                             ),
@@ -105,7 +105,7 @@ class _DocumentPreviewScreenState extends State<DocumentPreviewScreen> {
                       padding: EdgeInsets.all(context.gutter),
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 640),
-                        child: PrimaryButton(label: l.sharePdf, icon: Icons.ios_share_rounded, onPressed: _share),
+                        child: PrimaryButton(label: l.sharePdf, icon: Icons.ios_share_outlined, onPressed: _share),
                       ),
                     ),
                   ),
@@ -125,9 +125,9 @@ class A4Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const teal = Color(0xFF0F766E);
+    const teal = PrintColors.brand;
     return Container(
-      color: Colors.white,
+      color: PrintColors.paper,
       width: a4Logical.width,
       height: a4Logical.height,
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -137,11 +137,11 @@ class A4Page extends StatelessWidget {
           child: Row(children: [
             const _MiniLogo(),
             const SizedBox(width: 10),
-            const Text('PawSetu', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700, fontFamily: 'PlusJakartaSans')),
+            const Text('PawSetu', style: TextStyle(color: PrintColors.paper, fontSize: 18, fontWeight: FontWeight.w700, fontFamily: 'PlusJakartaSans')),
             const Spacer(),
             Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-              Text(title, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w700)),
-              Text(subtitle, style: const TextStyle(color: Color(0xFFCCFBF1), fontSize: 9)),
+              Text(title, style: const TextStyle(color: PrintColors.paper, fontSize: 15, fontWeight: FontWeight.w700)),
+              Text(subtitle, style: const TextStyle(color: PrintColors.brandTint, fontSize: 9)),
             ]),
           ]),
         ),
@@ -149,17 +149,17 @@ class A4Page extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(32, 18, 32, 8),
             child: DefaultTextStyle.merge(
-              style: const TextStyle(color: Color(0xFF1C2B2D), fontSize: 10, height: 1.35),
+              style: const TextStyle(color: PrintColors.ink, fontSize: 10, height: 1.35),
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
             ),
           ),
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(32, 8, 32, 14),
-          decoration: const BoxDecoration(border: Border(top: BorderSide(color: Color(0xFFE5E1DA)))),
+          decoration: const BoxDecoration(border: Border(top: BorderSide(color: PrintColors.rule))),
           child: Row(children: [
-            Expanded(child: Text(footer, style: const TextStyle(color: Color(0xFF5B6B6E), fontSize: 8))),
-            if (pageLabel != null) Text(pageLabel!, style: const TextStyle(color: Color(0xFF5B6B6E), fontSize: 8)),
+            Expanded(child: Text(footer, style: const TextStyle(color: PrintColors.muted, fontSize: 8))),
+            if (pageLabel != null) Text(pageLabel!, style: const TextStyle(color: PrintColors.muted, fontSize: 8)),
           ]),
         ),
       ]),
@@ -173,8 +173,8 @@ class _MiniLogo extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         width: 26,
         height: 26,
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(7)),
-        child: const Icon(Icons.pets_rounded, size: 18, color: Color(0xFF0F766E)),
+        decoration: BoxDecoration(color: PrintColors.paper, borderRadius: BorderRadius.circular(7)),
+        child: const Icon(Icons.pets_outlined, size: 18, color: PrintColors.brand),
       );
 }
 
@@ -187,7 +187,7 @@ class A4Section extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.only(top: 12),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Text(title.toUpperCase(), style: const TextStyle(color: Color(0xFF0F766E), fontSize: 9, fontWeight: FontWeight.w700, letterSpacing: 0.8)),
+          Text(title.toUpperCase(), style: const TextStyle(color: PrintColors.brand, fontSize: 9, fontWeight: FontWeight.w700, letterSpacing: 0.8)),
           const SizedBox(height: 4),
           child,
         ]),
@@ -201,24 +201,34 @@ class A4Table extends StatelessWidget {
   final List<int>? flex;
   @override
   Widget build(BuildContext context) {
-    Widget row(List<String> cells, {bool head = false}) => Container(
-          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+    // UI Design 2 certificate table: a forest header row with white text, then
+    // rows on alternating white and warm off-white.
+    Widget row(List<String> cells, {bool head = false, bool shade = false}) => Container(
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
           decoration: BoxDecoration(
-            color: head ? const Color(0xFFF1EDE8) : null,
-            border: const Border(bottom: BorderSide(color: Color(0xFFE5E1DA))),
+            color: head ? PrintColors.brand : (shade ? PrintColors.zebra : PrintColors.paper),
+            borderRadius: head ? const BorderRadius.vertical(top: Radius.circular(6)) : null,
+            border: head ? null : const Border(bottom: BorderSide(color: PrintColors.rule)),
           ),
           child: Row(children: [
             for (var i = 0; i < cells.length; i++)
               Expanded(
                 flex: flex?[i] ?? 1,
-                child: Text(cells[i], style: TextStyle(fontSize: head ? 8.5 : 9.5, fontWeight: head ? FontWeight.w700 : FontWeight.w400)),
+                child: Text(
+                  cells[i],
+                  style: TextStyle(
+                    fontSize: head ? 8.5 : 9.5,
+                    fontWeight: head ? FontWeight.w700 : FontWeight.w400,
+                    color: head ? PrintColors.paper : PrintColors.ink,
+                  ),
+                ),
               ),
           ]),
         );
     return Column(children: [
       row(header, head: true),
       if (rows.isEmpty) row([for (final _ in header) '–']),
-      for (final r in rows) row(r),
+      for (var i = 0; i < rows.length; i++) row(rows[i], shade: i.isOdd),
     ]);
   }
 }

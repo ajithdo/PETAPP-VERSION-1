@@ -1,0 +1,392 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PawSetu UI Design 5 directions</title>
+<style>
+@font-face{font-family:Hind;src:url(f/Hind-Regular.ttf);font-weight:400}
+@font-face{font-family:Hind;src:url(f/Hind-Medium.ttf);font-weight:500}
+@font-face{font-family:Hind;src:url(f/Hind-SemiBold.ttf);font-weight:600}
+@font-face{font-family:Hind;src:url(f/Hind-Bold.ttf);font-weight:700}
+@font-face{font-family:HindGuntur;src:url(f/HindGuntur-Regular.ttf);font-weight:400}
+@font-face{font-family:HindGuntur;src:url(f/HindGuntur-Medium.ttf);font-weight:500}
+@font-face{font-family:HindGuntur;src:url(f/HindGuntur-SemiBold.ttf);font-weight:600}
+@font-face{font-family:HindGuntur;src:url(f/HindGuntur-Bold.ttf);font-weight:700}
+@font-face{font-family:Baloo2;src:url("f/Baloo2[wght].ttf");font-weight:400 800}
+@font-face{font-family:BalooTammudu2;src:url("f/BalooTammudu2[wght].ttf");font-weight:400 800}
+@font-face{font-family:BarlowC;src:url(f/BarlowCondensed-SemiBold.ttf);font-weight:600}
+@font-face{font-family:BarlowC;src:url(f/BarlowCondensed-Bold.ttf);font-weight:700}
+@font-face{font-family:NotoSansV;src:url("f/NotoSans[wdth,wght].ttf");font-weight:100 900;font-stretch:62.5% 100%}
+@font-face{font-family:NotoDeva;src:url(f/NotoSansDevanagari-400.ttf);font-weight:400}
+@font-face{font-family:NotoDeva;src:url(f/NotoSansDevanagari-600.ttf);font-weight:600}
+@font-face{font-family:NotoDeva;src:url(f/NotoSansDevanagari-700.ttf);font-weight:700}
+@font-face{font-family:NotoTel;src:url(f/NotoSansTelugu-400.ttf);font-weight:400}
+@font-face{font-family:NotoTel;src:url(f/NotoSansTelugu-600.ttf);font-weight:600}
+@font-face{font-family:NotoTel;src:url(f/NotoSansTelugu-700.ttf);font-weight:700}
+@font-face{font-family:MSO;src:url(f/MS-Outlined.ttf)}
+@font-face{font-family:MSR;src:url(f/MS-Rounded.ttf)}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased}
+body.indic{line-height:1.6}
+.i{font-family:var(--icons);font-weight:normal;font-style:normal;font-size:24px;line-height:1;display:inline-block;white-space:nowrap;direction:ltr;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;flex:none}
+.i.fill{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
+.num{font-family:var(--num);font-variant-numeric:tabular-nums}
+h1,h2,h3{font-family:var(--head);font-weight:var(--headw);letter-spacing:var(--headls)}
+h1{font-size:26px;line-height:1.25}
+h2{font-size:20px;line-height:1.3}
+h3{font-size:17px;line-height:1.35}
+body.indic h1{line-height:1.45}body.indic h2,body.indic h3{line-height:1.5}
+.s{font-size:14px;color:var(--ink2)}
+.m{font-size:15px;color:var(--ink2)}
+.lbl{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ink2)}
+.row{display:flex;align-items:center;gap:12px}
+.col{display:flex;flex-direction:column}
+.grow{flex:1;min-width:0}
+.nowrap{white-space:nowrap}
+
+/* App frame */
+.app{min-height:100vh;display:flex;font-family:var(--body);color:var(--ink);background:var(--bg)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.content{padding:16px 16px 112px;display:flex;flex-direction:column;gap:var(--gap)}
+.top{display:flex;align-items:center;gap:8px;padding:10px 12px 10px 16px;background:var(--topbg);color:var(--topink);position:sticky;top:0;z-index:5;border-bottom:var(--topline)}
+.logo{display:flex;align-items:center;gap:8px;font-family:var(--head);font-weight:700;font-size:20px}
+.logo .mark{width:34px;height:34px;border-radius:var(--rlogo);background:var(--brand);color:var(--onBrand);display:grid;place-items:center}
+.logo .mark .i{font-size:22px}
+.iconbtn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;position:relative;color:inherit}
+.badge{position:absolute;top:8px;right:7px;min-width:18px;height:18px;border-radius:9px;background:var(--primary);color:var(--onPrimary);font-size:13px;font-weight:700;display:grid;place-items:center;padding:0 4px;font-family:var(--body)}
+.sos{height:40px;padding:0 14px;border-radius:20px;background:var(--sos);color:var(--onSos);font-weight:700;font-size:15px;display:flex;align-items:center;gap:6px;letter-spacing:.04em}
+.sos .i{font-size:20px}
+.navbar{position:fixed;left:0;right:0;bottom:0;height:80px;background:var(--navbg);border-top:1px solid var(--hair);display:flex;justify-content:space-around;align-items:flex-start;padding-top:10px;z-index:6}
+.navbar .t{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--ink2);width:20%}
+.navbar .t .pill{width:60px;height:32px;border-radius:16px;display:grid;place-items:center}
+.navbar .t.on{color:var(--ink)}
+.navbar .t.on .pill{background:var(--tint);color:var(--onTint)}
+.navbar .t.on .i{font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24}
+.rail{width:256px;flex:none;background:var(--railbg);border-right:1px solid var(--hair);padding:16px 12px;display:flex;flex-direction:column;gap:4px;min-height:100vh;position:sticky;top:0}
+.rail .logo{padding:6px 12px 18px}
+.rail .t{height:52px;border-radius:var(--rnav);display:flex;align-items:center;gap:14px;padding:0 16px;font-weight:600;color:var(--ink2);font-size:16px}
+.rail .t.on{background:var(--tint);color:var(--onTint)}
+.rail .t.on .i{font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24}
+.rail .sep{height:1px;background:var(--hair);margin:10px 12px}
+.desk .top{padding:12px 32px;background:var(--bg);border-bottom:1px solid var(--hair)}
+.desk .content{padding:28px 32px 48px;max-width:1180px;width:100%;margin:0 auto}
+.grid2{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:24px;align-items:start}
+.grid2>.col{gap:var(--gap)}
+
+.card{background:var(--card);border-radius:var(--rcard);box-shadow:var(--shadow);border:var(--cardline);overflow:hidden}
+.pad{padding:var(--cpad)}
+.chips{display:flex;gap:8px;overflow:hidden}
+.chip{height:40px;border-radius:var(--rchip);border:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 14px 0 4px;font-weight:600;font-size:15px;white-space:nowrap;background:var(--card)}
+.chip img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.chip.on{background:var(--tint);color:var(--onTint);border-color:var(--onTint)}
+.chip.add{padding:0 14px;color:var(--ink2)}
+.btn{height:48px;border-radius:var(--rbtn);padding:0 20px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;font-family:var(--body)}
+.btn.p{background:var(--primary);color:var(--onPrimary)}
+.btn.o{border:1px solid var(--line);color:var(--ink);background:transparent}
+.btn.t{color:var(--primary);padding:0 8px;height:48px}
+.btn.full{width:100%}
+.li{display:flex;align-items:center;gap:14px;padding:12px var(--cpad);min-height:64px}
+.li+.li{border-top:1px solid var(--hair)}
+.check{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;flex:none}
+.check.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.check.on .i{font-size:20px;color:var(--card)}
+.done .ttl{color:var(--ink2)}
+.ttl{font-weight:600;font-size:16px}
+.qa{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.qa .q{background:var(--card);border-radius:var(--rcard);box-shadow:var(--shadow);border:var(--cardline);padding:14px 6px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-weight:600;font-size:14px;line-height:1.3;min-height:104px}
+.qa .q .ic{width:44px;height:44px;border-radius:var(--ric);display:grid;place-items:center;background:var(--tint);color:var(--onTint)}
+.place{display:flex;gap:14px;padding:12px}
+.place img{width:96px;height:96px;border-radius:var(--rimg);object-fit:cover;flex:none}
+.stars{display:flex;align-items:center;gap:4px;font-weight:700;font-size:15px}
+.stars .i{font-size:18px;color:var(--ink)}
+.sec{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.sec .btn.t{height:auto;padding:0}
+.pillsm{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 10px;border-radius:14px;font-size:13px;font-weight:700;background:var(--sunk);color:var(--ink)}
+.pillsm.ok{background:var(--okTint);color:var(--ok)}
+.pillsm.warn{background:var(--warnTint);color:var(--warn)}
+.pillsm.pr{background:var(--tint);color:var(--onTint)}
+.spark{display:block}
+.tiles6{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.desk .tiles6{grid-template-columns:repeat(6,minmax(0,1fr))}
+.tile{background:var(--card);border-radius:var(--rcard);box-shadow:var(--shadow);border:var(--cardline);padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:600;font-size:14px;text-align:center;line-height:1.3;min-height:96px}
+.tile .i{color:var(--onTint);background:var(--tint);width:44px;height:44px;border-radius:var(--ric);display:grid;place-items:center}
+.search{height:52px;border-radius:var(--rinput);border:1px solid var(--line);background:var(--card);display:flex;align-items:center;gap:10px;padding:0 14px;color:var(--ink2)}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:13px;font-weight:700;color:var(--ink2);padding:10px 16px;border-bottom:1px solid var(--line);letter-spacing:.02em;white-space:nowrap}
+td{padding:12px 16px;border-bottom:1px solid var(--hair);font-size:15px;white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.kpi .v{font-family:var(--num);font-size:30px;font-weight:700;line-height:1.1}
+.sub{font-size:14px;color:var(--ink2)}
+.demo{font-size:13px;font-weight:700;color:var(--ink2);border:1px dashed var(--line);border-radius:6px;padding:2px 6px}
+
+/* ---------- Direction A: Deewar (wall calendar, ballpoint) ---------- */
+.dA{--body:Hind,HindGuntur,sans-serif;--head:Hind,HindGuntur,sans-serif;--num:BarlowC,Hind,sans-serif;--icons:MSO;--headw:700;--headls:-.01em;
+ --rcard:10px;--rbtn:10px;--rchip:10px;--rinput:10px;--rimg:6px;--ric:8px;--rnav:8px;--rlogo:8px;--shadow:none;--cardline:1px solid var(--hair);--gap:16px;--cpad:16px;--topbg:var(--card);--topink:var(--ink);--topline:1px solid var(--hair);--navbg:var(--card);--railbg:var(--card)}
+.dA.te{--body:HindGuntur,Hind,sans-serif;--head:HindGuntur,Hind,sans-serif}
+.cal{border-radius:var(--rcard);overflow:hidden;border:1px solid var(--hair);background:var(--card)}
+.cal .band{background:var(--brand);color:var(--onBrand);padding:10px 16px;display:flex;justify-content:space-between;align-items:baseline}
+.cal .band .mo{font-family:var(--num);font-weight:700;font-size:22px;letter-spacing:.06em;text-transform:uppercase}
+.cal .days{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;padding:8px 6px 12px}
+.cal .d{display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+.cal .d .w{font-size:13px;font-weight:600;color:var(--ink2)}
+.cal .d .n{font-family:var(--num);font-weight:700;font-size:30px;line-height:1.15;position:relative;width:46px;height:42px;display:grid;place-items:center}
+.cal .d .dot{width:7px;height:7px;border-radius:50%;background:var(--mark)}
+.cal .d .dot.no{background:transparent}
+.cal .d.sun .n{color:var(--ink)}
+.ring{position:absolute;inset:-4px -6px;pointer-events:none}
+.cal .legend{border-top:1px solid var(--hair);padding:10px 16px;display:flex;gap:10px;align-items:center;font-size:15px}
+.dateblk{width:64px;flex:none;text-align:center;position:relative}
+.dateblk .n{font-family:var(--num);font-weight:700;font-size:38px;line-height:1;position:relative;display:inline-block;padding:6px 8px 4px}
+.dateblk .w{font-size:13px;font-weight:700;color:var(--ink2);letter-spacing:.06em;text-transform:uppercase}
+.time{font-family:var(--num);font-weight:600;font-size:22px;width:56px;flex:none;line-height:1}
+.time small{display:block;font-family:var(--body);font-size:13px;font-weight:600;color:var(--ink2);margin-top:2px}
+.pinno{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--card);font-family:var(--num);font-weight:700;display:grid;place-items:center;font-size:16px;flex:none}
+
+/* ---------- Direction B: Muhar (vaccination booklet + rubber stamp) ---------- */
+.dB{--body:NotoSansV,NotoDeva,NotoTel,sans-serif;--head:NotoSansV,NotoDeva,NotoTel,sans-serif;--num:NotoSansV,sans-serif;--icons:MSO;--headw:700;--headls:-.015em;
+ --rcard:4px;--rbtn:4px;--rchip:4px;--rinput:4px;--rimg:2px;--ric:4px;--rnav:4px;--rlogo:4px;--shadow:none;--cardline:1px solid var(--line);--gap:14px;--cpad:14px;--topbg:var(--brand);--topink:var(--onBrand);--topline:none;--navbg:var(--card);--railbg:var(--card)}
+.dB .i{font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24}
+.dB .top .logo .mark{background:var(--onBrand);color:var(--brand)}
+.dB .top .badge{background:var(--onBrand);color:var(--brand)}
+.dB .top .sos{box-shadow:0 0 0 2px var(--onBrand)}
+.dB.desk .top{background:var(--card);color:var(--ink);border-bottom:2px solid var(--brand)}
+.dB.desk .top .logo .mark{background:var(--brand);color:var(--onBrand)}
+.dB.desk .top .badge{background:var(--primary);color:var(--onPrimary)}
+.dB .card .hd{padding:10px var(--cpad);border-bottom:2px solid var(--brand);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.dB .card .hd .lbl{color:var(--primary);text-transform:uppercase;letter-spacing:.08em;font-stretch:87.5%}
+.dB .li{min-height:60px}
+.dB .li+.li{border-top:1px solid var(--hair)}
+.ruled .li{border-top:1px solid var(--hair)}
+.stamp{width:62px;height:62px;flex:none;position:relative;transform:rotate(-9deg);color:var(--mark)}
+.stamp svg{position:absolute;inset:0}
+.stamp .t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:NotoSansV,NotoDeva,NotoTel;font-stretch:75%;font-weight:800;font-size:13px;line-height:1.05;letter-spacing:.04em;text-transform:uppercase;text-align:center}
+.stamp.due{color:var(--ink2);transform:none}
+.dB .num{font-stretch:87.5%;font-weight:700}
+.dB .time{font-family:NotoSansV;font-stretch:87.5%;font-weight:700;font-size:17px;width:58px;flex:none}
+.dB .time small{display:block;font-size:13px;font-weight:600;color:var(--ink2);font-stretch:100%}
+.dB .qa .q,.dB .tile{border:1px solid var(--line)}
+.dB .qa .q .ic,.dB .tile .i{background:transparent;border:1.5px solid var(--primary);color:var(--primary)}
+
+/* ---------- Direction C: Genda (marigold garland at home) ---------- */
+.dC{--body:Hind,HindGuntur,sans-serif;--head:Baloo2,BalooTammudu2,sans-serif;--num:Baloo2,sans-serif;--icons:MSR;--headw:700;--headls:0;
+ --rcard:22px;--rbtn:24px;--rchip:20px;--rinput:24px;--rimg:16px;--ric:50%;--rnav:24px;--rlogo:50%;--shadow:0 1px 2px rgba(60,35,0,.06),0 6px 18px rgba(60,35,0,.07);--cardline:none;--gap:18px;--cpad:18px;--topbg:var(--bg);--topink:var(--ink);--topline:none;--navbg:var(--card);--railbg:var(--sunk)}
+.dC.te{--body:HindGuntur,Hind,sans-serif;--head:BalooTammudu2,Baloo2,sans-serif}
+.dC.dark{--shadow:0 1px 2px rgba(0,0,0,.4)}
+.dC .qa .q .ic,.dC .tile .i{background:var(--tint);color:var(--onTint)}
+.dC .chip{border:none;background:var(--sunk)}
+.dC .chip.on{background:var(--ink);color:var(--card)}
+.genda{background:var(--band);color:var(--onBand);border-radius:var(--rcard);padding:18px;display:flex;gap:18px;align-items:center}
+.garland{width:140px;height:140px;flex:none;position:relative}
+.garland img{position:absolute;left:26px;top:26px;width:88px;height:88px;border-radius:50%;object-fit:cover}
+.garland svg{position:absolute;inset:0}
+.genda .big{font-family:var(--head);font-weight:700;font-size:24px;line-height:1.2}
+.genda .bar{height:10px;border-radius:5px;background:rgba(255,255,255,.16);overflow:hidden;margin-top:10px}
+.genda .bar i{display:block;height:100%;width:50%;background:var(--brand);border-radius:5px}
+.dC .time{font-family:var(--num);font-weight:700;font-size:17px;width:62px;flex:none}
+.dC .time small{display:block;font-family:var(--body);font-size:13px;font-weight:600;color:var(--ink2)}
+.dC .check.on{background:var(--mark);border-color:var(--mark)}
+.dC .check.on .i{color:#fff}
+.dC.dark .check.on .i{color:var(--onBrand)}
+.dC .rail .t.on{background:var(--ink);color:var(--card)}
+.dC .navbar .t.on .pill{background:var(--ink);color:var(--card)}
+.dC .chip.on img{outline:2px solid var(--brand)}
+
+/* Indic scripts: never letter-space or upper-case */
+body.indic .lbl,body.indic .mo,body.indic .w,body.indic h1,body.indic h2,body.indic h3,body.indic .stamp .t{letter-spacing:0!important;text-transform:none!important}
+body.indic .s,body.indic .m{font-size:15px}
+/* Easy mode */
+.easy{font-size:19px}
+.easy .ttl{font-size:19px}.easy .s,.easy .m{font-size:17px}
+.easy .btn{height:56px;font-size:18px}
+.easy h1{font-size:30px}.easy h2{font-size:23px}
+.easy .qa{grid-template-columns:repeat(2,minmax(0,1fr))}
+.easy .qa .q{font-size:17px;min-height:120px}
+.easy .navbar{height:92px}.easy .navbar .t{font-size:15px}
+.easy .li{min-height:76px}
+</style></head><body>
+<div id="root"></div>
+<script>
+const Q=new URLSearchParams(location.search);
+const D=Q.get('d')||'A', S=Q.get('s')||'home', T=Q.get('t')||'light', L=Q.get('l')||'en', W=Q.get('w')||'phone', EASY=Q.get('easy')==='1';
+const PAL={"A":{},"B":{},"C":{}};
+</script>
+<script src="palettes.js"></script>
+<script>
+const p=PALETTES[D][T];
+const r=document.documentElement;
+for(const [k,v] of Object.entries(p)) r.style.setProperty('--'+k,v);
+document.body.className=(L!=='en'?'indic ':'')+(EASY?'easy':'');
+const tx={
+ en:{home:'Home',health:'Health',book:'Book',shop:'Shop',me:'Me',hi:'Good morning, Priya',date:'Sunday, 8 November',all:'All pets',add:'Add',day:"Bruno's day",of:'2 of 4 done',
+  t1:'Morning walk',t1s:'Done by Rohan · 2.1 km',t2:'Breakfast',t2s:'Done · 1½ cups',t3:'Evening walk',t3s:'Usual route, 30 min',t4:'Dinner',t4s:'1½ cups',
+  next:'Next for Bruno',flea:'Flea and tick prevention',in5:'Friday 13 Nov · in 5 days',given:'Mark as given',
+  q1:'Book a vet',q2:'Tele-vet',q3:'Buy again',q4:'First aid',near:'Near you',map:'Map',open:'Open till 9 pm',fee:'Consultation ₹750',km:'1.2 km',
+  week:'This week',nov:'November',legend:'Flea and tick dose',sos:'SOS',today:'Today',am:'am',pm:'pm',
+  w:['Sun','Mon','Tue','Wed','Thu','Fri','Sat']},
+ hi:{home:'होम',health:'सेहत',book:'बुक करें',shop:'दुकान',me:'मैं',hi:'सुप्रभात, प्रिया',date:'रविवार, 8 नवंबर',all:'सभी पालतू',add:'जोड़ें',day:'ब्रूनो का आज',of:'4 में से 2 हो गए',
+  t1:'सुबह की सैर',t1s:'रोहन ने कराई · 2.1 किमी',t2:'नाश्ता',t2s:'हो गया · डेढ़ कप',t3:'शाम की सैर',t3s:'रोज़ का रास्ता, 30 मिनट',t4:'रात का खाना',t4s:'डेढ़ कप',
+  next:'ब्रूनो के लिए आगे',flea:'पिस्सू और किलनी से बचाव',in5:'शुक्रवार 13 नवं. · 5 दिन में',given:'दे दी',
+  q1:'डॉक्टर बुक करें',q2:'टेली-वेट',q3:'फिर से खरीदें',q4:'प्राथमिक उपचार',near:'आपके पास',map:'नक्शा',open:'रात 9 बजे तक खुला',fee:'परामर्श ₹750',km:'1.2 किमी',
+  week:'इस हफ़्ते',nov:'नवंबर',legend:'पिस्सू-किलनी की खुराक',sos:'SOS',today:'आज',am:'सुबह',pm:'शाम',
+  w:['रवि','सोम','मंगल','बुध','गुरु','शुक्र','शनि']},
+ te:{home:'హోమ్',health:'ఆరోగ్యం',book:'బుక్',shop:'షాప్',me:'నేను',hi:'శుభోదయం, ప్రియ',date:'ఆదివారం, 8 నవంబర్',all:'అన్ని పెంపుడు జంతువులు',add:'జోడించు',day:'బ్రూనో ఈరోజు',of:'4లో 2 పూర్తయ్యాయి',
+  t1:'ఉదయం నడక',t1s:'రోహన్ పూర్తి చేశారు · 2.1 కి.మీ.',t2:'అల్పాహారం',t2s:'పూర్తయింది · ఒకటిన్నర కప్పు',t3:'సాయంత్రం నడక',t3s:'ఎప్పటి దారి, 30 ని.',t4:'రాత్రి భోజనం',t4s:'ఒకటిన్నర కప్పు',
+  next:'బ్రూనోకి తర్వాత',flea:'ఈగలు, పేలు నివారణ',in5:'శుక్రవారం 13 నవం. · 5 రోజుల్లో',given:'ఇచ్చాను',
+  q1:'వెట్‌ను బుక్ చేయండి',q2:'టెలి-వెట్',q3:'మళ్ళీ కొనండి',q4:'ప్రథమ చికిత్స',near:'మీ దగ్గర',map:'మ్యాప్',open:'రాత్రి 9 వరకు తెరిచి ఉంది',fee:'సంప్రదింపు ₹750',km:'1.2 కి.మీ.',
+  week:'ఈ వారం',nov:'నవంబర్',legend:'ఈగలు, పేలు మందు',sos:'SOS',today:'ఈరోజు',am:'ఉ.',pm:'సా.',
+  w:['ఆది','సోమ','మంగళ','బుధ','గురు','శుక్ర','శని']}
+}[L];
+const desk=W==='desktop';
+const I=(n,cls='')=>`<span class="i ${cls}">${n}</span>`;
+function ringSvg(color,seed=0){
+  // a hand-drawn ballpoint circle: two slightly offset loops
+  const a=seed%2?1:-1;
+  return `<svg class="ring" viewBox="0 0 60 50" preserveAspectRatio="none"><path d="M31 3c14 0 26 7 26 20s-12 23-28 23S3 37 3 24 16 2 34 4 c${9*a} 1 16 5 18 9" fill="none" stroke="${color}" stroke-width="2.4" stroke-linecap="round"/></svg>`;
+}
+function stampSvg(label,sub,due){
+  const c='currentColor';
+  return `<div class="stamp ${due?'due':''}"><svg viewBox="0 0 62 62"><circle cx="31" cy="31" r="28" fill="none" stroke="${c}" stroke-width="${due?1.5:2.6}" ${due?'stroke-dasharray="4 4"':''}/>${due?'':`<circle cx="31" cy="31" r="23" fill="none" stroke="${c}" stroke-width="1.2" opacity=".85"/>`}</svg><div class="t"><span>${label}</span>${sub?`<span style="font-size:13px;font-weight:700">${sub}</span>`:''}</div></div>`;
+}
+function garlandSvg(done,total){
+  let s='';const cx=70,cy=70,R=59;
+  const n=16;
+  for(let k=0;k<n;k++){
+    const ang=-Math.PI/2+k*2*Math.PI/n; const x=cx+R*Math.cos(ang), y=cy+R*Math.sin(ang);
+    const isTask=k%(n/total)===0; const ti=k/(n/total);
+    if(isTask){
+      const on=ti<done;
+      s+=`<g transform="translate(${x} ${y})">${[0,1,2,3,4,5,6,7].map(j=>`<ellipse rx="4.4" ry="8.5" cy="-6.5" transform="rotate(${j*45})" fill="${on?'var(--brand)':'none'}" stroke="${on?'var(--brand)':'var(--onBand2)'}" stroke-width="1.5"/>`).join('')}<circle r="3.5" fill="${on?'#7A3E00':'var(--band)'}" stroke="${on?'var(--brand)':'var(--onBand2)'}" stroke-width="1.5"/></g>`;
+    } else s+=`<circle cx="${x}" cy="${y}" r="3.2" fill="var(--brand)" opacity=".7"/>`;
+  }
+  return `<svg viewBox="0 0 140 140">${s}</svg>`;
+}
+
+function shell(content,active='home'){
+  const tabs=[['home','home'],['health','favorite'],['book','calendar_month'],['shop','shopping_bag'],['me','person']];
+  if(desk){
+    return `<div class="app desk d${D} ${L} ${T}"><nav class="rail"><div class="logo"><span class="mark">${I('pets','fill')}</span>PawSetu</div>
+    ${tabs.map(([k,ic])=>`<div class="t ${k===active?'on':''}">${I(ic)}${tx[k]}</div>`).join('')}
+    <div class="sep"></div><div class="t">${I('chat')}Messages</div><div class="t">${I('notifications')}Notifications</div></nav>
+    <div class="main"><header class="top"><div class="row grow" style="gap:16px">${petChips()}</div><span class="iconbtn">${I('search')}</span><span class="iconbtn">${I('chat')}<span class="badge">1</span></span><span class="iconbtn">${I('notifications')}<span class="badge">2</span></span><span class="sos">${I('emergency','fill')}${tx.sos}</span></header>
+    <div class="content">${content}</div></div></div>`;
+  }
+  return `<div class="app d${D} ${L} ${T}"><div class="main"><header class="top"><div class="logo grow"><span class="mark">${I('pets','fill')}</span>PawSetu</div><span class="iconbtn">${I('chat')}<span class="badge">1</span></span><span class="iconbtn">${I('notifications')}<span class="badge">2</span></span><span class="sos">${I('emergency','fill')}${tx.sos}</span></header>
+  <div class="content">${content}</div></div>
+  <nav class="navbar">${tabs.map(([k,ic])=>`<div class="t ${k===active?'on':''}"><span class="pill">${I(ic)}</span>${tx[k]}</div>`).join('')}</nav></div>`;
+}
+function petChips(){return `<div class="chips"><span class="chip on"><img src="img/bruno.jpg" alt="">Bruno</span><span class="chip"><img src="img/misty.jpg" alt="">Misty</span><span class="chip add">${I('add')}</span></div>`}
+
+/* ---------------- HOME ---------------- */
+function tasks(){
+  const rows=[[tx.t1,tx.t1s,'7:00',tx.am,1],[tx.t2,tx.t2s,'8:00',tx.am,1],[tx.t3,tx.t3s,'6:30',tx.pm,0],[tx.t4,tx.t4s,'8:00',tx.pm,0]];
+  return rows.map(([t,s,tm,ap,on],k)=>{
+    let lead=`<div class="time">${tm}<small>${ap}</small></div>`;
+    let trail = D==='B' ? (on?stampSvg('Done',tm):`<span class="check"></span>`) : `<span class="check ${on?'on':''}">${on?I('check'):''}</span>`;
+    return `<div class="li ${on?'done':''}">${lead}<div class="grow"><div class="ttl">${t}</div><div class="s">${s}</div></div>${trail}</div>`;
+  }).join('');
+}
+function signature(){
+  if(D==='A'){
+    const days=[8,9,10,11,12,13,14];
+    return `<div class="cal"><div class="band"><span class="mo">${tx.nov} 2026</span><span style="font-weight:600;font-size:15px">${tx.week}</span></div>
+    <div class="days">${days.map((n,k)=>`<div class="d ${k===0?'sun':''}"><span class="w">${tx.w[k]}</span><span class="n num">${n}${k===0?ringSvg('var(--mark)',0):''}${k===5?ringSvg('var(--mark)',1):''}</span><span class="dot ${[5].includes(k)?'':'no'}"></span></div>`).join('')}</div>
+    <div class="legend"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--mark)"></span><b class="num" style="font-size:18px">13</b><span>${tx.legend}</span></div></div>`;
+  }
+  if(D==='C'){
+    return `<div class="genda"><div class="garland"><img src="img/bruno.jpg" alt="Bruno">${garlandSvg(2,4)}</div><div class="grow"><div style="font-weight:600;font-size:15px;color:var(--onBand2)">${tx.date}</div><div class="big">${tx.day}</div><div style="font-weight:600">${tx.of}</div><div class="bar"><i></i></div></div></div>`;
+  }
+  return '';
+}
+function nextCard(){
+  let lead='';
+  if(D==='A') lead=`<div class="dateblk"><div class="w">${tx.w[5]}</div><div class="n num">13${ringSvg('var(--mark)',1)}</div></div>`;
+  if(D==='B') lead=stampSvg('Due','13 Nov',true);
+  if(D==='C') lead=`<span class="ic" style="width:52px;height:52px;border-radius:50%;background:var(--tint);color:var(--onTint);display:grid;place-items:center;flex:none">${I('pest_control','fill')}</span>`;
+  const hd = D==='B' ? `<div class="hd"><span class="lbl">${tx.next}</span></div>` : '';
+  return `<div class="card">${hd}<div class="pad col" style="gap:14px">${D!=='B'?`<div class="lbl">${tx.next}</div>`:''}<div class="row" style="gap:14px">${lead}<div class="grow"><div class="ttl">${tx.flea}</div><div class="s">${tx.in5}</div></div></div><button class="btn o full">${I('check')}${tx.given}</button></div></div>`;
+}
+function quick(){
+  const q=[['stethoscope',tx.q1],['videocam',tx.q2],['replay',tx.q3],['medical_services',tx.q4]];
+  return `<div class="qa">${q.map(([ic,t])=>`<div class="q"><span class="ic">${I(ic)}</span>${t}</div>`).join('')}</div>`;
+}
+function nearYou(){
+  const pin = D==='A'?`<span class="pinno">1</span>`:'';
+  return `<div class="col" style="gap:10px"><div class="sec"><h2>${tx.near}</h2><span class="btn t">${tx.map}</span></div>
+  <div class="card"><div class="place"><img src="img/clinic_0.jpg" alt=""><div class="grow col" style="gap:3px"><div class="row" style="gap:8px">${pin}<div class="ttl">Gulmohar Vet Studio</div></div><div class="s">Indiranagar · ${tx.km}</div><div class="stars">${I('star','fill')}4.8 <span class="s" style="font-weight:400">(28)</span></div><div class="s">${tx.open} · ${tx.fee}</div></div></div></div></div>`;
+}
+function home(){
+  const greet=`<div class="col" style="gap:2px">${D!=='C'?`<div class="m">${tx.date}</div>`:''}<h1>${tx.hi}</h1></div>`;
+  const dayHd = D==='B' ? `<div class="hd"><span class="lbl">${tx.day}</span><span class="s">${tx.of}</span></div>` : (D==='A'?`<div class="pad" style="padding-bottom:4px"><div class="sec"><h2>${tx.today}</h2><span class="s">${tx.of}</span></div></div>`:'' );
+  const dayCard=`<div class="card">${dayHd}${tasks()}</div>`;
+  if(desk){
+    return shell(`${greet}<div class="grid2"><div class="col">${signature()}${dayCard}</div><div class="col">${nextCard()}${quick()}${nearYou()}</div></div>`);
+  }
+  return shell(`${greet}${petChips()}${signature()}${dayCard}${nextCard()}${quick()}${nearYou()}`);
+}
+
+/* ---------------- HEALTH ---------------- */
+function health(){
+  const due=[['13','Fri','Flea and tick prevention','Spot-on, every 30 days'],['18','Wed','DHPPi + Lepto booster','Yearly · Gulmohar Vet Studio'],['18','Wed','Anti-rabies booster','Yearly · Gulmohar Vet Studio'],['18','Wed','Deworming tablet','Every 3 months']];
+  const lead=(n,w,k)=>{
+    if(D==='A') return `<div class="dateblk"><div class="w">${w}</div><div class="n num">${n}${k===0?ringSvg('var(--mark)',1):''}</div></div>`;
+    if(D==='B') return stampSvg('Due',n+' Nov',true);
+    return `<div class="dateblk" style="width:56px;text-align:center;background:var(--sunk);border-radius:14px;padding:6px 0"><div class="s" style="font-weight:700">${w}</div><div class="num" style="font-weight:700;font-size:24px;line-height:1.1">${n}</div></div>`;
+  };
+  const hd=(t,a)=> D==='B'?`<div class="hd"><span class="lbl">${t}</span>${a||''}</div>`:`<div class="pad" style="padding-bottom:0"><div class="sec"><h2>${t}</h2>${a||''}</div></div>`;
+  const coming=`<div class="card">${hd('Coming up','<span class="s">Next 2 weeks</span>')}${due.map(([n,w,t,s],k)=>`<div class="li">${lead(n,w,k)}<div class="grow"><div class="ttl">${t}</div><div class="s">${s}</div></div></div>`).join('')}</div>`;
+  const vax=[['DHPPi + Lepto','18 Nov 2025','Gulmohar Vet Studio'],['Anti-rabies','18 Nov 2025','Gulmohar Vet Studio'],['DHPPi + Lepto','23 Nov 2024','Gulmohar Vet Studio']];
+  const vlead=(d)=> D==='B'?stampSvg('Given',d.split(' ').slice(0,2).join(' ')):`<span class="check on">${I('check')}</span>`;
+  const vaccines=`<div class="card">${hd('Vaccinations','<span class="btn t">See all 9</span>')}${vax.map(([t,d,c])=>`<div class="li">${vlead(d)}<div class="grow"><div class="ttl">${t}</div><div class="s">Given ${d} · ${c}</div></div></div>`).join('')}</div>`;
+  const pts=[28.2,28.5,28.4,28.8,29.1,29.0];const mn=28,mx=29.3;
+  const sp=pts.map((v,k)=>`${k*24},${40-(v-mn)/(mx-mn)*36}`).join(' ');
+  const weight=`<div class="card">${hd('Weight')}<div class="pad row" style="gap:16px"><div><div class="num" style="font-size:34px;font-weight:700;line-height:1.1">29.0 <span style="font-size:18px">kg</span></div><div class="s">+0.8 kg in 3 months · healthy for a Labrador</div></div><svg class="spark grow" viewBox="0 0 120 42" height="48" preserveAspectRatio="none"><polyline points="${sp}" fill="none" stroke="var(--primary)" stroke-width="2.5"/></svg></div></div>`;
+  const visit=`<div class="card">${hd('Last vet visit')}<div class="pad col" style="gap:4px"><div class="ttl">Annual check-up · 10 Jul 2026</div><div class="s">Gulmohar Vet Studio</div><div class="m" style="margin-top:6px;color:var(--ink)">Healthy. Mild ear infection, ear drops for 7 days.</div></div></div>`;
+  const records=`<div class="card">${[['badge','Medical card','Works offline'],['description','Health report','PDF for your vet'],['medication','Medicines','No medicines right now']].map(([ic,t,s])=>`<div class="li"><span class="i" style="color:var(--primary)">${ic}</span><div class="grow"><div class="ttl">${t}</div><div class="s">${s}</div></div>${I('chevron_right')}</div>`).join('')}</div>`;
+  const status=`<div class="card"><div class="pad row" style="gap:14px"><span class="check on" style="width:40px;height:40px">${I('check')}</span><div class="grow"><div class="ttl" style="font-size:18px">Bruno is up to date</div><div class="s">4 things due in the next 2 weeks. We'll remind you the day before.</div></div></div></div>`;
+  const title=`<div class="sec"><h1>Health</h1><button class="btn p">${I('add')}Add record</button></div>`;
+  if(desk) return shell(`${title}<div class="grid2"><div class="col">${status}${coming}${vaccines}</div><div class="col">${weight}${visit}${records}</div></div>`,'health');
+  return shell(`${title}${petChips()}${status}${coming}${weight}${vaccines}${visit}${records}`,'health');
+}
+
+/* ---------------- BOOK ---------------- */
+function book(){
+  const kinds=[['stethoscope','Vet clinic'],['videocam','Tele-vet'],['content_cut','Grooming'],['school','Training'],['house','Boarding'],['directions_walk','Walking']];
+  const up=(()=>{
+    let lead='';
+    if(D==='A') lead=`<div class="dateblk"><div class="w">Thu</div><div class="n num">12${ringSvg('var(--mark)',0)}</div></div>`;
+    if(D==='B') lead=stampSvg('Booked','12 Nov');
+    if(D==='C') lead=`<img src="img/clinic_0.jpg" style="width:64px;height:64px;border-radius:16px;object-fit:cover;flex:none" alt="">`;
+    const hd = D==='B'?`<div class="hd"><span class="lbl">Upcoming</span><span class="btn t" style="height:auto;padding:0">My bookings</span></div>`:'';
+    return `<div class="card">${hd}<div class="pad col" style="gap:12px">${D!=='B'?`<div class="sec"><span class="lbl">Upcoming</span><span class="btn t" style="height:auto;padding:0">My bookings</span></div>`:''}<div class="row" style="gap:14px">${lead}<div class="grow"><div class="ttl">Gulmohar Vet Studio</div><div class="s">Consultation for Bruno · Thu 12 Nov, 10:30 am</div></div><span class="pillsm ok">${I('check')}Confirmed</span></div></div></div>`;
+  })();
+  const clinics=[['clinic_0','Gulmohar Vet Studio','Indiranagar','1.2 km','4.8','28','Open till 9 pm','₹750','Instant booking'],['clinic_1','Namma Pet Hospital','Koramangala','3.4 km','4.5','22','Open 24 hours','₹600','Instant booking'],['clinic_2','Whitefield Wag Clinic','Whitefield','9.8 km','4.1','12','Opens 9 am','₹500','Clinic confirms']];
+  const list=`<div class="col" style="gap:10px"><div class="sec"><h2>Clinics near you</h2><span class="btn t">${I('map')}Map</span></div>${clinics.map(([img,n,a,km,r,c,o,f,mode],k)=>`<div class="card"><div class="place"><img src="img/${img}.jpg" alt=""><div class="grow col" style="gap:3px"><div class="row" style="gap:8px">${D==='A'?`<span class="pinno">${k+1}</span>`:''}<div class="ttl">${n}</div></div><div class="s">${a} · ${km} · ${o}</div><div class="stars">${I('star','fill')}${r} <span class="s" style="font-weight:400">(${c})</span></div><div class="row" style="gap:8px;justify-content:space-between"><span style="font-weight:700">${f} <span class="s" style="font-weight:400">consultation</span></span></div></div></div></div>`).join('')}</div>`;
+  const title=`<h1>Book care</h1>`;
+  const search=`<div class="search">${I('search')}<span class="grow">Find a vet, groomer or walker</span>${I('tune')}</div>`;
+  const tiles=`<div class="tiles6">${kinds.map(([ic,t])=>`<div class="tile"><span class="i">${ic}</span>${t}</div>`).join('')}</div>`;
+  if(desk) return shell(`${title}${search}${tiles}<div class="grid2"><div class="col">${list}</div><div class="col">${up}</div></div>`,'book');
+  return shell(`${title}${search}${tiles}${up}${list}`,'book');
+}
+
+/* ---------------- PORTAL (clinic) ---------------- */
+function portal(){
+  const rows=[['10:00','Simba','Indie puppy','Ravi Teja','Vaccination','ok','Confirmed'],['10:30','Rocky','Labrador','Lakshmi Prasad','Consultation','pr','Checked in'],['11:15','Kitty','Persian cat','Anil Kumar','Vaccination','ok','Confirmed'],['12:00','Kiwi','Budgie','Ravi Teja','Check-up','warn','Waiting for you'],['3:30','Bella','Beagle','Sana Mirza','Consultation','ok','Confirmed'],['5:00','Tommy','Indie dog','Suresh Reddy','Dental','ok','Confirmed']];
+  const nav=[['today','Today'],['calendar_month','Calendar'],['inbox','Requests'],['medical_services','Services'],['groups','Staff'],['chat','Chat'],['star','Reviews'],['payments','Payouts'],['storefront','Profile']];
+  const status=(c,t)=> D==='B'&&t==='Checked in'?`<span class="pillsm pr">${t}</span>`:`<span class="pillsm ${c}">${t}</span>`;
+  const kpis=`<div class="kpis">${[['6','Appointments today','2 tele-vet'],['2','Requests waiting','Reply in 2 hours'],['₹18,450','Payout this week','Demo money · Fri 13 Nov']].map(([v,t,s])=>`<div class="card kpi pad"><div class="s" style="font-weight:600">${t}</div><div class="v">${v}</div><div class="sub">${s}</div></div>`).join('')}</div>`;
+  const hdr=`<div class="sec"><div><div class="m">Golconda Gate Pet Clinic · Banjara Hills</div><h1>Today, Sunday 8 Nov</h1></div><button class="btn p">${I('add')}New booking</button></div>`;
+  if(desk){
+    const table=`<div class="card"><table><thead><tr><th>Time</th><th>Pet</th><th>Owner</th><th>Service</th><th>Status</th><th></th></tr></thead><tbody>${rows.map(([tm,pt,br,ow,sv,c,st])=>`<tr><td class="num" style="font-weight:700;font-size:16px">${tm}</td><td><b>${pt}</b> <span class="s">${br}</span></td><td>${ow}</td><td>${sv}</td><td>${status(c,st)}</td><td style="text-align:right"><span class="btn t" style="height:36px">Open</span></td></tr>`).join('')}</tbody></table></div>`;
+    return `<div class="app desk d${D} ${T}"><nav class="rail"><div class="logo"><span class="mark">${I('pets','fill')}</span>PawSetu <span class="s" style="font-weight:600;margin-left:4px">Partner</span></div>${nav.map(([ic,t],k)=>`<div class="t ${k===0?'on':''}">${I(ic)}${t}${t==='Requests'?'<span class="badge" style="position:static;margin-left:auto">2</span>':''}</div>`).join('')}</nav>
+    <div class="main"><header class="top"><div class="grow s">Kavya Rao · Clinic admin <span class="demo">DEMO</span></div><span class="iconbtn">${I('notifications')}<span class="badge">3</span></span><span class="iconbtn">${I('account_circle')}</span></header><div class="content">${hdr}${kpis}${table}</div></div></div>`;
+  }
+  const list=`<div class="card">${rows.slice(0,5).map(([tm,pt,br,ow,sv,c,st])=>`<div class="li"><div class="time">${tm}<small>${tm.startsWith('1')&&tm!=='12:00'?'am':'pm'}</small></div><div class="grow"><div class="ttl">${pt} · ${sv}</div><div class="s">${ow}</div></div>${status(c,st)}</div>`).join('')}</div>`;
+  return `<div class="app d${D} ${T}"><div class="main"><header class="top"><div class="logo grow"><span class="mark">${I('pets','fill')}</span>Partner</div><span class="iconbtn">${I('notifications')}<span class="badge">3</span></span><span class="iconbtn">${I('menu')}</span></header><div class="content">
+  <div class="col" style="gap:2px"><div class="m">Golconda Gate Pet Clinic</div><h1>Today, 8 Nov</h1></div>
+  <div class="kpis" style="grid-template-columns:1fr 1fr">${[['6','Appointments'],['2','Requests waiting']].map(([v,t])=>`<div class="card kpi pad"><div class="v">${v}</div><div class="s">${t}</div></div>`).join('')}</div>
+  ${list}<button class="btn p full">${I('inbox')}Answer 2 requests</button></div></div>
+  <nav class="navbar">${[['today','Today'],['calendar_month','Calendar'],['inbox','Requests'],['chat','Chat'],['more_horiz','More']].map(([ic,t],k)=>`<div class="t ${k===0?'on':''}"><span class="pill">${I(ic)}</span>${t}</div>`).join('')}</nav></div>`;
+}
+
+document.getElementById('root').innerHTML = ({home,health,book,portal})[S]();
+document.fonts.ready.then(()=>document.body.setAttribute('data-ready','1'));
+</script></body></html>

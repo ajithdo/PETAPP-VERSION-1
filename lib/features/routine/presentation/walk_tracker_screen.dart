@@ -251,17 +251,24 @@ class _WalkTrackerScreenState extends ConsumerState<WalkTrackerScreen> {
             Padding(
               padding: EdgeInsets.all(context.gutter),
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 640),
+                constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
                 child: Column(children: [
                   if (_state == _WalkState.ready) ...[
                     HeatCard(pet: pet, compact: true),
                     const SizedBox(height: Space.md),
                   ],
-                  Row(children: [
-                    Expanded(child: _Stat(label: l.distance, value: Fmt.km(_km))),
-                    Expanded(child: _Stat(label: l.duration, value: Fmt.duration(_elapsed))),
-                    Expanded(child: _Stat(label: l.pace, value: pace == null ? '–' : l.paceValue(pace.toStringAsFixed(1)))),
-                  ]),
+                  PawCard(
+                    padding: const EdgeInsets.symmetric(vertical: Space.md, horizontal: Space.sm),
+                    child: IntrinsicHeight(
+                      child: Row(children: [
+                        Expanded(child: _Stat(label: l.distance, value: Fmt.km(_km))),
+                        const VerticalDivider(),
+                        Expanded(child: _Stat(label: l.duration, value: Fmt.duration(_elapsed))),
+                        const VerticalDivider(),
+                        Expanded(child: _Stat(label: l.pace, value: pace == null ? '–' : l.paceValue(pace.toStringAsFixed(1)))),
+                      ]),
+                    ),
+                  ),
                   const SizedBox(height: Space.lg),
                   ..._controls(context, pet),
                 ]),
@@ -278,13 +285,13 @@ class _WalkTrackerScreenState extends ConsumerState<WalkTrackerScreen> {
     switch (_state) {
       case _WalkState.ready:
         return [
-          if (!kIsWeb) PrimaryButton(label: l.startWalk, icon: Icons.play_arrow_rounded, onPressed: () => _start()),
+          if (!kIsWeb) PrimaryButton(label: l.startWalk, icon: Icons.play_arrow_outlined, onPressed: () => _start()),
           if (kIsWeb) ...[
             InfoNote(l.walkWebNote),
             const SizedBox(height: Space.md),
             PrimaryButton(
               label: l.enterWalkManually,
-              icon: Icons.edit_rounded,
+              icon: Icons.edit_outlined,
               onPressed: () async {
                 await showLogDetails(context, ref, pet, LogType.walk);
                 if (context.mounted) context.pop();
@@ -292,27 +299,27 @@ class _WalkTrackerScreenState extends ConsumerState<WalkTrackerScreen> {
             ),
           ],
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.startDemoWalk, icon: Icons.science_rounded, onPressed: () => _start(simulate: true)),
+          SecondaryButton(label: l.startDemoWalk, icon: Icons.science_outlined, onPressed: () => _start(simulate: true)),
         ];
       case _WalkState.tracking:
         return [
           Row(children: [
-            Expanded(child: SecondaryButton(label: l.pause, icon: Icons.pause_rounded, onPressed: _pause)),
+            Expanded(child: SecondaryButton(label: l.pause, icon: Icons.pause_outlined, onPressed: _pause)),
             const SizedBox(width: Space.md),
-            Expanded(child: PrimaryButton(label: l.stop, icon: Icons.stop_rounded, danger: true, onPressed: _stop)),
+            Expanded(child: PrimaryButton(label: l.stop, icon: Icons.stop_outlined, danger: true, onPressed: _stop)),
           ]),
         ];
       case _WalkState.paused:
         return [
           Row(children: [
-            Expanded(child: SecondaryButton(label: l.resume, icon: Icons.play_arrow_rounded, onPressed: _resume)),
+            Expanded(child: SecondaryButton(label: l.resume, icon: Icons.play_arrow_outlined, onPressed: _resume)),
             const SizedBox(width: Space.md),
-            Expanded(child: PrimaryButton(label: l.stop, icon: Icons.stop_rounded, danger: true, onPressed: _stop)),
+            Expanded(child: PrimaryButton(label: l.stop, icon: Icons.stop_outlined, danger: true, onPressed: _stop)),
           ]),
         ];
       case _WalkState.finished:
         return [
-          PrimaryButton(label: l.saveWalk, loading: _saving, icon: Icons.check_rounded, onPressed: () => _save(pet)),
+          PrimaryButton(label: l.saveWalk, loading: _saving, icon: Icons.check_outlined, onPressed: () => _save(pet)),
           const SizedBox(height: Space.sm),
           TextButton(
             onPressed: () async {
@@ -336,11 +343,16 @@ class _Stat extends StatelessWidget {
       label: '$label $value',
       excludeSemantics: true,
       child: Column(children: [
+        Text(label,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: context.textX.overline.copyWith(color: context.paw.textSecondary)),
+        const SizedBox(height: Space.xs),
         FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(value, maxLines: 1, style: context.text.headlineSmall?.copyWith(fontFeatures: const [FontFeature.tabularFigures()])),
         ),
-        Text(label, style: context.text.bodySmall),
       ]),
     );
   }
@@ -348,7 +360,7 @@ class _Stat extends StatelessWidget {
 
 /// Read-only map of a saved walk.
 class WalkRouteView extends StatelessWidget {
-  const WalkRouteView({super.key, required this.log, this.height = 220});
+  const WalkRouteView({super.key, required this.log, this.height = Sizes.routeMapSmall});
   final RoutineLog log;
   final double height;
 

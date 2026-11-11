@@ -25,7 +25,7 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen> {
       title: l.verifyTitle,
       subtitle: l.verifySubtitle(user?.email ?? ''),
       children: [
-        const Center(child: Illustration(Scene.chat, size: 140)),
+        const Center(child: Illustration(Scene.chat, size: Sizes.illustrationSm)),
         const SizedBox(height: Space.lg),
         if (cfg.isStandalone) ...[
           DemoBanner(l.verifyDemoNote),

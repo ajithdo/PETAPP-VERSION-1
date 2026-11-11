@@ -78,7 +78,7 @@ class _PlusScreenState extends ConsumerState<PlusScreen> {
     final canTrial = canStartTrial(plan: plan, trialUsedAt: user.trialUsedAt);
     return Scaffold(
       appBar: AppBar(title: Text(l.pawsetuPlus)),
-      body: PageBody(maxWidth: 800, children: [
+      body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
         _StatusCard(user: user, now: now),
         const SizedBox(height: Space.lg),
@@ -89,7 +89,7 @@ class _PlusScreenState extends ConsumerState<PlusScreen> {
           const SizedBox(height: Space.md),
           PrimaryButton(
             label: l.plusBuy(Fmt.inr(_yearly ? prices.yearly : prices.monthly, context.lang)),
-            icon: Icons.workspace_premium_rounded,
+            icon: Icons.workspace_premium_outlined,
             loading: _busy,
             onPressed: () => _buy(user, prices),
           ),
@@ -100,7 +100,7 @@ class _PlusScreenState extends ConsumerState<PlusScreen> {
             ),
           if (canTrial) ...[
             const SizedBox(height: Space.sm),
-            SecondaryButton(label: l.plusStartTrial(prices.trialDays), icon: Icons.celebration_rounded, onPressed: _busy ? null : () => _trial(user, prices)),
+            SecondaryButton(label: l.plusStartTrial(prices.trialDays), icon: Icons.celebration_outlined, onPressed: _busy ? null : () => _trial(user, prices)),
             Padding(
               padding: const EdgeInsets.only(top: Space.xs),
               child: Text(l.plusTrialNote(prices.trialDays), style: context.text.bodySmall, textAlign: TextAlign.center),
@@ -149,15 +149,15 @@ class _StatusCard extends StatelessWidget {
     };
     final plus = plan != 'free';
     return PawCard(
-      color: plus ? context.paw.accent.withValues(alpha: 0.12) : null,
+      color: plus ? context.paw.accent.withValues(alpha: Opacities.chip) : null,
       borderColor: plus ? context.paw.accent : null,
       child: Row(children: [
-        Icon(plus ? Icons.workspace_premium_rounded : Icons.pets_rounded, size: 40, color: plus ? context.paw.accent : context.colors.primary),
+        Icon(plus ? Icons.workspace_premium_outlined : Icons.pets_outlined, size: IconSizes.xxxl, color: plus ? context.paw.accent : context.colors.primary),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(title, style: context.text.titleMedium),
-            const SizedBox(height: 2),
+            const SizedBox(height: Space.xxs),
             Text(body, style: context.text.bodyMedium),
           ]),
         ),
@@ -186,38 +186,38 @@ class _Comparison extends StatelessWidget {
     }
 
     final rows = <(IconData, String, String, String)>[
-      (Icons.pets_rounded, l.plusRowPets, count(free['pets']), count(plus['pets'])),
-      (Icons.family_restroom_rounded, l.plusRowFamily, count(free['family']), count(plus['family'])),
-      (Icons.videocam_rounded, l.plusRowVideo, '–', l.plusYes),
-      (Icons.chat_rounded, l.plusRowTeleVet, l.plusPerMonth(count(free['teleVetPerMonth'])), isUnlimited(plus['teleVetPerMonth'] as num?) ? l.admUnlimited : l.plusPerMonth(count(plus['teleVetPerMonth']))),
-      (Icons.short_text_rounded, l.plusRowMessages, l.plusMessagesWords(count(free['teleVetMessages']), count(free['teleVetWords'])),
+      (Icons.pets_outlined, l.plusRowPets, count(free['pets']), count(plus['pets'])),
+      (Icons.family_restroom_outlined, l.plusRowFamily, count(free['family']), count(plus['family'])),
+      (Icons.videocam_outlined, l.plusRowVideo, '–', l.plusYes),
+      (Icons.chat_outlined, l.plusRowTeleVet, l.plusPerMonth(count(free['teleVetPerMonth'])), isUnlimited(plus['teleVetPerMonth'] as num?) ? l.admUnlimited : l.plusPerMonth(count(plus['teleVetPerMonth']))),
+      (Icons.short_text_outlined, l.plusRowMessages, l.plusMessagesWords(count(free['teleVetMessages']), count(free['teleVetWords'])),
           l.plusMessagesWords(count(plus['teleVetMessages']), count(plus['teleVetWords']))),
-      (Icons.auto_awesome_rounded, l.plusRowAi, l.plusPerMonth(count(free['aiQuestions'])), count(plus['aiQuestions'])),
-      (Icons.cloud_rounded, l.plusRowStorage, '${free['storageGb'] ?? 1} GB', '${plus['storageGb'] ?? 25} GB'),
-      (Icons.movie_rounded, l.plusRowVideoLength, secs(free['videoSeconds']), secs(plus['videoSeconds'])),
-      (Icons.local_offer_rounded, l.plusRowVideoDiscount, '–', '${commission['videoDiscountPercent'] ?? 10}%'),
-      (Icons.local_shipping_rounded, l.plusRowDelivery, l.plusAbove(Fmt.inr((shop['freeDeliveryAbove'] as num?) ?? 999, context.lang)),
+      (Icons.auto_awesome_outlined, l.plusRowAi, l.plusPerMonth(count(free['aiQuestions'])), count(plus['aiQuestions'])),
+      (Icons.cloud_outlined, l.plusRowStorage, '${free['storageGb'] ?? 1} GB', '${plus['storageGb'] ?? 25} GB'),
+      (Icons.movie_outlined, l.plusRowVideoLength, secs(free['videoSeconds']), secs(plus['videoSeconds'])),
+      (Icons.local_offer_outlined, l.plusRowVideoDiscount, '–', '${commission['videoDiscountPercent'] ?? 10}%'),
+      (Icons.local_shipping_outlined, l.plusRowDelivery, l.plusAbove(Fmt.inr((shop['freeDeliveryAbove'] as num?) ?? 999, context.lang)),
           l.plusAbove(Fmt.inr((commission['freeDeliveryAbove'] as num?) ?? 499, context.lang))),
-      (Icons.support_agent_rounded, l.plusRowSupport, l.plusStandard, l.plusPriority),
+      (Icons.support_agent_outlined, l.plusRowSupport, l.plusStandard, l.plusPriority),
     ];
     return PawCard(
       padding: const EdgeInsets.all(Space.md),
       child: Column(children: [
         Row(children: [
           const Expanded(child: SizedBox()),
-          SizedBox(width: 88, child: Text(l.planFree, style: context.text.labelLarge, textAlign: TextAlign.center)),
-          SizedBox(width: 88, child: Text(l.planPlus, style: context.text.labelLarge?.copyWith(color: context.paw.accent), textAlign: TextAlign.center)),
+          SizedBox(width: Sizes.planColumn, child: Text(l.planFree, style: context.text.labelLarge, textAlign: TextAlign.center)),
+          SizedBox(width: Sizes.planColumn, child: Text(l.planPlus, style: context.text.labelLarge?.copyWith(color: context.paw.accent), textAlign: TextAlign.center)),
         ]),
         const Divider(),
         for (final (icon, label, f, p) in rows)
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6),
+            padding: const EdgeInsets.symmetric(vertical: Space.xs + Space.xxs),
             child: Row(children: [
-              Icon(icon, size: 20, color: context.colors.primary),
+              Icon(icon, size: IconSizes.md, color: context.colors.primary),
               const SizedBox(width: Space.sm),
               Expanded(child: Text(label, style: context.text.bodyMedium)),
-              SizedBox(width: 88, child: Text(f, style: context.text.bodySmall, textAlign: TextAlign.center)),
-              SizedBox(width: 88, child: Text(p, style: context.text.bodySmall?.copyWith(fontWeight: FontWeight.w700), textAlign: TextAlign.center)),
+              SizedBox(width: Sizes.planColumn, child: Text(f, style: context.text.bodySmall, textAlign: TextAlign.center)),
+              SizedBox(width: Sizes.planColumn, child: Text(p, style: context.text.bodySmall?.copyWith(fontWeight: FontWeight.w700), textAlign: TextAlign.center)),
             ]),
           ),
       ]),
@@ -247,7 +247,7 @@ class _PeriodChoice extends StatelessWidget {
             padding: const EdgeInsets.all(Space.md),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
-                Icon(selected ? Icons.radio_button_checked_rounded : Icons.radio_button_off_rounded, color: context.colors.primary, size: 20),
+                Icon(selected ? Icons.radio_button_checked_rounded : Icons.radio_button_off_outlined, color: context.colors.primary, size: IconSizes.md),
                 const SizedBox(width: Space.xs),
                 Expanded(child: Text(y ? l.plusYearly : l.plusMonthly, style: context.text.titleSmall)),
               ]),
@@ -340,12 +340,12 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
       appBar: AppBar(title: Text(l.referTitle)),
       body: !on
           ? EmptyState(title: l.referPaused)
-          : PageBody(maxWidth: 700, children: [
+          : PageBody(maxWidth: Space.formWidth, children: [
               const SizedBox(height: Space.md),
               PawCard(
                 color: context.paw.primaryContainer,
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                  Icon(Icons.card_giftcard_rounded, size: 40, color: context.colors.primary),
+                  Icon(Icons.card_giftcard_outlined, size: IconSizes.xxxl, color: context.colors.primary),
                   const SizedBox(height: Space.sm),
                   Text(l.referHeadline(Fmt.inr(reward, context.lang)), style: context.text.titleLarge, textAlign: TextAlign.center),
                   const SizedBox(height: Space.xs),
@@ -354,12 +354,12 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
                   if (code != null) ...[
                     Text(l.referYourCode, style: context.text.labelLarge, textAlign: TextAlign.center),
                     const SizedBox(height: Space.xs),
-                    Text(code, style: context.text.headlineMedium?.copyWith(letterSpacing: 4, fontWeight: FontWeight.w800), textAlign: TextAlign.center),
+                    Text(code, style: context.textX.mono.copyWith(fontSize: context.text.headlineMedium?.fontSize, letterSpacing: Tracking.code, fontWeight: FontWeight.w700, color: context.paw.textPrimary), textAlign: TextAlign.center),
                     const SizedBox(height: Space.sm),
                     Wrap(alignment: WrapAlignment.center, spacing: Space.sm, runSpacing: Space.sm, children: [
                       SecondaryButton(
                         label: l.copy,
-                        icon: Icons.copy_rounded,
+                        icon: Icons.copy_outlined,
                         expand: false,
                         onPressed: () async {
                           await Clipboard.setData(ClipboardData(text: code));
@@ -368,7 +368,7 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
                       ),
                       PrimaryButton(
                         label: l.share,
-                        icon: Icons.share_rounded,
+                        icon: Icons.share_outlined,
                         expand: false,
                         onPressed: () => SharePlus.instance.share(ShareParams(text: l.referShareText(code, Fmt.inr(reward, context.lang)))),
                       ),
@@ -399,11 +399,11 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
                     child: PawCard(
                       padding: const EdgeInsets.all(Space.md),
                       child: Row(children: [
-                        const Icon(Icons.local_offer_rounded),
+                        const Icon(Icons.local_offer_outlined),
                         const SizedBox(width: Space.md),
                         Expanded(
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            Text('${c['id']}', style: context.text.titleSmall?.copyWith(letterSpacing: 1)),
+                            Text('${c['id']}', style: context.textX.mono.copyWith(letterSpacing: Tracking.id, fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
                             Text(
                               l.referCouponLine(
                                 Fmt.inr((c['flat'] as num?) ?? 0, context.lang),

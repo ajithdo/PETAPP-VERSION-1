@@ -8,14 +8,15 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/logo.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
-import '../../pets/domain/pet.dart';
 import '../../pets/presentation/pet_labels.dart';
 import 'sos_launcher.dart';
 
 const _tabRoots = ['/home', '/health', '/book', '/shop', '/me'];
 
-/// Owner app frame: bottom navigation on phones, a rail on tablets and a
-/// side navigation on desktop, plus the top bar on every main tab.
+/// Owner app frame (UI Design 5, DESIGN.md "Navigation and top bar"): the
+/// Material navigation bar with the five tabs on phones, a navigation rail on
+/// tablets and side navigation on desktop. Messages, notifications and SOS
+/// sit in the top bar on every size; the pet pills sit above each main tab.
 class OwnerShell extends ConsumerWidget {
   const OwnerShell({super.key, required this.shell});
   final StatefulNavigationShell shell;
@@ -24,63 +25,119 @@ class OwnerShell extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final path = GoRouterState.of(context).uri.path;
-    final showTopBar = _tabRoots.contains(path);
-    final easy = ref.watch(settingsProvider).easyMode;
+    final onTab = _tabRoots.contains(path);
     final destinations = [
+      // Outlined when idle, filled when selected.
       (Icons.home_outlined, Icons.home_rounded, l.tabHome),
       (Icons.favorite_border_rounded, Icons.favorite_rounded, l.tabHealth),
-      (Icons.event_outlined, Icons.event_rounded, l.tabBook),
+      (Icons.calendar_month_outlined, Icons.calendar_month_rounded, l.tabBook),
       (Icons.shopping_bag_outlined, Icons.shopping_bag_rounded, l.tabShop),
       (Icons.person_outline_rounded, Icons.person_rounded, l.tabMe),
     ];
     void go(int i) => shell.goBranch(i, initialLocation: i == shell.currentIndex);
 
-    final body = Column(children: [
-      if (showTopBar) const OwnerTopBar(),
-      Expanded(child: shell),
-    ]);
-
-    switch (context.screenSize) {
-      case ScreenSize.phone:
-        return Scaffold(
-          body: SafeArea(bottom: false, child: body),
-          bottomNavigationBar: NavigationBar(
-            selectedIndex: shell.currentIndex,
-            onDestinationSelected: go,
-            labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-            destinations: [
-              for (final d in destinations)
-                NavigationDestination(icon: Icon(d.$1, size: easy ? 30 : 24), selectedIcon: Icon(d.$2, size: easy ? 30 : 24), label: d.$3),
-            ],
-          ),
-        );
-      case ScreenSize.tablet:
-      case ScreenSize.desktop:
-        final extended = context.screenSize == ScreenSize.desktop;
-        return Scaffold(
-          body: SafeArea(
-            child: Row(children: [
-              NavigationRail(
-                extended: extended,
-                minExtendedWidth: 220,
-                selectedIndex: shell.currentIndex,
-                onDestinationSelected: go,
-                labelType: extended ? NavigationRailLabelType.none : NavigationRailLabelType.all,
-                leading: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: Space.lg),
-                  child: PawSetuLogo(size: 40, withName: extended),
-                ),
-                destinations: [
-                  for (final d in destinations)
-                    NavigationRailDestination(icon: Icon(d.$1), selectedIcon: Icon(d.$2), label: Text(d.$3)),
-                ],
-              ),
-              const VerticalDivider(width: 1),
-              Expanded(child: body),
+    if (context.isPhone) {
+      return Scaffold(
+        body: SafeArea(
+          bottom: false,
+          child: Column(children: [
+            if (onTab) const OwnerTopBar(),
+            Expanded(child: shell),
+          ]),
+        ),
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: shell.currentIndex,
+          onDestinationSelected: go,
+          destinations: [
+            for (final d in destinations) NavigationDestination(icon: Icon(d.$1), selectedIcon: Icon(d.$2), label: d.$3),
+          ],
+        ),
+      );
+    }
+    // Tablet: a rail with icons and labels. Desktop: the same rail extended
+    // into side navigation (labels beside the icons, on one line).
+    final desktop = context.screenSize == ScreenSize.desktop;
+    final rail = NavigationRail(
+      selectedIndex: shell.currentIndex,
+      onDestinationSelected: go,
+      extended: desktop,
+      minExtendedWidth: Sizes.sideNav,
+      labelType: desktop ? NavigationRailLabelType.none : NavigationRailLabelType.all,
+      groupAlignment: -1,
+      leading: Padding(
+        padding: const EdgeInsets.only(top: Space.sm, bottom: Space.lg),
+        child: PawSetuLogo(size: TapTarget.min - Space.sm, withName: desktop),
+      ),
+      destinations: [
+        for (final d in destinations)
+          NavigationRailDestination(icon: Icon(d.$1), selectedIcon: Icon(d.$2), label: Text(d.$3, maxLines: 1, overflow: TextOverflow.ellipsis)),
+      ],
+    );
+    return Scaffold(
+      body: SafeArea(
+        child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          rail,
+          VerticalDivider(width: Strokes.hairline, thickness: Strokes.hairline, color: context.paw.outline),
+          Expanded(
+            child: Column(children: [
+              _WideTopBar(showPets: onTab),
+              Expanded(child: shell),
             ]),
           ),
-        );
-    }
+        ]),
+      ),
+    );
+  }
+}
+
+/// Tablet and desktop top bar: the pet pills (on the main tabs) on the left;
+/// messages, notifications and SOS on the right.
+class _WideTopBar extends StatelessWidget {
+  const _WideTopBar({required this.showPets});
+  final bool showPets;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return Container(
+      constraints: const BoxConstraints(minHeight: Sizes.header),
+      padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.sm),
+      decoration: BoxDecoration(color: paw.background, border: Border(bottom: BorderSide(color: paw.outline))),
+      child: Row(children: [
+        Expanded(child: showPets ? const PetSwitcher() : const SizedBox.shrink()),
+        const SizedBox(width: Space.lg),
+        const _QuickActions(),
+      ]),
+    );
+  }
+}
+
+/// Messages, notifications and the SOS pill (top bar on every screen size).
+class _QuickActions extends ConsumerWidget {
+  const _QuickActions();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final msgs = ref.watch(unreadMessagesProvider).value ?? 0;
+    final notes = ref.watch(unreadNotificationsProvider).value ?? 0;
+    return Row(mainAxisSize: MainAxisSize.min, children: [
+      PawIconButton(
+        icon: Icons.chat_bubble_outline_rounded,
+        tooltip: l.messages,
+        badge: msgs,
+        onPressed: () => context.push('/messages'),
+      ),
+      const SizedBox(width: Space.xs),
+      PawIconButton(
+        icon: Icons.notifications_none_rounded,
+        tooltip: l.notifications,
+        badge: notes,
+        onPressed: () => context.push('/notifications'),
+      ),
+      const SizedBox(width: Space.sm),
+      SosButton(onActivate: () => openSos(context, ref)),
+    ]);
   }
 }
 
@@ -109,40 +166,42 @@ final unreadMessagesProvider = StreamProvider<int>((ref) {
       .map((s) => s.docs.fold<int>(0, (sum, d) => sum + (((d.data()['unread'] as Map?)?[user.uid] as num?)?.toInt() ?? 0)));
 });
 
-/// Pet switcher, messages, notifications and the red SOS button.
+/// Phone top bar (main tabs): the PawSetu mark, messages, notifications and
+/// the SOS pill on one row, and the pet pills below.
 class OwnerTopBar extends ConsumerWidget {
   const OwnerTopBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l = context.l10n;
-    final msgs = ref.watch(unreadMessagesProvider).value ?? 0;
-    final notes = ref.watch(unreadNotificationsProvider).value ?? 0;
+    final phone = context.isPhone;
     return Material(
       color: context.paw.background,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(context.gutter - 4, Space.sm, context.gutter - 4, Space.sm),
-        child: Row(children: [
-          const Expanded(child: PetSwitcher()),
-          IconButton(
-            tooltip: l.messages,
-            onPressed: () => context.push('/messages'),
-            icon: Badge.count(count: msgs, isLabelVisible: msgs > 0, child: const Icon(Icons.chat_bubble_outline_rounded)),
-          ),
-          IconButton(
-            tooltip: l.notifications,
-            onPressed: () => context.push('/notifications'),
-            icon: Badge.count(count: notes, isLabelVisible: notes > 0, child: const Icon(Icons.notifications_none_rounded)),
-          ),
-          const SizedBox(width: Space.xs),
-          SosButton(onActivate: () => openSos(context, ref)),
-        ]),
+        padding: EdgeInsets.fromLTRB(context.gutter, phone ? Space.sm : Space.md, context.gutter, Space.xs),
+        child: phone
+            ? const Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                Row(children: [
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: PawSetuLogo(size: TapTarget.min - Space.sm, withName: true),
+                    ),
+                  ),
+                  SizedBox(width: Space.sm),
+                  _QuickActions(),
+                ]),
+                PetSwitcher(),
+              ])
+            // Wide screens: the logo and quick actions are in the top bar,
+            // so this row holds only the pet pills.
+            : const PetSwitcher(),
       ),
     );
   }
 }
 
-/// Avatar chips (wide screens) or a compact picker (phones), plus "All pets".
+/// Pet pills: "All pets" (2+ pets), one pill per pet and "Add pet".
 class PetSwitcher extends ConsumerWidget {
   const PetSwitcher({super.key});
 
@@ -153,108 +212,39 @@ class PetSwitcher extends ConsumerWidget {
     final selected = ref.watch(selectedPetProvider);
     final all = ref.watch(allPetsSelectedProvider);
     final notifier = ref.read(settingsProvider.notifier);
-    if (pets.isEmpty) {
-      return Align(alignment: Alignment.centerLeft, child: PawSetuLogo(size: 36, withName: !context.isPhone || true));
-    }
-    if (!context.isPhone) {
-      return SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(children: [
-          if (pets.length > 1)
-            Padding(
-              padding: const EdgeInsets.only(right: Space.sm),
-              child: ChoiceChip(
-                label: Text(l.allPets),
-                avatar: const Icon(Icons.pets_rounded, size: 18),
-                selected: all,
-                onSelected: (_) => notifier.selectPet('all'),
-              ),
-            ),
-          for (final p in pets)
-            Padding(
-              padding: const EdgeInsets.only(right: Space.sm),
-              child: ChoiceChip(
-                showCheckmark: false,
-                avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 28),
-                label: Text(p.name),
-                selected: !all && selected?.id == p.id,
-                onSelected: (_) => notifier.selectPet(p.id),
-              ),
-            ),
-        ]),
-      );
-    }
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Semantics(
-        button: true,
-        label: l.switchPet,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(100),
-          onTap: () => _pick(context, ref, pets),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-            child: Row(mainAxisSize: MainAxisSize.min, children: [
-              if (all || selected == null)
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: context.paw.primaryContainer,
-                  child: Icon(Icons.pets_rounded, color: context.colors.primary),
-                )
-              else
-                PetAvatar(species: selected.species, colorTag: selected.colorTag, photoUrl: selected.photoUrl, size: 40),
-              const SizedBox(width: Space.sm),
-              Flexible(
-                child: Text(all || selected == null ? l.allPets : selected.name,
-                    style: context.text.titleSmall, overflow: TextOverflow.ellipsis),
-              ),
-              const Icon(Icons.expand_more_rounded),
-            ]),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _pick(BuildContext context, WidgetRef ref, List<Pet> pets) {
-    final notifier = ref.read(settingsProvider.notifier);
-    showPawSheet<void>(context, builder: (ctx) {
-      final l = ctx.l10n;
-      return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text(l.switchPet, style: ctx.text.titleMedium),
-        const SizedBox(height: Space.md),
+    if (pets.isEmpty) return const SizedBox.shrink();
+    final avatar = IconSizes.lg + Space.xs;
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(children: [
         if (pets.length > 1)
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: ctx.paw.primaryContainer,
-              child: Icon(Icons.pets_rounded, color: ctx.colors.primary),
+          Padding(
+            padding: const EdgeInsets.only(right: Space.sm),
+            child: PawPill(
+              label: l.allPets,
+              selected: all,
+              leading: Icon(Icons.pets_rounded, size: IconSizes.sm, color: all ? context.paw.surface : context.paw.textPrimary),
+              onTap: () => notifier.selectPet('all'),
             ),
-            title: Text(l.allPets),
-            onTap: () {
-              notifier.selectPet('all');
-              Navigator.pop(ctx);
-            },
           ),
         for (final p in pets)
-          ListTile(
-            leading: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 44),
-            title: Text(p.name),
-            subtitle: Text([p.breedName(ctx.lang), petAgeLabel(ctx, p)].where((s) => s.isNotEmpty).join(' · ')),
-            onTap: () {
-              notifier.selectPet(p.id);
-              Navigator.pop(ctx);
-            },
+          Padding(
+            padding: const EdgeInsets.only(right: Space.sm),
+            child: PawPill(
+              label: p.name,
+              semanticLabel: [p.name, p.breedName(context.lang), petAgeLabel(context, p)].where((s) => s.isNotEmpty).join(', '),
+              selected: !all && selected?.id == p.id,
+              leading: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: avatar),
+              onTap: () => notifier.selectPet(p.id),
+            ),
           ),
-        const SizedBox(height: Space.sm),
-        OutlinedButton.icon(
-          onPressed: () {
-            Navigator.pop(ctx);
-            context.push('/pets/new');
-          },
-          icon: const Icon(Icons.add_rounded),
-          label: Text(l.addPet),
+        PawPill(
+          label: l.addPet,
+          outlined: true,
+          leading: Icon(Icons.add_rounded, size: IconSizes.sm, color: context.paw.textPrimary),
+          onTap: () => context.push('/pets/new'),
         ),
-      ]);
-    });
+      ]),
+    );
   }
 }

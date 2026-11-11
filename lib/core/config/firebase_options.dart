@@ -5,11 +5,11 @@ import 'app_config.dart';
 
 /// Firebase options.
 ///
-/// Version 1 uses the Local Emulator Suite with the project id
+/// DEMO VERSION 1 uses the Local Emulator Suite with the project id
 /// "demo-pawsetu"; "demo-" projects need no real Firebase project, so the
 /// keys below are placeholders the emulators accept.
 ///
-/// Version 2 (L1): run `flutterfire configure` for pawsetu-dev and
+/// FINAL VERSION (L1): run `flutterfire configure` for pawsetu-dev and
 /// pawsetu-prod, then return the generated options here. Never commit
 /// secrets; these web/app keys are public identifiers by design.
 FirebaseOptions firebaseOptionsFor(AppConfig config) {

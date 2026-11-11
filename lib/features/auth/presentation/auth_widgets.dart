@@ -35,11 +35,11 @@ class AuthScaffold extends StatelessWidget {
                 children: [
                   if (trailing != null) Align(alignment: Alignment.centerRight, child: trailing!),
                   if (!showBack && trailing == null) const SizedBox(height: Space.lg),
-                  const Center(child: PawSetuLogo(size: 56)),
+                  const Center(child: PawSetuLogo(size: Sizes.logoLg)),
                   const SizedBox(height: Space.lg),
                   Semantics(
                     header: true,
-                    child: Text(title, style: context.text.headlineSmall, textAlign: TextAlign.center),
+                    child: Text(title, style: context.text.headlineMedium, textAlign: TextAlign.center),
                   ),
                   if (subtitle != null) ...[
                     const SizedBox(height: Space.sm),
@@ -51,7 +51,7 @@ class AuthScaffold extends StatelessWidget {
                   if (top != null) ...[top!, const SizedBox(height: Space.xl)],
                   Center(
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 440),
+                      constraints: const BoxConstraints(maxWidth: Sizes.authCard),
                       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
                     ),
                   ),
@@ -102,12 +102,12 @@ class SocialButtons extends StatelessWidget {
     final showApple = kIsWeb || defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS;
     return Column(
       children: [
-        SecondaryButton(label: l.continueWithGoogle, icon: Icons.g_mobiledata_rounded, onPressed: busy ? null : onGoogle),
+        SecondaryButton(label: l.continueWithGoogle, icon: Icons.g_mobiledata_outlined, onPressed: busy ? null : onGoogle),
         const SizedBox(height: Space.sm),
-        SecondaryButton(label: l.continueWithPhone, icon: Icons.phone_iphone_rounded, onPressed: busy ? null : onPhone),
+        SecondaryButton(label: l.continueWithPhone, icon: Icons.phone_iphone_outlined, onPressed: busy ? null : onPhone),
         if (showApple) ...[
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.continueWithApple, icon: Icons.apple_rounded, onPressed: busy ? null : onApple),
+          SecondaryButton(label: l.continueWithApple, icon: Icons.apple_outlined, onPressed: busy ? null : onApple),
         ],
       ],
     );

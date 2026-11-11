@@ -5,7 +5,7 @@ agents, each in its own git worktree. This file is the shared brief. Read it
 fully before you start, then read your phase's prompt in
 `docs/BUILD_PROMPTS.md` ("### Phase N") and the spec sections it names in
 `docs/PROJECT_SPEC.md`. The phase prompt's scope and "Done when" are the
-acceptance criteria. Build everything it lists for Version 1 (demo mode).
+acceptance criteria. Build everything it lists for DEMO VERSION 1.
 
 The rule in AGENTS.md about showing a plan and waiting for OK does not apply
 to this parallel build: the owner already approved building all phases.

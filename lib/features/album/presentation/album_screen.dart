@@ -72,15 +72,15 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
                   button: true,
                   label: l.switchPet,
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(100),
+                    borderRadius: BorderRadius.circular(Radii.full),
                     onTap: () => _pickPet(pets),
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(minHeight: 48),
+                      constraints: const BoxConstraints(minHeight: TapTarget.min),
                       child: Row(mainAxisSize: MainAxisSize.min, children: [
-                        PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 32),
+                        PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarXs),
                         const SizedBox(width: Space.sm),
                         Flexible(child: title),
-                        const Icon(Icons.expand_more_rounded),
+                        const Icon(Icons.expand_more_outlined),
                       ]),
                     ),
                   ),
@@ -89,11 +89,11 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
           actions: [
             IconButton(
               tooltip: l.albumFamilyLink,
-              icon: const Icon(Icons.group_rounded),
+              icon: const Icon(Icons.group_outlined),
               onPressed: () => showFamilyLinkSheet(context, ref, p, albumNames(items.value ?? const [])),
             ),
             if (p.birthday != null)
-              IconButton(tooltip: l.albumBirthdayScreenTitle, icon: const Icon(Icons.cake_rounded), onPressed: () => context.push('/pets/${p.id}/birthday')),
+              IconButton(tooltip: l.albumBirthdayScreenTitle, icon: const Icon(Icons.cake_outlined), onPressed: () => context.push('/pets/${p.id}/birthday')),
           ],
           bottom: TabBar(
             isScrollable: context.isPhone,
@@ -104,7 +104,7 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
         floatingActionButton: canLog
             ? FloatingActionButton.extended(
                 onPressed: () => showAddMemorySheet(context, ref, p),
-                icon: const Icon(Icons.add_a_photo_rounded),
+                icon: const Icon(Icons.add_a_photo_outlined),
                 label: Text(l.albumAdd),
               )
             : null,
@@ -128,7 +128,7 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
         const SizedBox(height: Space.sm),
         for (final p in pets)
           ListTile(
-            leading: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 40),
+            leading: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarSm),
             title: Text(p.name),
             subtitle: p.archived ? Text(ctx.l10n.inLovingMemory) : null,
             onTap: () {
@@ -186,7 +186,7 @@ class MemoryTile extends StatelessWidget {
       label: label,
       excludeSemantics: true,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(Radii.md),
         child: Material(
           color: context.paw.outline,
           child: InkWell(
@@ -199,23 +199,23 @@ class MemoryTile extends StatelessWidget {
                   left: 6,
                   bottom: 6,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                    decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(8)),
+                    padding: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs, vertical: Space.xxs),
+                    decoration: BoxDecoration(color: MediaColors.scrim, borderRadius: BorderRadius.circular(Radii.sm)),
                     child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 16),
-                      Text(videoLength(item.durationSec), style: const TextStyle(color: Colors.white, fontSize: 11)),
+                      const Icon(Icons.play_arrow_outlined, color: MediaColors.foreground, size: IconSizes.sm),
+                      Text(videoLength(item.durationSec), style: context.text.labelSmall?.copyWith(color: MediaColors.foreground)),
                     ]),
                   ),
                 ),
               if (item.favourite)
-                Positioned(right: 6, top: 6, child: Icon(Icons.favorite_rounded, color: PetTagColors.of('rose'), size: 18, shadows: const [Shadow(blurRadius: 4)])),
-              if (item.milestone != null) Positioned(left: 6, top: 6, child: MilestoneBadge(kind: item.milestone!, size: 24)),
+                Positioned(right: 6, top: 6, child: Icon(Icons.favorite_rounded, color: PetTagColors.of('rose'), size: IconSizes.chip, shadows: const [Shadow(blurRadius: Space.xs)])),
+              if (item.milestone != null) Positioned(left: Space.xs + Space.xxs, top: Space.xs + Space.xxs, child: MilestoneBadge(kind: item.milestone!, size: Sizes.avatarChip)),
               if (selected != null)
                 Positioned(
                   right: 6,
                   bottom: 6,
-                  child: Icon(selected! ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
-                      color: selected! ? context.colors.primary : Colors.white, shadows: const [Shadow(blurRadius: 4)]),
+                  child: Icon(selected! ? Icons.check_circle_rounded : Icons.radio_button_unchecked_outlined,
+                      color: selected! ? context.colors.primary : MediaColors.foreground, shadows: const [Shadow(blurRadius: Space.xs)]),
                 ),
             ]),
           ),
@@ -240,7 +240,7 @@ class _PhotosTab extends ConsumerWidget {
     final groups = groupByMonth(media);
     final next = nextBirthday(pet.birthday, now);
     final days = next == null ? null : daysUntil(next, now);
-    return PageBody(maxWidth: 1100, children: [
+    return PageBody(maxWidth: Space.maxContentWidth, children: [
       const SizedBox(height: Space.md),
       if (next != null && days != null && days <= 30 && !pet.archived) ...[
         BirthdayCard(pet: pet, next: next, days: days),
@@ -261,7 +261,7 @@ class _PhotosTab extends ConsumerWidget {
       ..._months(context, ref, groups, media.length),
       const SizedBox(height: Space.xl),
       const StorageMeter(),
-      const SizedBox(height: 80),
+      const SizedBox(height: Space.fabClearance),
     ]);
   }
 
@@ -300,10 +300,10 @@ class OnThisDayCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = context.l10n;
     return PawCard(
-      color: context.paw.accent.withValues(alpha: 0.14),
+      color: context.paw.accent.withValues(alpha: Opacities.chip),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Icon(Icons.history_rounded, color: context.paw.onAccent),
+          Icon(Icons.history_outlined, color: context.paw.onAccentContainer),
           const SizedBox(width: Space.sm),
           Text(l.albumOnThisDay, style: context.text.titleMedium),
         ]),
@@ -314,10 +314,10 @@ class OnThisDayCard extends StatelessWidget {
             for (var i = 0; i < items.length; i++) ...[
               if (i > 0) const SizedBox(width: Space.sm),
               SizedBox(
-                width: 120,
+                width: Sizes.memoryTile,
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  SizedBox(height: 120, width: 120, child: MemoryTile(item: items[i], onTap: () => context.push(viewerPath(pet.id, items[i].id)))),
-                  const SizedBox(height: 4),
+                  SizedBox(height: Sizes.memoryTile, width: Sizes.memoryTile, child: MemoryTile(item: items[i], onTap: () => context.push(viewerPath(pet.id, items[i].id)))),
+                  const SizedBox(height: Space.xs),
                   Text(yearsAgoLabel(context, items[i].takenAt), style: context.text.labelMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
                 ]),
               ),
@@ -342,10 +342,10 @@ class BirthdayCard extends StatelessWidget {
     final age = turningAge(pet.birthday!, next);
     final today = days == 0;
     return PawCard(
-      color: today ? context.paw.accent.withValues(alpha: 0.28) : context.paw.primaryContainer.withValues(alpha: 0.6),
+      color: today ? context.paw.accent.withValues(alpha: Opacities.selection) : context.paw.primaryContainer.withValues(alpha: Opacities.half),
       onTap: () => context.push('/pets/${pet.id}/birthday'),
       child: Row(children: [
-        Icon(Icons.cake_rounded, color: today ? context.paw.onAccent : context.colors.primary, size: 36),
+        Icon(Icons.cake_outlined, color: today ? context.paw.onAccentContainer : context.colors.primary, size: IconSizes.xxl),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -373,7 +373,7 @@ class _TimelineTab extends ConsumerWidget {
     final reminders = ref.watch(remindersProvider).value ?? const [];
     final reminderOn = reminders.any((r) => r.petId == pet.id && r.type == 'birthday' && !r.done);
     final user = ref.watch(currentUserProvider);
-    return PageBody(maxWidth: 820, children: [
+    return PageBody(maxWidth: Space.readingWidth, children: [
       const SizedBox(height: Space.md),
       PawCard(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -382,13 +382,13 @@ class _TimelineTab extends ConsumerWidget {
           Wrap(spacing: Space.md, runSpacing: Space.md, children: [
             for (final k in milestoneKinds)
               SizedBox(
-                width: 76,
+                width: Sizes.badgeCell,
                 child: Semantics(
                   label: '${milestoneLabel(context, k)}${earned.contains(k) ? '' : ' (${l.albumBadgeLocked})'}',
                   excludeSemantics: true,
                   child: Column(children: [
-                    MilestoneBadge(kind: k, size: 48, earned: earned.contains(k)),
-                    const SizedBox(height: 4),
+                    MilestoneBadge(kind: k, size: Sizes.avatarMd, earned: earned.contains(k)),
+                    const SizedBox(height: Space.xs),
                     Text(milestoneLabel(context, k), style: context.text.labelSmall, textAlign: TextAlign.center, maxLines: 2),
                   ]),
                 ),
@@ -401,7 +401,7 @@ class _TimelineTab extends ConsumerWidget {
         PawCard(
           padding: EdgeInsets.zero,
           child: SwitchListTile(
-            secondary: Icon(Icons.cake_rounded, color: context.paw.accent),
+            secondary: Icon(Icons.cake_outlined, color: context.paw.accent),
             title: Text(l.albumBirthdayReminder(pet.name)),
             subtitle: Text(reminderOn ? l.albumBirthdayReminderOn : Fmt.date(nextBirthday(pet.birthday, DateTime.now())!, context.lang)),
             value: reminderOn,
@@ -416,7 +416,7 @@ class _TimelineTab extends ConsumerWidget {
         ),
       ],
       SectionHeader(l.albumTimeline, action: canLog ? l.albumAddMilestone : null, onAction: () => showMemoryEditSheet(context, ref, pet, milestone: 'custom')),
-      if (pet.birthday != null) _TimelineEntry(icon: Icons.child_friendly_rounded, color: context.colors.primary, title: l.albumTimelineBorn(pet.name), date: pet.birthday!),
+      if (pet.birthday != null) _TimelineEntry(icon: Icons.child_friendly_outlined, color: context.colors.primary, title: l.albumTimelineBorn(pet.name), date: pet.birthday!),
       for (final m in ms)
         _TimelineEntry(
           badge: m.milestone,
@@ -432,7 +432,7 @@ class _TimelineTab extends ConsumerWidget {
           padding: const EdgeInsets.all(Space.md),
           child: Text(l.albumTimelineEmpty(pet.name), style: context.text.bodyMedium),
         ),
-      const SizedBox(height: 80),
+      const SizedBox(height: Space.fabClearance),
     ]);
   }
 }
@@ -454,12 +454,12 @@ class _TimelineEntry extends StatelessWidget {
     return IntrinsicHeight(
       child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         SizedBox(
-          width: 48,
+          width: Sizes.avatarMd,
           child: Column(children: [
             badge != null
-                ? MilestoneBadge(kind: badge!, size: 40)
-                : CircleAvatar(radius: 20, backgroundColor: (color ?? context.colors.primary).withValues(alpha: 0.2), child: Icon(icon, color: color)),
-            if (!last) Expanded(child: Container(width: 2, color: context.paw.outline)),
+                ? MilestoneBadge(kind: badge!, size: Sizes.avatarSm)
+                : CircleAvatar(radius: Sizes.avatarSm / 2, backgroundColor: (color ?? context.colors.primary).withValues(alpha: Opacities.tintStrong), child: Icon(icon, color: color)),
+            if (!last) Expanded(child: Container(width: Strokes.focus, color: context.paw.outline)),
           ]),
         ),
         const SizedBox(width: Space.md),
@@ -475,14 +475,14 @@ class _TimelineEntry extends StatelessWidget {
                     Text(title, style: context.text.titleSmall),
                     Text(Fmt.date(date, context.lang), style: context.text.bodySmall),
                     if (caption?.isNotEmpty ?? false) ...[
-                      const SizedBox(height: 4),
+                      const SizedBox(height: Space.xs),
                       Text(caption!, style: context.text.bodyMedium, maxLines: 3, overflow: TextOverflow.ellipsis),
                     ],
                   ]),
                 ),
                 if (thumb != null) ...[
                   const SizedBox(width: Space.md),
-                  ClipRRect(borderRadius: BorderRadius.circular(10), child: MediaImage(url: thumb!.url!, width: 64, height: 64)),
+                  ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: thumb!.url!, width: Sizes.thumbLg, height: Sizes.thumbLg)),
                 ],
               ]),
             ),
@@ -503,7 +503,7 @@ class _AlbumsTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final names = albumNames(items);
-    return PageBody(maxWidth: 1100, children: [
+    return PageBody(maxWidth: Space.maxContentWidth, children: [
       const SizedBox(height: Space.md),
       if (canLog)
         Align(
@@ -517,7 +517,7 @@ class _AlbumsTab extends ConsumerWidget {
               await ref.read(albumRepositoryProvider).addToAlbum(picked, name);
               if (context.mounted) showToast(context, l.albumAddedToAlbum(name));
             },
-            icon: const Icon(Icons.create_new_folder_rounded),
+            icon: const Icon(Icons.create_new_folder_outlined),
             label: Text(l.albumNewAlbum),
           ),
         ),
@@ -537,7 +537,7 @@ class _AlbumsTab extends ConsumerWidget {
                   AspectRatio(
                     aspectRatio: 1.3,
                     child: inAlbum.isEmpty
-                        ? ColoredBox(color: context.paw.primaryContainer, child: Icon(Icons.photo_album_rounded, color: context.colors.primary, size: 40))
+                        ? ColoredBox(color: context.paw.primaryContainer, child: Icon(Icons.photo_album_outlined, color: context.colors.primary, size: IconSizes.xxxl))
                         : MediaImage(url: inAlbum.first.url!),
                   ),
                   Padding(
@@ -551,7 +551,7 @@ class _AlbumsTab extends ConsumerWidget {
               );
             }),
         ]),
-      const SizedBox(height: 80),
+      const SizedBox(height: Space.fabClearance),
     ]);
   }
 }
@@ -566,10 +566,10 @@ class _FavouritesTab extends StatelessWidget {
     final l = context.l10n;
     final fav = items.where((i) => i.favourite && i.hasMedia).toList();
     if (fav.isEmpty) return EmptyState(scene: Scene.memory, title: l.albumNoFavourites, message: l.albumNoFavouritesBody);
-    return PageBody(maxWidth: 1100, children: [
+    return PageBody(maxWidth: Space.maxContentWidth, children: [
       const SizedBox(height: Space.md),
       MemoryGrid(items: fav, onTap: (i) => context.push(viewerPath(pet.id, i.id, 'fav'))),
-      const SizedBox(height: 80),
+      const SizedBox(height: Space.fabClearance),
     ]);
   }
 }
@@ -617,16 +617,16 @@ class AlbumDetailScreen extends ConsumerWidget {
                 }
               },
               itemBuilder: (_) => [
-                PopupMenuItem(value: 'add', child: ListTile(leading: const Icon(Icons.add_photo_alternate_rounded), title: Text(l.albumAddToAlbum))),
-                PopupMenuItem(value: 'rename', child: ListTile(leading: const Icon(Icons.edit_rounded), title: Text(l.albumRenameAlbum))),
-                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.folder_delete_rounded), title: Text(l.albumDeleteAlbum))),
+                PopupMenuItem(value: 'add', child: ListTile(leading: const Icon(Icons.add_photo_alternate_outlined), title: Text(l.albumAddToAlbum))),
+                PopupMenuItem(value: 'rename', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.albumRenameAlbum))),
+                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.folder_delete_outlined), title: Text(l.albumDeleteAlbum))),
               ],
             ),
         ],
       ),
       body: items.isEmpty
           ? EmptyState(scene: Scene.memory, title: l.albumNoAlbums, compact: true)
-          : PageBody(maxWidth: 1100, children: [
+          : PageBody(maxWidth: Space.maxContentWidth, children: [
               const SizedBox(height: Space.md),
               MemoryGrid(
                 items: items,
@@ -675,7 +675,7 @@ class _PickMemoriesScreenState extends State<_PickMemoriesScreen> {
           ),
         ],
       ),
-      body: PageBody(maxWidth: 1100, children: [
+      body: PageBody(maxWidth: Space.maxContentWidth, children: [
         const SizedBox(height: Space.sm),
         Text(l.albumItemsSelected(_sel.length), style: context.text.bodySmall),
         const SizedBox(height: Space.sm),

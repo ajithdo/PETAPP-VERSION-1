@@ -1,5 +1,6 @@
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pawsetu/core/auth/app_user.dart';
 import 'package:pawsetu/core/demo/demo_store.dart';
 import 'package:pawsetu/core/demo/seed/seed.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,6 +46,28 @@ void main() {
     expect((await fresh.db.collection('pets').doc('pet_mine').get()).exists, isFalse);
     expect((await fresh.db.collection('demoAccounts').doc('u_priya').get()).exists, isTrue);
     fresh.dispose();
+  });
+
+  test('demo data saved weeks ago still opens with Priya on Plus', () async {
+    // The website keeps the first visit's data, dates included: her Plus
+    // month (23 days at the start) had ended by the next visit.
+    TestWidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    final old = FakeFirebaseFirestore();
+    await DemoStore.loadInto(old, DemoSeed.build(DateTime.now().subtract(const Duration(days: 40))));
+    await prefs.setString('demo_db_v1', old.dump());
+    await prefs.setInt('demo_seed_version', DemoSeed.version);
+
+    final store = await DemoStore.open(prefs);
+    final p = (await store.db.collection('users').doc('u_priya').get()).data()!;
+    final priya = AppUser.fromProfile('u_priya', p);
+    expect(priya.isPlus, isTrue);
+    expect(priya.planRenewsAt!.isAfter(DateTime.now()), isTrue);
+    final renewed = await store.db.collection('payments').where('uid', isEqualTo: 'u_priya').where('renewal', isEqualTo: true).get();
+    expect(renewed.docs, hasLength(1), reason: 'one demo payment for the month that renewed');
+    expect(AppUser.fromProfile('u_arjun', (await store.db.collection('users').doc('u_arjun').get()).data()).isPlus, isTrue);
+    store.dispose();
   });
 
   test('saved data without the demo accounts is not used', () {

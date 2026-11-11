@@ -80,7 +80,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
 
           return Column(children: [
             Expanded(
-              child: PageBody(maxWidth: 900, children: [
+              child: PageBody(maxWidth: Space.wideWidth, children: [
                 const SizedBox(height: Space.md),
                 for (final g in price.groups) ...[
                   Padding(
@@ -104,7 +104,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                     Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
                       for (final p in pets)
                         ChoiceChip(
-                          avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
+                          avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarChip),
                           label: Text(p.name),
                           selected: p.id == pet?.id,
                           onSelected: (_) => setState(() => _petId = p.id),
@@ -118,7 +118,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                   if (address == null)
                     SecondaryButton(
                       label: l.addrAdd,
-                      icon: Icons.add_location_alt_rounded,
+                      icon: Icons.add_location_alt_outlined,
                       onPressed: () async {
                         final a = await editAddress(context, ref);
                         if (a != null) setState(() => _addressId = a.id);
@@ -163,7 +163,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                   decoration: BoxDecoration(color: context.paw.surface, border: Border(top: BorderSide(color: context.paw.outline))),
                   child: Center(
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 720),
+                      constraints: const BoxConstraints(maxWidth: Space.formWidth),
                       child: Row(children: [
                         Expanded(
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
@@ -208,7 +208,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
         child: Row(children: [
           InkWell(
             onTap: () => context.push('/shop/product/${p.id}'),
-            child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: 64, radius: 12),
+            child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbLg, radius: Radii.md),
           ),
           const SizedBox(width: Space.sm),
           Expanded(
@@ -219,7 +219,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
             ]),
           ),
           if (skipped)
-            IconButton(tooltip: l.shopRemoveItem(p.name), icon: const Icon(Icons.delete_outline_rounded), onPressed: () => repo.setQty(uid, p.id, 0))
+            IconButton(tooltip: l.shopRemoveItem(p.name), icon: const Icon(Icons.delete_outlined), onPressed: () => repo.setQty(uid, p.id, 0))
           else
             QtyStepper(qty: qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => repo.setQty(uid, p.id, q)),
         ]),
@@ -234,7 +234,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
         padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
         borderColor: context.paw.success,
         child: Row(children: [
-          Icon(Icons.local_offer_rounded, color: context.paw.success),
+          Icon(Icons.local_offer_outlined, color: context.paw.success),
           const SizedBox(width: Space.sm),
           Expanded(child: Text(l.couponSaved(_applied!.code, Fmt.inr(price.discount)), style: context.text.bodyMedium)),
           TextButton(onPressed: _removeCoupon, child: Text(l.remove)),
@@ -247,7 +247,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
       Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Expanded(child: PawTextField(label: l.couponCode, controller: _coupon, hint: 'WELCOME10', onSubmitted: (_) => _apply())),
         const SizedBox(width: Space.sm),
-        Padding(padding: const EdgeInsets.only(top: 6), child: FilledButton.tonal(onPressed: _apply, child: Text(l.couponApply))),
+        Padding(padding: const EdgeInsets.only(top: Space.xs + Space.xxs), child: FilledButton.tonal(onPressed: _apply, child: Text(l.couponApply))),
       ]),
       if (msg != null) Text(msg, style: context.text.bodySmall?.copyWith(color: context.paw.error)),
     ]);
@@ -280,7 +280,15 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final l = context.l10n;
     Widget line(String a, String b, {Color? color, bool bold = false}) {
       final style = (bold ? context.text.titleSmall : context.text.bodyMedium)?.copyWith(color: color);
-      return Padding(padding: const EdgeInsets.symmetric(vertical: 3), child: Row(children: [Expanded(child: Text(a, style: style)), Text(b, style: style)]));
+      // Amounts in the mono face; the total in the action colour (UI Design 2).
+      final amount = context.textX.mono.copyWith(
+        color: bold ? context.paw.onActionContainer : (color ?? context.paw.textPrimary),
+        fontWeight: bold ? FontWeight.w700 : null,
+      );
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: Space.xxs),
+        child: Row(children: [Expanded(child: Text(a, style: style)), const SizedBox(width: Space.md), Text(b, style: amount)]),
+      );
     }
 
     final freeAbove = plus ? s.plusFreeDeliveryAbove : s.freeDeliveryAbove;
@@ -301,7 +309,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
             child: Text(l.cartAddForFree(Fmt.inr(toFree)), style: context.text.bodySmall?.copyWith(color: context.colors.primary)),
           ),
         if (plus && price.deliveryFee == 0 && price.subtotal - price.discount < s.freeDeliveryAbove)
-          Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip(l.cartPlusFreeDelivery, tone: ChipTone.accent, icon: Icons.workspace_premium_rounded)),
+          Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip(l.cartPlusFreeDelivery, tone: ChipTone.accent, icon: Icons.workspace_premium_outlined)),
       ]),
     );
   }

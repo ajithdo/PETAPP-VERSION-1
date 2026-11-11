@@ -31,10 +31,10 @@ Future<(String type, PickedFile file)?> pickChatAttachment(BuildContext context)
     builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Text(l.msgAttachTitle, style: ctx.text.titleMedium),
       const SizedBox(height: Space.md),
-      ListTile(leading: const Icon(Icons.photo_library_rounded), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, 'gallery')),
-      ListTile(leading: const Icon(Icons.photo_camera_rounded), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
+      ListTile(leading: const Icon(Icons.photo_library_outlined), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, 'gallery')),
+      ListTile(leading: const Icon(Icons.photo_camera_outlined), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
       ListTile(
-        leading: const Icon(Icons.picture_as_pdf_rounded),
+        leading: const Icon(Icons.picture_as_pdf_outlined),
         title: Text(l.msgAttachPdf),
         subtitle: Text(l.msgAttachPdfHint),
         onTap: () => Navigator.pop(ctx, 'pdf'),
@@ -106,7 +106,7 @@ Future<Uint8List> samplePdf(BuildContext context, String title) async {
       Center(
         child: Transform.rotate(
           angle: -0.35,
-          child: Text(l.msgSampleStamp, style: const TextStyle(fontSize: 72, fontWeight: FontWeight.w800, color: Color(0x33B91C1C))),
+          child: Text(l.msgSampleStamp, style: TextStyle(fontSize: 72, fontWeight: FontWeight.w800, color: PrintColors.alert.withValues(alpha: Opacities.tintStrong))),
         ),
       ),
       const SizedBox(height: 60),
@@ -134,11 +134,11 @@ class PhotoViewerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: MediaColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-        title: caption == null ? null : Text(caption!, style: const TextStyle(color: Colors.white)),
+        backgroundColor: MediaColors.background,
+        foregroundColor: MediaColors.foreground,
+        title: caption == null ? null : Text(caption!, style: const TextStyle(color: MediaColors.foreground)),
       ),
       body: SafeArea(
         child: InteractiveViewer(

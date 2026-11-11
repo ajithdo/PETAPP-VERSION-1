@@ -15,9 +15,9 @@ import 'attachments.dart';
 import 'voice_note.dart';
 
 IconData conversationIcon(Conversation c) => switch (c.type) {
-      'televet' => Icons.video_call_rounded,
-      'assistant' => Icons.auto_awesome_rounded,
-      _ => c.providerKind == 'vet' ? Icons.medical_services_rounded : kindIcon(c.providerKind),
+      'televet' => Icons.video_call_outlined,
+      'assistant' => Icons.auto_awesome_outlined,
+      _ => c.providerKind == 'vet' ? Icons.medical_services_outlined : kindIcon(c.providerKind),
     };
 
 /// Round avatar for a conversation: the provider's icon for pet parents,
@@ -37,8 +37,8 @@ class ConversationAvatar extends StatelessWidget {
     final tele = c.isTeleVet;
     return CircleAvatar(
       radius: size / 2,
-      backgroundColor: tele ? context.paw.accent.withValues(alpha: 0.22) : context.paw.primaryContainer,
-      child: Icon(conversationIcon(c), color: tele ? context.paw.onAccent : context.colors.primary, size: size * 0.48),
+      backgroundColor: tele ? context.paw.accent.withValues(alpha: Opacities.tintStrong) : context.paw.primaryContainer,
+      child: Icon(conversationIcon(c), color: tele ? context.paw.onAccentContainer : context.colors.primary, size: size * 0.48),
     );
   }
 }
@@ -61,8 +61,8 @@ class DaySeparator extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: Space.sm),
       child: Center(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: 4),
-          decoration: BoxDecoration(color: context.colors.surfaceContainer, borderRadius: BorderRadius.circular(100)),
+          padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.xs),
+          decoration: BoxDecoration(color: context.colors.surfaceContainer, borderRadius: BorderRadius.circular(Radii.full)),
           child: Text(label, style: context.text.labelSmall),
         ),
       ),
@@ -97,23 +97,23 @@ class _TypingBubbleState extends State<TypingBubble> with SingleTickerProviderSt
         alignment: Alignment.centerLeft,
         child: Container(
           margin: const EdgeInsets.only(top: Space.xs, bottom: Space.xs),
-          padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm + Space.xxs),
           decoration: BoxDecoration(
             color: context.paw.surface,
             border: Border.all(color: context.paw.outline),
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(Radii.xl),
           ),
           child: AnimatedBuilder(
             animation: _c,
             builder: (context, _) => Row(mainAxisSize: MainAxisSize.min, children: [
               for (var i = 0; i < 3; i++)
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  padding: const EdgeInsets.symmetric(horizontal: Space.xxs),
                   child: Transform.translate(
                     offset: Offset(0, context.reduceMotion ? 0 : -3 * math.sin((_c.value * 2 * math.pi) - i * 0.8).clamp(0, 1)),
                     child: Container(
-                      width: 7,
-                      height: 7,
+                      width: Sizes.dot,
+                      height: Sizes.dot,
                       decoration: BoxDecoration(color: context.paw.textSecondary, shape: BoxShape.circle),
                     ),
                   ),
@@ -153,8 +153,8 @@ class MessageBubble extends ConsumerWidget {
     final bg = mine ? context.paw.primaryContainer : context.paw.surface;
     final fg = mine ? context.colors.onPrimaryContainer : context.paw.textPrimary;
     final radius = BorderRadius.only(
-      topLeft: const Radius.circular(18),
-      topRight: const Radius.circular(18),
+      topLeft: const Radius.circular(Radii.xl),
+      topRight: const Radius.circular(Radii.xl),
       bottomLeft: Radius.circular(mine ? 18 : 4),
       bottomRight: Radius.circular(mine ? 4 : 18),
     );
@@ -166,21 +166,21 @@ class MessageBubble extends ConsumerWidget {
             button: true,
             label: l.msgPreviewPhoto,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(Radii.md),
               child: MediaImage(url: m.url ?? '', width: math.min(240, maxW - 24), height: math.min(240, maxW - 24)),
             ),
           ),
         ),
       'pdf' => InkWell(
           onTap: () => openChatPdf(context, ref, m),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(Radii.md),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
+            padding: const EdgeInsets.symmetric(vertical: Space.xs),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
               Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(color: context.paw.error.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(10)),
-                child: Icon(Icons.picture_as_pdf_rounded, color: context.paw.error),
+                padding: const EdgeInsets.all(Space.sm),
+                decoration: BoxDecoration(color: context.paw.error.withValues(alpha: Opacities.chip), borderRadius: BorderRadius.circular(Radii.md)),
+                child: Icon(Icons.picture_as_pdf_outlined, color: context.paw.error),
               ),
               const SizedBox(width: Space.sm),
               Flexible(
@@ -198,18 +198,18 @@ class MessageBubble extends ConsumerWidget {
     if (m.type == 'text' && (m.meta['problem'] == true)) {
       content = Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
         Text(l.tvProblemLabel, style: context.text.labelMedium?.copyWith(color: context.colors.primary)),
-        const SizedBox(height: 2),
+        const SizedBox(height: Space.xxs),
         content,
       ]);
     }
     return Align(
       alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 3),
+        padding: const EdgeInsets.symmetric(vertical: Space.xxs),
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: maxW),
           child: Container(
-            padding: EdgeInsets.fromLTRB(m.type == 'voice' ? 4 : Space.md, Space.sm, Space.md, 6),
+            padding: EdgeInsets.fromLTRB(m.type == 'voice' ? Space.xs : Space.md, Space.sm, Space.md, Space.xs + Space.xxs),
             decoration: BoxDecoration(
               color: bg,
               borderRadius: radius,
@@ -218,31 +218,31 @@ class MessageBubble extends ConsumerWidget {
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
               if (showSender && !mine)
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
+                  padding: const EdgeInsets.only(bottom: Space.xxs),
                   child: Text(m.senderName, style: context.text.labelMedium?.copyWith(color: context.colors.primary)),
                 ),
               content,
               if (m.masked)
                 Padding(
-                  padding: const EdgeInsets.only(top: 4),
+                  padding: const EdgeInsets.only(top: Space.xs),
                   child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(Icons.shield_rounded, size: 13, color: context.paw.textSecondary),
-                    const SizedBox(width: 4),
+                    Icon(Icons.shield_outlined, size: IconSizes.xs, color: context.paw.textSecondary),
+                    const SizedBox(width: Space.xs),
                     Flexible(child: Text(l.msgNumberHidden, style: context.text.labelSmall)),
                   ]),
                 ),
-              const SizedBox(height: 2),
+              const SizedBox(height: Space.xxs),
               Row(mainAxisSize: MainAxisSize.min, children: [
                 if (m.demo) ...[
                   Text(l.msgDemoReply, style: context.text.labelSmall?.copyWith(color: context.paw.warning, fontWeight: FontWeight.w700)),
-                  const SizedBox(width: 6),
+                  const SizedBox(width: Space.xs + Space.xxs),
                 ],
                 Text(Fmt.time(m.createdAt, context.lang), style: context.text.labelSmall),
                 if (mine) ...[
-                  const SizedBox(width: 4),
+                  const SizedBox(width: Space.xs),
                   Semantics(
                     label: read ? l.msgRead : l.msgSent,
-                    child: Icon(read ? Icons.done_all_rounded : Icons.done_rounded, size: 16, color: read ? context.colors.primary : context.paw.textSecondary),
+                    child: Icon(read ? Icons.done_all_outlined : Icons.done_outlined, size: IconSizes.sm, color: read ? context.colors.primary : context.paw.textSecondary),
                   ),
                 ],
               ]),
@@ -259,7 +259,7 @@ class MessageBubble extends ConsumerWidget {
     return Align(
       alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 420),
+        constraints: const BoxConstraints(maxWidth: Sizes.emptyStateWidth),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: Space.xs),
           child: PawCard(
@@ -267,7 +267,7 @@ class MessageBubble extends ConsumerWidget {
             padding: const EdgeInsets.all(Space.md),
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               Row(children: [
-                Icon(Icons.receipt_long_rounded, color: context.colors.primary),
+                Icon(Icons.receipt_long_outlined, color: context.colors.primary),
                 const SizedBox(width: Space.sm),
                 Expanded(child: Text(l.rxCardTitle(m.senderName), style: context.text.titleSmall)),
               ]),
@@ -275,10 +275,10 @@ class MessageBubble extends ConsumerWidget {
               const SizedBox(height: Space.sm),
               FilledButton.tonalIcon(
                 onPressed: m.prescriptionId == null ? null : () => context.push('/prescriptions/${m.prescriptionId}'),
-                icon: const Icon(Icons.picture_as_pdf_rounded),
+                icon: const Icon(Icons.picture_as_pdf_outlined),
                 label: Text(l.rxView),
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: Space.xxs),
               Text(Fmt.time(m.createdAt, context.lang), style: context.text.labelSmall, textAlign: TextAlign.end),
             ]),
           ),
@@ -303,13 +303,13 @@ class MessageBubble extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: Space.sm),
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 460),
+            constraints: const BoxConstraints(maxWidth: Sizes.bubbleMaxWidth),
             child: PawCard(
               borderColor: c,
               padding: const EdgeInsets.all(Space.md),
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 Row(children: [
-                  Icon(emergency ? Icons.emergency_rounded : Icons.local_hospital_rounded, color: c),
+                  Icon(emergency ? Icons.emergency_outlined : Icons.local_hospital_outlined, color: c),
                   const SizedBox(width: Space.sm),
                   Expanded(
                     child: Text(
@@ -322,15 +322,15 @@ class MessageBubble extends ConsumerWidget {
                 const SizedBox(height: Space.sm),
                 if (emergency)
                   FilledButton.icon(
-                    style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
+                    style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
                     onPressed: () => openSos(context, ref),
-                    icon: const Icon(Icons.emergency_rounded),
+                    icon: const Icon(Icons.emergency_outlined),
                     label: Text(l.sosGetHelp),
                   )
                 else
                   FilledButton.tonalIcon(
                     onPressed: () => context.push(recommendClinicId != null ? '/book/place/$recommendClinicId' : '/book/find/clinic'),
-                    icon: const Icon(Icons.event_available_rounded),
+                    icon: const Icon(Icons.event_available_outlined),
                     label: Text(l.tvBookVisit),
                   ),
               ]),
@@ -342,28 +342,28 @@ class MessageBubble extends ConsumerWidget {
 
     final (IconData icon, String text) = switch (m.event) {
       'booking_chat' => (
-          Icons.event_note_rounded,
+          Icons.event_note_outlined,
           l.msgSysBookingChat(meta['petName'] as String? ?? '', timeOf('start')),
         ),
       'tv_started' => (
-          Icons.video_call_rounded,
+          Icons.video_call_outlined,
           parseDate(meta['scheduledAt']) != null ? l.msgSysTvScheduled(timeOf('scheduledAt')) : (meta['mode'] == 'video' ? l.msgSysTvStartedVideo : l.msgSysTvStarted),
         ),
-      'tv_joined' => (Icons.how_to_reg_rounded, l.msgSysVetJoined(meta['name'] as String? ?? '', timeOf('endsAt'))),
+      'tv_joined' => (Icons.how_to_reg_outlined, l.msgSysVetJoined(meta['name'] as String? ?? '', timeOf('endsAt'))),
       'tv_ended' => (Icons.check_circle_rounded, l.msgSysTvEnded),
-      'call_ended' => (Icons.videocam_off_rounded, l.msgSysCallEnded(formatSeconds((meta['seconds'] as num?)?.toInt() ?? 0))),
-      _ => (Icons.info_outline_rounded, m.text),
+      'call_ended' => (Icons.videocam_off_outlined, l.msgSysCallEnded(formatSeconds((meta['seconds'] as num?)?.toInt() ?? 0))),
+      _ => (Icons.info_outlined, m.text),
     };
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Space.sm),
       child: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 460),
+          constraints: const BoxConstraints(maxWidth: Sizes.bubbleMaxWidth),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
-            decoration: BoxDecoration(color: context.colors.surfaceContainer, borderRadius: BorderRadius.circular(14)),
+            decoration: BoxDecoration(color: context.colors.surfaceContainer, borderRadius: BorderRadius.circular(Radii.lg)),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
-              Icon(icon, size: 16, color: context.paw.textSecondary),
+              Icon(icon, size: IconSizes.sm, color: context.paw.textSecondary),
               const SizedBox(width: Space.sm),
               Flexible(child: Text(text, style: context.text.bodySmall, textAlign: TextAlign.center)),
             ]),
@@ -397,7 +397,7 @@ class _HighlightedText extends StatelessWidget {
       if (j > i) spans.add(TextSpan(text: text.substring(i, j)));
       spans.add(TextSpan(
         text: text.substring(j, j + q.length),
-        style: TextStyle(backgroundColor: context.paw.accent.withValues(alpha: 0.55), fontWeight: FontWeight.w700),
+        style: TextStyle(backgroundColor: context.paw.accent.withValues(alpha: Opacities.half), fontWeight: FontWeight.w700),
       ));
       i = j + q.length;
     }
@@ -412,7 +412,7 @@ class ChatSafetyNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Space.sm),
-      child: InfoNote(context.l10n.msgSafetyNote, icon: Icons.shield_rounded),
+      child: InfoNote(context.l10n.msgSafetyNote, icon: Icons.shield_outlined),
     );
   }
 }

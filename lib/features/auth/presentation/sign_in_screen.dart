@@ -79,7 +79,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 autofill: const [AutofillHints.email],
                 textInputAction: TextInputAction.next,
                 validator: (v) => validateEmail(context, v),
-                prefixIcon: Icons.mail_outline_rounded,
+                prefixIcon: Icons.mail_outlined,
               ),
               PawTextField(
                 label: l.password,
@@ -87,12 +87,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 obscure: _hide,
                 autofill: const [AutofillHints.password],
                 textInputAction: TextInputAction.done,
-                prefixIcon: Icons.lock_outline_rounded,
+                prefixIcon: Icons.lock_outlined,
                 validator: (v) => (v == null || v.isEmpty) ? l.fieldRequired : null,
                 onSubmitted: (_) => _submit(auth),
                 suffix: IconButton(
                   tooltip: _hide ? l.showPassword : l.hidePassword,
-                  icon: Icon(_hide ? Icons.visibility_rounded : Icons.visibility_off_rounded),
+                  icon: Icon(_hide ? Icons.visibility_outlined : Icons.visibility_off_outlined),
                   onPressed: () => setState(() => _hide = !_hide),
                 ),
               ),
@@ -104,7 +104,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           child: TextButton(onPressed: () => context.push('/forgot'), child: Text(l.forgotPassword)),
         ),
         if (_error != null) ...[
-          InfoNote(_error!, icon: Icons.error_outline_rounded, tone: ChipTone.error),
+          InfoNote(_error!, icon: Icons.error_outlined, tone: ChipTone.error),
           const SizedBox(height: Space.md),
         ],
         PrimaryButton(label: l.signIn, loading: _busy, onPressed: () => _submit(auth)),
@@ -123,7 +123,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         Center(
           child: TextButton.icon(
             onPressed: () => context.push('/partner-signup'),
-            icon: const Icon(Icons.storefront_rounded),
+            icon: const Icon(Icons.storefront_outlined),
             label: Text(l.partnerSignupLink),
           ),
         ),

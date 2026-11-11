@@ -111,6 +111,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_bruno',
     {
+      'photoUrl': 'asset:assets/images/demo/pets/bruno.jpg',
       'ownerId': 'u_priya',
       'name': 'Bruno',
       'species': 'dog',
@@ -133,6 +134,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_misty',
     {
+      'photoUrl': 'asset:assets/images/demo/pets/misty.jpg',
       'ownerId': 'u_priya',
       'name': 'Misty',
       'species': 'cat',
@@ -153,6 +155,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_simba',
     {
+      'photoUrl': 'asset:assets/images/demo/pets/simba.jpg',
       'ownerId': 'u_ravi',
       'name': 'Simba',
       'species': 'dog',
@@ -172,6 +175,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_kiwi',
     {
+      'photoUrl': 'asset:assets/images/demo/pets/kiwi.jpg',
       'ownerId': 'u_ravi',
       'name': 'Kiwi',
       'species': 'bird',
@@ -191,6 +195,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_coco',
     {
+      'photoUrl': 'asset:assets/images/demo/pets/coco.jpg',
       'ownerId': 'u_anjali',
       'name': 'Coco',
       'species': 'rabbit',
@@ -211,6 +216,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_tiger',
     {
+      'photoUrl': 'asset:assets/images/demo/pets/tiger.jpg',
       'ownerId': 'u_anjali',
       'name': 'Tiger',
       'species': 'cat',
@@ -231,6 +237,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_max',
     {
+      'photoUrl': 'asset:assets/images/demo/pets/max.jpg',
       'ownerId': 'u_arjun',
       'name': 'Max',
       'species': 'dog',
@@ -252,6 +259,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_luna',
     {
+      'photoUrl': 'asset:assets/images/demo/pets/luna.jpg',
       'ownerId': 'u_arjun',
       'name': 'Luna',
       'species': 'dog',
@@ -271,6 +279,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_sheru',
     {
+      'photoUrl': 'asset:assets/images/demo/pets/sheru.jpg',
       'ownerId': 'u_arjun',
       'name': 'Sheru',
       'species': 'dog',

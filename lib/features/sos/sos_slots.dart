@@ -52,11 +52,11 @@ List<Widget> lostPetSection(BuildContext context, WidgetRef ref, List<Pet> pets)
         padding: const EdgeInsets.only(top: Space.lg),
         child: PawCard(
           onTap: () => context.push('/me/lost/${p.id}'),
-          color: context.paw.sos.withValues(alpha: 0.08),
+          color: context.paw.sosContainer,
           borderColor: context.paw.sos,
           semanticLabel: l.lostBannerTitle(p.name),
           child: Row(children: [
-            Icon(Icons.travel_explore_rounded, color: context.paw.sos, size: 32),
+            Icon(Icons.travel_explore_outlined, color: context.paw.sos, size: IconSizes.xl),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -67,7 +67,7 @@ List<Widget> lostPetSection(BuildContext context, WidgetRef ref, List<Pet> pets)
                 ),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded),
+            const Icon(Icons.chevron_right_outlined),
           ]),
         ),
       ),

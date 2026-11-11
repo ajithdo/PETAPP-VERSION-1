@@ -22,7 +22,7 @@ class JoinScreen extends ConsumerWidget {
     return Scaffold(
       body: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 440),
+          constraints: const BoxConstraints(maxWidth: Sizes.authCard),
           child: Padding(
             padding: EdgeInsets.all(context.gutter),
             child: AsyncView<PetInvite?>(
@@ -37,7 +37,7 @@ class JoinScreen extends ConsumerWidget {
                   );
                 }
                 return Column(mainAxisSize: MainAxisSize.min, children: [
-                  const PawSetuLogo(size: 56),
+                  const PawSetuLogo(size: Sizes.logoLg),
                   const SizedBox(height: Space.lg),
                   Text(
                     l.inviteReceived(inv.invitedByName, inv.petName, petRoleLabel(context, inv.role)),

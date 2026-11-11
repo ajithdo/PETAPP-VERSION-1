@@ -43,7 +43,7 @@ class _GateFrame extends StatelessWidget {
           child: SingleChildScrollView(
             padding: EdgeInsets.all(context.gutter),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 420),
+              constraints: const BoxConstraints(maxWidth: Sizes.emptyStateWidth),
               child: Column(mainAxisSize: MainAxisSize.min, children: children),
             ),
           ),
@@ -111,7 +111,7 @@ class _LockScreenState extends ConsumerState<_LockScreen> {
     String? message = _error;
     if (lockedOut) message = l.vaultLockedOut(state.lockedOutUntil!.difference(now).inSeconds + 1);
     return _GateFrame(children: [
-      const Illustration(Scene.vault, size: 110),
+      const Illustration(Scene.vault, size: Sizes.illustrationSm),
       const SizedBox(height: Space.md),
       Semantics(header: true, child: Text(l.vaultLockedTitle, style: context.text.titleLarge, textAlign: TextAlign.center)),
       const SizedBox(height: Space.xs),
@@ -133,7 +133,7 @@ class _LockScreenState extends ConsumerState<_LockScreen> {
       ),
       if (bio && bioOn) ...[
         const SizedBox(height: Space.md),
-        SecondaryButton(label: l.vaultUseBiometrics, icon: Icons.fingerprint_rounded, onPressed: _biometric),
+        SecondaryButton(label: l.vaultUseBiometrics, icon: Icons.fingerprint_outlined, onPressed: _biometric),
       ],
       const SizedBox(height: Space.sm),
       TextButton(onPressed: _forgot, child: Text(l.vaultForgotPin)),
@@ -159,7 +159,7 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
     final bio = ref.watch(biometricAvailableProvider).value ?? false;
     final notifier = ref.read(vaultLockProvider.notifier);
     return _GateFrame(children: [
-      const Illustration(Scene.vault, size: 110),
+      const Illustration(Scene.vault, size: Sizes.illustrationSm),
       const SizedBox(height: Space.md),
       Semantics(header: true, child: Text(l.vaultSetupTitle, style: context.text.titleLarge, textAlign: TextAlign.center)),
       const SizedBox(height: Space.xs),
@@ -202,7 +202,7 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
           value: notifier.biometricsOn,
           onChanged: (v) => setState(() => notifier.setBiometrics(v)),
           title: Text(l.vaultBiometricsToggle),
-          secondary: const Icon(Icons.fingerprint_rounded),
+          secondary: const Icon(Icons.fingerprint_outlined),
         ),
       ],
       const SizedBox(height: Space.md),
@@ -294,20 +294,20 @@ class _PinPadState extends State<PinPad> {
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             for (var i = 0; i < widget.maxLength; i++)
               AnimatedContainer(
-                duration: const Duration(milliseconds: 150),
-                margin: const EdgeInsets.symmetric(horizontal: 7),
-                width: 16,
-                height: 16,
+                duration: Motion.toggle,
+                margin: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs),
+                width: Sizes.pinDot,
+                height: Sizes.pinDot,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: i < _pin.length ? context.colors.primary : Colors.transparent,
-                  border: Border.all(color: i < 4 || i < _pin.length ? context.colors.primary : context.paw.outline, width: 2),
+                  border: Border.all(color: i < 4 || i < _pin.length ? context.colors.primary : context.paw.outline, width: Strokes.focus),
                 ),
               ),
           ]),
         ),
         SizedBox(
-          height: 44,
+          height: TapTarget.min,
           child: Center(
             child: widget.error == null
                 ? null
@@ -321,7 +321,7 @@ class _PinPadState extends State<PinPad> {
         ])
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [for (final d in row) key(d)]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const SizedBox(width: 80, height: 80),
+          const SizedBox(width: Sizes.pinKeyCell, height: Sizes.pinKeyCell),
           key('0'),
           _PadKey(icon: Icons.backspace_outlined, semantic: l.vaultPinBackspace, onTap: _back, enabled: widget.enabled),
         ]),
@@ -349,7 +349,7 @@ class _PadKey extends StatelessWidget {
     final bg = context.paw.surface;
     final fg = context.paw.textPrimary;
     return Padding(
-      padding: const EdgeInsets.all(6),
+      padding: const EdgeInsets.all(Space.xs + Space.xxs),
       child: Semantics(
         button: true,
         enabled: enabled,
@@ -362,8 +362,8 @@ class _PadKey extends StatelessWidget {
             customBorder: const CircleBorder(),
             onTap: enabled ? onTap : null,
             child: SizedBox(
-              width: 68,
-              height: 68,
+              width: Sizes.pinKey,
+              height: Sizes.pinKey,
               child: Center(
                 child: icon != null
                     ? Icon(icon, color: enabled ? fg : context.paw.textSecondary)
@@ -388,7 +388,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
         Text(l.vaultLockSettings, style: ctx.text.titleMedium),
         const SizedBox(height: Space.sm),
         ListTile(
-          leading: const Icon(Icons.lock_rounded),
+          leading: const Icon(Icons.lock_outlined),
           title: Text(l.vaultLockNow),
           onTap: () {
             Navigator.pop(ctx);
@@ -396,7 +396,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
           },
         ),
         ListTile(
-          leading: const Icon(Icons.pin_rounded),
+          leading: const Icon(Icons.pin_outlined),
           title: Text(l.vaultChangePin),
           onTap: () {
             Navigator.pop(ctx);
@@ -405,7 +405,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
         ),
         if (bio)
           SwitchListTile(
-            secondary: const Icon(Icons.fingerprint_rounded),
+            secondary: const Icon(Icons.fingerprint_outlined),
             value: notifier.biometricsOn,
             title: Text(l.vaultBiometricsToggle),
             onChanged: (v) => setState(() => notifier.setBiometrics(v)),
@@ -439,7 +439,7 @@ class _ChangePinScreenState extends ConsumerState<_ChangePinScreen> {
         child: SingleChildScrollView(
           padding: EdgeInsets.all(context.gutter),
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420),
+            constraints: const BoxConstraints(maxWidth: Sizes.emptyStateWidth),
             child: Column(children: [
               Text(prompt, style: context.text.titleMedium),
               const SizedBox(height: Space.md),

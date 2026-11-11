@@ -62,13 +62,13 @@ class _Profile extends ConsumerWidget {
       SliverAppBar(
         pinned: true,
         // Taller with big text so the name and breed never get cut off.
-        expandedHeight: 220 + 60 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
-        backgroundColor: Color.alphaBlend(tag.withValues(alpha: 0.18), context.paw.background),
+        expandedHeight: Sizes.profileHeader + Sizes.profileHeaderPerText * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
+        backgroundColor: Color.alphaBlend(tag.withValues(alpha: Opacities.chip), context.paw.background),
         actions: [
           if (canEdit)
             IconButton(
               tooltip: l.editPet,
-              icon: const Icon(Icons.edit_rounded),
+              icon: const Icon(Icons.edit_outlined),
               onPressed: () => context.push('/pets/${pet.id}/edit'),
             ),
           PopupMenuButton<String>(
@@ -96,12 +96,12 @@ class _Profile extends ConsumerWidget {
         flexibleSpace: FlexibleSpaceBar(
           background: SafeArea(
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const SizedBox(height: 32),
+              const SizedBox(height: Space.xxl),
               PetAvatar(
                 species: pet.species,
                 colorTag: pet.colorTag,
                 photoUrl: pet.photoUrl,
-                size: MediaQuery.textScalerOf(context).scale(1) > 1.5 ? 104 : 132,
+                size: MediaQuery.textScalerOf(context).scale(1) > 1.5 ? Sizes.profileAvatarSm : Sizes.profileAvatar,
                 heroTag: 'pet-${pet.id}',
                 name: pet.name,
               ),
@@ -123,7 +123,7 @@ class _Profile extends ConsumerWidget {
       ),
       SliverToBoxAdapter(
         child: ContentWidth(
-          maxWidth: 900,
+          maxWidth: Space.wideWidth,
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             const SizedBox(height: Space.lg),
             if (pet.archived) ...[
@@ -132,15 +132,15 @@ class _Profile extends ConsumerWidget {
             ],
             Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
               StatusChip(lifeStageLabel(context, pet), tone: ChipTone.info),
-              StatusChip(petRoleLabel(context, myRole.name), tone: ChipTone.accent, icon: Icons.person_rounded),
-              if (pet.flatFaced) StatusChip(l.flatFacedChip, tone: ChipTone.warning, icon: Icons.thermostat_rounded),
+              StatusChip(petRoleLabel(context, myRole.name), tone: ChipTone.accent, icon: Icons.person_outlined),
+              if (pet.flatFaced) StatusChip(l.flatFacedChip, tone: ChipTone.warning, icon: Icons.thermostat_outlined),
             ]),
             const SizedBox(height: Space.lg),
             ResponsiveGrid(minItemWidth: 150, children: [
-              StatTile(label: l.age, value: age.isEmpty ? '–' : age, icon: Icons.cake_rounded),
-              StatTile(label: l.weight, value: weight, icon: Icons.monitor_weight_rounded),
-              StatTile(label: l.gender, value: genderLabel(context, pet.gender), icon: Icons.transgender_rounded),
-              StatTile(label: l.neutered, value: pet.neutered ? l.yes : l.no, icon: Icons.health_and_safety_rounded),
+              StatTile(label: l.age, value: age.isEmpty ? '–' : age, icon: Icons.cake_outlined),
+              StatTile(label: l.weight, value: weight, icon: Icons.monitor_weight_outlined),
+              StatTile(label: l.gender, value: genderLabel(context, pet.gender), icon: Icons.transgender_outlined),
+              StatTile(label: l.neutered, value: pet.neutered ? l.yes : l.no, icon: Icons.health_and_safety_outlined),
             ]),
             SectionHeader(l.petCare),
             ResponsiveGrid(minItemWidth: 260, children: [
@@ -149,8 +149,8 @@ class _Profile extends ConsumerWidget {
                   onTap: () => context.push(s.route),
                   child: Row(children: [
                     CircleAvatar(
-                      backgroundColor: s.color.withValues(alpha: 0.15),
-                      child: Icon(s.icon, color: s.color),
+                      backgroundColor: s.color.withValues(alpha: Opacities.chip),
+                      child: Icon(s.icon, color: s.color, size: IconSizes.md),
                     ),
                     const SizedBox(width: Space.md),
                     Expanded(
@@ -159,7 +159,7 @@ class _Profile extends ConsumerWidget {
                         Text(s.subtitle, style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
                       ]),
                     ),
-                    const Icon(Icons.chevron_right_rounded),
+                    const Icon(Icons.chevron_right_outlined),
                   ]),
                 ),
             ]),
@@ -167,12 +167,12 @@ class _Profile extends ConsumerWidget {
             PawCard(
               padding: const EdgeInsets.symmetric(vertical: Space.sm),
               child: Column(children: [
-                _row(context, Icons.palette_rounded, l.markings, pet.markings),
-                _row(context, Icons.memory_rounded, l.microchip, pet.microchip),
-                _row(context, Icons.no_food_rounded, l.allergies, pet.allergies.isEmpty ? null : pet.allergies.join(', ')),
-                _row(context, Icons.restaurant_rounded, l.dietType, pet.dietType),
-                _row(context, Icons.local_hospital_rounded, l.regularClinic, ref.watch(_clinicNameProvider(pet.clinicId)).value),
-                _row(context, Icons.psychology_rounded, l.temperament, pet.temperament),
+                _row(context, Icons.palette_outlined, l.markings, pet.markings),
+                _row(context, Icons.memory_outlined, l.microchip, pet.microchip),
+                _row(context, Icons.no_food_outlined, l.allergies, pet.allergies.isEmpty ? null : pet.allergies.join(', ')),
+                _row(context, Icons.restaurant_outlined, l.dietType, pet.dietType),
+                _row(context, Icons.local_hospital_outlined, l.regularClinic, ref.watch(_clinicNameProvider(pet.clinicId)).value),
+                _row(context, Icons.psychology_outlined, l.temperament, pet.temperament),
               ]),
             ),
             SectionHeader(l.family, action: l.manage, onAction: () => context.push('/me/family?pet=${pet.id}')),
@@ -224,9 +224,9 @@ class _MemorialBanner extends StatelessWidget {
     final l = context.l10n;
     final memorial = pet.memorial;
     return PawCard(
-      color: context.paw.accent.withValues(alpha: 0.14),
+      color: context.paw.accent.withValues(alpha: Opacities.chip),
       child: Row(children: [
-        Icon(memorial ? Icons.favorite_rounded : Icons.home_rounded, color: context.paw.accent, size: 32),
+        Icon(memorial ? Icons.favorite_rounded : Icons.home_outlined, color: context.paw.accent, size: IconSizes.xl),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

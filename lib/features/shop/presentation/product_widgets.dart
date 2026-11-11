@@ -7,6 +7,7 @@ import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/shop_repository.dart';
 import '../domain/shop_models.dart';
+import '../domain/shop_rules.dart';
 import 'shop_labels.dart';
 
 /// Product picture: the seller's photo, or an illustrated placeholder in
@@ -22,23 +23,19 @@ class ProductArt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = categoryColor(category);
-    final shade = (seed % 4) * 0.06;
+    // No photo: a calm category drawing on warm grey (UI Design 5), never a
+    // loud gradient placeholder.
+    final paw = context.paw;
+    final c = paw.textSecondary;
     Widget art;
     if (photoUrl != null && photoUrl!.isNotEmpty) {
       art = MediaImage(url: photoUrl!, fit: BoxFit.cover, semanticLabel: label);
     } else {
-      art = DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color.lerp(c, Colors.white, 0.82 - shade)!, Color.lerp(c, Colors.white, 0.55 - shade)!],
-          ),
-        ),
+      art = ColoredBox(
+        color: paw.surfaceSubtle,
         child: LayoutBuilder(builder: (context, box) {
-          final s = box.biggest.shortestSide.isFinite ? box.biggest.shortestSide : 80.0;
-          return Center(child: Icon(categoryIcon(category), size: s * 0.42, color: Color.lerp(c, Colors.black, 0.15)));
+          final s = box.biggest.shortestSide.isFinite ? box.biggest.shortestSide : Sizes.thumbXl;
+          return Center(child: Icon(categoryIcon(category), size: s * 0.38, color: c));
         }),
       );
       if (label != null) art = Semantics(image: true, label: label, child: art);
@@ -63,7 +60,7 @@ class PriceTag extends StatelessWidget {
     return Semantics(
       label: off > 0 ? l.shopPriceSemantics(Fmt.inr(price), Fmt.inr(mrp), off) : Fmt.inr(price),
       excludeSemantics: true,
-      child: Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.xs + 2, runSpacing: 2, children: [
+      child: Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.xs + Space.xxs, runSpacing: Space.xxs, children: [
         Text(Fmt.inr(price), style: (big ? context.text.headlineSmall : context.text.titleSmall)?.copyWith(fontWeight: FontWeight.w700)),
         if (off > 0) ...[
           Text(Fmt.inr(mrp),
@@ -87,8 +84,8 @@ class RatingLine extends StatelessWidget {
       label: context.l10n.shopRatingSemantics(rating.toStringAsFixed(1), count),
       excludeSemantics: true,
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        Icon(Icons.star_rounded, size: 16, color: context.paw.accent),
-        const SizedBox(width: 2),
+        Icon(Icons.star_rounded, size: IconSizes.sm, color: context.paw.accent),
+        const SizedBox(width: Space.xxs),
         Text(rating.toStringAsFixed(1), style: context.text.labelLarge),
         Text(' ($count)', style: context.text.bodySmall),
       ]),
@@ -102,7 +99,7 @@ class PartnerStoreBadge extends StatelessWidget {
   final String? store;
   @override
   Widget build(BuildContext context) =>
-      StatusChip(store == null ? context.l10n.shopPartnerStore : context.l10n.shopSoldOn(store!), tone: ChipTone.info, icon: Icons.open_in_new_rounded);
+      StatusChip(store == null ? context.l10n.shopPartnerStore : context.l10n.shopSoldOn(store!), tone: ChipTone.info, icon: Icons.open_in_new_outlined);
 }
 
 /// Grid tile for product lists.
@@ -125,23 +122,14 @@ class ProductCard extends ConsumerWidget {
         AspectRatio(
           aspectRatio: compact ? 1.3 : 1.15,
           child: Stack(fit: StackFit.expand, children: [
-            ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: 14),
-            if (p.discountPercent >= 10)
-              Positioned(
-                left: 6,
-                top: 6,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(color: context.paw.success, borderRadius: BorderRadius.circular(8)),
-                  child: Text(l.shopOffPercent(p.discountPercent), style: context.text.labelSmall?.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
-                ),
-              ),
+            // The discount is shown once, in the price line below.
+            ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.lg),
             if (!p.inStock)
               Positioned.fill(
                 child: Container(
                   alignment: Alignment.center,
-                  decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.35), borderRadius: BorderRadius.circular(14)),
-                  child: Text(l.shopOutOfStock, style: context.text.labelLarge?.copyWith(color: Colors.white)),
+                  decoration: BoxDecoration(color: MediaColors.scrim, borderRadius: BorderRadius.circular(Radii.lg)),
+                  child: Text(l.shopOutOfStock, style: context.text.labelLarge?.copyWith(color: MediaColors.foreground)),
                 ),
               ),
           ]),
@@ -149,9 +137,25 @@ class ProductCard extends ConsumerWidget {
         const SizedBox(height: Space.sm),
         Text(p.brand, style: context.text.labelSmall?.copyWith(color: context.paw.textSecondary), maxLines: 1, overflow: TextOverflow.ellipsis),
         Text(p.name, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600), maxLines: 2, overflow: TextOverflow.ellipsis),
-        const SizedBox(height: 2),
+        const SizedBox(height: Space.xxs),
         PriceTag(price: p.price, mrp: p.mrp),
-        const SizedBox(height: 2),
+        if (!p.isAffiliate && p.inStock) ...[
+          const SizedBox(height: Space.xxs),
+          // When it arrives, in plain words (UI Design 5 brief).
+          Row(children: [
+            Icon(Icons.local_shipping_outlined, size: IconSizes.sm, color: context.paw.success),
+            const SizedBox(width: Space.xs),
+            Flexible(
+              child: Text(
+                l.shopDeliveryOn(Fmt.dateShort(addWorkingDays(Fmt.dayOnly(DateTime.now()), p.deliveryDays), context.lang)),
+                style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ]),
+        ],
+        const SizedBox(height: Space.xxs),
         if (p.isAffiliate) PartnerStoreBadge(store: store) else RatingLine(rating: p.rating, count: p.reviewCount),
       ]),
     );
@@ -179,7 +183,7 @@ class ProductGrid extends StatelessWidget {
 
   double _tileHeight(BuildContext context, double width) {
     final scale = MediaQuery.textScalerOf(context).scale(1);
-    return (width - Space.sm * 2) / 1.15 + 128 * scale + Space.sm * 2;
+    return (width - 2 * Space.sm) / Sizes.productArtAspect + Sizes.productTextBlock * scale + 2 * Space.sm;
   }
 }
 
@@ -198,7 +202,7 @@ class ProductRow extends StatelessWidget {
         child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           for (var i = 0; i < products.length; i++) ...[
             if (i > 0) const SizedBox(width: Space.sm),
-            SizedBox(width: 158, child: ProductCard(product: products[i], compact: true)),
+            SizedBox(width: Sizes.productCardCompact, child: ProductCard(product: products[i], compact: true)),
           ],
         ]),
       ),
@@ -217,11 +221,11 @@ class QtyStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = context.l10n;
     return Container(
-      decoration: BoxDecoration(border: Border.all(color: context.paw.outline), borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(border: Border.all(color: context.paw.outline), borderRadius: BorderRadius.circular(Radii.md)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         IconButton(
           tooltip: qty <= 1 ? l.shopRemoveItem(itemName) : l.shopLessOf(itemName),
-          icon: Icon(qty <= 1 ? Icons.delete_outline_rounded : Icons.remove_rounded),
+          icon: Icon(qty <= 1 ? Icons.delete_outlined : Icons.remove_outlined),
           onPressed: () => onChanged(qty - 1),
         ),
         Semantics(
@@ -231,7 +235,7 @@ class QtyStepper extends StatelessWidget {
         ),
         IconButton(
           tooltip: l.shopMoreOf(itemName),
-          icon: const Icon(Icons.add_rounded),
+          icon: const Icon(Icons.add_outlined),
           onPressed: qty >= max ? null : () => onChanged(qty + 1),
         ),
       ]),
@@ -248,7 +252,7 @@ class CartButton extends ConsumerWidget {
     return IconButton(
       tooltip: n == 0 ? context.l10n.shopCart : context.l10n.shopCartWithCount(n),
       onPressed: () => context.push('/shop/cart'),
-      icon: Badge(isLabelVisible: n > 0, label: Text('$n'), child: const Icon(Icons.shopping_cart_rounded)),
+      icon: Badge(isLabelVisible: n > 0, label: Text('$n'), child: const Icon(Icons.shopping_cart_outlined)),
     );
   }
 }

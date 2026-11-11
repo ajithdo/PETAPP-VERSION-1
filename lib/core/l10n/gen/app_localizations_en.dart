@@ -2385,6 +2385,15 @@ class AppLocalizationsEn extends AppLocalizations {
       'This card works without internet. Show it to a vet, a boarding centre or at the airport.';
 
   @override
+  String get healthAllClear => 'All up to date';
+
+  @override
+  String get certificate => 'Certificate';
+
+  @override
+  String get emergencyInfo => 'Emergency info';
+
+  @override
   String get bookTitle => 'Book care';
 
   @override
@@ -3351,6 +3360,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get remove => 'Remove';
+
+  @override
+  String bookFor(String name) {
+    return 'Book for $name';
+  }
+
+  @override
+  String get nextFreeSlot => 'Next free slot';
 
   @override
   String get aiTitle => 'Ask PawSetu';
@@ -10682,4 +10699,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String albumTitle(String pet) {
     return '$pet\'s memories';
   }
+
+  @override
+  String gendaProgress(int done, int total) {
+    return '$done of $total done';
+  }
+
+  @override
+  String get gendaNothingPlanned => 'Nothing planned today. Add a routine.';
+
+  @override
+  String withUnread(String label, int count) {
+    return '$label, $count unread';
+  }
+
+  @override
+  String shopAskVet(String name) {
+    return 'Not sure what suits $name? Ask a vet';
+  }
+
+  @override
+  String get meGroupPets => 'Pets and family';
+
+  @override
+  String get meGroupMoney => 'Orders and money';
+
+  @override
+  String get meGroupHelp => 'Help and settings';
 }

@@ -56,7 +56,7 @@ class PortalScaffold extends ConsumerWidget {
       children: [
         const Padding(
           padding: EdgeInsets.fromLTRB(Space.xl, Space.xl, Space.lg, Space.sm),
-          child: PawSetuLogo(size: 36, withName: true),
+          child: PawSetuLogo(size: Sizes.logo, withName: true),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(Space.xl, 0, Space.lg, Space.md),
@@ -67,7 +67,7 @@ class PortalScaffold extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Space.lg),
           child: ListTile(
-            leading: const Icon(Icons.settings_rounded),
+            leading: const Icon(Icons.settings_outlined),
             title: Text(context.l10n.settings),
             onTap: () => context.push('/settings'),
           ),
@@ -75,7 +75,7 @@ class PortalScaffold extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Space.lg),
           child: ListTile(
-            leading: const Icon(Icons.logout_rounded),
+            leading: const Icon(Icons.logout_outlined),
             title: Text(context.l10n.signOut),
             onTap: () => ref.read(authServiceProvider).signOut(),
           ),
@@ -83,7 +83,18 @@ class PortalScaffold extends ConsumerWidget {
       ],
     );
 
+    // UI Design 5 portals (calm register, like a business dashboard): the
+    // same quiet top bar as the rest of the app, with a hairline below.
+    final paw = context.paw;
+    final barBg = paw.background;
+    final barFg = paw.textPrimary;
     final appBar = AppBar(
+      shape: Border(bottom: BorderSide(color: paw.outline)),
+      backgroundColor: barBg,
+      foregroundColor: barFg,
+      iconTheme: IconThemeData(color: barFg),
+      actionsIconTheme: IconThemeData(color: barFg),
+      titleTextStyle: context.text.titleLarge?.copyWith(color: barFg),
       title: Text(sections[idx].label),
       actions: [
         ...actions,
@@ -93,12 +104,14 @@ class PortalScaffold extends ConsumerWidget {
             // On a phone the name would squeeze the page title: initial only.
             child: wide
                 ? Chip(
-                    avatar: const Icon(Icons.person_rounded, size: 18),
-                    label: Text(user.name, overflow: TextOverflow.ellipsis),
+                    backgroundColor: Color.alphaBlend(barFg.withValues(alpha: Opacities.chip), barBg),
+                    side: BorderSide(color: barFg.withValues(alpha: Opacities.border)),
+                    avatar: Icon(Icons.person_outlined, size: IconSizes.chip, color: barFg),
+                    label: Text(user.name, overflow: TextOverflow.ellipsis, style: context.text.labelLarge?.copyWith(color: barFg)),
                   )
                 : Tooltip(
                     message: user.name,
-                    child: CircleAvatar(radius: 16, child: Text(user.name.isEmpty ? '?' : user.name.characters.first.toUpperCase())),
+                    child: CircleAvatar(radius: Sizes.avatarXs / 2, child: Text(user.name.isEmpty ? '?' : user.name.characters.first.toUpperCase())),
                   ),
           ),
       ],
@@ -107,8 +120,8 @@ class PortalScaffold extends ConsumerWidget {
     if (wide) {
       return Scaffold(
         body: Row(children: [
-          SizedBox(width: 280, child: nav),
-          const VerticalDivider(width: 1),
+          SizedBox(width: Sizes.portalNav, child: nav),
+          const VerticalDivider(width: Strokes.hairline),
           Expanded(child: Scaffold(appBar: appBar, body: body)),
         ]),
       );

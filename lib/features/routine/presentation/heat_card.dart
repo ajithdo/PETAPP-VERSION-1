@@ -7,7 +7,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../pets/domain/pet.dart';
 import '../domain/routine.dart';
 
-/// Walk-weather tip with heat safety (spec 7.3). Version 1 uses demo
+/// Walk-weather tip with heat safety (spec 7.3). DEMO VERSION 1 uses demo
 /// temperatures; flat-faced breeds get stronger warnings.
 class HeatCard extends ConsumerWidget {
   const HeatCard({super.key, required this.pet, this.compact = false});
@@ -22,10 +22,10 @@ class HeatCard extends ConsumerWidget {
     final temp = demoTemperature(city, now);
     final level = heatLevel(temp, flatFaced: pet.flatFaced);
     final (tone, icon, title) = switch (level) {
-      HeatLevel.ok => (ChipTone.success, Icons.wb_sunny_rounded, l.heatOk(pet.name)),
-      HeatLevel.warm => (ChipTone.info, Icons.wb_sunny_rounded, l.heatWarm),
-      HeatLevel.hot => (ChipTone.warning, Icons.thermostat_rounded, l.heatHot(pet.name)),
-      HeatLevel.danger => (ChipTone.error, Icons.local_fire_department_rounded, l.heatDanger(pet.name)),
+      HeatLevel.ok => (ChipTone.success, Icons.wb_sunny_outlined, l.heatOk(pet.name)),
+      HeatLevel.warm => (ChipTone.info, Icons.wb_sunny_outlined, l.heatWarm),
+      HeatLevel.hot => (ChipTone.warning, Icons.thermostat_outlined, l.heatHot(pet.name)),
+      HeatLevel.danger => (ChipTone.error, Icons.local_fire_department_outlined, l.heatDanger(pet.name)),
     };
     final c = switch (tone) {
       ChipTone.success => context.paw.success,
@@ -43,12 +43,12 @@ class HeatCard extends ConsumerWidget {
       child: Container(
         padding: const EdgeInsets.all(Space.md),
         decoration: BoxDecoration(
-          color: c.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(compact ? Radii.button : Radii.card),
-          border: Border.all(color: c.withValues(alpha: 0.35)),
+          color: c.withValues(alpha: Opacities.tint),
+          borderRadius: BorderRadius.circular(compact ? Radii.md : Radii.card),
+          border: Border.all(color: c.withValues(alpha: Opacities.border)),
         ),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Icon(icon, color: c, size: 28),
+          Icon(icon, color: c, size: IconSizes.action),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -58,10 +58,10 @@ class HeatCard extends ConsumerWidget {
               ]),
               if (!compact || level != HeatLevel.ok)
                 for (final t in tips)
-                  Padding(padding: const EdgeInsets.only(top: 2), child: Text('• $t', style: context.text.bodySmall)),
+                  Padding(padding: const EdgeInsets.only(top: Space.xxs), child: Text('• $t', style: context.text.bodySmall)),
               if (ref.watch(appConfigProvider).isDemo)
                 Padding(
-                  padding: const EdgeInsets.only(top: 4),
+                  padding: const EdgeInsets.only(top: Space.xs),
                   child: Text(l.demoTemperature, style: context.text.labelSmall),
                 ),
             ]),

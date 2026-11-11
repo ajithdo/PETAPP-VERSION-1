@@ -26,38 +26,38 @@ String categoryLabel(BuildContext context, String c) {
 }
 
 IconData categoryIcon(String c) => switch (c) {
-      'food' => Icons.set_meal_rounded,
-      'treats' => Icons.cookie_rounded,
-      'toys' => Icons.sports_baseball_rounded,
-      'grooming' => Icons.shower_rounded,
-      'health_hygiene' => Icons.health_and_safety_rounded,
-      'beds' => Icons.bed_rounded,
-      'collars_leashes' => Icons.link_rounded,
-      'bowls_feeders' => Icons.rice_bowl_rounded,
-      'litter_cat' => Icons.cleaning_services_rounded,
-      'bird_food_cages' => Icons.flutter_dash_rounded,
-      'rabbit_care' => Icons.grass_rounded,
-      'clothing' => Icons.checkroom_rounded,
-      'travel' => Icons.luggage_rounded,
-      _ => Icons.shopping_bag_rounded,
+      'food' => Icons.set_meal_outlined,
+      'treats' => Icons.cookie_outlined,
+      'toys' => Icons.sports_baseball_outlined,
+      'grooming' => Icons.shower_outlined,
+      'health_hygiene' => Icons.health_and_safety_outlined,
+      'beds' => Icons.bed_outlined,
+      'collars_leashes' => Icons.link_outlined,
+      'bowls_feeders' => Icons.rice_bowl_outlined,
+      'litter_cat' => Icons.cleaning_services_outlined,
+      'bird_food_cages' => Icons.flutter_dash_outlined,
+      'rabbit_care' => Icons.grass_outlined,
+      'clothing' => Icons.checkroom_outlined,
+      'travel' => Icons.luggage_outlined,
+      _ => Icons.shopping_bag_outlined,
     };
 
 Color categoryColor(String c) => const {
-      'food': Color(0xFFF4A261),
-      'treats': Color(0xFFD6B98C),
-      'toys': Color(0xFF38BDF8),
-      'grooming': Color(0xFFF472B6),
-      'health_hygiene': Color(0xFF34D399),
-      'beds': Color(0xFF9B8AFB),
-      'collars_leashes': Color(0xFF0F766E),
-      'bowls_feeders': Color(0xFFF59E0B),
-      'litter_cat': Color(0xFF64748B),
-      'bird_food_cages': Color(0xFF22C55E),
-      'rabbit_care': Color(0xFF84CC16),
-      'clothing': Color(0xFFEC4899),
-      'travel': Color(0xFF0EA5E9),
+      'food': CategoryColors.amber,
+      'treats': CategoryColors.gold,
+      'toys': CategoryColors.sky,
+      'grooming': CategoryColors.rose,
+      'health_hygiene': CategoryColors.teal,
+      'beds': CategoryColors.plum,
+      'collars_leashes': CategoryColors.teal,
+      'bowls_feeders': CategoryColors.clay,
+      'litter_cat': CategoryColors.slate,
+      'bird_food_cages': CategoryColors.olive,
+      'rabbit_care': CategoryColors.olive,
+      'clothing': CategoryColors.rose,
+      'travel': CategoryColors.ocean,
     }[c] ??
-    const Color(0xFF0F766E);
+    CategoryColors.teal;
 
 String speciesName(BuildContext context, String s) {
   final l = context.l10n;
@@ -89,15 +89,15 @@ String sortLabel(BuildContext context, ProductSort s) {
 (String, ChipTone, IconData) orderStatusInfo(BuildContext context, String s) {
   final l = context.l10n;
   return switch (s) {
-    'placed' => (l.ordPlaced, ChipTone.info, Icons.receipt_long_rounded),
-    'packed' => (l.ordPacked, ChipTone.info, Icons.inventory_2_rounded),
-    'shipped' => (l.ordShipped, ChipTone.accent, Icons.local_shipping_rounded),
-    'out_for_delivery' => (l.ordOutForDelivery, ChipTone.accent, Icons.delivery_dining_rounded),
+    'placed' => (l.ordPlaced, ChipTone.info, Icons.receipt_long_outlined),
+    'packed' => (l.ordPacked, ChipTone.info, Icons.inventory_2_outlined),
+    'shipped' => (l.ordShipped, ChipTone.accent, Icons.local_shipping_outlined),
+    'out_for_delivery' => (l.ordOutForDelivery, ChipTone.accent, Icons.delivery_dining_outlined),
     'delivered' => (l.ordDelivered, ChipTone.success, Icons.check_circle_rounded),
-    'cancelled' => (l.ordCancelled, ChipTone.neutral, Icons.cancel_rounded),
-    'return_requested' => (l.ordReturnRequested, ChipTone.warning, Icons.assignment_return_rounded),
-    'returned' => (l.ordReturned, ChipTone.neutral, Icons.assignment_returned_rounded),
-    'return_rejected' => (l.ordReturnRejected, ChipTone.error, Icons.block_rounded),
+    'cancelled' => (l.ordCancelled, ChipTone.neutral, Icons.cancel_outlined),
+    'return_requested' => (l.ordReturnRequested, ChipTone.warning, Icons.assignment_return_outlined),
+    'returned' => (l.ordReturned, ChipTone.neutral, Icons.assignment_returned_outlined),
+    'return_rejected' => (l.ordReturnRejected, ChipTone.error, Icons.block_outlined),
     _ => (s, ChipTone.neutral, Icons.circle_outlined),
   };
 }
@@ -142,28 +142,28 @@ String expenseCategoryLabel(BuildContext context, String c) {
 }
 
 IconData expenseIcon(String c) => switch (c) {
-      'vet' => Icons.local_hospital_rounded,
-      'grooming' => Icons.content_cut_rounded,
-      'training' => Icons.sports_rounded,
-      'boarding' => Icons.house_rounded,
-      'walking' => Icons.directions_walk_rounded,
-      'food' => Icons.set_meal_rounded,
-      'supplies' => Icons.shopping_bag_rounded,
-      'insurance' => Icons.health_and_safety_rounded,
-      _ => Icons.receipt_rounded,
+      'vet' => Icons.local_hospital_outlined,
+      'grooming' => Icons.content_cut_outlined,
+      'training' => Icons.sports_outlined,
+      'boarding' => Icons.house_outlined,
+      'walking' => Icons.directions_walk_outlined,
+      'food' => Icons.set_meal_outlined,
+      'supplies' => Icons.shopping_bag_outlined,
+      'insurance' => Icons.health_and_safety_outlined,
+      _ => Icons.receipt_outlined,
     };
 
 Color expenseColor(String c) => const {
-      'vet': Color(0xFF0F766E),
-      'grooming': Color(0xFFF472B6),
-      'training': Color(0xFF0EA5E9),
-      'boarding': Color(0xFF9B8AFB),
-      'walking': Color(0xFF34D399),
-      'food': Color(0xFFF4A261),
-      'supplies': Color(0xFFF59E0B),
-      'insurance': Color(0xFF6D5BD0),
+      'vet': CategoryColors.teal,
+      'grooming': CategoryColors.rose,
+      'training': CategoryColors.ocean,
+      'boarding': CategoryColors.plum,
+      'walking': CategoryColors.teal,
+      'food': CategoryColors.amber,
+      'supplies': CategoryColors.clay,
+      'insurance': CategoryColors.violet,
     }[c] ??
-    const Color(0xFF94A3B8);
+    CategoryColors.slate;
 
 String couponMessage(BuildContext context, CouponResult r, {int minOrder = 0}) {
   final l = context.l10n;

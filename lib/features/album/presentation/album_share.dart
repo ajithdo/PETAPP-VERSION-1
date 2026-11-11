@@ -31,12 +31,12 @@ class Watermark extends StatelessWidget {
         padding: EdgeInsets.all(size * 0.03),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: size * 0.02, vertical: size * 0.012),
-          decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.88), borderRadius: BorderRadius.circular(size)),
+          decoration: BoxDecoration(color: MediaColors.photoPanel, borderRadius: BorderRadius.circular(size)),
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             PawSetuLogo(size: size * 0.05),
             SizedBox(width: size * 0.012),
             Text(context.l10n.albumWatermarkText,
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(color: const Color(0xFF0F766E), fontSize: size * 0.03, fontWeight: FontWeight.w700)),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(color: PrintColors.brand, fontSize: size * 0.03, fontWeight: FontWeight.w700)),
           ]),
         ),
       ),
@@ -96,13 +96,13 @@ Future<void> showShareMemorySheet(BuildContext context, WidgetRef ref, AlbumItem
         const SizedBox(height: Space.md),
         Center(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(Radii.button),
+            borderRadius: BorderRadius.circular(Radii.md),
             child: SizedBox(
-              width: 200,
-              height: 200,
+              width: Sizes.shareCard,
+              height: Sizes.shareCard,
               child: Stack(children: [
                 Positioned.fill(child: MediaImage(url: item.url!, semanticLabel: item.caption)),
-                if (watermark && !(item.isVideo && !item.url!.startsWith('seed:'))) const Positioned.fill(child: Watermark(size: 200)),
+                if (watermark && !(item.isVideo && !item.url!.startsWith('seed:'))) const Positioned.fill(child: Watermark(size: Sizes.shareCard)),
               ]),
             ),
           ),
@@ -121,7 +121,7 @@ Future<void> showShareMemorySheet(BuildContext context, WidgetRef ref, AlbumItem
         const SizedBox(height: Space.sm),
         PrimaryButton(
           label: l.albumShareToApps,
-          icon: Icons.ios_share_rounded,
+          icon: Icons.ios_share_outlined,
           loading: busy,
           onPressed: () async {
             setState(() => busy = true);
@@ -204,7 +204,7 @@ class _FamilyLinkSheetState extends ConsumerState<_FamilyLinkSheet> {
       const SizedBox(height: Space.lg),
       PrimaryButton(
         label: l.vaultCreateLink,
-        icon: Icons.link_rounded,
+        icon: Icons.link_outlined,
         loading: _busy,
         onPressed: () async {
           setState(() => _busy = true);

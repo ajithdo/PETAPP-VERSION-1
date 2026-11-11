@@ -1489,6 +1489,9 @@
     }
   },
   "medicalCardOffline": "This card works without internet. Show it to a vet, a boarding centre or at the airport.",
+  "healthAllClear": "All up to date",
+  "certificate": "Certificate",
+  "emergencyInfo": "Emergency info",
   "bookTitle": "Book care",
   "findAVet": "Find a vet near you",
   "kindVet": "Vet clinic",
@@ -2119,6 +2122,15 @@
   "submitApplication": "Submit application",
   "partnerApprovalNote": "After you submit, your listing waits for approval. You can set up services and prices meanwhile.",
   "remove": "Remove",
+  "bookFor": "Book for {name}",
+  "@bookFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "nextFreeSlot": "Next free slot",
   "aiTitle": "Ask PawSetu",
   "aiIntroTitle": "Quick answers to everyday pet questions",
   "aiIntroBody": "Ask about food, baths, vaccines, ticks and more. For anything serious, talk to a vet.",
@@ -7295,5 +7307,39 @@
         "type": "String"
       }
     }
-  }
+  },
+  "gendaProgress": "{done} of {total} done",
+  "@gendaProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "gendaNothingPlanned": "Nothing planned today. Add a routine.",
+  "withUnread": "{label}, {count} unread",
+  "@withUnread": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopAskVet": "Not sure what suits {name}? Ask a vet",
+  "@shopAskVet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "meGroupPets": "Pets and family",
+  "meGroupMoney": "Orders and money",
+  "meGroupHelp": "Help and settings"
 }

@@ -18,23 +18,25 @@ class BookHomeScreen extends ConsumerWidget {
     final l = context.l10n;
     final bookings = ref.watch(myBookingsProvider).value ?? const <Booking>[];
     final upcoming = bookings.where((b) => b.isActive && b.end.isAfter(DateTime.now())).toList()..sort((a, b) => a.start.compareTo(b.start));
+    // One quiet style for every kind of care (UI Design 5): the pale
+    // marigold circle of the quick actions, not six different colours.
     final tiles = [
-      (Icons.local_hospital_rounded, l.kindVet, '/book/find/clinic', context.colors.primary),
-      (Icons.video_call_rounded, l.teleVet, '/televet', context.paw.accent),
-      (Icons.content_cut_rounded, l.kindGrooming, '/book/find/groomer', const Color(0xFFF472B6)),
-      (Icons.sports_rounded, l.kindTraining, '/book/find/trainer', const Color(0xFF0EA5E9)),
-      (Icons.house_rounded, l.kindBoarding, '/book/find/boarder', const Color(0xFF9B8AFB)),
-      (Icons.directions_walk_rounded, l.kindWalking, '/book/find/walker', const Color(0xFF34D399)),
+      (Icons.local_hospital_outlined, l.kindVet, '/book/find/clinic'),
+      (Icons.video_call_outlined, l.teleVet, '/televet'),
+      (Icons.content_cut_outlined, l.kindGrooming, '/book/find/groomer'),
+      (Icons.sports_outlined, l.kindTraining, '/book/find/trainer'),
+      (Icons.house_outlined, l.kindBoarding, '/book/find/boarder'),
+      (Icons.directions_walk_outlined, l.kindWalking, '/book/find/walker'),
     ];
     return PageBody(
       children: [
         const SizedBox(height: Space.sm),
-        Text(l.bookTitle, style: context.text.headlineSmall),
+        Semantics(header: true, child: Text(l.bookTitle, style: context.text.headlineMedium)),
         const SizedBox(height: Space.md),
         TileGrid(
           columns: context.isPhone ? 2 : 3,
-          minTileHeight: 108,
-          children: [for (final t in tiles) QuickActionTile(icon: t.$1, label: t.$2, color: t.$4, onTap: () => context.push(t.$3))],
+          minTileHeight: Sizes.quickTile,
+          children: [for (final t in tiles) QuickActionTile(icon: t.$1, label: t.$2, onTap: () => context.push(t.$3))],
         ),
         const SizedBox(height: Space.md),
         PawCard(
@@ -42,8 +44,8 @@ class BookHomeScreen extends ConsumerWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundColor: context.paw.primaryContainer,
-                child: Icon(Icons.map_rounded, color: context.colors.primary),
+                backgroundColor: context.paw.surfaceSubtle,
+                child: Icon(Icons.map_outlined, color: context.paw.textPrimary),
               ),
               const SizedBox(width: Space.md),
               Expanded(
@@ -55,7 +57,7 @@ class BookHomeScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right_rounded),
+              const Icon(Icons.chevron_right_outlined),
             ],
           ),
         ),
@@ -83,14 +85,12 @@ class BookingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = bookingStatus(context, booking.status);
     final b = booking;
+    final past = b.end.isBefore(DateTime.now());
     return PawCard(
       onTap: () => context.push(partnerView ? '/partner/booking/${b.id}' : '/book/bookings/${b.id}'),
       child: Row(
         children: [
-          CircleAvatar(
-            backgroundColor: context.paw.primaryContainer,
-            child: Icon(kindIcon(b.kind), color: context.colors.primary),
-          ),
+          DateBadge(day: '${b.start.day}', month: Fmt.monthShort(b.start, context.lang), muted: past),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(
@@ -99,15 +99,28 @@ class BookingCard extends StatelessWidget {
                 Text(
                   partnerView ? '${b.petName} · ${b.ownerName}' : b.providerName,
                   style: context.text.titleSmall,
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  '${serviceLabel(context, b.serviceId)} · ${partnerView ? '' : '${b.petName} · '}${Fmt.dateTime(b.start, context.lang)}',
+                  '${serviceLabel(context, b.serviceId)}${partnerView ? '' : ' · ${b.petName}'}',
                   style: context.text.bodySmall,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
+                const SizedBox(height: Space.xxs),
+                Row(children: [
+                  Icon(kindIcon(b.kind), size: IconSizes.sm, color: context.paw.textSecondary),
+                  const SizedBox(width: Space.xs),
+                  Flexible(
+                    child: Text(
+                      Fmt.time(b.start, context.lang),
+                      style: context.text.labelMedium?.copyWith(color: context.paw.textSecondary),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ]),
               ],
             ),
           ),

@@ -183,12 +183,12 @@ class _PrescriptionBuilderScreenState extends ConsumerState<PrescriptionBuilderS
       body: SafeArea(
         child: Column(children: [
           Expanded(
-            child: PageBody(maxWidth: 760, children: [
+            child: PageBody(maxWidth: Space.readingWidth, children: [
               const SizedBox(height: Space.sm),
               PawCard(
                 padding: const EdgeInsets.all(Space.md),
                 child: Row(children: [
-                  PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: 44),
+                  PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: Sizes.avatarMd),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -216,7 +216,7 @@ class _PrescriptionBuilderScreenState extends ConsumerState<PrescriptionBuilderS
                           IconButton(
                             tooltip: l.remove,
                             onPressed: () => setState(() => _items.removeAt(n).dispose()),
-                            icon: const Icon(Icons.delete_outline_rounded),
+                            icon: const Icon(Icons.delete_outlined),
                           ),
                       ]),
                       const SizedBox(height: Space.sm),
@@ -237,7 +237,7 @@ class _PrescriptionBuilderScreenState extends ConsumerState<PrescriptionBuilderS
                   ),
                 ),
               if (_items.length < maxItems)
-                SecondaryButton(label: l.rxAddMedicine, icon: Icons.add_rounded, onPressed: () => setState(() => _items.add(_ItemCtrl()))),
+                SecondaryButton(label: l.rxAddMedicine, icon: Icons.add_outlined, onPressed: () => setState(() => _items.add(_ItemCtrl()))),
               const SizedBox(height: Space.lg),
               PawTextField(label: l.rxAdvice, controller: _notes, hint: l.rxAdviceHint, maxLines: 3),
               Row(children: [
@@ -253,11 +253,11 @@ class _PrescriptionBuilderScreenState extends ConsumerState<PrescriptionBuilderS
                       );
                       if (d != null) setState(() => _followUp = d);
                     },
-                    icon: const Icon(Icons.event_rounded),
+                    icon: const Icon(Icons.event_outlined),
                     label: Text(_followUp == null ? l.rxAddFollowUp : l.rxFollowUpOn(Fmt.date(_followUp!, context.lang))),
                   ),
                 ),
-                if (_followUp != null) IconButton(tooltip: l.remove, onPressed: () => setState(() => _followUp = null), icon: const Icon(Icons.close_rounded)),
+                if (_followUp != null) IconButton(tooltip: l.remove, onPressed: () => setState(() => _followUp = null), icon: const Icon(Icons.close_outlined)),
               ]),
               const SizedBox(height: Space.md),
               InfoNote(l.rxWhereItGoes(c.petName)),
@@ -266,13 +266,13 @@ class _PrescriptionBuilderScreenState extends ConsumerState<PrescriptionBuilderS
           Padding(
             padding: EdgeInsets.all(context.gutter),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 760),
+              constraints: const BoxConstraints(maxWidth: Space.readingWidth),
               child: Row(children: [
-                Expanded(child: SecondaryButton(label: l.rxPreview, icon: Icons.visibility_rounded, onPressed: () => _preview(c, vetDoc, clinic.value))),
+                Expanded(child: SecondaryButton(label: l.rxPreview, icon: Icons.visibility_outlined, onPressed: () => _preview(c, vetDoc, clinic.value))),
                 const SizedBox(width: Space.md),
                 Expanded(
                   flex: 2,
-                  child: PrimaryButton(label: l.rxSignSend, icon: Icons.draw_rounded, loading: _busy, onPressed: () => _send(c, vetDoc, clinic.value)),
+                  child: PrimaryButton(label: l.rxSignSend, icon: Icons.draw_outlined, loading: _busy, onPressed: () => _send(c, vetDoc, clinic.value)),
                 ),
               ]),
             ),

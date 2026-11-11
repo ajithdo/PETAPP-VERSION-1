@@ -31,11 +31,11 @@ class EmptyState extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(compact ? Space.lg : Space.xl),
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 420),
+          constraints: const BoxConstraints(maxWidth: Sizes.emptyStateWidth),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Illustration(scene, size: compact ? 110 : 160),
+              Illustration(scene, size: compact ? Sizes.illustrationSm : Sizes.illustration),
               const SizedBox(height: Space.lg),
               Text(title, style: context.text.titleMedium, textAlign: TextAlign.center),
               if (message != null) ...[
@@ -69,7 +69,7 @@ class ErrorState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.cloud_off_rounded, size: 56, color: context.paw.textSecondary),
+            Icon(Icons.cloud_off_outlined, size: IconSizes.hero, color: context.paw.textSecondary),
             const SizedBox(height: Space.md),
             Text(context.l10n.errorTitle, style: context.text.titleMedium, textAlign: TextAlign.center),
             const SizedBox(height: Space.sm),
@@ -78,7 +78,7 @@ class ErrorState extends StatelessWidget {
                 textAlign: TextAlign.center),
             if (onRetry != null) ...[
               const SizedBox(height: Space.lg),
-              SecondaryButton(label: context.l10n.tryAgain, onPressed: onRetry, expand: false, icon: Icons.refresh_rounded),
+              SecondaryButton(label: context.l10n.tryAgain, onPressed: onRetry, expand: false, icon: Icons.refresh_outlined),
             ],
           ],
         ),
@@ -87,7 +87,8 @@ class ErrorState extends StatelessWidget {
   }
 }
 
-/// Grey placeholder block with a soft pulse (still when reduce motion is on).
+/// Warm-grey placeholder block with a soft pulse (still when reduce motion is
+/// on), shaped like the content that will appear.
 class Skeleton extends StatefulWidget {
   const Skeleton({super.key, this.height = 16, this.width, this.radius = 8});
   final double height;
@@ -110,12 +111,12 @@ class _SkeletonState extends State<Skeleton> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    final base = context.paw.outline;
+    final base = context.paw.surfaceSubtle;
     Widget box(double t) => Container(
           height: widget.height,
           width: widget.width,
           decoration: BoxDecoration(
-            color: Color.lerp(base, base.withValues(alpha: 0.4), t),
+            color: Color.lerp(base, base.withValues(alpha: Opacities.muted), t),
             borderRadius: BorderRadius.circular(widget.radius),
           ),
         );
