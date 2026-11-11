@@ -41,5 +41,15 @@
     "en": "Live route and photos",
     "hi": "लाइव रास्ता और फ़ोटो",
     "te": "లైవ్ రూట్, ఫోటోలు"
+  },
+  "welcomeLanguages": {
+    "en": "English, हिन्दी and తెలుగు. Change any time in Settings.",
+    "hi": "English, हिन्दी और తెలుగు। सेटिंग्स में कभी भी बदलें।",
+    "te": "English, हिन्दी, తెలుగు. సెట్టింగ్స్‌లో ఎప్పుడైనా మార్చండి."
+  },
+  "firstAidGuides": {
+    "en": "Guides",
+    "hi": "गाइड",
+    "te": "గైడ్‌లు"
   }
 }

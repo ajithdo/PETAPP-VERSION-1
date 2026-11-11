@@ -10753,4 +10753,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bookWalkSub => 'Live route and photos';
+
+  @override
+  String get welcomeLanguages =>
+      'English, हिन्दी and తెలుగు. Change any time in Settings.';
+
+  @override
+  String get firstAidGuides => 'Guides';
 }

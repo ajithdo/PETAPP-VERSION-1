@@ -10410,4 +10410,11 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get bookWalkSub => 'లైవ్ రూట్, ఫోటోలు';
+
+  @override
+  String get welcomeLanguages =>
+      'English, हिन्दी, తెలుగు. సెట్టింగ్స్‌లో ఎప్పుడైనా మార్చండి.';
+
+  @override
+  String get firstAidGuides => 'గైడ్‌లు';
 }

@@ -17895,6 +17895,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Live route and photos'**
   String get bookWalkSub;
+
+  /// No description provided for @welcomeLanguages.
+  ///
+  /// In en, this message translates to:
+  /// **'English, हिन्दी and తెలుగు. Change any time in Settings.'**
+  String get welcomeLanguages;
+
+  /// No description provided for @firstAidGuides.
+  ///
+  /// In en, this message translates to:
+  /// **'Guides'**
+  String get firstAidGuides;
 }
 
 class _AppLocalizationsDelegate

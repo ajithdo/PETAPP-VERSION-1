@@ -52,13 +52,23 @@ class AuthScaffold extends StatelessWidget {
                         textAlign: TextAlign.center),
                   ],
                   const SizedBox(height: Space.xl),
-                  if (top != null) ...[top!, const SizedBox(height: Space.xl)],
-                  Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: Sizes.authCard),
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
+                  // Wide screens: the form on the left, [top] (the demo
+                  // accounts) beside it. Phones: [top] first.
+                  if (top != null && context.screenSize == ScreenSize.desktop)
+                    Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Expanded(flex: 5, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children)),
+                      const SizedBox(width: Space.xxl),
+                      Expanded(flex: 7, child: top!),
+                    ])
+                  else ...[
+                    if (top != null) ...[top!, const SizedBox(height: Space.xl)],
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: Sizes.authCard),
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
+                      ),
                     ),
-                  ),
+                  ],
                 ],
               ),
             ),

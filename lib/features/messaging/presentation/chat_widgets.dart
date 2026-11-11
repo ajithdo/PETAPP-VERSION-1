@@ -150,8 +150,15 @@ class MessageBubble extends ConsumerWidget {
     if (m.type == 'prescription') return _prescription(context);
     final l = context.l10n;
     final maxW = math.min(520.0, MediaQuery.sizeOf(context).width * 0.78);
-    final bg = mine ? context.paw.primaryContainer : context.paw.surface;
-    final fg = mine ? context.colors.onPrimaryContainer : context.paw.textPrimary;
+    // UI Design 6: your messages are ink bubbles with paper text; the other
+    // person's are white cards. Quiet text and accents switch to match.
+    final paw = context.paw;
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    final bg = mine ? paw.textPrimary : paw.surface;
+    final fg = mine ? paw.background : paw.textPrimary;
+    final quiet = mine ? (dark ? PawColors.light.textSecondary : paw.onBandMuted) : paw.textSecondary;
+    final accent = mine ? (dark ? PawColors.light.accent : paw.marigold) : context.colors.primary;
+    final small = context.text.labelSmall?.copyWith(color: quiet);
     final radius = BorderRadius.only(
       topLeft: const Radius.circular(Radii.xl),
       topRight: const Radius.circular(Radii.xl),
@@ -186,18 +193,18 @@ class MessageBubble extends ConsumerWidget {
               Flexible(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
                   Text(m.fileName ?? l.msgPreviewPdf, style: context.text.titleSmall?.copyWith(color: fg), maxLines: 2, overflow: TextOverflow.ellipsis),
-                  Text([l.msgPdf, if (m.sizeBytes > 0) fileSizeLabel(m.sizeBytes), l.msgTapToOpen].join(' · '), style: context.text.labelSmall),
+                  Text([l.msgPdf, if (m.sizeBytes > 0) fileSizeLabel(m.sizeBytes), l.msgTapToOpen].join(' · '), style: small),
                 ]),
               ),
             ]),
           ),
         ),
-      'voice' => VoiceNotePlayer(url: m.url ?? 'seed:voice:0', durationSec: m.durationSec, color: context.colors.primary),
+      'voice' => VoiceNotePlayer(url: m.url ?? 'seed:voice:0', durationSec: m.durationSec, color: accent),
       _ => _HighlightedText(text: m.text, query: highlight, style: context.text.bodyMedium?.copyWith(color: fg)),
     };
     if (m.type == 'text' && (m.meta['problem'] == true)) {
       content = Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-        Text(l.tvProblemLabel, style: context.text.labelMedium?.copyWith(color: context.colors.primary)),
+        Text(l.tvProblemLabel, style: context.text.labelMedium?.copyWith(color: accent)),
         const SizedBox(height: Space.xxs),
         content,
       ]);
@@ -226,23 +233,23 @@ class MessageBubble extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: Space.xs),
                   child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(Icons.shield_outlined, size: IconSizes.xs, color: context.paw.textSecondary),
+                    Icon(Icons.shield_outlined, size: IconSizes.xs, color: quiet),
                     const SizedBox(width: Space.xs),
-                    Flexible(child: Text(l.msgNumberHidden, style: context.text.labelSmall)),
+                    Flexible(child: Text(l.msgNumberHidden, style: small)),
                   ]),
                 ),
               const SizedBox(height: Space.xxs),
               Row(mainAxisSize: MainAxisSize.min, children: [
                 if (m.demo) ...[
-                  Text(l.msgDemoReply, style: context.text.labelSmall?.copyWith(color: context.paw.warning, fontWeight: FontWeight.w700)),
+                  Text(l.msgDemoReply, style: context.text.labelSmall?.copyWith(color: mine ? accent : paw.warning, fontWeight: FontWeight.w700)),
                   const SizedBox(width: Space.xs + Space.xxs),
                 ],
-                Text(Fmt.time(m.createdAt, context.lang), style: context.text.labelSmall),
+                Text(Fmt.time(m.createdAt, context.lang), style: small),
                 if (mine) ...[
                   const SizedBox(width: Space.xs),
                   Semantics(
                     label: read ? l.msgRead : l.msgSent,
-                    child: Icon(read ? Icons.done_all_outlined : Icons.done_outlined, size: IconSizes.sm, color: read ? context.colors.primary : context.paw.textSecondary),
+                    child: Icon(read ? Icons.done_all_outlined : Icons.done_outlined, size: IconSizes.sm, color: read ? accent : quiet),
                   ),
                 ],
               ]),

@@ -69,38 +69,47 @@ class TeleVetHomeScreen extends ConsumerWidget {
         value: mine,
         data: (_) => PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.sm),
-          PawCard(
-            color: context.paw.primaryContainer.withValues(alpha: Opacities.half),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              Row(children: [
-                Container(
-                  padding: const EdgeInsets.all(Space.md),
-                  decoration: BoxDecoration(color: context.paw.surface, shape: BoxShape.circle),
-                  child: Icon(Icons.video_call_outlined, color: context.colors.primary, size: IconSizes.xl),
-                ),
-                const SizedBox(width: Space.md),
-                Expanded(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(l.tvHomeTitle, style: context.text.titleLarge),
-                    const SizedBox(height: Space.xxs),
-                    Text(l.tvHomeBody, style: context.text.bodyMedium),
-                  ]),
+          // UI Design 6: a dark kaapi hero with the main action in marigold.
+          Builder(builder: (context) {
+            final paw = context.paw;
+            void start() {
+              if (block == StartBlock.monthlyLimit) {
+                showPlusPrompt(context, title: l.tvMonthlyUsedTitle, body: l.tvMonthlyUsed(Fmt.date(nextMonthStart(now), context.lang)));
+                return;
+              }
+              context.push('/televet/new');
+            }
+
+            return Container(
+              padding: const EdgeInsets.all(Space.lg + Space.xxs),
+              decoration: BoxDecoration(color: paw.band, borderRadius: BorderRadius.circular(Radii.xxl)),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Semantics(header: true, child: Text(l.tvHomeTitle, style: context.text.headlineMedium?.copyWith(color: paw.onBand))),
+                      const SizedBox(height: Space.sm),
+                      Text(l.tvHomeBody, style: context.text.bodyMedium?.copyWith(color: paw.onBandMuted)),
+                    ]),
+                  ),
+                  const SizedBox(width: Space.md),
+                  Container(
+                    width: Sizes.thumb,
+                    height: Sizes.thumb,
+                    decoration: BoxDecoration(color: paw.marigold, borderRadius: BorderRadius.circular(Radii.lg)),
+                    child: Icon(Icons.video_call_rounded, color: paw.onMarigold, size: IconSizes.xl),
+                  ),
+                ]),
+                const SizedBox(height: Space.lg),
+                FilledButton.icon(
+                  onPressed: start,
+                  style: FilledButton.styleFrom(backgroundColor: paw.marigold, foregroundColor: paw.onMarigold, iconColor: paw.onMarigold),
+                  icon: const Icon(Icons.chat_outlined),
+                  label: Text(l.tvStart),
                 ),
               ]),
-              const SizedBox(height: Space.lg),
-              PrimaryButton(
-                label: l.tvStart,
-                icon: Icons.chat_outlined,
-                onPressed: () {
-                  if (block == StartBlock.monthlyLimit) {
-                    showPlusPrompt(context, title: l.tvMonthlyUsedTitle, body: l.tvMonthlyUsed(Fmt.date(nextMonthStart(now), context.lang)));
-                    return;
-                  }
-                  context.push('/televet/new');
-                },
-              ),
-            ]),
-          ),
+            );
+          }),
           const SizedBox(height: Space.md),
           _AllowanceCard(limits: limits, used: used, plus: user.isPlus),
           if (open.isNotEmpty) ...[
@@ -111,7 +120,12 @@ class TeleVetHomeScreen extends ConsumerWidget {
           PawCard(
             onTap: () => context.push('/ask'),
             child: Row(children: [
-              CircleAvatar(backgroundColor: context.colors.primary, child: Icon(Icons.auto_awesome_outlined, color: context.colors.onPrimary)),
+              Container(
+                width: TapTarget.min - Space.xxs,
+                height: TapTarget.min - Space.xxs,
+                decoration: BoxDecoration(color: context.paw.textPrimary, borderRadius: BorderRadius.circular(Radii.md)),
+                child: Icon(Icons.auto_awesome_outlined, color: context.paw.background),
+              ),
               const SizedBox(width: Space.md),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -154,24 +168,31 @@ class _AllowanceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = context.l10n;
     final reached = !limits.unlimitedPerMonth && used >= limits.perMonth;
-    Widget line(IconData icon, String text) => Padding(
-          padding: const EdgeInsets.only(top: Space.sm),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Icon(icon, size: IconSizes.md, color: context.colors.primary),
-            const SizedBox(width: Space.sm),
-            Expanded(child: Text(text, style: context.text.bodyMedium)),
+    // UI Design 6: the plan's allowances as four small tiles.
+    final paw = context.paw;
+    Widget tile(IconData icon, String text) => Container(
+          padding: const EdgeInsets.all(Space.md),
+          decoration: BoxDecoration(border: Border.all(color: paw.outline), borderRadius: BorderRadius.circular(Radii.lg)),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Icon(icon, size: IconSizes.lg, color: paw.accent),
+            const SizedBox(height: Space.sm),
+            Text(text, style: context.text.labelMedium),
           ]),
         );
+    final cols = MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 1 : 2;
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
           Expanded(child: Text(plus ? l.tvPlanPlus : l.tvPlanFree, style: context.text.titleMedium)),
           StatusChip(plus ? l.planPlus : l.tvFreeChip, tone: plus ? ChipTone.accent : ChipTone.neutral, icon: plus ? Icons.workspace_premium_outlined : null),
         ]),
-        line(Icons.event_repeat_outlined, limits.unlimitedPerMonth ? l.tvLineUnlimited : l.tvLinePerMonth(limits.perMonth, used)),
-        line(Icons.chat_bubble_outlined, l.tvLineMessages(limits.messages, limits.words)),
-        line(Icons.schedule_outlined, l.tvLineHours(limits.hours)),
-        line(limits.video ? Icons.videocam_outlined : Icons.videocam_off_outlined, limits.video ? l.tvLineVideo : l.tvLineNoVideo),
+        const SizedBox(height: Space.md),
+        TileGrid(columns: cols, spacing: Space.sm, children: [
+          tile(Icons.event_repeat_outlined, limits.unlimitedPerMonth ? l.tvLineUnlimited : l.tvLinePerMonth(limits.perMonth, used)),
+          tile(Icons.chat_bubble_outlined, l.tvLineMessages(limits.messages, limits.words)),
+          tile(Icons.schedule_outlined, l.tvLineHours(limits.hours)),
+          tile(limits.video ? Icons.videocam_outlined : Icons.videocam_off_outlined, limits.video ? l.tvLineVideo : l.tvLineNoVideo),
+        ]),
         if (reached) ...[
           const SizedBox(height: Space.md),
           InfoNote(l.tvMonthlyUsed(Fmt.date(nextMonthStart(DateTime.now()), context.lang)), tone: ChipTone.warning, icon: Icons.hourglass_bottom_outlined),

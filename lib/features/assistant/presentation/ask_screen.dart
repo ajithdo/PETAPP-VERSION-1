@@ -148,18 +148,20 @@ class _AskScreenState extends ConsumerState<AskScreen> {
                         decoration: InputDecoration(
                           hintText: l.aiHint,
                           isDense: true,
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.xxl)),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full)),
+                          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.paw.controlBorder)),
                           contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md + Space.xxs),
                         ),
                       ),
                     ),
                     const SizedBox(width: Space.xs),
                     IconButton.filled(
+                      style: IconButton.styleFrom(backgroundColor: context.paw.action, foregroundColor: context.paw.onAction, minimumSize: const Size.square(TapTarget.easy)),
                       tooltip: l.aiAsk,
                       onPressed: _busy || _ctrl.text.trim().isEmpty ? null : () => _ask(_ctrl.text),
                       icon: _busy
                           ? const SizedBox(width: IconSizes.chip, height: IconSizes.chip, child: CircularProgressIndicator(strokeWidth: Strokes.focus))
-                          : const Icon(Icons.send_outlined),
+                          : const Icon(Icons.send_rounded),
                     ),
                   ]),
                 ),
@@ -208,8 +210,9 @@ class _QuestionBubble extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: Space.md, bottom: Space.xs, left: Space.x3l),
         padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
+        // UI Design 6: your words in an ink bubble on the right.
         decoration: BoxDecoration(
-          color: context.paw.primaryContainer,
+          color: context.paw.textPrimary,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(Radii.xl),
             topRight: Radius.circular(Radii.xl),
@@ -218,8 +221,8 @@ class _QuestionBubble extends StatelessWidget {
           ),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          Text(text, style: context.text.bodyMedium?.copyWith(color: context.colors.onPrimaryContainer)),
-          Text(Fmt.time(at, context.lang), style: context.text.labelSmall),
+          Text(text, style: context.text.bodyMedium?.copyWith(color: context.paw.background)),
+          Text(Fmt.time(at, context.lang), style: context.text.labelSmall?.copyWith(color: context.paw.background.withValues(alpha: Opacities.onDarkMuted))),
         ]),
       ),
     );
@@ -272,14 +275,15 @@ class _RedFlagCard extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: Space.xs),
       child: PawCard(
-        borderColor: context.paw.sos,
-        color: context.paw.sos.withValues(alpha: Opacities.pressed),
+        borderColor: Colors.transparent,
+        color: context.paw.sosContainer,
+        flat: true,
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(Icons.emergency_outlined, color: context.paw.sos),
+            Icon(Icons.warning_rounded, color: context.paw.onSosContainer),
             const SizedBox(width: Space.sm),
-            Expanded(child: Text(l.aiRedFlagTitle, style: context.text.titleMedium)),
+            Expanded(child: Text(l.aiRedFlagTitle, style: context.text.titleMedium?.copyWith(color: context.paw.onSosContainer))),
           ]),
           const SizedBox(height: Space.sm),
           Text(l.aiRedFlagBody(redFlagLabel(context, flag))),

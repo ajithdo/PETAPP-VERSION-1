@@ -10381,4 +10381,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get bookWalkSub => 'लाइव रास्ता और फ़ोटो';
+
+  @override
+  String get welcomeLanguages =>
+      'English, हिन्दी और తెలుగు। सेटिंग्स में कभी भी बदलें।';
+
+  @override
+  String get firstAidGuides => 'गाइड';
 }

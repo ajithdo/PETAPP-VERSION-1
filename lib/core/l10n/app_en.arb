@@ -7356,5 +7356,7 @@
   "bookGroomSub": "Salon or home visit",
   "bookTrainSub": "Puppy basics to behaviour",
   "bookBoardSub": "Boarding and pet sitting",
-  "bookWalkSub": "Live route and photos"
+  "bookWalkSub": "Live route and photos",
+  "welcomeLanguages": "English, हिन्दी and తెలుగు. Change any time in Settings.",
+  "firstAidGuides": "Guides"
 }

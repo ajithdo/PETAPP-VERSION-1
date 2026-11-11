@@ -29,25 +29,58 @@ class FirstAidListScreen extends ConsumerWidget {
           const DraftLabel(),
         ]),
         safetyGap,
-        ResponsiveGrid(minItemWidth: 300, children: [
-          for (final id in firstAidIds) _GuideTile(id: id),
-        ]),
-        safetyGap,
-        PawCard(
-          onTap: () => context.push('/toxic-check'),
-          child: Row(children: [
-            Icon(Icons.no_food_outlined, color: context.paw.warning, size: IconSizes.xl),
-            const SizedBox(width: Space.md),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(l.toxTitle, style: context.text.titleMedium),
-                Text(l.toxTileHint, style: context.text.bodySmall),
-              ]),
-            ),
-            const Icon(Icons.chevron_right_outlined),
-          ]),
-        ),
+        // UI Design 6: "Is it safe?" first, as a marigold card with a few
+        // common things to check, then the guides as a grid of cards.
+        _SafeCheckCard(),
+        SectionHeader(l.firstAidGuides),
+        LayoutBuilder(builder: (context, c) {
+          final cols = c.maxWidth >= 720 ? 3 : (c.maxWidth >= 320 && MediaQuery.textScalerOf(context).scale(1) < 1.3 ? 2 : 1);
+          return TileGrid(columns: cols, children: [for (final id in firstAidIds) _GuideTile(id: id)]);
+        }),
         const SizedBox(height: Space.xxl),
+      ]),
+    );
+  }
+}
+
+/// "Is it safe?": opens the toxic checker, with common things as shortcuts.
+class _SafeCheckCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final items = ['chocolate', 'grapes', 'onionGarlic', 'xylitol', 'avocado'];
+    return PawCard(
+      color: paw.accentContainer,
+      flat: true,
+      borderColor: Colors.transparent,
+      onTap: () => context.push('/toxic-check'),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          Container(
+            width: TapTarget.min,
+            height: TapTarget.min,
+            decoration: BoxDecoration(color: paw.marigold, borderRadius: BorderRadius.circular(Radii.md)),
+            child: Icon(Icons.search_rounded, color: paw.onMarigold),
+          ),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(l.toxTitle, style: context.text.titleMedium),
+              Text(l.toxTileHint, style: context.text.bodySmall?.copyWith(color: paw.onAccentContainer)),
+            ]),
+          ),
+        ]),
+        const SizedBox(height: Space.md),
+        Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
+          for (final id in items)
+            ActionChip(
+              label: Text(toxText(l, id).$1),
+              backgroundColor: paw.surface,
+              side: BorderSide.none,
+              onPressed: () => context.push('/toxic-check?q=${Uri.encodeComponent(toxText(l, id).$1)}'),
+            ),
+        ]),
       ]),
     );
   }
@@ -60,23 +93,22 @@ class _GuideTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = firstAidText(context.l10n, id);
+    final paw = context.paw;
     return PawCard(
       onTap: () => context.push('/first-aid/$id'),
       semanticLabel: t.title,
-      child: Row(children: [
-        CircleAvatar(
-          radius: Sizes.avatarMd / 2,
-          backgroundColor: context.paw.surfaceSubtle,
-          child: Icon(firstAidIcon(id), color: context.paw.textPrimary),
+      padding: const EdgeInsets.all(Space.md + Space.xxs),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+          width: TapTarget.min - Space.xxs,
+          height: TapTarget.min - Space.xxs,
+          decoration: BoxDecoration(color: paw.sosContainer, borderRadius: BorderRadius.circular(Radii.md)),
+          child: Icon(firstAidIcon(id), color: paw.onSosContainer),
         ),
-        const SizedBox(width: Space.md),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(t.title, style: context.text.titleMedium),
-            Text(t.signs, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodySmall),
-          ]),
-        ),
-        const Icon(Icons.chevron_right_outlined),
+        const SizedBox(height: Space.md),
+        Text(t.title, style: context.text.titleSmall),
+        const SizedBox(height: Space.xxs),
+        Text(t.signs, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodySmall),
       ]),
     );
   }

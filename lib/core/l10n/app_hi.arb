@@ -2965,5 +2965,7 @@
   "bookGroomSub": "सैलून या घर पर",
   "bookTrainSub": "बुनियादी सीख से व्यवहार तक",
   "bookBoardSub": "बोर्डिंग और पेट सिटिंग",
-  "bookWalkSub": "लाइव रास्ता और फ़ोटो"
+  "bookWalkSub": "लाइव रास्ता और फ़ोटो",
+  "welcomeLanguages": "English, हिन्दी और తెలుగు। सेटिंग्स में कभी भी बदलें।",
+  "firstAidGuides": "गाइड"
 }

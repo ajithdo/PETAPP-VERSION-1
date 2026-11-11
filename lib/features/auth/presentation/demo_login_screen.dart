@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/demo/seed/seed_people.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
+import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import 'auth_widgets.dart';
 
@@ -58,13 +59,11 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
 
   /// The demo families' pets (the bundled demo photos), so a visitor sees
   /// who they will be looking after before signing in.
-  static const _petPhoto = {
-    'u_priya': 'assets/images/demo/pets/bruno.jpg',
-    'u_ravi': 'assets/images/demo/pets/simba.jpg',
-    'u_anjali': 'assets/images/demo/pets/coco.jpg',
-    'u_arjun': 'assets/images/demo/pets/max.jpg',
-    'u_rohan': 'assets/images/demo/pets/bruno.jpg',
-    'u_meera': 'assets/images/demo/pets/max.jpg',
+  static const _pets = {
+    'u_priya': ['bruno', 'misty'],
+    'u_ravi': ['simba', 'kiwi'],
+    'u_anjali': ['coco', 'tiger'],
+    'u_arjun': ['max', 'luna'],
   };
 
   IconData _icon(String role) => switch (role) {
@@ -77,6 +76,13 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
         'seller' => Icons.storefront_outlined,
         'admin' => Icons.admin_panel_settings_outlined,
         _ => Icons.pets_outlined,
+      };
+
+  Color _tone(BuildContext context, String role) => switch (role) {
+        'clinic_admin' || 'seller' => context.paw.accent,
+        'vet' || 'walker' => context.paw.success,
+        'groomer' => CategoryColors.ocean,
+        _ => context.paw.textPrimary,
       };
 
   Future<void> _login(String uid) async {
@@ -111,33 +117,64 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
       Text(l.demoCredentials(demoPassword, demoOtp), style: context.text.bodySmall, textAlign: TextAlign.center),
     ];
     if (!widget.embedded) return PageBody(maxWidth: widget.maxWidth, children: [DemoBanner(l.demoLoginNote), ...content]);
-    // On the sign-in page: a plain section (title, one line of help, the
-    // accounts as white cards), not a tinted box.
-    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      Row(children: [
-        Icon(Icons.science_outlined, color: context.paw.textPrimary),
-        const SizedBox(width: Space.sm),
-        Expanded(child: Semantics(header: true, child: Text(l.demoAccountsTitle, style: context.text.titleLarge))),
+    // On the sign-in page (UI Design 6): a marigold panel with its title,
+    // one line of help and the accounts as cards.
+    final paw = context.paw;
+    return Container(
+      padding: const EdgeInsets.all(Space.lg),
+      decoration: BoxDecoration(color: paw.accentContainer, borderRadius: BorderRadius.circular(Radii.xl)),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(children: [
+          Icon(Icons.science_outlined, color: paw.onAccentContainer),
+          const SizedBox(width: Space.sm),
+          Expanded(child: Semantics(header: true, child: Text(l.demoAccountsTitle, style: context.text.titleLarge))),
+        ]),
+        const SizedBox(height: Space.xs),
+        Text(l.demoAccountsHint, style: context.text.bodyMedium?.copyWith(color: paw.onAccentContainer)),
+        ...content,
       ]),
-      const SizedBox(height: Space.xs),
-      Text(l.demoAccountsHint, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
-      ...content,
-    ]);
+    );
   }
 
   Widget _tile(BuildContext context, DemoAccount a) {
     final l = context.l10n;
+    final paw = context.paw;
+    // A shape for everything: pet parents show their pets in arches, family
+    // and sitters are circles with initials, partners are tiles.
+    final pets = _pets[a.uid];
+    final double archH = Sizes.avatarMd;
+    final archW = (archH / Sizes.archAspect).roundToDouble();
+    Widget arch(String name) => Container(
+      decoration: ShapeDecoration(shape: archShape(archW + Space.xs, BorderSide(color: paw.surface, width: Space.xxs))),
+      child: ArchClip(width: archW, child: Image.asset('assets/images/demo/pets/$name.jpg', width: archW, height: archH, fit: BoxFit.cover, excludeFromSemantics: true)),
+    );
+    final Widget lead = pets != null
+        ? SizedBox(
+            width: archW * 2 - Space.md,
+            height: archH + Space.xs,
+            child: Stack(children: [Positioned(left: 0, child: arch(pets[0])), Positioned(left: archW - Space.md, child: arch(pets[1]))]),
+          )
+        : (a.role == 'owner'
+            ? CircleAvatar(
+                radius: Sizes.avatarMd / 2,
+                backgroundColor: paw.surfaceSubtle,
+                child: Text(initials(a.name), style: context.text.labelLarge),
+              )
+            : Container(
+                width: Sizes.avatarMd,
+                height: Sizes.avatarMd,
+                decoration: BoxDecoration(
+                  color: a.role == 'admin' ? paw.textPrimary : _tone(context, a.role).withValues(alpha: Opacities.chip),
+                  borderRadius: BorderRadius.circular(Radii.md),
+                ),
+                child: Icon(_icon(a.role), color: a.role == 'admin' ? paw.background : _tone(context, a.role)),
+              ));
     return PawCard(
       onTap: _busyUid == null ? () => _login(a.uid) : null,
       semanticLabel: '${l.demoBadge}: ${a.name}. ${_describe(context, a)}',
+      padding: const EdgeInsets.all(Space.md),
       child: Row(children: [
-        _petPhoto[a.uid] != null
-            ? CircleAvatar(radius: Sizes.avatarMd / 2, backgroundImage: AssetImage(_petPhoto[a.uid]!))
-            : CircleAvatar(
-                radius: Sizes.avatarMd / 2,
-                backgroundColor: context.paw.surfaceSubtle,
-                child: Icon(_icon(a.role), color: context.paw.textPrimary),
-              ),
+        lead,
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

@@ -2965,5 +2965,7 @@
   "bookGroomSub": "సెలూన్ లేదా ఇంటి వద్ద",
   "bookTrainSub": "ప్రాథమిక శిక్షణ నుండి ప్రవర్తన వరకు",
   "bookBoardSub": "బోర్డింగ్, పెట్ సిట్టింగ్",
-  "bookWalkSub": "లైవ్ రూట్, ఫోటోలు"
+  "bookWalkSub": "లైవ్ రూట్, ఫోటోలు",
+  "welcomeLanguages": "English, हिन्दी, తెలుగు. సెట్టింగ్స్‌లో ఎప్పుడైనా మార్చండి.",
+  "firstAidGuides": "గైడ్‌లు"
 }

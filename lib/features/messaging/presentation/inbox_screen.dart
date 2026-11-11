@@ -207,10 +207,17 @@ class _AskPawSetuTile extends ConsumerWidget {
       padding: EdgeInsets.fromLTRB(context.gutter, Space.xs, context.gutter, Space.sm),
       child: PawCard(
         onTap: () => context.push('/ask'),
-        color: context.paw.primaryContainer.withValues(alpha: Opacities.half),
+        color: context.paw.accentContainer,
+        flat: true,
+        borderColor: Colors.transparent,
         padding: const EdgeInsets.all(Space.md),
         child: Row(children: [
-          CircleAvatar(backgroundColor: context.colors.primary, child: Icon(Icons.auto_awesome_outlined, color: context.colors.onPrimary)),
+          Container(
+            width: TapTarget.min - Space.xxs,
+            height: TapTarget.min - Space.xxs,
+            decoration: BoxDecoration(color: context.paw.marigold, borderRadius: BorderRadius.circular(Radii.md)),
+            child: Icon(Icons.auto_awesome_outlined, color: context.paw.onMarigold),
+          ),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -254,7 +261,7 @@ class ConversationTile extends StatelessWidget {
       selected: selected,
       label: [title, if (unread > 0) l.msgUnreadCount(unread)].join(', '),
       child: Material(
-        color: selected ? context.paw.primaryContainer.withValues(alpha: Opacities.half) : Colors.transparent,
+        color: selected ? context.paw.surfaceSubtle : Colors.transparent,
         child: InkWell(
           onTap: onTap,
           child: Padding(
@@ -271,7 +278,7 @@ class ConversationTile extends StatelessWidget {
                     ),
                     const SizedBox(width: Space.sm),
                     Text(chatTime(c.lastAt, context.lang),
-                        style: context.text.labelSmall?.copyWith(color: bold ? context.colors.primary : null, fontWeight: bold ? FontWeight.w700 : null)),
+                        style: context.text.labelSmall?.copyWith(color: bold ? context.paw.accent : null, fontWeight: bold ? FontWeight.w700 : null)),
                   ]),
                   const SizedBox(height: Space.xxs),
                   Row(children: [
@@ -294,7 +301,7 @@ class ConversationTile extends StatelessWidget {
                     ],
                     if (unread > 0) ...[
                       const SizedBox(width: Space.xs + Space.xxs),
-                      Badge.count(count: unread, backgroundColor: context.colors.primary, textColor: context.colors.onPrimary),
+                      Badge.count(count: unread, backgroundColor: context.paw.marigold, textColor: context.paw.onMarigold),
                     ],
                   ]),
                 ]),
