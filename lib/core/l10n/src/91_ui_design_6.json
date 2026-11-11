@@ -51,5 +51,38 @@
     "en": "Guides",
     "hi": "गाइड",
     "te": "గైడ్‌లు"
+  },
+  "yesterday": {
+    "en": "Yesterday",
+    "hi": "कल",
+    "te": "నిన్న"
+  },
+  "earlier": {
+    "en": "Earlier",
+    "hi": "पहले",
+    "te": "ఇంతకుముందు"
+  },
+  "stepBooked": {
+    "en": "Booked",
+    "hi": "बुक हुआ",
+    "te": "బుక్ అయింది"
+  },
+  "stepConfirmed": {
+    "en": "Confirmed",
+    "hi": "पक्का हुआ",
+    "te": "నిర్ధారించబడింది"
+  },
+  "stepVisited": {
+    "en": "Visited",
+    "hi": "मिल लिए",
+    "te": "సందర్శించారు"
+  },
+  "shopGoodMatch": {
+    "en": "A good match for {name}",
+    "hi": "{name} के लिए सही",
+    "te": "{name}కి సరిపోతుంది",
+    "ph": {
+      "name": "String"
+    }
   }
 }

@@ -80,7 +80,11 @@ class _LogTab extends ConsumerWidget {
           const SizedBox(height: Space.md),
           PetDayBand(pet: pet),
           const SizedBox(height: Space.md),
+          _WeekStrip(pet: pet, logs: logs),
+          const SizedBox(height: Space.md),
           TodayCard(pet: pet, header: false),
+          SectionHeader(l.logSomething),
+          _LogGrid(pet: pet),
           if (logs.isEmpty)
             EmptyState(title: l.noLogsTitle(pet.name), message: l.noLogsBody, compact: true),
           for (final d in days.take(7)) ...[
@@ -94,6 +98,81 @@ class _LogTab extends ConsumerWidget {
         ]);
       },
     );
+  }
+}
+
+/// The last seven days: a marigold for each day the plan was done, a ring
+/// filled as far as it got otherwise (UI Design 6).
+class _WeekStrip extends StatelessWidget {
+  const _WeekStrip({required this.pet, required this.logs});
+  final Pet pet;
+  final List<RoutineLog> logs;
+
+  @override
+  Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final days = [for (var i = 6; i >= 0; i--) Fmt.dayOnly(now).subtract(Duration(days: i))];
+    return Row(children: [
+      for (final d in days)
+        Expanded(
+          child: Builder(builder: (context) {
+            final p = TodayProgress(pet: pet, logs: logs, day: d);
+            final today = Fmt.sameDay(d, now);
+            return Semantics(
+              label: '${Fmt.weekdayDate(d, context.lang)}: ${(p.fraction * 100).round()}%',
+              excludeSemantics: true,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: Space.sm),
+                decoration: BoxDecoration(color: today ? context.paw.surfaceSubtle : null, borderRadius: BorderRadius.circular(Radii.lg)),
+                child: Column(children: [
+                  Text(Fmt.weekdayNarrow(d, context.lang), style: context.text.labelSmall),
+                  const SizedBox(height: Space.xs),
+                  p.items.isEmpty
+                      ? const SizedBox(height: IconSizes.lg)
+                      : TaskTick(done: (p.fraction * 100).round(), goal: 100, size: IconSizes.lg + Space.xxs),
+                ]),
+              ),
+            );
+          }),
+        ),
+    ]);
+  }
+}
+
+/// Every kind of log as a round button with its name; tap to log it.
+class _LogGrid extends ConsumerWidget {
+  const _LogGrid({required this.pet});
+  final Pet pet;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final types = LogType.values.where((t) => t != LogType.behaviour).toList();
+    final cols = MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 3 : 5;
+    return TileGrid(columns: cols, spacing: Space.sm, children: [
+      for (final t in types)
+        Semantics(
+          button: true,
+          label: logTypeLabel(context, t),
+          excludeSemantics: true,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(Radii.md),
+            onTap: () => showLogDetails(context, ref, pet, t),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: Space.xs),
+              child: Column(children: [
+                Container(
+                  width: TapTarget.min,
+                  height: TapTarget.min,
+                  decoration: BoxDecoration(color: context.paw.surfaceSubtle, shape: BoxShape.circle),
+                  child: Icon(logTypeIcon(t), color: context.paw.textPrimary),
+                ),
+                const SizedBox(height: Space.xs),
+                Text(logTypeLabel(context, t), style: context.text.labelSmall?.copyWith(color: context.paw.textPrimary), textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
+              ]),
+            ),
+          ),
+        ),
+    ]);
   }
 }
 
@@ -190,7 +269,7 @@ class _ChartsTabState extends ConsumerState<_ChartsTab> {
             ),
           ),
           const SizedBox(height: Space.md),
-          ResponsiveGrid(minItemWidth: 180, children: [
+          ResponsiveGrid(minColumns: 2, minItemWidth: 180, children: [
             if (isDog) StatTile(label: l.totalWalked, value: Fmt.km(walksTotal), icon: Icons.directions_walk_outlined),
             StatTile(label: l.streak, value: l.daysCount(streak(logs.map((g) => g.at), DateTime.now())), icon: Icons.local_fire_department_outlined, color: context.paw.accent),
             StatTile(label: l.mealsLogged, value: '${meals.fold<double>(0, (a, b) => a + b).round()}', icon: Icons.restaurant_outlined),

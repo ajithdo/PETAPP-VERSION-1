@@ -57,14 +57,13 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
               ? l.closedToday
               : l.todayHours(Fmt.time(today.open, context.lang), Fmt.time(today.close, context.lang));
           final wide = context.screenSize == ScreenSize.desktop;
-          // Phones show the photo full width under the app bar; wider screens
-          // show it as a rounded picture in the page (owner's UI Design 2
-          // picture), because a full-width strip would only show a sliver.
-          final phone = context.screenSize == ScreenSize.phone;
           final photo = SeedArt(seed: 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}');
           final panel = BookingPanel(key: _panel, place: p);
           final header = <Widget>[
-            if (!phone) ...[const SizedBox(height: Space.lg), _PhotoCard(place: p, photo: photo, open: open, hours: hoursText)],
+            // UI Design 6: the photo is a rounded picture in the page on
+            // every screen size.
+            const SizedBox(height: Space.md),
+            _PhotoCard(place: p, photo: photo, open: open, hours: hoursText),
             const SizedBox(height: Space.lg),
             Text(p.name, style: context.text.headlineMedium),
             const SizedBox(height: Space.xxs),
@@ -100,30 +99,26 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
             ),
             if (p.about != null) ...[const SizedBox(height: Space.md), Text(p.about!, style: context.text.bodyLarge)],
             const SizedBox(height: Space.lg),
-            Wrap(
-              spacing: Space.sm,
-              runSpacing: Space.sm,
-              children: [
-                PawPill(
-                  label: l.call,
-                  outlined: true,
-                  leading: Icon(Icons.call_outlined, size: IconSizes.md, color: context.paw.brand),
-                  onTap: () => callNumber(context, ref, p.phone),
-                ),
-                PawPill(
-                  label: l.directions,
-                  outlined: true,
-                  leading: Icon(Icons.directions_outlined, size: IconSizes.md, color: context.paw.brand),
-                  onTap: () => openDirections(p.lat, p.lng, label: p.name),
-                ),
-                PawPill(
-                  label: l.message,
-                  outlined: true,
-                  leading: Icon(Icons.chat_outlined, size: IconSizes.md, color: context.paw.brand),
-                  onTap: () => context.push('/messages/new?place=${p.id}'),
-                ),
-              ],
-            ),
+            // Call, Directions and Message as three equal soft buttons.
+            Builder(builder: (context) {
+              Widget soft(IconData icon, String label, VoidCallback onTap) => FilledButton.tonalIcon(
+                    onPressed: onTap,
+                    style: FilledButton.styleFrom(backgroundColor: context.paw.surfaceSubtle, foregroundColor: context.paw.textPrimary, padding: const EdgeInsets.symmetric(horizontal: Space.sm)),
+                    icon: Icon(icon, size: IconSizes.md),
+                    label: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
+                  );
+              final buttons = [
+                soft(Icons.call_outlined, l.call, () => callNumber(context, ref, p.phone)),
+                soft(Icons.directions_outlined, l.directions, () => openDirections(p.lat, p.lng, label: p.name)),
+                soft(Icons.chat_outlined, l.message, () => context.push('/messages/new?place=${p.id}')),
+              ];
+              if (MediaQuery.textScalerOf(context).scale(1) > 1.3) {
+                return Wrap(spacing: Space.sm, runSpacing: Space.sm, children: buttons);
+              }
+              return Row(children: [
+                for (var i = 0; i < buttons.length; i++) ...[if (i > 0) const SizedBox(width: Space.sm), Expanded(child: buttons[i])],
+              ]);
+            }),
           ];
           final details = <Widget>[
             if (p.kind == 'clinic') _VetsList(clinicId: p.id),
@@ -199,10 +194,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
           Widget column(List<Widget> c) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: c);
           return CustomScrollView(
             slivers: [
-              if (phone)
-                SliverAppBar(pinned: true, expandedHeight: Sizes.placeHeader, flexibleSpace: FlexibleSpaceBar(background: photo))
-              else
-                SliverAppBar(pinned: true, title: Text(p.name, maxLines: 1, overflow: TextOverflow.ellipsis)),
+              SliverAppBar(pinned: true, title: Text(p.name, maxLines: 1, overflow: TextOverflow.ellipsis)),
               SliverToBoxAdapter(
                 child: ContentWidth(
                   maxWidth: wide ? Space.maxContentWidth : Space.wideWidth,
@@ -322,6 +314,45 @@ class _Reviews extends ConsumerWidget {
       children: [
         SectionHeader(l.reviews),
         if (reviews.isEmpty) PawCard(child: Text(l.noReviewsYet)),
+        // UI Design 6: the rating summary first, with a bar per star.
+        if (reviews.isNotEmpty && place.reviewCount > 0)
+          Padding(
+            padding: const EdgeInsets.only(bottom: Space.sm),
+            child: PawCard(
+              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Column(children: [
+                  Text(place.rating.toStringAsFixed(1), style: context.text.displaySmall),
+                  RatingStars(place.rating.round()),
+                  const SizedBox(height: Space.xxs),
+                  Text(l.reviewsCount(place.reviewCount), style: context.text.bodySmall),
+                ]),
+                const SizedBox(width: Space.lg),
+                Expanded(
+                  child: Column(children: [
+                    for (var star = 5; star >= 1; star--)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: Space.xxs),
+                        child: Row(children: [
+                          SizedBox(width: Space.md, child: Text('$star', style: context.text.labelSmall)),
+                          const SizedBox(width: Space.sm),
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(Radii.full),
+                              child: LinearProgressIndicator(
+                                value: reviews.where((r) => r.rating == star).length / reviews.length,
+                                minHeight: Space.sm,
+                                backgroundColor: context.paw.surfaceSubtle,
+                                color: context.paw.marigold,
+                              ),
+                            ),
+                          ),
+                        ]),
+                      ),
+                  ]),
+                ),
+              ]),
+            ),
+          ),
         for (final r in reviews.take(10))
           Padding(
             padding: const EdgeInsets.only(bottom: Space.sm),
@@ -352,8 +383,12 @@ class _Reviews extends ConsumerWidget {
                     Container(
                       margin: const EdgeInsets.only(top: Space.sm),
                       padding: const EdgeInsets.all(Space.sm),
-                      decoration: BoxDecoration(color: context.paw.primaryContainer.withValues(alpha: Opacities.half), borderRadius: BorderRadius.circular(Radii.md)),
-                      child: Text('${l.replyFrom(place.name)}: ${r.reply}', style: context.text.bodySmall),
+                      decoration: BoxDecoration(color: context.paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.md)),
+                      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Icon(Icons.subdirectory_arrow_right_rounded, size: IconSizes.md, color: context.paw.textSecondary),
+                        const SizedBox(width: Space.sm),
+                        Expanded(child: Text('${l.replyFrom(place.name)}: ${r.reply}', style: context.text.bodySmall)),
+                      ]),
                     ),
                 ],
               ),

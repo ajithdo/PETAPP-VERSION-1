@@ -272,34 +272,63 @@ class _VaccinesSection extends ConsumerWidget {
             ]));
           }
           final s = buildSchedule(species: pet.speciesEnum, birthday: pet.birthday, records: recs, now: DateTime.now());
-          final steps = <_VaccineStep>[
-            for (final i in s.items)
+          // UI Design 6: one card per vaccine, its doses on a timeline, and
+          // one tag on the card for the most urgent dose.
+          final groups = <String, List<(_VaccineStep, DoseStatus)>>{};
+          for (final i in s.items) {
+            groups.putIfAbsent(i.template.name, () => []).add((
               _VaccineStep(
-                title: '${i.template.name} · ${doseLabel(context, i.template.doseLabel)}',
+                title: doseLabel(context, i.template.doseLabel),
                 subtitle: _subtitle(context, i),
                 status: i.status,
                 certificateDocId: i.record?.certificateDocId,
+                inGroup: true,
                 onTap: canCare && i.status != DoseStatus.done ? () => showVaccineSheet(context, pet, template: i.template) : null,
               ),
-            for (final r in recs.where((r) => r.key == 'other'))
-              _VaccineStep(title: r.name, subtitle: Fmt.date(r.givenDate, context.lang), status: DoseStatus.done, certificateDocId: r.certificateDocId),
-          ];
-          return PawCard(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              if (s.needsCatchUp) ...[
-                InfoNote(l.catchUpNote, icon: Icons.support_agent_outlined),
-                const SizedBox(height: Space.lg),
-              ],
-              for (var k = 0; k < steps.length; k++)
-                TimelineTile(
-                  tone: statusChip(context, steps[k].status).$2,
-                  isFirst: k == 0,
-                  isLast: k == steps.length - 1,
-                  onTap: steps[k].onTap,
-                  child: steps[k],
+              i.status,
+            ));
+          }
+          for (final r in recs.where((r) => r.key == 'other')) {
+            groups.putIfAbsent(r.name, () => []).add((
+              _VaccineStep(title: r.name, subtitle: Fmt.date(r.givenDate, context.lang), status: DoseStatus.done, certificateDocId: r.certificateDocId, inGroup: true),
+              DoseStatus.done,
+            ));
+          }
+          DoseStatus worst(List<DoseStatus> all) {
+            for (final st in const [DoseStatus.overdue, DoseStatus.dueSoon, DoseStatus.upcoming, DoseStatus.askVet]) {
+              if (all.contains(st)) return st;
+            }
+            return DoseStatus.done;
+          }
+
+          return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            if (s.needsCatchUp) ...[
+              InfoNote(l.catchUpNote, icon: Icons.support_agent_outlined),
+              const SizedBox(height: Space.md),
+            ],
+            for (final g in groups.entries)
+              Padding(
+                padding: const EdgeInsets.only(bottom: Space.md),
+                child: PawCard(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                    Row(children: [
+                      Expanded(child: Text(g.key, style: context.text.titleMedium)),
+                      const SizedBox(width: Space.sm),
+                      statusChipWidget(context, worst([for (final x in g.value) x.$2])),
+                    ]),
+                    const SizedBox(height: Space.md),
+                    for (var k = 0; k < g.value.length; k++)
+                      TimelineTile(
+                        tone: statusChip(context, g.value[k].$2).$2,
+                        isFirst: k == 0,
+                        isLast: k == g.value.length - 1,
+                        onTap: g.value[k].$1.onTap,
+                        child: g.value[k].$1,
+                      ),
+                  ]),
                 ),
-            ]),
-          );
+              ),
+          ]);
         },
       ),
     ]);
@@ -676,8 +705,11 @@ class _HealthPass extends StatelessWidget {
 
 /// One vaccine on the Health timeline: its status, name and dates.
 class _VaccineStep extends StatelessWidget {
-  const _VaccineStep({required this.title, required this.subtitle, required this.status, this.onTap, this.certificateDocId});
+  const _VaccineStep({required this.title, required this.subtitle, required this.status, this.onTap, this.certificateDocId, this.inGroup = false});
   final String title;
+
+  /// Inside a vaccine's own card, which already shows the status tag.
+  final bool inGroup;
   final String subtitle;
   final DoseStatus status;
   final VoidCallback? onTap;
@@ -689,9 +721,9 @@ class _VaccineStep extends StatelessWidget {
   Widget build(BuildContext context) {
     // The timeline dot already shows the status; a chip only when the
     // vaccine needs attention, and after the title (no label above it).
-    final attention = status == DoseStatus.overdue || status == DoseStatus.dueSoon;
+    final attention = !inGroup && (status == DoseStatus.overdue || status == DoseStatus.dueSoon);
     final text = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(title, style: context.text.titleSmall),
+      Text(title, style: context.text.titleSmall?.copyWith(color: status == DoseStatus.overdue ? context.paw.error : (status == DoseStatus.dueSoon ? context.paw.accent : null))),
       if (subtitle.isNotEmpty) ...[
         const SizedBox(height: Space.xxs),
         Text(subtitle, style: context.text.bodySmall),

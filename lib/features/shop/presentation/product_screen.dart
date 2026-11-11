@@ -77,16 +77,32 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
     if (!_pinTouched && _pin.text.isEmpty && addresses.isNotEmpty) _pin.text = addresses.first.pin;
     final estimate = deliveryEstimate(_pin.text, p.deliveryDays, DateTime.now());
 
-    final art = AspectRatio(aspectRatio: 1, child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.card, label: p.name));
+    final art = AspectRatio(aspectRatio: 1, child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.xxl, label: p.name));
+    // UI Design 6: say plainly whether it suits the selected pet.
+    final pet = ref.watch(selectedPetProvider);
+    final suits = pet != null && p.species.contains(pet.species) && !hasAllergen(p, pet.allergies);
     final info = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(p.brand, style: context.text.labelLarge?.copyWith(color: context.paw.textSecondary)),
-      Text(p.name, style: context.text.titleLarge),
+      Text(p.name, style: context.text.headlineSmall),
       const SizedBox(height: Space.xs),
       if (!p.isAffiliate) RatingLine(rating: p.rating, count: p.reviewCount),
       const SizedBox(height: Space.sm),
       PriceTag(price: p.price, mrp: p.mrp, big: true),
       Text(l.shopInclTaxes, style: context.text.bodySmall),
       const SizedBox(height: Space.md),
+      if (pet != null && suits) ...[
+        Container(
+          padding: const EdgeInsets.all(Space.md),
+          decoration: BoxDecoration(color: context.paw.successContainer, borderRadius: BorderRadius.circular(Radii.lg)),
+          child: Row(children: [
+            PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarMd),
+            const SizedBox(width: Space.md),
+            Expanded(child: Text(l.shopGoodMatch(pet.name), style: context.text.titleSmall?.copyWith(color: context.paw.onSuccessContainer))),
+            Icon(Icons.check_circle_rounded, color: context.paw.success),
+          ]),
+        ),
+        const SizedBox(height: Space.md),
+      ],
       if (p.isAffiliate)
         InfoNote(l.shopAffiliateNote(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_outlined)
       else ...[
@@ -164,7 +180,12 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
         PawCard(
           onTap: () => _subscribe(p),
           child: Row(children: [
-            Icon(Icons.autorenew_outlined, color: context.colors.primary),
+            Container(
+              width: TapTarget.min - Space.xxs,
+              height: TapTarget.min - Space.xxs,
+              decoration: BoxDecoration(color: context.paw.accentContainer, borderRadius: BorderRadius.circular(Radii.md)),
+              child: Icon(Icons.autorenew_outlined, color: context.paw.onAccentContainer),
+            ),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

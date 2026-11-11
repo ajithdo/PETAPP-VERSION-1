@@ -111,7 +111,7 @@ class _LockScreenState extends ConsumerState<_LockScreen> {
     String? message = _error;
     if (lockedOut) message = l.vaultLockedOut(state.lockedOutUntil!.difference(now).inSeconds + 1);
     return _GateFrame(children: [
-      const Illustration(Scene.vault, size: Sizes.illustrationSm),
+      const _ArchLock(),
       const SizedBox(height: Space.md),
       Semantics(header: true, child: Text(l.vaultLockedTitle, style: context.text.titleLarge, textAlign: TextAlign.center)),
       const SizedBox(height: Space.xs),
@@ -159,7 +159,7 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
     final bio = ref.watch(biometricAvailableProvider).value ?? false;
     final notifier = ref.read(vaultLockProvider.notifier);
     return _GateFrame(children: [
-      const Illustration(Scene.vault, size: Sizes.illustrationSm),
+      const _ArchLock(),
       const SizedBox(height: Space.md),
       Semantics(header: true, child: Text(l.vaultSetupTitle, style: context.text.titleLarge, textAlign: TextAlign.center)),
       const SizedBox(height: Space.xs),
@@ -208,6 +208,36 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
       const SizedBox(height: Space.md),
       Text(l.vaultAutoLockNote, style: context.text.bodySmall, textAlign: TextAlign.center),
     ]);
+  }
+}
+
+/// The vault's picture: a dark arched door with a marigold keyhole.
+class _ArchLock extends StatelessWidget {
+  const _ArchLock();
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    const w = Sizes.illustrationSm * 0.5;
+    return ExcludeSemantics(
+      child: Container(
+        width: Sizes.illustrationSm,
+        height: Sizes.illustrationSm,
+        alignment: Alignment.bottomCenter,
+        decoration: BoxDecoration(color: paw.accentContainer, shape: BoxShape.circle),
+        child: Container(
+          width: w,
+          height: w * 1.2,
+          margin: const EdgeInsets.only(bottom: Space.md),
+          decoration: ShapeDecoration(color: PawColors.light.band, shape: archShape(w)),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const SizedBox(height: Space.md),
+            Container(width: Space.md, height: Space.md, decoration: BoxDecoration(color: paw.marigold, shape: BoxShape.circle)),
+            Container(width: Space.sm, height: Space.md, color: paw.marigold),
+          ]),
+        ),
+      ),
+    );
   }
 }
 
@@ -298,10 +328,11 @@ class _PinPadState extends State<PinPad> {
                 margin: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs),
                 width: Sizes.pinDot,
                 height: Sizes.pinDot,
+                // Filled dots are marigold; the two optional digits are faint.
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: i < _pin.length ? context.colors.primary : Colors.transparent,
-                  border: Border.all(color: i < 4 || i < _pin.length ? context.colors.primary : context.paw.outline, width: Strokes.focus),
+                  color: i < _pin.length ? context.paw.marigold : Colors.transparent,
+                  border: Border.all(color: i < 4 || i < _pin.length ? context.paw.textPrimary : context.paw.controlBorder.withValues(alpha: Opacities.muted), width: Strokes.focus),
                 ),
               ),
           ]),
@@ -355,15 +386,18 @@ class _PadKey extends StatelessWidget {
         enabled: enabled,
         label: semantic,
         excludeSemantics: true,
+        // UI Design 6: arched keys, like small doorways.
         child: Material(
-          color: bg,
-          shape: CircleBorder(side: BorderSide(color: context.paw.outline)),
+          color: icon != null ? Colors.transparent : bg,
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          shape: archShape(Sizes.pinKey, icon != null || Theme.of(context).brightness == Brightness.dark ? BorderSide.none : BorderSide(color: context.paw.outline)),
           child: InkWell(
-            customBorder: const CircleBorder(),
+            customBorder: archShape(Sizes.pinKey),
             onTap: enabled ? onTap : null,
             child: SizedBox(
               width: Sizes.pinKey,
-              height: Sizes.pinKey,
+              height: Sizes.pinKey * 1.08,
               child: Center(
                 child: icon != null
                     ? Icon(icon, color: enabled ? fg : context.paw.textSecondary)

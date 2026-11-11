@@ -124,7 +124,7 @@ class BookingDetailScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(width: Sizes.labelColumn, child: Text(k, style: context.text.bodySmall)),
-                Expanded(child: Text(v, style: context.text.bodyMedium)),
+                Expanded(child: Text(v, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600))),
               ],
             ),
           );
@@ -138,9 +138,15 @@ class BookingDetailScreen extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        CircleAvatar(
-                          backgroundColor: context.paw.primaryContainer,
-                          child: Icon(kindIcon(b.kind), color: context.colors.primary),
+                        // The place as a tile (its photo when there is one).
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(Radii.md),
+                          child: SizedBox.square(
+                            dimension: Sizes.thumb,
+                            child: place != null
+                                ? SeedArt(seed: 'seed:${place.kind == 'clinic' ? 'clinic' : 'provider'}:${place.photoSeed}')
+                                : ColoredBox(color: context.paw.surfaceSubtle, child: Icon(kindIcon(b.kind), color: context.paw.textPrimary)),
+                          ),
                         ),
                         const SizedBox(width: Space.md),
                         Expanded(
@@ -155,7 +161,14 @@ class BookingDetailScreen extends ConsumerWidget {
                         StatusChip(s.$1, tone: s.$2),
                       ],
                     ),
-                    const Divider(height: Space.xl),
+                    // Booked → confirmed → visited, like the stamps on a ticket.
+                    if (const ['pending', 'suggested', 'confirmed', 'in_progress', 'completed'].contains(b.status)) ...[
+                      const SizedBox(height: Space.md),
+                      _Steps(reached: switch (b.status) { 'pending' || 'suggested' => 1, 'confirmed' || 'in_progress' => 2, _ => 3 }),
+                    ],
+                    const SizedBox(height: Space.md),
+                    const DashedRule(),
+                    const SizedBox(height: Space.md),
                     row(l.when, Fmt.dateTime(b.start, context.lang)),
                     if (!partnerView) row(l.pet, b.petName),
                     if (b.vetName != null) row(l.vet, b.vetName!),
@@ -164,7 +177,9 @@ class BookingDetailScreen extends ConsumerWidget {
                     if (b.status == 'pending' && b.proposedTimes.isNotEmpty)
                       row(l.preferredTimes, b.proposedTimes.map((t) => Fmt.dateTime(t, context.lang)).join('\n')),
                     if (b.status == 'pending' && b.respondBy != null) row(l.replyBy, Fmt.dateTime(b.respondBy!, context.lang)),
-                    const Divider(height: Space.xl),
+                    const SizedBox(height: Space.md),
+                    const DashedRule(),
+                    const SizedBox(height: Space.md),
                     row(l.totalToPay, Fmt.inr(b.total)),
                     row(l.payment, switch (b.paymentStatus) {
                       'paid' => l.paidOnline,
@@ -401,6 +416,34 @@ class BookingDetailScreen extends ConsumerWidget {
 }
 
 /// Walker's live GPS route. In demo mode the walker's movement is simulated.
+/// Three steps of a booking as bars with labels: green up to [reached].
+class _Steps extends StatelessWidget {
+  const _Steps({required this.reached});
+  final int reached;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final labels = [l.stepBooked, l.stepConfirmed, l.stepVisited];
+    return Row(children: [
+      for (var i = 0; i < labels.length; i++) ...[
+        if (i > 0) const SizedBox(width: Space.xs + Space.xxs),
+        Expanded(
+          child: Semantics(
+            label: '${labels[i]}${i < reached ? ', ${l.done}' : ''}',
+            excludeSemantics: true,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(height: Space.xs, decoration: BoxDecoration(color: i < reached ? context.paw.success : context.paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.full))),
+              const SizedBox(height: Space.xs),
+              Text(labels[i], style: context.text.labelSmall?.copyWith(color: i < reached ? context.paw.success : context.paw.textSecondary)),
+            ]),
+          ),
+        ),
+      ],
+    ]);
+  }
+}
+
 class _LiveWalk extends StatefulWidget {
   const _LiveWalk({required this.booking});
   final Booking booking;

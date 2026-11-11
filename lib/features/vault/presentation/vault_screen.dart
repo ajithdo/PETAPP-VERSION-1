@@ -162,13 +162,14 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             else if (shown.isEmpty)
               EmptyState(scene: Scene.search, title: l.vaultNoMatches, compact: true)
             else ...[
+              // UI Design 6: documents as paper sheets in a grid.
               if (attention.isNotEmpty) ...[
                 SectionHeader(l.vaultNeedsAttention),
-                for (final d in attention) DocTile(doc: d, pet: petsById[d.petId], showPet: fixed == null),
+                _SheetGrid(docs: attention, petsById: petsById, showPet: fixed == null),
               ],
               if (rest.isNotEmpty) ...[
                 SectionHeader(attention.isEmpty ? l.vaultDocCount(rest.length) : l.vaultAllDocs),
-                for (final d in rest) DocTile(doc: d, pet: petsById[d.petId], showPet: fixed == null),
+                _SheetGrid(docs: rest, petsById: petsById, showPet: fixed == null),
               ],
             ],
             const SizedBox(height: Space.lg),
@@ -184,6 +185,92 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
         padding: const EdgeInsets.only(right: Space.sm),
         child: ChoiceChip(label: Text(label), avatar: avatar, selected: selected, showCheckmark: avatar == null, onSelected: (_) => onTap()),
       );
+}
+
+/// Documents as sheets: 2 across on phones, 4 on wide screens.
+class _SheetGrid extends StatelessWidget {
+  const _SheetGrid({required this.docs, required this.petsById, required this.showPet});
+  final List<VaultDoc> docs;
+  final Map<String, Pet> petsById;
+  final bool showPet;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(builder: (context, c) {
+    final big = MediaQuery.textScalerOf(context).scale(1) > 1.3;
+    final cols = c.maxWidth >= 720 ? 4 : (big ? 1 : 2);
+    return TileGrid(columns: cols, spacing: Space.sm, children: [
+      for (final d in docs) DocSheet(doc: d, pet: petsById[d.petId], showPet: showPet),
+    ]);
+  });
+}
+
+/// One document as a paper sheet: its kind's icon and a few ruled lines on
+/// a tinted page (a "SAMPLE" stamp on demo papers), then the title and one
+/// line under it, and at most one tag.
+class DocSheet extends StatelessWidget {
+  const DocSheet({super.key, required this.doc, this.pet, this.showPet = false});
+  final VaultDoc doc;
+  final Pet? pet;
+  final bool showPet;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final c = docTypeColor(context, doc.type);
+    final sub = [
+      if (showPet && pet != null) pet!.name,
+      if (doc.expiry != null) expiryText(context, doc.expiry!) else Fmt.date(doc.createdAt, context.lang),
+    ].join(', ');
+    final chip = doc.needsReview
+        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Icons.auto_awesome_outlined)
+        : expiryChip(context, doc.expiry);
+    Widget rule(double share) => FractionallySizedBox(
+          widthFactor: share,
+          alignment: Alignment.centerLeft,
+          child: Container(height: Space.xs, margin: const EdgeInsets.only(top: Space.xs + Space.xxs), decoration: BoxDecoration(color: c.withValues(alpha: Opacities.border), borderRadius: BorderRadius.circular(Radii.xs))),
+        );
+    return PawCard(
+      padding: const EdgeInsets.all(Space.sm + Space.xxs),
+      onTap: () => context.push('/vault/doc/${doc.id}'),
+      semanticLabel: [doc.title, docTypeLabel(context, doc.type), sub].join(', '),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        AspectRatio(
+          aspectRatio: 1.25,
+          child: Container(
+            padding: const EdgeInsets.all(Space.md),
+            decoration: BoxDecoration(color: c.withValues(alpha: Opacities.tint), borderRadius: BorderRadius.circular(Radii.sm)),
+            child: Stack(children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Icon(docTypeIcon(doc.type), color: c, size: IconSizes.lg),
+                const SizedBox(height: Space.xs),
+                rule(0.8),
+                rule(0.8),
+                rule(0.55),
+              ]),
+              if (doc.isSample)
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: Transform.rotate(
+                    angle: -0.2,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xxs),
+                      decoration: BoxDecoration(border: Border.all(color: paw.error, width: Strokes.strong), borderRadius: BorderRadius.circular(Radii.xs)),
+                      child: Text(l.vaultSample, style: context.text.labelSmall?.copyWith(color: paw.error, fontWeight: FontWeight.w800)),
+                    ),
+                  ),
+                ),
+            ]),
+          ),
+        ),
+        const SizedBox(height: Space.sm),
+        Text(doc.title, style: context.text.titleSmall, maxLines: 2, overflow: TextOverflow.ellipsis),
+        Text(sub, style: context.text.bodySmall, maxLines: 1, overflow: TextOverflow.ellipsis),
+        if (chip != null) ...[const SizedBox(height: Space.xs), Align(alignment: Alignment.centerLeft, child: chip)],
+      ]),
+    );
+  }
 }
 
 /// One document row.

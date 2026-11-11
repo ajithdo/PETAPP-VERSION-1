@@ -143,15 +143,36 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
 
 /// Grid of square memory tiles that fits the width (3 on phones).
 class MemoryGrid extends StatelessWidget {
-  const MemoryGrid({super.key, required this.items, required this.onTap, this.onLongPress});
+  const MemoryGrid({super.key, required this.items, required this.onTap, this.onLongPress, this.feature = false});
   final List<AlbumItem> items;
   final void Function(AlbumItem) onTap;
   final void Function(AlbumItem)? onLongPress;
+
+  /// UI Design 6 month walls: the first memory big (two columns, two rows)
+  /// with the next two beside it, then the rest in the grid.
+  final bool feature;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, c) {
       final cols = (c.maxWidth / 130).floor().clamp(3, 8);
+      Widget tile(AlbumItem i) => MemoryTile(item: i, onTap: () => onTap(i), onLongPress: onLongPress == null ? null : () => onLongPress!(i));
+      if (feature && items.length >= 3) {
+        const gap = Space.xs + Space.xxs;
+        final cell = (c.maxWidth - gap * (cols - 1)) / cols;
+        final rest = items.skip(3).toList();
+        return Column(children: [
+          SizedBox(
+            height: cell * 2 + gap,
+            child: Row(children: [
+              SizedBox(width: cell * 2 + gap, child: tile(items[0])),
+              const SizedBox(width: gap),
+              SizedBox(width: cell, child: Column(children: [Expanded(child: tile(items[1])), const SizedBox(height: gap), Expanded(child: tile(items[2]))])),
+            ]),
+          ),
+          if (rest.isNotEmpty) ...[const SizedBox(height: gap), MemoryGrid(items: rest, onTap: onTap, onLongPress: onLongPress)],
+        ]);
+      }
       return GridView.count(
         crossAxisCount: cols,
         shrinkWrap: true,
@@ -283,7 +304,7 @@ class _PhotosTab extends ConsumerWidget {
             Text(context.l10n.albumMonthCount(g.items.length), style: context.text.bodySmall),
           ]),
         ))
-        ..add(MemoryGrid(items: part, onTap: (i) => context.push(viewerPath(pet.id, i.id))));
+        ..add(MemoryGrid(items: part, feature: true, onTap: (i) => context.push(viewerPath(pet.id, i.id))));
     }
     if (total > limit) out.add(ShowMoreButton(onPressed: () => ref.read(listLimitProvider(key).notifier).more()));
     return out;
@@ -299,8 +320,12 @@ class OnThisDayCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    // UI Design 6: memories from this day as printed photos, slightly
+    // tilted, on a marigold wash.
     return PawCard(
-      color: context.paw.accent.withValues(alpha: Opacities.chip),
+      color: context.paw.accentContainer,
+      flat: true,
+      borderColor: Colors.transparent,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Icon(Icons.history_outlined, color: context.paw.onAccentContainer),
@@ -312,14 +337,19 @@ class OnThisDayCard extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             for (var i = 0; i < items.length; i++) ...[
-              if (i > 0) const SizedBox(width: Space.sm),
-              SizedBox(
-                width: Sizes.memoryTile,
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  SizedBox(height: Sizes.memoryTile, width: Sizes.memoryTile, child: MemoryTile(item: items[i], onTap: () => context.push(viewerPath(pet.id, items[i].id)))),
-                  const SizedBox(height: Space.xs),
-                  Text(yearsAgoLabel(context, items[i].takenAt), style: context.text.labelMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
-                ]),
+              if (i > 0) const SizedBox(width: Space.md),
+              Transform.rotate(
+                angle: i.isEven ? -0.045 : 0.04,
+                child: Container(
+                  width: Sizes.memoryTile + Space.md,
+                  padding: const EdgeInsets.fromLTRB(Space.xs + Space.xxs, Space.xs + Space.xxs, Space.xs + Space.xxs, Space.sm),
+                  decoration: BoxDecoration(color: PrintColors.paper, borderRadius: BorderRadius.circular(Radii.xs), boxShadow: Shadows.card(context.paw.ink)),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    SizedBox(height: Sizes.memoryTile, width: Sizes.memoryTile, child: MemoryTile(item: items[i], onTap: () => context.push(viewerPath(pet.id, items[i].id)))),
+                    const SizedBox(height: Space.xs),
+                    Text(yearsAgoLabel(context, items[i].takenAt), style: context.text.labelMedium?.copyWith(color: PrintColors.ink), maxLines: 2, overflow: TextOverflow.ellipsis),
+                  ]),
+                ),
               ),
             ],
           ]),

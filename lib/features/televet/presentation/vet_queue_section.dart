@@ -42,7 +42,7 @@ class VetQueueSection extends ConsumerWidget {
           Text(l.tvQueueTitle, style: context.text.headlineSmall),
           Text(l.tvQueueHint, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
           const SizedBox(height: Space.lg),
-          ResponsiveGrid(minItemWidth: 200, children: [
+          ResponsiveGrid(minColumns: 2, minItemWidth: 200, children: [
             StatTile(label: l.tvWaiting, value: '${queued.length}', icon: Icons.hourglass_top_outlined, color: queued.isEmpty ? null : context.paw.warning),
             StatTile(label: l.tvInProgress, value: '${active.length}', icon: Icons.forum_outlined),
             StatTile(label: l.tvDoneToday, value: '$today', icon: Icons.task_alt_outlined, color: context.paw.success),

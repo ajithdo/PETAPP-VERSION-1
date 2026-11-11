@@ -71,7 +71,7 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
                   ),
               ]),
             const SizedBox(height: Space.md),
-            ResponsiveGrid(minItemWidth: 200, children: [
+            ResponsiveGrid(minColumns: 2, minItemWidth: 200, children: [
               StatTile(label: l.expThisMonth, value: Fmt.inr(thisMonth.total), icon: Icons.calendar_today_outlined),
               if (lastMonth != null) StatTile(label: l.expLastMonth, value: Fmt.inr(lastMonth.total), icon: Icons.history_outlined),
               StatTile(label: l.expPeriodTotal(_months), value: Fmt.inr(periodTotal), icon: Icons.account_balance_wallet_outlined),

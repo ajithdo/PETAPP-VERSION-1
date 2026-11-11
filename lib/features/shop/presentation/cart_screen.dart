@@ -295,14 +295,21 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final toFree = freeAbove - (price.subtotal - price.discount);
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text(l.cartBill, style: context.text.titleSmall),
+        Text(l.cartBill, style: context.text.titleMedium),
         const SizedBox(height: Space.sm),
         line(l.cartMrpTotal(price.itemCount), Fmt.inr(price.mrpTotal)),
         if (price.mrpTotal > price.subtotal) line(l.cartMrpDiscount, '− ${Fmt.inr(price.mrpTotal - price.subtotal)}', color: context.paw.success),
         if (price.discount > 0) line(l.cartCouponDiscount, '− ${Fmt.inr(price.discount)}', color: context.paw.success),
         line(l.shopDeliveryFee, price.deliveryFee == 0 ? l.shopFree : Fmt.inr(price.deliveryFee)),
-        const Divider(),
-        line(l.shopToPay, Fmt.inr(price.total), bold: true),
+        // UI Design 6: the bill is a receipt, with a dashed tear line above
+        // the amount to pay.
+        const SizedBox(height: Space.sm),
+        const DashedRule(),
+        const SizedBox(height: Space.sm),
+        Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
+          Expanded(child: Text(l.shopToPay, style: context.text.titleSmall)),
+          Text(Fmt.inr(price.total), style: context.text.headlineSmall),
+        ]),
         if (price.deliveryFee > 0 && toFree > 0)
           Padding(
             padding: const EdgeInsets.only(top: Space.xs),

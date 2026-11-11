@@ -523,86 +523,52 @@ class PlaceCard extends ConsumerWidget {
       );
     }
     final next = nextFreeSlot(p, ref.watch(providerBookingsProvider(p.id)).value ?? const [], DateTime.now());
-    // Calm labels on the photo: a light panel with dark text (never red).
-    Widget badge(String text, {Color? dot}) => Container(
-          padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
-          decoration: BoxDecoration(color: MediaColors.photoPanel, borderRadius: BorderRadius.circular(Radii.full)),
-          child: Row(mainAxisSize: MainAxisSize.min, children: [
-            if (dot != null) ...[
-              Container(width: Sizes.dot, height: Sizes.dot, decoration: BoxDecoration(color: dot, shape: BoxShape.circle)),
-              const SizedBox(width: Space.xs + Space.xxs),
-            ],
-            Text(text, style: context.text.labelMedium?.copyWith(color: PrintColors.ink)),
-          ]),
-        );
+    // UI Design 6: the place's photo as a rounded tile beside its name,
+    // area, status and rating; under a dashed rule, the next free slot, the
+    // fee and a small Book button.
+    final status = p.is24x7
+        ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Icons.schedule_rounded)
+        : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral);
+    Widget fact(String label, String value) => Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+          Text(label, style: context.text.bodySmall),
+          Text(value, style: context.text.labelLarge),
+        ]);
     return PawCard(
-      padding: EdgeInsets.zero,
       onTap: openPlace,
+      padding: const EdgeInsets.all(Space.md + Space.xxs),
       semanticLabel: [p.name, p.area, if (km != null) l.sosAway(Fmt.km(km!)), if (p.reviewCount > 0) '${p.rating.toStringAsFixed(1)} ★'].join(', '),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        SizedBox(
-          height: Sizes.placeCardPhoto,
-          child: Stack(fit: StackFit.expand, children: [
-            SeedArt(seed: seed),
-            Positioned(
-              left: Space.md,
-              top: Space.md,
-              right: Space.md,
-              child: Wrap(spacing: Space.xs + Space.xxs, runSpacing: Space.xs, children: [
-                if (p.is24x7)
-                  badge(l.open24x7, dot: PawColors.light.success)
-                else if (open)
-                  badge(l.openNowChip, dot: PawColors.light.success),
-              ]),
-            ),
-            if (km != null)
-              Positioned(
-                right: Space.md,
-                bottom: Space.md,
-                child: badge(l.sosAway(Fmt.km(km!))),
-              ),
-          ]),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(Space.lg),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Expanded(child: Text(p.name, style: context.text.titleLarge, maxLines: 2, overflow: TextOverflow.ellipsis)),
-              if (rating != null) ...[const SizedBox(width: Space.sm), rating],
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(Radii.lg),
+            child: SizedBox(width: Sizes.thumbXl, height: Sizes.thumbXl, child: SeedArt(seed: seed)),
+          ),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(p.name, style: context.text.titleMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
+              const SizedBox(height: Space.xxs),
+              Text([p.area, if (km != null) Fmt.km(km!)].join(', '), style: context.text.bodySmall, maxLines: 1, overflow: TextOverflow.ellipsis),
+              const SizedBox(height: Space.xs),
+              Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [status, ?rating]),
             ]),
-            const SizedBox(height: Space.xxs),
-            Text('${p.area}, ${p.city}', style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
-            if (next != null) ...[
-              const SizedBox(height: Space.sm),
-              Row(children: [
-                Icon(Icons.schedule_rounded, size: IconSizes.sm, color: paw.success),
-                const SizedBox(width: Space.xs + Space.xxs),
-                Flexible(
-                  child: Text.rich(TextSpan(children: [
-                    TextSpan(text: '${l.nextFreeSlot} · ', style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
-                    TextSpan(text: slotLabel(context, next), style: context.text.labelMedium?.copyWith(color: paw.textPrimary)),
-                  ])),
-                ),
-              ]),
-            ],
-            const SizedBox(height: Space.md),
-            Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              crossAxisAlignment: WrapCrossAlignment.end,
-              spacing: Space.md,
-              runSpacing: Space.sm,
-              children: [
-                // The price up front, once: "₹750" with what it is for.
-                Text.rich(TextSpan(children: [
-                  TextSpan(text: Fmt.inr(fee), style: context.text.titleLarge),
-                  TextSpan(text: '  ${p.kind == 'clinic' ? l.consultationFee : l.feeFrom('').trim()}', style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
-                ])),
-                // In a list every card has this button, so it is the quieter
-                // outlined one (one filled main action per screen).
-                SecondaryButton(label: l.bookNow, icon: Icons.arrow_forward_rounded, expand: false, onPressed: openPlace),
-              ],
-            ),
-          ]),
+          ),
+        ]),
+        const SizedBox(height: Space.md),
+        const DashedRule(),
+        const SizedBox(height: Space.md),
+        Wrap(
+          alignment: WrapAlignment.spaceBetween,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: Space.lg,
+          runSpacing: Space.sm,
+          children: [
+            if (next != null) fact(l.nextFreeSlot, slotLabel(context, next)),
+            fact(p.kind == 'clinic' ? l.consultationFee : l.feeFrom('').trim(), Fmt.inr(fee)),
+            // In a list every card has this button, so it is the quieter
+            // outlined one (one filled main action per screen).
+            SecondaryButton(label: l.bookNow, expand: false, onPressed: openPlace),
+          ],
         ),
       ]),
     );

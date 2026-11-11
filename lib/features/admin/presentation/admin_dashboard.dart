@@ -36,7 +36,7 @@ class _AdminDashboardState extends ConsumerState<AdminDashboard> {
         };
     return PageBody(maxWidth: Space.maxContentWidth, children: [
       const SizedBox(height: Space.md),
-      ResponsiveGrid(minItemWidth: 170, spacing: Space.sm, children: [
+      ResponsiveGrid(minColumns: 2, minItemWidth: 170, spacing: Space.sm, children: [
         StatTile(label: l.admUsers(totals.owners, totals.partners), value: Fmt.number(totals.users, lang), icon: Icons.people_alt_outlined),
         StatTile(label: l.admPets, value: Fmt.number(totals.pets, lang), icon: Icons.pets_outlined),
         StatTile(label: l.admBookings30, value: Fmt.number(totals.bookings30, lang), icon: Icons.event_available_outlined),

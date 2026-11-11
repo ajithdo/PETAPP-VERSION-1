@@ -45,7 +45,33 @@ class _FamilyScreenState extends ConsumerState<FamilyScreen> {
               SectionHeader(l.invitesForYou),
               for (final inv in invites) _ReceivedInvite(invite: inv, user: user),
             ],
-            InfoNote(l.familyRolesHelp),
+            const SizedBox(height: Space.md),
+            // UI Design 6: the three roles side by side, in plain words.
+            Semantics(
+              label: l.familyRolesHelp,
+              excludeSemantics: true,
+              child: LayoutBuilder(builder: (context, c) {
+                final roles = [
+                  (Icons.visibility_outlined, l.roleViewer, l.roleViewerHint),
+                  (Icons.volunteer_activism_outlined, l.roleCarer, l.roleCarerHint),
+                  (Icons.people_outline_rounded, l.roleCoowner, l.roleCoownerHint),
+                ];
+                final cols = c.maxWidth >= 420 && MediaQuery.textScalerOf(context).scale(1) < 1.3 ? 3 : 1;
+                return TileGrid(columns: cols, spacing: Space.sm, children: [
+                  for (final r in roles)
+                    Container(
+                      padding: const EdgeInsets.all(Space.md),
+                      decoration: BoxDecoration(color: context.paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.lg)),
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Icon(r.$1, size: IconSizes.md),
+                        const SizedBox(height: Space.xs),
+                        Text(r.$2, style: context.text.titleSmall),
+                        Text(r.$3, style: context.text.bodySmall),
+                      ]),
+                    ),
+                ]);
+              }),
+            ),
             for (final p in ordered) _PetMembersCard(pet: p, user: user),
             if (pets.isEmpty) EmptyState(title: l.noPetsTitle, compact: true),
           ]),
@@ -117,7 +143,6 @@ class _PetMembersCard extends ConsumerWidget {
             subtitle: Text(l.peopleCount(pet.members.length)),
             trailing: canManage
                 ? FilledButton.icon(
-                    style: FilledButton.styleFrom(backgroundColor: context.paw.brand, foregroundColor: context.paw.onBrand, iconColor: context.paw.onBrand),
                     onPressed: () => _invite(context, ref, others.length),
                     icon: const Icon(Icons.person_add_outlined),
                     label: Text(l.invite),
@@ -130,18 +155,15 @@ class _PetMembersCard extends ConsumerWidget {
           for (final e in pet.members.entries)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.xs),
+              // People are circles with initials; the owner's is ink.
               child: Container(
-                padding: const EdgeInsets.all(Space.md),
-                decoration: BoxDecoration(
-                  color: context.paw.surfaceSubtle,
-                  borderRadius: BorderRadius.circular(Radii.lg),
-                  border: Border.all(color: context.paw.outline),
-                ),
+                padding: const EdgeInsets.symmetric(vertical: Space.sm),
+                decoration: BoxDecoration(border: Border(top: BorderSide(color: context.paw.outline))),
                 child: Row(children: [
                   CircleAvatar(
                     radius: Sizes.avatarMd / 2,
-                    backgroundColor: context.paw.outline,
-                    child: Text(initials(e.value.name), style: context.text.titleSmall?.copyWith(color: context.paw.textSecondary)),
+                    backgroundColor: e.key == pet.ownerId ? context.paw.textPrimary : context.paw.surfaceSubtle,
+                    child: Text(initials(e.value.name), style: context.text.titleSmall?.copyWith(color: e.key == pet.ownerId ? context.paw.background : context.paw.textPrimary)),
                   ),
                   const SizedBox(width: Space.md),
                   Expanded(

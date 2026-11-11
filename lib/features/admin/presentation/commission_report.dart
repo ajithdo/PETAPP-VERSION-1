@@ -74,7 +74,7 @@ class _CommissionReportScreenState extends ConsumerState<CommissionReportScreen>
                 onSelected: (m) => setState(() => _month = m),
               ),
               const SizedBox(height: Space.md),
-              ResponsiveGrid(minItemWidth: 170, spacing: Space.sm, children: [
+              ResponsiveGrid(minColumns: 2, minItemWidth: 170, spacing: Space.sm, children: [
                 StatTile(label: l.admBookingCommissionShort, value: Fmt.inr(report.bookingCommission, lang), icon: Icons.event_available_outlined),
                 StatTile(label: l.admShopMargin, value: Fmt.inr(report.shopMargin, lang), icon: Icons.shopping_bag_outlined),
                 StatTile(label: l.admPlusRevenue, value: Fmt.inr(report.plusRevenue, lang), icon: Icons.workspace_premium_outlined, color: context.paw.accent),

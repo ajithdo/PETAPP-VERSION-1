@@ -63,7 +63,7 @@ class _SellerDashboard extends ConsumerWidget {
         Text(s.name, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
         if (s.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
         const SizedBox(height: Space.lg),
-        ResponsiveGrid(minItemWidth: 200, children: [
+        ResponsiveGrid(minColumns: 2, minItemWidth: 200, children: [
           StatTile(label: l.selToPack, value: '${toPack.length}', icon: Icons.inventory_2_outlined, color: toPack.isEmpty ? null : context.paw.warning),
           StatTile(label: l.selOnTheWay, value: '$moving', icon: Icons.local_shipping_outlined),
           StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Icons.account_balance_wallet_outlined),
@@ -521,7 +521,7 @@ class _SellerPayouts extends ConsumerWidget {
       const SizedBox(height: Space.md),
       DemoBanner(l.selPayoutDemo),
       const SizedBox(height: Space.md),
-      ResponsiveGrid(minItemWidth: 200, children: [
+      ResponsiveGrid(minColumns: 2, minItemWidth: 200, children: [
         StatTile(label: l.selPayoutPending, value: Fmt.inr(sum('pending') + sum('on_hold')), icon: Icons.hourglass_top_outlined),
         StatTile(label: l.selPayoutReady, value: Fmt.inr(ready), icon: Icons.account_balance_outlined, color: ready > 0 ? context.paw.success : null),
         StatTile(label: l.selPayoutPaid, value: Fmt.inr(sum('paid')), icon: Icons.check_circle_rounded),

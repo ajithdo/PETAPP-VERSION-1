@@ -85,6 +85,7 @@ class _Dashboard extends ConsumerWidget {
           if (place.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
           const SizedBox(height: Space.lg),
           ResponsiveGrid(
+            minColumns: 2,
             minItemWidth: 200,
             children: [
               StatTile(label: l.todaysBookings, value: '${today.length}', icon: Icons.event_available_outlined),
@@ -651,6 +652,7 @@ class _Payouts extends ConsumerWidget {
         DemoBanner(l.demoPayoutsNote),
         const SizedBox(height: Space.md),
         ResponsiveGrid(
+          minColumns: 2,
           minItemWidth: 220,
           children: [
             StatTile(label: l.totalPayouts, value: Fmt.inr(total), icon: Icons.account_balance_outlined),

@@ -7358,5 +7358,18 @@
   "bookBoardSub": "Boarding and pet sitting",
   "bookWalkSub": "Live route and photos",
   "welcomeLanguages": "English, हिन्दी and తెలుగు. Change any time in Settings.",
-  "firstAidGuides": "Guides"
+  "firstAidGuides": "Guides",
+  "yesterday": "Yesterday",
+  "earlier": "Earlier",
+  "stepBooked": "Booked",
+  "stepConfirmed": "Confirmed",
+  "stepVisited": "Visited",
+  "shopGoodMatch": "A good match for {name}",
+  "@shopGoodMatch": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

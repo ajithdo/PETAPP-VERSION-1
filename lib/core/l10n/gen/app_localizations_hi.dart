@@ -10388,4 +10388,24 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get firstAidGuides => 'गाइड';
+
+  @override
+  String get yesterday => 'कल';
+
+  @override
+  String get earlier => 'पहले';
+
+  @override
+  String get stepBooked => 'बुक हुआ';
+
+  @override
+  String get stepConfirmed => 'पक्का हुआ';
+
+  @override
+  String get stepVisited => 'मिल लिए';
+
+  @override
+  String shopGoodMatch(String name) {
+    return '$name के लिए सही';
+  }
 }

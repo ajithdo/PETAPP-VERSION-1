@@ -2967,5 +2967,11 @@
   "bookBoardSub": "బోర్డింగ్, పెట్ సిట్టింగ్",
   "bookWalkSub": "లైవ్ రూట్, ఫోటోలు",
   "welcomeLanguages": "English, हिन्दी, తెలుగు. సెట్టింగ్స్‌లో ఎప్పుడైనా మార్చండి.",
-  "firstAidGuides": "గైడ్‌లు"
+  "firstAidGuides": "గైడ్‌లు",
+  "yesterday": "నిన్న",
+  "earlier": "ఇంతకుముందు",
+  "stepBooked": "బుక్ అయింది",
+  "stepConfirmed": "నిర్ధారించబడింది",
+  "stepVisited": "సందర్శించారు",
+  "shopGoodMatch": "{name}కి సరిపోతుంది"
 }

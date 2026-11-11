@@ -110,14 +110,15 @@ final petLogsProvider = StreamProvider.family<List<RoutineLog>, String>((ref, pe
 
 /// Today's progress against the daily plan.
 class TodayProgress {
-  TodayProgress({required this.pet, required this.logs});
+  TodayProgress({required this.pet, required this.logs, DateTime? day}) : day = day ?? DateTime.now();
   final Pet pet;
   final List<RoutineLog> logs;
 
-  List<RoutineLog> get today {
-    final now = DateTime.now();
-    return logs.where((l) => Fmt.sameDay(l.at, now)).toList();
-  }
+  /// The day to measure (today unless given; the routine page's week strip
+  /// measures the six days before too).
+  final DateTime day;
+
+  List<RoutineLog> get today => logs.where((l) => Fmt.sameDay(l.at, day)).toList();
 
   int count(LogType t) => today.where((l) => l.type == t).length;
   int get playMinutes => today.where((l) => l.type == LogType.play).fold(0, (s, l) => s + l.minutes);

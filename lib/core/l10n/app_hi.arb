@@ -2967,5 +2967,11 @@
   "bookBoardSub": "बोर्डिंग और पेट सिटिंग",
   "bookWalkSub": "लाइव रास्ता और फ़ोटो",
   "welcomeLanguages": "English, हिन्दी और తెలుగు। सेटिंग्स में कभी भी बदलें।",
-  "firstAidGuides": "गाइड"
+  "firstAidGuides": "गाइड",
+  "yesterday": "कल",
+  "earlier": "पहले",
+  "stepBooked": "बुक हुआ",
+  "stepConfirmed": "पक्का हुआ",
+  "stepVisited": "मिल लिए",
+  "shopGoodMatch": "{name} के लिए सही"
 }

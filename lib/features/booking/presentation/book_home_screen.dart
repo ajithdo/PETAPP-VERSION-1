@@ -144,8 +144,14 @@ class BookingCard extends StatelessWidget {
     final s = bookingStatus(context, booking.status);
     final b = booking;
     final past = b.end.isBefore(DateTime.now());
+    // A request still waiting for an answer is a quiet outlined ticket; a
+    // confirmed booking is a white one (UI Design 6).
+    final waiting = b.status == 'pending' || b.status == 'suggested';
     return PawCard(
       onTap: () => context.push(partnerView ? '/partner/booking/${b.id}' : '/book/bookings/${b.id}'),
+      flat: waiting,
+      color: waiting ? context.paw.background : null,
+      borderColor: waiting ? context.paw.controlBorder.withValues(alpha: Opacities.half) : null,
       child: Row(
         children: [
           DateBadge(day: '${b.start.day}', month: Fmt.monthShort(b.start, context.lang), muted: past, tone: past ? null : ChipTone.warning),

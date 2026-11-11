@@ -10760,4 +10760,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get firstAidGuides => 'Guides';
+
+  @override
+  String get yesterday => 'Yesterday';
+
+  @override
+  String get earlier => 'Earlier';
+
+  @override
+  String get stepBooked => 'Booked';
+
+  @override
+  String get stepConfirmed => 'Confirmed';
+
+  @override
+  String get stepVisited => 'Visited';
+
+  @override
+  String shopGoodMatch(String name) {
+    return 'A good match for $name';
+  }
 }

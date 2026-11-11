@@ -169,13 +169,13 @@ class StatTile extends StatelessWidget {
       // Number tile: a small label over a big number (sentence case: Hindi
       // and Telugu can't be upper-cased).
       child: PawCard(
-        padding: const EdgeInsets.all(Space.lg),
+        padding: const EdgeInsets.all(Space.md + Space.xxs),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                if (icon != null) ...[Icon(icon, color: color ?? context.paw.brand, size: IconSizes.sm), const SizedBox(width: Space.xs + Space.xxs)],
+                if (icon != null) ...[Icon(icon, color: color ?? context.paw.textSecondary, size: IconSizes.sm), const SizedBox(width: Space.xs + Space.xxs)],
                 Expanded(
                   child: Text(
                     label,
@@ -438,4 +438,35 @@ class RatingStars extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Paints a dashed horizontal line across the box (tickets, bills).
+class DashedLinePainter extends CustomPainter {
+  DashedLinePainter(this.color);
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = Strokes.hairline;
+    const dash = Space.xs + Space.xxs, gap = Space.xs;
+    for (var x = 0.0; x < size.width; x += dash + gap) {
+      canvas.drawLine(Offset(x, size.height / 2), Offset((x + dash).clamp(0, size.width), size.height / 2), paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(DashedLinePainter o) => o.color != color;
+}
+
+/// A dashed hairline, like the tear line of a ticket.
+class DashedRule extends StatelessWidget {
+  const DashedRule({super.key});
+
+  @override
+  Widget build(BuildContext context) => CustomPaint(
+    size: const Size(double.infinity, Strokes.hairline),
+    painter: DashedLinePainter(context.paw.controlBorder.withValues(alpha: Opacities.half)),
+  );
 }

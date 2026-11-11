@@ -68,15 +68,20 @@ class PageBody extends StatelessWidget {
 
 /// Lays children in a responsive grid: 1 column on phones, more on wider screens.
 class ResponsiveGrid extends StatelessWidget {
-  const ResponsiveGrid({super.key, required this.children, this.minItemWidth = 320, this.spacing = Space.md});
+  const ResponsiveGrid({super.key, required this.children, this.minItemWidth = 320, this.spacing = Space.md, this.minColumns = 1});
   final List<Widget> children;
   final double minItemWidth;
   final double spacing;
 
+  /// At least this many columns at normal text sizes (number tiles sit two
+  /// across on phones, UI Design 6); one column with big text.
+  final int minColumns;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, c) {
-      final cols = (c.maxWidth / minItemWidth).floor().clamp(1, 4);
+      final floor = MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 1 : minColumns;
+      final cols = (c.maxWidth / minItemWidth).floor().clamp(floor, 4);
       final w = (c.maxWidth - spacing * (cols - 1)) / cols;
       return Wrap(
         spacing: spacing,

@@ -55,7 +55,7 @@ class _AdminComplaintsState extends ConsumerState<AdminComplaints> {
         final waiting = all.where((t) => t.status != 'resolved' && !t.awaitingUser).length;
         return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
-          ResponsiveGrid(minItemWidth: 160, spacing: Space.sm, children: [
+          ResponsiveGrid(minColumns: 2, minItemWidth: 160, spacing: Space.sm, children: [
             StatTile(label: l.hpStatusOpen, value: '${all.where((t) => t.status == 'open').length}', icon: Icons.mark_email_unread_outlined, color: context.paw.warning),
             StatTile(label: l.hpStatusInProgress, value: '${all.where((t) => t.status == 'in_progress').length}', icon: Icons.pending_outlined),
             StatTile(label: l.admNeedsReply, value: '$waiting', icon: Icons.reply_outlined, color: waiting > 0 ? context.paw.error : null),

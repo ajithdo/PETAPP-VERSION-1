@@ -52,6 +52,26 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
         _ => Icons.notifications_outlined,
       };
 
+  /// Tile colour for a notification type (UI Design 6: things are tiles).
+  Color _tone(BuildContext context, String? type) => switch (type) {
+        'vaccines' || 'medicines' || 'account' => context.paw.success,
+        'deworming' || 'plan' => context.paw.accent,
+        'orders' || 'device' => CategoryColors.ocean,
+        'sos' || 'lost' => context.paw.sos,
+        _ => context.paw.textSecondary,
+      };
+
+  /// "Today", "Yesterday" or "Earlier" for grouping.
+  String _dayGroup(BuildContext context, DateTime at) {
+    final now = DateTime.now();
+    final d = DateTime(at.year, at.month, at.day);
+    final today = DateTime(now.year, now.month, now.day);
+    final l = context.l10n;
+    if (!d.isBefore(today)) return l.today;
+    if (!d.isBefore(today.subtract(const Duration(days: 1)))) return l.yesterday;
+    return l.earlier;
+  }
+
   bool _match(String? type) => switch (_filter) {
         'unread' => true,
         'health' => const ['vaccines', 'medicines', 'deworming', 'custom'].contains(type),
@@ -116,32 +136,68 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
             Expanded(
               child: list.isEmpty
                   ? EmptyState(scene: Scene.chat, title: l.noNotificationsTitle, message: l.noNotificationsBody)
-                  : ListView.separated(
+                  : ListView.builder(
                       padding: EdgeInsets.symmetric(horizontal: context.gutter),
                       itemCount: list.length + (more ? 1 : 0),
-                      separatorBuilder: (_, _) => const Divider(height: Strokes.hairline),
                       itemBuilder: (context, i) {
                         if (i == list.length) {
                           return ShowMoreButton(onPressed: () => ref.read(listLimitProvider('notifications').notifier).more());
                         }
                         final d = list[i].data();
                         final unread = d['read'] != true;
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: unread ? context.paw.primaryContainer : context.paw.outline.withValues(alpha: Opacities.half),
-                            child: Icon(_icon(d['type'] as String?), color: context.colors.primary),
+                        final at = parseDate(d['createdAt']) ?? DateTime.now();
+                        final group = _dayGroup(context, at);
+                        final newGroup = i == 0 || _dayGroup(context, parseDate(list[i - 1].data()['createdAt']) ?? DateTime.now()) != group;
+                        final type = d['type'] as String?;
+                        final tone = _tone(context, type);
+                        final body = (d['body'] as String?) ?? '';
+                        // UI Design 6: grouped by day; a tinted tile, the
+                        // title (bold when unread), the time, and a marigold
+                        // dot for unread.
+                        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                          if (newGroup) SectionHeader(group, padding: EdgeInsets.only(top: i == 0 ? Space.sm : Space.lg, bottom: Space.xs)),
+                          Semantics(
+                            button: true,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(Radii.md),
+                              onTap: () async {
+                                await list[i].reference.update({'read': true});
+                                final link = d['link'] as String?;
+                                if (link != null && context.mounted) context.push(link);
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(vertical: Space.md),
+                                decoration: BoxDecoration(border: Border(bottom: BorderSide(color: context.paw.outline))),
+                                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                  Container(
+                                    width: TapTarget.min - Space.xxs,
+                                    height: TapTarget.min - Space.xxs,
+                                    decoration: BoxDecoration(color: tone.withValues(alpha: Opacities.chip), borderRadius: BorderRadius.circular(Radii.md)),
+                                    child: Icon(_icon(type), color: readableOn(tone, [context.paw.background], ratio: 3)),
+                                  ),
+                                  const SizedBox(width: Space.md),
+                                  Expanded(
+                                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                      Text((d['title'] as String?) ?? '', style: unread ? context.text.titleSmall : context.text.bodyMedium),
+                                      if (body.isNotEmpty) Text(body, style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
+                                      const SizedBox(height: Space.xxs),
+                                      Text(Fmt.dateTime(at, context.lang), style: context.text.labelSmall),
+                                    ]),
+                                  ),
+                                  if (unread)
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: Space.sm, top: Space.sm),
+                                      child: Container(
+                                        width: Sizes.dot + Space.xxs,
+                                        height: Sizes.dot + Space.xxs,
+                                        decoration: BoxDecoration(color: context.paw.marigold, shape: BoxShape.circle),
+                                      ),
+                                    ),
+                                ]),
+                              ),
+                            ),
                           ),
-                          title: Text((d['title'] as String?) ?? '', style: unread ? const TextStyle(fontWeight: FontWeight.w700) : null),
-                          subtitle: Text([
-                            if ((d['body'] as String?)?.isNotEmpty == true) d['body'] as String,
-                            Fmt.dateTime(parseDate(d['createdAt']) ?? DateTime.now(), context.lang),
-                          ].join(' · ')),
-                          onTap: () async {
-                            await list[i].reference.update({'read': true});
-                            final link = d['link'] as String?;
-                            if (link != null && context.mounted) context.push(link);
-                          },
-                        );
+                        ]);
                       },
                     ),
             ),

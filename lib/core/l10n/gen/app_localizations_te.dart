@@ -10417,4 +10417,24 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get firstAidGuides => 'గైడ్‌లు';
+
+  @override
+  String get yesterday => 'నిన్న';
+
+  @override
+  String get earlier => 'ఇంతకుముందు';
+
+  @override
+  String get stepBooked => 'బుక్ అయింది';
+
+  @override
+  String get stepConfirmed => 'నిర్ధారించబడింది';
+
+  @override
+  String get stepVisited => 'సందర్శించారు';
+
+  @override
+  String shopGoodMatch(String name) {
+    return '$nameకి సరిపోతుంది';
+  }
 }

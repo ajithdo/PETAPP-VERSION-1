@@ -214,8 +214,9 @@ class QtyStepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    // A pill with minus, the count and plus (UI Design 6).
     return Container(
-      decoration: BoxDecoration(border: Border.all(color: context.paw.outline), borderRadius: BorderRadius.circular(Radii.md)),
+      decoration: BoxDecoration(border: Border.all(color: context.paw.controlBorder.withValues(alpha: Opacities.half), width: Strokes.strong), borderRadius: BorderRadius.circular(Radii.full)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         IconButton(
           tooltip: qty <= 1 ? l.shopRemoveItem(itemName) : l.shopLessOf(itemName),

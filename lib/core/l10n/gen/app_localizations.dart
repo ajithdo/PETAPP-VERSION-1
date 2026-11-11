@@ -17907,6 +17907,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Guides'**
   String get firstAidGuides;
+
+  /// No description provided for @yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterday;
+
+  /// No description provided for @earlier.
+  ///
+  /// In en, this message translates to:
+  /// **'Earlier'**
+  String get earlier;
+
+  /// No description provided for @stepBooked.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked'**
+  String get stepBooked;
+
+  /// No description provided for @stepConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get stepConfirmed;
+
+  /// No description provided for @stepVisited.
+  ///
+  /// In en, this message translates to:
+  /// **'Visited'**
+  String get stepVisited;
+
+  /// No description provided for @shopGoodMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'A good match for {name}'**
+  String shopGoodMatch(String name);
 }
 
 class _AppLocalizationsDelegate
