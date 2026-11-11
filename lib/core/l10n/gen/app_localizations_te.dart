@@ -10437,4 +10437,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String shopGoodMatch(String name) {
     return '$nameకి సరిపోతుంది';
   }
+
+  @override
+  String get logGridTitle => 'ఏదైనా నమోదు చేయండి';
 }

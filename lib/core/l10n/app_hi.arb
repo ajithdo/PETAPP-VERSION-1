@@ -2973,5 +2973,6 @@
   "stepBooked": "बुक हुआ",
   "stepConfirmed": "पक्का हुआ",
   "stepVisited": "मिल लिए",
-  "shopGoodMatch": "{name} के लिए सही"
+  "shopGoodMatch": "{name} के लिए सही",
+  "logGridTitle": "कुछ दर्ज करें"
 }

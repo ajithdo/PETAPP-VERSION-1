@@ -2973,5 +2973,6 @@
   "stepBooked": "బుక్ అయింది",
   "stepConfirmed": "నిర్ధారించబడింది",
   "stepVisited": "సందర్శించారు",
-  "shopGoodMatch": "{name}కి సరిపోతుంది"
+  "shopGoodMatch": "{name}కి సరిపోతుంది",
+  "logGridTitle": "ఏదైనా నమోదు చేయండి"
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/tokens.dart';
 import 'cards.dart';
+import 'layout.dart';
 
 /// UI Design 2 "pass": a deep forest-teal card that sums up a pet or a booking
 /// (Health tab, medical card, booking confirmed). Light text on the brand
@@ -186,7 +187,7 @@ class PassCard extends StatelessWidget {
           // (age, weight, chip ID); longer lists stack, label beside value.
           LayoutBuilder(builder: (context, box) {
             final line = BorderSide(color: c.fg.withValues(alpha: Opacities.tint + 0.04));
-            final side = rows.length <= 3 && box.maxWidth >= Sizes.passActionsRow - Space.xl && MediaQuery.textScalerOf(context).scale(1) < 1.4;
+            final side = rows.length <= 3 && box.maxWidth >= Sizes.miniCardMin && MediaQuery.textScalerOf(context).scale(1) < 1.4;
             if (side) {
               return DecoratedBox(
                 decoration: BoxDecoration(border: Border(top: line, bottom: line)),
@@ -224,7 +225,9 @@ class PassCard extends StatelessWidget {
           // Buttons share the width equally; on narrow screens or with big
           // text they stack at full width (never two uneven buttons).
           LayoutBuilder(builder: (context, box) {
-            final roomy = box.maxWidth >= Sizes.passActionsRow && MediaQuery.textScalerOf(context).scale(1) < 1.4;
+            // English labels fit two across on a phone; Hindi and Telugu
+            // need the wider row.
+            final roomy = box.maxWidth >= (context.lang == 'en' ? Sizes.miniCardMin : Sizes.passActionsRow) && MediaQuery.textScalerOf(context).scale(1) < 1.4;
             if (actions.length > 1 && roomy) {
               return Row(children: [
                 for (var i = 0; i < actions.length; i++) ...[

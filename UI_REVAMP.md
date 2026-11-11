@@ -17,7 +17,7 @@ PawSetu is an all-in-one pet care app for pet parents in India: health and vacci
 - The design system proposed in section 2 of this plan (and its Figma board) is **not** UI Design 2 and is **dropped**. Do not use it.
 - The earlier "Neel" proposal (`docs/design-proposals/`) was turned down and is not one of the UI Designs.
 
-**Live now (since 11 Nov 2026): UI Design 6 "Toran"** at https://pawsetu-demo.netlify.app (Netlify deploy `6af484cba3e33413799663dc`). UI Design 4 (live 6–11 Nov) and UI Design 5 are backups. UI Designs 2 and 3 are backups; **UI Design 1 stays on hold** (Netlify deploy `6ae91e4fc7fd9b9bf45ac64f`, Git commit `97c1346`).
+**Live now (since 11 Nov 2026): UI Design 6 "Toran"** at https://pawsetu-demo.netlify.app (Netlify deploy `6af4ba01a40dfdf1bae2fc24`; every page matched to the design zip). UI Design 4 (live 6–11 Nov) and UI Design 5 are backups. UI Designs 2 and 3 are backups; **UI Design 1 stays on hold** (Netlify deploy `6ae91e4fc7fd9b9bf45ac64f`, Git commit `97c1346`).
 
 **UI Design 1 is the permanent backup (owner's rule, 3 Nov 2026).** The owner is making a new design (UI Design 2). If UI Design 2 turns out worse and the owner says "go back to UI Design 1", the app must return to UI Design 1 and work fully, with no errors.
 - **Where UI Design 1 is saved:** commit `97c1346` on GitHub. It is the tip of branch `claude/zen-ramanujan-4g7djn` (GitHub's main branch; the older branch `claude/inspiring-lovelace-1eo1xz` is gone) and is also in the history of `ui-revamp`. The screenshots in `docs/ui-revamp/before/` show how it looks. (Git tags were tried on 3 and 7 Nov 2026, but GitHub refuses tag pushes from cloud sessions; the commit itself is the backup.)

@@ -17943,6 +17943,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A good match for {name}'**
   String shopGoodMatch(String name);
+
+  /// No description provided for @logGridTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log something'**
+  String get logGridTitle;
 }
 
 class _AppLocalizationsDelegate

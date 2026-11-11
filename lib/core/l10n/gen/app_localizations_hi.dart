@@ -10408,4 +10408,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String shopGoodMatch(String name) {
     return '$name के लिए सही';
   }
+
+  @override
+  String get logGridTitle => 'कुछ दर्ज करें';
 }

@@ -83,7 +83,7 @@ class _LogTab extends ConsumerWidget {
           _WeekStrip(pet: pet, logs: logs),
           const SizedBox(height: Space.md),
           TodayCard(pet: pet, header: false),
-          SectionHeader(l.logSomething),
+          SectionHeader(l.logGridTitle),
           _LogGrid(pet: pet),
           if (logs.isEmpty)
             EmptyState(title: l.noLogsTitle(pet.name), message: l.noLogsBody, compact: true),

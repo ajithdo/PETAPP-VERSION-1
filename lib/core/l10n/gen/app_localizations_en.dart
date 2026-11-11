@@ -10780,4 +10780,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String shopGoodMatch(String name) {
     return 'A good match for $name';
   }
+
+  @override
+  String get logGridTitle => 'Log something';
 }

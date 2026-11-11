@@ -84,5 +84,10 @@
     "ph": {
       "name": "String"
     }
+  },
+  "logGridTitle": {
+    "en": "Log something",
+    "hi": "कुछ दर्ज करें",
+    "te": "ఏదైనా నమోదు చేయండి"
   }
 }
