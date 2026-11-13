@@ -10472,4 +10472,64 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get sosEmergencyHelp => 'SOS, అత్యవసర సహాయం';
+
+  @override
+  String get healthRecords => 'రికార్డులు';
+
+  @override
+  String get noneRightNow => 'ప్రస్తుతం ఏమీ లేవు';
+
+  @override
+  String get nothingLogged => 'ఏమీ నమోదు కాలేదు';
+
+  @override
+  String whatDueOn(String what, String date) {
+    return '$what గడువు $date';
+  }
+
+  @override
+  String get vaccinesUpToDate => 'టీకాలు పూర్తయ్యాయి';
+
+  @override
+  String get weightHealthy => 'ఆరోగ్యకర పరిధిలో ఉంది';
+
+  @override
+  String get weightBelow => 'సాధారణ పరిధి కంటే తక్కువ';
+
+  @override
+  String get weightAbove => 'సాధారణ పరిధి కంటే ఎక్కువ';
+
+  @override
+  String get preventionTitle => 'డీవార్మింగ్, ఈగలు, పేలు';
+
+  @override
+  String get indicativeSchedule =>
+      'ఇది సూచనాత్మక షెడ్యూల్. ఎప్పుడూ మీ వెట్‌తో నిర్ధారించుకోండి.';
+
+  @override
+  String bookIntroNear(String area) {
+    return '$area దగ్గర్లోని వెట్‌లు, గ్రూమర్‌లు, ట్రైనర్‌లు, బోర్డింగ్, వాకర్‌లు.';
+  }
+
+  @override
+  String bookNextSlot(String when) {
+    return 'తదుపరి స్లాట్ $when';
+  }
+
+  @override
+  String bookVetsOnline(int count) {
+    return '$count వెట్‌లు ఆన్‌లైన్‌లో ఉన్నారు';
+  }
+
+  @override
+  String inDaysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count రోజుల్లో',
+      one: 'రేపు',
+      zero: 'ఈరోజు',
+    );
+    return '$_temp0';
+  }
 }

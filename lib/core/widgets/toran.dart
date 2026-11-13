@@ -347,7 +347,8 @@ class PawButton extends StatelessWidget {
         child: ConstrainedBox(
           constraints: BoxConstraints(minHeight: h),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: pad),
+            // A full-width button centres its label, so it needs less side room.
+            padding: EdgeInsets.symmetric(horizontal: block ? Space.sm : pad),
             child: Row(mainAxisSize: block ? MainAxisSize.max : MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
               if (icon != null) ...[Icon(icon, size: iconSize * (easy ? k : 1), color: disabled ? paw.textSecondary : fg), const SizedBox(width: Space.sm)],
               Flexible(
@@ -493,5 +494,51 @@ class TextLink extends StatelessWidget {
         child: Padding(padding: const EdgeInsets.symmetric(vertical: Space.xs), child: text),
       ),
     );
+  }
+}
+
+/// Label and value pairs in two columns (the kit's ".kv"): quiet labels on
+/// the left, the values in a stronger weight on the right.
+class KvList extends StatelessWidget {
+  const KvList({super.key, required this.rows, this.onDark = false});
+
+  /// (label, value, tone): a red [Tone] marks danger (an allergy) and adds
+  /// a warning sign before the value.
+  final List<(String, String, Tone?)> rows;
+  final bool onDark;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    final label = context.text.bodySmall?.copyWith(color: onDark ? paw.onBandMuted : paw.textSecondary);
+    final value = context.text.labelLarge?.copyWith(color: onDark ? paw.onBand : paw.textPrimary);
+    return LayoutBuilder(builder: (context, box) {
+      final k = MediaQuery.textScalerOf(context).scale(1);
+      final w = (box.maxWidth * 0.38).clamp(Sizes.labelColumnSm * k, box.maxWidth * 0.5);
+      return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        for (final (i, r) in rows.indexed) ...[
+          if (i > 0) const SizedBox(height: Space.xs + Space.xxs),
+          Semantics(
+            label: '${r.$1}: ${r.$2}',
+            excludeSemantics: true,
+            child: Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
+              SizedBox(width: w, child: Text(r.$1, style: label)),
+              const SizedBox(width: Space.md),
+              Expanded(
+                child: r.$3 == Tone.red
+                    ? Text.rich(
+                        TextSpan(children: [
+                          WidgetSpan(alignment: PlaceholderAlignment.middle, child: Icon(Ph.warningFill, size: IconSizes.sm, color: paw.error)),
+                          TextSpan(text: ' ${r.$2}'),
+                        ]),
+                        style: value?.copyWith(color: paw.error),
+                      )
+                    : Text(r.$2, style: value),
+              ),
+            ]),
+          ),
+        ],
+      ]);
+    });
   }
 }

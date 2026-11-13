@@ -17,7 +17,10 @@ import 'health_screen.dart';
 /// one is due soon, red when overdue). The first row carries the action
 /// ("Mark given", or "Book" when overdue); the rest open with an arrow.
 class NextUpPanel extends ConsumerWidget {
-  const NextUpPanel({super.key, required this.items, this.showPet = false});
+  const NextUpPanel({super.key, required this.items, this.showPet = false, this.emptyText});
+
+  /// What to say when nothing is due (defaults to the all-pets line).
+  final String? emptyText;
 
   /// Most urgent first.
   final List<(Pet, DueItem)> items;
@@ -32,7 +35,7 @@ class NextUpPanel extends ConsumerWidget {
         child: Row(children: [
           Icon(Ph.checkCircleFill, color: paw.success),
           const SizedBox(width: Space.md),
-          Expanded(child: Text(l.nothingDueAll, style: context.text.bodyMedium)),
+          Expanded(child: Text(emptyText ?? l.nothingDueAll, style: context.text.bodyMedium)),
         ]),
       );
     }

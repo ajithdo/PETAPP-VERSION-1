@@ -10815,4 +10815,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sosEmergencyHelp => 'SOS, emergency help';
+
+  @override
+  String get healthRecords => 'Records';
+
+  @override
+  String get noneRightNow => 'None right now';
+
+  @override
+  String get nothingLogged => 'Nothing logged';
+
+  @override
+  String whatDueOn(String what, String date) {
+    return '$what due $date';
+  }
+
+  @override
+  String get vaccinesUpToDate => 'Vaccines up to date';
+
+  @override
+  String get weightHealthy => 'in the healthy range';
+
+  @override
+  String get weightBelow => 'below the usual range';
+
+  @override
+  String get weightAbove => 'above the usual range';
+
+  @override
+  String get preventionTitle => 'Deworming and flea, tick';
+
+  @override
+  String get indicativeSchedule =>
+      'Indicative schedule. Always confirm with your vet.';
+
+  @override
+  String bookIntroNear(String area) {
+    return 'Vets, groomers, trainers, boarding and walkers near $area.';
+  }
+
+  @override
+  String bookNextSlot(String when) {
+    return 'Next slot $when';
+  }
+
+  @override
+  String bookVetsOnline(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count vets online now',
+      one: '1 vet online now',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String inDaysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count days',
+      one: 'tomorrow',
+      zero: 'today',
+    );
+    return '$_temp0';
+  }
 }

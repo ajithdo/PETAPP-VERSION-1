@@ -850,6 +850,9 @@ class Sizes {
 
   /// Bar and line charts.
   static const double chartHeight = 200;
+
+  /// The weight chart on Health.
+  static const double chartHeightSm = 150;
   static const double chartAxisLeft = 36;
   static const double chartAxisLeftWide = 40;
   static const double chartAxisBottom = 28;
@@ -968,6 +971,9 @@ class Sizes {
   static const double item = 56;
   static const double buttonSmall = 36;
 
+  /// The pet's arch on the health pass (its height; 64 px wide).
+  static const double passArch = 80;
+
   /// Quick-action circles on Home.
   static const double quickCircle = 56;
 
@@ -988,6 +994,9 @@ class Sizes {
   static const double spinner = 22;
 
   /// Small map inside a card.
+  /// The drawn map on the Book tab's map card.
+  static const double mapSketch = 136;
+
   static const double mapSmall = 180;
 
   /// Medium map inside a page.

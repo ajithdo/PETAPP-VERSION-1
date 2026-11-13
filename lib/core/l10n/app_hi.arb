@@ -2982,5 +2982,19 @@
   "nowAt": "अभी, {time}",
   "albumYearAgo": "एक साल पहले आज",
   "bookWord": "बुक करें",
-  "sosEmergencyHelp": "SOS, आपातकालीन मदद"
+  "sosEmergencyHelp": "SOS, आपातकालीन मदद",
+  "healthRecords": "रिकॉर्ड",
+  "noneRightNow": "अभी कोई नहीं",
+  "nothingLogged": "कुछ दर्ज नहीं",
+  "whatDueOn": "{what} {date} को",
+  "vaccinesUpToDate": "टीके समय पर हैं",
+  "weightHealthy": "स्वस्थ सीमा में",
+  "weightBelow": "सामान्य सीमा से कम",
+  "weightAbove": "सामान्य सीमा से ज़्यादा",
+  "preventionTitle": "कृमिनाशक और पिस्सू, किलनी",
+  "indicativeSchedule": "यह अनुमानित समय-सारणी है। हमेशा अपने डॉक्टर से पुष्टि करें।",
+  "bookIntroNear": "{area} के पास डॉक्टर, ग्रूमर, ट्रेनर, बोर्डिंग और वॉकर।",
+  "bookNextSlot": "अगला स्लॉट {when}",
+  "bookVetsOnline": "{count} डॉक्टर अभी ऑनलाइन",
+  "inDaysCount": "{count, plural, =0{आज} =1{कल} other{{count} दिन में}}"
 }

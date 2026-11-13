@@ -30,7 +30,10 @@ def dart_name(spec):
 def main():
     css = open(os.path.join(KIT, 'icons.css')).read()
     codes = dict(re.findall(r'\.ph-([a-z0-9-]+):before\{content:"\\([0-9a-f]+)"\}', css))
-    specs = sorted(set(MAP.values()) | set(EXTRA))
+    # Every icon comes in both cuts (`Ph.clock` and `Ph.clockFill`); unused
+    # ones are dropped from release builds.
+    names_used = {v.split(':')[0] for v in list(MAP.values()) + EXTRA}
+    specs = sorted(names_used | {n + ':f' for n in names_used})
     missing = [s for s in specs if s.split(':')[0] not in codes]
     if missing:
         sys.exit(f'Not in the Phosphor font: {missing}')

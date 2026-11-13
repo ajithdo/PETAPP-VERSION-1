@@ -10443,4 +10443,64 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get sosEmergencyHelp => 'SOS, आपातकालीन मदद';
+
+  @override
+  String get healthRecords => 'रिकॉर्ड';
+
+  @override
+  String get noneRightNow => 'अभी कोई नहीं';
+
+  @override
+  String get nothingLogged => 'कुछ दर्ज नहीं';
+
+  @override
+  String whatDueOn(String what, String date) {
+    return '$what $date को';
+  }
+
+  @override
+  String get vaccinesUpToDate => 'टीके समय पर हैं';
+
+  @override
+  String get weightHealthy => 'स्वस्थ सीमा में';
+
+  @override
+  String get weightBelow => 'सामान्य सीमा से कम';
+
+  @override
+  String get weightAbove => 'सामान्य सीमा से ज़्यादा';
+
+  @override
+  String get preventionTitle => 'कृमिनाशक और पिस्सू, किलनी';
+
+  @override
+  String get indicativeSchedule =>
+      'यह अनुमानित समय-सारणी है। हमेशा अपने डॉक्टर से पुष्टि करें।';
+
+  @override
+  String bookIntroNear(String area) {
+    return '$area के पास डॉक्टर, ग्रूमर, ट्रेनर, बोर्डिंग और वॉकर।';
+  }
+
+  @override
+  String bookNextSlot(String when) {
+    return 'अगला स्लॉट $when';
+  }
+
+  @override
+  String bookVetsOnline(int count) {
+    return '$count डॉक्टर अभी ऑनलाइन';
+  }
+
+  @override
+  String inDaysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count दिन में',
+      one: 'कल',
+      zero: 'आज',
+    );
+    return '$_temp0';
+  }
 }

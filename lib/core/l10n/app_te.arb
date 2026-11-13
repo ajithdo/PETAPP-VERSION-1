@@ -2982,5 +2982,19 @@
   "nowAt": "ఇప్పుడు, {time}",
   "albumYearAgo": "ఏడాది క్రితం ఈ రోజు",
   "bookWord": "బుక్",
-  "sosEmergencyHelp": "SOS, అత్యవసర సహాయం"
+  "sosEmergencyHelp": "SOS, అత్యవసర సహాయం",
+  "healthRecords": "రికార్డులు",
+  "noneRightNow": "ప్రస్తుతం ఏమీ లేవు",
+  "nothingLogged": "ఏమీ నమోదు కాలేదు",
+  "whatDueOn": "{what} గడువు {date}",
+  "vaccinesUpToDate": "టీకాలు పూర్తయ్యాయి",
+  "weightHealthy": "ఆరోగ్యకర పరిధిలో ఉంది",
+  "weightBelow": "సాధారణ పరిధి కంటే తక్కువ",
+  "weightAbove": "సాధారణ పరిధి కంటే ఎక్కువ",
+  "preventionTitle": "డీవార్మింగ్, ఈగలు, పేలు",
+  "indicativeSchedule": "ఇది సూచనాత్మక షెడ్యూల్. ఎప్పుడూ మీ వెట్‌తో నిర్ధారించుకోండి.",
+  "bookIntroNear": "{area} దగ్గర్లోని వెట్‌లు, గ్రూమర్‌లు, ట్రైనర్‌లు, బోర్డింగ్, వాకర్‌లు.",
+  "bookNextSlot": "తదుపరి స్లాట్ {when}",
+  "bookVetsOnline": "{count} వెట్‌లు ఆన్‌లైన్‌లో ఉన్నారు",
+  "inDaysCount": "{count, plural, =0{ఈరోజు} =1{రేపు} other{{count} రోజుల్లో}}"
 }

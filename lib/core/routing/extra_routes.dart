@@ -35,7 +35,12 @@ Widget bookTab() => const BookHomeScreen();
 Widget shopTab() => shopTabRoot();
 
 final homeRoutes = <RouteBase>[];
-final healthRoutes = <RouteBase>[];
+final healthRoutes = <RouteBase>[
+  GoRoute(
+    path: 'records/:kind',
+    builder: (_, s) => HealthRecordsScreen(kind: s.pathParameters['kind']!, petId: s.uri.queryParameters['pet']),
+  ),
+];
 final bookRoutes = <RouteBase>[
   GoRoute(
     path: 'find/:kind',

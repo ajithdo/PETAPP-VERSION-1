@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../theme/tokens.dart';
 import 'cards.dart';
 import 'layout.dart';
+import 'toran.dart';
 import '../theme/ph.dart';
 
 /// UI Design 2 "pass": a deep forest-teal card that sums up a pet or a booking
@@ -67,56 +68,17 @@ class PassCard extends StatelessWidget {
     );
   }
 
-  /// A small pill for the pass ("All up to date", "3 need attention").
+  /// A small tag for the pass: marigold when something needs attention
+  /// ("3 need attention"), quiet on the band for good news.
   static Widget badge(BuildContext context, String label, {IconData? icon, ChipTone tone = ChipTone.success}) {
-    final c = colorsOf(context);
-    final paw = context.paw;
-    final dot = switch (tone) {
-      ChipTone.warning => paw.warning,
-      ChipTone.error => paw.error,
-      _ => paw.success,
-    };
-    // UI Design 6: things that need attention are a marigold tag; good news
-    // is a quiet tag on the band.
     final attention = tone == ChipTone.warning || tone == ChipTone.error;
-    final bg = attention ? paw.marigold : Color.alphaBlend(c.fg.withValues(alpha: Opacities.chip), c.bg);
-    final fg = attention ? paw.onMarigold : c.fg;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: Space.sm, vertical: Space.xs),
-      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(Radii.sm)),
-      child: Row(mainAxisSize: MainAxisSize.min, children: [
-        Icon(icon ?? Ph.circleFill, size: icon == null ? Space.sm : IconSizes.xs, color: attention ? fg : readableOn(dot, [bg], ratio: 3)),
-        const SizedBox(width: Space.xs + Space.xxs),
-        Flexible(
-          child: Text(label, style: context.text.labelSmall?.copyWith(color: fg, fontWeight: FontWeight.w700)),
-        ),
-      ]),
-    );
+    return PawTag(label, kind: attention ? TagKind.plus : TagKind.onDark, icon: icon ?? (attention ? Ph.clockFill : Ph.checkCircleFill));
   }
 
-  /// A light pill button that reads on the dark pass. A [secondary] one is
-  /// an outline on the band, so the main one stands out.
+  /// A full-width pill button that reads on the dark pass: cream for the
+  /// main one, an outline for a [secondary] one.
   static Widget action(BuildContext context, {required String label, required IconData icon, required VoidCallback? onPressed, bool secondary = false}) {
-    final c = colorsOf(context);
-    if (secondary) {
-      return OutlinedButton.icon(
-        onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          foregroundColor: c.fg,
-          iconColor: c.fg,
-          side: BorderSide(color: c.fg.withValues(alpha: Opacities.muted), width: Strokes.strong),
-        ),
-        icon: Icon(icon, size: IconSizes.md),
-        label: Text(label),
-      );
-    }
-    return FilledButton.icon(
-      onPressed: onPressed,
-      style: FilledButton.styleFrom(backgroundColor: c.fg, foregroundColor: c.bg, iconColor: c.bg),
-      icon: Icon(icon, size: IconSizes.md),
-      label: Text(label),
-    );
+    return PawButton(label: label, icon: icon, kind: secondary ? BtnKind.ghostDark : BtnKind.cream, size: BtnSize.regular, block: true, onPressed: onPressed);
   }
 
   @override
@@ -154,13 +116,14 @@ class PassCard extends StatelessWidget {
                   Flexible(child: Text(overline!, style: context.text.labelMedium?.copyWith(color: c.muted))),
                 ]),
               ],
-              if (badges.isNotEmpty) ...[
-                const SizedBox(height: Space.sm),
-                Wrap(spacing: Space.sm, runSpacing: Space.sm, children: badges),
-              ],
             ]),
           ),
         ]),
+        // Tags sit on their own line under the name, as in the design.
+        if (badges.isNotEmpty) ...[
+          const SizedBox(height: Space.md),
+          Wrap(spacing: Space.sm, runSpacing: Space.sm, children: badges),
+        ],
         if (alert != null) ...[
           const SizedBox(height: Space.lg),
           Semantics(
@@ -187,7 +150,7 @@ class PassCard extends StatelessWidget {
           // Up to three short facts sit side by side between hairlines
           // (age, weight, chip ID); longer lists stack, label beside value.
           LayoutBuilder(builder: (context, box) {
-            final line = BorderSide(color: c.fg.withValues(alpha: Opacities.tint + 0.04));
+            final line = BorderSide(color: context.tint.bandLine);
             final side = rows.length <= 3 && box.maxWidth >= Sizes.miniCardMin && MediaQuery.textScalerOf(context).scale(1) < 1.4;
             if (side) {
               return DecoratedBox(
@@ -198,7 +161,7 @@ class PassCard extends StatelessWidget {
                       Expanded(
                         flex: i == rows.length - 1 && rows.length == 3 ? 5 : 4,
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(i == 0 ? 0 : Space.md, Space.md, Space.xs, Space.md),
+                          padding: EdgeInsets.fromLTRB(i == 0 ? 0 : Space.md + Space.xxs, Space.md, Space.xs, Space.md),
                           decoration: BoxDecoration(border: i == 0 ? null : Border(left: line)),
                           child: rows[i].stacked(context),
                         ),
@@ -228,11 +191,11 @@ class PassCard extends StatelessWidget {
           LayoutBuilder(builder: (context, box) {
             // English labels fit two across on a phone; Hindi and Telugu
             // need the wider row.
-            final roomy = box.maxWidth >= (context.lang == 'en' ? Sizes.miniCardMin : Sizes.passActionsRow) && MediaQuery.textScalerOf(context).scale(1) < 1.4;
+            final roomy = box.maxWidth >= (context.lang == 'en' ? Sizes.miniCardMin : Sizes.passActionsRow) && MediaQuery.textScalerOf(context).scale(1) < 1.2;
             if (actions.length > 1 && roomy) {
               return Row(children: [
                 for (var i = 0; i < actions.length; i++) ...[
-                  if (i > 0) const SizedBox(width: Space.sm),
+                  if (i > 0) const SizedBox(width: Space.md),
                   Expanded(child: actions[i]),
                 ],
               ]);
@@ -275,7 +238,7 @@ class PassRow extends StatelessWidget {
         FittedBox(
           fit: BoxFit.scaleDown,
           alignment: Alignment.centerLeft,
-          child: Text(value, maxLines: 1, style: (mono ? context.text.labelLarge : context.text.titleMedium)?.copyWith(color: c.fg, fontWeight: FontWeight.w700)),
+          child: Text(value, maxLines: 1, style: (mono ? context.text.bodySmall?.copyWith(fontFamily: FontFamilies.heading, height: 24 / 13) : context.text.titleMedium)?.copyWith(color: c.fg, fontWeight: FontWeight.w700)),
         ),
       ]),
     );

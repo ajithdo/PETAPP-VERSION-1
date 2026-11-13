@@ -7411,5 +7411,57 @@
   },
   "albumYearAgo": "A year ago today",
   "bookWord": "Book",
-  "sosEmergencyHelp": "SOS, emergency help"
+  "sosEmergencyHelp": "SOS, emergency help",
+  "healthRecords": "Records",
+  "noneRightNow": "None right now",
+  "nothingLogged": "Nothing logged",
+  "whatDueOn": "{what} due {date}",
+  "@whatDueOn": {
+    "placeholders": {
+      "what": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaccinesUpToDate": "Vaccines up to date",
+  "weightHealthy": "in the healthy range",
+  "weightBelow": "below the usual range",
+  "weightAbove": "above the usual range",
+  "preventionTitle": "Deworming and flea, tick",
+  "indicativeSchedule": "Indicative schedule. Always confirm with your vet.",
+  "bookIntroNear": "Vets, groomers, trainers, boarding and walkers near {area}.",
+  "@bookIntroNear": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "bookNextSlot": "Next slot {when}",
+  "@bookNextSlot": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "bookVetsOnline": "{count, plural, =1{1 vet online now} other{{count} vets online now}}",
+  "@bookVetsOnline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "inDaysCount": "{count, plural, =0{today} =1{tomorrow} other{in {count} days}}",
+  "@inDaysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

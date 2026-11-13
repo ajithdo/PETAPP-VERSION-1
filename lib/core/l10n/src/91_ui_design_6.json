@@ -142,5 +142,91 @@
     "en": "SOS, emergency help",
     "hi": "SOS, आपातकालीन मदद",
     "te": "SOS, అత్యవసర సహాయం"
+  },
+  "healthRecords": {
+    "en": "Records",
+    "hi": "रिकॉर्ड",
+    "te": "రికార్డులు"
+  },
+  "noneRightNow": {
+    "en": "None right now",
+    "hi": "अभी कोई नहीं",
+    "te": "ప్రస్తుతం ఏమీ లేవు"
+  },
+  "nothingLogged": {
+    "en": "Nothing logged",
+    "hi": "कुछ दर्ज नहीं",
+    "te": "ఏమీ నమోదు కాలేదు"
+  },
+  "whatDueOn": {
+    "en": "{what} due {date}",
+    "hi": "{what} {date} को",
+    "te": "{what} గడువు {date}",
+    "ph": {
+      "what": "String",
+      "date": "String"
+    }
+  },
+  "vaccinesUpToDate": {
+    "en": "Vaccines up to date",
+    "hi": "टीके समय पर हैं",
+    "te": "టీకాలు పూర్తయ్యాయి"
+  },
+  "weightHealthy": {
+    "en": "in the healthy range",
+    "hi": "स्वस्थ सीमा में",
+    "te": "ఆరోగ్యకర పరిధిలో ఉంది"
+  },
+  "weightBelow": {
+    "en": "below the usual range",
+    "hi": "सामान्य सीमा से कम",
+    "te": "సాధారణ పరిధి కంటే తక్కువ"
+  },
+  "weightAbove": {
+    "en": "above the usual range",
+    "hi": "सामान्य सीमा से ज़्यादा",
+    "te": "సాధారణ పరిధి కంటే ఎక్కువ"
+  },
+  "preventionTitle": {
+    "en": "Deworming and flea, tick",
+    "hi": "कृमिनाशक और पिस्सू, किलनी",
+    "te": "డీవార్మింగ్, ఈగలు, పేలు"
+  },
+  "indicativeSchedule": {
+    "en": "Indicative schedule. Always confirm with your vet.",
+    "hi": "यह अनुमानित समय-सारणी है। हमेशा अपने डॉक्टर से पुष्टि करें।",
+    "te": "ఇది సూచనాత్మక షెడ్యూల్. ఎప్పుడూ మీ వెట్‌తో నిర్ధారించుకోండి."
+  },
+  "bookIntroNear": {
+    "en": "Vets, groomers, trainers, boarding and walkers near {area}.",
+    "hi": "{area} के पास डॉक्टर, ग्रूमर, ट्रेनर, बोर्डिंग और वॉकर।",
+    "te": "{area} దగ్గర్లోని వెట్‌లు, గ్రూమర్‌లు, ట్రైనర్‌లు, బోర్డింగ్, వాకర్‌లు.",
+    "ph": {
+      "area": "String"
+    }
+  },
+  "bookNextSlot": {
+    "en": "Next slot {when}",
+    "hi": "अगला स्लॉट {when}",
+    "te": "తదుపరి స్లాట్ {when}",
+    "ph": {
+      "when": "String"
+    }
+  },
+  "bookVetsOnline": {
+    "en": "{count, plural, =1{1 vet online now} other{{count} vets online now}}",
+    "hi": "{count} डॉक्टर अभी ऑनलाइन",
+    "te": "{count} వెట్‌లు ఆన్‌లైన్‌లో ఉన్నారు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "inDaysCount": {
+    "en": "{count, plural, =0{today} =1{tomorrow} other{in {count} days}}",
+    "hi": "{count, plural, =0{आज} =1{कल} other{{count} दिन में}}",
+    "te": "{count, plural, =0{ఈరోజు} =1{రేపు} other{{count} రోజుల్లో}}",
+    "ph": {
+      "count": "int"
+    }
   }
 }

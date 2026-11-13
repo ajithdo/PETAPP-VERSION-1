@@ -17997,6 +17997,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'SOS, emergency help'**
   String get sosEmergencyHelp;
+
+  /// No description provided for @healthRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Records'**
+  String get healthRecords;
+
+  /// No description provided for @noneRightNow.
+  ///
+  /// In en, this message translates to:
+  /// **'None right now'**
+  String get noneRightNow;
+
+  /// No description provided for @nothingLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing logged'**
+  String get nothingLogged;
+
+  /// No description provided for @whatDueOn.
+  ///
+  /// In en, this message translates to:
+  /// **'{what} due {date}'**
+  String whatDueOn(String what, String date);
+
+  /// No description provided for @vaccinesUpToDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccines up to date'**
+  String get vaccinesUpToDate;
+
+  /// No description provided for @weightHealthy.
+  ///
+  /// In en, this message translates to:
+  /// **'in the healthy range'**
+  String get weightHealthy;
+
+  /// No description provided for @weightBelow.
+  ///
+  /// In en, this message translates to:
+  /// **'below the usual range'**
+  String get weightBelow;
+
+  /// No description provided for @weightAbove.
+  ///
+  /// In en, this message translates to:
+  /// **'above the usual range'**
+  String get weightAbove;
+
+  /// No description provided for @preventionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Deworming and flea, tick'**
+  String get preventionTitle;
+
+  /// No description provided for @indicativeSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicative schedule. Always confirm with your vet.'**
+  String get indicativeSchedule;
+
+  /// No description provided for @bookIntroNear.
+  ///
+  /// In en, this message translates to:
+  /// **'Vets, groomers, trainers, boarding and walkers near {area}.'**
+  String bookIntroNear(String area);
+
+  /// No description provided for @bookNextSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Next slot {when}'**
+  String bookNextSlot(String when);
+
+  /// No description provided for @bookVetsOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 vet online now} other{{count} vets online now}}'**
+  String bookVetsOnline(int count);
+
+  /// No description provided for @inDaysCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{today} =1{tomorrow} other{in {count} days}}'**
+  String inDaysCount(int count);
 }
 
 class _AppLocalizationsDelegate
