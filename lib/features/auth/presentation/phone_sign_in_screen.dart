@@ -7,6 +7,7 @@ import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import 'auth_widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// Phone OTP sign-in, +91 by default.
 class PhoneSignInScreen extends ConsumerStatefulWidget {
@@ -98,7 +99,7 @@ class _PhoneSignInScreenState extends ConsumerState<PhoneSignInScreen> {
             autofocus: true,
           ),
         if (_error != null) ...[
-          InfoNote(_error!, icon: Icons.error_outlined, tone: ChipTone.error),
+          InfoNote(_error!, icon: Ph.warningCircle, tone: ChipTone.error),
           const SizedBox(height: Space.md),
         ],
         PrimaryButton(

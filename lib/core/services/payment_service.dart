@@ -6,6 +6,7 @@ import '../providers.dart';
 import '../theme/tokens.dart';
 import '../utils/format.dart';
 import '../widgets/widgets.dart';
+import '../theme/ph.dart';
 
 enum PaymentOutcome { success, failure, pending, cancelled }
 
@@ -24,7 +25,7 @@ class DemoPaymentService implements PaymentService {
       final l = ctx.l10n;
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          Icon(Icons.payments_outlined, color: ctx.colors.primary, size: IconSizes.xl),
+          Icon(Ph.money, color: ctx.colors.primary, size: IconSizes.xl),
           const SizedBox(width: Space.md),
           Expanded(child: Text(l.demoPaymentTitle, style: ctx.text.titleMedium)),
         ]),
@@ -37,7 +38,7 @@ class DemoPaymentService implements PaymentService {
         const SizedBox(height: Space.lg),
         Text(l.demoPaymentChoose, style: ctx.text.bodySmall),
         const SizedBox(height: Space.sm),
-        PrimaryButton(label: l.payUpiDemo, icon: Icons.check_circle_rounded, onPressed: () => Navigator.pop(ctx, PaymentOutcome.success)),
+        PrimaryButton(label: l.payUpiDemo, icon: Ph.checkCircleFill, onPressed: () => Navigator.pop(ctx, PaymentOutcome.success)),
         const SizedBox(height: Space.sm),
         Row(children: [
           Expanded(child: SecondaryButton(label: l.simulateFailure, onPressed: () => Navigator.pop(ctx, PaymentOutcome.failure))),

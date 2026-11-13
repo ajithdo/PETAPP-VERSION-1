@@ -14,6 +14,7 @@ import '../domain/food_stock.dart';
 import '../domain/shop_models.dart';
 import 'product_widgets.dart';
 import 'quick_reorder.dart';
+import '../../../core/theme/ph.dart';
 
 /// Home "food running low" card (spec 7.10): "Bruno's food may run out in
 /// about 5 days. Reorder?" Reordering takes two taps.
@@ -31,7 +32,7 @@ List<Widget> foodLowCards(BuildContext context, WidgetRef ref, Pet pet) {
       .where((o) => o.isOpen && o.petId == pet.id && o.createdAt.isAfter(opened) && o.items.any((i) => i.productId == productId))
       .firstOrNull;
   return [
-    const SizedBox(height: Space.lg),
+    const SizedBox(height: Sizes.sectionGap),
     pending != null ? _OnTheWay(pet: pet, order: pending) : _FoodLowCard(pet: pet, product: product, daysLeft: days!),
   ];
 }
@@ -46,34 +47,39 @@ class _FoodLowCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final out = daysLeft <= 0;
-    return PawCard(
-      color: Color.lerp(context.paw.accent, context.paw.surface, Theme.of(context).brightness == Brightness.dark ? 0.8 : 0.86),
+    final paw = context.paw;
+    // What's left in the bag, from the daily portion ("about 1.4 kg left").
+    final bag = pet.foodBagKg ?? 0;
+    final leftKg = (daysLeft.clamp(0, double.infinity) * (pet.dailyPortionG ?? 0) / 1000).clamp(0, bag).toDouble();
+    // "…, Chicken-free Lamb & Rice 10 kg": the last part names the pack.
+    final short = product.name.split(', ').last;
+    return Wash(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ProductArt(category: product.category, photoUrl: product.photoUrl, seed: product.imageSeed, size: Sizes.thumb, radius: Radii.md),
+          ProductArt(category: product.category, photoUrl: product.photoUrl, seed: product.imageSeed, size: Sizes.tileXl, radius: Sizes.tileXl * Sizes.tileCorner),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(out ? l.foodRanOut(pet.name) : l.foodRunsOutIn(pet.name, roundDays(daysLeft)), style: context.text.titleSmall),
-              const SizedBox(height: Space.xxs),
-              Text(product.name, style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
-              Text(l.foodPortionLine(pet.dailyPortionG ?? 0, Fmt.weight(pet.foodBagKg ?? 0)), style: context.text.bodySmall),
+              Text(out ? l.foodRanOut(pet.name) : l.foodRunsOutIn(pet.name, roundDays(daysLeft)), style: context.text.labelLarge),
+              Text(
+                out ? short : '$short, ${l.aboutLeft(Fmt.weight(leftKg))}',
+                style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: Space.sm),
+              LevelBar(value: bag <= 0 ? 0 : leftKg / bag, color: paw.sos, track: paw.textPrimary.withValues(alpha: Opacities.chip)),
             ]),
           ),
         ]),
         const SizedBox(height: Space.md),
-        Wrap(
-          alignment: WrapAlignment.spaceBetween,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: Space.sm,
-          runSpacing: Space.sm,
-          children: [
-          TextButton(onPressed: () => editFoodPlan(context, ref, pet), child: Text(l.foodEditPortion)),
-          FilledButton.icon(
+        Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.md, runSpacing: Space.sm, children: [
+          PawButton(
+            label: product.inStock ? l.shopReorderPrice(Fmt.inr(product.price)) : l.shopOutOfStock,
+            icon: Ph.arrowClockwise,
             onPressed: product.inStock ? () => showQuickReorder(context, ref, product: product, pet: pet) : () => context.push('/shop/product/${product.id}'),
-            icon: const Icon(Icons.replay_outlined),
-            label: Text(product.inStock ? l.shopReorderPrice(Fmt.inr(product.price)) : l.shopOutOfStock),
           ),
+          TextLink(l.foodEditPortion, onTap: () => editFoodPlan(context, ref, pet)),
         ]),
       ]),
     );
@@ -91,7 +97,7 @@ class _OnTheWay extends StatelessWidget {
     return PawCard(
       onTap: () => context.push('/shop/orders/${order.id}'),
       child: Row(children: [
-        Icon(Icons.local_shipping_outlined, color: context.colors.primary, size: IconSizes.xl),
+        Icon(Ph.truck, color: context.colors.primary, size: IconSizes.xl),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -132,7 +138,7 @@ Future<void> editFoodPlan(BuildContext context, WidgetRef ref, Pet pet) async {
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.event_outlined),
+            leading: const Icon(Ph.calendarBlank),
             title: Text(l.foodOpenedOn),
             subtitle: Text(Fmt.date(opened, ctx.lang)),
             onTap: () async {

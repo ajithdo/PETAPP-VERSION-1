@@ -8,6 +8,7 @@ import '../../../core/widgets/widgets.dart';
 import '../data/shop_repository.dart';
 import '../domain/shop_models.dart';
 import '../domain/shop_rules.dart';
+import '../../../core/theme/ph.dart';
 
 /// Product picture: the seller's photo, or an illustrated placeholder in
 /// the category's colour (the demo has no product photos).
@@ -78,7 +79,7 @@ class RatingLine extends StatelessWidget {
       label: context.l10n.shopRatingSemantics(rating.toStringAsFixed(1), count),
       excludeSemantics: true,
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        Icon(Icons.star_rounded, size: IconSizes.sm, color: context.paw.accent),
+        Icon(Ph.starFill, size: IconSizes.sm, color: context.paw.accent),
         const SizedBox(width: Space.xxs),
         Text(rating.toStringAsFixed(1), style: context.text.labelLarge),
         Text(' ($count)', style: context.text.bodySmall),
@@ -93,7 +94,7 @@ class PartnerStoreBadge extends StatelessWidget {
   final String? store;
   @override
   Widget build(BuildContext context) =>
-      StatusChip(store == null ? context.l10n.shopPartnerStore : context.l10n.shopSoldOn(store!), tone: ChipTone.info, icon: Icons.open_in_new_outlined);
+      StatusChip(store == null ? context.l10n.shopPartnerStore : context.l10n.shopSoldOn(store!), tone: ChipTone.info, icon: Ph.arrowSquareOut);
 }
 
 /// Grid tile for product lists.
@@ -137,7 +138,7 @@ class ProductCard extends ConsumerWidget {
           const SizedBox(height: Space.xxs),
           // When it arrives, in plain words (UI Design 5 brief).
           Row(children: [
-            Icon(Icons.local_shipping_outlined, size: IconSizes.sm, color: context.paw.success),
+            Icon(Ph.truck, size: IconSizes.sm, color: context.paw.success),
             const SizedBox(width: Space.xs),
             Flexible(
               child: Text(
@@ -220,7 +221,7 @@ class QtyStepper extends StatelessWidget {
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         IconButton(
           tooltip: qty <= 1 ? l.shopRemoveItem(itemName) : l.shopLessOf(itemName),
-          icon: Icon(qty <= 1 ? Icons.delete_outlined : Icons.remove_outlined),
+          icon: Icon(qty <= 1 ? Ph.trash : Ph.minus),
           onPressed: () => onChanged(qty - 1),
         ),
         Semantics(
@@ -230,7 +231,7 @@ class QtyStepper extends StatelessWidget {
         ),
         IconButton(
           tooltip: l.shopMoreOf(itemName),
-          icon: const Icon(Icons.add_outlined),
+          icon: const Icon(Ph.plus),
           onPressed: qty >= max ? null : () => onChanged(qty + 1),
         ),
       ]),
@@ -247,7 +248,7 @@ class CartButton extends ConsumerWidget {
     return IconButton(
       tooltip: n == 0 ? context.l10n.shopCart : context.l10n.shopCartWithCount(n),
       onPressed: () => context.push('/shop/cart'),
-      icon: Badge(isLabelVisible: n > 0, label: Text('$n'), child: const Icon(Icons.shopping_cart_outlined)),
+      icon: Badge(isLabelVisible: n > 0, label: Text('$n'), child: const Icon(Ph.shoppingCartSimple)),
     );
   }
 }

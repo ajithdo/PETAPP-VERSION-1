@@ -7,6 +7,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import 'auth_widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// "Explore as demo user": one-tap logins for every role (spec 5 and 12).
 class DemoLoginScreen extends StatelessWidget {
@@ -67,15 +68,15 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
   };
 
   IconData _icon(String role) => switch (role) {
-        'vet' => Icons.medical_services_outlined,
-        'clinic_admin' => Icons.local_hospital_outlined,
-        'groomer' => Icons.content_cut_outlined,
-        'trainer' => Icons.sports_outlined,
-        'boarder' => Icons.house_outlined,
-        'walker' => Icons.directions_walk_outlined,
-        'seller' => Icons.storefront_outlined,
-        'admin' => Icons.admin_panel_settings_outlined,
-        _ => Icons.pets_outlined,
+        'vet' => Ph.firstAidKit,
+        'clinic_admin' => Ph.firstAid,
+        'groomer' => Ph.scissors,
+        'trainer' => Ph.graduationCap,
+        'boarder' => Ph.houseLine,
+        'walker' => Ph.personSimpleWalk,
+        'seller' => Ph.storefront,
+        'admin' => Ph.shieldStar,
+        _ => Ph.pawPrint,
       };
 
   Color _tone(BuildContext context, String role) => switch (role) {
@@ -125,7 +126,7 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
       decoration: BoxDecoration(color: paw.accentContainer, borderRadius: BorderRadius.circular(Radii.xl)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          Icon(Icons.science_outlined, color: paw.onAccentContainer),
+          Icon(Ph.flask, color: paw.onAccentContainer),
           const SizedBox(width: Space.sm),
           Expanded(child: Semantics(header: true, child: Text(l.demoAccountsTitle, style: context.text.titleLarge))),
         ]),
@@ -146,7 +147,7 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
     final archW = (archH / Sizes.archAspect).roundToDouble();
     Widget arch(String name) => Container(
       decoration: ShapeDecoration(shape: archShape(archW + Space.xs, BorderSide(color: paw.surface, width: Space.xxs))),
-      child: ArchClip(width: archW, child: Image.asset('assets/images/demo/pets/$name.jpg', width: archW, height: archH, fit: BoxFit.cover, excludeFromSemantics: true)),
+      child: ArchClip(width: archW, child: Image.asset('assets/images/demo/pets/$name.png', width: archW, height: archH, fit: BoxFit.cover, excludeFromSemantics: true)),
     );
     final Widget lead = pets != null
         ? SizedBox(
@@ -188,7 +189,7 @@ class _DemoAccountListState extends ConsumerState<DemoAccountList> {
         if (_busyUid == a.uid)
           const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner))
         else
-          Icon(Icons.chevron_right_rounded, color: context.paw.textSecondary),
+          Icon(Ph.caretRight, color: context.paw.textSecondary),
       ]),
     );
   }

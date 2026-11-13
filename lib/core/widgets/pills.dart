@@ -24,53 +24,68 @@ class PawPill extends StatelessWidget {
     final paw = context.paw;
     final radius = BorderRadius.circular(Radii.full);
     final fill = selected ? paw.textPrimary : Colors.transparent;
-    final side = selected
-        ? BorderSide(color: paw.textPrimary)
-        : BorderSide(color: paw.controlBorder.withValues(alpha: outlined ? Opacities.muted : Opacities.half));
-    final text = context.text.labelLarge?.copyWith(color: selected ? paw.background : (outlined ? paw.textSecondary : paw.textPrimary), fontWeight: selected ? FontWeight.w700 : FontWeight.w600);
+    final edge = selected ? paw.textPrimary : context.tint.line2;
+    final text = context.text.labelLarge?.copyWith(color: selected ? paw.background : (outlined ? paw.textSecondary : paw.textPrimary), fontWeight: FontWeight.w600);
+    final body = Padding(
+      // 44 px tall: 6 px before a picture, 12 before an icon, 14 after the label.
+      padding: EdgeInsets.only(left: leading is Icon || leading == null ? Space.md : Space.xs + Space.xxs, right: Space.md + Space.xxs),
+      child: LayoutBuilder(
+        builder: (context, c) {
+          // In a wrap the label shortens to fit; in a scrolling row
+          // (unbounded width) it keeps its full length.
+          final t = Text(label, style: text, maxLines: 1, overflow: TextOverflow.ellipsis);
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (leading != null) ...[leading!, const SizedBox(width: Space.sm)],
+              c.hasBoundedWidth ? Flexible(child: t) : t,
+            ],
+          );
+        },
+      ),
+    );
     return Semantics(
       button: true,
       selected: selected,
       label: semanticLabel ?? label,
       excludeSemantics: true,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: TapTarget.min),
-        child: Center(
-          widthFactor: 1,
-          child: PressScale(
-            child: Material(
-              color: fill,
-              shape: RoundedRectangleBorder(borderRadius: radius, side: side),
-              clipBehavior: Clip.antiAlias,
-              child: InkWell(
-                onTap: onTap,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    leading == null ? Space.md + Space.xxs : Space.xs + Space.xxs,
-                    Space.xs + Space.xxs,
-                    Space.md + Space.xxs,
-                    Space.xs + Space.xxs,
-                  ),
-                  child: LayoutBuilder(
-                    builder: (context, c) {
-                      // In a wrap the label shortens to fit; in a scrolling
-                      // row (unbounded width) it keeps its full length.
-                      final t = Text(label, style: text, maxLines: 1, overflow: TextOverflow.ellipsis);
-                      return Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (leading != null) ...[leading!, const SizedBox(width: Space.sm)],
-                          c.hasBoundedWidth ? Flexible(child: t) : t,
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ),
+      child: PressScale(
+        child: CustomPaint(
+          // "Add" pills have a dashed edge.
+          foregroundPainter: outlined ? _DashedPillPainter(edge) : null,
+          child: Material(
+            color: fill,
+            shape: RoundedRectangleBorder(borderRadius: radius, side: outlined ? BorderSide.none : BorderSide(color: edge)),
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              onTap: onTap,
+              child: ConstrainedBox(constraints: const BoxConstraints(minHeight: Sizes.topControl), child: body),
             ),
           ),
         ),
       ),
     );
   }
+}
+
+class _DashedPillPainter extends CustomPainter {
+  _DashedPillPainter(this.color);
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final path = Path()..addRRect(RRect.fromRectAndRadius(Offset.zero & size, Radius.circular(size.height / 2)).deflate(Strokes.hairline / 2));
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = Strokes.hairline;
+    for (final m in path.computeMetrics()) {
+      for (double d = 0; d < m.length; d += Space.sm) {
+        canvas.drawPath(m.extractPath(d, d + Space.xs), paint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(_DashedPillPainter o) => o.color != color;
 }

@@ -39,7 +39,7 @@
   "albumOnThisDay": {"en": "On this day", "hi": "आज के दिन", "te": "ఈ రోజున"},
   "albumLatestMemory": {"en": "Latest memory", "hi": "ताज़ा याद", "te": "తాజా జ్ఞాపకం"},
   "albumOfPet": {"en": "A moment with {pet}", "hi": "{pet} के साथ एक पल", "te": "{pet}తో ఒక క్షణం", "ph": {"pet": "String"}},
-  "albumSeeAlbum": {"en": "See album", "hi": "एल्बम देखें", "te": "ఆల్బమ్ చూడండి"},
+  "albumSeeAlbum": {"en": "Album", "hi": "एल्बम", "te": "ఆల్బమ్"},
   "albumYearsAgo": {"en": "{count, plural, =1{1 year ago} other{{count} years ago}}", "hi": "{count} साल पहले", "te": "{count} సంవత్సరాల క్రితం", "ph": {"count": "int"}},
   "albumTimelineBorn": {"en": "{pet} was born", "hi": "{pet} का जन्म", "te": "{pet} జన్మించింది", "ph": {"pet": "String"}},
   "albumTimelineEmpty": {"en": "Mark milestones while adding photos and {pet}'s story appears here.", "hi": "फ़ोटो जोड़ते समय ख़ास पल चुनें, {pet} की कहानी यहाँ दिखेगी।", "te": "ఫోటోలు జోడించేటప్పుడు మైలురాళ్లు గుర్తించండి, {pet} కథ ఇక్కడ కనిపిస్తుంది.", "ph": {"pet": "String"}},

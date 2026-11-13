@@ -5,6 +5,7 @@ import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../domain/support.dart';
 import 'support_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Messages of a help ticket as chat bubbles. The viewer's side is on the
 /// right: support for the admin panel, the person for the help screens.
@@ -39,7 +40,7 @@ class TicketThread extends StatelessWidget {
                 ),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Row(mainAxisSize: MainAxisSize.min, children: [
-                    if (m.fromAdmin) ...[Icon(Icons.support_agent_outlined, size: IconSizes.sm, color: context.colors.primary), const SizedBox(width: Space.xs)],
+                    if (m.fromAdmin) ...[Icon(Ph.headset, size: IconSizes.sm, color: context.colors.primary), const SizedBox(width: Space.xs)],
                     Flexible(
                       child: Text(m.fromAdmin ? (adminView ? m.byName : l.hpSupportTeam) : m.byName,
                           style: context.text.labelMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -76,7 +77,7 @@ class TicketSummary extends StatelessWidget {
         StatusChip(ticketStatusLabel(context, t.status), tone: ticketStatusTone(t.status)),
         StatusChip(ticketTopicLabel(context, t.topic)),
         if (t.linkType != 'other') StatusChip(t.linkLabel.isEmpty ? linkTypeLabel(context, t.linkType) : t.linkLabel, icon: linkTypeIcon(t.linkType)),
-        if (refund != null) StatusChip(l.hpRefunded(Fmt.inr((refund['amount'] as num?) ?? 0, context.lang)), tone: ChipTone.success, icon: Icons.currency_rupee_outlined),
+        if (refund != null) StatusChip(l.hpRefunded(Fmt.inr((refund['amount'] as num?) ?? 0, context.lang)), tone: ChipTone.success, icon: Ph.currencyInr),
       ]),
       const SizedBox(height: Space.xs),
       Text(
@@ -139,7 +140,7 @@ class _TicketComposerState extends State<TicketComposer> {
         alignment: Alignment.centerRight,
         child: PrimaryButton(
           label: l.msgSend,
-          icon: Icons.send_outlined,
+          icon: Ph.paperPlaneRight,
           expand: false,
           loading: _busy,
           onPressed: _ctrl.text.trim().isEmpty ? null : _send,

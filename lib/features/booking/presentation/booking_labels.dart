@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/widgets/widgets.dart';
+import '../../../core/theme/ph.dart';
 
 String serviceLabel(BuildContext context, String id) {
   final l = context.l10n;
@@ -43,12 +44,12 @@ String kindLabel(BuildContext context, String kind) {
 }
 
 IconData kindIcon(String kind) => switch (kind) {
-  'clinic' => Icons.local_hospital_outlined,
-  'groomer' => Icons.content_cut_outlined,
-  'trainer' => Icons.sports_outlined,
-  'boarder' => Icons.house_outlined,
-  'walker' => Icons.directions_walk_outlined,
-  _ => Icons.storefront_outlined,
+  'clinic' => Ph.firstAid,
+  'groomer' => Ph.scissors,
+  'trainer' => Ph.graduationCap,
+  'boarder' => Ph.houseLine,
+  'walker' => Ph.personSimpleWalk,
+  _ => Ph.storefront,
 };
 
 (String, ChipTone) bookingStatus(BuildContext context, String s) {

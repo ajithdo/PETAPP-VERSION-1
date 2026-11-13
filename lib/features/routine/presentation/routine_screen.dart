@@ -17,6 +17,7 @@ import 'quick_log_sheet.dart';
 import 'routine_labels.dart';
 import 'today_card.dart';
 import 'walk_tracker_screen.dart';
+import '../../../core/theme/ph.dart';
 
 /// Per-pet routine: today's log, weekly and monthly charts, behaviour
 /// trends and the daily plan with suggested goals (spec 7.3).
@@ -46,7 +47,7 @@ class RoutineScreen extends ConsumerWidget {
         floatingActionButton: canLog
             ? FloatingActionButton.extended(
                 onPressed: () => showQuickLog(context, ref, pet),
-                icon: const Icon(Icons.add_outlined),
+                icon: const Icon(Ph.plus),
                 label: Text(l.logSomething),
               )
             : null,
@@ -270,9 +271,9 @@ class _ChartsTabState extends ConsumerState<_ChartsTab> {
           ),
           const SizedBox(height: Space.md),
           ResponsiveGrid(minColumns: 2, minItemWidth: 180, children: [
-            if (isDog) StatTile(label: l.totalWalked, value: Fmt.km(walksTotal), icon: Icons.directions_walk_outlined),
-            StatTile(label: l.streak, value: l.daysCount(streak(logs.map((g) => g.at), DateTime.now())), icon: Icons.local_fire_department_outlined, color: context.paw.accent),
-            StatTile(label: l.mealsLogged, value: '${meals.fold<double>(0, (a, b) => a + b).round()}', icon: Icons.restaurant_outlined),
+            if (isDog) StatTile(label: l.totalWalked, value: Fmt.km(walksTotal), icon: Ph.personSimpleWalk),
+            StatTile(label: l.streak, value: l.daysCount(streak(logs.map((g) => g.at), DateTime.now())), icon: Ph.fire, color: context.paw.accent),
+            StatTile(label: l.mealsLogged, value: '${meals.fold<double>(0, (a, b) => a + b).round()}', icon: Ph.forkKnife),
           ]),
           SectionHeader(isDog ? l.chartWalkKm : l.chartPlayMinutes),
           _BarChartCard(values: activity, days: days, color: context.colors.primary, goal: isDog ? null : pet.dailyPlan.playMinutes.toDouble()),
@@ -438,7 +439,7 @@ class _BehaviourTab extends ConsumerWidget {
             ),
           SecondaryButton(
             label: l.shareWithTrainerVet,
-            icon: Icons.share_outlined,
+            icon: Ph.shareNetwork,
             onPressed: () {
               final lines = [
                 l.behaviourSummaryTitle(pet.name),
@@ -471,13 +472,13 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
         IconButton(
           tooltip: context.l10n.decrease,
           onPressed: value > min ? () => on(value - step) : null,
-          icon: const Icon(Icons.remove_circle_outlined),
+          icon: const Icon(Ph.minusCircle),
         ),
         SizedBox(width: Sizes.stepperValue, child: Text('$value', textAlign: TextAlign.center, style: context.text.titleMedium)),
         IconButton(
           tooltip: context.l10n.increase,
           onPressed: value < max ? () => on(value + step) : null,
-          icon: const Icon(Icons.add_circle_outlined),
+          icon: const Icon(Ph.plusCircle),
         ),
       ]),
     );
@@ -512,7 +513,7 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
       const SizedBox(height: Space.sm),
       TextButton.icon(
         onPressed: () => setState(() => _plan = DailyPlan(walks: g.walks, meals: g.meals, playMinutes: g.playMinutes)),
-        icon: const Icon(Icons.auto_fix_high_outlined),
+        icon: const Icon(Ph.magicWand),
         label: Text(l.useSuggested),
       ),
       const SizedBox(height: Space.md),
@@ -529,7 +530,7 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
       InfoNote(l.planReminderNote),
       if (pet.species == 'dog') ...[
         const SizedBox(height: Space.lg),
-        SecondaryButton(label: l.startWalk, icon: Icons.directions_walk_outlined, onPressed: () => context.push('/walk/${pet.id}')),
+        SecondaryButton(label: l.startWalk, icon: Ph.personSimpleWalk, onPressed: () => context.push('/walk/${pet.id}')),
       ],
     ]);
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/widgets/layout.dart';
 import '../domain/pet.dart';
+import '../../../core/theme/ph.dart';
 
 String speciesLabel(BuildContext context, String species) => switch (species) {
       'cat' => context.l10n.speciesCat,
@@ -46,7 +47,7 @@ String petRoleLabel(BuildContext context, String role) => switch (role) {
     };
 
 IconData speciesIcon(String species) => switch (species) {
-      'bird' => Icons.flutter_dash_outlined,
-      'rabbit' => Icons.cruelty_free_outlined,
-      _ => Icons.pets_outlined,
+      'bird' => Ph.bird,
+      'rabbit' => Ph.rabbit,
+      _ => Ph.pawPrint,
     };

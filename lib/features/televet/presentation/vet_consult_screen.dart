@@ -14,6 +14,7 @@ import '../../messaging/presentation/chat_view.dart';
 import '../../pets/presentation/pet_labels.dart';
 import '../data/consultation.dart';
 import '../data/televet_repository.dart';
+import '../../../core/theme/ph.dart';
 
 /// Vet workspace for one consultation (spec 7.7): pet history panel, the
 /// chat, private notes, recommendations, e-prescription and end.
@@ -37,11 +38,11 @@ class VetConsultScreen extends ConsumerWidget {
         ]);
         final actions = [
           if (c.isActive)
-            IconButton(tooltip: l.tvVideoCall, onPressed: () => context.push('/televet/call/${c.id}'), icon: const Icon(Icons.videocam_outlined)),
+            IconButton(tooltip: l.tvVideoCall, onPressed: () => context.push('/televet/call/${c.id}'), icon: const Icon(Ph.videoCamera)),
           if (!c.isEnded)
             Padding(
               padding: const EdgeInsets.only(right: Space.sm),
-              child: TextButton.icon(onPressed: () => _end(context, ref, c), icon: const Icon(Icons.task_alt_outlined), label: Text(l.tvEnd)),
+              child: TextButton.icon(onPressed: () => _end(context, ref, c), icon: const Icon(Ph.checkCircle), label: Text(l.tvEnd)),
             ),
         ];
         final title = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -180,7 +181,7 @@ class PetHistoryPanel extends ConsumerWidget {
         Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [for (final a in pet.allergies) StatusChip(a, tone: ChipTone.error)]),
       SectionHeader(l.tvProblemLabel),
       if (c.redFlag != null) ...[
-        StatusChip(l.tvUrgentSign(redFlagLabel(context, c.redFlag!)), tone: ChipTone.error, icon: Icons.emergency_outlined),
+        StatusChip(l.tvUrgentSign(redFlagLabel(context, c.redFlag!)), tone: ChipTone.error, icon: Ph.asterisk),
         const SizedBox(height: Space.xs),
       ],
       Text(c.problem, style: context.text.bodyMedium),
@@ -209,7 +210,7 @@ class PetHistoryPanel extends ConsumerWidget {
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.medication_outlined),
+            leading: const Icon(Ph.pill),
             title: Text(m['name'] as String? ?? ''),
             subtitle: Text([m['dose'], m['unit']].whereType<String>().join(' ')),
           ),
@@ -219,7 +220,7 @@ class PetHistoryPanel extends ConsumerWidget {
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.vaccines_outlined),
+            leading: const Icon(Ph.syringe),
             title: Text(v['name'] as String? ?? ''),
             subtitle: Text(parseDate(v['givenDate']) == null ? '' : Fmt.date(parseDate(v['givenDate'])!, lang)),
           ),
@@ -230,10 +231,10 @@ class PetHistoryPanel extends ConsumerWidget {
             dense: true,
             contentPadding: EdgeInsets.zero,
             leading: Icon(switch (e['type']) {
-              'symptom' => Icons.sick_outlined,
-              'vet_visit' => Icons.local_hospital_outlined,
-              'deworming' => Icons.bug_report_outlined,
-              _ => Icons.event_note_outlined,
+              'symptom' => Ph.smileyNervous,
+              'vet_visit' => Ph.firstAid,
+              'deworming' => Ph.bug,
+              _ => Ph.notepad,
             }),
             title: Text(e['type'] == 'symptom' ? symptomLabel(context, e['symptom'] as String?) : (e['title'] as String? ?? '')),
             subtitle: Text([
@@ -297,7 +298,7 @@ class _VetToolsPanelState extends ConsumerState<VetToolsPanel> {
       const SizedBox(height: Space.sm),
       SecondaryButton(
         label: _saving ? l.loading : l.save,
-        icon: Icons.save_outlined,
+        icon: Ph.floppyDisk,
         onPressed: _saving
             ? null
             : () async {
@@ -315,26 +316,26 @@ class _VetToolsPanelState extends ConsumerState<VetToolsPanel> {
           color: context.paw.success.withValues(alpha: Opacities.pressed),
           padding: const EdgeInsets.all(Space.md),
           child: Row(children: [
-            Icon(Icons.check_circle_rounded, color: context.paw.success),
+            Icon(Ph.checkCircleFill, color: context.paw.success),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(l.rxSaved(c.petName))),
           ]),
         ),
         const SizedBox(height: Space.sm),
-        SecondaryButton(label: l.rxView, icon: Icons.picture_as_pdf_outlined, onPressed: () => context.push('/prescriptions/${c.prescriptionId}')),
+        SecondaryButton(label: l.rxView, icon: Ph.filePdf, onPressed: () => context.push('/prescriptions/${c.prescriptionId}')),
       ] else
         PrimaryButton(
           label: l.rxWrite,
-          icon: Icons.edit_note_outlined,
+          icon: Ph.notePencil,
           onPressed: c.isQueued ? null : () => context.push('/partner/consult/${c.id}/prescription'),
         ),
       SectionHeader(l.tvRecommend),
-      SecondaryButton(label: l.tvRecVisit, icon: Icons.local_hospital_outlined, onPressed: c.isEnded || c.isQueued ? null : () => _recommend('visit')),
+      SecondaryButton(label: l.tvRecVisit, icon: Ph.firstAid, onPressed: c.isEnded || c.isQueued ? null : () => _recommend('visit')),
       const SizedBox(height: Space.sm),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(foregroundColor: context.paw.sos, side: BorderSide(color: context.paw.sos)),
         onPressed: c.isEnded || c.isQueued ? null : () => _recommend('emergency'),
-        icon: const Icon(Icons.emergency_outlined),
+        icon: const Icon(Ph.asterisk),
         label: Text(l.tvRecEmergency),
       ),
       if (c.recommendation != null) ...[

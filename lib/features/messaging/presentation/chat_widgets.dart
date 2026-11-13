@@ -13,11 +13,12 @@ import '../../shell/presentation/sos_launcher.dart';
 import '../data/chat_models.dart';
 import 'attachments.dart';
 import 'voice_note.dart';
+import '../../../core/theme/ph.dart';
 
 IconData conversationIcon(Conversation c) => switch (c.type) {
-      'televet' => Icons.video_call_outlined,
-      'assistant' => Icons.auto_awesome_outlined,
-      _ => c.providerKind == 'vet' ? Icons.medical_services_outlined : kindIcon(c.providerKind),
+      'televet' => Ph.videoCamera,
+      'assistant' => Ph.sparkle,
+      _ => c.providerKind == 'vet' ? Ph.firstAidKit : kindIcon(c.providerKind),
     };
 
 /// Round avatar for a conversation: the provider's icon for pet parents,
@@ -187,7 +188,7 @@ class MessageBubble extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.all(Space.sm),
                 decoration: BoxDecoration(color: context.paw.error.withValues(alpha: Opacities.chip), borderRadius: BorderRadius.circular(Radii.md)),
-                child: Icon(Icons.picture_as_pdf_outlined, color: context.paw.error),
+                child: Icon(Ph.filePdf, color: context.paw.error),
               ),
               const SizedBox(width: Space.sm),
               Flexible(
@@ -233,7 +234,7 @@ class MessageBubble extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: Space.xs),
                   child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(Icons.shield_outlined, size: IconSizes.xs, color: quiet),
+                    Icon(Ph.shield, size: IconSizes.xs, color: quiet),
                     const SizedBox(width: Space.xs),
                     Flexible(child: Text(l.msgNumberHidden, style: small)),
                   ]),
@@ -249,7 +250,7 @@ class MessageBubble extends ConsumerWidget {
                   const SizedBox(width: Space.xs),
                   Semantics(
                     label: read ? l.msgRead : l.msgSent,
-                    child: Icon(read ? Icons.done_all_outlined : Icons.done_outlined, size: IconSizes.sm, color: read ? accent : quiet),
+                    child: Icon(read ? Ph.checks : Ph.check, size: IconSizes.sm, color: read ? accent : quiet),
                   ),
                 ],
               ]),
@@ -274,7 +275,7 @@ class MessageBubble extends ConsumerWidget {
             padding: const EdgeInsets.all(Space.md),
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               Row(children: [
-                Icon(Icons.receipt_long_outlined, color: context.colors.primary),
+                Icon(Ph.receipt, color: context.colors.primary),
                 const SizedBox(width: Space.sm),
                 Expanded(child: Text(l.rxCardTitle(m.senderName), style: context.text.titleSmall)),
               ]),
@@ -282,7 +283,7 @@ class MessageBubble extends ConsumerWidget {
               const SizedBox(height: Space.sm),
               FilledButton.tonalIcon(
                 onPressed: m.prescriptionId == null ? null : () => context.push('/prescriptions/${m.prescriptionId}'),
-                icon: const Icon(Icons.picture_as_pdf_outlined),
+                icon: const Icon(Ph.filePdf),
                 label: Text(l.rxView),
               ),
               const SizedBox(height: Space.xxs),
@@ -316,7 +317,7 @@ class MessageBubble extends ConsumerWidget {
               padding: const EdgeInsets.all(Space.md),
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 Row(children: [
-                  Icon(emergency ? Icons.emergency_outlined : Icons.local_hospital_outlined, color: c),
+                  Icon(emergency ? Ph.asterisk : Ph.firstAid, color: c),
                   const SizedBox(width: Space.sm),
                   Expanded(
                     child: Text(
@@ -331,13 +332,13 @@ class MessageBubble extends ConsumerWidget {
                   FilledButton.icon(
                     style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
                     onPressed: () => openSos(context, ref),
-                    icon: const Icon(Icons.emergency_outlined),
+                    icon: const Icon(Ph.asterisk),
                     label: Text(l.sosGetHelp),
                   )
                 else
                   FilledButton.tonalIcon(
                     onPressed: () => context.push(recommendClinicId != null ? '/book/place/$recommendClinicId' : '/book/find/clinic'),
-                    icon: const Icon(Icons.event_available_outlined),
+                    icon: const Icon(Ph.calendarCheck),
                     label: Text(l.tvBookVisit),
                   ),
               ]),
@@ -349,17 +350,17 @@ class MessageBubble extends ConsumerWidget {
 
     final (IconData icon, String text) = switch (m.event) {
       'booking_chat' => (
-          Icons.event_note_outlined,
+          Ph.notepad,
           l.msgSysBookingChat(meta['petName'] as String? ?? '', timeOf('start')),
         ),
       'tv_started' => (
-          Icons.video_call_outlined,
+          Ph.videoCamera,
           parseDate(meta['scheduledAt']) != null ? l.msgSysTvScheduled(timeOf('scheduledAt')) : (meta['mode'] == 'video' ? l.msgSysTvStartedVideo : l.msgSysTvStarted),
         ),
-      'tv_joined' => (Icons.how_to_reg_outlined, l.msgSysVetJoined(meta['name'] as String? ?? '', timeOf('endsAt'))),
-      'tv_ended' => (Icons.check_circle_rounded, l.msgSysTvEnded),
-      'call_ended' => (Icons.videocam_off_outlined, l.msgSysCallEnded(formatSeconds((meta['seconds'] as num?)?.toInt() ?? 0))),
-      _ => (Icons.info_outlined, m.text),
+      'tv_joined' => (Ph.userCheck, l.msgSysVetJoined(meta['name'] as String? ?? '', timeOf('endsAt'))),
+      'tv_ended' => (Ph.checkCircleFill, l.msgSysTvEnded),
+      'call_ended' => (Ph.videoCameraSlash, l.msgSysCallEnded(formatSeconds((meta['seconds'] as num?)?.toInt() ?? 0))),
+      _ => (Ph.info, m.text),
     };
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Space.sm),
@@ -419,7 +420,7 @@ class ChatSafetyNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Space.sm),
-      child: InfoNote(context.l10n.msgSafetyNote, icon: Icons.shield_outlined),
+      child: InfoNote(context.l10n.msgSafetyNote, icon: Ph.shield),
     );
   }
 }

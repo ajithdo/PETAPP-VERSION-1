@@ -849,7 +849,7 @@
       }
     }
   },
-  "streakDays": "{count}-day streak",
+  "streakDays": "{count} days in a row",
   "@streakDays": {
     "placeholders": {
       "count": {
@@ -3295,7 +3295,7 @@
       }
     }
   },
-  "albumSeeAlbum": "See album",
+  "albumSeeAlbum": "Album",
   "albumYearsAgo": "{count, plural, =1{1 year ago} other{{count} years ago}}",
   "@albumYearsAgo": {
     "placeholders": {
@@ -4162,7 +4162,7 @@
   "shopNoPicks": "No picks yet. Try searching the shop.",
   "shopBuyAgain": "Buy again",
   "shopReorder": "Reorder",
-  "shopReorderPrice": "Reorder · {price}",
+  "shopReorderPrice": "Reorder {price}",
   "@shopReorderPrice": {
     "placeholders": {
       "price": {
@@ -4937,7 +4937,7 @@
       }
     }
   },
-  "foodRunsOutIn": "{pet}'s food may run out in about {days, plural, =1{1 day} other{{days} days}}. Reorder?",
+  "foodRunsOutIn": "{pet}'s food may run out in about {days, plural, =1{1 day} other{{days} days}}",
   "@foodRunsOutIn": {
     "placeholders": {
       "pet": {
@@ -4967,7 +4967,7 @@
       }
     }
   },
-  "foodEditPortion": "Edit portion",
+  "foodEditPortion": "Change daily portion",
   "foodOnTheWay": "New food for {pet} is on the way",
   "@foodOnTheWay": {
     "placeholders": {
@@ -7372,5 +7372,44 @@
       }
     }
   },
-  "logGridTitle": "Log something"
+  "logGridTitle": "Log something",
+  "leftCount": "{count} left",
+  "@leftCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "markGiven": "Mark given",
+  "playOfMin": "{done} of {goal} min",
+  "@playOfMin": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "aboutLeft": "about {amount} left",
+  "@aboutLeft": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nowAt": "Now, {time}",
+  "@nowAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "albumYearAgo": "A year ago today",
+  "bookWord": "Book",
+  "sosEmergencyHelp": "SOS, emergency help"
 }

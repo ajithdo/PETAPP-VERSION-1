@@ -4,6 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../theme/tokens.dart';
+import '../theme/ph.dart';
 
 /// OpenStreetMap via flutter_map, used by walks, the clinic finder, SOS,
 /// lost pet and devices. Follows the OSM tile usage policy: a real user
@@ -81,7 +82,7 @@ class PawMap extends StatelessWidget {
 }
 
 /// Round pin used on maps.
-Marker pinMarker(LatLng p, {required Color color, IconData icon = Icons.place_outlined, double size = 40, String? label}) => Marker(
+Marker pinMarker(LatLng p, {required Color color, IconData icon = Ph.mapPin, double size = 40, String? label}) => Marker(
       point: p,
       width: size,
       height: size,

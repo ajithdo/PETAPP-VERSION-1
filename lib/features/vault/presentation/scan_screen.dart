@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../domain/scan_bounds.dart';
+import '../../../core/theme/ph.dart';
 
 /// Camera scan with auto-crop (spec 7.9): finds the page edges, lets the
 /// owner drag the corners, and can turn the scan black and white so text
@@ -169,7 +170,7 @@ class _ScanCropScreenState extends State<ScanCropScreen> {
                             title: Text(l.vaultScanBw),
                             contentPadding: EdgeInsets.zero,
                           ),
-                          PrimaryButton(label: l.vaultUseScan, icon: Icons.check_outlined, loading: _busy, onPressed: _done),
+                          PrimaryButton(label: l.vaultUseScan, icon: Ph.check, loading: _busy, onPressed: _done),
                         ]),
                       ),
                     ),

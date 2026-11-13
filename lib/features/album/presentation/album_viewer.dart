@@ -15,6 +15,7 @@ import 'album_add.dart';
 import 'album_labels.dart';
 import 'album_share.dart';
 import 'video/video_view.dart';
+import '../../../core/theme/ph.dart';
 
 /// Which items a viewer pages through: everything, favourites or one album.
 List<AlbumItem> filterItems(List<AlbumItem> all, String? filter) {
@@ -46,7 +47,7 @@ class AlbumViewerScreen extends ConsumerWidget {
         data: (list) {
           final items = filterItems(list, filter);
           if (items.isEmpty || pet == null) {
-            return Center(child: IconButton(tooltip: context.l10n.close, onPressed: () => context.pop(), icon: const Icon(Icons.close_outlined, color: MediaColors.foreground)));
+            return Center(child: IconButton(tooltip: context.l10n.close, onPressed: () => context.pop(), icon: const Icon(Ph.x, color: MediaColors.foreground)));
           }
           final start = items.indexWhere((i) => i.id == itemId);
           return MediaPager(items: items, initialIndex: start < 0 ? 0 : start, pet: pet);
@@ -117,7 +118,7 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xs),
             child: Row(children: [
-              IconButton(tooltip: l.albumClose, onPressed: _close, icon: const Icon(Icons.close_outlined, color: MediaColors.foreground)),
+              IconButton(tooltip: l.albumClose, onPressed: _close, icon: const Icon(Ph.x, color: MediaColors.foreground)),
               Expanded(
                 child: Text(l.albumOfCount(_index + 1, items.length),
                     style: const TextStyle(color: MediaColors.foregroundMuted), textAlign: TextAlign.center),
@@ -126,13 +127,13 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
                 IconButton(
                   tooltip: item.favourite ? l.albumUnfavourite : l.albumFavourite,
                   onPressed: canLog ? () => ref.read(albumRepositoryProvider).toggleFavourite(item) : null,
-                  icon: Icon(item.favourite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
+                  icon: Icon(item.favourite ? Ph.heartFill : Ph.heart,
                       color: item.favourite ? PetTagColors.of('rose') : MediaColors.foreground),
                 ),
                 IconButton(
                   tooltip: l.albumShare,
                   onPressed: () => showShareMemorySheet(context, ref, item, pet),
-                  icon: const Icon(Icons.ios_share_outlined, color: MediaColors.foreground),
+                  icon: const Icon(Ph.exportUp, color: MediaColors.foreground),
                 ),
                 if (canLog)
                   PopupMenuButton<String>(
@@ -158,9 +159,9 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
                       }
                     },
                     itemBuilder: (_) => [
-                      PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.albumEditCaption))),
-                      PopupMenuItem(value: 'album', child: ListTile(leading: const Icon(Icons.photo_album_outlined), title: Text(l.albumAddToAlbum))),
-                      PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.delete_outlined), title: Text(l.albumDelete))),
+                      PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Ph.pencilSimple), title: Text(l.albumEditCaption))),
+                      PopupMenuItem(value: 'album', child: ListTile(leading: const Icon(Ph.imagesSquare), title: Text(l.albumAddToAlbum))),
+                      PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Ph.trash), title: Text(l.albumDelete))),
                     ],
                   ),
               ],
@@ -187,12 +188,12 @@ class _MediaPagerState extends ConsumerState<MediaPager> {
               if (wide && _index > 0)
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: IconButton.filledTonal(tooltip: l.albumPrevious, onPressed: () => _go(-1), icon: const Icon(Icons.chevron_left_outlined)),
+                  child: IconButton.filledTonal(tooltip: l.albumPrevious, onPressed: () => _go(-1), icon: const Icon(Ph.caretLeft)),
                 ),
               if (wide && _index < items.length - 1)
                 Align(
                   alignment: Alignment.centerRight,
-                  child: IconButton.filledTonal(tooltip: l.next, onPressed: () => _go(1), icon: const Icon(Icons.chevron_right_outlined)),
+                  child: IconButton.filledTonal(tooltip: l.next, onPressed: () => _go(1), icon: const Icon(Ph.caretRight)),
                 ),
             ]),
           ),

@@ -654,14 +654,17 @@ class TypeScale {
   static const title = TypeToken(21, 25, FontWeight.w700, tracking: -0.2, heading: true);
   static const titleMedium = TypeToken(18, 22, FontWeight.w700, tracking: -0.1, heading: true);
   static const titleSmall = TypeToken(17, 22, FontWeight.w600, heading: true);
-  static const bodyLarge = TypeToken(17, 25, FontWeight.w400);
-  static const body = TypeToken(16, 23, FontWeight.w400);
-  static const bodySmall = TypeToken(14, 20, FontWeight.w400);
+  static const bodyLarge = TypeToken(16, 23, FontWeight.w400);
+  static const body = TypeToken(15, 22, FontWeight.w400);
+  static const bodySmall = TypeToken(13, 18, FontWeight.w400);
   static const label = TypeToken(15, 20, FontWeight.w600);
   static const labelMedium = TypeToken(14, 20, FontWeight.w600);
 
-  /// Badges, chart axes, small tags: the smallest text in the app (13 px).
-  static const labelSmall = TypeToken(13, 18, FontWeight.w600);
+  /// Badges, chart axes, small tags (12 px, the design's smallest text).
+  static const labelSmall = TypeToken(12, 16, FontWeight.w600);
+
+  /// Labels under the dock icons (11 px in the design).
+  static const dock = TypeToken(11, 13, FontWeight.w500);
 
   /// Small section labels ("Next for Bruno"). Sentence case, never
   /// upper-cased or letter-spaced (Hindi and Telugu can't be).
@@ -671,7 +674,10 @@ class TypeScale {
   static const mono = TypeToken(14, 20, FontWeight.w500);
 
   /// The day number in a date block ("13" over "Fri").
-  static const dateNumber = TypeToken(22, 26, FontWeight.w800, heading: true);
+  static const dateNumber = TypeToken(20, 28, FontWeight.w800, heading: true);
+
+  /// The month on a date leaf's strip.
+  static const dateMonth = TypeToken(11, 14, FontWeight.w600);
 
   static const double indicLineHeight = 1.6;
 
@@ -928,8 +934,52 @@ class Sizes {
   static const double galleryPreviewSm = 260;
 
   /// Floating bottom bar on phones, and the top bar on wide screens.
-  static const double dock = 64;
+  static const double dock = 68;
   static const double header = 72;
+
+  /// Floating dock (phones): the marigold pill behind the current tab's
+  /// icon, the icon, the dock's corners and its gap from the screen edge.
+  static const double dockPillWidth = 48;
+  static const double dockPillHeight = 30;
+  static const double dockIcon = 22;
+  static const double dockRadius = 24;
+
+  /// Top bar: round buttons, the SOS pill and the pet pills are this tall;
+  /// the PawSetu mark; the pet's arch inside a pill (its width).
+  static const double topControl = 44;
+  static const double topLogo = 32;
+  static const double pillArch = 28;
+  static const double topIcon = 22;
+
+  /// Space between two sections of a page.
+  static const double sectionGap = 28;
+
+  /// Rounded tiles (places, things, features): the usual size, the corner
+  /// and the icon as shares of the size.
+  static const double tile = 44;
+  static const double tileLg = 52;
+  static const double tileXl = 68;
+  static const double tileCorner = 0.3;
+  static const double tileIcon = 0.48;
+
+  /// Tags, chips, list rows and small buttons (heights).
+  static const double tag = 24;
+  static const double chip = 40;
+  static const double item = 56;
+  static const double buttonSmall = 36;
+
+  /// Quick-action circles on Home.
+  static const double quickCircle = 56;
+
+  /// The walk strip on the weather card, and the marker for "now".
+  static const double walkBar = 10;
+  static const double walkNow = 18;
+
+  /// The memory print on Home (a small instant photo).
+  static const double print = 152;
+
+  /// How far the print leans (radians; about 2.5 degrees).
+  static const double printTilt = 0.0436;
 
   /// Big tappable SOS option.
   static const double sosOption = 96;
@@ -970,7 +1020,11 @@ class Sizes {
   static const double placePhotoMaxHeight = 440;
 
   /// Date square at the start of a booking row.
-  static const double dateBadge = 56;
+  static const double dateBadge = 48;
+
+  /// Date leaf: the month strip and the day row.
+  static const double dateStripRow = 18;
+  static const double dateDayRow = 28;
 
   /// Minimum list row height (DESIGN.md: 64 px; 76 px in Easy mode).
   static const double listRow = 64;
@@ -981,7 +1035,7 @@ class Sizes {
 
   /// The garland on the Genda band (Home): full and compact (narrow screens,
   /// big text). The pet photo inside is [garlandPhotoShare] of it.
-  static const double garland = 148;
+  static const double garland = 152;
   static const double garlandLarge = 176;
   static const double garlandCompact = 120;
   static const double garlandPhotoShare = 0.63;
@@ -1046,8 +1100,14 @@ class TapTarget {
 class Shadows {
   /// Cards (light mode only; dark mode uses surface tones and the border).
   static List<BoxShadow> card(Color ink) => [
-    BoxShadow(color: ink.withValues(alpha: 0.05), offset: const Offset(0, 1)),
-    BoxShadow(color: ink.withValues(alpha: 0.22), blurRadius: 28, spreadRadius: -14, offset: const Offset(0, 10)),
+    BoxShadow(color: ink.withValues(alpha: 0.04), offset: const Offset(0, 1)),
+    BoxShadow(color: ink.withValues(alpha: 0.28), blurRadius: 28, spreadRadius: -16, offset: const Offset(0, 10)),
+  ];
+
+  /// The floating dock and other raised dark panels (the design's shadow-2).
+  static List<BoxShadow> raised(Color ink) => [
+    BoxShadow(color: ink.withValues(alpha: 0.05), offset: const Offset(0, 2)),
+    BoxShadow(color: ink.withValues(alpha: 0.45), blurRadius: 48, spreadRadius: -24, offset: const Offset(0, 24)),
   ];
 
   /// Sheets, dialogs and menus.
@@ -1159,8 +1219,75 @@ class PawTextStyles extends ThemeExtension<PawTextStyles> {
         );
 }
 
+/// Extra UI Design 6 "Toran" tints that only need a light and a dark value
+/// (the design kit's line-2, paper-3, ink-3, sky and the darker kaapi tones).
+class ToranTints {
+  const ToranTints._({
+    required this.line2,
+    required this.paper3,
+    required this.ink3,
+    required this.sky,
+    required this.skyWash,
+    required this.band2,
+    required this.bandLine,
+    required this.heat,
+    required this.star,
+  });
+
+  /// Edge of chips, pet pills and date leaves (decorative; the label carries
+  /// the meaning).
+  final Color line2;
+
+  /// The deepest paper: empty bars, photo placeholders.
+  final Color paper3;
+
+  /// Quietest text and chevrons.
+  final Color ink3;
+
+  /// Sky: weather, video and information tiles.
+  final Color sky;
+  final Color skyWash;
+
+  /// On the kaapi band: a lighter panel and hairlines.
+  final Color band2;
+  final Color bandLine;
+
+  /// "Too hot" hours on the walk strip.
+  final Color heat;
+
+  /// Rating stars.
+  final Color star;
+
+  static const light = ToranTints._(
+    line2: Color(0xFFD8C9B5),
+    paper3: Color(0xFFECE1D1),
+    ink3: Color(0xFF7A6A5E),
+    sky: Color(0xFF1F5B80),
+    skyWash: Color(0xFFDDECF5),
+    band2: Color(0xFF422B1E),
+    bandLine: Color(0xFF5A4031),
+    heat: Color(0xFFE9756C),
+    star: Color(0xFFC77700),
+  );
+
+  static const dark = ToranTints._(
+    line2: Color(0xFF4E3D2F),
+    paper3: Color(0xFF2B2018),
+    ink3: Color(0xFF978573),
+    sky: Color(0xFF9CCDEA),
+    skyWash: Color(0xFF16303F),
+    band2: Color(0xFF3A281C),
+    bandLine: Color(0xFF54402F),
+    heat: Color(0xFFE9756C),
+    star: Color(0xFFFBB431),
+  );
+}
+
 extension PawThemeX on BuildContext {
   PawColors get paw => Theme.of(this).extension<PawColors>()!;
+
+  /// The extra Toran tints for the current brightness.
+  ToranTints get tint => Theme.of(this).brightness == Brightness.light ? ToranTints.light : ToranTints.dark;
   ColorScheme get colors => Theme.of(this).colorScheme;
   TextTheme get text => Theme.of(this).textTheme;
   PawTextStyles get textX => Theme.of(this).extension<PawTextStyles>()!;

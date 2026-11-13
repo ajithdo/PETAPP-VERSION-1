@@ -12,6 +12,7 @@ import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/admin_repository.dart';
 import '../domain/admin_rules.dart';
+import '../../../core/theme/ph.dart';
 
 DateTime _date(Object? v) => parseDate(v) ?? DateTime.fromMillisecondsSinceEpoch(0);
 
@@ -50,7 +51,7 @@ class _CommissionReportScreenState extends ConsumerState<CommissionReportScreen>
           if (report != null)
             IconButton(
               tooltip: l.admDownloadCsv,
-              icon: const Icon(Icons.download_outlined),
+              icon: const Icon(Ph.downloadSimple),
               onPressed: () {
                 final csv = report.toCsv([l.admColPartner, l.admColType, l.admColCount, l.admColGross, l.admColCommission, l.admColPayout], kindLabel);
                 final name = 'pawsetu-commission-${_month.year}-${_month.month.toString().padLeft(2, '0')}.csv';
@@ -75,11 +76,11 @@ class _CommissionReportScreenState extends ConsumerState<CommissionReportScreen>
               ),
               const SizedBox(height: Space.md),
               ResponsiveGrid(minColumns: 2, minItemWidth: 170, spacing: Space.sm, children: [
-                StatTile(label: l.admBookingCommissionShort, value: Fmt.inr(report.bookingCommission, lang), icon: Icons.event_available_outlined),
-                StatTile(label: l.admShopMargin, value: Fmt.inr(report.shopMargin, lang), icon: Icons.shopping_bag_outlined),
-                StatTile(label: l.admPlusRevenue, value: Fmt.inr(report.plusRevenue, lang), icon: Icons.workspace_premium_outlined, color: context.paw.accent),
-                StatTile(label: l.admRefunds, value: Fmt.inr(report.refunds, lang), icon: Icons.undo_outlined, color: context.paw.warning),
-                StatTile(label: l.admPlatformTotal, value: Fmt.inr(report.platformTotal, lang), icon: Icons.account_balance_wallet_outlined, color: context.paw.success),
+                StatTile(label: l.admBookingCommissionShort, value: Fmt.inr(report.bookingCommission, lang), icon: Ph.calendarCheck),
+                StatTile(label: l.admShopMargin, value: Fmt.inr(report.shopMargin, lang), icon: Ph.bag),
+                StatTile(label: l.admPlusRevenue, value: Fmt.inr(report.plusRevenue, lang), icon: Ph.crownSimple, color: context.paw.accent),
+                StatTile(label: l.admRefunds, value: Fmt.inr(report.refunds, lang), icon: Ph.arrowUUpLeft, color: context.paw.warning),
+                StatTile(label: l.admPlatformTotal, value: Fmt.inr(report.platformTotal, lang), icon: Ph.wallet, color: context.paw.success),
               ]),
               const SizedBox(height: Space.sm),
               InfoNote(l.admReportDemoNote),
@@ -91,7 +92,7 @@ class _CommissionReportScreenState extends ConsumerState<CommissionReportScreen>
                   child: PawCard(
                     padding: const EdgeInsets.all(Space.md),
                     child: Row(children: [
-                      Icon(line.kind == 'shop' ? Icons.storefront_outlined : Icons.local_hospital_outlined, color: context.colors.primary),
+                      Icon(line.kind == 'shop' ? Ph.storefront : Ph.firstAid, color: context.colors.primary),
                       const SizedBox(width: Space.md),
                       Expanded(
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

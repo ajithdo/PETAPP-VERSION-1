@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../domain/album.dart';
+import '../../../core/theme/ph.dart';
 
 String milestoneLabel(BuildContext context, String kind, {String? custom}) {
   final l = context.l10n;
@@ -18,11 +19,11 @@ String milestoneLabel(BuildContext context, String kind, {String? custom}) {
 String itemMilestoneLabel(BuildContext context, AlbumItem i) => milestoneLabel(context, i.milestone ?? 'custom', custom: i.milestoneTitle);
 
 IconData milestoneIcon(String kind) => switch (kind) {
-      'birthday' => Icons.cake_outlined,
-      'gotcha' => Icons.home_outlined,
-      'first_walk' => Icons.directions_walk_outlined,
-      'first_vaccine' => Icons.vaccines_outlined,
-      _ => Icons.star_rounded,
+      'birthday' => Ph.cake,
+      'gotcha' => Ph.house,
+      'first_walk' => Ph.personSimpleWalk,
+      'first_vaccine' => Ph.syringe,
+      _ => Ph.starFill,
     };
 
 Color milestoneColor(BuildContext context, String kind) => switch (kind) {

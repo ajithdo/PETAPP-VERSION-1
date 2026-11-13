@@ -89,5 +89,58 @@
     "en": "Log something",
     "hi": "कुछ दर्ज करें",
     "te": "ఏదైనా నమోదు చేయండి"
+  },
+  "leftCount": {
+    "en": "{count} left",
+    "hi": "{count} बाकी",
+    "te": "{count} మిగిలాయి",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "markGiven": {
+    "en": "Mark given",
+    "hi": "दे दिया",
+    "te": "ఇచ్చాను"
+  },
+  "playOfMin": {
+    "en": "{done} of {goal} min",
+    "hi": "{goal} में से {done} मिनट",
+    "te": "{goal} ని.లో {done}",
+    "ph": {
+      "done": "int",
+      "goal": "int"
+    }
+  },
+  "aboutLeft": {
+    "en": "about {amount} left",
+    "hi": "लगभग {amount} बचा है",
+    "te": "సుమారు {amount} మిగిలింది",
+    "ph": {
+      "amount": "String"
+    }
+  },
+  "nowAt": {
+    "en": "Now, {time}",
+    "hi": "अभी, {time}",
+    "te": "ఇప్పుడు, {time}",
+    "ph": {
+      "time": "String"
+    }
+  },
+  "albumYearAgo": {
+    "en": "A year ago today",
+    "hi": "एक साल पहले आज",
+    "te": "ఏడాది క్రితం ఈ రోజు"
+  },
+  "bookWord": {
+    "en": "Book",
+    "hi": "बुक करें",
+    "te": "బుక్"
+  },
+  "sosEmergencyHelp": {
+    "en": "SOS, emergency help",
+    "hi": "SOS, आपातकालीन मदद",
+    "te": "SOS, అత్యవసర సహాయం"
   }
 }

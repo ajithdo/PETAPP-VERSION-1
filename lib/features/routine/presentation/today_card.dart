@@ -12,6 +12,7 @@ import '../data/routine_repository.dart';
 import '../domain/routine.dart';
 import 'quick_log_sheet.dart';
 import 'routine_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// "Today" card: the daily plan as a checklist. Each row has a one-tap log
 /// button. With [header] (routine screen) it opens with a progress ring and
@@ -34,16 +35,12 @@ class TodayCard extends ConsumerWidget {
         data: (all) {
           final p = TodayProgress(pet: pet, logs: all);
           final s = streak(all.map((x) => x.at), DateTime.now());
-          final streakChip = s > 1 ? StatusChip(l.streakDays(s), tone: ChipTone.accent, icon: Icons.local_fire_department_outlined) : null;
+          final streakChip = s > 1 ? StatusChip(l.streakDays(s), tone: ChipTone.accent, icon: Ph.fire) : null;
           final left = p.items.where((i) => i.$2 < i.$3).length;
           return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             // Home: the band above shows the streak, so this says what's left.
             if (!header)
-              Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
-                Expanded(child: Semantics(header: true, child: Text(l.today, style: context.text.titleLarge))),
-                const SizedBox(width: Space.sm),
-                Flexible(child: Text(left == 0 ? l.done : l.tasksLeft(left), style: context.text.bodySmall, textAlign: TextAlign.end)),
-              ])
+              SecHead(l.today, note: left == 0 ? l.done : l.leftCount(left))
             else
             Row(children: [
               ProgressRing(
@@ -64,33 +61,26 @@ class TodayCard extends ConsumerWidget {
                 ]),
               ),
             ]),
-            SizedBox(height: header ? Space.md : Space.sm),
-            if (header) const Divider(),
-            for (final item in p.items)
-              _ChecklistRow(
-                pet: pet,
-                type: item.$1,
-                done: item.$2,
-                goal: item.$3,
-                big: big,
-                last: p.today.where((x) => x.type == item.$1).fold<RoutineLog?>(null, (a, b) => a == null || b.at.isAfter(a.at) ? b : a),
-              ),
-            const SizedBox(height: Space.sm),
-            Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: Space.sm,
-              runSpacing: Space.sm,
-              children: [
-                FilledButton.tonalIcon(
-                  onPressed: () => showQuickLog(context, ref, pet),
-                  style: FilledButton.styleFrom(backgroundColor: context.paw.surfaceSubtle, foregroundColor: context.paw.textPrimary),
-                  icon: const Icon(Icons.add_rounded),
-                  label: Text(l.logSomething),
+            if (header) ...[const SizedBox(height: Space.md), const Divider()],
+            PawList(children: [
+              for (final (i, item) in p.items.indexed)
+                _ChecklistRow(
+                  pet: pet,
+                  type: item.$1,
+                  done: item.$2,
+                  goal: item.$3,
+                  big: big,
+                  // The first thing still open gets the marigold button.
+                  primary: i == p.items.indexWhere((x) => x.$2 < x.$3),
+                  last: p.today.where((x) => x.type == item.$1).fold<RoutineLog?>(null, (a, b) => a == null || b.at.isAfter(a.at) ? b : a),
                 ),
-                LinkButton(label: l.seeAll, onPressed: () => context.push('/pets/${pet.id}/routine')),
-              ],
-            ),
+            ]),
+            const SizedBox(height: Space.md),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              PawButton(label: l.logSomething, icon: Ph.plus, kind: BtnKind.soft, onPressed: () => showQuickLog(context, ref, pet)),
+              const SizedBox(width: Space.md),
+              Flexible(child: TextLink(l.seeAll, onTap: () => context.push('/pets/${pet.id}/routine'))),
+            ]),
           ]);
         },
       ),
@@ -99,12 +89,15 @@ class TodayCard extends ConsumerWidget {
 }
 
 class _ChecklistRow extends ConsumerWidget {
-  const _ChecklistRow({required this.pet, required this.type, required this.done, required this.goal, required this.big, this.last});
+  const _ChecklistRow({required this.pet, required this.type, required this.done, required this.goal, required this.big, this.primary = false, this.last});
   final Pet pet;
   final LogType type;
   final int done;
   final int goal;
   final bool big;
+
+  /// The next thing to do: its button is marigold.
+  final bool primary;
 
   /// Today's latest log of this kind: who did it and when.
   final RoutineLog? last;
@@ -112,63 +105,50 @@ class _ChecklistRow extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
-    final complete = done >= goal;
     final paw = context.paw;
     // UI Design 6 list row: the task tick leads (a ring that fills, then a
-    // marigold when done), the type and progress in the middle, and a
-    // one-tap log button at the end. Rows are split by hairlines.
-    final tick = big ? IconSizes.xxl : IconSizes.xl;
-    final count = type == LogType.play ? l.playProgress(done, goal) : '$done/$goal';
-    return Container(
-      constraints: BoxConstraints(minHeight: big ? Sizes.listRowEasy : Sizes.listRow),
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: paw.outline))),
-      child: Row(children: [
-        TaskTick(done: done, goal: goal, size: tick),
-        const SizedBox(width: Space.md),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-            Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.sm, children: [
-              Icon(logTypeIcon(type), size: IconSizes.md, color: paw.textPrimary),
-              if (type != LogType.play) Text(logTypeLabel(context, type), style: (big ? context.text.titleMedium : context.text.titleSmall)),
-              Text(count, style: (big ? context.text.titleMedium : context.text.titleSmall)?.copyWith(color: paw.textSecondary)),
-            ]),
-            // Who did it and when ("7:00 am, Rohan"), from today's log.
-            if (last != null)
-              Text(
-                [Fmt.time(last!.at, context.lang), if (last!.byName.isNotEmpty) last!.byName.split(' ').first].join(', '),
-                style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
-              ),
-          ]),
-        ),
-        IconButton.filled(
-          style: IconButton.styleFrom(
-            backgroundColor: type == LogType.walk && !complete ? paw.action : paw.surfaceSubtle,
-            foregroundColor: type == LogType.walk && !complete ? paw.onAction : paw.textPrimary,
-            minimumSize: Size.square(big ? TapTarget.easy : TapTarget.min),
-          ),
-          tooltip: l.logNow(logTypeLabel(context, type)),
-          icon: Icon(type == LogType.walk ? Icons.play_arrow_rounded : Icons.add_rounded, size: big ? IconSizes.xl : IconSizes.lg),
-          onPressed: () async {
-            if (type == LogType.walk) {
-              context.push('/walk/${pet.id}');
-              return;
-            }
-            HapticFeedback.lightImpact();
-            final user = ref.read(currentUserProvider)!;
-            await ref.read(routineRepositoryProvider).addLog(
-                  pet: pet,
-                  by: user,
-                  type: type,
-                  data: type == LogType.play ? {'minutes': 15} : null,
-                );
-            if (context.mounted) {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(SnackBar(content: Text(l.logged(logTypeLabel(context, type), pet.name))));
-            }
-          },
-        ),
+    // marigold when done), the type and its count in the middle, and a
+    // one-tap log button at the end.
+    final play = type == LogType.play;
+    final title = context.text.labelLarge;
+    // Who did it and when ("7:00 am, Rohan"), from today's log.
+    final who = last == null ? null : [Fmt.time(last!.at, context.lang), if (last!.byName.isNotEmpty) last!.byName.split(' ').first].join(', ');
+    final meta = play ? [l.playOfMin(done, goal), if (last != null) Fmt.time(last!.at, context.lang)].join(', ') : who;
+    return PawItem(
+      lead: TaskTick(done: done, goal: goal, size: big ? IconSizes.xxl : IconSizes.xl),
+      title: logTypeLabel(context, type),
+      noTrailing: false,
+      subWidget: null,
+      sub: meta,
+      titleWidget: Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.sm, children: [
+        Icon(logTypeIcon(type), size: IconSizes.sm, color: paw.textPrimary),
+        Text(logTypeLabel(context, type), style: title),
+        if (!play && goal > 1) Text('$done/$goal', style: title?.copyWith(color: paw.textSecondary, fontFeatures: const [FontFeature.tabularFigures()])),
       ]),
+      trailing: RoundButton(
+        kind: primary ? BtnKind.primary : BtnKind.soft,
+        tooltip: l.logNow(logTypeLabel(context, type)),
+        icon: type == LogType.walk ? Ph.playFill : Ph.plus,
+        onPressed: () async {
+          if (type == LogType.walk) {
+            context.push('/walk/${pet.id}');
+            return;
+          }
+          HapticFeedback.lightImpact();
+          final user = ref.read(currentUserProvider)!;
+          await ref.read(routineRepositoryProvider).addLog(
+                pet: pet,
+                by: user,
+                type: type,
+                data: type == LogType.play ? {'minutes': 15} : null,
+              );
+          if (context.mounted) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(SnackBar(content: Text(l.logged(logTypeLabel(context, type), pet.name))));
+          }
+        },
+      ),
     );
   }
 }

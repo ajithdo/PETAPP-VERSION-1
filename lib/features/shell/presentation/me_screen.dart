@@ -10,6 +10,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../admin/admin_slots.dart' show meItemVisible;
 import '../../pets/data/pets_repository.dart';
 import '../../pets/presentation/pet_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// "Me" tab (spec 5, UI Design 6): the account and its pets on top, the
 /// everyday features (vault, album, lost pet mode, devices) as tiles, then
@@ -47,7 +48,7 @@ class MeScreen extends ConsumerWidget {
             ]),
           ),
           const SizedBox(width: Space.sm),
-          StatusChip(user?.isPlus == true ? l.planPlus : l.planFree, tone: user?.isPlus == true ? ChipTone.accent : ChipTone.neutral, icon: user?.isPlus == true ? Icons.workspace_premium_rounded : null),
+          StatusChip(user?.isPlus == true ? l.planPlus : l.planFree, tone: user?.isPlus == true ? ChipTone.accent : ChipTone.neutral, icon: user?.isPlus == true ? Ph.crownSimpleFill : null),
         ]),
         const SizedBox(height: Space.md),
         const Divider(height: Strokes.hairline),
@@ -72,7 +73,7 @@ class MeScreen extends ConsumerWidget {
               width: ((Sizes.avatarLg + Space.md) / Sizes.archAspect).roundToDouble(),
               height: Sizes.avatarLg + Space.md,
               decoration: ShapeDecoration(shape: archShape((Sizes.avatarLg + Space.md) / Sizes.archAspect, BorderSide(color: paw.controlBorder.withValues(alpha: Opacities.half), width: Strokes.strong))),
-              child: Icon(Icons.add_rounded, color: paw.textSecondary),
+              child: Icon(Ph.plus, color: paw.textSecondary),
             ),
           ),
         ]),
@@ -97,7 +98,7 @@ class MeScreen extends ConsumerWidget {
       padding: const EdgeInsets.only(top: Space.lg),
       child: SecondaryButton(
         label: l.signOut,
-        icon: Icons.logout_outlined,
+        icon: Ph.signOut,
         onPressed: () async {
           final ok = await confirmAction(context, title: l.signOutConfirm, danger: false, confirmLabel: l.signOut);
           if (ok) await ref.read(authServiceProvider).signOut();
@@ -205,7 +206,7 @@ class _MenuCard extends StatelessWidget {
               child: Icon(items[i].icon, color: paw.textPrimary, size: IconSizes.md),
             ),
             title: Text(items[i].label),
-            trailing: Icon(Icons.chevron_right_rounded, color: paw.textSecondary),
+            trailing: Icon(Ph.caretRight, color: paw.textSecondary),
             onTap: () => context.push(items[i].route),
           ),
           if (i < items.length - 1) const Divider(indent: Space.lg + Sizes.avatarSm + Space.lg, height: Strokes.hairline),

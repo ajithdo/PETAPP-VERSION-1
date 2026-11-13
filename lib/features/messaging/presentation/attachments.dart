@@ -16,6 +16,7 @@ import '../../../core/widgets/photo_picker.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/chat_models.dart';
 import '../data/chat_repository.dart';
+import '../../../core/theme/ph.dart';
 
 /// A file the user picked to send in a chat.
 typedef PickedFile = ({Uint8List bytes, String name, String contentType});
@@ -31,10 +32,10 @@ Future<(String type, PickedFile file)?> pickChatAttachment(BuildContext context)
     builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Text(l.msgAttachTitle, style: ctx.text.titleMedium),
       const SizedBox(height: Space.md),
-      ListTile(leading: const Icon(Icons.photo_library_outlined), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, 'gallery')),
-      ListTile(leading: const Icon(Icons.photo_camera_outlined), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
+      ListTile(leading: const Icon(Ph.images), title: Text(l.chooseFromGallery), onTap: () => Navigator.pop(ctx, 'gallery')),
+      ListTile(leading: const Icon(Ph.camera), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
       ListTile(
-        leading: const Icon(Icons.picture_as_pdf_outlined),
+        leading: const Icon(Ph.filePdf),
         title: Text(l.msgAttachPdf),
         subtitle: Text(l.msgAttachPdfHint),
         onTap: () => Navigator.pop(ctx, 'pdf'),

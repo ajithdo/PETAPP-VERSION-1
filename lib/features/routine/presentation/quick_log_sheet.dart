@@ -14,6 +14,7 @@ import '../../pets/domain/pet.dart';
 import '../data/routine_repository.dart';
 import '../domain/routine.dart';
 import 'routine_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Tap 1: open this sheet. Tap 2: tap a log type. It's saved straight away
 /// with sensible defaults; "Add details" opens the full form (spec 7.3).
@@ -172,7 +173,7 @@ class _LogDetailsSheetState extends ConsumerState<_LogDetailsSheet> {
           const SizedBox(height: Space.md),
           OutlinedButton.icon(
             style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft),
-            icon: const Icon(Icons.schedule_outlined),
+            icon: const Icon(Ph.clock),
             label: Text(Fmt.dateTime(_at, context.lang)),
             onPressed: () async {
               final time = await showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(_at));
@@ -242,7 +243,7 @@ class _LogDetailsSheetState extends ConsumerState<_LogDetailsSheet> {
                 child: ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: _photoUrl!, width: Sizes.thumb, height: Sizes.thumb)),
               ),
             TextButton.icon(
-              icon: const Icon(Icons.add_a_photo_outlined),
+              icon: const Icon(Ph.cameraPlus),
               label: Text(l.addPhoto),
               onPressed: () async {
                 final pick = await pickImage(context, ImageSource.gallery);

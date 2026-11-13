@@ -111,7 +111,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_bruno',
     {
-      'photoUrl': 'asset:assets/images/demo/pets/bruno.jpg',
+      'photoUrl': 'asset:assets/images/demo/pets/bruno.png',
       'ownerId': 'u_priya',
       'name': 'Bruno',
       'species': 'dog',
@@ -134,7 +134,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_misty',
     {
-      'photoUrl': 'asset:assets/images/demo/pets/misty.jpg',
+      'photoUrl': 'asset:assets/images/demo/pets/misty.png',
       'ownerId': 'u_priya',
       'name': 'Misty',
       'species': 'cat',
@@ -155,7 +155,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_simba',
     {
-      'photoUrl': 'asset:assets/images/demo/pets/simba.jpg',
+      'photoUrl': 'asset:assets/images/demo/pets/simba.png',
       'ownerId': 'u_ravi',
       'name': 'Simba',
       'species': 'dog',
@@ -175,7 +175,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_kiwi',
     {
-      'photoUrl': 'asset:assets/images/demo/pets/kiwi.jpg',
+      'photoUrl': 'asset:assets/images/demo/pets/kiwi.png',
       'ownerId': 'u_ravi',
       'name': 'Kiwi',
       'species': 'bird',
@@ -195,7 +195,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_coco',
     {
-      'photoUrl': 'asset:assets/images/demo/pets/coco.jpg',
+      'photoUrl': 'asset:assets/images/demo/pets/coco.png',
       'ownerId': 'u_anjali',
       'name': 'Coco',
       'species': 'rabbit',
@@ -216,7 +216,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_tiger',
     {
-      'photoUrl': 'asset:assets/images/demo/pets/tiger.jpg',
+      'photoUrl': 'asset:assets/images/demo/pets/tiger.png',
       'ownerId': 'u_anjali',
       'name': 'Tiger',
       'species': 'cat',
@@ -237,7 +237,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_max',
     {
-      'photoUrl': 'asset:assets/images/demo/pets/max.jpg',
+      'photoUrl': 'asset:assets/images/demo/pets/max.png',
       'ownerId': 'u_arjun',
       'name': 'Max',
       'species': 'dog',
@@ -259,7 +259,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_luna',
     {
-      'photoUrl': 'asset:assets/images/demo/pets/luna.jpg',
+      'photoUrl': 'asset:assets/images/demo/pets/luna.png',
       'ownerId': 'u_arjun',
       'name': 'Luna',
       'species': 'dog',
@@ -279,7 +279,7 @@ void seedPeople(Add add, DateTime now) {
   pet(
     'pet_sheru',
     {
-      'photoUrl': 'asset:assets/images/demo/pets/sheru.jpg',
+      'photoUrl': 'asset:assets/images/demo/pets/sheru.png',
       'ownerId': 'u_arjun',
       'name': 'Sheru',
       'species': 'dog',

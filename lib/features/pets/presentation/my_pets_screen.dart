@@ -8,6 +8,7 @@ import '../../../core/widgets/widgets.dart';
 import '../data/pets_repository.dart';
 import '../domain/pet.dart';
 import 'pet_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// All my pets, with archived pets under "In loving memory".
 class MyPetsScreen extends ConsumerWidget {
@@ -22,7 +23,7 @@ class MyPetsScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.myPets)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.push('/pets/new'),
-        icon: const Icon(Icons.add_outlined),
+        icon: const Icon(Ph.plus),
         label: Text(l.addPet),
       ),
       body: AsyncView(
@@ -44,7 +45,7 @@ class MyPetsScreen extends ConsumerWidget {
             if (!(user?.isPlus ?? false))
               Padding(
                 padding: const EdgeInsets.only(top: Space.sm),
-                child: InfoNote(l.petsUsed(owned, limit), icon: Icons.workspace_premium_outlined),
+                child: InfoNote(l.petsUsed(owned, limit), icon: Ph.crownSimple),
               ),
             const SizedBox(height: Space.md),
             ResponsiveGrid(minItemWidth: 300, children: [for (final p in active) _PetTile(pet: p, uid: user?.uid ?? '')]),
@@ -93,7 +94,7 @@ class _PetTile extends StatelessWidget {
             ],
           ]),
         ),
-        Icon(pet.archived ? Icons.favorite_rounded : Icons.chevron_right_outlined,
+        Icon(pet.archived ? Ph.heartFill : Ph.caretRight,
             color: pet.archived ? context.paw.accent : null),
       ]),
     );

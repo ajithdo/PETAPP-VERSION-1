@@ -5,6 +5,7 @@ import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import 'auth_widgets.dart';
+import '../../../core/theme/ph.dart';
 
 class ForgotPasswordScreen extends ConsumerStatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -63,7 +64,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                   label: l.email,
                   controller: _email,
                   keyboardType: TextInputType.emailAddress,
-                  prefixIcon: Icons.mail_outlined,
+                  prefixIcon: Ph.envelopeSimple,
                   validator: (v) => validateEmail(context, v),
                   onSubmitted: (_) => _send(),
                 ),

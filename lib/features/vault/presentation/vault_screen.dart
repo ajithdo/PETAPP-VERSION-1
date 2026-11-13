@@ -15,6 +15,7 @@ import '../domain/vault_models.dart';
 import 'upload_flow.dart';
 import 'vault_gate.dart';
 import 'vault_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Document vault (spec 7.9): every pet's documents, or one pet's when
 /// [petId] is set. Always shown behind [VaultGate].
@@ -53,14 +54,14 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
         actions: [
           IconButton(
             tooltip: l.vaultLockSettings,
-            icon: const Icon(Icons.lock_outlined),
+            icon: const Icon(Ph.lockKey),
             onPressed: () => showVaultLockSheet(context, ref),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => showUploadSheet(context, ref, pet: defaultPet, fixedPet: fixed != null),
-        icon: const Icon(Icons.add_outlined),
+        icon: const Icon(Ph.plus),
         label: Text(l.vaultAddDocument),
       ),
       body: AsyncView<List<VaultDoc>>(
@@ -88,12 +89,12 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
               FilledButton.tonalIcon(
                 onPressed: () => context.push(fixed == null ? '/vault/insurance' : '/vault/insurance?pet=${fixed.id}'),
-                icon: const Icon(Icons.health_and_safety_outlined),
+                icon: const Icon(Ph.shieldPlus),
                 label: Text(l.vaultInsuranceTitle),
               ),
               FilledButton.tonalIcon(
                 onPressed: () => context.push('/vault/shares'),
-                icon: const Icon(Icons.link_outlined),
+                icon: const Icon(Ph.link),
                 label: Text(l.vaultShareLinks),
               ),
             ]),
@@ -105,12 +106,12 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
               onChanged: (_) => setState(() {}),
               decoration: InputDecoration(
                 hintText: l.vaultSearchHint,
-                prefixIcon: const Icon(Icons.search_outlined),
+                prefixIcon: const Icon(Ph.magnifyingGlass),
                 suffixIcon: _search.text.isEmpty
                     ? null
                     : IconButton(
                         tooltip: l.vaultClearSearch,
-                        icon: const Icon(Icons.close_outlined),
+                        icon: const Icon(Ph.x),
                         onPressed: () => setState(_search.clear),
                       ),
               ),
@@ -173,7 +174,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
               ],
             ],
             const SizedBox(height: Space.lg),
-            InfoNote(l.vaultSecureNote, icon: Icons.shield_outlined),
+            InfoNote(l.vaultSecureNote, icon: Ph.shield),
             const SizedBox(height: Space.fabClearance),
           ]);
         },
@@ -223,7 +224,7 @@ class DocSheet extends StatelessWidget {
       if (doc.expiry != null) expiryText(context, doc.expiry!) else Fmt.date(doc.createdAt, context.lang),
     ].join(', ');
     final chip = doc.needsReview
-        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Icons.auto_awesome_outlined)
+        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Ph.sparkle)
         : expiryChip(context, doc.expiry);
     Widget rule(double share) => FractionallySizedBox(
           widthFactor: share,
@@ -289,7 +290,7 @@ class DocTile extends StatelessWidget {
       if (doc.expiry != null) expiryText(context, doc.expiry!) else l.vaultAddedOn(Fmt.date(doc.createdAt, context.lang)),
     ].join(' · ');
     final chip = doc.needsReview
-        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Icons.auto_awesome_outlined)
+        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Ph.sparkle)
         : expiryChip(context, doc.expiry);
     return Padding(
       padding: const EdgeInsets.only(bottom: Space.sm),
@@ -313,7 +314,7 @@ class DocTile extends StatelessWidget {
               ],
             ]),
           ),
-          const Icon(Icons.chevron_right_outlined),
+          const Icon(Ph.caretRight),
         ]),
       ),
     );
@@ -336,7 +337,7 @@ class StorageMeter extends ConsumerWidget {
       child: PawCard(
         padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.md),
         child: Row(children: [
-          Icon(Icons.cloud_outlined, color: color),
+          Icon(Ph.cloud, color: color),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -374,7 +375,7 @@ Future<bool> ensureStorageRoom(BuildContext context, WidgetRef ref, int bytes) a
     await showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        icon: Icon(Icons.cloud_off_outlined, color: ctx.paw.warning, size: IconSizes.xl),
+        icon: Icon(Ph.cloudSlash, color: ctx.paw.warning, size: IconSizes.xl),
         title: Text(l.vaultStorageFullTitle),
         content: Text(l.vaultStorageFullBodyPlus(used, limit)),
         actions: [FilledButton(onPressed: () => Navigator.pop(ctx), child: Text(l.ok))],

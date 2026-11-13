@@ -154,6 +154,14 @@ flutter:
           weight: 700
         - asset: assets/fonts/BricolageDisplay-800.ttf
           weight: 800
+    # Phosphor icons (MIT), the icon set UI Design 6 is drawn with. Built from
+    # the design kit by tools/icons/gen.py; names are in lib/core/theme/ph.dart.
+    - family: Phosphor
+      fonts:
+        - asset: assets/fonts/Phosphor.ttf
+    - family: PhosphorFill
+      fonts:
+        - asset: assets/fonts/Phosphor-Fill.ttf
 # Patched copy (see third_party/fake_cloud_firestore/PAWSETU_PATCH.md) so the
 # standalone demo database also works in release web and APK builds.
 dependency_overrides:

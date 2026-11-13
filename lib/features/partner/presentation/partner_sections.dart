@@ -17,6 +17,7 @@ import '../../booking/presentation/book_home_screen.dart';
 import '../../booking/presentation/booking_labels.dart';
 import '../../admin/admin_slots.dart' show HelpListBody;
 import 'partner_extra_sections.dart';
+import '../../../core/theme/ph.dart';
 
 /// The clinic or provider this partner account manages. Vets resolve to
 /// their clinic.
@@ -88,13 +89,13 @@ class _Dashboard extends ConsumerWidget {
             minColumns: 2,
             minItemWidth: 200,
             children: [
-              StatTile(label: l.todaysBookings, value: '${today.length}', icon: Icons.event_available_outlined),
-              StatTile(label: l.requestsWaiting, value: '${requests.length}', icon: Icons.inbox_outlined, color: requests.isEmpty ? null : context.paw.warning),
-              StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Icons.account_balance_wallet_outlined),
+              StatTile(label: l.todaysBookings, value: '${today.length}', icon: Ph.calendarCheck),
+              StatTile(label: l.requestsWaiting, value: '${requests.length}', icon: Ph.tray, color: requests.isEmpty ? null : context.paw.warning),
+              StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Ph.wallet),
               StatTile(
                 label: l.rating,
                 value: place.reviewCount == 0 ? '–' : '★ ${place.rating.toStringAsFixed(1)}',
-                icon: Icons.star_rounded,
+                icon: Ph.starFill,
                 color: context.paw.accent,
               ),
             ],
@@ -177,7 +178,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
             runSpacing: Space.sm,
             children: [
               OutlinedButton.icon(
-                icon: Icon(isHoliday ? Icons.event_available_outlined : Icons.event_busy_outlined),
+                icon: Icon(isHoliday ? Ph.calendarCheck : Ph.calendarX),
                 label: Text(isHoliday ? l.removeHoliday : l.markHoliday),
                 onPressed: () {
                   final hs = place.holidays.where((h) => !Fmt.sameDay(h, _day)).toList();
@@ -186,7 +187,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
                 },
               ),
               OutlinedButton.icon(
-                icon: const Icon(Icons.block_outlined),
+                icon: const Icon(Ph.prohibit),
                 label: Text(l.blockTime),
                 onPressed: () async {
                   final t = await showTimePicker(context: context, initialTime: const TimeOfDay(hour: 13, minute: 0));
@@ -200,7 +201,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
                   if (context.mounted) showToast(context, l.timeBlocked(Fmt.time(start, context.lang)));
                 },
               ),
-              OutlinedButton.icon(icon: const Icon(Icons.schedule_outlined), label: Text(l.workingHours), onPressed: () => _hours(context, place)),
+              OutlinedButton.icon(icon: const Icon(Ph.clock), label: Text(l.workingHours), onPressed: () => _hours(context, place)),
             ],
           ),
           SectionHeader(l.bookingsOn(Fmt.weekdayDate(_day, context.lang))),
@@ -354,7 +355,7 @@ class RequestCard extends ConsumerWidget {
             children: [
               for (final t in b.proposedTimes)
                 ActionChip(
-                  avatar: Icon(Icons.check_circle_rounded, color: context.paw.success, size: IconSizes.chip),
+                  avatar: Icon(Ph.checkCircleFill, color: context.paw.success, size: IconSizes.chip),
                   label: Text(Fmt.dateTime(t, context.lang)),
                   onPressed: () async {
                     await repo.accept(b, t);
@@ -369,7 +370,7 @@ class RequestCard extends ConsumerWidget {
               Expanded(
                 child: SecondaryButton(
                   label: l.suggestTime,
-                  icon: Icons.schedule_send_outlined,
+                  icon: Ph.paperPlaneTilt,
                   onPressed: () async {
                     final d = await showDatePicker(
                       context: context,
@@ -389,7 +390,7 @@ class RequestCard extends ConsumerWidget {
               Expanded(
                 child: SecondaryButton(
                   label: l.decline,
-                  icon: Icons.close_outlined,
+                  icon: Ph.x,
                   onPressed: () async {
                     final ok = await confirmAction(context, title: l.declineRequestQ(b.petName), confirmLabel: l.decline);
                     if (ok) await repo.decline(b);
@@ -437,7 +438,7 @@ class _Services extends ConsumerWidget {
                       ),
                     ),
                     Text(Fmt.inr(s.price), style: context.text.titleMedium),
-                    const Icon(Icons.edit_outlined),
+                    const Icon(Ph.pencilSimple),
                   ],
                 ),
               ),
@@ -523,7 +524,7 @@ class _Staff extends ConsumerWidget {
             ListTile(
               leading: CircleAvatar(
                 backgroundColor: context.paw.primaryContainer,
-                child: Icon(Icons.medical_services_outlined, color: context.colors.primary),
+                child: Icon(Ph.firstAidKit, color: context.colors.primary),
               ),
               title: Text(v.name),
               subtitle: Text('${v.qualification}\n${l.regNo(v.regNo)}'),
@@ -533,7 +534,7 @@ class _Staff extends ConsumerWidget {
           const SizedBox(height: Space.md),
           SecondaryButton(
             label: l.addVet,
-            icon: Icons.person_add_outlined,
+            icon: Ph.userPlus,
             onPressed: () async {
               final name = TextEditingController();
               final reg = TextEditingController();
@@ -608,7 +609,7 @@ class _PartnerReviews extends ConsumerWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton.icon(
-                          icon: const Icon(Icons.reply_outlined),
+                          icon: const Icon(Ph.arrowBendUpLeft),
                           label: Text(l.reply),
                           onPressed: () async {
                             final c = TextEditingController();
@@ -655,9 +656,9 @@ class _Payouts extends ConsumerWidget {
           minColumns: 2,
           minItemWidth: 220,
           children: [
-            StatTile(label: l.totalPayouts, value: Fmt.inr(total), icon: Icons.account_balance_outlined),
-            StatTile(label: l.platformCommission, value: Fmt.inr(commission), icon: Icons.percent_outlined),
-            StatTile(label: l.completedBookings, value: '${done.length}', icon: Icons.task_alt_outlined),
+            StatTile(label: l.totalPayouts, value: Fmt.inr(total), icon: Ph.bank),
+            StatTile(label: l.platformCommission, value: Fmt.inr(commission), icon: Ph.percent),
+            StatTile(label: l.completedBookings, value: '${done.length}', icon: Ph.checkCircle),
           ],
         ),
         SectionHeader(l.payoutHistory),
@@ -720,9 +721,9 @@ class _Profile extends ConsumerWidget {
               children: [
                 for (final d in ((place.raw['kycDocs'] as List?) ?? const []).cast<String>())
                   ListTile(
-                    leading: const Icon(Icons.description_outlined),
+                    leading: const Icon(Ph.fileText),
                     title: Text(d),
-                    trailing: Icon(Icons.verified_rounded, color: context.paw.success),
+                    trailing: Icon(Ph.sealCheckFill, color: context.paw.success),
                   ),
               ],
             ),
@@ -730,7 +731,7 @@ class _Profile extends ConsumerWidget {
           const SizedBox(height: Space.sm),
           SecondaryButton(
             label: l.uploadKyc,
-            icon: Icons.upload_file_outlined,
+            icon: Ph.fileArrowUp,
             onPressed: () async {
               final pick = await pickImage(context, ImageSource.gallery);
               if (pick == null) return;
@@ -818,7 +819,7 @@ class PartnerBookingActions extends ConsumerWidget {
         if ((b.status == 'in_progress' || b.status == 'confirmed') && (b.kind == 'walker' || b.kind == 'boarder' || b.kind == 'groomer'))
           SecondaryButton(
             label: l.sendPhotoUpdate,
-            icon: Icons.add_a_photo_outlined,
+            icon: Ph.cameraPlus,
             onPressed: () async {
               final text = TextEditingController(text: l.defaultUpdateText(b.petName));
               final pick = await pickImage(context, ImageSource.gallery);
@@ -828,7 +829,7 @@ class PartnerBookingActions extends ConsumerWidget {
                     .read(storageServiceProvider)
                     .upload(pick.bytes, path: 'users/${ref.read(currentUserProvider)!.uid}/updates/${pick.name}', contentType: 'image/jpeg');
               }
-              await repo.addUpdate(b, text.text, url ?? 'seed:album:${b.petSpecies}:${DateTime.now().second}');
+              await repo.addUpdate(b, text.text, url ?? 'seed:album:${b.petSpecies}:${b.petId.replaceFirst('pet_', '')}:${DateTime.now().second}');
               if (context.mounted) showToast(context, l.updateSent(b.ownerName.split(' ').first));
             },
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../theme/tokens.dart';
+import '../theme/ph.dart';
 
 /// Text field with its label above the box (UI Design 2) and inline validation.
 class PawTextField extends StatelessWidget {
@@ -179,7 +180,7 @@ class PawPickerField extends StatelessWidget {
     required this.onTap,
     this.icon,
     this.placeholder,
-    this.trailingIcon = Icons.expand_more_outlined,
+    this.trailingIcon = Ph.caretDown,
   });
 
   final String label;
@@ -363,7 +364,7 @@ class OptionCard extends StatelessWidget {
               padding: const EdgeInsets.all(Space.md),
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Icon(
-                  selected ? Icons.radio_button_checked : Icons.radio_button_unchecked_outlined,
+                  selected ? Ph.radioButtonFill : Ph.circle,
                   color: selected ? paw.action : paw.controlBorder,
                 ),
                 const SizedBox(width: Space.md),

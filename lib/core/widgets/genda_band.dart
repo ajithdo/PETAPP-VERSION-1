@@ -6,6 +6,8 @@ import 'package:flutter/widget_previews.dart';
 import '../theme/app_theme.dart';
 import '../theme/tokens.dart';
 import 'layout.dart';
+import 'toran.dart';
+import '../theme/ph.dart';
 
 /// UI Design 6 "Toran" signature (DESIGN.md, "The toran"): on Home, the
 /// selected pet stands in an arched doorway on the dark kaapi band, and a
@@ -53,7 +55,7 @@ class GendaBand extends StatelessWidget {
     final allDone = total > 0 && done >= total;
     final title = l.todayFor(petName);
     final status = total == 0 ? l.gendaNothingPlanned : (allDone ? l.allDoneToday(petName) : l.gendaProgress(done, total));
-    final countStyle = context.text.bodyLarge?.copyWith(color: paw.onBandMuted);
+    final countStyle = context.text.bodyMedium?.copyWith(color: paw.onBandMuted);
     Widget progressLine() {
       if (total == 0 || allDone) return Text(status, style: countStyle?.copyWith(color: paw.onBand));
       // "2 of 5 done" with the done count big and marigold.
@@ -62,7 +64,7 @@ class GendaBand extends StatelessWidget {
       return Text.rich(
         TextSpan(children: [
           TextSpan(text: parts[0]),
-          TextSpan(text: '$done', style: context.text.headlineMedium?.copyWith(color: paw.marigold, height: TypeScale.tightLineHeight)),
+          TextSpan(text: '$done', style: context.text.headlineSmall?.copyWith(color: paw.marigold, height: TypeScale.tightLineHeight)),
           TextSpan(text: parts[1]),
         ]),
         style: countStyle,
@@ -75,9 +77,9 @@ class GendaBand extends StatelessWidget {
       children: [
         if (dateLabel != null) Text(dateLabel!, style: context.text.bodySmall?.copyWith(color: paw.onBandMuted), textAlign: align),
         Text(title, style: context.text.headlineMedium?.copyWith(color: paw.onBand), textAlign: align),
-        const SizedBox(height: Space.xs),
+        const SizedBox(height: Space.sm),
         progressLine(),
-        if (streakDays > 1) ...[const SizedBox(height: Space.md), _StreakTag(text: l.streakDays(streakDays))],
+        if (streakDays > 1) ...[const SizedBox(height: Space.md), PawTag(l.streakDays(streakDays), kind: TagKind.onDark, icon: Ph.fireFill)],
       ],
     );
     return Semantics(
@@ -97,7 +99,7 @@ class GendaBand extends StatelessWidget {
               // doorway) on narrow screens and at big text sizes.
               final scale = MediaQuery.textScalerOf(context).scale(1);
               final stacked = c.maxWidth < 300 || (scale > 1.3 && c.maxWidth < 520);
-              final size = c.maxWidth < 340 || stacked ? Sizes.garlandCompact : (c.maxWidth > 500 ? Sizes.garlandLarge : Sizes.garland);
+              final size = stacked ? Sizes.garlandCompact : (c.maxWidth > 500 ? Sizes.garlandLarge : Sizes.garland);
               final garland = Garland(photo: photo, done: done, total: total, size: size);
               if (stacked) {
                 return Padding(
@@ -105,56 +107,42 @@ class GendaBand extends StatelessWidget {
                   child: Column(children: [textBlock(TextAlign.center), const SizedBox(height: Space.md), garland]),
                 );
               }
+              // The doorway stands on the band's bottom edge; the words sit
+              // in the middle beside it.
               return Padding(
                 padding: const EdgeInsets.fromLTRB(Space.sm, Space.md, Space.lg, 0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    garland,
-                    const SizedBox(width: Space.md),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: Space.lg + Space.xs),
-                        child: Align(alignment: Alignment.centerLeft, child: textBlock(TextAlign.start)),
-                      ),
-                    ),
-                    if (aside != null && c.maxWidth > 480) ...[
-                      Container(width: Strokes.hairline, height: size * 0.6, margin: const EdgeInsets.only(bottom: Space.xl), color: paw.onBand.withValues(alpha: Opacities.tint)),
-                      const SizedBox(width: Space.lg),
-                      Flexible(
+                child: IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Align(alignment: Alignment.bottomCenter, child: garland),
+                      const SizedBox(width: Space.md),
+                      Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: Space.lg + Space.xs),
-                          child: DefaultTextStyle.merge(style: TextStyle(color: paw.onBandMuted), child: aside!),
+                          padding: const EdgeInsets.only(bottom: Space.md),
+                          child: Align(alignment: Alignment.centerLeft, child: textBlock(TextAlign.start)),
                         ),
                       ),
+                      if (aside != null && c.maxWidth > 480) ...[
+                        Container(width: Strokes.hairline, margin: const EdgeInsets.only(top: Space.lg, bottom: Space.xl), color: context.tint.bandLine),
+                        const SizedBox(width: Space.lg + Space.xs),
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: Space.md, right: Space.sm),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: DefaultTextStyle.merge(style: TextStyle(color: paw.onBandMuted), child: aside!),
+                            ),
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               );
             },
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _StreakTag extends StatelessWidget {
-  const _StreakTag({required this.text});
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    final paw = context.paw;
-    return DecoratedBox(
-      decoration: BoxDecoration(color: paw.onBand.withValues(alpha: Opacities.chip), borderRadius: BorderRadius.circular(Radii.sm)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Space.sm, vertical: Space.xxs),
-        child: Row(mainAxisSize: MainAxisSize.min, children: [
-          Icon(Icons.local_fire_department_rounded, size: IconSizes.sm, color: paw.marigold),
-          const SizedBox(width: Space.xs),
-          Flexible(child: Text(text, style: context.text.labelSmall?.copyWith(color: paw.onBand))),
-        ]),
       ),
     );
   }

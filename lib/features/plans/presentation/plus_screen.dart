@@ -13,6 +13,7 @@ import '../../../core/widgets/logo.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/plan_repository.dart';
 import '../domain/plan_rules.dart';
+import '../../../core/theme/ph.dart';
 
 /// PawSetu Plus (spec 8): Free and Plus side by side, the 7-day free trial,
 /// a demo purchase (monthly or yearly) and auto-renew.
@@ -90,7 +91,7 @@ class _PlusScreenState extends ConsumerState<PlusScreen> {
           const SizedBox(height: Space.md),
           PrimaryButton(
             label: l.plusBuy(Fmt.inr(_yearly ? prices.yearly : prices.monthly, context.lang)),
-            icon: Icons.workspace_premium_outlined,
+            icon: Ph.crownSimple,
             loading: _busy,
             onPressed: () => _buy(user, prices),
           ),
@@ -101,7 +102,7 @@ class _PlusScreenState extends ConsumerState<PlusScreen> {
             ),
           if (canTrial) ...[
             const SizedBox(height: Space.sm),
-            SecondaryButton(label: l.plusStartTrial(prices.trialDays), icon: Icons.celebration_outlined, onPressed: _busy ? null : () => _trial(user, prices)),
+            SecondaryButton(label: l.plusStartTrial(prices.trialDays), icon: Ph.confetti, onPressed: _busy ? null : () => _trial(user, prices)),
             Padding(
               padding: const EdgeInsets.only(top: Space.xs),
               child: Text(l.plusTrialNote(prices.trialDays), style: context.text.bodySmall, textAlign: TextAlign.center),
@@ -153,7 +154,7 @@ class _StatusCard extends StatelessWidget {
     if (!plus) {
       return PawCard(
         child: Row(children: [
-          Icon(Icons.pets_outlined, size: IconSizes.xxxl, color: paw.textPrimary),
+          Icon(Ph.pawPrint, size: IconSizes.xxxl, color: paw.textPrimary),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -182,7 +183,7 @@ class _StatusCard extends StatelessWidget {
               const PawSetuLogo(size: IconSizes.xl - Space.xxs),
               const SizedBox(width: Space.sm),
               Expanded(child: Text(l.pawsetuPlus, style: context.text.labelLarge?.copyWith(color: paw.onMarigold))),
-              Icon(Icons.workspace_premium_rounded, color: paw.onMarigold),
+              Icon(Ph.crownSimpleFill, color: paw.onMarigold),
             ]),
             const SizedBox(height: Space.xl),
             Text(title, style: context.text.headlineLarge?.copyWith(color: paw.onMarigold)),
@@ -217,19 +218,19 @@ class _Comparison extends StatelessWidget {
     }
 
     final rows = <(IconData, String, String, String)>[
-      (Icons.pets_outlined, l.plusRowPets, count(free['pets']), count(plus['pets'])),
-      (Icons.family_restroom_outlined, l.plusRowFamily, count(free['family']), count(plus['family'])),
-      (Icons.videocam_outlined, l.plusRowVideo, '–', l.plusYes),
-      (Icons.chat_outlined, l.plusRowTeleVet, l.plusPerMonth(count(free['teleVetPerMonth'])), isUnlimited(plus['teleVetPerMonth'] as num?) ? l.admUnlimited : l.plusPerMonth(count(plus['teleVetPerMonth']))),
-      (Icons.short_text_outlined, l.plusRowMessages, l.plusMessagesWords(count(free['teleVetMessages']), count(free['teleVetWords'])),
+      (Ph.pawPrint, l.plusRowPets, count(free['pets']), count(plus['pets'])),
+      (Ph.usersThree, l.plusRowFamily, count(free['family']), count(plus['family'])),
+      (Ph.videoCamera, l.plusRowVideo, '–', l.plusYes),
+      (Ph.chatCircleDots, l.plusRowTeleVet, l.plusPerMonth(count(free['teleVetPerMonth'])), isUnlimited(plus['teleVetPerMonth'] as num?) ? l.admUnlimited : l.plusPerMonth(count(plus['teleVetPerMonth']))),
+      (Ph.textAlignLeft, l.plusRowMessages, l.plusMessagesWords(count(free['teleVetMessages']), count(free['teleVetWords'])),
           l.plusMessagesWords(count(plus['teleVetMessages']), count(plus['teleVetWords']))),
-      (Icons.auto_awesome_outlined, l.plusRowAi, l.plusPerMonth(count(free['aiQuestions'])), count(plus['aiQuestions'])),
-      (Icons.cloud_outlined, l.plusRowStorage, '${free['storageGb'] ?? 1} GB', '${plus['storageGb'] ?? 25} GB'),
-      (Icons.movie_outlined, l.plusRowVideoLength, secs(free['videoSeconds']), secs(plus['videoSeconds'])),
-      (Icons.local_offer_outlined, l.plusRowVideoDiscount, '–', '${commission['videoDiscountPercent'] ?? 10}%'),
-      (Icons.local_shipping_outlined, l.plusRowDelivery, l.plusAbove(Fmt.inr((shop['freeDeliveryAbove'] as num?) ?? 999, context.lang)),
+      (Ph.sparkle, l.plusRowAi, l.plusPerMonth(count(free['aiQuestions'])), count(plus['aiQuestions'])),
+      (Ph.cloud, l.plusRowStorage, '${free['storageGb'] ?? 1} GB', '${plus['storageGb'] ?? 25} GB'),
+      (Ph.filmSlate, l.plusRowVideoLength, secs(free['videoSeconds']), secs(plus['videoSeconds'])),
+      (Ph.tag, l.plusRowVideoDiscount, '–', '${commission['videoDiscountPercent'] ?? 10}%'),
+      (Ph.truck, l.plusRowDelivery, l.plusAbove(Fmt.inr((shop['freeDeliveryAbove'] as num?) ?? 999, context.lang)),
           l.plusAbove(Fmt.inr((commission['freeDeliveryAbove'] as num?) ?? 499, context.lang))),
-      (Icons.support_agent_outlined, l.plusRowSupport, l.plusStandard, l.plusPriority),
+      (Ph.headset, l.plusRowSupport, l.plusStandard, l.plusPriority),
     ];
     // The Plus column sits on a marigold wash so the eye reads down it.
     final wash = context.paw.accentContainer;
@@ -309,7 +310,7 @@ class _PeriodChoice extends StatelessWidget {
             padding: const EdgeInsets.all(Space.md),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
-                Icon(selected ? Icons.radio_button_checked_rounded : Icons.radio_button_off_outlined, color: context.colors.primary, size: IconSizes.md),
+                Icon(selected ? Ph.radioButtonFill : Ph.circle, color: context.colors.primary, size: IconSizes.md),
                 const SizedBox(width: Space.xs),
                 Expanded(child: Text(y ? l.plusYearly : l.plusMonthly, style: context.text.titleSmall)),
               ]),
@@ -407,7 +408,7 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
               PawCard(
                 color: context.paw.primaryContainer,
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                  Icon(Icons.card_giftcard_outlined, size: IconSizes.xxxl, color: context.colors.primary),
+                  Icon(Ph.gift, size: IconSizes.xxxl, color: context.colors.primary),
                   const SizedBox(height: Space.sm),
                   Text(l.referHeadline(Fmt.inr(reward, context.lang)), style: context.text.titleLarge, textAlign: TextAlign.center),
                   const SizedBox(height: Space.xs),
@@ -421,7 +422,7 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
                     Wrap(alignment: WrapAlignment.center, spacing: Space.sm, runSpacing: Space.sm, children: [
                       SecondaryButton(
                         label: l.copy,
-                        icon: Icons.copy_outlined,
+                        icon: Ph.copy,
                         expand: false,
                         onPressed: () async {
                           await Clipboard.setData(ClipboardData(text: code));
@@ -430,7 +431,7 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
                       ),
                       PrimaryButton(
                         label: l.share,
-                        icon: Icons.share_outlined,
+                        icon: Ph.shareNetwork,
                         expand: false,
                         onPressed: () => SharePlus.instance.share(ShareParams(text: l.referShareText(code, Fmt.inr(reward, context.lang)))),
                       ),
@@ -461,7 +462,7 @@ class _ReferScreenState extends ConsumerState<ReferScreen> {
                     child: PawCard(
                       padding: const EdgeInsets.all(Space.md),
                       child: Row(children: [
-                        const Icon(Icons.local_offer_outlined),
+                        const Icon(Ph.tag),
                         const SizedBox(width: Space.md),
                         Expanded(
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

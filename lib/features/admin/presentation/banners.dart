@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/cards.dart';
+import '../../../core/theme/ph.dart';
 
 /// Promotional banners set up in the admin panel (Catalogue → Banners) and
 /// shown on Home or in the Shop.
@@ -68,7 +69,7 @@ class PromoBanner extends StatelessWidget {
           width: IconSizes.xxxl,
           height: IconSizes.xxxl,
           decoration: BoxDecoration(color: paw.accentContainer, shape: BoxShape.circle),
-          child: Icon(accent ? Icons.local_offer_outlined : Icons.campaign_outlined, color: paw.onAccentContainer, size: IconSizes.md),
+          child: Icon(accent ? Ph.tag : Ph.megaphone, color: paw.onAccentContainer, size: IconSizes.md),
         ),
         const SizedBox(width: Space.md),
         Expanded(
@@ -77,7 +78,7 @@ class PromoBanner extends StatelessWidget {
             if (banner.body.isNotEmpty) Text(banner.body, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
           ]),
         ),
-        if (open) Icon(Icons.chevron_right_rounded, color: paw.textSecondary),
+        if (open) Icon(Ph.caretRight, color: paw.textSecondary),
       ]),
     );
   }

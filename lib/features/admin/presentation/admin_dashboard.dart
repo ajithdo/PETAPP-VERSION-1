@@ -8,6 +8,7 @@ import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/admin_repository.dart';
 import '../domain/admin_rules.dart';
+import '../../../core/theme/ph.dart';
 
 /// Admin dashboard (spec 10): totals, charts by day, week or month, and the
 /// top clinics and products.
@@ -37,13 +38,13 @@ class _AdminDashboardState extends ConsumerState<AdminDashboard> {
     return PageBody(maxWidth: Space.maxContentWidth, children: [
       const SizedBox(height: Space.md),
       ResponsiveGrid(minColumns: 2, minItemWidth: 170, spacing: Space.sm, children: [
-        StatTile(label: l.admUsers(totals.owners, totals.partners), value: Fmt.number(totals.users, lang), icon: Icons.people_alt_outlined),
-        StatTile(label: l.admPets, value: Fmt.number(totals.pets, lang), icon: Icons.pets_outlined),
-        StatTile(label: l.admBookings30, value: Fmt.number(totals.bookings30, lang), icon: Icons.event_available_outlined),
-        StatTile(label: l.admOrderValue30, value: Fmt.inr(totals.orderValue30, lang), icon: Icons.shopping_bag_outlined),
-        StatTile(label: l.admCommission30, value: Fmt.inr(totals.commission30, lang), icon: Icons.account_balance_wallet_outlined, color: context.paw.success),
-        StatTile(label: l.admPlusMembers, value: Fmt.number(totals.plusMembers, lang), icon: Icons.workspace_premium_outlined, color: context.paw.accent),
-        StatTile(label: l.admSos30, value: Fmt.number(totals.sos30, lang), icon: Icons.emergency_outlined, color: context.paw.sos),
+        StatTile(label: l.admUsers(totals.owners, totals.partners), value: Fmt.number(totals.users, lang), icon: Ph.users),
+        StatTile(label: l.admPets, value: Fmt.number(totals.pets, lang), icon: Ph.pawPrint),
+        StatTile(label: l.admBookings30, value: Fmt.number(totals.bookings30, lang), icon: Ph.calendarCheck),
+        StatTile(label: l.admOrderValue30, value: Fmt.inr(totals.orderValue30, lang), icon: Ph.bag),
+        StatTile(label: l.admCommission30, value: Fmt.inr(totals.commission30, lang), icon: Ph.wallet, color: context.paw.success),
+        StatTile(label: l.admPlusMembers, value: Fmt.number(totals.plusMembers, lang), icon: Ph.crownSimple, color: context.paw.accent),
+        StatTile(label: l.admSos30, value: Fmt.number(totals.sos30, lang), icon: Ph.asterisk, color: context.paw.sos),
       ]),
       const SizedBox(height: Space.lg),
       Wrap(spacing: Space.md, runSpacing: Space.sm, crossAxisAlignment: WrapCrossAlignment.center, children: [
@@ -58,7 +59,7 @@ class _AdminDashboardState extends ConsumerState<AdminDashboard> {
         ),
         TextButton.icon(
           onPressed: () => context.go('/admin/reports/commission'),
-          icon: const Icon(Icons.receipt_long_outlined),
+          icon: const Icon(Ph.receipt),
           label: Text(l.admCommissionReport),
         ),
       ]),
@@ -98,8 +99,8 @@ class _AdminDashboardState extends ConsumerState<AdminDashboard> {
         ]),
       const SizedBox(height: Space.lg),
       ResponsiveGrid(minItemWidth: 420, children: [
-        _TopList(title: l.admTopClinics, items: totals.topClinics, unit: l.admBookingsUnit, icon: Icons.local_hospital_outlined),
-        _TopList(title: l.admTopProducts, items: totals.topProducts, unit: l.admSoldUnit, icon: Icons.shopping_basket_outlined),
+        _TopList(title: l.admTopClinics, items: totals.topClinics, unit: l.admBookingsUnit, icon: Ph.firstAid),
+        _TopList(title: l.admTopProducts, items: totals.topProducts, unit: l.admSoldUnit, icon: Ph.basket),
       ]),
       const SizedBox(height: Space.xxl),
     ]);
@@ -124,7 +125,7 @@ class _ChartCard extends StatelessWidget {
           Expanded(child: Text(title, style: context.text.titleMedium)),
           if (c != null)
             StatusChip(context.l10n.admChange('${c >= 0 ? '+' : ''}$c'),
-                tone: c >= 0 ? ChipTone.success : ChipTone.warning, icon: c >= 0 ? Icons.trending_up_outlined : Icons.trending_down_outlined),
+                tone: c >= 0 ? ChipTone.success : ChipTone.warning, icon: c >= 0 ? Ph.trendUp : Ph.trendDown),
         ]),
         const SizedBox(height: Space.xs),
         Wrap(spacing: Space.md, children: [

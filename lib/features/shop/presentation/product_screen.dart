@@ -19,6 +19,7 @@ import '../domain/shop_rules.dart';
 import 'address_screens.dart';
 import 'product_widgets.dart';
 import 'shop_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Product page (spec 7.10): photos, price with MRP and discount, seller or
 /// partner store, rating and reviews, suitable for, ingredients and specs,
@@ -52,7 +53,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           if (p.value != null)
             IconButton(
               tooltip: l.share,
-              icon: const Icon(Icons.share_outlined),
+              icon: const Icon(Ph.shareNetwork),
               onPressed: () => SharePlus.instance.share(ShareParams(text: l.shopShareText(p.value!.name, Fmt.inr(p.value!.price)))),
             ),
           const CartButton(),
@@ -98,16 +99,16 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
             PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarMd),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.shopGoodMatch(pet.name), style: context.text.titleSmall?.copyWith(color: context.paw.onSuccessContainer))),
-            Icon(Icons.check_circle_rounded, color: context.paw.success),
+            Icon(Ph.checkCircleFill, color: context.paw.success),
           ]),
         ),
         const SizedBox(height: Space.md),
       ],
       if (p.isAffiliate)
-        InfoNote(l.shopAffiliateNote(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_outlined)
+        InfoNote(l.shopAffiliateNote(store?.name ?? l.shopPartnerStore), icon: Ph.arrowSquareOut)
       else ...[
         Row(children: [
-          Icon(Icons.storefront_outlined, size: IconSizes.chip, color: context.paw.textSecondary),
+          Icon(Ph.storefront, size: IconSizes.chip, color: context.paw.textSecondary),
           const SizedBox(width: Space.xs),
           Expanded(child: Text(l.shopSoldBy(seller?.name ?? '', seller?.city ?? ''), style: context.text.bodyMedium)),
         ]),
@@ -121,7 +122,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
       Text(l.shopSuitableFor, style: context.text.titleSmall),
       const SizedBox(height: Space.xs),
       Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
-        for (final s in p.species) StatusChip(speciesName(context, s), icon: Icons.pets_outlined),
+        for (final s in p.species) StatusChip(speciesName(context, s), icon: Ph.pawPrint),
         for (final s in p.lifeStages) StatusChip(lifeStageTag(context, s)),
         if (p.species.contains('dog'))
           for (final s in p.breedSizes) StatusChip(breedSizeTag(context, s)),
@@ -155,7 +156,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           ),
         ]),
         Row(children: [
-          Icon(p.returnable ? Icons.assignment_return_outlined : Icons.block_outlined, size: IconSizes.chip, color: context.paw.textSecondary),
+          Icon(p.returnable ? Ph.arrowUUpLeft : Ph.prohibit, size: IconSizes.chip, color: context.paw.textSecondary),
           const SizedBox(width: Space.xs),
           Expanded(child: Text(p.returnable ? l.shopReturnable(returnWindowDays) : l.shopNotReturnable, style: context.text.bodySmall)),
         ]),
@@ -184,7 +185,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
               width: TapTarget.min - Space.xxs,
               height: TapTarget.min - Space.xxs,
               decoration: BoxDecoration(color: context.paw.accentContainer, borderRadius: BorderRadius.circular(Radii.md)),
-              child: Icon(Icons.autorenew_outlined, color: context.paw.onAccentContainer),
+              child: Icon(Ph.arrowsClockwise, color: context.paw.onAccentContainer),
             ),
             const SizedBox(width: Space.md),
             Expanded(
@@ -193,7 +194,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
                 Text(l.subsHint, style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_outlined),
+            const Icon(Ph.caretRight),
           ]),
         ),
       ],
@@ -235,13 +236,13 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           child: PawCard(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
-                for (var i = 0; i < 5; i++) Icon(i < r.rating ? Icons.star_rounded : Icons.star_border_rounded, size: IconSizes.sm, color: context.paw.accent),
+                for (var i = 0; i < 5; i++) Icon(i < r.rating ? Ph.starFill : Ph.star, size: IconSizes.sm, color: context.paw.accent),
                 const SizedBox(width: Space.sm),
                 Expanded(child: Text(r.ownerName, style: context.text.labelLarge)),
                 Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall),
               ]),
               if (r.text.isNotEmpty) Padding(padding: const EdgeInsets.only(top: Space.xs), child: Text(r.text)),
-              Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip(l.shopVerifiedBuyer, tone: ChipTone.success, icon: Icons.verified_rounded)),
+              Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip(l.shopVerifiedBuyer, tone: ChipTone.success, icon: Ph.sealCheckFill)),
               if (r.reply != null)
                 Padding(
                   padding: const EdgeInsets.only(top: Space.sm),
@@ -268,7 +269,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: Space.formWidth),
             child: p.isAffiliate
-                ? PrimaryButton(label: l.shopBuyOn(store?.name ?? l.shopPartnerStore), icon: Icons.open_in_new_outlined, onPressed: () => _openPartner(p, store))
+                ? PrimaryButton(label: l.shopBuyOn(store?.name ?? l.shopPartnerStore), icon: Ph.arrowSquareOut, onPressed: () => _openPartner(p, store))
                 : LayoutBuilder(builder: (context, box) {
                     final stepper = QtyStepper(qty: _qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => setState(() => _qty = q < 1 ? 1 : q));
                     final buttons = Row(children: [
@@ -374,7 +375,7 @@ class _SubscribeSheetState extends ConsumerState<SubscribeSheet> {
       const SizedBox(height: Space.md),
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.location_on_outlined),
+        leading: const Icon(Ph.mapPin),
         title: Text(address == null ? l.addrAddFirst : '${addressLabel(context, address.label)} · ${address.name}'),
         subtitle: address == null ? null : Text(address.oneLine, maxLines: 2, overflow: TextOverflow.ellipsis),
         trailing: TextButton(
@@ -385,7 +386,7 @@ class _SubscribeSheetState extends ConsumerState<SubscribeSheet> {
           child: Text(address == null ? l.add : l.change),
         ),
       ),
-      InfoNote(l.subsFirstOn(Fmt.date(first, context.lang)), icon: Icons.event_repeat_outlined),
+      InfoNote(l.subsFirstOn(Fmt.date(first, context.lang)), icon: Ph.repeat),
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.subsStart,
@@ -418,7 +419,7 @@ Future<void> writeProductReview(BuildContext context, WidgetRef ref, Product p, 
                 tooltip: l.shopStars(i),
                 iconSize: 36,
                 onPressed: () => setState(() => rating = i),
-                icon: Icon(i <= rating ? Icons.star_rounded : Icons.star_border_rounded, color: ctx.paw.accent),
+                icon: Icon(i <= rating ? Ph.starFill : Ph.star, color: ctx.paw.accent),
               ),
           ]),
           PawTextField(label: l.shopReviewText, controller: text, maxLines: 4),

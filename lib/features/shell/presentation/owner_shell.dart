@@ -4,12 +4,14 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/settings/settings_controller.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/logo.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/presentation/pet_labels.dart';
 import 'sos_launcher.dart';
+import '../../../core/theme/ph.dart';
 
 const _tabRoots = ['/home', '/health', '/book', '/shop', '/me'];
 
@@ -29,11 +31,11 @@ class OwnerShell extends ConsumerWidget {
     final onTab = _tabRoots.contains(path);
     final destinations = [
       // Outlined when idle, filled when selected.
-      (Icons.home_outlined, Icons.home_rounded, l.tabHome),
-      (Icons.favorite_border_rounded, Icons.favorite_rounded, l.tabHealth),
-      (Icons.calendar_month_outlined, Icons.calendar_month_rounded, l.tabBook),
-      (Icons.shopping_bag_outlined, Icons.shopping_bag_rounded, l.tabShop),
-      (Icons.person_outline_rounded, Icons.person_rounded, l.tabMe),
+      (Ph.house, Ph.houseFill, l.tabHome),
+      (Ph.heartbeat, Ph.heartbeatFill, l.tabHealth),
+      (Ph.calendarDots, Ph.calendarDotsFill, l.tabBook),
+      (Ph.bag, Ph.bagFill, l.tabShop),
+      (Ph.user, Ph.userFill, l.tabMe),
     ];
     void go(int i) => shell.goBranch(i, initialLocation: i == shell.currentIndex);
 
@@ -52,22 +54,7 @@ class OwnerShell extends ConsumerWidget {
           child: SafeArea(
             top: false,
             minimum: const EdgeInsets.fromLTRB(Space.md, Space.xs, Space.md, Space.md),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Radii.xl + Space.xxs),
-                boxShadow: [BoxShadow(color: context.paw.ink.withValues(alpha: Opacities.tintStrong), blurRadius: Space.xl, offset: const Offset(0, Space.sm))],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(Radii.xl + Space.xxs),
-                child: NavigationBar(
-                  selectedIndex: shell.currentIndex,
-                  onDestinationSelected: go,
-                  destinations: [
-                    for (final d in destinations) NavigationDestination(icon: Icon(d.$1), selectedIcon: Icon(d.$2), label: d.$3),
-                  ],
-                ),
-              ),
-            ),
+            child: _Dock(index: shell.currentIndex, items: destinations, onTap: go),
           ),
         ),
       );
@@ -156,6 +143,78 @@ class _AccountCard extends ConsumerWidget {
 }
 
 /// Tablet and desktop top bar: the pet pills (on the main tabs) on the left;
+/// The floating dock (phones): five tabs on the kaapi band, a marigold pill
+/// behind the current tab's icon (UI Design 6).
+class _Dock extends StatelessWidget {
+  const _Dock({required this.index, required this.items, required this.onTap});
+  final int index;
+  final List<(IconData, IconData, String)> items;
+  final ValueChanged<int> onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    final locale = Localizations.localeOf(context).languageCode;
+    final radius = BorderRadius.circular(Sizes.dockRadius);
+    return DecoratedBox(
+      decoration: BoxDecoration(borderRadius: radius, boxShadow: Shadows.raised(paw.ink)),
+      child: Material(
+        color: paw.band,
+        borderRadius: radius,
+        clipBehavior: Clip.antiAlias,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: Sizes.dock),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs),
+            child: Row(children: [
+              for (var i = 0; i < items.length; i++)
+                Expanded(
+                  child: Semantics(
+                    button: true,
+                    selected: i == index,
+                    label: items[i].$3,
+                    excludeSemantics: true,
+                    child: InkWell(
+                      borderRadius: radius,
+                      onTap: () => onTap(i),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: Space.sm + Space.xxs),
+                        child: Column(mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min, children: [
+                          AnimatedContainer(
+                            duration: Motion.toggle,
+                            width: Sizes.dockPillWidth,
+                            height: Sizes.dockPillHeight,
+                            decoration: BoxDecoration(
+                              color: i == index ? paw.marigold : paw.marigold.withValues(alpha: 0),
+                              borderRadius: BorderRadius.circular(Radii.lg),
+                            ),
+                            child: Icon(
+                              i == index ? items[i].$2 : items[i].$1,
+                              size: Sizes.dockIcon,
+                              color: i == index ? paw.band : paw.onBandMuted,
+                            ),
+                          ),
+                          const SizedBox(height: Space.xxs),
+                          Text(
+                            items[i].$3,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTheme.styleFor(TypeScale.dock, locale, i == index ? paw.onBand : paw.onBandMuted)
+                                .copyWith(fontWeight: i == index ? FontWeight.w700 : FontWeight.w500),
+                          ),
+                        ]),
+                      ),
+                    ),
+                  ),
+                ),
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 /// messages, notifications and SOS on the right.
 class _WideTopBar extends StatelessWidget {
   const _WideTopBar({required this.showPets});
@@ -188,19 +247,19 @@ class _QuickActions extends ConsumerWidget {
     final notes = ref.watch(unreadNotificationsProvider).value ?? 0;
     return Row(mainAxisSize: MainAxisSize.min, children: [
       PawIconButton(
-        icon: Icons.chat_bubble_outline_rounded,
+        icon: Ph.chatCircleDots,
         tooltip: l.messages,
         badge: msgs,
         onPressed: () => context.push('/messages'),
       ),
-      const SizedBox(width: Space.xs),
+      const SizedBox(width: Space.sm),
       PawIconButton(
-        icon: Icons.notifications_none_rounded,
+        icon: Ph.bell,
         tooltip: l.notifications,
         badge: notes,
         onPressed: () => context.push('/notifications'),
       ),
-      const SizedBox(width: Space.sm),
+      const SizedBox(width: Space.xs),
       SosButton(onActivate: () => openSos(context, ref)),
     ]);
   }
@@ -239,36 +298,44 @@ class OwnerTopBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final phone = context.isPhone;
+    if (!phone) {
+      // Wide screens: the logo and quick actions are in the top bar, so this
+      // row holds only the pet pills.
+      return Material(
+        color: context.paw.background,
+        child: Padding(padding: EdgeInsets.fromLTRB(context.gutter, Space.md, context.gutter, Space.xs), child: const PetSwitcher()),
+      );
+    }
     return Material(
       color: context.paw.background,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(context.gutter, phone ? Space.sm : Space.md, context.gutter, Space.xs),
-        child: phone
-            ? const Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                Row(children: [
-                  Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      alignment: Alignment.centerLeft,
-                      child: PawSetuLogo(size: TapTarget.min - Space.sm, withName: true),
-                    ),
-                  ),
-                  SizedBox(width: Space.sm),
-                  _QuickActions(),
-                ]),
-                PetSwitcher(),
-              ])
-            // Wide screens: the logo and quick actions are in the top bar,
-            // so this row holds only the pet pills.
-            : const PetSwitcher(),
-      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(context.gutter, Space.sm + Space.xxs, context.gutter - Space.xs, Space.xxs),
+          child: const Row(children: [
+            Expanded(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: PawSetuLogo(size: Sizes.topLogo, withName: true),
+              ),
+            ),
+            SizedBox(width: Space.sm),
+            _QuickActions(),
+          ]),
+        ),
+        // The pet pills scroll to the screen's edge.
+        PetSwitcher(padding: EdgeInsets.fromLTRB(context.gutter, Space.xs, context.gutter, Space.sm + Space.xxs)),
+      ]),
     );
   }
 }
 
 /// Pet pills: "All pets" (2+ pets), one pill per pet and "Add pet".
 class PetSwitcher extends ConsumerWidget {
-  const PetSwitcher({super.key});
+  const PetSwitcher({super.key, this.padding = EdgeInsets.zero});
+
+  /// Space inside the scrolling row (so pills can slide to the screen edge).
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -278,9 +345,10 @@ class PetSwitcher extends ConsumerWidget {
     final all = ref.watch(allPetsSelectedProvider);
     final notifier = ref.read(settingsProvider.notifier);
     if (pets.isEmpty) return const SizedBox.shrink();
-    final avatar = IconSizes.lg + Space.xs;
+    const avatar = Sizes.pillArch * Sizes.archAspect;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+      padding: padding,
       child: Row(children: [
         if (pets.length > 1)
           Padding(
@@ -288,7 +356,7 @@ class PetSwitcher extends ConsumerWidget {
             child: PawPill(
               label: l.allPets,
               selected: all,
-              leading: Icon(Icons.pets_rounded, size: IconSizes.sm, color: all ? context.paw.surface : context.paw.textPrimary),
+              leading: Icon(Ph.pawPrintFill, size: IconSizes.sm + Space.xxs, color: all ? context.paw.surface : context.paw.textPrimary),
               onTap: () => notifier.selectPet('all'),
             ),
           ),
@@ -299,14 +367,14 @@ class PetSwitcher extends ConsumerWidget {
               label: p.name,
               semanticLabel: [p.name, p.breedName(context.lang), petAgeLabel(context, p)].where((s) => s.isNotEmpty).join(', '),
               selected: !all && selected?.id == p.id,
-              leading: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: avatar),
+              leading: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: avatar, ring: false),
               onTap: () => notifier.selectPet(p.id),
             ),
           ),
         PawPill(
           label: l.addPet,
           outlined: true,
-          leading: Icon(Icons.add_rounded, size: IconSizes.sm, color: context.paw.textPrimary),
+          leading: Icon(Ph.plus, size: IconSizes.sm + Space.xxs, color: context.paw.textSecondary),
           onTap: () => context.push('/pets/new'),
         ),
       ]),

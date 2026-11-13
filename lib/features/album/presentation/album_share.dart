@@ -17,6 +17,7 @@ import '../../vault/domain/share_rules.dart';
 import '../../vault/presentation/share_sheet.dart';
 import '../../vault/presentation/vault_labels.dart';
 import '../domain/album.dart';
+import '../../../core/theme/ph.dart';
 
 /// "Made with PawSetu" stamp drawn on shared photos (optional).
 class Watermark extends StatelessWidget {
@@ -121,7 +122,7 @@ Future<void> showShareMemorySheet(BuildContext context, WidgetRef ref, AlbumItem
         const SizedBox(height: Space.sm),
         PrimaryButton(
           label: l.albumShareToApps,
-          icon: Icons.ios_share_outlined,
+          icon: Ph.exportUp,
           loading: busy,
           onPressed: () async {
             setState(() => busy = true);
@@ -204,7 +205,7 @@ class _FamilyLinkSheetState extends ConsumerState<_FamilyLinkSheet> {
       const SizedBox(height: Space.lg),
       PrimaryButton(
         label: l.vaultCreateLink,
-        icon: Icons.link_outlined,
+        icon: Ph.link,
         loading: _busy,
         onPressed: () async {
           setState(() => _busy = true);

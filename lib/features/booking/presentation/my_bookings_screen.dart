@@ -22,6 +22,7 @@ import '../domain/booking_rules.dart';
 import 'book_home_screen.dart';
 import 'booking_labels.dart';
 import 'place_screen.dart';
+import '../../../core/theme/ph.dart';
 
 class MyBookingsScreen extends ConsumerWidget {
   const MyBookingsScreen({super.key});
@@ -251,7 +252,7 @@ class BookingDetailScreen extends ConsumerWidget {
               const SizedBox(height: Space.sm),
               TextButton.icon(
                 onPressed: () => context.push('${partnerView ? '/help' : '/me/help'}/new?booking=${b.id}'),
-                icon: const Icon(Icons.support_agent_outlined),
+                icon: const Icon(Ph.headset),
                 label: Text(context.l10n.hpGetHelpBooking),
               ),
             ],
@@ -268,7 +269,7 @@ class BookingDetailScreen extends ConsumerWidget {
       if (b.status == 'confirmed') ...[
         SecondaryButton(
           label: l.addToCalendar,
-          icon: Icons.event_outlined,
+          icon: Ph.calendarBlank,
           onPressed: () => shareBookingToCalendar(context, b),
         ),
         const SizedBox(height: Space.sm),
@@ -277,18 +278,18 @@ class BookingDetailScreen extends ConsumerWidget {
         Row(
           children: [
             Expanded(
-              child: SecondaryButton(label: l.call, icon: Icons.call_outlined, onPressed: () => callNumber(context, ref, place.phone)),
+              child: SecondaryButton(label: l.call, icon: Ph.phone, onPressed: () => callNumber(context, ref, place.phone)),
             ),
             const SizedBox(width: Space.sm),
             Expanded(
-              child: SecondaryButton(label: l.message, icon: Icons.chat_outlined, onPressed: () => context.push('/messages/new?booking=${b.id}')),
+              child: SecondaryButton(label: l.message, icon: Ph.chatCircleDots, onPressed: () => context.push('/messages/new?booking=${b.id}')),
             ),
           ],
         ),
         const SizedBox(height: Space.sm),
       ],
       if (b.status == 'confirmed' && b.start.isAfter(DateTime.now()) && place != null) ...[
-        SecondaryButton(label: l.reschedule, icon: Icons.edit_calendar_outlined, onPressed: () => _reschedule(context, ref, b, place)),
+        SecondaryButton(label: l.reschedule, icon: Ph.calendarPlus, onPressed: () => _reschedule(context, ref, b, place)),
         const SizedBox(height: Space.sm),
       ],
       if (b.isActive && b.start.isAfter(DateTime.now()))
@@ -310,7 +311,7 @@ class BookingDetailScreen extends ConsumerWidget {
           child: Text(l.cancelBooking, style: TextStyle(color: context.paw.error)),
         ),
       if (b.status == 'completed' && !b.reviewed && place != null)
-        PrimaryButton(label: l.writeReview, icon: Icons.star_rounded, onPressed: () => _review(context, ref, b, place)),
+        PrimaryButton(label: l.writeReview, icon: Ph.starFill, onPressed: () => _review(context, ref, b, place)),
     ];
   }
 
@@ -395,7 +396,7 @@ class BookingDetailScreen extends ConsumerWidget {
                     tooltip: l.starsLabel(i),
                     iconSize: 40,
                     onPressed: () => set(() => rating = i),
-                    icon: Icon(i <= rating ? Icons.star_rounded : Icons.star_border_rounded, color: ctx.paw.accent),
+                    icon: Icon(i <= rating ? Ph.starFill : Ph.star, color: ctx.paw.accent),
                   ),
               ],
             ),

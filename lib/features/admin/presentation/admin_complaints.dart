@@ -17,6 +17,7 @@ import '../domain/support.dart';
 import 'admin_inputs.dart';
 import 'support_labels.dart';
 import 'ticket_thread.dart';
+import '../../../core/theme/ph.dart';
 
 /// Complaints and support tickets (spec 10): from pet parents and partners,
 /// linked to a booking, order or chat; status, assign, reply and demo refunds.
@@ -56,10 +57,10 @@ class _AdminComplaintsState extends ConsumerState<AdminComplaints> {
         return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
           ResponsiveGrid(minColumns: 2, minItemWidth: 160, spacing: Space.sm, children: [
-            StatTile(label: l.hpStatusOpen, value: '${all.where((t) => t.status == 'open').length}', icon: Icons.mark_email_unread_outlined, color: context.paw.warning),
-            StatTile(label: l.hpStatusInProgress, value: '${all.where((t) => t.status == 'in_progress').length}', icon: Icons.pending_outlined),
-            StatTile(label: l.admNeedsReply, value: '$waiting', icon: Icons.reply_outlined, color: waiting > 0 ? context.paw.error : null),
-            StatTile(label: l.hpStatusResolved, value: '${all.where((t) => t.status == 'resolved').length}', icon: Icons.check_circle_rounded, color: context.paw.success),
+            StatTile(label: l.hpStatusOpen, value: '${all.where((t) => t.status == 'open').length}', icon: Ph.envelopeOpen, color: context.paw.warning),
+            StatTile(label: l.hpStatusInProgress, value: '${all.where((t) => t.status == 'in_progress').length}', icon: Ph.dotsThreeCircle),
+            StatTile(label: l.admNeedsReply, value: '$waiting', icon: Ph.arrowBendUpLeft, color: waiting > 0 ? context.paw.error : null),
+            StatTile(label: l.hpStatusResolved, value: '${all.where((t) => t.status == 'resolved').length}', icon: Ph.checkCircleFill, color: context.paw.success),
           ]),
           const SizedBox(height: Space.md),
           ChoiceRow<String>(
@@ -137,13 +138,13 @@ class TicketCard extends StatelessWidget {
             const SizedBox(height: Space.xs),
             Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
               StatusChip(ticketStatusLabel(context, t.status), tone: ticketStatusTone(t.status)),
-              if (adminView && needsAdmin) StatusChip(l.admNeedsReply, tone: ChipTone.error, icon: Icons.reply_outlined),
-              if (!adminView && t.awaitingUser) StatusChip(l.hpNewReply, tone: ChipTone.info, icon: Icons.mark_chat_unread_outlined),
+              if (adminView && needsAdmin) StatusChip(l.admNeedsReply, tone: ChipTone.error, icon: Ph.arrowBendUpLeft),
+              if (!adminView && t.awaitingUser) StatusChip(l.hpNewReply, tone: ChipTone.info, icon: Ph.chatCircleDots),
               if (t.refund != null) StatusChip(l.hpRefunded(Fmt.inr((t.refund!['amount'] as num?) ?? 0, context.lang)), tone: ChipTone.success),
             ]),
           ]),
         ),
-        const Icon(Icons.chevron_right_outlined),
+        const Icon(Ph.caretRight),
       ]),
     );
   }
@@ -302,7 +303,7 @@ class _LinkedItem extends ConsumerWidget {
                   alignment: Alignment.centerLeft,
                   child: SecondaryButton(
                     label: l.admRefundButton,
-                    icon: Icons.currency_rupee_outlined,
+                    icon: Ph.currencyInr,
                     expand: false,
                     onPressed: paid <= 0 ? null : () => _refund(context, ref, paid),
                   ),

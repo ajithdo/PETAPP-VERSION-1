@@ -10,6 +10,7 @@ import '../../pets/presentation/pet_labels.dart';
 import '../../shell/presentation/sos_launcher.dart';
 import '../domain/toxic.dart';
 import 'safety_labels.dart';
+import '../../../core/theme/ph.dart';
 
 final _en = lookupAppLocalizations(const Locale('en'));
 
@@ -65,12 +66,12 @@ class _ToxicCheckScreenState extends ConsumerState<ToxicCheckScreen> {
           onChanged: (_) => setState(() {}),
           textInputAction: TextInputAction.search,
           decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.search_outlined),
+            prefixIcon: const Icon(Ph.magnifyingGlass),
             hintText: l.toxSearchHint,
             labelText: l.toxSearchLabel,
             suffixIcon: _search.text.isEmpty
                 ? null
-                : IconButton(tooltip: l.clearSearch, icon: const Icon(Icons.close_outlined), onPressed: () => setState(_search.clear)),
+                : IconButton(tooltip: l.clearSearch, icon: const Icon(Ph.x), onPressed: () => setState(_search.clear)),
           ),
         ),
         const SizedBox(height: Space.md),
@@ -152,11 +153,11 @@ Future<void> _showToxItem(BuildContext context, ToxItem item, String? species) {
           ),
       if (level == ToxLevel.danger) ...[
         const SizedBox(height: Space.md),
-        InfoNote(l.toxAteIt, icon: Icons.emergency_outlined, tone: ChipTone.error),
+        InfoNote(l.toxAteIt, icon: Ph.asterisk, tone: ChipTone.error),
         const SizedBox(height: Space.sm),
         PrimaryButton(
           label: l.sosGetHelp,
-          icon: Icons.emergency_outlined,
+          icon: Ph.asterisk,
           danger: true,
           onPressed: () {
             Navigator.pop(ctx);
@@ -166,7 +167,7 @@ Future<void> _showToxItem(BuildContext context, ToxItem item, String? species) {
         const SizedBox(height: Space.sm),
         SecondaryButton(
           label: l.toxPoisoningGuide,
-          icon: Icons.medical_services_outlined,
+          icon: Ph.firstAidKit,
           onPressed: () {
             Navigator.pop(ctx);
             context.push('/first-aid/poisoning');

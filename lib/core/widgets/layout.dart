@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/gen/app_localizations.dart';
 import '../theme/tokens.dart';
+import '../theme/ph.dart';
 
 extension L10nX on BuildContext {
   AppLocalizations get l10n => AppLocalizations.of(this);
@@ -152,7 +153,7 @@ class ChipStrip extends StatelessWidget {
 
 /// "Show more" (or [label]) at the end of a long list.
 class ShowMoreButton extends StatelessWidget {
-  const ShowMoreButton({super.key, required this.onPressed, this.label, this.icon = Icons.expand_more_outlined});
+  const ShowMoreButton({super.key, required this.onPressed, this.label, this.icon = Ph.caretDown});
   final VoidCallback onPressed;
   final String? label;
   final IconData icon;

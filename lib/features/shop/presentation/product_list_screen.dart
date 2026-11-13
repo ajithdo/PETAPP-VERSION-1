@@ -10,6 +10,7 @@ import '../domain/shop_models.dart';
 import '../domain/shop_rules.dart';
 import 'product_widgets.dart';
 import 'shop_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Search and category results with filters (species, category, price,
 /// brand, rating, partner stores) and sorting (spec 7.10).
@@ -59,13 +60,13 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
               autofocus: widget.focus,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search_outlined),
+                prefixIcon: const Icon(Ph.magnifyingGlass),
                 hintText: l.shopSearchHint,
                 suffixIcon: _search.text.isEmpty
                     ? null
                     : IconButton(
                         tooltip: l.shopClearSearch,
-                        icon: const Icon(Icons.close_outlined),
+                        icon: const Icon(Ph.x),
                         onPressed: () => setState(() {
                           _search.clear();
                           _f = _f.copyWith(query: '');
@@ -79,7 +80,7 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(children: [
                 ActionChip(
-                  avatar: const Icon(Icons.tune_outlined, size: IconSizes.chip),
+                  avatar: const Icon(Ph.slidersHorizontal, size: IconSizes.chip),
                   label: Text(_f.activeCount == 0 ? l.filters : l.shopFiltersCount(_f.activeCount)),
                   onPressed: () => _openFilters(brands),
                 ),

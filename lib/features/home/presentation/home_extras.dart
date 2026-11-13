@@ -6,8 +6,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../health/data/health_repository.dart';
 import '../../health/domain/vaccine_schedule.dart';
-import '../../health/presentation/health_labels.dart';
-import '../../health/presentation/health_screen.dart';
+import '../../health/presentation/next_up_panel.dart';
 import '../../pets/domain/pet.dart';
 
 export '../../messaging/messaging_slots.dart' show askVetLink;
@@ -33,59 +32,11 @@ List<Widget> nextUpSection(BuildContext context, WidgetRef ref, {required List<P
     final r = rank(a.$2.status).compareTo(rank(b.$2.status));
     return r != 0 ? r : (a.$2.at ?? DateTime.now()).compareTo(b.$2.at ?? DateTime.now());
   });
-  if (skipFirst) {
-    final rest = items.skip(1).take(3).toList();
-    if (rest.isEmpty) return const [];
-    return [
-      SectionHeader(l.nextUp, action: l.seeAll, onAction: () => context.go('/health'), padding: flush ? const EdgeInsets.only(bottom: Space.sm) : null),
-      PawCard(
-        padding: const EdgeInsets.symmetric(vertical: Space.xs),
-        child: Column(children: [for (final it in rest) DueTile(item: it.$2, pet: it.$1, showPet: pets.length > 1)]),
-      ),
-    ];
-  }
-  final header = SectionHeader(
-    l.nextUp,
-    action: l.seeAll,
-    onAction: () => context.go('/health'),
-    padding: flush ? const EdgeInsets.only(bottom: Space.sm) : null,
-  );
-  if (items.isEmpty) {
-    return [
-      header,
-      PawCard(
-        child: Row(children: [
-          Icon(Icons.check_circle_outlined, color: context.paw.success),
-          const SizedBox(width: Space.md),
-          Expanded(child: Text(l.nothingDueAll, style: context.text.bodyMedium)),
-        ]),
-      ),
-    ];
-  }
-  final showPet = pets.length > 1;
-  final (pet, first) = items.first;
-  final title = dueTitle(context, first);
-  final when = dueWhen(context, first);
-  final status = statusChip(context, first.status).$1;
-  final rest = items.skip(1).take(2).toList();
+  final shown = items.skip(skipFirst ? 1 : 0).take(3).toList();
+  if (skipFirst && shown.isEmpty) return const [];
   return [
-    header,
-    PawAlertCard(
-      tone: first.status == DoseStatus.overdue ? ChipTone.error : ChipTone.warning,
-      icon: dueIcon(first.kind),
-      overline: when.isEmpty ? status : when,
-      title: showPet ? '${pet.name} · $title' : title,
-      semanticLabel: [status, if (showPet) pet.name, title, when].where((s) => s.isNotEmpty).join(', '),
-      onTap: () => openDueItem(context, ref, pet, first),
-    ),
-    if (rest.isNotEmpty) ...[
-      const SizedBox(height: Space.md),
-      PawCard(
-        padding: const EdgeInsets.symmetric(vertical: Space.xs),
-        child: Column(children: [
-          for (final it in rest) DueTile(item: it.$2, pet: it.$1, showPet: showPet),
-        ]),
-      ),
-    ],
+    if (!flush) const SizedBox(height: Sizes.sectionGap),
+    SecHead(l.nextUp, action: l.seeAll, onAction: () => context.go('/health')),
+    NextUpPanel(items: shown, showPet: pets.length > 1),
   ];
 }

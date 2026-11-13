@@ -15,6 +15,7 @@ import '../../plans/domain/plan_rules.dart';
 import '../../shop/domain/shop_models.dart';
 import '../data/admin_repository.dart';
 import 'admin_inputs.dart';
+import '../../../core/theme/ph.dart';
 
 /// Plans and settings (spec 8 and 10): every number the app uses is stored
 /// in config/app, so changes reach the app straight away without an update.
@@ -152,7 +153,7 @@ class _NumRow extends ConsumerWidget {
       trailing: Row(mainAxisSize: MainAxisSize.min, children: [
         Text(shown, style: context.text.titleSmall?.copyWith(color: value == null ? context.paw.textSecondary : null)),
         const SizedBox(width: Space.xs),
-        const Icon(Icons.edit_outlined, size: IconSizes.chip),
+        const Icon(Ph.pencilSimple, size: IconSizes.chip),
       ]),
       onTap: () async {
         final v = await askNumber(context,
@@ -363,7 +364,7 @@ Future<void> editCoupon(BuildContext context, WidgetRef ref, Coupon? c) async {
         const SizedBox(height: Space.sm),
         ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: const Icon(Icons.event_outlined),
+          leading: const Icon(Ph.calendarBlank),
           title: Text(l.admCouponValidTill),
           subtitle: Text(Fmt.date(till, ctx.lang)),
           onTap: () async {
@@ -427,7 +428,7 @@ class _VaccineCard extends ConsumerWidget {
                       ? l.admEveryYears(t.everyYears)
                       : l.admWeeksRange(t.fromWeeks ?? 0, t.toWeeks ?? 0),
             ),
-            trailing: t.optional ? null : Icon(overrides.containsKey(t.key) ? Icons.edit_note_outlined : Icons.edit_outlined, size: IconSizes.chip, color: overrides.containsKey(t.key) ? context.paw.accent : null),
+            trailing: t.optional ? null : Icon(overrides.containsKey(t.key) ? Ph.notePencil : Ph.pencilSimple, size: IconSizes.chip, color: overrides.containsKey(t.key) ? context.paw.accent : null),
             onTap: t.optional ? null : () => _edit(context, ref, t, overrides.containsKey(t.key)),
           ),
       ]),
@@ -466,9 +467,9 @@ class _ContentReview extends ConsumerWidget {
     final l = context.l10n;
     final review = (cfg['contentReview'] as Map?) ?? const {};
     final areas = <(String, String, IconData)>[
-      ('firstAid', l.admAreaFirstAid, Icons.healing_outlined),
-      ('toxic', l.admAreaToxic, Icons.no_food_outlined),
-      ('vaccines', l.admAreaVaccines, Icons.vaccines_outlined),
+      ('firstAid', l.admAreaFirstAid, Ph.bandaids),
+      ('toxic', l.admAreaToxic, Ph.bowlFood),
+      ('vaccines', l.admAreaVaccines, Ph.syringe),
     ];
     return PawCard(
       padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.xs),

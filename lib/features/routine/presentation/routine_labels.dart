@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/layout.dart';
 import '../domain/routine.dart';
+import '../../../core/theme/ph.dart';
 
 String logTypeLabel(BuildContext context, LogType t) {
   final l = context.l10n;
@@ -22,17 +23,17 @@ String logTypeLabel(BuildContext context, LogType t) {
 }
 
 IconData logTypeIcon(LogType t) => switch (t) {
-      LogType.walk => Icons.directions_walk_outlined,
-      LogType.play => Icons.sports_baseball_outlined,
-      LogType.meal => Icons.restaurant_outlined,
-      LogType.water => Icons.water_drop_outlined,
-      LogType.potty => Icons.grass_outlined,
-      LogType.sleep => Icons.bedtime_outlined,
-      LogType.grooming => Icons.content_cut_outlined,
-      LogType.training => Icons.school_outlined,
-      LogType.mood => Icons.mood_outlined,
-      LogType.weight => Icons.monitor_weight_outlined,
-      LogType.behaviour => Icons.psychology_outlined,
+      LogType.walk => Ph.personSimpleWalk,
+      LogType.play => Ph.tennisBall,
+      LogType.meal => Ph.forkKnife,
+      LogType.water => Ph.drop,
+      LogType.potty => Ph.plant,
+      LogType.sleep => Ph.moon,
+      LogType.grooming => Ph.scissors,
+      LogType.training => Ph.graduationCap,
+      LogType.mood => Ph.smiley,
+      LogType.weight => Ph.scales,
+      LogType.behaviour => Ph.brain,
     };
 
 /// Icon colour for a kind of log, readable (3:1) on cards in light and dark.
@@ -67,13 +68,13 @@ String moodLabel(BuildContext context, String? mood) {
 }
 
 IconData moodIcon(String? mood) => switch (mood) {
-      'happy' => Icons.sentiment_very_satisfied_outlined,
-      'calm' => Icons.self_improvement_outlined,
-      'playful' => Icons.celebration_outlined,
-      'tired' => Icons.bedtime_outlined,
-      'anxious' => Icons.sentiment_dissatisfied_outlined,
-      'unwell' => Icons.sick_outlined,
-      _ => Icons.mood_outlined,
+      'happy' => Ph.smiley,
+      'calm' => Ph.flowerLotus,
+      'playful' => Ph.confetti,
+      'tired' => Ph.moon,
+      'anxious' => Ph.smileySad,
+      'unwell' => Ph.smileyNervous,
+      _ => Ph.smiley,
     };
 
 String behaviourLabel(BuildContext context, String tag) {

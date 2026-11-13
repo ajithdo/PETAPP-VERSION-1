@@ -8,6 +8,7 @@ import '../../../core/settings/settings_controller.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../onboarding/presentation/setup_screens.dart';
+import '../../../core/theme/ph.dart';
 
 /// Settings (spec 4 and 5): language, appearance, accessibility,
 /// notifications, demo data and about.
@@ -83,14 +84,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: s.easyMode,
             title: Text(l.easyMode),
             subtitle: Text(l.easyModeHint),
-            secondary: const Icon(Icons.accessibility_new_outlined),
+            secondary: const Icon(Ph.personArmsSpread),
             onChanged: (v) {
               n.setEasyMode(v);
               _saveProfile({'easyMode': v});
             },
           ),
           ListTile(
-            leading: const Icon(Icons.format_size_outlined),
+            leading: const Icon(Ph.textAa),
             title: Text(l.textSize),
             subtitle: Slider(
               value: s.textScale,
@@ -107,29 +108,29 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             value: s.highContrast,
             title: Text(l.highContrast),
             subtitle: Text(l.highContrastHint),
-            secondary: const Icon(Icons.contrast_outlined),
+            secondary: const Icon(Ph.circleHalf),
             onChanged: n.setHighContrast,
           ),
         ]),
         group(l.notifications, [
           ListTile(
-            leading: const Icon(Icons.notifications_active_outlined),
+            leading: const Icon(Ph.bellRinging),
             title: Text(l.notificationChannels),
             subtitle: Text(l.notificationChannelsHint),
-            trailing: const Icon(Icons.chevron_right_outlined),
+            trailing: const Icon(Ph.caretRight),
             onTap: () => context.push(notificationSettingsLink),
           ),
         ]),
         if (cfg.isDemo)
           group(l.demoData, [
             ListTile(
-              leading: const Icon(Icons.science_outlined),
+              leading: const Icon(Ph.flask),
               title: Text(l.demoModeOn),
               subtitle: Text(cfg.isStandalone ? l.demoStandaloneHint : l.demoEmulatorHint),
             ),
             if (store != null)
               ListTile(
-                leading: const Icon(Icons.restart_alt_outlined),
+                leading: const Icon(Ph.arrowCounterClockwise),
                 title: Text(l.resetDemoData),
                 subtitle: Text(l.resetDemoDataHint),
                 trailing: _resetting ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner)) : null,
@@ -150,7 +151,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ]),
         group(l.about, [
           ListTile(
-            leading: const Icon(Icons.info_outlined),
+            leading: const Icon(Ph.info),
             title: const Text('PawSetu'),
             subtitle: Text(l.aboutVersion('1.0.0 (DEMO VERSION 1)')),
             onTap: () {
@@ -162,14 +163,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.map_outlined),
+            leading: const Icon(Ph.mapTrifold),
             title: Text(l.mapCredit),
           ),
         ]),
         const SizedBox(height: Space.xl),
         SecondaryButton(
           label: l.signOut,
-          icon: Icons.logout_outlined,
+          icon: Ph.signOut,
           onPressed: () => ref.read(authServiceProvider).signOut(),
         ),
       ]),

@@ -13,6 +13,7 @@ import '../../pets/domain/pet.dart';
 import '../../pets/presentation/pet_labels.dart';
 import '../../plans/presentation/plus_prompt.dart';
 import '../data/family_repository.dart';
+import '../../../core/theme/ph.dart';
 
 /// Family and sharing (spec 6, 7.2): invites, roles, sitter access with an
 /// end date, and the activity feed.
@@ -52,9 +53,9 @@ class _FamilyScreenState extends ConsumerState<FamilyScreen> {
               excludeSemantics: true,
               child: LayoutBuilder(builder: (context, c) {
                 final roles = [
-                  (Icons.visibility_outlined, l.roleViewer, l.roleViewerHint),
-                  (Icons.volunteer_activism_outlined, l.roleCarer, l.roleCarerHint),
-                  (Icons.people_outline_rounded, l.roleCoowner, l.roleCoownerHint),
+                  (Ph.eye, l.roleViewer, l.roleViewerHint),
+                  (Ph.handHeart, l.roleCarer, l.roleCarerHint),
+                  (Ph.users, l.roleCoowner, l.roleCoownerHint),
                 ];
                 final cols = c.maxWidth >= 420 && MediaQuery.textScalerOf(context).scale(1) < 1.3 ? 3 : 1;
                 return TileGrid(columns: cols, spacing: Space.sm, children: [
@@ -144,7 +145,7 @@ class _PetMembersCard extends ConsumerWidget {
             trailing: canManage
                 ? FilledButton.icon(
                     onPressed: () => _invite(context, ref, others.length),
-                    icon: const Icon(Icons.person_add_outlined),
+                    icon: const Icon(Ph.userPlus),
                     label: Text(l.invite),
                   )
                 : null,
@@ -204,13 +205,13 @@ class _PetMembersCard extends ConsumerWidget {
             ),
           for (final inv in sent)
             ListTile(
-              leading: const CircleAvatar(child: Icon(Icons.hourglass_top_outlined)),
+              leading: const CircleAvatar(child: Icon(Ph.hourglassHigh)),
               title: Text(inv.contact ?? l.inviteLink),
               subtitle: Text(l.invitePending(petRoleLabel(context, inv.role))),
               trailing: canManage
                   ? IconButton(
                       tooltip: l.cancelInvite,
-                      icon: const Icon(Icons.close_outlined),
+                      icon: const Icon(Ph.x),
                       onPressed: () => ref.read(familyRepositoryProvider).cancelInvite(inv.id),
                     )
                   : null,
@@ -259,13 +260,13 @@ class _PetMembersCard extends ConsumerWidget {
             const SizedBox(height: Space.md),
             PrimaryButton(
               label: l.share,
-              icon: Icons.share_outlined,
+              icon: Ph.shareNetwork,
               onPressed: () => SharePlus.instance.share(ShareParams(text: l.inviteShareText(pet.name, link))),
             ),
             const SizedBox(height: Space.sm),
             SecondaryButton(
               label: l.copyLink,
-              icon: Icons.copy_outlined,
+              icon: Ph.copy,
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: link));
                 Navigator.pop(ctx);
@@ -340,9 +341,9 @@ class _InviteSheetState extends State<_InviteSheet> {
           const SizedBox(height: Space.md),
           SegmentedButton<String>(
             segments: [
-              ButtonSegment(value: 'phone', label: Text(l.phone), icon: const Icon(Icons.phone_outlined)),
-              ButtonSegment(value: 'email', label: Text(l.email), icon: const Icon(Icons.mail_outlined)),
-              ButtonSegment(value: 'link', label: Text(l.link), icon: const Icon(Icons.link_outlined)),
+              ButtonSegment(value: 'phone', label: Text(l.phone), icon: const Icon(Ph.phone)),
+              ButtonSegment(value: 'email', label: Text(l.email), icon: const Icon(Ph.envelopeSimple)),
+              ButtonSegment(value: 'link', label: Text(l.link), icon: const Icon(Ph.link)),
             ],
             selected: {_how},
             onSelectionChanged: (s) => setState(() {
@@ -372,7 +373,7 @@ class _InviteSheetState extends State<_InviteSheet> {
           ),
           if (_sitter)
             OutlinedButton.icon(
-              icon: const Icon(Icons.event_outlined),
+              icon: const Icon(Ph.calendarBlank),
               label: Text(l.accessUntil(Fmt.date(_until, context.lang))),
               onPressed: () async {
                 final d = await showDatePicker(
@@ -465,7 +466,7 @@ class _ActivityFeed extends ConsumerWidget {
 
   Widget _petAvatar(String petId) {
     final p = pets.where((p) => p.id == petId).firstOrNull;
-    if (p == null) return const CircleAvatar(child: Icon(Icons.pets_outlined));
+    if (p == null) return const CircleAvatar(child: Icon(Ph.pawPrint));
     return PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarSm);
   }
 }

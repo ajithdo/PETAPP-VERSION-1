@@ -7,7 +7,7 @@ import 'seed.dart';
 /// Documents use the built-in samples (url `sample:<key>`): the app draws
 /// each one from what is printed on it, and `extracted` holds exactly those
 /// values ([printedSample]; a unit test checks they match the app).
-/// Photos and videos are illustrated placeholders (`seed:album:<species>:<n>`).
+/// Photos and videos are illustrated placeholders (`seed:album:<species>:<pet>:<n>`, drawn scenes from UI Design 6).
 void seedVault(Add add, DateTime now, SeedData data) {
   DateTime day(int ago, [int hour = 10, int minute = 0]) => DateTime(now.year, now.month, now.day - ago, hour, minute);
   Map<String, dynamic> pet(String id) => data['pets']![id]!;
@@ -295,7 +295,7 @@ void seedVault(Add add, DateTime now, SeedData data) {
       'petId': petId,
       'ownerId': owner,
       'type': type,
-      'url': media ? 'seed:album:${p['species']}:$n' : null,
+      'url': media ? 'seed:album:${p['species']}:${petId.substring(4)}:$n' : null,
       'contentType': switch (type) {
         'video' => 'video/mp4',
         'photo' => 'image/jpeg',

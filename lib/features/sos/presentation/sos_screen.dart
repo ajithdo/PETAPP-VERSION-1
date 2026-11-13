@@ -22,6 +22,7 @@ import '../../health/presentation/health_report.dart' show MedicalSummaryCard;
 import '../../pets/data/pets_repository.dart';
 import '../data/sos_repository.dart';
 import '../domain/sos_rules.dart';
+import '../../../core/theme/ph.dart';
 
 /// Emergency SOS (spec 7.12), opened after holding the red button for
 /// 2 seconds: exactly two big options, then the pet's medical summary and
@@ -193,7 +194,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         title: Text(l.sosTitle, style: context.text.titleLarge, maxLines: 1, overflow: TextOverflow.ellipsis),
         leading: IconButton(
           tooltip: l.close,
-          icon: const Icon(Icons.close_outlined),
+          icon: const Icon(Ph.x),
           onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
         ),
       ),
@@ -202,11 +203,11 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         _LocationLine(spot: spot, locating: _locating, onChange: _changeArea, onRetry: _locate),
         if (clinics.savedAt != null) ...[
           const SizedBox(height: Space.sm),
-          InfoNote(l.sosSavedClinics(Fmt.dateTime(clinics.savedAt!, context.lang)), icon: Icons.wifi_off_outlined, tone: ChipTone.warning),
+          InfoNote(l.sosSavedClinics(Fmt.dateTime(clinics.savedAt!, context.lang)), icon: Ph.wifiSlash, tone: ChipTone.warning),
         ],
         const SizedBox(height: Space.lg),
         _BigOption(
-          icon: Icons.call_outlined,
+          icon: Ph.phone,
           title: l.sosCallNearest,
           subtitle: nearest == null ? l.sosFinding : '${nearest.clinic.name} · ${Fmt.km(nearest.km)}',
           filled: true,
@@ -225,7 +226,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         ],
         const SizedBox(height: Space.md),
         _BigOption(
-          icon: Icons.near_me_outlined,
+          icon: Ph.navigationArrow,
           title: l.sosGetAddress,
           subtitle: nearest == null ? l.sosFinding : nearest.clinic.fullAddress,
           filled: false,
@@ -256,7 +257,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
         PawCard(
           onTap: () => context.push('/first-aid'),
           child: Row(children: [
-            Icon(Icons.medical_services_outlined, color: context.paw.textPrimary, size: IconSizes.xl),
+            Icon(Ph.firstAidKit, color: context.paw.textPrimary, size: IconSizes.xl),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -264,7 +265,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
                 Text(l.firstAidOfflineHint, style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_outlined),
+            const Icon(Ph.caretRight),
           ]),
         ),
         const SizedBox(height: Space.xxl),
@@ -296,7 +297,7 @@ class _LocationLine extends StatelessWidget {
     final status = Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       locating
           ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner))
-          : Icon(s?.source == SosSource.gps ? Icons.my_location_outlined : Icons.location_off_outlined,
+          : Icon(s?.source == SosSource.gps ? Ph.crosshair : Ph.gpsSlash,
               color: s?.source == SosSource.gps ? context.paw.success : context.paw.warning),
       const SizedBox(width: Space.md),
       Expanded(
@@ -307,7 +308,7 @@ class _LocationLine extends StatelessWidget {
       ),
     ]);
     final actions = <Widget>[
-      if (s?.source != SosSource.gps) IconButton(tooltip: l.sosTryLocation, icon: const Icon(Icons.refresh_outlined), onPressed: onRetry),
+      if (s?.source != SosSource.gps) IconButton(tooltip: l.sosTryLocation, icon: const Icon(Ph.arrowClockwise), onPressed: onRetry),
       TextButton(onPressed: onChange, child: Text(l.sosChangeArea)),
     ];
     // In an emergency the status gets the full width: on phones the buttons
@@ -385,7 +386,7 @@ class _BigOption extends StatelessWidget {
                       Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodyMedium?.copyWith(color: fg)),
                     ]),
                   ),
-                  Icon(expanded ? Icons.expand_less_outlined : Icons.expand_more_outlined, color: fg),
+                  Icon(expanded ? Ph.caretUp : Ph.caretDown, color: fg),
                 ]),
               ),
             ),
@@ -415,7 +416,7 @@ class _ClinicCallTile extends StatelessWidget {
           child: StatusChip(
             c.is24x7 ? l.open24x7 : (r.open ? l.openNow : l.closedNow),
             tone: c.is24x7 || r.open ? ChipTone.success : ChipTone.neutral,
-            icon: c.is24x7 ? Icons.emergency_outlined : null,
+            icon: c.is24x7 ? Ph.asterisk : null,
           ),
         ),
         const SizedBox(height: Space.sm),
@@ -440,14 +441,14 @@ class _ClinicCallTile extends StatelessWidget {
                 minimumSize: const Size.fromHeight(TapTarget.min),
               ),
               onPressed: onCall,
-              icon: const Icon(Icons.call_outlined, size: IconSizes.md),
+              icon: const Icon(Ph.phone, size: IconSizes.md),
               label: FittedBox(fit: BoxFit.scaleDown, child: Text('${l.call} · ${c.callNumber}', maxLines: 1)),
             ),
           );
           final map = OutlinedButton.icon(
             style: OutlinedButton.styleFrom(minimumSize: const Size(0, TapTarget.min)),
             onPressed: () => openDirections(c.lat, c.lng, label: c.name),
-            icon: Icon(Icons.near_me_outlined, size: IconSizes.md, color: paw.textPrimary),
+            icon: Icon(Ph.navigationArrow, size: IconSizes.md, color: paw.textPrimary),
             label: Text(l.mapView),
           );
           if (box.maxWidth < Sizes.placeCardMinWidth + Space.xxl) {
@@ -491,20 +492,20 @@ class _AddressCard extends StatelessWidget {
               interactive: false,
               fitPoints: [LatLng(c.lat, c.lng), LatLng(spot.lat, spot.lng)],
               markers: [
-                pinMarker(LatLng(c.lat, c.lng), color: context.paw.brand, icon: Icons.local_hospital_outlined),
+                pinMarker(LatLng(c.lat, c.lng), color: context.paw.brand, icon: Ph.firstAid),
                 dotMarker(LatLng(spot.lat, spot.lng), context.colors.primary),
               ],
             ),
           ),
         ),
         const SizedBox(height: Space.md),
-        PrimaryButton(label: l.openInMaps, icon: Icons.directions_outlined, onPressed: () => openDirections(c.lat, c.lng, label: c.name)),
+        PrimaryButton(label: l.openInMaps, icon: Ph.navigationArrow, onPressed: () => openDirections(c.lat, c.lng, label: c.name)),
         const SizedBox(height: Space.sm),
         Row(children: [
           Expanded(
             child: SecondaryButton(
               label: l.copy,
-              icon: Icons.copy_outlined,
+              icon: Ph.copy,
               onPressed: () async {
                 await Clipboard.setData(ClipboardData(text: text));
                 if (context.mounted) showToast(context, l.copied);
@@ -515,7 +516,7 @@ class _AddressCard extends StatelessWidget {
           Expanded(
             child: SecondaryButton(
               label: l.share,
-              icon: Icons.share_outlined,
+              icon: Ph.shareNetwork,
               onPressed: () async {
                 try {
                   await SharePlus.instance.share(ShareParams(text: text));

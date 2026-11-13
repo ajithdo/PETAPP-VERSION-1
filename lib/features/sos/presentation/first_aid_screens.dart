@@ -6,6 +6,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../shell/presentation/sos_launcher.dart';
 import 'safety_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// First-aid guides (spec 7.14). Everything is in the app itself, so the
 /// guides open without internet.
@@ -22,10 +23,10 @@ class FirstAidListScreen extends ConsumerWidget {
       ),
       body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
-        InfoNote(l.firstAidEmergencyNote, icon: Icons.emergency_outlined, tone: ChipTone.error),
+        InfoNote(l.firstAidEmergencyNote, icon: Ph.asterisk, tone: ChipTone.error),
         const SizedBox(height: Space.sm),
         Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-          StatusChip(l.firstAidOffline, tone: ChipTone.info, icon: Icons.offline_bolt_outlined),
+          StatusChip(l.firstAidOffline, tone: ChipTone.info, icon: Ph.cloudCheck),
           const DraftLabel(),
         ]),
         safetyGap,
@@ -61,7 +62,7 @@ class _SafeCheckCard extends StatelessWidget {
             width: TapTarget.min,
             height: TapTarget.min,
             decoration: BoxDecoration(color: paw.marigold, borderRadius: BorderRadius.circular(Radii.md)),
-            child: Icon(Icons.search_rounded, color: paw.onMarigold),
+            child: Icon(Ph.magnifyingGlass, color: paw.onMarigold),
           ),
           const SizedBox(width: Space.md),
           Expanded(
@@ -138,9 +139,9 @@ class FirstAidGuideScreen extends ConsumerWidget {
       body: PageBody(maxWidth: Space.formWidth, children: [
         const SizedBox(height: Space.md),
         const DraftLabel(),
-        heading(Icons.visibility_outlined, l.firstAidSigns, context.colors.primary),
+        heading(Ph.eye, l.firstAidSigns, context.colors.primary),
         Text(t.signs, style: context.text.bodyLarge),
-        heading(Icons.checklist_outlined, l.firstAidWhatToDo, context.paw.success),
+        heading(Ph.listChecks, l.firstAidWhatToDo, context.paw.success),
         PawCard(
           child: Column(children: [
             for (var i = 0; i < t.steps.length; i++)
@@ -158,22 +159,22 @@ class FirstAidGuideScreen extends ConsumerWidget {
               ),
           ]),
         ),
-        heading(Icons.block_outlined, l.firstAidAvoid, context.paw.error),
+        heading(Ph.prohibit, l.firstAidAvoid, context.paw.error),
         for (final a in t.avoid)
           Padding(
             padding: const EdgeInsets.only(bottom: Space.sm),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Icon(Icons.close_outlined, size: IconSizes.md, color: context.paw.error),
+              Icon(Ph.x, size: IconSizes.md, color: context.paw.error),
               const SizedBox(width: Space.sm),
               Expanded(child: Text(a, style: context.text.bodyLarge)),
             ]),
           ),
-        heading(Icons.local_hospital_outlined, l.firstAidWhenVet, context.paw.warning),
-        InfoNote(t.vet, icon: Icons.local_hospital_outlined, tone: ChipTone.error),
+        heading(Ph.firstAid, l.firstAidWhenVet, context.paw.warning),
+        InfoNote(t.vet, icon: Ph.firstAid, tone: ChipTone.error),
         safetyGap,
-        PrimaryButton(label: l.sosGetHelp, icon: Icons.emergency_outlined, danger: true, onPressed: () => openSos(context, ref)),
+        PrimaryButton(label: l.sosGetHelp, icon: Ph.asterisk, danger: true, onPressed: () => openSos(context, ref)),
         const SizedBox(height: Space.sm),
-        SecondaryButton(label: l.firstAidTalkToVet, icon: Icons.video_call_outlined, onPressed: () => context.push('/televet')),
+        SecondaryButton(label: l.firstAidTalkToVet, icon: Ph.videoCamera, onPressed: () => context.push('/televet')),
         const SizedBox(height: Space.xxl),
       ]),
     );

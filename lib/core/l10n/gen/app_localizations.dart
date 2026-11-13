@@ -2755,7 +2755,7 @@ abstract class AppLocalizations {
   /// No description provided for @streakDays.
   ///
   /// In en, this message translates to:
-  /// **'{count}-day streak'**
+  /// **'{count} days in a row'**
   String streakDays(int count);
 
   /// No description provided for @playProgress.
@@ -8629,7 +8629,7 @@ abstract class AppLocalizations {
   /// No description provided for @albumSeeAlbum.
   ///
   /// In en, this message translates to:
-  /// **'See album'**
+  /// **'Album'**
   String get albumSeeAlbum;
 
   /// No description provided for @albumYearsAgo.
@@ -10777,7 +10777,7 @@ abstract class AppLocalizations {
   /// No description provided for @shopReorderPrice.
   ///
   /// In en, this message translates to:
-  /// **'Reorder · {price}'**
+  /// **'Reorder {price}'**
   String shopReorderPrice(String price);
 
   /// No description provided for @shopCategories.
@@ -12187,7 +12187,7 @@ abstract class AppLocalizations {
   /// No description provided for @foodRunsOutIn.
   ///
   /// In en, this message translates to:
-  /// **'{pet}\'s food may run out in about {days, plural, =1{1 day} other{{days} days}}. Reorder?'**
+  /// **'{pet}\'s food may run out in about {days, plural, =1{1 day} other{{days} days}}'**
   String foodRunsOutIn(String pet, int days);
 
   /// No description provided for @foodRanOut.
@@ -12205,7 +12205,7 @@ abstract class AppLocalizations {
   /// No description provided for @foodEditPortion.
   ///
   /// In en, this message translates to:
-  /// **'Edit portion'**
+  /// **'Change daily portion'**
   String get foodEditPortion;
 
   /// No description provided for @foodOnTheWay.
@@ -17949,6 +17949,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Log something'**
   String get logGridTitle;
+
+  /// No description provided for @leftCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} left'**
+  String leftCount(int count);
+
+  /// No description provided for @markGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark given'**
+  String get markGiven;
+
+  /// No description provided for @playOfMin.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {goal} min'**
+  String playOfMin(int done, int goal);
+
+  /// No description provided for @aboutLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'about {amount} left'**
+  String aboutLeft(String amount);
+
+  /// No description provided for @nowAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Now, {time}'**
+  String nowAt(String time);
+
+  /// No description provided for @albumYearAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'A year ago today'**
+  String get albumYearAgo;
+
+  /// No description provided for @bookWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Book'**
+  String get bookWord;
+
+  /// No description provided for @sosEmergencyHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS, emergency help'**
+  String get sosEmergencyHelp;
 }
 
 class _AppLocalizationsDelegate

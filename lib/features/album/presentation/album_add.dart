@@ -19,6 +19,7 @@ import '../data/album_repository.dart';
 import '../domain/album.dart';
 import 'album_labels.dart';
 import 'video/video_source.dart';
+import '../../../core/theme/ph.dart';
 
 /// Longest side, in pixels, that album photos are scaled to.
 const double _photoMaxSide = 2000;
@@ -42,22 +43,22 @@ Future<void> showAddMemorySheet(BuildContext context, WidgetRef ref, Pet pet, {S
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Text(l.albumAddTitle(pet.name), style: ctx.text.titleMedium),
       const SizedBox(height: Space.md),
-      ListTile(leading: const Icon(Icons.photo_camera_outlined), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
-      ListTile(leading: const Icon(Icons.photo_library_outlined), title: Text(l.albumChoosePhotos), onTap: () => Navigator.pop(ctx, 'photos')),
+      ListTile(leading: const Icon(Ph.camera), title: Text(l.takePhoto), onTap: () => Navigator.pop(ctx, 'camera')),
+      ListTile(leading: const Icon(Ph.images), title: Text(l.albumChoosePhotos), onTap: () => Navigator.pop(ctx, 'photos')),
       ListTile(
-        leading: const Icon(Icons.videocam_outlined),
+        leading: const Icon(Ph.videoCamera),
         title: Text(l.albumRecordVideo),
         subtitle: Text(l.albumVideoMaxSec(limit)),
         onTap: () => Navigator.pop(ctx, 'record'),
       ),
       ListTile(
-        leading: const Icon(Icons.video_library_outlined),
+        leading: const Icon(Ph.filmStrip),
         title: Text(l.albumChooseVideo),
         subtitle: Text(l.albumVideoMaxSec(limit)),
         onTap: () => Navigator.pop(ctx, 'video'),
       ),
       if (milestone == null)
-        ListTile(leading: const Icon(Icons.emoji_events_outlined), title: Text(l.albumAddMilestone), onTap: () => Navigator.pop(ctx, 'milestone')),
+        ListTile(leading: const Icon(Ph.trophy), title: Text(l.albumAddMilestone), onTap: () => Navigator.pop(ctx, 'milestone')),
       const SizedBox(height: Space.sm),
       Text(l.albumStorageNote, style: ctx.text.bodySmall),
     ]);
@@ -267,7 +268,7 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
                       ? ColoredBox(
                           color: context.paw.primaryContainer,
                           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                            Icon(Icons.videocam_outlined, size: IconSizes.hero, color: context.colors.primary),
+                            Icon(Ph.videoCamera, size: IconSizes.hero, color: context.colors.primary),
                             Text(videoLength(m.durationSec), style: context.text.titleSmall),
                           ]),
                         )
@@ -280,7 +281,7 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
       PawTextField(label: l.albumCaption, hint: l.albumCaptionHint, controller: _caption, maxLines: 3),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft, minimumSize: const Size.fromHeight(52)),
-        icon: const Icon(Icons.event_outlined),
+        icon: const Icon(Ph.calendarBlank),
         label: Text('${l.albumDateTaken}: ${Fmt.date(_taken, context.lang)}'),
         onPressed: () async {
           final now = DateTime.now();
@@ -313,10 +314,10 @@ class _EditSheetState extends ConsumerState<_EditSheet> {
       Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
         for (final a in allAlbums)
           FilterChip(label: Text(a), selected: _albums.contains(a), onSelected: (v) => setState(() => v ? _albums.add(a) : _albums.remove(a))),
-        ActionChip(avatar: const Icon(Icons.add_outlined, size: IconSizes.chip), label: Text(l.albumNewAlbum), onPressed: _newAlbum),
+        ActionChip(avatar: const Icon(Ph.plus, size: IconSizes.chip), label: Text(l.albumNewAlbum), onPressed: _newAlbum),
       ]),
       const SizedBox(height: Space.xl),
-      PrimaryButton(label: l.save, icon: Icons.check_outlined, loading: _busy, onPressed: _save),
+      PrimaryButton(label: l.save, icon: Ph.check, loading: _busy, onPressed: _save),
     ]);
   }
 }
@@ -355,8 +356,8 @@ Future<void> showAddToAlbumSheet(BuildContext context, WidgetRef ref, Pet pet, L
       Text(l.albumAddToAlbum, style: ctx.text.titleMedium),
       const SizedBox(height: Space.sm),
       for (final n in names)
-        ListTile(leading: const Icon(Icons.photo_album_outlined), title: Text(n), onTap: () => Navigator.pop(ctx, n)),
-      ListTile(leading: const Icon(Icons.add_outlined), title: Text(l.albumNewAlbum), onTap: () => Navigator.pop(ctx, '')),
+        ListTile(leading: const Icon(Ph.imagesSquare), title: Text(n), onTap: () => Navigator.pop(ctx, n)),
+      ListTile(leading: const Icon(Ph.plus), title: Text(l.albumNewAlbum), onTap: () => Navigator.pop(ctx, '')),
     ]);
   });
   if (picked == null || !context.mounted) return;

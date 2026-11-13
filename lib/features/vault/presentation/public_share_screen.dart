@@ -14,6 +14,7 @@ import '../data/share_service.dart';
 import '../domain/share_rules.dart';
 import 'doc_preview.dart';
 import 'vault_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// The page a vet or family member opens from a share link. Works without
 /// signing in; view only; stops working once expired or turned off.
@@ -95,7 +96,7 @@ class _PublicShareScreenState extends ConsumerState<PublicShareScreen> {
                   Row(children: [
                     const PawSetuLogo(size: Sizes.logo, withName: true),
                     const Spacer(),
-                    StatusChip(l.vaultViewOnly, tone: ChipTone.info, icon: Icons.visibility_outlined),
+                    StatusChip(l.vaultViewOnly, tone: ChipTone.info, icon: Ph.eye),
                   ]),
                   const SizedBox(height: Space.xl),
                   body,

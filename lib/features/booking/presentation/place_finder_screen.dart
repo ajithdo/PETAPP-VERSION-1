@@ -17,6 +17,7 @@ import '../data/places_repository.dart';
 import '../domain/booking_rules.dart';
 import 'booking_labels.dart';
 import 'booking_slots.dart';
+import '../../../core/theme/ph.dart';
 
 /// Where the user is searching from: GPS, or a chosen city and area.
 class SearchOrigin {
@@ -199,7 +200,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
         actions: [
           IconButton(
             tooltip: _map ? l.listView : l.mapView,
-            icon: Icon(_map ? Icons.view_list_outlined : Icons.map_outlined),
+            icon: Icon(_map ? Ph.listBullets : Ph.mapTrifold),
             onPressed: () => setState(() => _map = !_map),
           ),
         ],
@@ -217,7 +218,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                     TextField(
                       controller: _search,
                       onChanged: (_) => setState(() {}),
-                      decoration: InputDecoration(prefixIcon: const Icon(Icons.search_outlined), hintText: l.searchByNameOrArea),
+                      decoration: InputDecoration(prefixIcon: const Icon(Ph.magnifyingGlass), hintText: l.searchByNameOrArea),
                     ),
                     const SizedBox(height: Space.sm),
                     SingleChildScrollView(
@@ -225,19 +226,19 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                       child: Row(
                         children: [
                           ActionChip(
-                            avatar: Icon(origin.fromGps ? Icons.my_location_outlined : Icons.place_outlined, size: IconSizes.chip),
+                            avatar: Icon(origin.fromGps ? Ph.crosshair : Ph.mapPin, size: IconSizes.chip),
                             label: Text(origin.label),
                             onPressed: () => pickArea(context, ref),
                           ),
                           const SizedBox(width: Space.sm),
                           ActionChip(
-                            avatar: const Icon(Icons.gps_fixed_outlined, size: IconSizes.chip),
+                            avatar: const Icon(Ph.gpsFix, size: IconSizes.chip),
                             label: Text(l.useMyLocation),
                             onPressed: () => useMyLocation(context, ref),
                           ),
                           const SizedBox(width: Space.sm),
                           ActionChip(
-                            avatar: Badge.count(count: _f.count, isLabelVisible: _f.count > 0, child: const Icon(Icons.tune_outlined, size: IconSizes.chip)),
+                            avatar: Badge.count(count: _f.count, isLabelVisible: _f.count > 0, child: const Icon(Ph.slidersHorizontal, size: IconSizes.chip)),
                             label: Text(l.filters),
                             onPressed: _openFilters,
                           ),
@@ -252,7 +253,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                               PopupMenuItem(value: 'slot', child: Text(l.sortSlot)),
                               PopupMenuItem(value: 'fee', child: Text(l.sortFee)),
                             ],
-                            child: Chip(avatar: const Icon(Icons.sort_outlined, size: IconSizes.chip), label: Text(l.sortBy)),
+                            child: Chip(avatar: const Icon(Ph.sortAscending, size: IconSizes.chip), label: Text(l.sortBy)),
                           ),
                           if (_isClinic) ...[
                             const SizedBox(width: Space.sm),
@@ -310,7 +311,7 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                                     button: true,
                                     label: e.$1.name,
                                     child: Icon(
-                                      Icons.location_on,
+                                      Ph.mapPinFill,
                                       size: Sizes.mapPin,
                                       color: e.$1.is24x7 ? context.paw.sos : context.paw.brand,
                                       shadows: [Shadow(blurRadius: Space.xs, color: context.paw.ink.withValues(alpha: Opacities.border))],
@@ -488,7 +489,7 @@ class PlaceCard extends ConsumerWidget {
     // Rating as plain text with a marigold star (one chip per row at most).
     final rating = p.reviewCount > 0
         ? Row(mainAxisSize: MainAxisSize.min, children: [
-            Icon(Icons.star_rounded, size: IconSizes.sm, color: paw.accent),
+            Icon(Ph.starFill, size: IconSizes.sm, color: paw.accent),
             const SizedBox(width: Space.xxs),
             Text(p.rating.toStringAsFixed(1), style: context.text.labelLarge),
             Text(' (${p.reviewCount})', style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
@@ -513,7 +514,7 @@ class PlaceCard extends ConsumerWidget {
                   ?rating,
                   // One chip: 24x7 says more than "Open now". Never red.
                   p.is24x7
-                      ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Icons.schedule_rounded)
+                      ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clock)
                       : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
                 ]),
               ]),
@@ -527,7 +528,7 @@ class PlaceCard extends ConsumerWidget {
     // area, status and rating; under a dashed rule, the next free slot, the
     // fee and a small Book button.
     final status = p.is24x7
-        ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Icons.schedule_rounded)
+        ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clock)
         : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral);
     Widget fact(String label, String value) => Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
           Text(label, style: context.text.bodySmall),

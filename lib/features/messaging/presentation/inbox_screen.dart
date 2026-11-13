@@ -16,6 +16,7 @@ import '../data/chat_repository.dart';
 import '../domain/chat_rules.dart';
 import 'chat_screen.dart';
 import 'chat_widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// Width from which the inbox and the open chat sit side by side.
 const splitViewWidth = 900.0;
@@ -40,7 +41,7 @@ class MessagesHome extends ConsumerWidget {
         floatingActionButton: owner
             ? FloatingActionButton.extended(
                 onPressed: () => context.push('/televet'),
-                icon: const Icon(Icons.video_call_outlined),
+                icon: const Icon(Ph.videoCamera),
                 label: Text(l.qaAskVet),
               )
             : null,
@@ -138,12 +139,12 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
               onChanged: (_) => _onQuery(all),
               decoration: InputDecoration(
                 hintText: l.msgSearchHint,
-                prefixIcon: const Icon(Icons.search_outlined),
+                prefixIcon: const Icon(Ph.magnifyingGlass),
                 suffixIcon: q.isEmpty
                     ? null
                     : IconButton(
                         tooltip: l.msgClearSearch,
-                        icon: const Icon(Icons.close_outlined),
+                        icon: const Icon(Ph.x),
                         onPressed: () {
                           _q.clear();
                           _onQuery(all);
@@ -181,7 +182,7 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
                   for (final m in hits)
                     ListTile(
                       contentPadding: EdgeInsets.symmetric(horizontal: context.gutter),
-                      leading: const Icon(Icons.chat_bubble_outlined),
+                      leading: const Icon(Ph.chatCircle),
                       title: Text(byId[m.conversationId]!.titleFor(me.uid), maxLines: 1, overflow: TextOverflow.ellipsis),
                       subtitle: Text(m.type == 'pdf' ? (m.fileName ?? '') : m.text, maxLines: 2, overflow: TextOverflow.ellipsis),
                       trailing: Text(chatTime(m.createdAt, context.lang), style: context.text.labelSmall),
@@ -216,7 +217,7 @@ class _AskPawSetuTile extends ConsumerWidget {
             width: TapTarget.min - Space.xxs,
             height: TapTarget.min - Space.xxs,
             decoration: BoxDecoration(color: context.paw.marigold, borderRadius: BorderRadius.circular(Radii.md)),
-            child: Icon(Icons.auto_awesome_outlined, color: context.paw.onMarigold),
+            child: Icon(Ph.sparkle, color: context.paw.onMarigold),
           ),
           const SizedBox(width: Space.md),
           Expanded(
@@ -225,7 +226,7 @@ class _AskPawSetuTile extends ConsumerWidget {
               Text(a.unlimited ? l.aiTileHintPlus : l.aiTileHint(a.left), style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
             ]),
           ),
-          const Icon(Icons.chevron_right_outlined),
+          const Icon(Ph.caretRight),
         ]),
       ),
     );
@@ -247,10 +248,10 @@ class ConversationTile extends StatelessWidget {
     final unread = c.unreadFor(me.uid);
     final mine = c.lastSenderId == me.uid;
     final (IconData? icon, String text) = switch (c.lastType) {
-      'photo' => (Icons.photo_outlined, l.msgPreviewPhoto),
-      'voice' => (Icons.mic_outlined, l.msgPreviewVoice),
-      'pdf' => (Icons.picture_as_pdf_outlined, c.lastMessage.isEmpty ? l.msgPreviewPdf : c.lastMessage),
-      'prescription' => (Icons.receipt_long_outlined, l.rxSentPreview),
+      'photo' => (Ph.image, l.msgPreviewPhoto),
+      'voice' => (Ph.microphone, l.msgPreviewVoice),
+      'pdf' => (Ph.filePdf, c.lastMessage.isEmpty ? l.msgPreviewPdf : c.lastMessage),
+      'prescription' => (Ph.receipt, l.rxSentPreview),
       'system' => (null, c.lastMessage.isEmpty ? l.msgNoMessagesYet : c.lastMessage),
       _ => (null, c.lastMessage),
     };
@@ -297,7 +298,7 @@ class ConversationTile extends StatelessWidget {
                     ),
                     if (c.mutedFor(me.uid)) ...[
                       const SizedBox(width: Space.xs),
-                      Icon(Icons.notifications_off_outlined, size: IconSizes.sm, color: context.paw.textSecondary, semanticLabel: l.msgMuted),
+                      Icon(Ph.bellSlash, size: IconSizes.sm, color: context.paw.textSecondary, semanticLabel: l.msgMuted),
                     ],
                     if (unread > 0) ...[
                       const SizedBox(width: Space.xs + Space.xxs),

@@ -17,6 +17,11 @@ class Fmt {
   static String dateShort(DateTime d, [String locale = 'en']) => DateFormat('d MMM', _l(locale)).format(d);
   static String weekdayDate(DateTime d, [String locale = 'en']) =>
       DateFormat('EEE, d MMM', _l(locale)).format(d);
+  /// "Sunday, 8 November" (the line above Home's greeting).
+  static String weekdayDateLong(DateTime d, [String locale = 'en']) => DateFormat('EEEE, d MMMM', _l(locale)).format(d);
+
+  /// "6 am", "2 pm": an hour on the walk strip.
+  static String hour(DateTime d, [String locale = 'en']) => DateFormat('h a', _l(locale)).format(d).toLowerCase();
   static String monthYear(DateTime d, [String locale = 'en']) => DateFormat('MMMM yyyy', _l(locale)).format(d);
   static String monthShort(DateTime d, [String locale = 'en']) => DateFormat('MMM', _l(locale)).format(d);
   static String weekdayNarrow(DateTime d, [String locale = 'en']) => DateFormat('EEEEE', _l(locale)).format(d);

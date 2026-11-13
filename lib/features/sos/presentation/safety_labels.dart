@@ -7,21 +7,22 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../domain/devices.dart';
 import '../domain/toxic.dart';
+import '../../../core/theme/ph.dart';
 
 /// The 9 first-aid guides (spec 7.14), in the order they are listed.
 const firstAidIds = ['choking', 'poisoning', 'heatstroke', 'bleeding', 'fracture', 'seizure', 'burn', 'bite', 'tick'];
 
 IconData firstAidIcon(String id) => switch (id) {
-      'choking' => Icons.air_outlined,
-      'poisoning' => Icons.science_outlined,
-      'heatstroke' => Icons.wb_sunny_outlined,
-      'bleeding' => Icons.water_drop_outlined,
-      'fracture' => Icons.accessibility_new_outlined,
-      'seizure' => Icons.bolt_outlined,
-      'burn' => Icons.local_fire_department_outlined,
-      'bite' => Icons.pest_control_outlined,
-      'tick' => Icons.bug_report_outlined,
-      _ => Icons.medical_services_outlined,
+      'choking' => Ph.wind,
+      'poisoning' => Ph.flask,
+      'heatstroke' => Ph.sun,
+      'bleeding' => Ph.drop,
+      'fracture' => Ph.personArmsSpread,
+      'seizure' => Ph.lightning,
+      'burn' => Ph.fire,
+      'bite' => Ph.bugBeetle,
+      'tick' => Ph.bug,
+      _ => Ph.firstAidKit,
     };
 
 class FirstAidText {
@@ -106,9 +107,9 @@ ChipTone toxTone(ToxLevel v) => switch (v) {
     };
 
 IconData toxIcon(ToxLevel v) => switch (v) {
-      ToxLevel.danger => Icons.dangerous_outlined,
-      ToxLevel.caution => Icons.warning_amber_outlined,
-      ToxLevel.safe => Icons.check_circle_rounded,
+      ToxLevel.danger => Ph.warningOctagon,
+      ToxLevel.caution => Ph.warning,
+      ToxLevel.safe => Ph.checkCircleFill,
     };
 
 String toxKindLabel(AppLocalizations l, ToxKind k) => switch (k) {
@@ -136,12 +137,12 @@ String deviceTypeHint(AppLocalizations l, DeviceType t) => switch (t) {
     };
 
 IconData deviceIcon(DeviceType t) => switch (t) {
-      DeviceType.gpsCollar => Icons.share_location_outlined,
-      DeviceType.activityTracker => Icons.watch_outlined,
-      DeviceType.feeder => Icons.set_meal_outlined,
-      DeviceType.fountain => Icons.water_drop_outlined,
-      DeviceType.camera => Icons.videocam_outlined,
-      DeviceType.litterBox => Icons.inventory_2_outlined,
+      DeviceType.gpsCollar => Ph.mapPinLine,
+      DeviceType.activityTracker => Ph.watch,
+      DeviceType.feeder => Ph.bowlFood,
+      DeviceType.fountain => Ph.drop,
+      DeviceType.camera => Ph.videoCamera,
+      DeviceType.litterBox => Ph.package,
     };
 
 /// The "Draft, to be reviewed by a vet" label (DEMO VERSION 1 content). Once the
@@ -158,8 +159,8 @@ class DraftLabel extends ConsumerWidget {
     return Align(
       alignment: AlignmentDirectional.centerStart,
       child: by.isEmpty
-          ? StatusChip(context.l10n.draftVetReview, tone: ChipTone.warning, icon: Icons.rate_review_outlined)
-          : StatusChip(context.l10n.reviewedBy(by), tone: ChipTone.success, icon: Icons.verified_rounded),
+          ? StatusChip(context.l10n.draftVetReview, tone: ChipTone.warning, icon: Ph.chatCenteredText)
+          : StatusChip(context.l10n.reviewedBy(by), tone: ChipTone.success, icon: Ph.sealCheckFill),
     );
   }
 }

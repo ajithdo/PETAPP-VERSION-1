@@ -18,6 +18,7 @@ import '../domain/booking_rules.dart';
 import 'booking_labels.dart';
 import 'my_bookings_screen.dart';
 import '../../../core/widgets/paw_map.dart';
+import '../../../core/theme/ph.dart';
 
 /// Booking in at most 4 screens (spec 7.6): pet and service → date and
 /// slot → notes, photos and payment → confirm with the full price.
@@ -407,7 +408,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
               child: MediaImage(url: p, width: Sizes.thumbLg, height: Sizes.thumbLg),
             ),
           ActionChip(
-            avatar: const Icon(Icons.add_a_photo_outlined, size: IconSizes.chip),
+            avatar: const Icon(Ph.cameraPlus, size: IconSizes.chip),
             label: Text(l.addPhoto),
             onPressed: () async {
               final pick = await pickImage(context, ImageSource.gallery);
@@ -533,7 +534,7 @@ class BookingDoneScreen extends ConsumerWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: [
-          TextButton.icon(onPressed: () => context.go('/book'), icon: const Icon(Icons.close_outlined), label: Text(l.close)),
+          TextButton.icon(onPressed: () => context.go('/book'), icon: const Icon(Ph.x), label: Text(l.close)),
           const SizedBox(width: Space.sm),
         ],
       ),
@@ -549,7 +550,7 @@ class BookingDoneScreen extends ConsumerWidget {
                     width: Sizes.heroAvatar,
                     height: Sizes.heroAvatar,
                     decoration: BoxDecoration(color: request ? paw.primaryContainer : paw.successContainer, shape: BoxShape.circle),
-                    child: Icon(request ? Icons.hourglass_top_outlined : Icons.check_circle_outlined, size: IconSizes.xxxl, color: request ? paw.brand : paw.success),
+                    child: Icon(request ? Ph.hourglassHigh : Ph.checkCircle, size: IconSizes.xxxl, color: request ? paw.brand : paw.success),
                   ),
                 ),
                 const SizedBox(height: Space.lg),
@@ -614,7 +615,7 @@ class BookingDoneScreen extends ConsumerWidget {
                           runSpacing: Space.sm,
                           children: [
                             Row(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                              Icon(Icons.place_outlined, color: paw.brand),
+                              Icon(Ph.mapPin, color: paw.brand),
                               const SizedBox(width: Space.sm),
                               ConstrainedBox(
                                 constraints: const BoxConstraints(maxWidth: Sizes.placeCardMinWidth),
@@ -627,7 +628,7 @@ class BookingDoneScreen extends ConsumerWidget {
                             FilledButton.icon(
                               style: FilledButton.styleFrom(backgroundColor: paw.brand, foregroundColor: paw.onBrand, iconColor: paw.onBrand),
                               onPressed: () => openDirections(place.lat, place.lng, label: place.name),
-                              icon: const Icon(Icons.directions_outlined, size: IconSizes.md),
+                              icon: const Icon(Ph.navigationArrow, size: IconSizes.md),
                               label: Text(l.directions),
                             ),
                           ],
@@ -636,7 +637,7 @@ class BookingDoneScreen extends ConsumerWidget {
                     ],
                     if (!request) ...[
                       const SizedBox(height: Space.md),
-                      SecondaryButton(label: l.addToCalendar, icon: Icons.event_outlined, onPressed: () => shareBookingToCalendar(context, b)),
+                      SecondaryButton(label: l.addToCalendar, icon: Ph.calendarBlank, onPressed: () => shareBookingToCalendar(context, b)),
                     ],
                   ]),
                 ),

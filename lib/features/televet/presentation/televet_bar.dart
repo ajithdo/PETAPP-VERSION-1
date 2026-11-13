@@ -9,6 +9,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../plans/presentation/plus_prompt.dart';
 import '../data/consultation.dart';
 import '../data/televet_repository.dart';
+import '../../../core/theme/ph.dart';
 
 /// Status strip above a tele-vet chat: waiting, who the vet is, allowance
 /// left, video call, prescription and rating.
@@ -59,13 +60,13 @@ class TeleVetBar extends ConsumerWidget {
 
     if (!isOwner) {
       return strip(
-        leading: CircleAvatar(backgroundColor: context.paw.primaryContainer, child: Icon(Icons.medical_services_outlined, color: context.colors.primary)),
+        leading: CircleAvatar(backgroundColor: context.paw.primaryContainer, child: Icon(Ph.firstAidKit, color: context.colors.primary)),
         title: l.tvVetBarTitle(c.petName, c.ownerName),
         subtitle: c.isQueued ? l.tvStatusQueued : (c.isEnded ? l.tvStatusEnded : l.tvStatusActive),
         trailing: [
           FilledButton.tonalIcon(
             onPressed: () => context.push('/partner/consult/${c.id}'),
-            icon: const Icon(Icons.medical_information_outlined),
+            icon: const Icon(Ph.clipboardText),
             label: Text(l.tvOpenVetTools),
           ),
         ],
@@ -76,28 +77,28 @@ class TeleVetBar extends ConsumerWidget {
       final scheduled = c.scheduledAt != null && c.scheduledAt!.isAfter(now);
       return strip(
         leading: scheduled
-            ? Icon(Icons.schedule_outlined, color: context.colors.primary)
+            ? Icon(Ph.clock, color: context.colors.primary)
             : SizedBox(width: IconSizes.lg, height: IconSizes.lg, child: CircularProgressIndicator(strokeWidth: Strokes.spinner, color: context.colors.primary)),
         title: scheduled ? l.tvScheduledTitle(Fmt.dateTime(c.scheduledAt!, lang)) : l.tvFindingVet(c.petName),
         subtitle: scheduled ? l.tvScheduledHint : l.tvFindingVetHint,
-        trailing: [if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Icons.bolt_outlined)],
+        trailing: [if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Ph.lightning)],
       );
     }
 
     if (c.isEnded) {
       return strip(
-        leading: Icon(Icons.check_circle_rounded, color: context.paw.success),
+        leading: Icon(Ph.checkCircleFill, color: context.paw.success),
         title: l.tvEndedWith(c.vetName),
         subtitle: c.endedAt == null ? null : Fmt.dateTime(c.endedAt!, lang),
         trailing: [
           if (c.prescriptionId != null)
             FilledButton.tonalIcon(
               onPressed: () => context.push('/prescriptions/${c.prescriptionId}'),
-              icon: const Icon(Icons.receipt_long_outlined),
+              icon: const Icon(Ph.receipt),
               label: Text(l.rxView),
             ),
           if (c.rating == null)
-            FilledButton.icon(onPressed: () => showRateSheet(context, ref, c, me), icon: const Icon(Icons.star_rounded), label: Text(l.tvRate))
+            FilledButton.icon(onPressed: () => showRateSheet(context, ref, c, me), icon: const Icon(Ph.starFill), label: Text(l.tvRate))
           else
             StatusChip('★ ${c.rating}', tone: ChipTone.accent),
         ],
@@ -120,7 +121,7 @@ class TeleVetBar extends ConsumerWidget {
         StatusChip(
           l.tvMessagesLeft(c.messagesLeft),
           tone: c.messagesLeft == 0 ? ChipTone.error : (c.messagesLeft <= (limits.messages / 4).ceil() ? ChipTone.warning : ChipTone.info),
-          icon: Icons.chat_bubble_outlined,
+          icon: Ph.chatCircle,
         ),
         FilledButton.icon(
           onPressed: () {
@@ -130,7 +131,7 @@ class TeleVetBar extends ConsumerWidget {
             }
             context.push('/televet/call/${c.id}');
           },
-          icon: const Icon(Icons.videocam_outlined),
+          icon: const Icon(Ph.videoCamera),
           label: Text(l.tvVideoCall),
         ),
       ],
@@ -154,7 +155,7 @@ Future<void> showRateSheet(BuildContext context, WidgetRef ref, Consultation c, 
               tooltip: l.tvStars(i),
               iconSize: 36,
               onPressed: () => set(() => stars = i),
-              icon: Icon(i <= stars ? Icons.star_rounded : Icons.star_outline_rounded, color: ctx.paw.accent),
+              icon: Icon(i <= stars ? Ph.starFill : Ph.star, color: ctx.paw.accent),
             ),
         ]),
         const SizedBox(height: Space.md),

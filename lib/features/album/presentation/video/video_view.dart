@@ -8,6 +8,7 @@ import '../../../../core/widgets/widgets.dart';
 import '../../domain/album.dart';
 import '../album_labels.dart';
 import 'video_source.dart';
+import '../../../../core/theme/ph.dart';
 
 /// Plays an album video. Uploaded videos play for real; the demo's sample
 /// clips (seed:…) have no video file, so their playback is simulated.
@@ -74,7 +75,7 @@ class _AlbumVideoViewState extends ConsumerState<AlbumVideoView> {
     if (_failed) {
       return Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Icon(Icons.videocam_off_outlined, color: MediaColors.foregroundMuted, size: IconSizes.hero),
+          const Icon(Ph.videoCameraSlash, color: MediaColors.foregroundMuted, size: IconSizes.hero),
           const SizedBox(height: Space.sm),
           Text(l.albumVideoFailed, style: const TextStyle(color: MediaColors.foregroundMuted), textAlign: TextAlign.center),
         ]),
@@ -122,7 +123,7 @@ class _PlayButton extends StatelessWidget {
         iconSize: 40,
         style: IconButton.styleFrom(backgroundColor: MediaColors.scrim, foregroundColor: MediaColors.foreground, minimumSize: const Size(72, 72)),
         onPressed: onTap,
-        icon: Icon(playing ? Icons.pause_outlined : Icons.play_arrow_outlined),
+        icon: Icon(playing ? Ph.pause : Ph.play),
       ),
     );
   }

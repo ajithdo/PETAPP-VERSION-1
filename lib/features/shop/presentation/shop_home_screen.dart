@@ -18,6 +18,7 @@ import '../domain/shop_rules.dart';
 import 'product_widgets.dart';
 import 'quick_reorder.dart';
 import 'shop_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Shop tab (spec 7.10): search, personalised picks per pet, Buy again,
 /// categories, deals and partner stores.
@@ -76,7 +77,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
           const SizedBox(height: Space.sm),
           Row(children: [
             Expanded(child: Semantics(header: true, child: Text(l.shopTitle, style: context.text.headlineLarge))),
-            IconButton(tooltip: l.ordMyOrders, onPressed: () => context.push('/shop/orders'), icon: Badge(isLabelVisible: open > 0, label: Text('$open'), child: const Icon(Icons.receipt_long_outlined))),
+            IconButton(tooltip: l.ordMyOrders, onPressed: () => context.push('/shop/orders'), icon: Badge(isLabelVisible: open > 0, label: Text('$open'), child: const Icon(Ph.receipt))),
             const CartButton(),
           ]),
           const SizedBox(height: Space.sm),
@@ -89,7 +90,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
               onTap: () => context.push('/shop/search?focus=1'),
               child: InputDecorator(
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search_outlined),
+                  prefixIcon: const Icon(Ph.magnifyingGlass),
                   hintText: l.shopSearchHint,
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.paw.controlBorder)),
                   enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.paw.controlBorder)),
@@ -134,11 +135,11 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
                   width: TapTarget.min,
                   height: TapTarget.min,
                   decoration: BoxDecoration(color: context.paw.marigold, borderRadius: BorderRadius.circular(Radii.md)),
-                  child: Icon(Icons.video_call_outlined, color: context.paw.onMarigold),
+                  child: Icon(Ph.videoCamera, color: context.paw.onMarigold),
                 ),
                 const SizedBox(width: Space.md),
                 Expanded(child: Text(l.shopAskVet(pet.name), style: context.text.titleSmall?.copyWith(color: context.paw.onAccentContainer))),
-                Icon(Icons.chevron_right_rounded, color: context.paw.onAccentContainer),
+                Icon(Ph.caretRight, color: context.paw.onAccentContainer),
               ]),
             ),
           ],
@@ -147,7 +148,7 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
           const BannerStrip(placement: 'shop'),
           if (user != null && !user.isPlus) ...[
             const SizedBox(height: Space.sm),
-            InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Icons.workspace_premium_outlined, tone: ChipTone.accent),
+            InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Ph.crownSimple, tone: ChipTone.accent),
           ],
           if (featured.isNotEmpty) ...[
             SectionHeader(l.shopFeatured),
@@ -206,7 +207,7 @@ class _BuyAgainTile extends ConsumerWidget {
             tooltip: p.inStock ? l.shopReorder : l.shopOutOfStock,
             style: IconButton.styleFrom(backgroundColor: paw.action, foregroundColor: paw.onAction),
             onPressed: p.inStock ? () => showQuickReorder(context, ref, product: p, pet: pet) : null,
-            icon: const Icon(Icons.replay_rounded),
+            icon: const Icon(Ph.arrowCounterClockwise),
           ),
         ]),
       ),
@@ -271,7 +272,7 @@ class _PartnerStores extends ConsumerWidget {
         PawCard(
           onTap: () => context.push('/shop/search?store=${s.id}'),
           child: Row(children: [
-            CircleAvatar(backgroundColor: context.paw.primaryContainer, child: Icon(Icons.storefront_outlined, color: context.colors.primary)),
+            CircleAvatar(backgroundColor: context.paw.primaryContainer, child: Icon(Ph.storefront, color: context.colors.primary)),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -279,7 +280,7 @@ class _PartnerStores extends ConsumerWidget {
                 Text(l.shopListings(products.where((p) => p.partnerId == s.id).length), style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_outlined),
+            const Icon(Ph.caretRight),
           ]),
         ),
     ]);

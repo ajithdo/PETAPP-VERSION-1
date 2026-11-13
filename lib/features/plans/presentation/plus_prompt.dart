@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// Gentle upgrade prompt shown when a free-plan limit is reached.
 Future<void> showPlusPrompt(BuildContext context, {required String title, required String body}) {
@@ -10,7 +11,7 @@ Future<void> showPlusPrompt(BuildContext context, {required String title, requir
     final l = ctx.l10n;
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(children: [
-        Icon(Icons.workspace_premium_outlined, color: ctx.paw.accent, size: IconSizes.xl),
+        Icon(Ph.crownSimple, color: ctx.paw.accent, size: IconSizes.xl),
         const SizedBox(width: Space.md),
         Expanded(child: Text(title, style: ctx.text.titleMedium)),
       ]),
@@ -21,7 +22,7 @@ Future<void> showPlusPrompt(BuildContext context, {required String title, requir
         Padding(
           padding: const EdgeInsets.only(bottom: Space.sm),
           child: Row(children: [
-            Icon(Icons.check_circle_rounded, color: ctx.paw.success, size: IconSizes.md),
+            Icon(Ph.checkCircleFill, color: ctx.paw.success, size: IconSizes.md),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(perk)),
           ]),
@@ -29,7 +30,7 @@ Future<void> showPlusPrompt(BuildContext context, {required String title, requir
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.seePlus,
-        icon: Icons.workspace_premium_outlined,
+        icon: Ph.crownSimple,
         onPressed: () {
           Navigator.pop(ctx);
           context.push('/me/plus');

@@ -13,6 +13,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../pets/domain/breeds.dart';
 import '../../pets/presentation/pet_labels.dart';
 import '../data/lost_repository.dart';
+import '../../../core/theme/ph.dart';
 
 /// The public page behind a pet's QR tag (spec 7.14). Anyone can open it,
 /// signed in or not. The family's phone number is never shown: messages
@@ -118,13 +119,13 @@ class _PublicLostScreenState extends ConsumerState<PublicLostScreen> {
                     if (ref.watch(appConfigProvider).isDemo) ...[DemoBanner(l.finderDemoNote), const SizedBox(height: Space.md)],
                     _PetHeader(view: v),
                     const SizedBox(height: Space.lg),
-                    PrimaryButton(label: l.finderContact, icon: Icons.forum_outlined, onPressed: () => _contact(v)),
+                    PrimaryButton(label: l.finderContact, icon: Ph.chatsCircle, onPressed: () => _contact(v)),
                     const SizedBox(height: Space.sm),
-                    SecondaryButton(label: l.finderShareLocation, icon: Icons.my_location_outlined, onPressed: () => _shareLocation(v)),
+                    SecondaryButton(label: l.finderShareLocation, icon: Ph.crosshair, onPressed: () => _shareLocation(v)),
                     const SizedBox(height: Space.lg),
-                    InfoNote(l.finderPrivacy, icon: Icons.lock_outlined),
+                    InfoNote(l.finderPrivacy, icon: Ph.lockKey),
                     const SizedBox(height: Space.md),
-                    InfoNote(l.finderTips, icon: Icons.tips_and_updates_outlined, tone: ChipTone.success),
+                    InfoNote(l.finderTips, icon: Ph.lightbulb, tone: ChipTone.success),
                   ],
                   const SizedBox(height: Space.xl),
                   Center(child: TextButton(onPressed: () => context.go('/splash'), child: Text(l.vaultGetPawSetu))),
@@ -231,7 +232,7 @@ class _ContactFormState extends State<_ContactForm> {
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.finderSend,
-        icon: Icons.send_outlined,
+        icon: Ph.paperPlaneRight,
         onPressed: () {
           if (_message.text.trim().isEmpty) return;
           Navigator.pop(context, (message: _message.text.trim(), name: _name.text.trim(), phone: _phone.text.trim()));
@@ -281,7 +282,7 @@ class _AreaFormState extends State<_AreaForm> {
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.finderSend,
-        icon: Icons.send_outlined,
+        icon: Ph.paperPlaneRight,
         onPressed: _area == null ? null : () => Navigator.pop(context, (area: _area!, note: _note.text.trim())),
       ),
     ]);

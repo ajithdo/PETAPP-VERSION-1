@@ -7,6 +7,7 @@ import '../../../core/settings/settings_controller.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/logo.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// 3 short welcome slides (spec 5: onboarding under 60 seconds).
 class WelcomeScreen extends ConsumerStatefulWidget {
@@ -102,7 +103,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                   PrimaryButton(
                     expand: false,
                     label: last ? l.getStarted : l.next,
-                    icon: last ? null : Icons.arrow_forward_outlined,
+                    icon: last ? null : Ph.arrowRight,
                     onPressed: last
                         ? _finish
                         : () => _page.nextPage(
@@ -117,7 +118,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                     width: double.infinity,
                     child: OutlinedButton.icon(
                       onPressed: () => _finish(to: '/demo'),
-                      icon: const Icon(Icons.science_outlined),
+                      icon: const Icon(Ph.flask),
                       label: Text(l.exploreDemo),
                     ),
                   ),
@@ -146,7 +147,7 @@ class _Colonnade extends StatelessWidget {
     final paw = context.paw;
     final side = context.isPhone ? Sizes.avatarLg + Space.xl : Sizes.profileAvatarSm;
     final mid = context.isPhone ? Sizes.garland : Sizes.garlandLarge;
-    Widget photo(String name) => Image.asset('assets/images/demo/pets/$name.jpg', fit: BoxFit.cover, excludeFromSemantics: true);
+    Widget photo(String name) => Image.asset('assets/images/demo/pets/$name.png', fit: BoxFit.cover, excludeFromSemantics: true);
     Widget sideArch(String name) => ArchClip(
       width: side / Sizes.archAspect,
       child: SizedBox(width: side / Sizes.archAspect, height: side, child: photo(name)),
@@ -184,7 +185,7 @@ class LanguageMenu extends ConsumerWidget {
         PopupMenuItem(value: 'te', child: Text('తెలుగు')),
       ],
       child: Chip(
-        avatar: const Icon(Icons.translate_outlined, size: IconSizes.chip),
+        avatar: const Icon(Ph.translate, size: IconSizes.chip),
         label: Text(languageName(locale)),
       ),
     );

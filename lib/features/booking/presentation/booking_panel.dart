@@ -12,6 +12,7 @@ import '../data/places_repository.dart';
 import '../domain/booking_rules.dart';
 import 'booking_labels.dart';
 import 'booking_slots.dart';
+import '../../../core/theme/ph.dart';
 
 /// UI Design 2 booking card on the clinic page (owner's choice, 4 Nov 2026):
 /// pick the pet, the visit reason, the day and the time, see the price, then
@@ -63,7 +64,7 @@ class BookingPanelState extends ConsumerState<BookingPanel> {
           Text(l.noPetForPlace, style: context.text.bodyMedium),
           if (pets.isEmpty) ...[
             const SizedBox(height: Space.md),
-            SecondaryButton(label: l.addPet, icon: Icons.add_outlined, onPressed: () => context.push('/pets/new')),
+            SecondaryButton(label: l.addPet, icon: Ph.plus, onPressed: () => context.push('/pets/new')),
           ],
         ]),
       );
@@ -197,7 +198,7 @@ class BookingPanelState extends ConsumerState<BookingPanel> {
         const SizedBox(height: Space.lg),
         PrimaryButton(
           label: l.bookFor(pet.name),
-          icon: Icons.check_circle_outlined,
+          icon: Ph.checkCircle,
           onPressed: ready ? next : null,
         ),
         const SizedBox(height: Space.sm),

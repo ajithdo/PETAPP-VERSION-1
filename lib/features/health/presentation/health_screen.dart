@@ -21,6 +21,7 @@ import '../domain/medicine_schedule.dart';
 import '../domain/vaccine_schedule.dart';
 import 'health_labels.dart';
 import 'health_sheets.dart';
+import '../../../core/theme/ph.dart';
 
 /// Health tab (spec 7.4) for the pet chosen in the top bar.
 class HealthTab extends ConsumerWidget {
@@ -63,7 +64,7 @@ class _PetDueTile extends ConsumerWidget {
         const SizedBox(width: Space.md),
         Expanded(child: Text(pet.name, style: context.text.titleSmall)),
         if (urgent > 0) StatusChip(context.l10n.itemsNeedAttention(urgent), tone: ChipTone.warning),
-        const Icon(Icons.chevron_right_outlined),
+        const Icon(Ph.caretRight),
       ]),
     );
   }
@@ -93,7 +94,7 @@ class HealthBody extends ConsumerWidget {
           if (top.isEmpty) {
             return PawCard(
               child: Row(children: [
-                Icon(Icons.check_circle_outlined, color: context.paw.success),
+                Icon(Ph.checkCircle, color: context.paw.success),
                 const SizedBox(width: Space.md),
                 Expanded(child: Text(l.nothingDue(pet.name), style: context.text.bodyMedium)),
               ]),
@@ -110,7 +111,7 @@ class HealthBody extends ConsumerWidget {
                 if (first.kind == 'vaccine')
                   Padding(
                     padding: const EdgeInsets.fromLTRB(Space.lg, 0, Space.lg, Space.md),
-                    child: SecondaryButton(label: l.bookNow, icon: Icons.calendar_month_outlined, onPressed: () => context.push('/book/find/clinic')),
+                    child: SecondaryButton(label: l.bookNow, icon: Ph.calendarDots, onPressed: () => context.push('/book/find/clinic')),
                   ),
               ]),
             ),
@@ -239,7 +240,7 @@ Future<void> showDoseActions(BuildContext context, WidgetRef ref, Pet pet, Medic
       Text('${m.name} · ${pet.name}', style: ctx.text.titleMedium),
       Text('${m.dose} ${unitLabel(ctx, m.unit)} · ${Fmt.dateTime(dose, ctx.lang)}${m.withFood ? ' · ${l.withFood}' : ''}', style: ctx.text.bodySmall),
       const SizedBox(height: Space.lg),
-      PrimaryButton(label: l.given, icon: Icons.check_outlined, onPressed: () => log('given')),
+      PrimaryButton(label: l.given, icon: Ph.check, onPressed: () => log('given')),
       const SizedBox(height: Space.sm),
       Row(children: [
         Expanded(child: SecondaryButton(label: l.skip, onPressed: () => log('skipped'))),
@@ -303,7 +304,7 @@ class _VaccinesSection extends ConsumerWidget {
 
           return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             if (s.needsCatchUp) ...[
-              InfoNote(l.catchUpNote, icon: Icons.support_agent_outlined),
+              InfoNote(l.catchUpNote, icon: Ph.headset),
               const SizedBox(height: Space.md),
             ],
             for (final g in groups.entries)
@@ -368,7 +369,7 @@ class _MedicinesSection extends ConsumerWidget {
                 ListTile(
                   leading: CircleAvatar(
                     backgroundColor: context.paw.primaryContainer,
-                    child: Icon(Icons.medication_outlined, color: context.colors.primary),
+                    child: Icon(Ph.pill, color: context.colors.primary),
                   ),
                   title: Text(m.name),
                   subtitle: Text([
@@ -583,7 +584,7 @@ class _EventsSection extends ConsumerWidget {
           if (events.isEmpty) Padding(padding: const EdgeInsets.all(Space.md), child: Text(isSymptom ? l.noSymptoms : l.noVisits)),
           for (final e in events.take(5))
             ListTile(
-              leading: Icon(isSymptom ? Icons.sick_outlined : Icons.local_hospital_outlined,
+              leading: Icon(isSymptom ? Ph.smileyNervous : Ph.firstAid,
                   color: isSymptom && e.severity >= 3 ? context.paw.error : context.colors.primary),
               title: Text(isSymptom ? '${symptomLabel(context, e.symptom)} · ${_sev(context, e.severity)}' : e.title),
               subtitle: Text([
@@ -600,7 +601,7 @@ class _EventsSection extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(Space.sm),
               child: TextButton.icon(
-                icon: const Icon(Icons.share_outlined),
+                icon: const Icon(Ph.shareNetwork),
                 label: Text(l.shareWithVet),
                 onPressed: () {
                   final lines = [
@@ -640,12 +641,12 @@ class _RemindersSection extends ConsumerWidget {
           if (list.isEmpty) Padding(padding: const EdgeInsets.all(Space.md), child: Text(l.noReminders)),
           for (final r in list)
             ListTile(
-              leading: const Icon(Icons.alarm_outlined),
+              leading: const Icon(Ph.alarm),
               title: Text(r.title),
               subtitle: Text(Fmt.dateTime(r.at, context.lang)),
               trailing: IconButton(
                 tooltip: l.markDone,
-                icon: const Icon(Icons.check_circle_outlined),
+                icon: const Icon(Ph.checkCircle),
                 onPressed: () async {
                   final repo = ref.read(healthRepositoryProvider);
                   if (r.repeat == 'monthly' || r.repeat == 'yearly') {
@@ -687,7 +688,7 @@ class _HealthPass extends StatelessWidget {
       badges: [
         if (urgent != null)
           urgent! > 0
-              ? PassCard.badge(context, l.itemsNeedAttention(urgent!), icon: Icons.schedule_outlined, tone: ChipTone.warning)
+              ? PassCard.badge(context, l.itemsNeedAttention(urgent!), icon: Ph.clock, tone: ChipTone.warning)
               : PassCard.badge(context, l.healthAllClear),
       ],
       rows: [
@@ -696,8 +697,8 @@ class _HealthPass extends StatelessWidget {
         if (pet.microchip?.isNotEmpty == true) PassRow(label: l.microchip, value: pet.microchip!, mono: true),
       ],
       actions: [
-        PassCard.action(context, label: l.medicalCard, icon: Icons.badge_outlined, onPressed: () => context.push('/pets/${pet.id}/card')),
-        PassCard.action(context, label: l.healthReport, icon: Icons.picture_as_pdf_outlined, secondary: true, onPressed: () => context.push('/pets/${pet.id}/report')),
+        PassCard.action(context, label: l.medicalCard, icon: Ph.identificationCard, onPressed: () => context.push('/pets/${pet.id}/card')),
+        PassCard.action(context, label: l.healthReport, icon: Ph.filePdf, secondary: true, onPressed: () => context.push('/pets/${pet.id}/report')),
       ],
     );
   }
@@ -735,7 +736,7 @@ class _VaccineStep extends StatelessWidget {
       text,
       OutlinedButton.icon(
         onPressed: () => context.push('/vault/doc/$certificateDocId'),
-        icon: const Icon(Icons.description_outlined, size: IconSizes.md),
+        icon: const Icon(Ph.fileText, size: IconSizes.md),
         label: Text(context.l10n.certificate),
       ),
     ]);
@@ -759,13 +760,13 @@ class _EmergencyInfo extends ConsumerWidget {
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          Icon(Icons.medical_information_outlined, color: paw.textPrimary),
+          Icon(Ph.clipboardText, color: paw.textPrimary),
           const SizedBox(width: Space.sm),
           Expanded(child: Semantics(header: true, child: Text(l.emergencyInfo, style: context.text.titleMedium))),
         ]),
         const SizedBox(height: Space.md),
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          if (allergic) ...[Icon(Icons.warning_amber_rounded, size: IconSizes.md, color: paw.warning), const SizedBox(width: Space.xs + Space.xxs)],
+          if (allergic) ...[Icon(Ph.warning, size: IconSizes.md, color: paw.warning), const SizedBox(width: Space.xs + Space.xxs)],
           Expanded(
             child: Text.rich(TextSpan(children: [
               TextSpan(text: '${l.allergies}: ', style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),

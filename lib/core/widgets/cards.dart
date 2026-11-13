@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_theme.dart';
 import '../theme/tokens.dart';
+import 'toran.dart';
 import 'buttons.dart';
+import '../theme/ph.dart';
 
 /// White card with 22 px corners (UI Design 5): a soft warm shadow and no
 /// border in light mode, a hairline edge in dark mode and high contrast.
@@ -78,22 +81,11 @@ class SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // UI Design 6: 28 px above a section, 12 px under its title; the link or
+    // note shares the title's baseline.
     return Padding(
-      padding: padding ?? const EdgeInsets.only(top: Space.xl, bottom: Space.sm),
-      child: Row(
-        children: [
-          Expanded(
-            child: Semantics(header: true, child: Text(title, style: context.text.titleLarge)),
-          ),
-          if (trailing != null) Text(trailing!, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
-          if (action != null)
-            ConstrainedBox(
-              // Keeps room for the title at large text sizes.
-              constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * StatusChip.maxWidthShare),
-              child: LinkButton(label: action!, onPressed: onAction, textAlign: TextAlign.end),
-            ),
-        ],
-      ),
+      padding: (padding ?? const EdgeInsets.only(top: Sizes.sectionGap)).add(const EdgeInsets.only(bottom: Space.xs)),
+      child: SecHead(title, action: action, onAction: onAction, note: trailing),
     );
   }
 }
@@ -110,19 +102,14 @@ class StatusChip extends StatelessWidget {
   /// The tint behind a chip of [tone] and its text colour, which reads at
   /// WCAG AA (4.5:1) whether the chip sits on the page or on a card.
   static ({Color tint, Color text}) colorsFor(PawColors p, Color primary, ChipTone tone) {
-    final c = switch (tone) {
-      ChipTone.success => p.success,
-      ChipTone.warning => p.warning,
-      ChipTone.error => p.error,
-      ChipTone.info => primary,
-      ChipTone.accent => p.accent,
-      ChipTone.neutral => p.textSecondary,
+    final t = p.background.computeLuminance() > 0.5 ? ToranTints.light : ToranTints.dark;
+    return switch (tone) {
+      ChipTone.success => (tint: p.successContainer, text: p.success),
+      ChipTone.warning || ChipTone.accent => (tint: p.accentContainer, text: p.accent),
+      ChipTone.error => (tint: p.sosContainer, text: p.error),
+      ChipTone.info => (tint: t.skyWash, text: t.sky),
+      ChipTone.neutral => (tint: p.surfaceSubtle, text: p.textSecondary),
     };
-    final tint = c.withValues(alpha: Opacities.chip);
-    return (
-      tint: tint,
-      text: readableOn(c, [Color.alphaBlend(tint, p.background), Color.alphaBlend(tint, p.surface), Color.alphaBlend(tint, p.surfaceSubtle)]),
-    );
   }
 
   /// A chip never takes more than this share of the screen width, so it fits
@@ -131,24 +118,16 @@ class StatusChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = colorsFor(context.paw, context.colors.primary, tone);
-    return Container(
+    final kind = switch (tone) {
+      ChipTone.success => TagKind.green,
+      ChipTone.warning || ChipTone.accent => TagKind.gold,
+      ChipTone.error => TagKind.red,
+      ChipTone.info => TagKind.sky,
+      ChipTone.neutral => TagKind.neutral,
+    };
+    return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * maxWidthShare),
-      padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.xs),
-      decoration: BoxDecoration(color: c.tint, borderRadius: BorderRadius.circular(Radii.sm)),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (icon != null) ...[Icon(icon, size: IconSizes.xs, color: c.text), const SizedBox(width: Space.xs)],
-          Flexible(
-            child: Text(
-              label,
-              style: context.text.labelSmall?.copyWith(color: c.text, fontWeight: FontWeight.w700),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
-      ),
+      child: PawTag(label, kind: kind, icon: icon),
     );
   }
 }
@@ -272,7 +251,7 @@ class PawAlertCard extends StatelessWidget {
               const SizedBox(width: Space.md),
               Expanded(child: text),
               if (button != null && wide) ...[const SizedBox(width: Space.md), button],
-              if (button == null && onTap != null) ...[const SizedBox(width: Space.sm), Icon(Icons.chevron_right_outlined, color: paw.textSecondary)],
+              if (button == null && onTap != null) ...[const SizedBox(width: Space.sm), Icon(Ph.caretRight, color: paw.textSecondary)],
             ],
           ),
           if (button != null && !wide) ...[const SizedBox(height: Space.md), button],
@@ -300,7 +279,7 @@ class DemoBanner extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(Icons.science_outlined, size: IconSizes.sm, color: paw.onAccentContainer),
+          Icon(Ph.flask, size: IconSizes.sm, color: paw.onAccentContainer),
           const SizedBox(width: Space.sm),
           Expanded(
             child: Text(text, style: context.text.bodySmall?.copyWith(color: paw.textPrimary)),
@@ -313,7 +292,7 @@ class DemoBanner extends StatelessWidget {
 
 /// "Indicative, always confirm with your vet" style note.
 class InfoNote extends StatelessWidget {
-  const InfoNote(this.text, {super.key, this.icon = Icons.info_outlined, this.tone = ChipTone.info});
+  const InfoNote(this.text, {super.key, this.icon = Ph.info, this.tone = ChipTone.info});
   final String text;
   final IconData icon;
   final ChipTone tone;
@@ -379,42 +358,41 @@ class DateBadge extends StatelessWidget {
             _ => (paw.textPrimary, paw.background),
           };
     final radius = BorderRadius.circular(Radii.md);
+    // Grows with the text size so a big month name still fits.
+    final k = MediaQuery.textScalerOf(context).scale(1);
+    final locale = Localizations.localeOf(context).languageCode;
     return Container(
-      constraints: const BoxConstraints(minWidth: Sizes.dateBadge - Space.sm, minHeight: Sizes.dateBadge),
+      width: Sizes.dateBadge * k,
       decoration: BoxDecoration(
         color: paw.surface,
-        border: Border.all(color: muted ? paw.outline : paw.controlBorder.withValues(alpha: Opacities.half)),
+        border: Border.all(color: muted ? paw.outline : context.tint.line2),
         borderRadius: radius,
       ),
-      child: ClipRRect(
-        borderRadius: radius,
-        // Shrinks to fit rather than overflow when the row is short (Hindi
-        // and Telugu lines are taller).
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: IntrinsicWidth(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ColoredBox(
-                color: strip,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xxs),
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(month, textAlign: TextAlign.center, style: context.text.labelSmall?.copyWith(color: onStrip, height: TypeScale.tightLineHeight + 0.15)),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: Space.xs, vertical: Space.xxs),
-                child: FittedBox(fit: BoxFit.scaleDown, child: Text(day, textAlign: TextAlign.center, style: context.textX.dateNumber.copyWith(color: fg))),
-              ),
-            ],
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: Sizes.dateStripRow * k,
+            color: strip,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: Space.xxs),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(month, maxLines: 1, style: AppTheme.styleFor(TypeScale.dateMonth, locale, onStrip)),
+            ),
           ),
+          SizedBox(
+            height: Sizes.dateDayRow * k,
+            child: Center(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(day, maxLines: 1, style: context.textX.dateNumber.copyWith(color: fg)),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -434,7 +412,7 @@ class RatingStars extends StatelessWidget {
       excludeSemantics: true,
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [for (var i = 0; i < 5; i++) Icon(i < rating ? Icons.star_rounded : Icons.star_border_rounded, size: size, color: c)],
+        children: [for (var i = 0; i < 5; i++) Icon(i < rating ? Ph.starFill : Ph.star, size: size, color: c)],
       ),
     );
   }

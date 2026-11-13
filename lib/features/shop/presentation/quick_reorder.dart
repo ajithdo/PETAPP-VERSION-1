@@ -15,6 +15,7 @@ import '../domain/shop_rules.dart';
 import 'address_screens.dart';
 import 'product_widgets.dart';
 import 'shop_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// One-sheet reorder (Home "food running low" card and Buy again): the
 /// saved address, the earliest delivery slot and pay on delivery are
@@ -69,7 +70,7 @@ class _QuickReorderState extends ConsumerState<_QuickReorder> {
       const Divider(height: Space.xl),
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.location_on_outlined),
+        leading: const Icon(Ph.mapPin),
         title: Text(address == null ? l.addrAddFirst : '${address.label} · ${address.name}'),
         subtitle: address == null ? null : Text(address.oneLine, maxLines: 2, overflow: TextOverflow.ellipsis),
         trailing: TextButton(
@@ -82,7 +83,7 @@ class _QuickReorderState extends ConsumerState<_QuickReorder> {
       ),
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.local_shipping_outlined),
+        leading: const Icon(Ph.truck),
         title: Text(l.shopDeliveryOn(Fmt.weekdayDate(slot.date, context.lang))),
         subtitle: Text(windowLabel(context, slot.window)),
       ),
@@ -98,7 +99,7 @@ class _QuickReorderState extends ConsumerState<_QuickReorder> {
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.shopPlaceOrderAmount(Fmt.inr(price.total)),
-        icon: Icons.check_outlined,
+        icon: Ph.check,
         loading: _busy,
         onPressed: address == null || price.isEmpty ? null : () => _place(address, slot, price.total),
       ),

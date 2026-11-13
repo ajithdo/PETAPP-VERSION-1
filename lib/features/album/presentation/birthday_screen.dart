@@ -16,6 +16,7 @@ import '../data/album_repository.dart';
 import '../domain/album.dart';
 import 'album_add.dart';
 import 'album_screen.dart';
+import '../../../core/theme/ph.dart';
 
 /// A small birthday celebration (spec 7.11): confetti on the day, a
 /// countdown before it, past birthday photos and the yearly reminder.
@@ -83,7 +84,7 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> with SingleTick
             ),
           ),
           const SizedBox(height: Space.lg),
-          Icon(Icons.cake_outlined, size: IconSizes.hero, color: context.paw.accent),
+          Icon(Ph.cake, size: IconSizes.hero, color: context.paw.accent),
           const SizedBox(height: Space.sm),
           Semantics(
             header: true,
@@ -108,7 +109,7 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> with SingleTick
           if (canLog)
             PrimaryButton(
               label: l.albumBirthdayAddPhoto,
-              icon: Icons.add_a_photo_outlined,
+              icon: Ph.cameraPlus,
               onPressed: () => showAddMemorySheet(context, ref, pet, milestone: 'birthday'),
             ),
           if (user != null && pet.ownerId == user.uid) ...[
@@ -116,7 +117,7 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> with SingleTick
             PawCard(
               padding: EdgeInsets.zero,
               child: SwitchListTile(
-                secondary: Icon(Icons.notifications_active_outlined, color: context.colors.primary),
+                secondary: Icon(Ph.bellRinging, color: context.colors.primary),
                 title: Text(l.albumBirthdayReminder(pet.name)),
                 subtitle: reminderOn ? Text(l.albumBirthdayReminderOn) : null,
                 value: reminderOn,

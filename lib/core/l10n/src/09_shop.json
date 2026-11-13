@@ -201,9 +201,9 @@
   "te": "మళ్ళీ ఆర్డర్"
  },
  "shopReorderPrice": {
-  "en": "Reorder · {price}",
-  "hi": "फिर से मँगाएँ · {price}",
-  "te": "మళ్ళీ ఆర్డర్ · {price}",
+  "en": "Reorder {price}",
+  "hi": "फिर से मँगाएँ {price}",
+  "te": "మళ్ళీ ఆర్డర్ {price}",
   "ph": {
    "price": "String"
   }
@@ -1604,9 +1604,9 @@
   }
  },
  "foodRunsOutIn": {
-  "en": "{pet}'s food may run out in about {days, plural, =1{1 day} other{{days} days}}. Reorder?",
-  "hi": "{pet} का खाना लगभग {days} दिन में खत्म हो सकता है। फिर से मँगाएँ?",
-  "te": "{pet} ఆహారం సుమారు {days} రోజుల్లో అయిపోవచ్చు. మళ్ళీ ఆర్డర్ చేయాలా?",
+  "en": "{pet}'s food may run out in about {days, plural, =1{1 day} other{{days} days}}",
+  "hi": "{pet} का खाना लगभग {days} दिन में खत्म हो सकता है",
+  "te": "{pet} ఆహారం సుమారు {days} రోజుల్లో అయిపోవచ్చు",
   "ph": {
    "pet": "String",
    "days": "int"
@@ -1630,9 +1630,9 @@
   }
  },
  "foodEditPortion": {
-  "en": "Edit portion",
-  "hi": "मात्रा बदलें",
-  "te": "పరిమాణం మార్చండి"
+  "en": "Change daily portion",
+  "hi": "रोज़ की मात्रा बदलें",
+  "te": "రోజువారీ మోతాదు మార్చండి"
  },
  "foodOnTheWay": {
   "en": "New food for {pet} is on the way",

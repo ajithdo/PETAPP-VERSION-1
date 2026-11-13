@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../theme/tokens.dart';
 import 'cards.dart';
 import 'layout.dart';
+import '../theme/ph.dart';
 
 /// UI Design 2 "pass": a deep forest-teal card that sums up a pet or a booking
 /// (Health tab, medical card, booking confirmed). Light text on the brand
@@ -84,7 +85,7 @@ class PassCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: Space.sm, vertical: Space.xs),
       decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(Radii.sm)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        Icon(icon ?? Icons.circle, size: icon == null ? Space.sm : IconSizes.xs, color: attention ? fg : readableOn(dot, [bg], ratio: 3)),
+        Icon(icon ?? Ph.circleFill, size: icon == null ? Space.sm : IconSizes.xs, color: attention ? fg : readableOn(dot, [bg], ratio: 3)),
         const SizedBox(width: Space.xs + Space.xxs),
         Flexible(
           child: Text(label, style: context.text.labelSmall?.copyWith(color: fg, fontWeight: FontWeight.w700)),
@@ -169,7 +170,7 @@ class PassCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs, vertical: Space.sm + Space.xxs),
               decoration: BoxDecoration(color: context.paw.sos, borderRadius: BorderRadius.circular(Radii.lg)),
               child: Row(children: [
-                Icon(Icons.warning_rounded, color: context.paw.onSos, size: IconSizes.xl - Space.xs),
+                Icon(Ph.warningFill, color: context.paw.onSos, size: IconSizes.xl - Space.xs),
                 const SizedBox(width: Space.md),
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

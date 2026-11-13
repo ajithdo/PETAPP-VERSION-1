@@ -7,6 +7,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/logo.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../core/theme/ph.dart';
 
 class PortalSection {
   const PortalSection(this.key, this.icon, this.label);
@@ -70,7 +71,7 @@ class PortalScaffold extends ConsumerWidget {
           child: ListTile(
             iconColor: context.paw.onBandMuted,
             textColor: context.paw.onBandMuted,
-            leading: const Icon(Icons.settings_outlined),
+            leading: const Icon(Ph.gearSix),
             title: Text(context.l10n.settings),
             onTap: () => context.push('/settings'),
           ),
@@ -80,7 +81,7 @@ class PortalScaffold extends ConsumerWidget {
           child: ListTile(
             iconColor: context.paw.onBandMuted,
             textColor: context.paw.onBandMuted,
-            leading: const Icon(Icons.logout_outlined),
+            leading: const Icon(Ph.signOut),
             title: Text(context.l10n.signOut),
             onTap: () => ref.read(authServiceProvider).signOut(),
           ),
@@ -111,7 +112,7 @@ class PortalScaffold extends ConsumerWidget {
                 ? Chip(
                     backgroundColor: Color.alphaBlend(barFg.withValues(alpha: Opacities.chip), barBg),
                     side: BorderSide(color: barFg.withValues(alpha: Opacities.border)),
-                    avatar: Icon(Icons.person_outlined, size: IconSizes.chip, color: barFg),
+                    avatar: Icon(Ph.user, size: IconSizes.chip, color: barFg),
                     label: Text(user.name, overflow: TextOverflow.ellipsis, style: context.text.labelLarge?.copyWith(color: barFg)),
                   )
                 : Tooltip(

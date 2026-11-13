@@ -13,6 +13,7 @@ import '../../messaging/presentation/voice_note.dart';
 import '../data/consultation.dart';
 import '../data/televet_repository.dart';
 import '../data/video_service.dart';
+import '../../../core/theme/ph.dart';
 
 /// Tele-vet video call (spec 7.7): mute, camera on/off, switch camera,
 /// speaker, end, timer and a weak-network indicator. DEMO VERSION 1 is a
@@ -131,7 +132,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                       CircleAvatar(
                         radius: Sizes.callAvatar / 2,
                         backgroundColor: MediaColors.callAvatar,
-                        child: Icon(isOwner ? Icons.medical_services_outlined : Icons.pets_outlined, size: IconSizes.hero, color: MediaColors.onCallAvatar),
+                        child: Icon(isOwner ? Ph.firstAidKit : Ph.pawPrint, size: IconSizes.hero, color: MediaColors.onCallAvatar),
                       ),
                       const SizedBox(height: Space.lg),
                       Text(other, style: context.text.titleLarge?.copyWith(color: MediaColors.foreground)),
@@ -164,7 +165,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                     Padding(
                       padding: const EdgeInsets.only(top: Space.xs),
                       child: Row(children: [
-                        const Icon(Icons.signal_cellular_alt_1_bar_outlined, color: MediaColors.callWarning, size: IconSizes.chip),
+                        const Icon(Ph.cellSignalLow, color: MediaColors.callWarning, size: IconSizes.chip),
                         const SizedBox(width: Space.xs),
                         Flexible(child: Text(l.tvWeakNetwork, style: context.text.bodySmall?.copyWith(color: MediaColors.callWarning))),
                       ]),
@@ -174,7 +175,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                       padding: const EdgeInsets.only(top: Space.xs),
                       child: Semantics(
                         label: l.tvGoodNetwork,
-                        child: const Icon(Icons.signal_cellular_alt_outlined, color: MediaColors.callGood, size: IconSizes.chip),
+                        child: const Icon(Ph.cellSignalHigh, color: MediaColors.callGood, size: IconSizes.chip),
                       ),
                     ),
                 ]),
@@ -197,7 +198,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                             const SizedBox(height: Space.xs),
                             Text(_frontCamera ? l.tvFrontCamera : l.tvBackCamera, style: context.text.labelSmall?.copyWith(color: MediaColors.foregroundMuted)),
                           ])
-                        : const Icon(Icons.videocam_off_outlined, color: MediaColors.foregroundMuted),
+                        : const Icon(Ph.videoCameraSlash, color: MediaColors.foregroundMuted),
                   ),
                 ),
               ),
@@ -215,29 +216,29 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                   Padding(padding: const EdgeInsets.only(bottom: Space.md), child: Text(l.tvCallLiveLater, style: context.text.bodyMedium?.copyWith(color: MediaColors.foregroundMuted), textAlign: TextAlign.center)),
                 Wrap(alignment: WrapAlignment.center, spacing: Space.md, runSpacing: Space.md, children: [
                   _CallButton(
-                    icon: _muted ? Icons.mic_off_outlined : Icons.mic_outlined,
+                    icon: _muted ? Ph.microphoneSlash : Ph.microphone,
                     label: _muted ? l.tvUnmute : l.tvMute,
                     active: _muted,
                     onTap: () => setState(() => _muted = !_muted),
                   ),
                   _CallButton(
-                    icon: _cameraOn ? Icons.videocam_outlined : Icons.videocam_off_outlined,
+                    icon: _cameraOn ? Ph.videoCamera : Ph.videoCameraSlash,
                     label: _cameraOn ? l.tvCameraOffAction : l.tvCameraOnAction,
                     active: !_cameraOn,
                     onTap: () => setState(() => _cameraOn = !_cameraOn),
                   ),
                   _CallButton(
-                    icon: Icons.cameraswitch_outlined,
+                    icon: Ph.cameraRotate,
                     label: l.tvSwitchCamera,
                     onTap: _cameraOn ? () => setState(() => _frontCamera = !_frontCamera) : null,
                   ),
                   _CallButton(
-                    icon: _speaker ? Icons.volume_up_outlined : Icons.hearing_outlined,
+                    icon: _speaker ? Ph.speakerHigh : Ph.ear,
                     label: _speaker ? l.tvSpeakerOn : l.tvSpeakerOff,
                     active: !_speaker,
                     onTap: () => setState(() => _speaker = !_speaker),
                   ),
-                  _CallButton(icon: Icons.call_end_outlined, label: l.tvEndCall, danger: true, onTap: () => _end(c)),
+                  _CallButton(icon: Ph.phoneDisconnect, label: l.tvEndCall, danger: true, onTap: () => _end(c)),
                 ]),
               ]),
             ),
@@ -268,7 +269,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                     CircleAvatar(
                       radius: Sizes.avatarMd / 2,
                       backgroundColor: context.paw.primaryContainer,
-                      child: Icon(isOwner ? Icons.medical_services_outlined : Icons.pets_outlined, color: context.paw.brand),
+                      child: Icon(isOwner ? Ph.firstAidKit : Ph.pawPrint, color: context.paw.brand),
                     ),
                     const SizedBox(width: Space.md),
                     Expanded(
@@ -278,7 +279,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                           Text([if (c.clinicName.isNotEmpty) c.clinicName, c.petName].join(' · '), style: context.text.bodyMedium),
                       ]),
                     ),
-                    StatusChip(l.tvVideoFeeLabel, tone: ChipTone.info, icon: Icons.videocam_outlined),
+                    StatusChip(l.tvVideoFeeLabel, tone: ChipTone.info, icon: Ph.videoCamera),
                   ]),
                 ),
               ]),

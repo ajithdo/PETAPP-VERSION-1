@@ -10,6 +10,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../../pets/presentation/pet_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Shared frame for the three setup steps with a step indicator.
 class _SetupFrame extends StatelessWidget {
@@ -114,7 +115,7 @@ class SetupPreferencesScreen extends ConsumerWidget {
             onChanged: n.setEasyMode,
             title: Text(l.easyMode, style: context.text.titleSmall),
             subtitle: Text(l.easyModeHint),
-            secondary: Icon(Icons.accessibility_new_outlined, color: context.colors.primary),
+            secondary: Icon(Ph.personArmsSpread, color: context.colors.primary),
           ),
         ),
       ],
@@ -179,7 +180,7 @@ class _SetupFirstPetScreenState extends ConsumerState<SetupFirstPetScreen> {
             label: l.petName,
             controller: _name,
             autofocus: true,
-            prefixIcon: Icons.pets_outlined,
+            prefixIcon: Ph.pawPrint,
             validator: (v) => (v == null || v.trim().isEmpty) ? l.fieldRequired : null,
           ),
         ),
@@ -262,10 +263,10 @@ class _SetupNotificationsScreenState extends ConsumerState<SetupNotificationsScr
       ],
       children: [
         for (final r in [
-          (Icons.vaccines_outlined, l.notifReasonVaccines),
-          (Icons.medication_outlined, l.notifReasonMedicines),
-          (Icons.event_available_outlined, l.notifReasonBookings),
-          (Icons.chat_bubble_rounded, l.notifReasonMessages),
+          (Ph.syringe, l.notifReasonVaccines),
+          (Ph.pill, l.notifReasonMedicines),
+          (Ph.calendarCheck, l.notifReasonBookings),
+          (Ph.chatCircleFill, l.notifReasonMessages),
         ])
           Padding(
             padding: const EdgeInsets.only(bottom: Space.md),

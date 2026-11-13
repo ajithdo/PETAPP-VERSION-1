@@ -21,6 +21,7 @@ import '../data/routine_repository.dart';
 import '../domain/routine.dart';
 import 'heat_card.dart';
 import 'quick_log_sheet.dart';
+import '../../../core/theme/ph.dart';
 
 enum _WalkState { ready, tracking, paused, finished }
 
@@ -285,13 +286,13 @@ class _WalkTrackerScreenState extends ConsumerState<WalkTrackerScreen> {
     switch (_state) {
       case _WalkState.ready:
         return [
-          if (!kIsWeb) PrimaryButton(label: l.startWalk, icon: Icons.play_arrow_outlined, onPressed: () => _start()),
+          if (!kIsWeb) PrimaryButton(label: l.startWalk, icon: Ph.play, onPressed: () => _start()),
           if (kIsWeb) ...[
             InfoNote(l.walkWebNote),
             const SizedBox(height: Space.md),
             PrimaryButton(
               label: l.enterWalkManually,
-              icon: Icons.edit_outlined,
+              icon: Ph.pencilSimple,
               onPressed: () async {
                 await showLogDetails(context, ref, pet, LogType.walk);
                 if (context.mounted) context.pop();
@@ -299,27 +300,27 @@ class _WalkTrackerScreenState extends ConsumerState<WalkTrackerScreen> {
             ),
           ],
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.startDemoWalk, icon: Icons.science_outlined, onPressed: () => _start(simulate: true)),
+          SecondaryButton(label: l.startDemoWalk, icon: Ph.flask, onPressed: () => _start(simulate: true)),
         ];
       case _WalkState.tracking:
         return [
           Row(children: [
-            Expanded(child: SecondaryButton(label: l.pause, icon: Icons.pause_outlined, onPressed: _pause)),
+            Expanded(child: SecondaryButton(label: l.pause, icon: Ph.pause, onPressed: _pause)),
             const SizedBox(width: Space.md),
-            Expanded(child: PrimaryButton(label: l.stop, icon: Icons.stop_outlined, danger: true, onPressed: _stop)),
+            Expanded(child: PrimaryButton(label: l.stop, icon: Ph.stop, danger: true, onPressed: _stop)),
           ]),
         ];
       case _WalkState.paused:
         return [
           Row(children: [
-            Expanded(child: SecondaryButton(label: l.resume, icon: Icons.play_arrow_outlined, onPressed: _resume)),
+            Expanded(child: SecondaryButton(label: l.resume, icon: Ph.play, onPressed: _resume)),
             const SizedBox(width: Space.md),
-            Expanded(child: PrimaryButton(label: l.stop, icon: Icons.stop_outlined, danger: true, onPressed: _stop)),
+            Expanded(child: PrimaryButton(label: l.stop, icon: Ph.stop, danger: true, onPressed: _stop)),
           ]),
         ];
       case _WalkState.finished:
         return [
-          PrimaryButton(label: l.saveWalk, loading: _saving, icon: Icons.check_outlined, onPressed: () => _save(pet)),
+          PrimaryButton(label: l.saveWalk, loading: _saving, icon: Ph.check, onPressed: () => _save(pet)),
           const SizedBox(height: Space.sm),
           TextButton(
             onPressed: () async {

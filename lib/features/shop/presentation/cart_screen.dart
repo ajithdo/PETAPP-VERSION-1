@@ -16,6 +16,7 @@ import 'address_screens.dart';
 import 'product_screen.dart';
 import 'product_widgets.dart';
 import 'shop_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Cart and checkout in one place (spec 7.10): items by seller, coupon,
 /// address with PIN code, delivery slot, pet, payment (demo) and the bill.
@@ -118,7 +119,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                   if (address == null)
                     SecondaryButton(
                       label: l.addrAdd,
-                      icon: Icons.add_location_alt_outlined,
+                      icon: Ph.mapPinPlus,
                       onPressed: () async {
                         final a = await editAddress(context, ref);
                         if (a != null) setState(() => _addressId = a.id);
@@ -219,7 +220,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
             ]),
           ),
           if (skipped)
-            IconButton(tooltip: l.shopRemoveItem(p.name), icon: const Icon(Icons.delete_outlined), onPressed: () => repo.setQty(uid, p.id, 0))
+            IconButton(tooltip: l.shopRemoveItem(p.name), icon: const Icon(Ph.trash), onPressed: () => repo.setQty(uid, p.id, 0))
           else
             QtyStepper(qty: qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => repo.setQty(uid, p.id, q)),
         ]),
@@ -234,7 +235,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
         padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
         borderColor: context.paw.success,
         child: Row(children: [
-          Icon(Icons.local_offer_outlined, color: context.paw.success),
+          Icon(Ph.tag, color: context.paw.success),
           const SizedBox(width: Space.sm),
           Expanded(child: Text(l.couponSaved(_applied!.code, Fmt.inr(price.discount)), style: context.text.bodyMedium)),
           TextButton(onPressed: _removeCoupon, child: Text(l.remove)),
@@ -316,7 +317,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
             child: Text(l.cartAddForFree(Fmt.inr(toFree)), style: context.text.bodySmall?.copyWith(color: context.colors.primary)),
           ),
         if (plus && price.deliveryFee == 0 && price.subtotal - price.discount < s.freeDeliveryAbove)
-          Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip(l.cartPlusFreeDelivery, tone: ChipTone.accent, icon: Icons.workspace_premium_outlined)),
+          Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip(l.cartPlusFreeDelivery, tone: ChipTone.accent, icon: Ph.crownSimple)),
       ]),
     );
   }

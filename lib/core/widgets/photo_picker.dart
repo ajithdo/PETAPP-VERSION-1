@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import '../theme/tokens.dart';
 import 'dialogs.dart';
 import 'layout.dart';
+import '../theme/ph.dart';
 
 /// Longest side, in pixels, that picked photos and document scans are scaled to.
 const double _photoMaxSide = 1600;
@@ -24,12 +25,12 @@ Future<Uint8List?> pickSquarePhoto(BuildContext context, {bool allowCamera = tru
       const SizedBox(height: Space.md),
       if (allowCamera)
         ListTile(
-          leading: const Icon(Icons.photo_camera_outlined),
+          leading: const Icon(Ph.camera),
           title: Text(ctx.l10n.takePhoto),
           onTap: () => Navigator.pop(ctx, ImageSource.camera),
         ),
       ListTile(
-        leading: const Icon(Icons.photo_library_outlined),
+        leading: const Icon(Ph.images),
         title: Text(ctx.l10n.chooseFromGallery),
         onTap: () => Navigator.pop(ctx, ImageSource.gallery),
       ),

@@ -11,18 +11,21 @@ import '../../routine/data/routine_repository.dart';
 import '../../routine/presentation/heat_card.dart';
 import '../../routine/presentation/quick_log_sheet.dart';
 import '../../routine/presentation/today_card.dart';
+import '../../shell/presentation/sos_launcher.dart';
 import 'home_discovery.dart';
 import 'home_extras.dart';
+import '../../../core/theme/ph.dart';
 
-/// Home sections after the Genda band (spec 5, UI Design 5): Today, Next up,
-/// quick actions, then "Near you" and tips (walk weather, food running low,
-/// the latest memory). Easy mode shows a simpler Home: Today, Next up and 4
+/// Home sections after the toran band (spec 5, UI Design 6): Today, Next up,
+/// quick actions, the walk weather, food running low, the latest memory, then
+/// "Near you". Easy mode shows a simpler Home: Today, Next up and 4
 /// big quick actions.
 ///
 /// [top] goes above everything (lost-pet alert, admin note). On desktop
-/// [main] sits under the pet card on the left and [side] on the right;
-/// [phoneOrder] is the single-column order used on phones and in Easy mode.
-({List<Widget> top, List<Widget> main, List<Widget> side, List<Widget> phoneOrder}) homeSections(
+/// [main] sits under the pet card on the left, [side] on the right and
+/// [below] under both; [phoneOrder] is the single-column order used on
+/// phones and in Easy mode.
+({List<Widget> top, List<Widget> main, List<Widget> side, List<List<Widget>> below, List<Widget> phoneOrder}) homeSections(
   BuildContext context,
   WidgetRef ref, {
   required Pet? pet,
@@ -33,51 +36,62 @@ import 'home_extras.dart';
   // Nothing above repeats the most urgent item any more, so Next up lists it.
   const skip = false;
   final l = context.l10n;
+  const gap = SizedBox(height: Sizes.sectionGap);
   // Offers set by the admin come after the pet's day and the quick actions.
   final nearby = easy ? const <Widget>[] : [const BannerStrip(placement: 'home'), ...homeNearby(context, ref, wide: wide)];
   final focus = pet ?? pets.first;
-  final paw = context.paw;
-  final quickActions = [
-    SectionHeader(l.quickActions),
-    TileGrid(
-      columns: easy ? 2 : 4,
-      minTileHeight: easy ? Sizes.quickTileMin : 0,
-      children: [
-        QuickActionTile(icon: Icons.medical_services_outlined, label: l.qaBookVet, wide: easy, onTap: () => context.go('/book')),
-        QuickActionTile(icon: Icons.support_agent_outlined, label: l.qaAskVet, wide: easy, color: paw.success, onTap: () => context.push(askVetLink)),
-        QuickActionTile(icon: Icons.shopping_bag_outlined, label: l.shopTitle, wide: easy, color: CategoryColors.ocean, onTap: () => context.go('/shop')),
-        QuickActionTile(icon: Icons.add_a_photo_outlined, label: l.qaAddPhoto, wide: easy, color: paw.textSecondary, onTap: () => context.push(addPhotoLink(focus.id))),
-      ],
-    ),
-  ];
+  final dog = focus.species == 'dog';
+  List<Widget> quickActions({bool flush = false}) => [
+        if (!flush) gap,
+        SecHead(l.quickActions),
+        TileGrid(
+          columns: easy ? 2 : 4,
+          spacing: easy ? Space.md : Space.sm,
+          minTileHeight: easy ? Sizes.quickTileMin : 0,
+          children: [
+            QuickActionTile(icon: Ph.stethoscope, label: l.qaBookVet, wide: easy, tone: Tone.gold, onTap: () => context.go('/book')),
+            // Dogs start a walk; other pets open the log sheet.
+            dog
+                ? QuickActionTile(icon: Ph.personSimpleWalk, label: l.qaLogWalk, wide: easy, tone: Tone.green, onTap: () => context.push('/walk/${focus.id}'))
+                : QuickActionTile(icon: Ph.notePencil, label: l.logSomething, wide: easy, tone: Tone.green, onTap: () => showQuickLog(context, ref, focus)),
+            QuickActionTile(icon: Ph.videoCamera, label: l.qaAskVet, wide: easy, tone: Tone.sky, onTap: () => context.push(askVetLink)),
+            QuickActionTile(icon: Ph.cameraPlus, label: l.qaAddPhoto, wide: easy, tone: Tone.neutral, onTap: () => context.push(addPhotoLink(focus.id))),
+          ],
+        ),
+        // Easy mode: help is one big button away.
+        if (easy) ...[
+          gap,
+          PawButton(label: l.sosEmergencyHelp, icon: Ph.asterisk, kind: BtnKind.sos, size: BtnSize.large, block: true, onPressed: () => openSos(context, ref)),
+        ],
+      ];
 
   if (pet == null) {
     // "All pets": merged today's tasks.
     final top = [...lostPetSection(context, ref, pets), ...adminHomeSection(context, ref)];
     final today = [
-      SectionHeader(l.todayAllPets),
+      gap,
+      SecHead(l.todayAllPets),
       for (final p in pets) Padding(padding: const EdgeInsets.only(bottom: Space.md), child: _MiniToday(pet: p)),
     ];
     final next = nextUpSection(context, ref, pets: pets, skipFirst: skip);
-    final side = [...nextUpSection(context, ref, pets: pets, flush: true, skipFirst: skip), ...quickActions, ...nearby];
-    return (top: top, main: today, side: side, phoneOrder: [...today, ...next, ...quickActions, ...nearby]);
+    final side = [...nextUpSection(context, ref, pets: pets, flush: true, skipFirst: skip), ...quickActions()];
+    return (top: top, main: today, side: side, below: [nearby], phoneOrder: [...today, ...next, ...quickActions(), ...nearby]);
   }
 
   final top = [...lostPetSection(context, ref, [pet]), ...adminHomeSection(context, ref)];
-  final today = [const SizedBox(height: Space.lg), TodayCard(pet: pet, big: easy, header: false)];
+  final today = [gap, TodayCard(pet: pet, big: easy, header: false)];
   final next = nextUpSection(context, ref, pets: [pet], skipFirst: skip);
-  final tips = [
-    if (!easy && pet.species == 'dog') ...[SectionHeader(l.walkWeather), HeatCard(pet: pet)],
-    if (!easy) ...foodLowSection(context, ref, pet),
-    if (!easy) ...latestMemorySection(context, ref, pet),
-  ];
+  final weather = [if (!easy && pet.species == 'dog') ...[gap, HeatCard(pet: pet)]];
+  final food = easy ? const <Widget>[] : foodLowSection(context, ref, pet);
+  final memory = easy ? const <Widget>[] : latestMemorySection(context, ref, pet);
   return (
     top: top,
-    // Desktop: the day and the tips on the left; next up, quick actions and
-    // nearby on the right, so the pet stays the biggest picture.
-    main: [...today, ...tips],
-    side: [...nextUpSection(context, ref, pets: [pet], flush: true, skipFirst: skip), ...quickActions, ...nearby],
-    phoneOrder: [...today, ...next, ...quickActions, ...nearby, ...tips],
+    // Desktop: the day on the left; next up, quick actions and the weather
+    // on the right; food, the memory and nearby clinics in a row below.
+    main: today,
+    side: [...nextUpSection(context, ref, pets: [pet], flush: true, skipFirst: skip), ...quickActions(), ...weather],
+    below: [food, memory, nearby],
+    phoneOrder: [...today, ...next, ...quickActions(), ...weather, ...food, ...memory, ...nearby],
   );
 }
 
@@ -104,7 +118,7 @@ class _MiniToday extends ConsumerWidget {
         ProgressRing(progress: p.fraction, size: TapTarget.min - Space.xs, stroke: Space.xs + Space.xxs),
         IconButton(
           tooltip: context.l10n.logSomething,
-          icon: Icon(Icons.add_circle_outlined, color: context.colors.primary),
+          icon: Icon(Ph.plusCircle, color: context.colors.primary),
           onPressed: () => showQuickLog(context, ref, pet),
         ),
       ]),

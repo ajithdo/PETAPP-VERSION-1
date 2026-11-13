@@ -15,6 +15,7 @@ import 'booking_labels.dart';
 import 'booking_panel.dart';
 import 'place_finder_screen.dart' show searchOriginProvider;
 import '../../routine/domain/routine.dart' show distanceKm;
+import '../../../core/theme/ph.dart';
 
 /// Calls a phone number, or shows the demo dialog in demo mode (never dials).
 Future<void> callNumber(BuildContext context, WidgetRef ref, String phone) async {
@@ -73,11 +74,11 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
             // the rest on a quiet line: no row of six chips (DESIGN.md).
             Wrap(spacing: Space.md, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
               p.is24x7
-                  ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Icons.schedule_rounded)
+                  ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clock)
                   : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
               if (p.reviewCount > 0)
                 Row(mainAxisSize: MainAxisSize.min, children: [
-                  Icon(Icons.star_rounded, size: IconSizes.sm, color: context.paw.accent),
+                  Icon(Ph.starFill, size: IconSizes.sm, color: context.paw.accent),
                   const SizedBox(width: Space.xxs),
                   Text(p.rating.toStringAsFixed(1), style: context.text.labelLarge),
                   Text(' · ${l.reviewsCount(p.reviewCount)}', style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
@@ -108,9 +109,9 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
                     label: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
                   );
               final buttons = [
-                soft(Icons.call_outlined, l.call, () => callNumber(context, ref, p.phone)),
-                soft(Icons.directions_outlined, l.directions, () => openDirections(p.lat, p.lng, label: p.name)),
-                soft(Icons.chat_outlined, l.message, () => context.push('/messages/new?place=${p.id}')),
+                soft(Ph.phone, l.call, () => callNumber(context, ref, p.phone)),
+                soft(Ph.navigationArrow, l.directions, () => openDirections(p.lat, p.lng, label: p.name)),
+                soft(Ph.chatCircleDots, l.message, () => context.push('/messages/new?place=${p.id}')),
               ];
               if (MediaQuery.textScalerOf(context).scale(1) > 1.3) {
                 return Wrap(spacing: Space.sm, runSpacing: Space.sm, children: buttons);
@@ -156,7 +157,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
                     ),
                   if (p.homeVisit)
                     ListTile(
-                      leading: const Icon(Icons.home_outlined),
+                      leading: const Icon(Ph.house),
                       title: Text(l.homeVisitAvailable(p.radiusKm)),
                       trailing: Text('+ ${Fmt.inr(p.homeVisitFee)}'),
                     ),
@@ -279,7 +280,7 @@ class _VetsList extends ConsumerWidget {
                 CircleAvatar(
                   radius: Sizes.avatarMd / 2,
                   backgroundColor: context.paw.primaryContainer,
-                  child: Icon(Icons.medical_services_outlined, color: context.paw.brand),
+                  child: Icon(Ph.firstAidKit, color: context.paw.brand),
                 ),
                 const SizedBox(width: Space.md),
                 Expanded(
@@ -373,7 +374,7 @@ class _Reviews extends ConsumerWidget {
                   const SizedBox(height: Space.xs),
                   Row(
                     children: [
-                      Icon(Icons.verified_rounded, size: IconSizes.xs, color: context.paw.success),
+                      Icon(Ph.sealCheckFill, size: IconSizes.xs, color: context.paw.success),
                       const SizedBox(width: Space.xs),
                       Flexible(child: Text(l.verifiedBooking, style: context.text.labelSmall)),
                     ],
@@ -385,7 +386,7 @@ class _Reviews extends ConsumerWidget {
                       padding: const EdgeInsets.all(Space.sm),
                       decoration: BoxDecoration(color: context.paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.md)),
                       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Icon(Icons.subdirectory_arrow_right_rounded, size: IconSizes.md, color: context.paw.textSecondary),
+                        Icon(Ph.arrowBendDownRight, size: IconSizes.md, color: context.paw.textSecondary),
                         const SizedBox(width: Space.sm),
                         Expanded(child: Text('${l.replyFrom(place.name)}: ${r.reply}', style: context.text.bodySmall)),
                       ]),

@@ -11,6 +11,7 @@ import '../../../core/settings/settings_controller.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// The newest page of my notifications; "Show more" loads older ones.
 final _notificationsProvider = StreamProvider.autoDispose<List<QueryDocumentSnapshot<Map<String, dynamic>>>>((ref) {
@@ -37,19 +38,19 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
   String _filter = 'all';
 
   IconData _icon(String? type) => switch (type) {
-        'vaccines' => Icons.vaccines_outlined,
-        'medicines' => Icons.medication_outlined,
-        'deworming' => Icons.bug_report_outlined,
-        'bookings' => Icons.event_available_outlined,
-        'messages' => Icons.chat_outlined,
-        'orders' => Icons.local_shipping_outlined,
-        'lost' => Icons.travel_explore_outlined,
-        'device' => Icons.watch_outlined,
-        'sos' => Icons.emergency_outlined,
-        'support' => Icons.support_agent_outlined,
-        'account' => Icons.verified_user_outlined,
-        'plan' => Icons.workspace_premium_outlined,
-        _ => Icons.notifications_outlined,
+        'vaccines' => Ph.syringe,
+        'medicines' => Ph.pill,
+        'deworming' => Ph.bug,
+        'bookings' => Ph.calendarCheck,
+        'messages' => Ph.chatCircleDots,
+        'orders' => Ph.truck,
+        'lost' => Ph.globeHemisphereEast,
+        'device' => Ph.watch,
+        'sos' => Ph.asterisk,
+        'support' => Ph.headset,
+        'account' => Ph.shieldCheck,
+        'plan' => Ph.crownSimple,
+        _ => Ph.bell,
       };
 
   /// Tile colour for a notification type (UI Design 6: things are tiles).
@@ -111,7 +112,7 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
           ),
           IconButton(
             tooltip: l.settings,
-            icon: const Icon(Icons.tune_outlined),
+            icon: const Icon(Ph.slidersHorizontal),
             onPressed: () => context.push('/me/settings/notifications'),
           ),
         ],
@@ -219,12 +220,12 @@ class NotificationSettingsScreen extends ConsumerWidget {
     final n = ref.read(settingsProvider.notifier);
     final isDemo = ref.watch(appConfigProvider).isDemo;
     final types = [
-      ('vaccines', l.ntVaccines, Icons.vaccines_outlined),
-      ('medicines', l.ntMedicines, Icons.medication_outlined),
-      ('deworming', l.ntDeworming, Icons.bug_report_outlined),
-      ('bookings', l.ntBookings, Icons.event_available_outlined),
-      ('routine', l.ntRoutine, Icons.directions_walk_outlined),
-      ('custom', l.ntCustom, Icons.alarm_outlined),
+      ('vaccines', l.ntVaccines, Ph.syringe),
+      ('medicines', l.ntMedicines, Ph.pill),
+      ('deworming', l.ntDeworming, Ph.bug),
+      ('bookings', l.ntBookings, Ph.calendarCheck),
+      ('routine', l.ntRoutine, Ph.personSimpleWalk),
+      ('custom', l.ntCustom, Ph.alarm),
     ];
     final channels = [('push', l.chPush), ('email', l.chEmail), ('sms', l.chSms), ('whatsapp', l.chWhatsApp)];
     String hour(int h) => Fmt.time(DateTime(2000, 1, 1, h), context.lang);
@@ -234,7 +235,7 @@ class NotificationSettingsScreen extends ConsumerWidget {
         if (isDemo) ...[const SizedBox(height: Space.sm), DemoBanner(l.channelsDemoNote)],
         const SizedBox(height: Space.sm),
         OutlinedButton.icon(
-          icon: const Icon(Icons.notifications_active_outlined),
+          icon: const Icon(Ph.bellRinging),
           label: Text(l.allowNotifications),
           onPressed: () async {
             final ok = await ref.read(notificationServiceProvider).requestPermission();

@@ -16,6 +16,7 @@ import '../domain/vault_models.dart';
 import 'doc_preview.dart';
 import 'share_sheet.dart';
 import 'vault_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// One document: secure preview, details, expiry, sharing (spec 7.9).
 class DocDetailScreen extends ConsumerWidget {
@@ -37,7 +38,7 @@ class DocDetailScreen extends ConsumerWidget {
           if (doc != null && pet != null)
             IconButton(
               tooltip: l.vaultShareWithVet,
-              icon: const Icon(Icons.ios_share_outlined),
+              icon: const Icon(Ph.exportUp),
               onPressed: () => showVaultShareSheet(context, ref, pet: pet, initialDocIds: [doc.id]),
             ),
           if (canEdit)
@@ -48,10 +49,10 @@ class DocDetailScreen extends ConsumerWidget {
                 if (v == 'delete') await _delete(context, ref, doc, pet);
               },
               itemBuilder: (_) => [
-                PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.vaultEditDetails))),
+                PopupMenuItem(value: 'edit', child: ListTile(leading: const Icon(Ph.pencilSimple), title: Text(l.vaultEditDetails))),
                 PopupMenuItem(
                   value: 'delete',
-                  child: ListTile(leading: Icon(Icons.delete_outlined, color: context.paw.error), title: Text(l.vaultDeleteDoc)),
+                  child: ListTile(leading: Icon(Ph.trash, color: context.paw.error), title: Text(l.vaultDeleteDoc)),
                 ),
               ],
             ),
@@ -137,7 +138,7 @@ class _Body extends ConsumerWidget {
           color: context.paw.accent.withValues(alpha: Opacities.focus),
           onTap: () => context.push('/vault/doc/${doc.id}/read'),
           child: Row(children: [
-            Icon(Icons.auto_awesome_outlined, color: context.paw.onAccentContainer),
+            Icon(Ph.sparkle, color: context.paw.onAccentContainer),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -145,7 +146,7 @@ class _Body extends ConsumerWidget {
                 Text(l.vaultCheckDetailsHint, style: context.text.bodySmall),
               ]),
             ),
-            const Icon(Icons.chevron_right_outlined),
+            const Icon(Ph.caretRight),
           ]),
         ),
         const SizedBox(height: Space.md),
@@ -200,10 +201,10 @@ class _Body extends ConsumerWidget {
         PawCard(
           onTap: () => context.go('/health?pet=${doc.petId}'),
           child: Row(children: [
-            Icon(Icons.favorite_rounded, color: context.paw.error),
+            Icon(Ph.heartFill, color: context.paw.error),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.vaultLinkedVaccine(petName))),
-            const Icon(Icons.chevron_right_outlined),
+            const Icon(Ph.caretRight),
           ]),
         ),
       ],
@@ -212,26 +213,26 @@ class _Body extends ConsumerWidget {
         PawCard(
           onTap: () => context.push(policy == null ? '/vault/insurance?pet=${doc.petId}&doc=${doc.id}' : '/vault/insurance/${policy.id}'),
           child: Row(children: [
-            Icon(Icons.health_and_safety_outlined, color: context.colors.primary),
+            Icon(Ph.shieldPlus, color: context.colors.primary),
             const SizedBox(width: Space.md),
             Expanded(child: Text(policy == null ? l.vaultTrackPolicy : l.vaultOpenPolicy)),
-            const Icon(Icons.chevron_right_outlined),
+            const Icon(Ph.caretRight),
           ]),
         ),
       ],
       if (doc.link != null) ...[
         const SizedBox(height: Space.md),
-        SecondaryButton(label: l.vaultOpenInApp, icon: Icons.open_in_new_outlined, onPressed: () => context.push(doc.link!)),
+        SecondaryButton(label: l.vaultOpenInApp, icon: Ph.arrowSquareOut, onPressed: () => context.push(doc.link!)),
       ],
       const SizedBox(height: Space.lg),
       if (pet != null)
         PrimaryButton(
           label: l.vaultShareWithVet,
-          icon: Icons.ios_share_outlined,
+          icon: Ph.exportUp,
           onPressed: () => showVaultShareSheet(context, ref, pet: pet!, initialDocIds: [doc.id]),
         ),
       const SizedBox(height: Space.md),
-      InfoNote(l.vaultSecureNote, icon: Icons.shield_outlined),
+      InfoNote(l.vaultSecureNote, icon: Ph.shield),
     ]);
   }
 }

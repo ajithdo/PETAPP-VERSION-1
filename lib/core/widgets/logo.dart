@@ -31,7 +31,7 @@ class PawSetuLogo extends StatelessWidget {
             style: TextStyle(
               fontFamily: FontFamilies.heading,
               fontWeight: FontWeight.w800,
-              fontSize: size * 0.56,
+              fontSize: size * 0.6,
               color: onDark ? context.paw.onBand : context.paw.textPrimary,
               letterSpacing: -0.3,
             )),

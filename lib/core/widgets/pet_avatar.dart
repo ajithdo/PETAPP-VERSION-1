@@ -35,6 +35,7 @@ class PetAvatar extends StatelessWidget {
     this.name,
     this.selected = false,
     this.heroTag,
+    this.ring = true,
   });
 
   final String species;
@@ -45,9 +46,14 @@ class PetAvatar extends StatelessWidget {
   final bool selected;
   final String? heroTag;
 
+  /// The edge in the pet's colour tag, with a thin gap. Off for small arches
+  /// in pills and lists, where the design shows the plain arch.
+  final bool ring;
+
   @override
   Widget build(BuildContext context) {
     final ring = PetTagColors.of(colorTag);
+    if (!this.ring) return _plain(context, ring);
     final big = size > Sizes.heroAvatar - Space.md;
     final gap = big ? Space.xxs + Strokes.hairline : Space.xxs - Strokes.hairline;
     final ringWidth = selected ? Strokes.avatarRingSelected : Strokes.avatarRing;
@@ -82,5 +88,24 @@ class PetAvatar extends StatelessWidget {
         child: face,
       ),
     );
+  }
+
+  Widget _plain(BuildContext context, Color tag) {
+    final width = (size / Sizes.archAspect).roundToDouble();
+    Widget face = ArchClip(
+      width: width,
+      child: SizedBox(
+        width: width,
+        height: size,
+        child: photoUrl != null
+            ? MediaImage(url: photoUrl!, width: width, height: size, fit: BoxFit.cover)
+            : ColoredBox(
+                color: tag.withValues(alpha: Opacities.tintStrong),
+                child: Align(alignment: Alignment.bottomCenter, child: PetFace(species: species, color: tag, size: width)),
+              ),
+      ),
+    );
+    if (heroTag != null) face = Hero(tag: heroTag!, child: face);
+    return Semantics(label: name, image: true, child: face);
   }
 }

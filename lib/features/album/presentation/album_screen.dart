@@ -16,6 +16,7 @@ import '../domain/album.dart';
 import 'album_add.dart';
 import 'album_labels.dart';
 import 'album_share.dart';
+import '../../../core/theme/ph.dart';
 
 String viewerPath(String petId, String itemId, [String? filter]) =>
     '/pets/$petId/album/item/$itemId${filter == null ? '' : '?set=${Uri.encodeComponent(filter)}'}';
@@ -80,7 +81,7 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
                         PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarXs),
                         const SizedBox(width: Space.sm),
                         Flexible(child: title),
-                        const Icon(Icons.expand_more_outlined),
+                        const Icon(Ph.caretDown),
                       ]),
                     ),
                   ),
@@ -89,11 +90,11 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
           actions: [
             IconButton(
               tooltip: l.albumFamilyLink,
-              icon: const Icon(Icons.group_outlined),
+              icon: const Icon(Ph.users),
               onPressed: () => showFamilyLinkSheet(context, ref, p, albumNames(items.value ?? const [])),
             ),
             if (p.birthday != null)
-              IconButton(tooltip: l.albumBirthdayScreenTitle, icon: const Icon(Icons.cake_outlined), onPressed: () => context.push('/pets/${p.id}/birthday')),
+              IconButton(tooltip: l.albumBirthdayScreenTitle, icon: const Icon(Ph.cake), onPressed: () => context.push('/pets/${p.id}/birthday')),
           ],
           bottom: TabBar(
             isScrollable: context.isPhone,
@@ -104,7 +105,7 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
         floatingActionButton: canLog
             ? FloatingActionButton.extended(
                 onPressed: () => showAddMemorySheet(context, ref, p),
-                icon: const Icon(Icons.add_a_photo_outlined),
+                icon: const Icon(Ph.cameraPlus),
                 label: Text(l.albumAdd),
               )
             : null,
@@ -223,19 +224,19 @@ class MemoryTile extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs, vertical: Space.xxs),
                     decoration: BoxDecoration(color: MediaColors.scrim, borderRadius: BorderRadius.circular(Radii.sm)),
                     child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      const Icon(Icons.play_arrow_outlined, color: MediaColors.foreground, size: IconSizes.sm),
+                      const Icon(Ph.play, color: MediaColors.foreground, size: IconSizes.sm),
                       Text(videoLength(item.durationSec), style: context.text.labelSmall?.copyWith(color: MediaColors.foreground)),
                     ]),
                   ),
                 ),
               if (item.favourite)
-                Positioned(right: 6, top: 6, child: Icon(Icons.favorite_rounded, color: PetTagColors.of('rose'), size: IconSizes.chip, shadows: const [Shadow(blurRadius: Space.xs)])),
+                Positioned(right: 6, top: 6, child: Icon(Ph.heartFill, color: PetTagColors.of('rose'), size: IconSizes.chip, shadows: const [Shadow(blurRadius: Space.xs)])),
               if (item.milestone != null) Positioned(left: Space.xs + Space.xxs, top: Space.xs + Space.xxs, child: MilestoneBadge(kind: item.milestone!, size: Sizes.avatarChip)),
               if (selected != null)
                 Positioned(
                   right: 6,
                   bottom: 6,
-                  child: Icon(selected! ? Icons.check_circle_rounded : Icons.radio_button_unchecked_outlined,
+                  child: Icon(selected! ? Ph.checkCircleFill : Ph.circle,
                       color: selected! ? context.colors.primary : MediaColors.foreground, shadows: const [Shadow(blurRadius: Space.xs)]),
                 ),
             ]),
@@ -328,7 +329,7 @@ class OnThisDayCard extends StatelessWidget {
       borderColor: Colors.transparent,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Icon(Icons.history_outlined, color: context.paw.onAccentContainer),
+          Icon(Ph.clockCounterClockwise, color: context.paw.onAccentContainer),
           const SizedBox(width: Space.sm),
           Text(l.albumOnThisDay, style: context.text.titleMedium),
         ]),
@@ -375,7 +376,7 @@ class BirthdayCard extends StatelessWidget {
       color: today ? context.paw.accent.withValues(alpha: Opacities.selection) : context.paw.primaryContainer.withValues(alpha: Opacities.half),
       onTap: () => context.push('/pets/${pet.id}/birthday'),
       child: Row(children: [
-        Icon(Icons.cake_outlined, color: today ? context.paw.onAccentContainer : context.colors.primary, size: IconSizes.xxl),
+        Icon(Ph.cake, color: today ? context.paw.onAccentContainer : context.colors.primary, size: IconSizes.xxl),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -431,7 +432,7 @@ class _TimelineTab extends ConsumerWidget {
         PawCard(
           padding: EdgeInsets.zero,
           child: SwitchListTile(
-            secondary: Icon(Icons.cake_outlined, color: context.paw.accent),
+            secondary: Icon(Ph.cake, color: context.paw.accent),
             title: Text(l.albumBirthdayReminder(pet.name)),
             subtitle: Text(reminderOn ? l.albumBirthdayReminderOn : Fmt.date(nextBirthday(pet.birthday, DateTime.now())!, context.lang)),
             value: reminderOn,
@@ -446,7 +447,7 @@ class _TimelineTab extends ConsumerWidget {
         ),
       ],
       SectionHeader(l.albumTimeline, action: canLog ? l.albumAddMilestone : null, onAction: () => showMemoryEditSheet(context, ref, pet, milestone: 'custom')),
-      if (pet.birthday != null) _TimelineEntry(icon: Icons.child_friendly_outlined, color: context.colors.primary, title: l.albumTimelineBorn(pet.name), date: pet.birthday!),
+      if (pet.birthday != null) _TimelineEntry(icon: Ph.babyCarriage, color: context.colors.primary, title: l.albumTimelineBorn(pet.name), date: pet.birthday!),
       for (final m in ms)
         _TimelineEntry(
           badge: m.milestone,
@@ -547,7 +548,7 @@ class _AlbumsTab extends ConsumerWidget {
               await ref.read(albumRepositoryProvider).addToAlbum(picked, name);
               if (context.mounted) showToast(context, l.albumAddedToAlbum(name));
             },
-            icon: const Icon(Icons.create_new_folder_outlined),
+            icon: const Icon(Ph.folderPlus),
             label: Text(l.albumNewAlbum),
           ),
         ),
@@ -567,7 +568,7 @@ class _AlbumsTab extends ConsumerWidget {
                   AspectRatio(
                     aspectRatio: 1.3,
                     child: inAlbum.isEmpty
-                        ? ColoredBox(color: context.paw.primaryContainer, child: Icon(Icons.photo_album_outlined, color: context.colors.primary, size: IconSizes.xxxl))
+                        ? ColoredBox(color: context.paw.primaryContainer, child: Icon(Ph.imagesSquare, color: context.colors.primary, size: IconSizes.xxxl))
                         : MediaImage(url: inAlbum.first.url!),
                   ),
                   Padding(
@@ -647,9 +648,9 @@ class AlbumDetailScreen extends ConsumerWidget {
                 }
               },
               itemBuilder: (_) => [
-                PopupMenuItem(value: 'add', child: ListTile(leading: const Icon(Icons.add_photo_alternate_outlined), title: Text(l.albumAddToAlbum))),
-                PopupMenuItem(value: 'rename', child: ListTile(leading: const Icon(Icons.edit_outlined), title: Text(l.albumRenameAlbum))),
-                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Icons.folder_delete_outlined), title: Text(l.albumDeleteAlbum))),
+                PopupMenuItem(value: 'add', child: ListTile(leading: const Icon(Ph.image), title: Text(l.albumAddToAlbum))),
+                PopupMenuItem(value: 'rename', child: ListTile(leading: const Icon(Ph.pencilSimple), title: Text(l.albumRenameAlbum))),
+                PopupMenuItem(value: 'delete', child: ListTile(leading: const Icon(Ph.folderMinus), title: Text(l.albumDeleteAlbum))),
               ],
             ),
         ],

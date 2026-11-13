@@ -10,6 +10,7 @@ import '../data/consultation.dart';
 import '../data/televet_repository.dart';
 import '../domain/televet_rules.dart';
 import 'televet_home_screen.dart';
+import '../../../core/theme/ph.dart';
 
 /// Partner portal "Tele-vet queue" for vets (spec 7.7 and 9): waiting
 /// consultations (Plus members first), my open chats and recent ones.
@@ -43,10 +44,10 @@ class VetQueueSection extends ConsumerWidget {
           Text(l.tvQueueHint, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
           const SizedBox(height: Space.lg),
           ResponsiveGrid(minColumns: 2, minItemWidth: 200, children: [
-            StatTile(label: l.tvWaiting, value: '${queued.length}', icon: Icons.hourglass_top_outlined, color: queued.isEmpty ? null : context.paw.warning),
-            StatTile(label: l.tvInProgress, value: '${active.length}', icon: Icons.forum_outlined),
-            StatTile(label: l.tvDoneToday, value: '$today', icon: Icons.task_alt_outlined, color: context.paw.success),
-            StatTile(label: l.tvPrescriptionsWritten, value: '$rx', icon: Icons.receipt_long_outlined, color: context.paw.accent),
+            StatTile(label: l.tvWaiting, value: '${queued.length}', icon: Ph.hourglassHigh, color: queued.isEmpty ? null : context.paw.warning),
+            StatTile(label: l.tvInProgress, value: '${active.length}', icon: Ph.chatsCircle),
+            StatTile(label: l.tvDoneToday, value: '$today', icon: Ph.checkCircle, color: context.paw.success),
+            StatTile(label: l.tvPrescriptionsWritten, value: '$rx', icon: Ph.receipt, color: context.paw.accent),
           ]),
           SectionHeader(l.tvWaiting),
           if (queued.isEmpty) PawCard(child: Text(l.tvQueueEmpty)),
@@ -100,9 +101,9 @@ class _QueueCardState extends ConsumerState<_QueueCard> {
         ]),
         const SizedBox(height: Space.sm),
         Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-          if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Icons.bolt_outlined),
-          StatusChip(c.isVideo ? l.tvModeVideo : l.tvModeChat, tone: ChipTone.info, icon: c.isVideo ? Icons.videocam_outlined : Icons.chat_outlined),
-          if (c.redFlag != null) StatusChip(l.tvUrgent, tone: ChipTone.error, icon: Icons.emergency_outlined),
+          if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Ph.lightning),
+          StatusChip(c.isVideo ? l.tvModeVideo : l.tvModeChat, tone: ChipTone.info, icon: c.isVideo ? Ph.videoCamera : Ph.chatCircleDots),
+          if (c.redFlag != null) StatusChip(l.tvUrgent, tone: ChipTone.error, icon: Ph.asterisk),
           if (c.vetUid != null) StatusChip(l.tvAskedForYou, tone: ChipTone.success),
         ]),
         const SizedBox(height: Space.sm),

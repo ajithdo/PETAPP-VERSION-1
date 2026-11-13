@@ -9,6 +9,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/vault_lock.dart';
 import '../domain/pin_hash.dart';
+import '../../../core/theme/ph.dart';
 
 /// Wraps every vault screen: asks for fingerprint/face on Android and iOS,
 /// or the vault PIN (web and as a fallback); first time, the owner chooses
@@ -133,7 +134,7 @@ class _LockScreenState extends ConsumerState<_LockScreen> {
       ),
       if (bio && bioOn) ...[
         const SizedBox(height: Space.md),
-        SecondaryButton(label: l.vaultUseBiometrics, icon: Icons.fingerprint_outlined, onPressed: _biometric),
+        SecondaryButton(label: l.vaultUseBiometrics, icon: Ph.fingerprint, onPressed: _biometric),
       ],
       const SizedBox(height: Space.sm),
       TextButton(onPressed: _forgot, child: Text(l.vaultForgotPin)),
@@ -202,7 +203,7 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
           value: notifier.biometricsOn,
           onChanged: (v) => setState(() => notifier.setBiometrics(v)),
           title: Text(l.vaultBiometricsToggle),
-          secondary: const Icon(Icons.fingerprint_outlined),
+          secondary: const Icon(Ph.fingerprint),
         ),
       ],
       const SizedBox(height: Space.md),
@@ -354,7 +355,7 @@ class _PinPadState extends State<PinPad> {
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           const SizedBox(width: Sizes.pinKeyCell, height: Sizes.pinKeyCell),
           key('0'),
-          _PadKey(icon: Icons.backspace_outlined, semantic: l.vaultPinBackspace, onTap: _back, enabled: widget.enabled),
+          _PadKey(icon: Ph.backspace, semantic: l.vaultPinBackspace, onTap: _back, enabled: widget.enabled),
         ]),
         const SizedBox(height: Space.md),
         PrimaryButton(
@@ -422,7 +423,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
         Text(l.vaultLockSettings, style: ctx.text.titleMedium),
         const SizedBox(height: Space.sm),
         ListTile(
-          leading: const Icon(Icons.lock_outlined),
+          leading: const Icon(Ph.lockKey),
           title: Text(l.vaultLockNow),
           onTap: () {
             Navigator.pop(ctx);
@@ -430,7 +431,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
           },
         ),
         ListTile(
-          leading: const Icon(Icons.pin_outlined),
+          leading: const Icon(Ph.password),
           title: Text(l.vaultChangePin),
           onTap: () {
             Navigator.pop(ctx);
@@ -439,13 +440,13 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
         ),
         if (bio)
           SwitchListTile(
-            secondary: const Icon(Icons.fingerprint_outlined),
+            secondary: const Icon(Ph.fingerprint),
             value: notifier.biometricsOn,
             title: Text(l.vaultBiometricsToggle),
             onChanged: (v) => setState(() => notifier.setBiometrics(v)),
           ),
         const SizedBox(height: Space.sm),
-        InfoNote(l.vaultAutoLockNote, icon: Icons.timer_outlined),
+        InfoNote(l.vaultAutoLockNote, icon: Ph.timer),
       ]);
     });
   });

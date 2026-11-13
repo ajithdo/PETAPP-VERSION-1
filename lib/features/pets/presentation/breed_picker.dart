@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../domain/breeds.dart';
+import '../../../core/theme/ph.dart';
 
 /// Result of the breed picker: a built-in breed id, "mixed", or "other" with text.
 typedef BreedChoice = ({String id, String? other});
@@ -71,24 +72,24 @@ class _BreedSheetState extends State<_BreedSheet> {
                   ])
                 : TextField(
                     autofocus: false,
-                    decoration: InputDecoration(prefixIcon: const Icon(Icons.search_outlined), hintText: l.searchBreeds),
+                    decoration: InputDecoration(prefixIcon: const Icon(Ph.magnifyingGlass), hintText: l.searchBreeds),
                     onChanged: (v) => setState(() => _q = v),
                   ),
           ),
           if (widget.species == Species.bird)
             Padding(
               padding: const EdgeInsets.fromLTRB(Space.lg, 0, Space.lg, Space.sm),
-              child: InfoNote(l.birdLegalNote, icon: Icons.gavel_outlined),
+              child: InfoNote(l.birdLegalNote, icon: Ph.gavel),
             ),
           Expanded(
             child: ListView(controller: scroll, children: [
               ListTile(
-                leading: const Icon(Icons.diversity_3_outlined),
+                leading: const Icon(Ph.usersThree),
                 title: Text(l.breedMixed),
                 onTap: () => Navigator.pop(context, (id: mixedBreedId, other: null)),
               ),
               ListTile(
-                leading: const Icon(Icons.edit_outlined),
+                leading: const Icon(Ph.pencilSimple),
                 title: Text(l.breedOther),
                 onTap: () => setState(() => _typing = true),
               ),

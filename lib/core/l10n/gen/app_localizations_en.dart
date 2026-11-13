@@ -1505,7 +1505,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String streakDays(int count) {
-    return '$count-day streak';
+    return '$count days in a row';
   }
 
   @override
@@ -5019,7 +5019,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get albumSeeAlbum => 'See album';
+  String get albumSeeAlbum => 'Album';
 
   @override
   String albumYearsAgo(int count) {
@@ -6316,7 +6316,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String shopReorderPrice(String price) {
-    return 'Reorder · $price';
+    return 'Reorder $price';
   }
 
   @override
@@ -7238,7 +7238,7 @@ class AppLocalizationsEn extends AppLocalizations {
       other: '$days days',
       one: '1 day',
     );
-    return '$pet\'s food may run out in about $_temp0. Reorder?';
+    return '$pet\'s food may run out in about $_temp0';
   }
 
   @override
@@ -7252,7 +7252,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get foodEditPortion => 'Edit portion';
+  String get foodEditPortion => 'Change daily portion';
 
   @override
   String foodOnTheWay(String pet) {
@@ -10783,4 +10783,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logGridTitle => 'Log something';
+
+  @override
+  String leftCount(int count) {
+    return '$count left';
+  }
+
+  @override
+  String get markGiven => 'Mark given';
+
+  @override
+  String playOfMin(int done, int goal) {
+    return '$done of $goal min';
+  }
+
+  @override
+  String aboutLeft(String amount) {
+    return 'about $amount left';
+  }
+
+  @override
+  String nowAt(String time) {
+    return 'Now, $time';
+  }
+
+  @override
+  String get albumYearAgo => 'A year ago today';
+
+  @override
+  String get bookWord => 'Book';
+
+  @override
+  String get sosEmergencyHelp => 'SOS, emergency help';
 }

@@ -25,6 +25,7 @@ import '../../features/shop/shop_slots.dart';
 import '../../features/sos/sos_slots.dart';
 import '../../features/vault/vault_slots.dart';
 import '../widgets/layout.dart';
+import '../theme/ph.dart';
 
 /// Routes and menus that grow phase by phase. router.dart wires them in.
 
@@ -153,19 +154,19 @@ class MeMenuItem {
 List<MeMenuItem> meMenu(BuildContext context) {
   final l = context.l10n;
   return [
-    MeMenuItem(Icons.pets_outlined, l.myPets, '/me/pets'),
-    MeMenuItem(Icons.family_restroom_outlined, l.familySharing, '/me/family'),
-    MeMenuItem(Icons.lock_outlined, l.documentVault, '/me/vault'),
-    MeMenuItem(Icons.photo_library_outlined, l.memoryAlbum, '/me/album'),
-    MeMenuItem(Icons.qr_code_2_outlined, l.lostPetMode, '/me/lost'),
-    MeMenuItem(Icons.watch_outlined, l.connectedDevices, '/me/devices'),
-    MeMenuItem(Icons.receipt_long_outlined, l.ordMyOrders, '/shop/orders', group: 1),
-    MeMenuItem(Icons.account_balance_wallet_outlined, l.expenses, '/me/expenses', group: 1),
-    MeMenuItem(Icons.location_on_outlined, l.addrBook, '/me/addresses', group: 1),
-    MeMenuItem(Icons.workspace_premium_outlined, l.pawsetuPlus, '/me/plus', group: 1),
-    MeMenuItem(Icons.card_giftcard_outlined, l.referTitle, '/me/refer', group: 1),
-    MeMenuItem(Icons.settings_outlined, l.settings, '/me/settings', group: 2),
-    MeMenuItem(Icons.support_agent_outlined, l.helpAndComplaints, '/me/help', group: 2),
-    MeMenuItem(Icons.privacy_tip_outlined, l.privacyCentre, '/me/privacy', group: 2),
+    MeMenuItem(Ph.pawPrint, l.myPets, '/me/pets'),
+    MeMenuItem(Ph.usersThree, l.familySharing, '/me/family'),
+    MeMenuItem(Ph.lockKey, l.documentVault, '/me/vault'),
+    MeMenuItem(Ph.images, l.memoryAlbum, '/me/album'),
+    MeMenuItem(Ph.qrCode, l.lostPetMode, '/me/lost'),
+    MeMenuItem(Ph.watch, l.connectedDevices, '/me/devices'),
+    MeMenuItem(Ph.receipt, l.ordMyOrders, '/shop/orders', group: 1),
+    MeMenuItem(Ph.wallet, l.expenses, '/me/expenses', group: 1),
+    MeMenuItem(Ph.mapPin, l.addrBook, '/me/addresses', group: 1),
+    MeMenuItem(Ph.crownSimple, l.pawsetuPlus, '/me/plus', group: 1),
+    MeMenuItem(Ph.gift, l.referTitle, '/me/refer', group: 1),
+    MeMenuItem(Ph.gearSix, l.settings, '/me/settings', group: 2),
+    MeMenuItem(Ph.headset, l.helpAndComplaints, '/me/help', group: 2),
+    MeMenuItem(Ph.shieldWarning, l.privacyCentre, '/me/privacy', group: 2),
   ];
 }

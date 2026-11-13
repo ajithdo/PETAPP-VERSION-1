@@ -16,6 +16,7 @@ import '../domain/breeds.dart';
 import '../domain/pet.dart';
 import 'breed_picker.dart';
 import 'pet_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Add or edit a pet in 2 short steps (spec 7.1). Only name and species are
 /// required; everything else can wait.
@@ -274,7 +275,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
                 final bytes = await pickSquarePhoto(context);
                 if (bytes != null) setState(() => _photo = bytes);
               },
-              icon: const Icon(Icons.photo_camera_outlined),
+              icon: const Icon(Ph.camera),
             ),
           ),
         ]),
@@ -285,7 +286,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
         child: PawTextField(
           label: l.petName,
           controller: _name,
-          prefixIcon: Icons.pets_outlined,
+          prefixIcon: Ph.pawPrint,
           autofocus: !_isEdit,
           textInputAction: TextInputAction.next,
           validator: (v) => (v == null || v.trim().isEmpty) ? l.fieldRequired : null,
@@ -310,7 +311,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
         label: l.breed,
         value: _breedId == null ? null : breedText,
         placeholder: l.chooseBreed,
-        icon: Icons.search_outlined,
+        icon: Ph.magnifyingGlass,
         onTap: () async {
           final b = await pickBreed(context, species);
           if (b != null) {
@@ -323,7 +324,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       ),
       if (_species == 'bird') ...[
         const SizedBox(height: Space.md),
-        InfoNote(l.birdLegalNote, icon: Icons.gavel_outlined),
+        InfoNote(l.birdLegalNote, icon: Ph.gavel),
       ],
       const SizedBox(height: Space.lg),
       FieldLabel(l.colourTag, hint: l.colourTagHint),
@@ -347,7 +348,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
                     width: e.key == _color ? Strokes.avatarRingSelected : Strokes.hairline,
                   ),
                 ),
-                child: e.key == _color ? Icon(Icons.check_outlined, color: readableOn(context.paw.ink, [e.value], ratio: 3)) : null,
+                child: e.key == _color ? Icon(Ph.check, color: readableOn(context.paw.ink, [e.value], ratio: 3)) : null,
               ),
             ),
           ),
@@ -366,8 +367,8 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       FieldLabel(l.birthday),
       SegmentedButton<bool>(
         segments: [
-          ButtonSegment(value: false, label: Text(l.exactDate), icon: const Icon(Icons.cake_outlined)),
-          ButtonSegment(value: true, label: Text(l.approxAge), icon: const Icon(Icons.timelapse_outlined)),
+          ButtonSegment(value: false, label: Text(l.exactDate), icon: const Icon(Ph.cake)),
+          ButtonSegment(value: true, label: Text(l.approxAge), icon: const Icon(Ph.clockCountdown)),
         ],
         selected: {_useApprox},
         onSelectionChanged: (s) => setState(() => _useApprox = s.first),
@@ -376,10 +377,10 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
       if (!_useApprox)
         PawPickerField(
           label: l.birthday,
-          icon: Icons.calendar_today_outlined,
+          icon: Ph.calendarBlank,
           value: _birthday == null ? null : Fmt.date(_birthday!, context.lang),
           placeholder: l.chooseDate,
-          trailingIcon: Icons.edit_calendar_outlined,
+          trailingIcon: Ph.calendarPlus,
           onTap: () async {
             final d = await showDatePicker(
               context: context,
@@ -428,7 +429,7 @@ class _PetFormScreenState extends ConsumerState<PetFormScreen> {
         controller: _weight,
         keyboardType: const TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]'))],
-        prefixIcon: Icons.monitor_weight_outlined,
+        prefixIcon: Ph.scales,
       ),
       Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),

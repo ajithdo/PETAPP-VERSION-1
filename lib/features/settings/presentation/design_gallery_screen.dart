@@ -5,6 +5,7 @@ import '../../../core/settings/settings_controller.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/logo.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// Hidden screen that shows every shared widget of UI Design 5 "Genda"
 /// (DESIGN.md), for checking the design system (Settings → About, tap 5×).
@@ -54,7 +55,7 @@ class DesignGalleryScreen extends ConsumerWidget {
             color: on ? p.done : null,
             border: on ? null : Border.all(color: p.controlBorder, width: Strokes.focus),
           ),
-          child: on ? Icon(Icons.check_rounded, size: IconSizes.md, color: p.surface) : null,
+          child: on ? Icon(Ph.check, size: IconSizes.md, color: p.surface) : null,
         );
     Widget time(String t, String ampm) => SizedBox(
           width: Sizes.dateBadge,
@@ -70,13 +71,13 @@ class DesignGalleryScreen extends ConsumerWidget {
         actions: [
           IconButton(
             tooltip: l.appearance,
-            icon: Icon(isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded),
+            icon: Icon(isDark ? Ph.sunFill : Ph.moonFill),
             onPressed: () => ref.read(settingsProvider.notifier).setThemeMode(isDark ? ThemeMode.light : ThemeMode.dark),
           ),
           IconButton(
             tooltip: l.highContrast,
             isSelected: settings.highContrast,
-            icon: const Icon(Icons.contrast_rounded),
+            icon: const Icon(Ph.circleHalfFill),
             onPressed: () => ref.read(settingsProvider.notifier).setHighContrast(!settings.highContrast),
           ),
         ],
@@ -137,14 +138,14 @@ class DesignGalleryScreen extends ConsumerWidget {
         const SizedBox(height: Space.sm),
         PrimaryButton(label: 'Loading', loading: true, onPressed: () {}),
         const SizedBox(height: Space.sm),
-        SecondaryButton(label: 'Mark as given', icon: Icons.check_rounded, onPressed: () {}),
+        SecondaryButton(label: 'Mark as given', icon: Ph.check, onPressed: () {}),
         const SizedBox(height: Space.sm),
         Row(children: [
           TextButton(onPressed: () {}, child: const Text('See all')),
           const Spacer(),
-          PawIconButton(icon: Icons.chat_bubble_outline_rounded, tooltip: 'Messages', badge: 1, onPressed: () {}),
+          PawIconButton(icon: Ph.chatCircle, tooltip: 'Messages', badge: 1, onPressed: () {}),
           const SizedBox(width: Space.sm),
-          PawIconButton(icon: Icons.notifications_none_rounded, tooltip: 'Notifications', badge: 2, onPressed: () {}),
+          PawIconButton(icon: Ph.bell, tooltip: 'Notifications', badge: 2, onPressed: () {}),
         ]),
         const SizedBox(height: Space.sm),
         PrimaryButton(label: 'Cancel booking', danger: true, onPressed: () {}),
@@ -156,10 +157,10 @@ class DesignGalleryScreen extends ConsumerWidget {
         ]),
         const SectionHeader('Quick actions'),
         ResponsiveGrid(minItemWidth: Sizes.quickTileMin, children: [
-          QuickActionTile(icon: Icons.medical_services_rounded, label: 'Book a vet', onTap: () {}),
-          QuickActionTile(icon: Icons.videocam_rounded, label: 'Tele-vet', onTap: () {}),
-          QuickActionTile(icon: Icons.replay_rounded, label: 'Buy again', onTap: () {}),
-          QuickActionTile(icon: Icons.healing_rounded, label: 'First aid', onTap: () {}),
+          QuickActionTile(icon: Ph.firstAidKitFill, label: 'Book a vet', onTap: () {}),
+          QuickActionTile(icon: Ph.videoCameraFill, label: 'Tele-vet', onTap: () {}),
+          QuickActionTile(icon: Ph.arrowCounterClockwise, label: 'Buy again', onTap: () {}),
+          QuickActionTile(icon: Ph.bandaidsFill, label: 'First aid', onTap: () {}),
         ]),
         SectionHeader('List rows', action: 'See all', onAction: () {}),
         PawCard(
@@ -173,7 +174,7 @@ class DesignGalleryScreen extends ConsumerWidget {
               leading: const DateBadge(day: '13', month: 'Nov'),
               title: 'Flea and tick prevention',
               subtitle: 'Spot-on, every 30 days',
-              trailing: const StatusChip('Confirmed', tone: ChipTone.success, icon: Icons.check_rounded),
+              trailing: const StatusChip('Confirmed', tone: ChipTone.success, icon: Ph.check),
             ),
             const Divider(),
             row(leading: const DateBadge(day: '18', month: 'Nov 2025', muted: true), title: 'DHPPi + Lepto', subtitle: 'Given · Gulmohar Vet Studio'),
@@ -181,21 +182,21 @@ class DesignGalleryScreen extends ConsumerWidget {
         ),
         const SectionHeader('Status chips'),
         const Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
-          StatusChip('Confirmed', tone: ChipTone.success, icon: Icons.check_rounded),
-          StatusChip('Waiting for you', tone: ChipTone.warning, icon: Icons.schedule_rounded),
-          StatusChip('Payment failed', tone: ChipTone.error, icon: Icons.error_outline_rounded),
-          StatusChip('Plus', tone: ChipTone.accent, icon: Icons.workspace_premium_rounded),
+          StatusChip('Confirmed', tone: ChipTone.success, icon: Ph.check),
+          StatusChip('Waiting for you', tone: ChipTone.warning, icon: Ph.clock),
+          StatusChip('Payment failed', tone: ChipTone.error, icon: Ph.warningCircle),
+          StatusChip('Plus', tone: ChipTone.accent, icon: Ph.crownSimpleFill),
           StatusChip('Cancelled'),
         ]),
         const SectionHeader('Cards'),
         const ResponsiveGrid(minItemWidth: 200, children: [
-          StatTile(label: 'Walk today', value: '2.1 km', icon: Icons.directions_walk_rounded),
-          StatTile(label: 'Weight', value: '29.0 kg', icon: Icons.monitor_weight_rounded),
-          StatTile(label: 'Payout this week', value: '₹18,450', icon: Icons.payments_rounded),
+          StatTile(label: 'Walk today', value: '2.1 km', icon: Ph.personSimpleWalk),
+          StatTile(label: 'Weight', value: '29.0 kg', icon: Ph.scalesFill),
+          StatTile(label: 'Payout this week', value: '₹18,450', icon: Ph.moneyFill),
         ]),
         const SizedBox(height: Space.md),
         PawAlertCard(
-          icon: Icons.pest_control_rounded,
+          icon: Ph.bugBeetleFill,
           overline: 'Next for Bruno',
           title: 'Flea and tick prevention',
           message: 'Friday 13 Nov · in 5 days',
@@ -203,7 +204,7 @@ class DesignGalleryScreen extends ConsumerWidget {
           onAction: () {},
         ),
         const SizedBox(height: Space.sm),
-        const PawAlertCard(icon: Icons.error_outline_rounded, title: "We couldn't save that", message: 'Check your internet and try again.', tone: ChipTone.error),
+        const PawAlertCard(icon: Ph.warningCircle, title: "We couldn't save that", message: 'Check your internet and try again.', tone: ChipTone.error),
         const SizedBox(height: Space.sm),
         const InfoNote('Indicative, always confirm with your vet.'),
         const SizedBox(height: Space.sm),
@@ -211,19 +212,19 @@ class DesignGalleryScreen extends ConsumerWidget {
         const SectionHeader('Health pass'),
         PassCard(
           overline: 'Medical card',
-          overlineIcon: Icons.badge_rounded,
+          overlineIcon: Ph.identificationCardFill,
           title: 'Bruno',
           subtitle: 'Labrador · 3 years · 29.0 kg',
           badges: [PassCard.badge(context, 'All up to date')],
           rows: const [PassRow(label: 'Microchip', value: '9851 2100 4471 230', mono: true), PassRow(label: 'Allergies', value: 'None known')],
-          actions: [PassCard.action(context, label: 'Share', icon: Icons.share_rounded, onPressed: () {})],
+          actions: [PassCard.action(context, label: 'Share', icon: Ph.shareNetwork, onPressed: () {})],
         ),
         const SectionHeader('Timeline'),
         const TimelineTile(tone: ChipTone.success, isFirst: true, child: Text('Anti-rabies · given 18 Nov 2025')),
         const TimelineTile(tone: ChipTone.warning, child: Text('DHPPi + Lepto · due Wed 18 Nov')),
         const TimelineTile(tone: ChipTone.neutral, isLast: true, child: Text('Annual check-up · Jul 2027')),
         const SectionHeader('Inputs'),
-        const PawTextField(label: 'Pet name', hint: 'e.g. Bruno', prefixIcon: Icons.pets_rounded),
+        const PawTextField(label: 'Pet name', hint: 'e.g. Bruno', prefixIcon: Ph.pawPrintFill),
         const SizedBox(height: Space.md),
         PawTextField(label: 'Phone number', initialValue: '98765', validator: (_) => 'Enter all 10 digits of the phone number', autofocus: false),
         const SizedBox(height: Space.md),
@@ -245,11 +246,11 @@ class DesignGalleryScreen extends ConsumerWidget {
           selectedIndex: 0,
           onDestinationSelected: (_) {},
           destinations: [
-            NavigationDestination(icon: const Icon(Icons.home_outlined), selectedIcon: const Icon(Icons.home_rounded), label: l.tabHome),
-            NavigationDestination(icon: const Icon(Icons.favorite_border_rounded), selectedIcon: const Icon(Icons.favorite_rounded), label: l.tabHealth),
-            NavigationDestination(icon: const Icon(Icons.calendar_month_outlined), selectedIcon: const Icon(Icons.calendar_month_rounded), label: l.tabBook),
-            NavigationDestination(icon: const Icon(Icons.shopping_bag_outlined), selectedIcon: const Icon(Icons.shopping_bag_rounded), label: l.tabShop),
-            NavigationDestination(icon: const Icon(Icons.person_outline_rounded), selectedIcon: const Icon(Icons.person_rounded), label: l.tabMe),
+            NavigationDestination(icon: const Icon(Ph.house), selectedIcon: const Icon(Ph.houseFill), label: l.tabHome),
+            NavigationDestination(icon: const Icon(Ph.heart), selectedIcon: const Icon(Ph.heartFill), label: l.tabHealth),
+            NavigationDestination(icon: const Icon(Ph.calendarDots), selectedIcon: const Icon(Ph.calendarDotsFill), label: l.tabBook),
+            NavigationDestination(icon: const Icon(Ph.bag), selectedIcon: const Icon(Ph.bagFill), label: l.tabShop),
+            NavigationDestination(icon: const Icon(Ph.user), selectedIcon: const Icon(Ph.userFill), label: l.tabMe),
           ],
         ),
         const SectionHeader('Bottom sheet and dialogs'),

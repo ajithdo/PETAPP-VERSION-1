@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../settings/settings_controller.dart';
 import '../theme/tokens.dart';
 import 'layout.dart';
+import '../theme/ph.dart';
 
 /// SOS button (spec 7.12): hold for 2 seconds while it fills.
 /// A quick tap shows "Hold to activate". In Easy mode a tap opens a simple
@@ -103,13 +104,15 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
   /// red in the app; a lighter sweep fills it while held.
   Widget _pill(BuildContext context, PawColors paw, bool easy) {
     // The pill is 8 px shorter than the tap area around it.
-    final target = easy ? TapTarget.easy : TapTarget.min;
+    final target = easy ? TapTarget.easy : Sizes.topControl;
     final radius = BorderRadius.circular(Radii.full);
     final pill = Container(
-      height: target - Space.sm,
+      height: target,
       decoration: BoxDecoration(
         color: paw.sos,
         borderRadius: radius,
+        // The halo: a 4 px ring of pale red, so SOS is never missed.
+        boxShadow: [BoxShadow(color: paw.sos.withValues(alpha: Opacities.focus), spreadRadius: Space.xs)],
       ),
       child: ClipRRect(
         borderRadius: radius,
@@ -127,9 +130,9 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs),
+            padding: const EdgeInsets.only(left: Space.md, right: Space.md + Space.xxs),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
-              Icon(Icons.emergency_rounded, size: IconSizes.sm, color: paw.onSos),
+              Icon(Ph.asterisk, size: IconSizes.sm + Space.xxs, color: paw.onSos),
               const SizedBox(width: Space.xs + Space.xxs),
               Text(
                 'SOS',
@@ -145,7 +148,7 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
         ]),
       ),
     );
-    return SizedBox(height: target, child: Center(widthFactor: 1, child: pill));
+    return Padding(padding: const EdgeInsets.all(Space.xs), child: pill);
   }
 
   /// Big round SOS (SOS screen): solid red with a ring that fills while held.

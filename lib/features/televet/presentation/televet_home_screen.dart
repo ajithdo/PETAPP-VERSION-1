@@ -13,6 +13,7 @@ import '../../shell/presentation/sos_launcher.dart';
 import '../data/consultation.dart';
 import '../data/televet_repository.dart';
 import '../domain/televet_rules.dart';
+import '../../../core/theme/ph.dart';
 
 /// Tele-vet limits for the signed-in user (from config/app).
 final myTeleVetLimitsProvider = Provider<TeleVetLimits>((ref) {
@@ -97,14 +98,14 @@ class TeleVetHomeScreen extends ConsumerWidget {
                     width: Sizes.thumb,
                     height: Sizes.thumb,
                     decoration: BoxDecoration(color: paw.marigold, borderRadius: BorderRadius.circular(Radii.lg)),
-                    child: Icon(Icons.video_call_rounded, color: paw.onMarigold, size: IconSizes.xl),
+                    child: Icon(Ph.videoCameraFill, color: paw.onMarigold, size: IconSizes.xl),
                   ),
                 ]),
                 const SizedBox(height: Space.lg),
                 FilledButton.icon(
                   onPressed: start,
                   style: FilledButton.styleFrom(backgroundColor: paw.marigold, foregroundColor: paw.onMarigold, iconColor: paw.onMarigold),
-                  icon: const Icon(Icons.chat_outlined),
+                  icon: const Icon(Ph.chatCircleDots),
                   label: Text(l.tvStart),
                 ),
               ]),
@@ -124,7 +125,7 @@ class TeleVetHomeScreen extends ConsumerWidget {
                 width: TapTarget.min - Space.xxs,
                 height: TapTarget.min - Space.xxs,
                 decoration: BoxDecoration(color: context.paw.textPrimary, borderRadius: BorderRadius.circular(Radii.md)),
-                child: Icon(Icons.auto_awesome_outlined, color: context.paw.background),
+                child: Icon(Ph.sparkle, color: context.paw.background),
               ),
               const SizedBox(width: Space.md),
               Expanded(
@@ -133,7 +134,7 @@ class TeleVetHomeScreen extends ConsumerWidget {
                   Text(ai.unlimited ? l.aiTileHintPlus : l.aiTileHint(ai.left), style: context.text.bodySmall),
                 ]),
               ),
-              const Icon(Icons.chevron_right_outlined),
+              const Icon(Ph.caretRight),
             ]),
           ),
           if (past.isNotEmpty) ...[
@@ -146,7 +147,7 @@ class TeleVetHomeScreen extends ConsumerWidget {
             borderColor: context.paw.sos.withValues(alpha: Opacities.muted),
             padding: const EdgeInsets.all(Space.md),
             child: Row(children: [
-              Icon(Icons.emergency_outlined, color: context.paw.sos),
+              Icon(Ph.asterisk, color: context.paw.sos),
               const SizedBox(width: Space.md),
               Expanded(child: Text(l.tvEmergencyNote, style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary))),
               TextButton(onPressed: () => openSos(context, ref), child: Text(l.sosTitle, style: TextStyle(color: context.paw.sos))),
@@ -184,18 +185,18 @@ class _AllowanceCard extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
           Expanded(child: Text(plus ? l.tvPlanPlus : l.tvPlanFree, style: context.text.titleMedium)),
-          StatusChip(plus ? l.planPlus : l.tvFreeChip, tone: plus ? ChipTone.accent : ChipTone.neutral, icon: plus ? Icons.workspace_premium_outlined : null),
+          StatusChip(plus ? l.planPlus : l.tvFreeChip, tone: plus ? ChipTone.accent : ChipTone.neutral, icon: plus ? Ph.crownSimple : null),
         ]),
         const SizedBox(height: Space.md),
         TileGrid(columns: cols, spacing: Space.sm, children: [
-          tile(Icons.event_repeat_outlined, limits.unlimitedPerMonth ? l.tvLineUnlimited : l.tvLinePerMonth(limits.perMonth, used)),
-          tile(Icons.chat_bubble_outlined, l.tvLineMessages(limits.messages, limits.words)),
-          tile(Icons.schedule_outlined, l.tvLineHours(limits.hours)),
-          tile(limits.video ? Icons.videocam_outlined : Icons.videocam_off_outlined, limits.video ? l.tvLineVideo : l.tvLineNoVideo),
+          tile(Ph.repeat, limits.unlimitedPerMonth ? l.tvLineUnlimited : l.tvLinePerMonth(limits.perMonth, used)),
+          tile(Ph.chatCircle, l.tvLineMessages(limits.messages, limits.words)),
+          tile(Ph.clock, l.tvLineHours(limits.hours)),
+          tile(limits.video ? Ph.videoCamera : Ph.videoCameraSlash, limits.video ? l.tvLineVideo : l.tvLineNoVideo),
         ]),
         if (reached) ...[
           const SizedBox(height: Space.md),
-          InfoNote(l.tvMonthlyUsed(Fmt.date(nextMonthStart(DateTime.now()), context.lang)), tone: ChipTone.warning, icon: Icons.hourglass_bottom_outlined),
+          InfoNote(l.tvMonthlyUsed(Fmt.date(nextMonthStart(DateTime.now()), context.lang)), tone: ChipTone.warning, icon: Ph.hourglassLow),
         ],
         if (!plus) ...[
           const SizedBox(height: Space.sm),
@@ -203,7 +204,7 @@ class _AllowanceCard extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: TextButton.icon(
               onPressed: () => showPlusPrompt(context, title: l.tvPlusPromptTitle, body: l.plusPerkVideo),
-              icon: const Icon(Icons.workspace_premium_outlined),
+              icon: const Icon(Ph.crownSimple),
               label: Text(l.seePlus),
             ),
           ),
@@ -253,7 +254,7 @@ class ConsultCard extends StatelessWidget {
           StatusChip(status, tone: tone),
           if (c.prescriptionId != null) ...[
             const SizedBox(height: Space.xs),
-            Icon(Icons.receipt_long_outlined, size: IconSizes.chip, color: context.colors.primary, semanticLabel: l.rxTitle),
+            Icon(Ph.receipt, size: IconSizes.chip, color: context.colors.primary, semanticLabel: l.rxTitle),
           ],
         ]),
       ]),
@@ -292,12 +293,12 @@ class _TeleVetConsentScreenState extends ConsumerState<TeleVetConsentScreen> {
   Widget build(BuildContext context) {
     final l = context.l10n;
     final points = [
-      (Icons.medical_services_outlined, l.tvConsent1),
-      (Icons.badge_outlined, l.tvConsent2),
-      (Icons.local_hospital_outlined, l.tvConsent3),
-      (Icons.emergency_outlined, l.tvConsent4),
-      (Icons.receipt_long_outlined, l.tvConsent5),
-      (Icons.shield_outlined, l.tvConsent6),
+      (Ph.firstAidKit, l.tvConsent1),
+      (Ph.identificationCard, l.tvConsent2),
+      (Ph.firstAid, l.tvConsent3),
+      (Ph.asterisk, l.tvConsent4),
+      (Ph.receipt, l.tvConsent5),
+      (Ph.shield, l.tvConsent6),
     ];
     return Scaffold(
       appBar: AppBar(title: Text(l.tvConsentTitle)),

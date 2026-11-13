@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/widgets/widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// Words for partner kinds, statuses, ticket topics and Demo Outbox
 /// channels, shared by the admin panel and the help screens.
@@ -20,14 +21,14 @@ String partnerKindLabel(BuildContext context, String kind) {
 }
 
 IconData partnerKindIcon(String kind) => switch (kind) {
-      'clinic' => Icons.local_hospital_outlined,
-      'vet' => Icons.medical_services_outlined,
-      'groomer' => Icons.content_cut_outlined,
-      'trainer' => Icons.sports_outlined,
-      'boarder' => Icons.house_outlined,
-      'walker' => Icons.directions_walk_outlined,
-      'seller' => Icons.storefront_outlined,
-      _ => Icons.badge_outlined,
+      'clinic' => Ph.firstAid,
+      'vet' => Ph.firstAidKit,
+      'groomer' => Ph.scissors,
+      'trainer' => Ph.graduationCap,
+      'boarder' => Ph.houseLine,
+      'walker' => Ph.personSimpleWalk,
+      'seller' => Ph.storefront,
+      _ => Ph.identificationCard,
     };
 
 String partnerStatusLabel(BuildContext context, String status) {
@@ -87,10 +88,10 @@ String linkTypeLabel(BuildContext context, String type) {
 }
 
 IconData linkTypeIcon(String type) => switch (type) {
-      'booking' => Icons.event_outlined,
-      'order' => Icons.shopping_bag_outlined,
-      'chat' => Icons.chat_outlined,
-      _ => Icons.help_outlined,
+      'booking' => Ph.calendarBlank,
+      'order' => Ph.bag,
+      'chat' => Ph.chatCircleDots,
+      _ => Ph.question,
     };
 
 String reportTypeLabel(BuildContext context, String type) {
@@ -114,11 +115,11 @@ String outboxChannelLabel(BuildContext context, String channel) {
 }
 
 IconData outboxChannelIcon(String channel) => switch (channel) {
-      'sms' => Icons.sms_outlined,
-      'whatsapp' => Icons.chat_outlined,
-      'email' => Icons.email_outlined,
-      'push' => Icons.notifications_active_outlined,
-      _ => Icons.outbox_outlined,
+      'sms' => Ph.chatText,
+      'whatsapp' => Ph.chatCircleDots,
+      'email' => Ph.envelopeSimple,
+      'push' => Ph.bellRinging,
+      _ => Ph.trayArrowUp,
     };
 
 /// A plain-words name for an audit log action.

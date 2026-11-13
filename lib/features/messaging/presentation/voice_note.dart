@@ -11,6 +11,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/chat_repository.dart';
 import '../domain/chat_rules.dart';
+import '../../../core/theme/ph.dart';
 
 /// Records voice notes (up to 2 minutes) as 16 kHz mono PCM through the
 /// `record` package, which works on Android, iOS and the web, and wraps the
@@ -201,7 +202,7 @@ class _VoiceNotePlayerState extends ConsumerState<VoiceNotePlayer> {
         onPressed: _loading ? null : _toggle,
         icon: _loading
             ? SizedBox(width: IconSizes.md, height: IconSizes.md, child: CircularProgressIndicator(strokeWidth: Strokes.focus, color: widget.color))
-            : Icon(_playing ? Icons.pause_circle_filled_rounded : Icons.play_circle_fill_rounded, color: widget.color, size: IconSizes.xxl),
+            : Icon(_playing ? Ph.pauseCircleFill : Ph.playCircleFill, color: widget.color, size: IconSizes.xxl),
       ),
       SizedBox(
         width: Sizes.voiceWave,
@@ -284,8 +285,8 @@ class _RecordingBarState extends State<RecordingBar> {
     final l = context.l10n;
     final secs = widget.recorder.elapsed.inSeconds;
     return Row(children: [
-      IconButton(tooltip: l.msgCancelRecording, onPressed: widget.onCancel, icon: Icon(Icons.delete_outlined, color: context.paw.error)),
-      Icon(Icons.fiber_manual_record_rounded, color: context.paw.error, size: IconSizes.sm),
+      IconButton(tooltip: l.msgCancelRecording, onPressed: widget.onCancel, icon: Icon(Ph.trash, color: context.paw.error)),
+      Icon(Ph.circleFill, color: context.paw.error, size: IconSizes.sm),
       const SizedBox(width: Space.sm),
       Expanded(
         child: Text(
@@ -295,7 +296,7 @@ class _RecordingBarState extends State<RecordingBar> {
           overflow: TextOverflow.ellipsis,
         ),
       ),
-      IconButton.filled(tooltip: l.msgSendVoice, onPressed: widget.onSend, icon: const Icon(Icons.send_outlined)),
+      IconButton.filled(tooltip: l.msgSendVoice, onPressed: widget.onSend, icon: const Icon(Ph.paperPlaneRight)),
     ]);
   }
 }

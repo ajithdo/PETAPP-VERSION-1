@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import '../theme/tokens.dart';
 import 'buttons.dart';
 import 'layout.dart';
+import '../theme/ph.dart';
 
 /// The clear "Demo" dialog shown instead of calling a real service.
 Future<void> showDemoDialog(BuildContext context, {required String title, required String body}) {
   return showDialog<void>(
     context: context,
     builder: (ctx) => AlertDialog(
-      icon: Icon(Icons.science_outlined, color: ctx.paw.accent, size: IconSizes.xl),
+      icon: Icon(Ph.flask, color: ctx.paw.accent, size: IconSizes.xl),
       title: Text(title),
       content: Text(body),
       actions: [FilledButton(onPressed: () => Navigator.pop(ctx), child: Text(ctx.l10n.ok))],

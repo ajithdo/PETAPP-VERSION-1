@@ -18,6 +18,7 @@ import '../domain/auto_read.dart';
 import 'scan_screen.dart';
 import 'vault_labels.dart';
 import 'vault_screen.dart';
+import '../../../core/theme/ph.dart';
 
 /// Largest file the vault accepts (matches storage.rules).
 const maxVaultFileBytes = 25 * 1024 * 1024;
@@ -62,18 +63,18 @@ Future<void> showUploadSheet(BuildContext context, WidgetRef ref, {Pet? pet, boo
         ],
         const SizedBox(height: Space.md),
         ListTile(
-          leading: const Icon(Icons.document_scanner_outlined),
+          leading: const Icon(Ph.scan),
           title: Text(l.vaultScanCamera),
           subtitle: Text(l.vaultScanCameraHint),
           onTap: () => Navigator.pop(ctx, 'scan'),
         ),
         ListTile(
-          leading: const Icon(Icons.photo_library_outlined),
+          leading: const Icon(Ph.images),
           title: Text(l.vaultFromGallery),
           onTap: () => Navigator.pop(ctx, 'gallery'),
         ),
         ListTile(
-          leading: const Icon(Icons.picture_as_pdf_outlined),
+          leading: const Icon(Ph.filePdf),
           title: Text(l.vaultFromPdf),
           onTap: () => Navigator.pop(ctx, 'pdf'),
         ),

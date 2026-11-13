@@ -20,6 +20,7 @@ import 'presentation/banners.dart';
 import 'presentation/commission_report.dart';
 import 'presentation/help_screens.dart';
 import 'presentation/privacy_screen.dart';
+import '../../core/theme/ph.dart';
 
 export 'presentation/help_screens.dart' show HelpListBody, helpBase;
 
@@ -119,10 +120,10 @@ List<Widget> adminHomeSection(BuildContext context, WidgetRef ref) {
           borderColor: context.paw.error,
           onTap: () => context.push('/me/privacy'),
           child: Row(children: [
-            Icon(Icons.warning_amber_outlined, color: context.paw.error),
+            Icon(Ph.warning, color: context.paw.error),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.prvDeletionPending(Fmt.date(deletionDate(deletion), context.lang)), style: context.text.bodyMedium)),
-            const Icon(Icons.chevron_right_outlined),
+            const Icon(Ph.caretRight),
           ]),
         ),
       ),
@@ -133,10 +134,10 @@ List<Widget> adminHomeSection(BuildContext context, WidgetRef ref) {
           borderColor: context.paw.accent,
           onTap: () => context.push('/me/plus'),
           child: Row(children: [
-            Icon(Icons.workspace_premium_outlined, color: context.paw.accent),
+            Icon(Ph.crownSimple, color: context.paw.accent),
             const SizedBox(width: Space.md),
             Expanded(child: Text(l.plusTrialEndingSoon(trialLeft), style: context.text.bodyMedium)),
-            const Icon(Icons.chevron_right_outlined),
+            const Icon(Ph.caretRight),
           ]),
         ),
       ),

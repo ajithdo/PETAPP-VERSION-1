@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../theme/tokens.dart';
+import 'toran.dart';
 import 'layout.dart';
 
 /// Red for destructive buttons with white text: the dark theme's error red
@@ -133,16 +134,19 @@ class PawIconButton extends StatelessWidget {
       onPressed: onPressed,
       style: IconButton.styleFrom(
         backgroundColor: paw.surfaceSubtle,
+        foregroundColor: paw.textPrimary,
         shape: const CircleBorder(),
-        // A 40 px circle with a full 48 px tap area around it.
-        minimumSize: const Size.square(TapTarget.min - Space.sm),
-        fixedSize: const Size.square(TapTarget.min - Space.sm),
-        tapTargetSize: MaterialTapTargetSize.padded,
+        minimumSize: const Size.square(Sizes.topControl),
+        fixedSize: const Size.square(Sizes.topControl),
+        padding: EdgeInsets.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
       icon: Badge.count(
         count: n,
         isLabelVisible: n > 0,
-        child: Icon(icon, size: IconSizes.md),
+        backgroundColor: paw.textPrimary,
+        textColor: paw.background,
+        child: Icon(icon, size: Sizes.topIcon),
       ),
     );
   }
@@ -152,13 +156,16 @@ class PawIconButton extends StatelessWidget {
 /// label under it (UI Design 6). In Easy mode ([wide]) it becomes a white
 /// card with the circle beside the label, so the words can be bigger.
 class QuickActionTile extends StatelessWidget {
-  const QuickActionTile({super.key, required this.icon, required this.label, required this.onTap, this.color, this.wide = false});
+  const QuickActionTile({super.key, required this.icon, required this.label, required this.onTap, this.color, this.tone, this.wide = false});
   final IconData icon;
   final String label;
   final VoidCallback onTap;
 
   /// Icon colour; defaults to marigold ink on a pale marigold circle.
   final Color? color;
+
+  /// One of the design's tints (gold, green, sky, neutral) for the circle.
+  final Tone? tone;
 
   /// Easy mode: a card, circle on the left, label on the right.
   final bool wide;
@@ -168,13 +175,21 @@ class QuickActionTile extends StatelessWidget {
     final paw = context.paw;
     final c = color ?? paw.onAccentContainer;
     final light = Theme.of(context).brightness == Brightness.light;
-    final circle = Container(
-      width: Sizes.thumb,
-      height: Sizes.thumb,
-      decoration: BoxDecoration(color: color == null ? paw.accentContainer : c.withValues(alpha: Opacities.chip), shape: BoxShape.circle),
-      child: Icon(icon, color: c, size: IconSizes.lg),
+    final t = tone == null ? null : toneColors(context, tone!);
+    final circle = PawTile(
+      icon: icon,
+      size: Sizes.quickCircle,
+      round: true,
+      fill: t?.fill ?? (color == null ? paw.accentContainer : c.withValues(alpha: Opacities.chip)),
+      ink: t?.ink ?? c,
     );
-    final text = Text(label, textAlign: wide ? TextAlign.start : TextAlign.center, style: context.text.labelMedium, maxLines: 2, overflow: TextOverflow.ellipsis);
+    final text = Text(
+      label,
+      textAlign: wide ? TextAlign.start : TextAlign.center,
+      style: wide ? context.text.labelMedium : context.text.bodySmall?.copyWith(fontWeight: FontWeight.w600, color: paw.textPrimary),
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    );
     final radius = BorderRadius.circular(Radii.card);
     return Semantics(
       button: true,
@@ -194,7 +209,7 @@ class QuickActionTile extends StatelessWidget {
               },
               child: Container(
                 constraints: BoxConstraints(minHeight: wide ? Sizes.quickTileMin : 0),
-                padding: EdgeInsets.all(wide ? Space.md : Space.xs),
+                padding: EdgeInsets.all(wide ? Space.md : 0),
                 child: wide
                     ? Row(children: [circle, const SizedBox(width: Space.md), Expanded(child: text)])
                     : Column(mainAxisSize: MainAxisSize.min, children: [circle, const SizedBox(height: Space.sm), text]),

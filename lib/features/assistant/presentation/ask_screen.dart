@@ -14,6 +14,7 @@ import '../../televet/domain/televet_rules.dart';
 import '../data/assistant_repository.dart';
 import '../domain/assistant_engine.dart';
 import 'assistant_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// "Ask PawSetu" (spec 7.14): quick care answers, never a diagnosis. Red
 /// flags show SOS and a tele-vet button straight away.
@@ -99,7 +100,7 @@ class _AskScreenState extends ConsumerState<AskScreen> {
               child: StatusChip(
                 a.unlimited ? l.aiUnlimited : l.aiLeft(a.left, a.limit),
                 tone: a.unlimited ? ChipTone.success : (a.left <= 1 ? ChipTone.warning : ChipTone.info),
-                icon: a.unlimited ? Icons.all_inclusive_outlined : Icons.help_outlined,
+                icon: a.unlimited ? Ph.infinity : Ph.question,
               ),
             ),
           ),
@@ -161,7 +162,7 @@ class _AskScreenState extends ConsumerState<AskScreen> {
                       onPressed: _busy || _ctrl.text.trim().isEmpty ? null : () => _ask(_ctrl.text),
                       icon: _busy
                           ? const SizedBox(width: IconSizes.chip, height: IconSizes.chip, child: CircularProgressIndicator(strokeWidth: Strokes.focus))
-                          : const Icon(Icons.send_rounded),
+                          : const Icon(Ph.paperPlaneRightFill),
                     ),
                   ]),
                 ),
@@ -243,7 +244,7 @@ class _AnswerCard extends StatelessWidget {
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-            Icon(Icons.auto_awesome_outlined, color: context.colors.primary, size: IconSizes.md),
+            Icon(Ph.sparkle, color: context.colors.primary, size: IconSizes.md),
             Text(l.aiTitle, style: context.text.labelLarge?.copyWith(color: context.colors.primary)),
             StatusChip(l.demoBadge, tone: ChipTone.accent),
           ]),
@@ -255,7 +256,7 @@ class _AnswerCard extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: TextButton.icon(
               onPressed: () => context.push('/televet'),
-              icon: const Icon(Icons.video_call_outlined),
+              icon: const Icon(Ph.videoCamera),
               label: Text(l.aiTalkToVet),
             ),
           ),
@@ -281,7 +282,7 @@ class _RedFlagCard extends ConsumerWidget {
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(Icons.warning_rounded, color: context.paw.onSosContainer),
+            Icon(Ph.warningFill, color: context.paw.onSosContainer),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(l.aiRedFlagTitle, style: context.text.titleMedium?.copyWith(color: context.paw.onSosContainer))),
           ]),
@@ -293,12 +294,12 @@ class _RedFlagCard extends ConsumerWidget {
             child: FilledButton.icon(
               style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
               onPressed: () => openSos(context, ref),
-              icon: const Icon(Icons.emergency_outlined),
+              icon: const Icon(Ph.asterisk),
               label: Text(l.sosGetHelp),
             ),
           ),
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.aiTalkToVetNow, icon: Icons.video_call_outlined, onPressed: () => context.push('/televet/new')),
+          SecondaryButton(label: l.aiTalkToVetNow, icon: Ph.videoCamera, onPressed: () => context.push('/televet/new')),
         ]),
       ),
     );
@@ -319,7 +320,7 @@ class _LimitCard extends StatelessWidget {
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(Icons.hourglass_bottom_outlined, color: context.paw.onAccentContainer),
+            Icon(Ph.hourglassLow, color: context.paw.onAccentContainer),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(l.aiLimitTitle(limit), style: context.text.titleSmall)),
           ]),
@@ -328,11 +329,11 @@ class _LimitCard extends StatelessWidget {
           const SizedBox(height: Space.md),
           PrimaryButton(
             label: l.seePlus,
-            icon: Icons.workspace_premium_outlined,
+            icon: Ph.crownSimple,
             onPressed: () => showPlusPrompt(context, title: l.aiLimitTitle(limit), body: l.plusPerkAi),
           ),
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.aiTalkToVet, icon: Icons.video_call_outlined, onPressed: () => context.push('/televet')),
+          SecondaryButton(label: l.aiTalkToVet, icon: Ph.videoCamera, onPressed: () => context.push('/televet')),
         ]),
       ),
     );

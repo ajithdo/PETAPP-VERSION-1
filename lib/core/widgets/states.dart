@@ -5,6 +5,7 @@ import '../theme/tokens.dart';
 import 'buttons.dart';
 import 'illustrations.dart';
 import 'layout.dart';
+import '../theme/ph.dart';
 
 /// Friendly empty state with one call to action (spec 4: States).
 class EmptyState extends StatelessWidget {
@@ -69,7 +70,7 @@ class ErrorState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.cloud_off_outlined, size: IconSizes.hero, color: context.paw.textSecondary),
+            Icon(Ph.cloudSlash, size: IconSizes.hero, color: context.paw.textSecondary),
             const SizedBox(height: Space.md),
             Text(context.l10n.errorTitle, style: context.text.titleMedium, textAlign: TextAlign.center),
             const SizedBox(height: Space.sm),
@@ -78,7 +79,7 @@ class ErrorState extends StatelessWidget {
                 textAlign: TextAlign.center),
             if (onRetry != null) ...[
               const SizedBox(height: Space.lg),
-              SecondaryButton(label: context.l10n.tryAgain, onPressed: onRetry, expand: false, icon: Icons.refresh_outlined),
+              SecondaryButton(label: context.l10n.tryAgain, onPressed: onRetry, expand: false, icon: Ph.arrowClockwise),
             ],
           ],
         ),

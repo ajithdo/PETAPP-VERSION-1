@@ -13,6 +13,7 @@ import 'presentation/lost_screens.dart';
 import 'presentation/public_lost_screen.dart';
 import 'presentation/sos_screen.dart';
 import 'presentation/toxic_screen.dart';
+import '../../core/theme/ph.dart';
 
 /// Phase 9 slots (SOS, first aid, toxic food checker, lost pet mode and QR
 /// tags, smart devices). Shared files call these; only Phase 9 edits this file.
@@ -56,7 +57,7 @@ List<Widget> lostPetSection(BuildContext context, WidgetRef ref, List<Pet> pets)
           borderColor: context.paw.sos,
           semanticLabel: l.lostBannerTitle(p.name),
           child: Row(children: [
-            Icon(Icons.travel_explore_outlined, color: context.paw.sos, size: IconSizes.xl),
+            Icon(Ph.globeHemisphereEast, color: context.paw.sos, size: IconSizes.xl),
             const SizedBox(width: Space.md),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -67,7 +68,7 @@ List<Widget> lostPetSection(BuildContext context, WidgetRef ref, List<Pet> pets)
                 ),
               ]),
             ),
-            const Icon(Icons.chevron_right_outlined),
+            const Icon(Ph.caretRight),
           ]),
         ),
       ),

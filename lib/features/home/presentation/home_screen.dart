@@ -16,6 +16,7 @@ import '../../routine/domain/routine.dart';
 import '../../routine/presentation/quick_log_sheet.dart';
 import '../../routine/presentation/routine_labels.dart';
 import 'home_sections.dart';
+import '../../../core/theme/ph.dart';
 
 /// Home (spec 5), UI Design 5 "Genda" (DESIGN.md): the pet's day first.
 /// Greeting → the Genda band (the pet in its garland, today's progress) →
@@ -51,15 +52,24 @@ class HomeScreen extends ConsumerWidget {
         }
         final wide = context.screenSize == ScreenSize.desktop && !easy;
         final s = homeSections(context, ref, pet: pet, pets: active, easy: easy, wide: wide);
+        final now = DateTime.now();
+        // The date, then the greeting, then the pet's doorway.
         final greeting = Padding(
-          padding: const EdgeInsets.only(top: Space.lg, bottom: Space.md),
-          child: Semantics(
-            header: true,
-            child: Text(
-              '$greet${user?.firstName.isNotEmpty == true ? ', ${user!.firstName}' : ''}',
-              style: easy || wide ? context.text.headlineLarge : context.text.headlineMedium,
+          padding: const EdgeInsets.only(top: Space.sm, bottom: Space.lg + Space.xs),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              easy ? Fmt.weekdayDate(now, context.lang) : Fmt.weekdayDateLong(now, context.lang),
+              style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary),
             ),
-          ),
+            const SizedBox(height: Space.xs),
+            Semantics(
+              header: true,
+              child: Text(
+                '$greet${user?.firstName.isNotEmpty == true ? ', ${user!.firstName}' : ''}',
+                style: wide ? context.text.displayLarge : context.text.displaySmall,
+              ),
+            ),
+          ]),
         );
         final band = pet != null ? PetDayBand(pet: pet) : AllPetsCard(pets: active);
 
@@ -74,6 +84,13 @@ class HomeScreen extends ConsumerWidget {
             Expanded(flex: 7, child: column([band, ...s.main])),
             const SizedBox(width: Space.xl),
             Expanded(flex: 5, child: column(s.side)),
+          ]),
+          // Food, the memory and nearby clinics share a row.
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            for (final (i, group) in s.below.where((g) => g.isNotEmpty).indexed) ...[
+              if (i > 0) const SizedBox(width: Space.xl),
+              Expanded(child: column(group)),
+            ],
           ]),
         ]);
       },
@@ -116,7 +133,6 @@ class PetDayBand extends ConsumerWidget {
     final next = open.isEmpty ? null : open.first;
     return GendaBand(
       petName: pet.name,
-      dateLabel: Fmt.weekdayDate(DateTime.now(), context.lang),
       photo: photo,
       done: done.toInt(),
       total: total,
@@ -128,7 +144,7 @@ class PetDayBand extends ConsumerWidget {
               const SizedBox(height: Space.sm),
               FilledButton.icon(
                 onPressed: () => showQuickLog(context, ref, pet),
-                icon: const Icon(Icons.add_rounded),
+                icon: const Icon(Ph.plus),
                 label: Text(l.logSomething),
               ),
             ]),

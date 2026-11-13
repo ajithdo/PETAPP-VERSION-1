@@ -8,6 +8,7 @@ import '../services/service_providers.dart';
 import '../services/storage_service.dart';
 import '../theme/tokens.dart';
 import 'illustrations.dart';
+import '../theme/ph.dart';
 
 /// Shows an image from any of our URL kinds:
 ///  - mem://id        standalone demo upload
@@ -54,7 +55,7 @@ class MediaImage extends ConsumerWidget {
       errorWidget: (context, _, _) => SizedBox(
         width: width,
         height: height,
-        child: Icon(Icons.broken_image_outlined, color: context.paw.textSecondary),
+        child: Icon(Ph.imageBroken, color: context.paw.textSecondary),
       ),
     );
     return semanticLabel == null ? image : Semantics(image: true, label: semanticLabel, child: image);
@@ -69,7 +70,7 @@ class MediaImage extends ConsumerWidget {
       gaplessPlayback: true);
 }
 
-/// Illustrated placeholder "photo" for demo data, e.g. seed:album:dog:3.
+/// Illustrated placeholder "photo" for demo data, e.g. seed:album:dog:bruno:3.
 class SeedArt extends StatelessWidget {
   const SeedArt({super.key, required this.seed, this.width, this.height});
   final String seed;
@@ -105,11 +106,11 @@ class SeedArt extends StatelessWidget {
             return Center(child: PetFace(species: species, color: pal[1], size: s * 0.7));
           }
           final icon = switch (kind) {
-            'clinic' => Icons.local_hospital_outlined,
-            'product' => Icons.shopping_bag_outlined,
-            'provider' => Icons.content_cut_outlined,
-            'doc' => Icons.description_outlined,
-            _ => Icons.pets_outlined,
+            'clinic' => Ph.firstAid,
+            'product' => Ph.bag,
+            'provider' => Ph.scissors,
+            'doc' => Ph.fileText,
+            _ => Ph.pawPrint,
           };
           return Center(child: Icon(icon, size: s * 0.38, color: pal[1]));
         }),
@@ -118,17 +119,33 @@ class SeedArt extends StatelessWidget {
   }
 }
 
-/// The bundled demo photo for a placeholder seed ("seed:clinic:3",
-/// "seed:provider:1", "seed:album:dog:2"), or null to draw the illustration.
+/// The drawn demo pets that have their own album scenes.
+const demoPetKeys = {'bruno', 'misty', 'simba', 'kiwi', 'coco', 'tiger', 'max', 'luna', 'sheru'};
+
+/// The pet whose drawings stand in for a species when no pet is named.
+const _speciesPet = {'dog': 'bruno', 'cat': 'misty', 'rabbit': 'coco', 'bird': 'kiwi'};
+
+/// Number of drawn album scenes per pet (park, beach, festival, home, rain,
+/// party, bath, night, vet).
+const _albumScenes = 9;
+
+/// The bundled demo drawing for a placeholder seed ("seed:clinic:3",
+/// "seed:provider:1", "seed:album:dog:bruno:2" or "seed:album:dog:2"), or null
+/// to draw the plain illustration. The drawings come from the UI Design 6 kit.
 String? demoPhotoFor(String seed) {
   final parts = seed.split(':');
   if (parts.length < 3) return null;
   final n = (int.tryParse(parts.last) ?? seed.hashCode).abs();
-  return switch (parts[1]) {
-    'clinic' => 'assets/images/demo/places/clinic_${n % 6}.jpg',
-    'provider' => 'assets/images/demo/places/provider_${n % 6}.jpg',
-    'album' when parts.length > 3 && parts[2] == 'dog' => 'assets/images/demo/album/dog_${n % 4}.jpg',
-    'album' when parts.length > 3 && parts[2] == 'cat' => 'assets/images/demo/album/cat_${n % 3}.jpg',
-    _ => null,
-  };
+  switch (parts[1]) {
+    case 'clinic':
+      return 'assets/images/demo/places/clinic_${n % 6}.png';
+    case 'provider':
+      return 'assets/images/demo/places/provider_${n % 6}.png';
+    case 'album' when parts.length > 3:
+      final named = parts.length > 4 && demoPetKeys.contains(parts[3]) ? parts[3] : null;
+      final pet = named ?? _speciesPet[parts[2]];
+      return pet == null ? null : 'assets/images/demo/album/${pet}_${n % _albumScenes}.png';
+    default:
+      return null;
+  }
 }

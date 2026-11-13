@@ -7,6 +7,7 @@ import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/booking_repository.dart';
 import 'booking_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Book tab (spec 5, UI Design 6): vet at clinic and tele-vet first, then
 /// grooming, training, boarding and sitting, dog walking; my bookings and
@@ -51,16 +52,16 @@ class BookHomeScreen extends ConsumerWidget {
     );
     final services = Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       TileGrid(columns: 2, children: [
-        big(Icons.local_hospital_outlined, paw.accent, l.kindVet, l.bookVetSub, '/book/find/clinic'),
-        big(Icons.video_call_outlined, paw.success, l.teleVet, l.bookTeleSub, '/televet'),
+        big(Ph.firstAid, paw.accent, l.kindVet, l.bookVetSub, '/book/find/clinic'),
+        big(Ph.videoCamera, paw.success, l.teleVet, l.bookTeleSub, '/televet'),
       ]),
       const SizedBox(height: Space.md),
       // With big text (Easy mode) one per row, so words never break.
       TileGrid(columns: MediaQuery.textScalerOf(context).scale(1) > 1.15 ? 1 : 2, children: [
-        small(Icons.content_cut_outlined, l.kindGrooming, l.bookGroomSub, '/book/find/groomer'),
-        small(Icons.school_outlined, l.kindTraining, l.bookTrainSub, '/book/find/trainer'),
-        small(Icons.house_outlined, l.kindBoarding, l.bookBoardSub, '/book/find/boarder'),
-        small(Icons.directions_walk_outlined, l.kindWalking, l.bookWalkSub, '/book/find/walker'),
+        small(Ph.scissors, l.kindGrooming, l.bookGroomSub, '/book/find/groomer'),
+        small(Ph.graduationCap, l.kindTraining, l.bookTrainSub, '/book/find/trainer'),
+        small(Ph.houseLine, l.kindBoarding, l.bookBoardSub, '/book/find/boarder'),
+        small(Ph.personSimpleWalk, l.kindWalking, l.bookWalkSub, '/book/find/walker'),
       ]),
     ]);
     final map = PawCard(
@@ -77,7 +78,7 @@ class BookHomeScreen extends ConsumerWidget {
                 Text(l.clinicFinderHint, style: context.text.bodySmall),
               ]),
             ),
-            Icon(Icons.chevron_right_rounded, color: paw.textSecondary),
+            Icon(Ph.caretRight, color: paw.textSecondary),
           ]),
         ),
       ]),

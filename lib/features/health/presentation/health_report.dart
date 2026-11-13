@@ -16,6 +16,7 @@ import '../data/health_repository.dart';
 import '../domain/vaccine_schedule.dart';
 import 'health_labels.dart';
 import 'health_sheets.dart';
+import '../../../core/theme/ph.dart';
 
 final _clinicProvider = FutureProvider.family<Map<String, dynamic>?, String?>((ref, id) async {
   if (id == null) return null;
@@ -287,7 +288,7 @@ class MedicalCardScreen extends ConsumerWidget {
         const SizedBox(height: Space.sm),
         MedicalSummaryCard(petId: petId),
         const SizedBox(height: Space.lg),
-        InfoNote(l.medicalCardOffline, icon: Icons.offline_bolt_outlined),
+        InfoNote(l.medicalCardOffline, icon: Ph.cloudCheck),
       ]),
     );
   }
@@ -313,7 +314,7 @@ class MedicalSummaryCard extends ConsumerWidget {
     final allergies = pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', ');
     return PassCard(
       overline: l.medicalCard,
-      overlineIcon: Icons.medical_information_outlined,
+      overlineIcon: Ph.clipboardText,
       title: pet.name,
       subtitle: [
         '${speciesLabel(context, pet.species)} · ${pet.breedName(context.lang)}',

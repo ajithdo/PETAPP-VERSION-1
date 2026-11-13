@@ -22,6 +22,7 @@ import '../domain/chat_rules.dart';
 import 'attachments.dart';
 import 'chat_widgets.dart';
 import 'voice_note.dart';
+import '../../../core/theme/ph.dart';
 
 /// Message list + composer for any conversation. Tele-vet messages go
 /// through the tele-vet backend so plan limits apply (spec 7.7).
@@ -218,7 +219,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
           if (mayHaveMore(list.length, ref.watch(listLimitProvider(limitKey))))
             ShowMoreButton(
               label: l.showEarlierMessages,
-              icon: Icons.expand_less_outlined,
+              icon: Ph.caretUp,
               onPressed: () => ref.read(listLimitProvider(limitKey).notifier).more(),
             )
           else
@@ -262,21 +263,21 @@ class _ChatViewState extends ConsumerState<ChatView> {
 
   Widget _composerArea(BuildContext context, Conversation c, Consultation? consult, AppUser me) {
     final l = context.l10n;
-    Widget banner(String text, {String? action, VoidCallback? onAction, IconData icon = Icons.lock_outlined}) => _Banner(
+    Widget banner(String text, {String? action, VoidCallback? onAction, IconData icon = Ph.lockKey}) => _Banner(
           text: text,
           icon: icon,
           action: action,
           onAction: onAction,
         );
     if (c.blockedBy.contains(me.uid)) {
-      return banner(l.msgYouBlocked, action: l.msgUnblock, onAction: () => ref.read(chatRepositoryProvider).unblock(c, me.uid), icon: Icons.block_outlined);
+      return banner(l.msgYouBlocked, action: l.msgUnblock, onAction: () => ref.read(chatRepositoryProvider).unblock(c, me.uid), icon: Ph.prohibit);
     }
-    if (c.isBlocked) return banner(l.msgBlockedByOther, icon: Icons.block_outlined);
+    if (c.isBlocked) return banner(l.msgBlockedByOther, icon: Ph.prohibit);
     final isOwner = me.uid == c.ownerId;
     if (consult != null) {
-      if (consult.isEnded) return banner(l.tvEndedBanner, icon: Icons.check_circle_rounded);
+      if (consult.isEnded) return banner(l.tvEndedBanner, icon: Ph.checkCircleFill);
       if (isOwner && consult.closedFor(DateTime.now())) {
-        return banner(l.tvClosedBanner(consult.limits.hours), icon: Icons.schedule_outlined);
+        return banner(l.tvClosedBanner(consult.limits.hours), icon: Ph.clock);
       }
     }
     final rec = _recorder;
@@ -321,7 +322,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
                     IconButton(
                       tooltip: l.msgAttach,
                       onPressed: _sending ? null : () => _attach(c, consult, me),
-                      icon: const Icon(Icons.add_circle_outlined),
+                      icon: const Icon(Ph.plusCircle),
                     ),
                     Expanded(
                       child: TextField(
@@ -345,7 +346,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
                       IconButton(
                         tooltip: l.msgRecordVoice,
                         onPressed: _sending ? null : _startRecording,
-                        icon: const Icon(Icons.mic_outlined),
+                        icon: const Icon(Ph.microphone),
                       )
                     else
                       IconButton.filled(
@@ -353,7 +354,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
                         onPressed: _sending ? null : () => _sendText(c, consult, me),
                         icon: _sending
                             ? const SizedBox(width: IconSizes.chip, height: IconSizes.chip, child: CircularProgressIndicator(strokeWidth: Strokes.focus))
-                            : const Icon(Icons.send_outlined),
+                            : const Icon(Ph.paperPlaneRight),
                       ),
                   ]),
               ]),
@@ -407,7 +408,7 @@ class _RedFlagBanner extends ConsumerWidget {
       color: context.paw.sos.withValues(alpha: Opacities.tint),
       padding: EdgeInsets.fromLTRB(context.gutter, Space.sm, Space.sm, Space.sm),
       child: Row(children: [
-        Icon(Icons.emergency_outlined, color: context.paw.sos),
+        Icon(Ph.asterisk, color: context.paw.sos),
         const SizedBox(width: Space.sm),
         Expanded(child: Text(l.aiRedFlagShort(redFlagLabel(context, flag)), style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary))),
         FilledButton(
@@ -415,7 +416,7 @@ class _RedFlagBanner extends ConsumerWidget {
           onPressed: () => openSos(context, ref),
           child: Text(l.sosTitle),
         ),
-        IconButton(tooltip: l.msgClose, onPressed: onClose, icon: const Icon(Icons.close_outlined)),
+        IconButton(tooltip: l.msgClose, onPressed: onClose, icon: const Icon(Ph.x)),
       ]),
     );
   }
@@ -436,7 +437,7 @@ Future<void> showTeleVetLimitNotice(BuildContext context, TeleVetCheck check, Co
       Row(children: [
         CircleAvatar(
           backgroundColor: ctx.paw.accent.withValues(alpha: Opacities.tintStrong),
-          child: Icon(check.block == TeleVetBlock.tooManyWords ? Icons.short_text_outlined : Icons.chat_bubble_outlined, color: ctx.paw.onAccentContainer),
+          child: Icon(check.block == TeleVetBlock.tooManyWords ? Ph.textAlignLeft : Ph.chatCircle, color: ctx.paw.onAccentContainer),
         ),
         const SizedBox(width: Space.md),
         Expanded(child: Text(title, style: ctx.text.titleMedium)),
@@ -445,7 +446,7 @@ Future<void> showTeleVetLimitNotice(BuildContext context, TeleVetCheck check, Co
       Text(body, style: ctx.text.bodyMedium),
       if (!me.isPlus) ...[
         const SizedBox(height: Space.md),
-        InfoNote(l.tvPlusHint, icon: Icons.workspace_premium_outlined),
+        InfoNote(l.tvPlusHint, icon: Ph.crownSimple),
       ],
       const SizedBox(height: Space.lg),
       PrimaryButton(
@@ -456,7 +457,7 @@ Future<void> showTeleVetLimitNotice(BuildContext context, TeleVetCheck check, Co
         const SizedBox(height: Space.sm),
         SecondaryButton(
           label: l.tvBookVisit,
-          icon: Icons.local_hospital_outlined,
+          icon: Ph.firstAid,
           onPressed: () {
             Navigator.pop(ctx);
             context.push('/book/find/clinic');

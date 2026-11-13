@@ -4889,7 +4889,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get albumSeeAlbum => 'एल्बम देखें';
+  String get albumSeeAlbum => 'एल्बम';
 
   @override
   String albumYearsAgo(int count) {
@@ -6131,7 +6131,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String shopReorderPrice(String price) {
-    return 'फिर से मँगाएँ · $price';
+    return 'फिर से मँगाएँ $price';
   }
 
   @override
@@ -6992,7 +6992,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String foodRunsOutIn(String pet, int days) {
-    return '$pet का खाना लगभग $days दिन में खत्म हो सकता है। फिर से मँगाएँ?';
+    return '$pet का खाना लगभग $days दिन में खत्म हो सकता है';
   }
 
   @override
@@ -7006,7 +7006,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get foodEditPortion => 'मात्रा बदलें';
+  String get foodEditPortion => 'रोज़ की मात्रा बदलें';
 
   @override
   String foodOnTheWay(String pet) {
@@ -10411,4 +10411,36 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get logGridTitle => 'कुछ दर्ज करें';
+
+  @override
+  String leftCount(int count) {
+    return '$count बाकी';
+  }
+
+  @override
+  String get markGiven => 'दे दिया';
+
+  @override
+  String playOfMin(int done, int goal) {
+    return '$goal में से $done मिनट';
+  }
+
+  @override
+  String aboutLeft(String amount) {
+    return 'लगभग $amount बचा है';
+  }
+
+  @override
+  String nowAt(String time) {
+    return 'अभी, $time';
+  }
+
+  @override
+  String get albumYearAgo => 'एक साल पहले आज';
+
+  @override
+  String get bookWord => 'बुक करें';
+
+  @override
+  String get sosEmergencyHelp => 'SOS, आपातकालीन मदद';
 }
