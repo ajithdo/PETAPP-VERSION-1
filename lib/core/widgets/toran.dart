@@ -348,7 +348,7 @@ class PawButton extends StatelessWidget {
           constraints: BoxConstraints(minHeight: h),
           child: Padding(
             // A full-width button centres its label, so it needs less side room.
-            padding: EdgeInsets.symmetric(horizontal: block ? Space.sm : pad),
+            padding: EdgeInsets.symmetric(horizontal: block ? Space.xs : pad),
             child: Row(mainAxisSize: block ? MainAxisSize.max : MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
               if (icon != null) ...[Icon(icon, size: iconSize * (easy ? k : 1), color: disabled ? paw.textSecondary : fg), const SizedBox(width: Space.sm)],
               Flexible(
@@ -511,7 +511,7 @@ class KvList extends StatelessWidget {
   Widget build(BuildContext context) {
     final paw = context.paw;
     final label = context.text.bodySmall?.copyWith(color: onDark ? paw.onBandMuted : paw.textSecondary);
-    final value = context.text.labelLarge?.copyWith(color: onDark ? paw.onBand : paw.textPrimary);
+    final value = context.text.bodyMedium?.copyWith(color: onDark ? paw.onBand : paw.textPrimary, fontWeight: FontWeight.w600);
     return LayoutBuilder(builder: (context, box) {
       final k = MediaQuery.textScalerOf(context).scale(1);
       final w = (box.maxWidth * 0.38).clamp(Sizes.labelColumnSm * k, box.maxWidth * 0.5);
@@ -540,5 +540,46 @@ class KvList extends StatelessWidget {
         ],
       ]);
     });
+  }
+}
+
+/// A pill that looks like a search box and opens the real search (the kit's
+/// ".field"): a quiet edge, the icon in ink, the hint in soft grey.
+class SearchPill extends StatelessWidget {
+  const SearchPill({super.key, required this.hint, required this.onTap, this.icon = Ph.magnifyingGlass, this.trailing});
+  final String hint;
+  final VoidCallback onTap;
+  final IconData icon;
+  final Widget? trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    final k = MediaQuery.textScalerOf(context).scale(1);
+    return Semantics(
+      button: true,
+      label: hint,
+      excludeSemantics: true,
+      child: Material(
+        color: paw.surface,
+        shape: StadiumBorder(side: BorderSide(color: context.tint.line2, width: Strokes.strong)),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: Sizes.field * (k > 1.15 ? k : 1)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Space.lg),
+              child: Row(children: [
+                Icon(icon, size: IconSizes.md, color: paw.textPrimary),
+                const SizedBox(width: Space.sm + Space.xxs),
+                Expanded(child: Text(hint, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.text.bodyMedium?.copyWith(color: context.tint.ink3))),
+                ?trailing,
+              ]),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

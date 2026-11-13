@@ -295,7 +295,7 @@ class _TeleVetFlowScreenState extends ConsumerState<TeleVetFlowScreen> {
                 ]),
               ),
               if (locked)
-                StatusChip(l.planPlus, tone: ChipTone.accent, icon: Ph.lockKey)
+                StatusChip(l.planPlus, tone: ChipTone.accent, icon: Ph.lockKeyFill)
               else
                 Icon(_how == key ? Ph.radioButtonFill : Ph.circle, color: context.colors.primary),
             ]),

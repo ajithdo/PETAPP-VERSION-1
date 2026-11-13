@@ -77,7 +77,7 @@ class TicketSummary extends StatelessWidget {
         StatusChip(ticketStatusLabel(context, t.status), tone: ticketStatusTone(t.status)),
         StatusChip(ticketTopicLabel(context, t.topic)),
         if (t.linkType != 'other') StatusChip(t.linkLabel.isEmpty ? linkTypeLabel(context, t.linkType) : t.linkLabel, icon: linkTypeIcon(t.linkType)),
-        if (refund != null) StatusChip(l.hpRefunded(Fmt.inr((refund['amount'] as num?) ?? 0, context.lang)), tone: ChipTone.success, icon: Ph.currencyInr),
+        if (refund != null) StatusChip(l.hpRefunded(Fmt.inr((refund['amount'] as num?) ?? 0, context.lang)), tone: ChipTone.success, icon: Ph.currencyInrFill),
       ]),
       const SizedBox(height: Space.xs),
       Text(

@@ -81,7 +81,7 @@ class _LinkTile extends StatelessWidget {
               const SizedBox(height: Space.xs),
               Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
                 linkStatusChip(context, link),
-                if (link.hasPin) StatusChip(l.vaultHasPin, tone: ChipTone.info, icon: Ph.password),
+                if (link.hasPin) StatusChip(l.vaultHasPin, tone: ChipTone.info, icon: Ph.passwordFill),
               ]),
             ]),
           ),

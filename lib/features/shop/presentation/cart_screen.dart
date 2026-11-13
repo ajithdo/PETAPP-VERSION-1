@@ -317,7 +317,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
             child: Text(l.cartAddForFree(Fmt.inr(toFree)), style: context.text.bodySmall?.copyWith(color: context.colors.primary)),
           ),
         if (plus && price.deliveryFee == 0 && price.subtotal - price.discount < s.freeDeliveryAbove)
-          Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip(l.cartPlusFreeDelivery, tone: ChipTone.accent, icon: Ph.crownSimple)),
+          Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip(l.cartPlusFreeDelivery, tone: ChipTone.accent, icon: Ph.crownSimpleFill)),
       ]),
     );
   }

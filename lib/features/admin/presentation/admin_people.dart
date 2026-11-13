@@ -146,11 +146,11 @@ class _PartnerCardState extends ConsumerState<_PartnerCard> {
           Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
             Text(l.admRegNo(p.regNo ?? '–'), style: context.text.bodyMedium),
             if (p.regNo == null)
-              StatusChip(l.admRegMissing, tone: ChipTone.error, icon: Ph.warningCircle)
+              StatusChip(l.admRegMissing, tone: ChipTone.error, icon: Ph.warningCircleFill)
             else if (regNoLooksValid(p.regNo))
-              StatusChip(l.admRegLooksRight, tone: ChipTone.success, icon: Ph.checkCircle)
+              StatusChip(l.admRegLooksRight, tone: ChipTone.success, icon: Ph.checkCircleFill)
             else
-              StatusChip(l.admRegCheck, tone: ChipTone.warning, icon: Ph.warning),
+              StatusChip(l.admRegCheck, tone: ChipTone.warning, icon: Ph.warningFill),
           ]),
           if (p.regNo != null)
             Padding(padding: const EdgeInsets.only(top: Space.xxs), child: Text(l.admRegHint, style: context.text.bodySmall)),
@@ -313,9 +313,9 @@ class _UserTile extends ConsumerWidget {
               const SizedBox(height: Space.xs),
               Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
                 StatusChip(roleLabel(context, role), tone: role == UserRole.admin ? ChipTone.accent : (role.isPartner ? ChipTone.info : ChipTone.neutral)),
-                if (plan == 'plus') StatusChip(l.planPlus, tone: ChipTone.accent, icon: Ph.crownSimple),
+                if (plan == 'plus') StatusChip(l.planPlus, tone: ChipTone.accent, icon: Ph.crownSimpleFill),
                 if (plan == 'trial') StatusChip(l.plusTrialChip, tone: ChipTone.accent),
-                if (suspended) StatusChip(l.admStatusSuspended, tone: ChipTone.error, icon: Ph.prohibit),
+                if (suspended) StatusChip(l.admStatusSuspended, tone: ChipTone.error, icon: Ph.prohibitFill),
                 if (user['deletionRequestedAt'] != null) StatusChip(l.admDeletionPending, tone: ChipTone.warning),
               ]),
             ]),

@@ -224,7 +224,7 @@ class DocSheet extends StatelessWidget {
       if (doc.expiry != null) expiryText(context, doc.expiry!) else Fmt.date(doc.createdAt, context.lang),
     ].join(', ');
     final chip = doc.needsReview
-        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Ph.sparkle)
+        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Ph.sparkleFill)
         : expiryChip(context, doc.expiry);
     Widget rule(double share) => FractionallySizedBox(
           widthFactor: share,
@@ -290,7 +290,7 @@ class DocTile extends StatelessWidget {
       if (doc.expiry != null) expiryText(context, doc.expiry!) else l.vaultAddedOn(Fmt.date(doc.createdAt, context.lang)),
     ].join(' · ');
     final chip = doc.needsReview
-        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Ph.sparkle)
+        ? StatusChip(l.vaultNeedsReview, tone: ChipTone.accent, icon: Ph.sparkleFill)
         : expiryChip(context, doc.expiry);
     return Padding(
       padding: const EdgeInsets.only(bottom: Space.sm),

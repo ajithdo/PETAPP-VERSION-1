@@ -450,7 +450,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
                 Text('${d.vendor} · ${d.serial}', style: context.text.bodySmall),
                 const SizedBox(height: Space.xs),
                 Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-                  StatusChip(l.devConnected, tone: ChipTone.success, icon: Ph.bluetoothConnected),
+                  StatusChip(l.devConnected, tone: ChipTone.success, icon: Ph.bluetoothConnectedFill),
                   StatusChip('${s.battery}%', tone: s.battery < 20 ? ChipTone.error : ChipTone.neutral, icon: _batteryIcon(s.battery)),
                   if (demo) StatusChip(l.demoTitle, tone: ChipTone.info),
                 ]),
@@ -700,8 +700,8 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
           if (x.lastVisit != null) Text(l.devLastVisit(Fmt.time(x.lastVisit!, context.lang)), style: context.text.bodyMedium),
           const SizedBox(height: Space.sm),
           x.needsCleaning
-              ? StatusChip(l.devCleanSoon, tone: ChipTone.warning, icon: Ph.broom)
-              : StatusChip(l.devLitterClean, tone: ChipTone.success, icon: Ph.check),
+              ? StatusChip(l.devCleanSoon, tone: ChipTone.warning, icon: Ph.broomFill)
+              : StatusChip(l.devLitterClean, tone: ChipTone.success, icon: Ph.checkFill),
         ]),
       ),
     ];

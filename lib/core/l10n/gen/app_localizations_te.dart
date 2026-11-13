@@ -10532,4 +10532,102 @@ class AppLocalizationsTe extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get shopDeliveringTo => 'డెలివరీ చిరునామా:';
+
+  @override
+  String get shopRunningLow => 'అయిపోతోంది';
+
+  @override
+  String shopNotSure(String name) {
+    return '$nameకి ఏది సరిపోతుందో తెలియదా?';
+  }
+
+  @override
+  String get shopFromPartners => 'భాగస్వామి స్టోర్ల నుండి';
+
+  @override
+  String shopBuyOnStore(String price, String store) {
+    return '$price, మీరు కొనేది: $store';
+  }
+
+  @override
+  String meDocsCount(int count) {
+    return '$count పత్రాలు';
+  }
+
+  @override
+  String meExpireSoon(int count) {
+    return '$count త్వరలో ముగుస్తాయి';
+  }
+
+  @override
+  String mePhotosCount(int count) {
+    return '$count ఫోటోలు';
+  }
+
+  @override
+  String meVideosCount(int count) {
+    return '$count వీడియోలు';
+  }
+
+  @override
+  String get meTagsReady => 'ట్యాగ్‌లు సిద్ధం. ఏ పెంపుడు జంతువూ తప్పిపోలేదు.';
+
+  @override
+  String mePetLost(String name) {
+    return '$name తప్పిపోయినట్లు గుర్తించారు';
+  }
+
+  @override
+  String get meNoneYet => 'ఇంకా ఏమీ లేవు';
+
+  @override
+  String meDeviceLine(String device, int battery) {
+    return '$device, $battery%';
+  }
+
+  @override
+  String get meOnlyYou => 'మీరు మాత్రమే';
+
+  @override
+  String meCanCare(String who, String pets) {
+    return '$who $petsను చూసుకోగలరు';
+  }
+
+  @override
+  String meOnTheWay(String item) {
+    return '$item దారిలో ఉంది';
+  }
+
+  @override
+  String meThisMonth(String amount) {
+    return 'ఈ నెల $amount';
+  }
+
+  @override
+  String meRenewsOn(String date) {
+    return '$dateన పునరుద్ధరణ';
+  }
+
+  @override
+  String get meTryFree => '7 రోజులు ఉచితంగా ప్రయత్నించండి';
+
+  @override
+  String meBothGet(String amount) {
+    return 'ఇద్దరికీ $amount';
+  }
+
+  @override
+  String get meSettingsSub => 'భాష, రూపం, ఈజీ మోడ్';
+
+  @override
+  String get mePrivacySub => 'మీ డేటా, అనుమతులు';
+
+  @override
+  String get meGroupApp => 'యాప్, సహాయం';
+
+  @override
+  String get meSavedAddresses => 'సేవ్ చేసిన చిరునామాలు';
 }

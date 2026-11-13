@@ -514,7 +514,7 @@ class PlaceCard extends ConsumerWidget {
                   ?rating,
                   // One chip: 24x7 says more than "Open now". Never red.
                   p.is24x7
-                      ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clock)
+                      ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clockFill)
                       : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
                 ]),
               ]),
@@ -528,7 +528,7 @@ class PlaceCard extends ConsumerWidget {
     // area, status and rating; under a dashed rule, the next free slot, the
     // fee and a small Book button.
     final status = p.is24x7
-        ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clock)
+        ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clockFill)
         : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral);
     Widget fact(String label, String value) => Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
           Text(label, style: context.text.bodySmall),

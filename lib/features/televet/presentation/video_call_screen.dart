@@ -279,7 +279,7 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen> with SingleTi
                           Text([if (c.clinicName.isNotEmpty) c.clinicName, c.petName].join(' · '), style: context.text.bodyMedium),
                       ]),
                     ),
-                    StatusChip(l.tvVideoFeeLabel, tone: ChipTone.info, icon: Ph.videoCamera),
+                    StatusChip(l.tvVideoFeeLabel, tone: ChipTone.info, icon: Ph.videoCameraFill),
                   ]),
                 ),
               ]),

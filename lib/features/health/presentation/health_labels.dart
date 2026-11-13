@@ -20,11 +20,11 @@ String doseLabel(BuildContext context, String key) {
 (String, ChipTone, IconData) statusChip(BuildContext context, DoseStatus s) {
   final l = context.l10n;
   return switch (s) {
-    DoseStatus.done => (l.statusDone, ChipTone.success, Ph.check),
-    DoseStatus.overdue => (l.statusOverdue, ChipTone.error, Ph.warningCircle),
-    DoseStatus.dueSoon => (l.statusDueSoon, ChipTone.warning, Ph.clock),
-    DoseStatus.upcoming => (l.statusUpcoming, ChipTone.info, Ph.calendarBlank),
-    DoseStatus.askVet => (l.statusAskVet, ChipTone.neutral, Ph.question),
+    DoseStatus.done => (l.statusDone, ChipTone.success, Ph.checkCircleFill),
+    DoseStatus.overdue => (l.statusOverdue, ChipTone.error, Ph.warningFill),
+    DoseStatus.dueSoon => (l.statusDueSoon, ChipTone.warning, Ph.clockFill),
+    DoseStatus.upcoming => (l.statusUpcoming, ChipTone.info, Ph.calendarBlankFill),
+    DoseStatus.askVet => (l.statusAskVet, ChipTone.neutral, Ph.questionFill),
   };
 }
 

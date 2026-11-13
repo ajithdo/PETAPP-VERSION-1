@@ -159,7 +159,7 @@ class DraftLabel extends ConsumerWidget {
     return Align(
       alignment: AlignmentDirectional.centerStart,
       child: by.isEmpty
-          ? StatusChip(context.l10n.draftVetReview, tone: ChipTone.warning, icon: Ph.chatCenteredText)
+          ? StatusChip(context.l10n.draftVetReview, tone: ChipTone.warning, icon: Ph.chatCenteredTextFill)
           : StatusChip(context.l10n.reviewedBy(by), tone: ChipTone.success, icon: Ph.sealCheckFill),
     );
   }

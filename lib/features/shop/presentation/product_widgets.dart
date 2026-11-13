@@ -55,12 +55,14 @@ class PriceTag extends StatelessWidget {
     return Semantics(
       label: off > 0 ? l.shopPriceSemantics(Fmt.inr(price), Fmt.inr(mrp), off) : Fmt.inr(price),
       excludeSemantics: true,
-      child: Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.xs + Space.xxs, runSpacing: Space.xxs, children: [
-        Text(Fmt.inr(price), style: (big ? context.text.headlineSmall : context.text.titleSmall)?.copyWith(fontWeight: FontWeight.w700)),
+      child: Wrap(crossAxisAlignment: WrapCrossAlignment.end, spacing: Space.sm, runSpacing: Space.xxs, children: [
+        // The price in the heading cut (20 px), the old price struck out,
+        // and the saving in green.
+        Text(Fmt.inr(price), style: (big ? context.text.headlineMedium : context.text.titleLarge)?.copyWith(height: big ? null : 1.2)),
         if (off > 0) ...[
           Text(Fmt.inr(mrp),
-              style: (big ? context.text.bodyLarge : context.text.bodySmall)?.copyWith(decoration: TextDecoration.lineThrough, color: context.paw.textSecondary)),
-          Text(l.shopOffPercent(off), style: (big ? context.text.titleSmall : context.text.labelMedium)?.copyWith(color: context.paw.success, fontWeight: FontWeight.w700)),
+              style: (big ? context.text.bodyMedium : context.text.bodySmall)?.copyWith(decoration: TextDecoration.lineThrough, color: context.tint.ink3)),
+          Text(l.shopOffPercent(off), style: (big ? context.text.labelLarge : context.text.labelSmall)?.copyWith(color: context.paw.success, fontWeight: big ? FontWeight.w600 : FontWeight.w500)),
         ],
       ]),
     );
@@ -79,10 +81,11 @@ class RatingLine extends StatelessWidget {
       label: context.l10n.shopRatingSemantics(rating.toStringAsFixed(1), count),
       excludeSemantics: true,
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        Icon(Ph.starFill, size: IconSizes.sm, color: context.paw.accent),
-        const SizedBox(width: Space.xxs),
-        Text(rating.toStringAsFixed(1), style: context.text.labelLarge),
-        Text(' ($count)', style: context.text.bodySmall),
+        Icon(Ph.starFill, size: IconSizes.xs, color: context.tint.star),
+        const SizedBox(width: Space.xxs + Strokes.hairline),
+        Text(rating.toStringAsFixed(1), style: context.text.bodySmall?.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
+        const SizedBox(width: Space.sm),
+        Text('($count)', style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
       ]),
     );
   }
@@ -94,65 +97,74 @@ class PartnerStoreBadge extends StatelessWidget {
   final String? store;
   @override
   Widget build(BuildContext context) =>
-      StatusChip(store == null ? context.l10n.shopPartnerStore : context.l10n.shopSoldOn(store!), tone: ChipTone.info, icon: Ph.arrowSquareOut);
+      StatusChip(store == null ? context.l10n.shopPartnerStore : context.l10n.shopSoldOn(store!), tone: ChipTone.info, icon: Ph.arrowSquareOutFill);
 }
 
-/// Grid tile for product lists.
+/// A product in a grid or row (UI Design 6): no card around it, just the
+/// picture on its tint, the brand, the name, the price line and the rating.
+/// [badge] sits on the picture ("Running low").
 class ProductCard extends ConsumerWidget {
-  const ProductCard({super.key, required this.product, this.compact = false});
+  const ProductCard({super.key, required this.product, this.compact = false, this.badge});
   final Product product;
   final bool compact;
+  final String? badge;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final p = product;
+    final paw = context.paw;
     final partners = ref.watch(partnerStoresProvider).value ?? const <PartnerStore>[];
     final store = p.isAffiliate ? partners.where((s) => s.id == p.partnerId).firstOrNull?.name : null;
-    return PawCard(
-      padding: const EdgeInsets.all(Space.sm),
-      onTap: () => context.push('/shop/product/${p.id}'),
-      semanticLabel: '${p.name}, ${Fmt.inr(p.price)}${p.isAffiliate ? ', ${l.shopPartnerStore}' : ''}',
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        AspectRatio(
-          aspectRatio: compact ? 1.3 : 1.15,
-          child: Stack(fit: StackFit.expand, children: [
-            // The discount is shown once, in the price line below.
-            ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.lg),
-            if (!p.inStock)
-              Positioned.fill(
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(color: MediaColors.scrim, borderRadius: BorderRadius.circular(Radii.lg)),
-                  child: Text(l.shopOutOfStock, style: context.text.labelLarge?.copyWith(color: MediaColors.foreground)),
+    final wide = !context.isPhone;
+    return Semantics(
+      button: true,
+      label: '${p.name}, ${Fmt.inr(p.price)}${p.isAffiliate ? ', ${l.shopPartnerStore}' : ''}',
+      child: InkWell(
+        borderRadius: BorderRadius.circular(Radii.lg),
+        onTap: () => context.push('/shop/product/${p.id}'),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          AspectRatio(
+            aspectRatio: Sizes.productArtAspect,
+            child: Stack(fit: StackFit.expand, children: [
+              // The discount is shown once, in the price line below.
+              ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.lg),
+              if (badge != null && p.inStock) Positioned(left: Space.xs + Space.xxs, bottom: Space.xs + Space.xxs, child: PawTag(badge!, kind: TagKind.ink)),
+              if (!p.inStock)
+                Positioned.fill(
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(color: MediaColors.scrim, borderRadius: BorderRadius.circular(Radii.lg)),
+                    child: Text(l.shopOutOfStock, style: context.text.labelLarge?.copyWith(color: MediaColors.foreground)),
+                  ),
+                ),
+            ]),
+          ),
+          const SizedBox(height: Space.sm),
+          Text(p.brand, style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500), maxLines: 1, overflow: TextOverflow.ellipsis),
+          Text(p.name, style: context.text.labelMedium?.copyWith(height: 1.3), maxLines: 2, overflow: TextOverflow.ellipsis),
+          const SizedBox(height: Space.xs),
+          PriceTag(price: p.price, mrp: p.mrp),
+          if (wide && !p.isAffiliate && p.inStock) ...[
+            const SizedBox(height: Space.xxs),
+            // When it arrives, in plain words (on wider screens).
+            Row(children: [
+              Icon(Ph.truck, size: IconSizes.sm, color: paw.textSecondary),
+              const SizedBox(width: Space.xs),
+              Flexible(
+                child: Text(
+                  l.shopDeliveryOn(Fmt.dateShort(addWorkingDays(Fmt.dayOnly(DateTime.now()), p.deliveryDays), context.lang)),
+                  style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-          ]),
-        ),
-        const SizedBox(height: Space.sm),
-        Text(p.brand, style: context.text.labelSmall?.copyWith(color: context.paw.textSecondary), maxLines: 1, overflow: TextOverflow.ellipsis),
-        Text(p.name, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600), maxLines: 2, overflow: TextOverflow.ellipsis),
-        const SizedBox(height: Space.xxs),
-        PriceTag(price: p.price, mrp: p.mrp),
-        if (!p.isAffiliate && p.inStock) ...[
-          const SizedBox(height: Space.xxs),
-          // When it arrives, in plain words (UI Design 5 brief).
-          Row(children: [
-            Icon(Ph.truck, size: IconSizes.sm, color: context.paw.success),
-            const SizedBox(width: Space.xs),
-            Flexible(
-              child: Text(
-                l.shopDeliveryOn(Fmt.dateShort(addWorkingDays(Fmt.dayOnly(DateTime.now()), p.deliveryDays), context.lang)),
-                style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ]),
-        ],
-        const SizedBox(height: Space.xxs),
-        if (p.isAffiliate) PartnerStoreBadge(store: store) else RatingLine(rating: p.rating, count: p.reviewCount),
-      ]),
+            ]),
+          ],
+          const SizedBox(height: Space.xs),
+          if (p.isAffiliate) PartnerStoreBadge(store: store) else RatingLine(rating: p.rating, count: p.reviewCount),
+        ]),
+      ),
     );
   }
 }
@@ -169,7 +181,7 @@ class ProductGrid extends StatelessWidget {
       return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: cols, mainAxisSpacing: Space.sm, crossAxisSpacing: Space.sm, mainAxisExtent: _tileHeight(context, c.maxWidth / cols)),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: cols, mainAxisSpacing: Space.lg, crossAxisSpacing: Space.md, mainAxisExtent: _tileHeight(context, (c.maxWidth - (cols - 1) * Space.md) / cols)),
         itemCount: products.length,
         itemBuilder: (_, i) => ProductCard(product: products[i]),
       );
@@ -178,7 +190,7 @@ class ProductGrid extends StatelessWidget {
 
   double _tileHeight(BuildContext context, double width) {
     final scale = MediaQuery.textScalerOf(context).scale(1);
-    return (width - 2 * Space.sm) / Sizes.productArtAspect + Sizes.productTextBlock * scale + 2 * Space.sm;
+    return width / Sizes.productArtAspect + Sizes.productTextBlock * scale;
   }
 }
 
@@ -196,7 +208,7 @@ class ProductRow extends StatelessWidget {
       child: IntrinsicHeight(
         child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           for (var i = 0; i < products.length; i++) ...[
-            if (i > 0) const SizedBox(width: Space.sm),
+            if (i > 0) const SizedBox(width: Space.md),
             SizedBox(width: Sizes.productCardCompact, child: ProductCard(product: products[i], compact: true)),
           ],
         ]),
@@ -239,14 +251,19 @@ class QtyStepper extends StatelessWidget {
   }
 }
 
-/// Cart button with the item count, for app bars.
+/// Cart button with the item count, for app bars. [tonal] is the round
+/// paper-coloured button of a page header (Shop).
 class CartButton extends ConsumerWidget {
-  const CartButton({super.key});
+  const CartButton({super.key, this.tonal = false});
+  final bool tonal;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final n = ref.watch(cartCountProvider);
+    final tip = n == 0 ? context.l10n.shopCart : context.l10n.shopCartWithCount(n);
+    if (tonal) return PawIconButton(icon: Ph.shoppingCartSimple, tooltip: context.l10n.shopCart, badge: n, onPressed: () => context.push('/shop/cart'));
     return IconButton(
-      tooltip: n == 0 ? context.l10n.shopCart : context.l10n.shopCartWithCount(n),
+      tooltip: tip,
       onPressed: () => context.push('/shop/cart'),
       icon: Badge(isLabelVisible: n > 0, label: Text('$n'), child: const Icon(Ph.shoppingCartSimple)),
     );

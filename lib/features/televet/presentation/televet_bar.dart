@@ -81,7 +81,7 @@ class TeleVetBar extends ConsumerWidget {
             : SizedBox(width: IconSizes.lg, height: IconSizes.lg, child: CircularProgressIndicator(strokeWidth: Strokes.spinner, color: context.colors.primary)),
         title: scheduled ? l.tvScheduledTitle(Fmt.dateTime(c.scheduledAt!, lang)) : l.tvFindingVet(c.petName),
         subtitle: scheduled ? l.tvScheduledHint : l.tvFindingVetHint,
-        trailing: [if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Ph.lightning)],
+        trailing: [if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Ph.lightningFill)],
       );
     }
 

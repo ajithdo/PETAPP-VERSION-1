@@ -7463,5 +7463,129 @@
         "type": "int"
       }
     }
-  }
+  },
+  "shopDeliveringTo": "Delivering to",
+  "shopRunningLow": "Running low",
+  "shopNotSure": "Not sure what suits {name}?",
+  "@shopNotSure": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "shopFromPartners": "From partner stores",
+  "shopBuyOnStore": "{price}, you will buy on {store}",
+  "@shopBuyOnStore": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "meDocsCount": "{count, plural, =1{1 document} other{{count} documents}}",
+  "@meDocsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "meExpireSoon": "{count, plural, =1{1 expires soon} other{{count} expire soon}}",
+  "@meExpireSoon": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mePhotosCount": "{count, plural, =1{1 photo} other{{count} photos}}",
+  "@mePhotosCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "meVideosCount": "{count, plural, =1{1 video} other{{count} videos}}",
+  "@meVideosCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "meTagsReady": "Tags ready. No pet is lost.",
+  "mePetLost": "{name} is marked lost",
+  "@mePetLost": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "meNoneYet": "None yet",
+  "meDeviceLine": "{device}, {battery}%",
+  "@meDeviceLine": {
+    "placeholders": {
+      "device": {
+        "type": "String"
+      },
+      "battery": {
+        "type": "int"
+      }
+    }
+  },
+  "meOnlyYou": "Only you",
+  "meCanCare": "{who} can care for {pets}",
+  "@meCanCare": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "pets": {
+        "type": "String"
+      }
+    }
+  },
+  "meOnTheWay": "{item} is on the way",
+  "@meOnTheWay": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "meThisMonth": "{amount} this month",
+  "@meThisMonth": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "meRenewsOn": "Renews on {date}",
+  "@meRenewsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "meTryFree": "Try 7 days free",
+  "meBothGet": "You both get {amount}",
+  "@meBothGet": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "meSettingsSub": "Language, appearance, Easy mode",
+  "mePrivacySub": "Your data and consents",
+  "meGroupApp": "App and support",
+  "meSavedAddresses": "Saved addresses"
 }

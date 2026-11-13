@@ -10881,4 +10881,126 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get shopDeliveringTo => 'Delivering to';
+
+  @override
+  String get shopRunningLow => 'Running low';
+
+  @override
+  String shopNotSure(String name) {
+    return 'Not sure what suits $name?';
+  }
+
+  @override
+  String get shopFromPartners => 'From partner stores';
+
+  @override
+  String shopBuyOnStore(String price, String store) {
+    return '$price, you will buy on $store';
+  }
+
+  @override
+  String meDocsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count documents',
+      one: '1 document',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String meExpireSoon(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count expire soon',
+      one: '1 expires soon',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String mePhotosCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count photos',
+      one: '1 photo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String meVideosCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count videos',
+      one: '1 video',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get meTagsReady => 'Tags ready. No pet is lost.';
+
+  @override
+  String mePetLost(String name) {
+    return '$name is marked lost';
+  }
+
+  @override
+  String get meNoneYet => 'None yet';
+
+  @override
+  String meDeviceLine(String device, int battery) {
+    return '$device, $battery%';
+  }
+
+  @override
+  String get meOnlyYou => 'Only you';
+
+  @override
+  String meCanCare(String who, String pets) {
+    return '$who can care for $pets';
+  }
+
+  @override
+  String meOnTheWay(String item) {
+    return '$item is on the way';
+  }
+
+  @override
+  String meThisMonth(String amount) {
+    return '$amount this month';
+  }
+
+  @override
+  String meRenewsOn(String date) {
+    return 'Renews on $date';
+  }
+
+  @override
+  String get meTryFree => 'Try 7 days free';
+
+  @override
+  String meBothGet(String amount) {
+    return 'You both get $amount';
+  }
+
+  @override
+  String get meSettingsSub => 'Language, appearance, Easy mode';
+
+  @override
+  String get mePrivacySub => 'Your data and consents';
+
+  @override
+  String get meGroupApp => 'App and support';
+
+  @override
+  String get meSavedAddresses => 'Saved addresses';
 }

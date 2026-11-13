@@ -18081,6 +18081,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count, plural, =0{today} =1{tomorrow} other{in {count} days}}'**
   String inDaysCount(int count);
+
+  /// No description provided for @shopDeliveringTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivering to'**
+  String get shopDeliveringTo;
+
+  /// No description provided for @shopRunningLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Running low'**
+  String get shopRunningLow;
+
+  /// No description provided for @shopNotSure.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure what suits {name}?'**
+  String shopNotSure(String name);
+
+  /// No description provided for @shopFromPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'From partner stores'**
+  String get shopFromPartners;
+
+  /// No description provided for @shopBuyOnStore.
+  ///
+  /// In en, this message translates to:
+  /// **'{price}, you will buy on {store}'**
+  String shopBuyOnStore(String price, String store);
+
+  /// No description provided for @meDocsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 document} other{{count} documents}}'**
+  String meDocsCount(int count);
+
+  /// No description provided for @meExpireSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 expires soon} other{{count} expire soon}}'**
+  String meExpireSoon(int count);
+
+  /// No description provided for @mePhotosCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 photo} other{{count} photos}}'**
+  String mePhotosCount(int count);
+
+  /// No description provided for @meVideosCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 video} other{{count} videos}}'**
+  String meVideosCount(int count);
+
+  /// No description provided for @meTagsReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags ready. No pet is lost.'**
+  String get meTagsReady;
+
+  /// No description provided for @mePetLost.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is marked lost'**
+  String mePetLost(String name);
+
+  /// No description provided for @meNoneYet.
+  ///
+  /// In en, this message translates to:
+  /// **'None yet'**
+  String get meNoneYet;
+
+  /// No description provided for @meDeviceLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{device}, {battery}%'**
+  String meDeviceLine(String device, int battery);
+
+  /// No description provided for @meOnlyYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Only you'**
+  String get meOnlyYou;
+
+  /// No description provided for @meCanCare.
+  ///
+  /// In en, this message translates to:
+  /// **'{who} can care for {pets}'**
+  String meCanCare(String who, String pets);
+
+  /// No description provided for @meOnTheWay.
+  ///
+  /// In en, this message translates to:
+  /// **'{item} is on the way'**
+  String meOnTheWay(String item);
+
+  /// No description provided for @meThisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} this month'**
+  String meThisMonth(String amount);
+
+  /// No description provided for @meRenewsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews on {date}'**
+  String meRenewsOn(String date);
+
+  /// No description provided for @meTryFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Try 7 days free'**
+  String get meTryFree;
+
+  /// No description provided for @meBothGet.
+  ///
+  /// In en, this message translates to:
+  /// **'You both get {amount}'**
+  String meBothGet(String amount);
+
+  /// No description provided for @meSettingsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Language, appearance, Easy mode'**
+  String get meSettingsSub;
+
+  /// No description provided for @mePrivacySub.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data and consents'**
+  String get mePrivacySub;
+
+  /// No description provided for @meGroupApp.
+  ///
+  /// In en, this message translates to:
+  /// **'App and support'**
+  String get meGroupApp;
+
+  /// No description provided for @meSavedAddresses.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved addresses'**
+  String get meSavedAddresses;
 }
 
 class _AppLocalizationsDelegate

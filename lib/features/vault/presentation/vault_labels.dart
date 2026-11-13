@@ -58,8 +58,8 @@ Widget? expiryChip(BuildContext context, DateTime? expiry, {DateTime? now}) {
   final st = expiryState(expiry, now ?? DateTime.now());
   return switch (st) {
     ExpiryState.none => null,
-    ExpiryState.expired => StatusChip(l.vaultExpired, tone: ChipTone.error, icon: Ph.calendarX),
-    ExpiryState.soon => StatusChip(l.vaultExpiresSoon, tone: ChipTone.warning, icon: Ph.clock),
+    ExpiryState.expired => StatusChip(l.vaultExpired, tone: ChipTone.error, icon: Ph.calendarXFill),
+    ExpiryState.soon => StatusChip(l.vaultExpiresSoon, tone: ChipTone.warning, icon: Ph.clockFill),
     ExpiryState.valid => null,
   };
 }
@@ -114,9 +114,9 @@ Widget renewalChip(BuildContext context, DateTime? renewal) {
 
 Widget linkStatusChip(BuildContext context, ShareLink link) {
   final l = context.l10n;
-  if (link.revoked) return StatusChip(l.vaultLinkRevoked, tone: ChipTone.neutral, icon: Ph.linkBreak);
+  if (link.revoked) return StatusChip(l.vaultLinkRevoked, tone: ChipTone.neutral, icon: Ph.linkBreakFill);
   if (link.isExpired(DateTime.now())) return StatusChip(l.vaultLinkExpired, tone: ChipTone.warning);
-  return StatusChip(l.vaultLinkActive, tone: ChipTone.success, icon: Ph.link);
+  return StatusChip(l.vaultLinkActive, tone: ChipTone.success, icon: Ph.linkFill);
 }
 
 String shareExpiryLabel(BuildContext context, ShareExpiry e) {

@@ -96,13 +96,16 @@ class ResponsiveGrid extends StatelessWidget {
 /// Equal-width tiles in rows of [columns]. Each row is as tall as its
 /// tallest tile, so tiles grow with big text (200%) instead of cutting it.
 class TileGrid extends StatelessWidget {
-  const TileGrid({super.key, required this.columns, required this.children, this.spacing = Space.md, this.minTileHeight = 0});
+  const TileGrid({super.key, required this.columns, required this.children, this.spacing = Space.md, this.minTileHeight = 0, this.rowSpacing});
   final int columns;
   final List<Widget> children;
   final double spacing;
 
   /// Keeps short tiles from looking squashed at normal text size.
   final double minTileHeight;
+
+  /// Space between rows (defaults to [spacing]).
+  final double? rowSpacing;
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +126,7 @@ class TileGrid extends StatelessWidget {
     }
     return Column(children: [
       for (var r = 0; r < rows.length; r++) ...[
-        if (r > 0) SizedBox(height: spacing),
+        if (r > 0) SizedBox(height: rowSpacing ?? spacing),
         rows[r],
       ],
     ]);

@@ -96,7 +96,7 @@ class _PublicShareScreenState extends ConsumerState<PublicShareScreen> {
                   Row(children: [
                     const PawSetuLogo(size: Sizes.logo, withName: true),
                     const Spacer(),
-                    StatusChip(l.vaultViewOnly, tone: ChipTone.info, icon: Ph.eye),
+                    StatusChip(l.vaultViewOnly, tone: ChipTone.info, icon: Ph.eyeFill),
                   ]),
                   const SizedBox(height: Space.xl),
                   body,

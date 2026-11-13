@@ -10503,4 +10503,102 @@ class AppLocalizationsHi extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get shopDeliveringTo => 'डिलीवरी का पता:';
+
+  @override
+  String get shopRunningLow => 'कम बचा है';
+
+  @override
+  String shopNotSure(String name) {
+    return '$name के लिए क्या ठीक रहेगा, पता नहीं?';
+  }
+
+  @override
+  String get shopFromPartners => 'पार्टनर स्टोर से';
+
+  @override
+  String shopBuyOnStore(String price, String store) {
+    return '$price, आप $store पर खरीदेंगे';
+  }
+
+  @override
+  String meDocsCount(int count) {
+    return '$count दस्तावेज़';
+  }
+
+  @override
+  String meExpireSoon(int count) {
+    return '$count जल्द खत्म होंगे';
+  }
+
+  @override
+  String mePhotosCount(int count) {
+    return '$count फ़ोटो';
+  }
+
+  @override
+  String meVideosCount(int count) {
+    return '$count वीडियो';
+  }
+
+  @override
+  String get meTagsReady => 'टैग तैयार हैं। कोई पालतू खोया नहीं है।';
+
+  @override
+  String mePetLost(String name) {
+    return '$name खोया हुआ दर्ज है';
+  }
+
+  @override
+  String get meNoneYet => 'अभी कोई नहीं';
+
+  @override
+  String meDeviceLine(String device, int battery) {
+    return '$device, $battery%';
+  }
+
+  @override
+  String get meOnlyYou => 'सिर्फ़ आप';
+
+  @override
+  String meCanCare(String who, String pets) {
+    return '$who $pets की देखभाल कर सकते हैं';
+  }
+
+  @override
+  String meOnTheWay(String item) {
+    return '$item रास्ते में है';
+  }
+
+  @override
+  String meThisMonth(String amount) {
+    return 'इस महीने $amount';
+  }
+
+  @override
+  String meRenewsOn(String date) {
+    return '$date को नवीकरण';
+  }
+
+  @override
+  String get meTryFree => '7 दिन मुफ़्त आज़माएँ';
+
+  @override
+  String meBothGet(String amount) {
+    return 'दोनों को $amount मिलेंगे';
+  }
+
+  @override
+  String get meSettingsSub => 'भाषा, रूप, ईज़ी मोड';
+
+  @override
+  String get mePrivacySub => 'आपका डेटा और सहमतियाँ';
+
+  @override
+  String get meGroupApp => 'ऐप और मदद';
+
+  @override
+  String get meSavedAddresses => 'सहेजे गए पते';
 }

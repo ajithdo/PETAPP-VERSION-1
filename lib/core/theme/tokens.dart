@@ -819,7 +819,10 @@ class Sizes {
   /// the reorder card.
   static const double productCardCompact = 158;
   static const double productTextBlock = 128;
-  static const double productArtAspect = 1.15;
+  static const double productArtAspect = 1.08;
+
+  /// A "buy again" card in the Shop's row.
+  static const double buyAgainCard = 248;
   static const double buyAgainTile = 112;
   static const double reorderCard = 300;
 
@@ -971,8 +974,15 @@ class Sizes {
   static const double item = 56;
   static const double buttonSmall = 36;
 
-  /// The pet's arch on the health pass (its height; 64 px wide).
-  static const double passArch = 80;
+  /// Search pills and one-line fields.
+  static const double field = 52;
+
+  /// The pet's arch on the health pass (its height with the ring; the
+  /// picture inside is 64 px wide).
+  static const double passArch = 89;
+
+  /// A pet's arch on Me (its height with the ring; the picture is 60 px wide).
+  static const double meArch = 84;
 
   /// Quick-action circles on Home.
   static const double quickCircle = 56;

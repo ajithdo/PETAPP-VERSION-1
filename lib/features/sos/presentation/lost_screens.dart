@@ -65,8 +65,8 @@ class LostHomeScreen extends ConsumerWidget {
                       Text(p.name, style: context.text.titleMedium),
                       const SizedBox(height: Space.xs),
                       p.lost != null
-                          ? StatusChip(l.lostSinceShort(Fmt.dateTime(_lostSince(p) ?? DateTime.now(), context.lang)), tone: ChipTone.error, icon: Ph.globeHemisphereEast)
-                          : StatusChip(l.lostSafeAtHome, tone: ChipTone.success, icon: Ph.house),
+                          ? StatusChip(l.lostSinceShort(Fmt.dateTime(_lostSince(p) ?? DateTime.now(), context.lang)), tone: ChipTone.error, icon: Ph.globeHemisphereEastFill)
+                          : StatusChip(l.lostSafeAtHome, tone: ChipTone.success, icon: Ph.houseFill),
                     ]),
                   ),
                   const Icon(Ph.caretRight),
@@ -401,7 +401,7 @@ class _MarkLostFormState extends State<_MarkLostForm> {
       Text(l.lostWhereSeen, style: context.text.labelLarge),
       const SizedBox(height: Space.xs),
       if (_gps != null)
-        StatusChip(l.lostUsingGps, tone: ChipTone.success, icon: Ph.crosshair)
+        StatusChip(l.lostUsingGps, tone: ChipTone.success, icon: Ph.crosshairFill)
       else
         DropdownButtonFormField<Area>(
           initialValue: _area,

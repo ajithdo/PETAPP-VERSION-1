@@ -74,7 +74,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
             // the rest on a quiet line: no row of six chips (DESIGN.md).
             Wrap(spacing: Space.md, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
               p.is24x7
-                  ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clock)
+                  ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clockFill)
                   : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
               if (p.reviewCount > 0)
                 Row(mainAxisSize: MainAxisSize.min, children: [

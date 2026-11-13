@@ -167,11 +167,11 @@ List<MeMenuItem> meMenu(BuildContext context) {
     MeMenuItem(Ph.watch, l.connectedDevices, '/me/devices'),
     MeMenuItem(Ph.receipt, l.ordMyOrders, '/shop/orders', group: 1),
     MeMenuItem(Ph.wallet, l.expenses, '/me/expenses', group: 1),
-    MeMenuItem(Ph.mapPin, l.addrBook, '/me/addresses', group: 1),
+    MeMenuItem(Ph.mapPin, l.meSavedAddresses, '/me/addresses', group: 1),
     MeMenuItem(Ph.crownSimple, l.pawsetuPlus, '/me/plus', group: 1),
     MeMenuItem(Ph.gift, l.referTitle, '/me/refer', group: 1),
     MeMenuItem(Ph.gearSix, l.settings, '/me/settings', group: 2),
     MeMenuItem(Ph.headset, l.helpAndComplaints, '/me/help', group: 2),
-    MeMenuItem(Ph.shieldWarning, l.privacyCentre, '/me/privacy', group: 2),
+    MeMenuItem(Ph.shieldCheck, l.privacyCentre, '/me/privacy', group: 2),
   ];
 }

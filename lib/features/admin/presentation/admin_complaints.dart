@@ -138,8 +138,8 @@ class TicketCard extends StatelessWidget {
             const SizedBox(height: Space.xs),
             Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
               StatusChip(ticketStatusLabel(context, t.status), tone: ticketStatusTone(t.status)),
-              if (adminView && needsAdmin) StatusChip(l.admNeedsReply, tone: ChipTone.error, icon: Ph.arrowBendUpLeft),
-              if (!adminView && t.awaitingUser) StatusChip(l.hpNewReply, tone: ChipTone.info, icon: Ph.chatCircleDots),
+              if (adminView && needsAdmin) StatusChip(l.admNeedsReply, tone: ChipTone.error, icon: Ph.arrowBendUpLeftFill),
+              if (!adminView && t.awaitingUser) StatusChip(l.hpNewReply, tone: ChipTone.info, icon: Ph.chatCircleDotsFill),
               if (t.refund != null) StatusChip(l.hpRefunded(Fmt.inr((t.refund!['amount'] as num?) ?? 0, context.lang)), tone: ChipTone.success),
             ]),
           ]),

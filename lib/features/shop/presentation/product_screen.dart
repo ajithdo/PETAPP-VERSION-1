@@ -122,7 +122,7 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
       Text(l.shopSuitableFor, style: context.text.titleSmall),
       const SizedBox(height: Space.xs),
       Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
-        for (final s in p.species) StatusChip(speciesName(context, s), icon: Ph.pawPrint),
+        for (final s in p.species) StatusChip(speciesName(context, s), icon: Ph.pawPrintFill),
         for (final s in p.lifeStages) StatusChip(lifeStageTag(context, s)),
         if (p.species.contains('dog'))
           for (final s in p.breedSizes) StatusChip(breedSizeTag(context, s)),

@@ -181,7 +181,7 @@ class PetHistoryPanel extends ConsumerWidget {
         Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [for (final a in pet.allergies) StatusChip(a, tone: ChipTone.error)]),
       SectionHeader(l.tvProblemLabel),
       if (c.redFlag != null) ...[
-        StatusChip(l.tvUrgentSign(redFlagLabel(context, c.redFlag!)), tone: ChipTone.error, icon: Ph.asterisk),
+        StatusChip(l.tvUrgentSign(redFlagLabel(context, c.redFlag!)), tone: ChipTone.error, icon: Ph.asteriskFill),
         const SizedBox(height: Space.xs),
       ],
       Text(c.problem, style: context.text.bodyMedium),

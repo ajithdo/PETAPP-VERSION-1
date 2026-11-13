@@ -228,5 +228,167 @@
     "ph": {
       "count": "int"
     }
+  },
+  "shopDeliveringTo": {
+    "en": "Delivering to",
+    "hi": "डिलीवरी का पता:",
+    "te": "డెలివరీ చిరునామా:"
+  },
+  "shopRunningLow": {
+    "en": "Running low",
+    "hi": "कम बचा है",
+    "te": "అయిపోతోంది"
+  },
+  "shopNotSure": {
+    "en": "Not sure what suits {name}?",
+    "hi": "{name} के लिए क्या ठीक रहेगा, पता नहीं?",
+    "te": "{name}కి ఏది సరిపోతుందో తెలియదా?",
+    "ph": {
+      "name": "String"
+    }
+  },
+  "shopFromPartners": {
+    "en": "From partner stores",
+    "hi": "पार्टनर स्टोर से",
+    "te": "భాగస్వామి స్టోర్ల నుండి"
+  },
+  "shopBuyOnStore": {
+    "en": "{price}, you will buy on {store}",
+    "hi": "{price}, आप {store} पर खरीदेंगे",
+    "te": "{price}, మీరు కొనేది: {store}",
+    "ph": {
+      "price": "String",
+      "store": "String"
+    }
+  },
+  "meDocsCount": {
+    "en": "{count, plural, =1{1 document} other{{count} documents}}",
+    "hi": "{count} दस्तावेज़",
+    "te": "{count} పత్రాలు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "meExpireSoon": {
+    "en": "{count, plural, =1{1 expires soon} other{{count} expire soon}}",
+    "hi": "{count} जल्द खत्म होंगे",
+    "te": "{count} త్వరలో ముగుస్తాయి",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "mePhotosCount": {
+    "en": "{count, plural, =1{1 photo} other{{count} photos}}",
+    "hi": "{count} फ़ोटो",
+    "te": "{count} ఫోటోలు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "meVideosCount": {
+    "en": "{count, plural, =1{1 video} other{{count} videos}}",
+    "hi": "{count} वीडियो",
+    "te": "{count} వీడియోలు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "meTagsReady": {
+    "en": "Tags ready. No pet is lost.",
+    "hi": "टैग तैयार हैं। कोई पालतू खोया नहीं है।",
+    "te": "ట్యాగ్‌లు సిద్ధం. ఏ పెంపుడు జంతువూ తప్పిపోలేదు."
+  },
+  "mePetLost": {
+    "en": "{name} is marked lost",
+    "hi": "{name} खोया हुआ दर्ज है",
+    "te": "{name} తప్పిపోయినట్లు గుర్తించారు",
+    "ph": {
+      "name": "String"
+    }
+  },
+  "meNoneYet": {
+    "en": "None yet",
+    "hi": "अभी कोई नहीं",
+    "te": "ఇంకా ఏమీ లేవు"
+  },
+  "meDeviceLine": {
+    "en": "{device}, {battery}%",
+    "hi": "{device}, {battery}%",
+    "te": "{device}, {battery}%",
+    "ph": {
+      "device": "String",
+      "battery": "int"
+    }
+  },
+  "meOnlyYou": {
+    "en": "Only you",
+    "hi": "सिर्फ़ आप",
+    "te": "మీరు మాత్రమే"
+  },
+  "meCanCare": {
+    "en": "{who} can care for {pets}",
+    "hi": "{who} {pets} की देखभाल कर सकते हैं",
+    "te": "{who} {pets}ను చూసుకోగలరు",
+    "ph": {
+      "who": "String",
+      "pets": "String"
+    }
+  },
+  "meOnTheWay": {
+    "en": "{item} is on the way",
+    "hi": "{item} रास्ते में है",
+    "te": "{item} దారిలో ఉంది",
+    "ph": {
+      "item": "String"
+    }
+  },
+  "meThisMonth": {
+    "en": "{amount} this month",
+    "hi": "इस महीने {amount}",
+    "te": "ఈ నెల {amount}",
+    "ph": {
+      "amount": "String"
+    }
+  },
+  "meRenewsOn": {
+    "en": "Renews on {date}",
+    "hi": "{date} को नवीकरण",
+    "te": "{date}న పునరుద్ధరణ",
+    "ph": {
+      "date": "String"
+    }
+  },
+  "meTryFree": {
+    "en": "Try 7 days free",
+    "hi": "7 दिन मुफ़्त आज़माएँ",
+    "te": "7 రోజులు ఉచితంగా ప్రయత్నించండి"
+  },
+  "meBothGet": {
+    "en": "You both get {amount}",
+    "hi": "दोनों को {amount} मिलेंगे",
+    "te": "ఇద్దరికీ {amount}",
+    "ph": {
+      "amount": "String"
+    }
+  },
+  "meSettingsSub": {
+    "en": "Language, appearance, Easy mode",
+    "hi": "भाषा, रूप, ईज़ी मोड",
+    "te": "భాష, రూపం, ఈజీ మోడ్"
+  },
+  "mePrivacySub": {
+    "en": "Your data and consents",
+    "hi": "आपका डेटा और सहमतियाँ",
+    "te": "మీ డేటా, అనుమతులు"
+  },
+  "meGroupApp": {
+    "en": "App and support",
+    "hi": "ऐप और मदद",
+    "te": "యాప్, సహాయం"
+  },
+  "meSavedAddresses": {
+    "en": "Saved addresses",
+    "hi": "सहेजे गए पते",
+    "te": "సేవ్ చేసిన చిరునామాలు"
   }
 }

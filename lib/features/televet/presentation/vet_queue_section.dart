@@ -101,9 +101,9 @@ class _QueueCardState extends ConsumerState<_QueueCard> {
         ]),
         const SizedBox(height: Space.sm),
         Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-          if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Ph.lightning),
+          if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Ph.lightningFill),
           StatusChip(c.isVideo ? l.tvModeVideo : l.tvModeChat, tone: ChipTone.info, icon: c.isVideo ? Ph.videoCamera : Ph.chatCircleDots),
-          if (c.redFlag != null) StatusChip(l.tvUrgent, tone: ChipTone.error, icon: Ph.asterisk),
+          if (c.redFlag != null) StatusChip(l.tvUrgent, tone: ChipTone.error, icon: Ph.asteriskFill),
           if (c.vetUid != null) StatusChip(l.tvAskedForYou, tone: ChipTone.success),
         ]),
         const SizedBox(height: Space.sm),

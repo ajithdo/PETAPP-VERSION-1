@@ -13,6 +13,7 @@ import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../data/order_repository.dart';
 import '../data/shop_repository.dart';
+import '../domain/food_stock.dart';
 import '../domain/shop_models.dart';
 import '../domain/shop_rules.dart';
 import 'product_widgets.dart';
@@ -73,73 +74,107 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
         final again = [for (final id in buyAgainIds(orders)) ?byId[id]].where((p) => p.active && !p.isAffiliate).toList();
         final featured = all.where((p) => p.active && p.featured).take(10).toList();
         final deals = (all.where((p) => p.active && p.discountPercent >= 15).toList()..sort((a, b) => b.discountPercent.compareTo(a.discountPercent))).take(10).toList();
+        final paw = context.paw;
+        const gap = SizedBox(height: Space.xl);
+        // Where orders go: the saved address (area and PIN code).
+        final address = (ref.watch(addressesProvider).value ?? const <Address>[]).firstOrNull;
+        // The food this pet is running low on gets a tag on its picture.
+        final lowFood = pet == null || pet.foodProductId == null
+            ? null
+            : switch (foodState(foodDaysLeft(bagKg: pet.foodBagKg, dailyGrams: pet.dailyPortionG, openedAt: pet.foodOpenedAt, now: DateTime.now()))) {
+                FoodState.unknown || FoodState.ok => null,
+                _ => pet.foodProductId,
+              };
+        final partnerProducts = all.where((p) => p.active && p.isAffiliate).take(4).toList();
+        final stores = ref.watch(partnerStoresProvider).value ?? const <PartnerStore>[];
         return PageBody(children: [
           const SizedBox(height: Space.sm),
           Row(children: [
-            Expanded(child: Semantics(header: true, child: Text(l.shopTitle, style: context.text.headlineLarge))),
-            IconButton(tooltip: l.ordMyOrders, onPressed: () => context.push('/shop/orders'), icon: Badge(isLabelVisible: open > 0, label: Text('$open'), child: const Icon(Ph.receipt))),
-            const CartButton(),
+            Expanded(child: Semantics(header: true, child: Text(l.shopTitle, style: context.text.displaySmall))),
+            PawIconButton(icon: Ph.receipt, tooltip: l.ordMyOrders, badge: open, onPressed: () => context.push('/shop/orders')),
+            const SizedBox(width: Space.md),
+            const CartButton(tonal: true),
           ]),
-          const SizedBox(height: Space.sm),
-          Semantics(
-            button: true,
-            label: l.shopSearchHint,
-            excludeSemantics: true,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(Radii.full),
-              onTap: () => context.push('/shop/search?focus=1'),
-              child: InputDecorator(
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Ph.magnifyingGlass),
-                  hintText: l.shopSearchHint,
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.paw.controlBorder)),
-                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.paw.controlBorder)),
+          const SizedBox(height: Space.lg),
+          SearchPill(hint: l.shopSearchHint, onTap: () => context.push('/shop/search?focus=1')),
+          if (address != null) ...[
+            const SizedBox(height: Space.md),
+            Row(children: [
+              Icon(Ph.mapPin, size: IconSizes.xs, color: paw.textSecondary),
+              const SizedBox(width: Space.sm),
+              Expanded(
+                child: Text.rich(
+                  TextSpan(children: [
+                    TextSpan(text: '${l.shopDeliveringTo} '),
+                    TextSpan(text: [address.area, address.pin].where((x) => x.isNotEmpty).join(' '), style: TextStyle(color: paw.textPrimary, fontWeight: FontWeight.w700)),
+                  ]),
+                  style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
                 ),
-                child: Text(l.shopSearchHint, style: context.text.bodyLarge?.copyWith(color: context.paw.textSecondary)),
               ),
-            ),
-          ),
+            ]),
+          ],
           const SizedBox(height: Space.lg),
           _CategoryStrip(species: pet?.species),
           // Buy again first: reordering is the most common job (like an Indian
           // pet shop's "order again"), then picks for the pet.
           if (again.isNotEmpty) ...[
-            SectionHeader(l.shopBuyAgain, action: l.ordMyOrders, onAction: () => context.push('/shop/orders')),
-            SizedBox(
-              // Taller for Hindi and Telugu, whose lines are taller.
-              height: (Sizes.buyAgainTile + (context.lang == 'en' ? 0 : Space.xl)) * MediaQuery.textScalerOf(context).scale(1) + Space.xl,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: again.length,
-                separatorBuilder: (_, _) => const SizedBox(width: Space.sm),
-                itemBuilder: (_, i) => _BuyAgainTile(product: again[i], pet: pet),
+            gap,
+            SecHead(l.shopBuyAgain, action: l.ordMyOrders, onAction: () => context.push('/shop/orders')),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              clipBehavior: Clip.none,
+              child: IntrinsicHeight(
+                child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                  for (final (i, p) in again.indexed) ...[
+                    if (i > 0) const SizedBox(width: Space.md),
+                    _BuyAgainTile(product: p, pet: pet),
+                  ],
+                ]),
               ),
             ),
           ],
           if (pet != null) ...[
-            SectionHeader(l.shopForPet(pet.name)),
+            gap,
             // The pet pills in the top bar choose the pet; no second set of
             // pet chips here (nothing shown twice on a screen).
-            Text(_petLine(context, pet), style: context.text.bodySmall),
-            const SizedBox(height: Space.sm),
-            if (picks.isEmpty) PawCard(child: Text(l.shopNoPicks)) else ProductRow(products: picks),
+            Padding(
+              padding: const EdgeInsets.only(bottom: Space.xs),
+              child: Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
+                Expanded(child: Semantics(header: true, child: Text(l.shopForPet(pet.name), style: context.text.titleLarge))),
+                const SizedBox(width: Space.md),
+                TextLink(l.seeAll, onTap: () => context.push('/shop/search?species=${pet.species}')),
+              ]),
+            ),
+            Text(_petLine(context, pet), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
             const SizedBox(height: Space.md),
+            if (picks.isEmpty)
+              PawPanel(child: Text(l.shopNoPicks, style: context.text.bodyMedium))
+            else
+              LayoutBuilder(builder: (context, c) {
+                // Two across on phones, up to six on wide screens.
+                final cols = (c.maxWidth / Sizes.productCardCompact).floor().clamp(2, 6);
+                return TileGrid(
+                  columns: cols,
+                  spacing: Space.md,
+                  rowSpacing: Space.lg,
+                  children: [for (final p in picks.take(cols * (cols > 3 ? 1 : 3))) ProductCard(product: p, badge: p.id == lowFood ? l.shopRunningLow : null)],
+                );
+              }),
+            gap,
             // A quick way to a vet before buying (owner's brief).
-            PawCard(
-              color: context.paw.accentContainer,
-              flat: true,
-              borderColor: Colors.transparent,
+            Wash(
               onTap: () => context.push(askVetLink),
               child: Row(children: [
-                Container(
-                  width: TapTarget.min,
-                  height: TapTarget.min,
-                  decoration: BoxDecoration(color: context.paw.marigold, borderRadius: BorderRadius.circular(Radii.md)),
-                  child: Icon(Ph.videoCamera, color: context.paw.onMarigold),
+                const PawTile(icon: Ph.videoCamera, tone: Tone.marigold),
+                const SizedBox(width: Space.md),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(l.shopNotSure(pet.name), style: context.text.labelLarge),
+                    Text(l.qaAskVet, style: context.text.bodySmall?.copyWith(color: paw.accent)),
+                  ]),
                 ),
                 const SizedBox(width: Space.md),
-                Expanded(child: Text(l.shopAskVet(pet.name), style: context.text.titleSmall?.copyWith(color: context.paw.onAccentContainer))),
-                Icon(Ph.caretRight, color: context.paw.onAccentContainer),
+                const Chev(),
               ]),
             ),
           ],
@@ -151,17 +186,57 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
             InfoNote(l.shopPlusDeliveryNote(Fmt.inr(ref.watch(shopSettingsProvider).plusFreeDeliveryAbove)), icon: Ph.crownSimple, tone: ChipTone.accent),
           ],
           if (featured.isNotEmpty) ...[
-            SectionHeader(l.shopFeatured),
+            gap,
+            SecHead(l.shopFeatured),
             ProductRow(products: featured),
           ],
           if (deals.isNotEmpty) ...[
-            SectionHeader(l.shopDeals, action: l.seeAll, onAction: () => context.push('/shop/search?sort=discount')),
+            gap,
+            SecHead(l.shopDeals, action: l.seeAll, onAction: () => context.push('/shop/search?sort=discount')),
             ProductRow(products: deals),
           ],
-          SectionHeader(l.shopPartnerStores),
-          Text(l.shopPartnerStoresNote, style: context.text.bodySmall),
-          const SizedBox(height: Space.sm),
-          _PartnerStores(products: all),
+          gap,
+          Padding(
+            padding: const EdgeInsets.only(bottom: Space.xs),
+            child: Semantics(header: true, child: Text(l.shopFromPartners, style: context.text.titleLarge)),
+          ),
+          Text(l.shopPartnerStoresNote, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+          const SizedBox(height: Space.md),
+          // What they sell, each opening the partner's own website…
+          ResponsiveGrid(minItemWidth: Sizes.miniCardMin + Space.x3l, children: [
+            for (final p in partnerProducts)
+              PawPanel(
+                onTap: () => context.push('/shop/product/${p.id}'),
+                semanticLabel: p.name,
+                child: Row(children: [
+                  ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.tileLg, radius: Sizes.tileLg * Sizes.tileCorner),
+                  const SizedBox(width: Space.md),
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(p.name, style: context.text.labelLarge, maxLines: 2, overflow: TextOverflow.ellipsis),
+                      Text(
+                        l.shopBuyOnStore(Fmt.inr(p.price), stores.where((s) => s.id == p.partnerId).firstOrNull?.name ?? l.shopPartnerStore),
+                        style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
+                      ),
+                    ]),
+                  ),
+                  const SizedBox(width: Space.md),
+                  Icon(Ph.arrowSquareOut, size: IconSizes.md, color: paw.textPrimary),
+                ]),
+              ),
+          ]),
+          // …and the stores themselves, to see everything from one.
+          if (stores.isNotEmpty) ...[
+            const SizedBox(height: Space.md),
+            Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
+              for (final st in stores)
+                PawChip(
+                  label: '${st.name} · ${l.shopListings(all.where((p) => p.partnerId == st.id).length)}',
+                  icon: Ph.storefront,
+                  onTap: () => context.push('/shop/search?store=${st.id}'),
+                ),
+            ]),
+          ],
         ]);
       },
     );
@@ -169,11 +244,12 @@ class _ShopHomeScreenState extends ConsumerState<ShopHomeScreen> {
 
   String _petLine(BuildContext context, Pet pet) {
     final stage = shopLifeStage(pet.lifeStage());
-    return [
+    // "Labrador Retriever, adult. Avoiding: chicken."
+    final who = [
       pet.breedName(context.lang).isEmpty ? speciesName(context, pet.species) : pet.breedName(context.lang),
-      lifeStageTag(context, stage),
-      if (pet.allergies.isNotEmpty) context.l10n.shopAvoiding(pet.allergies.join(', ')),
-    ].join(' · ');
+      lifeStageTag(context, stage).toLowerCase(),
+    ].join(', ');
+    return [who, if (pet.allergies.isNotEmpty) context.l10n.shopAvoiding(pet.allergies.join(', ').toLowerCase())].map((x) => '$x.').join(' ');
   }
 }
 
@@ -187,27 +263,28 @@ class _BuyAgainTile extends ConsumerWidget {
     final l = context.l10n;
     final p = product;
     final paw = context.paw;
+    // "…, Chicken-free Lamb & Rice 10 kg": the last part names the pack.
+    final short = p.name.split(', ').last;
     return SizedBox(
-      width: Sizes.reorderCard - Space.xxl,
+      width: Sizes.buyAgainCard,
       child: PawCard(
         padding: const EdgeInsets.all(Space.sm + Space.xxs),
         onTap: () => context.push('/shop/product/${p.id}'),
         child: Row(children: [
-          ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbLg, radius: Radii.md),
-          const SizedBox(width: Space.sm + Space.xxs),
+          ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbLg, radius: Sizes.thumbLg * Sizes.tileCorner),
+          const SizedBox(width: Space.md),
           Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-              Text(p.name, style: context.text.labelMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
-              const SizedBox(height: Space.xxs),
-              Text(Fmt.inr(p.price), style: context.text.bodySmall),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min, children: [
+              Text(short, style: context.text.labelMedium?.copyWith(height: 1.3), maxLines: 2, overflow: TextOverflow.ellipsis),
+              Text(Fmt.inr(p.price), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
             ]),
           ),
-          const SizedBox(width: Space.xs),
-          IconButton.filled(
+          const SizedBox(width: Space.md),
+          RoundButton(
+            icon: Ph.arrowClockwise,
+            kind: BtnKind.primary,
             tooltip: p.inStock ? l.shopReorder : l.shopOutOfStock,
-            style: IconButton.styleFrom(backgroundColor: paw.action, foregroundColor: paw.onAction),
             onPressed: p.inStock ? () => showQuickReorder(context, ref, product: p, pet: pet) : null,
-            icon: const Icon(Ph.arrowCounterClockwise),
           ),
         ]),
       ),
@@ -223,15 +300,14 @@ class _CategoryStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
-    return SizedBox(
-      height: (Sizes.thumb + Space.sm + Space.xxl) * MediaQuery.textScalerOf(context).scale(1) + (context.lang == 'en' ? 0 : Space.md),
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: shopCategories.length,
-        separatorBuilder: (_, _) => const SizedBox(width: Space.sm),
-        itemBuilder: (context, i) {
-          final cat = shopCategories[i];
-          return Semantics(
+    // Round tiles, 56 px, 14 px apart; the first one (food) is marigold.
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      clipBehavior: Clip.none,
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        for (final (i, cat) in shopCategories.indexed) ...[
+          if (i > 0) const SizedBox(width: Space.md + Space.xxs),
+          Semantics(
             button: true,
             label: categoryLabel(context, cat),
             excludeSemantics: true,
@@ -239,50 +315,25 @@ class _CategoryStrip extends StatelessWidget {
               borderRadius: BorderRadius.circular(Radii.md),
               onTap: () => context.push('/shop/search?cat=$cat'),
               child: SizedBox(
-                width: Sizes.thumb + Space.lg,
+                width: Sizes.quickCircle * (MediaQuery.textScalerOf(context).scale(1) > 1.15 ? 1.3 : 1),
                 child: Column(children: [
-                  Container(
-                    width: Sizes.thumb,
-                    height: Sizes.thumb,
-                    decoration: BoxDecoration(color: i == 0 ? paw.marigold : paw.surfaceSubtle, shape: BoxShape.circle),
-                    child: Icon(categoryIcon(cat), color: i == 0 ? paw.onMarigold : paw.textPrimary, size: IconSizes.lg),
+                  PawTile(icon: categoryIcon(cat), size: Sizes.quickCircle, round: true, tone: i == 0 ? Tone.marigold : Tone.neutral),
+                  const SizedBox(height: Space.xs + Space.xxs),
+                  Text(
+                    categoryLabel(context, cat),
+                    style: context.text.labelSmall?.copyWith(color: paw.textPrimary, fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    softWrap: false,
+                    overflow: TextOverflow.visible,
                   ),
-                  const SizedBox(height: Space.xs),
-                  Text(categoryLabel(context, cat), style: context.text.labelSmall?.copyWith(color: paw.textPrimary), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
                 ]),
               ),
             ),
-          );
-        },
-      ),
+          ),
+        ],
+      ]),
     );
   }
 }
 
-class _PartnerStores extends ConsumerWidget {
-  const _PartnerStores({required this.products});
-  final List<Product> products;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l = context.l10n;
-    final stores = ref.watch(partnerStoresProvider).value ?? const <PartnerStore>[];
-    return ResponsiveGrid(minItemWidth: 260, children: [
-      for (final s in stores)
-        PawCard(
-          onTap: () => context.push('/shop/search?store=${s.id}'),
-          child: Row(children: [
-            CircleAvatar(backgroundColor: context.paw.primaryContainer, child: Icon(Ph.storefront, color: context.colors.primary)),
-            const SizedBox(width: Space.md),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(s.name, style: context.text.titleSmall),
-                Text(l.shopListings(products.where((p) => p.partnerId == s.id).length), style: context.text.bodySmall),
-              ]),
-            ),
-            const Icon(Ph.caretRight),
-          ]),
-        ),
-    ]);
-  }
-}

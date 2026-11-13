@@ -35,7 +35,7 @@ class TodayCard extends ConsumerWidget {
         data: (all) {
           final p = TodayProgress(pet: pet, logs: all);
           final s = streak(all.map((x) => x.at), DateTime.now());
-          final streakChip = s > 1 ? StatusChip(l.streakDays(s), tone: ChipTone.accent, icon: Ph.fire) : null;
+          final streakChip = s > 1 ? StatusChip(l.streakDays(s), tone: ChipTone.accent, icon: Ph.fireFill) : null;
           final left = p.items.where((i) => i.$2 < i.$3).length;
           return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             // Home: the band above shows the streak, so this says what's left.

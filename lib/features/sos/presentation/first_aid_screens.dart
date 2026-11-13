@@ -26,7 +26,7 @@ class FirstAidListScreen extends ConsumerWidget {
         InfoNote(l.firstAidEmergencyNote, icon: Ph.asterisk, tone: ChipTone.error),
         const SizedBox(height: Space.sm),
         Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-          StatusChip(l.firstAidOffline, tone: ChipTone.info, icon: Ph.cloudCheck),
+          StatusChip(l.firstAidOffline, tone: ChipTone.info, icon: Ph.cloudCheckFill),
           const DraftLabel(),
         ]),
         safetyGap,

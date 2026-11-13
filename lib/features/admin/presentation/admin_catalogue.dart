@@ -460,7 +460,7 @@ class _BannersTab extends ConsumerWidget {
                 Row(children: [
                   StatusChip(b.placement == 'shop' ? l.admPlaceShop : l.admPlaceHome, icon: b.placement == 'shop' ? Ph.storefront : Ph.house),
                   const SizedBox(width: Space.xs),
-                  StatusChip(bannerAudienceLabel(context, b.audience), icon: Ph.users),
+                  StatusChip(bannerAudienceLabel(context, b.audience), icon: Ph.usersFill),
                   const SizedBox(width: Space.sm),
                   if (b.link.isNotEmpty) Expanded(child: Text(b.link, style: context.text.bodySmall, maxLines: 1, overflow: TextOverflow.ellipsis)) else const Spacer(),
                   IconButton(tooltip: l.edit, icon: const Icon(Ph.pencilSimple), onPressed: () => editBanner(context, ref, b)),

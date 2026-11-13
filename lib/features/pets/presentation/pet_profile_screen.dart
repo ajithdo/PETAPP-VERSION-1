@@ -135,8 +135,8 @@ class _Profile extends ConsumerWidget {
             ],
             Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
               StatusChip(lifeStageLabel(context, pet), tone: ChipTone.info),
-              StatusChip(petRoleLabel(context, myRole.name), tone: ChipTone.accent, icon: Ph.user),
-              if (pet.flatFaced) StatusChip(l.flatFacedChip, tone: ChipTone.warning, icon: Ph.thermometer),
+              StatusChip(petRoleLabel(context, myRole.name), tone: ChipTone.accent, icon: Ph.userFill),
+              if (pet.flatFaced) StatusChip(l.flatFacedChip, tone: ChipTone.warning, icon: Ph.thermometerFill),
             ]),
             const SizedBox(height: Space.lg),
             ResponsiveGrid(minItemWidth: 150, children: [

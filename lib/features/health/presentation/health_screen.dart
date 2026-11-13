@@ -407,7 +407,7 @@ class _VaccinesSection extends ConsumerWidget {
                       const SizedBox(width: Space.sm),
                       statusChipWidget(context, worst([for (final x in g.value) x.$2])),
                     ]),
-                    const SizedBox(height: Space.md),
+                    const SizedBox(height: Space.xs),
                     for (var k = 0; k < g.value.length; k++) _DoseRow(step: g.value[k].$1, last: k == g.value.length - 1),
                     // The first vaccine that needs a dose gets the buttons.
                     if (canCare && g.key == firstDue) ...[
@@ -615,7 +615,7 @@ class _WeightSection extends ConsumerWidget {
                   TextSpan(text: '${latest!.toStringAsFixed(latest == latest.roundToDouble() ? 0 : digits)} $unit', style: context.text.headlineMedium),
                   if (verdict != null) TextSpan(text: '  ${verdict.$1}', style: context.text.bodySmall?.copyWith(color: verdict.$2, fontWeight: FontWeight.w600)),
                 ])),
-                const SizedBox(height: Space.sm),
+                const SizedBox(height: Space.md),
                 SizedBox(
                   height: Sizes.chartHeightSm,
                   child: LineChart(LineChartData(
@@ -634,10 +634,13 @@ class _WeightSection extends ConsumerWidget {
                         sideTitles: SideTitles(
                           showTitles: true,
                           reservedSize: Sizes.chartAxisBottom,
-                          interval: ((pts.length - 1) / 3).ceilToDouble().clamp(1, 99),
+                          interval: 1,
                           getTitlesWidget: (v, meta) {
                             final i = v.toInt();
-                            if (i < 0 || i >= pts.length || v != i.toDouble()) return const SizedBox.shrink();
+                            // First, last and up to two in between.
+                            final n = pts.length - 1;
+                            final shown = {0, n, if (n >= 4) (n / 3).round(), if (n >= 4) (2 * n / 3).round()};
+                            if (i < 0 || i > n || v != i.toDouble() || !shown.contains(i)) return const SizedBox.shrink();
                             return SideTitleWidget(meta: meta, fitInside: SideTitleFitInsideData.fromTitleMeta(meta), child: Text(Fmt.dateShort(pts[i].at, context.lang), style: axis));
                           },
                         ),
@@ -684,13 +687,16 @@ class _WeightSection extends ConsumerWidget {
                 Text(
                   range == null
                       ? l.weightGrowingNote
-                      : l.weightRangeNote('${(range.min * scale).toStringAsFixed(digits)}–${(range.max * scale).toStringAsFixed(digits)} $unit'),
+                      : l.weightRangeNote('${_trim(range.min * scale, digits)}–${_trim(range.max * scale, digits)} $unit'),
                   style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
                 ),
               ]),
       ),
     ]);
   }
+
+  /// "25" rather than "25.0".
+  String _trim(double v, int digits) => v == v.roundToDouble() ? v.toStringAsFixed(0) : v.toStringAsFixed(digits);
 
   double _min(List<RoutineLog> p, ({double min, double max})? r, double s) {
     final lo = [...p.map((x) => x.weightKg! * s), if (r != null) r.min * s].reduce((a, b) => a < b ? a : b);
@@ -986,6 +992,7 @@ class _EmergencyInfo extends ConsumerWidget {
           (l.allergies, allergies, allergic ? Tone.red : null),
           (l.regularClinic, clinic?.name ?? l.notAdded, null),
         ]),
+        const SizedBox(height: Space.md),
       ]),
     );
   }
