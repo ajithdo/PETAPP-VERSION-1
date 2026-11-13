@@ -485,7 +485,7 @@ class PlaceCard extends ConsumerWidget {
     final paw = context.paw;
     final open = isOpenNow(p.hours, DateTime.now());
     final fee = p.kind == 'clinic' || p.services.isEmpty ? p.fee : p.services.map((s) => s.price).reduce((a, b) => a < b ? a : b);
-    final seed = 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}';
+    final seed = p.artSeed;
     // Rating as plain text with a marigold star (one chip per row at most).
     final rating = p.reviewCount > 0
         ? Row(mainAxisSize: MainAxisSize.min, children: [

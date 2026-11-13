@@ -145,7 +145,7 @@ class BookingDetailScreen extends ConsumerWidget {
                           child: SizedBox.square(
                             dimension: Sizes.thumb,
                             child: place != null
-                                ? SeedArt(seed: 'seed:${place.kind == 'clinic' ? 'clinic' : 'provider'}:${place.photoSeed}')
+                                ? SeedArt(seed: place.artSeed)
                                 : ColoredBox(color: context.paw.surfaceSubtle, child: Icon(kindIcon(b.kind), color: context.paw.textPrimary)),
                           ),
                         ),

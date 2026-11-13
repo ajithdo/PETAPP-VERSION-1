@@ -447,7 +447,13 @@ class SecHead extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: Space.md),
       child: Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
         Expanded(child: Semantics(header: true, child: Text(title, style: style ?? context.text.titleLarge))),
-        if (note != null) ...[const SizedBox(width: Space.md), Flexible(child: Text(note!, textAlign: TextAlign.end, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)))],
+        if (note != null) ...[
+          const SizedBox(width: Space.md),
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * 0.4),
+            child: Text(note!, textAlign: TextAlign.end, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+          ),
+        ],
         if (action != null) ...[const SizedBox(width: Space.md), TextLink(action!, onTap: onAction)],
       ]),
     );

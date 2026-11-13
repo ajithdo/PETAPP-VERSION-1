@@ -48,6 +48,11 @@ class Place {
   String get status => (raw['status'] as String?) ?? 'approved';
   String? get ownerUid => (raw['ownerUid'] ?? raw['uid']) as String?;
   int get photoSeed => (raw['photoSeed'] as num?)?.toInt() ?? id.hashCode % 6;
+
+  /// The drawn shopfront that stands in when the place has no photo: a
+  /// clinic (with "24" on the sign when it is open round the clock) or a
+  /// provider.
+  String get artSeed => 'seed:${kind == 'clinic' ? (is24x7 ? 'clinic24' : 'clinic') : 'provider'}:$photoSeed';
   String? get about => raw['about'] as String?;
   bool get enquiriesEnabled => (raw['enquiriesEnabled'] as bool?) ?? true;
   List<PlaceService> get services => [for (final s in (raw['services'] as List?) ?? const []) PlaceService((s as Map).cast<String, dynamic>())];

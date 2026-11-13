@@ -416,7 +416,9 @@ void seedPlaces(Add add, DateTime now) {
       // Demo photo number in list order, so clinics in the same city never
       // share a photo. r.next(6) is still drawn so the rest of the demo data
       // stays exactly the same.
-      'photoSeed': [r.next(6), _clinics.indexOf(c) % 6].last,
+      // The clinic's number in its city picks the shopfront ("…_blr_1" is
+      // the first one), so each city starts with the design's first clinic.
+      'photoSeed': [r.next(6), (int.tryParse(c.id.split('_').last) ?? 1) - 1].last,
       'slotMinutes': 20,
       'bufferMinutes': 5,
       'capacityPerSlot': c.vets > 2 ? 2 : 1,

@@ -58,7 +58,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
               ? l.closedToday
               : l.todayHours(Fmt.time(today.open, context.lang), Fmt.time(today.close, context.lang));
           final wide = context.screenSize == ScreenSize.desktop;
-          final photo = SeedArt(seed: 'seed:${p.kind == 'clinic' ? 'clinic' : 'provider'}:${p.photoSeed}');
+          final photo = SeedArt(seed: p.artSeed);
           final panel = BookingPanel(key: _panel, place: p);
           final header = <Widget>[
             // UI Design 6: the photo is a rounded picture in the page on

@@ -84,7 +84,7 @@ class HeatCard extends ConsumerWidget {
               builder: (context, c) => Stack(clipBehavior: Clip.none, alignment: Alignment.centerLeft, children: [
                 SizedBox(
                   height: Sizes.walkBar,
-                  child: Row(children: [
+                  child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                     for (final (i, r) in runs.indexed) ...[
                       if (i > 0) const SizedBox(width: Space.xxs),
                       Expanded(

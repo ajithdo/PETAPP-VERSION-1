@@ -59,7 +59,7 @@ List<Widget> homeNearby(BuildContext context, WidgetRef ref, {required bool wide
               final open = isOpenNow(p.hours, now);
               final state = p.is24x7 ? l.open24x7 : (open ? l.openNowChip : l.closedChip);
               return PawItem(
-                lead: PawTile(size: Sizes.tileLg, child: SeedArt(seed: 'seed:clinic:${p.photoSeed}')),
+                lead: PawTile(size: Sizes.tileLg, child: SeedArt(seed: p.artSeed)),
                 title: p.name,
                 semanticLabel: [p.name, state, Fmt.km(km)].join(', '),
                 subWidget: Text.rich(

@@ -125,6 +125,9 @@ const demoPetKeys = {'bruno', 'misty', 'simba', 'kiwi', 'coco', 'tiger', 'max', 
 /// The pet whose drawings stand in for a species when no pet is named.
 const _speciesPet = {'dog': 'bruno', 'cat': 'misty', 'rabbit': 'coco', 'bird': 'kiwi'};
 
+/// Number of drawn shopfronts (the design kit has five).
+const _shopfronts = 5;
+
 /// Number of drawn album scenes per pet (park, beach, festival, home, rain,
 /// party, bath, night, vet).
 const _albumScenes = 9;
@@ -138,9 +141,12 @@ String? demoPhotoFor(String seed) {
   final n = (int.tryParse(parts.last) ?? seed.hashCode).abs();
   switch (parts[1]) {
     case 'clinic':
-      return 'assets/images/demo/places/clinic_${n % 6}.png';
+      return 'assets/images/demo/places/clinic_${n % _shopfronts}.png';
+    // The same shopfront with "24" on its sign (round-the-clock clinics).
+    case 'clinic24':
+      return 'assets/images/demo/places/clinic24_${n % _shopfronts}.png';
     case 'provider':
-      return 'assets/images/demo/places/provider_${n % 6}.png';
+      return 'assets/images/demo/places/provider_${n % _shopfronts}.png';
     case 'album' when parts.length > 3:
       final named = parts.length > 4 && demoPetKeys.contains(parts[3]) ? parts[3] : null;
       final pet = named ?? _speciesPet[parts[2]];
