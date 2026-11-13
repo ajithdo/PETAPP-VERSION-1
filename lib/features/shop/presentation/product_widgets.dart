@@ -29,9 +29,9 @@ class ProductArt extends StatelessWidget {
     if (photoUrl != null && photoUrl!.isNotEmpty) {
       art = MediaImage(url: photoUrl!, fit: BoxFit.cover, semanticLabel: label);
     } else {
-      // Seeds that differ only by one would give neighbours the same colour,
-      // so spread them out (food packs in a row should look different).
-      final tone = (shopCategories.indexOf(category) * 2 + seed * 5 + (label?.length ?? 0)) % PackColors.pairs.length;
+      // The seed picks the pack's colour pair (the demo data gives the
+      // design's products their own colours).
+      final tone = seed % PackColors.pairs.length;
       art = PackShot(kind: PackShot.kindFor(category, seed), tone: tone);
       if (label != null) art = Semantics(image: true, label: label, child: art);
     }

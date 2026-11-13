@@ -3020,5 +3020,18 @@
   "meSettingsSub": "भाषा, रूप, ईज़ी मोड",
   "mePrivacySub": "आपका डेटा और सहमतियाँ",
   "meGroupApp": "ऐप और मदद",
-  "meSavedAddresses": "सहेजे गए पते"
+  "meSavedAddresses": "सहेजे गए पते",
+  "catShortFood": "खाना",
+  "catShortTreats": "ट्रीट",
+  "catShortToys": "खिलौने",
+  "catShortGrooming": "ग्रूमिंग",
+  "catShortHealthHygiene": "सेहत",
+  "catShortBeds": "बिस्तर",
+  "catShortCollarsLeashes": "पट्टे",
+  "catShortBowlsFeeders": "कटोरे",
+  "catShortLitterCat": "लिटर",
+  "catShortBirdFoodCages": "पक्षी",
+  "catShortRabbitCare": "खरगोश",
+  "catShortClothing": "कपड़े",
+  "catShortTravel": "सफ़र"
 }

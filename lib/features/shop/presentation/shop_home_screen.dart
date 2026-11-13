@@ -320,10 +320,10 @@ class _CategoryStrip extends StatelessWidget {
                   PawTile(icon: categoryIcon(cat), size: Sizes.quickCircle, round: true, tone: i == 0 ? Tone.marigold : Tone.neutral),
                   const SizedBox(height: Space.xs + Space.xxs),
                   Text(
-                    categoryLabel(context, cat),
+                    categoryShort(context, cat),
                     style: context.text.labelSmall?.copyWith(color: paw.textPrimary, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.center,
-                    maxLines: 2,
+                    maxLines: 1,
                     softWrap: false,
                     overflow: TextOverflow.visible,
                   ),

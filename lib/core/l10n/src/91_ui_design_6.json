@@ -390,5 +390,70 @@
     "en": "Saved addresses",
     "hi": "सहेजे गए पते",
     "te": "సేవ్ చేసిన చిరునామాలు"
+  },
+  "catShortFood": {
+    "en": "Food",
+    "hi": "खाना",
+    "te": "ఆహారం"
+  },
+  "catShortTreats": {
+    "en": "Treats",
+    "hi": "ट्रीट",
+    "te": "ట్రీట్‌లు"
+  },
+  "catShortToys": {
+    "en": "Toys",
+    "hi": "खिलौने",
+    "te": "బొమ్మలు"
+  },
+  "catShortGrooming": {
+    "en": "Grooming",
+    "hi": "ग्रूमिंग",
+    "te": "గ్రూమింగ్"
+  },
+  "catShortHealthHygiene": {
+    "en": "Health",
+    "hi": "सेहत",
+    "te": "ఆరోగ్యం"
+  },
+  "catShortBeds": {
+    "en": "Beds",
+    "hi": "बिस्तर",
+    "te": "పడకలు"
+  },
+  "catShortCollarsLeashes": {
+    "en": "Collars",
+    "hi": "पट्टे",
+    "te": "కాలర్‌లు"
+  },
+  "catShortBowlsFeeders": {
+    "en": "Bowls",
+    "hi": "कटोरे",
+    "te": "గిన్నెలు"
+  },
+  "catShortLitterCat": {
+    "en": "Litter",
+    "hi": "लिटर",
+    "te": "లిటర్"
+  },
+  "catShortBirdFoodCages": {
+    "en": "Birds",
+    "hi": "पक्षी",
+    "te": "పక్షులు"
+  },
+  "catShortRabbitCare": {
+    "en": "Rabbits",
+    "hi": "खरगोश",
+    "te": "కుందేళ్ళు"
+  },
+  "catShortClothing": {
+    "en": "Clothing",
+    "hi": "कपड़े",
+    "te": "దుస్తులు"
+  },
+  "catShortTravel": {
+    "en": "Travel",
+    "hi": "सफ़र",
+    "te": "ప్రయాణం"
   }
 }

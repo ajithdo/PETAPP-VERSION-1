@@ -11003,4 +11003,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get meSavedAddresses => 'Saved addresses';
+
+  @override
+  String get catShortFood => 'Food';
+
+  @override
+  String get catShortTreats => 'Treats';
+
+  @override
+  String get catShortToys => 'Toys';
+
+  @override
+  String get catShortGrooming => 'Grooming';
+
+  @override
+  String get catShortHealthHygiene => 'Health';
+
+  @override
+  String get catShortBeds => 'Beds';
+
+  @override
+  String get catShortCollarsLeashes => 'Collars';
+
+  @override
+  String get catShortBowlsFeeders => 'Bowls';
+
+  @override
+  String get catShortLitterCat => 'Litter';
+
+  @override
+  String get catShortBirdFoodCages => 'Birds';
+
+  @override
+  String get catShortRabbitCare => 'Rabbits';
+
+  @override
+  String get catShortClothing => 'Clothing';
+
+  @override
+  String get catShortTravel => 'Travel';
 }

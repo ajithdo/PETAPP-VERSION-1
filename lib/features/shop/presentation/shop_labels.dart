@@ -26,6 +26,27 @@ String categoryLabel(BuildContext context, String c) {
   };
 }
 
+/// One-word category names for the round tiles on the Shop tab.
+String categoryShort(BuildContext context, String c) {
+  final l = context.l10n;
+  return switch (c) {
+    'food' => l.catShortFood,
+    'treats' => l.catShortTreats,
+    'toys' => l.catShortToys,
+    'grooming' => l.catShortGrooming,
+    'health_hygiene' => l.catShortHealthHygiene,
+    'beds' => l.catShortBeds,
+    'collars_leashes' => l.catShortCollarsLeashes,
+    'bowls_feeders' => l.catShortBowlsFeeders,
+    'litter_cat' => l.catShortLitterCat,
+    'bird_food_cages' => l.catShortBirdFoodCages,
+    'rabbit_care' => l.catShortRabbitCare,
+    'clothing' => l.catShortClothing,
+    'travel' => l.catShortTravel,
+    _ => categoryLabel(context, c),
+  };
+}
+
 IconData categoryIcon(String c) => switch (c) {
       'food' => Ph.bowlFood,
       'treats' => Ph.bone,

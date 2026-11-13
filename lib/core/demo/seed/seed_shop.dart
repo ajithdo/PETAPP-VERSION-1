@@ -412,7 +412,8 @@ void seedShop(Add add, DateTime now) {
       'description': p.desc,
       'ingredients': p.ingredients,
       'packKg': p.packKg,
-      'imageSeed': r.next(8),
+      // The products the design shows keep their pack colours; the rest vary.
+      'imageSeed': [r.next(8), ?_designPack[p.id]].last,
       'deliveryDays': 2 + r.next(4),
       'returnable': p.cat != 'food' && p.cat != 'treats',
       'active': true,
@@ -420,3 +421,17 @@ void seedShop(Add add, DateTime now) {
     });
   }
 }
+
+/// Pack colours from the UI Design 6 kit (the number picks the colour pair in
+/// PackColors: 0 terracotta, 1 green, 2 marigold, 3 violet, 4 red, 5 blue).
+const _designPack = <String, int>{
+  'prod_lab_adult_10': 0,
+  'prod_senior_dog_7': 1,
+  'prod_treat_training': 2,
+  'prod_bed_l': 3,
+  'prod_harness': 4,
+  'prod_toy_rope': 5,
+  'prod_treat_chew': 1,
+  'prod_cat_dry_3': 5,
+  'prod_shampoo': 2,
+};

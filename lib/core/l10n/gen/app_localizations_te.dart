@@ -10630,4 +10630,43 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get meSavedAddresses => 'సేవ్ చేసిన చిరునామాలు';
+
+  @override
+  String get catShortFood => 'ఆహారం';
+
+  @override
+  String get catShortTreats => 'ట్రీట్‌లు';
+
+  @override
+  String get catShortToys => 'బొమ్మలు';
+
+  @override
+  String get catShortGrooming => 'గ్రూమింగ్';
+
+  @override
+  String get catShortHealthHygiene => 'ఆరోగ్యం';
+
+  @override
+  String get catShortBeds => 'పడకలు';
+
+  @override
+  String get catShortCollarsLeashes => 'కాలర్‌లు';
+
+  @override
+  String get catShortBowlsFeeders => 'గిన్నెలు';
+
+  @override
+  String get catShortLitterCat => 'లిటర్';
+
+  @override
+  String get catShortBirdFoodCages => 'పక్షులు';
+
+  @override
+  String get catShortRabbitCare => 'కుందేళ్ళు';
+
+  @override
+  String get catShortClothing => 'దుస్తులు';
+
+  @override
+  String get catShortTravel => 'ప్రయాణం';
 }

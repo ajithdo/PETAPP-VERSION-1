@@ -18225,6 +18225,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Saved addresses'**
   String get meSavedAddresses;
+
+  /// No description provided for @catShortFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get catShortFood;
+
+  /// No description provided for @catShortTreats.
+  ///
+  /// In en, this message translates to:
+  /// **'Treats'**
+  String get catShortTreats;
+
+  /// No description provided for @catShortToys.
+  ///
+  /// In en, this message translates to:
+  /// **'Toys'**
+  String get catShortToys;
+
+  /// No description provided for @catShortGrooming.
+  ///
+  /// In en, this message translates to:
+  /// **'Grooming'**
+  String get catShortGrooming;
+
+  /// No description provided for @catShortHealthHygiene.
+  ///
+  /// In en, this message translates to:
+  /// **'Health'**
+  String get catShortHealthHygiene;
+
+  /// No description provided for @catShortBeds.
+  ///
+  /// In en, this message translates to:
+  /// **'Beds'**
+  String get catShortBeds;
+
+  /// No description provided for @catShortCollarsLeashes.
+  ///
+  /// In en, this message translates to:
+  /// **'Collars'**
+  String get catShortCollarsLeashes;
+
+  /// No description provided for @catShortBowlsFeeders.
+  ///
+  /// In en, this message translates to:
+  /// **'Bowls'**
+  String get catShortBowlsFeeders;
+
+  /// No description provided for @catShortLitterCat.
+  ///
+  /// In en, this message translates to:
+  /// **'Litter'**
+  String get catShortLitterCat;
+
+  /// No description provided for @catShortBirdFoodCages.
+  ///
+  /// In en, this message translates to:
+  /// **'Birds'**
+  String get catShortBirdFoodCages;
+
+  /// No description provided for @catShortRabbitCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Rabbits'**
+  String get catShortRabbitCare;
+
+  /// No description provided for @catShortClothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Clothing'**
+  String get catShortClothing;
+
+  /// No description provided for @catShortTravel.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel'**
+  String get catShortTravel;
 }
 
 class _AppLocalizationsDelegate

@@ -3020,5 +3020,18 @@
   "meSettingsSub": "భాష, రూపం, ఈజీ మోడ్",
   "mePrivacySub": "మీ డేటా, అనుమతులు",
   "meGroupApp": "యాప్, సహాయం",
-  "meSavedAddresses": "సేవ్ చేసిన చిరునామాలు"
+  "meSavedAddresses": "సేవ్ చేసిన చిరునామాలు",
+  "catShortFood": "ఆహారం",
+  "catShortTreats": "ట్రీట్‌లు",
+  "catShortToys": "బొమ్మలు",
+  "catShortGrooming": "గ్రూమింగ్",
+  "catShortHealthHygiene": "ఆరోగ్యం",
+  "catShortBeds": "పడకలు",
+  "catShortCollarsLeashes": "కాలర్‌లు",
+  "catShortBowlsFeeders": "గిన్నెలు",
+  "catShortLitterCat": "లిటర్",
+  "catShortBirdFoodCages": "పక్షులు",
+  "catShortRabbitCare": "కుందేళ్ళు",
+  "catShortClothing": "దుస్తులు",
+  "catShortTravel": "ప్రయాణం"
 }

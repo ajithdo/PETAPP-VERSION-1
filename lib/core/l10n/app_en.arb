@@ -7587,5 +7587,18 @@
   "meSettingsSub": "Language, appearance, Easy mode",
   "mePrivacySub": "Your data and consents",
   "meGroupApp": "App and support",
-  "meSavedAddresses": "Saved addresses"
+  "meSavedAddresses": "Saved addresses",
+  "catShortFood": "Food",
+  "catShortTreats": "Treats",
+  "catShortToys": "Toys",
+  "catShortGrooming": "Grooming",
+  "catShortHealthHygiene": "Health",
+  "catShortBeds": "Beds",
+  "catShortCollarsLeashes": "Collars",
+  "catShortBowlsFeeders": "Bowls",
+  "catShortLitterCat": "Litter",
+  "catShortBirdFoodCages": "Birds",
+  "catShortRabbitCare": "Rabbits",
+  "catShortClothing": "Clothing",
+  "catShortTravel": "Travel"
 }

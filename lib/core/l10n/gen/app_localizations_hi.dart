@@ -10601,4 +10601,43 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get meSavedAddresses => 'सहेजे गए पते';
+
+  @override
+  String get catShortFood => 'खाना';
+
+  @override
+  String get catShortTreats => 'ट्रीट';
+
+  @override
+  String get catShortToys => 'खिलौने';
+
+  @override
+  String get catShortGrooming => 'ग्रूमिंग';
+
+  @override
+  String get catShortHealthHygiene => 'सेहत';
+
+  @override
+  String get catShortBeds => 'बिस्तर';
+
+  @override
+  String get catShortCollarsLeashes => 'पट्टे';
+
+  @override
+  String get catShortBowlsFeeders => 'कटोरे';
+
+  @override
+  String get catShortLitterCat => 'लिटर';
+
+  @override
+  String get catShortBirdFoodCages => 'पक्षी';
+
+  @override
+  String get catShortRabbitCare => 'खरगोश';
+
+  @override
+  String get catShortClothing => 'कपड़े';
+
+  @override
+  String get catShortTravel => 'सफ़र';
 }
