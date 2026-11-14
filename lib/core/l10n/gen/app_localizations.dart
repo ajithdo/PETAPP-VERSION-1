@@ -18447,6 +18447,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Care answers for your pet. Not a diagnosis.'**
   String get aiCareAnswersAll;
+
+  /// No description provided for @clinicsWithin.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 clinic} other{{count} clinics}} within {km} km'**
+  String clinicsWithin(int count, int km);
+
+  /// No description provided for @placesWithin.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 place} other{{count} places}} within {km} km'**
+  String placesWithin(int count, int km);
+
+  /// No description provided for @feeWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation'**
+  String get feeWord;
+
+  /// No description provided for @bookAVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Book a visit'**
+  String get bookAVisit;
+
+  /// No description provided for @placeWhere.
+  ///
+  /// In en, this message translates to:
+  /// **'{kind} in {area}, {city}. {distance} away.'**
+  String placeWhere(String kind, String area, String city, String distance);
+
+  /// No description provided for @serviceWithVet.
+  ///
+  /// In en, this message translates to:
+  /// **'{service} with {vet}'**
+  String serviceWithVet(String service, String vet);
+
+  /// No description provided for @serviceForPet.
+  ///
+  /// In en, this message translates to:
+  /// **'{service} for {pet}'**
+  String serviceForPet(String service, String pet);
+
+  /// No description provided for @bookingIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking ID'**
+  String get bookingIdLabel;
+
+  /// No description provided for @howWasVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'How was the visit?'**
+  String get howWasVisit;
+
+  /// No description provided for @reviewWhoCan.
+  ///
+  /// In en, this message translates to:
+  /// **'Only people who visited can review. The place can reply.'**
+  String get reviewWhoCan;
+
+  /// No description provided for @bookAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Book again'**
+  String get bookAgain;
+
+  /// No description provided for @bookAgainSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Same place, same service'**
+  String get bookAgainSub;
+
+  /// No description provided for @addToCalendarSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Save the time in your phone\'s calendar'**
+  String get addToCalendarSub;
+
+  /// No description provided for @getHelpSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong? Tell us'**
+  String get getHelpSub;
+
+  /// No description provided for @dueBoosters.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s vaccines are due on {date}'**
+  String dueBoosters(String name, String date);
+
+  /// No description provided for @dueBoostersSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Book them in one visit at a clinic near you.'**
+  String get dueBoostersSub;
+
+  /// No description provided for @bookVaccines.
+  ///
+  /// In en, this message translates to:
+  /// **'Book vaccines'**
+  String get bookVaccines;
+
+  /// No description provided for @requestCancels.
+  ///
+  /// In en, this message translates to:
+  /// **'They reply by {when}, or the request cancels itself.'**
+  String requestCancels(String when);
+
+  /// No description provided for @discountWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount'**
+  String get discountWord;
 }
 
 class _AppLocalizationsDelegate

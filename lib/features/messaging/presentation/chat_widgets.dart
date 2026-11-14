@@ -21,10 +21,10 @@ IconData conversationIcon(Conversation c) => switch (c.type) {
       _ => c.providerKind == 'vet' ? Ph.firstAidKit : kindIcon(c.providerKind),
     };
 
-/// Round avatar for a conversation: the provider's icon for pet parents,
-/// the pet for partners.
+/// Who a conversation is with: for pet parents the vet (a circle with
+/// initials) or the place (a tile with its shopfront); for partners the pet.
 class ConversationAvatar extends StatelessWidget {
-  const ConversationAvatar({super.key, required this.conversation, required this.viewerUid, this.size = 48});
+  const ConversationAvatar({super.key, required this.conversation, required this.viewerUid, this.size = Sizes.tile});
   final Conversation conversation;
   final String viewerUid;
   final double size;
@@ -35,12 +35,24 @@ class ConversationAvatar extends StatelessWidget {
     if (viewerUid != c.ownerId) {
       return PetAvatar(species: c.petSpecies, colorTag: null, size: size, name: c.petName);
     }
-    final tele = c.isTeleVet;
-    return CircleAvatar(
-      radius: size / 2,
-      backgroundColor: tele ? context.paw.accent.withValues(alpha: Opacities.tintStrong) : context.paw.primaryContainer,
-      child: Icon(conversationIcon(c), color: tele ? context.paw.onAccentContainer : context.colors.primary, size: size * 0.48),
-    );
+    // A shape for everything (UI Design 6): a vet is a person, so a circle
+    // with initials; a clinic, salon or other place is a tile with its
+    // shopfront.
+    if (c.isTeleVet || c.providerKind == 'vet') {
+      final name = c.providerName.replaceFirst(RegExp(r'^Dr\.?\s*'), '');
+      return Container(
+        width: size,
+        height: size,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(color: context.paw.marigold, shape: BoxShape.circle),
+        child: name.isEmpty
+            ? Icon(Ph.stethoscope, size: size * Sizes.tileIcon, color: context.paw.onMarigold)
+            : Text(initials(name), style: context.text.labelLarge?.copyWith(color: context.paw.onMarigold, fontFamily: FontFamilies.heading, fontWeight: FontWeight.w700)),
+      );
+    }
+    final id = c.providerId ?? '';
+    final n = (int.tryParse(id.split('_').last) ?? id.length + 1) - 1;
+    return PawTile(size: size, child: SeedArt(seed: 'seed:${c.providerKind == 'clinic' ? 'clinic' : 'provider'}:$n'));
   }
 }
 

@@ -7690,5 +7690,97 @@
       }
     }
   },
-  "aiCareAnswersAll": "Care answers for your pet. Not a diagnosis."
+  "aiCareAnswersAll": "Care answers for your pet. Not a diagnosis.",
+  "clinicsWithin": "{count, plural, =1{1 clinic} other{{count} clinics}} within {km} km",
+  "@clinicsWithin": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "placesWithin": "{count, plural, =1{1 place} other{{count} places}} within {km} km",
+  "@placesWithin": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "feeWord": "Consultation",
+  "bookAVisit": "Book a visit",
+  "placeWhere": "{kind} in {area}, {city}. {distance} away.",
+  "@placeWhere": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      },
+      "area": {
+        "type": "String"
+      },
+      "city": {
+        "type": "String"
+      },
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceWithVet": "{service} with {vet}",
+  "@serviceWithVet": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      },
+      "vet": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceForPet": "{service} for {pet}",
+  "@serviceForPet": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "bookingIdLabel": "Booking ID",
+  "howWasVisit": "How was the visit?",
+  "reviewWhoCan": "Only people who visited can review. The place can reply.",
+  "bookAgain": "Book again",
+  "bookAgainSub": "Same place, same service",
+  "addToCalendarSub": "Save the time in your phone's calendar",
+  "getHelpSub": "Something went wrong? Tell us",
+  "dueBoosters": "{name}'s vaccines are due on {date}",
+  "@dueBoosters": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dueBoostersSub": "Book them in one visit at a clinic near you.",
+  "bookVaccines": "Book vaccines",
+  "requestCancels": "They reply by {when}, or the request cancels itself.",
+  "@requestCancels": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "discountWord": "Discount"
 }

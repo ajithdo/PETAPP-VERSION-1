@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/auth/app_user.dart';
 import '../../../core/providers.dart';
 import '../../../core/settings/settings_controller.dart';
 import '../../../core/theme/app_theme.dart';
@@ -26,9 +27,29 @@ class OwnerShell extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l = context.l10n;
     final path = GoRouterState.of(context).uri.path;
-    final onTab = _tabRoots.contains(path);
+    return _OwnerChrome(
+      index: shell.currentIndex,
+      onTab: _tabRoots.contains(path),
+      onTap: (i) => shell.goBranch(i, initialLocation: i == shell.currentIndex),
+      child: shell,
+    );
+  }
+}
+
+/// The owner's frame around a page: the dock on phones, the rail or side
+/// menu on wider screens. [index] is the current tab (null when the page
+/// belongs to none); [onTab] adds the top bar of a main tab.
+class _OwnerChrome extends StatelessWidget {
+  const _OwnerChrome({required this.index, required this.onTab, required this.onTap, required this.child});
+  final int? index;
+  final bool onTab;
+  final ValueChanged<int> onTap;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
     final destinations = [
       // Outlined when idle, filled when selected.
       (Ph.house, Ph.houseFill, l.tabHome),
@@ -37,15 +58,13 @@ class OwnerShell extends ConsumerWidget {
       (Ph.bag, Ph.bagFill, l.tabShop),
       (Ph.user, Ph.userFill, l.tabMe),
     ];
-    void go(int i) => shell.goBranch(i, initialLocation: i == shell.currentIndex);
-
     if (context.isPhone) {
       return Scaffold(
         body: SafeArea(
           bottom: false,
           child: Column(children: [
             if (onTab) const OwnerTopBar(),
-            Expanded(child: shell),
+            Expanded(child: child),
           ]),
         ),
         // The dock floats a little above the bottom edge, on the page colour.
@@ -54,7 +73,7 @@ class OwnerShell extends ConsumerWidget {
           child: SafeArea(
             top: false,
             minimum: const EdgeInsets.fromLTRB(Space.md, Space.xs, Space.md, Space.md),
-            child: _Dock(index: shell.currentIndex, items: destinations, onTap: go),
+            child: _Dock(index: index, items: destinations, onTap: onTap),
           ),
         ),
       );
@@ -63,8 +82,8 @@ class OwnerShell extends ConsumerWidget {
     // into side navigation (labels beside the icons, on one line).
     final desktop = context.screenSize == ScreenSize.desktop;
     final rail = NavigationRail(
-      selectedIndex: shell.currentIndex,
-      onDestinationSelected: go,
+      selectedIndex: index,
+      onDestinationSelected: onTap,
       extended: desktop,
       minExtendedWidth: Sizes.sideNav,
       labelType: desktop ? NavigationRailLabelType.none : NavigationRailLabelType.all,
@@ -87,12 +106,57 @@ class OwnerShell extends ConsumerWidget {
           Expanded(
             child: Column(children: [
               _WideTopBar(showPets: onTab),
-              Expanded(child: shell),
+              Expanded(child: child),
             ]),
           ),
         ]),
       ),
     );
+  }
+}
+
+/// Keeps the dock (or the side menu) on the owner's pages outside the five
+/// tabs: messages, notifications, tele-vet, a pet's profile and so on (UI
+/// Design 6: "the bottom bar stays on every page"). Full-attention pages
+/// (SOS, a live call or walk, forms, shared links) and other roles get the
+/// page alone.
+class SubPageFrame extends ConsumerWidget {
+  const SubPageFrame({super.key, required this.path, required this.child});
+  final String path;
+  final Widget child;
+
+  static bool _alone(String p) =>
+      p.startsWith('/sos') ||
+      p.startsWith('/televet/call') ||
+      p.startsWith('/televet/new') ||
+      p.startsWith('/televet/consent') ||
+      p.startsWith('/walk/') ||
+      p.startsWith('/lost/') ||
+      p.startsWith('/share/') ||
+      p.startsWith('/join/') ||
+      p.startsWith('/partner-signup') ||
+      p.startsWith('/suspended') ||
+      p == '/pets/new' ||
+      p.endsWith('/edit') ||
+      p.endsWith('/birthday') ||
+      p.endsWith('/report');
+
+  /// The tab a page belongs to, as in the design: a pet's profile under Me,
+  /// its routine under Home, its medical card under Health, tele-vet under
+  /// Book.
+  static int? _tabFor(String p) {
+    if (p.startsWith('/televet')) return 2;
+    if (p.endsWith('/routine')) return 0;
+    if (p.endsWith('/card')) return 1;
+    if (p.startsWith('/pets/') || p.startsWith('/vault/') || p == '/settings' || p.startsWith('/help')) return 4;
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(currentUserProvider);
+    if (user == null || user.role != UserRole.owner || _alone(path)) return child;
+    return _OwnerChrome(index: _tabFor(path), onTab: false, onTap: (i) => context.go(_tabRoots[i]), child: child);
   }
 }
 
@@ -147,7 +211,9 @@ class _AccountCard extends ConsumerWidget {
 /// behind the current tab's icon (UI Design 6).
 class _Dock extends StatelessWidget {
   const _Dock({required this.index, required this.items, required this.onTap});
-  final int index;
+
+  /// The current tab, or null when the page belongs to none.
+  final int? index;
   final List<(IconData, IconData, String)> items;
   final ValueChanged<int> onTap;
 

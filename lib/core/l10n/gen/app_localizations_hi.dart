@@ -10727,4 +10727,76 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get aiCareAnswersAll =>
       'आपके पालतू की देखभाल के जवाब। यह निदान नहीं है।';
+
+  @override
+  String clinicsWithin(int count, int km) {
+    return '$km किमी के अंदर $count क्लिनिक';
+  }
+
+  @override
+  String placesWithin(int count, int km) {
+    return '$km किमी के अंदर $count जगहें';
+  }
+
+  @override
+  String get feeWord => 'परामर्श';
+
+  @override
+  String get bookAVisit => 'विज़िट बुक करें';
+
+  @override
+  String placeWhere(String kind, String area, String city, String distance) {
+    return '$area, $city में $kind। $distance दूर।';
+  }
+
+  @override
+  String serviceWithVet(String service, String vet) {
+    return '$vet के साथ $service';
+  }
+
+  @override
+  String serviceForPet(String service, String pet) {
+    return '$pet के लिए $service';
+  }
+
+  @override
+  String get bookingIdLabel => 'बुकिंग आईडी';
+
+  @override
+  String get howWasVisit => 'विज़िट कैसी रही?';
+
+  @override
+  String get reviewWhoCan =>
+      'सिर्फ़ वही लोग रिव्यू दे सकते हैं जो वहाँ गए थे। वे जवाब दे सकते हैं।';
+
+  @override
+  String get bookAgain => 'फिर से बुक करें';
+
+  @override
+  String get bookAgainSub => 'वही जगह, वही सेवा';
+
+  @override
+  String get addToCalendarSub => 'समय अपने फ़ोन के कैलेंडर में रखें';
+
+  @override
+  String get getHelpSub => 'कुछ गड़बड़ हुई? हमें बताएँ';
+
+  @override
+  String dueBoosters(String name, String date) {
+    return '$name के टीके $date को हैं';
+  }
+
+  @override
+  String get dueBoostersSub => 'पास के क्लिनिक में एक ही विज़िट में लगवाएँ।';
+
+  @override
+  String get bookVaccines => 'टीके बुक करें';
+
+  @override
+  String requestCancels(String when) {
+    return 'वे $when तक जवाब देंगे, नहीं तो अनुरोध अपने आप रद्द हो जाएगा।';
+  }
+
+  @override
+  String get discountWord => 'छूट';
 }

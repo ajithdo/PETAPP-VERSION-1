@@ -66,48 +66,48 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
             const SizedBox(height: Space.md),
             _PhotoCard(place: p, photo: photo, open: open, hours: hoursText),
             const SizedBox(height: Space.lg),
-            Text(p.name, style: context.text.headlineMedium),
-            const SizedBox(height: Space.xxs),
-            Text('${kindLabel(context, p.kind)} · ${p.area}, ${p.city}', style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
-            const SizedBox(height: Space.sm),
-            // One chip (open now / 24x7 / closed), the rating as text, and
-            // the rest on a quiet line: no row of six chips (DESIGN.md).
-            Wrap(spacing: Space.md, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
+            Semantics(header: true, child: Text(p.name, style: wide ? context.text.headlineLarge : context.text.displaySmall)),
+            const SizedBox(height: Space.xs),
+            Builder(builder: (context) {
+              final o = ref.watch(searchOriginProvider);
+              return Text(
+                l.placeWhere(kindLabel(context, p.kind), p.area, p.city, Fmt.km(distanceKm(o.lat, o.lng, p.lat, p.lng))),
+                style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary),
+              );
+            }),
+            const SizedBox(height: Space.md),
+            // One tag (open now / 24x7 / closed), the rating as text, and
+            // what they offer on the same quiet line.
+            Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
               p.is24x7
                   ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clockFill)
-                  : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral),
+                  : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral, icon: open ? Ph.circleFill : null),
               if (p.reviewCount > 0)
                 Row(mainAxisSize: MainAxisSize.min, children: [
-                  Icon(Ph.starFill, size: IconSizes.sm, color: context.paw.accent),
-                  const SizedBox(width: Space.xxs),
-                  Text(p.rating.toStringAsFixed(1), style: context.text.labelLarge),
-                  Text(' · ${l.reviewsCount(p.reviewCount)}', style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+                  Icon(Ph.starFill, size: IconSizes.xs, color: context.tint.star),
+                  const SizedBox(width: Space.xxs + Strokes.hairline),
+                  Text(p.rating.toStringAsFixed(1), style: context.text.bodySmall?.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
+                  Text('  ${l.reviewsCount(p.reviewCount)}', style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
                 ]),
+              Text(
+                [
+                  if (p.teleVet) l.teleVet,
+                  for (final s in p.species)
+                    switch (s) {
+                      'cat' => l.speciesCat,
+                      'bird' => l.speciesBird,
+                      'rabbit' => l.speciesRabbit,
+                      _ => l.speciesDog,
+                    },
+                ].join(', '),
+                style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary),
+              ),
             ]),
-            const SizedBox(height: Space.xs),
-            Text(
-              [
-                if (p.teleVet) l.teleVet,
-                for (final s in p.species)
-                  switch (s) {
-                    'cat' => l.speciesCat,
-                    'bird' => l.speciesBird,
-                    'rabbit' => l.speciesRabbit,
-                    _ => l.speciesDog,
-                  },
-              ].join(' · '),
-              style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary),
-            ),
             if (p.about != null) ...[const SizedBox(height: Space.md), Text(p.about!, style: context.text.bodyLarge)],
             const SizedBox(height: Space.lg),
             // Call, Directions and Message as three equal soft buttons.
             Builder(builder: (context) {
-              Widget soft(IconData icon, String label, VoidCallback onTap) => FilledButton.tonalIcon(
-                    onPressed: onTap,
-                    style: FilledButton.styleFrom(backgroundColor: context.paw.surfaceSubtle, foregroundColor: context.paw.textPrimary, padding: const EdgeInsets.symmetric(horizontal: Space.sm)),
-                    icon: Icon(icon, size: IconSizes.md),
-                    label: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
-                  );
+              Widget soft(IconData icon, String label, VoidCallback onTap) => PawButton(label: label, icon: icon, kind: BtnKind.soft, size: BtnSize.regular, block: true, onPressed: onTap);
               final buttons = [
                 soft(Ph.phone, l.call, () => callNumber(context, ref, p.phone)),
                 soft(Ph.navigationArrow, l.directions, () => openDirections(p.lat, p.lng, label: p.name)),
@@ -117,7 +117,7 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
                 return Wrap(spacing: Space.sm, runSpacing: Space.sm, children: buttons);
               }
               return Row(children: [
-                for (var i = 0; i < buttons.length; i++) ...[if (i > 0) const SizedBox(width: Space.sm), Expanded(child: buttons[i])],
+                for (var i = 0; i < buttons.length; i++) ...[if (i > 0) const SizedBox(width: Space.md), Expanded(child: buttons[i])],
               ]);
             }),
           ];
@@ -227,32 +227,16 @@ class _PhotoCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l = context.l10n;
-    final paw = context.paw;
-    final origin = ref.watch(searchOriginProvider);
-    final km = distanceKm(origin.lat, origin.lng, place.lat, place.lng);
-    Widget tag(String text, Color bg, Color fg) => Container(
-          padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.xs + Space.xxs),
-          decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(Radii.full)),
-          child: Text(text, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.text.labelMedium?.copyWith(color: fg, fontWeight: FontWeight.w700)),
-        );
     return ConstrainedBox(
       constraints: const BoxConstraints(maxHeight: Sizes.placePhotoMaxHeight),
       child: AspectRatio(
-        aspectRatio: Sizes.placePhotoAspect,
+        aspectRatio: Sizes.placePhotoAspect + 0.18,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(Radii.card),
+          borderRadius: BorderRadius.circular(Radii.xxl),
           child: Stack(fit: StackFit.expand, children: [
             ExcludeSemantics(child: photo),
-            Positioned(
-              left: Space.md,
-              right: Space.md,
-              bottom: Space.md,
-              child: Wrap(alignment: WrapAlignment.spaceBetween, spacing: Space.sm, runSpacing: Space.xs, children: [
-                tag('${place.area} · ${l.sosAway(Fmt.km(km))}', MediaColors.scrim, MediaColors.foreground),
-                tag(hours, open ? paw.success : MediaColors.scrim, open ? paw.surface : MediaColors.foreground),
-              ]),
-            ),
+            // Today's hours, as a tag on the picture.
+            Positioned(left: Space.sm, bottom: Space.sm, child: PawTag(hours, kind: open ? TagKind.green : TagKind.neutral, icon: Ph.clockFill)),
           ]),
         ),
       ),

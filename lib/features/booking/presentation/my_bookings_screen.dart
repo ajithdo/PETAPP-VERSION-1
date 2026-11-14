@@ -15,6 +15,10 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/paw_map.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../health/data/health_repository.dart';
+import '../../health/domain/vaccine_schedule.dart';
+import '../../pets/data/pets_repository.dart';
+import '../../pets/domain/pet.dart';
 import '../../routine/domain/routine.dart';
 import '../data/booking_repository.dart';
 import '../data/places_repository.dart';
@@ -30,17 +34,28 @@ class MyBookingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final all0 = ref.watch(myBookingsProvider).value ?? const <Booking>[];
+    final now0 = DateTime.now();
+    final nUp = all0.where((b) => (b.status == 'confirmed' || b.status == 'in_progress') && b.end.isAfter(now0)).length;
+    final nReq = all0.where((b) => b.status == 'pending' || b.status == 'suggested').length;
+    // A tab's name with how many are in it, as a small marigold tag.
+    Widget tab(String label, int n) => Tab(
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
+            Text(label),
+            if (n > 0) ...[const SizedBox(width: Space.xs + Space.xxs), PawTag('$n', kind: TagKind.gold)],
+          ]),
+        );
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: Text(l.myBookings),
           bottom: TabBar(
-            tabs: [
-              Tab(text: l.upcoming),
-              Tab(text: l.requests),
-              Tab(text: l.past),
-            ],
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            padding: EdgeInsets.symmetric(horizontal: context.gutter - Space.sm),
+            labelPadding: const EdgeInsets.symmetric(horizontal: Space.md - Space.xxs),
+            tabs: [tab(l.upcoming, nUp), tab(l.requests, nReq), Tab(text: l.past)],
           ),
         ),
         body: AsyncView(
@@ -51,32 +66,66 @@ class MyBookingsScreen extends ConsumerWidget {
               ..sort((a, b) => a.start.compareTo(b.start));
             final requests = all.where((b) => b.status == 'pending' || b.status == 'suggested').toList();
             final past = all.where((b) => !upcoming.contains(b) && !requests.contains(b)).toList();
-            Widget list(List<Booking> items, String empty, String key) {
-              if (items.isEmpty) {
+            Widget list(List<Booking> items, String empty, String key, {List<Widget> after = const []}) {
+              if (items.isEmpty && after.isEmpty) {
                 return EmptyState(scene: Scene.empty, title: empty, actionLabel: l.bookSomething, onAction: () => context.go('/book'));
               }
               final limit = ref.watch(listLimitProvider(key));
               return PageBody(
                 maxWidth: Space.readingWidth,
                 children: [
-                  const SizedBox(height: Space.md),
+                  const SizedBox(height: Space.lg),
                   for (final b in items.take(limit))
                     Padding(
-                      padding: const EdgeInsets.only(bottom: Space.sm),
-                      child: BookingCard(booking: b),
+                      padding: const EdgeInsets.only(bottom: Space.md),
+                      child: BookingCard(booking: b, actions: true, showPet: true),
                     ),
                   if (items.length > limit) ShowMoreButton(onPressed: () => ref.read(listLimitProvider(key).notifier).more()),
+                  ...after,
                 ],
               );
             }
 
             return TabBarView(children: [
-              list(upcoming, l.noUpcomingBookings, 'bookings:upcoming'),
+              // Upcoming also shows what is still waiting for an answer, and
+              // a nudge when a vaccine is due.
+              list([...upcoming, ...requests], l.noUpcomingBookings, 'bookings:upcoming', after: const [_VaccineNudge()]),
               list(requests, l.noRequests, 'bookings:requests'),
               list(past, l.noPastBookings, 'bookings:past'),
             ]);
           },
         ),
+      ),
+    );
+  }
+}
+
+/// "Bruno's vaccines are due on 18 Nov": a marigold nudge on My bookings
+/// when a pet has a vaccine due soon or overdue.
+class _VaccineNudge extends ConsumerWidget {
+  const _VaccineNudge();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final pets = ref.watch(activePetsProvider);
+    (Pet, DueItem)? first;
+    for (final p in pets) {
+      for (final i in ref.watch(petDueProvider(p)).value ?? const <DueItem>[]) {
+        if (i.kind != 'vaccine' || i.at == null || i.status == DoseStatus.upcoming) continue;
+        if (first == null || i.at!.isBefore(first.$2.at!)) first = (p, i);
+      }
+    }
+    if (first == null) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(top: Space.md),
+      child: Wash(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(l.dueBoosters(first.$1.name, Fmt.dateShort(first.$2.at!, context.lang)), style: context.text.labelLarge),
+          Text(l.dueBoostersSub, style: context.text.bodySmall?.copyWith(color: context.paw.accent)),
+          const SizedBox(height: Space.md),
+          PawButton(label: l.bookVaccines, icon: Ph.calendarPlus, onPressed: () => context.push('/book/find/clinic')),
+        ]),
       ),
     );
   }
@@ -119,16 +168,12 @@ class BookingDetailScreen extends ConsumerWidget {
           if (b == null) return EmptyState(title: l.notFoundTitle);
           final place = ref.watch(placeProvider(b.providerId)).value;
           final s = bookingStatus(context, b.status);
-          Widget row(String k, String v) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: Space.xs),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(width: Sizes.labelColumn, child: Text(k, style: context.text.bodySmall)),
-                Expanded(child: Text(v, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600))),
-              ],
-            ),
-          );
+          final paw = context.paw;
+          final lang = context.lang;
+          final pet = partnerView ? null : ref.watch(petProvider(b.petId)).value;
+          final service = serviceLabel(context, b.serviceId);
+          // "Sun 18 Oct 2026, 11:00 AM"
+          final when = '${Fmt.weekdayDate(b.start, lang).split(',').first} ${Fmt.date(b.start, lang)}, ${Fmt.time(b.start, lang)}';
           return PageBody(
             maxWidth: Space.readingWidth,
             children: [
@@ -138,56 +183,98 @@ class BookingDetailScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // The place as a tile (its photo when there is one).
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(Radii.md),
-                          child: SizedBox.square(
-                            dimension: Sizes.thumb,
-                            child: place != null
-                                ? SeedArt(seed: place.artSeed)
-                                : ColoredBox(color: context.paw.surfaceSubtle, child: Icon(kindIcon(b.kind), color: context.paw.textPrimary)),
-                          ),
+                        PawTile(
+                          size: Sizes.tileLg,
+                          icon: place == null ? kindIcon(b.kind) : null,
+                          child: place == null ? null : SeedArt(seed: place.artSeed),
                         ),
                         const SizedBox(width: Space.md),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(partnerView ? '${b.petName} · ${b.ownerName}' : b.providerName, style: context.text.titleMedium),
-                              Text(serviceLabel(context, b.serviceId), style: context.text.bodySmall),
+                              Semantics(header: true, child: Text(partnerView ? '${b.petName} · ${b.ownerName}' : b.providerName, style: context.text.titleLarge)),
+                              Text(
+                                b.vetName != null && !partnerView ? l.serviceWithVet(service, b.vetName!) : service,
+                                style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
+                              ),
                             ],
                           ),
                         ),
-                        StatusChip(s.$1, tone: s.$2),
+                        const SizedBox(width: Space.sm),
+                        StatusChip(s.$1, tone: s.$2, icon: b.status == 'confirmed' || b.status == 'completed' ? Ph.checkCircleFill : null),
                       ],
                     ),
                     // Booked → confirmed → visited, like the stamps on a ticket.
                     if (const ['pending', 'suggested', 'confirmed', 'in_progress', 'completed'].contains(b.status)) ...[
-                      const SizedBox(height: Space.md),
+                      const SizedBox(height: Space.lg),
                       _Steps(reached: switch (b.status) { 'pending' || 'suggested' => 1, 'confirmed' || 'in_progress' => 2, _ => 3 }),
                     ],
-                    const SizedBox(height: Space.md),
-                    const DashedRule(),
-                    const SizedBox(height: Space.md),
-                    row(l.when, Fmt.dateTime(b.start, context.lang)),
-                    if (!partnerView) row(l.pet, b.petName),
-                    if (b.vetName != null) row(l.vet, b.vetName!),
-                    if (b.homeVisit) row(l.homeVisit, l.yes),
-                    if (b.notes?.isNotEmpty == true) row(l.notes, b.notes!),
-                    if (b.status == 'pending' && b.proposedTimes.isNotEmpty)
-                      row(l.preferredTimes, b.proposedTimes.map((t) => Fmt.dateTime(t, context.lang)).join('\n')),
-                    if (b.status == 'pending' && b.respondBy != null) row(l.replyBy, Fmt.dateTime(b.respondBy!, context.lang)),
-                    const SizedBox(height: Space.md),
-                    const DashedRule(),
-                    const SizedBox(height: Space.md),
-                    row(l.totalToPay, Fmt.inr(b.total)),
-                    row(l.payment, switch (b.paymentStatus) {
-                      'paid' => l.paidOnline,
-                      _ => b.paymentOption == 'online' ? l.paymentPending : l.payAtVisit,
+                    const Padding(padding: EdgeInsets.symmetric(vertical: Space.md + Space.xxs), child: DashedRule()),
+                    KvList(rows: [
+                      (l.when, when, null),
+                      if (b.vetName != null && partnerView) (l.vet, b.vetName!, null),
+                      if (b.homeVisit) (l.homeVisit, l.yes, null),
+                    ]),
+                    if (!partnerView) ...[
+                      const SizedBox(height: Space.xs + Space.xxs),
+                      // The pet, with its arch beside the name.
+                      LayoutBuilder(builder: (context, box) {
+                        final k = MediaQuery.textScalerOf(context).scale(1);
+                        final w = (box.maxWidth * 0.38).clamp(Sizes.labelColumnSm * k, box.maxWidth * 0.5);
+                        return Row(children: [
+                          SizedBox(width: w, child: Text(l.pet, style: context.text.bodySmall?.copyWith(color: paw.textSecondary))),
+                          const SizedBox(width: Space.md),
+                          if (pet != null) ...[
+                            PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Space.xl * Sizes.archAspect, ring: false),
+                            const SizedBox(width: Space.sm),
+                          ],
+                          Expanded(child: Text(b.petName, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600))),
+                        ]);
+                      }),
+                      const SizedBox(height: Space.xs + Space.xxs),
+                    ],
+                    KvList(rows: [
+                      if (b.notes?.isNotEmpty == true) (l.notes, b.notes!, null),
+                      if (b.status == 'pending' && b.proposedTimes.isNotEmpty) (l.preferredTimes, b.proposedTimes.map((t) => Fmt.dateTime(t, lang)).join('\n'), null),
+                      if (b.status == 'pending' && b.respondBy != null) (l.replyBy, Fmt.dateTime(b.respondBy!, lang), null),
+                      (l.bookingIdLabel, b.id.toUpperCase().replaceAll('_', '-'), null),
+                    ]),
+                    const Padding(padding: EdgeInsets.symmetric(vertical: Space.md + Space.xxs), child: DashedRule()),
+                    KvList(rows: [
+                      (service, Fmt.inr(b.price), null),
+                      if (b.travelFee > 0) (l.homeVisit, Fmt.inr(b.travelFee), null),
+                      (l.platformFee, Fmt.inr(b.platformFee), null),
+                      if (b.discount > 0) (l.discountWord, '- ${Fmt.inr(b.discount)}', null),
+                    ]),
+                    const SizedBox(height: Space.sm),
+                    // The total stands out.
+                    LayoutBuilder(builder: (context, box) {
+                      final k = MediaQuery.textScalerOf(context).scale(1);
+                      final w = (box.maxWidth * 0.38).clamp(Sizes.labelColumnSm * k, box.maxWidth * 0.5);
+                      return Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
+                        SizedBox(width: w, child: Text(l.totalToPay, style: context.text.bodySmall?.copyWith(color: paw.textSecondary))),
+                        const SizedBox(width: Space.md),
+                        Expanded(child: Text(Fmt.inr(b.total), style: context.text.titleSmall?.copyWith(fontWeight: FontWeight.w700))),
+                      ]);
                     }),
-                    if (partnerView) ...[row(l.platformCommission, Fmt.inr(b.commission)), row(l.yourPayout, Fmt.inr(b.payout))],
-                    if (b.refund > 0) row(l.refund, l.refundDemo(Fmt.inr(b.refund))),
+                    const SizedBox(height: Space.xs + Space.xxs),
+                    KvList(rows: [
+                      (
+                        l.payment,
+                        switch (b.paymentStatus) {
+                          'paid' => l.paidOnline,
+                          _ => b.paymentOption == 'online' ? l.paymentPending : l.payAtVisit,
+                        },
+                        null,
+                      ),
+                      if (partnerView) (l.platformCommission, Fmt.inr(b.commission), null),
+                      if (partnerView) (l.yourPayout, Fmt.inr(b.payout), null),
+                      if (b.refund > 0) (l.refund, l.refundDemo(Fmt.inr(b.refund)), null),
+                    ]),
                   ],
                 ),
               ),
@@ -246,15 +333,14 @@ class BookingDetailScreen extends ConsumerWidget {
                     ),
                   ),
               ],
-              const SizedBox(height: Space.md),
+              const SizedBox(height: Space.lg),
               if (!partnerView) ..._ownerActions(context, ref, b, place),
               if (partnerView && partnerActions != null) partnerActions!(b),
-              const SizedBox(height: Space.sm),
-              TextButton.icon(
-                onPressed: () => context.push('${partnerView ? '/help' : '/me/help'}/new?booking=${b.id}'),
-                icon: const Icon(Ph.headset),
-                label: Text(context.l10n.hpGetHelpBooking),
-              ),
+              if (partnerView)
+                Padding(
+                  padding: const EdgeInsets.only(top: Space.md),
+                  child: Align(child: TextLink(context.l10n.hpGetHelpBooking, onTap: () => context.push('/help/new?booking=${b.id}'))),
+                ),
             ],
           );
         },
@@ -264,54 +350,74 @@ class BookingDetailScreen extends ConsumerWidget {
 
   List<Widget> _ownerActions(BuildContext context, WidgetRef ref, Booking b, Place? place) {
     final l = context.l10n;
+    final paw = context.paw;
     final repo = ref.read(bookingRepositoryProvider);
+    final future = b.start.isAfter(DateTime.now());
+    Widget item(IconData icon, Tone tone, String title, String sub, VoidCallback onTap) =>
+        PawItem(lead: PawTile(icon: icon, tone: tone), title: title, sub: sub, onTap: onTap);
     return [
-      if (b.status == 'confirmed') ...[
-        SecondaryButton(
-          label: l.addToCalendar,
-          icon: Ph.calendarBlank,
-          onPressed: () => shareBookingToCalendar(context, b),
-        ),
-        const SizedBox(height: Space.sm),
-      ],
+      // Call and Message, side by side.
       if (place != null) ...[
-        Row(
-          children: [
-            Expanded(
-              child: SecondaryButton(label: l.call, icon: Ph.phone, onPressed: () => callNumber(context, ref, place.phone)),
-            ),
-            const SizedBox(width: Space.sm),
-            Expanded(
-              child: SecondaryButton(label: l.message, icon: Ph.chatCircleDots, onPressed: () => context.push('/messages/new?booking=${b.id}')),
-            ),
-          ],
-        ),
-        const SizedBox(height: Space.sm),
+        Row(children: [
+          Expanded(child: PawButton(label: l.call, icon: Ph.phone, kind: BtnKind.soft, size: BtnSize.regular, block: true, onPressed: () => callNumber(context, ref, place.phone))),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: PawButton(label: l.message, icon: Ph.chatCircleDots, kind: BtnKind.soft, size: BtnSize.regular, block: true, onPressed: () => context.push('/messages/new?booking=${b.id}')),
+          ),
+        ]),
+        const SizedBox(height: Space.lg),
       ],
-      if (b.status == 'confirmed' && b.start.isAfter(DateTime.now()) && place != null) ...[
-        SecondaryButton(label: l.reschedule, icon: Ph.calendarPlus, onPressed: () => _reschedule(context, ref, b, place)),
-        const SizedBox(height: Space.sm),
-      ],
-      if (b.isActive && b.start.isAfter(DateTime.now()))
-        TextButton(
-          onPressed: () async {
-            final hours = place?.cancellationHours ?? 4;
-            final refund = b.paymentStatus == 'paid' ? refundAmount(paid: b.total, start: b.start, now: DateTime.now(), cancellationHours: hours) : 0;
-            final ok = await confirmAction(
-              context,
-              title: l.cancelBookingQ,
-              body: b.paymentStatus == 'paid' ? l.cancelRefundInfo(Fmt.inr(refund)) : l.cancellationPolicy(hours),
-              confirmLabel: l.cancelBooking,
-            );
-            if (ok) {
-              final r = await repo.cancel(b, cancellationHours: hours, byOwner: true);
-              if (context.mounted) showToast(context, r > 0 ? l.cancelledWithRefund(Fmt.inr(r)) : l.bookingCancelled);
-            }
-          },
-          child: Text(l.cancelBooking, style: TextStyle(color: context.paw.error)),
+      // After the visit: stars to tap for a review.
+      if (b.status == 'completed' && !b.reviewed && place != null) ...[
+        Wash(
+          onTap: () => _review(context, ref, b, place),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(l.howWasVisit, style: context.text.labelLarge),
+            const SizedBox(height: Space.sm),
+            Semantics(
+              button: true,
+              label: l.writeReview,
+              excludeSemantics: true,
+              child: Row(children: [for (var i = 0; i < 5; i++) Padding(padding: const EdgeInsets.only(right: Space.xs), child: Icon(Ph.star, size: IconSizes.action, color: paw.done))]),
+            ),
+            const SizedBox(height: Space.sm),
+            Text(l.reviewWhoCan, style: context.text.bodySmall?.copyWith(color: paw.accent)),
+          ]),
         ),
-      if (b.status == 'completed' && !b.reviewed && place != null)
-        PrimaryButton(label: l.writeReview, icon: Ph.starFill, onPressed: () => _review(context, ref, b, place)),
+        const SizedBox(height: Space.lg),
+      ],
+      PawPanel(
+        padding: PawPanel.listPadding,
+        child: PawList(children: [
+          if (b.status == 'confirmed' && future && place != null) item(Ph.calendarDots, Tone.gold, l.reschedule, Fmt.dateTime(b.start, context.lang), () => _reschedule(context, ref, b, place)),
+          if (b.status == 'confirmed') item(Ph.calendarPlus, Tone.neutral, l.addToCalendar, l.addToCalendarSub, () => shareBookingToCalendar(context, b)),
+          if (place != null && !b.isActive) item(Ph.arrowClockwise, Tone.gold, l.bookAgain, l.bookAgainSub, () => context.push('/book/place/${place.id}')),
+          if (place != null) item(Ph.navigationArrow, Tone.neutral, l.directions, place.address, () => openDirections(place.lat, place.lng, label: place.name)),
+          item(Ph.headset, Tone.neutral, l.hpGetHelpBooking, l.getHelpSub, () => context.push('/me/help/new?booking=${b.id}')),
+        ]),
+      ),
+      if (b.isActive && future) ...[
+        const SizedBox(height: Space.md),
+        Align(
+          child: TextButton(
+            onPressed: () async {
+              final hours = place?.cancellationHours ?? 4;
+              final refund = b.paymentStatus == 'paid' ? refundAmount(paid: b.total, start: b.start, now: DateTime.now(), cancellationHours: hours) : 0;
+              final ok = await confirmAction(
+                context,
+                title: l.cancelBookingQ,
+                body: b.paymentStatus == 'paid' ? l.cancelRefundInfo(Fmt.inr(refund)) : l.cancellationPolicy(hours),
+                confirmLabel: l.cancelBooking,
+              );
+              if (ok) {
+                final r = await repo.cancel(b, cancellationHours: hours, byOwner: true);
+                if (context.mounted) showToast(context, r > 0 ? l.cancelledWithRefund(Fmt.inr(r)) : l.bookingCancelled);
+              }
+            },
+            child: Text(l.cancelBooking, style: TextStyle(color: paw.error)),
+          ),
+        ),
+      ],
     ];
   }
 

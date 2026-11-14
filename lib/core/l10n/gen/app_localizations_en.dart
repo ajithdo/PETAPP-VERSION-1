@@ -11132,4 +11132,88 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiCareAnswersAll => 'Care answers for your pet. Not a diagnosis.';
+
+  @override
+  String clinicsWithin(int count, int km) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count clinics',
+      one: '1 clinic',
+    );
+    return '$_temp0 within $km km';
+  }
+
+  @override
+  String placesWithin(int count, int km) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count places',
+      one: '1 place',
+    );
+    return '$_temp0 within $km km';
+  }
+
+  @override
+  String get feeWord => 'Consultation';
+
+  @override
+  String get bookAVisit => 'Book a visit';
+
+  @override
+  String placeWhere(String kind, String area, String city, String distance) {
+    return '$kind in $area, $city. $distance away.';
+  }
+
+  @override
+  String serviceWithVet(String service, String vet) {
+    return '$service with $vet';
+  }
+
+  @override
+  String serviceForPet(String service, String pet) {
+    return '$service for $pet';
+  }
+
+  @override
+  String get bookingIdLabel => 'Booking ID';
+
+  @override
+  String get howWasVisit => 'How was the visit?';
+
+  @override
+  String get reviewWhoCan =>
+      'Only people who visited can review. The place can reply.';
+
+  @override
+  String get bookAgain => 'Book again';
+
+  @override
+  String get bookAgainSub => 'Same place, same service';
+
+  @override
+  String get addToCalendarSub => 'Save the time in your phone\'s calendar';
+
+  @override
+  String get getHelpSub => 'Something went wrong? Tell us';
+
+  @override
+  String dueBoosters(String name, String date) {
+    return '$name\'s vaccines are due on $date';
+  }
+
+  @override
+  String get dueBoostersSub => 'Book them in one visit at a clinic near you.';
+
+  @override
+  String get bookVaccines => 'Book vaccines';
+
+  @override
+  String requestCancels(String when) {
+    return 'They reply by $when, or the request cancels itself.';
+  }
+
+  @override
+  String get discountWord => 'Discount';
 }

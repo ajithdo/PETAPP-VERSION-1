@@ -96,18 +96,16 @@ class BookingPanelState extends ConsumerState<BookingPanel> {
       padding: const EdgeInsets.all(Space.lg),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.sm, runSpacing: Space.xs, children: [
-          Semantics(header: true, child: Text(l.bookNow, style: context.text.titleLarge)),
-          StatusChip(request ? l.requestBooking : l.instantBooking, tone: request ? ChipTone.info : ChipTone.success),
+          Semantics(header: true, child: Text(l.bookAVisit, style: context.text.titleLarge)),
+          request ? PawTag(l.requestBooking, icon: Ph.clockFill) : PawTag(l.instantBooking, kind: TagKind.green, icon: Ph.lightningFill),
         ]),
-        const SizedBox(height: Space.md),
-        const Divider(height: Strokes.hairline),
         const SizedBox(height: Space.lg),
         FieldLabel(l.whichPet),
         Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
           for (final p in pets)
             PawPill(
               label: p.name,
-              leading: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarXs),
+              leading: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.pillArch * Sizes.archAspect, ring: false),
               selected: p.id == pet.id,
               onTap: () => setState(() => _petId = p.id),
             ),
@@ -117,7 +115,7 @@ class BookingPanelState extends ConsumerState<BookingPanel> {
         for (final s in place.services)
           OptionCard(
             title: serviceLabel(context, s.id),
-            subtitle: '${l.minutesShort(s.durationMin)} · ${s.mode == 'instant' ? l.instantBooking : l.requestBooking}',
+            subtitle: '${l.minutesShort(s.durationMin)}, ${(s.mode == 'instant' ? l.instantBooking : l.requestBooking).toLowerCase()}',
             trailing: Fmt.inr(s.price),
             selected: s.id == service.id,
             onTap: () => setState(() {

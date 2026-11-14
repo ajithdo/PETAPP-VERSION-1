@@ -139,7 +139,7 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
               onChanged: (_) => _onQuery(all),
               decoration: InputDecoration(
                 hintText: l.msgSearchHint,
-                prefixIcon: const Icon(Ph.magnifyingGlass),
+                prefixIcon: Icon(Ph.magnifyingGlass, size: IconSizes.md, color: context.paw.textPrimary),
                 suffixIcon: q.isEmpty
                     ? null
                     : IconButton(
@@ -150,8 +150,8 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
                           _onQuery(all);
                         },
                       ),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full)),
-                isDense: true,
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.tint.line2, width: Strokes.strong)),
+                enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.tint.line2, width: Strokes.strong)),
               ),
             ),
           ),
@@ -266,8 +266,12 @@ class ConversationTile extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.md),
-            child: Row(children: [
+            padding: EdgeInsets.symmetric(horizontal: context.gutter),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: Space.md),
+              // Hairlines split the rows.
+              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: selected ? context.paw.outline.withValues(alpha: 0) : context.paw.outline))),
+              child: Row(children: [
               ConversationAvatar(conversation: c, viewerUid: me.uid),
               const SizedBox(width: Space.md),
               Expanded(
@@ -275,16 +279,16 @@ class ConversationTile extends StatelessWidget {
                   Row(children: [
                     Expanded(
                       child: Text(title,
-                          style: context.text.titleSmall?.copyWith(fontWeight: bold ? FontWeight.w800 : FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
+                          style: context.text.labelLarge?.copyWith(fontWeight: bold ? FontWeight.w700 : FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
                     ),
                     const SizedBox(width: Space.sm),
                     Text(chatTime(c.lastAt, context.lang),
-                        style: context.text.labelSmall?.copyWith(color: bold ? context.paw.accent : null, fontWeight: bold ? FontWeight.w700 : null)),
+                        style: context.text.labelSmall?.copyWith(color: bold ? context.paw.accent : context.paw.textSecondary, fontWeight: bold ? FontWeight.w600 : FontWeight.w500)),
                   ]),
                   const SizedBox(height: Space.xxs),
                   Row(children: [
-                    if (c.isTeleVet) ...[StatusChip(l.teleVet, tone: ChipTone.accent), const SizedBox(width: Space.xs + Space.xxs)],
-                    if (c.isEnquiry) ...[StatusChip(l.msgEnquiry, tone: ChipTone.info), const SizedBox(width: Space.xs + Space.xxs)],
+                    if (c.isTeleVet) ...[PawTag(l.teleVet, kind: TagKind.green), const SizedBox(width: Space.sm)],
+                    if (c.isEnquiry) ...[PawTag(l.msgEnquiry), const SizedBox(width: Space.sm)],
                     if (icon != null) ...[Icon(icon, size: IconSizes.sm, color: context.paw.textSecondary), const SizedBox(width: Space.xs)],
                     Expanded(
                       child: Text(
@@ -308,6 +312,7 @@ class ConversationTile extends StatelessWidget {
                 ]),
               ),
             ]),
+            ),
           ),
         ),
       ),

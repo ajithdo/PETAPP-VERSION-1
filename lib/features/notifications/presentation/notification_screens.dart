@@ -53,13 +53,13 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
         _ => Ph.bell,
       };
 
-  /// Tile colour for a notification type (UI Design 6: things are tiles).
-  Color _tone(BuildContext context, String? type) => switch (type) {
-        'vaccines' || 'medicines' || 'account' => context.paw.success,
-        'deworming' || 'plan' => context.paw.accent,
-        'orders' || 'device' => CategoryColors.ocean,
-        'sos' || 'lost' => context.paw.sos,
-        _ => context.paw.textSecondary,
+  /// Tile tint for a notification type (UI Design 6: things are tiles).
+  Tone _tone(String? type) => switch (type) {
+        'vaccines' || 'medicines' || 'account' => Tone.green,
+        'deworming' || 'plan' => Tone.gold,
+        'orders' || 'device' => Tone.sky,
+        'sos' || 'lost' => Tone.red,
+        _ => Tone.neutral,
       };
 
   /// "Today", "Yesterday" or "Earlier" for grouping.
@@ -89,25 +89,27 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
       appBar: AppBar(
         title: Text(l.notifications),
         actions: [
-          TextButton(
-            onPressed: () async {
-              // Every unread one, not just the page on screen.
-              final u = ref.read(currentUserProvider);
-              if (u == null) return;
-              final db = ref.read(firestoreProvider);
-              final unread = await db.collection('notifications').where('uid', isEqualTo: u.uid).where('read', isEqualTo: false).get();
-              for (var i = 0; i < unread.docs.length; i += 400) {
-                final batch = db.batch();
-                for (final d in unread.docs.skip(i).take(400)) {
-                  batch.update(d.reference, {'read': true});
-                }
-                await batch.commit();
-              }
-            },
-            child: ConstrainedBox(
-              // Room for the title and the settings button at large text sizes.
-              constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * StatusChip.maxWidthShare),
-              child: Text(l.markAllRead, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center),
+          ConstrainedBox(
+            // Room for the title and the settings button at large text sizes.
+            constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * StatusChip.maxWidthShare),
+            child: Center(
+              child: TextLink(
+                l.markAllRead,
+                onTap: () async {
+                  // Every unread one, not just the page on screen.
+                  final u = ref.read(currentUserProvider);
+                  if (u == null) return;
+                  final db = ref.read(firestoreProvider);
+                  final unread = await db.collection('notifications').where('uid', isEqualTo: u.uid).where('read', isEqualTo: false).get();
+                  for (var i = 0; i < unread.docs.length; i += 400) {
+                    final batch = db.batch();
+                    for (final d in unread.docs.skip(i).take(400)) {
+                      batch.update(d.reference, {'read': true});
+                    }
+                    await batch.commit();
+                  }
+                },
+              ),
             ),
           ),
           IconButton(
@@ -150,47 +152,67 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
                         final group = _dayGroup(context, at);
                         final newGroup = i == 0 || _dayGroup(context, parseDate(list[i - 1].data()['createdAt']) ?? DateTime.now()) != group;
                         final type = d['type'] as String?;
-                        final tone = _tone(context, type);
                         final body = (d['body'] as String?) ?? '';
+                        final link = d['link'] as String?;
+                        final now = DateTime.now();
+                        // "10:52 AM" today; "7 Nov, 5:52 PM" before; the
+                        // year only when it is not this one.
+                        final when = Fmt.sameDay(at, now)
+                            ? Fmt.time(at, context.lang)
+                            : '${at.year == now.year ? Fmt.dateShort(at, context.lang) : Fmt.date(at, context.lang)}, ${Fmt.time(at, context.lang)}';
+                        Future<void> open() async {
+                          await list[i].reference.update({'read': true});
+                          if (link != null && context.mounted) context.push(link);
+                        }
+
+                        // What you can do about it, as a small button.
+                        final (String, IconData?, BtnKind)? action = link == null
+                            ? null
+                            : link.startsWith('/prescriptions')
+                                ? (l.rxView, null, BtnKind.soft)
+                                : switch (type) {
+                                    'orders' => (l.ordTrack, Ph.mapTrifold, BtnKind.soft),
+                                    'deworming' || 'vaccines' || 'medicines' when unread => (l.markGiven, null, BtnKind.line),
+                                    _ => null,
+                                  };
                         // UI Design 6: grouped by day; a tinted tile, the
-                        // title (bold when unread), the time, and a marigold
-                        // dot for unread.
+                        // title (bold when unread), the time, a small action,
+                        // and a marigold dot for unread.
                         return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                          if (newGroup) SectionHeader(group, padding: EdgeInsets.only(top: i == 0 ? Space.sm : Space.lg, bottom: Space.xs)),
+                          if (newGroup)
+                            Padding(
+                              padding: EdgeInsets.only(top: i == 0 ? Space.md : Space.lg + Space.xs, bottom: Space.xs),
+                              child: Semantics(header: true, child: Text(group, style: context.text.titleSmall)),
+                            ),
                           Semantics(
                             button: true,
                             child: InkWell(
                               borderRadius: BorderRadius.circular(Radii.md),
-                              onTap: () async {
-                                await list[i].reference.update({'read': true});
-                                final link = d['link'] as String?;
-                                if (link != null && context.mounted) context.push(link);
-                              },
+                              onTap: open,
                               child: Container(
+                                constraints: const BoxConstraints(minHeight: Sizes.item),
                                 padding: const EdgeInsets.symmetric(vertical: Space.md),
-                                decoration: BoxDecoration(border: Border(bottom: BorderSide(color: context.paw.outline))),
-                                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                  Container(
-                                    width: TapTarget.min - Space.xxs,
-                                    height: TapTarget.min - Space.xxs,
-                                    decoration: BoxDecoration(color: tone.withValues(alpha: Opacities.chip), borderRadius: BorderRadius.circular(Radii.md)),
-                                    child: Icon(_icon(type), color: readableOn(tone, [context.paw.background], ratio: 3)),
-                                  ),
+                                decoration: BoxDecoration(border: Border(top: BorderSide(color: newGroup ? context.paw.outline.withValues(alpha: 0) : context.paw.outline))),
+                                child: Row(children: [
+                                  PawTile(icon: _icon(type), tone: _tone(type)),
                                   const SizedBox(width: Space.md),
                                   Expanded(
                                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                      Text((d['title'] as String?) ?? '', style: unread ? context.text.titleSmall : context.text.bodyMedium),
-                                      if (body.isNotEmpty) Text(body, style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
-                                      const SizedBox(height: Space.xxs),
-                                      Text(Fmt.dateTime(at, context.lang), style: context.text.labelSmall),
+                                      Text((d['title'] as String?) ?? '', style: unread ? context.text.labelLarge : context.text.bodyMedium),
+                                      if (body.isNotEmpty) Text(body, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary), maxLines: 2, overflow: TextOverflow.ellipsis),
+                                      Text(when, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+                                      if (action != null) ...[
+                                        const SizedBox(height: Space.sm),
+                                        PawButton(label: action.$1, icon: action.$2, kind: action.$3, onPressed: open),
+                                      ],
                                     ]),
                                   ),
                                   if (unread)
                                     Padding(
-                                      padding: const EdgeInsets.only(left: Space.sm, top: Space.sm),
+                                      padding: const EdgeInsets.only(left: Space.md),
                                       child: Container(
-                                        width: Sizes.dot + Space.xxs,
-                                        height: Sizes.dot + Space.xxs,
+                                        width: Sizes.dot,
+                                        height: Sizes.dot,
                                         decoration: BoxDecoration(color: context.paw.marigold, shape: BoxShape.circle),
                                       ),
                                     ),

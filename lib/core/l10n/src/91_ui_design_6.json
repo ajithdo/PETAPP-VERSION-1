@@ -603,5 +603,129 @@
     "en": "Care answers for your pet. Not a diagnosis.",
     "hi": "आपके पालतू की देखभाल के जवाब। यह निदान नहीं है।",
     "te": "మీ పెంపుడు జంతువు సంరక్షణ సమాధానాలు. ఇది రోగ నిర్ధారణ కాదు."
+  },
+  "clinicsWithin": {
+    "en": "{count, plural, =1{1 clinic} other{{count} clinics}} within {km} km",
+    "hi": "{km} किमी के अंदर {count} क्लिनिक",
+    "te": "{km} కి.మీ లోపు {count} క్లినిక్‌లు",
+    "ph": {
+      "count": "int",
+      "km": "int"
+    }
+  },
+  "placesWithin": {
+    "en": "{count, plural, =1{1 place} other{{count} places}} within {km} km",
+    "hi": "{km} किमी के अंदर {count} जगहें",
+    "te": "{km} కి.మీ లోపు {count} చోట్లు",
+    "ph": {
+      "count": "int",
+      "km": "int"
+    }
+  },
+  "feeWord": {
+    "en": "Consultation",
+    "hi": "परामर्श",
+    "te": "సంప్రదింపు"
+  },
+  "bookAVisit": {
+    "en": "Book a visit",
+    "hi": "विज़िट बुक करें",
+    "te": "విజిట్ బుక్ చేయండి"
+  },
+  "placeWhere": {
+    "en": "{kind} in {area}, {city}. {distance} away.",
+    "hi": "{area}, {city} में {kind}। {distance} दूर।",
+    "te": "{area}, {city}లో {kind}. {distance} దూరం.",
+    "ph": {
+      "kind": "String",
+      "area": "String",
+      "city": "String",
+      "distance": "String"
+    }
+  },
+  "serviceWithVet": {
+    "en": "{service} with {vet}",
+    "hi": "{vet} के साथ {service}",
+    "te": "{vet}తో {service}",
+    "ph": {
+      "service": "String",
+      "vet": "String"
+    }
+  },
+  "serviceForPet": {
+    "en": "{service} for {pet}",
+    "hi": "{pet} के लिए {service}",
+    "te": "{pet} కోసం {service}",
+    "ph": {
+      "service": "String",
+      "pet": "String"
+    }
+  },
+  "bookingIdLabel": {
+    "en": "Booking ID",
+    "hi": "बुकिंग आईडी",
+    "te": "బుకింగ్ ID"
+  },
+  "howWasVisit": {
+    "en": "How was the visit?",
+    "hi": "विज़िट कैसी रही?",
+    "te": "విజిట్ ఎలా జరిగింది?"
+  },
+  "reviewWhoCan": {
+    "en": "Only people who visited can review. The place can reply.",
+    "hi": "सिर्फ़ वही लोग रिव्यू दे सकते हैं जो वहाँ गए थे। वे जवाब दे सकते हैं।",
+    "te": "వచ్చిన వారు మాత్రమే సమీక్ష రాయగలరు. వారు సమాధానం ఇవ్వగలరు."
+  },
+  "bookAgain": {
+    "en": "Book again",
+    "hi": "फिर से बुक करें",
+    "te": "మళ్ళీ బుక్ చేయండి"
+  },
+  "bookAgainSub": {
+    "en": "Same place, same service",
+    "hi": "वही जगह, वही सेवा",
+    "te": "అదే చోటు, అదే సేవ"
+  },
+  "addToCalendarSub": {
+    "en": "Save the time in your phone's calendar",
+    "hi": "समय अपने फ़ोन के कैलेंडर में रखें",
+    "te": "సమయాన్ని మీ ఫోన్ క్యాలెండర్‌లో దాచండి"
+  },
+  "getHelpSub": {
+    "en": "Something went wrong? Tell us",
+    "hi": "कुछ गड़बड़ हुई? हमें बताएँ",
+    "te": "ఏదైనా తప్పు జరిగిందా? మాకు చెప్పండి"
+  },
+  "dueBoosters": {
+    "en": "{name}'s vaccines are due on {date}",
+    "hi": "{name} के टीके {date} को हैं",
+    "te": "{name} టీకాల గడువు {date}",
+    "ph": {
+      "name": "String",
+      "date": "String"
+    }
+  },
+  "dueBoostersSub": {
+    "en": "Book them in one visit at a clinic near you.",
+    "hi": "पास के क्लिनिक में एक ही विज़िट में लगवाएँ।",
+    "te": "దగ్గర్లోని క్లినిక్‌లో ఒకే విజిట్‌లో వేయించండి."
+  },
+  "bookVaccines": {
+    "en": "Book vaccines",
+    "hi": "टीके बुक करें",
+    "te": "టీకాలు బుక్ చేయండి"
+  },
+  "requestCancels": {
+    "en": "They reply by {when}, or the request cancels itself.",
+    "hi": "वे {when} तक जवाब देंगे, नहीं तो अनुरोध अपने आप रद्द हो जाएगा।",
+    "te": "వారు {when} లోపు స్పందిస్తారు, లేకపోతే అభ్యర్థన దానంతట అదే రద్దవుతుంది.",
+    "ph": {
+      "when": "String"
+    }
+  },
+  "discountWord": {
+    "en": "Discount",
+    "hi": "छूट",
+    "te": "తగ్గింపు"
   }
 }

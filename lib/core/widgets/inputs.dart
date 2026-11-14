@@ -346,6 +346,22 @@ class OptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final paw = context.paw;
     final radius = BorderRadius.circular(Radii.lg);
+    // UI Design 6 choice row: a 1.5 px edge (ink on a marigold wash when
+    // chosen), a round mark with a marigold centre, the name and a line
+    // under it, and the price in the heading cut.
+    final mark = Container(
+      width: IconSizes.md + Space.xxs,
+      height: IconSizes.md + Space.xxs,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: selected ? paw.textPrimary : context.tint.line2, width: Strokes.focus)),
+      child: selected
+          ? Container(
+              width: Space.md - Strokes.hairline,
+              height: Space.md - Strokes.hairline,
+              decoration: BoxDecoration(color: paw.marigold, shape: BoxShape.circle, border: Border.all(color: paw.textPrimary, width: Strokes.strong)),
+            )
+          : null,
+    );
     return Padding(
       padding: const EdgeInsets.only(bottom: Space.sm),
       child: Semantics(
@@ -355,10 +371,10 @@ class OptionCard extends StatelessWidget {
         label: [title, ?subtitle, ?trailing].join(', '),
         excludeSemantics: true,
         child: Material(
-          color: selected ? paw.actionContainer : paw.surface,
+          color: selected ? paw.accentContainer : paw.surface.withValues(alpha: 0),
           shape: RoundedRectangleBorder(
             borderRadius: radius,
-            side: selected ? BorderSide(color: paw.action, width: Strokes.focus) : BorderSide(color: paw.outline),
+            side: BorderSide(color: selected ? paw.textPrimary : paw.outline, width: Strokes.strong),
           ),
           clipBehavior: Clip.antiAlias,
           child: InkWell(
@@ -369,25 +385,19 @@ class OptionCard extends StatelessWidget {
                     onTap!();
                   },
             child: Padding(
-              padding: const EdgeInsets.all(Space.md),
-              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Icon(
-                  selected ? Ph.radioButtonFill : Ph.circle,
-                  color: selected ? paw.action : paw.controlBorder,
-                ),
+              padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs, vertical: Space.md),
+              child: Row(children: [
+                mark,
                 const SizedBox(width: Space.md),
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(title, style: context.text.titleSmall?.copyWith(color: selected ? paw.onActionContainer : paw.textPrimary)),
-                    if (subtitle != null) ...[
-                      const SizedBox(height: Space.xxs),
-                      Text(subtitle!, style: context.text.bodySmall),
-                    ],
+                    Text(title, style: context.text.labelLarge),
+                    if (subtitle != null) Text(subtitle!, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
                   ]),
                 ),
                 if (trailing != null) ...[
                   const SizedBox(width: Space.md),
-                  Text(trailing!, style: context.textX.mono.copyWith(fontWeight: FontWeight.w700, color: paw.textPrimary)),
+                  Text(trailing!, style: context.text.titleSmall?.copyWith(fontWeight: FontWeight.w700, fontFeatures: const [FontFeature.tabularFigures()])),
                 ],
               ]),
             ),

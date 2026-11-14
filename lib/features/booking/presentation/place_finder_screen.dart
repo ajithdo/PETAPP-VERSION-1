@@ -218,52 +218,67 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                     TextField(
                       controller: _search,
                       onChanged: (_) => setState(() {}),
-                      decoration: InputDecoration(prefixIcon: const Icon(Ph.magnifyingGlass), hintText: l.searchByNameOrArea),
+                      decoration: searchPillDecoration(context, hint: l.searchByNameOrArea),
                     ),
-                    const SizedBox(height: Space.sm),
+                    const SizedBox(height: Space.md),
+                    // Where: the area, or the phone's own location.
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          ActionChip(
-                            avatar: Icon(origin.fromGps ? Ph.crosshair : Ph.mapPin, size: IconSizes.chip),
-                            label: Text(origin.label),
-                            onPressed: () => pickArea(context, ref),
-                          ),
-                          const SizedBox(width: Space.sm),
-                          ActionChip(
-                            avatar: const Icon(Ph.gpsFix, size: IconSizes.chip),
-                            label: Text(l.useMyLocation),
-                            onPressed: () => useMyLocation(context, ref),
-                          ),
-                          const SizedBox(width: Space.sm),
-                          ActionChip(
-                            avatar: Badge.count(count: _f.count, isLabelVisible: _f.count > 0, child: const Icon(Ph.slidersHorizontal, size: IconSizes.chip)),
-                            label: Text(l.filters),
-                            onPressed: _openFilters,
-                          ),
-                          const SizedBox(width: Space.sm),
-                          PopupMenuButton<String>(
-                            tooltip: l.sortBy,
-                            initialValue: _f.sort,
-                            onSelected: (v) => setState(() => _f.sort = v),
-                            itemBuilder: (_) => [
-                              PopupMenuItem(value: 'nearest', child: Text(l.sortNearest)),
-                              PopupMenuItem(value: 'rating', child: Text(l.sortRating)),
-                              PopupMenuItem(value: 'slot', child: Text(l.sortSlot)),
-                              PopupMenuItem(value: 'fee', child: Text(l.sortFee)),
-                            ],
-                            child: Chip(avatar: const Icon(Ph.sortAscending, size: IconSizes.chip), label: Text(l.sortBy)),
-                          ),
-                          if (_isClinic) ...[
-                            const SizedBox(width: Space.sm),
-                            FilterChip(label: Text(l.open24x7), selected: _f.emergency, onSelected: (v) => setState(() => _f.emergency = v)),
-                            const SizedBox(width: Space.sm),
-                            FilterChip(label: Text(l.openNow), selected: _f.openNow, onSelected: (v) => setState(() => _f.openNow = v)),
-                          ],
-                        ],
-                      ),
+                      clipBehavior: Clip.none,
+                      child: Row(children: [
+                        PawChip(label: origin.label, icon: origin.fromGps ? Ph.crosshair : Ph.mapPin, onTap: () => pickArea(context, ref)),
+                        const SizedBox(width: Space.sm),
+                        PawChip(label: l.useMyLocation, icon: Ph.crosshair, onTap: () => useMyLocation(context, ref)),
+                      ]),
                     ),
+                    const SizedBox(height: Space.sm),
+                    // Which: filters, the order, and the two quick switches.
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      clipBehavior: Clip.none,
+                      child: Row(children: [
+                        PawChip(label: _f.count > 0 ? '${l.filters} (${_f.count})' : l.filters, icon: Ph.slidersHorizontal, onTap: _openFilters),
+                        const SizedBox(width: Space.sm),
+                        PopupMenuButton<String>(
+                          tooltip: l.sortBy,
+                          initialValue: _f.sort,
+                          onSelected: (v) => setState(() => _f.sort = v),
+                          itemBuilder: (_) => [
+                            PopupMenuItem(value: 'nearest', child: Text(l.sortNearest)),
+                            PopupMenuItem(value: 'rating', child: Text(l.sortRating)),
+                            PopupMenuItem(value: 'slot', child: Text(l.sortSlot)),
+                            PopupMenuItem(value: 'fee', child: Text(l.sortFee)),
+                          ],
+                          child: IgnorePointer(
+                            child: PawChip(
+                              label: switch (_f.sort) { 'rating' => l.sortRating, 'slot' => l.sortSlot, 'fee' => l.sortFee, _ => l.sortNearest },
+                              icon: Ph.sortAscending,
+                            ),
+                          ),
+                        ),
+                        if (_isClinic) ...[
+                          const SizedBox(width: Space.sm),
+                          PawChip(label: l.openNow, selected: _f.openNow, onTap: () => setState(() => _f.openNow = !_f.openNow)),
+                          const SizedBox(width: Space.sm),
+                          PawChip(label: l.open24x7, selected: _f.emergency, onTap: () => setState(() => _f.emergency = !_f.emergency)),
+                        ],
+                      ]),
+                    ),
+                    const SizedBox(height: Space.lg),
+                    Row(children: [
+                      Expanded(
+                        child: Text(
+                          _isClinic ? l.clinicsWithin(list.length, _f.distanceKm.toInt()) : l.placesWithin(list.length, _f.distanceKm.toInt()),
+                          style: context.text.labelLarge,
+                        ),
+                      ),
+                      const SizedBox(width: Space.md),
+                      SegIcons(
+                        items: [(Ph.list, l.listView), (Ph.mapTrifold, l.mapView)],
+                        index: _map ? 1 : 0,
+                        onChanged: (i) => setState(() => _map = i == 1),
+                      ),
+                    ]),
                   ],
                 ),
               ),
@@ -346,14 +361,26 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
                     : ListView(
                         padding: EdgeInsets.fromLTRB(context.gutter, 0, context.gutter, context.gutter),
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: Space.sm),
-                            child: Text(l.resultsCount(list.length), style: context.text.bodySmall),
-                          ),
-                          // One column on phones, 2 or 3 on wider screens (UI Design 2).
+                          // A drawn map on phones invites a tap to the real one.
+                          if (context.isPhone)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: Space.md),
+                              child: Semantics(
+                                button: true,
+                                label: l.mapView,
+                                excludeSemantics: true,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(Radii.lg),
+                                  onTap: () => setState(() => _map = true),
+                                  child: ClipRRect(borderRadius: BorderRadius.circular(Radii.lg), child: const MapSketch(height: Sizes.mapSketch + Space.sm)),
+                                ),
+                              ),
+                            ),
+                          // One column on phones, 2 or 3 on wider screens.
                           ResponsiveGrid(
                             minItemWidth: Sizes.placeCardMinWidth,
-                            children: [for (final e in list) PlaceCard(place: e.$1, km: e.$2)],
+                            spacing: Space.lg,
+                            children: [for (final (i, e) in list.indexed) PlaceCard(place: e.$1, km: e.$2, primary: i == 0)],
                           ),
                         ],
                       ),
@@ -473,10 +500,13 @@ class _PlaceFinderScreenState extends ConsumerState<PlaceFinderScreen> {
 /// price and a Book button. [compact] is the smaller side-by-side card used
 /// in the map preview.
 class PlaceCard extends ConsumerWidget {
-  const PlaceCard({super.key, required this.place, this.km, this.compact = false});
+  const PlaceCard({super.key, required this.place, this.km, this.compact = false, this.primary = false});
   final Place place;
   final double? km;
   final bool compact;
+
+  /// The first result: its Book button is the marigold one.
+  final bool primary;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -529,9 +559,9 @@ class PlaceCard extends ConsumerWidget {
     // fee and a small Book button.
     final status = p.is24x7
         ? StatusChip(l.open24x7, tone: ChipTone.success, icon: Ph.clockFill)
-        : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral);
+        : StatusChip(open ? l.openNowChip : l.closedChip, tone: open ? ChipTone.success : ChipTone.neutral, icon: open ? Ph.circleFill : null);
     Widget fact(String label, String value) => Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-          Text(label, style: context.text.bodySmall),
+          Text(label, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
           Text(value, style: context.text.labelLarge),
         ]);
     return PawCard(
@@ -547,9 +577,8 @@ class PlaceCard extends ConsumerWidget {
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(p.name, style: context.text.titleMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
-              const SizedBox(height: Space.xxs),
-              Text([p.area, if (km != null) Fmt.km(km!)].join(', '), style: context.text.bodySmall, maxLines: 1, overflow: TextOverflow.ellipsis),
+              Text(p.name, style: context.text.titleSmall, maxLines: 2, overflow: TextOverflow.ellipsis),
+              Text([p.area, if (km != null) Fmt.km(km!)].join(', '), style: context.text.bodySmall?.copyWith(color: paw.textSecondary), maxLines: 1, overflow: TextOverflow.ellipsis),
               const SizedBox(height: Space.xs),
               Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [status, ?rating]),
             ]),
@@ -558,19 +587,15 @@ class PlaceCard extends ConsumerWidget {
         const SizedBox(height: Space.md),
         const DashedRule(),
         const SizedBox(height: Space.md),
-        Wrap(
-          alignment: WrapAlignment.spaceBetween,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: Space.lg,
-          runSpacing: Space.sm,
-          children: [
-            if (next != null) fact(l.nextFreeSlot, slotLabel(context, next)),
-            fact(p.kind == 'clinic' ? l.consultationFee : l.feeFrom('').trim(), Fmt.inr(fee)),
-            // In a list every card has this button, so it is the quieter
-            // outlined one (one filled main action per screen).
-            SecondaryButton(label: l.bookNow, expand: false, onPressed: openPlace),
-          ],
-        ),
+        Row(children: [
+          if (next != null) Expanded(flex: 5, child: fact(l.nextFreeSlot, slotLabel(context, next))),
+          if (next != null) const SizedBox(width: Space.md),
+          Expanded(flex: 4, child: fact(p.kind == 'clinic' ? l.feeWord : l.feeFrom('').trim(), Fmt.inr(fee))),
+          const SizedBox(width: Space.md),
+          // One marigold button on the page (the first result); the rest
+          // are outlined.
+          PawButton(label: l.bookWord, kind: primary ? BtnKind.primary : BtnKind.line, onPressed: openPlace),
+        ]),
       ]),
     );
   }

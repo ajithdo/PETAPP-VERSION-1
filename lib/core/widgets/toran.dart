@@ -583,3 +583,64 @@ class SearchPill extends StatelessWidget {
     );
   }
 }
+
+/// A small two-or-three way switch of icons in a paper pill (the kit's
+/// ".seg"): list or map, grid or rows.
+class SegIcons extends StatelessWidget {
+  const SegIcons({super.key, required this.items, required this.index, required this.onChanged});
+
+  /// (icon, what it shows, for screen readers and the tooltip).
+  final List<(IconData, String)> items;
+  final int index;
+  final ValueChanged<int> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return Container(
+      padding: const EdgeInsets.all(Space.xs),
+      decoration: BoxDecoration(color: paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.full)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        for (final (i, it) in items.indexed)
+          Semantics(
+            button: true,
+            selected: i == index,
+            label: it.$2,
+            excludeSemantics: true,
+            child: Tooltip(
+              message: it.$2,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(Radii.full),
+                onTap: () => onChanged(i),
+                child: AnimatedContainer(
+                  duration: Motion.toggle,
+                  height: Sizes.buttonSmall,
+                  padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs),
+                  decoration: BoxDecoration(
+                    color: i == index ? paw.surface : paw.surface.withValues(alpha: 0),
+                    borderRadius: BorderRadius.circular(Radii.full),
+                    boxShadow: i == index ? [BoxShadow(color: paw.ink.withValues(alpha: Opacities.chip), blurRadius: Space.xs - Strokes.hairline, offset: const Offset(0, Strokes.hairline))] : null,
+                  ),
+                  child: Icon(it.$1, size: IconSizes.sm + Space.xxs, color: i == index ? paw.textPrimary : paw.textSecondary),
+                ),
+              ),
+            ),
+          ),
+      ]),
+    );
+  }
+}
+
+/// Decoration for a real search box in the kit's pill shape.
+InputDecoration searchPillDecoration(BuildContext context, {required String hint, Widget? suffix}) {
+  final side = BorderSide(color: context.tint.line2, width: Strokes.strong);
+  final shape = OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: side);
+  return InputDecoration(
+    hintText: hint,
+    hintStyle: context.text.bodyMedium?.copyWith(color: context.tint.ink3),
+    prefixIcon: Icon(Ph.magnifyingGlass, size: IconSizes.md, color: context.paw.textPrimary),
+    suffixIcon: suffix,
+    border: shape,
+    enabledBorder: shape,
+  );
+}

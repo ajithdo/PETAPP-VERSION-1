@@ -255,16 +255,22 @@ class AppTheme {
         highlightElevation: 1,
         shape: pill,
         extendedTextStyle: textTheme.labelLarge,
+        // A 48 px pill, as in the design.
+        extendedSizeConstraints: const BoxConstraints.tightFor(height: TapTarget.min),
+        extendedPadding: const EdgeInsets.symmetric(horizontal: Space.lg + Space.xs),
+        extendedIconLabelSpacing: Space.sm,
       ),
       chipTheme: ChipThemeData(
-        shape: StadiumBorder(side: BorderSide(color: paw.controlBorder)),
+        shape: StadiumBorder(side: BorderSide(color: highContrast ? paw.controlBorder : tints.line2)),
         side: WidgetStateBorderSide.resolveWith((st) {
           if (st.contains(WidgetState.focused)) return focusRing;
           if (st.contains(WidgetState.selected)) return BorderSide(color: paw.brand);
-          return BorderSide(color: paw.controlBorder);
+          // UI Design 6 chips have a quiet edge (darker in high contrast).
+          return BorderSide(color: highContrast ? paw.controlBorder : tints.line2);
         }),
         color: byState(paw.surface, selected: paw.brand, disabled: disabledFill),
         labelStyle: textTheme.labelMedium?.copyWith(
+          fontWeight: FontWeight.w500,
           color: WidgetStateColor.resolveWith(
             (st) => st.contains(WidgetState.selected) ? paw.onBrand : (st.contains(WidgetState.disabled) ? ts : tp),
           ),
@@ -273,9 +279,10 @@ class AppTheme {
         checkmarkColor: paw.onBrand,
         iconTheme: IconThemeData(color: paw.brand, size: IconSizes.sm),
         deleteIconColor: ts,
-        // 48 px tall with the default label: an easy finger-sized target.
-        padding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs, vertical: Space.sm),
-        showCheckmark: true,
+        // 40 px tall (the tap area around it is 48); the fill shows which one
+        // is chosen, so no tick.
+        padding: const EdgeInsets.symmetric(horizontal: Space.sm, vertical: Space.sm + Space.xxs),
+        showCheckmark: false,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,

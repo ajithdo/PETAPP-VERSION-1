@@ -6,12 +6,14 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/paw_map.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../pets/data/pets_repository.dart';
 import '../../routine/domain/routine.dart' show distanceKm;
 import '../../televet/data/televet_repository.dart';
 import '../data/booking_repository.dart';
 import '../data/places_repository.dart';
 import 'booking_labels.dart';
 import 'booking_slots.dart';
+import 'my_bookings_screen.dart' show shareBookingToCalendar;
 import 'place_finder_screen.dart';
 import '../../../core/theme/ph.dart';
 
@@ -157,14 +159,17 @@ class BookHomeScreen extends ConsumerWidget {
 }
 
 class BookingCard extends ConsumerWidget {
-  const BookingCard({super.key, required this.booking, this.partnerView = false, this.trailing, this.actions = false});
+  const BookingCard({super.key, required this.booking, this.partnerView = false, this.trailing, this.actions = false, this.showPet = false});
   final Booking booking;
   final bool partnerView;
   final Widget? trailing;
 
-  /// Directions and Reschedule under a dashed rule (an upcoming booking on
-  /// the Book tab).
+  /// Directions, Reschedule and Add to calendar under a dashed rule (an
+  /// upcoming booking).
   final bool actions;
+
+  /// The pet in its arch at the end of the first row (My bookings).
+  final bool showPet;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -184,6 +189,7 @@ class BookingCard extends ConsumerWidget {
     ].join(', ');
     final sub = context.text.bodySmall?.copyWith(color: paw.textSecondary);
     final place = actions && !partnerView ? ref.watch(placeProvider(b.providerId)).value : null;
+    final pet = showPet && !partnerView ? ref.watch(petProvider(b.petId)).value : null;
     final showActions = actions && !partnerView && b.isUpcoming;
     return PawCard(
       onTap: () => context.push(partnerView ? '/partner/booking/${b.id}' : '/book/bookings/${b.id}'),
@@ -197,18 +203,46 @@ class BookingCard extends ConsumerWidget {
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(partnerView ? '${b.petName} · ${b.ownerName}' : b.providerName, style: context.text.labelLarge, maxLines: 2, overflow: TextOverflow.ellipsis),
-              Text('${serviceLabel(context, b.serviceId)}${partnerView ? '' : ', ${b.petName}'}', style: sub, maxLines: 2, overflow: TextOverflow.ellipsis),
+              Text(
+                partnerView
+                    ? serviceLabel(context, b.serviceId)
+                    : showPet
+                        ? l.serviceForPet(serviceLabel(context, b.serviceId), b.petName)
+                        : '${serviceLabel(context, b.serviceId)}, ${b.petName}',
+                style: sub,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
               Text(when, style: sub),
               const SizedBox(height: Space.sm),
-              trailing ?? StatusChip(s.$1, tone: s.$2, icon: b.status == 'confirmed' ? Ph.checkCircleFill : null),
+              trailing ??
+                  StatusChip(
+                    s.$1,
+                    tone: s.$2,
+                    icon: switch (b.status) {
+                      'confirmed' || 'completed' => Ph.checkCircleFill,
+                      'pending' || 'suggested' => Ph.hourglassHighFill,
+                      _ => null,
+                    },
+                  ),
             ]),
           ),
+          if (pet != null) ...[
+            const SizedBox(width: Space.md),
+            PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarSm * Sizes.archAspect, ring: false, name: pet.name),
+          ],
         ]),
+        // A request still waiting: when it will be answered by.
+        if (waiting && !partnerView && b.respondBy != null) ...[
+          const SizedBox(height: Space.md),
+          Text(l.requestCancels(Fmt.dateTime(b.respondBy!, context.lang)), style: sub),
+        ],
         if (showActions) ...[
           const Padding(padding: EdgeInsets.symmetric(vertical: Space.md + Space.xxs), child: DashedRule()),
           Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
             if (place != null) PawButton(label: l.directions, icon: Ph.navigationArrow, kind: BtnKind.soft, onPressed: () => openDirections(place.lat, place.lng, label: place.name)),
             PawButton(label: l.reschedule, icon: Ph.calendarDots, kind: BtnKind.soft, onPressed: () => context.push('/book/bookings/${b.id}')),
+            if (showPet && b.status == 'confirmed') PawButton(label: l.addToCalendar, icon: Ph.calendarPlus, kind: BtnKind.soft, onPressed: () => shareBookingToCalendar(context, b)),
           ]),
         ],
       ]),
