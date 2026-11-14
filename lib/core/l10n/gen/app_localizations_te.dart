@@ -11351,4 +11351,60 @@ class AppLocalizationsTe extends AppLocalizations {
   String admCountSold(int count) {
     return '$count అమ్ముడయ్యాయి';
   }
+
+  @override
+  String get admComplaintsShort => 'ఫిర్యాదులు';
+
+  @override
+  String get themeSystemShort => 'సిస్టమ్';
+
+  @override
+  String get setReminderChannels => 'రిమైండర్ మార్గాలు';
+
+  @override
+  String get setReminderChannelsHint =>
+      'ప్రతి రిమైండర్‌కు పుష్, ఇమెయిల్, SMS, WhatsApp';
+
+  @override
+  String setQuietRange(String from, String to) {
+    return '$from నుండి $to';
+  }
+
+  @override
+  String get setQuietOff => 'ఆఫ్';
+
+  @override
+  String get setSosTap => 'SOS కోసం ట్యాప్ చేసి నిర్ధారించండి';
+
+  @override
+  String get setSosTapHint =>
+      '2 సెకన్లు నొక్కి పట్టుకునే బదులు. ఈజీ మోడ్‌లో ఆన్‌లో ఉంటుంది.';
+
+  @override
+  String get setAccount => 'ఖాతా';
+
+  @override
+  String get setEmailPassword => 'ఇమెయిల్, పాస్‌వర్డ్';
+
+  @override
+  String get setAbout => 'PawSetu గురించి';
+
+  @override
+  String setAboutDemo(String version) {
+    return 'వెర్షన్ $version, డెమో మోడ్';
+  }
+
+  @override
+  String get setResetPassword => 'పాస్‌వర్డ్ మార్చడానికి లింక్ పంపండి';
+
+  @override
+  String setResetSent(String email) {
+    return '$emailకి లింక్ పంపాము.';
+  }
+
+  @override
+  String get setNoEmail => 'ఇమెయిల్ జోడించలేదు';
+
+  @override
+  String get setNoPhone => 'ఫోన్ నంబర్ జోడించలేదు';
 }

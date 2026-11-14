@@ -19359,6 +19359,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} sold'**
   String admCountSold(int count);
+
+  /// No description provided for @admComplaintsShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaints'**
+  String get admComplaintsShort;
+
+  /// No description provided for @themeSystemShort.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeSystemShort;
+
+  /// No description provided for @setReminderChannels.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder channels'**
+  String get setReminderChannels;
+
+  /// No description provided for @setReminderChannelsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Push, email, SMS and WhatsApp for each reminder'**
+  String get setReminderChannelsHint;
+
+  /// No description provided for @setQuietRange.
+  ///
+  /// In en, this message translates to:
+  /// **'{from} to {to}'**
+  String setQuietRange(String from, String to);
+
+  /// No description provided for @setQuietOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get setQuietOff;
+
+  /// No description provided for @setSosTap.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to confirm SOS'**
+  String get setSosTap;
+
+  /// No description provided for @setSosTapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Instead of holding for 2 seconds. On with Easy mode.'**
+  String get setSosTapHint;
+
+  /// No description provided for @setAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get setAccount;
+
+  /// No description provided for @setEmailPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Email and password'**
+  String get setEmailPassword;
+
+  /// No description provided for @setAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About PawSetu'**
+  String get setAbout;
+
+  /// No description provided for @setAboutDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}, demo mode'**
+  String setAboutDemo(String version);
+
+  /// No description provided for @setResetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a link to change your password'**
+  String get setResetPassword;
+
+  /// No description provided for @setResetSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a link to {email}.'**
+  String setResetSent(String email);
+
+  /// No description provided for @setNoEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'No email added'**
+  String get setNoEmail;
+
+  /// No description provided for @setNoPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'No phone number added'**
+  String get setNoPhone;
 }
 
 class _AppLocalizationsDelegate

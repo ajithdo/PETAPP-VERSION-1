@@ -327,14 +327,14 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final plusFree = plus && price.deliveryFee == 0 && price.subtotal - price.discount < s.freeDeliveryAbove;
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text(l.cartBillShort, style: context.text.titleLarge),
+        Text(l.cartBillShort, style: context.text.titleMedium),
         const SizedBox(height: Space.md),
-        KvList(rows: [
+        KvList(valuesAtEnd: true, rows: [
           (l.cartItems(price.itemCount), Fmt.inr(price.subtotal), null),
           (l.shopDeliveryFee, price.deliveryFee > 0 ? Fmt.inr(price.deliveryFee) : (plusFree ? l.cartFreeWithPlus : l.shopFree), price.deliveryFee > 0 ? null : Tone.green),
           if (price.discount > 0) (_applied == null ? l.cartCouponDiscount : l.cartCouponDiscountCode(_applied!.code), '−${Fmt.inr(price.discount)}', Tone.green),
         ]),
-        const Padding(padding: EdgeInsets.symmetric(vertical: Space.md + Space.xxs), child: DashedRule()),
+        const Padding(padding: EdgeInsets.only(top: Space.sm - Space.xxs, bottom: Space.md + Space.xxs), child: DashedRule()),
         Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Expanded(child: Text(l.shopToPay, style: context.text.labelLarge)),
           Text(Fmt.inr(price.total), style: context.text.headlineSmall),

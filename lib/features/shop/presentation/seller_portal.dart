@@ -97,7 +97,7 @@ class _SellerDashboard extends ConsumerWidget {
           Text(l.helloPartner(user.name), style: context.text.displaySmall),
           const SizedBox(height: Space.xs),
           Text(
-            s.city.isEmpty ? l.pPlaceAndDate(s.name, Fmt.weekdayDateLong(now, lang)) : l.selSellerIn(s.city, Fmt.weekdayDateLong(now, lang)),
+            s.city.isEmpty ? l.pPlaceAndDate(s.name, Fmt.weekdayDatePlain(now, lang)) : l.selSellerIn(s.city, Fmt.weekdayDatePlain(now, lang)),
             style: context.text.bodyMedium?.copyWith(color: paw.textSecondary),
           ),
           if (s.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],

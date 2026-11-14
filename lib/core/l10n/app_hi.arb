@@ -3208,5 +3208,21 @@
   "admOutboxTo": "{name} को {channel}",
   "admOutboxNote": "यहाँ कुछ भी असल में भेजा नहीं गया।",
   "admCountBookings": "{count} बुकिंग",
-  "admCountSold": "{count} बिके"
+  "admCountSold": "{count} बिके",
+  "admComplaintsShort": "शिकायतें",
+  "themeSystemShort": "सिस्टम",
+  "setReminderChannels": "रिमाइंडर के तरीके",
+  "setReminderChannelsHint": "हर रिमाइंडर के लिए पुश, ईमेल, SMS और WhatsApp",
+  "setQuietRange": "{from} से {to}",
+  "setQuietOff": "बंद",
+  "setSosTap": "SOS के लिए टैप करके पक्का करें",
+  "setSosTapHint": "2 सेकंड दबाए रखने की जगह। आसान मोड में चालू रहता है।",
+  "setAccount": "खाता",
+  "setEmailPassword": "ईमेल और पासवर्ड",
+  "setAbout": "PawSetu के बारे में",
+  "setAboutDemo": "वर्शन {version}, डेमो मोड",
+  "setResetPassword": "पासवर्ड बदलने का लिंक भेजें",
+  "setResetSent": "हमने {email} पर लिंक भेजा है।",
+  "setNoEmail": "कोई ईमेल नहीं जोड़ा",
+  "setNoPhone": "कोई फ़ोन नंबर नहीं जोड़ा"
 }

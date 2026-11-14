@@ -134,7 +134,7 @@ class _Timeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(children: [
-        for (final (i, g) in logs.indexed) _LogTile(log: g, pet: pet, first: i == 0),
+        for (final (i, g) in logs.indexed) _LogTile(log: g, pet: pet, first: i == 0, last: i == logs.length - 1),
       ]);
 }
 
@@ -209,12 +209,14 @@ class _LogGrid extends ConsumerWidget {
 }
 
 class _LogTile extends ConsumerWidget {
-  const _LogTile({required this.log, required this.pet, this.first = false});
+  const _LogTile({required this.log, required this.pet, this.first = false, this.last = false});
   final RoutineLog log;
   final Pet pet;
 
-  /// The first row of a day has no line coming down to it.
+  /// The first row of a day has no line coming down to it, and the last
+  /// has none going on.
   final bool first;
+  final bool last;
 
   String _detail(BuildContext context) {
     final l = context.l10n;
@@ -236,11 +238,13 @@ class _LogTile extends ConsumerWidget {
     final detail = _detail(context);
     final title = [logTypeLabel(context, log.type), if (detail.isNotEmpty) detail].join(', ');
     final who = log.byName.split(' ').first;
-    final sub = [
+    final parts = [
       if (log.type == LogType.walk && log.minutes > 0) l.minutesShort(log.minutes),
       if (log.note != null && log.note!.isNotEmpty) log.note!,
       if (who.isNotEmpty) l.byPerson(who),
     ].join(', ');
+    // "By Priya" when that's all there is to say.
+    final sub = parts.isEmpty ? parts : parts.characters.first.toUpperCase() + parts.characters.skip(1).string;
     final hasRoute = log.type == LogType.walk && log.route.length > 1;
     final time = Fmt.time(log.at, context.lang);
     return Semantics(
@@ -271,7 +275,7 @@ class _LogTile extends ConsumerWidget {
             Column(children: [
               Expanded(child: Container(width: Strokes.focus, color: first ? null : paw.outline)),
               PawTile(icon: logTypeIcon(log.type), tone: logTypeTone(log.type), size: Sizes.stepper),
-              const Expanded(child: SizedBox()),
+              Expanded(child: Container(width: Strokes.focus, color: last ? null : paw.outline)),
             ]),
             const SizedBox(width: Space.sm + Space.xxs),
             Expanded(

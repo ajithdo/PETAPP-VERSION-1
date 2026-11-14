@@ -119,7 +119,7 @@ class _Dashboard extends ConsumerWidget {
             const SizedBox(height: Space.sm),
             Text(l.helloPartner(user.firstName), style: context.text.displaySmall),
             const SizedBox(height: Space.xs),
-            Text(l.pPlaceAndDate(place.name, Fmt.weekdayDateLong(now, lang)), style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),
+            Text(l.pPlaceAndDate(place.name, Fmt.weekdayDatePlain(now, lang)), style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),
             if (place.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
             const SizedBox(height: Space.lg + Space.xs),
             ResponsiveGrid(

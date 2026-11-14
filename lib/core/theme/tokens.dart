@@ -838,7 +838,7 @@ class Sizes {
 
   /// The week's bars on a partner dashboard, and the least a bar shows.
   static const double weekBars = 36;
-  static const double weekBarMin = 0.08;
+  static const double weekBarMin = 0.14;
 
   /// The time column of a timeline row ("12:19 PM").
   static const double timelineTime = 60;

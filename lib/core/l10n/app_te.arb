@@ -3208,5 +3208,21 @@
   "admOutboxTo": "{name}కి {channel}",
   "admOutboxNote": "ఇక్కడ ఏదీ నిజంగా పంపలేదు.",
   "admCountBookings": "{count} బుకింగ్‌లు",
-  "admCountSold": "{count} అమ్ముడయ్యాయి"
+  "admCountSold": "{count} అమ్ముడయ్యాయి",
+  "admComplaintsShort": "ఫిర్యాదులు",
+  "themeSystemShort": "సిస్టమ్",
+  "setReminderChannels": "రిమైండర్ మార్గాలు",
+  "setReminderChannelsHint": "ప్రతి రిమైండర్‌కు పుష్, ఇమెయిల్, SMS, WhatsApp",
+  "setQuietRange": "{from} నుండి {to}",
+  "setQuietOff": "ఆఫ్",
+  "setSosTap": "SOS కోసం ట్యాప్ చేసి నిర్ధారించండి",
+  "setSosTapHint": "2 సెకన్లు నొక్కి పట్టుకునే బదులు. ఈజీ మోడ్‌లో ఆన్‌లో ఉంటుంది.",
+  "setAccount": "ఖాతా",
+  "setEmailPassword": "ఇమెయిల్, పాస్‌వర్డ్",
+  "setAbout": "PawSetu గురించి",
+  "setAboutDemo": "వెర్షన్ {version}, డెమో మోడ్",
+  "setResetPassword": "పాస్‌వర్డ్ మార్చడానికి లింక్ పంపండి",
+  "setResetSent": "{email}కి లింక్ పంపాము.",
+  "setNoEmail": "ఇమెయిల్ జోడించలేదు",
+  "setNoPhone": "ఫోన్ నంబర్ జోడించలేదు"
 }

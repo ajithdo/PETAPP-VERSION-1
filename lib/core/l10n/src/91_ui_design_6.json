@@ -1566,5 +1566,95 @@
     "ph": {
       "count": "int"
     }
+  },
+  "admComplaintsShort": {
+    "en": "Complaints",
+    "hi": "शिकायतें",
+    "te": "ఫిర్యాదులు"
+  },
+  "themeSystemShort": {
+    "en": "System",
+    "hi": "सिस्टम",
+    "te": "సిస్టమ్"
+  },
+  "setReminderChannels": {
+    "en": "Reminder channels",
+    "hi": "रिमाइंडर के तरीके",
+    "te": "రిమైండర్ మార్గాలు"
+  },
+  "setReminderChannelsHint": {
+    "en": "Push, email, SMS and WhatsApp for each reminder",
+    "hi": "हर रिमाइंडर के लिए पुश, ईमेल, SMS और WhatsApp",
+    "te": "ప్రతి రిమైండర్‌కు పుష్, ఇమెయిల్, SMS, WhatsApp"
+  },
+  "setQuietRange": {
+    "en": "{from} to {to}",
+    "hi": "{from} से {to}",
+    "te": "{from} నుండి {to}",
+    "ph": {
+      "from": "String",
+      "to": "String"
+    }
+  },
+  "setQuietOff": {
+    "en": "Off",
+    "hi": "बंद",
+    "te": "ఆఫ్"
+  },
+  "setSosTap": {
+    "en": "Tap to confirm SOS",
+    "hi": "SOS के लिए टैप करके पक्का करें",
+    "te": "SOS కోసం ట్యాప్ చేసి నిర్ధారించండి"
+  },
+  "setSosTapHint": {
+    "en": "Instead of holding for 2 seconds. On with Easy mode.",
+    "hi": "2 सेकंड दबाए रखने की जगह। आसान मोड में चालू रहता है।",
+    "te": "2 సెకన్లు నొక్కి పట్టుకునే బదులు. ఈజీ మోడ్‌లో ఆన్‌లో ఉంటుంది."
+  },
+  "setAccount": {
+    "en": "Account",
+    "hi": "खाता",
+    "te": "ఖాతా"
+  },
+  "setEmailPassword": {
+    "en": "Email and password",
+    "hi": "ईमेल और पासवर्ड",
+    "te": "ఇమెయిల్, పాస్‌వర్డ్"
+  },
+  "setAbout": {
+    "en": "About PawSetu",
+    "hi": "PawSetu के बारे में",
+    "te": "PawSetu గురించి"
+  },
+  "setAboutDemo": {
+    "en": "Version {version}, demo mode",
+    "hi": "वर्शन {version}, डेमो मोड",
+    "te": "వెర్షన్ {version}, డెమో మోడ్",
+    "ph": {
+      "version": "String"
+    }
+  },
+  "setResetPassword": {
+    "en": "Send a link to change your password",
+    "hi": "पासवर्ड बदलने का लिंक भेजें",
+    "te": "పాస్‌వర్డ్ మార్చడానికి లింక్ పంపండి"
+  },
+  "setResetSent": {
+    "en": "We sent a link to {email}.",
+    "hi": "हमने {email} पर लिंक भेजा है।",
+    "te": "{email}కి లింక్ పంపాము.",
+    "ph": {
+      "email": "String"
+    }
+  },
+  "setNoEmail": {
+    "en": "No email added",
+    "hi": "कोई ईमेल नहीं जोड़ा",
+    "te": "ఇమెయిల్ జోడించలేదు"
+  },
+  "setNoPhone": {
+    "en": "No phone number added",
+    "hi": "कोई फ़ोन नंबर नहीं जोड़ा",
+    "te": "ఫోన్ నంబర్ జోడించలేదు"
   }
 }

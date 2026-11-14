@@ -11319,4 +11319,60 @@ class AppLocalizationsHi extends AppLocalizations {
   String admCountSold(int count) {
     return '$count बिके';
   }
+
+  @override
+  String get admComplaintsShort => 'शिकायतें';
+
+  @override
+  String get themeSystemShort => 'सिस्टम';
+
+  @override
+  String get setReminderChannels => 'रिमाइंडर के तरीके';
+
+  @override
+  String get setReminderChannelsHint =>
+      'हर रिमाइंडर के लिए पुश, ईमेल, SMS और WhatsApp';
+
+  @override
+  String setQuietRange(String from, String to) {
+    return '$from से $to';
+  }
+
+  @override
+  String get setQuietOff => 'बंद';
+
+  @override
+  String get setSosTap => 'SOS के लिए टैप करके पक्का करें';
+
+  @override
+  String get setSosTapHint =>
+      '2 सेकंड दबाए रखने की जगह। आसान मोड में चालू रहता है।';
+
+  @override
+  String get setAccount => 'खाता';
+
+  @override
+  String get setEmailPassword => 'ईमेल और पासवर्ड';
+
+  @override
+  String get setAbout => 'PawSetu के बारे में';
+
+  @override
+  String setAboutDemo(String version) {
+    return 'वर्शन $version, डेमो मोड';
+  }
+
+  @override
+  String get setResetPassword => 'पासवर्ड बदलने का लिंक भेजें';
+
+  @override
+  String setResetSent(String email) {
+    return 'हमने $email पर लिंक भेजा है।';
+  }
+
+  @override
+  String get setNoEmail => 'कोई ईमेल नहीं जोड़ा';
+
+  @override
+  String get setNoPhone => 'कोई फ़ोन नंबर नहीं जोड़ा';
 }

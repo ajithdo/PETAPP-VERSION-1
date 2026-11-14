@@ -500,18 +500,39 @@ class TextLink extends StatelessWidget {
 /// Label and value pairs in two columns (the kit's ".kv"): quiet labels on
 /// the left, the values in a stronger weight on the right.
 class KvList extends StatelessWidget {
-  const KvList({super.key, required this.rows, this.onDark = false});
+  const KvList({super.key, required this.rows, this.onDark = false, this.valuesAtEnd = false});
 
   /// (label, value, tone): a red [Tone] marks danger (an allergy) and adds
   /// a warning sign before the value.
   final List<(String, String, Tone?)> rows;
   final bool onDark;
 
+  /// A bill: the values sit in a column at the far end, as wide as the
+  /// widest of them, instead of straight after the labels.
+  final bool valuesAtEnd;
+
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
     final label = context.text.bodySmall?.copyWith(color: onDark ? paw.onBandMuted : paw.textSecondary);
     final value = context.text.bodyMedium?.copyWith(color: onDark ? paw.onBand : paw.textPrimary, fontWeight: FontWeight.w600);
+    if (valuesAtEnd) {
+      return Table(
+        columnWidths: const {0: FlexColumnWidth(), 1: IntrinsicColumnWidth()},
+        defaultVerticalAlignment: TableCellVerticalAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
+        children: [
+          for (final r in rows)
+            TableRow(children: [
+              Padding(padding: const EdgeInsets.only(bottom: Space.sm, right: Space.md), child: Text(r.$1, style: label)),
+              Padding(
+                padding: const EdgeInsets.only(bottom: Space.sm),
+                child: Text(r.$2, style: value?.copyWith(color: r.$3 == Tone.green ? paw.success : (r.$3 == Tone.red ? paw.error : null))),
+              ),
+            ]),
+        ],
+      );
+    }
     return LayoutBuilder(builder: (context, box) {
       final k = MediaQuery.textScalerOf(context).scale(1);
       final w = (box.maxWidth * 0.38).clamp(Sizes.labelColumnSm * k, box.maxWidth * 0.5);
@@ -533,7 +554,7 @@ class KvList extends StatelessWidget {
                         ]),
                         style: value?.copyWith(color: paw.error),
                       )
-                    : Text(r.$2, style: value),
+                    : Text(r.$2, style: r.$3 == Tone.green ? value?.copyWith(color: paw.success) : value),
               ),
             ]),
           ),

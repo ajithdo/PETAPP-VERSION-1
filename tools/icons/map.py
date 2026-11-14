@@ -115,7 +115,7 @@ MAP = {
     'air_outlined': 'wind', 'admin_panel_settings_outlined': 'shield-star', 'add_photo_alternate_outlined': 'image',
 }
 # Icons the design uses that have no Material twin in the app yet.
-EXTRA = ['file-csv', 'whatsapp-logo', 'shapes', 'heartbeat', 'stethoscope', 'house:f', 'heartbeat:f', 'calendar-dots:f', 'bag:f', 'user:f', 'arrow-left',
+EXTRA = ['hand-tap', 'file-csv', 'whatsapp-logo', 'shapes', 'heartbeat', 'stethoscope', 'house:f', 'heartbeat:f', 'calendar-dots:f', 'bag:f', 'user:f', 'arrow-left',
          'dots-three-vertical', 'dots-three', 'list', 'caret-up-down', 'user-circle', 'ticket', 'phone:f', 'phone-call:f',
          'warning:f', 'sparkle:f', 'crown-simple:f', 'navigation-arrow:f', 'video-camera:f', 'bone', 'dog', 'cat',
          'bird', 'rabbit', 'couch', 'bowl-steam', 'toilet-paper', 'thermometer-hot', 'tag', 'bug', 'book', 'hospital', 'target',

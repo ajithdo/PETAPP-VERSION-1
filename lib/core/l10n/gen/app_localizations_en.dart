@@ -11776,4 +11776,60 @@ class AppLocalizationsEn extends AppLocalizations {
   String admCountSold(int count) {
     return '$count sold';
   }
+
+  @override
+  String get admComplaintsShort => 'Complaints';
+
+  @override
+  String get themeSystemShort => 'System';
+
+  @override
+  String get setReminderChannels => 'Reminder channels';
+
+  @override
+  String get setReminderChannelsHint =>
+      'Push, email, SMS and WhatsApp for each reminder';
+
+  @override
+  String setQuietRange(String from, String to) {
+    return '$from to $to';
+  }
+
+  @override
+  String get setQuietOff => 'Off';
+
+  @override
+  String get setSosTap => 'Tap to confirm SOS';
+
+  @override
+  String get setSosTapHint =>
+      'Instead of holding for 2 seconds. On with Easy mode.';
+
+  @override
+  String get setAccount => 'Account';
+
+  @override
+  String get setEmailPassword => 'Email and password';
+
+  @override
+  String get setAbout => 'About PawSetu';
+
+  @override
+  String setAboutDemo(String version) {
+    return 'Version $version, demo mode';
+  }
+
+  @override
+  String get setResetPassword => 'Send a link to change your password';
+
+  @override
+  String setResetSent(String email) {
+    return 'We sent a link to $email.';
+  }
+
+  @override
+  String get setNoEmail => 'No email added';
+
+  @override
+  String get setNoPhone => 'No phone number added';
 }

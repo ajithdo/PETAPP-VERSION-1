@@ -21,6 +21,7 @@ class AppSettings {
     this.quietEnd = 7,
     this.quietHoursOn = true,
     this.vaultPinSet = false,
+    this.sosTap = false,
   });
 
   final String locale;
@@ -38,6 +39,11 @@ class AppSettings {
   final int quietEnd;
   final bool quietHoursOn;
   final bool vaultPinSet;
+
+  /// SOS asks "Get help?" on a tap instead of needing a 2-second hold.
+  /// Easy mode always does.
+  final bool sosTap;
+  bool get sosByTap => easyMode || sosTap;
 
   /// Easy mode makes text 25% larger on top of the user's own text size.
   double get effectiveTextScale => textScale * (easyMode ? 1.25 : 1.0);
@@ -59,6 +65,7 @@ class AppSettings {
     int? quietEnd,
     bool? quietHoursOn,
     bool? vaultPinSet,
+    bool? sosTap,
   }) =>
       AppSettings(
         locale: locale ?? this.locale,
@@ -74,6 +81,7 @@ class AppSettings {
         quietEnd: quietEnd ?? this.quietEnd,
         quietHoursOn: quietHoursOn ?? this.quietHoursOn,
         vaultPinSet: vaultPinSet ?? this.vaultPinSet,
+        sosTap: sosTap ?? this.sosTap,
       );
 }
 
@@ -99,6 +107,7 @@ class SettingsController extends Notifier<AppSettings> {
       quietEnd: p.getInt('quietEnd') ?? 7,
       quietHoursOn: p.getBool('quietHoursOn') ?? true,
       vaultPinSet: p.getString('vaultPin') != null,
+      sosTap: p.getBool('sosTap') ?? false,
     );
   }
 
@@ -128,6 +137,11 @@ class SettingsController extends Notifier<AppSettings> {
   void setHighContrast(bool v) {
     _p.setBool('highContrast', v);
     state = state.copyWith(highContrast: v);
+  }
+
+  void setSosTap(bool v) {
+    _p.setBool('sosTap', v);
+    state = state.copyWith(sosTap: v);
   }
 
   void setOnboardingSeen() {

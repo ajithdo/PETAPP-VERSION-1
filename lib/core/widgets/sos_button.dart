@@ -80,9 +80,12 @@ class _SosButtonState extends ConsumerState<SosButton> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
-    final easy = ref.watch(settingsProvider).easyMode;
+    final settings = ref.watch(settingsProvider);
+    // A tap that asks first, instead of the 2-second hold (Easy mode, or
+    // the person's own choice in Settings).
+    final easy = settings.sosByTap;
     final paw = context.paw;
-    final visual = widget.large ? _circle(paw) : _pill(context, paw, easy);
+    final visual = widget.large ? _circle(paw) : _pill(context, paw, settings.easyMode);
     return Semantics(
       button: true,
       label: context.l10n.sosSemantic,

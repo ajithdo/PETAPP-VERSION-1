@@ -167,11 +167,11 @@ class _WaitingCard extends ConsumerWidget {
     return PawCard(
       padding: const EdgeInsets.fromLTRB(Space.lg, Space.lg, Space.lg, Space.xs),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Semantics(header: true, child: Text(l.admWaiting, style: context.text.titleLarge)),
+        Semantics(header: true, child: Text(l.admWaiting, style: context.text.titleSmall)),
         const SizedBox(height: Space.xs),
         PawList(children: [
           row(Ph.sealCheck, Tone.gold, l.aApprovals, approvals, pending.length, TagKind.gold, '/admin/approvals'),
-          row(Ph.headset, Tone.red, l.helpAndComplaints, l.admTicketsLine(open, progress), open + progress, TagKind.red, '/admin/complaints'),
+          row(Ph.headset, Tone.red, l.admComplaintsShort, l.admTicketsLine(open, progress), open + progress, TagKind.red, '/admin/complaints'),
           row(Ph.flag, Tone.neutral, l.aModeration, l.admReportsLine(reports), reports, TagKind.neutral, '/admin/moderation'),
         ]),
       ]),
@@ -195,7 +195,7 @@ class _OutboxCard extends ConsumerWidget {
         };
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        SecHead(l.aOutbox, action: l.pOpen, onAction: () => context.go('/admin/outbox'), style: context.text.titleLarge),
+        SecHead(l.aOutbox, action: l.pOpen, onAction: () => context.go('/admin/outbox'), style: context.text.titleSmall),
         if (msgs.isEmpty)
           Text(l.admNothingHere, style: context.text.bodySmall?.copyWith(color: paw.textSecondary))
         else
@@ -231,7 +231,7 @@ class _ChartCard extends StatelessWidget {
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Expanded(child: Text(title, style: context.text.titleLarge)),
+          Expanded(child: Text(title, style: context.text.titleSmall)),
           const SizedBox(width: Space.sm),
           if (c != null)
             StatusChip(context.l10n.admChange('${c >= 0 ? '+' : ''}$c'),
@@ -367,7 +367,7 @@ class _TopList extends StatelessWidget {
     return PawCard(
       padding: const EdgeInsets.fromLTRB(Space.lg, Space.lg, Space.lg, Space.xs),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Semantics(header: true, child: Text(title, style: context.text.titleLarge)),
+        Semantics(header: true, child: Text(title, style: context.text.titleSmall)),
         const SizedBox(height: Space.xs),
         if (items.isEmpty) Padding(padding: const EdgeInsets.only(bottom: Space.md), child: Text(context.l10n.admNothingYet, style: context.text.bodySmall?.copyWith(color: paw.textSecondary))),
         PawList(children: [

@@ -8345,5 +8345,45 @@
         "type": "int"
       }
     }
-  }
+  },
+  "admComplaintsShort": "Complaints",
+  "themeSystemShort": "System",
+  "setReminderChannels": "Reminder channels",
+  "setReminderChannelsHint": "Push, email, SMS and WhatsApp for each reminder",
+  "setQuietRange": "{from} to {to}",
+  "@setQuietRange": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "setQuietOff": "Off",
+  "setSosTap": "Tap to confirm SOS",
+  "setSosTapHint": "Instead of holding for 2 seconds. On with Easy mode.",
+  "setAccount": "Account",
+  "setEmailPassword": "Email and password",
+  "setAbout": "About PawSetu",
+  "setAboutDemo": "Version {version}, demo mode",
+  "@setAboutDemo": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "setResetPassword": "Send a link to change your password",
+  "setResetSent": "We sent a link to {email}.",
+  "@setResetSent": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "setNoEmail": "No email added",
+  "setNoPhone": "No phone number added"
 }

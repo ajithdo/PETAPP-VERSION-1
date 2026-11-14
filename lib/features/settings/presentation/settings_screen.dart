@@ -28,6 +28,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     await ref.read(firestoreProvider).collection('users').doc(user.uid).update(fields);
   }
 
+  /// Sends the "change your password" link (demo: lands in the Demo Outbox).
+  Future<void> _password(String email) async {
+    final l = context.l10n;
+    final ok = await confirmAction(context, title: l.setEmailPassword, body: '$email\n\n${l.setResetPassword}', confirmLabel: l.sendResetLink, danger: false);
+    if (!ok) return;
+    try {
+      await ref.read(authServiceProvider).sendPasswordReset(email);
+      if (mounted) showToast(context, l.setResetSent(email));
+    } catch (_) {
+      if (mounted) showToast(context, l.errorTitle);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
@@ -47,15 +60,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             PawPanel(padding: PawPanel.listPadding, child: PawList(children: children)),
           ],
         );
-    Widget toggle(IconData icon, Tone tone, String title, String sub, bool value, ValueChanged<bool> onChanged) => MergeSemantics(
+    Widget toggle(IconData icon, Tone tone, String title, String sub, bool value, ValueChanged<bool>? onChanged) => MergeSemantics(
           child: PawItem(
             lead: PawTile(icon: icon, tone: tone),
             title: title,
             sub: sub,
-            onTap: () => onChanged(!value),
+            subMaxLines: 4,
+            onTap: onChanged == null ? null : () => onChanged(!value),
             trailing: Switch(value: value, onChanged: onChanged),
           ),
         );
+    final user = ref.watch(currentUserProvider);
+    // "10:00 PM"
+    String hour(int h) => MaterialLocalizations.of(context).formatTimeOfDay(TimeOfDay(hour: h % 24, minute: 0));
 
     return Scaffold(
       appBar: AppBar(title: Text(l.settings)),
@@ -93,14 +110,20 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               label: themeModeLabel(context, m),
               onTap: () => n.setThemeMode(m),
               top: _ThemePreview(mode: m),
-              title: themeModeLabel(context, m),
+              title: m == ThemeMode.system ? l.themeSystemShort : themeModeLabel(context, m),
             ),
         ]),
         group(l.notifications, [
           PawItem(
             lead: const PawTile(icon: Ph.bellRinging, tone: Tone.gold),
-            title: l.notificationChannels,
-            sub: l.notificationChannelsHint,
+            title: l.setReminderChannels,
+            sub: l.setReminderChannelsHint,
+            onTap: () => context.push(notificationSettingsLink),
+          ),
+          PawItem(
+            lead: const PawTile(icon: Ph.moon, tone: Tone.sky),
+            title: l.quietHours,
+            sub: s.quietHoursOn ? l.setQuietRange(hour(s.quietStart), hour(s.quietEnd)) : l.setQuietOff,
             onTap: () => context.push(notificationSettingsLink),
           ),
         ]),
@@ -136,6 +159,38 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             ]),
           ),
           toggle(Ph.circleHalf, Tone.neutral, l.highContrast, l.highContrastHint, s.highContrast, n.setHighContrast),
+          // Easy mode always asks on a tap, so the switch shows on and can't
+          // be turned off while it's on.
+          toggle(Ph.handTap, Tone.neutral, l.setSosTap, l.setSosTapHint, s.sosByTap, s.easyMode ? null : n.setSosTap),
+        ]),
+        group(l.setAccount, [
+          PawItem(
+            lead: const PawTile(icon: Ph.envelopeSimple),
+            title: l.setEmailPassword,
+            sub: (user?.email ?? '').isEmpty ? l.setNoEmail : user!.email!,
+            noTrailing: (user?.email ?? '').isEmpty,
+            onTap: (user?.email ?? '').isEmpty ? null : () => _password(user!.email!),
+          ),
+          PawItem(
+            lead: const PawTile(icon: Ph.deviceMobile),
+            title: l.phone,
+            sub: (user?.phone ?? '').isEmpty ? l.setNoPhone : user!.phone!,
+            noTrailing: true,
+          ),
+          PawItem(
+            lead: const PawTile(icon: Ph.info),
+            title: l.setAbout,
+            sub: cfg.isDemo ? l.setAboutDemo('1.0') : l.aboutVersion('1.0'),
+            subMaxLines: 2,
+            noTrailing: true,
+            onTap: () {
+              _aboutTaps++;
+              if (_aboutTaps >= 5) {
+                _aboutTaps = 0;
+                context.push('/design-gallery');
+              }
+            },
+          ),
         ]),
         if (cfg.isDemo)
           group(l.demoData, [
@@ -165,23 +220,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       },
               ),
           ]),
-        group(l.about, [
-          PawItem(
-            lead: const PawTile(icon: Ph.info),
-            title: 'PawSetu',
-            sub: l.aboutVersion('1.0.0 (DEMO VERSION 1)'),
-            noTrailing: true,
-            onTap: () {
-              _aboutTaps++;
-              if (_aboutTaps >= 5) {
-                _aboutTaps = 0;
-                context.push('/design-gallery');
-              }
-            },
-          ),
-          PawItem(lead: const PawTile(icon: Ph.mapTrifold), title: l.mapCredit),
-        ]),
-        const SizedBox(height: Space.xl),
+        const SizedBox(height: Space.lg),
+        Text(l.mapCredit, style: context.text.bodySmall?.copyWith(color: paw.textSecondary), textAlign: TextAlign.center),
+        const SizedBox(height: Space.lg),
         PawButton(label: l.signOut, icon: Ph.signOut, kind: BtnKind.line, size: BtnSize.regular, block: true, onPressed: () => ref.read(authServiceProvider).signOut()),
       ]),
     );
@@ -254,7 +295,8 @@ class _Pick extends StatelessWidget {
   }
 }
 
-/// A tiny picture of the app in light, dark, or split for "System".
+/// A small picture of the app in light, dark, or cut corner to corner for
+/// "System": a marigold line over a grey one on that theme's paper.
 class _ThemePreview extends StatelessWidget {
   const _ThemePreview({required this.mode});
   final ThemeMode mode;
@@ -262,28 +304,47 @@ class _ThemePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const light = PawColors.light, dark = PawColors.dark;
-    Widget half(PawColors c) => ColoredBox(
+    Widget face(PawColors c) => ColoredBox(
           color: c.background,
           child: Padding(
             padding: const EdgeInsets.all(Space.sm),
             child: Column(mainAxisAlignment: MainAxisAlignment.end, crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(width: Space.xl, height: Space.xs, decoration: BoxDecoration(color: c.marigold, borderRadius: BorderRadius.circular(Radii.xs))),
               const SizedBox(height: Space.xs),
-              Container(width: Space.xxl, height: Space.xs, decoration: BoxDecoration(color: c.textSecondary, borderRadius: BorderRadius.circular(Radii.xs))),
+              Container(width: Space.xxl + Space.sm, height: Space.xs, decoration: BoxDecoration(color: c.textSecondary, borderRadius: BorderRadius.circular(Radii.xs))),
             ]),
           ),
         );
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(Radii.sm),
-      child: Container(
-        height: Sizes.thumb,
-        decoration: BoxDecoration(border: Border.all(color: context.paw.outline)),
-        child: switch (mode) {
-          ThemeMode.light => half(light),
-          ThemeMode.dark => half(dark),
-          _ => Row(children: [Expanded(child: half(light)), Expanded(child: half(dark))]),
-        },
+    return Padding(
+      // Leaves room for the radio dot in the tile's corner.
+      padding: const EdgeInsets.only(right: Space.xs),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(Radii.sm),
+        child: Container(
+          height: Sizes.thumb - Space.sm,
+          foregroundDecoration: BoxDecoration(border: Border.all(color: context.tint.line2), borderRadius: BorderRadius.circular(Radii.sm)),
+          child: switch (mode) {
+            ThemeMode.light => face(light),
+            ThemeMode.dark => face(dark),
+            _ => Stack(fit: StackFit.expand, children: [face(light), ClipPath(clipper: const _Diagonal(), child: face(dark))]),
+          },
+        ),
       ),
     );
   }
+}
+
+/// The bottom-right half of a box, cut from the top right to the bottom left.
+class _Diagonal extends CustomClipper<Path> {
+  const _Diagonal();
+
+  @override
+  Path getClip(Size size) => Path()
+    ..moveTo(size.width, 0)
+    ..lineTo(size.width, size.height)
+    ..lineTo(0, size.height)
+    ..close();
+
+  @override
+  bool shouldReclip(_Diagonal oldClipper) => false;
 }

@@ -356,6 +356,8 @@ abstract final class Ph {
   static const IconData handPointingFill = IconData(0xe29a, fontFamily: _fill);
   static const IconData handSoap = IconData(0xe630, fontFamily: _regular);
   static const IconData handSoapFill = IconData(0xe630, fontFamily: _fill);
+  static const IconData handTap = IconData(0xec90, fontFamily: _regular);
+  static const IconData handTapFill = IconData(0xec90, fontFamily: _fill);
   static const IconData handWaving = IconData(0xe580, fontFamily: _regular);
   static const IconData handWavingFill = IconData(0xe580, fontFamily: _fill);
   static const IconData handFill = IconData(0xe298, fontFamily: _fill);

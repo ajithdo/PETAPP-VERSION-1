@@ -20,6 +20,9 @@ class Fmt {
   /// "Sunday, 8 November" (the line above Home's greeting).
   static String weekdayDateLong(DateTime d, [String locale = 'en']) => DateFormat('EEEE, d MMMM', _l(locale)).format(d);
 
+  /// "Sunday 8 November" (after a place name on the partner dashboards).
+  static String weekdayDatePlain(DateTime d, [String locale = 'en']) => DateFormat('EEEE d MMMM', _l(locale)).format(d);
+
   /// "6 am", "2 pm": an hour on the walk strip.
   static String hour(DateTime d, [String locale = 'en']) => DateFormat('h a', _l(locale)).format(d).toLowerCase();
   static String monthYear(DateTime d, [String locale = 'en']) => DateFormat('MMMM yyyy', _l(locale)).format(d);
