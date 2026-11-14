@@ -10889,4 +10889,44 @@ class AppLocalizationsTe extends AppLocalizations {
   String whoLooksAfter(String name) {
     return '$nameను ఎవరు చూసుకుంటారు';
   }
+
+  @override
+  String get medCardBrand => 'PawSetu మెడికల్ కార్డ్';
+
+  @override
+  String get worksOffline => 'ఇంటర్నెట్ లేకున్నా పనిచేస్తుంది';
+
+  @override
+  String get savePdf => 'PDF సేవ్ చేయండి';
+
+  @override
+  String get fullHealthReport => 'పూర్తి ఆరోగ్య నివేదిక';
+
+  @override
+  String get fullHealthReportSub => 'టీకాలు, మందులు, విజిట్‌లు, బరువు చార్ట్';
+
+  @override
+  String get editDetails => 'వివరాలు మార్చండి';
+
+  @override
+  String get editDetailsSub => 'అలెర్జీలు, మైక్రోచిప్, క్లినిక్';
+
+  @override
+  String get roleOwnerDoes => 'అన్నీ చేయగలరు';
+
+  @override
+  String get roleCoownerDoes => 'పెంపుడు జంతువును తొలగించడం తప్ప అన్నీ';
+
+  @override
+  String get roleCarerDoes => 'దినచర్య నమోదు, మందులు ఇవ్వడం, సేవలు బుక్ చేయడం';
+
+  @override
+  String get roleViewerDoes => 'అన్నీ చూడగలరు, నడకలు, భోజనం నమోదు చేయగలరు';
+
+  @override
+  String get languageNote =>
+      'యాప్ మొత్తం ఒకేసారి మారుతుంది, రిమైండర్‌లు, PDFలు కూడా.';
+
+  @override
+  String get textSizeNote => '200% వరకు అన్నీ చక్కగా కనిపిస్తాయి.';
 }

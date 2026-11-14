@@ -97,8 +97,8 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
               IconButton(tooltip: l.albumBirthdayScreenTitle, icon: const Icon(Ph.cake), onPressed: () => context.push('/pets/${p.id}/birthday')),
           ],
           bottom: TabBar(
-            isScrollable: context.isPhone,
-            tabAlignment: context.isPhone ? TabAlignment.start : null,
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
             tabs: [Tab(text: l.albumPhotos), Tab(text: l.albumTimeline), Tab(text: l.albumAlbums), Tab(text: l.albumFavourites)],
           ),
         ),

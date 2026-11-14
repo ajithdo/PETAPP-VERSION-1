@@ -7868,5 +7868,18 @@
         "type": "String"
       }
     }
-  }
+  },
+  "medCardBrand": "PawSetu medical card",
+  "worksOffline": "Works offline",
+  "savePdf": "Save PDF",
+  "fullHealthReport": "Full health report",
+  "fullHealthReportSub": "Vaccines, medicines, visits, weight chart",
+  "editDetails": "Edit details",
+  "editDetailsSub": "Allergies, microchip, clinic",
+  "roleOwnerDoes": "Can do everything",
+  "roleCoownerDoes": "Everything except deleting the pet",
+  "roleCarerDoes": "Logs routine, gives medicines, books services",
+  "roleViewerDoes": "Sees everything, logs walks and meals",
+  "languageNote": "Changes the whole app at once, including reminders and PDFs.",
+  "textSizeNote": "Layouts stay tidy up to 200%."
 }

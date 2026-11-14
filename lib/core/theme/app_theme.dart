@@ -382,8 +382,17 @@ class AppTheme {
         unselectedLabelColor: ts,
         indicatorColor: paw.marigold,
         dividerColor: paw.outline,
+        // UI Design 6 tabs: words 20 px apart from the left, a 3 px
+        // marigold line under the current one.
+        tabAlignment: TabAlignment.start,
+        labelPadding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs),
+        indicatorSize: TabBarIndicatorSize.label,
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(color: paw.marigold, width: Strokes.chart),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(Strokes.chart)),
+        ),
         labelStyle: textTheme.labelLarge,
-        unselectedLabelStyle: textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w500),
+        unselectedLabelStyle: textTheme.labelLarge,
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: ButtonStyle(
@@ -421,9 +430,12 @@ class AppTheme {
       badgeTheme: BadgeThemeData(backgroundColor: paw.brand, textColor: paw.onBrand, textStyle: textTheme.labelSmall),
       progressIndicatorTheme: ProgressIndicatorThemeData(color: paw.marigold, linearTrackColor: paw.surfaceSubtle, circularTrackColor: Colors.transparent),
       switchTheme: SwitchThemeData(
-        thumbColor: byState(paw.controlBorder, selected: light ? paw.surface : paw.successContainer),
-        trackColor: byState(paw.surfaceSubtle, selected: paw.success),
-        trackOutlineColor: byState(paw.controlBorder, selected: paw.success),
+        // UI Design 6 switch: a white knob on a quiet track, green when on.
+        // (An empty knob icon keeps the knob one size, on or off.)
+        thumbColor: WidgetStatePropertyAll(light ? paw.surface : paw.onBand),
+        trackColor: byState(highContrast ? paw.controlBorder : tints.line2, selected: paw.success),
+        trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
+        thumbIcon: const WidgetStatePropertyAll(Icon(Ph.circle, color: Colors.transparent)),
       ),
       checkboxTheme: CheckboxThemeData(
         fillColor: byState(Colors.transparent, selected: paw.brand),
@@ -432,7 +444,7 @@ class AppTheme {
         shape: rounded(Radii.xs),
       ),
       radioTheme: RadioThemeData(fillColor: byState(paw.controlBorder, selected: paw.brand)),
-      sliderTheme: SliderThemeData(activeTrackColor: paw.brand, inactiveTrackColor: paw.surfaceSubtle, thumbColor: paw.marigold),
+      sliderTheme: SliderThemeData(activeTrackColor: paw.brand, inactiveTrackColor: tints.paper3, thumbColor: paw.marigold, trackHeight: Space.xs + Space.xxs),
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: {TargetPlatform.android: FadeForwardsPageTransitionsBuilder(), TargetPlatform.iOS: CupertinoPageTransitionsBuilder()},
       ),

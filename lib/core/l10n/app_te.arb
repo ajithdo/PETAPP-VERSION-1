@@ -3089,5 +3089,18 @@
   "birthdayOnDate": "పుట్టినరోజు {date}",
   "qrActiveTitle": "QR ట్యాగ్ పనిచేస్తోంది",
   "qrActiveSub": "{name} దొరికిన ఎవరైనా మిమ్మల్ని సంప్రదించగలరు. మీ నంబర్ కనిపించదు.",
-  "whoLooksAfter": "{name}ను ఎవరు చూసుకుంటారు"
+  "whoLooksAfter": "{name}ను ఎవరు చూసుకుంటారు",
+  "medCardBrand": "PawSetu మెడికల్ కార్డ్",
+  "worksOffline": "ఇంటర్నెట్ లేకున్నా పనిచేస్తుంది",
+  "savePdf": "PDF సేవ్ చేయండి",
+  "fullHealthReport": "పూర్తి ఆరోగ్య నివేదిక",
+  "fullHealthReportSub": "టీకాలు, మందులు, విజిట్‌లు, బరువు చార్ట్",
+  "editDetails": "వివరాలు మార్చండి",
+  "editDetailsSub": "అలెర్జీలు, మైక్రోచిప్, క్లినిక్",
+  "roleOwnerDoes": "అన్నీ చేయగలరు",
+  "roleCoownerDoes": "పెంపుడు జంతువును తొలగించడం తప్ప అన్నీ",
+  "roleCarerDoes": "దినచర్య నమోదు, మందులు ఇవ్వడం, సేవలు బుక్ చేయడం",
+  "roleViewerDoes": "అన్నీ చూడగలరు, నడకలు, భోజనం నమోదు చేయగలరు",
+  "languageNote": "యాప్ మొత్తం ఒకేసారి మారుతుంది, రిమైండర్‌లు, PDFలు కూడా.",
+  "textSizeNote": "200% వరకు అన్నీ చక్కగా కనిపిస్తాయి."
 }

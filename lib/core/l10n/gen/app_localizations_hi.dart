@@ -10858,4 +10858,44 @@ class AppLocalizationsHi extends AppLocalizations {
   String whoLooksAfter(String name) {
     return '$name की देखभाल कौन करता है';
   }
+
+  @override
+  String get medCardBrand => 'PawSetu मेडिकल कार्ड';
+
+  @override
+  String get worksOffline => 'बिना इंटरनेट चलता है';
+
+  @override
+  String get savePdf => 'PDF सहेजें';
+
+  @override
+  String get fullHealthReport => 'पूरी हेल्थ रिपोर्ट';
+
+  @override
+  String get fullHealthReportSub => 'टीके, दवाएँ, विज़िट, वज़न चार्ट';
+
+  @override
+  String get editDetails => 'जानकारी बदलें';
+
+  @override
+  String get editDetailsSub => 'एलर्जी, माइक्रोचिप, क्लिनिक';
+
+  @override
+  String get roleOwnerDoes => 'सब कुछ कर सकते हैं';
+
+  @override
+  String get roleCoownerDoes => 'पालतू को हटाने के अलावा सब कुछ';
+
+  @override
+  String get roleCarerDoes =>
+      'दिनचर्या दर्ज करते हैं, दवाएँ देते हैं, सेवाएँ बुक करते हैं';
+
+  @override
+  String get roleViewerDoes => 'सब देख सकते हैं, सैर और खाना दर्ज करते हैं';
+
+  @override
+  String get languageNote => 'पूरा ऐप एक साथ बदल जाता है, रिमाइंडर और PDF भी।';
+
+  @override
+  String get textSizeNote => '200% तक सब कुछ ठीक से दिखता है।';
 }

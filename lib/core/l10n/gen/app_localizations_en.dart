@@ -11281,4 +11281,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String whoLooksAfter(String name) {
     return 'Who looks after $name';
   }
+
+  @override
+  String get medCardBrand => 'PawSetu medical card';
+
+  @override
+  String get worksOffline => 'Works offline';
+
+  @override
+  String get savePdf => 'Save PDF';
+
+  @override
+  String get fullHealthReport => 'Full health report';
+
+  @override
+  String get fullHealthReportSub => 'Vaccines, medicines, visits, weight chart';
+
+  @override
+  String get editDetails => 'Edit details';
+
+  @override
+  String get editDetailsSub => 'Allergies, microchip, clinic';
+
+  @override
+  String get roleOwnerDoes => 'Can do everything';
+
+  @override
+  String get roleCoownerDoes => 'Everything except deleting the pet';
+
+  @override
+  String get roleCarerDoes => 'Logs routine, gives medicines, books services';
+
+  @override
+  String get roleViewerDoes => 'Sees everything, logs walks and meals';
+
+  @override
+  String get languageNote =>
+      'Changes the whole app at once, including reminders and PDFs.';
+
+  @override
+  String get textSizeNote => 'Layouts stay tidy up to 200%.';
 }

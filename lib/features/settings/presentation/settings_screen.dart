@@ -36,12 +36,25 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final cfg = ref.watch(appConfigProvider);
     final store = ref.watch(demoStoreProvider);
 
+    final paw = context.paw;
+    const gap = SizedBox(height: Sizes.sectionGap);
+    // A titled group of rows in a hairline panel.
     Widget group(String title, List<Widget> children) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SectionHeader(title),
-            PawCard(padding: const EdgeInsets.symmetric(vertical: Space.sm), child: Column(children: children)),
+            gap,
+            SecHead(title),
+            PawPanel(padding: PawPanel.listPadding, child: PawList(children: children)),
           ],
+        );
+    Widget toggle(IconData icon, Tone tone, String title, String sub, bool value, ValueChanged<bool> onChanged) => MergeSemantics(
+          child: PawItem(
+            lead: PawTile(icon: icon, tone: tone),
+            title: title,
+            sub: sub,
+            onTap: () => onChanged(!value),
+            trailing: Switch(value: value, onChanged: onChanged),
+          ),
         );
 
     return Scaffold(
@@ -49,7 +62,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       body: PageBody(maxWidth: Space.formWidth, children: [
         // UI Design 6: languages show their own script; appearance shows
         // a small preview. One tap chooses.
-        SectionHeader(l.language),
+        const SizedBox(height: Space.sm),
+        SecHead(l.language),
         _PickRow(children: [
           for (final (code, glyph, name, sub) in const [
             ('en', 'Aa', 'English', 'English'),
@@ -68,7 +82,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               subtitle: sub,
             ),
         ]),
-        SectionHeader(l.appearance),
+        const SizedBox(height: Space.sm),
+        Text(l.languageNote, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+        gap,
+        SecHead(l.appearance),
         _PickRow(children: [
           for (final m in const [ThemeMode.system, ThemeMode.light, ThemeMode.dark])
             _Pick(
@@ -79,61 +96,60 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               title: themeModeLabel(context, m),
             ),
         ]),
-        group(l.accessibility, [
-          SwitchListTile(
-            value: s.easyMode,
-            title: Text(l.easyMode),
-            subtitle: Text(l.easyModeHint),
-            secondary: const Icon(Ph.personArmsSpread),
-            onChanged: (v) {
-              n.setEasyMode(v);
-              _saveProfile({'easyMode': v});
-            },
-          ),
-          ListTile(
-            leading: const Icon(Ph.textAa),
-            title: Text(l.textSize),
-            subtitle: Slider(
-              value: s.textScale,
-              min: 0.85,
-              max: 1.6,
-              divisions: 15,
-              label: '${(s.textScale * 100).round()}%',
-              semanticFormatterCallback: (v) => '${(v * 100).round()}%',
-              onChanged: n.setTextScale,
-            ),
-            trailing: Text('${(s.textScale * 100).round()}%'),
-          ),
-          SwitchListTile(
-            value: s.highContrast,
-            title: Text(l.highContrast),
-            subtitle: Text(l.highContrastHint),
-            secondary: const Icon(Ph.circleHalf),
-            onChanged: n.setHighContrast,
-          ),
-        ]),
         group(l.notifications, [
-          ListTile(
-            leading: const Icon(Ph.bellRinging),
-            title: Text(l.notificationChannels),
-            subtitle: Text(l.notificationChannelsHint),
-            trailing: const Icon(Ph.caretRight),
+          PawItem(
+            lead: const PawTile(icon: Ph.bellRinging, tone: Tone.gold),
+            title: l.notificationChannels,
+            sub: l.notificationChannelsHint,
             onTap: () => context.push(notificationSettingsLink),
           ),
         ]),
+        group(l.accessibility, [
+          toggle(Ph.personArmsSpread, Tone.green, l.easyMode, l.easyModeHint, s.easyMode, (v) {
+            n.setEasyMode(v);
+            _saveProfile({'easyMode': v});
+          }),
+          // Text size: a small A, the slider, a big A.
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: Space.md),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Row(children: [
+                Expanded(child: Text(l.textSize, style: context.text.labelLarge)),
+                Text('${(s.textScale * 100).round()}%', style: context.text.labelLarge),
+              ]),
+              Row(children: [
+                Text('A', style: context.text.labelSmall?.copyWith(fontWeight: FontWeight.w700)),
+                Expanded(
+                  child: Slider(
+                    value: s.textScale,
+                    min: 0.85,
+                    max: 1.6,
+                    divisions: 15,
+                    label: '${(s.textScale * 100).round()}%',
+                    semanticFormatterCallback: (v) => '${(v * 100).round()}%',
+                    onChanged: n.setTextScale,
+                  ),
+                ),
+                Text('A', style: context.text.titleLarge),
+              ]),
+              Text(l.textSizeNote, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+            ]),
+          ),
+          toggle(Ph.circleHalf, Tone.neutral, l.highContrast, l.highContrastHint, s.highContrast, n.setHighContrast),
+        ]),
         if (cfg.isDemo)
           group(l.demoData, [
-            ListTile(
-              leading: const Icon(Ph.flask),
-              title: Text(l.demoModeOn),
-              subtitle: Text(cfg.isStandalone ? l.demoStandaloneHint : l.demoEmulatorHint),
+            PawItem(
+              lead: const PawTile(icon: Ph.flask, tone: Tone.gold),
+              title: l.demoModeOn,
+              sub: cfg.isStandalone ? l.demoStandaloneHint : l.demoEmulatorHint,
             ),
             if (store != null)
-              ListTile(
-                leading: const Icon(Ph.arrowCounterClockwise),
-                title: Text(l.resetDemoData),
-                subtitle: Text(l.resetDemoDataHint),
-                trailing: _resetting ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner)) : null,
+              PawItem(
+                lead: const PawTile(icon: Ph.arrowCounterClockwise),
+                title: l.resetDemoData,
+                sub: l.resetDemoDataHint,
+                trailing: _resetting ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner)) : const Chev(),
                 onTap: _resetting
                     ? null
                     : () async {
@@ -150,10 +166,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ),
           ]),
         group(l.about, [
-          ListTile(
-            leading: const Icon(Ph.info),
-            title: const Text('PawSetu'),
-            subtitle: Text(l.aboutVersion('1.0.0 (DEMO VERSION 1)')),
+          PawItem(
+            lead: const PawTile(icon: Ph.info),
+            title: 'PawSetu',
+            sub: l.aboutVersion('1.0.0 (DEMO VERSION 1)'),
+            noTrailing: true,
             onTap: () {
               _aboutTaps++;
               if (_aboutTaps >= 5) {
@@ -162,17 +179,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               }
             },
           ),
-          ListTile(
-            leading: const Icon(Ph.mapTrifold),
-            title: Text(l.mapCredit),
-          ),
+          PawItem(lead: const PawTile(icon: Ph.mapTrifold), title: l.mapCredit),
         ]),
         const SizedBox(height: Space.xl),
-        SecondaryButton(
-          label: l.signOut,
-          icon: Ph.signOut,
-          onPressed: () => ref.read(authServiceProvider).signOut(),
-        ),
+        PawButton(label: l.signOut, icon: Ph.signOut, kind: BtnKind.line, size: BtnSize.regular, block: true, onPressed: () => ref.read(authServiceProvider).signOut()),
       ]),
     );
   }

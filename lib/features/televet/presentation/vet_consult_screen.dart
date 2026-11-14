@@ -70,7 +70,7 @@ class VetConsultScreen extends ConsumerWidget {
             appBar: AppBar(
               title: title,
               actions: actions,
-              bottom: TabBar(tabs: [
+              bottom: TabBar(isScrollable: true, tabAlignment: TabAlignment.start, tabs: [
                 Tab(text: l.tvTabChat),
                 Tab(text: l.tvTabHistory),
                 Tab(text: l.tvTabTools),

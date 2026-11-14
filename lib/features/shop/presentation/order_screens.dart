@@ -33,7 +33,7 @@ class OrdersScreen extends ConsumerWidget {
         appBar: AppBar(
           title: Text(l.ordMyOrders),
           actions: const [CartButton()],
-          bottom: TabBar(tabs: [Tab(text: l.ordTabOrders), Tab(text: l.subsTab)]),
+          bottom: TabBar(isScrollable: true, tabAlignment: TabAlignment.start, tabs: [Tab(text: l.ordTabOrders), Tab(text: l.subsTab)]),
         ),
         body: TabBarView(children: [
           AsyncView<List<ShopOrder>>(

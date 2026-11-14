@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/document_preview.dart';
+import '../../../core/widgets/logo.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
@@ -288,7 +290,22 @@ class MedicalCardScreen extends ConsumerWidget {
         const SizedBox(height: Space.sm),
         MedicalSummaryCard(petId: petId),
         const SizedBox(height: Space.lg),
-        InfoNote(l.medicalCardOffline, icon: Ph.cloudCheck),
+        InfoNote(l.medicalCardOffline, icon: Ph.lightning),
+        const SizedBox(height: Space.lg),
+        // Send it or keep it: both open the printable report.
+        Row(children: [
+          Expanded(child: PawButton(label: l.share, icon: Ph.shareNetwork, kind: BtnKind.ink, size: BtnSize.regular, block: true, onPressed: () => context.push('/pets/$petId/report'))),
+          const SizedBox(width: Space.md),
+          Expanded(child: PawButton(label: l.savePdf, icon: Ph.filePdf, kind: BtnKind.soft, size: BtnSize.regular, block: true, onPressed: () => context.push('/pets/$petId/report'))),
+        ]),
+        const SizedBox(height: Space.lg),
+        PawPanel(
+          padding: PawPanel.listPadding,
+          child: PawList(children: [
+            PawItem(lead: const PawTile(icon: Ph.fileText), title: l.fullHealthReport, sub: l.fullHealthReportSub, onTap: () => context.push('/pets/$petId/report')),
+            PawItem(lead: const PawTile(icon: Ph.pencilSimple), title: l.editDetails, sub: l.editDetailsSub, onTap: () => context.push('/pets/$petId/edit')),
+          ]),
+        ),
       ]),
     );
   }
@@ -312,25 +329,72 @@ class MedicalSummaryCard extends ConsumerWidget {
     final rabies = vaccines.where((v) => v.key.startsWith('rabies')).toList();
     final now = DateTime.now();
     final allergies = pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', ');
-    return PassCard(
-      overline: l.medicalCard,
-      overlineIcon: Ph.clipboardText,
-      title: pet.name,
-      subtitle: [
-        '${speciesLabel(context, pet.species)} · ${pet.breedName(context.lang)}',
-        [petAgeLabel(context, pet), if (pet.weightKg != null) Fmt.weight(pet.weightKg!, grams: pet.isBird)].where((s) => s.isNotEmpty).join(' · '),
-      ].where((s) => s.isNotEmpty).join('\n'),
-      leading: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.heroAvatar, name: pet.name),
-      alert: pet.allergies.isNotEmpty ? (l.allergies, allergies) : null,
-      rows: [
-        if (pet.allergies.isEmpty) PassRow(label: l.allergies, value: allergies),
-        PassRow(label: l.currentMedicines, value: meds.isEmpty ? l.none : meds.map((m) => '${m.name} (${frequencyLabel(context, m)})').join(', ')),
-        PassRow(label: l.rabiesVaccine, value: rabies.isEmpty ? l.notRecorded : l.givenOn(Fmt.date(rabies.first.givenDate, context.lang))),
-        PassRow(label: l.microchip, value: pet.microchip ?? l.notAdded, mono: pet.microchip != null),
-        PassRow(label: l.regularClinic, value: clinic == null ? l.notAdded : '${clinic['name']} · ${clinic['phone']}'),
-        PassRow(label: l.owner, value: '${user?.name ?? ''} · ${user?.phone ?? ''}'),
-      ],
-      footnote: l.medicalCardUpdated(Fmt.dateTime(now, context.lang)),
+    final paw = context.paw;
+    final lang = context.lang;
+    final line = context.tint.bandLine;
+    final small = context.text.bodySmall?.copyWith(color: paw.onBandMuted);
+    // UI Design 6: what the card is and that it works offline; the pet in
+    // its arch with the name large; allergies in a red band; the facts a
+    // vet asks for; when it was last updated.
+    return Container(
+      padding: const EdgeInsets.all(Space.lg + Space.xxs),
+      decoration: BoxDecoration(color: paw.band, borderRadius: BorderRadius.circular(Radii.xxl)),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(children: [
+          const PawSetuLogo(size: IconSizes.md + Space.xs, onDark: true),
+          const SizedBox(width: Space.sm),
+          Expanded(child: Text(l.medCardBrand, style: small, maxLines: 1, overflow: TextOverflow.ellipsis)),
+          const SizedBox(width: Space.sm),
+          PawTag(l.worksOffline, kind: TagKind.onDark, icon: Ph.cloudCheckFill),
+        ]),
+        const SizedBox(height: Space.md),
+        Row(children: [
+          PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.profileAvatarSm, name: pet.name),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Semantics(header: true, child: Text(pet.name, style: context.text.displaySmall?.copyWith(color: paw.onBand))),
+              Text([speciesLabel(context, pet.species), pet.breedName(lang)].where((x) => x.isNotEmpty).join(', '), style: context.text.bodyMedium?.copyWith(color: paw.onBandMuted)),
+              Text(
+                [genderLabel(context, pet.gender), petAgeLabel(context, pet), if (pet.weightKg != null) Fmt.weight(pet.weightKg!, grams: pet.isBird)].where((x) => x.isNotEmpty).join(', '),
+                style: context.text.bodyMedium?.copyWith(color: paw.onBandMuted),
+              ),
+            ]),
+          ),
+        ]),
+        if (pet.allergies.isNotEmpty) ...[
+          const SizedBox(height: Space.lg),
+          Semantics(
+            label: '${l.allergies}: $allergies',
+            excludeSemantics: true,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.sm + Space.xxs),
+              decoration: BoxDecoration(color: paw.sos, borderRadius: BorderRadius.circular(Radii.lg)),
+              child: Row(children: [
+                Icon(Ph.warningFill, color: paw.onSos, size: IconSizes.lg),
+                const SizedBox(width: Space.md),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(l.allergies, style: context.text.labelSmall?.copyWith(color: paw.onSos, fontWeight: FontWeight.w500)),
+                    Text(allergies, style: context.text.titleSmall?.copyWith(color: paw.onSos)),
+                  ]),
+                ),
+              ]),
+            ),
+          ),
+        ],
+        const SizedBox(height: Space.lg),
+        KvList(onDark: true, rows: [
+          if (pet.allergies.isEmpty) (l.allergies, allergies, null),
+          (l.currentMedicines, meds.isEmpty ? l.none : meds.map((m) => '${m.name} (${frequencyLabel(context, m)})').join(', '), null),
+          (l.rabiesVaccine, rabies.isEmpty ? l.notRecorded : l.givenOn(Fmt.date(rabies.first.givenDate, lang)), null),
+          (l.microchip, pet.microchip ?? l.notAdded, null),
+          (l.regularClinic, clinic == null ? l.notAdded : '${clinic['name']}\n${clinic['phone']}', null),
+          (l.owner, [user?.name ?? '', user?.phone ?? ''].where((x) => x.isNotEmpty).join('\n'), null),
+        ]),
+        Padding(padding: const EdgeInsets.symmetric(vertical: Space.md + Space.xxs), child: Divider(height: Strokes.hairline, color: line)),
+        Text(l.medicalCardUpdated(Fmt.dateTime(now, lang)), style: context.text.labelSmall?.copyWith(color: paw.onBandMuted, fontWeight: FontWeight.w500)),
+      ]),
     );
   }
 }

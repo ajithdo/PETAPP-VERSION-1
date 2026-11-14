@@ -823,5 +823,70 @@
     "ph": {
       "name": "String"
     }
+  },
+  "medCardBrand": {
+    "en": "PawSetu medical card",
+    "hi": "PawSetu मेडिकल कार्ड",
+    "te": "PawSetu మెడికల్ కార్డ్"
+  },
+  "worksOffline": {
+    "en": "Works offline",
+    "hi": "बिना इंटरनेट चलता है",
+    "te": "ఇంటర్నెట్ లేకున్నా పనిచేస్తుంది"
+  },
+  "savePdf": {
+    "en": "Save PDF",
+    "hi": "PDF सहेजें",
+    "te": "PDF సేవ్ చేయండి"
+  },
+  "fullHealthReport": {
+    "en": "Full health report",
+    "hi": "पूरी हेल्थ रिपोर्ट",
+    "te": "పూర్తి ఆరోగ్య నివేదిక"
+  },
+  "fullHealthReportSub": {
+    "en": "Vaccines, medicines, visits, weight chart",
+    "hi": "टीके, दवाएँ, विज़िट, वज़न चार्ट",
+    "te": "టీకాలు, మందులు, విజిట్‌లు, బరువు చార్ట్"
+  },
+  "editDetails": {
+    "en": "Edit details",
+    "hi": "जानकारी बदलें",
+    "te": "వివరాలు మార్చండి"
+  },
+  "editDetailsSub": {
+    "en": "Allergies, microchip, clinic",
+    "hi": "एलर्जी, माइक्रोचिप, क्लिनिक",
+    "te": "అలెర్జీలు, మైక్రోచిప్, క్లినిక్"
+  },
+  "roleOwnerDoes": {
+    "en": "Can do everything",
+    "hi": "सब कुछ कर सकते हैं",
+    "te": "అన్నీ చేయగలరు"
+  },
+  "roleCoownerDoes": {
+    "en": "Everything except deleting the pet",
+    "hi": "पालतू को हटाने के अलावा सब कुछ",
+    "te": "పెంపుడు జంతువును తొలగించడం తప్ప అన్నీ"
+  },
+  "roleCarerDoes": {
+    "en": "Logs routine, gives medicines, books services",
+    "hi": "दिनचर्या दर्ज करते हैं, दवाएँ देते हैं, सेवाएँ बुक करते हैं",
+    "te": "దినచర్య నమోదు, మందులు ఇవ్వడం, సేవలు బుక్ చేయడం"
+  },
+  "roleViewerDoes": {
+    "en": "Sees everything, logs walks and meals",
+    "hi": "सब देख सकते हैं, सैर और खाना दर्ज करते हैं",
+    "te": "అన్నీ చూడగలరు, నడకలు, భోజనం నమోదు చేయగలరు"
+  },
+  "languageNote": {
+    "en": "Changes the whole app at once, including reminders and PDFs.",
+    "hi": "पूरा ऐप एक साथ बदल जाता है, रिमाइंडर और PDF भी।",
+    "te": "యాప్ మొత్తం ఒకేసారి మారుతుంది, రిమైండర్‌లు, PDFలు కూడా."
+  },
+  "textSizeNote": {
+    "en": "Layouts stay tidy up to 200%.",
+    "hi": "200% तक सब कुछ ठीक से दिखता है।",
+    "te": "200% వరకు అన్నీ చక్కగా కనిపిస్తాయి."
   }
 }

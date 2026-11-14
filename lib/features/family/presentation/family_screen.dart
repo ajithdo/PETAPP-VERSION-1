@@ -38,7 +38,7 @@ class _FamilyScreenState extends ConsumerState<FamilyScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(l.familySharing),
-          bottom: TabBar(tabs: [Tab(text: l.people), Tab(text: l.activity)]),
+          bottom: TabBar(isScrollable: true, tabAlignment: TabAlignment.start, tabs: [Tab(text: l.people), Tab(text: l.activity)]),
         ),
         body: TabBarView(children: [
           PageBody(maxWidth: Space.readingWidth, children: [
@@ -57,17 +57,18 @@ class _FamilyScreenState extends ConsumerState<FamilyScreen> {
                   (Ph.handHeart, l.roleCarer, l.roleCarerHint),
                   (Ph.users, l.roleCoowner, l.roleCoownerHint),
                 ];
-                final cols = c.maxWidth >= 420 && MediaQuery.textScalerOf(context).scale(1) < 1.3 ? 3 : 1;
+                // Three across, as in the design; one per row with big text.
+                final cols = c.maxWidth >= 300 && MediaQuery.textScalerOf(context).scale(1) < 1.15 ? 3 : 1;
                 return TileGrid(columns: cols, spacing: Space.sm, children: [
                   for (final r in roles)
                     Container(
                       padding: const EdgeInsets.all(Space.md),
                       decoration: BoxDecoration(color: context.paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.lg)),
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Icon(r.$1, size: IconSizes.md),
-                        const SizedBox(height: Space.xs),
-                        Text(r.$2, style: context.text.titleSmall),
-                        Text(r.$3, style: context.text.bodySmall),
+                        Icon(r.$1, size: IconSizes.md, color: context.paw.textPrimary),
+                        const SizedBox(height: Space.sm),
+                        Text(r.$2, style: context.text.labelLarge),
+                        Text(r.$3, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
                       ]),
                     ),
                 ]);
@@ -133,67 +134,56 @@ class _PetMembersCard extends ConsumerWidget {
     final canManage = pet.canEdit(user.uid);
     final sent = ref.watch(sentInvitesProvider(pet.id)).value ?? const [];
     final others = pet.members.entries.where((e) => e.key != pet.ownerId).toList();
+    final paw = context.paw;
+    String does(String uid, String role) => uid == pet.ownerId
+        ? l.roleOwnerDoes
+        : switch (role) {
+            'coowner' => l.roleCoownerDoes,
+            'carer' => l.roleCarerDoes,
+            _ => l.roleViewerDoes,
+          };
     return Padding(
       padding: const EdgeInsets.only(top: Space.lg),
       child: PawCard(
-        padding: const EdgeInsets.symmetric(vertical: Space.sm),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          ListTile(
-            leading: PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarMd),
-            title: Text(pet.name, style: context.text.titleMedium),
-            subtitle: Text(l.peopleCount(pet.members.length)),
-            trailing: canManage
-                ? FilledButton.icon(
-                    onPressed: () => _invite(context, ref, others.length),
-                    icon: const Icon(Ph.userPlus),
-                    label: Text(l.invite),
-                  )
-                : null,
-          ),
-          const Divider(),
-          // UI Design 2 caregiver rows: initials, name, a coloured role badge and
-          // what the access covers.
-          for (final e in pet.members.entries)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.xs),
-              // People are circles with initials; the owner's is ink.
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: Space.sm),
-                decoration: BoxDecoration(border: Border(top: BorderSide(color: context.paw.outline))),
-                child: Row(children: [
-                  CircleAvatar(
-                    radius: Sizes.avatarMd / 2,
-                    backgroundColor: e.key == pet.ownerId ? context.paw.textPrimary : context.paw.surfaceSubtle,
-                    child: Text(initials(e.value.name), style: context.text.titleSmall?.copyWith(color: e.key == pet.ownerId ? context.paw.background : context.paw.textPrimary)),
+          // The pet, how many people share it, and Invite.
+          Row(children: [
+            PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarLg, name: pet.name),
+            const SizedBox(width: Space.md),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(pet.name, style: context.text.labelLarge),
+                Text(l.peopleCount(pet.members.length), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              ]),
+            ),
+            if (canManage) PawButton(label: l.invite, icon: Ph.userPlus, onPressed: () => _invite(context, ref, others.length)),
+          ]),
+          const SizedBox(height: Space.sm),
+          // People are circles with initials (the owner's is ink): the name,
+          // what the access covers, and the role as a tag.
+          PawList(children: [
+            for (final e in pet.members.entries)
+              PawItem(
+                lead: Container(
+                  width: Sizes.tile,
+                  height: Sizes.tile,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(color: e.key == pet.ownerId ? paw.textPrimary : context.tint.paper3, shape: BoxShape.circle),
+                  child: Text(
+                    initials(e.value.name),
+                    style: context.text.labelLarge?.copyWith(color: e.key == pet.ownerId ? paw.background : paw.textPrimary, fontFamily: FontFamilies.heading, fontWeight: FontWeight.w700),
                   ),
-                  const SizedBox(width: Space.md),
-                  Expanded(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-                        Text(e.value.name + (e.key == user.uid ? ' (${l.you})' : ''), style: context.text.titleSmall),
-                        StatusChip(
-                          petRoleLabel(context, e.value.role),
-                          tone: e.key == pet.ownerId
-                              ? ChipTone.accent
-                              : e.value.expiresAt != null
-                                  ? ChipTone.warning
-                                  : (e.value.role == 'coowner' ? ChipTone.success : ChipTone.info),
-                        ),
-                      ]),
-                      if (e.value.expiresAt != null) ...[
-                        const SizedBox(height: Space.xxs),
-                        Text(
-                          e.value.expiresAt!.isBefore(DateTime.now())
-                              ? l.accessEnded
-                              : l.accessUntil(Fmt.dateTime(e.value.expiresAt!, context.lang)),
-                          style: context.text.bodySmall,
-                        ),
-                      ],
-                    ]),
-                  ),
+                ),
+                title: e.value.name + (e.key == user.uid ? ' (${l.you})' : ''),
+                sub: e.value.expiresAt != null
+                    ? (e.value.expiresAt!.isBefore(DateTime.now()) ? l.accessEnded : l.accessUntil(Fmt.dateTime(e.value.expiresAt!, context.lang)))
+                    : does(e.key, e.value.role),
+                trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                  PawTag(petRoleLabel(context, e.value.role), kind: e.key == pet.ownerId || e.value.expiresAt != null ? TagKind.gold : TagKind.neutral),
                   if (canManage && e.key != pet.ownerId && e.key != user.uid)
                     PopupMenuButton<String>(
                       tooltip: l.moreOptions,
+                      icon: Icon(Ph.dotsThreeVertical, color: paw.textPrimary),
                       onSelected: (v) => _memberAction(context, ref, v, e.key, e.value),
                       itemBuilder: (_) => [
                         PopupMenuItem(value: 'role', child: Text(l.changeRole)),
@@ -202,7 +192,7 @@ class _PetMembersCard extends ConsumerWidget {
                     ),
                 ]),
               ),
-            ),
+          ]),
           for (final inv in sent)
             ListTile(
               leading: const CircleAvatar(child: Icon(Ph.hourglassHigh)),

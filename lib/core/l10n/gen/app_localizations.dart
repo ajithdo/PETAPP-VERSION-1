@@ -18639,6 +18639,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Who looks after {name}'**
   String whoLooksAfter(String name);
+
+  /// No description provided for @medCardBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu medical card'**
+  String get medCardBrand;
+
+  /// No description provided for @worksOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Works offline'**
+  String get worksOffline;
+
+  /// No description provided for @savePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Save PDF'**
+  String get savePdf;
+
+  /// No description provided for @fullHealthReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Full health report'**
+  String get fullHealthReport;
+
+  /// No description provided for @fullHealthReportSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccines, medicines, visits, weight chart'**
+  String get fullHealthReportSub;
+
+  /// No description provided for @editDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit details'**
+  String get editDetails;
+
+  /// No description provided for @editDetailsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies, microchip, clinic'**
+  String get editDetailsSub;
+
+  /// No description provided for @roleOwnerDoes.
+  ///
+  /// In en, this message translates to:
+  /// **'Can do everything'**
+  String get roleOwnerDoes;
+
+  /// No description provided for @roleCoownerDoes.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything except deleting the pet'**
+  String get roleCoownerDoes;
+
+  /// No description provided for @roleCarerDoes.
+  ///
+  /// In en, this message translates to:
+  /// **'Logs routine, gives medicines, books services'**
+  String get roleCarerDoes;
+
+  /// No description provided for @roleViewerDoes.
+  ///
+  /// In en, this message translates to:
+  /// **'Sees everything, logs walks and meals'**
+  String get roleViewerDoes;
+
+  /// No description provided for @languageNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes the whole app at once, including reminders and PDFs.'**
+  String get languageNote;
+
+  /// No description provided for @textSizeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Layouts stay tidy up to 200%.'**
+  String get textSizeNote;
 }
 
 class _AppLocalizationsDelegate
