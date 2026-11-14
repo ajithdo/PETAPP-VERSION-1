@@ -238,18 +238,18 @@
   "demoOutboxNote": "Demo: nothing was really sent. The message is in the Demo Outbox in the admin panel.",
   "demoLoginNote": "These are demo accounts with made-up people, clinics and data. Nothing here is real, no money is charged and no messages are sent.",
   "demoAccountsTitle": "Demo accounts",
-  "demoAccountsHint": "Tap any account to sign in. No password needed.",
+  "demoAccountsHint": "Tap any account to sign in. No password needed. Nothing here is real and no money is charged.",
   "orSignInWithEmail": "Or sign in with your email",
   "demoGroupOwners": "Pet parents",
   "demoGroupFamily": "Family and pet sitter",
   "demoGroupPartners": "Partners",
-  "demoGroupPlatform": "Platform",
-  "demoPriya": "Bengaluru · Plus · Bruno the Labrador and Misty the Persian cat",
-  "demoRavi": "Hyderabad · Free · Telugu · Simba the Indie puppy and Kiwi the cockatiel",
-  "demoAnjali": "Delhi NCR · Free · Hindi · Easy mode · Coco the rabbit and Tiger the senior cat",
-  "demoArjun": "Mumbai · Plus · Max the German Shepherd and Luna the Beagle puppy",
-  "demoRohan": "Priya's husband · Carer for Bruno and Misty",
-  "demoMeera": "Pet sitter for Arjun · access ends in 3 days",
+  "demoGroupPlatform": "PawSetu team",
+  "demoPriya": "Bengaluru. Bruno the Labrador and Misty the Persian cat",
+  "demoRavi": "Hyderabad. Simba the Indie puppy and Kiwi the cockatiel",
+  "demoAnjali": "Delhi NCR. Coco the rabbit and Tiger the senior cat",
+  "demoArjun": "Mumbai. Max the German Shepherd and Luna the Beagle puppy",
+  "demoRohan": "Priya's husband. Carer for Bruno and Misty",
+  "demoMeera": "Pet sitter for Arjun. Access ends in 3 days",
   "demoClinicAdmin": "Clinic admin · Golconda Gate Pet Clinic, Hyderabad",
   "demoVet": "Vet · bookings, tele-vet queue and prescriptions",
   "demoGroomer": "Groomer · accepts booking requests",
@@ -7600,5 +7600,95 @@
   "catShortBirdFoodCages": "Birds",
   "catShortRabbitCare": "Rabbits",
   "catShortClothing": "Clothing",
-  "catShortTravel": "Travel"
+  "catShortTravel": "Travel",
+  "orContinueWith": "or continue with",
+  "partnerAsk": "Run a clinic, salon or shop?",
+  "partnerApply": "Apply as a partner",
+  "demoPartnersTeam": "Partners and the PawSetu team",
+  "seeAllCount": "See all {count}",
+  "@seeAllCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sosCallNumber": "Call {phone}",
+  "@sosCallNumber": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "openMedicalCard": "Open medical card",
+  "tvBookVideo": "Book video",
+  "tvUnlimitedWord": "Unlimited",
+  "tvConsultationsWord": "consultations",
+  "tvPerMonthTitle": "{count} a month",
+  "@tvPerMonthTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tvUsedSub": "{used} used so far",
+  "@tvUsedSub": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      }
+    }
+  },
+  "tvMessagesTitle": "{count} messages",
+  "@tvMessagesTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tvWordsSub": "{words} words each",
+  "@tvWordsSub": {
+    "placeholders": {
+      "words": {
+        "type": "int"
+      }
+    }
+  },
+  "tvHoursTitle": "{hours} hours",
+  "@tvHoursTitle": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "tvHoursSub": "chat stays open",
+  "tvVideoTitle": "Video calls",
+  "tvVideoSubPlus": "with 10% off",
+  "tvVideoSubFree": "with Plus only",
+  "tvPetWithVet": "{pet} with {vet}",
+  "@tvPetWithVet": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "vet": {
+        "type": "String"
+      }
+    }
+  },
+  "tvOpenChat": "Open chat",
+  "tvPrescriptionWord": "Prescription",
+  "aiCareAnswers": "Care answers for {name}. Not a diagnosis.",
+  "@aiCareAnswers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "aiCareAnswersAll": "Care answers for your pet. Not a diagnosis."
 }

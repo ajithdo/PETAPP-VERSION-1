@@ -17,14 +17,7 @@ class WelcomeScreen extends ConsumerStatefulWidget {
 }
 
 class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
-  final _page = PageController();
   int _index = 0;
-
-  @override
-  void dispose() {
-    _page.dispose();
-    super.dispose();
-  }
 
   void _finish({String to = '/signin'}) {
     ref.read(settingsProvider.notifier).setOnboardingSeen();
@@ -42,93 +35,81 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
       (const ['tiger', 'luna', 'sheru'], l.welcome3Title, l.welcome3Body),
     ];
     final last = _index == slides.length - 1;
+    final paw = context.paw;
+    void next() => last ? _finish() : setState(() => _index++);
+    void back() {
+      if (_index > 0) setState(() => _index--);
+    }
+
+    final s = slides[_index];
+    final demo = ref.watch(appConfigProvider).isDemo;
+    // UI Design 6: everything flows from the top (nothing pinned to the
+    // bottom): the doorways, the words, the dots, then the buttons. Swipe or
+    // tap Next to change the slide.
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
-            child: Column(children: [
-              Padding(
-                padding: EdgeInsets.all(context.gutter),
-                child: const Row(children: [
-                  PawSetuLogo(size: Sizes.logo, withName: true),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.fromLTRB(context.gutter, Space.sm, context.gutter, context.gutter + Space.lg),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: Sizes.narrowPage),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                const Row(children: [
+                  PawSetuLogo(size: Sizes.topLogo, withName: true),
                   Spacer(),
                   LanguageMenu(),
                 ]),
-              ),
-              Expanded(
-                child: PageView.builder(
-                  controller: _page,
-                  itemCount: slides.length,
-                  onPageChanged: (i) => setState(() => _index = i),
-                  itemBuilder: (context, i) {
-                    final s = slides[i];
-                    return SingleChildScrollView(
-                      padding: EdgeInsets.symmetric(horizontal: context.gutter),
-                      child: Column(children: [
-                        const SizedBox(height: Space.xl),
-                        _Colonnade(pets: s.$1),
-                        const SizedBox(height: Space.xl),
-                        Semantics(
-                          header: true,
-                          child: Text(s.$2, style: context.text.displaySmall, textAlign: TextAlign.center),
-                        ),
-                        const SizedBox(height: Space.md),
-                        Text(s.$3,
-                            style: context.text.bodyLarge?.copyWith(color: context.paw.textSecondary),
-                            textAlign: TextAlign.center),
-                      ]),
-                    );
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onHorizontalDragEnd: (d) {
+                    final v = d.primaryVelocity ?? 0;
+                    if (v < 0 && !last) next();
+                    if (v > 0) back();
                   },
-                ),
-              ),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                for (var i = 0; i < slides.length; i++)
-                  AnimatedContainer(
-                    duration: Motion.enter,
-                    margin: const EdgeInsets.all(Space.xs),
-                    width: i == _index ? Space.xl : Sizes.dot,
-                    height: Sizes.dot,
-                    decoration: BoxDecoration(
-                      color: i == _index ? context.paw.textPrimary : context.paw.controlBorder.withValues(alpha: Opacities.half),
-                      borderRadius: BorderRadius.circular(Radii.xs),
-                    ),
+                  child: AnimatedSwitcher(
+                    duration: context.reduceMotion ? Duration.zero : Motion.enter,
+                    child: Column(key: ValueKey(_index), children: [
+                      const SizedBox(height: Sizes.sectionGap),
+                      _Colonnade(pets: s.$1),
+                      const SizedBox(height: Space.xxl),
+                      Semantics(header: true, child: Text(s.$2, style: context.text.displaySmall, textAlign: TextAlign.center)),
+                      const SizedBox(height: Space.md),
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: Sizes.placeCardMinWidth),
+                        child: Text(s.$3, style: context.text.bodyMedium?.copyWith(color: paw.textSecondary), textAlign: TextAlign.center),
+                      ),
+                    ]),
                   ),
-              ]),
-              Padding(
-                padding: EdgeInsets.all(context.gutter),
-                child: Row(children: [
-                  if (!last) LinkButton(label: l.skip, onPressed: _finish),
+                ),
+                const SizedBox(height: Space.xl),
+                Semantics(
+                  label: '${_index + 1} / ${slides.length}',
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    for (var i = 0; i < slides.length; i++)
+                      AnimatedContainer(
+                        duration: Motion.enter,
+                        margin: const EdgeInsets.symmetric(horizontal: Space.xs),
+                        width: i == _index ? Space.xl + Space.xs : Space.xs + Space.xxs,
+                        height: Space.xs + Space.xxs,
+                        decoration: BoxDecoration(color: i == _index ? paw.textPrimary : context.tint.line2, borderRadius: BorderRadius.circular(Radii.lg)),
+                      ),
+                  ]),
+                ),
+                const SizedBox(height: Space.xl),
+                Row(children: [
+                  if (!last) TextLink(l.skip, onTap: _finish),
                   const Spacer(),
-                  PrimaryButton(
-                    expand: false,
-                    label: last ? l.getStarted : l.next,
-                    icon: last ? null : Ph.arrowRight,
-                    onPressed: last
-                        ? _finish
-                        : () => _page.nextPage(
-                            duration: Duration(milliseconds: context.reduceMotion ? 1 : 280), curve: Curves.easeOut),
-                  ),
+                  PawButton(label: last ? l.getStarted : l.next, icon: last ? null : Ph.arrowRight, size: BtnSize.regular, onPressed: next),
                 ]),
-              ),
-              if (ref.watch(appConfigProvider).isDemo)
-                Padding(
-                  padding: EdgeInsets.fromLTRB(context.gutter, 0, context.gutter, context.gutter),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton.icon(
-                      onPressed: () => _finish(to: '/demo'),
-                      icon: const Icon(Ph.flask),
-                      label: Text(l.exploreDemo),
-                    ),
-                  ),
-                ),
-              if (ref.watch(appConfigProvider).isDemo)
-                Padding(
-                  padding: EdgeInsets.fromLTRB(context.gutter, 0, context.gutter, context.gutter),
-                  child: Text(l.welcomeLanguages, textAlign: TextAlign.center, style: context.text.bodySmall),
-                ),
-            ]),
+                if (demo) ...[
+                  const SizedBox(height: Space.lg),
+                  PawButton(label: l.exploreDemo, icon: Ph.flask, kind: BtnKind.line, size: BtnSize.regular, block: true, onPressed: () => _finish(to: '/demo')),
+                  const SizedBox(height: Space.lg),
+                  Text(l.welcomeLanguages, textAlign: TextAlign.center, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+                ],
+              ]),
+            ),
           ),
         ),
       ),
@@ -145,25 +126,27 @@ class _Colonnade extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
-    final side = context.isPhone ? Sizes.avatarLg + Space.xl : Sizes.profileAvatarSm;
-    final mid = context.isPhone ? Sizes.garland : Sizes.garlandLarge;
     Widget photo(String name) => Image.asset('assets/images/demo/pets/$name.png', fit: BoxFit.cover, excludeFromSemantics: true);
-    Widget sideArch(String name) => ArchClip(
-      width: side / Sizes.archAspect,
-      child: SizedBox(width: side / Sizes.archAspect, height: side, child: photo(name)),
-    );
     return ExcludeSemantics(
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end, children: [
-        sideArch(pets[0]),
-        const SizedBox(width: Space.sm),
-        Container(
-          padding: const EdgeInsets.fromLTRB(Space.sm, Space.sm, Space.sm, 0),
-          decoration: BoxDecoration(color: paw.band, borderRadius: BorderRadius.vertical(top: Radius.circular(mid), bottom: const Radius.circular(Radii.xl))),
-          child: Garland(photo: photo(pets[1]), done: 5, total: 5, size: mid),
-        ),
-        const SizedBox(width: Space.sm),
-        sideArch(pets[2]),
-      ]),
+      child: LayoutBuilder(builder: (context, box) {
+        // The design's sizes (84 px side arches, a 168 px garland in a dark
+        // doorway); a little smaller when the screen is narrow.
+        const full = 2 * Sizes.welcomeArch + 2 * Space.sm + Sizes.welcomeGarland + 2 * Space.md;
+        final k = (box.maxWidth / full).clamp(0.6, 1.0);
+        final side = Sizes.welcomeArch * k, mid = Sizes.welcomeGarland * k;
+        Widget sideArch(String name) => ArchClip(width: side, child: SizedBox(width: side, height: side * Sizes.archAspect, child: photo(name)));
+        return Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end, children: [
+          sideArch(pets[0]),
+          const SizedBox(width: Space.sm),
+          Container(
+            padding: EdgeInsets.fromLTRB(Space.md * k, Space.md * k, Space.md * k, 0),
+            decoration: BoxDecoration(color: paw.band, borderRadius: BorderRadius.vertical(top: Radius.circular(mid), bottom: const Radius.circular(Radii.xl + Space.xxs))),
+            child: Garland(photo: photo(pets[1]), done: 5, total: 5, size: mid),
+          ),
+          const SizedBox(width: Space.sm),
+          sideArch(pets[2]),
+        ]);
+      }),
     );
   }
 }
@@ -184,10 +167,8 @@ class LanguageMenu extends ConsumerWidget {
         PopupMenuItem(value: 'hi', child: Text('हिन्दी')),
         PopupMenuItem(value: 'te', child: Text('తెలుగు')),
       ],
-      child: Chip(
-        avatar: const Icon(Ph.translate, size: IconSizes.chip),
-        label: Text(languageName(locale)),
-      ),
+      // A quiet chip: the language's own name and a small arrow.
+      child: IgnorePointer(child: PawChip(label: languageName(locale), icon: Ph.translate, trailing: Ph.caretDown)),
     );
   }
 }

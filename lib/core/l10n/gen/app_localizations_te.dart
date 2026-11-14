@@ -497,7 +497,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get demoAccountsHint =>
-      'ఏ ఖాతానైనా ట్యాప్ చేసి సైన్ ఇన్ అవ్వండి. పాస్‌వర్డ్ అవసరం లేదు.';
+      'ఏ ఖాతానైనా ట్యాప్ చేసి సైన్ ఇన్ అవ్వండి. పాస్‌వర్డ్ అవసరం లేదు. ఇక్కడ ఏదీ నిజం కాదు, డబ్బు వసూలు కాదు.';
 
   @override
   String get orSignInWithEmail => 'లేదా మీ ఈమెయిల్‌తో సైన్ ఇన్ చేయండి';
@@ -512,30 +512,27 @@ class AppLocalizationsTe extends AppLocalizations {
   String get demoGroupPartners => 'భాగస్వాములు';
 
   @override
-  String get demoGroupPlatform => 'ప్లాట్‌ఫామ్';
+  String get demoGroupPlatform => 'PawSetu టీమ్';
 
   @override
-  String get demoPriya =>
-      'బెంగళూరు · Plus · లాబ్రడార్ బ్రూనో, పర్షియన్ పిల్లి మిస్టీ';
+  String get demoPriya => 'బెంగళూరు, లాబ్రడార్ బ్రూనో, పర్షియన్ పిల్లి మిస్టీ';
 
   @override
-  String get demoRavi =>
-      'హైదరాబాద్ · Free · తెలుగు · దేశీ కుక్కపిల్ల సింబా, కాకటీల్ కివీ';
+  String get demoRavi => 'హైదరాబాద్, దేశీ కుక్కపిల్ల సింబా, కాకటీల్ కివీ';
 
   @override
-  String get demoAnjali =>
-      'ఢిల్లీ NCR · Free · హిందీ · ఈజీ మోడ్ · కుందేలు కోకో, వృద్ధ పిల్లి టైగర్';
+  String get demoAnjali => 'ఢిల్లీ NCR, కుందేలు కోకో, వృద్ధ పిల్లి టైగర్';
 
   @override
   String get demoArjun =>
-      'ముంబై · Plus · జర్మన్ షెపర్డ్ మ్యాక్స్, బీగల్ కుక్కపిల్ల లూనా';
+      'ముంబై, జర్మన్ షెపర్డ్ మ్యాక్స్, బీగల్ కుక్కపిల్ల లూనా';
 
   @override
-  String get demoRohan => 'ప్రియ భర్త · బ్రూనో, మిస్టీల సంరక్షకుడు';
+  String get demoRohan => 'ప్రియ భర్త, బ్రూనో, మిస్టీల సంరక్షకుడు';
 
   @override
   String get demoMeera =>
-      'అర్జున్ పెట్ సిట్టర్ · యాక్సెస్ 3 రోజుల్లో ముగుస్తుంది';
+      'అర్జున్ పెట్ సిట్టర్, యాక్సెస్ 3 రోజుల్లో ముగుస్తుంది';
 
   @override
   String get demoClinicAdmin =>
@@ -10669,4 +10666,95 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get catShortTravel => 'ప్రయాణం';
+
+  @override
+  String get orContinueWith => 'లేదా దీనితో కొనసాగండి';
+
+  @override
+  String get partnerAsk => 'క్లినిక్, సెలూన్ లేదా షాప్ నడుపుతున్నారా?';
+
+  @override
+  String get partnerApply => 'భాగస్వామిగా దరఖాస్తు చేయండి';
+
+  @override
+  String get demoPartnersTeam => 'భాగస్వాములు, PawSetu టీమ్';
+
+  @override
+  String seeAllCount(int count) {
+    return 'మొత్తం $count చూడండి';
+  }
+
+  @override
+  String sosCallNumber(String phone) {
+    return '$phoneకు కాల్ చేయండి';
+  }
+
+  @override
+  String get openMedicalCard => 'మెడికల్ కార్డ్ తెరవండి';
+
+  @override
+  String get tvBookVideo => 'వీడియో బుక్ చేయండి';
+
+  @override
+  String get tvUnlimitedWord => 'అపరిమితం';
+
+  @override
+  String get tvConsultationsWord => 'సంప్రదింపులు';
+
+  @override
+  String tvPerMonthTitle(int count) {
+    return 'నెలకు $count';
+  }
+
+  @override
+  String tvUsedSub(int used) {
+    return 'ఇప్పటివరకు $used వాడారు';
+  }
+
+  @override
+  String tvMessagesTitle(int count) {
+    return '$count సందేశాలు';
+  }
+
+  @override
+  String tvWordsSub(int words) {
+    return 'ఒక్కొక్కటి $words పదాలు';
+  }
+
+  @override
+  String tvHoursTitle(int hours) {
+    return '$hours గంటలు';
+  }
+
+  @override
+  String get tvHoursSub => 'చాట్ తెరిచి ఉంటుంది';
+
+  @override
+  String get tvVideoTitle => 'వీడియో కాల్‌లు';
+
+  @override
+  String get tvVideoSubPlus => '10% తగ్గింపుతో';
+
+  @override
+  String get tvVideoSubFree => 'Plusలో మాత్రమే';
+
+  @override
+  String tvPetWithVet(String pet, String vet) {
+    return '$vetతో $pet';
+  }
+
+  @override
+  String get tvOpenChat => 'చాట్ తెరవండి';
+
+  @override
+  String get tvPrescriptionWord => 'ప్రిస్క్రిప్షన్';
+
+  @override
+  String aiCareAnswers(String name) {
+    return '$name సంరక్షణ సమాధానాలు. ఇది రోగ నిర్ధారణ కాదు.';
+  }
+
+  @override
+  String get aiCareAnswersAll =>
+      'మీ పెంపుడు జంతువు సంరక్షణ సమాధానాలు. ఇది రోగ నిర్ధారణ కాదు.';
 }

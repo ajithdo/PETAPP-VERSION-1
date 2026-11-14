@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart' show CupertinoPageTransitionsBuilder;
 import 'package:flutter/material.dart';
 
+import 'ph.dart';
 import 'tokens.dart';
 
 /// Builds the Material 3 theme from the design tokens (UI Design 6 "Toran",
@@ -122,6 +123,7 @@ class AppTheme {
     final target = easyMode ? TapTarget.easy : TapTarget.min;
     const pill = StadiumBorder();
     final focusRing = BorderSide(color: paw.focus, width: Strokes.focus);
+    final tints = light ? ToranTints.light : ToranTints.dark;
     final controlSide = BorderSide(color: paw.controlBorder);
     RoundedRectangleBorder rounded(double r, [BorderSide side = BorderSide.none]) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(r), side: side);
     OutlineInputBorder field(Color c, [double w = 1]) => OutlineInputBorder(
@@ -156,13 +158,23 @@ class AppTheme {
       iconTheme: IconThemeData(color: tp, size: IconSizes.lg),
       appBarTheme: AppBarTheme(
         backgroundColor: paw.background,
-        titleSpacing: Space.lg,
+        // With a back arrow the title starts 56 px in, as in the design;
+        // without one it keeps a normal margin.
+        titleSpacing: Space.md,
+        leadingWidth: Sizes.topControl,
         foregroundColor: tp,
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: false,
-        titleTextStyle: textTheme.titleLarge,
+        // UI Design 6 sub-page header: a back arrow, then a 19 px title.
+        titleTextStyle: styleFor(TypeScale.appBar, locale, tp),
+        toolbarHeight: Sizes.dock - Space.md,
         shape: const Border(),
+      ),
+      actionIconTheme: ActionIconThemeData(
+        backButtonIconBuilder: (_) => const Icon(Ph.arrowLeft),
+        closeButtonIconBuilder: (_) => const Icon(Ph.x),
+        drawerButtonIconBuilder: (_) => const Icon(Ph.list),
       ),
       cardTheme: CardThemeData(
         color: paw.surface,
@@ -268,9 +280,11 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: paw.surface,
-        contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.lg),
-        border: field(paw.controlBorder),
-        enabledBorder: field(paw.controlBorder),
+        // UI Design 6 fields: 52 px tall with a quiet 1.5 px edge (darker in
+        // high contrast).
+        contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md + Space.xs),
+        border: field(highContrast ? paw.controlBorder : tints.line2, Strokes.strong),
+        enabledBorder: field(highContrast ? paw.controlBorder : tints.line2, Strokes.strong),
         focusedBorder: field(paw.focus, 2),
         errorBorder: field(paw.error),
         focusedErrorBorder: field(paw.error, 2),

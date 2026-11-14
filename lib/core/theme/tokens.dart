@@ -663,6 +663,9 @@ class TypeScale {
   /// Badges, chart axes, small tags (12 px, the design's smallest text).
   static const labelSmall = TypeToken(12, 16, FontWeight.w600);
 
+  /// The title of a sub-page, beside its back arrow.
+  static const appBar = TypeToken(19, 24, FontWeight.w700, tracking: -0.2, heading: true);
+
   /// Labels under the dock icons (11 px in the design).
   static const dock = TypeToken(11, 13, FontWeight.w500);
 
@@ -983,6 +986,10 @@ class Sizes {
 
   /// A pet's arch on Me (its height with the ring; the picture is 60 px wide).
   static const double meArch = 84;
+
+  /// Welcome: the side arches and the middle garland.
+  static const double welcomeArch = 84;
+  static const double welcomeGarland = 168;
 
   /// Quick-action circles on Home.
   static const double quickCircle = 56;

@@ -63,18 +63,17 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
       title: l.signInTitle,
       subtitle: l.signInSubtitle,
       trailing: const LanguageMenu(),
-      top: cfg.isDemo ? const DemoAccountList(minItemWidth: 250, embedded: true) : null,
+      // UI Design 6: the form first, the demo accounts on a marigold panel
+      // under it (beside it on desktop).
+      below: cfg.isDemo ? const DemoAccountList(minItemWidth: 250, embedded: true) : null,
       children: [
-        if (cfg.isDemo) ...[
-          Semantics(header: true, child: Text(l.orSignInWithEmail, style: context.text.titleMedium, textAlign: TextAlign.center)),
-          const SizedBox(height: Space.md),
-        ],
         Form(
           key: _form,
           child: AutofillGroup(
             child: Column(children: [
               PawTextField(
                 label: l.email,
+                labelInside: true,
                 controller: _email,
                 keyboardType: TextInputType.emailAddress,
                 autofill: const [AutofillHints.email],
@@ -84,6 +83,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
               ),
               PawTextField(
                 label: l.password,
+                labelInside: true,
                 controller: _password,
                 obscure: _hide,
                 autofill: const [AutofillHints.password],
@@ -93,41 +93,38 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 onSubmitted: (_) => _submit(auth),
                 suffix: IconButton(
                   tooltip: _hide ? l.showPassword : l.hidePassword,
-                  icon: Icon(_hide ? Ph.eye : Ph.eyeSlash),
+                  icon: Icon(_hide ? Ph.eye : Ph.eyeSlash, size: IconSizes.md, color: context.paw.textPrimary),
                   onPressed: () => setState(() => _hide = !_hide),
                 ),
               ),
             ]),
           ),
         ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: TextButton(onPressed: () => context.push('/forgot'), child: Text(l.forgotPassword)),
-        ),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Flexible(child: TextLink(l.forgotPassword, onTap: () => context.push('/forgot'))),
+          const SizedBox(width: Space.md),
+          Flexible(child: TextLink(l.createAccount, onTap: () => context.push('/signup'))),
+        ]),
+        const SizedBox(height: Space.md),
         if (_error != null) ...[
           InfoNote(_error!, icon: Ph.warningCircle, tone: ChipTone.error),
           const SizedBox(height: Space.md),
         ],
-        PrimaryButton(label: l.signIn, loading: _busy, onPressed: () => _submit(auth)),
+        PawButton(label: l.signIn, icon: Ph.signIn, kind: BtnKind.ink, size: BtnSize.regular, block: true, onPressed: _busy ? null : () => _submit(auth)),
+        const SizedBox(height: Space.md),
         const OrDivider(),
+        const SizedBox(height: Space.md),
         SocialButtons(
           busy: _busy,
           onGoogle: () => _social(auth.signInWithGoogle, 'Google'),
           onApple: () => _social(auth.signInWithApple, 'Apple'),
           onPhone: () => context.push('/phone'),
         ),
-        const SizedBox(height: Space.lg),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Flexible(child: Text(l.newHere, style: context.text.bodyMedium)),
-          TextButton(onPressed: () => context.push('/signup'), child: Text(l.createAccount)),
+        const SizedBox(height: Space.md),
+        Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.xs, children: [
+          Text(l.partnerAsk, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+          TextLink(l.partnerApply, onTap: () => context.push('/partner-signup')),
         ]),
-        Center(
-          child: TextButton.icon(
-            onPressed: () => context.push('/partner-signup'),
-            icon: const Icon(Ph.storefront),
-            label: Text(l.partnerSignupLink),
-          ),
-        ),
       ],
     );
   }

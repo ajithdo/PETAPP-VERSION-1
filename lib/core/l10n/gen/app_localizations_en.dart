@@ -508,7 +508,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get demoAccountsHint =>
-      'Tap any account to sign in. No password needed.';
+      'Tap any account to sign in. No password needed. Nothing here is real and no money is charged.';
 
   @override
   String get orSignInWithEmail => 'Or sign in with your email';
@@ -523,29 +523,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get demoGroupPartners => 'Partners';
 
   @override
-  String get demoGroupPlatform => 'Platform';
+  String get demoGroupPlatform => 'PawSetu team';
 
   @override
   String get demoPriya =>
-      'Bengaluru · Plus · Bruno the Labrador and Misty the Persian cat';
+      'Bengaluru. Bruno the Labrador and Misty the Persian cat';
 
   @override
   String get demoRavi =>
-      'Hyderabad · Free · Telugu · Simba the Indie puppy and Kiwi the cockatiel';
+      'Hyderabad. Simba the Indie puppy and Kiwi the cockatiel';
 
   @override
   String get demoAnjali =>
-      'Delhi NCR · Free · Hindi · Easy mode · Coco the rabbit and Tiger the senior cat';
+      'Delhi NCR. Coco the rabbit and Tiger the senior cat';
 
   @override
   String get demoArjun =>
-      'Mumbai · Plus · Max the German Shepherd and Luna the Beagle puppy';
+      'Mumbai. Max the German Shepherd and Luna the Beagle puppy';
 
   @override
-  String get demoRohan => 'Priya\'s husband · Carer for Bruno and Misty';
+  String get demoRohan => 'Priya\'s husband. Carer for Bruno and Misty';
 
   @override
-  String get demoMeera => 'Pet sitter for Arjun · access ends in 3 days';
+  String get demoMeera => 'Pet sitter for Arjun. Access ends in 3 days';
 
   @override
   String get demoClinicAdmin =>
@@ -11042,4 +11042,94 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get catShortTravel => 'Travel';
+
+  @override
+  String get orContinueWith => 'or continue with';
+
+  @override
+  String get partnerAsk => 'Run a clinic, salon or shop?';
+
+  @override
+  String get partnerApply => 'Apply as a partner';
+
+  @override
+  String get demoPartnersTeam => 'Partners and the PawSetu team';
+
+  @override
+  String seeAllCount(int count) {
+    return 'See all $count';
+  }
+
+  @override
+  String sosCallNumber(String phone) {
+    return 'Call $phone';
+  }
+
+  @override
+  String get openMedicalCard => 'Open medical card';
+
+  @override
+  String get tvBookVideo => 'Book video';
+
+  @override
+  String get tvUnlimitedWord => 'Unlimited';
+
+  @override
+  String get tvConsultationsWord => 'consultations';
+
+  @override
+  String tvPerMonthTitle(int count) {
+    return '$count a month';
+  }
+
+  @override
+  String tvUsedSub(int used) {
+    return '$used used so far';
+  }
+
+  @override
+  String tvMessagesTitle(int count) {
+    return '$count messages';
+  }
+
+  @override
+  String tvWordsSub(int words) {
+    return '$words words each';
+  }
+
+  @override
+  String tvHoursTitle(int hours) {
+    return '$hours hours';
+  }
+
+  @override
+  String get tvHoursSub => 'chat stays open';
+
+  @override
+  String get tvVideoTitle => 'Video calls';
+
+  @override
+  String get tvVideoSubPlus => 'with 10% off';
+
+  @override
+  String get tvVideoSubFree => 'with Plus only';
+
+  @override
+  String tvPetWithVet(String pet, String vet) {
+    return '$pet with $vet';
+  }
+
+  @override
+  String get tvOpenChat => 'Open chat';
+
+  @override
+  String get tvPrescriptionWord => 'Prescription';
+
+  @override
+  String aiCareAnswers(String name) {
+    return 'Care answers for $name. Not a diagnosis.';
+  }
+
+  @override
+  String get aiCareAnswersAll => 'Care answers for your pet. Not a diagnosis.';
 }

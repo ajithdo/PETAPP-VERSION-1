@@ -15,6 +15,7 @@ import '../data/assistant_repository.dart';
 import '../domain/assistant_engine.dart';
 import 'assistant_labels.dart';
 import '../../../core/theme/ph.dart';
+import '../../pets/data/pets_repository.dart';
 
 /// "Ask PawSetu" (spec 7.14): quick care answers, never a diagnosis. Red
 /// flags show SOS and a tele-vet button straight away.
@@ -76,6 +77,7 @@ class _AskScreenState extends ConsumerState<AskScreen> {
     }
     final msgs = ref.watch(assistantMessagesProvider);
     final a = ref.watch(assistantAllowanceProvider);
+    final pet = ref.watch(selectedPetProvider);
     final list = msgs.value ?? const <ChatMessage>[];
     final asked = {for (final m in list) if (m.type == 'question' && m.topic != null) m.topic};
     final suggestions = assistantTopics.where((t) => !asked.contains(t)).take(8).toList();
@@ -97,11 +99,10 @@ class _AskScreenState extends ConsumerState<AskScreen> {
           Padding(
             padding: const EdgeInsets.only(right: Space.md),
             child: Center(
-              child: StatusChip(
-                a.unlimited ? l.aiUnlimited : l.aiLeft(a.left, a.limit),
-                tone: a.unlimited ? ChipTone.success : (a.left <= 1 ? ChipTone.warning : ChipTone.info),
-                icon: a.unlimited ? Ph.infinity : Ph.question,
-              ),
+              // Marigold "Unlimited with Plus"; a quiet count on the free plan.
+              child: a.unlimited
+                  ? PawTag(l.aiUnlimited, kind: TagKind.plus, icon: Ph.infinity)
+                  : PawTag(l.aiLeft(a.left, a.limit), kind: a.left <= 1 ? TagKind.gold : TagKind.neutral),
             ),
           ),
         ],
@@ -110,19 +111,36 @@ class _AskScreenState extends ConsumerState<AskScreen> {
         Expanded(
           child: list.isEmpty && !_limitHit
               ? _Intro(onPick: (t) => _ask(aiQuestion(context, t), topic: t))
-              : ListView(
+              : Align(
+                alignment: Alignment.topCenter,
+                child: ListView(
                   reverse: true,
+                  shrinkWrap: true,
                   padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.md),
                   children: [
                     for (final w in items.reversed) Center(child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: Space.readingWidth), child: w)),
-                    Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: Space.readingWidth),
-                        child: Padding(padding: const EdgeInsets.only(bottom: Space.md), child: InfoNote(l.aiDisclaimer)),
+                    // One quiet line at the very top: whose answers these
+                    // are, and that they are not a diagnosis.
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: Space.sm),
+                      child: Semantics(
+                        label: l.aiDisclaimer,
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          Icon(Ph.sparkle, size: IconSizes.sm, color: context.paw.textSecondary),
+                          const SizedBox(width: Space.sm),
+                          Flexible(
+                            child: Text(
+                              pet == null ? l.aiCareAnswersAll : l.aiCareAnswers(pet.name),
+                              textAlign: TextAlign.center,
+                              style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary),
+                            ),
+                          ),
+                        ]),
                       ),
                     ),
                   ],
                 ),
+              ),
         ),
         if (list.isNotEmpty && suggestions.isNotEmpty && !a.exhausted)
           ChipStrip(chips: [
@@ -149,15 +167,15 @@ class _AskScreenState extends ConsumerState<AskScreen> {
                         decoration: InputDecoration(
                           hintText: l.aiHint,
                           isDense: true,
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full)),
-                          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.paw.controlBorder)),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.tint.line2, width: Strokes.strong)),
+                          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.tint.line2, width: Strokes.strong)),
                           contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md + Space.xxs),
                         ),
                       ),
                     ),
-                    const SizedBox(width: Space.xs),
+                    const SizedBox(width: Space.md),
                     IconButton.filled(
-                      style: IconButton.styleFrom(backgroundColor: context.paw.action, foregroundColor: context.paw.onAction, minimumSize: const Size.square(TapTarget.easy)),
+                      style: IconButton.styleFrom(backgroundColor: context.paw.action, foregroundColor: context.paw.onAction, minimumSize: const Size.square(Sizes.field), fixedSize: const Size.square(Sizes.field)),
                       tooltip: l.aiAsk,
                       onPressed: _busy || _ctrl.text.trim().isEmpty ? null : () => _ask(_ctrl.text),
                       icon: _busy
@@ -209,21 +227,22 @@ class _QuestionBubble extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        margin: const EdgeInsets.only(top: Space.md, bottom: Space.xs, left: Space.x3l),
-        padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
+        margin: const EdgeInsets.only(top: Space.lg, bottom: Space.lg, left: Space.x3l),
+        padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs, vertical: Space.sm + Space.xxs),
         // UI Design 6: your words in an ink bubble on the right.
         decoration: BoxDecoration(
           color: context.paw.textPrimary,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(Radii.xl),
-            topRight: Radius.circular(Radii.xl),
-            bottomLeft: Radius.circular(Radii.xl),
-            bottomRight: Radius.circular(Radii.xs),
+            topLeft: Radius.circular(Radii.lg + Space.xxs),
+            topRight: Radius.circular(Radii.lg + Space.xxs),
+            bottomLeft: Radius.circular(Radii.lg + Space.xxs),
+            bottomRight: Radius.circular(Radii.xs + Space.xxs),
           ),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
           Text(text, style: context.text.bodyMedium?.copyWith(color: context.paw.background)),
-          Text(Fmt.time(at, context.lang), style: context.text.labelSmall?.copyWith(color: context.paw.background.withValues(alpha: Opacities.onDarkMuted))),
+          const SizedBox(height: Space.xs),
+          Text(Fmt.time(at, context.lang), style: context.text.labelSmall?.copyWith(color: context.paw.background.withValues(alpha: Opacities.onDarkMuted), fontWeight: FontWeight.w500)),
         ]),
       ),
     );
@@ -238,28 +257,38 @@ class _AnswerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = context.l10n;
     final known = topic != null;
-    return Padding(
-      padding: const EdgeInsets.only(right: Space.xl, bottom: Space.xs),
-      child: PawCard(
-        padding: const EdgeInsets.all(Space.md),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    final paw = context.paw;
+    // UI Design 6: the answer as a white bubble on the left, signed "Ask
+    // PawSetu" with the demo tag, the reminder that it is not a diagnosis as
+    // a note inside it, and the way to a vet as a small marigold button.
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        margin: const EdgeInsets.only(right: Space.x3l + Space.md),
+        padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs, vertical: Space.md),
+        decoration: BoxDecoration(
+          color: paw.surface,
+          boxShadow: Theme.of(context).brightness == Brightness.light ? Shadows.card(paw.ink) : null,
+          border: Theme.of(context).brightness == Brightness.light ? null : Border.all(color: paw.outline),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(Radii.lg + Space.xxs),
+            topRight: Radius.circular(Radii.lg + Space.xxs),
+            bottomRight: Radius.circular(Radii.lg + Space.xxs),
+            bottomLeft: Radius.circular(Radii.xs + Space.xxs),
+          ),
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
           Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-            Icon(Ph.sparkle, color: context.colors.primary, size: IconSizes.md),
-            Text(l.aiTitle, style: context.text.labelLarge?.copyWith(color: context.colors.primary)),
-            StatusChip(l.demoBadge, tone: ChipTone.accent),
+            Icon(Ph.sparkleFill, color: paw.textSecondary, size: IconSizes.xs),
+            Text(l.aiTitle, style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500)),
+            PawTag(l.demoBadge, kind: TagKind.gold),
           ]),
           const SizedBox(height: Space.sm),
           Text(known ? aiAnswer(context, topic!) : l.aiUnknown, style: context.text.bodyMedium),
-          const SizedBox(height: Space.sm),
-          Text(l.aiNotDiagnosis, style: context.text.bodySmall?.copyWith(fontStyle: FontStyle.italic)),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: TextButton.icon(
-              onPressed: () => context.push('/televet'),
-              icon: const Icon(Ph.videoCamera),
-              label: Text(l.aiTalkToVet),
-            ),
-          ),
+          const SizedBox(height: Space.md),
+          InfoNote(l.aiNotDiagnosis),
+          const SizedBox(height: Space.md),
+          PawButton(label: l.aiTalkToVet, icon: Ph.videoCamera, onPressed: () => context.push('/televet')),
         ]),
       ),
     );
@@ -282,24 +311,17 @@ class _RedFlagCard extends ConsumerWidget {
         padding: const EdgeInsets.all(Space.md),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(Ph.warningFill, color: context.paw.onSosContainer),
+            Icon(Ph.warningFill, size: IconSizes.md, color: context.paw.error),
             const SizedBox(width: Space.sm),
-            Expanded(child: Text(l.aiRedFlagTitle, style: context.text.titleMedium?.copyWith(color: context.paw.onSosContainer))),
+            Expanded(child: Text(l.aiRedFlagTitle, style: context.text.labelLarge?.copyWith(color: context.paw.error))),
           ]),
           const SizedBox(height: Space.sm),
           Text(l.aiRedFlagBody(redFlagLabel(context, flag))),
           const SizedBox(height: Space.md),
-          SizedBox(
-            height: TapTarget.easy,
-            child: FilledButton.icon(
-              style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
-              onPressed: () => openSos(context, ref),
-              icon: const Icon(Ph.asterisk),
-              label: Text(l.sosGetHelp),
-            ),
-          ),
-          const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.aiTalkToVetNow, icon: Ph.videoCamera, onPressed: () => context.push('/televet/new')),
+          Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
+            PawButton(label: l.sosGetHelp, icon: Ph.asterisk, kind: BtnKind.sos, size: BtnSize.regular, onPressed: () => openSos(context, ref)),
+            PawButton(label: l.aiTalkToVetNow, icon: Ph.videoCamera, kind: BtnKind.ink, size: BtnSize.regular, onPressed: () => context.push('/televet/new')),
+          ]),
         ]),
       ),
     );

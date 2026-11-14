@@ -27,6 +27,7 @@ class PawTextField extends StatelessWidget {
     this.enabled = true,
     this.helper,
     this.autofocus = false,
+    this.labelInside = false,
   });
 
   final String label;
@@ -49,6 +50,9 @@ class PawTextField extends StatelessWidget {
   final String? helper;
   final bool autofocus;
 
+  /// The label sits inside the box as its hint (sign-in), not above it.
+  final bool labelInside;
+
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
@@ -61,8 +65,10 @@ class PawTextField extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(label, style: context.text.labelLarge?.copyWith(color: enabled ? paw.textPrimary : paw.textSecondary)),
-            const SizedBox(height: Space.xs + Space.xxs),
+            if (!labelInside) ...[
+              Text(label, style: context.text.labelLarge?.copyWith(color: enabled ? paw.textPrimary : paw.textSecondary)),
+              const SizedBox(height: Space.xs + Space.xxs),
+            ],
             TextFormField(
               controller: controller,
               initialValue: controller == null ? initialValue : null,
@@ -80,12 +86,14 @@ class PawTextField extends StatelessWidget {
               autofocus: autofocus,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
-                hintText: hint,
+                // Inside the box the label is the hint (screen readers read it
+                // as the field's hint).
+                hintText: labelInside ? label : hint,
                 helperText: helper,
                 helperMaxLines: 3,
                 errorMaxLines: 3,
                 prefixText: prefixText,
-                prefixIcon: prefixIcon == null ? null : Icon(prefixIcon),
+                prefixIcon: prefixIcon == null ? null : Icon(prefixIcon, size: IconSizes.md, color: paw.textPrimary),
                 suffixIcon: suffix,
               ),
             ),

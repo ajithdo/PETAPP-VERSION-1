@@ -991,7 +991,7 @@ abstract class AppLocalizations {
   /// No description provided for @demoAccountsHint.
   ///
   /// In en, this message translates to:
-  /// **'Tap any account to sign in. No password needed.'**
+  /// **'Tap any account to sign in. No password needed. Nothing here is real and no money is charged.'**
   String get demoAccountsHint;
 
   /// No description provided for @orSignInWithEmail.
@@ -1021,43 +1021,43 @@ abstract class AppLocalizations {
   /// No description provided for @demoGroupPlatform.
   ///
   /// In en, this message translates to:
-  /// **'Platform'**
+  /// **'PawSetu team'**
   String get demoGroupPlatform;
 
   /// No description provided for @demoPriya.
   ///
   /// In en, this message translates to:
-  /// **'Bengaluru · Plus · Bruno the Labrador and Misty the Persian cat'**
+  /// **'Bengaluru. Bruno the Labrador and Misty the Persian cat'**
   String get demoPriya;
 
   /// No description provided for @demoRavi.
   ///
   /// In en, this message translates to:
-  /// **'Hyderabad · Free · Telugu · Simba the Indie puppy and Kiwi the cockatiel'**
+  /// **'Hyderabad. Simba the Indie puppy and Kiwi the cockatiel'**
   String get demoRavi;
 
   /// No description provided for @demoAnjali.
   ///
   /// In en, this message translates to:
-  /// **'Delhi NCR · Free · Hindi · Easy mode · Coco the rabbit and Tiger the senior cat'**
+  /// **'Delhi NCR. Coco the rabbit and Tiger the senior cat'**
   String get demoAnjali;
 
   /// No description provided for @demoArjun.
   ///
   /// In en, this message translates to:
-  /// **'Mumbai · Plus · Max the German Shepherd and Luna the Beagle puppy'**
+  /// **'Mumbai. Max the German Shepherd and Luna the Beagle puppy'**
   String get demoArjun;
 
   /// No description provided for @demoRohan.
   ///
   /// In en, this message translates to:
-  /// **'Priya\'s husband · Carer for Bruno and Misty'**
+  /// **'Priya\'s husband. Carer for Bruno and Misty'**
   String get demoRohan;
 
   /// No description provided for @demoMeera.
   ///
   /// In en, this message translates to:
-  /// **'Pet sitter for Arjun · access ends in 3 days'**
+  /// **'Pet sitter for Arjun. Access ends in 3 days'**
   String get demoMeera;
 
   /// No description provided for @demoClinicAdmin.
@@ -18303,6 +18303,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Travel'**
   String get catShortTravel;
+
+  /// No description provided for @orContinueWith.
+  ///
+  /// In en, this message translates to:
+  /// **'or continue with'**
+  String get orContinueWith;
+
+  /// No description provided for @partnerAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Run a clinic, salon or shop?'**
+  String get partnerAsk;
+
+  /// No description provided for @partnerApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply as a partner'**
+  String get partnerApply;
+
+  /// No description provided for @demoPartnersTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Partners and the PawSetu team'**
+  String get demoPartnersTeam;
+
+  /// No description provided for @seeAllCount.
+  ///
+  /// In en, this message translates to:
+  /// **'See all {count}'**
+  String seeAllCount(int count);
+
+  /// No description provided for @sosCallNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Call {phone}'**
+  String sosCallNumber(String phone);
+
+  /// No description provided for @openMedicalCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Open medical card'**
+  String get openMedicalCard;
+
+  /// No description provided for @tvBookVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Book video'**
+  String get tvBookVideo;
+
+  /// No description provided for @tvUnlimitedWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited'**
+  String get tvUnlimitedWord;
+
+  /// No description provided for @tvConsultationsWord.
+  ///
+  /// In en, this message translates to:
+  /// **'consultations'**
+  String get tvConsultationsWord;
+
+  /// No description provided for @tvPerMonthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} a month'**
+  String tvPerMonthTitle(int count);
+
+  /// No description provided for @tvUsedSub.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} used so far'**
+  String tvUsedSub(int used);
+
+  /// No description provided for @tvMessagesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} messages'**
+  String tvMessagesTitle(int count);
+
+  /// No description provided for @tvWordsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'{words} words each'**
+  String tvWordsSub(int words);
+
+  /// No description provided for @tvHoursTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} hours'**
+  String tvHoursTitle(int hours);
+
+  /// No description provided for @tvHoursSub.
+  ///
+  /// In en, this message translates to:
+  /// **'chat stays open'**
+  String get tvHoursSub;
+
+  /// No description provided for @tvVideoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Video calls'**
+  String get tvVideoTitle;
+
+  /// No description provided for @tvVideoSubPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'with 10% off'**
+  String get tvVideoSubPlus;
+
+  /// No description provided for @tvVideoSubFree.
+  ///
+  /// In en, this message translates to:
+  /// **'with Plus only'**
+  String get tvVideoSubFree;
+
+  /// No description provided for @tvPetWithVet.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} with {vet}'**
+  String tvPetWithVet(String pet, String vet);
+
+  /// No description provided for @tvOpenChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Open chat'**
+  String get tvOpenChat;
+
+  /// No description provided for @tvPrescriptionWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription'**
+  String get tvPrescriptionWord;
+
+  /// No description provided for @aiCareAnswers.
+  ///
+  /// In en, this message translates to:
+  /// **'Care answers for {name}. Not a diagnosis.'**
+  String aiCareAnswers(String name);
+
+  /// No description provided for @aiCareAnswersAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Care answers for your pet. Not a diagnosis.'**
+  String get aiCareAnswersAll;
 }
 
 class _AppLocalizationsDelegate

@@ -15,9 +15,9 @@ const firstAidIds = ['choking', 'poisoning', 'heatstroke', 'bleeding', 'fracture
 IconData firstAidIcon(String id) => switch (id) {
       'choking' => Ph.wind,
       'poisoning' => Ph.flask,
-      'heatstroke' => Ph.sun,
+      'heatstroke' => Ph.thermometerHot,
       'bleeding' => Ph.drop,
-      'fracture' => Ph.personArmsSpread,
+      'fracture' => Ph.bone,
       'seizure' => Ph.lightning,
       'burn' => Ph.fire,
       'bite' => Ph.bugBeetle,
@@ -156,12 +156,10 @@ class DraftLabel extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final review = (ref.watch(appSettingsDocProvider).value?['contentReview'] as Map?) ?? const {};
     final by = (review[area] as String?) ?? '';
-    return Align(
-      alignment: AlignmentDirectional.centerStart,
-      child: by.isEmpty
-          ? StatusChip(context.l10n.draftVetReview, tone: ChipTone.warning, icon: Ph.chatCenteredTextFill)
-          : StatusChip(context.l10n.reviewedBy(by), tone: ChipTone.success, icon: Ph.sealCheckFill),
-    );
+    // A plain tag, as long as its words (it sits in a wrap).
+    return by.isEmpty
+        ? PawTag(context.l10n.draftVetReview, kind: TagKind.gold, icon: Ph.pencilSimpleLineFill)
+        : PawTag(context.l10n.reviewedBy(by), kind: TagKind.green, icon: Ph.sealCheckFill);
   }
 }
 

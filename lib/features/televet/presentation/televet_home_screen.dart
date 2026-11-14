@@ -64,8 +64,12 @@ class TeleVetHomeScreen extends ConsumerWidget {
     final past = all.where((c) => c.isEnded).toList();
     final ai = ref.watch(assistantAllowanceProvider);
 
+    final vets = ref.watch(teleVetsProvider).value ?? const <Map<String, dynamic>>[];
     return Scaffold(
-      appBar: AppBar(title: Text(l.teleVet)),
+      appBar: AppBar(
+        title: Text(l.teleVet),
+        actions: [Padding(padding: const EdgeInsets.only(right: Space.md), child: SosButton(onActivate: () => openSos(context, ref)))],
+      ),
       body: AsyncView<List<Consultation>>(
         value: mine,
         data: (_) => PageBody(maxWidth: Space.readingWidth, children: [
@@ -81,6 +85,8 @@ class TeleVetHomeScreen extends ConsumerWidget {
               context.push('/televet/new');
             }
 
+            // Up to three vets' initials, overlapping, and how many are on.
+            String ini(Map<String, dynamic> v) => initials(((v['name'] as String?) ?? '').replaceFirst(RegExp(r'^Dr\.?\s*'), ''));
             return Container(
               padding: const EdgeInsets.all(Space.lg + Space.xxs),
               decoration: BoxDecoration(color: paw.band, borderRadius: BorderRadius.circular(Radii.xxl)),
@@ -94,64 +100,84 @@ class TeleVetHomeScreen extends ConsumerWidget {
                     ]),
                   ),
                   const SizedBox(width: Space.md),
-                  Container(
-                    width: Sizes.thumb,
-                    height: Sizes.thumb,
-                    decoration: BoxDecoration(color: paw.marigold, borderRadius: BorderRadius.circular(Radii.lg)),
-                    child: Icon(Ph.videoCameraFill, color: paw.onMarigold, size: IconSizes.xl),
+                  const PawTile(icon: Ph.videoCameraFill, tone: Tone.marigold, size: Sizes.tileLg),
+                ]),
+                if (vets.isNotEmpty) ...[
+                  const SizedBox(height: Space.lg),
+                  Row(children: [
+                    SizedBox(
+                      width: Space.xxl + Space.xs + (vets.take(3).length - 1) * Space.xl,
+                      height: Space.xxl + Space.xs,
+                      child: Stack(children: [
+                        for (final (i, v) in vets.take(3).indexed)
+                          Positioned(
+                            left: i * Space.xl,
+                            child: Container(
+                              width: Space.xxl + Space.xs,
+                              height: Space.xxl + Space.xs,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(color: i.isOdd ? context.tint.paper3 : paw.marigold, shape: BoxShape.circle, border: Border.all(color: paw.band, width: Strokes.focus)),
+                              child: Text(ini(v), style: context.text.labelSmall?.copyWith(color: paw.onMarigold, fontFamily: FontFamilies.heading, fontWeight: FontWeight.w700)),
+                            ),
+                          ),
+                      ]),
+                    ),
+                    const SizedBox(width: Space.md),
+                    Expanded(child: Text(l.bookVetsOnline(vets.length), style: context.text.bodySmall?.copyWith(color: paw.onBandMuted))),
+                  ]),
+                ],
+                const SizedBox(height: Space.lg),
+                Row(children: [
+                  Expanded(child: PawButton(label: l.tvChatNow, icon: Ph.chatCircleDots, size: BtnSize.regular, block: true, onPressed: start)),
+                  const SizedBox(width: Space.md),
+                  Expanded(
+                    child: PawButton(
+                      label: l.tvBookVideo,
+                      icon: Ph.calendarPlus,
+                      kind: BtnKind.ghostDark,
+                      size: BtnSize.regular,
+                      block: true,
+                      onPressed: () => limits.video ? start() : showPlusPrompt(context, title: l.tvPlusPromptTitle, body: l.plusPerkVideo),
+                    ),
                   ),
                 ]),
-                const SizedBox(height: Space.lg),
-                FilledButton.icon(
-                  onPressed: start,
-                  style: FilledButton.styleFrom(backgroundColor: paw.marigold, foregroundColor: paw.onMarigold, iconColor: paw.onMarigold),
-                  icon: const Icon(Ph.chatCircleDots),
-                  label: Text(l.tvStart),
-                ),
               ]),
             );
           }),
-          const SizedBox(height: Space.md),
+          const SizedBox(height: Space.lg + Space.xs),
           _AllowanceCard(limits: limits, used: used, plus: user.isPlus),
           if (open.isNotEmpty) ...[
-            SectionHeader(l.tvOpenConsults),
-            for (final c in open) Padding(padding: const EdgeInsets.only(bottom: Space.sm), child: ConsultCard(consultation: c)),
+            const SizedBox(height: Space.xl),
+            SecHead(l.tvOpenConsults),
+            for (final (i, c) in open.indexed) Padding(padding: EdgeInsets.only(top: i == 0 ? 0 : Space.md), child: ConsultCard(consultation: c)),
           ],
-          const SizedBox(height: Space.md),
-          PawCard(
+          const SizedBox(height: Space.lg),
+          PawPanel(
             onTap: () => context.push('/ask'),
+            semanticLabel: l.aiTitle,
             child: Row(children: [
-              Container(
-                width: TapTarget.min - Space.xxs,
-                height: TapTarget.min - Space.xxs,
-                decoration: BoxDecoration(color: context.paw.textPrimary, borderRadius: BorderRadius.circular(Radii.md)),
-                child: Icon(Ph.sparkle, color: context.paw.background),
-              ),
+              const PawTile(icon: Ph.sparkle, tone: Tone.ink),
               const SizedBox(width: Space.md),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(l.aiTitle, style: context.text.titleSmall),
-                  Text(ai.unlimited ? l.aiTileHintPlus : l.aiTileHint(ai.left), style: context.text.bodySmall),
+                  Text(l.aiTitle, style: context.text.labelLarge),
+                  Text(ai.unlimited ? l.aiTileHintPlus : l.aiTileHint(ai.left), style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
                 ]),
               ),
-              const Icon(Ph.caretRight),
+              const SizedBox(width: Space.md),
+              const Chev(),
             ]),
           ),
           if (past.isNotEmpty) ...[
-            SectionHeader(l.tvPastConsults),
-            for (final c in past.take(10)) Padding(padding: const EdgeInsets.only(bottom: Space.sm), child: ConsultCard(consultation: c)),
+            const SizedBox(height: Space.xl),
+            SecHead(l.tvPastConsults),
+            for (final (i, c) in past.take(10).indexed) Padding(padding: EdgeInsets.only(top: i == 0 ? 0 : Space.md), child: ConsultCard(consultation: c)),
           ],
-          const SizedBox(height: Space.lg),
-          PawCard(
-            color: context.paw.sos.withValues(alpha: Opacities.highlight),
-            borderColor: context.paw.sos.withValues(alpha: Opacities.muted),
-            padding: const EdgeInsets.all(Space.md),
-            child: Row(children: [
-              Icon(Ph.asterisk, color: context.paw.sos),
-              const SizedBox(width: Space.md),
-              Expanded(child: Text(l.tvEmergencyNote, style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary))),
-              TextButton(onPressed: () => openSos(context, ref), child: Text(l.sosTitle, style: TextStyle(color: context.paw.sos))),
-            ]),
+          const SizedBox(height: Space.lg + Space.xs),
+          InkWell(
+            borderRadius: BorderRadius.circular(Radii.lg),
+            onTap: () => openSos(context, ref),
+            child: InfoNote(l.tvEmergencyNote, icon: Ph.asterisk, tone: ChipTone.error),
           ),
         ]),
       ),
@@ -169,48 +195,44 @@ class _AllowanceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = context.l10n;
     final reached = !limits.unlimitedPerMonth && used >= limits.perMonth;
-    // UI Design 6: the plan's allowances as four small tiles.
+    // UI Design 6: the plan's name with its tag, then the allowances as four
+    // small panels: an icon, the number in bold, and what it means.
     final paw = context.paw;
-    Widget tile(IconData icon, String text) => Container(
+    Widget tile(IconData icon, String title, String sub) => PawPanel(
           padding: const EdgeInsets.all(Space.md),
-          decoration: BoxDecoration(border: Border.all(color: paw.outline), borderRadius: BorderRadius.circular(Radii.lg)),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Icon(icon, size: IconSizes.lg, color: paw.accent),
+            Icon(icon, size: IconSizes.md + Space.xxs, color: paw.accent),
             const SizedBox(height: Space.sm),
-            Text(text, style: context.text.labelMedium),
+            Text(title, style: context.text.labelLarge),
+            Text(sub, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
           ]),
         );
-    final cols = MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 1 : 2;
-    return PawCard(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Row(children: [
-          Expanded(child: Text(plus ? l.tvPlanPlus : l.tvPlanFree, style: context.text.titleMedium)),
-          StatusChip(plus ? l.planPlus : l.tvFreeChip, tone: plus ? ChipTone.accent : ChipTone.neutral, icon: plus ? Ph.crownSimple : null),
-        ]),
-        const SizedBox(height: Space.md),
-        TileGrid(columns: cols, spacing: Space.sm, children: [
-          tile(Ph.repeat, limits.unlimitedPerMonth ? l.tvLineUnlimited : l.tvLinePerMonth(limits.perMonth, used)),
-          tile(Ph.chatCircle, l.tvLineMessages(limits.messages, limits.words)),
-          tile(Ph.clock, l.tvLineHours(limits.hours)),
-          tile(limits.video ? Ph.videoCamera : Ph.videoCameraSlash, limits.video ? l.tvLineVideo : l.tvLineNoVideo),
-        ]),
-        if (reached) ...[
-          const SizedBox(height: Space.md),
-          InfoNote(l.tvMonthlyUsed(Fmt.date(nextMonthStart(DateTime.now()), context.lang)), tone: ChipTone.warning, icon: Ph.hourglassLow),
-        ],
-        if (!plus) ...[
-          const SizedBox(height: Space.sm),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: TextButton.icon(
-              onPressed: () => showPlusPrompt(context, title: l.tvPlusPromptTitle, body: l.plusPerkVideo),
-              icon: const Icon(Ph.crownSimple),
-              label: Text(l.seePlus),
-            ),
-          ),
-        ],
+    final cols = MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 1 : (context.screenSize == ScreenSize.desktop ? 4 : 2);
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Row(children: [
+        Expanded(child: Semantics(header: true, child: Text(plus ? l.tvPlanPlus : l.tvPlanFree, style: context.text.titleLarge))),
+        const SizedBox(width: Space.md),
+        plus ? PawTag(l.planPlus, kind: TagKind.plus, icon: Ph.crownSimpleFill) : PawTag(l.tvFreeChip),
       ]),
-    );
+      const SizedBox(height: Space.md),
+      TileGrid(columns: cols, children: [
+        limits.unlimitedPerMonth ? tile(Ph.infinity, l.tvUnlimitedWord, l.tvConsultationsWord) : tile(Ph.repeat, l.tvPerMonthTitle(limits.perMonth), l.tvUsedSub(used)),
+        tile(Ph.chatText, l.tvMessagesTitle(limits.messages), l.tvWordsSub(limits.words)),
+        tile(Ph.clock, l.tvHoursTitle(limits.hours), l.tvHoursSub),
+        tile(limits.video ? Ph.videoCamera : Ph.videoCameraSlash, l.tvVideoTitle, limits.video ? l.tvVideoSubPlus : l.tvVideoSubFree),
+      ]),
+      if (reached) ...[
+        const SizedBox(height: Space.md),
+        InfoNote(l.tvMonthlyUsed(Fmt.date(nextMonthStart(DateTime.now()), context.lang)), tone: ChipTone.warning, icon: Ph.hourglassLow),
+      ],
+      if (!plus) ...[
+        const SizedBox(height: Space.md),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: PawButton(label: l.seePlus, icon: Ph.crownSimple, kind: BtnKind.soft, onPressed: () => showPlusPrompt(context, title: l.tvPlusPromptTitle, body: l.plusPerkVideo)),
+        ),
+      ],
+    ]);
   }
 }
 
@@ -230,33 +252,42 @@ class ConsultCard extends StatelessWidget {
       _ => (l.tvStatusEndedShort, ChipTone.neutral),
     };
     final who = partnerView ? c.ownerName : (c.vetName.isEmpty ? l.tvFindingVetShort : c.vetName);
+    final paw = context.paw;
+    void open() => context.push(partnerView ? '/partner/consult/${c.id}' : '/messages/${c.conversationId}');
+    // UI Design 6: the pet's arch, who is talking to whom with the state as
+    // a tag, when and how, the problem in two lines, then what to do next.
     return PawCard(
-      onTap: () => context.push(partnerView ? '/partner/consult/${c.id}' : '/messages/${c.conversationId}'),
-      padding: const EdgeInsets.all(Space.md),
-      child: Row(children: [
-        PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: Sizes.avatarMd),
+      onTap: open,
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: Sizes.tile * Sizes.archAspect, ring: false),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('${c.petName} · $who', style: context.text.titleSmall, maxLines: 1, overflow: TextOverflow.ellipsis),
+            Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.sm, runSpacing: Space.xxs, children: [
+              Text(partnerView ? '${c.petName} · $who' : l.tvPetWithVet(c.petName, who), style: context.text.labelLarge),
+              StatusChip(status, tone: tone),
+            ]),
             Text(
-              [Fmt.dateTime(c.createdAt, context.lang), c.isVideo ? l.tvModeVideo : l.tvModeChat].join(' · '),
-              style: context.text.bodySmall,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+              [Fmt.dateTime(c.createdAt, context.lang), c.isVideo ? l.tvModeVideo : l.tvModeChat].join('. '),
+              style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
             ),
-            if (c.problem.isNotEmpty)
-              Text(c.problem, style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary), maxLines: 1, overflow: TextOverflow.ellipsis),
+            if (c.problem.isNotEmpty) ...[
+              const SizedBox(height: Space.xs),
+              Text(c.problem, style: context.text.bodyMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
+            ],
+            const SizedBox(height: Space.md),
+            Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.md, runSpacing: Space.sm, children: [
+              if (!c.isEnded) ...[
+                PawButton(label: l.tvOpenChat, icon: Ph.chatCircleDots, kind: BtnKind.ink, onPressed: open),
+                if (!partnerView) Text(l.tvMessagesLeft(c.messagesLeft), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              ] else ...[
+                if (c.prescriptionId != null)
+                  PawButton(label: l.tvPrescriptionWord, icon: Ph.fileText, kind: BtnKind.soft, onPressed: () => context.push('/prescriptions/${c.prescriptionId}')),
+                PawButton(label: l.tvOpenChat, icon: Ph.chatCircleDots, kind: BtnKind.soft, onPressed: open),
+              ],
+            ]),
           ]),
         ),
-        const SizedBox(width: Space.sm),
-        Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          StatusChip(status, tone: tone),
-          if (c.prescriptionId != null) ...[
-            const SizedBox(height: Space.xs),
-            Icon(Ph.receipt, size: IconSizes.chip, color: context.colors.primary, semanticLabel: l.rxTitle),
-          ],
-        ]),
       ]),
     );
   }

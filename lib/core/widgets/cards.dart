@@ -267,30 +267,12 @@ class DemoBanner extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) {
-    final paw = context.paw;
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
-      decoration: BoxDecoration(
-        color: paw.warningContainer,
-        borderRadius: BorderRadius.circular(Radii.md),
-        border: Border.all(color: paw.warningBorder),
-      ),
-      child: Row(
-        children: [
-          Icon(Ph.flask, size: IconSizes.sm, color: paw.onAccentContainer),
-          const SizedBox(width: Space.sm),
-          Expanded(
-            child: Text(text, style: context.text.bodySmall?.copyWith(color: paw.textPrimary)),
-          ),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => InfoNote(text, icon: Ph.flask, tone: ChipTone.accent);
 }
 
-/// "Indicative, always confirm with your vet" style note.
+/// A short note with an icon (the kit's ".note"): neutral on paper by
+/// default; marigold for tips and demo notes, red for errors, green for good
+/// news. No border: the tint is enough.
 class InfoNote extends StatelessWidget {
   const InfoNote(this.text, {super.key, this.icon = Ph.info, this.tone = ChipTone.info});
   final String text;
@@ -299,26 +281,23 @@ class InfoNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = switch (tone) {
-      ChipTone.warning => context.paw.warning,
-      ChipTone.error => context.paw.error,
-      _ => context.colors.primary,
+    final paw = context.paw;
+    final (Color fill, Color ink, Color iconInk) = switch (tone) {
+      ChipTone.warning || ChipTone.accent => (paw.accentContainer, paw.accent, paw.accent),
+      ChipTone.error => (paw.sosContainer, paw.error, paw.error),
+      ChipTone.success => (paw.successContainer, paw.success, paw.success),
+      _ => (paw.surfaceSubtle, paw.textSecondary, paw.textPrimary),
     };
     return Container(
-      padding: const EdgeInsets.all(Space.md),
-      decoration: BoxDecoration(
-        color: c.withValues(alpha: Opacities.pressed),
-        borderRadius: BorderRadius.circular(Radii.md),
-        border: Border.all(color: c.withValues(alpha: Opacities.border)),
-      ),
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs, vertical: Space.md),
+      decoration: BoxDecoration(color: fill, borderRadius: BorderRadius.circular(Radii.lg)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: IconSizes.md, color: c),
-          const SizedBox(width: Space.sm),
-          Expanded(
-            child: Text(text, style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary)),
-          ),
+          Padding(padding: const EdgeInsets.only(top: Strokes.hairline), child: Icon(icon, size: IconSizes.sm + Space.xxs, color: iconInk)),
+          const SizedBox(width: Space.sm + Space.xxs),
+          Expanded(child: Text(text, style: context.text.bodySmall?.copyWith(color: ink))),
         ],
       ),
     );

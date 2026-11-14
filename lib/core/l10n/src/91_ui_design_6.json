@@ -455,5 +455,153 @@
     "en": "Travel",
     "hi": "सफ़र",
     "te": "ప్రయాణం"
+  },
+  "orContinueWith": {
+    "en": "or continue with",
+    "hi": "या इससे जारी रखें",
+    "te": "లేదా దీనితో కొనసాగండి"
+  },
+  "partnerAsk": {
+    "en": "Run a clinic, salon or shop?",
+    "hi": "क्लिनिक, सैलून या दुकान चलाते हैं?",
+    "te": "క్లినిక్, సెలూన్ లేదా షాప్ నడుపుతున్నారా?"
+  },
+  "partnerApply": {
+    "en": "Apply as a partner",
+    "hi": "पार्टनर बनने के लिए आवेदन करें",
+    "te": "భాగస్వామిగా దరఖాస్తు చేయండి"
+  },
+  "demoPartnersTeam": {
+    "en": "Partners and the PawSetu team",
+    "hi": "पार्टनर और PawSetu टीम",
+    "te": "భాగస్వాములు, PawSetu టీమ్"
+  },
+  "seeAllCount": {
+    "en": "See all {count}",
+    "hi": "सभी {count} देखें",
+    "te": "మొత్తం {count} చూడండి",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "sosCallNumber": {
+    "en": "Call {phone}",
+    "hi": "{phone} पर कॉल करें",
+    "te": "{phone}కు కాల్ చేయండి",
+    "ph": {
+      "phone": "String"
+    }
+  },
+  "openMedicalCard": {
+    "en": "Open medical card",
+    "hi": "मेडिकल कार्ड खोलें",
+    "te": "మెడికల్ కార్డ్ తెరవండి"
+  },
+  "tvBookVideo": {
+    "en": "Book video",
+    "hi": "वीडियो बुक करें",
+    "te": "వీడియో బుక్ చేయండి"
+  },
+  "tvUnlimitedWord": {
+    "en": "Unlimited",
+    "hi": "असीमित",
+    "te": "అపరిమితం"
+  },
+  "tvConsultationsWord": {
+    "en": "consultations",
+    "hi": "परामर्श",
+    "te": "సంప్రదింపులు"
+  },
+  "tvPerMonthTitle": {
+    "en": "{count} a month",
+    "hi": "महीने में {count}",
+    "te": "నెలకు {count}",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "tvUsedSub": {
+    "en": "{used} used so far",
+    "hi": "अब तक {used} इस्तेमाल",
+    "te": "ఇప్పటివరకు {used} వాడారు",
+    "ph": {
+      "used": "int"
+    }
+  },
+  "tvMessagesTitle": {
+    "en": "{count} messages",
+    "hi": "{count} संदेश",
+    "te": "{count} సందేశాలు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "tvWordsSub": {
+    "en": "{words} words each",
+    "hi": "हर एक में {words} शब्द",
+    "te": "ఒక్కొక్కటి {words} పదాలు",
+    "ph": {
+      "words": "int"
+    }
+  },
+  "tvHoursTitle": {
+    "en": "{hours} hours",
+    "hi": "{hours} घंटे",
+    "te": "{hours} గంటలు",
+    "ph": {
+      "hours": "int"
+    }
+  },
+  "tvHoursSub": {
+    "en": "chat stays open",
+    "hi": "चैट खुली रहती है",
+    "te": "చాట్ తెరిచి ఉంటుంది"
+  },
+  "tvVideoTitle": {
+    "en": "Video calls",
+    "hi": "वीडियो कॉल",
+    "te": "వీడియో కాల్‌లు"
+  },
+  "tvVideoSubPlus": {
+    "en": "with 10% off",
+    "hi": "10% छूट के साथ",
+    "te": "10% తగ్గింపుతో"
+  },
+  "tvVideoSubFree": {
+    "en": "with Plus only",
+    "hi": "सिर्फ़ Plus में",
+    "te": "Plusలో మాత్రమే"
+  },
+  "tvPetWithVet": {
+    "en": "{pet} with {vet}",
+    "hi": "{vet} के साथ {pet}",
+    "te": "{vet}తో {pet}",
+    "ph": {
+      "pet": "String",
+      "vet": "String"
+    }
+  },
+  "tvOpenChat": {
+    "en": "Open chat",
+    "hi": "चैट खोलें",
+    "te": "చాట్ తెరవండి"
+  },
+  "tvPrescriptionWord": {
+    "en": "Prescription",
+    "hi": "पर्चा",
+    "te": "ప్రిస్క్రిప్షన్"
+  },
+  "aiCareAnswers": {
+    "en": "Care answers for {name}. Not a diagnosis.",
+    "hi": "{name} की देखभाल के जवाब। यह निदान नहीं है।",
+    "te": "{name} సంరక్షణ సమాధానాలు. ఇది రోగ నిర్ధారణ కాదు.",
+    "ph": {
+      "name": "String"
+    }
+  },
+  "aiCareAnswersAll": {
+    "en": "Care answers for your pet. Not a diagnosis.",
+    "hi": "आपके पालतू की देखभाल के जवाब। यह निदान नहीं है।",
+    "te": "మీ పెంపుడు జంతువు సంరక్షణ సమాధానాలు. ఇది రోగ నిర్ధారణ కాదు."
   }
 }

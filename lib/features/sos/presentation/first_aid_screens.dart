@@ -26,14 +26,15 @@ class FirstAidListScreen extends ConsumerWidget {
         InfoNote(l.firstAidEmergencyNote, icon: Ph.asterisk, tone: ChipTone.error),
         const SizedBox(height: Space.sm),
         Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-          StatusChip(l.firstAidOffline, tone: ChipTone.info, icon: Ph.cloudCheckFill),
+          PawTag(l.firstAidOffline, kind: TagKind.green, icon: Ph.cloudCheckFill),
           const DraftLabel(),
         ]),
         safetyGap,
         // UI Design 6: "Is it safe?" first, as a marigold card with a few
         // common things to check, then the guides as a grid of cards.
         _SafeCheckCard(),
-        SectionHeader(l.firstAidGuides),
+        const SizedBox(height: Space.xl),
+        SecHead(l.firstAidGuides),
         LayoutBuilder(builder: (context, c) {
           final cols = c.maxWidth >= 720 ? 3 : (c.maxWidth >= 320 && MediaQuery.textScalerOf(context).scale(1) < 1.3 ? 2 : 1);
           return TileGrid(columns: cols, children: [for (final id in firstAidIds) _GuideTile(id: id)]);
@@ -51,35 +52,45 @@ class _SafeCheckCard extends StatelessWidget {
     final l = context.l10n;
     final paw = context.paw;
     final items = ['chocolate', 'grapes', 'onionGarlic', 'xylitol', 'avocado'];
-    return PawCard(
-      color: paw.accentContainer,
-      flat: true,
-      borderColor: Colors.transparent,
+    // "Grapes and raisins" becomes "Grapes": one word on each chip.
+    String short(String name) => name.split(RegExp(r'[ (,]')).first;
+    return Wash(
       onTap: () => context.push('/toxic-check'),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
-          Container(
-            width: TapTarget.min,
-            height: TapTarget.min,
-            decoration: BoxDecoration(color: paw.marigold, borderRadius: BorderRadius.circular(Radii.md)),
-            child: Icon(Ph.magnifyingGlass, color: paw.onMarigold),
-          ),
+          const PawTile(icon: Ph.magnifyingGlass, tone: Tone.marigold, size: TapTarget.min),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(l.toxTitle, style: context.text.titleMedium),
-              Text(l.toxTileHint, style: context.text.bodySmall?.copyWith(color: paw.onAccentContainer)),
+              Text(l.toxTitle, style: context.text.titleSmall),
+              Text(l.toxTileHint, style: context.text.bodySmall?.copyWith(color: paw.accent)),
             ]),
           ),
         ]),
         const SizedBox(height: Space.md),
         Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
           for (final id in items)
-            ActionChip(
-              label: Text(toxText(l, id).$1),
-              backgroundColor: paw.surface,
-              side: BorderSide.none,
-              onPressed: () => context.push('/toxic-check?q=${Uri.encodeComponent(toxText(l, id).$1)}'),
+            Semantics(
+              button: true,
+              label: toxText(l, id).$1,
+              excludeSemantics: true,
+              child: Material(
+                color: paw.surface,
+                shape: const StadiumBorder(),
+                clipBehavior: Clip.antiAlias,
+                child: InkWell(
+                  onTap: () => context.push('/toxic-check?q=${Uri.encodeComponent(toxText(l, id).$1)}'),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(minHeight: Sizes.buttonSmall - Space.xxs),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs),
+                      child: Row(mainAxisSize: MainAxisSize.min, children: [
+                        Text(short(toxText(l, id).$1), style: context.text.labelMedium?.copyWith(fontWeight: FontWeight.w500)),
+                      ]),
+                    ),
+                  ),
+                ),
+              ),
             ),
         ]),
       ]),
@@ -100,16 +111,10 @@ class _GuideTile extends StatelessWidget {
       semanticLabel: t.title,
       padding: const EdgeInsets.all(Space.md + Space.xxs),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Container(
-          width: TapTarget.min - Space.xxs,
-          height: TapTarget.min - Space.xxs,
-          decoration: BoxDecoration(color: paw.sosContainer, borderRadius: BorderRadius.circular(Radii.md)),
-          child: Icon(firstAidIcon(id), color: paw.onSosContainer),
-        ),
+        PawTile(icon: firstAidIcon(id), tone: Tone.red),
         const SizedBox(height: Space.md),
-        Text(t.title, style: context.text.titleSmall),
-        const SizedBox(height: Space.xxs),
-        Text(t.signs, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodySmall),
+        Text(t.title, style: context.text.labelLarge),
+        Text(t.signs, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
       ]),
     );
   }
