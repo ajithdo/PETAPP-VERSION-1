@@ -16,6 +16,7 @@ import '../data/order_repository.dart';
 import '../data/shop_repository.dart';
 import '../domain/shop_models.dart';
 import '../domain/shop_rules.dart';
+import 'invoice.dart';
 import 'order_screens.dart';
 import 'product_widgets.dart';
 import 'shop_labels.dart';
@@ -47,6 +48,8 @@ class _SellerDashboard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final lang = context.lang;
+    final paw = context.paw;
     final user = ref.watch(currentUserProvider)!;
     final orders = ref.watch(sellerOrdersProvider).value ?? const <ShopOrder>[];
     final now = DateTime.now();
@@ -56,54 +59,166 @@ class _SellerDashboard extends ConsumerWidget {
       final moving = orders.where((o) => o.status == 'packed' || o.status == 'shipped' || o.status == 'out_for_delivery').length;
       final month = orders.where((o) => o.status == 'delivered' && o.createdAt.year == now.year && o.createdAt.month == now.month);
       final earnings = month.fold(0, (a, o) => a + o.payout);
-      final low = products.where((p) => (p.stock ?? 0) <= 5).toList();
+      final low = products.where((p) => (p.stock ?? 0) <= 5).toList()..sort((a, b) => (a.stock ?? 0).compareTo(b.stock ?? 0));
       final returns = orders.where((o) => o.status == 'return_requested').length;
-      return PageBody(children: [
-        const SizedBox(height: Space.md),
-        Text(l.helloPartner(user.name), style: context.text.headlineSmall),
-        Text(s.name, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
-        if (s.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
-        const SizedBox(height: Space.lg),
-        ResponsiveGrid(minColumns: 2, minItemWidth: 200, children: [
-          StatTile(label: l.selToPack, value: '${toPack.length}', icon: Ph.package, color: toPack.isEmpty ? null : context.paw.warning),
-          StatTile(label: l.selOnTheWay, value: '$moving', icon: Ph.truck),
-          StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Ph.wallet),
-          StatTile(label: l.selLowStock, value: '${low.length}', icon: Ph.warning, color: low.isEmpty ? null : context.paw.error),
-        ]),
-        if (returns > 0) ...[
-          const SizedBox(height: Space.md),
-          PawCard(
-            onTap: () => context.go('/partner/returns'),
-            borderColor: context.paw.warning,
-            child: Row(children: [
-              Icon(Ph.arrowUUpLeft, color: context.paw.warning),
-              const SizedBox(width: Space.md),
-              Expanded(child: Text(l.selReturnsWaiting(returns))),
-              const Icon(Ph.caretRight),
-            ]),
-          ),
-        ],
-        SectionHeader(l.selNewOrders, action: l.seeAll, onAction: () => context.go('/partner/orders')),
-        if (toPack.isEmpty) PawCard(child: Text(l.selNoNewOrders)),
-        for (final o in toPack.take(5)) Padding(padding: const EdgeInsets.only(bottom: Space.sm), child: OrderCard(order: o, sellerView: true)),
+      // Units sold in the last four weeks, to say how fast something sells.
+      final sold = <String, int>{};
+      for (final o in orders.where((o) => o.status != 'cancelled' && now.difference(o.createdAt).inDays < 28)) {
+        for (final i in o.items) {
+          sold[i.productId] = (sold[i.productId] ?? 0) + i.qty;
+        }
+      }
+      final newOrders = <Widget>[
+        SecHead(l.selNewOrders, action: l.seeAll, onAction: () => context.go('/partner/orders')),
+        if (toPack.isEmpty) PawPanel(child: Text(l.selNoNewOrders, style: context.text.bodyMedium?.copyWith(color: paw.textSecondary))),
+        for (final (i, o) in toPack.take(5).indexed) ...[if (i > 0) const SizedBox(height: Space.sm), _NewOrderCard(order: o)],
+      ];
+      final stock = <Widget>[
         if (low.isNotEmpty) ...[
-          SectionHeader(l.selLowStock, action: l.pProducts, onAction: () => context.go('/partner/products')),
-          for (final p in low.take(5))
-            Padding(
-              padding: const EdgeInsets.only(bottom: Space.sm),
-              child: PawCard(
-                onTap: () => context.push('/partner/product/${p.id}'),
-                child: Row(children: [
-                  ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumbSm, radius: Radii.md),
-                  const SizedBox(width: Space.md),
-                  Expanded(child: Text(p.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
-                  StatusChip(l.selStockLeft(p.stock ?? 0), tone: (p.stock ?? 0) == 0 ? ChipTone.error : ChipTone.warning),
-                ]),
+          SecHead(l.selLowStock, action: l.pProducts, onAction: () => context.go('/partner/products')),
+          for (final (i, p) in low.take(5).indexed) ...[if (i > 0) const SizedBox(height: Space.sm), _LowStockCard(product: p, perWeek: ((sold[p.id] ?? 0) / 4).round())],
+          const SizedBox(height: Space.md),
+        ],
+        PawPanel(
+          padding: PawPanel.listPadding,
+          child: PawItem(
+            lead: const PawTile(icon: Ph.fileCsv),
+            title: l.selBulkUpload,
+            sub: l.selBulkUploadBody,
+            subMaxLines: 3,
+            onTap: () => context.push('/partner/products/import'),
+          ),
+        ),
+      ];
+      return LayoutBuilder(builder: (context, box) {
+        final wide = box.maxWidth >= Space.readingWidth;
+        return PageBody(children: [
+          const SizedBox(height: Space.sm),
+          Text(l.helloPartner(user.name), style: context.text.displaySmall),
+          const SizedBox(height: Space.xs),
+          Text(
+            s.city.isEmpty ? l.pPlaceAndDate(s.name, Fmt.weekdayDateLong(now, lang)) : l.selSellerIn(s.city, Fmt.weekdayDateLong(now, lang)),
+            style: context.text.bodyMedium?.copyWith(color: paw.textSecondary),
+          ),
+          if (s.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
+          const SizedBox(height: Space.lg + Space.xs),
+          ResponsiveGrid(minColumns: 2, minItemWidth: 200, children: [
+            StatTile(label: l.selToPack, value: '${toPack.length}', icon: Ph.package, color: toPack.isEmpty ? null : paw.accent, sub: toPack.isEmpty ? null : l.selPackToday),
+            StatTile(label: l.selOnTheWay, value: '$moving', icon: Ph.truck),
+            StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings, lang), icon: Ph.wallet, sub: earnings == 0 ? l.selFirstPayout : null),
+            StatTile(label: l.selLowStock, value: '${low.length}', icon: Ph.warning, color: low.isEmpty ? null : paw.error, sub: low.isEmpty ? null : low.first.shortName),
+          ]),
+          if (returns > 0) ...[
+            const SizedBox(height: Space.lg),
+            Semantics(
+              button: true,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(Radii.xl),
+                onTap: () => context.go('/partner/returns'),
+                child: Wash(
+                  tone: Tone.gold,
+                  child: Row(children: [
+                    const PawTile(icon: Ph.arrowUUpLeft, tone: Tone.marigold),
+                    const SizedBox(width: Space.md),
+                    Expanded(child: Text(l.selReturnsWaiting(returns), style: context.text.labelLarge)),
+                    const Chev(),
+                  ]),
+                ),
               ),
             ),
-        ],
-      ]);
+          ],
+          const SizedBox(height: Sizes.sectionGap),
+          if (wide)
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(flex: 7, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: newOrders)),
+              const SizedBox(width: Space.md),
+              Expanded(flex: 5, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: stock)),
+            ])
+          else ...[
+            ...newOrders,
+            const SizedBox(height: Sizes.sectionGap),
+            ...stock,
+          ],
+          const SizedBox(height: Space.xl),
+        ]);
+      });
     });
+  }
+}
+
+/// An order waiting to be packed: what, for whom and where, then the two
+/// things to do with it.
+class _NewOrderCard extends ConsumerWidget {
+  const _NewOrderCard({required this.order});
+  final ShopOrder order;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final o = order;
+    final first = o.items.isEmpty ? null : o.items.first;
+    final a = Address.fromMap(o.address);
+    final place = [a.city, a.pin].where((x) => x.isNotEmpty).join(' ');
+    return PawCard(
+      onTap: () => context.push('/partner/order/${o.id}'),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          if (first != null) ProductArt(category: first.category, seed: first.imageSeed, size: Sizes.item, radius: Sizes.item * Sizes.tileCorner),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(o.items.length > 1 ? l.ordItemsMore(first?.name ?? '', o.items.length - 1) : (first?.name ?? ''), style: context.text.labelLarge, maxLines: 2, overflow: TextOverflow.ellipsis),
+              Text(l.selOrderFor(shortOrderNo(o.id), o.ownerName, place), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              const SizedBox(height: Space.sm),
+              Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
+                PawTag(l.selPlacedOn(Fmt.dateShort(o.createdAt, context.lang)), kind: TagKind.gold),
+                Text(Fmt.inr(o.subtotal, context.lang), style: context.text.labelLarge),
+              ]),
+            ]),
+          ),
+        ]),
+        const SizedBox(height: Space.md),
+        Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
+          PawButton(label: l.selMarkPacked, icon: Ph.package, onPressed: () => ref.read(orderRepositoryProvider).sellerUpdate(o, 'packed')),
+          PawButton(label: l.selPrintLabel, icon: Ph.printer, kind: BtnKind.soft, onPressed: () => openInvoice(context, o)),
+        ]),
+      ]),
+    );
+  }
+}
+
+/// Something about to run out: how many are left, how fast it sells, and
+/// a way to add more.
+class _LowStockCard extends StatelessWidget {
+  const _LowStockCard({required this.product, required this.perWeek});
+  final Product product;
+  final int perWeek;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final p = product;
+    final left = p.stock ?? 0;
+    return PawCard(
+      onTap: () => context.push('/partner/product/${p.id}'),
+      child: Row(children: [
+        ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.item, radius: Sizes.item * Sizes.tileCorner),
+        const SizedBox(width: Space.md),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(p.name, style: context.text.labelLarge, maxLines: 3, overflow: TextOverflow.ellipsis),
+            const SizedBox(height: Space.sm),
+            // Full at 50 or more; red because it's running out.
+            LevelBar(value: (left / 50).clamp(0.0, 1.0), color: context.paw.sos),
+            const SizedBox(height: Space.xs),
+            Text([l.selStockLeftShort(left), if (perWeek > 0) l.selSellsPerWeek(perWeek)].join(' '), style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+          ]),
+        ),
+        const SizedBox(width: Space.md),
+        PawButton(label: l.selAddStock, kind: BtnKind.line, onPressed: () => context.push('/partner/product/${p.id}')),
+      ]),
+    );
   }
 }
 

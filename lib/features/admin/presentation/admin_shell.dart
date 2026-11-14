@@ -17,9 +17,9 @@ class AdminShell extends ConsumerWidget {
     final l = context.l10n;
     final sections = [
       PortalSection('dashboard', Ph.chartLineUp, l.aDashboard),
-      PortalSection('approvals', Ph.sealCheckFill, l.aApprovals),
+      PortalSection('approvals', Ph.sealCheck, l.aApprovals),
       PortalSection('users', Ph.users, l.aUsers),
-      PortalSection('catalogue', Ph.squaresFour, l.aCatalogue),
+      PortalSection('catalogue', Ph.shapes, l.aCatalogue),
       PortalSection('complaints', Ph.headset, l.aComplaints),
       PortalSection('moderation', Ph.flag, l.aModeration),
       PortalSection('settings', Ph.slidersHorizontal, l.aSettings),

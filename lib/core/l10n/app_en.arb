@@ -8193,5 +8193,157 @@
         "type": "int"
       }
     }
+  },
+  "selSellerIn": "Seller in {city}, {date}",
+  "@selSellerIn": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "selPackToday": "Pack today",
+  "selFirstPayout": "First payout after delivery",
+  "selOrderFor": "Order {number} for {name}, {place}",
+  "@selOrderFor": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "selPlacedOn": "Placed {date}",
+  "@selPlacedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "selPrintLabel": "Print label",
+  "selStockLeftShort": "{count} left.",
+  "@selStockLeftShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selSellsPerWeek": "Sells about {count} a week.",
+  "@selSellsPerWeek": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selAddStock": "Add stock",
+  "selBulkUpload": "Upload products in bulk",
+  "selBulkUploadBody": "Use a CSV file for many items at once.",
+  "admUsersShort": "Users",
+  "admUsersSplit": "{owners} pet parents, {partners} partners",
+  "@admUsersSplit": {
+    "placeholders": {
+      "owners": {
+        "type": "int"
+      },
+      "partners": {
+        "type": "int"
+      }
+    }
+  },
+  "admBookings30Short": "Bookings, 30 days",
+  "admOrderValue30Short": "Order value, 30 days",
+  "admCommission30Short": "Commission, 30 days",
+  "admSos30Short": "SOS activations, 30 days",
+  "admWaiting": "Waiting for you",
+  "admNothingWaiting": "Nothing waiting",
+  "admCountClinics": "{count, plural, =1{1 clinic} other{{count} clinics}}",
+  "@admCountClinics": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admCountVets": "{count, plural, =1{1 vet} other{{count} vets}}",
+  "@admCountVets": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admCountSellers": "{count, plural, =1{1 seller} other{{count} sellers}}",
+  "@admCountSellers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admCountProviders": "{count, plural, =1{1 service provider} other{{count} service providers}}",
+  "@admCountProviders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admTicketsLine": "{open} open, {progress} in progress",
+  "@admTicketsLine": {
+    "placeholders": {
+      "open": {
+        "type": "int"
+      },
+      "progress": {
+        "type": "int"
+      }
+    }
+  },
+  "admReportsLine": "{count, plural, =1{1 report to check} other{{count} reports to check}}",
+  "@admReportsLine": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admOutboxTo": "{channel} to {name}",
+  "@admOutboxTo": {
+    "placeholders": {
+      "channel": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admOutboxNote": "Nothing here was really sent.",
+  "admCountBookings": "{count, plural, =1{1 booking} other{{count} bookings}}",
+  "@admCountBookings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admCountSold": "{count} sold",
+  "@admCountSold": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

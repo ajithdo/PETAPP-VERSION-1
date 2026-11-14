@@ -116,7 +116,7 @@ String outboxChannelLabel(BuildContext context, String channel) {
 
 IconData outboxChannelIcon(String channel) => switch (channel) {
       'sms' => Ph.chatText,
-      'whatsapp' => Ph.chatCircleDots,
+      'whatsapp' => Ph.whatsappLogo,
       'email' => Ph.envelopeSimple,
       'push' => Ph.bellRinging,
       _ => Ph.trayArrowUp,

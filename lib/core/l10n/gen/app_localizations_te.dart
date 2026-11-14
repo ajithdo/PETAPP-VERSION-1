@@ -11234,4 +11234,121 @@ class AppLocalizationsTe extends AppLocalizations {
   String starsOutOf5(int count) {
     return '5లో $count స్టార్లు';
   }
+
+  @override
+  String selSellerIn(String city, String date) {
+    return '$cityలో విక్రేత, $date';
+  }
+
+  @override
+  String get selPackToday => 'ఈరోజు ప్యాక్ చేయండి';
+
+  @override
+  String get selFirstPayout => 'డెలివరీ తర్వాత మొదటి చెల్లింపు';
+
+  @override
+  String selOrderFor(String number, String name, String place) {
+    return '$name కోసం ఆర్డర్ $number, $place';
+  }
+
+  @override
+  String selPlacedOn(String date) {
+    return '$dateన చేశారు';
+  }
+
+  @override
+  String get selPrintLabel => 'లేబుల్ ప్రింట్ చేయండి';
+
+  @override
+  String selStockLeftShort(int count) {
+    return '$count మిగిలాయి.';
+  }
+
+  @override
+  String selSellsPerWeek(int count) {
+    return 'వారానికి సుమారు $count అమ్ముడవుతాయి.';
+  }
+
+  @override
+  String get selAddStock => 'స్టాక్ జోడించండి';
+
+  @override
+  String get selBulkUpload => 'ఉత్పత్తులను ఒకేసారి అప్‌లోడ్ చేయండి';
+
+  @override
+  String get selBulkUploadBody => 'ఒకేసారి చాలా వస్తువులకు CSV ఫైల్ వాడండి.';
+
+  @override
+  String get admUsersShort => 'వినియోగదారులు';
+
+  @override
+  String admUsersSplit(int owners, int partners) {
+    return '$owners పెంపుడు జంతువుల యజమానులు, $partners భాగస్వాములు';
+  }
+
+  @override
+  String get admBookings30Short => 'బుకింగ్‌లు, 30 రోజులు';
+
+  @override
+  String get admOrderValue30Short => 'ఆర్డర్ విలువ, 30 రోజులు';
+
+  @override
+  String get admCommission30Short => 'కమీషన్, 30 రోజులు';
+
+  @override
+  String get admSos30Short => 'SOS, 30 రోజులు';
+
+  @override
+  String get admWaiting => 'మీ కోసం వేచి ఉన్నవి';
+
+  @override
+  String get admNothingWaiting => 'ఏమీ వేచి లేదు';
+
+  @override
+  String admCountClinics(int count) {
+    return '$count క్లినిక్‌లు';
+  }
+
+  @override
+  String admCountVets(int count) {
+    return '$count వెట్‌లు';
+  }
+
+  @override
+  String admCountSellers(int count) {
+    return '$count విక్రేతలు';
+  }
+
+  @override
+  String admCountProviders(int count) {
+    return '$count సేవలందించేవారు';
+  }
+
+  @override
+  String admTicketsLine(int open, int progress) {
+    return '$open తెరిచి ఉన్నవి, $progress జరుగుతున్నవి';
+  }
+
+  @override
+  String admReportsLine(int count) {
+    return '$count రిపోర్టులు చూడాలి';
+  }
+
+  @override
+  String admOutboxTo(String channel, String name) {
+    return '$nameకి $channel';
+  }
+
+  @override
+  String get admOutboxNote => 'ఇక్కడ ఏదీ నిజంగా పంపలేదు.';
+
+  @override
+  String admCountBookings(int count) {
+    return '$count బుకింగ్‌లు';
+  }
+
+  @override
+  String admCountSold(int count) {
+    return '$count అమ్ముడయ్యాయి';
+  }
 }

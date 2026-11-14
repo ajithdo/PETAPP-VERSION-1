@@ -1000,6 +1000,12 @@ class _Emergency extends ConsumerWidget {
           const SizedBox(height: Space.md),
           InfoNote(l.emergencySettingsHelp),
           SwitchListTile(
+            value: place.sosListed,
+            onChanged: (v) => ref.read(placesRepositoryProvider).updatePlace(place, {'sosListed': v}),
+            title: Text(l.pEmergencyListing),
+            subtitle: Text(l.pEmergencyListingHelp),
+          ),
+          SwitchListTile(
             value: place.is24x7,
             onChanged: (v) => ref.read(placesRepositoryProvider).updatePlace(place, {
               'is24x7': v,

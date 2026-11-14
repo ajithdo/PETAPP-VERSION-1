@@ -11623,4 +11623,157 @@ class AppLocalizationsEn extends AppLocalizations {
   String starsOutOf5(int count) {
     return '$count out of 5 stars';
   }
+
+  @override
+  String selSellerIn(String city, String date) {
+    return 'Seller in $city, $date';
+  }
+
+  @override
+  String get selPackToday => 'Pack today';
+
+  @override
+  String get selFirstPayout => 'First payout after delivery';
+
+  @override
+  String selOrderFor(String number, String name, String place) {
+    return 'Order $number for $name, $place';
+  }
+
+  @override
+  String selPlacedOn(String date) {
+    return 'Placed $date';
+  }
+
+  @override
+  String get selPrintLabel => 'Print label';
+
+  @override
+  String selStockLeftShort(int count) {
+    return '$count left.';
+  }
+
+  @override
+  String selSellsPerWeek(int count) {
+    return 'Sells about $count a week.';
+  }
+
+  @override
+  String get selAddStock => 'Add stock';
+
+  @override
+  String get selBulkUpload => 'Upload products in bulk';
+
+  @override
+  String get selBulkUploadBody => 'Use a CSV file for many items at once.';
+
+  @override
+  String get admUsersShort => 'Users';
+
+  @override
+  String admUsersSplit(int owners, int partners) {
+    return '$owners pet parents, $partners partners';
+  }
+
+  @override
+  String get admBookings30Short => 'Bookings, 30 days';
+
+  @override
+  String get admOrderValue30Short => 'Order value, 30 days';
+
+  @override
+  String get admCommission30Short => 'Commission, 30 days';
+
+  @override
+  String get admSos30Short => 'SOS activations, 30 days';
+
+  @override
+  String get admWaiting => 'Waiting for you';
+
+  @override
+  String get admNothingWaiting => 'Nothing waiting';
+
+  @override
+  String admCountClinics(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count clinics',
+      one: '1 clinic',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admCountVets(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count vets',
+      one: '1 vet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admCountSellers(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sellers',
+      one: '1 seller',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admCountProviders(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count service providers',
+      one: '1 service provider',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admTicketsLine(int open, int progress) {
+    return '$open open, $progress in progress';
+  }
+
+  @override
+  String admReportsLine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reports to check',
+      one: '1 report to check',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admOutboxTo(String channel, String name) {
+    return '$channel to $name';
+  }
+
+  @override
+  String get admOutboxNote => 'Nothing here was really sent.';
+
+  @override
+  String admCountBookings(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bookings',
+      one: '1 booking',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admCountSold(int count) {
+    return '$count sold';
+  }
 }

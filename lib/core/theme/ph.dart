@@ -274,6 +274,8 @@ abstract final class Ph {
   static const IconData file = IconData(0xe230, fontFamily: _regular);
   static const IconData fileArrowUp = IconData(0xe61e, fontFamily: _regular);
   static const IconData fileArrowUpFill = IconData(0xe61e, fontFamily: _fill);
+  static const IconData fileCsv = IconData(0xeb1c, fontFamily: _regular);
+  static const IconData fileCsvFill = IconData(0xeb1c, fontFamily: _fill);
   static const IconData filePdf = IconData(0xe702, fontFamily: _regular);
   static const IconData filePdfFill = IconData(0xe702, fontFamily: _fill);
   static const IconData fileText = IconData(0xe23a, fontFamily: _regular);
@@ -565,6 +567,8 @@ abstract final class Ph {
   static const IconData scissorsFill = IconData(0xeae0, fontFamily: _fill);
   static const IconData sealCheck = IconData(0xe606, fontFamily: _regular);
   static const IconData sealCheckFill = IconData(0xe606, fontFamily: _fill);
+  static const IconData shapes = IconData(0xec5e, fontFamily: _regular);
+  static const IconData shapesFill = IconData(0xec5e, fontFamily: _fill);
   static const IconData shareFat = IconData(0xed52, fontFamily: _regular);
   static const IconData shareFatFill = IconData(0xed52, fontFamily: _fill);
   static const IconData shareNetwork = IconData(0xe408, fontFamily: _regular);
@@ -725,6 +729,8 @@ abstract final class Ph {
   static const IconData warningFill = IconData(0xe4e0, fontFamily: _fill);
   static const IconData watch = IconData(0xe4e6, fontFamily: _regular);
   static const IconData watchFill = IconData(0xe4e6, fontFamily: _fill);
+  static const IconData whatsappLogo = IconData(0xe5d0, fontFamily: _regular);
+  static const IconData whatsappLogoFill = IconData(0xe5d0, fontFamily: _fill);
   static const IconData wheelchair = IconData(0xe4e8, fontFamily: _regular);
   static const IconData wheelchairFill = IconData(0xe4e8, fontFamily: _fill);
   static const IconData wifiHigh = IconData(0xe4ea, fontFamily: _regular);

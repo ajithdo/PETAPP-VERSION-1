@@ -1370,5 +1370,201 @@
     "ph": {
       "count": "int"
     }
+  },
+  "selSellerIn": {
+    "en": "Seller in {city}, {date}",
+    "hi": "{city} में विक्रेता, {date}",
+    "te": "{city}లో విక్రేత, {date}",
+    "ph": {
+      "city": "String",
+      "date": "String"
+    }
+  },
+  "selPackToday": {
+    "en": "Pack today",
+    "hi": "आज पैक करें",
+    "te": "ఈరోజు ప్యాక్ చేయండి"
+  },
+  "selFirstPayout": {
+    "en": "First payout after delivery",
+    "hi": "पहला भुगतान डिलीवरी के बाद",
+    "te": "డెలివరీ తర్వాత మొదటి చెల్లింపు"
+  },
+  "selOrderFor": {
+    "en": "Order {number} for {name}, {place}",
+    "hi": "{name} के लिए ऑर्डर {number}, {place}",
+    "te": "{name} కోసం ఆర్డర్ {number}, {place}",
+    "ph": {
+      "number": "String",
+      "name": "String",
+      "place": "String"
+    }
+  },
+  "selPlacedOn": {
+    "en": "Placed {date}",
+    "hi": "{date} को किया",
+    "te": "{date}న చేశారు",
+    "ph": {
+      "date": "String"
+    }
+  },
+  "selPrintLabel": {
+    "en": "Print label",
+    "hi": "लेबल छापें",
+    "te": "లేబుల్ ప్రింట్ చేయండి"
+  },
+  "selStockLeftShort": {
+    "en": "{count} left.",
+    "hi": "{count} बचे।",
+    "te": "{count} మిగిలాయి.",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "selSellsPerWeek": {
+    "en": "Sells about {count} a week.",
+    "hi": "हफ़्ते में क़रीब {count} बिकते हैं।",
+    "te": "వారానికి సుమారు {count} అమ్ముడవుతాయి.",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "selAddStock": {
+    "en": "Add stock",
+    "hi": "स्टॉक जोड़ें",
+    "te": "స్టాక్ జోడించండి"
+  },
+  "selBulkUpload": {
+    "en": "Upload products in bulk",
+    "hi": "एक साथ कई उत्पाद अपलोड करें",
+    "te": "ఉత్పత్తులను ఒకేసారి అప్‌లోడ్ చేయండి"
+  },
+  "selBulkUploadBody": {
+    "en": "Use a CSV file for many items at once.",
+    "hi": "कई चीज़ों के लिए एक CSV फ़ाइल इस्तेमाल करें।",
+    "te": "ఒకేసారి చాలా వస్తువులకు CSV ఫైల్ వాడండి."
+  },
+  "admUsersShort": {
+    "en": "Users",
+    "hi": "उपयोगकर्ता",
+    "te": "వినియోగదారులు"
+  },
+  "admUsersSplit": {
+    "en": "{owners} pet parents, {partners} partners",
+    "hi": "{owners} पालतू के मालिक, {partners} पार्टनर",
+    "te": "{owners} పెంపుడు జంతువుల యజమానులు, {partners} భాగస్వాములు",
+    "ph": {
+      "owners": "int",
+      "partners": "int"
+    }
+  },
+  "admBookings30Short": {
+    "en": "Bookings, 30 days",
+    "hi": "बुकिंग, 30 दिन",
+    "te": "బుకింగ్‌లు, 30 రోజులు"
+  },
+  "admOrderValue30Short": {
+    "en": "Order value, 30 days",
+    "hi": "ऑर्डर की रक़म, 30 दिन",
+    "te": "ఆర్డర్ విలువ, 30 రోజులు"
+  },
+  "admCommission30Short": {
+    "en": "Commission, 30 days",
+    "hi": "कमीशन, 30 दिन",
+    "te": "కమీషన్, 30 రోజులు"
+  },
+  "admSos30Short": {
+    "en": "SOS activations, 30 days",
+    "hi": "SOS, 30 दिन",
+    "te": "SOS, 30 రోజులు"
+  },
+  "admWaiting": {
+    "en": "Waiting for you",
+    "hi": "आपका इंतज़ार है",
+    "te": "మీ కోసం వేచి ఉన్నవి"
+  },
+  "admNothingWaiting": {
+    "en": "Nothing waiting",
+    "hi": "कुछ बाकी नहीं",
+    "te": "ఏమీ వేచి లేదు"
+  },
+  "admCountClinics": {
+    "en": "{count, plural, =1{1 clinic} other{{count} clinics}}",
+    "hi": "{count} क्लिनिक",
+    "te": "{count} క్లినిక్‌లు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "admCountVets": {
+    "en": "{count, plural, =1{1 vet} other{{count} vets}}",
+    "hi": "{count} डॉक्टर",
+    "te": "{count} వెట్‌లు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "admCountSellers": {
+    "en": "{count, plural, =1{1 seller} other{{count} sellers}}",
+    "hi": "{count} विक्रेता",
+    "te": "{count} విక్రేతలు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "admCountProviders": {
+    "en": "{count, plural, =1{1 service provider} other{{count} service providers}}",
+    "hi": "{count} सेवा देने वाले",
+    "te": "{count} సేవలందించేవారు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "admTicketsLine": {
+    "en": "{open} open, {progress} in progress",
+    "hi": "{open} खुली, {progress} पर काम चल रहा है",
+    "te": "{open} తెరిచి ఉన్నవి, {progress} జరుగుతున్నవి",
+    "ph": {
+      "open": "int",
+      "progress": "int"
+    }
+  },
+  "admReportsLine": {
+    "en": "{count, plural, =1{1 report to check} other{{count} reports to check}}",
+    "hi": "{count} रिपोर्ट देखनी हैं",
+    "te": "{count} రిపోర్టులు చూడాలి",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "admOutboxTo": {
+    "en": "{channel} to {name}",
+    "hi": "{name} को {channel}",
+    "te": "{name}కి {channel}",
+    "ph": {
+      "channel": "String",
+      "name": "String"
+    }
+  },
+  "admOutboxNote": {
+    "en": "Nothing here was really sent.",
+    "hi": "यहाँ कुछ भी असल में भेजा नहीं गया।",
+    "te": "ఇక్కడ ఏదీ నిజంగా పంపలేదు."
+  },
+  "admCountBookings": {
+    "en": "{count, plural, =1{1 booking} other{{count} bookings}}",
+    "hi": "{count} बुकिंग",
+    "te": "{count} బుకింగ్‌లు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "admCountSold": {
+    "en": "{count} sold",
+    "hi": "{count} बिके",
+    "te": "{count} అమ్ముడయ్యాయి",
+    "ph": {
+      "count": "int"
+    }
   }
 }

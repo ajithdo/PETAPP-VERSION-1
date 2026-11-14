@@ -19185,6 +19185,180 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} out of 5 stars'**
   String starsOutOf5(int count);
+
+  /// No description provided for @selSellerIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Seller in {city}, {date}'**
+  String selSellerIn(String city, String date);
+
+  /// No description provided for @selPackToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack today'**
+  String get selPackToday;
+
+  /// No description provided for @selFirstPayout.
+  ///
+  /// In en, this message translates to:
+  /// **'First payout after delivery'**
+  String get selFirstPayout;
+
+  /// No description provided for @selOrderFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Order {number} for {name}, {place}'**
+  String selOrderFor(String number, String name, String place);
+
+  /// No description provided for @selPlacedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Placed {date}'**
+  String selPlacedOn(String date);
+
+  /// No description provided for @selPrintLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Print label'**
+  String get selPrintLabel;
+
+  /// No description provided for @selStockLeftShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} left.'**
+  String selStockLeftShort(int count);
+
+  /// No description provided for @selSellsPerWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Sells about {count} a week.'**
+  String selSellsPerWeek(int count);
+
+  /// No description provided for @selAddStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Add stock'**
+  String get selAddStock;
+
+  /// No description provided for @selBulkUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload products in bulk'**
+  String get selBulkUpload;
+
+  /// No description provided for @selBulkUploadBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a CSV file for many items at once.'**
+  String get selBulkUploadBody;
+
+  /// No description provided for @admUsersShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get admUsersShort;
+
+  /// No description provided for @admUsersSplit.
+  ///
+  /// In en, this message translates to:
+  /// **'{owners} pet parents, {partners} partners'**
+  String admUsersSplit(int owners, int partners);
+
+  /// No description provided for @admBookings30Short.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings, 30 days'**
+  String get admBookings30Short;
+
+  /// No description provided for @admOrderValue30Short.
+  ///
+  /// In en, this message translates to:
+  /// **'Order value, 30 days'**
+  String get admOrderValue30Short;
+
+  /// No description provided for @admCommission30Short.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission, 30 days'**
+  String get admCommission30Short;
+
+  /// No description provided for @admSos30Short.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS activations, 30 days'**
+  String get admSos30Short;
+
+  /// No description provided for @admWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for you'**
+  String get admWaiting;
+
+  /// No description provided for @admNothingWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing waiting'**
+  String get admNothingWaiting;
+
+  /// No description provided for @admCountClinics.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 clinic} other{{count} clinics}}'**
+  String admCountClinics(int count);
+
+  /// No description provided for @admCountVets.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 vet} other{{count} vets}}'**
+  String admCountVets(int count);
+
+  /// No description provided for @admCountSellers.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 seller} other{{count} sellers}}'**
+  String admCountSellers(int count);
+
+  /// No description provided for @admCountProviders.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 service provider} other{{count} service providers}}'**
+  String admCountProviders(int count);
+
+  /// No description provided for @admTicketsLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{open} open, {progress} in progress'**
+  String admTicketsLine(int open, int progress);
+
+  /// No description provided for @admReportsLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 report to check} other{{count} reports to check}}'**
+  String admReportsLine(int count);
+
+  /// No description provided for @admOutboxTo.
+  ///
+  /// In en, this message translates to:
+  /// **'{channel} to {name}'**
+  String admOutboxTo(String channel, String name);
+
+  /// No description provided for @admOutboxNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here was really sent.'**
+  String get admOutboxNote;
+
+  /// No description provided for @admCountBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 booking} other{{count} bookings}}'**
+  String admCountBookings(int count);
+
+  /// No description provided for @admCountSold.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} sold'**
+  String admCountSold(int count);
 }
 
 class _AppLocalizationsDelegate
