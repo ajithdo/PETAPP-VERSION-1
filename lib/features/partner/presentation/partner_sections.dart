@@ -16,6 +16,7 @@ import '../../booking/domain/booking_rules.dart';
 import '../../booking/presentation/book_home_screen.dart';
 import '../../booking/presentation/booking_labels.dart';
 import '../../admin/admin_slots.dart' show HelpListBody;
+import '../../televet/presentation/vet_queue_section.dart';
 import 'partner_extra_sections.dart';
 import '../../../core/theme/ph.dart';
 
@@ -67,57 +68,288 @@ class _Dashboard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final lang = context.lang;
+    final paw = context.paw;
     final user = ref.watch(currentUserProvider)!;
     final bookings = ref.watch(partnerBookingsProvider).value ?? const <Booking>[];
     final now = DateTime.now();
     final today = bookings
         .where((b) => Fmt.sameDay(b.start, now) && (b.status == 'confirmed' || b.status == 'in_progress' || b.status == 'completed'))
-        .toList();
+        .toList()
+      ..sort((a, b) => a.start.compareTo(b.start));
     final requests = bookings.where((b) => b.status == 'pending').toList();
-    final month = bookings.where((b) => b.status == 'completed' && b.start.month == now.month && b.start.year == now.year);
+    final month = bookings.where((b) => b.status == 'completed' && b.start.month == now.month && b.start.year == now.year).toList();
     final earnings = month.fold<int>(0, (s, b) => s + b.payout);
-    return _needsPlace(
-      ref,
-      (place) => PageBody(
-        children: [
-          const SizedBox(height: Space.md),
-          Text(l.helloPartner(user.firstName), style: context.text.headlineSmall),
-          Text(place.name, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
-          if (place.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
-          const SizedBox(height: Space.lg),
-          ResponsiveGrid(
-            minColumns: 2,
-            minItemWidth: 200,
-            children: [
-              StatTile(label: l.todaysBookings, value: '${today.length}', icon: Ph.calendarCheck),
-              StatTile(label: l.requestsWaiting, value: '${requests.length}', icon: Ph.tray, color: requests.isEmpty ? null : context.paw.warning),
-              StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Ph.wallet),
-              StatTile(
-                label: l.rating,
-                value: place.reviewCount == 0 ? '–' : '★ ${place.rating.toStringAsFixed(1)}',
-                icon: Ph.starFill,
-                color: context.paw.accent,
-              ),
-            ],
+    final fees = month.fold<int>(0, (s, b) => s + b.commission);
+    final feePercent = earnings + fees == 0 ? 0 : (fees * 100 / (earnings + fees)).round();
+    final next = today.where((b) => b.start.isAfter(now)).firstOrNull;
+    final isVet = user.role == UserRole.vet;
+    return _needsPlace(ref, (place) {
+      final reviews = ref.watch(reviewsProvider(place.id)).value ?? const <Review>[];
+      final latest = reviews.where((r) => r.status == 'visible' && r.text.isNotEmpty).fold<Review?>(null, (a, b) => a == null || b.createdAt.isAfter(a.createdAt) ? b : a);
+      final todayList = <Widget>[
+        SecHead(l.todaysBookings, action: l.pCalendar, onAction: () => context.go('/partner/calendar')),
+        if (today.isEmpty)
+          PawPanel(child: Text(l.noBookingsToday, style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)))
+        else
+          PawCard(
+            padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.xs + Space.xxs),
+            child: PawList(children: [for (final b in today) _Appt(booking: b, showVet: !isVet)]),
           ),
-          if (requests.isNotEmpty) ...[
-            SectionHeader(l.requestsWaiting, action: l.seeAll, onAction: () => context.go('/partner/requests')),
-            for (final b in requests.take(3))
-              Padding(
-                padding: const EdgeInsets.only(bottom: Space.sm),
-                child: BookingCard(booking: b, partnerView: true),
-              ),
-          ],
-          SectionHeader(l.todaysBookings, action: l.pCalendar, onAction: () => context.go('/partner/calendar')),
-          if (today.isEmpty) PawCard(child: Text(l.noBookingsToday)),
-          for (final b in today)
-            Padding(
-              padding: const EdgeInsets.only(bottom: Space.sm),
-              child: BookingCard(booking: b, partnerView: true),
-            ),
+      ];
+      final side = <Widget>[
+        if (isVet)
+          const _QueuePeek()
+        else ...[
+          _WeekPanel(bookings: bookings),
+          if (user.role == UserRole.clinicAdmin) _EmergencyPanel(place: place),
+          if (latest != null) _ReviewPanel(review: latest),
         ],
+      ];
+      Widget stack(List<Widget> items) => Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              for (final (i, w) in items.indexed) ...[if (i > 0) const SizedBox(height: Space.md), w],
+            ],
+          );
+      return LayoutBuilder(builder: (context, box) {
+        final wide = box.maxWidth >= Space.readingWidth;
+        return PageBody(
+          children: [
+            const SizedBox(height: Space.sm),
+            Text(l.helloPartner(user.firstName), style: context.text.displaySmall),
+            const SizedBox(height: Space.xs),
+            Text(l.pPlaceAndDate(place.name, Fmt.weekdayDateLong(now, lang)), style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),
+            if (place.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
+            const SizedBox(height: Space.lg + Space.xs),
+            ResponsiveGrid(
+              minColumns: 2,
+              minItemWidth: 200,
+              children: [
+                StatTile(label: l.todaysBookings, value: '${today.length}', icon: Ph.calendarCheck, sub: next == null ? null : l.pNextAt(Fmt.time(next.start, lang))),
+                StatTile(
+                  label: l.requestsWaiting,
+                  value: '${requests.length}',
+                  icon: Ph.tray,
+                  color: requests.isEmpty ? null : paw.accent,
+                  sub: requests.isEmpty ? l.pAllAnswered : null,
+                ),
+                StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings, lang), icon: Ph.wallet, sub: !isVet && feePercent > 0 ? l.pAfterFee(feePercent) : null),
+                StatTile(
+                  label: l.rating,
+                  value: place.reviewCount == 0 ? '–' : place.rating.toStringAsFixed(1),
+                  icon: Ph.star,
+                  color: paw.accent,
+                  sub: place.reviewCount == 0 ? null : l.reviewsCount(place.reviewCount),
+                ),
+              ],
+            ),
+            if (requests.isNotEmpty) ...[
+              const SizedBox(height: Sizes.sectionGap),
+              SecHead(l.requestsWaiting, action: l.seeAll, onAction: () => context.go('/partner/requests')),
+              for (final b in requests.take(3))
+                Padding(
+                  padding: const EdgeInsets.only(bottom: Space.sm),
+                  child: BookingCard(booking: b, partnerView: true),
+                ),
+            ],
+            const SizedBox(height: Sizes.sectionGap),
+            if (wide)
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Expanded(flex: isVet ? 7 : 8, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: todayList)),
+                const SizedBox(width: Space.md),
+                Expanded(flex: isVet ? 5 : 4, child: stack(side)),
+              ])
+            else ...[
+              ...todayList,
+              SizedBox(height: isVet ? Sizes.sectionGap : Space.xl),
+              stack(side),
+            ],
+            const SizedBox(height: Space.xl),
+          ],
+        );
+      });
+    });
+  }
+}
+
+/// One of today's bookings: the pet, whose it is and what for, then the
+/// time and its status at the end.
+class _Appt extends StatelessWidget {
+  const _Appt({required this.booking, required this.showVet});
+  final Booking booking;
+  final bool showVet;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final b = booking;
+    final (label, tone) = bookingStatus(context, b.status);
+    final time = Fmt.time(b.start, context.lang);
+    final what = [serviceLabel(context, b.serviceId), if (showVet && (b.vetName ?? '').isNotEmpty) b.vetName!].join(', ');
+    return Semantics(
+      button: true,
+      label: '$time. ${b.petName} ${l.pWithOwner(b.ownerName)}. $what. $label',
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: () => context.push('/partner/booking/${b.id}'),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: Space.md),
+          child: Row(children: [
+            PetAvatar(species: b.petSpecies, colorTag: b.raw['petColorTag'] as String?, photoUrl: b.raw['petPhotoUrl'] as String?, size: Sizes.stepper, ring: false),
+            const SizedBox(width: Space.md),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text.rich(TextSpan(children: [
+                  TextSpan(text: b.petName, style: context.text.labelLarge),
+                  TextSpan(text: ' ${l.pWithOwner(b.ownerName)}', style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),
+                ])),
+                Text(what, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              ]),
+            ),
+            const SizedBox(width: Space.sm),
+            Column(crossAxisAlignment: CrossAxisAlignment.end, mainAxisSize: MainAxisSize.min, children: [
+              Text(time, style: context.text.labelLarge?.copyWith(fontWeight: FontWeight.w700, fontFeatures: const [FontFeature.tabularFigures()])),
+              const SizedBox(height: Space.xs),
+              StatusChip(label, tone: tone, icon: b.status == 'confirmed' || b.status == 'completed' ? Ph.checkCircleFill : null),
+            ]),
+          ]),
+        ),
       ),
     );
+  }
+}
+
+/// "This week": what each day brings in, Monday to Sunday, today in marigold.
+class _WeekPanel extends StatelessWidget {
+  const _WeekPanel({required this.bookings});
+  final List<Booking> bookings;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final today = Fmt.dayOnly(DateTime.now());
+    final monday = today.subtract(Duration(days: today.weekday - 1));
+    final days = [for (var i = 0; i < 7; i++) DateTime(monday.year, monday.month, monday.day + i)];
+    int of(DateTime d) => bookings
+        .where((b) => Fmt.sameDay(b.start, d) && (b.status == 'confirmed' || b.status == 'in_progress' || b.status == 'completed'))
+        .fold(0, (s, b) => s + b.payout);
+    final vals = [for (final d in days) of(d)];
+    final top = vals.fold(0, (a, b) => b > a ? b : a);
+    final total = vals.fold(0, (a, b) => a + b);
+    return Semantics(
+      label: '${l.pThisWeek}: ${Fmt.inr(total, context.lang)}',
+      excludeSemantics: true,
+      child: PawPanel(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Row(children: [
+            Expanded(child: Text(l.pThisWeek, style: context.text.labelLarge)),
+            Text(Fmt.inr(total, context.lang), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+          ]),
+          const SizedBox(height: Space.md),
+          SizedBox(
+            height: Sizes.weekBars,
+            child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              for (final (i, v) in vals.indexed) ...[
+                if (i > 0) const SizedBox(width: Space.sm + Space.xxs),
+                Expanded(
+                  child: FractionallySizedBox(
+                    heightFactor: top == 0 ? Sizes.weekBarMin : (v / top).clamp(Sizes.weekBarMin, 1.0),
+                    alignment: Alignment.bottomCenter,
+                    child: DecoratedBox(decoration: BoxDecoration(color: days[i] == today ? paw.marigold : context.tint.paper3, borderRadius: BorderRadius.circular(Radii.xs))),
+                  ),
+                ),
+              ],
+            ]),
+          ),
+          const SizedBox(height: Space.xs),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            for (final d in [days.first, days.last]) Text(Fmt.weekdayShort(d, context.lang), style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500)),
+          ]),
+        ]),
+      ),
+    );
+  }
+}
+
+/// Whether the clinic shows on the SOS page, and how.
+class _EmergencyPanel extends ConsumerWidget {
+  const _EmergencyPanel({required this.place});
+  final Place place;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final open = place.is24x7 || hoursOn(place.hours, DateTime.now()) != null && isOpenNow(place.hours, DateTime.now());
+    final sub = !place.sosListed ? l.pSosHidden : (place.is24x7 ? l.pSosOpen24 : (open ? l.pSosOpenNow : l.pSosClosedNow));
+    void set(bool v) => ref.read(placesRepositoryProvider).updatePlace(place, {'sosListed': v});
+    return PawPanel(
+      child: MergeSemantics(
+        child: Row(children: [
+          const PawTile(icon: Ph.asterisk, tone: Tone.red),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(l.pEmergencyListing, style: context.text.labelLarge),
+              Text(sub, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+            ]),
+          ),
+          const SizedBox(width: Space.sm),
+          Switch(value: place.sosListed, onChanged: set),
+        ]),
+      ),
+    );
+  }
+}
+
+/// The newest review, with a link to reply.
+class _ReviewPanel extends StatelessWidget {
+  const _ReviewPanel({required this.review});
+  final Review review;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final r = review;
+    return PawPanel(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(children: [
+          Semantics(
+            label: l.starsOutOf5(r.rating),
+            excludeSemantics: true,
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              for (var i = 1; i <= 5; i++) Icon(Ph.starFill, size: IconSizes.sm, color: i <= r.rating ? context.tint.star : context.tint.line2),
+            ]),
+          ),
+          const SizedBox(width: Space.sm),
+          Text(l.pNewReview, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+        ]),
+        const SizedBox(height: Space.sm),
+        Text('"${r.text}"', style: context.text.bodyMedium, maxLines: 4, overflow: TextOverflow.ellipsis),
+        const SizedBox(height: Space.sm),
+        Row(children: [
+          Expanded(child: Text('${r.ownerName}, ${Fmt.dateShort(r.createdAt, context.lang)}', style: context.text.bodySmall?.copyWith(color: paw.textSecondary))),
+          if (r.reply == null) TextLink(l.reply, onTap: () => context.go('/partner/reviews')),
+        ]),
+      ]),
+    );
+  }
+}
+
+/// The vet's dashboard peek at the tele-vet queue: who's first in line.
+class _QueuePeek extends ConsumerWidget {
+  const _QueuePeek();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      SecHead(l.tvQueueTitle, action: l.pOpenQueue, onAction: () => context.go('/partner/televet')),
+      const VetQueuePeek(),
+    ]);
   }
 }
 

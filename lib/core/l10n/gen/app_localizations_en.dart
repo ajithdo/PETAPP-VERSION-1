@@ -11561,4 +11561,66 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get showToday => 'Today only';
+
+  @override
+  String pPlaceAndDate(String place, String date) {
+    return '$place, $date';
+  }
+
+  @override
+  String pNextAt(String time) {
+    return 'Next at $time';
+  }
+
+  @override
+  String get pAllAnswered => 'All answered';
+
+  @override
+  String pAfterFee(int percent) {
+    return 'After $percent% platform fee';
+  }
+
+  @override
+  String pWithOwner(String owner) {
+    return 'with $owner';
+  }
+
+  @override
+  String get pThisWeek => 'This week';
+
+  @override
+  String get pEmergencyListing => 'Emergency listing';
+
+  @override
+  String get pSosOpen24 => 'Shown in SOS as open 24x7.';
+
+  @override
+  String get pSosOpenNow => 'Shown in SOS as open now. Not 24x7.';
+
+  @override
+  String get pSosClosedNow => 'Shown in SOS as closed now. Not 24x7.';
+
+  @override
+  String get pSosHidden => 'Not shown in SOS.';
+
+  @override
+  String get pEmergencyListingHelp =>
+      'Turn this off if your clinic does not take emergencies. Pet parents will not see it on the SOS page.';
+
+  @override
+  String get pNewReview => 'New review';
+
+  @override
+  String get pOpenQueue => 'Open queue';
+
+  @override
+  String get pHistory => 'History';
+
+  @override
+  String get pOpen => 'Open';
+
+  @override
+  String starsOutOf5(int count) {
+    return '$count out of 5 stars';
+  }
 }

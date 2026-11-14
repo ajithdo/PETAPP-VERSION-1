@@ -8138,5 +8138,60 @@
     }
   },
   "logSleepShort": "Sleep",
-  "showToday": "Today only"
+  "showToday": "Today only",
+  "pPlaceAndDate": "{place}, {date}",
+  "@pPlaceAndDate": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "pNextAt": "Next at {time}",
+  "@pNextAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "pAllAnswered": "All answered",
+  "pAfterFee": "After {percent}% platform fee",
+  "@pAfterFee": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "pWithOwner": "with {owner}",
+  "@pWithOwner": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      }
+    }
+  },
+  "pThisWeek": "This week",
+  "pEmergencyListing": "Emergency listing",
+  "pSosOpen24": "Shown in SOS as open 24x7.",
+  "pSosOpenNow": "Shown in SOS as open now. Not 24x7.",
+  "pSosClosedNow": "Shown in SOS as closed now. Not 24x7.",
+  "pSosHidden": "Not shown in SOS.",
+  "pEmergencyListingHelp": "Turn this off if your clinic does not take emergencies. Pet parents will not see it on the SOS page.",
+  "pNewReview": "New review",
+  "pOpenQueue": "Open queue",
+  "pHistory": "History",
+  "pOpen": "Open",
+  "starsOutOf5": "{count} out of 5 stars",
+  "@starsOutOf5": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

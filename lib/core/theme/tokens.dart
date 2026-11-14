@@ -836,6 +836,10 @@ class Sizes {
   /// Minus and plus on a quantity pill.
   static const double stepper = 40;
 
+  /// The week's bars on a partner dashboard, and the least a bar shows.
+  static const double weekBars = 36;
+  static const double weekBarMin = 0.08;
+
   /// The time column of a timeline row ("12:19 PM").
   static const double timelineTime = 60;
 

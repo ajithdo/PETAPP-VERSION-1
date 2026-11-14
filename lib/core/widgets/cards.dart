@@ -134,47 +134,54 @@ class StatusChip extends StatelessWidget {
 
 /// Number + label tile used on dashboards and pet profile quick stats.
 class StatTile extends StatelessWidget {
-  const StatTile({super.key, required this.label, required this.value, this.icon, this.color});
+  const StatTile({super.key, required this.label, required this.value, this.icon, this.color, this.sub, this.compact = false});
   final String label;
   final String value;
   final IconData? icon;
+
+  /// Colour of the number (gold for a rating, red for low stock).
   final Color? color;
+
+  /// A short line under the number: "Next at 2:30 PM".
+  final String? sub;
+
+  /// A smaller number, for seven tiles in a row (admin).
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
+    final paw = context.paw;
     return Semantics(
-      label: '$label: $value',
+      label: [label, value, ?sub].join(', '),
       excludeSemantics: true,
-      // Number tile: a small label over a big number (sentence case: Hindi
-      // and Telugu can't be upper-cased).
+      // Number tile (the kit's ".kpi"): a small label with its icon, a big
+      // number, and one quiet line under it.
       child: PawCard(
-        padding: const EdgeInsets.all(Space.md + Space.xxs),
+        padding: EdgeInsets.symmetric(horizontal: compact ? Space.md : Space.lg, vertical: Space.md + Space.xxs),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (icon != null) ...[Icon(icon, color: color ?? context.paw.textSecondary, size: IconSizes.sm), const SizedBox(width: Space.xs + Space.xxs)],
-                Expanded(
-                  child: Text(
-                    label,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: context.textX.overline.copyWith(color: context.paw.textSecondary),
-                  ),
-                ),
+                if (icon != null) ...[
+                  Padding(padding: const EdgeInsets.only(top: Strokes.hairline), child: Icon(icon, color: paw.textSecondary, size: IconSizes.sm)),
+                  const SizedBox(width: Space.sm),
+                ],
+                Expanded(child: Text(label, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodySmall?.copyWith(color: paw.textSecondary))),
               ],
             ),
-            const SizedBox(height: Space.sm),
+            const SizedBox(height: Space.xs),
             FittedBox(
               fit: BoxFit.scaleDown,
               alignment: Alignment.centerLeft,
               child: Text(
                 value,
-                style: context.text.headlineMedium?.copyWith(color: color == null ? context.paw.textPrimary : readableOn(color!, [context.paw.surface])),
+                style: (compact ? context.text.headlineSmall : context.text.headlineLarge)?.copyWith(color: color == null ? paw.textPrimary : readableOn(color!, [paw.surface])),
                 maxLines: 1,
               ),
             ),
+            if (sub != null) Text(sub!, style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500), maxLines: 2, overflow: TextOverflow.ellipsis),
           ],
         ),
       ),

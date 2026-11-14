@@ -1269,5 +1269,106 @@
     "en": "Today only",
     "hi": "सिर्फ़ आज",
     "te": "ఈరోజు మాత్రమే"
+  },
+  "pPlaceAndDate": {
+    "en": "{place}, {date}",
+    "hi": "{place}, {date}",
+    "te": "{place}, {date}",
+    "ph": {
+      "place": "String",
+      "date": "String"
+    }
+  },
+  "pNextAt": {
+    "en": "Next at {time}",
+    "hi": "अगली {time} पर",
+    "te": "తదుపరిది {time}కి",
+    "ph": {
+      "time": "String"
+    }
+  },
+  "pAllAnswered": {
+    "en": "All answered",
+    "hi": "सबका जवाब दे दिया",
+    "te": "అన్నింటికీ జవాబిచ్చారు"
+  },
+  "pAfterFee": {
+    "en": "After {percent}% platform fee",
+    "hi": "{percent}% प्लेटफ़ॉर्म शुल्क के बाद",
+    "te": "{percent}% ప్లాట్‌ఫామ్ రుసుము తర్వాత",
+    "ph": {
+      "percent": "int"
+    }
+  },
+  "pWithOwner": {
+    "en": "with {owner}",
+    "hi": "{owner} के साथ",
+    "te": "{owner}తో",
+    "ph": {
+      "owner": "String"
+    }
+  },
+  "pThisWeek": {
+    "en": "This week",
+    "hi": "इस हफ़्ते",
+    "te": "ఈ వారం"
+  },
+  "pEmergencyListing": {
+    "en": "Emergency listing",
+    "hi": "आपातकालीन सूची",
+    "te": "అత్యవసర జాబితా"
+  },
+  "pSosOpen24": {
+    "en": "Shown in SOS as open 24x7.",
+    "hi": "SOS में 24x7 खुला दिखता है।",
+    "te": "SOSలో 24x7 తెరిచి ఉన్నట్లు కనిపిస్తుంది."
+  },
+  "pSosOpenNow": {
+    "en": "Shown in SOS as open now. Not 24x7.",
+    "hi": "SOS में अभी खुला दिखता है। 24x7 नहीं।",
+    "te": "SOSలో ఇప్పుడు తెరిచి ఉన్నట్లు కనిపిస్తుంది. 24x7 కాదు."
+  },
+  "pSosClosedNow": {
+    "en": "Shown in SOS as closed now. Not 24x7.",
+    "hi": "SOS में अभी बंद दिखता है। 24x7 नहीं।",
+    "te": "SOSలో ఇప్పుడు మూసి ఉన్నట్లు కనిపిస్తుంది. 24x7 కాదు."
+  },
+  "pSosHidden": {
+    "en": "Not shown in SOS.",
+    "hi": "SOS में नहीं दिखता।",
+    "te": "SOSలో కనిపించదు."
+  },
+  "pEmergencyListingHelp": {
+    "en": "Turn this off if your clinic does not take emergencies. Pet parents will not see it on the SOS page.",
+    "hi": "अगर आपका क्लिनिक आपात मामले नहीं लेता तो इसे बंद करें। पालतू के मालिकों को यह SOS पेज पर नहीं दिखेगा।",
+    "te": "మీ క్లినిక్ అత్యవసర కేసులు తీసుకోకపోతే దీన్ని ఆపండి. పెంపుడు జంతువుల యజమానులకు SOS పేజీలో ఇది కనిపించదు."
+  },
+  "pNewReview": {
+    "en": "New review",
+    "hi": "नई समीक्षा",
+    "te": "కొత్త సమీక్ష"
+  },
+  "pOpenQueue": {
+    "en": "Open queue",
+    "hi": "कतार खोलें",
+    "te": "క్యూ తెరవండి"
+  },
+  "pHistory": {
+    "en": "History",
+    "hi": "इतिहास",
+    "te": "చరిత్ర"
+  },
+  "pOpen": {
+    "en": "Open",
+    "hi": "खोलें",
+    "te": "తెరవండి"
+  },
+  "starsOutOf5": {
+    "en": "{count} out of 5 stars",
+    "hi": "5 में से {count} स्टार",
+    "te": "5లో {count} స్టార్లు",
+    "ph": {
+      "count": "int"
+    }
   }
 }

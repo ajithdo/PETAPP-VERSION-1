@@ -11139,4 +11139,66 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get showToday => 'सिर्फ़ आज';
+
+  @override
+  String pPlaceAndDate(String place, String date) {
+    return '$place, $date';
+  }
+
+  @override
+  String pNextAt(String time) {
+    return 'अगली $time पर';
+  }
+
+  @override
+  String get pAllAnswered => 'सबका जवाब दे दिया';
+
+  @override
+  String pAfterFee(int percent) {
+    return '$percent% प्लेटफ़ॉर्म शुल्क के बाद';
+  }
+
+  @override
+  String pWithOwner(String owner) {
+    return '$owner के साथ';
+  }
+
+  @override
+  String get pThisWeek => 'इस हफ़्ते';
+
+  @override
+  String get pEmergencyListing => 'आपातकालीन सूची';
+
+  @override
+  String get pSosOpen24 => 'SOS में 24x7 खुला दिखता है।';
+
+  @override
+  String get pSosOpenNow => 'SOS में अभी खुला दिखता है। 24x7 नहीं।';
+
+  @override
+  String get pSosClosedNow => 'SOS में अभी बंद दिखता है। 24x7 नहीं।';
+
+  @override
+  String get pSosHidden => 'SOS में नहीं दिखता।';
+
+  @override
+  String get pEmergencyListingHelp =>
+      'अगर आपका क्लिनिक आपात मामले नहीं लेता तो इसे बंद करें। पालतू के मालिकों को यह SOS पेज पर नहीं दिखेगा।';
+
+  @override
+  String get pNewReview => 'नई समीक्षा';
+
+  @override
+  String get pOpenQueue => 'कतार खोलें';
+
+  @override
+  String get pHistory => 'इतिहास';
+
+  @override
+  String get pOpen => 'खोलें';
+
+  @override
+  String starsOutOf5(int count) {
+    return '5 में से $count स्टार';
+  }
 }

@@ -149,6 +149,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
     if (live.hasValue && live.value!.isNotEmpty) {
       final list = [
         for (final p in live.value!)
+          if (p.sosListed)
           SosClinic(
             id: p.id,
             name: p.name,

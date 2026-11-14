@@ -3162,5 +3162,22 @@
   "albumVideoUpToPlus": "Plus के साथ {length} तक के वीडियो।",
   "byPerson": "{name} ने",
   "logSleepShort": "नींद",
-  "showToday": "सिर्फ़ आज"
+  "showToday": "सिर्फ़ आज",
+  "pPlaceAndDate": "{place}, {date}",
+  "pNextAt": "अगली {time} पर",
+  "pAllAnswered": "सबका जवाब दे दिया",
+  "pAfterFee": "{percent}% प्लेटफ़ॉर्म शुल्क के बाद",
+  "pWithOwner": "{owner} के साथ",
+  "pThisWeek": "इस हफ़्ते",
+  "pEmergencyListing": "आपातकालीन सूची",
+  "pSosOpen24": "SOS में 24x7 खुला दिखता है।",
+  "pSosOpenNow": "SOS में अभी खुला दिखता है। 24x7 नहीं।",
+  "pSosClosedNow": "SOS में अभी बंद दिखता है। 24x7 नहीं।",
+  "pSosHidden": "SOS में नहीं दिखता।",
+  "pEmergencyListingHelp": "अगर आपका क्लिनिक आपात मामले नहीं लेता तो इसे बंद करें। पालतू के मालिकों को यह SOS पेज पर नहीं दिखेगा।",
+  "pNewReview": "नई समीक्षा",
+  "pOpenQueue": "कतार खोलें",
+  "pHistory": "इतिहास",
+  "pOpen": "खोलें",
+  "starsOutOf5": "5 में से {count} स्टार"
 }

@@ -9,6 +9,7 @@ import '../../../core/widgets/widgets.dart';
 import '../data/consultation.dart';
 import '../data/televet_repository.dart';
 import '../domain/televet_rules.dart';
+import '../../pets/presentation/pet_labels.dart';
 import 'televet_home_screen.dart';
 import '../../../core/theme/ph.dart';
 
@@ -65,6 +66,21 @@ class VetQueueSection extends ConsumerWidget {
   }
 }
 
+/// The first person waiting, for the vet's dashboard.
+class VetQueuePeek extends ConsumerWidget {
+  const VetQueuePeek({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final list = ref.watch(vetConsultationsProvider).value ?? const <Consultation>[];
+    final queued = list.where((c) => c.isQueued).toList()
+      ..sort((a, b) => compareQueue(aPriority: a.priority, aAt: a.scheduledAt ?? a.createdAt, bPriority: b.priority, bAt: b.scheduledAt ?? b.createdAt));
+    if (queued.isEmpty) return PawPanel(child: Text(l.tvQueueEmpty, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)));
+    return _QueueCard(consultation: queued.first);
+  }
+}
+
 class _QueueCard extends ConsumerStatefulWidget {
   const _QueueCard({required this.consultation});
   final Consultation consultation;
@@ -78,58 +94,58 @@ class _QueueCardState extends ConsumerState<_QueueCard> {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    final paw = context.paw;
     final c = widget.consultation;
     final now = DateTime.now();
     final waited = now.difference(c.createdAt).inMinutes;
     final scheduled = c.scheduledAt != null && c.scheduledAt!.isAfter(now);
+    // "Labrador, 3 yrs. Waiting 4 min. Chat"
+    final about = [
+      [c.pet.breedName(context.lang), petAgeLabel(context, c.pet)].where((s) => s.isNotEmpty).join(', '),
+      scheduled ? l.tvScheduledFor(Fmt.dateTime(c.scheduledAt!, context.lang)) : l.tvWaitingFor(waited),
+      c.isVideo ? l.tvModeVideo : l.tvModeChat,
+    ].where((s) => s.isNotEmpty).join('. ');
     return PawCard(
-      borderColor: c.redFlag != null ? context.paw.sos : (c.priority ? context.paw.accent : null),
-      padding: const EdgeInsets.all(Space.md),
+      borderColor: c.redFlag != null ? paw.sos : null,
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Row(children: [
-          PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: Sizes.avatarMd),
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          PetAvatar(species: c.petSpecies, colorTag: c.pet.colorTag, photoUrl: c.pet.photoUrl, size: Sizes.avatarMd, ring: false),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('${c.petName} · ${c.ownerName}', style: context.text.titleSmall, maxLines: 1, overflow: TextOverflow.ellipsis),
-              Text(
-                scheduled ? l.tvScheduledFor(Fmt.dateTime(c.scheduledAt!, context.lang)) : l.tvWaitingFor(waited),
-                style: context.text.bodySmall,
-              ),
+              Wrap(spacing: Space.sm, runSpacing: Space.xxs, crossAxisAlignment: WrapCrossAlignment.center, children: [
+                Text('${c.petName}, ${c.ownerName}', style: context.text.labelLarge),
+                if (c.isPlus) PawTag(l.planPlus, kind: TagKind.plus),
+                if (c.redFlag != null) PawTag(l.tvUrgent, kind: TagKind.red, icon: Ph.asteriskFill),
+                if (c.vetUid != null) PawTag(l.tvAskedForYou, kind: TagKind.green),
+              ]),
+              Text(about, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              const SizedBox(height: Space.sm),
+              Text(c.problem, style: context.text.bodyMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
             ]),
           ),
         ]),
-        const SizedBox(height: Space.sm),
-        Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-          if (c.priority) StatusChip(l.tvPriority, tone: ChipTone.accent, icon: Ph.lightningFill),
-          StatusChip(c.isVideo ? l.tvModeVideo : l.tvModeChat, tone: ChipTone.info, icon: c.isVideo ? Ph.videoCamera : Ph.chatCircleDots),
-          if (c.redFlag != null) StatusChip(l.tvUrgent, tone: ChipTone.error, icon: Ph.asteriskFill),
-          if (c.vetUid != null) StatusChip(l.tvAskedForYou, tone: ChipTone.success),
-        ]),
-        const SizedBox(height: Space.sm),
-        Text(c.problem, style: context.text.bodyMedium, maxLines: 3, overflow: TextOverflow.ellipsis),
         const SizedBox(height: Space.md),
-        Row(children: [
-          Expanded(child: SecondaryButton(label: l.tvView, onPressed: () => context.push('/partner/consult/${c.id}'))),
-          const SizedBox(width: Space.sm),
-          Expanded(
-            child: PrimaryButton(
-              label: l.tvAccept,
-              loading: _busy,
-              onPressed: () async {
-                setState(() => _busy = true);
-                try {
-                  await ref.read(teleVetBackendProvider).accept(c, ref.read(currentUserProvider)!);
-                  if (context.mounted) context.push('/partner/consult/${c.id}');
-                } catch (e) {
-                  debugPrint('Accept failed: $e');
-                  if (context.mounted) showToast(context, l.errorBody);
-                } finally {
-                  if (mounted) setState(() => _busy = false);
-                }
-              },
-            ),
+        Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
+          PawButton(
+            label: l.tvAccept,
+            icon: Ph.check,
+            onPressed: _busy
+                ? null
+                : () async {
+                    setState(() => _busy = true);
+                    try {
+                      await ref.read(teleVetBackendProvider).accept(c, ref.read(currentUserProvider)!);
+                      if (context.mounted) context.push('/partner/consult/${c.id}');
+                    } catch (e) {
+                      debugPrint('Accept failed: $e');
+                      if (context.mounted) showToast(context, l.errorBody);
+                    } finally {
+                      if (mounted) setState(() => _busy = false);
+                    }
+                  },
           ),
+          PawButton(label: l.pHistory, icon: Ph.clockCounterClockwise, kind: BtnKind.soft, onPressed: () => context.push('/partner/consult/${c.id}')),
         ]),
       ]),
     );

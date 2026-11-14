@@ -11170,4 +11170,68 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get showToday => 'ఈరోజు మాత్రమే';
+
+  @override
+  String pPlaceAndDate(String place, String date) {
+    return '$place, $date';
+  }
+
+  @override
+  String pNextAt(String time) {
+    return 'తదుపరిది $timeకి';
+  }
+
+  @override
+  String get pAllAnswered => 'అన్నింటికీ జవాబిచ్చారు';
+
+  @override
+  String pAfterFee(int percent) {
+    return '$percent% ప్లాట్‌ఫామ్ రుసుము తర్వాత';
+  }
+
+  @override
+  String pWithOwner(String owner) {
+    return '$ownerతో';
+  }
+
+  @override
+  String get pThisWeek => 'ఈ వారం';
+
+  @override
+  String get pEmergencyListing => 'అత్యవసర జాబితా';
+
+  @override
+  String get pSosOpen24 => 'SOSలో 24x7 తెరిచి ఉన్నట్లు కనిపిస్తుంది.';
+
+  @override
+  String get pSosOpenNow =>
+      'SOSలో ఇప్పుడు తెరిచి ఉన్నట్లు కనిపిస్తుంది. 24x7 కాదు.';
+
+  @override
+  String get pSosClosedNow =>
+      'SOSలో ఇప్పుడు మూసి ఉన్నట్లు కనిపిస్తుంది. 24x7 కాదు.';
+
+  @override
+  String get pSosHidden => 'SOSలో కనిపించదు.';
+
+  @override
+  String get pEmergencyListingHelp =>
+      'మీ క్లినిక్ అత్యవసర కేసులు తీసుకోకపోతే దీన్ని ఆపండి. పెంపుడు జంతువుల యజమానులకు SOS పేజీలో ఇది కనిపించదు.';
+
+  @override
+  String get pNewReview => 'కొత్త సమీక్ష';
+
+  @override
+  String get pOpenQueue => 'క్యూ తెరవండి';
+
+  @override
+  String get pHistory => 'చరిత్ర';
+
+  @override
+  String get pOpen => 'తెరవండి';
+
+  @override
+  String starsOutOf5(int count) {
+    return '5లో $count స్టార్లు';
+  }
 }

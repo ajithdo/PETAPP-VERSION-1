@@ -28,6 +28,9 @@ class Place {
   List<String> get species => ((raw['species'] as List?) ?? const []).cast<String>();
   List<String> get languages => ((raw['languages'] as List?) ?? const []).cast<String>();
   bool get is24x7 => (raw['is24x7'] as bool?) ?? false;
+
+  /// Shown on the SOS page (a clinic that takes no emergencies turns it off).
+  bool get sosListed => (raw['sosListed'] as bool?) ?? true;
   bool get teleVet => (raw['teleVet'] as bool?) ?? false;
   int get fee => (raw['consultationFee'] as num?)?.toInt() ?? (services.isEmpty ? 0 : services.first.price);
   Map<String, dynamic> get hours => (raw['hours'] as Map?)?.cast<String, dynamic>() ?? const {};

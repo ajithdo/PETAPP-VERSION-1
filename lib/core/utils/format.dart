@@ -60,6 +60,8 @@ class Fmt {
 /// Up to two initials for an avatar ("Priya Sharma" → "PS").
 String initials(String name) {
   final parts = name.trim().split(RegExp(r'\s+')).where((p) => p.isNotEmpty).toList();
+  // "Dr. Sameer Khan" is SK, not DK.
+  if (parts.length > 2 && const {'dr', 'dr.', 'mr', 'mr.', 'mrs', 'mrs.', 'ms', 'ms.', 'shri', 'smt', 'smt.'}.contains(parts.first.toLowerCase())) parts.removeAt(0);
   if (parts.isEmpty) return '?';
   final first = parts.first.characters.first;
   final last = parts.length > 1 ? parts.last.characters.first : '';

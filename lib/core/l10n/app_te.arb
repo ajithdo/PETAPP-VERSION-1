@@ -3162,5 +3162,22 @@
   "albumVideoUpToPlus": "Plusతో {length} వరకు వీడియోలు.",
   "byPerson": "{name} ద్వారా",
   "logSleepShort": "నిద్ర",
-  "showToday": "ఈరోజు మాత్రమే"
+  "showToday": "ఈరోజు మాత్రమే",
+  "pPlaceAndDate": "{place}, {date}",
+  "pNextAt": "తదుపరిది {time}కి",
+  "pAllAnswered": "అన్నింటికీ జవాబిచ్చారు",
+  "pAfterFee": "{percent}% ప్లాట్‌ఫామ్ రుసుము తర్వాత",
+  "pWithOwner": "{owner}తో",
+  "pThisWeek": "ఈ వారం",
+  "pEmergencyListing": "అత్యవసర జాబితా",
+  "pSosOpen24": "SOSలో 24x7 తెరిచి ఉన్నట్లు కనిపిస్తుంది.",
+  "pSosOpenNow": "SOSలో ఇప్పుడు తెరిచి ఉన్నట్లు కనిపిస్తుంది. 24x7 కాదు.",
+  "pSosClosedNow": "SOSలో ఇప్పుడు మూసి ఉన్నట్లు కనిపిస్తుంది. 24x7 కాదు.",
+  "pSosHidden": "SOSలో కనిపించదు.",
+  "pEmergencyListingHelp": "మీ క్లినిక్ అత్యవసర కేసులు తీసుకోకపోతే దీన్ని ఆపండి. పెంపుడు జంతువుల యజమానులకు SOS పేజీలో ఇది కనిపించదు.",
+  "pNewReview": "కొత్త సమీక్ష",
+  "pOpenQueue": "క్యూ తెరవండి",
+  "pHistory": "చరిత్ర",
+  "pOpen": "తెరవండి",
+  "starsOutOf5": "5లో {count} స్టార్లు"
 }

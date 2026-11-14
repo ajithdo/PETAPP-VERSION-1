@@ -19083,6 +19083,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Today only'**
   String get showToday;
+
+  /// No description provided for @pPlaceAndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'{place}, {date}'**
+  String pPlaceAndDate(String place, String date);
+
+  /// No description provided for @pNextAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Next at {time}'**
+  String pNextAt(String time);
+
+  /// No description provided for @pAllAnswered.
+  ///
+  /// In en, this message translates to:
+  /// **'All answered'**
+  String get pAllAnswered;
+
+  /// No description provided for @pAfterFee.
+  ///
+  /// In en, this message translates to:
+  /// **'After {percent}% platform fee'**
+  String pAfterFee(int percent);
+
+  /// No description provided for @pWithOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'with {owner}'**
+  String pWithOwner(String owner);
+
+  /// No description provided for @pThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get pThisWeek;
+
+  /// No description provided for @pEmergencyListing.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency listing'**
+  String get pEmergencyListing;
+
+  /// No description provided for @pSosOpen24.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown in SOS as open 24x7.'**
+  String get pSosOpen24;
+
+  /// No description provided for @pSosOpenNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown in SOS as open now. Not 24x7.'**
+  String get pSosOpenNow;
+
+  /// No description provided for @pSosClosedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown in SOS as closed now. Not 24x7.'**
+  String get pSosClosedNow;
+
+  /// No description provided for @pSosHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Not shown in SOS.'**
+  String get pSosHidden;
+
+  /// No description provided for @pEmergencyListingHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn this off if your clinic does not take emergencies. Pet parents will not see it on the SOS page.'**
+  String get pEmergencyListingHelp;
+
+  /// No description provided for @pNewReview.
+  ///
+  /// In en, this message translates to:
+  /// **'New review'**
+  String get pNewReview;
+
+  /// No description provided for @pOpenQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'Open queue'**
+  String get pOpenQueue;
+
+  /// No description provided for @pHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get pHistory;
+
+  /// No description provided for @pOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get pOpen;
+
+  /// No description provided for @starsOutOf5.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} out of 5 stars'**
+  String starsOutOf5(int count);
 }
 
 class _AppLocalizationsDelegate
