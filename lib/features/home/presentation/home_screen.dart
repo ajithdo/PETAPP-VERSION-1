@@ -102,8 +102,11 @@ class HomeScreen extends ConsumerWidget {
 /// thing on today's plan (each walk, each meal, and play), the date, and
 /// "2 of 4 done". Tapping it opens the pet's profile (the photo flies there).
 class PetDayBand extends ConsumerWidget {
-  const PetDayBand({super.key, required this.pet});
+  const PetDayBand({super.key, required this.pet, this.leftLine = false});
   final Pet pet;
+
+  /// Say what's left ("3 things left today") instead of the count done.
+  final bool leftLine;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -137,6 +140,7 @@ class PetDayBand extends ConsumerWidget {
       done: done.toInt(),
       total: total,
       streakDays: streak(logs.map((g) => g.at), DateTime.now()),
+      statusLine: !leftLine ? null : (open.isEmpty ? l.allDoneToday(pet.name) : l.tasksLeft(open.length)),
       aside: next == null
           ? null
           : Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [

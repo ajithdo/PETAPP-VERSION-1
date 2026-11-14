@@ -26,7 +26,11 @@ class GendaBand extends StatelessWidget {
     this.onTap,
     this.streakDays = 0,
     this.aside,
+    this.statusLine,
   });
+
+  /// Said instead of "2 of 5 done": "3 things left today" (the routine page).
+  final String? statusLine;
 
   final String petName;
 
@@ -57,6 +61,7 @@ class GendaBand extends StatelessWidget {
     final status = total == 0 ? l.gendaNothingPlanned : (allDone ? l.allDoneToday(petName) : l.gendaProgress(done, total));
     final countStyle = context.text.bodyMedium?.copyWith(color: paw.onBandMuted);
     Widget progressLine() {
+      if (statusLine != null) return Text(statusLine!, style: context.text.bodyLarge?.copyWith(color: paw.onBandMuted));
       if (total == 0 || allDone) return Text(status, style: countStyle?.copyWith(color: paw.onBand));
       // "2 of 5 done" with the done count big and marigold.
       final parts = status.split('$done');

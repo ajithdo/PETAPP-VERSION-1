@@ -11530,4 +11530,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String vaultStorageOf(String used, String limit) {
     return '$used of $limit';
   }
+
+  @override
+  String albumOnThisDayAgo(String ago) {
+    return 'On this day, $ago';
+  }
+
+  @override
+  String albumMilestoneTag(String name) {
+    return 'Milestone: $name';
+  }
+
+  @override
+  String albumVideoUpTo(String length) {
+    return 'Videos up to $length.';
+  }
+
+  @override
+  String albumVideoUpToPlus(String length) {
+    return 'Videos up to $length with Plus.';
+  }
+
+  @override
+  String byPerson(String name) {
+    return 'by $name';
+  }
+
+  @override
+  String get logSleepShort => 'Sleep';
+
+  @override
+  String get showToday => 'Today only';
 }

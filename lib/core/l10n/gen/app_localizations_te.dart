@@ -11139,4 +11139,35 @@ class AppLocalizationsTe extends AppLocalizations {
   String vaultStorageOf(String used, String limit) {
     return '$limitలో $used';
   }
+
+  @override
+  String albumOnThisDayAgo(String ago) {
+    return 'ఈ రోజున, $ago';
+  }
+
+  @override
+  String albumMilestoneTag(String name) {
+    return 'మైలురాయి: $name';
+  }
+
+  @override
+  String albumVideoUpTo(String length) {
+    return '$length వరకు వీడియోలు.';
+  }
+
+  @override
+  String albumVideoUpToPlus(String length) {
+    return 'Plusతో $length వరకు వీడియోలు.';
+  }
+
+  @override
+  String byPerson(String name) {
+    return '$name ద్వారా';
+  }
+
+  @override
+  String get logSleepShort => 'నిద్ర';
+
+  @override
+  String get showToday => 'ఈరోజు మాత్రమే';
 }

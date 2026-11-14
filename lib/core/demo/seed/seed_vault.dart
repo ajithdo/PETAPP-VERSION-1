@@ -285,6 +285,7 @@ void seedVault(Add add, DateTime now, SeedData data) {
     String? milestoneTitle,
     int durationSec = 0,
     String? by,
+    int? scene,
   }) {
     final p = pet(petId);
     final owner = p['ownerId'] as String;
@@ -295,7 +296,9 @@ void seedVault(Add add, DateTime now, SeedData data) {
       'petId': petId,
       'ownerId': owner,
       'type': type,
-      'url': media ? 'seed:album:${p['species']}:${petId.substring(4)}:$n' : null,
+      // [scene] picks the drawing: 0 park, 1 beach, 2 festival, 3 home,
+      // 4 rain, 5 party, 6 bath, 7 night, 8 vet. Otherwise they take turns.
+      'url': media ? 'seed:album:${p['species']}:${petId.substring(4)}:${scene ?? n}' : null,
       'contentType': switch (type) {
         'video' => 'video/mp4',
         'photo' => 'image/jpeg',
@@ -326,27 +329,34 @@ void seedVault(Add add, DateTime now, SeedData data) {
     return DateTime(b.year + yearsAfterBirth, b.month, b.day, 16);
   }
 
-  // Bruno (17): puppy milestones, two birthdays, a beach trip exactly one
-  // year ago ("On this day"), and photos across recent months, some added
-  // by Rohan.
+  // Bruno (20): puppy milestones, two birthdays, a beach trip exactly one
+  // year ago ("On this day"), and photos across recent months as the design
+  // shows them (Diwali this month, the rains last month, his third birthday
+  // before that), some added by Rohan.
   final brunoBorn = birthday('pet_bruno');
-  memory('pet_bruno', after(brunoBorn, 45), 'Brave boy at his first vaccine', milestone: 'first_vaccine', albums: ['Puppy days']);
-  memory('pet_bruno', after(brunoBorn, 58), 'Bruno came home!', milestone: 'gotcha', fav: true, albums: ['Puppy days']);
-  memory('pet_bruno', after(brunoBorn, 100, 7), 'First walk around the block', milestone: 'first_walk', albums: ['Puppy days']);
+  final bruno3 = birthdayIn('pet_bruno', 3);
+  DateTime thisMonth(int back, int hour) => DateTime(now.year, now.month, (now.day - back).clamp(1, 28), hour);
+  DateTime lastMonth(int dayOfMonth, int hour) => DateTime(now.year, now.month - 1, dayOfMonth, hour);
+  memory('pet_bruno', after(brunoBorn, 45), 'Brave boy at his first vaccine', milestone: 'first_vaccine', albums: ['Puppy days'], scene: 8);
+  memory('pet_bruno', after(brunoBorn, 58), 'Bruno came home!', milestone: 'gotcha', fav: true, albums: ['Puppy days'], scene: 3);
+  memory('pet_bruno', after(brunoBorn, 100, 7), 'First walk around the block', milestone: 'first_walk', albums: ['Puppy days'], scene: 0);
   memory('pet_bruno', after(brunoBorn, 150), '', type: 'milestone', milestone: 'custom', milestoneTitle: 'Learned to sit and shake hands');
-  memory('pet_bruno', birthdayIn('pet_bruno', 2), 'Second birthday', milestone: 'birthday', albums: ['Birthdays']);
-  memory('pet_bruno', onDay(1, 8), 'First time at the beach in Gokarna', fav: true, albums: ['Beach days']);
-  memory('pet_bruno', onDay(1, 9), 'Chasing the waves', type: 'video', durationSec: 24, albums: ['Beach days']);
-  memory('pet_bruno', day(200, 18), 'Muddy paws after the rain');
-  memory('pet_bruno', day(150, 17), 'Learning to fetch');
-  memory('pet_bruno', day(120, 9), 'Sunday swim at the pool', albums: ['Beach days']);
-  memory('pet_bruno', day(80, 19), 'Playing with Misty', fav: true);
-  memory('pet_bruno', birthdayIn('pet_bruno', 3), 'Third birthday, cake from the pet bakery', milestone: 'birthday', fav: true, albums: ['Birthdays']);
-  memory('pet_bruno', day(38, 18), 'Rainy day zoomies', type: 'video', durationSec: 18, by: 'u_rohan');
-  memory('pet_bruno', day(23, 12), 'New red collar', fav: true);
-  memory('pet_bruno', day(9, 15), 'Nap after the bath');
-  memory('pet_bruno', day(2, 7), 'Morning walk in Cubbon Park', by: 'u_rohan');
-  memory('pet_bruno', day(0, 8), 'Breakfast face');
+  memory('pet_bruno', birthdayIn('pet_bruno', 2), 'Second birthday', milestone: 'birthday', albums: ['Birthdays'], scene: 5);
+  memory('pet_bruno', onDay(1, 9), 'A stop at the park on the way', fav: true, scene: 0);
+  memory('pet_bruno', onDay(1, 17), "Bruno's first beach day, Gokarna", type: 'video', durationSec: 24, albums: ['Beach days'], scene: 1);
+  memory('pet_bruno', day(200, 18), 'Muddy paws after the rain', scene: 4);
+  memory('pet_bruno', day(150, 17), 'Learning to fetch', scene: 0);
+  memory('pet_bruno', day(120, 9), 'Sunday swim at the pool', albums: ['Beach days'], scene: 1);
+  memory('pet_bruno', day(95, 19), 'Playing with Misty', fav: true, scene: 3);
+  memory('pet_bruno', after(bruno3, -9, 17), 'Chasing a ball at the park', scene: 0);
+  memory('pet_bruno', after(bruno3, -4, 8), 'Weekend at the beach', albums: ['Beach days'], scene: 1);
+  memory('pet_bruno', bruno3, 'Third birthday, cake from the pet bakery', milestone: 'birthday', fav: true, albums: ['Birthdays'], scene: 5);
+  memory('pet_bruno', lastMonth(4, 12), 'Brave at the ear check-up', type: 'video', durationSec: 18, by: 'u_rohan', scene: 8);
+  memory('pet_bruno', lastMonth(18, 22), 'Fast asleep after a long day', fav: true, scene: 7);
+  memory('pet_bruno', lastMonth(25, 18), 'Rainy day walk in his new bandana', scene: 4);
+  memory('pet_bruno', thisMonth(12, 9), 'Lazy afternoon at home', by: 'u_rohan', scene: 3);
+  memory('pet_bruno', thisMonth(9, 13), 'Nap after the bath', scene: 6);
+  memory('pet_bruno', thisMonth(6, 19), 'Diwali at home', fav: true, milestone: 'custom', milestoneTitle: 'Diwali at home', scene: 2);
 
   // Misty (5).
   memory('pet_misty', after(birthday('pet_misty'), 70), 'Tiny Misty on her first day home', milestone: 'gotcha', fav: true);

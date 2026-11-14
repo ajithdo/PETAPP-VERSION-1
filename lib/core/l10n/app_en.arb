@@ -8096,5 +8096,47 @@
         "type": "String"
       }
     }
-  }
+  },
+  "albumOnThisDayAgo": "On this day, {ago}",
+  "@albumOnThisDayAgo": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "albumMilestoneTag": "Milestone: {name}",
+  "@albumMilestoneTag": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "albumVideoUpTo": "Videos up to {length}.",
+  "@albumVideoUpTo": {
+    "placeholders": {
+      "length": {
+        "type": "String"
+      }
+    }
+  },
+  "albumVideoUpToPlus": "Videos up to {length} with Plus.",
+  "@albumVideoUpToPlus": {
+    "placeholders": {
+      "length": {
+        "type": "String"
+      }
+    }
+  },
+  "byPerson": "by {name}",
+  "@byPerson": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "logSleepShort": "Sleep",
+  "showToday": "Today only"
 }

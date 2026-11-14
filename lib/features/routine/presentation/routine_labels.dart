@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/layout.dart';
+import '../../../core/widgets/toran.dart';
 import '../domain/routine.dart';
 import '../../../core/theme/ph.dart';
 
@@ -22,12 +23,24 @@ String logTypeLabel(BuildContext context, LogType t) {
   };
 }
 
+/// A one-word name for the log grid ("Sleep", not "Sleep / nap").
+String logTypeShort(BuildContext context, LogType t) => t == LogType.sleep ? context.l10n.logSleepShort : logTypeLabel(context, t);
+
+/// The tint of a log's tile on the timeline (UI Design 6): water sky, meals
+/// gold, walks green, the rest plain paper.
+Tone logTypeTone(LogType t) => switch (t) {
+      LogType.water => Tone.sky,
+      LogType.meal => Tone.gold,
+      LogType.walk => Tone.green,
+      _ => Tone.neutral,
+    };
+
 IconData logTypeIcon(LogType t) => switch (t) {
       LogType.walk => Ph.personSimpleWalk,
       LogType.play => Ph.tennisBall,
       LogType.meal => Ph.forkKnife,
       LogType.water => Ph.drop,
-      LogType.potty => Ph.plant,
+      LogType.potty => Ph.toiletPaper,
       LogType.sleep => Ph.moon,
       LogType.grooming => Ph.scissors,
       LogType.training => Ph.graduationCap,

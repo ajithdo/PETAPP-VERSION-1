@@ -62,13 +62,22 @@ class RoutineScreen extends ConsumerWidget {
   }
 }
 
-class _LogTab extends ConsumerWidget {
+class _LogTab extends ConsumerStatefulWidget {
   const _LogTab({required this.pet});
   final Pet pet;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_LogTab> createState() => _LogTabState();
+}
+
+class _LogTabState extends ConsumerState<_LogTab> {
+  /// "See all" opens the days before today.
+  bool _all = false;
+
+  @override
+  Widget build(BuildContext context) {
     final l = context.l10n;
+    final pet = widget.pet;
     return AsyncView(
       value: ref.watch(petLogsProvider(pet.id)),
       data: (logs) {
@@ -77,29 +86,56 @@ class _LogTab extends ConsumerWidget {
           byDay.putIfAbsent(Fmt.dayOnly(g.at), () => []).add(g);
         }
         final days = byDay.keys.toList()..sort((a, b) => b.compareTo(a));
+        final today = Fmt.dayOnly(DateTime.now());
+        final todays = byDay[today] ?? const <RoutineLog>[];
+        final earlier = days.where((d) => d != today).take(6).toList();
+        final walk = todays.where((g) => g.type == LogType.walk && g.route.length > 1).firstOrNull;
         return PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.md),
-          PetDayBand(pet: pet),
+          PetDayBand(pet: pet, leftLine: true),
           const SizedBox(height: Space.md),
           _WeekStrip(pet: pet, logs: logs),
           const SizedBox(height: Space.md),
-          TodayCard(pet: pet, header: false),
-          SectionHeader(l.logGridTitle),
+          TodayCard(pet: pet, header: false, bare: true),
+          const SizedBox(height: Sizes.sectionGap),
+          SecHead(l.logGridTitle),
           _LogGrid(pet: pet),
+          const SizedBox(height: Sizes.sectionGap),
+          SecHead(l.today, action: earlier.isEmpty ? null : (_all ? l.showToday : l.seeAll), onAction: earlier.isEmpty ? null : () => setState(() => _all = !_all)),
           if (logs.isEmpty)
-            EmptyState(title: l.noLogsTitle(pet.name), message: l.noLogsBody, compact: true),
-          for (final d in days.take(7)) ...[
-            SectionHeader(Fmt.sameDay(d, DateTime.now()) ? l.today : Fmt.weekdayDate(d, context.lang)),
-            PawCard(
-              padding: const EdgeInsets.symmetric(vertical: Space.xs),
-              child: Column(children: [for (final g in byDay[d]!) _LogTile(log: g, pet: pet)]),
-            ),
+            EmptyState(title: l.noLogsTitle(pet.name), message: l.noLogsBody, compact: true)
+          else if (todays.isEmpty)
+            Text(l.noLogsBody, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary))
+          else
+            _Timeline(logs: todays, pet: pet),
+          if (walk != null) ...[
+            const SizedBox(height: Space.md),
+            ClipRRect(borderRadius: BorderRadius.circular(Radii.lg), child: WalkRouteView(log: walk, height: Sizes.mapSketch)),
           ],
+          if (_all)
+            for (final d in earlier) ...[
+              const SizedBox(height: Sizes.sectionGap),
+              SecHead(Fmt.weekdayDate(d, context.lang)),
+              _Timeline(logs: byDay[d]!, pet: pet),
+            ],
           const SizedBox(height: Space.fabClearance),
         ]);
       },
     );
   }
+}
+
+/// A day's logs, newest first: the time, a tile joined to the next by a
+/// short line, what it was and who logged it.
+class _Timeline extends StatelessWidget {
+  const _Timeline({required this.logs, required this.pet});
+  final List<RoutineLog> logs;
+  final Pet pet;
+
+  @override
+  Widget build(BuildContext context) => Column(children: [
+        for (final (i, g) in logs.indexed) _LogTile(log: g, pet: pet, first: i == 0),
+      ]);
 }
 
 /// The last seven days: a marigold for each day the plan was done, a ring
@@ -149,7 +185,7 @@ class _LogGrid extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final types = LogType.values.where((t) => t != LogType.behaviour).toList();
     final cols = MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 3 : 5;
-    return TileGrid(columns: cols, spacing: Space.sm, children: [
+    return TileGrid(columns: cols, spacing: Space.xs, rowSpacing: Space.md, children: [
       for (final t in types)
         Semantics(
           button: true,
@@ -161,14 +197,9 @@ class _LogGrid extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: Space.xs),
               child: Column(children: [
-                Container(
-                  width: TapTarget.min,
-                  height: TapTarget.min,
-                  decoration: BoxDecoration(color: context.paw.surfaceSubtle, shape: BoxShape.circle),
-                  child: Icon(logTypeIcon(t), color: context.paw.textPrimary),
-                ),
-                const SizedBox(height: Space.xs),
-                Text(logTypeLabel(context, t), style: context.text.labelSmall?.copyWith(color: context.paw.textPrimary), textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
+                PawTile(icon: logTypeIcon(t), size: Sizes.tileLg - Space.xs, round: true),
+                const SizedBox(height: Space.xs + Space.xxs),
+                Text(logTypeShort(context, t), style: context.text.labelSmall?.copyWith(color: context.paw.textPrimary, fontWeight: FontWeight.w500), textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
               ]),
             ),
           ),
@@ -178,14 +209,17 @@ class _LogGrid extends ConsumerWidget {
 }
 
 class _LogTile extends ConsumerWidget {
-  const _LogTile({required this.log, required this.pet});
+  const _LogTile({required this.log, required this.pet, this.first = false});
   final RoutineLog log;
   final Pet pet;
+
+  /// The first row of a day has no line coming down to it.
+  final bool first;
 
   String _detail(BuildContext context) {
     final l = context.l10n;
     return switch (log.type) {
-      LogType.walk => '${Fmt.km(log.distanceKm)} · ${l.minutesShort(log.minutes)}',
+      LogType.walk => Fmt.km(log.distanceKm),
       LogType.meal => log.grams == null ? '' : '${log.grams} g',
       LogType.play || LogType.training || LogType.sleep => l.minutesShort(log.minutes),
       LogType.mood => moodLabel(context, log.mood),
@@ -198,35 +232,75 @@ class _LogTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final paw = context.paw;
     final detail = _detail(context);
-    final sub = [Fmt.time(log.at, context.lang), log.byName.split(' ').first, if (log.note != null) log.note!].join(' · ');
-    final c = logTypeColor(context, log.type);
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: c.withValues(alpha: Opacities.chip),
-        child: Icon(logTypeIcon(log.type), color: c, size: IconSizes.md),
+    final title = [logTypeLabel(context, log.type), if (detail.isNotEmpty) detail].join(', ');
+    final who = log.byName.split(' ').first;
+    final sub = [
+      if (log.type == LogType.walk && log.minutes > 0) l.minutesShort(log.minutes),
+      if (log.note != null && log.note!.isNotEmpty) log.note!,
+      if (who.isNotEmpty) l.byPerson(who),
+    ].join(', ');
+    final hasRoute = log.type == LogType.walk && log.route.length > 1;
+    final time = Fmt.time(log.at, context.lang);
+    return Semantics(
+      container: true,
+      label: '$time. $title. $sub',
+      child: InkWell(
+        borderRadius: BorderRadius.circular(Radii.md),
+        onTap: !hasRoute
+            ? null
+            : () => showPawSheet<void>(context, builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                  Text('${logTypeLabel(ctx, LogType.walk)}, ${Fmt.dateTime(log.at, ctx.lang)}', style: ctx.text.titleMedium),
+                  const SizedBox(height: Space.md),
+                  WalkRouteView(log: log, height: Sizes.routeMap),
+                  const SizedBox(height: Space.md),
+                  Text('${Fmt.km(log.distanceKm)}, ${l.minutesShort(log.minutes)}, ${log.byName}'),
+                ])),
+        child: IntrinsicHeight(
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            SizedBox(
+              width: Sizes.timelineTime,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: ExcludeSemantics(child: Text(time, style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500), textAlign: TextAlign.right)),
+              ),
+            ),
+            const SizedBox(width: Space.sm + Space.xxs),
+            // The tile, with the line that joins it to the row above.
+            Column(children: [
+              Expanded(child: Container(width: Strokes.focus, color: first ? null : paw.outline)),
+              PawTile(icon: logTypeIcon(log.type), tone: logTypeTone(log.type), size: Sizes.stepper),
+              const Expanded(child: SizedBox()),
+            ]),
+            const SizedBox(width: Space.sm + Space.xxs),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: Space.sm + Space.xxs),
+                child: ExcludeSemantics(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Text(title, style: context.text.labelLarge),
+                    if (sub.isNotEmpty) Text(sub, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+                  ]),
+                ),
+              ),
+            ),
+            Center(
+              child: PopupMenuButton<String>(
+                tooltip: l.moreOptions,
+                icon: const Icon(Ph.dotsThreeVertical),
+                onSelected: (v) async {
+                  if (v == 'delete') {
+                    final ok = await confirmAction(context, title: l.deleteLogConfirm);
+                    if (ok) await ref.read(routineRepositoryProvider).deleteLog(log.id);
+                  }
+                },
+                itemBuilder: (_) => [PopupMenuItem(value: 'delete', child: Text(l.delete))],
+              ),
+            ),
+          ]),
+        ),
       ),
-      title: Text([logTypeLabel(context, log.type), if (detail.isNotEmpty) detail].join(' · ')),
-      subtitle: Text(sub, maxLines: 2, overflow: TextOverflow.ellipsis),
-      trailing: PopupMenuButton<String>(
-        tooltip: l.moreOptions,
-        onSelected: (v) async {
-          if (v == 'delete') {
-            final ok = await confirmAction(context, title: l.deleteLogConfirm);
-            if (ok) await ref.read(routineRepositoryProvider).deleteLog(log.id);
-          }
-        },
-        itemBuilder: (_) => [PopupMenuItem(value: 'delete', child: Text(l.delete))],
-      ),
-      onTap: log.type == LogType.walk && log.route.length > 1
-          ? () => showPawSheet<void>(context, builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                Text('${logTypeLabel(ctx, LogType.walk)} · ${Fmt.dateTime(log.at, ctx.lang)}', style: ctx.text.titleMedium),
-                const SizedBox(height: Space.md),
-                WalkRouteView(log: log, height: Sizes.routeMap),
-                const SizedBox(height: Space.md),
-                Text('${Fmt.km(log.distanceKm)} · ${l.minutesShort(log.minutes)} · ${log.byName}'),
-              ]))
-          : null,
     );
   }
 }

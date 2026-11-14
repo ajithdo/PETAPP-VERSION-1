@@ -3155,5 +3155,12 @@
   "vaultAddInsurance": "अपने पालतू का बीमा जोड़ें",
   "vaultAddInsuranceBody": "पॉलिसी, रिन्यू की तारीख़ और दावे एक जगह रखें।",
   "vaultWhatViewOnly": "{what}, सिर्फ़ देखने के लिए",
-  "vaultStorageOf": "{limit} में से {used}"
+  "vaultStorageOf": "{limit} में से {used}",
+  "albumOnThisDayAgo": "आज के दिन, {ago}",
+  "albumMilestoneTag": "ख़ास पल: {name}",
+  "albumVideoUpTo": "{length} तक के वीडियो।",
+  "albumVideoUpToPlus": "Plus के साथ {length} तक के वीडियो।",
+  "byPerson": "{name} ने",
+  "logSleepShort": "नींद",
+  "showToday": "सिर्फ़ आज"
 }

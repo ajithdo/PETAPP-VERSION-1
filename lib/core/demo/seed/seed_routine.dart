@@ -73,12 +73,16 @@ void seedRoutine(Add add, DateTime now) {
       DateTime at(int h, int m) => DateTime(day.year, day.month, day.day, h, m + r.next(25));
       (String, String) who() => p.helper != null && r.chance(0.3) ? (p.helper!, p.helperName!) : (p.owner, p.ownerName);
       final isDog = p.kind == 'dog' || p.kind == 'puppy' || p.kind == 'senior_dog';
+      // Bruno's last six days are complete (the design's week of marigolds),
+      // and his logs carry the short notes the design shows.
+      final bruno = p.id == 'pet_bruno';
+      final steady = bruno && d >= 1 && d <= 6;
 
       if (isDog) {
         final walkTimes = p.kind == 'puppy' ? [(7, 0), (13, 0), (18, 30)] : [(6, 40), (18, 50)];
         for (final (i, t) in walkTimes.indexed) {
           // Skip an occasional walk so the charts look real.
-          if (r.chance(0.08)) continue;
+          if (r.chance(0.08) && !steady) continue;
           final km = p.walkKm * (0.7 + 0.6 * r.nextDouble());
           final route = demoLoopRoute(home.lat, home.lng, seed: n + i, km: km, points: 24);
           final realKm = routeKm(route);
@@ -100,7 +104,7 @@ void seedRoutine(Add add, DateTime now) {
             },
           );
         }
-        log(p.id, 'potty', at(7, 10), p.owner, p.ownerName);
+        log(p.id, 'potty', at(7, 10), p.owner, p.ownerName, note: bruno ? 'Normal' : null);
       }
 
       final meals = switch (p.kind) {
@@ -116,6 +120,7 @@ void seedRoutine(Add add, DateTime now) {
           at(t.$1, t.$2),
           uid,
           name,
+          note: bruno ? 'Lamb & Rice' : null,
           data: {
             'grams': switch (p.kind) {
               'dog' => 220,
@@ -128,7 +133,7 @@ void seedRoutine(Add add, DateTime now) {
           },
         );
       }
-      log(p.id, 'water', at(12, 0), p.owner, p.ownerName);
+      log(p.id, 'water', at(12, 0), p.owner, p.ownerName, note: bruno ? 'Bowl refilled' : null);
 
       final playMin = switch (p.kind) {
         'rabbit' => 90,
@@ -138,8 +143,10 @@ void seedRoutine(Add add, DateTime now) {
         'cat' => 15,
         _ => 25,
       };
-      if (!r.chance(0.15)) {
-        log(p.id, 'play', at(17, 0), p.owner, p.ownerName, data: {'minutes': (playMin * (0.6 + 0.8 * r.nextDouble())).round()});
+      final skipPlay = r.chance(0.15);
+      if (!skipPlay || steady) {
+        final mins = (playMin * (0.6 + 0.8 * r.nextDouble())).round();
+        log(p.id, 'play', at(17, 0), p.owner, p.ownerName, data: {'minutes': steady && mins < 30 ? 30 : mins});
       }
       log(p.id, 'mood', at(21, 0), p.owner, p.ownerName, data: {'mood': p.kind == 'senior_dog' && r.chance(0.3) ? 'tired' : moods[r.next(3)]});
 

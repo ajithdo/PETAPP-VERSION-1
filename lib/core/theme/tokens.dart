@@ -836,6 +836,12 @@ class Sizes {
   /// Minus and plus on a quantity pill.
   static const double stepper = 40;
 
+  /// The time column of a timeline row ("12:19 PM").
+  static const double timelineTime = 60;
+
+  /// One of the two prints on the album's "On this day" card.
+  static const double onThisDayPrint = 136;
+
   /// A document's paper sheet in the vault (wider than tall).
   static const double docSheetAspect = 1.25;
 

@@ -1219,5 +1219,55 @@
       "used": "String",
       "limit": "String"
     }
+  },
+  "albumOnThisDayAgo": {
+    "en": "On this day, {ago}",
+    "hi": "आज के दिन, {ago}",
+    "te": "ఈ రోజున, {ago}",
+    "ph": {
+      "ago": "String"
+    }
+  },
+  "albumMilestoneTag": {
+    "en": "Milestone: {name}",
+    "hi": "ख़ास पल: {name}",
+    "te": "మైలురాయి: {name}",
+    "ph": {
+      "name": "String"
+    }
+  },
+  "albumVideoUpTo": {
+    "en": "Videos up to {length}.",
+    "hi": "{length} तक के वीडियो।",
+    "te": "{length} వరకు వీడియోలు.",
+    "ph": {
+      "length": "String"
+    }
+  },
+  "albumVideoUpToPlus": {
+    "en": "Videos up to {length} with Plus.",
+    "hi": "Plus के साथ {length} तक के वीडियो।",
+    "te": "Plusతో {length} వరకు వీడియోలు.",
+    "ph": {
+      "length": "String"
+    }
+  },
+  "byPerson": {
+    "en": "by {name}",
+    "hi": "{name} ने",
+    "te": "{name} ద్వారా",
+    "ph": {
+      "name": "String"
+    }
+  },
+  "logSleepShort": {
+    "en": "Sleep",
+    "hi": "नींद",
+    "te": "నిద్ర"
+  },
+  "showToday": {
+    "en": "Today only",
+    "hi": "सिर्फ़ आज",
+    "te": "ఈరోజు మాత్రమే"
   }
 }

@@ -3155,5 +3155,12 @@
   "vaultAddInsurance": "మీ పెంపుడు జంతువు బీమా జోడించండి",
   "vaultAddInsuranceBody": "పాలసీ, రెన్యూ తేదీ, క్లెయిమ్‌లు ఒకే చోట ఉంచండి.",
   "vaultWhatViewOnly": "{what}, చూడటానికి మాత్రమే",
-  "vaultStorageOf": "{limit}లో {used}"
+  "vaultStorageOf": "{limit}లో {used}",
+  "albumOnThisDayAgo": "ఈ రోజున, {ago}",
+  "albumMilestoneTag": "మైలురాయి: {name}",
+  "albumVideoUpTo": "{length} వరకు వీడియోలు.",
+  "albumVideoUpToPlus": "Plusతో {length} వరకు వీడియోలు.",
+  "byPerson": "{name} ద్వారా",
+  "logSleepShort": "నిద్ర",
+  "showToday": "ఈరోజు మాత్రమే"
 }

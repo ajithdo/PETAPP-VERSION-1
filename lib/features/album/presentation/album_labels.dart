@@ -23,6 +23,7 @@ IconData milestoneIcon(String kind) => switch (kind) {
       'gotcha' => Ph.house,
       'first_walk' => Ph.personSimpleWalk,
       'first_vaccine' => Ph.syringe,
+      'custom' => Ph.flowerLotus,
       _ => Ph.starFill,
     };
 

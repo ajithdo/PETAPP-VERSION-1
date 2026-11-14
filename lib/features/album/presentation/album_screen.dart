@@ -178,8 +178,8 @@ class MemoryGrid extends StatelessWidget {
         crossAxisCount: cols,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        mainAxisSpacing: 6,
-        crossAxisSpacing: 6,
+        mainAxisSpacing: Space.xs + Space.xxs,
+        crossAxisSpacing: Space.xs + Space.xxs,
         children: [for (final i in items) MemoryTile(item: i, onTap: () => onTap(i), onLongPress: onLongPress == null ? null : () => onLongPress!(i))],
       );
     });
@@ -187,8 +187,11 @@ class MemoryGrid extends StatelessWidget {
 }
 
 class MemoryTile extends StatelessWidget {
-  const MemoryTile({super.key, required this.item, required this.onTap, this.onLongPress, this.selected});
+  const MemoryTile({super.key, required this.item, required this.onTap, this.onLongPress, this.selected, this.radius});
   final AlbumItem item;
+
+  /// Corner radius; a print's picture is squarer than a grid tile.
+  final double? radius;
   final VoidCallback onTap;
   final VoidCallback? onLongPress;
   final bool? selected;
@@ -208,7 +211,7 @@ class MemoryTile extends StatelessWidget {
       label: label,
       excludeSemantics: true,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(Radii.md),
+        borderRadius: BorderRadius.circular(radius ?? Radii.md),
         child: Material(
           color: context.paw.outline,
           child: InkWell(
@@ -216,22 +219,13 @@ class MemoryTile extends StatelessWidget {
             onLongPress: onLongPress,
             child: Stack(fit: StackFit.expand, children: [
               MediaImage(url: item.url!, fit: BoxFit.cover),
-              if (item.isVideo)
-                Positioned(
-                  left: 6,
-                  bottom: 6,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs, vertical: Space.xxs),
-                    decoration: BoxDecoration(color: MediaColors.scrim, borderRadius: BorderRadius.circular(Radii.sm)),
-                    child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      const Icon(Ph.play, color: MediaColors.foreground, size: IconSizes.sm),
-                      Text(videoLength(item.durationSec), style: context.text.labelSmall?.copyWith(color: MediaColors.foreground)),
-                    ]),
-                  ),
-                ),
+              if (item.isVideo) Positioned(left: Space.xs + Space.xxs, bottom: Space.xs + Space.xxs, child: PawTag(videoLength(item.durationSec), kind: TagKind.ink, icon: Ph.playFill)),
               if (item.favourite)
-                Positioned(right: 6, top: 6, child: Icon(Ph.heartFill, color: PetTagColors.of('rose'), size: IconSizes.chip, shadows: const [Shadow(blurRadius: Space.xs)])),
-              if (item.milestone != null) Positioned(left: Space.xs + Space.xxs, top: Space.xs + Space.xxs, child: MilestoneBadge(kind: item.milestone!, size: Sizes.avatarChip)),
+                const Positioned(
+                  right: Space.xs + Space.xxs,
+                  top: Space.xs + Space.xxs,
+                  child: Icon(Ph.heartFill, color: MediaColors.foreground, size: IconSizes.sm, shadows: [Shadow(color: MediaColors.scrim, blurRadius: Space.xxs, offset: Offset(0, Strokes.hairline))]),
+                ),
               if (selected != null)
                 Positioned(
                   right: 6,
@@ -279,12 +273,20 @@ class _PhotosTab extends ConsumerWidget {
           message: l.albumEmptyBody(pet.name),
           actionLabel: canLog ? l.albumAdd : null,
           onAction: canLog ? () => showAddMemorySheet(context, ref, pet) : null,
-        ),
+        )
+      else
+        StorageMeter(note: _videoNote(context, ref)),
       ..._months(context, ref, groups, media.length),
-      const SizedBox(height: Space.xl),
-      const StorageMeter(),
       const SizedBox(height: Space.fabClearance),
     ]);
+  }
+
+  /// "Videos up to 3 min with Plus."
+  String _videoNote(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final secs = ((ref.watch(planLimitsProvider)['videoSeconds'] as num?) ?? 60).toInt();
+    final length = secs >= 60 ? l.plusMinutes((secs / 60).round()) : l.plusSeconds(secs);
+    return ref.watch(currentUserProvider)?.isPlus ?? false ? l.albumVideoUpToPlus(length) : l.albumVideoUpTo(length);
   }
 
   /// Month by month, newest first, a page of photos at a time.
@@ -297,22 +299,29 @@ class _PhotosTab extends ConsumerWidget {
       if (shown >= limit) break;
       final part = g.items.take(limit - shown).toList();
       shown += part.length;
+      final marks = part.where((i) => i.milestone != null).toList();
+      final newest = out.isEmpty;
       out
-        ..add(Padding(
-          padding: const EdgeInsets.only(top: Space.md, bottom: Space.sm),
-          child: Row(children: [
-            Expanded(child: Semantics(header: true, child: Text(Fmt.monthYear(g.month, context.lang), style: context.text.titleMedium))),
-            Text(context.l10n.albumMonthCount(g.items.length), style: context.text.bodySmall),
+        ..add(const SizedBox(height: Sizes.sectionGap))
+        ..add(SecHead(Fmt.monthYear(g.month, context.lang), note: context.l10n.albumMonthCount(g.items.length)))
+        // The newest month opens with one big picture, as in the design.
+        ..add(MemoryGrid(items: part, feature: newest, onTap: (i) => context.push(viewerPath(pet.id, i.id))));
+      if (marks.isNotEmpty) {
+        out.add(Padding(
+          padding: const EdgeInsets.only(top: Space.sm),
+          child: Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
+            for (final m in marks) PawTag(context.l10n.albumMilestoneTag(itemMilestoneLabel(context, m)), kind: TagKind.gold, icon: milestoneIcon(m.milestone!)),
           ]),
-        ))
-        ..add(MemoryGrid(items: part, feature: true, onTap: (i) => context.push(viewerPath(pet.id, i.id))));
+        ));
+      }
     }
     if (total > limit) out.add(ShowMoreButton(onPressed: () => ref.read(listLimitProvider(key).notifier).more()));
     return out;
   }
 }
 
-/// "On this day" memories from earlier years.
+/// "On this day" memories from earlier years: two instant prints, a little
+/// askew and overlapping, on a marigold wash, with what the day was.
 class OnThisDayCard extends StatelessWidget {
   const OnThisDayCard({super.key, required this.pet, required this.items});
   final Pet pet;
@@ -321,40 +330,47 @@ class OnThisDayCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    // UI Design 6: memories from this day as printed photos, slightly
-    // tilted, on a marigold wash.
-    return PawCard(
-      color: context.paw.accentContainer,
-      flat: true,
-      borderColor: Colors.transparent,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    final paw = context.paw;
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    final shown = items.take(2).toList();
+    final sameYear = items.every((i) => i.takenAt.year == items.first.takenAt.year);
+    final caption = items.map((i) => i.caption).firstWhere((c) => c.isNotEmpty, orElse: () => '');
+    Widget print(AlbumItem item, double angle) => Transform.rotate(
+          angle: angle,
+          child: Container(
+            width: Sizes.onThisDayPrint,
+            padding: const EdgeInsets.fromLTRB(Space.xs + Space.xxs, Space.xs + Space.xxs, Space.xs + Space.xxs, Space.xl),
+            decoration: BoxDecoration(color: dark ? PrintColors.brandTint : PrintColors.paper, borderRadius: BorderRadius.circular(Radii.xs + Space.xxs), boxShadow: Shadows.card(paw.ink)),
+            child: AspectRatio(aspectRatio: 1, child: MemoryTile(item: item, radius: Radii.xs, onTap: () => context.push(viewerPath(pet.id, item.id)))),
+          ),
+        );
+    return Wash(
+      tone: Tone.gold,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Row(children: [
-          Icon(Ph.clockCounterClockwise, color: context.paw.onAccentContainer),
+          Icon(Ph.clockCounterClockwise, size: IconSizes.sm + Space.xxs, color: paw.textPrimary),
           const SizedBox(width: Space.sm),
-          Text(l.albumOnThisDay, style: context.text.titleMedium),
+          Expanded(child: Text(sameYear ? l.albumOnThisDayAgo(yearsAgoLabel(context, items.first.takenAt)) : l.albumOnThisDay, style: context.text.labelLarge)),
         ]),
-        const SizedBox(height: Space.md),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            for (var i = 0; i < items.length; i++) ...[
-              if (i > 0) const SizedBox(width: Space.md),
-              Transform.rotate(
-                angle: i.isEven ? -0.045 : 0.04,
-                child: Container(
-                  width: Sizes.memoryTile + Space.md,
-                  padding: const EdgeInsets.fromLTRB(Space.xs + Space.xxs, Space.xs + Space.xxs, Space.xs + Space.xxs, Space.sm),
-                  decoration: BoxDecoration(color: PrintColors.paper, borderRadius: BorderRadius.circular(Radii.xs), boxShadow: Shadows.card(context.paw.ink)),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    SizedBox(height: Sizes.memoryTile, width: Sizes.memoryTile, child: MemoryTile(item: items[i], onTap: () => context.push(viewerPath(pet.id, items[i].id)))),
-                    const SizedBox(height: Space.xs),
-                    Text(yearsAgoLabel(context, items[i].takenAt), style: context.text.labelMedium?.copyWith(color: PrintColors.ink), maxLines: 2, overflow: TextOverflow.ellipsis),
+        const SizedBox(height: Space.lg + Space.xs),
+        Center(
+          child: shown.length == 1
+              ? print(shown.first, -Sizes.printTilt)
+              : SizedBox(
+                  // Two prints, the second tucked 20 px under the first and
+                  // 12 px lower.
+                  width: Sizes.onThisDayPrint * 2 - Space.lg - Space.xs,
+                  height: Sizes.onThisDayPrint + Space.xl + Space.lg,
+                  child: Stack(clipBehavior: Clip.none, children: [
+                    Positioned(left: 0, top: 0, child: print(shown[0], -Sizes.printTilt * 1.6)),
+                    Positioned(right: 0, top: Space.md, child: print(shown[1], Sizes.printTilt * 1.2)),
                   ]),
                 ),
-              ),
-            ],
-          ]),
         ),
+        if (caption.isNotEmpty) ...[
+          const SizedBox(height: Space.lg),
+          Text(caption, style: context.text.bodySmall?.copyWith(color: paw.accent), textAlign: TextAlign.center),
+        ],
       ]),
     );
   }

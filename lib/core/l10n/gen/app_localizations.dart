@@ -19041,6 +19041,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{used} of {limit}'**
   String vaultStorageOf(String used, String limit);
+
+  /// No description provided for @albumOnThisDayAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'On this day, {ago}'**
+  String albumOnThisDayAgo(String ago);
+
+  /// No description provided for @albumMilestoneTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone: {name}'**
+  String albumMilestoneTag(String name);
+
+  /// No description provided for @albumVideoUpTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Videos up to {length}.'**
+  String albumVideoUpTo(String length);
+
+  /// No description provided for @albumVideoUpToPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Videos up to {length} with Plus.'**
+  String albumVideoUpToPlus(String length);
+
+  /// No description provided for @byPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'by {name}'**
+  String byPerson(String name);
+
+  /// No description provided for @logSleepShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get logSleepShort;
+
+  /// No description provided for @showToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today only'**
+  String get showToday;
 }
 
 class _AppLocalizationsDelegate

@@ -11108,4 +11108,35 @@ class AppLocalizationsHi extends AppLocalizations {
   String vaultStorageOf(String used, String limit) {
     return '$limit में से $used';
   }
+
+  @override
+  String albumOnThisDayAgo(String ago) {
+    return 'आज के दिन, $ago';
+  }
+
+  @override
+  String albumMilestoneTag(String name) {
+    return 'ख़ास पल: $name';
+  }
+
+  @override
+  String albumVideoUpTo(String length) {
+    return '$length तक के वीडियो।';
+  }
+
+  @override
+  String albumVideoUpToPlus(String length) {
+    return 'Plus के साथ $length तक के वीडियो।';
+  }
+
+  @override
+  String byPerson(String name) {
+    return '$name ने';
+  }
+
+  @override
+  String get logSleepShort => 'नींद';
+
+  @override
+  String get showToday => 'सिर्फ़ आज';
 }

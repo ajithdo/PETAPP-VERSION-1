@@ -398,7 +398,10 @@ class DocTile extends StatelessWidget {
 
 /// "96 MB of 25 GB used" with a bar (spec 7.11 storage quota).
 class StorageMeter extends ConsumerWidget {
-  const StorageMeter({super.key});
+  const StorageMeter({super.key, this.note});
+
+  /// The line under the bar instead of the documents and album split.
+  final String? note;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -417,7 +420,7 @@ class StorageMeter extends ConsumerWidget {
           const SizedBox(height: Space.sm),
           LevelBar(value: u.fraction < 0.01 && u.usedBytes > 0 ? 0.01 : u.fraction, color: u.nearlyFull ? context.paw.error : null),
           const SizedBox(height: Space.sm),
-          Text(l.vaultStorageSplit(formatBytes(u.docsBytes), formatBytes(u.albumBytes)), style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+          Text(note ?? l.vaultStorageSplit(formatBytes(u.docsBytes), formatBytes(u.albumBytes)), style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
         ]),
       ),
     );

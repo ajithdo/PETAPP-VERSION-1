@@ -19,16 +19,21 @@ import '../../../core/theme/ph.dart';
 /// the day's title; on Home the Genda band above already shows both, so the
 /// card starts with "Today" and the streak.
 class TodayCard extends ConsumerWidget {
-  const TodayCard({super.key, required this.pet, this.big = false, this.header = true});
+  const TodayCard({super.key, required this.pet, this.big = false, this.header = true, this.bare = false});
   final Pet pet;
   final bool big;
   final bool header;
+
+  /// Just the rows: no heading and no buttons under them (the routine page,
+  /// which has its own log grid).
+  final bool bare;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final logs = ref.watch(petLogsProvider(pet.id));
     return PawCard(
+      padding: bare ? const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.xs + Space.xxs) : const EdgeInsets.all(Space.lg),
       child: logs.when(
         loading: () => const Skeleton(height: Sizes.skeletonCard),
         error: (_, _) => Text(l.errorBody),
@@ -39,7 +44,9 @@ class TodayCard extends ConsumerWidget {
           final left = p.items.where((i) => i.$2 < i.$3).length;
           return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             // Home: the band above shows the streak, so this says what's left.
-            if (!header)
+            if (bare)
+              const SizedBox.shrink()
+            else if (!header)
               SecHead(l.today, note: left == 0 ? l.done : l.leftCount(left))
             else
             Row(children: [
@@ -75,12 +82,14 @@ class TodayCard extends ConsumerWidget {
                   last: p.today.where((x) => x.type == item.$1).fold<RoutineLog?>(null, (a, b) => a == null || b.at.isAfter(a.at) ? b : a),
                 ),
             ]),
-            const SizedBox(height: Space.md),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              PawButton(label: l.logSomething, icon: Ph.plus, kind: BtnKind.soft, onPressed: () => showQuickLog(context, ref, pet)),
-              const SizedBox(width: Space.md),
-              Flexible(child: TextLink(l.seeAll, onTap: () => context.push('/pets/${pet.id}/routine'))),
-            ]),
+            if (!bare) ...[
+              const SizedBox(height: Space.md),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                PawButton(label: l.logSomething, icon: Ph.plus, kind: BtnKind.soft, onPressed: () => showQuickLog(context, ref, pet)),
+                const SizedBox(width: Space.md),
+                Flexible(child: TextLink(l.seeAll, onTap: () => context.push('/pets/${pet.id}/routine'))),
+              ]),
+            ],
           ]);
         },
       ),
