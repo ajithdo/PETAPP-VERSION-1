@@ -584,6 +584,47 @@ class SearchPill extends StatelessWidget {
   }
 }
 
+/// The same paper-pill switch with short words: "₹99 a month" or
+/// "₹799 a year". Wraps to stacked rows when the words don't fit.
+class SegText extends StatelessWidget {
+  const SegText({super.key, required this.items, required this.index, required this.onChanged});
+  final List<String> items;
+  final int index;
+  final ValueChanged<int>? onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return Container(
+      padding: const EdgeInsets.all(Space.xs),
+      decoration: BoxDecoration(color: paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.xl)),
+      child: Wrap(spacing: Space.xxs, runSpacing: Space.xxs, children: [
+        for (final (i, label) in items.indexed)
+          Semantics(
+            button: true,
+            selected: i == index,
+            inMutuallyExclusiveGroup: true,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(Radii.full),
+              onTap: onChanged == null || i == index ? null : () => onChanged!(i),
+              child: AnimatedContainer(
+                duration: Motion.toggle,
+                constraints: const BoxConstraints(minHeight: Sizes.buttonSmall),
+                padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs, vertical: Space.sm),
+                decoration: BoxDecoration(
+                  color: i == index ? paw.surface : paw.surface.withValues(alpha: 0),
+                  borderRadius: BorderRadius.circular(Radii.full),
+                  boxShadow: i == index ? [BoxShadow(color: paw.ink.withValues(alpha: Opacities.chip), blurRadius: Space.xs - Strokes.hairline, offset: const Offset(0, Strokes.hairline))] : null,
+                ),
+                child: Text(label, style: context.text.labelMedium?.copyWith(color: i == index ? paw.textPrimary : paw.textSecondary)),
+              ),
+            ),
+          ),
+      ]),
+    );
+  }
+}
+
 /// A small two-or-three way switch of icons in a paper pill (the kit's
 /// ".seg"): list or map, grid or rows.
 class SegIcons extends StatelessWidget {

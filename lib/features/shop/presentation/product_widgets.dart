@@ -227,25 +227,28 @@ class QtyStepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    // A pill with minus, the count and plus (UI Design 6).
+    // A pill with minus, the count and plus (UI Design 6): 40 px high.
+    Widget step(IconData icon, String tip, VoidCallback? onTap) => IconButton(
+          tooltip: tip,
+          icon: Icon(icon, size: IconSizes.sm),
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints.tightFor(width: Sizes.stepper, height: Sizes.stepper),
+          style: IconButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+          onPressed: onTap,
+        );
     return Container(
-      decoration: BoxDecoration(border: Border.all(color: context.paw.controlBorder.withValues(alpha: Opacities.half), width: Strokes.strong), borderRadius: BorderRadius.circular(Radii.full)),
+      decoration: BoxDecoration(border: Border.all(color: context.tint.line2, width: Strokes.strong), borderRadius: BorderRadius.circular(Radii.full)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        IconButton(
-          tooltip: qty <= 1 ? l.shopRemoveItem(itemName) : l.shopLessOf(itemName),
-          icon: Icon(qty <= 1 ? Ph.trash : Ph.minus),
-          onPressed: () => onChanged(qty - 1),
-        ),
+        step(qty <= 1 ? Ph.trash : Ph.minus, qty <= 1 ? l.shopRemoveItem(itemName) : l.shopLessOf(itemName), () => onChanged(qty - 1)),
         Semantics(
           label: l.shopQtySemantics(qty),
           excludeSemantics: true,
-          child: Text('$qty', style: context.text.titleSmall),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: Space.xl - Space.xs),
+            child: Text('$qty', style: context.text.labelLarge?.copyWith(fontWeight: FontWeight.w700, fontFeatures: const [FontFeature.tabularFigures()]), textAlign: TextAlign.center),
+          ),
         ),
-        IconButton(
-          tooltip: l.shopMoreOf(itemName),
-          icon: const Icon(Ph.plus),
-          onPressed: qty >= max ? null : () => onChanged(qty + 1),
-        ),
+        step(Ph.plus, l.shopMoreOf(itemName), qty >= max ? null : () => onChanged(qty + 1)),
       ]),
     );
   }

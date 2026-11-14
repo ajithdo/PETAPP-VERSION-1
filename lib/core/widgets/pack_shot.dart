@@ -9,8 +9,11 @@ enum PackKind { bag, can, pouch, harness, rope, bed, bottle, bowl }
 /// [PackColors] on its pale tint, for products without a seller photo. Not a
 /// real product shot and never a brand logo.
 class PackShot extends StatelessWidget {
-  const PackShot({super.key, required this.kind, this.tone = 0});
+  const PackShot({super.key, required this.kind, this.tone = 0, this.colors});
   final PackKind kind;
+
+  /// A special (pack, tint) pair instead of [tone]: the empty cart's bag.
+  final (Color, Color)? colors;
 
   /// Which colour pair from [PackColors.pairs].
   final int tone;
@@ -29,7 +32,7 @@ class PackShot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pair = PackColors.pairs[tone % PackColors.pairs.length];
+    final pair = colors ?? PackColors.pairs[tone % PackColors.pairs.length];
     return ColoredBox(
       color: pair.$2,
       child: AspectRatio(aspectRatio: 1, child: CustomPaint(painter: _PackPainter(kind, pair.$1, pair.$2))),

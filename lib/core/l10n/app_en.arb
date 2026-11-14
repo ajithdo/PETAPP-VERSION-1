@@ -7881,5 +7881,115 @@
   "roleCarerDoes": "Logs routine, gives medicines, books services",
   "roleViewerDoes": "Sees everything, logs walks and meals",
   "languageNote": "Changes the whole app at once, including reminders and PDFs.",
-  "textSizeNote": "Layouts stay tidy up to 200%."
+  "textSizeNote": "Layouts stay tidy up to 200%.",
+  "plusYouHaveShort": "You have Plus",
+  "plusMemberSince": "{name}, member since {date}",
+  "@plusMemberSince": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusRenewsOnLabel": "Renews on",
+  "plusEndsOnLabel": "Ends on",
+  "plusYearlyPlan": "Yearly plan",
+  "plusMonthlyPlan": "Monthly plan",
+  "plusPriceYear": "{amount} a year",
+  "@plusPriceYear": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "plusPriceMonth": "{amount} a month",
+  "@plusPriceMonth": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "plusNextPayment": "Next payment {amount} on {date}",
+  "@plusNextPayment": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusCancelPlan": "Cancel plan",
+  "plusCancelTitle": "Cancel your plan?",
+  "plusNewHere": "New here? {days} days free",
+  "@plusNewHere": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "plusNewHereBody": "Free plan members can try Plus before paying.",
+  "plusWhatYouGet": "What you get",
+  "plusNo": "No",
+  "plusSwitchMonthly": "Change to the monthly plan?",
+  "plusSwitchYearly": "Change to the yearly plan?",
+  "plusSwitchBody": "From {date} you pay {price}. Nothing is charged today.",
+  "@plusSwitchBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "plusSwitched": "Plan changed",
+  "cartDeliverToLabel": "Deliver to {label}",
+  "@cartDeliverToLabel": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "cartItems": "Items ({count})",
+  "@cartItems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cartFreeWithPlus": "Free with Plus",
+  "cartApplied": "Applied",
+  "cartSaveOnOrder": "You save {amount} on this order",
+  "@cartSaveOnOrder": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "cartDemoPayNote": "Demo payment. No money is charged. You can try a successful, failed or pending payment.",
+  "cartBillShort": "Bill",
+  "cartWindowShort": "{from} to {to}",
+  "@cartWindowShort": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "cartCodNote": "You pay when the order arrives."
 }

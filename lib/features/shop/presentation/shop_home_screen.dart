@@ -263,8 +263,7 @@ class _BuyAgainTile extends ConsumerWidget {
     final l = context.l10n;
     final p = product;
     final paw = context.paw;
-    // "…, Chicken-free Lamb & Rice 10 kg": the last part names the pack.
-    final short = p.name.split(', ').last;
+    final short = p.shortName;
     return SizedBox(
       width: Sizes.buyAgainCard,
       child: PawCard(

@@ -10929,4 +10929,110 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get textSizeNote => '200% వరకు అన్నీ చక్కగా కనిపిస్తాయి.';
+
+  @override
+  String get plusYouHaveShort => 'మీకు Plus ఉంది';
+
+  @override
+  String plusMemberSince(String name, String date) {
+    return '$name, $date నుండి సభ్యులు';
+  }
+
+  @override
+  String get plusRenewsOnLabel => 'రెన్యూ తేదీ';
+
+  @override
+  String get plusEndsOnLabel => 'ముగిసే తేదీ';
+
+  @override
+  String get plusYearlyPlan => 'సంవత్సర ప్లాన్';
+
+  @override
+  String get plusMonthlyPlan => 'నెలవారీ ప్లాన్';
+
+  @override
+  String plusPriceYear(String amount) {
+    return 'సంవత్సరానికి $amount';
+  }
+
+  @override
+  String plusPriceMonth(String amount) {
+    return 'నెలకు $amount';
+  }
+
+  @override
+  String plusNextPayment(String amount, String date) {
+    return 'తదుపరి చెల్లింపు $amount, $dateన';
+  }
+
+  @override
+  String get plusCancelPlan => 'ప్లాన్ రద్దు చేయండి';
+
+  @override
+  String get plusCancelTitle => 'మీ ప్లాన్ రద్దు చేయాలా?';
+
+  @override
+  String plusNewHere(int days) {
+    return 'కొత్తవారా? $days రోజులు ఉచితం';
+  }
+
+  @override
+  String get plusNewHereBody =>
+      'Free ప్లాన్ సభ్యులు డబ్బు చెల్లించే ముందు Plus ప్రయత్నించవచ్చు.';
+
+  @override
+  String get plusWhatYouGet => 'మీకు ఏమి లభిస్తుంది';
+
+  @override
+  String get plusNo => 'లేదు';
+
+  @override
+  String get plusSwitchMonthly => 'నెలవారీ ప్లాన్‌కు మార్చాలా?';
+
+  @override
+  String get plusSwitchYearly => 'సంవత్సర ప్లాన్‌కు మార్చాలా?';
+
+  @override
+  String plusSwitchBody(String date, String price) {
+    return '$date నుండి మీరు $price చెల్లిస్తారు. ఈరోజు ఏమీ కట్ అవ్వదు.';
+  }
+
+  @override
+  String get plusSwitched => 'ప్లాన్ మారింది';
+
+  @override
+  String cartDeliverToLabel(String label) {
+    return '$labelకి డెలివరీ';
+  }
+
+  @override
+  String cartItems(int count) {
+    return 'వస్తువులు ($count)';
+  }
+
+  @override
+  String get cartFreeWithPlus => 'Plusతో ఉచితం';
+
+  @override
+  String get cartApplied => 'వర్తించింది';
+
+  @override
+  String cartSaveOnOrder(String amount) {
+    return 'ఈ ఆర్డర్‌పై మీరు $amount ఆదా చేస్తారు';
+  }
+
+  @override
+  String get cartDemoPayNote =>
+      'డెమో చెల్లింపు. డబ్బు కట్ అవ్వదు. మీరు విజయవంతమైన, విఫలమైన లేదా పెండింగ్ చెల్లింపును ప్రయత్నించవచ్చు.';
+
+  @override
+  String get cartBillShort => 'బిల్లు';
+
+  @override
+  String cartWindowShort(String from, String to) {
+    return '$from నుండి $to';
+  }
+
+  @override
+  String get cartCodNote => 'ఆర్డర్ వచ్చినప్పుడు చెల్లించండి.';
 }

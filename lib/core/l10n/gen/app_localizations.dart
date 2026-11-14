@@ -18717,6 +18717,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Layouts stay tidy up to 200%.'**
   String get textSizeNote;
+
+  /// No description provided for @plusYouHaveShort.
+  ///
+  /// In en, this message translates to:
+  /// **'You have Plus'**
+  String get plusYouHaveShort;
+
+  /// No description provided for @plusMemberSince.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, member since {date}'**
+  String plusMemberSince(String name, String date);
+
+  /// No description provided for @plusRenewsOnLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews on'**
+  String get plusRenewsOnLabel;
+
+  /// No description provided for @plusEndsOnLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends on'**
+  String get plusEndsOnLabel;
+
+  /// No description provided for @plusYearlyPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly plan'**
+  String get plusYearlyPlan;
+
+  /// No description provided for @plusMonthlyPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly plan'**
+  String get plusMonthlyPlan;
+
+  /// No description provided for @plusPriceYear.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} a year'**
+  String plusPriceYear(String amount);
+
+  /// No description provided for @plusPriceMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} a month'**
+  String plusPriceMonth(String amount);
+
+  /// No description provided for @plusNextPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Next payment {amount} on {date}'**
+  String plusNextPayment(String amount, String date);
+
+  /// No description provided for @plusCancelPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel plan'**
+  String get plusCancelPlan;
+
+  /// No description provided for @plusCancelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel your plan?'**
+  String get plusCancelTitle;
+
+  /// No description provided for @plusNewHere.
+  ///
+  /// In en, this message translates to:
+  /// **'New here? {days} days free'**
+  String plusNewHere(int days);
+
+  /// No description provided for @plusNewHereBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Free plan members can try Plus before paying.'**
+  String get plusNewHereBody;
+
+  /// No description provided for @plusWhatYouGet.
+  ///
+  /// In en, this message translates to:
+  /// **'What you get'**
+  String get plusWhatYouGet;
+
+  /// No description provided for @plusNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get plusNo;
+
+  /// No description provided for @plusSwitchMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Change to the monthly plan?'**
+  String get plusSwitchMonthly;
+
+  /// No description provided for @plusSwitchYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Change to the yearly plan?'**
+  String get plusSwitchYearly;
+
+  /// No description provided for @plusSwitchBody.
+  ///
+  /// In en, this message translates to:
+  /// **'From {date} you pay {price}. Nothing is charged today.'**
+  String plusSwitchBody(String date, String price);
+
+  /// No description provided for @plusSwitched.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan changed'**
+  String get plusSwitched;
+
+  /// No description provided for @cartDeliverToLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Deliver to {label}'**
+  String cartDeliverToLabel(String label);
+
+  /// No description provided for @cartItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Items ({count})'**
+  String cartItems(int count);
+
+  /// No description provided for @cartFreeWithPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Free with Plus'**
+  String get cartFreeWithPlus;
+
+  /// No description provided for @cartApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied'**
+  String get cartApplied;
+
+  /// No description provided for @cartSaveOnOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'You save {amount} on this order'**
+  String cartSaveOnOrder(String amount);
+
+  /// No description provided for @cartDemoPayNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo payment. No money is charged. You can try a successful, failed or pending payment.'**
+  String get cartDemoPayNote;
+
+  /// No description provided for @cartBillShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill'**
+  String get cartBillShort;
+
+  /// No description provided for @cartWindowShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{from} to {to}'**
+  String cartWindowShort(String from, String to);
+
+  /// No description provided for @cartCodNote.
+  ///
+  /// In en, this message translates to:
+  /// **'You pay when the order arrives.'**
+  String get cartCodNote;
 }
 
 class _AppLocalizationsDelegate

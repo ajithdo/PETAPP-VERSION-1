@@ -11321,4 +11321,109 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get textSizeNote => 'Layouts stay tidy up to 200%.';
+
+  @override
+  String get plusYouHaveShort => 'You have Plus';
+
+  @override
+  String plusMemberSince(String name, String date) {
+    return '$name, member since $date';
+  }
+
+  @override
+  String get plusRenewsOnLabel => 'Renews on';
+
+  @override
+  String get plusEndsOnLabel => 'Ends on';
+
+  @override
+  String get plusYearlyPlan => 'Yearly plan';
+
+  @override
+  String get plusMonthlyPlan => 'Monthly plan';
+
+  @override
+  String plusPriceYear(String amount) {
+    return '$amount a year';
+  }
+
+  @override
+  String plusPriceMonth(String amount) {
+    return '$amount a month';
+  }
+
+  @override
+  String plusNextPayment(String amount, String date) {
+    return 'Next payment $amount on $date';
+  }
+
+  @override
+  String get plusCancelPlan => 'Cancel plan';
+
+  @override
+  String get plusCancelTitle => 'Cancel your plan?';
+
+  @override
+  String plusNewHere(int days) {
+    return 'New here? $days days free';
+  }
+
+  @override
+  String get plusNewHereBody => 'Free plan members can try Plus before paying.';
+
+  @override
+  String get plusWhatYouGet => 'What you get';
+
+  @override
+  String get plusNo => 'No';
+
+  @override
+  String get plusSwitchMonthly => 'Change to the monthly plan?';
+
+  @override
+  String get plusSwitchYearly => 'Change to the yearly plan?';
+
+  @override
+  String plusSwitchBody(String date, String price) {
+    return 'From $date you pay $price. Nothing is charged today.';
+  }
+
+  @override
+  String get plusSwitched => 'Plan changed';
+
+  @override
+  String cartDeliverToLabel(String label) {
+    return 'Deliver to $label';
+  }
+
+  @override
+  String cartItems(int count) {
+    return 'Items ($count)';
+  }
+
+  @override
+  String get cartFreeWithPlus => 'Free with Plus';
+
+  @override
+  String get cartApplied => 'Applied';
+
+  @override
+  String cartSaveOnOrder(String amount) {
+    return 'You save $amount on this order';
+  }
+
+  @override
+  String get cartDemoPayNote =>
+      'Demo payment. No money is charged. You can try a successful, failed or pending payment.';
+
+  @override
+  String get cartBillShort => 'Bill';
+
+  @override
+  String cartWindowShort(String from, String to) {
+    return '$from to $to';
+  }
+
+  @override
+  String get cartCodNote => 'You pay when the order arrives.';
 }

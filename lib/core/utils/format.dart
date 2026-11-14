@@ -23,7 +23,9 @@ class Fmt {
   /// "6 am", "2 pm": an hour on the walk strip.
   static String hour(DateTime d, [String locale = 'en']) => DateFormat('h a', _l(locale)).format(d).toLowerCase();
   static String monthYear(DateTime d, [String locale = 'en']) => DateFormat('MMMM yyyy', _l(locale)).format(d);
+  static String monthYearShort(DateTime d, [String locale = 'en']) => DateFormat('MMM yyyy', _l(locale)).format(d);
   static String monthShort(DateTime d, [String locale = 'en']) => DateFormat('MMM', _l(locale)).format(d);
+  static String weekdayShort(DateTime d, [String locale = 'en']) => DateFormat('EEE', _l(locale)).format(d);
   static String weekdayNarrow(DateTime d, [String locale = 'en']) => DateFormat('EEEEE', _l(locale)).format(d);
   static String time(DateTime d, [String locale = 'en']) =>
       DateFormat('h:mm a', locale == 'en' ? 'en' : _l(locale)).format(d);

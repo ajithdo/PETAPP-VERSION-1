@@ -10898,4 +10898,110 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get textSizeNote => '200% तक सब कुछ ठीक से दिखता है।';
+
+  @override
+  String get plusYouHaveShort => 'आपके पास Plus है';
+
+  @override
+  String plusMemberSince(String name, String date) {
+    return '$name, $date से सदस्य';
+  }
+
+  @override
+  String get plusRenewsOnLabel => 'रिन्यू होगा';
+
+  @override
+  String get plusEndsOnLabel => 'ख़त्म होगा';
+
+  @override
+  String get plusYearlyPlan => 'सालाना प्लान';
+
+  @override
+  String get plusMonthlyPlan => 'मासिक प्लान';
+
+  @override
+  String plusPriceYear(String amount) {
+    return '$amount हर साल';
+  }
+
+  @override
+  String plusPriceMonth(String amount) {
+    return '$amount हर महीने';
+  }
+
+  @override
+  String plusNextPayment(String amount, String date) {
+    return 'अगला भुगतान $amount, $date को';
+  }
+
+  @override
+  String get plusCancelPlan => 'प्लान रद्द करें';
+
+  @override
+  String get plusCancelTitle => 'अपना प्लान रद्द करें?';
+
+  @override
+  String plusNewHere(int days) {
+    return 'नए हैं? $days दिन मुफ़्त';
+  }
+
+  @override
+  String get plusNewHereBody =>
+      'Free प्लान के सदस्य पैसे देने से पहले Plus आज़मा सकते हैं।';
+
+  @override
+  String get plusWhatYouGet => 'आपको क्या मिलता है';
+
+  @override
+  String get plusNo => 'नहीं';
+
+  @override
+  String get plusSwitchMonthly => 'मासिक प्लान में बदलें?';
+
+  @override
+  String get plusSwitchYearly => 'सालाना प्लान में बदलें?';
+
+  @override
+  String plusSwitchBody(String date, String price) {
+    return '$date से आप $price देंगे। आज कुछ नहीं कटेगा।';
+  }
+
+  @override
+  String get plusSwitched => 'प्लान बदल गया';
+
+  @override
+  String cartDeliverToLabel(String label) {
+    return '$label पर डिलीवरी';
+  }
+
+  @override
+  String cartItems(int count) {
+    return 'सामान ($count)';
+  }
+
+  @override
+  String get cartFreeWithPlus => 'Plus के साथ मुफ़्त';
+
+  @override
+  String get cartApplied => 'लग गया';
+
+  @override
+  String cartSaveOnOrder(String amount) {
+    return 'इस ऑर्डर पर आप $amount बचाते हैं';
+  }
+
+  @override
+  String get cartDemoPayNote =>
+      'डेमो भुगतान। कोई पैसा नहीं कटता। आप सफल, असफल या रुका हुआ भुगतान आज़मा सकते हैं।';
+
+  @override
+  String get cartBillShort => 'बिल';
+
+  @override
+  String cartWindowShort(String from, String to) {
+    return '$from से $to';
+  }
+
+  @override
+  String get cartCodNote => 'ऑर्डर पहुँचने पर भुगतान करें।';
 }

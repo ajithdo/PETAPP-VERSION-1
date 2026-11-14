@@ -888,5 +888,179 @@
     "en": "Layouts stay tidy up to 200%.",
     "hi": "200% तक सब कुछ ठीक से दिखता है।",
     "te": "200% వరకు అన్నీ చక్కగా కనిపిస్తాయి."
+  },
+  "plusYouHaveShort": {
+    "en": "You have Plus",
+    "hi": "आपके पास Plus है",
+    "te": "మీకు Plus ఉంది"
+  },
+  "plusMemberSince": {
+    "en": "{name}, member since {date}",
+    "hi": "{name}, {date} से सदस्य",
+    "te": "{name}, {date} నుండి సభ్యులు",
+    "ph": {
+      "name": "String",
+      "date": "String"
+    }
+  },
+  "plusRenewsOnLabel": {
+    "en": "Renews on",
+    "hi": "रिन्यू होगा",
+    "te": "రెన్యూ తేదీ"
+  },
+  "plusEndsOnLabel": {
+    "en": "Ends on",
+    "hi": "ख़त्म होगा",
+    "te": "ముగిసే తేదీ"
+  },
+  "plusYearlyPlan": {
+    "en": "Yearly plan",
+    "hi": "सालाना प्लान",
+    "te": "సంవత్సర ప్లాన్"
+  },
+  "plusMonthlyPlan": {
+    "en": "Monthly plan",
+    "hi": "मासिक प्लान",
+    "te": "నెలవారీ ప్లాన్"
+  },
+  "plusPriceYear": {
+    "en": "{amount} a year",
+    "hi": "{amount} हर साल",
+    "te": "సంవత్సరానికి {amount}",
+    "ph": {
+      "amount": "String"
+    }
+  },
+  "plusPriceMonth": {
+    "en": "{amount} a month",
+    "hi": "{amount} हर महीने",
+    "te": "నెలకు {amount}",
+    "ph": {
+      "amount": "String"
+    }
+  },
+  "plusNextPayment": {
+    "en": "Next payment {amount} on {date}",
+    "hi": "अगला भुगतान {amount}, {date} को",
+    "te": "తదుపరి చెల్లింపు {amount}, {date}న",
+    "ph": {
+      "amount": "String",
+      "date": "String"
+    }
+  },
+  "plusCancelPlan": {
+    "en": "Cancel plan",
+    "hi": "प्लान रद्द करें",
+    "te": "ప్లాన్ రద్దు చేయండి"
+  },
+  "plusCancelTitle": {
+    "en": "Cancel your plan?",
+    "hi": "अपना प्लान रद्द करें?",
+    "te": "మీ ప్లాన్ రద్దు చేయాలా?"
+  },
+  "plusNewHere": {
+    "en": "New here? {days} days free",
+    "hi": "नए हैं? {days} दिन मुफ़्त",
+    "te": "కొత్తవారా? {days} రోజులు ఉచితం",
+    "ph": {
+      "days": "int"
+    }
+  },
+  "plusNewHereBody": {
+    "en": "Free plan members can try Plus before paying.",
+    "hi": "Free प्लान के सदस्य पैसे देने से पहले Plus आज़मा सकते हैं।",
+    "te": "Free ప్లాన్ సభ్యులు డబ్బు చెల్లించే ముందు Plus ప్రయత్నించవచ్చు."
+  },
+  "plusWhatYouGet": {
+    "en": "What you get",
+    "hi": "आपको क्या मिलता है",
+    "te": "మీకు ఏమి లభిస్తుంది"
+  },
+  "plusNo": {
+    "en": "No",
+    "hi": "नहीं",
+    "te": "లేదు"
+  },
+  "plusSwitchMonthly": {
+    "en": "Change to the monthly plan?",
+    "hi": "मासिक प्लान में बदलें?",
+    "te": "నెలవారీ ప్లాన్‌కు మార్చాలా?"
+  },
+  "plusSwitchYearly": {
+    "en": "Change to the yearly plan?",
+    "hi": "सालाना प्लान में बदलें?",
+    "te": "సంవత్సర ప్లాన్‌కు మార్చాలా?"
+  },
+  "plusSwitchBody": {
+    "en": "From {date} you pay {price}. Nothing is charged today.",
+    "hi": "{date} से आप {price} देंगे। आज कुछ नहीं कटेगा।",
+    "te": "{date} నుండి మీరు {price} చెల్లిస్తారు. ఈరోజు ఏమీ కట్ అవ్వదు.",
+    "ph": {
+      "date": "String",
+      "price": "String"
+    }
+  },
+  "plusSwitched": {
+    "en": "Plan changed",
+    "hi": "प्लान बदल गया",
+    "te": "ప్లాన్ మారింది"
+  },
+  "cartDeliverToLabel": {
+    "en": "Deliver to {label}",
+    "hi": "{label} पर डिलीवरी",
+    "te": "{label}కి డెలివరీ",
+    "ph": {
+      "label": "String"
+    }
+  },
+  "cartItems": {
+    "en": "Items ({count})",
+    "hi": "सामान ({count})",
+    "te": "వస్తువులు ({count})",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "cartFreeWithPlus": {
+    "en": "Free with Plus",
+    "hi": "Plus के साथ मुफ़्त",
+    "te": "Plusతో ఉచితం"
+  },
+  "cartApplied": {
+    "en": "Applied",
+    "hi": "लग गया",
+    "te": "వర్తించింది"
+  },
+  "cartSaveOnOrder": {
+    "en": "You save {amount} on this order",
+    "hi": "इस ऑर्डर पर आप {amount} बचाते हैं",
+    "te": "ఈ ఆర్డర్‌పై మీరు {amount} ఆదా చేస్తారు",
+    "ph": {
+      "amount": "String"
+    }
+  },
+  "cartDemoPayNote": {
+    "en": "Demo payment. No money is charged. You can try a successful, failed or pending payment.",
+    "hi": "डेमो भुगतान। कोई पैसा नहीं कटता। आप सफल, असफल या रुका हुआ भुगतान आज़मा सकते हैं।",
+    "te": "డెమో చెల్లింపు. డబ్బు కట్ అవ్వదు. మీరు విజయవంతమైన, విఫలమైన లేదా పెండింగ్ చెల్లింపును ప్రయత్నించవచ్చు."
+  },
+  "cartBillShort": {
+    "en": "Bill",
+    "hi": "बिल",
+    "te": "బిల్లు"
+  },
+  "cartWindowShort": {
+    "en": "{from} to {to}",
+    "hi": "{from} से {to}",
+    "te": "{from} నుండి {to}",
+    "ph": {
+      "from": "String",
+      "to": "String"
+    }
+  },
+  "cartCodNote": {
+    "en": "You pay when the order arrives.",
+    "hi": "ऑर्डर पहुँचने पर भुगतान करें।",
+    "te": "ఆర్డర్ వచ్చినప్పుడు చెల్లించండి."
   }
 }

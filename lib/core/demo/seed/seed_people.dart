@@ -63,13 +63,14 @@ void seedPeople(Add add, DateTime now) {
       'role': a.role,
       'plan': a.plan,
       'planRenewsAt': a.plan == 'plus' ? now.add(const Duration(days: 23)) : null,
+      'planPeriod': a.plan == 'plus' ? 'yearly' : null,
       'language': a.language,
       'city': a.city,
       'easyMode': a.easyMode,
       'partnerId': a.partnerId,
       'onboarded': true,
       'demo': true,
-      'createdAt': now.subtract(const Duration(days: 120)),
+      'createdAt': now.subtract(Duration(days: a.plan == 'plus' ? 365 - 23 : 120)),
       'addresses': a.role == 'owner'
           ? [
               {

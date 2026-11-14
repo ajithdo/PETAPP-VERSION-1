@@ -201,3 +201,15 @@ String couponMessage(BuildContext context, CouponResult r, {int minOrder = 0}) {
 
 /// Colour for the sale price.
 Color priceColor(BuildContext context) => context.paw.textPrimary;
+
+/// "7-11" → "7 to 11 AM"; "11-15" → "11 AM to 3 PM" (delivery slot chips).
+String windowShort(BuildContext context, String w) {
+  final parts = w.split('-');
+  if (parts.length != 2) return w;
+  final a = int.tryParse(parts[0]) ?? 0, b = int.tryParse(parts[1]) ?? 0;
+  final loc = MaterialLocalizations.of(context);
+  String full(int h) => loc.formatTimeOfDay(TimeOfDay(hour: h, minute: 0), alwaysUse24HourFormat: false).replaceFirst(':00', '');
+  final sameHalf = (a < 12) == (b < 12);
+  final from = sameHalf ? '${a % 12 == 0 ? 12 : a % 12}' : full(a);
+  return context.l10n.cartWindowShort(from, full(b));
+}

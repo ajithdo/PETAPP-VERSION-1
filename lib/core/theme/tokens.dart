@@ -460,6 +460,9 @@ class PackColors {
     (Color(0xFFDC2626), Color(0xFFFCE4E0)),
     (Color(0xFF1F7FA8), Color(0xFFDDECF5)),
   ];
+
+  /// The empty cart: a dark bag on pale marigold.
+  static const emptyBag = (Color(0xFF2F1D14), Color(0xFFFDEFCC));
   static const label = Color(0xFFFBF2E3);
   static const strap = Color(0xFF2B1A12);
   static const shade = Color(0x24000000);
@@ -823,6 +826,12 @@ class Sizes {
   static const double productCardCompact = 158;
   static const double productTextBlock = 128;
   static const double productArtAspect = 1.08;
+
+  /// The round picture of an empty page (the empty cart's bag).
+  static const double emptyArt = 128;
+
+  /// Minus and plus on a quantity pill.
+  static const double stepper = 40;
 
   /// A "buy again" card in the Shop's row.
   static const double buyAgainCard = 248;
