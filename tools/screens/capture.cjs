@@ -59,7 +59,8 @@ const server = http.createServer((req, res) => {
       await loc.first().click({ timeout: 15000 });
       await settle(1500);
     };
-    await page.goto(`http://localhost:${port}/#/signin`, { waitUntil: 'load' });
+    // Accounts other than the first are on the full demo-accounts page.
+    await page.goto(`http://localhost:${port}/#/${s.account ? 'demo' : 'signin'}`, { waitUntil: 'load' });
     await page.waitForSelector('flutter-view, flt-glass-pane', { timeout: 60000 }).catch(() => {});
     await settle(3500);
     await page.evaluate(() => { const b = document.querySelector('flt-semantics-placeholder'); if (b) b.click(); });

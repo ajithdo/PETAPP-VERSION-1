@@ -181,9 +181,9 @@ ExtractedDetails sampleDetails(String key, {required String petName, required Da
       return ExtractedDetails(
         type: 'insurance',
         petName: petName,
-        insurer: 'Shield Pet Cover (sample)',
+        insurer: 'PawCover',
         policyNo: 'SAMPLE-PI-${20431 + petName.length}',
-        cover: 100000,
+        cover: 200000,
         premium: 6499,
         coverStart: on,
         expiry: _plusYears(on, 1).subtract(const Duration(days: 1)),

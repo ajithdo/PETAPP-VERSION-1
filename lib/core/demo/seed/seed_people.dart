@@ -63,7 +63,6 @@ void seedPeople(Add add, DateTime now) {
       'role': a.role,
       'plan': a.plan,
       'planRenewsAt': a.plan == 'plus' ? now.add(const Duration(days: 23)) : null,
-      'planPeriod': a.plan == 'plus' ? 'yearly' : null,
       'language': a.language,
       'city': a.city,
       'easyMode': a.easyMode,

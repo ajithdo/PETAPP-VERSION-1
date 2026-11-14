@@ -7991,5 +7991,110 @@
       }
     }
   },
-  "cartCodNote": "You pay when the order arrives."
+  "cartCodNote": "You pay when the order arrives.",
+  "vaultSearchDocsHint": "Search documents and tags",
+  "vaultScanOrUpload": "Scan or upload",
+  "vaultTypeShortVaccination": "Certificates",
+  "vaultTypeShortInsurance": "Insurance",
+  "vaultTypeShortLab": "Lab reports",
+  "vaultTypeShortPrescription": "Prescriptions",
+  "vaultTypeShortInvoice": "Bills",
+  "vaultTypeShortLicence": "Licences",
+  "vaultTypeShortAdoption": "Adoption",
+  "vaultTypeShortTravel": "Travel",
+  "vaultTypeShortOther": "Other",
+  "vaultExpiresNote": "{title} expires on {date}.",
+  "@vaultExpiresNote": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultExpiredNote": "{title} expired on {date}.",
+  "@vaultExpiredNote": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultRenewHintVaccine": "Add the new one after {pet}'s booster.",
+  "@vaultRenewHintVaccine": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultRenewHint": "Add the new one when you get it.",
+  "vaultSharedWithVet": "Shared with a vet",
+  "vaultAllLinks": "All links",
+  "vaultRevokeShort": "Revoke",
+  "vaultPolicyLine": "{name}, {cover} cover",
+  "@vaultPolicyLine": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "cover": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultOpenClaimLine": "{count, plural, =1{1 claim} other{{count} claims}} {status}: {amount}, {done} of {total} documents added",
+  "@vaultOpenClaimLine": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "status": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultRenewsOn": "Renews {date}",
+  "@vaultRenewsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultAddInsurance": "Add your pet's insurance",
+  "vaultAddInsuranceBody": "Keep the policy, renewal date and claims in one place.",
+  "vaultWhatViewOnly": "{what}, view only",
+  "@vaultWhatViewOnly": {
+    "placeholders": {
+      "what": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultStorageOf": "{used} of {limit}",
+  "@vaultStorageOf": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  }
 }

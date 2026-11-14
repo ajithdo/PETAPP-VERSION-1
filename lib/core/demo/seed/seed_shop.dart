@@ -414,6 +414,7 @@ void seedShop(Add add, DateTime now) {
       'packKg': p.packKg,
       // The products the design shows keep their pack colours; the rest vary.
       'imageSeed': [r.next(8), ?_designPack[p.id]].last,
+      'shortName': ?_designShort[p.id],
       'deliveryDays': 2 + r.next(4),
       'returnable': p.cat != 'food' && p.cat != 'treats',
       'active': true,
@@ -434,4 +435,17 @@ const _designPack = <String, int>{
   'prod_treat_chew': 1,
   'prod_cat_dry_3': 5,
   'prod_shampoo': 2,
+};
+
+/// The short names the UI Design 6 kit uses on tight rows (cart, buy again).
+const _designShort = <String, String>{
+  'prod_lab_adult_10': 'Lamb & Rice Dry Food 10 kg',
+  'prod_senior_dog_7': 'Senior Joint Care 7 kg',
+  'prod_treat_training': 'Training Bites 200 g',
+  'prod_bed_l': 'Orthopaedic Bed L',
+  'prod_harness': 'No-pull Harness M/L',
+  'prod_toy_rope': 'Cotton Rope Tug Toy',
+  'prod_treat_chew': 'Dental Chew Sticks',
+  'prod_cat_dry_3': 'Indoor Cat Ocean Fish 3 kg',
+  'prod_shampoo': 'Oatmeal Shampoo',
 };

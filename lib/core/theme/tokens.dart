@@ -672,6 +672,9 @@ class TypeScale {
   /// Labels under the dock icons (11 px in the design).
   static const dock = TypeToken(11, 13, FontWeight.w500);
 
+  /// The "SAMPLE" stamp on a demo paper (size only).
+  static const double stamp = 10;
+
   /// Small section labels ("Next for Bruno"). Sentence case, never
   /// upper-cased or letter-spaced (Hindi and Telugu can't be).
   static const overline = TypeToken(13, 18, FontWeight.w700);
@@ -832,6 +835,12 @@ class Sizes {
 
   /// Minus and plus on a quantity pill.
   static const double stepper = 40;
+
+  /// A document's paper sheet in the vault (wider than tall).
+  static const double docSheetAspect = 1.25;
+
+  /// The tilt of the "SAMPLE" stamp on a demo paper (12 degrees).
+  static const double stampTilt = 0.2094;
 
   /// A "buy again" card in the Shop's row.
   static const double buyAgainCard = 248;
@@ -1187,6 +1196,9 @@ class Tracking {
   /// IDs and coupon codes, and big codes people read out or type.
   static const double id = 1;
   static const double code = 4;
+
+  /// The "SAMPLE" stamp on a demo paper.
+  static const double stamp = 0.8;
 }
 
 /// Opacities for tints, overlays and soft borders.

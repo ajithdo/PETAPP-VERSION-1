@@ -218,6 +218,16 @@ void seedOrders(Add add, DateTime now, SeedData data) {
     'createdAt': day(47),
   });
 
+  // ---------- a cart in progress (the design's Cart page) ----------
+  add('carts', 'u_priya', {
+    'items': [
+      {'productId': 'prod_lab_adult_10', 'qty': 1},
+      {'productId': 'prod_treat_training', 'qty': 2},
+    ],
+    'coupon': 'PAWS100',
+    'updatedAt': now,
+  });
+
   // ---------- coupons (admin-created) ----------
   add('coupons', 'WELCOME10', {'percent': 10, 'maxDiscount': 200, 'minOrder': 499, 'validTill': DateTime(now.year + 1, 3, 31), 'uses': 128, 'maxUses': 5000, 'active': true, 'description': '10% off your order, up to ₹200'});
   add('coupons', 'PAWS100', {'flat': 100, 'minOrder': 999, 'validTill': DateTime(now.year, now.month + 2, 1), 'uses': 46, 'maxUses': 1000, 'active': true, 'description': '₹100 off orders above ₹999'});
@@ -276,7 +286,7 @@ void seedOrders(Add add, DateTime now, SeedData data) {
       });
 
   expense('u_priya', 'pet_bruno', 'vet', 1850, 41, 'Ear infection visit, Gulmohar Vet Studio');
-  expense('u_priya', 'pet_bruno', 'insurance', 6499, 300, 'Shield Pet Cover premium');
+  expense('u_priya', 'pet_bruno', 'insurance', 6499, 300, 'PawCover premium');
   expense('u_priya', 'pet_bruno', 'food', 3650, 100, 'Dog food from the local store');
   expense('u_priya', 'pet_bruno', 'food', 3650, 130, 'Dog food from the local store');
   expense('u_priya', 'pet_bruno', 'grooming', 900, 95, 'Bath and nail trim at home');

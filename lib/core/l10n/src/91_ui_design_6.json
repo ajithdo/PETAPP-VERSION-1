@@ -1062,5 +1062,162 @@
     "en": "You pay when the order arrives.",
     "hi": "ऑर्डर पहुँचने पर भुगतान करें।",
     "te": "ఆర్డర్ వచ్చినప్పుడు చెల్లించండి."
+  },
+  "vaultSearchDocsHint": {
+    "en": "Search documents and tags",
+    "hi": "दस्तावेज़ और टैग खोजें",
+    "te": "పత్రాలు, ట్యాగ్‌లు వెతకండి"
+  },
+  "vaultScanOrUpload": {
+    "en": "Scan or upload",
+    "hi": "स्कैन या अपलोड करें",
+    "te": "స్కాన్ లేదా అప్‌లోడ్ చేయండి"
+  },
+  "vaultTypeShortVaccination": {
+    "en": "Certificates",
+    "hi": "प्रमाणपत्र",
+    "te": "సర్టిఫికెట్లు"
+  },
+  "vaultTypeShortInsurance": {
+    "en": "Insurance",
+    "hi": "बीमा",
+    "te": "బీమా"
+  },
+  "vaultTypeShortLab": {
+    "en": "Lab reports",
+    "hi": "लैब रिपोर्ट",
+    "te": "ల్యాబ్ రిపోర్టులు"
+  },
+  "vaultTypeShortPrescription": {
+    "en": "Prescriptions",
+    "hi": "पर्चे",
+    "te": "ప్రిస్క్రిప్షన్లు"
+  },
+  "vaultTypeShortInvoice": {
+    "en": "Bills",
+    "hi": "बिल",
+    "te": "బిల్లులు"
+  },
+  "vaultTypeShortLicence": {
+    "en": "Licences",
+    "hi": "लाइसेंस",
+    "te": "లైసెన్సులు"
+  },
+  "vaultTypeShortAdoption": {
+    "en": "Adoption",
+    "hi": "गोद लेना",
+    "te": "దత్తత"
+  },
+  "vaultTypeShortTravel": {
+    "en": "Travel",
+    "hi": "यात्रा",
+    "te": "ప్రయాణం"
+  },
+  "vaultTypeShortOther": {
+    "en": "Other",
+    "hi": "अन्य",
+    "te": "ఇతరం"
+  },
+  "vaultExpiresNote": {
+    "en": "{title} expires on {date}.",
+    "hi": "{title} {date} को ख़त्म होगा।",
+    "te": "{title} {date}న గడువు ముగుస్తుంది.",
+    "ph": {
+      "title": "String",
+      "date": "String"
+    }
+  },
+  "vaultExpiredNote": {
+    "en": "{title} expired on {date}.",
+    "hi": "{title} {date} को ख़त्म हो गया।",
+    "te": "{title} గడువు {date}న ముగిసింది.",
+    "ph": {
+      "title": "String",
+      "date": "String"
+    }
+  },
+  "vaultRenewHintVaccine": {
+    "en": "Add the new one after {pet}'s booster.",
+    "hi": "{pet} के बूस्टर के बाद नया जोड़ें।",
+    "te": "{pet} బూస్టర్ తర్వాత కొత్తది జోడించండి.",
+    "ph": {
+      "pet": "String"
+    }
+  },
+  "vaultRenewHint": {
+    "en": "Add the new one when you get it.",
+    "hi": "नया मिलने पर जोड़ें।",
+    "te": "కొత్తది వచ్చినప్పుడు జోడించండి."
+  },
+  "vaultSharedWithVet": {
+    "en": "Shared with a vet",
+    "hi": "डॉक्टर के साथ साझा",
+    "te": "వెట్‌తో పంచుకున్నవి"
+  },
+  "vaultAllLinks": {
+    "en": "All links",
+    "hi": "सभी लिंक",
+    "te": "అన్ని లింక్‌లు"
+  },
+  "vaultRevokeShort": {
+    "en": "Revoke",
+    "hi": "रोकें",
+    "te": "ఆపండి"
+  },
+  "vaultPolicyLine": {
+    "en": "{name}, {cover} cover",
+    "hi": "{name}, {cover} का कवर",
+    "te": "{name}, {cover} కవర్",
+    "ph": {
+      "name": "String",
+      "cover": "String"
+    }
+  },
+  "vaultOpenClaimLine": {
+    "en": "{count, plural, =1{1 claim} other{{count} claims}} {status}: {amount}, {done} of {total} documents added",
+    "hi": "{count, plural, =1{1 दावा} other{{count} दावे}} {status}: {amount}, {total} में से {done} दस्तावेज़ जुड़े",
+    "te": "{count, plural, =1{1 క్లెయిమ్} other{{count} క్లెయిమ్‌లు}} {status}: {amount}, {total}లో {done} పత్రాలు జోడించారు",
+    "ph": {
+      "count": "int",
+      "status": "String",
+      "amount": "String",
+      "done": "int",
+      "total": "int"
+    }
+  },
+  "vaultRenewsOn": {
+    "en": "Renews {date}",
+    "hi": "{date} को रिन्यू होगा",
+    "te": "{date}న రెన్యూ అవుతుంది",
+    "ph": {
+      "date": "String"
+    }
+  },
+  "vaultAddInsurance": {
+    "en": "Add your pet's insurance",
+    "hi": "अपने पालतू का बीमा जोड़ें",
+    "te": "మీ పెంపుడు జంతువు బీమా జోడించండి"
+  },
+  "vaultAddInsuranceBody": {
+    "en": "Keep the policy, renewal date and claims in one place.",
+    "hi": "पॉलिसी, रिन्यू की तारीख़ और दावे एक जगह रखें।",
+    "te": "పాలసీ, రెన్యూ తేదీ, క్లెయిమ్‌లు ఒకే చోట ఉంచండి."
+  },
+  "vaultWhatViewOnly": {
+    "en": "{what}, view only",
+    "hi": "{what}, सिर्फ़ देखने के लिए",
+    "te": "{what}, చూడటానికి మాత్రమే",
+    "ph": {
+      "what": "String"
+    }
+  },
+  "vaultStorageOf": {
+    "en": "{used} of {limit}",
+    "hi": "{limit} में से {used}",
+    "te": "{limit}లో {used}",
+    "ph": {
+      "used": "String",
+      "limit": "String"
+    }
   }
 }

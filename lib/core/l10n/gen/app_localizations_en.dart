@@ -11426,4 +11426,108 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cartCodNote => 'You pay when the order arrives.';
+
+  @override
+  String get vaultSearchDocsHint => 'Search documents and tags';
+
+  @override
+  String get vaultScanOrUpload => 'Scan or upload';
+
+  @override
+  String get vaultTypeShortVaccination => 'Certificates';
+
+  @override
+  String get vaultTypeShortInsurance => 'Insurance';
+
+  @override
+  String get vaultTypeShortLab => 'Lab reports';
+
+  @override
+  String get vaultTypeShortPrescription => 'Prescriptions';
+
+  @override
+  String get vaultTypeShortInvoice => 'Bills';
+
+  @override
+  String get vaultTypeShortLicence => 'Licences';
+
+  @override
+  String get vaultTypeShortAdoption => 'Adoption';
+
+  @override
+  String get vaultTypeShortTravel => 'Travel';
+
+  @override
+  String get vaultTypeShortOther => 'Other';
+
+  @override
+  String vaultExpiresNote(String title, String date) {
+    return '$title expires on $date.';
+  }
+
+  @override
+  String vaultExpiredNote(String title, String date) {
+    return '$title expired on $date.';
+  }
+
+  @override
+  String vaultRenewHintVaccine(String pet) {
+    return 'Add the new one after $pet\'s booster.';
+  }
+
+  @override
+  String get vaultRenewHint => 'Add the new one when you get it.';
+
+  @override
+  String get vaultSharedWithVet => 'Shared with a vet';
+
+  @override
+  String get vaultAllLinks => 'All links';
+
+  @override
+  String get vaultRevokeShort => 'Revoke';
+
+  @override
+  String vaultPolicyLine(String name, String cover) {
+    return '$name, $cover cover';
+  }
+
+  @override
+  String vaultOpenClaimLine(
+    int count,
+    String status,
+    String amount,
+    int done,
+    int total,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count claims',
+      one: '1 claim',
+    );
+    return '$_temp0 $status: $amount, $done of $total documents added';
+  }
+
+  @override
+  String vaultRenewsOn(String date) {
+    return 'Renews $date';
+  }
+
+  @override
+  String get vaultAddInsurance => 'Add your pet\'s insurance';
+
+  @override
+  String get vaultAddInsuranceBody =>
+      'Keep the policy, renewal date and claims in one place.';
+
+  @override
+  String vaultWhatViewOnly(String what) {
+    return '$what, view only';
+  }
+
+  @override
+  String vaultStorageOf(String used, String limit) {
+    return '$used of $limit';
+  }
 }

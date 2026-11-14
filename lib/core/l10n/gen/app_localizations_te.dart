@@ -11035,4 +11035,108 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get cartCodNote => 'ఆర్డర్ వచ్చినప్పుడు చెల్లించండి.';
+
+  @override
+  String get vaultSearchDocsHint => 'పత్రాలు, ట్యాగ్‌లు వెతకండి';
+
+  @override
+  String get vaultScanOrUpload => 'స్కాన్ లేదా అప్‌లోడ్ చేయండి';
+
+  @override
+  String get vaultTypeShortVaccination => 'సర్టిఫికెట్లు';
+
+  @override
+  String get vaultTypeShortInsurance => 'బీమా';
+
+  @override
+  String get vaultTypeShortLab => 'ల్యాబ్ రిపోర్టులు';
+
+  @override
+  String get vaultTypeShortPrescription => 'ప్రిస్క్రిప్షన్లు';
+
+  @override
+  String get vaultTypeShortInvoice => 'బిల్లులు';
+
+  @override
+  String get vaultTypeShortLicence => 'లైసెన్సులు';
+
+  @override
+  String get vaultTypeShortAdoption => 'దత్తత';
+
+  @override
+  String get vaultTypeShortTravel => 'ప్రయాణం';
+
+  @override
+  String get vaultTypeShortOther => 'ఇతరం';
+
+  @override
+  String vaultExpiresNote(String title, String date) {
+    return '$title $dateన గడువు ముగుస్తుంది.';
+  }
+
+  @override
+  String vaultExpiredNote(String title, String date) {
+    return '$title గడువు $dateన ముగిసింది.';
+  }
+
+  @override
+  String vaultRenewHintVaccine(String pet) {
+    return '$pet బూస్టర్ తర్వాత కొత్తది జోడించండి.';
+  }
+
+  @override
+  String get vaultRenewHint => 'కొత్తది వచ్చినప్పుడు జోడించండి.';
+
+  @override
+  String get vaultSharedWithVet => 'వెట్‌తో పంచుకున్నవి';
+
+  @override
+  String get vaultAllLinks => 'అన్ని లింక్‌లు';
+
+  @override
+  String get vaultRevokeShort => 'ఆపండి';
+
+  @override
+  String vaultPolicyLine(String name, String cover) {
+    return '$name, $cover కవర్';
+  }
+
+  @override
+  String vaultOpenClaimLine(
+    int count,
+    String status,
+    String amount,
+    int done,
+    int total,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count క్లెయిమ్‌లు',
+      one: '1 క్లెయిమ్',
+    );
+    return '$_temp0 $status: $amount, $totalలో $done పత్రాలు జోడించారు';
+  }
+
+  @override
+  String vaultRenewsOn(String date) {
+    return '$dateన రెన్యూ అవుతుంది';
+  }
+
+  @override
+  String get vaultAddInsurance => 'మీ పెంపుడు జంతువు బీమా జోడించండి';
+
+  @override
+  String get vaultAddInsuranceBody =>
+      'పాలసీ, రెన్యూ తేదీ, క్లెయిమ్‌లు ఒకే చోట ఉంచండి.';
+
+  @override
+  String vaultWhatViewOnly(String what) {
+    return '$what, చూడటానికి మాత్రమే';
+  }
+
+  @override
+  String vaultStorageOf(String used, String limit) {
+    return '$limitలో $used';
+  }
 }

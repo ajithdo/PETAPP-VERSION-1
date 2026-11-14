@@ -11004,4 +11004,108 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get cartCodNote => 'ऑर्डर पहुँचने पर भुगतान करें।';
+
+  @override
+  String get vaultSearchDocsHint => 'दस्तावेज़ और टैग खोजें';
+
+  @override
+  String get vaultScanOrUpload => 'स्कैन या अपलोड करें';
+
+  @override
+  String get vaultTypeShortVaccination => 'प्रमाणपत्र';
+
+  @override
+  String get vaultTypeShortInsurance => 'बीमा';
+
+  @override
+  String get vaultTypeShortLab => 'लैब रिपोर्ट';
+
+  @override
+  String get vaultTypeShortPrescription => 'पर्चे';
+
+  @override
+  String get vaultTypeShortInvoice => 'बिल';
+
+  @override
+  String get vaultTypeShortLicence => 'लाइसेंस';
+
+  @override
+  String get vaultTypeShortAdoption => 'गोद लेना';
+
+  @override
+  String get vaultTypeShortTravel => 'यात्रा';
+
+  @override
+  String get vaultTypeShortOther => 'अन्य';
+
+  @override
+  String vaultExpiresNote(String title, String date) {
+    return '$title $date को ख़त्म होगा।';
+  }
+
+  @override
+  String vaultExpiredNote(String title, String date) {
+    return '$title $date को ख़त्म हो गया।';
+  }
+
+  @override
+  String vaultRenewHintVaccine(String pet) {
+    return '$pet के बूस्टर के बाद नया जोड़ें।';
+  }
+
+  @override
+  String get vaultRenewHint => 'नया मिलने पर जोड़ें।';
+
+  @override
+  String get vaultSharedWithVet => 'डॉक्टर के साथ साझा';
+
+  @override
+  String get vaultAllLinks => 'सभी लिंक';
+
+  @override
+  String get vaultRevokeShort => 'रोकें';
+
+  @override
+  String vaultPolicyLine(String name, String cover) {
+    return '$name, $cover का कवर';
+  }
+
+  @override
+  String vaultOpenClaimLine(
+    int count,
+    String status,
+    String amount,
+    int done,
+    int total,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count दावे',
+      one: '1 दावा',
+    );
+    return '$_temp0 $status: $amount, $total में से $done दस्तावेज़ जुड़े';
+  }
+
+  @override
+  String vaultRenewsOn(String date) {
+    return '$date को रिन्यू होगा';
+  }
+
+  @override
+  String get vaultAddInsurance => 'अपने पालतू का बीमा जोड़ें';
+
+  @override
+  String get vaultAddInsuranceBody =>
+      'पॉलिसी, रिन्यू की तारीख़ और दावे एक जगह रखें।';
+
+  @override
+  String vaultWhatViewOnly(String what) {
+    return '$what, सिर्फ़ देखने के लिए';
+  }
+
+  @override
+  String vaultStorageOf(String used, String limit) {
+    return '$limit में से $used';
+  }
 }

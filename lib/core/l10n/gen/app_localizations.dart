@@ -18885,6 +18885,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You pay when the order arrives.'**
   String get cartCodNote;
+
+  /// No description provided for @vaultSearchDocsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search documents and tags'**
+  String get vaultSearchDocsHint;
+
+  /// No description provided for @vaultScanOrUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan or upload'**
+  String get vaultScanOrUpload;
+
+  /// No description provided for @vaultTypeShortVaccination.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificates'**
+  String get vaultTypeShortVaccination;
+
+  /// No description provided for @vaultTypeShortInsurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance'**
+  String get vaultTypeShortInsurance;
+
+  /// No description provided for @vaultTypeShortLab.
+  ///
+  /// In en, this message translates to:
+  /// **'Lab reports'**
+  String get vaultTypeShortLab;
+
+  /// No description provided for @vaultTypeShortPrescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescriptions'**
+  String get vaultTypeShortPrescription;
+
+  /// No description provided for @vaultTypeShortInvoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Bills'**
+  String get vaultTypeShortInvoice;
+
+  /// No description provided for @vaultTypeShortLicence.
+  ///
+  /// In en, this message translates to:
+  /// **'Licences'**
+  String get vaultTypeShortLicence;
+
+  /// No description provided for @vaultTypeShortAdoption.
+  ///
+  /// In en, this message translates to:
+  /// **'Adoption'**
+  String get vaultTypeShortAdoption;
+
+  /// No description provided for @vaultTypeShortTravel.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel'**
+  String get vaultTypeShortTravel;
+
+  /// No description provided for @vaultTypeShortOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get vaultTypeShortOther;
+
+  /// No description provided for @vaultExpiresNote.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} expires on {date}.'**
+  String vaultExpiresNote(String title, String date);
+
+  /// No description provided for @vaultExpiredNote.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} expired on {date}.'**
+  String vaultExpiredNote(String title, String date);
+
+  /// No description provided for @vaultRenewHintVaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the new one after {pet}\'s booster.'**
+  String vaultRenewHintVaccine(String pet);
+
+  /// No description provided for @vaultRenewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the new one when you get it.'**
+  String get vaultRenewHint;
+
+  /// No description provided for @vaultSharedWithVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared with a vet'**
+  String get vaultSharedWithVet;
+
+  /// No description provided for @vaultAllLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'All links'**
+  String get vaultAllLinks;
+
+  /// No description provided for @vaultRevokeShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoke'**
+  String get vaultRevokeShort;
+
+  /// No description provided for @vaultPolicyLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, {cover} cover'**
+  String vaultPolicyLine(String name, String cover);
+
+  /// No description provided for @vaultOpenClaimLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 claim} other{{count} claims}} {status}: {amount}, {done} of {total} documents added'**
+  String vaultOpenClaimLine(
+    int count,
+    String status,
+    String amount,
+    int done,
+    int total,
+  );
+
+  /// No description provided for @vaultRenewsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews {date}'**
+  String vaultRenewsOn(String date);
+
+  /// No description provided for @vaultAddInsurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your pet\'s insurance'**
+  String get vaultAddInsurance;
+
+  /// No description provided for @vaultAddInsuranceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the policy, renewal date and claims in one place.'**
+  String get vaultAddInsuranceBody;
+
+  /// No description provided for @vaultWhatViewOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'{what}, view only'**
+  String vaultWhatViewOnly(String what);
+
+  /// No description provided for @vaultStorageOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {limit}'**
+  String vaultStorageOf(String used, String limit);
 }
 
 class _AppLocalizationsDelegate

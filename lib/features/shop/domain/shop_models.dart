@@ -31,9 +31,9 @@ class Product {
   String get name => (raw['name'] as String?) ?? '';
   String get brand => (raw['brand'] as String?) ?? '';
 
-  /// "Brand Adult Food, Lamb & Rice 10 kg" → "Lamb & Rice 10 kg": the
-  /// part that names the pack, for tight rows.
-  String get shortName => name.split(', ').last;
+  /// A short name for tight rows (cart, buy again): the seller's own, or
+  /// the part after the comma, which names the pack.
+  String get shortName => (raw['shortName'] as String?) ?? name.split(', ').last;
   String get category => (raw['category'] as String?) ?? 'toys';
   String? get subcategory => raw['subcategory'] as String?;
   List<String> get species => _list('species');

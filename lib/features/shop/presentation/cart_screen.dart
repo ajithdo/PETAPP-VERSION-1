@@ -443,6 +443,7 @@ class _EmptyCart extends ConsumerWidget {
               PawItem(
                 lead: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.tileLg, radius: Sizes.tileLg * Sizes.tileCorner),
                 title: p.shortName,
+                titleWidget: Text(p.shortName, style: context.text.labelLarge, maxLines: 1, overflow: TextOverflow.ellipsis),
                 sub: Fmt.inr(p.price),
                 onTap: () => context.push('/shop/product/${p.id}'),
                 trailing: PawButton(

@@ -283,9 +283,7 @@ class _StatusCard extends StatelessWidget {
               Expanded(child: fact(trial || !user.autoRenew ? l.plusEndsOnLabel : l.plusRenewsOnLabel, Fmt.date(until, lang))),
               if (!trial && user.planPeriod != null) ...[
                 const SizedBox(width: Space.md),
-                Flexible(
-                  child: fact(yearly ? l.plusYearlyPlan : l.plusMonthlyPlan, yearly ? l.plusPriceYear(Fmt.inr(prices.yearly, lang)) : l.plusPriceMonth(Fmt.inr(prices.monthly, lang)), end: true),
-                ),
+                fact(yearly ? l.plusYearlyPlan : l.plusMonthlyPlan, yearly ? l.plusPriceYear(Fmt.inr(prices.yearly, lang)) : l.plusPriceMonth(Fmt.inr(prices.monthly, lang)), end: true),
               ],
             ]),
           ]),
@@ -610,9 +608,11 @@ class _CardRings extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    const r = Sizes.print * 0.63; // a 12rem circle, 3rem off the corner
-    final c = Offset(size.width + Space.xxl - r, r - Space.xxl);
-    canvas.drawCircle(c, r + Space.lg, Paint()..style = PaintingStyle.stroke..strokeWidth = Space.xl..color = halo);
+    // A 12rem circle centred 3rem in from the top right corner, with a
+    // 2rem halo around it.
+    const r = Space.x3l * 2;
+    final c = Offset(size.width - Space.x3l, Space.x3l);
+    canvas.drawCircle(c, r + Space.lg, Paint()..style = PaintingStyle.stroke..strokeWidth = Space.xxl..color = halo);
     canvas.drawCircle(c, r, Paint()..style = PaintingStyle.stroke..strokeWidth = Strokes.strong..color = color);
   }
 

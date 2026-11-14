@@ -23,16 +23,41 @@ String docTypeLabel(BuildContext context, String type) {
   };
 }
 
+/// Short plural name for the filter chips: "Certificates", "Lab reports".
+String docTypeShort(BuildContext context, String type) {
+  final l = context.l10n;
+  return switch (type) {
+    'vaccination' => l.vaultTypeShortVaccination,
+    'insurance' => l.vaultTypeShortInsurance,
+    'lab' => l.vaultTypeShortLab,
+    'prescription' => l.vaultTypeShortPrescription,
+    'invoice' => l.vaultTypeShortInvoice,
+    'licence' => l.vaultTypeShortLicence,
+    'adoption' => l.vaultTypeShortAdoption,
+    'travel' => l.vaultTypeShortTravel,
+    _ => l.vaultTypeShortOther,
+  };
+}
+
 IconData docTypeIcon(String type) => switch (type) {
       'vaccination' => Ph.syringe,
-      'insurance' => Ph.shieldPlus,
-      'lab' => Ph.microscope,
-      'prescription' => Ph.pill,
+      'insurance' => Ph.shieldCheck,
+      'lab' => Ph.flask,
+      'prescription' => Ph.fileText,
       'invoice' => Ph.receipt,
-      'licence' => Ph.identificationCard,
+      'licence' => Ph.identificationBadge,
       'adoption' => Ph.handHeart,
       'travel' => Ph.airplaneTilt,
-      _ => Ph.fileText,
+      _ => Ph.file,
+    };
+
+/// The tint of a document's paper sheet (UI Design 6): certificates green,
+/// insurance sky, prescriptions gold, the rest plain paper.
+Tone docTypeTone(String type) => switch (type) {
+      'vaccination' => Tone.green,
+      'insurance' => Tone.sky,
+      'prescription' => Tone.gold,
+      _ => Tone.neutral,
     };
 
 /// Icon colour for a kind of document, readable (3:1) on cards in light

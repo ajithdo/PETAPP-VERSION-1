@@ -65,13 +65,13 @@ void seedVault(Add add, DateTime now, SeedData data) {
   // days, so it shows "Expires soon"), his insurance policy, the lab report
   // and vet bill behind an open claim, and his licence.
   final brunoBooster = day(355);
-  doc('doc_bruno_rabies', 'pet_bruno', 'rabies_certificate', brunoBooster, title: 'Anti-rabies certificate', tags: ['rabies', '${brunoBooster.year}']);
+  doc('doc_bruno_rabies', 'pet_bruno', 'rabies_certificate', brunoBooster, title: 'Rabies certificate', tags: ['rabies', '${brunoBooster.year}']);
   doc('doc_bruno_dhppi', 'pet_bruno', 'dhppi_certificate', brunoBooster, title: 'DHPPi + Lepto certificate', tags: ['dhppi', '${brunoBooster.year}']);
   final brunoPolicyStart = day(300);
-  doc('doc_bruno_policy', 'pet_bruno', 'insurance_policy', brunoPolicyStart, title: 'Shield Pet Cover (sample) policy', tags: ['insurance', '${brunoPolicyStart.year}']);
+  doc('doc_bruno_policy', 'pet_bruno', 'insurance_policy', brunoPolicyStart, title: 'PawCover Gold policy', tags: ['insurance', '${brunoPolicyStart.year}']);
   final earVisit = day(41);
-  doc('doc_bruno_lab', 'pet_bruno', 'lab_report', earVisit, title: 'Complete blood count (CBC)', tags: ['lab', 'ear infection']);
-  doc('doc_bruno_invoice', 'pet_bruno', 'invoice', earVisit, title: 'Gulmohar Vet Studio bill', tags: ['vet bill', 'claim']);
+  doc('doc_bruno_lab', 'pet_bruno', 'lab_report', earVisit, title: 'Blood test report', tags: ['lab', 'ear infection']);
+  doc('doc_bruno_invoice', 'pet_bruno', 'invoice', earVisit, title: 'Invoice, Gulmohar', tags: ['vet bill', 'claim']);
   doc('doc_bruno_licence', 'pet_bruno', 'licence', day(200), title: 'Dog licence', tags: ['licence']);
 
   // Misty: rabies certificate, adoption papers, and a new lab report that
@@ -101,7 +101,7 @@ void seedVault(Add add, DateTime now, SeedData data) {
   // booster certificates and a Goa trip certificate that has expired.
   final maxRenewal = DateTime(now.year, now.month, now.day + 20);
   final maxPolicyStart = DateTime(maxRenewal.year - 1, maxRenewal.month, maxRenewal.day + 1);
-  doc('doc_max_policy', 'pet_max', 'insurance_policy', maxPolicyStart, title: 'Shield Pet Cover (sample) policy', tags: ['insurance']);
+  doc('doc_max_policy', 'pet_max', 'insurance_policy', maxPolicyStart, title: 'PawCover Senior policy', tags: ['insurance']);
   doc('doc_max_dhppi', 'pet_max', 'dhppi_certificate', day(240), title: 'DHPPi + Lepto certificate', tags: ['dhppi']);
   doc('doc_max_rabies', 'pet_max', 'rabies_certificate', day(240), title: 'Anti-rabies certificate', tags: ['rabies']);
   doc('doc_max_travel', 'pet_max', 'travel', day(150), title: 'Travel certificate (Goa trip)', tags: ['travel', 'Goa']);
@@ -153,7 +153,7 @@ void seedVault(Add add, DateTime now, SeedData data) {
   }
 
   add('insurance', 'ins_bruno', {
-    ...policy('pet_bruno', 'doc_bruno_policy', 'Comprehensive', brunoPolicyStart),
+    ...policy('pet_bruno', 'doc_bruno_policy', 'Gold', brunoPolicyStart),
     'claims': [
       {
         'id': 'clm_bruno_ear',
@@ -180,7 +180,7 @@ void seedVault(Add add, DateTime now, SeedData data) {
     ],
   });
   add('insurance', 'ins_max', {
-    ...policy('pet_max', 'doc_max_policy', 'Senior care', maxPolicyStart),
+    ...policy('pet_max', 'doc_max_policy', 'Senior', maxPolicyStart),
     'claims': [
       {
         'id': 'clm_max_joint',
@@ -231,9 +231,9 @@ void seedVault(Add add, DateTime now, SeedData data) {
     });
   }
 
-  // Active: Bruno's vaccine papers and lab report for a new vet, 7 days.
+  // Active: Bruno's blood test report for a new vet, 7 days.
   link('BrunoVetVisitDemoK7q2X', 'pet_bruno', {
-    'docIds': ['doc_bruno_rabies', 'doc_bruno_dhppi', 'doc_bruno_lab'],
+    'docIds': ['doc_bruno_lab'],
     'createdAt': day(2, 9, 30),
     'expiresAt': day(-5, 9, 30),
     'accessLog': [
@@ -423,9 +423,9 @@ Map<String, dynamic> printedSample(String key, String petName, DateTime issuedOn
       ...vet,
     },
     'insurance_policy' => {
-      'insurer': 'Shield Pet Cover (sample)',
+      'insurer': 'PawCover',
       'policyNo': 'SAMPLE-PI-${20431 + petName.length}',
-      'cover': 100000,
+      'cover': 200000,
       'premium': 6499,
       'coverStart': on,
       'expiry': plusYear(on).subtract(const Duration(days: 1)),

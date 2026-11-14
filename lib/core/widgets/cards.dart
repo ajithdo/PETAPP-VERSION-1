@@ -274,8 +274,11 @@ class DemoBanner extends StatelessWidget {
 /// default; marigold for tips and demo notes, red for errors, green for good
 /// news. No border: the tint is enough.
 class InfoNote extends StatelessWidget {
-  const InfoNote(this.text, {super.key, this.icon = Ph.info, this.tone = ChipTone.info});
+  const InfoNote(this.text, {super.key, this.icon = Ph.info, this.tone = ChipTone.info, this.lead});
   final String text;
+
+  /// A few bold words before [text]: "Rabies certificate expires on 18 Nov."
+  final String? lead;
   final IconData icon;
   final ChipTone tone;
 
@@ -297,7 +300,17 @@ class InfoNote extends StatelessWidget {
         children: [
           Padding(padding: const EdgeInsets.only(top: Strokes.hairline), child: Icon(icon, size: IconSizes.sm + Space.xxs, color: iconInk)),
           const SizedBox(width: Space.sm + Space.xxs),
-          Expanded(child: Text(text, style: context.text.bodySmall?.copyWith(color: ink))),
+          Expanded(
+            child: lead == null
+                ? Text(text, style: context.text.bodySmall?.copyWith(color: ink))
+                : Text.rich(
+                    TextSpan(children: [
+                      TextSpan(text: '$lead ', style: const TextStyle(fontWeight: FontWeight.w700)),
+                      TextSpan(text: text),
+                    ]),
+                    style: context.text.bodySmall?.copyWith(color: ink),
+                  ),
+          ),
         ],
       ),
     );
