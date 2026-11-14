@@ -58,7 +58,7 @@ class PriceTag extends StatelessWidget {
       child: Wrap(crossAxisAlignment: WrapCrossAlignment.end, spacing: Space.sm, runSpacing: Space.xxs, children: [
         // The price in the heading cut (20 px), the old price struck out,
         // and the saving in green.
-        Text(Fmt.inr(price), style: (big ? context.text.headlineMedium : context.text.titleLarge)?.copyWith(height: big ? null : 1.2)),
+        Text(Fmt.inr(price), style: (big ? context.text.headlineLarge : context.text.titleLarge)?.copyWith(height: big ? null : 1.2)),
         if (off > 0) ...[
           Text(Fmt.inr(mrp),
               style: (big ? context.text.bodyMedium : context.text.bodySmall)?.copyWith(decoration: TextDecoration.lineThrough, color: context.tint.ink3)),

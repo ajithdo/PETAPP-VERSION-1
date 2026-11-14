@@ -3076,5 +3076,18 @@
   "dueBoostersSub": "దగ్గర్లోని క్లినిక్‌లో ఒకే విజిట్‌లో వేయించండి.",
   "bookVaccines": "టీకాలు బుక్ చేయండి",
   "requestCancels": "వారు {when} లోపు స్పందిస్తారు, లేకపోతే అభ్యర్థన దానంతట అదే రద్దవుతుంది.",
-  "discountWord": "తగ్గింపు"
+  "discountWord": "తగ్గింపు",
+  "shopDeliveryBy": "{date} లోపు డెలివరీ",
+  "shopDeliverTo": "పిన్ కోడ్ {pin}కి.",
+  "shopSoldByName": "విక్రేత: {seller}",
+  "shopReturnsDays": "{days} రోజుల్లో రిటర్న్",
+  "shopNoReturns": "రిటర్న్ లేదు",
+  "shopNoAllergen": "ఇందులో {allergen} లేదు, {pet} దాన్ని తినదు.",
+  "changeWord": "మార్చండి",
+  "reviewsLink": "{count} సమీక్షలు",
+  "youAreRole": "మీరు {role}",
+  "birthdayOnDate": "పుట్టినరోజు {date}",
+  "qrActiveTitle": "QR ట్యాగ్ పనిచేస్తోంది",
+  "qrActiveSub": "{name} దొరికిన ఎవరైనా మిమ్మల్ని సంప్రదించగలరు. మీ నంబర్ కనిపించదు.",
+  "whoLooksAfter": "{name}ను ఎవరు చూసుకుంటారు"
 }

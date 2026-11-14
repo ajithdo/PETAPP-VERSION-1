@@ -991,6 +991,9 @@ class Sizes {
   static const double welcomeArch = 84;
   static const double welcomeGarland = 168;
 
+  /// The pet's arch on its profile cover (the picture's width).
+  static const double coverArch = 152;
+
   /// Quick-action circles on Home.
   static const double quickCircle = 56;
 

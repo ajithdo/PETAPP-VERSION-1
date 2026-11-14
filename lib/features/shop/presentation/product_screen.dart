@@ -78,89 +78,107 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
     if (!_pinTouched && _pin.text.isEmpty && addresses.isNotEmpty) _pin.text = addresses.first.pin;
     final estimate = deliveryEstimate(_pin.text, p.deliveryDays, DateTime.now());
 
-    final art = AspectRatio(aspectRatio: 1, child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.xxl, label: p.name));
-    // UI Design 6: say plainly whether it suits the selected pet.
+    final paw = context.paw;
+    final off = p.mrp > p.price && p.mrp > 0 ? ((p.mrp - p.price) * 100 / p.mrp).round() : 0;
+    // The picture, with the saving as a tag on it.
+    final art = AspectRatio(
+      aspectRatio: 1.1,
+      child: Stack(fit: StackFit.expand, children: [
+        ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, radius: Radii.xxl, label: p.name),
+        if (off > 0) Positioned(left: Space.md, bottom: Space.md, child: PawTag(l.shopOffPercent(off), kind: TagKind.ink)),
+      ]),
+    );
+    // UI Design 6: say plainly whether it suits the selected pet, and why.
     final pet = ref.watch(selectedPetProvider);
     final suits = pet != null && p.species.contains(pet.species) && !hasAllergen(p, pet.allergies);
+    final why = pet == null
+        ? ''
+        : [
+            [
+              if (p.species.contains('dog') && p.breedSizes.contains(pet.size.name)) breedSizeTag(context, pet.size.name),
+              if (p.lifeStages.contains(shopLifeStage(pet.lifeStage()))) lifeStageTag(context, shopLifeStage(pet.lifeStage())).toLowerCase(),
+            ].join(', '),
+            if (pet.allergies.isNotEmpty) l.shopNoAllergen(pet.allergies.join(', ').toLowerCase(), pet.name),
+          ].where((x) => x.isNotEmpty).join('. ');
+    Widget fact(IconData icon, Tone tone, String title, String sub, {Widget? trailing, VoidCallback? onTap}) =>
+        PawItem(lead: PawTile(icon: icon, tone: tone), title: title, sub: sub, trailing: trailing, noTrailing: trailing == null && onTap == null, onTap: onTap);
     final info = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(p.brand, style: context.text.labelLarge?.copyWith(color: context.paw.textSecondary)),
-      Text(p.name, style: context.text.headlineSmall),
-      const SizedBox(height: Space.xs),
-      if (!p.isAffiliate) RatingLine(rating: p.rating, count: p.reviewCount),
+      Text(p.brand, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+      const SizedBox(height: Space.xxs),
+      Semantics(header: true, child: Text(p.name, style: context.text.headlineMedium)),
       const SizedBox(height: Space.sm),
-      PriceTag(price: p.price, mrp: p.mrp, big: true),
-      Text(l.shopInclTaxes, style: context.text.bodySmall),
+      if (!p.isAffiliate)
+        Row(children: [
+          Icon(Ph.starFill, size: IconSizes.sm, color: context.tint.star),
+          const SizedBox(width: Space.xs),
+          Text(p.rating.toStringAsFixed(1), style: context.text.labelLarge),
+          const SizedBox(width: Space.sm),
+          if (p.reviewCount > 0) Text(l.reviewsLink(p.reviewCount), style: context.text.labelMedium?.copyWith(decoration: TextDecoration.underline, decorationColor: paw.marigold, decorationThickness: 2)),
+        ]),
       const SizedBox(height: Space.md),
+      PriceTag(price: p.price, mrp: p.mrp, big: true),
+      const SizedBox(height: Space.xs),
+      Text(l.shopInclTaxes, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+      const SizedBox(height: Space.lg),
       if (pet != null && suits) ...[
-        Container(
-          padding: const EdgeInsets.all(Space.md),
-          decoration: BoxDecoration(color: context.paw.successContainer, borderRadius: BorderRadius.circular(Radii.lg)),
+        Wash(
+          tone: Tone.green,
           child: Row(children: [
-            PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarMd),
+            PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.tile * Sizes.archAspect, ring: false),
             const SizedBox(width: Space.md),
-            Expanded(child: Text(l.shopGoodMatch(pet.name), style: context.text.titleSmall?.copyWith(color: context.paw.onSuccessContainer))),
-            Icon(Ph.checkCircleFill, color: context.paw.success),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(l.shopGoodMatch(pet.name), style: context.text.labelLarge?.copyWith(color: paw.success)),
+                if (why.isNotEmpty) Text(why[0].toUpperCase() + why.substring(1), style: context.text.bodySmall?.copyWith(color: paw.success)),
+              ]),
+            ),
+            const SizedBox(width: Space.md),
+            Icon(Ph.checkCircleFill, size: IconSizes.md, color: paw.success),
           ]),
         ),
-        const SizedBox(height: Space.md),
+        const SizedBox(height: Space.lg),
       ],
       if (p.isAffiliate)
         InfoNote(l.shopAffiliateNote(store?.name ?? l.shopPartnerStore), icon: Ph.arrowSquareOut)
-      else ...[
-        Row(children: [
-          Icon(Ph.storefront, size: IconSizes.chip, color: context.paw.textSecondary),
-          const SizedBox(width: Space.xs),
-          Expanded(child: Text(l.shopSoldBy(seller?.name ?? '', seller?.city ?? ''), style: context.text.bodyMedium)),
-        ]),
-        const SizedBox(height: Space.xs),
-        Text(
-          !p.inStock ? l.shopOutOfStock : ((p.stock ?? 0) <= 5 ? l.shopOnlyLeft(p.stock ?? 0) : l.shopInStock),
-          style: context.text.labelLarge?.copyWith(color: !p.inStock ? context.paw.error : ((p.stock ?? 0) <= 5 ? context.paw.warning : context.paw.success)),
+      else
+        // Delivery, the seller and returns, as one list.
+        PawPanel(
+          padding: PawPanel.listPadding,
+          child: PawList(children: [
+            fact(
+              Ph.truck,
+              Tone.sky,
+              estimate == null ? l.shopCheckDelivery : l.shopDeliveryBy(Fmt.weekdayDate(estimate.to, context.lang)),
+              estimate == null ? (_pin.text.length == 6 ? l.addrPinInvalid : l.shopEnterPin) : l.shopDeliverTo(_pin.text),
+              trailing: TextLink(l.changeWord, onTap: () => _changePin(context)),
+            ),
+            fact(
+              Ph.storefront,
+              Tone.neutral,
+              l.shopSoldByName(seller?.name ?? ''),
+              [
+                seller?.city ?? '',
+                !p.inStock ? l.shopOutOfStock : ((p.stock ?? 0) <= 5 ? l.shopOnlyLeft(p.stock ?? 0) : l.shopInStock),
+              ].where((x) => x.isNotEmpty).join('. '),
+            ),
+            fact(
+              p.returnable ? Ph.arrowUUpLeft : Ph.prohibit,
+              Tone.neutral,
+              p.returnable ? l.shopReturnsDays(returnWindowDays) : l.shopNoReturns,
+              p.returnable ? l.shopReturnable(returnWindowDays) : l.shopNotReturnable,
+            ),
+            if (p.isFood) fact(Ph.arrowsClockwise, Tone.gold, l.subsTitle, l.subsHint, onTap: () => _subscribe(p)),
+          ]),
         ),
-      ],
-      const SizedBox(height: Space.md),
-      Text(l.shopSuitableFor, style: context.text.titleSmall),
-      const SizedBox(height: Space.xs),
-      Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
+      const SizedBox(height: Space.lg),
+      Text(l.shopSuitableFor, style: context.text.labelLarge),
+      const SizedBox(height: Space.sm),
+      Wrap(spacing: Space.xs + Space.xxs, runSpacing: Space.xs + Space.xxs, children: [
         for (final s in p.species) StatusChip(speciesName(context, s), icon: Ph.pawPrintFill),
         for (final s in p.lifeStages) StatusChip(lifeStageTag(context, s)),
         if (p.species.contains('dog'))
           for (final s in p.breedSizes) StatusChip(breedSizeTag(context, s)),
       ]),
-      if (!p.isAffiliate) ...[
-        const SizedBox(height: Space.md),
-        Text(l.shopCheckDelivery, style: context.text.titleSmall),
-        const SizedBox(height: Space.xs),
-        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(
-            width: Sizes.pinField,
-            child: PawTextField(
-              label: l.addrPin,
-              controller: _pin,
-              keyboardType: TextInputType.number,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(6)],
-              onChanged: (_) => setState(() => _pinTouched = true),
-            ),
-          ),
-          const SizedBox(width: Space.md),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top: Space.md),
-              child: Text(
-                estimate == null
-                    ? (_pin.text.length == 6 ? l.addrPinInvalid : l.shopEnterPin)
-                    : l.shopDeliveryBetween(Fmt.weekdayDate(estimate.from, context.lang), Fmt.weekdayDate(estimate.to, context.lang)),
-                style: context.text.bodyMedium?.copyWith(color: estimate == null ? context.paw.textSecondary : context.paw.success),
-              ),
-            ),
-          ),
-        ]),
-        Row(children: [
-          Icon(p.returnable ? Ph.arrowUUpLeft : Ph.prohibit, size: IconSizes.chip, color: context.paw.textSecondary),
-          const SizedBox(width: Space.xs),
-          Expanded(child: Text(p.returnable ? l.shopReturnable(returnWindowDays) : l.shopNotReturnable, style: context.text.bodySmall)),
-        ]),
-      ],
     ]);
 
     return PageBody(children: [
@@ -176,28 +194,6 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
         const SizedBox(height: Space.md),
         info,
       ],
-      if (p.isFood && !p.isAffiliate) ...[
-        const SizedBox(height: Space.md),
-        PawCard(
-          onTap: () => _subscribe(p),
-          child: Row(children: [
-            Container(
-              width: TapTarget.min - Space.xxs,
-              height: TapTarget.min - Space.xxs,
-              decoration: BoxDecoration(color: context.paw.accentContainer, borderRadius: BorderRadius.circular(Radii.md)),
-              child: Icon(Ph.arrowsClockwise, color: context.paw.onAccentContainer),
-            ),
-            const SizedBox(width: Space.md),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(l.subsTitle, style: context.text.titleSmall),
-                Text(l.subsHint, style: context.text.bodySmall),
-              ]),
-            ),
-            const Icon(Ph.caretRight),
-          ]),
-        ),
-      ],
       SectionHeader(l.shopAbout),
       Text(p.description.isEmpty ? '–' : p.description, style: context.text.bodyMedium),
       const SizedBox(height: Space.md),
@@ -212,6 +208,29 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
       ),
       if (!p.isAffiliate) ..._reviews(context, p),
     ]);
+  }
+
+  /// The PIN code the delivery date is worked out for.
+  Future<void> _changePin(BuildContext context) async {
+    final l = context.l10n;
+    await showPawSheet<void>(
+      context,
+      builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.min, children: [
+        Text(l.shopCheckDelivery, style: ctx.text.titleLarge),
+        const SizedBox(height: Space.md),
+        PawTextField(
+          label: l.addrPin,
+          controller: _pin,
+          autofocus: true,
+          keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(6)],
+          onChanged: (_) => setState(() => _pinTouched = true),
+          onSubmitted: (_) => Navigator.pop(ctx),
+        ),
+        PrimaryButton(label: l.done, onPressed: () => Navigator.pop(ctx)),
+      ]),
+    );
+    if (mounted) setState(() {});
   }
 
   Widget _spec(BuildContext context, String k, String v) => Padding(

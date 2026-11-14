@@ -11216,4 +11216,69 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get discountWord => 'Discount';
+
+  @override
+  String shopDeliveryBy(String date) {
+    return 'Delivery by $date';
+  }
+
+  @override
+  String shopDeliverTo(String pin) {
+    return 'To PIN code $pin.';
+  }
+
+  @override
+  String shopSoldByName(String seller) {
+    return 'Sold by $seller';
+  }
+
+  @override
+  String shopReturnsDays(int days) {
+    return '$days-day returns';
+  }
+
+  @override
+  String get shopNoReturns => 'No returns';
+
+  @override
+  String shopNoAllergen(String allergen, String pet) {
+    return 'No $allergen, which $pet avoids.';
+  }
+
+  @override
+  String get changeWord => 'Change';
+
+  @override
+  String reviewsLink(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reviews',
+      one: '1 review',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String youAreRole(String role) {
+    return 'You are the $role';
+  }
+
+  @override
+  String birthdayOnDate(String date) {
+    return 'Birthday $date';
+  }
+
+  @override
+  String get qrActiveTitle => 'QR tag is active';
+
+  @override
+  String qrActiveSub(String name) {
+    return 'Anyone who finds $name can reach you. Your number stays hidden.';
+  }
+
+  @override
+  String whoLooksAfter(String name) {
+    return 'Who looks after $name';
+  }
 }

@@ -10799,4 +10799,63 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get discountWord => 'छूट';
+
+  @override
+  String shopDeliveryBy(String date) {
+    return '$date तक डिलीवरी';
+  }
+
+  @override
+  String shopDeliverTo(String pin) {
+    return 'पिन कोड $pin पर।';
+  }
+
+  @override
+  String shopSoldByName(String seller) {
+    return 'विक्रेता: $seller';
+  }
+
+  @override
+  String shopReturnsDays(int days) {
+    return '$days दिन में वापसी';
+  }
+
+  @override
+  String get shopNoReturns => 'वापसी नहीं';
+
+  @override
+  String shopNoAllergen(String allergen, String pet) {
+    return 'इसमें $allergen नहीं है, जिससे $pet बचता है।';
+  }
+
+  @override
+  String get changeWord => 'बदलें';
+
+  @override
+  String reviewsLink(int count) {
+    return '$count रिव्यू';
+  }
+
+  @override
+  String youAreRole(String role) {
+    return 'आप $role हैं';
+  }
+
+  @override
+  String birthdayOnDate(String date) {
+    return 'जन्मदिन $date';
+  }
+
+  @override
+  String get qrActiveTitle => 'QR टैग चालू है';
+
+  @override
+  String qrActiveSub(String name) {
+    return 'जिसे भी $name मिले, वह आपसे संपर्क कर सकता है। आपका नंबर छिपा रहता है।';
+  }
+
+  @override
+  String whoLooksAfter(String name) {
+    return '$name की देखभाल कौन करता है';
+  }
 }

@@ -3076,5 +3076,18 @@
   "dueBoostersSub": "पास के क्लिनिक में एक ही विज़िट में लगवाएँ।",
   "bookVaccines": "टीके बुक करें",
   "requestCancels": "वे {when} तक जवाब देंगे, नहीं तो अनुरोध अपने आप रद्द हो जाएगा।",
-  "discountWord": "छूट"
+  "discountWord": "छूट",
+  "shopDeliveryBy": "{date} तक डिलीवरी",
+  "shopDeliverTo": "पिन कोड {pin} पर।",
+  "shopSoldByName": "विक्रेता: {seller}",
+  "shopReturnsDays": "{days} दिन में वापसी",
+  "shopNoReturns": "वापसी नहीं",
+  "shopNoAllergen": "इसमें {allergen} नहीं है, जिससे {pet} बचता है।",
+  "changeWord": "बदलें",
+  "reviewsLink": "{count} रिव्यू",
+  "youAreRole": "आप {role} हैं",
+  "birthdayOnDate": "जन्मदिन {date}",
+  "qrActiveTitle": "QR टैग चालू है",
+  "qrActiveSub": "जिसे भी {name} मिले, वह आपसे संपर्क कर सकता है। आपका नंबर छिपा रहता है।",
+  "whoLooksAfter": "{name} की देखभाल कौन करता है"
 }

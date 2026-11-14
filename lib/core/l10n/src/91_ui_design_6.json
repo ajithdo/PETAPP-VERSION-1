@@ -727,5 +727,101 @@
     "en": "Discount",
     "hi": "छूट",
     "te": "తగ్గింపు"
+  },
+  "shopDeliveryBy": {
+    "en": "Delivery by {date}",
+    "hi": "{date} तक डिलीवरी",
+    "te": "{date} లోపు డెలివరీ",
+    "ph": {
+      "date": "String"
+    }
+  },
+  "shopDeliverTo": {
+    "en": "To PIN code {pin}.",
+    "hi": "पिन कोड {pin} पर।",
+    "te": "పిన్ కోడ్ {pin}కి.",
+    "ph": {
+      "pin": "String"
+    }
+  },
+  "shopSoldByName": {
+    "en": "Sold by {seller}",
+    "hi": "विक्रेता: {seller}",
+    "te": "విక్రేత: {seller}",
+    "ph": {
+      "seller": "String"
+    }
+  },
+  "shopReturnsDays": {
+    "en": "{days}-day returns",
+    "hi": "{days} दिन में वापसी",
+    "te": "{days} రోజుల్లో రిటర్న్",
+    "ph": {
+      "days": "int"
+    }
+  },
+  "shopNoReturns": {
+    "en": "No returns",
+    "hi": "वापसी नहीं",
+    "te": "రిటర్న్ లేదు"
+  },
+  "shopNoAllergen": {
+    "en": "No {allergen}, which {pet} avoids.",
+    "hi": "इसमें {allergen} नहीं है, जिससे {pet} बचता है।",
+    "te": "ఇందులో {allergen} లేదు, {pet} దాన్ని తినదు.",
+    "ph": {
+      "allergen": "String",
+      "pet": "String"
+    }
+  },
+  "changeWord": {
+    "en": "Change",
+    "hi": "बदलें",
+    "te": "మార్చండి"
+  },
+  "reviewsLink": {
+    "en": "{count, plural, =1{1 review} other{{count} reviews}}",
+    "hi": "{count} रिव्यू",
+    "te": "{count} సమీక్షలు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "youAreRole": {
+    "en": "You are the {role}",
+    "hi": "आप {role} हैं",
+    "te": "మీరు {role}",
+    "ph": {
+      "role": "String"
+    }
+  },
+  "birthdayOnDate": {
+    "en": "Birthday {date}",
+    "hi": "जन्मदिन {date}",
+    "te": "పుట్టినరోజు {date}",
+    "ph": {
+      "date": "String"
+    }
+  },
+  "qrActiveTitle": {
+    "en": "QR tag is active",
+    "hi": "QR टैग चालू है",
+    "te": "QR ట్యాగ్ పనిచేస్తోంది"
+  },
+  "qrActiveSub": {
+    "en": "Anyone who finds {name} can reach you. Your number stays hidden.",
+    "hi": "जिसे भी {name} मिले, वह आपसे संपर्क कर सकता है। आपका नंबर छिपा रहता है।",
+    "te": "{name} దొరికిన ఎవరైనా మిమ్మల్ని సంప్రదించగలరు. మీ నంబర్ కనిపించదు.",
+    "ph": {
+      "name": "String"
+    }
+  },
+  "whoLooksAfter": {
+    "en": "Who looks after {name}",
+    "hi": "{name} की देखभाल कौन करता है",
+    "te": "{name}ను ఎవరు చూసుకుంటారు",
+    "ph": {
+      "name": "String"
+    }
   }
 }

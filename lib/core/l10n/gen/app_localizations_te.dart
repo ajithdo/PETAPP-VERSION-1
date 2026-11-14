@@ -10830,4 +10830,63 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get discountWord => 'తగ్గింపు';
+
+  @override
+  String shopDeliveryBy(String date) {
+    return '$date లోపు డెలివరీ';
+  }
+
+  @override
+  String shopDeliverTo(String pin) {
+    return 'పిన్ కోడ్ $pinకి.';
+  }
+
+  @override
+  String shopSoldByName(String seller) {
+    return 'విక్రేత: $seller';
+  }
+
+  @override
+  String shopReturnsDays(int days) {
+    return '$days రోజుల్లో రిటర్న్';
+  }
+
+  @override
+  String get shopNoReturns => 'రిటర్న్ లేదు';
+
+  @override
+  String shopNoAllergen(String allergen, String pet) {
+    return 'ఇందులో $allergen లేదు, $pet దాన్ని తినదు.';
+  }
+
+  @override
+  String get changeWord => 'మార్చండి';
+
+  @override
+  String reviewsLink(int count) {
+    return '$count సమీక్షలు';
+  }
+
+  @override
+  String youAreRole(String role) {
+    return 'మీరు $role';
+  }
+
+  @override
+  String birthdayOnDate(String date) {
+    return 'పుట్టినరోజు $date';
+  }
+
+  @override
+  String get qrActiveTitle => 'QR ట్యాగ్ పనిచేస్తోంది';
+
+  @override
+  String qrActiveSub(String name) {
+    return '$name దొరికిన ఎవరైనా మిమ్మల్ని సంప్రదించగలరు. మీ నంబర్ కనిపించదు.';
+  }
+
+  @override
+  String whoLooksAfter(String name) {
+    return '$nameను ఎవరు చూసుకుంటారు';
+  }
 }

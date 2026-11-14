@@ -7782,5 +7782,91 @@
       }
     }
   },
-  "discountWord": "Discount"
+  "discountWord": "Discount",
+  "shopDeliveryBy": "Delivery by {date}",
+  "@shopDeliveryBy": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "shopDeliverTo": "To PIN code {pin}.",
+  "@shopDeliverTo": {
+    "placeholders": {
+      "pin": {
+        "type": "String"
+      }
+    }
+  },
+  "shopSoldByName": "Sold by {seller}",
+  "@shopSoldByName": {
+    "placeholders": {
+      "seller": {
+        "type": "String"
+      }
+    }
+  },
+  "shopReturnsDays": "{days}-day returns",
+  "@shopReturnsDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "shopNoReturns": "No returns",
+  "shopNoAllergen": "No {allergen}, which {pet} avoids.",
+  "@shopNoAllergen": {
+    "placeholders": {
+      "allergen": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "changeWord": "Change",
+  "reviewsLink": "{count, plural, =1{1 review} other{{count} reviews}}",
+  "@reviewsLink": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "youAreRole": "You are the {role}",
+  "@youAreRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "birthdayOnDate": "Birthday {date}",
+  "@birthdayOnDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "qrActiveTitle": "QR tag is active",
+  "qrActiveSub": "Anyone who finds {name} can reach you. Your number stays hidden.",
+  "@qrActiveSub": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "whoLooksAfter": "Who looks after {name}",
+  "@whoLooksAfter": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

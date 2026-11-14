@@ -18561,6 +18561,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Discount'**
   String get discountWord;
+
+  /// No description provided for @shopDeliveryBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery by {date}'**
+  String shopDeliveryBy(String date);
+
+  /// No description provided for @shopDeliverTo.
+  ///
+  /// In en, this message translates to:
+  /// **'To PIN code {pin}.'**
+  String shopDeliverTo(String pin);
+
+  /// No description provided for @shopSoldByName.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold by {seller}'**
+  String shopSoldByName(String seller);
+
+  /// No description provided for @shopReturnsDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}-day returns'**
+  String shopReturnsDays(int days);
+
+  /// No description provided for @shopNoReturns.
+  ///
+  /// In en, this message translates to:
+  /// **'No returns'**
+  String get shopNoReturns;
+
+  /// No description provided for @shopNoAllergen.
+  ///
+  /// In en, this message translates to:
+  /// **'No {allergen}, which {pet} avoids.'**
+  String shopNoAllergen(String allergen, String pet);
+
+  /// No description provided for @changeWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get changeWord;
+
+  /// No description provided for @reviewsLink.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 review} other{{count} reviews}}'**
+  String reviewsLink(int count);
+
+  /// No description provided for @youAreRole.
+  ///
+  /// In en, this message translates to:
+  /// **'You are the {role}'**
+  String youAreRole(String role);
+
+  /// No description provided for @birthdayOnDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday {date}'**
+  String birthdayOnDate(String date);
+
+  /// No description provided for @qrActiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'QR tag is active'**
+  String get qrActiveTitle;
+
+  /// No description provided for @qrActiveSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone who finds {name} can reach you. Your number stays hidden.'**
+  String qrActiveSub(String name);
+
+  /// No description provided for @whoLooksAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'Who looks after {name}'**
+  String whoLooksAfter(String name);
 }
 
 class _AppLocalizationsDelegate
