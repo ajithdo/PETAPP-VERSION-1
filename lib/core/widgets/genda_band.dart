@@ -103,7 +103,7 @@ class GendaBand extends StatelessWidget {
               // Side by side when there's room; stacked (text over the
               // doorway) on narrow screens and at big text sizes.
               final scale = MediaQuery.textScalerOf(context).scale(1);
-              final stacked = c.maxWidth < 300 || (scale > 1.3 && c.maxWidth < 520);
+              final stacked = c.maxWidth < 300 || (scale > 1.2 && c.maxWidth < 520);
               final size = stacked ? Sizes.garlandCompact : (c.maxWidth > 500 ? Sizes.garlandLarge : Sizes.garland);
               final garland = Garland(photo: photo, done: done, total: total, size: size);
               if (stacked) {

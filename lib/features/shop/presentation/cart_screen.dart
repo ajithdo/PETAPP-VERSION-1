@@ -276,7 +276,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
       return Semantics(
         container: true,
         label: l.couponSaved(_applied!.code, Fmt.inr(price.discount)),
-        child: MediaQuery.textScalerOf(context).scale(1) > 1.3
+        child: MediaQuery.textScalerOf(context).scale(1) > 1.15
             ? Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 box,
                 const SizedBox(height: Space.sm),
