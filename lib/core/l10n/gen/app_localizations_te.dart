@@ -11407,4 +11407,52 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get setNoPhone => 'ఫోన్ నంబర్ జోడించలేదు';
+
+  @override
+  String get whenQ => 'ఎప్పుడు?';
+
+  @override
+  String bookPayNote(int hours) {
+    return 'ఆన్‌లైన్‌లో లేదా క్లినిక్‌లో చెల్లించండి. $hours గంటల ముందు వరకు ఉచితంగా రద్దు చేయవచ్చు.';
+  }
+
+  @override
+  String get bookPickTime => 'సమయం ఎంచుకోండి';
+
+  @override
+  String vetYearsReg(int years, String no) {
+    return '$years ఏళ్లు. రిజి. నం. $no';
+  }
+
+  @override
+  String verifiedVisits(int count) {
+    return '$count ధృవీకరించిన విజిట్‌లు';
+  }
+
+  @override
+  String get verifiedVisit => 'ధృవీకరించిన విజిట్';
+
+  @override
+  String get replyFromClinic => 'క్లినిక్ జవాబు:';
+
+  @override
+  String get whereToFind => 'మేము ఎక్కడ ఉన్నాము';
+
+  @override
+  String get showFewer => 'తక్కువ చూపించండి';
+
+  @override
+  String peopleOf(int count, int max) {
+    return '$maxలో $count మంది';
+  }
+
+  @override
+  String get familyAway => 'ఊరికి వెళ్తున్నారా?';
+
+  @override
+  String get familyAwayBody =>
+      'పెట్ సిట్టర్ లేదా వాకర్‌కు సంరక్షకుడి అనుమతి ఇవ్వండి, మీరు ఎంచుకున్న తేదీన అది తానే ముగుస్తుంది.';
+
+  @override
+  String get latestActivity => 'తాజా కార్యకలాపాలు';
 }

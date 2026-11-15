@@ -125,13 +125,10 @@ class BookingPanelState extends ConsumerState<BookingPanel> {
             }),
           ),
         const SizedBox(height: Space.md),
-        Wrap(alignment: WrapAlignment.spaceBetween, spacing: Space.sm, children: [
-          FieldLabel(l.when),
-          Text(Fmt.monthYear(_day, context.lang), style: context.text.labelMedium?.copyWith(color: paw.brand)),
-        ]),
+        FieldLabel(l.whenQ),
+        // Two weeks of days: the day's name over its number.
         SizedBox(
-          // Taller with big text so the two lines of each day always fit.
-          height: Sizes.dateStrip * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
+          height: Sizes.dayTileHeight * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6),
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
@@ -139,20 +136,34 @@ class BookingPanelState extends ConsumerState<BookingPanel> {
                 () {
                   final d = DateTime(now.year, now.month, now.day + i);
                   final sel = Fmt.sameDay(d, _day);
+                  final scale = MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6);
                   return Padding(
                     padding: const EdgeInsets.only(right: Space.sm),
-                    child: ChoiceChip(
-                      showCheckmark: false,
+                    child: Semantics(
+                      button: true,
                       selected: sel,
-                      label: Column(mainAxisSize: MainAxisSize.min, children: [
-                        Text(i == 0 ? l.today : Fmt.weekdayDate(d, context.lang).split(',').first),
-                        // The selected day is dark, so its date uses the same light text as the day name.
-                        Text(Fmt.dateShort(d, context.lang), style: context.text.labelSmall?.copyWith(color: sel ? context.paw.onBrand : null)),
-                      ]),
-                      onSelected: (_) => setState(() {
-                        _day = d;
-                        _slot = null;
-                      }),
+                      inMutuallyExclusiveGroup: true,
+                      label: Fmt.weekdayDate(d, context.lang),
+                      excludeSemantics: true,
+                      child: Material(
+                        color: sel ? paw.textPrimary : paw.surface.withValues(alpha: 0),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.lg), side: BorderSide(color: sel ? paw.textPrimary : paw.outline, width: Strokes.strong)),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(Radii.lg),
+                          onTap: () => setState(() {
+                            _day = d;
+                            _slot = null;
+                          }),
+                          child: SizedBox(
+                            width: Sizes.dayTileWidth * scale,
+                            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                              Text(Fmt.weekdayShort(d, context.lang), style: context.text.labelSmall?.copyWith(color: sel ? paw.background.withValues(alpha: Opacities.onDarkMuted) : paw.textSecondary, fontWeight: FontWeight.w400)),
+                              const SizedBox(height: Space.xxs),
+                              Text('${d.day}', style: context.text.titleMedium?.copyWith(color: sel ? paw.background : paw.textPrimary)),
+                            ]),
+                          ),
+                        ),
+                      ),
                     ),
                   );
                 }(),
@@ -162,45 +173,59 @@ class BookingPanelState extends ConsumerState<BookingPanel> {
         const SizedBox(height: Space.md),
         if (request) ...[InfoNote(l.requestExplainer(place.requestWindowHours)), const SizedBox(height: Space.md)],
         if (slots.isEmpty)
-          Text(l.noSlotsThatDay, style: context.text.bodyMedium)
+          Text(l.noSlotsThatDay, style: context.text.bodyMedium?.copyWith(color: paw.textSecondary))
         else
           Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
             for (final slot in slots)
-              ChoiceChip(
-                label: Text(Fmt.time(slot.start, context.lang)),
-                selected: request ? _proposed.contains(slot.start) : _slot == slot.start,
-                onSelected: !slot.available
-                    ? null
-                    : (_) => setState(() {
-                          if (request) {
-                            if (_proposed.contains(slot.start)) {
-                              _proposed.remove(slot.start);
-                            } else if (_proposed.length < 3) {
-                              _proposed.add(slot.start);
+              Opacity(
+                opacity: slot.available ? 1 : Opacities.muted,
+                child: PawChip(
+                  label: Fmt.time(slot.start, context.lang),
+                  selected: request ? _proposed.contains(slot.start) : _slot == slot.start,
+                  onTap: !slot.available
+                      ? null
+                      : () => setState(() {
+                            if (request) {
+                              if (_proposed.contains(slot.start)) {
+                                _proposed.remove(slot.start);
+                              } else if (_proposed.length < 3) {
+                                _proposed.add(slot.start);
+                              }
+                            } else {
+                              _slot = slot.start;
                             }
-                          } else {
-                            _slot = slot.start;
-                          }
-                        }),
+                          }),
+                ),
               ),
           ]),
-        const SizedBox(height: Space.lg),
-        PriceSummary(
-          lines: [
-            (serviceLabel(context, service.id), Fmt.inr(price.service)),
-            (l.platformFee, price.platformFee == 0 ? l.free : Fmt.inr(price.platformFee)),
-          ],
-          totalLabel: l.totalToPay,
-          total: Fmt.inr(price.total),
-        ),
-        const SizedBox(height: Space.lg),
-        PrimaryButton(
-          label: l.bookFor(pet.name),
-          icon: Ph.checkCircle,
-          onPressed: ready ? next : null,
-        ),
+        const Padding(padding: EdgeInsets.only(top: Space.lg + Space.xxs, bottom: Space.md + Space.xxs), child: Divider(height: Strokes.hairline)),
+        // What you've picked, and what it costs.
+        Row(children: [
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(l.serviceForPet(serviceLabel(context, service.id), pet.name), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              Text(
+                request
+                    ? (_proposed.isEmpty ? l.bookPickTime : (_proposed.toList()..sort()).map((t) => Fmt.time(t, context.lang)).join(', '))
+                    : (_slot == null ? l.bookPickTime : '${Fmt.weekdayDate(_slot!, context.lang).replaceFirst(',', '')}, ${Fmt.time(_slot!, context.lang)}'),
+                style: context.text.labelLarge,
+              ),
+            ]),
+          ),
+          const SizedBox(width: Space.md),
+          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            Text(Fmt.inr(price.total), style: context.text.titleLarge),
+            if (price.platformFee > 0) Text('${l.platformFee} ${Fmt.inr(price.platformFee)}', style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w400)),
+          ]),
+        ]),
+        const SizedBox(height: Space.md),
+        PawButton(label: l.continueLabel, icon: Ph.arrowRight, size: BtnSize.large, block: true, onPressed: ready ? next : null),
         const SizedBox(height: Space.sm),
-        Text(l.cancellationPolicy(place.cancellationHours), textAlign: TextAlign.center, style: context.text.bodySmall),
+        Text(
+          place.kind == 'clinic' ? l.bookPayNote(place.cancellationHours) : l.cancellationPolicy(place.cancellationHours),
+          textAlign: TextAlign.center,
+          style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
+        ),
       ]),
     );
   }

@@ -11832,4 +11832,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get setNoPhone => 'No phone number added';
+
+  @override
+  String get whenQ => 'When?';
+
+  @override
+  String bookPayNote(int hours) {
+    return 'Pay online or at the clinic. Free to cancel up to $hours hours before.';
+  }
+
+  @override
+  String get bookPickTime => 'Pick a time';
+
+  @override
+  String vetYearsReg(int years, String no) {
+    String _temp0 = intl.Intl.pluralLogic(
+      years,
+      locale: localeName,
+      other: '$years years',
+      one: '1 year',
+    );
+    return '$_temp0. Reg. no. $no';
+  }
+
+  @override
+  String verifiedVisits(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count verified visits',
+      one: '1 verified visit',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get verifiedVisit => 'Verified visit';
+
+  @override
+  String get replyFromClinic => 'Reply from the clinic:';
+
+  @override
+  String get whereToFind => 'Where to find us';
+
+  @override
+  String get showFewer => 'Show fewer';
+
+  @override
+  String peopleOf(int count, int max) {
+    return '$count of $max people';
+  }
+
+  @override
+  String get familyAway => 'Going away?';
+
+  @override
+  String get familyAwayBody =>
+      'Give a pet sitter or walker Carer access that ends by itself on a date you choose.';
+
+  @override
+  String get latestActivity => 'Latest activity';
 }

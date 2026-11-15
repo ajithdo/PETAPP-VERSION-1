@@ -23,7 +23,14 @@ class FirstAidListScreen extends ConsumerWidget {
       ),
       body: PageBody(maxWidth: Space.readingWidth, children: [
         const SizedBox(height: Space.md),
-        InfoNote(l.firstAidEmergencyNote, icon: Ph.asterisk, tone: ChipTone.error),
+        // The question in bold, then what to do.
+        () {
+          final t = l.firstAidEmergencyNote;
+          final cut = t.indexOf('?') + 1;
+          return cut <= 0 || cut >= t.length
+              ? InfoNote(t, icon: Ph.asterisk, tone: ChipTone.error)
+              : InfoNote(t.substring(cut).trim(), lead: t.substring(0, cut), icon: Ph.asterisk, tone: ChipTone.error);
+        }(),
         const SizedBox(height: Space.sm),
         Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
           PawTag(l.firstAidOffline, kind: TagKind.green, icon: Ph.cloudCheckFill),

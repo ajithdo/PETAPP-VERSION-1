@@ -1656,5 +1656,84 @@
     "en": "No phone number added",
     "hi": "कोई फ़ोन नंबर नहीं जोड़ा",
     "te": "ఫోన్ నంబర్ జోడించలేదు"
+  },
+  "whenQ": {
+    "en": "When?",
+    "hi": "कब?",
+    "te": "ఎప్పుడు?"
+  },
+  "bookPayNote": {
+    "en": "Pay online or at the clinic. Free to cancel up to {hours} hours before.",
+    "hi": "ऑनलाइन या क्लिनिक पर भुगतान करें। {hours} घंटे पहले तक मुफ़्त में रद्द करें।",
+    "te": "ఆన్‌లైన్‌లో లేదా క్లినిక్‌లో చెల్లించండి. {hours} గంటల ముందు వరకు ఉచితంగా రద్దు చేయవచ్చు.",
+    "ph": {
+      "hours": "int"
+    }
+  },
+  "bookPickTime": {
+    "en": "Pick a time",
+    "hi": "समय चुनें",
+    "te": "సమయం ఎంచుకోండి"
+  },
+  "vetYearsReg": {
+    "en": "{years, plural, =1{1 year} other{{years} years}}. Reg. no. {no}",
+    "hi": "{years} साल। रजि. नं. {no}",
+    "te": "{years} ఏళ్లు. రిజి. నం. {no}",
+    "ph": {
+      "years": "int",
+      "no": "String"
+    }
+  },
+  "verifiedVisits": {
+    "en": "{count, plural, =1{1 verified visit} other{{count} verified visits}}",
+    "hi": "{count} पक्की विज़िट",
+    "te": "{count} ధృవీకరించిన విజిట్‌లు",
+    "ph": {
+      "count": "int"
+    }
+  },
+  "verifiedVisit": {
+    "en": "Verified visit",
+    "hi": "पक्की विज़िट",
+    "te": "ధృవీకరించిన విజిట్"
+  },
+  "replyFromClinic": {
+    "en": "Reply from the clinic:",
+    "hi": "क्लिनिक का जवाब:",
+    "te": "క్లినిక్ జవాబు:"
+  },
+  "whereToFind": {
+    "en": "Where to find us",
+    "hi": "हम कहाँ मिलेंगे",
+    "te": "మేము ఎక్కడ ఉన్నాము"
+  },
+  "showFewer": {
+    "en": "Show fewer",
+    "hi": "कम दिखाएँ",
+    "te": "తక్కువ చూపించండి"
+  },
+  "peopleOf": {
+    "en": "{count} of {max} people",
+    "hi": "{max} में से {count} लोग",
+    "te": "{max}లో {count} మంది",
+    "ph": {
+      "count": "int",
+      "max": "int"
+    }
+  },
+  "familyAway": {
+    "en": "Going away?",
+    "hi": "कहीं बाहर जा रहे हैं?",
+    "te": "ఊరికి వెళ్తున్నారా?"
+  },
+  "familyAwayBody": {
+    "en": "Give a pet sitter or walker Carer access that ends by itself on a date you choose.",
+    "hi": "पेट सिटर या वॉकर को देखभाल की अनुमति दें, जो आपकी चुनी तारीख़ पर अपने आप ख़त्म हो जाए।",
+    "te": "పెట్ సిట్టర్ లేదా వాకర్‌కు సంరక్షకుడి అనుమతి ఇవ్వండి, మీరు ఎంచుకున్న తేదీన అది తానే ముగుస్తుంది."
+  },
+  "latestActivity": {
+    "en": "Latest activity",
+    "hi": "हाल की गतिविधि",
+    "te": "తాజా కార్యకలాపాలు"
   }
 }

@@ -8385,5 +8385,52 @@
     }
   },
   "setNoEmail": "No email added",
-  "setNoPhone": "No phone number added"
+  "setNoPhone": "No phone number added",
+  "whenQ": "When?",
+  "bookPayNote": "Pay online or at the clinic. Free to cancel up to {hours} hours before.",
+  "@bookPayNote": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "bookPickTime": "Pick a time",
+  "vetYearsReg": "{years, plural, =1{1 year} other{{years} years}}. Reg. no. {no}",
+  "@vetYearsReg": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      },
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "verifiedVisits": "{count, plural, =1{1 verified visit} other{{count} verified visits}}",
+  "@verifiedVisits": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "verifiedVisit": "Verified visit",
+  "replyFromClinic": "Reply from the clinic:",
+  "whereToFind": "Where to find us",
+  "showFewer": "Show fewer",
+  "peopleOf": "{count} of {max} people",
+  "@peopleOf": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "familyAway": "Going away?",
+  "familyAwayBody": "Give a pet sitter or walker Carer access that ends by itself on a date you choose.",
+  "latestActivity": "Latest activity"
 }

@@ -50,6 +50,8 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
         'support' => Ph.headset,
         'account' => Ph.shieldCheck,
         'plan' => Ph.crownSimple,
+        'health' => Ph.fileText,
+        'referral' => Ph.gift,
         _ => Ph.bell,
       };
 

@@ -3224,5 +3224,18 @@
   "setResetPassword": "पासवर्ड बदलने का लिंक भेजें",
   "setResetSent": "हमने {email} पर लिंक भेजा है।",
   "setNoEmail": "कोई ईमेल नहीं जोड़ा",
-  "setNoPhone": "कोई फ़ोन नंबर नहीं जोड़ा"
+  "setNoPhone": "कोई फ़ोन नंबर नहीं जोड़ा",
+  "whenQ": "कब?",
+  "bookPayNote": "ऑनलाइन या क्लिनिक पर भुगतान करें। {hours} घंटे पहले तक मुफ़्त में रद्द करें।",
+  "bookPickTime": "समय चुनें",
+  "vetYearsReg": "{years} साल। रजि. नं. {no}",
+  "verifiedVisits": "{count} पक्की विज़िट",
+  "verifiedVisit": "पक्की विज़िट",
+  "replyFromClinic": "क्लिनिक का जवाब:",
+  "whereToFind": "हम कहाँ मिलेंगे",
+  "showFewer": "कम दिखाएँ",
+  "peopleOf": "{max} में से {count} लोग",
+  "familyAway": "कहीं बाहर जा रहे हैं?",
+  "familyAwayBody": "पेट सिटर या वॉकर को देखभाल की अनुमति दें, जो आपकी चुनी तारीख़ पर अपने आप ख़त्म हो जाए।",
+  "latestActivity": "हाल की गतिविधि"
 }

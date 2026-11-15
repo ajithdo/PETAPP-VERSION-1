@@ -123,73 +123,53 @@ class _PlaceScreenState extends ConsumerState<PlaceScreen> {
           ];
           final details = <Widget>[
             if (p.kind == 'clinic') _VetsList(clinicId: p.id),
-            SectionHeader(l.hoursTitle),
-            PawCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(hoursText),
-                  const SizedBox(height: Space.xs),
-                  Text(p.address, style: context.text.bodySmall),
-                  if (p.emergencyPhone != null)
-                    Text(l.emergencyLine(p.emergencyPhone!), style: context.text.bodySmall?.copyWith(color: context.paw.error)),
-                ],
-              ),
-            ),
-            SectionHeader(l.servicesAndPrices),
-            PawCard(
-              padding: const EdgeInsets.symmetric(vertical: Space.xs),
-              child: Column(
-                children: [
-                  for (final s in p.services)
-                    ListTile(
-                      title: Text(serviceLabel(context, s.id)),
-                      subtitle: Text(
-                        [
-                          l.minutesShort(s.durationMin),
-                          s.mode == 'instant' ? l.instantBooking : l.requestBooking,
-                          s.payments.map((x) => x == 'online' ? l.payOnline : l.payAtCentre).join(' / '),
-                        ].join(' · '),
-                      ),
-                      trailing: Text(Fmt.inr(s.price), style: context.text.labelLarge?.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
-                      // Picks this service in the booking card.
-                      onTap: () => _panel.currentState?.selectService(s.id),
-                    ),
-                  if (p.homeVisit)
-                    ListTile(
-                      leading: const Icon(Ph.house),
-                      title: Text(l.homeVisitAvailable(p.radiusKm)),
-                      trailing: Text('+ ${Fmt.inr(p.homeVisitFee)}'),
-                    ),
-                ],
-              ),
-            ),
             if (p.packages.isNotEmpty) ...[
-              SectionHeader(l.packages),
-              for (final pk in p.packages)
-                PawCard(
-                  child: Row(
-                    children: [
-                      Expanded(child: Text(pk['name'] as String)),
-                      Text(Fmt.inr(pk['price'] as num), style: context.text.labelLarge?.copyWith(fontWeight: FontWeight.w700, color: context.paw.textPrimary)),
-                    ],
+              const SizedBox(height: Sizes.sectionGap),
+              SecHead(l.packages),
+              PawPanel(
+                padding: PawPanel.listPadding,
+                child: PawList(children: [
+                  for (final pk in p.packages)
+                    PawItem(
+                      lead: const PawTile(icon: Ph.package),
+                      title: pk['name'] as String,
+                      noTrailing: false,
+                      trailing: Text(Fmt.inr(pk['price'] as num), style: context.text.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
+                    ),
+                ]),
+              ),
+            ],
+            _Reviews(place: p),
+            const SizedBox(height: Sizes.sectionGap),
+            SecHead(l.whereToFind),
+            PawCard(
+              padding: EdgeInsets.zero,
+              child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(Radii.xl)),
+                  child: SizedBox(
+                    height: Sizes.mapSketch - Space.sm,
+                    child: PawMap(
+                      center: LatLng(p.lat, p.lng),
+                      zoom: 15,
+                      interactive: false,
+                      markers: [pinMarker(LatLng(p.lat, p.lng), color: context.colors.primary, label: p.name)],
+                    ),
                   ),
                 ),
-            ],
-            SectionHeader(l.location),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(Radii.card),
-              child: SizedBox(
-                height: Sizes.placeHeader,
-                child: PawMap(
-                  center: LatLng(p.lat, p.lng),
-                  zoom: 15,
-                  interactive: false,
-                  markers: [pinMarker(LatLng(p.lat, p.lng), color: context.colors.primary, label: p.name)],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(Space.lg, Space.md + Space.xxs, Space.lg, Space.md + Space.xxs),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(p.address, style: context.text.labelLarge),
+                    Text(
+                      [hoursText, if (p.homeVisit) '${l.homeVisitAvailable(p.radiusKm)}, + ${Fmt.inr(p.homeVisitFee)}'].join('. '),
+                      style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary),
+                    ),
+                    if (p.emergencyPhone != null) Text(l.emergencyLine(p.emergencyPhone!), style: context.text.bodySmall?.copyWith(color: context.paw.error)),
+                  ]),
                 ),
-              ),
+              ]),
             ),
-            _Reviews(place: p),
             const SizedBox(height: Space.xxl),
           ];
           Widget column(List<Widget> c) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: c);
@@ -255,129 +235,111 @@ class _VetsList extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SectionHeader(l.vetsHere),
-        for (final v in vets)
-          Padding(
-            padding: const EdgeInsets.only(bottom: Space.sm),
-            child: PawCard(
-              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                CircleAvatar(
-                  radius: Sizes.avatarMd / 2,
-                  backgroundColor: context.paw.primaryContainer,
-                  child: Icon(Ph.firstAidKit, color: context.paw.brand),
-                ),
-                const SizedBox(width: Space.md),
-                Expanded(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-                      Text(v.name, style: context.text.titleMedium),
-                      StatusChip(l.yearsExperience(v.experienceYears), tone: ChipTone.info),
-                    ]),
-                    const SizedBox(height: Space.xxs),
-                    Text(v.qualification, style: context.text.bodyMedium),
-                    const SizedBox(height: Space.xxs),
-                    Text(l.regNo(v.regNo), style: context.textX.mono.copyWith(color: context.paw.textSecondary)),
-                  ]),
-                ),
-              ]),
-            ),
-          ),
+        const SizedBox(height: Sizes.sectionGap),
+        SecHead(l.vetsHere),
+        // One panel: each vet's initials, name, degrees, then years and
+        // registration number.
+        PawPanel(
+          padding: PawPanel.listPadding,
+          child: PawList(children: [
+            for (final (i, v) in vets.indexed)
+              PawItem(
+                lead: PersonDot(v.name, size: Sizes.avatarMd, gold: i == 0),
+                title: v.name,
+                sub: '${v.qualification}\n${l.vetYearsReg(v.experienceYears, v.regNo)}',
+                subMaxLines: 4,
+                noTrailing: true,
+              ),
+          ]),
+        ),
       ],
     );
   }
 }
 
-class _Reviews extends ConsumerWidget {
+/// The rating at a glance (the number, stars and a bar per star), then the
+/// newest review; "See all" opens the rest.
+class _Reviews extends ConsumerStatefulWidget {
   const _Reviews({required this.place});
   final Place place;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_Reviews> createState() => _ReviewsState();
+}
+
+class _ReviewsState extends ConsumerState<_Reviews> {
+  bool _all = false;
+
+  @override
+  Widget build(BuildContext context) {
     final l = context.l10n;
-    final reviews = ref.watch(reviewsProvider(place.id)).value ?? const <Review>[];
+    final paw = context.paw;
+    final place = widget.place;
+    final reviews = [...(ref.watch(reviewsProvider(place.id)).value ?? const <Review>[])]..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    final shown = reviews.take(_all ? 10 : 1).toList();
+    Widget review(Review r) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Row(children: [
+            PersonDot(r.ownerName, size: Sizes.buttonSmall),
+            const SizedBox(width: Space.md),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Wrap(spacing: Space.sm, runSpacing: Space.xxs, crossAxisAlignment: WrapCrossAlignment.center, children: [
+                  Text(r.ownerName, style: context.text.labelLarge),
+                  PawTag(l.verifiedVisit, kind: TagKind.green, icon: Ph.sealCheckFill),
+                ]),
+                Row(children: [
+                  RatingStars(r.rating, size: IconSizes.xs),
+                  const SizedBox(width: Space.sm),
+                  Flexible(child: Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall?.copyWith(color: paw.textSecondary))),
+                ]),
+              ]),
+            ),
+          ]),
+          if (r.text.isNotEmpty) Padding(padding: const EdgeInsets.only(top: Space.sm), child: Text(r.text, style: context.text.bodyMedium)),
+          if (r.reply != null) Padding(padding: const EdgeInsets.only(top: Space.md), child: InfoNote(r.reply!, lead: l.replyFromClinic, icon: Ph.arrowBendDownRight)),
+        ]);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SectionHeader(l.reviews),
-        if (reviews.isEmpty) PawCard(child: Text(l.noReviewsYet)),
-        // UI Design 6: the rating summary first, with a bar per star.
-        if (reviews.isNotEmpty && place.reviewCount > 0)
-          Padding(
-            padding: const EdgeInsets.only(bottom: Space.sm),
-            child: PawCard(
-              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const SizedBox(height: Sizes.sectionGap),
+        SecHead(
+          l.reviews,
+          action: reviews.length <= 1 ? null : (_all ? l.showFewer : l.seeAllCount(place.reviewCount > reviews.length ? place.reviewCount : reviews.length)),
+          onAction: reviews.length <= 1 ? null : () => setState(() => _all = !_all),
+        ),
+        if (reviews.isEmpty)
+          PawPanel(child: Text(l.noReviewsYet, style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)))
+        else
+          PawCard(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Column(children: [
-                  Text(place.rating.toStringAsFixed(1), style: context.text.displaySmall),
+                  Text(place.rating.toStringAsFixed(1), style: context.text.displaySmall?.copyWith(height: 1)),
+                  const SizedBox(height: Space.xs),
                   RatingStars(place.rating.round()),
                   const SizedBox(height: Space.xxs),
-                  Text(l.reviewsCount(place.reviewCount), style: context.text.bodySmall),
+                  Text(l.verifiedVisits(place.reviewCount), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
                 ]),
-                const SizedBox(width: Space.lg),
+                const SizedBox(width: Space.lg + Space.xs),
                 Expanded(
                   child: Column(children: [
                     for (var star = 5; star >= 1; star--)
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: Space.xxs),
                         child: Row(children: [
-                          SizedBox(width: Space.md, child: Text('$star', style: context.text.labelSmall)),
+                          SizedBox(width: Space.md, child: Text('$star', style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500))),
                           const SizedBox(width: Space.sm),
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(Radii.full),
-                              child: LinearProgressIndicator(
-                                value: reviews.where((r) => r.rating == star).length / reviews.length,
-                                minHeight: Space.sm,
-                                backgroundColor: context.paw.surfaceSubtle,
-                                color: context.paw.marigold,
-                              ),
-                            ),
-                          ),
+                          Expanded(child: LevelBar(value: reviews.where((r) => r.rating == star).length / reviews.length)),
                         ]),
                       ),
                   ]),
                 ),
               ]),
-            ),
-          ),
-        for (final r in reviews.take(10))
-          Padding(
-            padding: const EdgeInsets.only(bottom: Space.sm),
-            child: PawCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Wrap(
-                    spacing: Space.sm,
-                    runSpacing: Space.xxs,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      RatingStars(r.rating),
-                      Text(r.ownerName, style: context.text.labelMedium),
-                      Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall),
-                    ],
-                  ),
-                  const SizedBox(height: Space.xs),
-                  Row(
-                    children: [
-                      Icon(Ph.sealCheckFill, size: IconSizes.xs, color: context.paw.success),
-                      const SizedBox(width: Space.xs),
-                      Flexible(child: Text(l.verifiedBooking, style: context.text.labelSmall)),
-                    ],
-                  ),
-                  if (r.text.isNotEmpty) Padding(padding: const EdgeInsets.only(top: Space.xs), child: Text(r.text)),
-                  if (r.reply != null)
-                    Container(
-                      margin: const EdgeInsets.only(top: Space.sm),
-                      padding: const EdgeInsets.all(Space.sm),
-                      decoration: BoxDecoration(color: context.paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.md)),
-                      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Icon(Ph.arrowBendDownRight, size: IconSizes.md, color: context.paw.textSecondary),
-                        const SizedBox(width: Space.sm),
-                        Expanded(child: Text('${l.replyFrom(place.name)}: ${r.reply}', style: context.text.bodySmall)),
-                      ]),
-                    ),
-                ],
-              ),
-            ),
+              for (final r in shown) ...[
+                const Padding(padding: EdgeInsets.symmetric(vertical: Space.lg), child: Divider(height: Strokes.hairline)),
+                review(r),
+              ],
+            ]),
           ),
       ],
     );

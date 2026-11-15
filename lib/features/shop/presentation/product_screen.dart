@@ -118,7 +118,12 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
       const SizedBox(height: Space.md),
       PriceTag(price: p.price, mrp: p.mrp, big: true),
       const SizedBox(height: Space.xs),
-      Text(l.shopInclTaxes, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+      // "Inclusive of all taxes" with how many to buy at the end of the row.
+      Row(children: [
+        Expanded(child: Text(l.shopInclTaxes, style: context.text.bodySmall?.copyWith(color: paw.textSecondary))),
+        if (!p.isAffiliate && p.inStock)
+          QtyStepper(qty: _qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => setState(() => _qty = q < 1 ? 1 : q)),
+      ]),
       const SizedBox(height: Space.lg),
       if (pet != null && suits) ...[
         Wash(
@@ -277,36 +282,27 @@ class _ProductScreenState extends ConsumerState<ProductScreen> {
     final l = context.l10n;
     final partners = ref.watch(partnerStoresProvider).value ?? const <PartnerStore>[];
     final store = partners.where((s) => s.id == p.partnerId).firstOrNull;
+    // A floating white bar with the two ways to buy (UI Design 6).
     return SafeArea(
-      child: Container(
-        padding: EdgeInsets.fromLTRB(context.gutter, Space.sm, context.gutter, Space.sm),
-        decoration: BoxDecoration(color: context.paw.surface, border: Border(top: BorderSide(color: context.paw.outline))),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(context.gutter, Space.xs, context.gutter, Space.sm),
         // heightFactor: 1 keeps the bar as tall as its content (a plain
         // Center would fill the whole screen in this slot).
         child: Center(
           heightFactor: 1,
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: Space.formWidth),
-            child: p.isAffiliate
-                ? PrimaryButton(label: l.shopBuyOn(store?.name ?? l.shopPartnerStore), icon: Ph.arrowSquareOut, onPressed: () => _openPartner(p, store))
-                : LayoutBuilder(builder: (context, box) {
-                    final stepper = QtyStepper(qty: _qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => setState(() => _qty = q < 1 ? 1 : q));
-                    final buttons = Row(children: [
-                      Expanded(child: SecondaryButton(label: l.shopAddToCart, onPressed: p.inStock ? () => _add(p) : null)),
-                      const SizedBox(width: Space.sm),
-                      Expanded(child: PrimaryButton(label: l.shopBuyNow, onPressed: p.inStock ? () => _add(p, go: true) : null)),
-                    ]);
-                    // Phones and big text: the stepper on its own line above two
-                    // equal buttons, so no label breaks.
-                    if (box.maxWidth < Space.formWidth * 0.66 || MediaQuery.textScalerOf(context).scale(1) > 1.3) {
-                      return Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                        Align(alignment: Alignment.centerLeft, child: stepper),
-                        const SizedBox(height: Space.sm),
-                        buttons,
-                      ]);
-                    }
-                    return Row(children: [stepper, const SizedBox(width: Space.sm), Expanded(child: buttons)]);
-                  }),
+            child: Container(
+              padding: const EdgeInsets.all(Space.md),
+              decoration: BoxDecoration(color: context.paw.surface, borderRadius: BorderRadius.circular(Radii.xl), boxShadow: Shadows.raised(context.paw.ink)),
+              child: p.isAffiliate
+                  ? PawButton(label: l.shopBuyOn(store?.name ?? l.shopPartnerStore), icon: Ph.arrowSquareOut, size: BtnSize.regular, block: true, onPressed: () => _openPartner(p, store))
+                  : Row(children: [
+                      Expanded(child: PawButton(label: l.shopAddToCart, icon: Ph.shoppingCartSimple, kind: BtnKind.line, size: BtnSize.regular, block: true, onPressed: p.inStock ? () => _add(p) : null)),
+                      const SizedBox(width: Space.md),
+                      Expanded(child: PawButton(label: l.shopBuyNow, size: BtnSize.regular, block: true, onPressed: p.inStock ? () => _add(p, go: true) : null)),
+                    ]),
+            ),
           ),
         ),
       ),

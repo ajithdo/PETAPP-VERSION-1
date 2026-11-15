@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/format.dart';
 
 import '../theme/ph.dart';
 import '../theme/tokens.dart';
@@ -352,7 +353,11 @@ class PawButton extends StatelessWidget {
             child: Row(mainAxisSize: block ? MainAxisSize.max : MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
               if (icon != null) ...[Icon(icon, size: iconSize * (easy ? k : 1), color: disabled ? paw.textSecondary : fg), const SizedBox(width: Space.sm)],
               Flexible(
-                child: Text(label, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: text?.copyWith(color: disabled ? paw.textSecondary : fg)),
+                // One word never breaks in the middle: it shrinks a little to
+                // fit instead ("Directions" in a third of a phone's width).
+                child: label.contains(' ')
+                    ? Text(label, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: text?.copyWith(color: disabled ? paw.textSecondary : fg))
+                    : FittedBox(fit: BoxFit.scaleDown, child: Text(label, maxLines: 1, softWrap: false, style: text?.copyWith(color: disabled ? paw.textSecondary : fg))),
               ),
             ]),
           ),
@@ -600,6 +605,29 @@ class SearchPill extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// A person as their initials in a circle (the kit's ".person"): paper
+/// grey, or marigold for the first of a list.
+class PersonDot extends StatelessWidget {
+  const PersonDot(this.name, {super.key, this.size = Sizes.tile, this.gold = false});
+  final String name;
+  final double size;
+  final bool gold;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return ExcludeSemantics(
+      child: Container(
+        width: size,
+        height: size,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(color: gold ? paw.marigold : context.tint.paper3, shape: BoxShape.circle),
+        child: Text(initials(name), style: context.text.titleSmall?.copyWith(fontSize: size * Sizes.personText, fontWeight: FontWeight.w700, color: gold ? paw.onMarigold : paw.textPrimary, height: 1)),
       ),
     );
   }

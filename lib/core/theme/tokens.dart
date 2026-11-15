@@ -840,6 +840,13 @@ class Sizes {
   static const double weekBars = 36;
   static const double weekBarMin = 0.14;
 
+  /// Initials in a person's circle, as a share of the circle.
+  static const double personText = 0.36;
+
+  /// A day on the booking card's date strip.
+  static const double dayTileWidth = 52;
+  static const double dayTileHeight = 64;
+
   /// The time column of a timeline row ("12:19 PM").
   static const double timelineTime = 60;
 

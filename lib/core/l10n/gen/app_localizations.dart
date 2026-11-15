@@ -19455,6 +19455,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No phone number added'**
   String get setNoPhone;
+
+  /// No description provided for @whenQ.
+  ///
+  /// In en, this message translates to:
+  /// **'When?'**
+  String get whenQ;
+
+  /// No description provided for @bookPayNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay online or at the clinic. Free to cancel up to {hours} hours before.'**
+  String bookPayNote(int hours);
+
+  /// No description provided for @bookPickTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a time'**
+  String get bookPickTime;
+
+  /// No description provided for @vetYearsReg.
+  ///
+  /// In en, this message translates to:
+  /// **'{years, plural, =1{1 year} other{{years} years}}. Reg. no. {no}'**
+  String vetYearsReg(int years, String no);
+
+  /// No description provided for @verifiedVisits.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 verified visit} other{{count} verified visits}}'**
+  String verifiedVisits(int count);
+
+  /// No description provided for @verifiedVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified visit'**
+  String get verifiedVisit;
+
+  /// No description provided for @replyFromClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply from the clinic:'**
+  String get replyFromClinic;
+
+  /// No description provided for @whereToFind.
+  ///
+  /// In en, this message translates to:
+  /// **'Where to find us'**
+  String get whereToFind;
+
+  /// No description provided for @showFewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Show fewer'**
+  String get showFewer;
+
+  /// No description provided for @peopleOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of {max} people'**
+  String peopleOf(int count, int max);
+
+  /// No description provided for @familyAway.
+  ///
+  /// In en, this message translates to:
+  /// **'Going away?'**
+  String get familyAway;
+
+  /// No description provided for @familyAwayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Give a pet sitter or walker Carer access that ends by itself on a date you choose.'**
+  String get familyAwayBody;
+
+  /// No description provided for @latestActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest activity'**
+  String get latestActivity;
 }
 
 class _AppLocalizationsDelegate

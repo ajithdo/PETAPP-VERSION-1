@@ -11375,4 +11375,52 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get setNoPhone => 'कोई फ़ोन नंबर नहीं जोड़ा';
+
+  @override
+  String get whenQ => 'कब?';
+
+  @override
+  String bookPayNote(int hours) {
+    return 'ऑनलाइन या क्लिनिक पर भुगतान करें। $hours घंटे पहले तक मुफ़्त में रद्द करें।';
+  }
+
+  @override
+  String get bookPickTime => 'समय चुनें';
+
+  @override
+  String vetYearsReg(int years, String no) {
+    return '$years साल। रजि. नं. $no';
+  }
+
+  @override
+  String verifiedVisits(int count) {
+    return '$count पक्की विज़िट';
+  }
+
+  @override
+  String get verifiedVisit => 'पक्की विज़िट';
+
+  @override
+  String get replyFromClinic => 'क्लिनिक का जवाब:';
+
+  @override
+  String get whereToFind => 'हम कहाँ मिलेंगे';
+
+  @override
+  String get showFewer => 'कम दिखाएँ';
+
+  @override
+  String peopleOf(int count, int max) {
+    return '$max में से $count लोग';
+  }
+
+  @override
+  String get familyAway => 'कहीं बाहर जा रहे हैं?';
+
+  @override
+  String get familyAwayBody =>
+      'पेट सिटर या वॉकर को देखभाल की अनुमति दें, जो आपकी चुनी तारीख़ पर अपने आप ख़त्म हो जाए।';
+
+  @override
+  String get latestActivity => 'हाल की गतिविधि';
 }
