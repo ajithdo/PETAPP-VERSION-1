@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../domain/auto_read.dart';
 
@@ -16,8 +17,8 @@ class SampleDocument extends StatelessWidget {
   final DateTime issuedOn;
 
   static const size = Size(595, 842);
-  static const _ink = Color(0xFF1C2B2D);
-  static const _muted = Color(0xFF5B6B6E);
+  static const _ink = PrintColors.ink;
+  static const _muted = PrintColors.muted;
   static const _line = Color(0xFFE5E1DA);
 
   @override
@@ -31,7 +32,7 @@ class SampleDocument extends StatelessWidget {
       'adoption' => ('ADOPTION CERTIFICATE', d.issuer ?? '', 'Registered animal welfare shelter (sample)', const Color(0xFFBE185D)),
       'travel' => ('HEALTH CERTIFICATE FOR TRAVEL', d.issuer ?? '', 'Issued for domestic travel by road, rail or air', const Color(0xFF047857)),
       'prescription' => ('PRESCRIPTION', d.clinicName ?? '', '100 Feet Road, Indiranagar, Bengaluru 560038', const Color(0xFF15803D)),
-      _ => ('CERTIFICATE OF VACCINATION', d.clinicName ?? '', '100 Feet Road, Indiranagar, Bengaluru 560038', const Color(0xFF0F766E)),
+      _ => ('CERTIFICATE OF VACCINATION', d.clinicName ?? '', '100 Feet Road, Indiranagar, Bengaluru 560038', PrintColors.brand),
     };
     String date(DateTime? x) => x == null ? '–' : Fmt.date(x);
     final rows = <(String, String)>[

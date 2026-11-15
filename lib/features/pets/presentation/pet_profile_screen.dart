@@ -11,6 +11,7 @@ import '../data/pets_repository.dart';
 import '../domain/pet.dart';
 import 'archive_sheet.dart';
 import 'pet_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Pet profile (spec 7.1): hero photo, quick stats, details, family, and
 /// sections that later phases fill (Health, Routine, Documents, Memories).
@@ -52,27 +53,207 @@ class _Profile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final user = ref.watch(currentUserProvider)!;
-    final tag = PetTagColors.of(pet.colorTag);
     final canEdit = pet.canEdit(user.uid);
     final myRole = pet.roleOf(user.uid);
     final age = petAgeLabel(context, pet);
     final weight = pet.weightKg == null ? '–' : Fmt.weight(pet.weightKg!, grams: pet.isBird);
 
-    return CustomScrollView(slivers: [
-      SliverAppBar(
-        pinned: true,
-        // Taller with big text so the name and breed never get cut off.
-        expandedHeight: 220 + 60 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
-        backgroundColor: Color.alphaBlend(tag.withValues(alpha: 0.18), context.paw.background),
+    final paw = context.paw;
+    final lang = context.lang;
+    final wide = context.screenSize == ScreenSize.desktop;
+    const gap = SizedBox(height: Sizes.sectionGap);
+    final big = MediaQuery.textScalerOf(context).scale(1) > 1.5;
+    // The cover: the pet in a big arch on a marigold wash, with faint
+    // doorways behind, the name, and who the pet is.
+    final cover = ClipRRect(
+      borderRadius: BorderRadius.circular(Radii.xxl),
+      child: CustomPaint(
+        painter: _DoorwayArcs(color: paw.accent.withValues(alpha: Opacities.focus)),
+        child: Container(
+          color: paw.accentContainer.withValues(alpha: 0),
+          foregroundDecoration: const BoxDecoration(),
+          padding: const EdgeInsets.fromLTRB(Space.lg, Space.xl, Space.lg, Space.lg + Space.xs),
+          child: Column(children: [
+            Container(
+              decoration: ShapeDecoration(shape: archShape(Sizes.coverArch + 2 * Space.xs, BorderSide(color: paw.surface, width: Space.xs))),
+              padding: const EdgeInsets.all(Space.xs),
+              child: PetAvatar(
+                species: pet.species,
+                colorTag: pet.colorTag,
+                photoUrl: pet.photoUrl,
+                size: (big ? Sizes.coverArch * 0.75 : Sizes.coverArch) * Sizes.archAspect,
+                heroTag: 'pet-${pet.id}',
+                name: pet.name,
+                ring: false,
+              ),
+            ),
+            const SizedBox(height: Space.lg),
+            Semantics(header: true, child: Text(pet.name, style: context.text.displaySmall, textAlign: TextAlign.center)),
+            Text(
+              [pet.breedName(lang), if (age.isNotEmpty) age].where((x) => x.isNotEmpty).join(', '),
+              style: context.text.bodyMedium?.copyWith(color: paw.textSecondary),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: Space.md),
+            Wrap(alignment: WrapAlignment.center, spacing: Space.sm, runSpacing: Space.sm, children: [
+              PawTag(lifeStageLabel(context, pet)),
+              PawTag(l.youAreRole(petRoleLabel(context, myRole.name).toLowerCase()), kind: TagKind.gold, icon: Ph.userFill),
+              if (pet.birthday != null) PawTag(l.birthdayOnDate(Fmt.dateShort(pet.birthday!, lang)), icon: Ph.cakeFill),
+              if (pet.flatFaced) PawTag(l.flatFacedChip, kind: TagKind.gold, icon: Ph.thermometerFill),
+            ]),
+          ]),
+        ),
+      ),
+    );
+    // Four facts in one hairline grid.
+    Widget stat(IconData icon, String label, String value, {bool right = false, bool bottom = false}) => Container(
+          padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md + Space.xxs),
+          decoration: BoxDecoration(
+            border: Border(right: right ? BorderSide(color: paw.outline) : BorderSide.none, bottom: bottom ? BorderSide(color: paw.outline) : BorderSide.none),
+          ),
+          child: Semantics(
+            label: '$label: $value',
+            excludeSemantics: true,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(children: [
+                Icon(icon, size: IconSizes.xs, color: paw.textSecondary),
+                const SizedBox(width: Space.xs),
+                Flexible(child: Text(label, style: context.text.bodySmall?.copyWith(color: paw.textSecondary), maxLines: 1, overflow: TextOverflow.ellipsis)),
+              ]),
+              const SizedBox(height: Space.xxs),
+              FittedBox(fit: BoxFit.scaleDown, alignment: Alignment.centerLeft, child: Text(value, style: context.text.titleLarge?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]))),
+            ]),
+          ),
+        );
+    final stats = PawPanel(
+      padding: EdgeInsets.zero,
+      child: Column(children: [
+        IntrinsicHeight(
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Expanded(child: stat(Ph.cake, l.age, age.isEmpty ? '–' : age, right: true, bottom: true)),
+            Expanded(child: stat(Ph.scales, l.weight, weight, bottom: true)),
+          ]),
+        ),
+        IntrinsicHeight(
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Expanded(child: stat(pet.gender == 'female' ? Ph.genderFemale : Ph.genderMale, l.gender, genderLabel(context, pet.gender), right: true)),
+            Expanded(child: stat(Ph.shieldCheck, l.neutered, pet.neutered ? l.yes : l.no)),
+          ]),
+        ),
+      ]),
+    );
+    final qr = PawPanel(
+      onTap: () => context.push(petQrLink(pet.id)),
+      semanticLabel: l.qrActiveTitle,
+      child: Row(children: [
+        PawTile(icon: Ph.qrCode, size: Sizes.tileLg, fill: paw.surface, ink: paw.textPrimary),
+        const SizedBox(width: Space.md),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(l.qrActiveTitle, style: context.text.labelLarge),
+            Text(l.qrActiveSub(pet.name), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+          ]),
+        ),
+        const SizedBox(width: Space.md),
+        const Chev(),
+      ]),
+    );
+    final sections = petSections(context, pet);
+    const tones = [Tone.red, Tone.green, Tone.gold, Tone.sky];
+    final care = <Widget>[
+      SecHead(l.petCare),
+      LayoutBuilder(builder: (context, c) {
+        final cols = c.maxWidth > 560 ? 4 : (MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 1 : 2);
+        return TileGrid(columns: cols, children: [
+          for (final (i, sec) in sections.indexed)
+            PawCard(
+              padding: const EdgeInsets.all(Space.md + Space.xxs),
+              onTap: () => context.push(sec.route),
+              semanticLabel: sec.title,
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                PawTile(icon: i == 0 ? Ph.heartbeat : sec.icon, tone: tones[i % tones.length]),
+                const SizedBox(height: Space.md),
+                Text(sec.title, style: context.text.labelLarge),
+                Text(sec.subtitle, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              ]),
+            ),
+        ]);
+      }),
+    ];
+    final clinic = ref.watch(_clinicNameProvider(pet.clinicId)).value;
+    String orNone(String? v) => v == null || v.isEmpty ? l.notAdded : v;
+    final details = <Widget>[
+      SecHead(l.details, action: canEdit ? l.edit : null, onAction: () => context.push('/pets/${pet.id}/edit')),
+      PawPanel(
+        child: KvList(rows: [
+          (l.markings, orNone(pet.markings), null),
+          (l.microchip, orNone(pet.microchip), null),
+          (l.allergies, pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', '), pet.allergies.isEmpty ? null : Tone.red),
+          (l.dietType, orNone(pet.dietType), null),
+          (l.regularClinic, orNone(clinic), null),
+          (l.temperament, orNone(pet.temperament), null),
+        ]),
+      ),
+    ];
+    final family = <Widget>[
+      SecHead(l.whoLooksAfter(pet.name), action: l.familySharing, onAction: () => context.push('/me/family?pet=${pet.id}')),
+      Wrap(spacing: Space.lg, runSpacing: Space.md, crossAxisAlignment: WrapCrossAlignment.center, children: [
+        for (final e in pet.members.entries)
+          Row(mainAxisSize: MainAxisSize.min, children: [
+            Container(
+              width: Sizes.avatarSm,
+              height: Sizes.avatarSm,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(color: e.key == user.uid ? paw.textPrimary : context.tint.paper3, shape: BoxShape.circle),
+              child: Text(
+                initials(e.value.name),
+                style: context.text.labelMedium?.copyWith(color: e.key == user.uid ? paw.background : paw.textPrimary, fontFamily: FontFamilies.heading, fontWeight: FontWeight.w700),
+              ),
+            ),
+            const SizedBox(width: Space.sm),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+              Text(e.value.name.split(' ').first + (e.key == user.uid ? ' (${l.you})' : ''), style: context.text.labelLarge),
+              Text(
+                [petRoleLabel(context, e.value.role), if (e.value.expiresAt != null) l.accessUntil(Fmt.dateShort(e.value.expiresAt!, lang))].join(', '),
+                style: context.text.bodySmall?.copyWith(color: paw.textSecondary),
+              ),
+            ]),
+          ]),
+        IconButton(
+          tooltip: l.familySharing,
+          onPressed: () => context.push('/me/family?pet=${pet.id}'),
+          style: IconButton.styleFrom(
+            shape: CircleBorder(side: BorderSide(color: context.tint.line2, width: Strokes.strong)),
+            minimumSize: const Size.square(Sizes.topControl),
+            fixedSize: const Size.square(Sizes.topControl),
+            padding: EdgeInsets.zero,
+          ),
+          icon: Icon(Ph.plus, size: IconSizes.md, color: paw.textPrimary),
+        ),
+      ]),
+    ];
+    Widget col(List<Widget> c) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: c);
+    final left = [
+      if (pet.archived) ...[_MemorialBanner(pet: pet), gap],
+      DecoratedBox(decoration: BoxDecoration(color: paw.accentContainer, borderRadius: BorderRadius.circular(Radii.xxl)), child: cover),
+      gap,
+      stats,
+      if (!pet.archived) ...[gap, qr],
+    ];
+    final right = [...care, gap, ...details, gap, ...family];
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(pet.name),
         actions: [
           if (canEdit)
             IconButton(
               tooltip: l.editPet,
-              icon: const Icon(Icons.edit_rounded),
+              icon: const Icon(Ph.pencilSimple),
               onPressed: () => context.push('/pets/${pet.id}/edit'),
             ),
           PopupMenuButton<String>(
             tooltip: l.moreOptions,
+            icon: const Icon(Ph.dotsThreeVertical),
             onSelected: (v) async {
               switch (v) {
                 case 'family':
@@ -93,118 +274,17 @@ class _Profile extends ConsumerWidget {
             ],
           ),
         ],
-        flexibleSpace: FlexibleSpaceBar(
-          background: SafeArea(
-            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const SizedBox(height: 32),
-              PetAvatar(
-                species: pet.species,
-                colorTag: pet.colorTag,
-                photoUrl: pet.photoUrl,
-                size: MediaQuery.textScalerOf(context).scale(1) > 1.5 ? 104 : 132,
-                heroTag: 'pet-${pet.id}',
-                name: pet.name,
-              ),
-              const SizedBox(height: Space.md),
-              Text(pet.name, style: context.text.headlineMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: Space.lg),
-                child: Text(
-                  [pet.breedName(context.lang), if (age.isNotEmpty) age].join(' · '),
-                  style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ]),
-          ),
-        ),
       ),
-      SliverToBoxAdapter(
-        child: ContentWidth(
-          maxWidth: 900,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            const SizedBox(height: Space.lg),
-            if (pet.archived) ...[
-              _MemorialBanner(pet: pet),
-              const SizedBox(height: Space.lg),
-            ],
-            Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
-              StatusChip(lifeStageLabel(context, pet), tone: ChipTone.info),
-              StatusChip(petRoleLabel(context, myRole.name), tone: ChipTone.accent, icon: Icons.person_rounded),
-              if (pet.flatFaced) StatusChip(l.flatFacedChip, tone: ChipTone.warning, icon: Icons.thermostat_rounded),
-            ]),
-            const SizedBox(height: Space.lg),
-            ResponsiveGrid(minItemWidth: 150, children: [
-              StatTile(label: l.age, value: age.isEmpty ? '–' : age, icon: Icons.cake_rounded),
-              StatTile(label: l.weight, value: weight, icon: Icons.monitor_weight_rounded),
-              StatTile(label: l.gender, value: genderLabel(context, pet.gender), icon: Icons.transgender_rounded),
-              StatTile(label: l.neutered, value: pet.neutered ? l.yes : l.no, icon: Icons.health_and_safety_rounded),
-            ]),
-            SectionHeader(l.petCare),
-            ResponsiveGrid(minItemWidth: 260, children: [
-              for (final s in petSections(context, pet))
-                PawCard(
-                  onTap: () => context.push(s.route),
-                  child: Row(children: [
-                    CircleAvatar(
-                      backgroundColor: s.color.withValues(alpha: 0.15),
-                      child: Icon(s.icon, color: s.color),
-                    ),
-                    const SizedBox(width: Space.md),
-                    Expanded(
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Text(s.title, style: context.text.titleSmall),
-                        Text(s.subtitle, style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
-                      ]),
-                    ),
-                    const Icon(Icons.chevron_right_rounded),
-                  ]),
-                ),
-            ]),
-            SectionHeader(l.details),
-            PawCard(
-              padding: const EdgeInsets.symmetric(vertical: Space.sm),
-              child: Column(children: [
-                _row(context, Icons.palette_rounded, l.markings, pet.markings),
-                _row(context, Icons.memory_rounded, l.microchip, pet.microchip),
-                _row(context, Icons.no_food_rounded, l.allergies, pet.allergies.isEmpty ? null : pet.allergies.join(', ')),
-                _row(context, Icons.restaurant_rounded, l.dietType, pet.dietType),
-                _row(context, Icons.local_hospital_rounded, l.regularClinic, ref.watch(_clinicNameProvider(pet.clinicId)).value),
-                _row(context, Icons.psychology_rounded, l.temperament, pet.temperament),
-              ]),
-            ),
-            SectionHeader(l.family, action: l.manage, onAction: () => context.push('/me/family?pet=${pet.id}')),
-            PawCard(
-              padding: const EdgeInsets.symmetric(vertical: Space.sm),
-              child: Column(children: [
-                for (final e in pet.members.entries)
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: context.paw.primaryContainer,
-                      child: Text(e.value.name.isEmpty ? '?' : e.value.name.characters.first),
-                    ),
-                    title: Text(e.value.name + (e.key == user.uid ? ' (${l.you})' : '')),
-                    subtitle: e.value.expiresAt == null
-                        ? null
-                        : Text(l.accessUntil(Fmt.dateTime(e.value.expiresAt!, context.lang))),
-                    trailing: StatusChip(petRoleLabel(context, e.value.role)),
-                  ),
-              ]),
-            ),
-            const SizedBox(height: Space.xxl),
-          ]),
-        ),
-      ),
-    ]);
-  }
-
-  Widget _row(BuildContext context, IconData icon, String label, String? value) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(label, style: context.text.bodySmall),
-      subtitle: Text(value == null || value.isEmpty ? context.l10n.notAdded : value, style: context.text.bodyLarge),
+      body: PageBody(maxWidth: wide ? Space.maxContentWidth : Space.wideWidth, children: [
+        const SizedBox(height: Space.sm),
+        if (wide)
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Expanded(flex: 5, child: col(left)),
+            const SizedBox(width: Space.xl),
+            Expanded(flex: 7, child: col(right)),
+          ])
+        else ...[...left, gap, ...right],
+      ]),
     );
   }
 }
@@ -224,9 +304,9 @@ class _MemorialBanner extends StatelessWidget {
     final l = context.l10n;
     final memorial = pet.memorial;
     return PawCard(
-      color: context.paw.accent.withValues(alpha: 0.14),
+      color: context.paw.accent.withValues(alpha: Opacities.chip),
       child: Row(children: [
-        Icon(memorial ? Icons.favorite_rounded : Icons.home_rounded, color: context.paw.accent, size: 32),
+        Icon(memorial ? Ph.heartFill : Ph.house, color: context.paw.accent, size: IconSizes.xl),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -242,4 +322,34 @@ class _MemorialBanner extends StatelessWidget {
       ]),
     );
   }
+}
+
+/// Faint doorway outlines behind the pet's arch in the profile header.
+class _DoorwayArcs extends CustomPainter {
+  _DoorwayArcs({required this.color});
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final line = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = Strokes.strong
+      ..color = color;
+    final cx = size.width / 2;
+    // Two doorways behind the arch: 208 and 272 px wide, standing on the
+    // arch's feet.
+    final foot = Space.xl + Sizes.coverArch * Sizes.archAspect + Space.xl;
+    for (final (w, h) in const [(208.0, 232.0), (272.0, 272.0)]) {
+      final r = w / 2;
+      final path = Path()
+        ..moveTo(cx - r, foot)
+        ..lineTo(cx - r, foot - h + r)
+        ..arcToPoint(Offset(cx + r, foot - h + r), radius: Radius.circular(r))
+        ..lineTo(cx + r, foot);
+      canvas.drawPath(path, line);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_DoorwayArcs o) => o.color != color;
 }

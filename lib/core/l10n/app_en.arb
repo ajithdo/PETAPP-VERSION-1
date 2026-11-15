@@ -238,18 +238,18 @@
   "demoOutboxNote": "Demo: nothing was really sent. The message is in the Demo Outbox in the admin panel.",
   "demoLoginNote": "These are demo accounts with made-up people, clinics and data. Nothing here is real, no money is charged and no messages are sent.",
   "demoAccountsTitle": "Demo accounts",
-  "demoAccountsHint": "Tap any account to sign in. No password needed.",
+  "demoAccountsHint": "Tap any account to sign in. No password needed. Nothing here is real and no money is charged.",
   "orSignInWithEmail": "Or sign in with your email",
   "demoGroupOwners": "Pet parents",
   "demoGroupFamily": "Family and pet sitter",
   "demoGroupPartners": "Partners",
-  "demoGroupPlatform": "Platform",
-  "demoPriya": "Bengaluru · Plus · Bruno the Labrador and Misty the Persian cat",
-  "demoRavi": "Hyderabad · Free · Telugu · Simba the Indie puppy and Kiwi the cockatiel",
-  "demoAnjali": "Delhi NCR · Free · Hindi · Easy mode · Coco the rabbit and Tiger the senior cat",
-  "demoArjun": "Mumbai · Plus · Max the German Shepherd and Luna the Beagle puppy",
-  "demoRohan": "Priya's husband · Carer for Bruno and Misty",
-  "demoMeera": "Pet sitter for Arjun · access ends in 3 days",
+  "demoGroupPlatform": "PawSetu team",
+  "demoPriya": "Bengaluru. Bruno the Labrador and Misty the Persian cat",
+  "demoRavi": "Hyderabad. Simba the Indie puppy and Kiwi the cockatiel",
+  "demoAnjali": "Delhi NCR. Coco the rabbit and Tiger the senior cat",
+  "demoArjun": "Mumbai. Max the German Shepherd and Luna the Beagle puppy",
+  "demoRohan": "Priya's husband. Carer for Bruno and Misty",
+  "demoMeera": "Pet sitter for Arjun. Access ends in 3 days",
   "demoClinicAdmin": "Clinic admin · Golconda Gate Pet Clinic, Hyderabad",
   "demoVet": "Vet · bookings, tele-vet queue and prescriptions",
   "demoGroomer": "Groomer · accepts booking requests",
@@ -849,7 +849,7 @@
       }
     }
   },
-  "streakDays": "{count}-day streak",
+  "streakDays": "{count} days in a row",
   "@streakDays": {
     "placeholders": {
       "count": {
@@ -1489,6 +1489,9 @@
     }
   },
   "medicalCardOffline": "This card works without internet. Show it to a vet, a boarding centre or at the airport.",
+  "healthAllClear": "All up to date",
+  "certificate": "Certificate",
+  "emergencyInfo": "Emergency info",
   "bookTitle": "Book care",
   "findAVet": "Find a vet near you",
   "kindVet": "Vet clinic",
@@ -2119,6 +2122,15 @@
   "submitApplication": "Submit application",
   "partnerApprovalNote": "After you submit, your listing waits for approval. You can set up services and prices meanwhile.",
   "remove": "Remove",
+  "bookFor": "Book for {name}",
+  "@bookFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "nextFreeSlot": "Next free slot",
   "aiTitle": "Ask PawSetu",
   "aiIntroTitle": "Quick answers to everyday pet questions",
   "aiIntroBody": "Ask about food, baths, vaccines, ticks and more. For anything serious, talk to a vet.",
@@ -3283,7 +3295,7 @@
       }
     }
   },
-  "albumSeeAlbum": "See album",
+  "albumSeeAlbum": "Album",
   "albumYearsAgo": "{count, plural, =1{1 year ago} other{{count} years ago}}",
   "@albumYearsAgo": {
     "placeholders": {
@@ -4150,7 +4162,7 @@
   "shopNoPicks": "No picks yet. Try searching the shop.",
   "shopBuyAgain": "Buy again",
   "shopReorder": "Reorder",
-  "shopReorderPrice": "Reorder · {price}",
+  "shopReorderPrice": "Reorder {price}",
   "@shopReorderPrice": {
     "placeholders": {
       "price": {
@@ -4925,7 +4937,7 @@
       }
     }
   },
-  "foodRunsOutIn": "{pet}'s food may run out in about {days, plural, =1{1 day} other{{days} days}}. Reorder?",
+  "foodRunsOutIn": "{pet}'s food may run out in about {days, plural, =1{1 day} other{{days} days}}",
   "@foodRunsOutIn": {
     "placeholders": {
       "pet": {
@@ -4955,7 +4967,7 @@
       }
     }
   },
-  "foodEditPortion": "Edit portion",
+  "foodEditPortion": "Change daily portion",
   "foodOnTheWay": "New food for {pet} is on the way",
   "@foodOnTheWay": {
     "placeholders": {
@@ -7295,5 +7307,1131 @@
         "type": "String"
       }
     }
-  }
+  },
+  "gendaProgress": "{done} of {total} done",
+  "@gendaProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "gendaNothingPlanned": "Nothing planned today. Add a routine.",
+  "withUnread": "{label}, {count} unread",
+  "@withUnread": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopAskVet": "Not sure what suits {name}? Ask a vet",
+  "@shopAskVet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "meGroupPets": "Pets and family",
+  "meGroupMoney": "Orders and money",
+  "meGroupHelp": "Help and settings",
+  "gendaNext": "Next: {task}",
+  "@gendaNext": {
+    "placeholders": {
+      "task": {
+        "type": "String"
+      }
+    }
+  },
+  "bookIntro": "Vets, groomers, trainers, boarding and walkers near you.",
+  "bookVetSub": "Check-ups, vaccines, surgery",
+  "bookTeleSub": "Chat or video with a vet",
+  "bookGroomSub": "Salon or home visit",
+  "bookTrainSub": "Puppy basics to behaviour",
+  "bookBoardSub": "Boarding and pet sitting",
+  "bookWalkSub": "Live route and photos",
+  "welcomeLanguages": "English, हिन्दी and తెలుగు. Change any time in Settings.",
+  "firstAidGuides": "Guides",
+  "yesterday": "Yesterday",
+  "earlier": "Earlier",
+  "stepBooked": "Booked",
+  "stepConfirmed": "Confirmed",
+  "stepVisited": "Visited",
+  "shopGoodMatch": "A good match for {name}",
+  "@shopGoodMatch": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "logGridTitle": "Log something",
+  "leftCount": "{count} left",
+  "@leftCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "markGiven": "Mark given",
+  "playOfMin": "{done} of {goal} min",
+  "@playOfMin": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "aboutLeft": "about {amount} left",
+  "@aboutLeft": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nowAt": "Now, {time}",
+  "@nowAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "albumYearAgo": "A year ago today",
+  "bookWord": "Book",
+  "sosEmergencyHelp": "SOS, emergency help",
+  "healthRecords": "Records",
+  "noneRightNow": "None right now",
+  "nothingLogged": "Nothing logged",
+  "whatDueOn": "{what} due {date}",
+  "@whatDueOn": {
+    "placeholders": {
+      "what": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaccinesUpToDate": "Vaccines up to date",
+  "weightHealthy": "in the healthy range",
+  "weightBelow": "below the usual range",
+  "weightAbove": "above the usual range",
+  "preventionTitle": "Deworming and flea, tick",
+  "indicativeSchedule": "Indicative schedule. Always confirm with your vet.",
+  "bookIntroNear": "Vets, groomers, trainers, boarding and walkers near {area}.",
+  "@bookIntroNear": {
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "bookNextSlot": "Next slot {when}",
+  "@bookNextSlot": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "bookVetsOnline": "{count, plural, =1{1 vet online now} other{{count} vets online now}}",
+  "@bookVetsOnline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "inDaysCount": "{count, plural, =0{today} =1{tomorrow} other{in {count} days}}",
+  "@inDaysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shopDeliveringTo": "Delivering to",
+  "shopRunningLow": "Running low",
+  "shopNotSure": "Not sure what suits {name}?",
+  "@shopNotSure": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "shopFromPartners": "From partner stores",
+  "shopBuyOnStore": "{price}, you will buy on {store}",
+  "@shopBuyOnStore": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "meDocsCount": "{count, plural, =1{1 document} other{{count} documents}}",
+  "@meDocsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "meExpireSoon": "{count, plural, =1{1 expires soon} other{{count} expire soon}}",
+  "@meExpireSoon": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mePhotosCount": "{count, plural, =1{1 photo} other{{count} photos}}",
+  "@mePhotosCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "meVideosCount": "{count, plural, =1{1 video} other{{count} videos}}",
+  "@meVideosCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "meTagsReady": "Tags ready. No pet is lost.",
+  "mePetLost": "{name} is marked lost",
+  "@mePetLost": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "meNoneYet": "None yet",
+  "meDeviceLine": "{device}, {battery}%",
+  "@meDeviceLine": {
+    "placeholders": {
+      "device": {
+        "type": "String"
+      },
+      "battery": {
+        "type": "int"
+      }
+    }
+  },
+  "meOnlyYou": "Only you",
+  "meCanCare": "{who} can care for {pets}",
+  "@meCanCare": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      },
+      "pets": {
+        "type": "String"
+      }
+    }
+  },
+  "meOnTheWay": "{item} is on the way",
+  "@meOnTheWay": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "meThisMonth": "{amount} this month",
+  "@meThisMonth": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "meRenewsOn": "Renews on {date}",
+  "@meRenewsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "meTryFree": "Try 7 days free",
+  "meBothGet": "You both get {amount}",
+  "@meBothGet": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "meSettingsSub": "Language, appearance, Easy mode",
+  "mePrivacySub": "Your data and consents",
+  "meGroupApp": "App and support",
+  "meSavedAddresses": "Saved addresses",
+  "catShortFood": "Food",
+  "catShortTreats": "Treats",
+  "catShortToys": "Toys",
+  "catShortGrooming": "Grooming",
+  "catShortHealthHygiene": "Health",
+  "catShortBeds": "Beds",
+  "catShortCollarsLeashes": "Collars",
+  "catShortBowlsFeeders": "Bowls",
+  "catShortLitterCat": "Litter",
+  "catShortBirdFoodCages": "Birds",
+  "catShortRabbitCare": "Rabbits",
+  "catShortClothing": "Clothing",
+  "catShortTravel": "Travel",
+  "orContinueWith": "or continue with",
+  "partnerAsk": "Run a clinic, salon or shop?",
+  "partnerApply": "Apply as a partner",
+  "demoPartnersTeam": "Partners and the PawSetu team",
+  "seeAllCount": "See all {count}",
+  "@seeAllCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sosCallNumber": "Call {phone}",
+  "@sosCallNumber": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "openMedicalCard": "Open medical card",
+  "tvBookVideo": "Book video",
+  "tvUnlimitedWord": "Unlimited",
+  "tvConsultationsWord": "consultations",
+  "tvPerMonthTitle": "{count} a month",
+  "@tvPerMonthTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tvUsedSub": "{used} used so far",
+  "@tvUsedSub": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      }
+    }
+  },
+  "tvMessagesTitle": "{count} messages",
+  "@tvMessagesTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tvWordsSub": "{words} words each",
+  "@tvWordsSub": {
+    "placeholders": {
+      "words": {
+        "type": "int"
+      }
+    }
+  },
+  "tvHoursTitle": "{hours} hours",
+  "@tvHoursTitle": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "tvHoursSub": "chat stays open",
+  "tvVideoTitle": "Video calls",
+  "tvVideoSubPlus": "with 10% off",
+  "tvVideoSubFree": "with Plus only",
+  "tvPetWithVet": "{pet} with {vet}",
+  "@tvPetWithVet": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      },
+      "vet": {
+        "type": "String"
+      }
+    }
+  },
+  "tvOpenChat": "Open chat",
+  "tvPrescriptionWord": "Prescription",
+  "aiCareAnswers": "Care answers for {name}. Not a diagnosis.",
+  "@aiCareAnswers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "aiCareAnswersAll": "Care answers for your pet. Not a diagnosis.",
+  "clinicsWithin": "{count, plural, =1{1 clinic} other{{count} clinics}} within {km} km",
+  "@clinicsWithin": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "placesWithin": "{count, plural, =1{1 place} other{{count} places}} within {km} km",
+  "@placesWithin": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "feeWord": "Consultation",
+  "bookAVisit": "Book a visit",
+  "placeWhere": "{kind} in {area}, {city}. {distance} away.",
+  "@placeWhere": {
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      },
+      "area": {
+        "type": "String"
+      },
+      "city": {
+        "type": "String"
+      },
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceWithVet": "{service} with {vet}",
+  "@serviceWithVet": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      },
+      "vet": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceForPet": "{service} for {pet}",
+  "@serviceForPet": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "bookingIdLabel": "Booking ID",
+  "howWasVisit": "How was the visit?",
+  "reviewWhoCan": "Only people who visited can review. The place can reply.",
+  "bookAgain": "Book again",
+  "bookAgainSub": "Same place, same service",
+  "addToCalendarSub": "Save the time in your phone's calendar",
+  "getHelpSub": "Something went wrong? Tell us",
+  "dueBoosters": "{name}'s vaccines are due on {date}",
+  "@dueBoosters": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dueBoostersSub": "Book them in one visit at a clinic near you.",
+  "bookVaccines": "Book vaccines",
+  "requestCancels": "They reply by {when}, or the request cancels itself.",
+  "@requestCancels": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "discountWord": "Discount",
+  "shopDeliveryBy": "Delivery by {date}",
+  "@shopDeliveryBy": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "shopDeliverTo": "To PIN code {pin}.",
+  "@shopDeliverTo": {
+    "placeholders": {
+      "pin": {
+        "type": "String"
+      }
+    }
+  },
+  "shopSoldByName": "Sold by {seller}",
+  "@shopSoldByName": {
+    "placeholders": {
+      "seller": {
+        "type": "String"
+      }
+    }
+  },
+  "shopReturnsDays": "{days}-day returns",
+  "@shopReturnsDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "shopNoReturns": "No returns",
+  "shopNoAllergen": "No {allergen}, which {pet} avoids.",
+  "@shopNoAllergen": {
+    "placeholders": {
+      "allergen": {
+        "type": "String"
+      },
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "changeWord": "Change",
+  "reviewsLink": "{count, plural, =1{1 review} other{{count} reviews}}",
+  "@reviewsLink": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "youAreRole": "You are the {role}",
+  "@youAreRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "birthdayOnDate": "Birthday {date}",
+  "@birthdayOnDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "qrActiveTitle": "QR tag is active",
+  "qrActiveSub": "Anyone who finds {name} can reach you. Your number stays hidden.",
+  "@qrActiveSub": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "whoLooksAfter": "Who looks after {name}",
+  "@whoLooksAfter": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "medCardBrand": "PawSetu medical card",
+  "worksOffline": "Works offline",
+  "savePdf": "Save PDF",
+  "fullHealthReport": "Full health report",
+  "fullHealthReportSub": "Vaccines, medicines, visits, weight chart",
+  "editDetails": "Edit details",
+  "editDetailsSub": "Allergies, microchip, clinic",
+  "roleOwnerDoes": "Can do everything",
+  "roleCoownerDoes": "Everything except deleting the pet",
+  "roleCarerDoes": "Logs routine, gives medicines, books services",
+  "roleViewerDoes": "Sees everything, logs walks and meals",
+  "languageNote": "Changes the whole app at once, including reminders and PDFs.",
+  "textSizeNote": "Layouts stay tidy up to 200%.",
+  "plusYouHaveShort": "You have Plus",
+  "plusMemberSince": "{name}, member since {date}",
+  "@plusMemberSince": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusRenewsOnLabel": "Renews on",
+  "plusEndsOnLabel": "Ends on",
+  "plusYearlyPlan": "Yearly plan",
+  "plusMonthlyPlan": "Monthly plan",
+  "plusPriceYear": "{amount} a year",
+  "@plusPriceYear": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "plusPriceMonth": "{amount} a month",
+  "@plusPriceMonth": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "plusNextPayment": "Next payment {amount} on {date}",
+  "@plusNextPayment": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "plusCancelPlan": "Cancel plan",
+  "plusCancelTitle": "Cancel your plan?",
+  "plusNewHere": "New here? {days} days free",
+  "@plusNewHere": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "plusNewHereBody": "Free plan members can try Plus before paying.",
+  "plusWhatYouGet": "What you get",
+  "plusNo": "No",
+  "plusSwitchMonthly": "Change to the monthly plan?",
+  "plusSwitchYearly": "Change to the yearly plan?",
+  "plusSwitchBody": "From {date} you pay {price}. Nothing is charged today.",
+  "@plusSwitchBody": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "plusSwitched": "Plan changed",
+  "cartDeliverToLabel": "Deliver to {label}",
+  "@cartDeliverToLabel": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "cartItems": "Items ({count})",
+  "@cartItems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cartFreeWithPlus": "Free with Plus",
+  "cartApplied": "Applied",
+  "cartSaveOnOrder": "You save {amount} on this order",
+  "@cartSaveOnOrder": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "cartDemoPayNote": "Demo payment. No money is charged. You can try a successful, failed or pending payment.",
+  "cartBillShort": "Bill",
+  "cartWindowShort": "{from} to {to}",
+  "@cartWindowShort": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "cartCodNote": "You pay when the order arrives.",
+  "vaultSearchDocsHint": "Search documents and tags",
+  "vaultScanOrUpload": "Scan or upload",
+  "vaultTypeShortVaccination": "Certificates",
+  "vaultTypeShortInsurance": "Insurance",
+  "vaultTypeShortLab": "Lab reports",
+  "vaultTypeShortPrescription": "Prescriptions",
+  "vaultTypeShortInvoice": "Bills",
+  "vaultTypeShortLicence": "Licences",
+  "vaultTypeShortAdoption": "Adoption",
+  "vaultTypeShortTravel": "Travel",
+  "vaultTypeShortOther": "Other",
+  "vaultExpiresNote": "{title} expires on {date}.",
+  "@vaultExpiresNote": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultExpiredNote": "{title} expired on {date}.",
+  "@vaultExpiredNote": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultRenewHintVaccine": "Add the new one after {pet}'s booster.",
+  "@vaultRenewHintVaccine": {
+    "placeholders": {
+      "pet": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultRenewHint": "Add the new one when you get it.",
+  "vaultSharedWithVet": "Shared with a vet",
+  "vaultAllLinks": "All links",
+  "vaultRevokeShort": "Revoke",
+  "vaultPolicyLine": "{name}, {cover} cover",
+  "@vaultPolicyLine": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "cover": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultOpenClaimLine": "{count, plural, =1{1 claim} other{{count} claims}} {status}: {amount}, {done} of {total} documents added",
+  "@vaultOpenClaimLine": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "status": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "vaultRenewsOn": "Renews {date}",
+  "@vaultRenewsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultAddInsurance": "Add your pet's insurance",
+  "vaultAddInsuranceBody": "Keep the policy, renewal date and claims in one place.",
+  "vaultWhatViewOnly": "{what}, view only",
+  "@vaultWhatViewOnly": {
+    "placeholders": {
+      "what": {
+        "type": "String"
+      }
+    }
+  },
+  "vaultStorageOf": "{used} of {limit}",
+  "@vaultStorageOf": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "albumOnThisDayAgo": "On this day, {ago}",
+  "@albumOnThisDayAgo": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "albumMilestoneTag": "Milestone: {name}",
+  "@albumMilestoneTag": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "albumVideoUpTo": "Videos up to {length}.",
+  "@albumVideoUpTo": {
+    "placeholders": {
+      "length": {
+        "type": "String"
+      }
+    }
+  },
+  "albumVideoUpToPlus": "Videos up to {length} with Plus.",
+  "@albumVideoUpToPlus": {
+    "placeholders": {
+      "length": {
+        "type": "String"
+      }
+    }
+  },
+  "byPerson": "by {name}",
+  "@byPerson": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "logSleepShort": "Sleep",
+  "showToday": "Today only",
+  "pPlaceAndDate": "{place}, {date}",
+  "@pPlaceAndDate": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "pNextAt": "Next at {time}",
+  "@pNextAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "pAllAnswered": "All answered",
+  "pAfterFee": "After {percent}% platform fee",
+  "@pAfterFee": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "pWithOwner": "with {owner}",
+  "@pWithOwner": {
+    "placeholders": {
+      "owner": {
+        "type": "String"
+      }
+    }
+  },
+  "pThisWeek": "This week",
+  "pEmergencyListing": "Emergency listing",
+  "pSosOpen24": "Shown in SOS as open 24x7.",
+  "pSosOpenNow": "Shown in SOS as open now. Not 24x7.",
+  "pSosClosedNow": "Shown in SOS as closed now. Not 24x7.",
+  "pSosHidden": "Not shown in SOS.",
+  "pEmergencyListingHelp": "Turn this off if your clinic does not take emergencies. Pet parents will not see it on the SOS page.",
+  "pNewReview": "New review",
+  "pOpenQueue": "Open queue",
+  "pHistory": "History",
+  "pOpen": "Open",
+  "starsOutOf5": "{count} out of 5 stars",
+  "@starsOutOf5": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selSellerIn": "Seller in {city}, {date}",
+  "@selSellerIn": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "selPackToday": "Pack today",
+  "selFirstPayout": "First payout after delivery",
+  "selOrderFor": "Order {number} for {name}, {place}",
+  "@selOrderFor": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "selPlacedOn": "Placed {date}",
+  "@selPlacedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "selPrintLabel": "Print label",
+  "selStockLeftShort": "{count} left.",
+  "@selStockLeftShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selSellsPerWeek": "Sells about {count} a week.",
+  "@selSellsPerWeek": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selAddStock": "Add stock",
+  "selBulkUpload": "Upload products in bulk",
+  "selBulkUploadBody": "Use a CSV file for many items at once.",
+  "admUsersShort": "Users",
+  "admUsersSplit": "{owners} pet parents, {partners} partners",
+  "@admUsersSplit": {
+    "placeholders": {
+      "owners": {
+        "type": "int"
+      },
+      "partners": {
+        "type": "int"
+      }
+    }
+  },
+  "admBookings30Short": "Bookings, 30 days",
+  "admOrderValue30Short": "Order value, 30 days",
+  "admCommission30Short": "Commission, 30 days",
+  "admSos30Short": "SOS activations, 30 days",
+  "admWaiting": "Waiting for you",
+  "admNothingWaiting": "Nothing waiting",
+  "admCountClinics": "{count, plural, =1{1 clinic} other{{count} clinics}}",
+  "@admCountClinics": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admCountVets": "{count, plural, =1{1 vet} other{{count} vets}}",
+  "@admCountVets": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admCountSellers": "{count, plural, =1{1 seller} other{{count} sellers}}",
+  "@admCountSellers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admCountProviders": "{count, plural, =1{1 service provider} other{{count} service providers}}",
+  "@admCountProviders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admTicketsLine": "{open} open, {progress} in progress",
+  "@admTicketsLine": {
+    "placeholders": {
+      "open": {
+        "type": "int"
+      },
+      "progress": {
+        "type": "int"
+      }
+    }
+  },
+  "admReportsLine": "{count, plural, =1{1 report to check} other{{count} reports to check}}",
+  "@admReportsLine": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admOutboxTo": "{channel} to {name}",
+  "@admOutboxTo": {
+    "placeholders": {
+      "channel": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "admOutboxNote": "Nothing here was really sent.",
+  "admCountBookings": "{count, plural, =1{1 booking} other{{count} bookings}}",
+  "@admCountBookings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admCountSold": "{count} sold",
+  "@admCountSold": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "admComplaintsShort": "Complaints",
+  "themeSystemShort": "System",
+  "setReminderChannels": "Reminder channels",
+  "setReminderChannelsHint": "Push, email, SMS and WhatsApp for each reminder",
+  "setQuietRange": "{from} to {to}",
+  "@setQuietRange": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "setQuietOff": "Off",
+  "setSosTap": "Tap to confirm SOS",
+  "setSosTapHint": "Instead of holding for 2 seconds. On with Easy mode.",
+  "setAccount": "Account",
+  "setEmailPassword": "Email and password",
+  "setAbout": "About PawSetu",
+  "setAboutDemo": "Version {version}, demo mode",
+  "@setAboutDemo": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "setResetPassword": "Send a link to change your password",
+  "setResetSent": "We sent a link to {email}.",
+  "@setResetSent": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "setNoEmail": "No email added",
+  "setNoPhone": "No phone number added",
+  "whenQ": "When?",
+  "bookPayNote": "Pay online or at the clinic. Free to cancel up to {hours} hours before.",
+  "@bookPayNote": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "bookPickTime": "Pick a time",
+  "vetYearsReg": "{years, plural, =1{1 year} other{{years} years}}. Reg. no. {no}",
+  "@vetYearsReg": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      },
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "verifiedVisits": "{count, plural, =1{1 verified visit} other{{count} verified visits}}",
+  "@verifiedVisits": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "verifiedVisit": "Verified visit",
+  "replyFromClinic": "Reply from the clinic:",
+  "whereToFind": "Where to find us",
+  "showFewer": "Show fewer",
+  "peopleOf": "{count} of {max} people",
+  "@peopleOf": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "familyAway": "Going away?",
+  "familyAwayBody": "Give a pet sitter or walker Carer access that ends by itself on a date you choose.",
+  "latestActivity": "Latest activity",
+  "vaultLockNote": "Locks itself after 2 minutes. Forgot your PIN? Sign in again to reset it."
 }

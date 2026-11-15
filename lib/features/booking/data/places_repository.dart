@@ -28,6 +28,9 @@ class Place {
   List<String> get species => ((raw['species'] as List?) ?? const []).cast<String>();
   List<String> get languages => ((raw['languages'] as List?) ?? const []).cast<String>();
   bool get is24x7 => (raw['is24x7'] as bool?) ?? false;
+
+  /// Shown on the SOS page (a clinic that takes no emergencies turns it off).
+  bool get sosListed => (raw['sosListed'] as bool?) ?? true;
   bool get teleVet => (raw['teleVet'] as bool?) ?? false;
   int get fee => (raw['consultationFee'] as num?)?.toInt() ?? (services.isEmpty ? 0 : services.first.price);
   Map<String, dynamic> get hours => (raw['hours'] as Map?)?.cast<String, dynamic>() ?? const {};
@@ -48,6 +51,11 @@ class Place {
   String get status => (raw['status'] as String?) ?? 'approved';
   String? get ownerUid => (raw['ownerUid'] ?? raw['uid']) as String?;
   int get photoSeed => (raw['photoSeed'] as num?)?.toInt() ?? id.hashCode % 6;
+
+  /// The drawn shopfront that stands in when the place has no photo: a
+  /// clinic (with "24" on the sign when it is open round the clock) or a
+  /// provider.
+  String get artSeed => 'seed:${kind == 'clinic' ? (is24x7 ? 'clinic24' : 'clinic') : 'provider'}:$photoSeed';
   String? get about => raw['about'] as String?;
   bool get enquiriesEnabled => (raw['enquiriesEnabled'] as bool?) ?? true;
   List<PlaceService> get services => [for (final s in (raw['services'] as List?) ?? const []) PlaceService((s as Map).cast<String, dynamic>())];

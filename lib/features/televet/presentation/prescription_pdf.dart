@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/data/converters.dart';
 import '../../../core/l10n/gen/app_localizations.dart';
+import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/document_preview.dart';
 import '../../../core/widgets/widgets.dart';
@@ -55,8 +56,8 @@ class PrescriptionPage extends StatelessWidget {
     });
     final items = [for (final i in (rx['items'] as List?) ?? const []) PrescriptionItem.fromMap((i as Map).cast<String, dynamic>())];
     String v(Object? s) => (s == null || '$s'.trim().isEmpty) ? '–' : '$s';
-    const grey = Color(0xFF5B6B6E);
-    const teal = Color(0xFF0F766E);
+    const grey = PrintColors.muted;
+    const teal = PrintColors.brand;
 
     Widget kv(String k, String value) => Padding(
           padding: const EdgeInsets.only(bottom: 2),
@@ -128,7 +129,7 @@ class PrescriptionPage extends StatelessWidget {
             child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
               Text(v(rx['vetName']),
                   style: const TextStyle(fontSize: 18, fontStyle: FontStyle.italic, color: teal, fontWeight: FontWeight.w500, letterSpacing: 0.5)),
-              Container(width: 180, height: 1, color: const Color(0xFF1C2B2D), margin: const EdgeInsets.symmetric(vertical: 3)),
+              Container(width: 180, height: 1, color: PrintColors.ink, margin: const EdgeInsets.symmetric(vertical: 3)),
               Text(l.rxSignedDigitally(Fmt.dateTime(created, lang)), style: const TextStyle(fontSize: 8.5, color: grey)),
               Text(l.rxRegNo(v(rx['regNo'])), style: const TextStyle(fontSize: 8.5, color: grey)),
             ]),

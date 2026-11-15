@@ -1,0 +1,9 @@
+{
+  "gendaProgress": {"en": "{done} of {total} done", "hi": "{total} में से {done} हो गए", "te": "{total}లో {done} పూర్తయ్యాయి", "ph": {"done": "int", "total": "int"}},
+  "gendaNothingPlanned": {"en": "Nothing planned today. Add a routine.", "hi": "आज कुछ तय नहीं है। एक दिनचर्या जोड़ें।", "te": "ఈరోజు ఏమీ ప్లాన్ లేదు. ఒక దినచర్య జోడించండి."},
+  "withUnread": {"en": "{label}, {count} unread", "hi": "{label}, {count} बिना पढ़े", "te": "{label}, {count} చదవనివి", "ph": {"label": "String", "count": "int"}},
+  "shopAskVet": {"en": "Not sure what suits {name}? Ask a vet", "hi": "{name} के लिए क्या ठीक रहेगा, पता नहीं? डॉक्टर से पूछें", "te": "{name}కి ఏది సరిపోతుందో తెలియదా? వెట్‌ని అడగండి", "ph": {"name": "String"}},
+  "meGroupPets": {"en": "Pets and family", "hi": "पालतू और परिवार", "te": "పెంపుడు జంతువులు, కుటుంబం"},
+  "meGroupMoney": {"en": "Orders and money", "hi": "ऑर्डर और पैसे", "te": "ఆర్డర్‌లు, డబ్బు"},
+  "meGroupHelp": {"en": "Help and settings", "hi": "मदद और सेटिंग्स", "te": "సహాయం, సెట్టింగ్‌లు"}
+}

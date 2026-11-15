@@ -47,7 +47,6 @@
   "catchUpNote": {"en": "No vaccine history yet. Ask your vet for a catch-up plan, and add past vaccines with Record.", "hi": "अभी टीकों का इतिहास नहीं है। डॉक्टर से कैच-अप प्लान पूछें और पुराने टीके 'दर्ज करें' से जोड़ें।", "te": "ఇంకా టీకాల చరిత్ర లేదు. క్యాచ్-అప్ ప్లాన్ కోసం వెట్‌ని అడగండి, పాత టీకాలు 'నమోదు'తో జోడించండి."},
   "rabbitVaccineNote": {"en": "There is no standard routine vaccine schedule for rabbits in India. Check with an exotic-animal vet; a health check every 6–12 months is a good idea.", "hi": "भारत में खरगोशों के लिए कोई तय टीका कार्यक्रम नहीं है। विदेशी जानवरों के डॉक्टर से पूछें; हर 6–12 महीने जाँच कराना अच्छा है।", "te": "భారతదేశంలో కుందేళ్ళకు ప్రామాణిక టీకా షెడ్యూల్ లేదు. ఎక్సోటిక్ జంతువుల వెట్‌ని అడగండి; ప్రతి 6–12 నెలలకు ఆరోగ్య పరీక్ష మంచిది."},
   "birdVaccineNote": {"en": "Common pet birds don't need routine vaccines. Plan a yearly avian vet check, and keep an eye on nails and beak.", "hi": "आम पालतू पक्षियों को नियमित टीके नहीं चाहिए। हर साल पक्षियों के डॉक्टर से जाँच कराएँ, नाखून और चोंच पर नज़र रखें।", "te": "సాధారణ పెంపుడు పక్షులకు రొటీన్ టీకాలు అవసరం లేదు. ఏటా పక్షుల వెట్ పరీక్ష చేయించండి, గోళ్ళు, ముక్కు గమనించండి."},
-
   "medicines": {"en": "Medicines", "hi": "दवाएँ", "te": "మందులు"},
   "medicineName": {"en": "Medicine", "hi": "दवा", "te": "మందు"},
   "addMedicineFor": {"en": "Add a medicine for {name}", "hi": "{name} के लिए दवा जोड़ें", "te": "{name} కోసం మందు జోడించండి", "ph": {"name": "String"}},
@@ -90,7 +89,6 @@
   "overdueBy": {"en": "{days, plural, =1{1 day overdue} other{{days} days overdue}}", "hi": "{days} दिन देर", "te": "{days} రోజులు ఆలస్యం", "ph": {"days": "int"}},
   "dueToday": {"en": "Due today", "hi": "आज बकाया", "te": "ఈరోజు"},
   "dueInDays": {"en": "{days, plural, =1{Due tomorrow} other{Due in {days} days}}", "hi": "{days} दिन में", "te": "{days} రోజుల్లో", "ph": {"days": "int"}},
-
   "prevention": {"en": "Deworming and flea/tick", "hi": "कृमिनाशक और पिस्सू/किलनी", "te": "డీవార్మింగ్, ఈగలు/పేలు"},
   "deworming": {"en": "Deworming", "hi": "कृमिनाशक", "te": "డీవార్మింగ్"},
   "fleaTick": {"en": "Flea and tick prevention", "hi": "पिस्सू और किलनी से बचाव", "te": "ఈగలు, పేలు నివారణ"},
@@ -98,7 +96,6 @@
   "nextDue": {"en": "Next {date}", "hi": "अगली {date}", "te": "తదుపరి {date}", "ph": {"date": "String"}},
   "tickFeverNote": {"en": "Tick fever is common in India. Keep flea and tick prevention up to date.", "hi": "भारत में टिक फीवर आम है। पिस्सू और किलनी से बचाव समय पर करें।", "te": "భారతదేశంలో టిక్ ఫీవర్ సాధారణం. ఈగలు, పేలు నివారణ సమయానికి చేయండి."},
   "productUsed": {"en": "Product used", "hi": "इस्तेमाल की गई दवा", "te": "వాడిన ఉత్పత్తి"},
-
   "weightNeedsTwo": {"en": "Add two or more weights to see the chart.", "hi": "चार्ट देखने के लिए दो या ज़्यादा वज़न जोड़ें।", "te": "చార్ట్ చూడటానికి రెండు లేదా ఎక్కువ బరువులు జోడించండి."},
   "weightRangeNote": {"en": "Green band: indicative healthy range {range}. Always confirm with your vet.", "hi": "हरी पट्टी: अनुमानित स्वस्थ सीमा {range}। डॉक्टर से ज़रूर पूछें।", "te": "ఆకుపచ్చ పట్టీ: సుమారు ఆరోగ్యకర పరిధి {range}. వెట్‌ని తప్పక అడగండి.", "ph": {"range": "String"}},
   "weightGrowingNote": {"en": "Still growing. Your vet will tell you the right weight.", "hi": "अभी बढ़ रहा है। सही वज़न आपके डॉक्टर बताएँगे।", "te": "ఇంకా పెరుగుతోంది. సరైన బరువు మీ వెట్ చెబుతారు."},
@@ -124,7 +121,6 @@
   "symSneezing": {"en": "Sneezing", "hi": "छींकना", "te": "తుమ్ములు"},
   "symOther": {"en": "Other", "hi": "अन्य", "te": "ఇతర"},
   "savedFor": {"en": "{what} saved for {name}", "hi": "{name} के लिए {what} सहेजा", "te": "{name} కోసం {what} సేవ్ అయింది", "ph": {"what": "String", "name": "String"}},
-
   "reminders": {"en": "Reminders", "hi": "रिमाइंडर", "te": "రిమైండర్లు"},
   "noReminders": {"en": "No custom reminders.", "hi": "कोई अपना रिमाइंडर नहीं।", "te": "అనుకూల రిమైండర్లు లేవు."},
   "newReminderFor": {"en": "New reminder for {name}", "hi": "{name} के लिए नया रिमाइंडर", "te": "{name} కోసం కొత్త రిమైండర్", "ph": {"name": "String"}},
@@ -148,7 +144,6 @@
   "remFleaTick": {"en": "{name}'s flea and tick prevention is due", "hi": "{name} का पिस्सू-किलनी बचाव बकाया है", "te": "{name} ఈగలు, పేలు నివారణ సమయం", "ph": {"name": "String"}},
   "remTapToOpen": {"en": "Tap to open PawSetu", "hi": "PawSetu खोलने के लिए टैप करें", "te": "PawSetu తెరవడానికి ట్యాప్ చేయండి"},
   "remSnoozed": {"en": "Snoozed for 15 minutes", "hi": "15 मिनट के लिए टाला", "te": "15 నిమిషాలు వాయిదా"},
-
   "markAllRead": {"en": "Mark all read", "hi": "सब पढ़ा हुआ करें", "te": "అన్నీ చదివినట్టు"},
   "filterAll": {"en": "All", "hi": "सभी", "te": "అన్నీ"},
   "filterUnread": {"en": "Unread", "hi": "बिना पढ़े", "te": "చదవనివి"},
@@ -172,7 +167,6 @@
   "quietHoursHint": {"en": "Reminders wait until morning. Medicine reminders always ring on time.", "hi": "रिमाइंडर सुबह तक रुकेंगे। दवा के रिमाइंडर हमेशा समय पर बजेंगे।", "te": "రిమైండర్లు ఉదయం వరకు ఆగుతాయి. మందుల రిమైండర్లు ఎప్పుడూ సమయానికే."},
   "notificationsOn": {"en": "Notifications are on", "hi": "सूचनाएँ चालू हैं", "te": "నోటిఫికేషన్లు ఆన్"},
   "notificationsOffHint": {"en": "Notifications are off. You can turn them on in your phone's settings.", "hi": "सूचनाएँ बंद हैं। फ़ोन की सेटिंग्स में चालू कर सकते हैं।", "te": "నోటిఫికేషన్లు ఆఫ్. ఫోన్ సెట్టింగ్స్‌లో ఆన్ చేయవచ్చు."},
-
   "preparingDocument": {"en": "Preparing your document…", "hi": "आपका दस्तावेज़ तैयार हो रहा है…", "te": "మీ డాక్యుమెంట్ సిద్ధమవుతోంది…"},
   "sharePdf": {"en": "Share or save PDF", "hi": "PDF साझा करें या सहेजें", "te": "PDF షేర్ లేదా సేవ్ చేయండి"},
   "generatedOn": {"en": "Generated {date}", "hi": "{date} को बनाया", "te": "{date}న రూపొందించారు", "ph": {"date": "String"}},
@@ -183,5 +177,8 @@
   "rabiesVaccine": {"en": "Rabies vaccine", "hi": "रेबीज़ टीका", "te": "రేబీస్ టీకా"},
   "notRecorded": {"en": "Not recorded", "hi": "दर्ज नहीं", "te": "నమోదు కాలేదు"},
   "medicalCardUpdated": {"en": "Updated {date}", "hi": "{date} को अपडेट", "te": "{date}న అప్‌డేట్", "ph": {"date": "String"}},
-  "medicalCardOffline": {"en": "This card works without internet. Show it to a vet, a boarding centre or at the airport.", "hi": "यह कार्ड बिना इंटरनेट के चलता है। डॉक्टर, बोर्डिंग सेंटर या एयरपोर्ट पर दिखाएँ।", "te": "ఈ కార్డ్ ఇంటర్నెట్ లేకుండా పనిచేస్తుంది. వెట్, బోర్డింగ్ సెంటర్ లేదా ఎయిర్‌పోర్ట్‌లో చూపించండి."}
+  "medicalCardOffline": {"en": "This card works without internet. Show it to a vet, a boarding centre or at the airport.", "hi": "यह कार्ड बिना इंटरनेट के चलता है। डॉक्टर, बोर्डिंग सेंटर या एयरपोर्ट पर दिखाएँ।", "te": "ఈ కార్డ్ ఇంటర్నెట్ లేకుండా పనిచేస్తుంది. వెట్, బోర్డింగ్ సెంటర్ లేదా ఎయిర్‌పోర్ట్‌లో చూపించండి."},
+  "healthAllClear": {"en": "All up to date", "hi": "सब कुछ समय पर है", "te": "అన్నీ సమయానికి ఉన్నాయి"},
+  "certificate": {"en": "Certificate", "hi": "प्रमाणपत्र", "te": "సర్టిఫికెట్"},
+  "emergencyInfo": {"en": "Emergency info", "hi": "आपातकालीन जानकारी", "te": "అత్యవసర సమాచారం"}
 }

@@ -62,7 +62,7 @@
   "todayAllPets": {"en": "Today for all pets", "hi": "सभी पालतुओं का आज", "te": "అన్ని పెంపుడు జంతువులకు ఈరోజు"},
   "allDoneToday": {"en": "All done for today. Good job with {name}!", "hi": "आज का सब हो गया। {name} के लिए शाबाश!", "te": "ఈరోజు అన్నీ పూర్తయ్యాయి. {name} కోసం బాగా చేశారు!", "ph": {"name": "String"}},
   "tasksLeft": {"en": "{count, plural, =1{1 thing left today} other{{count} things left today}}", "hi": "आज {count} काम बाकी", "te": "ఈరోజు {count} పనులు మిగిలాయి", "ph": {"count": "int"}},
-  "streakDays": {"en": "{count}-day streak", "hi": "लगातार {count} दिन", "te": "వరుసగా {count} రోజులు", "ph": {"count": "int"}},
+  "streakDays": {"en": "{count} days in a row", "hi": "लगातार {count} दिन", "te": "వరుసగా {count} రోజులు", "ph": {"count": "int"}},
   "playProgress": {"en": "Play · {done} / {goal} min", "hi": "खेल · {done} / {goal} मिनट", "te": "ఆట · {done} / {goal} ని.", "ph": {"done": "int", "goal": "int"}},
   "routineOf": {"en": "{name}'s routine", "hi": "{name} की दिनचर्या", "te": "{name} దినచర్య", "ph": {"name": "String"}},
   "tabLog": {"en": "Log", "hi": "रिकॉर्ड", "te": "లాగ్"},

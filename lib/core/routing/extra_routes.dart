@@ -25,6 +25,7 @@ import '../../features/shop/shop_slots.dart';
 import '../../features/sos/sos_slots.dart';
 import '../../features/vault/vault_slots.dart';
 import '../widgets/layout.dart';
+import '../theme/ph.dart';
 
 /// Routes and menus that grow phase by phase. router.dart wires them in.
 
@@ -34,7 +35,12 @@ Widget bookTab() => const BookHomeScreen();
 Widget shopTab() => shopTabRoot();
 
 final homeRoutes = <RouteBase>[];
-final healthRoutes = <RouteBase>[];
+final healthRoutes = <RouteBase>[
+  GoRoute(
+    path: 'records/:kind',
+    builder: (_, s) => HealthRecordsScreen(kind: s.pathParameters['kind']!, petId: s.uri.queryParameters['pet']),
+  ),
+];
 final bookRoutes = <RouteBase>[
   GoRoute(
     path: 'find/:kind',
@@ -47,7 +53,16 @@ final bookRoutes = <RouteBase>[
   GoRoute(
     path: 'new/:placeId',
     builder: (_, s) =>
-        BookingFlowScreen(placeId: s.pathParameters['placeId']!, serviceId: s.uri.queryParameters['service'], petId: s.uri.queryParameters['pet']),
+        BookingFlowScreen(
+          placeId: s.pathParameters['placeId']!,
+          serviceId: s.uri.queryParameters['service'],
+          petId: s.uri.queryParameters['pet'],
+          // Set by the booking card on the clinic page (UI Design 2).
+          slot: DateTime.tryParse(s.uri.queryParameters['slot'] ?? ''),
+          proposed: [
+            for (final t in (s.uri.queryParameters['times'] ?? '').split(',')) ?DateTime.tryParse(t),
+          ],
+        ),
   ),
   GoRoute(
     path: 'done/:id',
@@ -131,28 +146,32 @@ final partnerRoutes = <RouteBase>[
 ];
 
 class MeMenuItem {
-  const MeMenuItem(this.icon, this.label, this.route);
+  const MeMenuItem(this.icon, this.label, this.route, {this.group = 0});
   final IconData icon;
   final String label;
   final String route;
+
+  /// Which heading the item sits under on Me (UI Design 5): 0 pets and
+  /// family, 1 orders and money, 2 help and settings.
+  final int group;
 }
 
 List<MeMenuItem> meMenu(BuildContext context) {
   final l = context.l10n;
   return [
-    MeMenuItem(Icons.pets_rounded, l.myPets, '/me/pets'),
-    MeMenuItem(Icons.family_restroom_rounded, l.familySharing, '/me/family'),
-    MeMenuItem(Icons.lock_rounded, l.documentVault, '/me/vault'),
-    MeMenuItem(Icons.photo_library_rounded, l.memoryAlbum, '/me/album'),
-    MeMenuItem(Icons.watch_rounded, l.connectedDevices, '/me/devices'),
-    MeMenuItem(Icons.qr_code_2_rounded, l.lostPetMode, '/me/lost'),
-    MeMenuItem(Icons.account_balance_wallet_rounded, l.expenses, '/me/expenses'),
-    MeMenuItem(Icons.receipt_long_rounded, l.ordMyOrders, '/shop/orders'),
-    MeMenuItem(Icons.location_on_rounded, l.addrBook, '/me/addresses'),
-    MeMenuItem(Icons.workspace_premium_rounded, l.pawsetuPlus, '/me/plus'),
-    MeMenuItem(Icons.card_giftcard_rounded, l.referTitle, '/me/refer'),
-    MeMenuItem(Icons.settings_rounded, l.settings, '/me/settings'),
-    MeMenuItem(Icons.support_agent_rounded, l.helpAndComplaints, '/me/help'),
-    MeMenuItem(Icons.privacy_tip_rounded, l.privacyCentre, '/me/privacy'),
+    MeMenuItem(Ph.pawPrint, l.myPets, '/me/pets'),
+    MeMenuItem(Ph.usersThree, l.familySharing, '/me/family'),
+    MeMenuItem(Ph.lockKey, l.documentVault, '/me/vault'),
+    MeMenuItem(Ph.images, l.memoryAlbum, '/me/album'),
+    MeMenuItem(Ph.qrCode, l.lostPetMode, '/me/lost'),
+    MeMenuItem(Ph.watch, l.connectedDevices, '/me/devices'),
+    MeMenuItem(Ph.receipt, l.ordMyOrders, '/shop/orders', group: 1),
+    MeMenuItem(Ph.wallet, l.expenses, '/me/expenses', group: 1),
+    MeMenuItem(Ph.mapPin, l.meSavedAddresses, '/me/addresses', group: 1),
+    MeMenuItem(Ph.crownSimple, l.pawsetuPlus, '/me/plus', group: 1),
+    MeMenuItem(Ph.gift, l.referTitle, '/me/refer', group: 1),
+    MeMenuItem(Ph.gearSix, l.settings, '/me/settings', group: 2),
+    MeMenuItem(Ph.headset, l.helpAndComplaints, '/me/help', group: 2),
+    MeMenuItem(Ph.shieldCheck, l.privacyCentre, '/me/privacy', group: 2),
   ];
 }

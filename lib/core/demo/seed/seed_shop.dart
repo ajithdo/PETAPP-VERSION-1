@@ -412,7 +412,9 @@ void seedShop(Add add, DateTime now) {
       'description': p.desc,
       'ingredients': p.ingredients,
       'packKg': p.packKg,
-      'imageSeed': r.next(8),
+      // The products the design shows keep their pack colours; the rest vary.
+      'imageSeed': [r.next(8), ?_designPack[p.id]].last,
+      'shortName': ?_designShort[p.id],
       'deliveryDays': 2 + r.next(4),
       'returnable': p.cat != 'food' && p.cat != 'treats',
       'active': true,
@@ -420,3 +422,30 @@ void seedShop(Add add, DateTime now) {
     });
   }
 }
+
+/// Pack colours from the UI Design 6 kit (the number picks the colour pair in
+/// PackColors: 0 terracotta, 1 green, 2 marigold, 3 violet, 4 red, 5 blue).
+const _designPack = <String, int>{
+  'prod_lab_adult_10': 0,
+  'prod_senior_dog_7': 1,
+  'prod_treat_training': 2,
+  'prod_bed_l': 3,
+  'prod_harness': 4,
+  'prod_toy_rope': 5,
+  'prod_treat_chew': 1,
+  'prod_cat_dry_3': 5,
+  'prod_shampoo': 2,
+};
+
+/// The short names the UI Design 6 kit uses on tight rows (cart, buy again).
+const _designShort = <String, String>{
+  'prod_lab_adult_10': 'Lamb & Rice Dry Food 10 kg',
+  'prod_senior_dog_7': 'Senior Joint Care 7 kg',
+  'prod_treat_training': 'Training Bites 200 g',
+  'prod_bed_l': 'Orthopaedic Bed L',
+  'prod_harness': 'No-pull Harness M/L',
+  'prod_toy_rope': 'Cotton Rope Tug Toy',
+  'prod_treat_chew': 'Dental Chew Sticks',
+  'prod_cat_dry_3': 'Indoor Cat Ocean Fish 3 kg',
+  'prod_shampoo': 'Oatmeal Shampoo',
+};

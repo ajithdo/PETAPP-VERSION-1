@@ -991,7 +991,7 @@ abstract class AppLocalizations {
   /// No description provided for @demoAccountsHint.
   ///
   /// In en, this message translates to:
-  /// **'Tap any account to sign in. No password needed.'**
+  /// **'Tap any account to sign in. No password needed. Nothing here is real and no money is charged.'**
   String get demoAccountsHint;
 
   /// No description provided for @orSignInWithEmail.
@@ -1021,43 +1021,43 @@ abstract class AppLocalizations {
   /// No description provided for @demoGroupPlatform.
   ///
   /// In en, this message translates to:
-  /// **'Platform'**
+  /// **'PawSetu team'**
   String get demoGroupPlatform;
 
   /// No description provided for @demoPriya.
   ///
   /// In en, this message translates to:
-  /// **'Bengaluru · Plus · Bruno the Labrador and Misty the Persian cat'**
+  /// **'Bengaluru. Bruno the Labrador and Misty the Persian cat'**
   String get demoPriya;
 
   /// No description provided for @demoRavi.
   ///
   /// In en, this message translates to:
-  /// **'Hyderabad · Free · Telugu · Simba the Indie puppy and Kiwi the cockatiel'**
+  /// **'Hyderabad. Simba the Indie puppy and Kiwi the cockatiel'**
   String get demoRavi;
 
   /// No description provided for @demoAnjali.
   ///
   /// In en, this message translates to:
-  /// **'Delhi NCR · Free · Hindi · Easy mode · Coco the rabbit and Tiger the senior cat'**
+  /// **'Delhi NCR. Coco the rabbit and Tiger the senior cat'**
   String get demoAnjali;
 
   /// No description provided for @demoArjun.
   ///
   /// In en, this message translates to:
-  /// **'Mumbai · Plus · Max the German Shepherd and Luna the Beagle puppy'**
+  /// **'Mumbai. Max the German Shepherd and Luna the Beagle puppy'**
   String get demoArjun;
 
   /// No description provided for @demoRohan.
   ///
   /// In en, this message translates to:
-  /// **'Priya\'s husband · Carer for Bruno and Misty'**
+  /// **'Priya\'s husband. Carer for Bruno and Misty'**
   String get demoRohan;
 
   /// No description provided for @demoMeera.
   ///
   /// In en, this message translates to:
-  /// **'Pet sitter for Arjun · access ends in 3 days'**
+  /// **'Pet sitter for Arjun. Access ends in 3 days'**
   String get demoMeera;
 
   /// No description provided for @demoClinicAdmin.
@@ -2755,7 +2755,7 @@ abstract class AppLocalizations {
   /// No description provided for @streakDays.
   ///
   /// In en, this message translates to:
-  /// **'{count}-day streak'**
+  /// **'{count} days in a row'**
   String streakDays(int count);
 
   /// No description provided for @playProgress.
@@ -4251,6 +4251,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This card works without internet. Show it to a vet, a boarding centre or at the airport.'**
   String get medicalCardOffline;
+
+  /// No description provided for @healthAllClear.
+  ///
+  /// In en, this message translates to:
+  /// **'All up to date'**
+  String get healthAllClear;
+
+  /// No description provided for @certificate.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate'**
+  String get certificate;
+
+  /// No description provided for @emergencyInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency info'**
+  String get emergencyInfo;
 
   /// No description provided for @bookTitle.
   ///
@@ -5931,6 +5949,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove'**
   String get remove;
+
+  /// No description provided for @bookFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Book for {name}'**
+  String bookFor(String name);
+
+  /// No description provided for @nextFreeSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Next free slot'**
+  String get nextFreeSlot;
 
   /// No description provided for @aiTitle.
   ///
@@ -8599,7 +8629,7 @@ abstract class AppLocalizations {
   /// No description provided for @albumSeeAlbum.
   ///
   /// In en, this message translates to:
-  /// **'See album'**
+  /// **'Album'**
   String get albumSeeAlbum;
 
   /// No description provided for @albumYearsAgo.
@@ -10747,7 +10777,7 @@ abstract class AppLocalizations {
   /// No description provided for @shopReorderPrice.
   ///
   /// In en, this message translates to:
-  /// **'Reorder · {price}'**
+  /// **'Reorder {price}'**
   String shopReorderPrice(String price);
 
   /// No description provided for @shopCategories.
@@ -12157,7 +12187,7 @@ abstract class AppLocalizations {
   /// No description provided for @foodRunsOutIn.
   ///
   /// In en, this message translates to:
-  /// **'{pet}\'s food may run out in about {days, plural, =1{1 day} other{{days} days}}. Reorder?'**
+  /// **'{pet}\'s food may run out in about {days, plural, =1{1 day} other{{days} days}}'**
   String foodRunsOutIn(String pet, int days);
 
   /// No description provided for @foodRanOut.
@@ -12175,7 +12205,7 @@ abstract class AppLocalizations {
   /// No description provided for @foodEditPortion.
   ///
   /// In en, this message translates to:
-  /// **'Edit portion'**
+  /// **'Change daily portion'**
   String get foodEditPortion;
 
   /// No description provided for @foodOnTheWay.
@@ -17775,6 +17805,1740 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{pet}\'s memories'**
   String albumTitle(String pet);
+
+  /// No description provided for @gendaProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} done'**
+  String gendaProgress(int done, int total);
+
+  /// No description provided for @gendaNothingPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing planned today. Add a routine.'**
+  String get gendaNothingPlanned;
+
+  /// No description provided for @withUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'{label}, {count} unread'**
+  String withUnread(String label, int count);
+
+  /// No description provided for @shopAskVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure what suits {name}? Ask a vet'**
+  String shopAskVet(String name);
+
+  /// No description provided for @meGroupPets.
+  ///
+  /// In en, this message translates to:
+  /// **'Pets and family'**
+  String get meGroupPets;
+
+  /// No description provided for @meGroupMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders and money'**
+  String get meGroupMoney;
+
+  /// No description provided for @meGroupHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Help and settings'**
+  String get meGroupHelp;
+
+  /// No description provided for @gendaNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {task}'**
+  String gendaNext(String task);
+
+  /// No description provided for @bookIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Vets, groomers, trainers, boarding and walkers near you.'**
+  String get bookIntro;
+
+  /// No description provided for @bookVetSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-ups, vaccines, surgery'**
+  String get bookVetSub;
+
+  /// No description provided for @bookTeleSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat or video with a vet'**
+  String get bookTeleSub;
+
+  /// No description provided for @bookGroomSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Salon or home visit'**
+  String get bookGroomSub;
+
+  /// No description provided for @bookTrainSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Puppy basics to behaviour'**
+  String get bookTrainSub;
+
+  /// No description provided for @bookBoardSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Boarding and pet sitting'**
+  String get bookBoardSub;
+
+  /// No description provided for @bookWalkSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Live route and photos'**
+  String get bookWalkSub;
+
+  /// No description provided for @welcomeLanguages.
+  ///
+  /// In en, this message translates to:
+  /// **'English, हिन्दी and తెలుగు. Change any time in Settings.'**
+  String get welcomeLanguages;
+
+  /// No description provided for @firstAidGuides.
+  ///
+  /// In en, this message translates to:
+  /// **'Guides'**
+  String get firstAidGuides;
+
+  /// No description provided for @yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterday;
+
+  /// No description provided for @earlier.
+  ///
+  /// In en, this message translates to:
+  /// **'Earlier'**
+  String get earlier;
+
+  /// No description provided for @stepBooked.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked'**
+  String get stepBooked;
+
+  /// No description provided for @stepConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get stepConfirmed;
+
+  /// No description provided for @stepVisited.
+  ///
+  /// In en, this message translates to:
+  /// **'Visited'**
+  String get stepVisited;
+
+  /// No description provided for @shopGoodMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'A good match for {name}'**
+  String shopGoodMatch(String name);
+
+  /// No description provided for @logGridTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log something'**
+  String get logGridTitle;
+
+  /// No description provided for @leftCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} left'**
+  String leftCount(int count);
+
+  /// No description provided for @markGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark given'**
+  String get markGiven;
+
+  /// No description provided for @playOfMin.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {goal} min'**
+  String playOfMin(int done, int goal);
+
+  /// No description provided for @aboutLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'about {amount} left'**
+  String aboutLeft(String amount);
+
+  /// No description provided for @nowAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Now, {time}'**
+  String nowAt(String time);
+
+  /// No description provided for @albumYearAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'A year ago today'**
+  String get albumYearAgo;
+
+  /// No description provided for @bookWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Book'**
+  String get bookWord;
+
+  /// No description provided for @sosEmergencyHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS, emergency help'**
+  String get sosEmergencyHelp;
+
+  /// No description provided for @healthRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Records'**
+  String get healthRecords;
+
+  /// No description provided for @noneRightNow.
+  ///
+  /// In en, this message translates to:
+  /// **'None right now'**
+  String get noneRightNow;
+
+  /// No description provided for @nothingLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing logged'**
+  String get nothingLogged;
+
+  /// No description provided for @whatDueOn.
+  ///
+  /// In en, this message translates to:
+  /// **'{what} due {date}'**
+  String whatDueOn(String what, String date);
+
+  /// No description provided for @vaccinesUpToDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccines up to date'**
+  String get vaccinesUpToDate;
+
+  /// No description provided for @weightHealthy.
+  ///
+  /// In en, this message translates to:
+  /// **'in the healthy range'**
+  String get weightHealthy;
+
+  /// No description provided for @weightBelow.
+  ///
+  /// In en, this message translates to:
+  /// **'below the usual range'**
+  String get weightBelow;
+
+  /// No description provided for @weightAbove.
+  ///
+  /// In en, this message translates to:
+  /// **'above the usual range'**
+  String get weightAbove;
+
+  /// No description provided for @preventionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Deworming and flea, tick'**
+  String get preventionTitle;
+
+  /// No description provided for @indicativeSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicative schedule. Always confirm with your vet.'**
+  String get indicativeSchedule;
+
+  /// No description provided for @bookIntroNear.
+  ///
+  /// In en, this message translates to:
+  /// **'Vets, groomers, trainers, boarding and walkers near {area}.'**
+  String bookIntroNear(String area);
+
+  /// No description provided for @bookNextSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Next slot {when}'**
+  String bookNextSlot(String when);
+
+  /// No description provided for @bookVetsOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 vet online now} other{{count} vets online now}}'**
+  String bookVetsOnline(int count);
+
+  /// No description provided for @inDaysCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{today} =1{tomorrow} other{in {count} days}}'**
+  String inDaysCount(int count);
+
+  /// No description provided for @shopDeliveringTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivering to'**
+  String get shopDeliveringTo;
+
+  /// No description provided for @shopRunningLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Running low'**
+  String get shopRunningLow;
+
+  /// No description provided for @shopNotSure.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure what suits {name}?'**
+  String shopNotSure(String name);
+
+  /// No description provided for @shopFromPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'From partner stores'**
+  String get shopFromPartners;
+
+  /// No description provided for @shopBuyOnStore.
+  ///
+  /// In en, this message translates to:
+  /// **'{price}, you will buy on {store}'**
+  String shopBuyOnStore(String price, String store);
+
+  /// No description provided for @meDocsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 document} other{{count} documents}}'**
+  String meDocsCount(int count);
+
+  /// No description provided for @meExpireSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 expires soon} other{{count} expire soon}}'**
+  String meExpireSoon(int count);
+
+  /// No description provided for @mePhotosCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 photo} other{{count} photos}}'**
+  String mePhotosCount(int count);
+
+  /// No description provided for @meVideosCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 video} other{{count} videos}}'**
+  String meVideosCount(int count);
+
+  /// No description provided for @meTagsReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags ready. No pet is lost.'**
+  String get meTagsReady;
+
+  /// No description provided for @mePetLost.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is marked lost'**
+  String mePetLost(String name);
+
+  /// No description provided for @meNoneYet.
+  ///
+  /// In en, this message translates to:
+  /// **'None yet'**
+  String get meNoneYet;
+
+  /// No description provided for @meDeviceLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{device}, {battery}%'**
+  String meDeviceLine(String device, int battery);
+
+  /// No description provided for @meOnlyYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Only you'**
+  String get meOnlyYou;
+
+  /// No description provided for @meCanCare.
+  ///
+  /// In en, this message translates to:
+  /// **'{who} can care for {pets}'**
+  String meCanCare(String who, String pets);
+
+  /// No description provided for @meOnTheWay.
+  ///
+  /// In en, this message translates to:
+  /// **'{item} is on the way'**
+  String meOnTheWay(String item);
+
+  /// No description provided for @meThisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} this month'**
+  String meThisMonth(String amount);
+
+  /// No description provided for @meRenewsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews on {date}'**
+  String meRenewsOn(String date);
+
+  /// No description provided for @meTryFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Try 7 days free'**
+  String get meTryFree;
+
+  /// No description provided for @meBothGet.
+  ///
+  /// In en, this message translates to:
+  /// **'You both get {amount}'**
+  String meBothGet(String amount);
+
+  /// No description provided for @meSettingsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Language, appearance, Easy mode'**
+  String get meSettingsSub;
+
+  /// No description provided for @mePrivacySub.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data and consents'**
+  String get mePrivacySub;
+
+  /// No description provided for @meGroupApp.
+  ///
+  /// In en, this message translates to:
+  /// **'App and support'**
+  String get meGroupApp;
+
+  /// No description provided for @meSavedAddresses.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved addresses'**
+  String get meSavedAddresses;
+
+  /// No description provided for @catShortFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get catShortFood;
+
+  /// No description provided for @catShortTreats.
+  ///
+  /// In en, this message translates to:
+  /// **'Treats'**
+  String get catShortTreats;
+
+  /// No description provided for @catShortToys.
+  ///
+  /// In en, this message translates to:
+  /// **'Toys'**
+  String get catShortToys;
+
+  /// No description provided for @catShortGrooming.
+  ///
+  /// In en, this message translates to:
+  /// **'Grooming'**
+  String get catShortGrooming;
+
+  /// No description provided for @catShortHealthHygiene.
+  ///
+  /// In en, this message translates to:
+  /// **'Health'**
+  String get catShortHealthHygiene;
+
+  /// No description provided for @catShortBeds.
+  ///
+  /// In en, this message translates to:
+  /// **'Beds'**
+  String get catShortBeds;
+
+  /// No description provided for @catShortCollarsLeashes.
+  ///
+  /// In en, this message translates to:
+  /// **'Collars'**
+  String get catShortCollarsLeashes;
+
+  /// No description provided for @catShortBowlsFeeders.
+  ///
+  /// In en, this message translates to:
+  /// **'Bowls'**
+  String get catShortBowlsFeeders;
+
+  /// No description provided for @catShortLitterCat.
+  ///
+  /// In en, this message translates to:
+  /// **'Litter'**
+  String get catShortLitterCat;
+
+  /// No description provided for @catShortBirdFoodCages.
+  ///
+  /// In en, this message translates to:
+  /// **'Birds'**
+  String get catShortBirdFoodCages;
+
+  /// No description provided for @catShortRabbitCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Rabbits'**
+  String get catShortRabbitCare;
+
+  /// No description provided for @catShortClothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Clothing'**
+  String get catShortClothing;
+
+  /// No description provided for @catShortTravel.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel'**
+  String get catShortTravel;
+
+  /// No description provided for @orContinueWith.
+  ///
+  /// In en, this message translates to:
+  /// **'or continue with'**
+  String get orContinueWith;
+
+  /// No description provided for @partnerAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Run a clinic, salon or shop?'**
+  String get partnerAsk;
+
+  /// No description provided for @partnerApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply as a partner'**
+  String get partnerApply;
+
+  /// No description provided for @demoPartnersTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Partners and the PawSetu team'**
+  String get demoPartnersTeam;
+
+  /// No description provided for @seeAllCount.
+  ///
+  /// In en, this message translates to:
+  /// **'See all {count}'**
+  String seeAllCount(int count);
+
+  /// No description provided for @sosCallNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Call {phone}'**
+  String sosCallNumber(String phone);
+
+  /// No description provided for @openMedicalCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Open medical card'**
+  String get openMedicalCard;
+
+  /// No description provided for @tvBookVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Book video'**
+  String get tvBookVideo;
+
+  /// No description provided for @tvUnlimitedWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited'**
+  String get tvUnlimitedWord;
+
+  /// No description provided for @tvConsultationsWord.
+  ///
+  /// In en, this message translates to:
+  /// **'consultations'**
+  String get tvConsultationsWord;
+
+  /// No description provided for @tvPerMonthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} a month'**
+  String tvPerMonthTitle(int count);
+
+  /// No description provided for @tvUsedSub.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} used so far'**
+  String tvUsedSub(int used);
+
+  /// No description provided for @tvMessagesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} messages'**
+  String tvMessagesTitle(int count);
+
+  /// No description provided for @tvWordsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'{words} words each'**
+  String tvWordsSub(int words);
+
+  /// No description provided for @tvHoursTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} hours'**
+  String tvHoursTitle(int hours);
+
+  /// No description provided for @tvHoursSub.
+  ///
+  /// In en, this message translates to:
+  /// **'chat stays open'**
+  String get tvHoursSub;
+
+  /// No description provided for @tvVideoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Video calls'**
+  String get tvVideoTitle;
+
+  /// No description provided for @tvVideoSubPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'with 10% off'**
+  String get tvVideoSubPlus;
+
+  /// No description provided for @tvVideoSubFree.
+  ///
+  /// In en, this message translates to:
+  /// **'with Plus only'**
+  String get tvVideoSubFree;
+
+  /// No description provided for @tvPetWithVet.
+  ///
+  /// In en, this message translates to:
+  /// **'{pet} with {vet}'**
+  String tvPetWithVet(String pet, String vet);
+
+  /// No description provided for @tvOpenChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Open chat'**
+  String get tvOpenChat;
+
+  /// No description provided for @tvPrescriptionWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription'**
+  String get tvPrescriptionWord;
+
+  /// No description provided for @aiCareAnswers.
+  ///
+  /// In en, this message translates to:
+  /// **'Care answers for {name}. Not a diagnosis.'**
+  String aiCareAnswers(String name);
+
+  /// No description provided for @aiCareAnswersAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Care answers for your pet. Not a diagnosis.'**
+  String get aiCareAnswersAll;
+
+  /// No description provided for @clinicsWithin.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 clinic} other{{count} clinics}} within {km} km'**
+  String clinicsWithin(int count, int km);
+
+  /// No description provided for @placesWithin.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 place} other{{count} places}} within {km} km'**
+  String placesWithin(int count, int km);
+
+  /// No description provided for @feeWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation'**
+  String get feeWord;
+
+  /// No description provided for @bookAVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Book a visit'**
+  String get bookAVisit;
+
+  /// No description provided for @placeWhere.
+  ///
+  /// In en, this message translates to:
+  /// **'{kind} in {area}, {city}. {distance} away.'**
+  String placeWhere(String kind, String area, String city, String distance);
+
+  /// No description provided for @serviceWithVet.
+  ///
+  /// In en, this message translates to:
+  /// **'{service} with {vet}'**
+  String serviceWithVet(String service, String vet);
+
+  /// No description provided for @serviceForPet.
+  ///
+  /// In en, this message translates to:
+  /// **'{service} for {pet}'**
+  String serviceForPet(String service, String pet);
+
+  /// No description provided for @bookingIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking ID'**
+  String get bookingIdLabel;
+
+  /// No description provided for @howWasVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'How was the visit?'**
+  String get howWasVisit;
+
+  /// No description provided for @reviewWhoCan.
+  ///
+  /// In en, this message translates to:
+  /// **'Only people who visited can review. The place can reply.'**
+  String get reviewWhoCan;
+
+  /// No description provided for @bookAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Book again'**
+  String get bookAgain;
+
+  /// No description provided for @bookAgainSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Same place, same service'**
+  String get bookAgainSub;
+
+  /// No description provided for @addToCalendarSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Save the time in your phone\'s calendar'**
+  String get addToCalendarSub;
+
+  /// No description provided for @getHelpSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong? Tell us'**
+  String get getHelpSub;
+
+  /// No description provided for @dueBoosters.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s vaccines are due on {date}'**
+  String dueBoosters(String name, String date);
+
+  /// No description provided for @dueBoostersSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Book them in one visit at a clinic near you.'**
+  String get dueBoostersSub;
+
+  /// No description provided for @bookVaccines.
+  ///
+  /// In en, this message translates to:
+  /// **'Book vaccines'**
+  String get bookVaccines;
+
+  /// No description provided for @requestCancels.
+  ///
+  /// In en, this message translates to:
+  /// **'They reply by {when}, or the request cancels itself.'**
+  String requestCancels(String when);
+
+  /// No description provided for @discountWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount'**
+  String get discountWord;
+
+  /// No description provided for @shopDeliveryBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery by {date}'**
+  String shopDeliveryBy(String date);
+
+  /// No description provided for @shopDeliverTo.
+  ///
+  /// In en, this message translates to:
+  /// **'To PIN code {pin}.'**
+  String shopDeliverTo(String pin);
+
+  /// No description provided for @shopSoldByName.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold by {seller}'**
+  String shopSoldByName(String seller);
+
+  /// No description provided for @shopReturnsDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}-day returns'**
+  String shopReturnsDays(int days);
+
+  /// No description provided for @shopNoReturns.
+  ///
+  /// In en, this message translates to:
+  /// **'No returns'**
+  String get shopNoReturns;
+
+  /// No description provided for @shopNoAllergen.
+  ///
+  /// In en, this message translates to:
+  /// **'No {allergen}, which {pet} avoids.'**
+  String shopNoAllergen(String allergen, String pet);
+
+  /// No description provided for @changeWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get changeWord;
+
+  /// No description provided for @reviewsLink.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 review} other{{count} reviews}}'**
+  String reviewsLink(int count);
+
+  /// No description provided for @youAreRole.
+  ///
+  /// In en, this message translates to:
+  /// **'You are the {role}'**
+  String youAreRole(String role);
+
+  /// No description provided for @birthdayOnDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday {date}'**
+  String birthdayOnDate(String date);
+
+  /// No description provided for @qrActiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'QR tag is active'**
+  String get qrActiveTitle;
+
+  /// No description provided for @qrActiveSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone who finds {name} can reach you. Your number stays hidden.'**
+  String qrActiveSub(String name);
+
+  /// No description provided for @whoLooksAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'Who looks after {name}'**
+  String whoLooksAfter(String name);
+
+  /// No description provided for @medCardBrand.
+  ///
+  /// In en, this message translates to:
+  /// **'PawSetu medical card'**
+  String get medCardBrand;
+
+  /// No description provided for @worksOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Works offline'**
+  String get worksOffline;
+
+  /// No description provided for @savePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Save PDF'**
+  String get savePdf;
+
+  /// No description provided for @fullHealthReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Full health report'**
+  String get fullHealthReport;
+
+  /// No description provided for @fullHealthReportSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccines, medicines, visits, weight chart'**
+  String get fullHealthReportSub;
+
+  /// No description provided for @editDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit details'**
+  String get editDetails;
+
+  /// No description provided for @editDetailsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies, microchip, clinic'**
+  String get editDetailsSub;
+
+  /// No description provided for @roleOwnerDoes.
+  ///
+  /// In en, this message translates to:
+  /// **'Can do everything'**
+  String get roleOwnerDoes;
+
+  /// No description provided for @roleCoownerDoes.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything except deleting the pet'**
+  String get roleCoownerDoes;
+
+  /// No description provided for @roleCarerDoes.
+  ///
+  /// In en, this message translates to:
+  /// **'Logs routine, gives medicines, books services'**
+  String get roleCarerDoes;
+
+  /// No description provided for @roleViewerDoes.
+  ///
+  /// In en, this message translates to:
+  /// **'Sees everything, logs walks and meals'**
+  String get roleViewerDoes;
+
+  /// No description provided for @languageNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes the whole app at once, including reminders and PDFs.'**
+  String get languageNote;
+
+  /// No description provided for @textSizeNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Layouts stay tidy up to 200%.'**
+  String get textSizeNote;
+
+  /// No description provided for @plusYouHaveShort.
+  ///
+  /// In en, this message translates to:
+  /// **'You have Plus'**
+  String get plusYouHaveShort;
+
+  /// No description provided for @plusMemberSince.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, member since {date}'**
+  String plusMemberSince(String name, String date);
+
+  /// No description provided for @plusRenewsOnLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews on'**
+  String get plusRenewsOnLabel;
+
+  /// No description provided for @plusEndsOnLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends on'**
+  String get plusEndsOnLabel;
+
+  /// No description provided for @plusYearlyPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly plan'**
+  String get plusYearlyPlan;
+
+  /// No description provided for @plusMonthlyPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly plan'**
+  String get plusMonthlyPlan;
+
+  /// No description provided for @plusPriceYear.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} a year'**
+  String plusPriceYear(String amount);
+
+  /// No description provided for @plusPriceMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} a month'**
+  String plusPriceMonth(String amount);
+
+  /// No description provided for @plusNextPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Next payment {amount} on {date}'**
+  String plusNextPayment(String amount, String date);
+
+  /// No description provided for @plusCancelPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel plan'**
+  String get plusCancelPlan;
+
+  /// No description provided for @plusCancelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel your plan?'**
+  String get plusCancelTitle;
+
+  /// No description provided for @plusNewHere.
+  ///
+  /// In en, this message translates to:
+  /// **'New here? {days} days free'**
+  String plusNewHere(int days);
+
+  /// No description provided for @plusNewHereBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Free plan members can try Plus before paying.'**
+  String get plusNewHereBody;
+
+  /// No description provided for @plusWhatYouGet.
+  ///
+  /// In en, this message translates to:
+  /// **'What you get'**
+  String get plusWhatYouGet;
+
+  /// No description provided for @plusNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get plusNo;
+
+  /// No description provided for @plusSwitchMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Change to the monthly plan?'**
+  String get plusSwitchMonthly;
+
+  /// No description provided for @plusSwitchYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Change to the yearly plan?'**
+  String get plusSwitchYearly;
+
+  /// No description provided for @plusSwitchBody.
+  ///
+  /// In en, this message translates to:
+  /// **'From {date} you pay {price}. Nothing is charged today.'**
+  String plusSwitchBody(String date, String price);
+
+  /// No description provided for @plusSwitched.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan changed'**
+  String get plusSwitched;
+
+  /// No description provided for @cartDeliverToLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Deliver to {label}'**
+  String cartDeliverToLabel(String label);
+
+  /// No description provided for @cartItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Items ({count})'**
+  String cartItems(int count);
+
+  /// No description provided for @cartFreeWithPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Free with Plus'**
+  String get cartFreeWithPlus;
+
+  /// No description provided for @cartApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied'**
+  String get cartApplied;
+
+  /// No description provided for @cartSaveOnOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'You save {amount} on this order'**
+  String cartSaveOnOrder(String amount);
+
+  /// No description provided for @cartDemoPayNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo payment. No money is charged. You can try a successful, failed or pending payment.'**
+  String get cartDemoPayNote;
+
+  /// No description provided for @cartBillShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill'**
+  String get cartBillShort;
+
+  /// No description provided for @cartWindowShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{from} to {to}'**
+  String cartWindowShort(String from, String to);
+
+  /// No description provided for @cartCodNote.
+  ///
+  /// In en, this message translates to:
+  /// **'You pay when the order arrives.'**
+  String get cartCodNote;
+
+  /// No description provided for @vaultSearchDocsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search documents and tags'**
+  String get vaultSearchDocsHint;
+
+  /// No description provided for @vaultScanOrUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan or upload'**
+  String get vaultScanOrUpload;
+
+  /// No description provided for @vaultTypeShortVaccination.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificates'**
+  String get vaultTypeShortVaccination;
+
+  /// No description provided for @vaultTypeShortInsurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance'**
+  String get vaultTypeShortInsurance;
+
+  /// No description provided for @vaultTypeShortLab.
+  ///
+  /// In en, this message translates to:
+  /// **'Lab reports'**
+  String get vaultTypeShortLab;
+
+  /// No description provided for @vaultTypeShortPrescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescriptions'**
+  String get vaultTypeShortPrescription;
+
+  /// No description provided for @vaultTypeShortInvoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Bills'**
+  String get vaultTypeShortInvoice;
+
+  /// No description provided for @vaultTypeShortLicence.
+  ///
+  /// In en, this message translates to:
+  /// **'Licences'**
+  String get vaultTypeShortLicence;
+
+  /// No description provided for @vaultTypeShortAdoption.
+  ///
+  /// In en, this message translates to:
+  /// **'Adoption'**
+  String get vaultTypeShortAdoption;
+
+  /// No description provided for @vaultTypeShortTravel.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel'**
+  String get vaultTypeShortTravel;
+
+  /// No description provided for @vaultTypeShortOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get vaultTypeShortOther;
+
+  /// No description provided for @vaultExpiresNote.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} expires on {date}.'**
+  String vaultExpiresNote(String title, String date);
+
+  /// No description provided for @vaultExpiredNote.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} expired on {date}.'**
+  String vaultExpiredNote(String title, String date);
+
+  /// No description provided for @vaultRenewHintVaccine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the new one after {pet}\'s booster.'**
+  String vaultRenewHintVaccine(String pet);
+
+  /// No description provided for @vaultRenewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the new one when you get it.'**
+  String get vaultRenewHint;
+
+  /// No description provided for @vaultSharedWithVet.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared with a vet'**
+  String get vaultSharedWithVet;
+
+  /// No description provided for @vaultAllLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'All links'**
+  String get vaultAllLinks;
+
+  /// No description provided for @vaultRevokeShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoke'**
+  String get vaultRevokeShort;
+
+  /// No description provided for @vaultPolicyLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, {cover} cover'**
+  String vaultPolicyLine(String name, String cover);
+
+  /// No description provided for @vaultOpenClaimLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 claim} other{{count} claims}} {status}: {amount}, {done} of {total} documents added'**
+  String vaultOpenClaimLine(
+    int count,
+    String status,
+    String amount,
+    int done,
+    int total,
+  );
+
+  /// No description provided for @vaultRenewsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Renews {date}'**
+  String vaultRenewsOn(String date);
+
+  /// No description provided for @vaultAddInsurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your pet\'s insurance'**
+  String get vaultAddInsurance;
+
+  /// No description provided for @vaultAddInsuranceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the policy, renewal date and claims in one place.'**
+  String get vaultAddInsuranceBody;
+
+  /// No description provided for @vaultWhatViewOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'{what}, view only'**
+  String vaultWhatViewOnly(String what);
+
+  /// No description provided for @vaultStorageOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {limit}'**
+  String vaultStorageOf(String used, String limit);
+
+  /// No description provided for @albumOnThisDayAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'On this day, {ago}'**
+  String albumOnThisDayAgo(String ago);
+
+  /// No description provided for @albumMilestoneTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone: {name}'**
+  String albumMilestoneTag(String name);
+
+  /// No description provided for @albumVideoUpTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Videos up to {length}.'**
+  String albumVideoUpTo(String length);
+
+  /// No description provided for @albumVideoUpToPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Videos up to {length} with Plus.'**
+  String albumVideoUpToPlus(String length);
+
+  /// No description provided for @byPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'by {name}'**
+  String byPerson(String name);
+
+  /// No description provided for @logSleepShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get logSleepShort;
+
+  /// No description provided for @showToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today only'**
+  String get showToday;
+
+  /// No description provided for @pPlaceAndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'{place}, {date}'**
+  String pPlaceAndDate(String place, String date);
+
+  /// No description provided for @pNextAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Next at {time}'**
+  String pNextAt(String time);
+
+  /// No description provided for @pAllAnswered.
+  ///
+  /// In en, this message translates to:
+  /// **'All answered'**
+  String get pAllAnswered;
+
+  /// No description provided for @pAfterFee.
+  ///
+  /// In en, this message translates to:
+  /// **'After {percent}% platform fee'**
+  String pAfterFee(int percent);
+
+  /// No description provided for @pWithOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'with {owner}'**
+  String pWithOwner(String owner);
+
+  /// No description provided for @pThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get pThisWeek;
+
+  /// No description provided for @pEmergencyListing.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency listing'**
+  String get pEmergencyListing;
+
+  /// No description provided for @pSosOpen24.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown in SOS as open 24x7.'**
+  String get pSosOpen24;
+
+  /// No description provided for @pSosOpenNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown in SOS as open now. Not 24x7.'**
+  String get pSosOpenNow;
+
+  /// No description provided for @pSosClosedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown in SOS as closed now. Not 24x7.'**
+  String get pSosClosedNow;
+
+  /// No description provided for @pSosHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Not shown in SOS.'**
+  String get pSosHidden;
+
+  /// No description provided for @pEmergencyListingHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn this off if your clinic does not take emergencies. Pet parents will not see it on the SOS page.'**
+  String get pEmergencyListingHelp;
+
+  /// No description provided for @pNewReview.
+  ///
+  /// In en, this message translates to:
+  /// **'New review'**
+  String get pNewReview;
+
+  /// No description provided for @pOpenQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'Open queue'**
+  String get pOpenQueue;
+
+  /// No description provided for @pHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get pHistory;
+
+  /// No description provided for @pOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get pOpen;
+
+  /// No description provided for @starsOutOf5.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} out of 5 stars'**
+  String starsOutOf5(int count);
+
+  /// No description provided for @selSellerIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Seller in {city}, {date}'**
+  String selSellerIn(String city, String date);
+
+  /// No description provided for @selPackToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack today'**
+  String get selPackToday;
+
+  /// No description provided for @selFirstPayout.
+  ///
+  /// In en, this message translates to:
+  /// **'First payout after delivery'**
+  String get selFirstPayout;
+
+  /// No description provided for @selOrderFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Order {number} for {name}, {place}'**
+  String selOrderFor(String number, String name, String place);
+
+  /// No description provided for @selPlacedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Placed {date}'**
+  String selPlacedOn(String date);
+
+  /// No description provided for @selPrintLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Print label'**
+  String get selPrintLabel;
+
+  /// No description provided for @selStockLeftShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} left.'**
+  String selStockLeftShort(int count);
+
+  /// No description provided for @selSellsPerWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Sells about {count} a week.'**
+  String selSellsPerWeek(int count);
+
+  /// No description provided for @selAddStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Add stock'**
+  String get selAddStock;
+
+  /// No description provided for @selBulkUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload products in bulk'**
+  String get selBulkUpload;
+
+  /// No description provided for @selBulkUploadBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a CSV file for many items at once.'**
+  String get selBulkUploadBody;
+
+  /// No description provided for @admUsersShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get admUsersShort;
+
+  /// No description provided for @admUsersSplit.
+  ///
+  /// In en, this message translates to:
+  /// **'{owners} pet parents, {partners} partners'**
+  String admUsersSplit(int owners, int partners);
+
+  /// No description provided for @admBookings30Short.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings, 30 days'**
+  String get admBookings30Short;
+
+  /// No description provided for @admOrderValue30Short.
+  ///
+  /// In en, this message translates to:
+  /// **'Order value, 30 days'**
+  String get admOrderValue30Short;
+
+  /// No description provided for @admCommission30Short.
+  ///
+  /// In en, this message translates to:
+  /// **'Commission, 30 days'**
+  String get admCommission30Short;
+
+  /// No description provided for @admSos30Short.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS activations, 30 days'**
+  String get admSos30Short;
+
+  /// No description provided for @admWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for you'**
+  String get admWaiting;
+
+  /// No description provided for @admNothingWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing waiting'**
+  String get admNothingWaiting;
+
+  /// No description provided for @admCountClinics.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 clinic} other{{count} clinics}}'**
+  String admCountClinics(int count);
+
+  /// No description provided for @admCountVets.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 vet} other{{count} vets}}'**
+  String admCountVets(int count);
+
+  /// No description provided for @admCountSellers.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 seller} other{{count} sellers}}'**
+  String admCountSellers(int count);
+
+  /// No description provided for @admCountProviders.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 service provider} other{{count} service providers}}'**
+  String admCountProviders(int count);
+
+  /// No description provided for @admTicketsLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{open} open, {progress} in progress'**
+  String admTicketsLine(int open, int progress);
+
+  /// No description provided for @admReportsLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 report to check} other{{count} reports to check}}'**
+  String admReportsLine(int count);
+
+  /// No description provided for @admOutboxTo.
+  ///
+  /// In en, this message translates to:
+  /// **'{channel} to {name}'**
+  String admOutboxTo(String channel, String name);
+
+  /// No description provided for @admOutboxNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here was really sent.'**
+  String get admOutboxNote;
+
+  /// No description provided for @admCountBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 booking} other{{count} bookings}}'**
+  String admCountBookings(int count);
+
+  /// No description provided for @admCountSold.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} sold'**
+  String admCountSold(int count);
+
+  /// No description provided for @admComplaintsShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaints'**
+  String get admComplaintsShort;
+
+  /// No description provided for @themeSystemShort.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeSystemShort;
+
+  /// No description provided for @setReminderChannels.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder channels'**
+  String get setReminderChannels;
+
+  /// No description provided for @setReminderChannelsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Push, email, SMS and WhatsApp for each reminder'**
+  String get setReminderChannelsHint;
+
+  /// No description provided for @setQuietRange.
+  ///
+  /// In en, this message translates to:
+  /// **'{from} to {to}'**
+  String setQuietRange(String from, String to);
+
+  /// No description provided for @setQuietOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get setQuietOff;
+
+  /// No description provided for @setSosTap.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to confirm SOS'**
+  String get setSosTap;
+
+  /// No description provided for @setSosTapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Instead of holding for 2 seconds. On with Easy mode.'**
+  String get setSosTapHint;
+
+  /// No description provided for @setAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get setAccount;
+
+  /// No description provided for @setEmailPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Email and password'**
+  String get setEmailPassword;
+
+  /// No description provided for @setAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About PawSetu'**
+  String get setAbout;
+
+  /// No description provided for @setAboutDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}, demo mode'**
+  String setAboutDemo(String version);
+
+  /// No description provided for @setResetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a link to change your password'**
+  String get setResetPassword;
+
+  /// No description provided for @setResetSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a link to {email}.'**
+  String setResetSent(String email);
+
+  /// No description provided for @setNoEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'No email added'**
+  String get setNoEmail;
+
+  /// No description provided for @setNoPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'No phone number added'**
+  String get setNoPhone;
+
+  /// No description provided for @whenQ.
+  ///
+  /// In en, this message translates to:
+  /// **'When?'**
+  String get whenQ;
+
+  /// No description provided for @bookPayNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay online or at the clinic. Free to cancel up to {hours} hours before.'**
+  String bookPayNote(int hours);
+
+  /// No description provided for @bookPickTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a time'**
+  String get bookPickTime;
+
+  /// No description provided for @vetYearsReg.
+  ///
+  /// In en, this message translates to:
+  /// **'{years, plural, =1{1 year} other{{years} years}}. Reg. no. {no}'**
+  String vetYearsReg(int years, String no);
+
+  /// No description provided for @verifiedVisits.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 verified visit} other{{count} verified visits}}'**
+  String verifiedVisits(int count);
+
+  /// No description provided for @verifiedVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified visit'**
+  String get verifiedVisit;
+
+  /// No description provided for @replyFromClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply from the clinic:'**
+  String get replyFromClinic;
+
+  /// No description provided for @whereToFind.
+  ///
+  /// In en, this message translates to:
+  /// **'Where to find us'**
+  String get whereToFind;
+
+  /// No description provided for @showFewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Show fewer'**
+  String get showFewer;
+
+  /// No description provided for @peopleOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of {max} people'**
+  String peopleOf(int count, int max);
+
+  /// No description provided for @familyAway.
+  ///
+  /// In en, this message translates to:
+  /// **'Going away?'**
+  String get familyAway;
+
+  /// No description provided for @familyAwayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Give a pet sitter or walker Carer access that ends by itself on a date you choose.'**
+  String get familyAwayBody;
+
+  /// No description provided for @latestActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest activity'**
+  String get latestActivity;
+
+  /// No description provided for @vaultLockNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Locks itself after 2 minutes. Forgot your PIN? Sign in again to reset it.'**
+  String get vaultLockNote;
 }
 
 class _AppLocalizationsDelegate

@@ -6,6 +6,7 @@ import '../../features/vault/vault_slots.dart';
 export '../../features/sos/sos_slots.dart' show petQrLink;
 import '../theme/tokens.dart';
 import '../widgets/layout.dart';
+import '../theme/ph.dart';
 
 /// Links from a pet's profile to the per-pet sections. Each later phase
 /// replaces its coming-soon link with the real screen.
@@ -21,9 +22,10 @@ class PetSection {
 List<PetSection> petSections(BuildContext context, Pet pet) {
   final l = context.l10n;
   return [
-    PetSection(Icons.favorite_rounded, l.tabHealth, l.petSectionHealth, '/health?pet=${pet.id}', context.paw.error),
-    PetSection(Icons.directions_walk_rounded, l.routine, l.petSectionRoutine, '/pets/${pet.id}/routine', context.colors.primary),
-    PetSection(Icons.lock_rounded, l.documentVault, l.petSectionDocs, petVaultLink(pet.id), context.paw.warning),
-    PetSection(Icons.photo_library_rounded, l.memoryAlbum, l.petSectionMemories, petAlbumLink(pet.id), context.paw.accent),
+    // Red stays for emergencies (UI Design 2), so Health uses the brand teal.
+    PetSection(Ph.heart, l.tabHealth, l.petSectionHealth, '/health?pet=${pet.id}', context.paw.brand),
+    PetSection(Ph.personSimpleWalk, l.routine, l.petSectionRoutine, '/pets/${pet.id}/routine', context.paw.success),
+    PetSection(Ph.lockKey, l.documentVault, l.petSectionDocs, petVaultLink(pet.id), context.paw.accent),
+    PetSection(Ph.images, l.memoryAlbum, l.petSectionMemories, petAlbumLink(pet.id), readableOn(CategoryColors.rose, [context.paw.surface], ratio: 3)),
   ];
 }

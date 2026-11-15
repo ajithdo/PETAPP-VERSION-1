@@ -1,7 +1,7 @@
 /// How the app runs. Chosen at build time with --dart-define, for example:
 ///   flutter run -d chrome --dart-define=BACKEND=emulator
 ///
-/// APP_MODE: demo (Version 1, simulated outside services) or live (Version 2).
+/// APP_MODE: demo (DEMO VERSION 1, simulated outside services) or live (FINAL VERSION).
 /// BACKEND: standalone (in-app demo database), emulator (Firebase Local
 /// Emulator Suite) or firebase (a real Firebase project).
 enum AppMode { demo, live }

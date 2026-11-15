@@ -1,6 +1,6 @@
-/// Simulated document reading for Version 1 (spec 7.9). The sample documents
+/// Simulated document reading for DEMO VERSION 1 (spec 7.9). The sample documents
 /// have realistic printed values; "reading" one returns exactly what is
-/// printed on it. Version 2 swaps this for Gemini via Firebase AI Logic
+/// printed on it. FINAL VERSION swaps this for Gemini via Firebase AI Logic
 /// behind [DocumentReader].
 library;
 
@@ -181,9 +181,9 @@ ExtractedDetails sampleDetails(String key, {required String petName, required Da
       return ExtractedDetails(
         type: 'insurance',
         petName: petName,
-        insurer: 'Shield Pet Cover (sample)',
+        insurer: 'PawCover',
         policyNo: 'SAMPLE-PI-${20431 + petName.length}',
-        cover: 100000,
+        cover: 200000,
         premium: 6499,
         coverStart: on,
         expiry: _plusYears(on, 1).subtract(const Duration(days: 1)),
@@ -262,7 +262,7 @@ String guessTypeFromName(String? fileName) {
   return 'other';
 }
 
-/// Reads documents. V1 = [SimulatedDocumentReader]; V2 = Gemini.
+/// Reads documents. DEMO VERSION 1 = [SimulatedDocumentReader]; FINAL VERSION = Gemini.
 abstract class DocumentReader {
   Future<ExtractedDetails> read({String? sampleKey, String? fileName, required String petName, required DateTime issuedOn});
 }

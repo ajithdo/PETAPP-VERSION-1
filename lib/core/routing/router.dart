@@ -148,7 +148,8 @@ final routerProvider = Provider<GoRouter>((ref) {
           ),
         ],
       ),
-      ...rootRoutes,
+      // Pages outside the five tabs keep the dock or side menu (owners).
+      ..._framed(rootRoutes),
       GoRoute(
         path: '/partner',
         builder: (_, _) => const PartnerShell(section: 'dashboard'),
@@ -175,3 +176,20 @@ final routerProvider = Provider<GoRouter>((ref) {
     errorBuilder: (context, state) => const ComingSoonScreen(title: '', phase: 0, notFound: true),
   );
 });
+
+/// Wraps every page of [routes] (and their child pages) in [SubPageFrame].
+List<RouteBase> _framed(List<RouteBase> routes) => [
+      for (final r in routes)
+        if (r is GoRoute && r.builder != null)
+          GoRoute(
+            path: r.path,
+            name: r.name,
+            redirect: r.redirect,
+            onExit: r.onExit,
+            parentNavigatorKey: r.parentNavigatorKey,
+            builder: (context, state) => SubPageFrame(path: state.uri.path, child: r.builder!(context, state)),
+            routes: _framed(r.routes),
+          )
+        else
+          r,
+    ];

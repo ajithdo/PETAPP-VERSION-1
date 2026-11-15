@@ -14,6 +14,7 @@ import '../data/admin_repository.dart';
 import 'admin_inputs.dart';
 import 'banners.dart';
 import 'support_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Admin catalogue (spec 10): products (active, featured), category
 /// margins, sellers, affiliate partner stores and banners.
@@ -40,7 +41,7 @@ class _AdminCatalogueState extends ConsumerState<AdminCatalogue> {
     };
     return Column(children: [
       ContentWidth(
-        maxWidth: 1000,
+        maxWidth: Space.wideWidth,
         child: Padding(
           padding: const EdgeInsets.only(top: Space.md, bottom: Space.sm),
           child: ChoiceRow<String>(
@@ -98,8 +99,8 @@ class _ProductsTabState extends ConsumerState<_ProductsTab> {
           return ok && (q.isEmpty || '${p.name} ${p.brand} ${sellers[p.sellerId] ?? ''}'.toLowerCase().contains(q));
         }).toList();
         final visible = shown.take(60).toList();
-        return PageBody(maxWidth: 1000, children: [
-          PawTextField(label: l.admSearchProducts, prefixIcon: Icons.search_rounded, onChanged: (v) => setState(() => _q = v)),
+        return PageBody(maxWidth: Space.wideWidth, children: [
+          PawTextField(label: l.admSearchProducts, prefixIcon: Ph.magnifyingGlass, onChanged: (v) => setState(() => _q = v)),
           const SizedBox(height: Space.sm),
           ChoiceRow<String>(
             options: const ['all', 'featured', 'hidden', 'low', 'affiliate'],
@@ -162,7 +163,7 @@ class _ProductTile extends ConsumerWidget {
           IconButton(
             tooltip: featured ? l.admUnfeature : l.admFeature,
             onPressed: () => set({'featured': !featured}),
-            icon: Icon(featured ? Icons.star_rounded : Icons.star_border_rounded, color: featured ? context.paw.accent : null),
+            icon: Icon(featured ? Ph.starFill : Ph.star, color: featured ? context.paw.accent : null),
           ),
           Semantics(
             label: l.admShowInShop,
@@ -184,7 +185,7 @@ class _CategoriesTab extends ConsumerWidget {
     final l = context.l10n;
     final cfg = ref.watch(appSettingsDocProvider).value;
     final s = ShopSettings.fromConfig(cfg);
-    return PageBody(maxWidth: 1000, children: [
+    return PageBody(maxWidth: Space.wideWidth, children: [
       InfoNote(l.admCategoryNote(s.foodMarginPercent.toString(), s.otherMarginPercent.toString())),
       const SizedBox(height: Space.md),
       for (final c in shopCategories)
@@ -203,7 +204,7 @@ class _CategoriesTab extends ConsumerWidget {
                 ]),
               ),
               TextButton.icon(
-                icon: const Icon(Icons.edit_rounded, size: 18),
+                icon: const Icon(Ph.pencilSimple, size: IconSizes.chip),
                 label: Text(l.edit),
                 onPressed: () async {
                   final v = await askNumber(context,
@@ -233,7 +234,7 @@ class _SellersTab extends ConsumerWidget {
       value: sellers,
       data: (raw) {
         final list = [for (final m in raw) Seller(m['id'] as String, m)]..sort((a, b) => a.name.compareTo(b.name));
-        return PageBody(maxWidth: 1000, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           InfoNote(l.admSellerNote),
           const SizedBox(height: Space.md),
           for (final s in list)
@@ -242,7 +243,7 @@ class _SellersTab extends ConsumerWidget {
               child: PawCard(
                 padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
                 child: Row(children: [
-                  const CircleAvatar(child: Icon(Icons.storefront_rounded, size: 20)),
+                  const CircleAvatar(child: Icon(Ph.storefront, size: IconSizes.md)),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -260,7 +261,7 @@ class _SellersTab extends ConsumerWidget {
                   StatusChip(partnerStatusLabel(context, s.status), tone: partnerStatusTone(s.status)),
                   IconButton(
                     tooltip: l.admEditMargin,
-                    icon: const Icon(Icons.percent_rounded),
+                    icon: const Icon(Ph.percent),
                     onPressed: () async {
                       final v = await askNumber(context,
                           title: l.admMarginFor(s.name), initial: s.commissionPercent is num ? (s.commissionPercent as num).toInt() : null, suffix: '%', allowEmpty: true, max: 90, helper: l.admEmptyDefault);
@@ -304,10 +305,10 @@ class _PlacesTabState extends ConsumerState<_PlacesTab> {
     ]..sort((a, b) => '${a.$3['name']}'.compareTo('${b.$3['name']}'));
     final q = _q.trim().toLowerCase();
     final shown = q.isEmpty ? all : all.where((e) => '${e.$3['name']} ${e.$3['city'] ?? ''}'.toLowerCase().contains(q)).toList();
-    return PageBody(maxWidth: 1000, children: [
+    return PageBody(maxWidth: Space.wideWidth, children: [
       InfoNote(l.admPlacesNote),
       const SizedBox(height: Space.md),
-      PawTextField(label: l.searchByNameOrArea, prefixIcon: Icons.search_rounded, onChanged: (v) => setState(() => _q = v)),
+      PawTextField(label: l.searchByNameOrArea, prefixIcon: Ph.magnifyingGlass, onChanged: (v) => setState(() => _q = v)),
       const SizedBox(height: Space.md),
       for (final (col, kind, m) in shown.take(60))
         Padding(
@@ -315,7 +316,7 @@ class _PlacesTabState extends ConsumerState<_PlacesTab> {
           child: PawCard(
             padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
             child: Row(children: [
-              CircleAvatar(child: Icon(partnerKindIcon(kind), size: 20)),
+              CircleAvatar(child: Icon(partnerKindIcon(kind), size: IconSizes.md)),
               const SizedBox(width: Space.md),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -334,7 +335,7 @@ class _PlacesTabState extends ConsumerState<_PlacesTab> {
               ),
               IconButton(
                 tooltip: l.admEditMargin,
-                icon: const Icon(Icons.percent_rounded),
+                icon: const Icon(Ph.percent),
                 onPressed: () async {
                   final v = await askNumber(context,
                       title: l.admRateFor('${m['name'] ?? ''}'),
@@ -368,7 +369,7 @@ class _PartnersTab extends ConsumerWidget {
       value: partners,
       data: (raw) {
         final list = [for (final m in raw) PartnerStore(m['id'] as String, m)]..sort((a, b) => a.name.compareTo(b.name));
-        return PageBody(maxWidth: 1000, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           InfoNote(l.admPartnersNote),
           const SizedBox(height: Space.md),
           for (final p in list)
@@ -378,7 +379,7 @@ class _PartnersTab extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
                 onTap: () => _editPartner(context, ref, p),
                 child: Row(children: [
-                  const CircleAvatar(child: Icon(Icons.link_rounded, size: 20)),
+                  const CircleAvatar(child: Icon(Ph.link, size: IconSizes.md)),
                   const SizedBox(width: Space.md),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -387,12 +388,12 @@ class _PartnersTab extends ConsumerWidget {
                       Text(l.admPartnerLine('${p.commissionPercent}', p.clicks), style: context.text.bodySmall),
                     ]),
                   ),
-                  const Icon(Icons.edit_rounded),
+                  const Icon(Ph.pencilSimple),
                 ]),
               ),
             ),
           const SizedBox(height: Space.sm),
-          SecondaryButton(label: l.admAddPartner, icon: Icons.add_rounded, onPressed: () => _editPartner(context, ref, null)),
+          SecondaryButton(label: l.admAddPartner, icon: Ph.plus, onPressed: () => _editPartner(context, ref, null)),
         ]);
       },
     );
@@ -445,7 +446,7 @@ class _BannersTab extends ConsumerWidget {
     final banners = ref.watch(bannersProvider);
     return AsyncView<List<PromoBannerData>>(
       value: banners,
-      data: (list) => PageBody(maxWidth: 1000, children: [
+      data: (list) => PageBody(maxWidth: Space.wideWidth, children: [
         InfoNote(l.admBannersNote),
         const SizedBox(height: Space.md),
         if (list.isEmpty) EmptyState(title: l.admNothingHere, compact: true),
@@ -457,12 +458,12 @@ class _BannersTab extends ConsumerWidget {
                 PromoBanner(banner: b, preview: true),
                 const SizedBox(height: Space.sm),
                 Row(children: [
-                  StatusChip(b.placement == 'shop' ? l.admPlaceShop : l.admPlaceHome, icon: b.placement == 'shop' ? Icons.storefront_rounded : Icons.home_rounded),
+                  StatusChip(b.placement == 'shop' ? l.admPlaceShop : l.admPlaceHome, icon: b.placement == 'shop' ? Ph.storefront : Ph.house),
                   const SizedBox(width: Space.xs),
-                  StatusChip(bannerAudienceLabel(context, b.audience), icon: Icons.people_rounded),
+                  StatusChip(bannerAudienceLabel(context, b.audience), icon: Ph.usersFill),
                   const SizedBox(width: Space.sm),
                   if (b.link.isNotEmpty) Expanded(child: Text(b.link, style: context.text.bodySmall, maxLines: 1, overflow: TextOverflow.ellipsis)) else const Spacer(),
-                  IconButton(tooltip: l.edit, icon: const Icon(Icons.edit_rounded), onPressed: () => editBanner(context, ref, b)),
+                  IconButton(tooltip: l.edit, icon: const Icon(Ph.pencilSimple), onPressed: () => editBanner(context, ref, b)),
                   Semantics(
                     label: l.admBannerShown,
                     child: Switch(
@@ -478,7 +479,7 @@ class _BannersTab extends ConsumerWidget {
               ]),
             ),
           ),
-        SecondaryButton(label: l.admNewBanner, icon: Icons.add_rounded, onPressed: () => editBanner(context, ref, null)),
+        SecondaryButton(label: l.admNewBanner, icon: Ph.plus, onPressed: () => editBanner(context, ref, null)),
       ]),
     );
   }

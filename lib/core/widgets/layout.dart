@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/gen/app_localizations.dart';
 import '../theme/tokens.dart';
+import '../theme/ph.dart';
 
 extension L10nX on BuildContext {
   AppLocalizations get l10n => AppLocalizations.of(this);
@@ -68,15 +69,20 @@ class PageBody extends StatelessWidget {
 
 /// Lays children in a responsive grid: 1 column on phones, more on wider screens.
 class ResponsiveGrid extends StatelessWidget {
-  const ResponsiveGrid({super.key, required this.children, this.minItemWidth = 320, this.spacing = Space.md});
+  const ResponsiveGrid({super.key, required this.children, this.minItemWidth = 320, this.spacing = Space.md, this.minColumns = 1});
   final List<Widget> children;
   final double minItemWidth;
   final double spacing;
 
+  /// At least this many columns at normal text sizes (number tiles sit two
+  /// across on phones, UI Design 6); one column with big text.
+  final int minColumns;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, c) {
-      final cols = (c.maxWidth / minItemWidth).floor().clamp(1, 4);
+      final floor = MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 1 : minColumns;
+      final cols = (c.maxWidth / minItemWidth).floor().clamp(floor, 4);
       final w = (c.maxWidth - spacing * (cols - 1)) / cols;
       return Wrap(
         spacing: spacing,
@@ -90,13 +96,16 @@ class ResponsiveGrid extends StatelessWidget {
 /// Equal-width tiles in rows of [columns]. Each row is as tall as its
 /// tallest tile, so tiles grow with big text (200%) instead of cutting it.
 class TileGrid extends StatelessWidget {
-  const TileGrid({super.key, required this.columns, required this.children, this.spacing = Space.md, this.minTileHeight = 0});
+  const TileGrid({super.key, required this.columns, required this.children, this.spacing = Space.md, this.minTileHeight = 0, this.rowSpacing});
   final int columns;
   final List<Widget> children;
   final double spacing;
 
   /// Keeps short tiles from looking squashed at normal text size.
   final double minTileHeight;
+
+  /// Space between rows (defaults to [spacing]).
+  final double? rowSpacing;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +126,7 @@ class TileGrid extends StatelessWidget {
     }
     return Column(children: [
       for (var r = 0; r < rows.length; r++) ...[
-        if (r > 0) SizedBox(height: spacing),
+        if (r > 0) SizedBox(height: rowSpacing ?? spacing),
         rows[r],
       ],
     ]);
@@ -147,7 +156,7 @@ class ChipStrip extends StatelessWidget {
 
 /// "Show more" (or [label]) at the end of a long list.
 class ShowMoreButton extends StatelessWidget {
-  const ShowMoreButton({super.key, required this.onPressed, this.label, this.icon = Icons.expand_more_rounded});
+  const ShowMoreButton({super.key, required this.onPressed, this.label, this.icon = Ph.caretDown});
   final VoidCallback onPressed;
   final String? label;
   final IconData icon;

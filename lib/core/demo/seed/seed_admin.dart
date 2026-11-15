@@ -18,21 +18,21 @@ void seedAdmin(Add add, DateTime now, SeedData data) {
     ..['contentReview'] = <String, String>{}
     ..['vaccineSchedules'] = <String, dynamic>{};
 
-  // ---------- plans: Priya pays monthly, Arjun yearly ----------
+  // ---------- plans: Priya pays yearly (as in the design), Arjun monthly ----------
   final priya = doc('users', 'u_priya');
   final arjun = doc('users', 'u_arjun');
   priya
-    ..['planPeriod'] = 'monthly'
-    ..['autoRenew'] = true
-    ..['trialUsedAt'] = ago(days: 190);
-  arjun
     ..['planPeriod'] = 'yearly'
     ..['autoRenew'] = true
     ..['trialUsedAt'] = ago(days: 350);
+  arjun
+    ..['planPeriod'] = 'monthly'
+    ..['autoRenew'] = true
+    ..['trialUsedAt'] = ago(days: 190);
   final priyaRenews = priya['planRenewsAt'] as DateTime;
   for (var k = 1; k <= 6; k++) {
-    add('payments', 'pay_plus_priya_$k', {
-      'uid': 'u_priya',
+    add('payments', 'pay_plus_arjun_$k', {
+      'uid': 'u_arjun',
       'kind': 'plus',
       'period': 'monthly',
       'amount': 99,
@@ -42,8 +42,8 @@ void seedAdmin(Add add, DateTime now, SeedData data) {
       'at': DateTime(priyaRenews.year, priyaRenews.month - k, priyaRenews.day, 9),
     });
   }
-  add('payments', 'pay_plus_arjun_1', {
-    'uid': 'u_arjun',
+  add('payments', 'pay_plus_priya_1', {
+    'uid': 'u_priya',
     'kind': 'plus',
     'period': 'yearly',
     'amount': 799,

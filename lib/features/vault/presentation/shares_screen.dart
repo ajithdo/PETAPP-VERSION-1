@@ -9,6 +9,7 @@ import '../data/vault_repository.dart';
 import '../domain/share_rules.dart';
 import 'share_sheet.dart';
 import 'vault_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Every link the owner shared: status, who opened it (access log), and
 /// "Turn off link" (spec 7.9 revoke anytime).
@@ -29,9 +30,9 @@ class ShareLinksScreen extends ConsumerWidget {
           final now = DateTime.now();
           final active = links.where((k) => k.isActive(now)).toList();
           final old = links.where((k) => !k.isActive(now)).toList();
-          return PageBody(maxWidth: 820, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.sm),
-            InfoNote(l.vaultLinksNote, icon: Icons.shield_rounded),
+            InfoNote(l.vaultLinksNote, icon: Ph.shield),
             if (active.isNotEmpty) ...[
               SectionHeader(l.vaultLinkActive),
               for (final k in active) _LinkTile(link: k),
@@ -64,7 +65,7 @@ class _LinkTile extends StatelessWidget {
         child: Row(children: [
           CircleAvatar(
             backgroundColor: context.paw.primaryContainer,
-            child: Icon(link.kind == 'album' ? Icons.photo_library_rounded : Icons.description_rounded, color: context.colors.primary),
+            child: Icon(link.kind == 'album' ? Ph.images : Ph.fileText, color: context.colors.primary),
           ),
           const SizedBox(width: Space.md),
           Expanded(
@@ -80,11 +81,11 @@ class _LinkTile extends StatelessWidget {
               const SizedBox(height: Space.xs),
               Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [
                 linkStatusChip(context, link),
-                if (link.hasPin) StatusChip(l.vaultHasPin, tone: ChipTone.info, icon: Icons.pin_rounded),
+                if (link.hasPin) StatusChip(l.vaultHasPin, tone: ChipTone.info, icon: Ph.passwordFill),
               ]),
             ]),
           ),
-          const Icon(Icons.chevron_right_rounded),
+          const Icon(Ph.caretRight),
         ]),
       ),
     );
@@ -113,7 +114,7 @@ Future<void> showLinkDetails(BuildContext context, ShareLink link) {
             Expanded(child: SelectableText(url, maxLines: 2, style: ctx.text.bodySmall?.copyWith(color: ctx.colors.primary))),
             IconButton(
               tooltip: l.copyLink,
-              icon: const Icon(Icons.copy_rounded),
+              icon: const Icon(Ph.copy),
               onPressed: () async {
                 await Clipboard.setData(ClipboardData(text: url));
                 if (ctx.mounted) showToast(ctx, l.copied);
@@ -128,7 +129,7 @@ Future<void> showLinkDetails(BuildContext context, ShareLink link) {
             ListTile(
               contentPadding: EdgeInsets.zero,
               dense: true,
-              leading: Icon(a.ok ? Icons.visibility_rounded : Icons.block_rounded, color: a.ok ? ctx.paw.success : ctx.paw.error),
+              leading: Icon(a.ok ? Ph.eye : Ph.prohibit, color: a.ok ? ctx.paw.success : ctx.paw.error),
               title: Text(a.ok ? l.vaultAccessOk : l.vaultAccessWrongPin),
               subtitle: Text('${Fmt.dateTime(a.at, ctx.lang)} · ${a.device}'),
             ),
@@ -136,7 +137,7 @@ Future<void> showLinkDetails(BuildContext context, ShareLink link) {
         if (active)
           PrimaryButton(
             label: l.vaultRevoke,
-            icon: Icons.link_off_rounded,
+            icon: Ph.linkBreak,
             danger: true,
             onPressed: () async {
               final ok = await confirmAction(ctx, title: l.vaultRevokeQ, body: l.vaultRevokeBody, confirmLabel: l.vaultRevoke);

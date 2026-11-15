@@ -68,7 +68,7 @@ String statusAfterMessage(String current, {required bool fromAdmin}) {
   return current == 'resolved' ? 'open' : current;
 }
 
-/// Refunds in Version 1 are simulated and can't exceed what was paid.
+/// Refunds in DEMO VERSION 1 are simulated and can't exceed what was paid.
 int ticketRefundAmount(int requested, {required int paid}) => requested < 0 ? 0 : (requested > paid ? paid : requested);
 
 class Report {

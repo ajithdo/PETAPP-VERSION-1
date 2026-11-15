@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../core/theme/ph.dart';
+import '../../../core/theme/tokens.dart';
+import '../../../core/utils/format.dart';
+import '../../../core/widgets/widgets.dart';
+import '../../pets/domain/pet.dart';
+import '../data/health_repository.dart';
+import '../domain/vaccine_schedule.dart';
+import 'health_labels.dart';
+import 'health_screen.dart';
+
+/// "Next up" (Home and Health, UI Design 6): what is due soonest, in one
+/// hairline panel. Each row leads with a date leaf (marigold when the first
+/// one is due soon, red when overdue). The first row carries the action
+/// ("Mark given", or "Book" when overdue); the rest open with an arrow.
+class NextUpPanel extends ConsumerWidget {
+  const NextUpPanel({super.key, required this.items, this.showPet = false, this.emptyText});
+
+  /// What to say when nothing is due (defaults to the all-pets line).
+  final String? emptyText;
+
+  /// Most urgent first.
+  final List<(Pet, DueItem)> items;
+  final bool showPet;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final paw = context.paw;
+    if (items.isEmpty) {
+      return PawPanel(
+        child: Row(children: [
+          Icon(Ph.checkCircleFill, color: paw.success),
+          const SizedBox(width: Space.md),
+          Expanded(child: Text(emptyText ?? l.nothingDueAll, style: context.text.bodyMedium)),
+        ]),
+      );
+    }
+    final big = MediaQuery.textScalerOf(context).scale(1) > 1.15;
+    return PawPanel(
+      child: PawList(tight: true, children: [
+        for (final (i, (pet, item)) in items.indexed)
+          () {
+            final overdue = item.status == DoseStatus.overdue;
+            final tone = overdue ? ChipTone.error : (i == 0 ? ChipTone.warning : null);
+            final title = dueTitle(context, item);
+            final when = dueWhen(context, item);
+            final at = item.at;
+            Widget action() => overdue && item.kind == 'vaccine'
+                ? PawButton(label: l.bookWord, kind: BtnKind.ink, onPressed: () => context.go('/book'))
+                : PawButton(label: l.markGiven, kind: BtnKind.line, onPressed: () => openDueItem(context, ref, pet, item));
+            return PawItem(
+              lead: at != null
+                  ? DateBadge(day: '${at.day}', month: Fmt.monthShort(at, context.lang), tone: tone)
+                  : PawTile(icon: dueIcon(item.kind), size: Sizes.dateBadge),
+              title: showPet ? '${pet.name} · $title' : title,
+              sub: when.isEmpty ? statusChip(context, item.status).$1 : when,
+              subWidget: tone == null && !(i == 0 && big)
+                  ? null
+                  : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(
+                        when.isEmpty ? statusChip(context, item.status).$1 : when,
+                        style: tone == null
+                            ? context.text.bodySmall?.copyWith(color: paw.textSecondary)
+                            : context.text.bodySmall?.copyWith(color: overdue ? paw.error : paw.accent, fontWeight: FontWeight.w600),
+                      ),
+                      // With big text the button goes under the words, so a
+                      // long name never breaks in the middle of a word.
+                      if (i == 0 && big) ...[const SizedBox(height: Space.sm), action()],
+                    ]),
+              onTap: () => openDueItem(context, ref, pet, item),
+              trailing: i != 0 || big ? null : action(),
+            );
+          }(),
+      ]),
+    );
+  }
+}

@@ -18,14 +18,17 @@ import '../../../core/widgets/paw_map.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../booking/data/places_repository.dart';
 import '../../booking/presentation/place_finder_screen.dart' show pickArea, searchOriginProvider;
-import '../../health/presentation/health_report.dart' show MedicalSummaryCard;
+import '../../health/data/health_repository.dart';
 import '../../pets/data/pets_repository.dart';
+import '../../pets/domain/pet.dart';
+import '../../pets/presentation/pet_labels.dart';
 import '../data/sos_repository.dart';
 import '../domain/sos_rules.dart';
+import '../../../core/theme/ph.dart';
 
 /// Emergency SOS (spec 7.12), opened after holding the red button for
-/// 2 seconds: exactly two big options, then the pet's medical summary and
-/// first aid. Works on weak internet with the clinics saved on the device.
+/// 2 seconds: one red card that calls the nearest clinic, its address and
+/// map, then the pet's medical summary and first aid. Works on weak internet with the clinics saved on the device.
 class SosScreen extends ConsumerStatefulWidget {
   const SosScreen({super.key, this.petId});
   final String? petId;
@@ -34,15 +37,12 @@ class SosScreen extends ConsumerStatefulWidget {
   ConsumerState<SosScreen> createState() => _SosScreenState();
 }
 
-enum _Open { none, call, address }
-
 class _SosScreenState extends ConsumerState<SosScreen> {
   SosSpot? _spot;
   bool _locating = true;
   bool _logged = false;
   bool _savedOnce = false;
   String? _petId;
-  _Open _open = _Open.call;
   bool _slow = false;
   bool _userChose = false;
   Timer? _slowTimer;
@@ -149,6 +149,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
     if (live.hasValue && live.value!.isNotEmpty) {
       final list = [
         for (final p in live.value!)
+          if (p.sosListed)
           SosClinic(
             id: p.id,
             name: p.name,
@@ -186,89 +187,172 @@ class _SosScreenState extends ConsumerState<SosScreen> {
     final ranked = spot == null ? const <RankedClinic>[] : rankSosClinics(clinics.list, lat: spot.lat, lng: spot.lng, now: DateTime.now());
     final nearest = ranked.isEmpty ? null : ranked.first;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: context.paw.sos,
-        foregroundColor: context.paw.onSos,
-        title: Text(l.sosTitle),
-        leading: IconButton(
-          tooltip: l.close,
-          icon: const Icon(Icons.close_rounded),
-          onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
-        ),
+    final paw = context.paw;
+    final demo = ref.watch(appConfigProvider).isDemo;
+    String state(RankedClinic r) => r.clinic.is24x7 ? l.open24x7 : (r.open ? l.openNow : l.closedNow);
+    // UI Design 6: one red card that calls the nearest clinic, the next
+    // clinics as rows, the nearest clinic's address with its map, the pet's
+    // facts for the vet, and first aid.
+    final callCard = Container(
+      padding: const EdgeInsets.all(Space.lg + Space.xxs),
+      decoration: BoxDecoration(
+        color: paw.sos,
+        borderRadius: BorderRadius.circular(Radii.xxl),
+        boxShadow: [BoxShadow(color: paw.sos.withValues(alpha: Opacities.faded), blurRadius: Space.x3l - Space.sm, spreadRadius: -(Space.xl - Space.xs), offset: const Offset(0, Space.lg + Space.xxs))],
       ),
-      body: PageBody(maxWidth: 640, children: [
-        const SizedBox(height: Space.md),
-        _LocationLine(spot: spot, locating: _locating, onChange: _changeArea, onRetry: _locate),
-        if (clinics.savedAt != null) ...[
-          const SizedBox(height: Space.sm),
-          InfoNote(l.sosSavedClinics(Fmt.dateTime(clinics.savedAt!, context.lang)), icon: Icons.wifi_off_rounded, tone: ChipTone.warning),
-        ],
-        const SizedBox(height: Space.lg),
-        _BigOption(
-          icon: Icons.call_rounded,
-          title: l.sosCallNearest,
-          subtitle: nearest == null ? l.sosFinding : '${nearest.clinic.name} · ${Fmt.km(nearest.km)}',
-          filled: true,
-          expanded: _open == _Open.call,
-          onTap: () => setState(() => _open = _open == _Open.call ? _Open.none : _Open.call),
-        ),
-        if (_open == _Open.call) ...[
-          const SizedBox(height: Space.sm),
-          if (ranked.isEmpty)
-            _locating || spot == null ? const SkeletonList(count: 3, itemHeight: 64) : EmptyState(title: l.sosNoClinics, compact: true)
-          else
-            PawCard(
-              padding: const EdgeInsets.symmetric(vertical: Space.xs),
-              child: Column(children: [
-                for (final r in ranked.take(6)) _ClinicCallTile(r: r, onCall: () => _call(r.clinic)),
-              ]),
-            ),
-        ],
-        const SizedBox(height: Space.md),
-        _BigOption(
-          icon: Icons.near_me_rounded,
-          title: l.sosGetAddress,
-          subtitle: nearest == null ? l.sosFinding : nearest.clinic.fullAddress,
-          filled: false,
-          expanded: _open == _Open.address,
-          onTap: () => setState(() => _open = _open == _Open.address ? _Open.none : _Open.address),
-        ),
-        if (_open == _Open.address && nearest != null && spot != null) ...[
-          const SizedBox(height: Space.sm),
-          _AddressCard(r: nearest, spot: spot),
-        ],
-        const SizedBox(height: Space.xl),
-        SectionHeader(l.sosShowVet),
-        if (pets.length > 1)
-          Padding(
-            padding: const EdgeInsets.only(bottom: Space.sm),
-            child: Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-              for (final p in pets) ChoiceChip(label: Text(p.name), selected: p.id == petId, onSelected: (_) => setState(() => _petId = p.id)),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(children: [
+          Container(
+            width: Sizes.quickCircle,
+            height: Sizes.quickCircle,
+            decoration: BoxDecoration(color: paw.onSos, shape: BoxShape.circle),
+            child: Icon(Ph.phoneCallFill, size: IconSizes.action, color: paw.sos),
+          ),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Semantics(header: true, child: Text(l.sosCallNearest, style: context.text.headlineMedium?.copyWith(color: paw.onSos))),
+              Text(
+                nearest == null ? l.sosFinding : [nearest.clinic.name, Fmt.km(nearest.km), state(nearest).toLowerCase()].join(', '),
+                style: context.text.bodyMedium?.copyWith(color: paw.onSos),
+              ),
             ]),
           ),
-        if (petId != null) MedicalSummaryCard(petId: petId) else EmptyState(title: l.noPetsTitle, compact: true),
+        ]),
         const SizedBox(height: Space.lg),
-        PawCard(
-          onTap: () => context.push('/first-aid'),
-          child: Row(children: [
-            Icon(Icons.medical_services_rounded, color: context.paw.sos, size: 32),
-            const SizedBox(width: Space.md),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(l.firstAidTitle, style: context.text.titleMedium),
-                Text(l.firstAidOfflineHint, style: context.text.bodySmall),
-              ]),
+        Semantics(
+          button: true,
+          enabled: nearest != null,
+          label: nearest == null ? l.sosCallNearest : l.sosCallClinic(nearest.clinic.name),
+          excludeSemantics: true,
+          child: Material(
+            color: paw.onSos,
+            shape: const StadiumBorder(),
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              onTap: nearest == null ? null : () => _call(nearest.clinic),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: TapTarget.easy),
+                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Icon(Ph.phoneFill, size: IconSizes.md, color: paw.error),
+                  const SizedBox(width: Space.sm),
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(nearest == null ? l.sosFinding : l.sosCallNumber(nearest.clinic.callNumber), maxLines: 1, style: context.text.titleSmall?.copyWith(color: paw.error)),
+                    ),
+                  ),
+                ]),
+              ),
             ),
-            const Icon(Icons.chevron_right_rounded),
-          ]),
+          ),
         ),
-        const SizedBox(height: Space.xxl),
       ]),
+    );
+    final others = ranked.skip(1).take(5).toList();
+    final Widget otherClinics = ranked.isEmpty
+        ? (_locating || spot == null ? const SkeletonList(count: 2, itemHeight: Sizes.listRow) : EmptyState(title: l.sosNoClinics, compact: true))
+        : others.isEmpty
+            ? const SizedBox.shrink()
+            : PawPanel(
+                padding: PawPanel.listPadding,
+                child: PawList(children: [
+                  for (final r in others)
+                    PawItem(
+                      title: r.clinic.name,
+                      subWidget: Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.xs + Space.xxs, runSpacing: Space.xxs, children: [
+                        PawTag(state(r), kind: r.clinic.is24x7 || r.open ? TagKind.green : TagKind.neutral),
+                        Text('${r.clinic.area}, ${Fmt.km(r.km)}', style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+                      ]),
+                      trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                        IconButton(
+                          tooltip: l.mapView,
+                          onPressed: () => openDirections(r.clinic.lat, r.clinic.lng, label: r.clinic.name),
+                          style: IconButton.styleFrom(
+                            shape: CircleBorder(side: BorderSide(color: context.tint.line2, width: Strokes.strong)),
+                            minimumSize: const Size.square(Sizes.topControl),
+                            fixedSize: const Size.square(Sizes.topControl),
+                            padding: EdgeInsets.zero,
+                            tapTargetSize: MaterialTapTargetSize.padded,
+                          ),
+                          icon: Icon(Ph.navigationArrow, size: IconSizes.md, color: paw.textPrimary),
+                        ),
+                        const SizedBox(width: Space.sm),
+                        PawButton(label: l.call, semanticLabel: l.sosCallClinic(r.clinic.name), icon: Ph.phoneFill, kind: BtnKind.ink, onPressed: () => _call(r.clinic)),
+                      ]),
+                    ),
+                ]),
+              );
+    final left = <Widget>[
+      callCard,
+      const SizedBox(height: Space.lg),
+      otherClinics,
+      if (demo && nearest != null) ...[
+        const SizedBox(height: Space.lg),
+        InfoNote(l.sosDemoCall(nearest.clinic.callNumber), icon: Ph.flask, tone: ChipTone.accent),
+      ],
+    ];
+    final pet = petId == null ? null : pets.where((p) => p.id == petId).firstOrNull;
+    final right = <Widget>[
+      if (nearest != null && spot != null) _AddressCard(r: nearest, spot: spot),
+      if (nearest != null && spot != null) const SizedBox(height: Space.lg),
+      if (pet != null) _VetCard(pet: pet, pets: pets, onPick: (id) => setState(() => _petId = id)) else EmptyState(title: l.noPetsTitle, compact: true),
+      const SizedBox(height: Space.lg),
+      PawPanel(
+        onTap: () => context.push('/first-aid'),
+        semanticLabel: l.firstAidTitle,
+        child: Row(children: [
+          const PawTile(icon: Ph.firstAidKit, tone: Tone.red),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(l.firstAidTitle, style: context.text.labelLarge),
+              Text(l.firstAidOfflineHint, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+            ]),
+          ),
+          const SizedBox(width: Space.md),
+          const Chev(),
+        ]),
+      ),
+    ];
+    final wide = context.screenSize == ScreenSize.desktop;
+    Widget col(List<Widget> c) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: c);
+    return Scaffold(
+      body: SafeArea(
+        child: PageBody(maxWidth: wide ? Space.maxContentWidth : Sizes.sheetMaxWidth, children: [
+          const SizedBox(height: Space.sm),
+          Row(children: [
+            PawIconButton(icon: Ph.x, tooltip: l.close, onPressed: () => context.canPop() ? context.pop() : context.go('/home')),
+            const SizedBox(width: Space.md),
+            Expanded(child: Semantics(header: true, child: Text(l.sosTitle, style: context.text.headlineMedium, maxLines: 2, overflow: TextOverflow.ellipsis))),
+          ]),
+          const SizedBox(height: Space.lg),
+          _LocationLine(spot: spot, locating: _locating, onChange: _changeArea, onRetry: _locate),
+          if (clinics.savedAt != null) ...[
+            const SizedBox(height: Space.sm),
+            InfoNote(l.sosSavedClinics(Fmt.dateTime(clinics.savedAt!, context.lang)), icon: Ph.wifiSlash, tone: ChipTone.warning),
+          ],
+          const SizedBox(height: Space.lg),
+          if (wide)
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(flex: 7, child: col(left)),
+              const SizedBox(width: Space.xl),
+              Expanded(flex: 5, child: col(right)),
+            ])
+          else ...[
+            ...left,
+            const SizedBox(height: Sizes.sectionGap),
+            ...right,
+          ],
+          const SizedBox(height: Space.xxl),
+        ]),
+      ),
     );
   }
 }
 
+/// Where the clinics are counted from, in one quiet line: the place, and a
+/// link to change it. Tapping the icon tries the phone's location again.
 class _LocationLine extends StatelessWidget {
   const _LocationLine({required this.spot, required this.locating, required this.onChange, required this.onRetry});
   final SosSpot? spot;
@@ -279,6 +363,7 @@ class _LocationLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    final paw = context.paw;
     final s = spot;
     final text = s == null
         ? l.sosLocating
@@ -289,105 +374,102 @@ class _LocationLine extends StatelessWidget {
                 SosSource.lastKnown => l.sosUsingLastKnown(Fmt.time(s.at ?? DateTime.now(), context.lang)),
                 SosSource.chosen => l.sosUsingArea(s.label),
               };
-    return PawCard(
-      padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md),
-      child: Row(children: [
-        locating
-            ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
-            : Icon(s?.source == SosSource.gps ? Icons.my_location_rounded : Icons.location_off_rounded,
-                color: s?.source == SosSource.gps ? context.paw.success : context.paw.warning),
-        const SizedBox(width: Space.md),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(text, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
-            if (!locating && s != null && s.source != SosSource.gps) Text(l.sosLocationOffHint, style: context.text.bodySmall),
-          ]),
+    final gps = s?.source == SosSource.gps;
+    return Row(children: [
+      if (locating)
+        const SizedBox(width: IconSizes.md, height: IconSizes.md, child: CircularProgressIndicator(strokeWidth: Strokes.spinner))
+      else
+        Tooltip(
+          message: gps ? '' : l.sosTryLocation,
+          child: InkResponse(
+            onTap: gps ? null : onRetry,
+            radius: IconSizes.lg,
+            child: Icon(gps ? Ph.crosshair : Ph.gpsSlash, size: IconSizes.md, color: gps ? paw.success : paw.textSecondary),
+          ),
         ),
-        if (!locating) ...[
-          if (s?.source != SosSource.gps) IconButton(tooltip: l.sosTryLocation, icon: const Icon(Icons.refresh_rounded), onPressed: onRetry),
-          TextButton(onPressed: onChange, child: Text(l.sosChangeArea)),
+      const SizedBox(width: Space.md),
+      Expanded(child: Text(text, style: context.text.bodySmall?.copyWith(color: paw.textSecondary))),
+      if (!locating) ...[const SizedBox(width: Space.md), TextLink(l.sosChangeArea, onTap: onChange)],
+    ]);
+  }
+}
+
+/// The pet's facts a vet asks for first, on the dark band: who the pet is,
+/// allergies, medicines and the rabies vaccine, with the full medical card
+/// one tap away. With more than one pet, pills choose which.
+class _VetCard extends ConsumerWidget {
+  const _VetCard({required this.pet, required this.pets, required this.onPick});
+  final Pet pet;
+  final List<Pet> pets;
+  final ValueChanged<String> onPick;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final meds = ref.watch(medicinesProvider(pet.id)).value ?? const <Medicine>[];
+    final rabies = (ref.watch(vaccinesProvider(pet.id)).value ?? const []).where((v) => v.key.startsWith('rabies')).toList();
+    final who = [
+      pet.breedName(context.lang).isEmpty ? speciesLabel(context, pet.species) : pet.breedName(context.lang),
+      petAgeLabel(context, pet),
+      if (pet.weightKg != null) Fmt.weight(pet.weightKg!, grams: pet.isBird),
+    ].where((x) => x.isNotEmpty).join(', ');
+    return Container(
+      padding: const EdgeInsets.all(Space.lg + Space.xxs),
+      decoration: BoxDecoration(color: paw.band, borderRadius: BorderRadius.circular(Radii.card)),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Semantics(header: true, child: Text(l.sosShowVet, style: context.text.labelLarge?.copyWith(color: paw.onBand))),
+        if (pets.length > 1) ...[
+          const SizedBox(height: Space.md),
+          Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
+            for (final p in pets)
+              Semantics(
+                button: true,
+                selected: p.id == pet.id,
+                label: p.name,
+                excludeSemantics: true,
+                child: Material(
+                  color: p.id == pet.id ? paw.marigold : paw.marigold.withValues(alpha: 0),
+                  shape: StadiumBorder(side: BorderSide(color: p.id == pet.id ? paw.marigold : context.tint.bandLine)),
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    onTap: () => onPick(p.id),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(minHeight: Sizes.topControl),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: Space.xs + Space.xxs, right: Space.md + Space.xxs),
+                        child: Row(mainAxisSize: MainAxisSize.min, children: [
+                          PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.pillArch * Sizes.archAspect, ring: false),
+                          const SizedBox(width: Space.sm),
+                          Text(p.name, style: context.text.labelLarge?.copyWith(color: p.id == pet.id ? paw.onMarigold : paw.onBand)),
+                        ]),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ]),
         ],
+        const SizedBox(height: Space.md),
+        Text(who, style: context.text.bodySmall?.copyWith(color: paw.onBandMuted)),
+        const SizedBox(height: Space.md),
+        KvList(onDark: true, rows: [
+          (l.allergies, pet.allergies.isEmpty ? l.noKnownAllergies : pet.allergies.join(', '), pet.allergies.isEmpty ? null : Tone.red),
+          (l.medicines, meds.isEmpty ? l.none : meds.map((m) => m.name).join(', '), null),
+          (l.rabiesVaccine, rabies.isEmpty ? l.notRecorded : l.givenOn(Fmt.date(rabies.first.givenDate, context.lang)), null),
+        ]),
+        const SizedBox(height: Space.md),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: PawButton(label: l.openMedicalCard, icon: Ph.identificationCard, kind: BtnKind.cream, onPressed: () => context.push('/pets/${pet.id}/card')),
+        ),
       ]),
     );
   }
 }
 
-class _BigOption extends StatelessWidget {
-  const _BigOption({required this.icon, required this.title, required this.subtitle, required this.filled, required this.expanded, required this.onTap});
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final bool filled;
-  final bool expanded;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final p = context.paw;
-    final fg = filled ? p.onSos : p.sos;
-    return Semantics(
-      button: true,
-      expanded: expanded,
-      child: Material(
-        color: filled ? p.sos : context.colors.surface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.card), side: BorderSide(color: p.sos, width: 2)),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onTap,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 96),
-            child: Padding(
-              padding: const EdgeInsets.all(Space.lg),
-              child: Row(children: [
-                Icon(icon, size: 40, color: fg),
-                const SizedBox(width: Space.lg),
-                Expanded(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                    Text(title, style: context.text.titleLarge?.copyWith(color: fg, fontWeight: FontWeight.w800)),
-                    const SizedBox(height: 2),
-                    Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.text.bodyMedium?.copyWith(color: fg)),
-                  ]),
-                ),
-                Icon(expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded, color: fg),
-              ]),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ClinicCallTile extends StatelessWidget {
-  const _ClinicCallTile({required this.r, required this.onCall});
-  final RankedClinic r;
-  final VoidCallback onCall;
-
-  @override
-  Widget build(BuildContext context) {
-    final l = context.l10n;
-    final c = r.clinic;
-    return ListTile(
-      onTap: onCall,
-      minVerticalPadding: Space.md,
-      title: Text(c.name, style: context.text.titleSmall),
-      subtitle: Padding(
-        padding: const EdgeInsets.only(top: Space.xs),
-        child: Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-          Text(Fmt.km(r.km), style: context.text.bodySmall),
-          StatusChip(c.is24x7 ? l.open24x7 : (r.open ? l.openNow : l.closedNow), tone: r.open ? ChipTone.success : ChipTone.neutral),
-        ]),
-      ),
-      trailing: IconButton.filled(
-        tooltip: l.sosCallClinic(c.name),
-        style: IconButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, minimumSize: const Size(48, 48)),
-        icon: const Icon(Icons.call_rounded),
-        onPressed: onCall,
-      ),
-    );
-  }
-}
-
+/// The nearest clinic's address with a map, and ways to take it elsewhere:
+/// open in Maps, copy, share.
 class _AddressCard extends StatelessWidget {
   const _AddressCard({required this.r, required this.spot});
   final RankedClinic r;
@@ -396,65 +478,70 @@ class _AddressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    final paw = context.paw;
     final c = r.clinic;
     final text = '${c.name}\n${c.fullAddress}\n${c.callNumber}';
+    Future<void> copy() async {
+      await Clipboard.setData(ClipboardData(text: text));
+      if (context.mounted) showToast(context, l.copied);
+    }
+
     return PawCard(
+      padding: EdgeInsets.zero,
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text(c.name, style: context.text.titleMedium),
-        const SizedBox(height: Space.xs),
-        SelectableText(c.fullAddress, style: context.text.bodyMedium),
-        const SizedBox(height: Space.xs),
-        Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
-          Text(l.sosAway(Fmt.km(r.km)), style: context.text.bodySmall),
-          StatusChip(c.is24x7 ? l.open24x7 : (r.open ? l.openNow : l.closedNow), tone: r.open ? ChipTone.success : ChipTone.neutral),
-        ]),
-        const SizedBox(height: Space.md),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(Radii.card),
-          child: SizedBox(
-            height: 180,
-            child: PawMap(
-              center: LatLng(c.lat, c.lng),
-              zoom: 13,
-              interactive: false,
-              fitPoints: [LatLng(c.lat, c.lng), LatLng(spot.lat, spot.lng)],
-              markers: [
-                pinMarker(LatLng(c.lat, c.lng), color: context.paw.sos, icon: Icons.local_hospital_rounded),
-                dotMarker(LatLng(spot.lat, spot.lng), context.colors.primary),
-              ],
+        Padding(
+          padding: const EdgeInsets.fromLTRB(Space.lg, Space.lg, Space.lg, Space.md),
+          child: Row(children: [
+            Container(
+              width: Sizes.quickCircle,
+              height: Sizes.quickCircle,
+              decoration: BoxDecoration(color: paw.textPrimary, shape: BoxShape.circle),
+              child: Icon(Ph.navigationArrowFill, size: IconSizes.action - Space.xxs, color: paw.background),
             ),
+            const SizedBox(width: Space.md),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Semantics(header: true, child: Text(l.sosGetAddress, style: context.text.titleLarge)),
+                SelectableText('${c.name}, ${c.fullAddress}', style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              ]),
+            ),
+          ]),
+        ),
+        SizedBox(
+          height: Sizes.skeletonCard,
+          child: PawMap(
+            center: LatLng(c.lat, c.lng),
+            zoom: 13,
+            interactive: false,
+            fitPoints: [LatLng(c.lat, c.lng), LatLng(spot.lat, spot.lng)],
+            markers: [
+              pinMarker(LatLng(c.lat, c.lng), color: paw.marigold, icon: Ph.firstAid),
+              dotMarker(LatLng(spot.lat, spot.lng), context.tint.sky),
+            ],
           ),
         ),
-        const SizedBox(height: Space.md),
-        PrimaryButton(label: l.openInMaps, icon: Icons.directions_rounded, onPressed: () => openDirections(c.lat, c.lng, label: c.name)),
-        const SizedBox(height: Space.sm),
-        Row(children: [
-          Expanded(
-            child: SecondaryButton(
-              label: l.copy,
-              icon: Icons.copy_rounded,
-              onPressed: () async {
-                await Clipboard.setData(ClipboardData(text: text));
-                if (context.mounted) showToast(context, l.copied);
-              },
+        Padding(
+          padding: const EdgeInsets.fromLTRB(Space.lg, Space.md, Space.lg, Space.lg),
+          child: Row(children: [
+            Expanded(
+              child: PawButton(label: l.openInMaps, icon: Ph.arrowSquareOut, kind: BtnKind.ink, size: BtnSize.regular, block: true, onPressed: () => openDirections(c.lat, c.lng, label: c.name)),
             ),
-          ),
-          const SizedBox(width: Space.sm),
-          Expanded(
-            child: SecondaryButton(
-              label: l.share,
-              icon: Icons.share_rounded,
+            const SizedBox(width: Space.sm),
+            RoundButton(icon: Ph.copy, tooltip: l.copy, onPressed: copy),
+            const SizedBox(width: Space.sm),
+            RoundButton(
+              icon: Ph.shareNetwork,
+              tooltip: l.share,
               onPressed: () async {
                 try {
                   await SharePlus.instance.share(ShareParams(text: text));
                 } catch (_) {
-                  await Clipboard.setData(ClipboardData(text: text));
-                  if (context.mounted) showToast(context, l.copied);
+                  await copy();
                 }
               },
             ),
-          ),
-        ]),
+          ]),
+        ),
       ]),
     );
   }

@@ -18,7 +18,7 @@ Progress lives in docs/PROGRESS.md, technical choices in docs/DECISIONS.md, the 
 - Then update docs/PROGRESS.md, commit to Git ("Phase N complete: ..."), and give me: (a) a 5-line summary, (b) a "what to test" checklist I can follow, (c) anything I must do.
 - If you are stuck on the same error after 3 attempts, stop, explain it in plain words and offer 2 options.
 - Never delete files outside this project. Ask me before anything destructive (force push, deleting data or Firebase projects, resetting Git).
-- Version 2 trigger: if I say "Start Version 2" or "actual final version 2", read section 13 and follow the Live plan, one Live phase (L1-L5) at a time, starting with a plan.
+- FINAL VERSION trigger: if I say "Start FINAL VERSION" (the older "Start Version 2" and "actual final version 2" also count), read section 13 and follow the Live plan, one Live phase (L1-L5) at a time, starting with a plan.
 
 # Project notes for agents (added during setup)
 - Run modes are chosen with --dart-define flags (see lib/core/config/app_config.dart):
@@ -26,3 +26,4 @@ Progress lives in docs/PROGRESS.md, technical choices in docs/DECISIONS.md, the 
   - BACKEND=standalone|emulator|firebase (default standalone). "standalone" runs the whole demo inside the app with an in-memory Firestore seeded from lib/core/demo/seed/. "emulator" uses the Firebase Local Emulator Suite seeded by tools/seed/seed.dart.
 - Use only top-level Firestore collections (no subcollections); parent ids are fields. This keeps rules, queries and the standalone demo persistence simple.
 - Generated code: run `dart run build_runner build -d` after changing freezed/json models, and `flutter gen-l10n` after editing ARB files in lib/core/l10n/.
+- Names (set by the owner, 7 Nov 2026): DEMO VERSION 1 is the demo app (built); FINAL VERSION is the real app with live services (not started; old name "Version 2"). The website looks are UI Design 1 to UI Design 4; UI Design 4 is live. The table with each one's Netlify deploy and saved commit is under "Names" in docs/PROGRESS.md. Use these names when talking to the owner.

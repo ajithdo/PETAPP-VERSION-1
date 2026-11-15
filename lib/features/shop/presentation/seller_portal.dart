@@ -16,9 +16,11 @@ import '../data/order_repository.dart';
 import '../data/shop_repository.dart';
 import '../domain/shop_models.dart';
 import '../domain/shop_rules.dart';
+import 'invoice.dart';
 import 'order_screens.dart';
 import 'product_widgets.dart';
 import 'shop_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Seller portal (spec 7.10 and 9): dashboard, products and stock (with CSV
 /// upload), orders, returns, payouts (demo), reviews and profile.
@@ -46,6 +48,8 @@ class _SellerDashboard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final lang = context.lang;
+    final paw = context.paw;
     final user = ref.watch(currentUserProvider)!;
     final orders = ref.watch(sellerOrdersProvider).value ?? const <ShopOrder>[];
     final now = DateTime.now();
@@ -55,54 +59,166 @@ class _SellerDashboard extends ConsumerWidget {
       final moving = orders.where((o) => o.status == 'packed' || o.status == 'shipped' || o.status == 'out_for_delivery').length;
       final month = orders.where((o) => o.status == 'delivered' && o.createdAt.year == now.year && o.createdAt.month == now.month);
       final earnings = month.fold(0, (a, o) => a + o.payout);
-      final low = products.where((p) => (p.stock ?? 0) <= 5).toList();
+      final low = products.where((p) => (p.stock ?? 0) <= 5).toList()..sort((a, b) => (a.stock ?? 0).compareTo(b.stock ?? 0));
       final returns = orders.where((o) => o.status == 'return_requested').length;
-      return PageBody(children: [
-        const SizedBox(height: Space.md),
-        Text(l.helloPartner(user.name), style: context.text.headlineSmall),
-        Text(s.name, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
-        if (s.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
-        const SizedBox(height: Space.lg),
-        ResponsiveGrid(minItemWidth: 200, children: [
-          StatTile(label: l.selToPack, value: '${toPack.length}', icon: Icons.inventory_2_rounded, color: toPack.isEmpty ? null : context.paw.warning),
-          StatTile(label: l.selOnTheWay, value: '$moving', icon: Icons.local_shipping_rounded),
-          StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Icons.account_balance_wallet_rounded),
-          StatTile(label: l.selLowStock, value: '${low.length}', icon: Icons.warning_amber_rounded, color: low.isEmpty ? null : context.paw.error),
-        ]),
-        if (returns > 0) ...[
-          const SizedBox(height: Space.md),
-          PawCard(
-            onTap: () => context.go('/partner/returns'),
-            borderColor: context.paw.warning,
-            child: Row(children: [
-              Icon(Icons.assignment_return_rounded, color: context.paw.warning),
-              const SizedBox(width: Space.md),
-              Expanded(child: Text(l.selReturnsWaiting(returns))),
-              const Icon(Icons.chevron_right_rounded),
-            ]),
-          ),
-        ],
-        SectionHeader(l.selNewOrders, action: l.seeAll, onAction: () => context.go('/partner/orders')),
-        if (toPack.isEmpty) PawCard(child: Text(l.selNoNewOrders)),
-        for (final o in toPack.take(5)) Padding(padding: const EdgeInsets.only(bottom: Space.sm), child: OrderCard(order: o, sellerView: true)),
+      // Units sold in the last four weeks, to say how fast something sells.
+      final sold = <String, int>{};
+      for (final o in orders.where((o) => o.status != 'cancelled' && now.difference(o.createdAt).inDays < 28)) {
+        for (final i in o.items) {
+          sold[i.productId] = (sold[i.productId] ?? 0) + i.qty;
+        }
+      }
+      final newOrders = <Widget>[
+        SecHead(l.selNewOrders, action: l.seeAll, onAction: () => context.go('/partner/orders')),
+        if (toPack.isEmpty) PawPanel(child: Text(l.selNoNewOrders, style: context.text.bodyMedium?.copyWith(color: paw.textSecondary))),
+        for (final (i, o) in toPack.take(5).indexed) ...[if (i > 0) const SizedBox(height: Space.sm), _NewOrderCard(order: o)],
+      ];
+      final stock = <Widget>[
         if (low.isNotEmpty) ...[
-          SectionHeader(l.selLowStock, action: l.pProducts, onAction: () => context.go('/partner/products')),
-          for (final p in low.take(5))
-            Padding(
-              padding: const EdgeInsets.only(bottom: Space.sm),
-              child: PawCard(
-                onTap: () => context.push('/partner/product/${p.id}'),
-                child: Row(children: [
-                  ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: 44, radius: 10),
-                  const SizedBox(width: Space.md),
-                  Expanded(child: Text(p.name, maxLines: 2, overflow: TextOverflow.ellipsis)),
-                  StatusChip(l.selStockLeft(p.stock ?? 0), tone: (p.stock ?? 0) == 0 ? ChipTone.error : ChipTone.warning),
-                ]),
+          SecHead(l.selLowStock, action: l.pProducts, onAction: () => context.go('/partner/products')),
+          for (final (i, p) in low.take(5).indexed) ...[if (i > 0) const SizedBox(height: Space.sm), _LowStockCard(product: p, perWeek: ((sold[p.id] ?? 0) / 4).round())],
+          const SizedBox(height: Space.md),
+        ],
+        PawPanel(
+          padding: PawPanel.listPadding,
+          child: PawItem(
+            lead: const PawTile(icon: Ph.fileCsv),
+            title: l.selBulkUpload,
+            sub: l.selBulkUploadBody,
+            subMaxLines: 3,
+            onTap: () => context.push('/partner/products/import'),
+          ),
+        ),
+      ];
+      return LayoutBuilder(builder: (context, box) {
+        final wide = box.maxWidth >= Space.readingWidth;
+        return PageBody(children: [
+          const SizedBox(height: Space.sm),
+          Text(l.helloPartner(user.name), style: context.text.displaySmall),
+          const SizedBox(height: Space.xs),
+          Text(
+            s.city.isEmpty ? l.pPlaceAndDate(s.name, Fmt.weekdayDatePlain(now, lang)) : l.selSellerIn(s.city, Fmt.weekdayDatePlain(now, lang)),
+            style: context.text.bodyMedium?.copyWith(color: paw.textSecondary),
+          ),
+          if (s.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
+          const SizedBox(height: Space.lg + Space.xs),
+          ResponsiveGrid(minColumns: 2, minItemWidth: 200, children: [
+            StatTile(label: l.selToPack, value: '${toPack.length}', icon: Ph.package, color: toPack.isEmpty ? null : paw.accent, sub: toPack.isEmpty ? null : l.selPackToday),
+            StatTile(label: l.selOnTheWay, value: '$moving', icon: Ph.truck),
+            StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings, lang), icon: Ph.wallet, sub: earnings == 0 ? l.selFirstPayout : null),
+            StatTile(label: l.selLowStock, value: '${low.length}', icon: Ph.warning, color: low.isEmpty ? null : paw.error, sub: low.isEmpty ? null : low.first.shortName),
+          ]),
+          if (returns > 0) ...[
+            const SizedBox(height: Space.lg),
+            Semantics(
+              button: true,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(Radii.xl),
+                onTap: () => context.go('/partner/returns'),
+                child: Wash(
+                  tone: Tone.gold,
+                  child: Row(children: [
+                    const PawTile(icon: Ph.arrowUUpLeft, tone: Tone.marigold),
+                    const SizedBox(width: Space.md),
+                    Expanded(child: Text(l.selReturnsWaiting(returns), style: context.text.labelLarge)),
+                    const Chev(),
+                  ]),
+                ),
               ),
             ),
-        ],
-      ]);
+          ],
+          const SizedBox(height: Sizes.sectionGap),
+          if (wide)
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(flex: 7, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: newOrders)),
+              const SizedBox(width: Space.md),
+              Expanded(flex: 5, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: stock)),
+            ])
+          else ...[
+            ...newOrders,
+            const SizedBox(height: Sizes.sectionGap),
+            ...stock,
+          ],
+          const SizedBox(height: Space.xl),
+        ]);
+      });
     });
+  }
+}
+
+/// An order waiting to be packed: what, for whom and where, then the two
+/// things to do with it.
+class _NewOrderCard extends ConsumerWidget {
+  const _NewOrderCard({required this.order});
+  final ShopOrder order;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final o = order;
+    final first = o.items.isEmpty ? null : o.items.first;
+    final a = Address.fromMap(o.address);
+    final place = [a.city, a.pin].where((x) => x.isNotEmpty).join(' ');
+    return PawCard(
+      onTap: () => context.push('/partner/order/${o.id}'),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          if (first != null) ProductArt(category: first.category, seed: first.imageSeed, size: Sizes.item, radius: Sizes.item * Sizes.tileCorner),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(o.items.length > 1 ? l.ordItemsMore(first?.name ?? '', o.items.length - 1) : (first?.name ?? ''), style: context.text.labelLarge, maxLines: 2, overflow: TextOverflow.ellipsis),
+              Text(l.selOrderFor(shortOrderNo(o.id), o.ownerName, place), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              const SizedBox(height: Space.sm),
+              Wrap(spacing: Space.sm, runSpacing: Space.xs, crossAxisAlignment: WrapCrossAlignment.center, children: [
+                PawTag(l.selPlacedOn(Fmt.dateShort(o.createdAt, context.lang)), kind: TagKind.gold),
+                Text(Fmt.inr(o.subtotal, context.lang), style: context.text.labelLarge),
+              ]),
+            ]),
+          ),
+        ]),
+        const SizedBox(height: Space.md),
+        Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
+          PawButton(label: l.selMarkPacked, icon: Ph.package, onPressed: () => ref.read(orderRepositoryProvider).sellerUpdate(o, 'packed')),
+          PawButton(label: l.selPrintLabel, icon: Ph.printer, kind: BtnKind.soft, onPressed: () => openInvoice(context, o)),
+        ]),
+      ]),
+    );
+  }
+}
+
+/// Something about to run out: how many are left, how fast it sells, and
+/// a way to add more.
+class _LowStockCard extends StatelessWidget {
+  const _LowStockCard({required this.product, required this.perWeek});
+  final Product product;
+  final int perWeek;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final p = product;
+    final left = p.stock ?? 0;
+    return PawCard(
+      onTap: () => context.push('/partner/product/${p.id}'),
+      child: Row(children: [
+        ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.item, radius: Sizes.item * Sizes.tileCorner),
+        const SizedBox(width: Space.md),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(p.name, style: context.text.labelLarge, maxLines: 3, overflow: TextOverflow.ellipsis),
+            const SizedBox(height: Space.sm),
+            // Full at 50 or more; red because it's running out.
+            LevelBar(value: (left / 50).clamp(0.0, 1.0), color: context.paw.sos),
+            const SizedBox(height: Space.xs),
+            Text([l.selStockLeftShort(left), if (perWeek > 0) l.selSellsPerWeek(perWeek)].join(' '), style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+          ]),
+        ),
+        const SizedBox(width: Space.md),
+        PawButton(label: l.selAddStock, kind: BtnKind.line, onPressed: () => context.push('/partner/product/${p.id}')),
+      ]),
+    );
   }
 }
 
@@ -124,12 +240,12 @@ class _SellerProductsState extends ConsumerState<_SellerProducts> {
       return PageBody(children: [
         const SizedBox(height: Space.md),
         Wrap(spacing: Space.sm, runSpacing: Space.sm, crossAxisAlignment: WrapCrossAlignment.center, children: [
-          FilledButton.icon(onPressed: () => context.push('/partner/product/new'), icon: const Icon(Icons.add_rounded), label: Text(l.selAddProduct)),
-          OutlinedButton.icon(onPressed: () => context.push('/partner/products/import'), icon: const Icon(Icons.upload_file_rounded), label: Text(l.selCsvUpload)),
+          FilledButton.icon(onPressed: () => context.push('/partner/product/new'), icon: const Icon(Ph.plus), label: Text(l.selAddProduct)),
+          OutlinedButton.icon(onPressed: () => context.push('/partner/products/import'), icon: const Icon(Ph.fileArrowUp), label: Text(l.selCsvUpload)),
         ]),
         const SizedBox(height: Space.md),
         TextField(
-          decoration: InputDecoration(prefixIcon: const Icon(Icons.search_rounded), hintText: l.selSearchProducts),
+          decoration: InputDecoration(prefixIcon: const Icon(Ph.magnifyingGlass), hintText: l.selSearchProducts),
           onChanged: (v) => setState(() => _q = v),
         ),
         const SizedBox(height: Space.sm),
@@ -142,7 +258,7 @@ class _SellerProductsState extends ConsumerState<_SellerProducts> {
               padding: const EdgeInsets.all(Space.sm),
               onTap: () => context.push('/partner/product/${p.id}'),
               child: Row(children: [
-                ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: 56, radius: 12),
+                ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.thumb, radius: Radii.md),
                 const SizedBox(width: Space.md),
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -223,7 +339,7 @@ class _ProductEditScreenState extends ConsumerState<ProductEditScreen> {
       appBar: AppBar(title: Text(id == null ? l.selAddProduct : l.selEditProduct)),
       body: Form(
         key: _form,
-        child: PageBody(maxWidth: 720, children: [
+        child: PageBody(maxWidth: Space.formWidth, children: [
           const SizedBox(height: Space.md),
           PawTextField(label: l.selProductName, controller: _name, validator: (v) => (v ?? '').trim().isEmpty ? l.fieldRequired : null),
           PawTextField(label: l.shopBrand, controller: _brand),
@@ -282,7 +398,7 @@ class _ProductEditScreenState extends ConsumerState<ProductEditScreen> {
           ]),
           PawTextField(label: l.selDescription, controller: _desc, maxLines: 4),
           SwitchListTile(contentPadding: EdgeInsets.zero, value: _active, title: Text(l.selVisible), subtitle: Text(l.selVisibleHint), onChanged: (v) => setState(() => _active = v)),
-          InfoNote(l.selNoRxNote, icon: Icons.medication_rounded),
+          InfoNote(l.selNoRxNote, icon: Ph.pill),
           const SizedBox(height: Space.md),
           PrimaryButton(label: l.save, loading: _busy, onPressed: _save),
         ]),
@@ -344,18 +460,18 @@ class _CsvImportScreenState extends ConsumerState<CsvImportScreen> {
     final ok = _rows.where((r) => r.ok).length;
     return Scaffold(
       appBar: AppBar(title: Text(l.selCsvUpload)),
-      body: PageBody(maxWidth: 900, children: [
+      body: PageBody(maxWidth: Space.wideWidth, children: [
         const SizedBox(height: Space.md),
         InfoNote(l.selCsvHelp(productCsvColumns.join(', '))),
         const SizedBox(height: Space.md),
         Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
-          FilledButton.icon(onPressed: _pick, icon: const Icon(Icons.file_open_rounded), label: Text(l.selCsvChoose)),
+          FilledButton.icon(onPressed: _pick, icon: const Icon(Ph.folderOpen), label: Text(l.selCsvChoose)),
           OutlinedButton.icon(
             onPressed: () => setState(() {
               _text.text = sampleProductCsv;
               _rows = parseProductCsv(_text.text);
             }),
-            icon: const Icon(Icons.description_rounded),
+            icon: const Icon(Ph.fileText),
             label: Text(l.selCsvSample),
           ),
           OutlinedButton.icon(
@@ -363,7 +479,7 @@ class _CsvImportScreenState extends ConsumerState<CsvImportScreen> {
               await Clipboard.setData(const ClipboardData(text: sampleProductCsv));
               if (context.mounted) showToast(context, l.selCsvCopied);
             },
-            icon: const Icon(Icons.copy_rounded),
+            icon: const Icon(Ph.copy),
             label: Text(l.selCsvCopyTemplate),
           ),
         ]),
@@ -371,7 +487,7 @@ class _CsvImportScreenState extends ConsumerState<CsvImportScreen> {
         TextField(
           controller: _text,
           maxLines: 8,
-          style: const TextStyle(fontFamily: 'monospace', fontSize: 13),
+          style: context.textX.mono,
           decoration: InputDecoration(labelText: l.selCsvPaste, alignLabelWithHint: true),
           onChanged: (v) => setState(() => _rows = parseProductCsv(v)),
         ),
@@ -384,7 +500,7 @@ class _CsvImportScreenState extends ConsumerState<CsvImportScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
                 borderColor: r.ok ? null : context.paw.error,
                 child: Row(children: [
-                  Icon(r.ok ? Icons.check_circle_rounded : Icons.error_rounded, color: r.ok ? context.paw.success : context.paw.error),
+                  Icon(r.ok ? Ph.checkCircleFill : Ph.warningCircle, color: r.ok ? context.paw.success : context.paw.error),
                   const SizedBox(width: Space.sm),
                   Expanded(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -521,16 +637,16 @@ class _SellerPayouts extends ConsumerWidget {
       const SizedBox(height: Space.md),
       DemoBanner(l.selPayoutDemo),
       const SizedBox(height: Space.md),
-      ResponsiveGrid(minItemWidth: 200, children: [
-        StatTile(label: l.selPayoutPending, value: Fmt.inr(sum('pending') + sum('on_hold')), icon: Icons.hourglass_top_rounded),
-        StatTile(label: l.selPayoutReady, value: Fmt.inr(ready), icon: Icons.account_balance_rounded, color: ready > 0 ? context.paw.success : null),
-        StatTile(label: l.selPayoutPaid, value: Fmt.inr(sum('paid')), icon: Icons.check_circle_rounded),
-        StatTile(label: l.selCommissionPaid, value: Fmt.inr(orders.where((o) => payoutState(o, now) == 'paid').fold(0, (a, o) => a + o.commission)), icon: Icons.percent_rounded),
+      ResponsiveGrid(minColumns: 2, minItemWidth: 200, children: [
+        StatTile(label: l.selPayoutPending, value: Fmt.inr(sum('pending') + sum('on_hold')), icon: Ph.hourglassHigh),
+        StatTile(label: l.selPayoutReady, value: Fmt.inr(ready), icon: Ph.bank, color: ready > 0 ? context.paw.success : null),
+        StatTile(label: l.selPayoutPaid, value: Fmt.inr(sum('paid')), icon: Ph.checkCircleFill),
+        StatTile(label: l.selCommissionPaid, value: Fmt.inr(orders.where((o) => payoutState(o, now) == 'paid').fold(0, (a, o) => a + o.commission)), icon: Ph.percent),
       ]),
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.selRunPayout(Fmt.inr(ready)),
-        icon: Icons.payments_rounded,
+        icon: Ph.money,
         onPressed: ready == 0
             ? null
             : () async {
@@ -601,10 +717,10 @@ class _SellerReviews extends ConsumerWidget {
             child: PawCard(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Row(children: [
-                  for (var i = 0; i < 5; i++) Icon(i < r.rating ? Icons.star_rounded : Icons.star_border_rounded, size: 16, color: context.paw.accent),
+                  for (var i = 0; i < 5; i++) Icon(i < r.rating ? Ph.starFill : Ph.star, size: IconSizes.sm, color: context.paw.accent),
                   const SizedBox(width: Space.sm),
                   Expanded(child: Text(r.ownerName, style: context.text.labelLarge)),
-                  Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall),
+                  Flexible(child: Text(Fmt.date(r.createdAt, context.lang), style: context.text.bodySmall, textAlign: TextAlign.end)),
                 ]),
                 Text(products[r.targetId]?.name ?? '', style: context.text.bodySmall),
                 if (r.text.isNotEmpty) Padding(padding: const EdgeInsets.only(top: Space.xs), child: Text(r.text)),
@@ -615,7 +731,7 @@ class _SellerReviews extends ConsumerWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton.icon(
                       onPressed: () => _reply(context, ref, r),
-                      icon: const Icon(Icons.reply_rounded),
+                      icon: const Icon(Ph.arrowBendUpLeft),
                       label: Text(l.reply),
                     ),
                   ),
@@ -647,7 +763,7 @@ class _SellerProfile extends ConsumerWidget {
     final l = context.l10n;
     return _needSeller(ref, (s) {
       final raw = s.raw;
-      return PageBody(maxWidth: 720, children: [
+      return PageBody(maxWidth: Space.formWidth, children: [
         const SizedBox(height: Space.md),
         PawCard(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -670,15 +786,15 @@ class _SellerProfile extends ConsumerWidget {
             child: PawCard(
               padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
               child: Row(children: [
-                const Icon(Icons.description_rounded),
+                const Icon(Ph.fileText),
                 const SizedBox(width: Space.md),
                 Expanded(child: Text('$d')),
-                StatusChip(l.selVerified, tone: ChipTone.success, icon: Icons.verified_rounded),
+                StatusChip(l.selVerified, tone: ChipTone.success, icon: Ph.sealCheckFill),
               ]),
             ),
           ),
         const SizedBox(height: Space.md),
-        InfoNote(l.selNoRxNote, icon: Icons.medication_rounded),
+        InfoNote(l.selNoRxNote, icon: Ph.pill),
       ]);
     });
   }
@@ -713,7 +829,7 @@ class SellerOrderScreen extends ConsumerWidget {
           if (o == null) return EmptyState(title: l.ordNotFound);
           final next = sellerNextStatuses(o.status);
           final a = Address.fromMap(o.address);
-          return PageBody(maxWidth: 820, children: [
+          return PageBody(maxWidth: Space.readingWidth, children: [
             const SizedBox(height: Space.md),
             Row(children: [
               Expanded(child: Text(l.ordNumber(shortOrderNo(o.id)), style: context.text.titleMedium)),
@@ -748,7 +864,7 @@ class SellerOrderScreen extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: Space.xs),
                     child: Row(children: [
-                      ProductArt(category: i.category, seed: i.imageSeed, size: 44, radius: 10),
+                      ProductArt(category: i.category, seed: i.imageSeed, size: Sizes.thumbSm, radius: Radii.md),
                       const SizedBox(width: Space.md),
                       Expanded(child: Text('${i.name} × ${i.qty}')),
                       Text(Fmt.inr(i.amount)),
@@ -789,6 +905,6 @@ class SellerOrderScreen extends ConsumerWidget {
 
   Widget _row(BuildContext context, String a, String b, {bool bold = false}) {
     final style = bold ? context.text.titleSmall : context.text.bodyMedium;
-    return Padding(padding: const EdgeInsets.symmetric(vertical: 2), child: Row(children: [Expanded(child: Text(a, style: style)), Text(b, style: style)]));
+    return Padding(padding: const EdgeInsets.symmetric(vertical: Space.xxs), child: Row(children: [Expanded(child: Text(a, style: style)), Text(b, style: style)]));
   }
 }

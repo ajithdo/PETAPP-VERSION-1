@@ -14,6 +14,7 @@ import '../../pets/domain/pet.dart';
 import '../data/routine_repository.dart';
 import '../domain/routine.dart';
 import 'routine_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Tap 1: open this sheet. Tap 2: tap a log type. It's saved straight away
 /// with sensible defaults; "Add details" opens the full form (spec 7.3).
@@ -23,7 +24,7 @@ Future<void> showQuickLog(BuildContext context, WidgetRef ref, Pet pet) {
     final types = logTypesFor(pet.species);
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(children: [
-        PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 40),
+        PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.avatarSm),
         const SizedBox(width: Space.md),
         Expanded(child: Text(l.logFor(pet.name), style: ctx.text.titleMedium)),
       ]),
@@ -36,7 +37,7 @@ Future<void> showQuickLog(BuildContext context, WidgetRef ref, Pet pet) {
             QuickActionTile(
               icon: logTypeIcon(t),
               label: logTypeLabel(ctx, t),
-              color: logTypeColor(t),
+              color: logTypeColor(ctx, t),
               onTap: () async {
                 Navigator.pop(ctx);
                 if (t == LogType.walk) {
@@ -80,7 +81,7 @@ Future<void> showLogDetails(BuildContext context, WidgetRef ref, Pet pet, LogTyp
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
-    constraints: const BoxConstraints(maxWidth: 640),
+    constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
     builder: (_) => _LogDetailsSheet(pet: pet, type: type, logId: logId),
   );
 }
@@ -165,14 +166,14 @@ class _LogDetailsSheetState extends ConsumerState<_LogDetailsSheet> {
       child: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Row(children: [
-            Icon(logTypeIcon(t), color: logTypeColor(t)),
+            Icon(logTypeIcon(t), color: logTypeColor(context, t)),
             const SizedBox(width: Space.sm),
             Expanded(child: Text('${logTypeLabel(context, t)} · ${widget.pet.name}', style: context.text.titleMedium)),
           ]),
           const SizedBox(height: Space.md),
           OutlinedButton.icon(
             style: OutlinedButton.styleFrom(alignment: Alignment.centerLeft),
-            icon: const Icon(Icons.schedule_rounded),
+            icon: const Icon(Ph.clock),
             label: Text(Fmt.dateTime(_at, context.lang)),
             onPressed: () async {
               final time = await showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(_at));
@@ -201,7 +202,7 @@ class _LogDetailsSheetState extends ConsumerState<_LogDetailsSheet> {
             Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
               for (final m in moods)
                 ChoiceChip(
-                  avatar: Icon(moodIcon(m), size: 18),
+                  avatar: Icon(moodIcon(m), size: IconSizes.chip),
                   label: Text(moodLabel(context, m)),
                   selected: _mood == m,
                   onSelected: (_) => setState(() => _mood = m),
@@ -239,10 +240,10 @@ class _LogDetailsSheetState extends ConsumerState<_LogDetailsSheet> {
             if (_photoUrl != null)
               Padding(
                 padding: const EdgeInsets.only(right: Space.md),
-                child: ClipRRect(borderRadius: BorderRadius.circular(12), child: MediaImage(url: _photoUrl!, width: 56, height: 56)),
+                child: ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: _photoUrl!, width: Sizes.thumb, height: Sizes.thumb)),
               ),
             TextButton.icon(
-              icon: const Icon(Icons.add_a_photo_rounded),
+              icon: const Icon(Ph.cameraPlus),
               label: Text(l.addPhoto),
               onPressed: () async {
                 final pick = await pickImage(context, ImageSource.gallery);

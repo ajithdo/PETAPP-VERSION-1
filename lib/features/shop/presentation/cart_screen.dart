@@ -15,7 +15,9 @@ import '../domain/shop_rules.dart';
 import 'address_screens.dart';
 import 'product_screen.dart';
 import 'product_widgets.dart';
+import 'quick_reorder.dart';
 import 'shop_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Cart and checkout in one place (spec 7.10): items by seller, coupon,
 /// address with PIN code, delivery slot, pet, payment (demo) and the bill.
@@ -53,13 +55,16 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final now = DateTime.now();
     _restoreCoupon();
 
+    final orders = ref.watch(myOrdersProvider).value ?? const <ShopOrder>[];
+
     return Scaffold(
       appBar: AppBar(title: Text(l.shopCart)),
       body: AsyncView<List<CartLine>>(
         value: cart,
         data: (lines) {
           if (lines.isEmpty || user == null) {
-            return EmptyState(scene: Scene.shop, title: l.cartEmpty, message: l.cartEmptyBody, actionLabel: l.cartStartShopping, onAction: () => context.go('/shop'));
+            final again = [for (final id in buyAgainIds(orders)) ?products[id]].where((p) => p.active && !p.isAffiliate).take(2).toList();
+            return _EmptyCart(again: again);
           }
           final price = priceCart(
             lines,
@@ -77,113 +82,126 @@ class _CartScreenState extends ConsumerState<CartScreen> {
           final slot = _slot != null && slots.any((s) => s.date == _slot!.date && s.window == _slot!.window) ? _slot! : slots.first;
           final pets = petsForProducts(ref.watch(activePetsProvider), [for (final g in price.groups) for (final x in g.lines) x.product]);
           final pet = pets.where((p) => p.id == _petId).firstOrNull ?? ref.watch(selectedPetProvider) ?? pets.firstOrNull;
+          final paw = context.paw;
 
-          return Column(children: [
-            Expanded(
-              child: PageBody(maxWidth: 900, children: [
-                const SizedBox(height: Space.md),
-                for (final g in price.groups) ...[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: Space.xs),
-                    child: Text(l.cartSoldBy(sellers[g.sellerId]?.name ?? ''), style: context.text.titleSmall),
-                  ),
-                  for (final x in g.lines) _lineTile(context, user.uid, x.product, x.qty),
-                  const SizedBox(height: Space.md),
-                ],
-                if (price.skipped.isNotEmpty) ...[
-                  InfoNote(l.cartSkipped, tone: ChipTone.warning),
-                  const SizedBox(height: Space.xs),
+          // Left on a wide screen, first on a phone: what, where, when.
+          final main = <Widget>[
+            if (!price.isEmpty)
+              PawCard(
+                padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.xs + Space.xxs),
+                child: PawList(children: [
+                  for (final g in price.groups)
+                    for (final x in g.lines) _line(context, user.uid, x.product, x.qty),
+                ]),
+              ),
+            if (price.skipped.isNotEmpty) ...[
+              InfoNote(l.cartSkipped, tone: ChipTone.warning),
+              PawPanel(
+                padding: PawPanel.listPadding,
+                child: PawList(children: [
                   for (final s in price.skipped)
-                    if (products[s.productId] != null) _lineTile(context, user.uid, products[s.productId]!, s.qty, skipped: true),
-                  const SizedBox(height: Space.md),
-                ],
-                if (!price.isEmpty) ...[
-                  if (pets.isNotEmpty) ...[
-                    Text(l.shopForWhichPet, style: context.text.titleSmall),
-                    const SizedBox(height: Space.xs),
-                    Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-                      for (final p in pets)
-                        ChoiceChip(
-                          avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
-                          label: Text(p.name),
-                          selected: p.id == pet?.id,
-                          onSelected: (_) => setState(() => _petId = p.id),
-                        ),
-                    ]),
-                    Text(l.cartPetHint, style: context.text.bodySmall),
-                    const SizedBox(height: Space.md),
-                  ],
-                  Text(l.cartDeliverTo, style: context.text.titleSmall),
-                  const SizedBox(height: Space.xs),
+                    if (products[s.productId] != null) _line(context, user.uid, products[s.productId]!, s.qty, skipped: true),
+                ]),
+              ),
+            ],
+            if (!price.isEmpty) ...[
+              PawPanel(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                   if (address == null)
-                    SecondaryButton(
+                    PawButton(
                       label: l.addrAdd,
-                      icon: Icons.add_location_alt_rounded,
+                      icon: Ph.mapPinPlus,
+                      kind: BtnKind.line,
+                      size: BtnSize.regular,
+                      block: true,
                       onPressed: () async {
                         final a = await editAddress(context, ref);
                         if (a != null) setState(() => _addressId = a.id);
                       },
                     )
-                  else
-                    AddressCard(
-                      address: address,
-                      trailing: TextButton(
-                        onPressed: () async {
+                  else ...[
+                    Row(children: [
+                      Icon(Ph.mapPin, size: IconSizes.sm + Space.xxs, color: paw.textPrimary),
+                      const SizedBox(width: Space.sm),
+                      Expanded(child: Text(l.cartDeliverToLabel(addressLabel(context, address.label)), style: context.text.labelLarge)),
+                      TextLink(
+                        l.change,
+                        onTap: () async {
                           final a = await pickAddress(context, ref, selectedId: address.id);
                           if (a != null) setState(() => _addressId = a.id);
                         },
-                        child: Text(l.change),
                       ),
-                    ),
-                  const SizedBox(height: Space.md),
-                  Text(l.cartSlot, style: context.text.titleSmall),
-                  const SizedBox(height: Space.xs),
-                  _SlotPicker(slots: slots, selected: slot, onSelected: (s) => setState(() => _slot = s)),
-                  const SizedBox(height: Space.md),
-                  Text(l.cartCoupon, style: context.text.titleSmall),
-                  const SizedBox(height: Space.xs),
-                  _couponRow(context, price),
-                  const SizedBox(height: Space.md),
-                  Text(l.cartPayment, style: context.text.titleSmall),
-                  const SizedBox(height: Space.xs),
-                  Wrap(spacing: Space.sm, children: [
-                    ChoiceChip(label: Text(l.payOnlineDemo), selected: _online, onSelected: (_) => setState(() => _online = true)),
-                    ChoiceChip(label: Text(l.payOnDelivery), selected: !_online, onSelected: (_) => setState(() => _online = false)),
-                  ]),
-                  const SizedBox(height: Space.md),
-                  _bill(context, price, user.isPlus, settings),
-                  if (price.groups.length > 1) ...[const SizedBox(height: Space.sm), InfoNote(l.cartSplitNote(price.groups.length))],
-                ],
-              ]),
-            ),
-            if (!price.isEmpty)
-              SafeArea(
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(context.gutter, Space.sm, context.gutter, Space.sm),
-                  decoration: BoxDecoration(color: context.paw.surface, border: Border(top: BorderSide(color: context.paw.outline))),
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 720),
+                    ]),
+                    const SizedBox(height: Space.xs),
+                    Text([if (address.name.isNotEmpty) address.name, address.oneLine].join(', '), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+                  ],
+                  const SizedBox(height: Space.lg),
+                  Text(l.cartSlot, style: context.text.labelLarge),
+                  const SizedBox(height: Space.sm),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(children: [
+                      for (final (i, s) in slots.indexed) ...[
+                        if (i > 0) const SizedBox(width: Space.sm),
+                        PawChip(
+                          // The first chip carries the date; the rest just the day.
+                          label: '${i == 0 ? Fmt.weekdayDate(s.date, context.lang).replaceFirst(',', '') : Fmt.weekdayShort(s.date, context.lang)}, ${windowShort(context, s.window)}',
+                          selected: s.date == slot.date && s.window == slot.window,
+                          onTap: () => setState(() => _slot = s),
+                        ),
+                      ],
+                    ]),
+                  ),
+                  if (pets.length > 1) ...[
+                    const SizedBox(height: Space.lg),
+                    Text(l.shopForWhichPet, style: context.text.labelLarge),
+                    const SizedBox(height: Space.sm),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
                       child: Row(children: [
-                        Expanded(
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                            Text(Fmt.inr(price.total), style: context.text.titleLarge),
-                            if (price.savings > 0) Text(l.cartYouSave(Fmt.inr(price.savings)), style: context.text.bodySmall?.copyWith(color: context.paw.success)),
-                          ]),
-                        ),
-                        Expanded(
-                          child: PrimaryButton(
-                            label: _online ? l.cartPay(Fmt.inr(price.total)) : l.cartPlaceOrder,
-                            loading: _busy,
-                            onPressed: address == null ? null : () => _checkout(price, address, slot, pet?.id),
-                          ),
-                        ),
+                        for (final (i, p) in pets.indexed) ...[
+                          if (i > 0) const SizedBox(width: Space.sm),
+                          PawChip(label: p.name, selected: p.id == pet?.id, onTap: () => setState(() => _petId = p.id)),
+                        ],
                       ]),
                     ),
-                  ),
-                ),
+                    const SizedBox(height: Space.xs),
+                    Text(l.cartPetHint, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+                  ],
+                ]),
               ),
-          ]);
+              _couponRow(context, price),
+            ],
+          ];
+          // Right on a wide screen, last on a phone: the bill and paying.
+          final side = <Widget>[
+            if (!price.isEmpty) ...[
+              _bill(context, price, user.isPlus, settings, onPay: address == null ? null : () => _checkout(price, address, slot, pet?.id)),
+              if (price.groups.length > 1) InfoNote(l.cartSplitNote(price.groups.length)),
+              DemoBanner(l.cartDemoPayNote),
+            ],
+          ];
+          Widget stack(List<Widget> items) => Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  for (final (i, w) in items.indexed) ...[if (i > 0) const SizedBox(height: Space.md), w],
+                ],
+              );
+          return LayoutBuilder(builder: (context, box) {
+            final wide = box.maxWidth >= Space.readingWidth;
+            return PageBody(maxWidth: wide ? Space.maxContentWidth : Space.formWidth, children: [
+              const SizedBox(height: Space.sm),
+              if (wide)
+                Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Expanded(flex: 7, child: stack(main)),
+                  const SizedBox(width: Space.md),
+                  Expanded(flex: 5, child: stack(side)),
+                ])
+              else
+                stack([...main, ...side]),
+              const SizedBox(height: Space.xl),
+            ]);
+          });
         },
       ),
     );
@@ -198,58 +216,84 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _apply(silent: true));
   }
 
-  Widget _lineTile(BuildContext context, String uid, Product p, int qty, {bool skipped = false}) {
+  /// One thing in the cart: its picture, name and brand, then the
+  /// quantity pill with the price at the end of the row.
+  Widget _line(BuildContext context, String uid, Product p, int qty, {bool skipped = false}) {
     final l = context.l10n;
+    final paw = context.paw;
     final repo = ref.read(shopRepositoryProvider);
     return Padding(
-      padding: const EdgeInsets.only(bottom: Space.sm),
-      child: PawCard(
-        padding: const EdgeInsets.all(Space.sm),
-        child: Row(children: [
-          InkWell(
-            onTap: () => context.push('/shop/product/${p.id}'),
-            child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: 64, radius: 12),
-          ),
-          const SizedBox(width: Space.sm),
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(p.name, style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w600), maxLines: 2, overflow: TextOverflow.ellipsis),
-              PriceTag(price: p.price, mrp: p.mrp),
-              if (skipped) Text(p.isAffiliate ? l.cartPartnerOnly : l.shopOutOfStock, style: context.text.bodySmall?.copyWith(color: context.paw.warning)),
+      padding: const EdgeInsets.symmetric(vertical: Space.md),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        InkWell(
+          borderRadius: BorderRadius.circular(Sizes.tileXl * Sizes.tileCorner),
+          onTap: () => context.push('/shop/product/${p.id}'),
+          child: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.tileXl, radius: Sizes.tileXl * Sizes.tileCorner, label: p.name),
+        ),
+        const SizedBox(width: Space.md),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(p.shortName, style: context.text.labelLarge, maxLines: 2, overflow: TextOverflow.ellipsis),
+            if (p.brand.isNotEmpty) Text(p.brand, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+            if (skipped) Text(p.isAffiliate ? l.cartPartnerOnly : l.shopOutOfStock, style: context.text.bodySmall?.copyWith(color: paw.warning)),
+            const SizedBox(height: Space.sm),
+            Row(children: [
+              if (skipped)
+                PawButton(label: l.remove, icon: Ph.trash, kind: BtnKind.line, semanticLabel: l.shopRemoveItem(p.name), onPressed: () => repo.setQty(uid, p.id, 0))
+              else
+                QtyStepper(qty: qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => repo.setQty(uid, p.id, q)),
+              const Spacer(),
+              Text(Fmt.inr(p.price), style: context.text.titleMedium),
             ]),
-          ),
-          if (skipped)
-            IconButton(tooltip: l.shopRemoveItem(p.name), icon: const Icon(Icons.delete_outline_rounded), onPressed: () => repo.setQty(uid, p.id, 0))
-          else
-            QtyStepper(qty: qty, itemName: p.name, max: (p.stock ?? 1).clamp(1, 20), onChanged: (q) => repo.setQty(uid, p.id, q)),
-        ]),
-      ),
+          ]),
+        ),
+      ]),
     );
   }
 
   Widget _couponRow(BuildContext context, CartPrice price) {
     final l = context.l10n;
+    final paw = context.paw;
     if (_applied != null && price.coupon?.result == CouponResult.ok) {
-      return PawCard(
-        padding: const EdgeInsets.symmetric(horizontal: Space.md, vertical: Space.sm),
-        borderColor: context.paw.success,
+      // The code in a field-shaped box, a green "Applied" tag and Remove
+      // (on a second line with big text).
+      final box = Container(
+        constraints: const BoxConstraints(minHeight: Sizes.field),
+        padding: const EdgeInsets.symmetric(horizontal: Space.lg),
+        decoration: BoxDecoration(
+          color: paw.surface,
+          borderRadius: BorderRadius.circular(Radii.lg),
+          border: Border.all(color: context.tint.line2, width: Strokes.strong),
+        ),
         child: Row(children: [
-          Icon(Icons.local_offer_rounded, color: context.paw.success),
-          const SizedBox(width: Space.sm),
-          Expanded(child: Text(l.couponSaved(_applied!.code, Fmt.inr(price.discount)), style: context.text.bodyMedium)),
-          TextButton(onPressed: _removeCoupon, child: Text(l.remove)),
+          Icon(Ph.ticket, size: IconSizes.md, color: paw.textPrimary),
+          const SizedBox(width: Space.md),
+          Expanded(child: ExcludeSemantics(child: Text(_applied!.code, style: context.text.labelLarge, maxLines: 1, overflow: TextOverflow.ellipsis))),
         ]),
+      );
+      final tag = PawTag(l.cartApplied, kind: TagKind.green, icon: Ph.checkCircleFill);
+      final remove = TextLink(l.remove, onTap: _removeCoupon);
+      return Semantics(
+        container: true,
+        label: l.couponSaved(_applied!.code, Fmt.inr(price.discount)),
+        child: MediaQuery.textScalerOf(context).scale(1) > 1.15
+            ? Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                box,
+                const SizedBox(height: Space.sm),
+                Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.md, runSpacing: Space.sm, children: [tag, remove]),
+              ])
+            : Row(children: [Expanded(child: box), const SizedBox(width: Space.md), tag, const SizedBox(width: Space.md), remove]),
       );
     }
     final check = price.coupon;
     final msg = _couponMsg ?? (check != null && check.result != CouponResult.ok ? couponMessage(context, check.result, minOrder: _applied?.minOrder ?? 0) : null);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Expanded(child: PawTextField(label: l.couponCode, controller: _coupon, hint: 'WELCOME10', onSubmitted: (_) => _apply())),
+      Row(children: [
+        Expanded(child: PawTextField(label: l.couponCode, labelInside: true, prefixIcon: Ph.ticket, controller: _coupon, onSubmitted: (_) => _apply())),
         const SizedBox(width: Space.sm),
-        Padding(padding: const EdgeInsets.only(top: 6), child: FilledButton.tonal(onPressed: _apply, child: Text(l.couponApply))),
+        PawButton(label: l.couponApply, kind: BtnKind.soft, size: BtnSize.regular, onPressed: _apply),
       ]),
-      if (msg != null) Text(msg, style: context.text.bodySmall?.copyWith(color: context.paw.error)),
+      if (msg != null) Padding(padding: const EdgeInsets.only(top: Space.xs), child: Text(msg, style: context.text.bodySmall?.copyWith(color: paw.error))),
     ]);
   }
 
@@ -276,32 +320,44 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     await ref.read(shopRepositoryProvider).setCartCoupon(user.uid, null);
   }
 
-  Widget _bill(BuildContext context, CartPrice price, bool plus, ShopSettings s) {
+  /// The bill as a ticket: what it adds up to, then the button to pay.
+  Widget _bill(BuildContext context, CartPrice price, bool plus, ShopSettings s, {required VoidCallback? onPay}) {
     final l = context.l10n;
-    Widget line(String a, String b, {Color? color, bool bold = false}) {
-      final style = (bold ? context.text.titleSmall : context.text.bodyMedium)?.copyWith(color: color);
-      return Padding(padding: const EdgeInsets.symmetric(vertical: 3), child: Row(children: [Expanded(child: Text(a, style: style)), Text(b, style: style)]));
-    }
-
+    final paw = context.paw;
     final freeAbove = plus ? s.plusFreeDeliveryAbove : s.freeDeliveryAbove;
     final toFree = freeAbove - (price.subtotal - price.discount);
+    final plusFree = plus && price.deliveryFee == 0 && price.subtotal - price.discount < s.freeDeliveryAbove;
     return PawCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text(l.cartBill, style: context.text.titleSmall),
-        const SizedBox(height: Space.sm),
-        line(l.cartMrpTotal(price.itemCount), Fmt.inr(price.mrpTotal)),
-        if (price.mrpTotal > price.subtotal) line(l.cartMrpDiscount, '− ${Fmt.inr(price.mrpTotal - price.subtotal)}', color: context.paw.success),
-        if (price.discount > 0) line(l.cartCouponDiscount, '− ${Fmt.inr(price.discount)}', color: context.paw.success),
-        line(l.shopDeliveryFee, price.deliveryFee == 0 ? l.shopFree : Fmt.inr(price.deliveryFee)),
-        const Divider(),
-        line(l.shopToPay, Fmt.inr(price.total), bold: true),
+        Text(l.cartBillShort, style: context.text.titleMedium),
+        const SizedBox(height: Space.md),
+        KvList(valuesAtEnd: true, rows: [
+          (l.cartItems(price.itemCount), Fmt.inr(price.subtotal), null),
+          (l.shopDeliveryFee, price.deliveryFee > 0 ? Fmt.inr(price.deliveryFee) : (plusFree ? l.cartFreeWithPlus : l.shopFree), price.deliveryFee > 0 ? null : Tone.green),
+          if (price.discount > 0) (_applied == null ? l.cartCouponDiscount : l.cartCouponDiscountCode(_applied!.code), '−${Fmt.inr(price.discount)}', Tone.green),
+        ]),
+        const Padding(padding: EdgeInsets.only(top: Space.sm - Space.xxs, bottom: Space.md + Space.xxs), child: DashedRule()),
+        Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Expanded(child: Text(l.shopToPay, style: context.text.labelLarge)),
+          Text(Fmt.inr(price.total), style: context.text.headlineSmall),
+        ]),
+        if (price.savings > 0) Text(l.cartSaveOnOrder(Fmt.inr(price.savings)), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
         if (price.deliveryFee > 0 && toFree > 0)
           Padding(
             padding: const EdgeInsets.only(top: Space.xs),
-            child: Text(l.cartAddForFree(Fmt.inr(toFree)), style: context.text.bodySmall?.copyWith(color: context.colors.primary)),
+            child: Text(l.cartAddForFree(Fmt.inr(toFree)), style: context.text.bodySmall?.copyWith(color: paw.success)),
           ),
-        if (plus && price.deliveryFee == 0 && price.subtotal - price.discount < s.freeDeliveryAbove)
-          Padding(padding: const EdgeInsets.only(top: Space.xs), child: StatusChip(l.cartPlusFreeDelivery, tone: ChipTone.accent, icon: Icons.workspace_premium_rounded)),
+        const SizedBox(height: Space.lg),
+        SegText(items: [l.payOnlineDemo, l.payOnDelivery], index: _online ? 0 : 1, onChanged: (i) => setState(() => _online = i == 0)),
+        const SizedBox(height: Space.md),
+        PawButton(
+          label: _online ? l.cartPay(Fmt.inr(price.total)) : l.cartPlaceOrder,
+          icon: _online ? Ph.lockKey : Ph.package,
+          size: BtnSize.large,
+          block: true,
+          onPressed: _busy ? null : onPay,
+        ),
+        if (!_online) Padding(padding: const EdgeInsets.only(top: Space.sm), child: Text(l.cartCodNote, style: context.text.bodySmall?.copyWith(color: paw.textSecondary), textAlign: TextAlign.center)),
       ]),
     );
   }
@@ -350,32 +406,60 @@ class _CartScreenState extends ConsumerState<CartScreen> {
   }
 }
 
-class _SlotPicker extends StatelessWidget {
-  const _SlotPicker({required this.slots, required this.selected, required this.onSelected});
-  final List<({DateTime date, String window})> slots;
-  final ({DateTime date, String window}) selected;
-  final ValueChanged<({DateTime date, String window})> onSelected;
+/// Nothing in the cart: the drawn bag, a way back to the shop, and the
+/// last things bought with one-tap reorder.
+class _EmptyCart extends ConsumerWidget {
+  const _EmptyCart({required this.again});
+  final List<Product> again;
 
   @override
-  Widget build(BuildContext context) {
-    final days = <DateTime>[];
-    for (final s in slots) {
-      if (!days.contains(s.date)) days.add(s.date);
-    }
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-        for (final d in days)
-          ChoiceChip(
-            label: Text(Fmt.weekdayDate(d, context.lang)),
-            selected: selected.date == d,
-            onSelected: (_) => onSelected(slots.firstWhere((s) => s.date == d)),
-          ),
-      ]),
-      const SizedBox(height: Space.xs),
-      Wrap(spacing: Space.sm, runSpacing: Space.xs, children: [
-        for (final s in slots.where((s) => s.date == selected.date))
-          ChoiceChip(label: Text(windowLabel(context, s.window)), selected: s.window == selected.window, onSelected: (_) => onSelected(s)),
-      ]),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final pet = ref.watch(selectedPetProvider);
+    return PageBody(maxWidth: Space.formWidth, children: [
+      const SizedBox(height: Space.x3l + Space.lg),
+      const Center(
+        child: ClipOval(
+          child: SizedBox(width: Sizes.emptyArt, height: Sizes.emptyArt, child: ExcludeSemantics(child: PackShot(kind: PackKind.bag, colors: PackColors.emptyBag))),
+        ),
+      ),
+      const SizedBox(height: Space.xl),
+      Text(l.cartEmpty, style: context.text.headlineSmall, textAlign: TextAlign.center),
+      const SizedBox(height: Space.sm),
+      Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: Sizes.emptyArt * 2.25),
+          child: Text(l.cartEmptyBody, style: context.text.bodyMedium?.copyWith(color: paw.textSecondary), textAlign: TextAlign.center),
+        ),
+      ),
+      const SizedBox(height: Space.lg + Space.xs),
+      Center(child: PawButton(label: l.cartStartShopping, icon: Ph.bag, size: BtnSize.regular, onPressed: () => context.go('/shop'))),
+      if (again.isNotEmpty) ...[
+        const SizedBox(height: Space.x3l),
+        SecHead(l.shopBuyAgain, action: l.ordMyOrders, onAction: () => context.push('/shop/orders')),
+        PawPanel(
+          padding: PawPanel.listPadding,
+          child: PawList(children: [
+            for (final p in again)
+              PawItem(
+                lead: ProductArt(category: p.category, photoUrl: p.photoUrl, seed: p.imageSeed, size: Sizes.tileLg, radius: Sizes.tileLg * Sizes.tileCorner),
+                title: p.shortName,
+                titleWidget: Text(p.shortName, style: context.text.labelLarge, maxLines: 1, overflow: TextOverflow.ellipsis),
+                sub: Fmt.inr(p.price),
+                onTap: () => context.push('/shop/product/${p.id}'),
+                trailing: PawButton(
+                  label: l.shopReorder,
+                  icon: Ph.arrowClockwise,
+                  kind: BtnKind.soft,
+                  semanticLabel: '${l.shopReorder}: ${p.name}',
+                  onPressed: p.inStock ? () => showQuickReorder(context, ref, product: p, pet: pet) : null,
+                ),
+              ),
+          ]),
+        ),
+      ],
+      const SizedBox(height: Space.xl),
     ]);
   }
 }

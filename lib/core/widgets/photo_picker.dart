@@ -8,6 +8,11 @@ import 'package:image_picker/image_picker.dart';
 import '../theme/tokens.dart';
 import 'dialogs.dart';
 import 'layout.dart';
+import '../theme/ph.dart';
+
+/// Longest side, in pixels, that picked photos and document scans are scaled to.
+const double _photoMaxSide = 1600;
+const double _documentMaxSide = 2000;
 
 /// Picks a photo (camera or gallery), lets the user crop it to a square by
 /// pinching and dragging, and returns compressed JPEG/PNG bytes.
@@ -20,19 +25,19 @@ Future<Uint8List?> pickSquarePhoto(BuildContext context, {bool allowCamera = tru
       const SizedBox(height: Space.md),
       if (allowCamera)
         ListTile(
-          leading: const Icon(Icons.photo_camera_rounded),
+          leading: const Icon(Ph.camera),
           title: Text(ctx.l10n.takePhoto),
           onTap: () => Navigator.pop(ctx, ImageSource.camera),
         ),
       ListTile(
-        leading: const Icon(Icons.photo_library_rounded),
+        leading: const Icon(Ph.images),
         title: Text(ctx.l10n.chooseFromGallery),
         onTap: () => Navigator.pop(ctx, ImageSource.gallery),
       ),
     ]),
   );
   if (source == null) return null;
-  final file = await ImagePicker().pickImage(source: source, maxWidth: 1600, maxHeight: 1600, imageQuality: 85);
+  final file = await ImagePicker().pickImage(source: source, maxWidth: _photoMaxSide, maxHeight: _photoMaxSide, imageQuality: 85);
   if (file == null) return null;
   final bytes = await file.readAsBytes();
   if (!context.mounted) return null;
@@ -43,7 +48,7 @@ Future<Uint8List?> pickSquarePhoto(BuildContext context, {bool allowCamera = tru
 
 /// Picks any image without cropping (album, chat, vault scans).
 Future<({Uint8List bytes, String name})?> pickImage(BuildContext context, ImageSource source) async {
-  final file = await ImagePicker().pickImage(source: source, maxWidth: 2000, maxHeight: 2000, imageQuality: 80);
+  final file = await ImagePicker().pickImage(source: source, maxWidth: _documentMaxSide, maxHeight: _documentMaxSide, imageQuality: 80);
   if (file == null) return null;
   return (bytes: await file.readAsBytes(), name: file.name);
 }
@@ -73,26 +78,26 @@ class _CropScreenState extends State<_CropScreen> {
   Widget build(BuildContext context) {
     final l = context.l10n;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: MediaColors.background,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
+        backgroundColor: MediaColors.background,
+        foregroundColor: MediaColors.foreground,
         title: Text(l.cropPhoto),
         actions: [
           TextButton(
             onPressed: _busy ? null : _done,
-            child: Text(l.done, style: const TextStyle(color: Colors.white)),
+            child: Text(l.done, style: const TextStyle(color: MediaColors.foreground)),
           ),
         ],
       ),
       body: Center(
         child: LayoutBuilder(builder: (context, c) {
-          final side = (c.biggest.shortestSide - 32).clamp(200.0, 520.0);
+          final side = (c.biggest.shortestSide - Space.xxl).clamp(Sizes.cropMin, Sizes.cropMax);
           return Column(mainAxisSize: MainAxisSize.min, children: [
             Container(
               width: side,
               height: side,
-              decoration: BoxDecoration(border: Border.all(color: Colors.white, width: 2)),
+              decoration: BoxDecoration(border: Border.all(color: MediaColors.foreground, width: Strokes.focus)),
               child: RepaintBoundary(
                 key: _boundary,
                 child: ClipRect(
@@ -111,7 +116,7 @@ class _CropScreenState extends State<_CropScreen> {
               ),
             ),
             const SizedBox(height: Space.lg),
-            Text(l.cropHint, style: const TextStyle(color: Colors.white70)),
+            Text(l.cropHint, style: const TextStyle(color: MediaColors.foregroundMuted)),
           ]);
         }),
       ),

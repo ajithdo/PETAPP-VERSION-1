@@ -70,3 +70,9 @@ functions/lib/
 
 # Netlify local state
 .netlify
+
+# Impeccable downloads its engine per computer on first use (as upstream ignores it)
+**/skills/impeccable/scripts/bin/
+
+# Impeccable review captures (copies of docs/ui-revamp/ui-design-5-final)
+.impeccable/review/

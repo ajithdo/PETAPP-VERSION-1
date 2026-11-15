@@ -16,6 +16,7 @@ import '../data/chat_repository.dart';
 import '../domain/chat_rules.dart';
 import 'chat_screen.dart';
 import 'chat_widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// Width from which the inbox and the open chat sit side by side.
 const splitViewWidth = 900.0;
@@ -40,7 +41,7 @@ class MessagesHome extends ConsumerWidget {
         floatingActionButton: owner
             ? FloatingActionButton.extended(
                 onPressed: () => context.push('/televet'),
-                icon: const Icon(Icons.video_call_rounded),
+                icon: const Icon(Ph.videoCamera),
                 label: Text(l.qaAskVet),
               )
             : null,
@@ -50,14 +51,14 @@ class MessagesHome extends ConsumerWidget {
       appBar: AppBar(title: Text(l.messages)),
       body: Row(children: [
         SizedBox(
-          width: 380,
+          width: Sizes.listPane,
           child: InboxPane(
             selectedId: selectedId,
             showAssistant: owner,
             onOpen: (id) => selectedId == null ? context.push('/messages/$id') : context.replace('/messages/$id'),
           ),
         ),
-        const VerticalDivider(width: 1),
+        const VerticalDivider(width: Strokes.hairline),
         Expanded(
           child: selectedId == null
               ? EmptyState(title: l.msgPickChat, message: l.msgPickChatHint, scene: Scene.chat)
@@ -138,19 +139,19 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
               onChanged: (_) => _onQuery(all),
               decoration: InputDecoration(
                 hintText: l.msgSearchHint,
-                prefixIcon: const Icon(Icons.search_rounded),
+                prefixIcon: Icon(Ph.magnifyingGlass, size: IconSizes.md, color: context.paw.textPrimary),
                 suffixIcon: q.isEmpty
                     ? null
                     : IconButton(
                         tooltip: l.msgClearSearch,
-                        icon: const Icon(Icons.close_rounded),
+                        icon: const Icon(Ph.x),
                         onPressed: () {
                           _q.clear();
                           _onQuery(all);
                         },
                       ),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
-                isDense: true,
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.tint.line2, width: Strokes.strong)),
+                enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.full), borderSide: BorderSide(color: context.tint.line2, width: Strokes.strong)),
               ),
             ),
           ),
@@ -159,7 +160,7 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
           ]),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.only(bottom: 96),
+              padding: const EdgeInsets.only(bottom: Space.fabClearance),
               children: [
                 if (widget.showAssistant && _filter == 'all' && q.isEmpty) const _AskPawSetuTile(),
                 if (list.isEmpty && hits.isEmpty)
@@ -181,7 +182,7 @@ class _InboxPaneState extends ConsumerState<InboxPane> {
                   for (final m in hits)
                     ListTile(
                       contentPadding: EdgeInsets.symmetric(horizontal: context.gutter),
-                      leading: const Icon(Icons.chat_bubble_outline_rounded),
+                      leading: const Icon(Ph.chatCircle),
                       title: Text(byId[m.conversationId]!.titleFor(me.uid), maxLines: 1, overflow: TextOverflow.ellipsis),
                       subtitle: Text(m.type == 'pdf' ? (m.fileName ?? '') : m.text, maxLines: 2, overflow: TextOverflow.ellipsis),
                       trailing: Text(chatTime(m.createdAt, context.lang), style: context.text.labelSmall),
@@ -207,10 +208,17 @@ class _AskPawSetuTile extends ConsumerWidget {
       padding: EdgeInsets.fromLTRB(context.gutter, Space.xs, context.gutter, Space.sm),
       child: PawCard(
         onTap: () => context.push('/ask'),
-        color: context.paw.primaryContainer.withValues(alpha: 0.6),
+        color: context.paw.accentContainer,
+        flat: true,
+        borderColor: Colors.transparent,
         padding: const EdgeInsets.all(Space.md),
         child: Row(children: [
-          CircleAvatar(backgroundColor: context.colors.primary, child: Icon(Icons.auto_awesome_rounded, color: context.colors.onPrimary)),
+          Container(
+            width: TapTarget.min - Space.xxs,
+            height: TapTarget.min - Space.xxs,
+            decoration: BoxDecoration(color: context.paw.marigold, borderRadius: BorderRadius.circular(Radii.md)),
+            child: Icon(Ph.sparkle, color: context.paw.onMarigold),
+          ),
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -218,7 +226,7 @@ class _AskPawSetuTile extends ConsumerWidget {
               Text(a.unlimited ? l.aiTileHintPlus : l.aiTileHint(a.left), style: context.text.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
             ]),
           ),
-          const Icon(Icons.chevron_right_rounded),
+          const Icon(Ph.caretRight),
         ]),
       ),
     );
@@ -240,10 +248,10 @@ class ConversationTile extends StatelessWidget {
     final unread = c.unreadFor(me.uid);
     final mine = c.lastSenderId == me.uid;
     final (IconData? icon, String text) = switch (c.lastType) {
-      'photo' => (Icons.photo_rounded, l.msgPreviewPhoto),
-      'voice' => (Icons.mic_rounded, l.msgPreviewVoice),
-      'pdf' => (Icons.picture_as_pdf_rounded, c.lastMessage.isEmpty ? l.msgPreviewPdf : c.lastMessage),
-      'prescription' => (Icons.receipt_long_rounded, l.rxSentPreview),
+      'photo' => (Ph.image, l.msgPreviewPhoto),
+      'voice' => (Ph.microphone, l.msgPreviewVoice),
+      'pdf' => (Ph.filePdf, c.lastMessage.isEmpty ? l.msgPreviewPdf : c.lastMessage),
+      'prescription' => (Ph.receipt, l.rxSentPreview),
       'system' => (null, c.lastMessage.isEmpty ? l.msgNoMessagesYet : c.lastMessage),
       _ => (null, c.lastMessage),
     };
@@ -254,12 +262,16 @@ class ConversationTile extends StatelessWidget {
       selected: selected,
       label: [title, if (unread > 0) l.msgUnreadCount(unread)].join(', '),
       child: Material(
-        color: selected ? context.paw.primaryContainer.withValues(alpha: 0.5) : Colors.transparent,
+        color: selected ? context.paw.surfaceSubtle : Colors.transparent,
         child: InkWell(
           onTap: onTap,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.md),
-            child: Row(children: [
+            padding: EdgeInsets.symmetric(horizontal: context.gutter),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: Space.md),
+              // Hairlines split the rows.
+              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: selected ? context.paw.outline.withValues(alpha: 0) : context.paw.outline))),
+              child: Row(children: [
               ConversationAvatar(conversation: c, viewerUid: me.uid),
               const SizedBox(width: Space.md),
               Expanded(
@@ -267,17 +279,17 @@ class ConversationTile extends StatelessWidget {
                   Row(children: [
                     Expanded(
                       child: Text(title,
-                          style: context.text.titleSmall?.copyWith(fontWeight: bold ? FontWeight.w800 : FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
+                          style: context.text.labelLarge?.copyWith(fontWeight: bold ? FontWeight.w700 : FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
                     ),
                     const SizedBox(width: Space.sm),
                     Text(chatTime(c.lastAt, context.lang),
-                        style: context.text.labelSmall?.copyWith(color: bold ? context.colors.primary : null, fontWeight: bold ? FontWeight.w700 : null)),
+                        style: context.text.labelSmall?.copyWith(color: bold ? context.paw.accent : context.paw.textSecondary, fontWeight: bold ? FontWeight.w600 : FontWeight.w500)),
                   ]),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: Space.xxs),
                   Row(children: [
-                    if (c.isTeleVet) ...[StatusChip(l.teleVet, tone: ChipTone.accent), const SizedBox(width: 6)],
-                    if (c.isEnquiry) ...[StatusChip(l.msgEnquiry, tone: ChipTone.info), const SizedBox(width: 6)],
-                    if (icon != null) ...[Icon(icon, size: 16, color: context.paw.textSecondary), const SizedBox(width: 4)],
+                    if (c.isTeleVet) ...[PawTag(l.teleVet, kind: TagKind.green), const SizedBox(width: Space.sm)],
+                    if (c.isEnquiry) ...[PawTag(l.msgEnquiry), const SizedBox(width: Space.sm)],
+                    if (icon != null) ...[Icon(icon, size: IconSizes.sm, color: context.paw.textSecondary), const SizedBox(width: Space.xs)],
                     Expanded(
                       child: Text(
                         [if (mine && c.lastType != 'system') l.msgYouPrefix, if (c.petName.isNotEmpty && me.uid != c.ownerId) c.petName, text]
@@ -289,17 +301,18 @@ class ConversationTile extends StatelessWidget {
                       ),
                     ),
                     if (c.mutedFor(me.uid)) ...[
-                      const SizedBox(width: 4),
-                      Icon(Icons.notifications_off_rounded, size: 16, color: context.paw.textSecondary, semanticLabel: l.msgMuted),
+                      const SizedBox(width: Space.xs),
+                      Icon(Ph.bellSlash, size: IconSizes.sm, color: context.paw.textSecondary, semanticLabel: l.msgMuted),
                     ],
                     if (unread > 0) ...[
-                      const SizedBox(width: 6),
-                      Badge.count(count: unread, backgroundColor: context.colors.primary, textColor: context.colors.onPrimary),
+                      const SizedBox(width: Space.xs + Space.xxs),
+                      Badge.count(count: unread, backgroundColor: context.paw.marigold, textColor: context.paw.onMarigold),
                     ],
                   ]),
                 ]),
               ),
             ]),
+            ),
           ),
         ),
       ),
@@ -399,10 +412,10 @@ class _PartnerChatSectionState extends ConsumerState<PartnerChatSection> {
       }
       return Row(children: [
         SizedBox(
-          width: 360,
+          width: Sizes.sidePanelWide,
           child: InboxPane(showAssistant: false, selectedId: _selected, onOpen: (id) => setState(() => _selected = id)),
         ),
-        const VerticalDivider(width: 1),
+        const VerticalDivider(width: Strokes.hairline),
         Expanded(
           child: _selected == null
               ? EmptyState(title: l.msgPickChat, message: l.msgPickChatHintPartner, scene: Scene.chat)

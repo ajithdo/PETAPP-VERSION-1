@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSetu - Pet Parent &amp; Family Access</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { 'coral': '#E05A47', 'forest-teal': '#18453E', 'soft-sage': '#E6F0ED', 'soft-sand': '#F3EFEA', 'warm-border': '#E7E2DA', 'status-upcoming': '#D97706', 'status-completed': '#15803D', 'status-emergency': '#DC2626', 'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-surface-subtle': '#F3EFEA',
+            'light-outline': '#E7E2DA',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '28px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+</head>
+<body class="bg-light-surface text-light-on-surface min-h-[1024px] font-body antialiased flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-light-surface/95 backdrop-blur-md border-b border-light-outline">
+    <div class="max-w-[1240px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-8">
+        <a href="../home-discovery/HomeDiscovery.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-forest-teal text-white flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-[24px]">pets</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-headline font-bold text-[22px] tracking-tight text-light-on-surface leading-tight">PawSetu</span>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-forest-teal">Account &amp; Caregivers</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="hidden lg:flex items-center gap-1 bg-light-surface-subtle/80 p-1.5 rounded-full border border-light-outline">
+        <a href="../home-discovery/HomeDiscovery.html" class="px-4 py-2 rounded-full text-light-on-surface hover:text-forest-teal font-label text-[13px] font-medium transition">
+          Vet Clinics
+        </a>
+        <a href="../medical-records/MedicalRecords.html" class="px-4 py-2 rounded-full text-light-on-surface hover:text-forest-teal font-label text-[13px] font-medium transition">
+          Health Vault
+        </a>
+        <a href="../pet-parent-profile/PetParentProfile.html" class="px-4 py-2 rounded-full bg-forest-teal text-white font-label text-[13px] font-semibold shadow-sm">
+          Caregiver Settings
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-soft-sand border border-light-outline flex items-center justify-center font-bold text-forest-teal">
+          PS
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Settings & Family Access Grid -->
+  <main class="flex-1 max-w-[1240px] w-full mx-auto px-6 py-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+
+      <!-- Profile Header Card -->
+      <div class="bg-light-surface-elevated rounded-2xl border border-light-outline p-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-5">
+          <div class="w-20 h-20 rounded-full bg-forest-teal text-white flex items-center justify-center font-headline font-bold text-2xl shadow-md">
+            PS
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <h1 class="font-headline font-bold text-[24px] text-light-on-surface">Priya Sharma</h1>
+              <span class="px-2.5 py-0.5 rounded-full bg-coral/10 text-coral font-bold text-[11px]">PawSetu Plus</span>
+            </div>
+            <p class="text-body-sm text-stone-600">Bengaluru, Karnataka · Primary Pet Guardian</p>
+            <div class="flex items-center gap-4 mt-2 text-[12px] text-stone-500">
+              <span>Registered Pets: <strong>Bruno (Dog), Misty (Cat)</strong></span>
+              <span>·</span>
+              <span>Member since Oct 2023</span>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="px-4 py-2 bg-light-surface-subtle border border-light-outline rounded-xl font-label text-[13px] font-semibold hover:bg-stone-200/50 transition">
+          Edit Profile
+        </button>
+      </div>
+
+      <!-- Family & Pet Sitter Shared Care Delegation -->
+      <div class="bg-light-surface-elevated rounded-2xl border border-light-outline p-6 shadow-sm space-y-6">
+        <div class="flex items-center justify-between border-b border-light-outline pb-4">
+          <div>
+            <h2 class="font-headline font-bold text-[18px] text-light-on-surface">Family Members &amp; Pet Sitter Access</h2>
+            <p class="text-body-sm text-stone-600 mt-0.5">
+              Allow trusted co-parents and pet sitters to check medical records, receive walk logs, or take pets to vet clinics.
+            </p>
+          </div>
+          <button type="button" class="px-4 py-2 bg-forest-teal text-white rounded-xl font-label text-[13px] font-bold shadow-sm hover:opacity-95 transition flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">person_add</span>
+            <span>Invite Co-Parent</span>
+          </button>
+        </div>
+
+        <!-- Caregivers List -->
+        <div class="space-y-4">
+          <!-- Member 1: Rohan Sharma -->
+          <div class="flex items-center justify-between p-4 rounded-xl bg-light-surface-subtle border border-light-outline">
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 rounded-full bg-stone-300 flex items-center justify-center font-bold text-stone-700">
+                RS
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="font-label font-bold text-[15px] text-light-on-surface">Rohan Sharma</h3>
+                  <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-status-completed text-[11px] font-bold">Full Co-Guardian</span>
+                </div>
+                <p class="text-[12px] text-stone-500">Priya’s husband · Full access to Bruno &amp; Misty’s vaccine logs and booking rights</p>
+              </div>
+            </div>
+            <span class="text-stone-400 text-[12px] font-semibold">Active</span>
+          </div>
+
+          <!-- Member 2: Meera Pillai (Sitter) -->
+          <div class="flex items-center justify-between p-4 rounded-xl bg-light-surface-subtle border border-light-outline">
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 rounded-full bg-stone-300 flex items-center justify-center font-bold text-stone-700">
+                MP
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="font-label font-bold text-[15px] text-light-on-surface">Meera Pillai</h3>
+                  <span class="px-2 py-0.5 rounded-full bg-amber-100 text-status-upcoming text-[11px] font-bold">Temporary Sitter (3 Days Left)</span>
+                </div>
+                <p class="text-[12px] text-stone-500">Authorized for walking updates and emergency vet visits until Nov 6, 2026</p>
+              </div>
+            </div>
+            <button type="button" class="text-status-emergency hover:underline text-[12px] font-semibold">
+              Revoke
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Preferences & Language Switcher -->
+      <div class="bg-light-surface-elevated rounded-2xl border border-light-outline p-6 shadow-sm space-y-4">
+        <h2 class="font-headline font-bold text-[18px] text-light-on-surface">Preferences &amp; Accessibility</h2>
+        
+        <div class="flex items-center justify-between py-3 border-b border-light-outline">
+          <div>
+            <span class="font-label font-bold text-[14px] text-light-on-surface block">Primary Interface Language</span>
+            <span class="text-[12px] text-stone-500">PawSetu supports English, Telugu, Hindi, and Kannada for vet prescriptions.</span>
+          </div>
+          <select class="px-3 py-1.5 bg-light-surface-subtle border border-light-outline rounded-xl font-label text-[13px] font-semibold text-light-on-surface">
+            <option>English</option>
+            <option>తెలుగు (Telugu)</option>
+            <option>हिन्दी (Hindi)</option>
+            <option>ಕನ್ನಡ (Kannada)</option>
+          </select>
+        </div>
+
+        <div class="flex items-center justify-between py-3">
+          <div>
+            <span class="font-label font-bold text-[14px] text-light-on-surface block">WhatsApp Vaccine Reminders</span>
+            <span class="text-[12px] text-stone-500">Send WhatsApp alerts 7 days before annual boosters are due.</span>
+          </div>
+          <input type="checkbox" checked class="w-5 h-5 text-forest-teal rounded focus:ring-forest-teal">
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="mt-auto border-t border-light-outline bg-light-surface py-6 text-center text-body-sm text-light-on-surface-subtle">
+    <div class="max-w-[1240px] mx-auto px-6 flex items-center justify-between">
+      <span>PawSetu Family Care Vault</span>
+      <a href="../home-discovery/HomeDiscovery.html" class="hover:underline">Back to Clinic Discovery</a>
+    </div>
+  </footer>
+
+
+
+</body></html>

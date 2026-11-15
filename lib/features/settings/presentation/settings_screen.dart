@@ -8,6 +8,7 @@ import '../../../core/settings/settings_controller.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../onboarding/presentation/setup_screens.dart';
+import '../../../core/theme/ph.dart';
 
 /// Settings (spec 4 and 5): language, appearance, accessibility,
 /// notifications, demo data and about.
@@ -27,6 +28,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     await ref.read(firestoreProvider).collection('users').doc(user.uid).update(fields);
   }
 
+  /// Sends the "change your password" link (demo: lands in the Demo Outbox).
+  Future<void> _password(String email) async {
+    final l = context.l10n;
+    final ok = await confirmAction(context, title: l.setEmailPassword, body: '$email\n\n${l.setResetPassword}', confirmLabel: l.sendResetLink, danger: false);
+    if (!ok) return;
+    try {
+      await ref.read(authServiceProvider).sendPasswordReset(email);
+      if (mounted) showToast(context, l.setResetSent(email));
+    } catch (_) {
+      if (mounted) showToast(context, l.errorTitle);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
@@ -35,98 +49,162 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final cfg = ref.watch(appConfigProvider);
     final store = ref.watch(demoStoreProvider);
 
+    final paw = context.paw;
+    const gap = SizedBox(height: Sizes.sectionGap);
+    // A titled group of rows in a hairline panel.
     Widget group(String title, List<Widget> children) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SectionHeader(title),
-            PawCard(padding: const EdgeInsets.symmetric(vertical: Space.sm), child: Column(children: children)),
+            gap,
+            SecHead(title),
+            PawPanel(padding: PawPanel.listPadding, child: PawList(children: children)),
           ],
         );
+    Widget toggle(IconData icon, Tone tone, String title, String sub, bool value, ValueChanged<bool>? onChanged) => MergeSemantics(
+          child: PawItem(
+            lead: PawTile(icon: icon, tone: tone),
+            title: title,
+            sub: sub,
+            subMaxLines: 4,
+            onTap: onChanged == null ? null : () => onChanged(!value),
+            trailing: Switch(value: value, onChanged: onChanged),
+          ),
+        );
+    final user = ref.watch(currentUserProvider);
+    // "10:00 PM"
+    String hour(int h) => MaterialLocalizations.of(context).formatTimeOfDay(TimeOfDay(hour: h % 24, minute: 0));
 
     return Scaffold(
       appBar: AppBar(title: Text(l.settings)),
-      body: PageBody(maxWidth: 720, children: [
-        group(l.language, [
-          RadioGroup<String>(
-            groupValue: s.locale,
-            onChanged: (v) {
-              n.setLocale(v!);
-              _saveProfile({'language': v});
-            },
-            child: Column(children: [
-              for (final code in const ['en', 'hi', 'te'])
-                RadioListTile<String>(
-                  value: code,
-                  title: Text(switch (code) { 'hi' => 'हिन्दी (Hindi)', 'te' => 'తెలుగు (Telugu)', _ => 'English' }),
-                ),
-            ]),
-          ),
+      body: PageBody(maxWidth: Space.formWidth, children: [
+        // UI Design 6: languages show their own script; appearance shows
+        // a small preview. One tap chooses.
+        const SizedBox(height: Space.sm),
+        SecHead(l.language),
+        _PickRow(children: [
+          for (final (code, glyph, name, sub) in const [
+            ('en', 'Aa', 'English', 'English'),
+            ('hi', 'अ', 'हिन्दी', 'Hindi'),
+            ('te', 'అ', 'తెలుగు', 'Telugu'),
+          ])
+            _Pick(
+              selected: s.locale == code,
+              label: '$name, $sub',
+              onTap: () {
+                n.setLocale(code);
+                _saveProfile({'language': code});
+              },
+              top: Text(glyph, style: context.text.headlineMedium?.copyWith(fontFamilyFallback: const [FontFamilies.devanagari, FontFamilies.telugu])),
+              title: name,
+              subtitle: sub,
+            ),
         ]),
-        group(l.appearance, [
-          RadioGroup<ThemeMode>(
-            groupValue: s.themeMode,
-            onChanged: (v) => n.setThemeMode(v!),
-            child: Column(children: [
-              for (final m in const [ThemeMode.system, ThemeMode.light, ThemeMode.dark])
-                RadioListTile<ThemeMode>(value: m, title: Text(themeModeLabel(context, m))),
-            ]),
+        const SizedBox(height: Space.sm),
+        Text(l.languageNote, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+        gap,
+        SecHead(l.appearance),
+        _PickRow(children: [
+          for (final m in const [ThemeMode.system, ThemeMode.light, ThemeMode.dark])
+            _Pick(
+              selected: s.themeMode == m,
+              label: themeModeLabel(context, m),
+              onTap: () => n.setThemeMode(m),
+              top: _ThemePreview(mode: m),
+              title: m == ThemeMode.system ? l.themeSystemShort : themeModeLabel(context, m),
+            ),
+        ]),
+        group(l.notifications, [
+          PawItem(
+            lead: const PawTile(icon: Ph.bellRinging, tone: Tone.gold),
+            title: l.setReminderChannels,
+            sub: l.setReminderChannelsHint,
+            onTap: () => context.push(notificationSettingsLink),
+          ),
+          PawItem(
+            lead: const PawTile(icon: Ph.moon, tone: Tone.sky),
+            title: l.quietHours,
+            sub: s.quietHoursOn ? l.setQuietRange(hour(s.quietStart), hour(s.quietEnd)) : l.setQuietOff,
+            onTap: () => context.push(notificationSettingsLink),
           ),
         ]),
         group(l.accessibility, [
-          SwitchListTile(
-            value: s.easyMode,
-            title: Text(l.easyMode),
-            subtitle: Text(l.easyModeHint),
-            secondary: const Icon(Icons.accessibility_new_rounded),
-            onChanged: (v) {
-              n.setEasyMode(v);
-              _saveProfile({'easyMode': v});
-            },
+          toggle(Ph.personArmsSpread, Tone.green, l.easyMode, l.easyModeHint, s.easyMode, (v) {
+            n.setEasyMode(v);
+            _saveProfile({'easyMode': v});
+          }),
+          // Text size: a small A, the slider, a big A.
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: Space.md),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Row(children: [
+                Expanded(child: Text(l.textSize, style: context.text.labelLarge)),
+                Text('${(s.textScale * 100).round()}%', style: context.text.labelLarge),
+              ]),
+              Row(children: [
+                Text('A', style: context.text.labelSmall?.copyWith(fontWeight: FontWeight.w700)),
+                Expanded(
+                  child: Slider(
+                    value: s.textScale,
+                    min: 0.85,
+                    max: 1.6,
+                    divisions: 15,
+                    label: '${(s.textScale * 100).round()}%',
+                    semanticFormatterCallback: (v) => '${(v * 100).round()}%',
+                    onChanged: n.setTextScale,
+                  ),
+                ),
+                Text('A', style: context.text.titleLarge),
+              ]),
+              Text(l.textSizeNote, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+            ]),
           ),
-          ListTile(
-            leading: const Icon(Icons.format_size_rounded),
-            title: Text(l.textSize),
-            subtitle: Slider(
-              value: s.textScale,
-              min: 0.85,
-              max: 1.6,
-              divisions: 15,
-              label: '${(s.textScale * 100).round()}%',
-              semanticFormatterCallback: (v) => '${(v * 100).round()}%',
-              onChanged: n.setTextScale,
-            ),
-            trailing: Text('${(s.textScale * 100).round()}%'),
-          ),
-          SwitchListTile(
-            value: s.highContrast,
-            title: Text(l.highContrast),
-            subtitle: Text(l.highContrastHint),
-            secondary: const Icon(Icons.contrast_rounded),
-            onChanged: n.setHighContrast,
-          ),
+          toggle(Ph.circleHalf, Tone.neutral, l.highContrast, l.highContrastHint, s.highContrast, n.setHighContrast),
+          // Easy mode always asks on a tap, so the switch shows on and can't
+          // be turned off while it's on.
+          toggle(Ph.handTap, Tone.neutral, l.setSosTap, l.setSosTapHint, s.sosByTap, s.easyMode ? null : n.setSosTap),
         ]),
-        group(l.notifications, [
-          ListTile(
-            leading: const Icon(Icons.notifications_active_rounded),
-            title: Text(l.notificationChannels),
-            subtitle: Text(l.notificationChannelsHint),
-            trailing: const Icon(Icons.chevron_right_rounded),
-            onTap: () => context.push(notificationSettingsLink),
+        group(l.setAccount, [
+          PawItem(
+            lead: const PawTile(icon: Ph.envelopeSimple),
+            title: l.setEmailPassword,
+            sub: (user?.email ?? '').isEmpty ? l.setNoEmail : user!.email!,
+            noTrailing: (user?.email ?? '').isEmpty,
+            onTap: (user?.email ?? '').isEmpty ? null : () => _password(user!.email!),
+          ),
+          PawItem(
+            lead: const PawTile(icon: Ph.deviceMobile),
+            title: l.phone,
+            sub: (user?.phone ?? '').isEmpty ? l.setNoPhone : user!.phone!,
+            noTrailing: true,
+          ),
+          PawItem(
+            lead: const PawTile(icon: Ph.info),
+            title: l.setAbout,
+            sub: cfg.isDemo ? l.setAboutDemo('1.0') : l.aboutVersion('1.0'),
+            subMaxLines: 2,
+            noTrailing: true,
+            onTap: () {
+              _aboutTaps++;
+              if (_aboutTaps >= 5) {
+                _aboutTaps = 0;
+                context.push('/design-gallery');
+              }
+            },
           ),
         ]),
         if (cfg.isDemo)
           group(l.demoData, [
-            ListTile(
-              leading: const Icon(Icons.science_rounded),
-              title: Text(l.demoModeOn),
-              subtitle: Text(cfg.isStandalone ? l.demoStandaloneHint : l.demoEmulatorHint),
+            PawItem(
+              lead: const PawTile(icon: Ph.flask, tone: Tone.gold),
+              title: l.demoModeOn,
+              sub: cfg.isStandalone ? l.demoStandaloneHint : l.demoEmulatorHint,
             ),
             if (store != null)
-              ListTile(
-                leading: const Icon(Icons.restart_alt_rounded),
-                title: Text(l.resetDemoData),
-                subtitle: Text(l.resetDemoDataHint),
-                trailing: _resetting ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5)) : null,
+              PawItem(
+                lead: const PawTile(icon: Ph.arrowCounterClockwise),
+                title: l.resetDemoData,
+                sub: l.resetDemoDataHint,
+                trailing: _resetting ? const SizedBox(width: Sizes.spinner, height: Sizes.spinner, child: CircularProgressIndicator(strokeWidth: Strokes.spinner)) : const Chev(),
                 onTap: _resetting
                     ? null
                     : () async {
@@ -142,31 +220,131 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       },
               ),
           ]),
-        group(l.about, [
-          ListTile(
-            leading: const Icon(Icons.info_outline_rounded),
-            title: const Text('PawSetu'),
-            subtitle: Text(l.aboutVersion('1.0.0 (Version 1 demo)')),
-            onTap: () {
-              _aboutTaps++;
-              if (_aboutTaps >= 5) {
-                _aboutTaps = 0;
-                context.push('/design-gallery');
-              }
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.map_rounded),
-            title: Text(l.mapCredit),
-          ),
-        ]),
-        const SizedBox(height: Space.xl),
-        SecondaryButton(
-          label: l.signOut,
-          icon: Icons.logout_rounded,
-          onPressed: () => ref.read(authServiceProvider).signOut(),
-        ),
+        const SizedBox(height: Space.lg),
+        Text(l.mapCredit, style: context.text.bodySmall?.copyWith(color: paw.textSecondary), textAlign: TextAlign.center),
+        const SizedBox(height: Space.lg),
+        PawButton(label: l.signOut, icon: Ph.signOut, kind: BtnKind.line, size: BtnSize.regular, block: true, onPressed: () => ref.read(authServiceProvider).signOut()),
       ]),
     );
   }
+}
+
+/// Choice cards in a row (three across; stacked with big text).
+class _PickRow extends StatelessWidget {
+  const _PickRow({required this.children});
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) => TileGrid(columns: MediaQuery.textScalerOf(context).scale(1) > 1.4 ? 1 : 3, spacing: Space.sm, children: children);
+}
+
+/// One choice card: a picture or glyph on top, a title, a radio dot.
+class _Pick extends StatelessWidget {
+  const _Pick({required this.selected, required this.label, required this.onTap, required this.top, required this.title, this.subtitle});
+  final bool selected;
+  final String label;
+  final VoidCallback onTap;
+  final Widget top;
+  final String title;
+  final String? subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return Semantics(
+      button: true,
+      selected: selected,
+      inMutuallyExclusiveGroup: true,
+      label: label,
+      excludeSemantics: true,
+      child: Material(
+        color: selected ? paw.surface : Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Radii.lg),
+          side: BorderSide(color: selected ? paw.textPrimary : paw.outline, width: selected ? Strokes.strong : Strokes.hairline),
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(Radii.lg),
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(Space.md),
+            child: Stack(children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                top,
+                const SizedBox(height: Space.xs),
+                Text(title, style: context.text.titleSmall),
+                if (subtitle != null) Text(subtitle!, style: context.text.bodySmall),
+              ]),
+              Positioned(
+                right: 0,
+                top: 0,
+                child: Container(
+                  width: IconSizes.md,
+                  height: IconSizes.md,
+                  decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: selected ? paw.textPrimary : paw.controlBorder, width: Strokes.focus)),
+                  child: selected
+                      ? Center(child: Container(width: Space.sm + Space.xxs, height: Space.sm + Space.xxs, decoration: BoxDecoration(color: paw.marigold, shape: BoxShape.circle)))
+                      : null,
+                ),
+              ),
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A small picture of the app in light, dark, or cut corner to corner for
+/// "System": a marigold line over a grey one on that theme's paper.
+class _ThemePreview extends StatelessWidget {
+  const _ThemePreview({required this.mode});
+  final ThemeMode mode;
+
+  @override
+  Widget build(BuildContext context) {
+    const light = PawColors.light, dark = PawColors.dark;
+    Widget face(PawColors c) => ColoredBox(
+          color: c.background,
+          child: Padding(
+            padding: const EdgeInsets.all(Space.sm),
+            child: Column(mainAxisAlignment: MainAxisAlignment.end, crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(width: Space.xl, height: Space.xs, decoration: BoxDecoration(color: c.marigold, borderRadius: BorderRadius.circular(Radii.xs))),
+              const SizedBox(height: Space.xs),
+              Container(width: Space.xxl + Space.sm, height: Space.xs, decoration: BoxDecoration(color: c.textSecondary, borderRadius: BorderRadius.circular(Radii.xs))),
+            ]),
+          ),
+        );
+    return Padding(
+      // Leaves room for the radio dot in the tile's corner.
+      padding: const EdgeInsets.only(right: Space.xs),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(Radii.sm),
+        child: Container(
+          height: Sizes.thumb - Space.sm,
+          foregroundDecoration: BoxDecoration(border: Border.all(color: context.tint.line2), borderRadius: BorderRadius.circular(Radii.sm)),
+          child: switch (mode) {
+            ThemeMode.light => face(light),
+            ThemeMode.dark => face(dark),
+            _ => Stack(fit: StackFit.expand, children: [face(light), ClipPath(clipper: const _Diagonal(), child: face(dark))]),
+          },
+        ),
+      ),
+    );
+  }
+}
+
+/// The bottom-right half of a box, cut from the top right to the bottom left.
+class _Diagonal extends CustomClipper<Path> {
+  const _Diagonal();
+
+  @override
+  Path getClip(Size size) => Path()
+    ..moveTo(size.width, 0)
+    ..lineTo(size.width, size.height)
+    ..lineTo(0, size.height)
+    ..close();
+
+  @override
+  bool shouldReclip(_Diagonal oldClipper) => false;
 }

@@ -10,6 +10,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../../pets/presentation/pet_labels.dart';
+import '../../../core/theme/ph.dart';
 
 /// Shared frame for the three setup steps with a step indicator.
 class _SetupFrame extends StatelessWidget {
@@ -26,7 +27,7 @@ class _SetupFrame extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 560),
+            constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
             child: Column(children: [
               Expanded(
                 child: ListView(
@@ -36,8 +37,8 @@ class _SetupFrame extends StatelessWidget {
                       label: context.l10n.stepOf(step, 3),
                       child: LinearProgressIndicator(
                         value: step / 3,
-                        minHeight: 6,
-                        borderRadius: BorderRadius.circular(3),
+                        minHeight: Sizes.progressBar,
+                        borderRadius: BorderRadius.circular(Radii.xs),
                       ),
                     ),
                     const SizedBox(height: Space.xl),
@@ -114,7 +115,7 @@ class SetupPreferencesScreen extends ConsumerWidget {
             onChanged: n.setEasyMode,
             title: Text(l.easyMode, style: context.text.titleSmall),
             subtitle: Text(l.easyModeHint),
-            secondary: Icon(Icons.accessibility_new_rounded, color: context.colors.primary),
+            secondary: Icon(Ph.personArmsSpread, color: context.colors.primary),
           ),
         ),
       ],
@@ -179,7 +180,7 @@ class _SetupFirstPetScreenState extends ConsumerState<SetupFirstPetScreen> {
             label: l.petName,
             controller: _name,
             autofocus: true,
-            prefixIcon: Icons.pets_rounded,
+            prefixIcon: Ph.pawPrint,
             validator: (v) => (v == null || v.trim().isEmpty) ? l.fieldRequired : null,
           ),
         ),
@@ -189,7 +190,7 @@ class _SetupFirstPetScreenState extends ConsumerState<SetupFirstPetScreen> {
           for (final sp in const ['dog', 'cat', 'bird', 'rabbit'])
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(4),
+                padding: const EdgeInsets.all(Space.xs),
                 child: Semantics(
                   selected: sp == _species,
                   button: true,
@@ -205,11 +206,11 @@ class _SetupFirstPetScreenState extends ConsumerState<SetupFirstPetScreen> {
                         borderRadius: BorderRadius.circular(Radii.card),
                         border: Border.all(
                           color: sp == _species ? context.colors.primary : context.paw.outline,
-                          width: sp == _species ? 2 : 1,
+                          width: sp == _species ? Strokes.focus : Strokes.hairline,
                         ),
                       ),
                       child: Column(children: [
-                        PetFace(species: sp, color: const Color(0xFFF4A261), size: 52),
+                        PetFace(species: sp, color: PetTagColors.of('amber'), size: Sizes.avatarMd),
                         const SizedBox(height: Space.xs),
                         Text(speciesLabel(context, sp), style: context.text.labelMedium, textAlign: TextAlign.center),
                       ]),
@@ -262,10 +263,10 @@ class _SetupNotificationsScreenState extends ConsumerState<SetupNotificationsScr
       ],
       children: [
         for (final r in [
-          (Icons.vaccines_rounded, l.notifReasonVaccines),
-          (Icons.medication_rounded, l.notifReasonMedicines),
-          (Icons.event_available_rounded, l.notifReasonBookings),
-          (Icons.chat_bubble_rounded, l.notifReasonMessages),
+          (Ph.syringe, l.notifReasonVaccines),
+          (Ph.pill, l.notifReasonMedicines),
+          (Ph.calendarCheck, l.notifReasonBookings),
+          (Ph.chatCircleFill, l.notifReasonMessages),
         ])
           Padding(
             padding: const EdgeInsets.only(bottom: Space.md),

@@ -30,7 +30,7 @@ String aiQuestion(BuildContext context, String topic) {
   };
 }
 
-/// Scripted demo answer for a topic (Version 2 uses Gemini).
+/// Scripted demo answer for a topic (FINAL VERSION uses Gemini).
 String aiAnswer(BuildContext context, String topic) {
   final l = context.l10n;
   return switch (topic) {

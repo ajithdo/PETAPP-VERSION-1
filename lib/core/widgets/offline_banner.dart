@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../theme/tokens.dart';
 import 'layout.dart';
+import '../theme/ph.dart';
 
 /// False while the device has no network. When it can't tell (tests, an
 /// unsupported platform) it counts as online.
@@ -31,7 +32,7 @@ class OfflineBanner extends ConsumerWidget {
     return Column(children: [
       Expanded(child: MediaQuery.removePadding(context: context, removeBottom: true, child: child)),
       Material(
-        color: Color.alphaBlend(context.paw.warning.withValues(alpha: 0.18), context.paw.surface),
+        color: Color.alphaBlend(context.paw.warning.withValues(alpha: Opacities.tintStrong), context.paw.surface),
         child: SafeArea(
           top: false,
           child: Semantics(
@@ -39,7 +40,7 @@ class OfflineBanner extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.sm),
               child: Row(children: [
-                Icon(Icons.cloud_off_rounded, size: 20, color: context.paw.textPrimary),
+                Icon(Ph.cloudSlash, size: IconSizes.md, color: context.paw.textPrimary),
                 const SizedBox(width: Space.sm),
                 Expanded(child: Text(context.l10n.offlineBanner, style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary))),
               ]),

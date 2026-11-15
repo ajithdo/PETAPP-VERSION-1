@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../domain/album.dart';
+import '../../../core/theme/ph.dart';
 
 String milestoneLabel(BuildContext context, String kind, {String? custom}) {
   final l = context.l10n;
@@ -18,11 +19,12 @@ String milestoneLabel(BuildContext context, String kind, {String? custom}) {
 String itemMilestoneLabel(BuildContext context, AlbumItem i) => milestoneLabel(context, i.milestone ?? 'custom', custom: i.milestoneTitle);
 
 IconData milestoneIcon(String kind) => switch (kind) {
-      'birthday' => Icons.cake_rounded,
-      'gotcha' => Icons.home_rounded,
-      'first_walk' => Icons.directions_walk_rounded,
-      'first_vaccine' => Icons.vaccines_rounded,
-      _ => Icons.star_rounded,
+      'birthday' => Ph.cake,
+      'gotcha' => Ph.house,
+      'first_walk' => Ph.personSimpleWalk,
+      'first_vaccine' => Ph.syringe,
+      'custom' => Ph.flowerLotus,
+      _ => Ph.starFill,
     };
 
 Color milestoneColor(BuildContext context, String kind) => switch (kind) {
@@ -55,7 +57,7 @@ class MilestoneBadge extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: c.withValues(alpha: earned ? 0.2 : 0.5),
-        border: Border.all(color: c, width: 2),
+        border: Border.all(color: c, width: Strokes.focus),
       ),
       child: Icon(milestoneIcon(kind), size: size * 0.5, color: earned ? c : context.paw.textSecondary),
     );

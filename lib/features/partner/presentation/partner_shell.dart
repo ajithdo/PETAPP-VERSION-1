@@ -7,6 +7,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../shell/presentation/coming_soon_screen.dart';
 import '../../shell/presentation/portal_scaffold.dart';
 import 'partner_sections.dart';
+import '../../../core/theme/ph.dart';
 
 /// Partner portal (spec 9): clinics, vets, groomers, trainers, boarding,
 /// walkers and sellers. Sections depend on the role.
@@ -47,28 +48,28 @@ List<PortalSection> partnerSectionsFor(BuildContext context, UserRole role) {
   final l = context.l10n;
   if (role == UserRole.seller) {
     return [
-      PortalSection('dashboard', Icons.dashboard_rounded, l.pDashboard),
-      PortalSection('products', Icons.inventory_2_rounded, l.pProducts),
-      PortalSection('orders', Icons.receipt_long_rounded, l.pOrders),
-      PortalSection('returns', Icons.assignment_return_rounded, l.pReturns),
-      PortalSection('payouts', Icons.account_balance_rounded, l.pPayouts),
-      PortalSection('reviews', Icons.star_rounded, l.pReviews),
-      PortalSection('profile', Icons.badge_rounded, l.pProfileKyc),
-      PortalSection('help', Icons.support_agent_rounded, l.helpAndComplaints),
+      PortalSection('dashboard', Ph.squaresFour, l.pDashboard),
+      PortalSection('products', Ph.package, l.pProducts),
+      PortalSection('orders', Ph.receipt, l.pOrders),
+      PortalSection('returns', Ph.arrowUUpLeft, l.pReturns),
+      PortalSection('payouts', Ph.bank, l.pPayouts),
+      PortalSection('reviews', Ph.star, l.pReviews),
+      PortalSection('profile', Ph.identificationCard, l.pProfileKyc),
+      PortalSection('help', Ph.headset, l.helpAndComplaints),
     ];
   }
   return [
-    PortalSection('dashboard', Icons.dashboard_rounded, l.pDashboard),
-    PortalSection('calendar', Icons.calendar_month_rounded, l.pCalendar),
-    PortalSection('requests', Icons.inbox_rounded, l.pRequests),
-    if (role == UserRole.vet) PortalSection('televet', Icons.video_call_rounded, l.pTeleVetQueue),
-    if (role != UserRole.vet) PortalSection('services', Icons.design_services_rounded, l.pServices),
-    if (role == UserRole.clinicAdmin) PortalSection('staff', Icons.groups_rounded, l.pStaff),
-    PortalSection('chat', Icons.chat_rounded, l.pChat),
-    PortalSection('reviews', Icons.star_rounded, l.pReviews),
-    if (role != UserRole.vet) PortalSection('payouts', Icons.account_balance_rounded, l.pPayouts),
-    PortalSection('profile', Icons.badge_rounded, l.pProfileKyc),
-    if (role == UserRole.clinicAdmin) PortalSection('emergency', Icons.emergency_rounded, l.pEmergency),
-    PortalSection('help', Icons.support_agent_rounded, l.helpAndComplaints),
+    PortalSection('dashboard', Ph.squaresFour, l.pDashboard),
+    PortalSection('calendar', Ph.calendarDots, l.pCalendar),
+    PortalSection('requests', Ph.tray, l.pRequests),
+    if (role == UserRole.vet) PortalSection('televet', Ph.videoCamera, l.pTeleVetQueue),
+    if (role != UserRole.vet) PortalSection('services', Ph.tag, l.pServices),
+    if (role == UserRole.clinicAdmin) PortalSection('staff', Ph.usersThree, l.pStaff),
+    PortalSection('chat', Ph.chatCircleDots, l.pChat),
+    PortalSection('reviews', Ph.star, l.pReviews),
+    if (role != UserRole.vet) PortalSection('payouts', Ph.bank, l.pPayouts),
+    PortalSection('profile', Ph.identificationCard, l.pProfileKyc),
+    if (role == UserRole.clinicAdmin) PortalSection('emergency', Ph.asterisk, l.pEmergency),
+    PortalSection('help', Ph.headset, l.helpAndComplaints),
   ];
 }

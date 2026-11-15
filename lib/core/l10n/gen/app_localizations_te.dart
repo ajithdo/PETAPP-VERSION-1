@@ -497,7 +497,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get demoAccountsHint =>
-      'ఏ ఖాతానైనా ట్యాప్ చేసి సైన్ ఇన్ అవ్వండి. పాస్‌వర్డ్ అవసరం లేదు.';
+      'ఏ ఖాతానైనా ట్యాప్ చేసి సైన్ ఇన్ అవ్వండి. పాస్‌వర్డ్ అవసరం లేదు. ఇక్కడ ఏదీ నిజం కాదు, డబ్బు వసూలు కాదు.';
 
   @override
   String get orSignInWithEmail => 'లేదా మీ ఈమెయిల్‌తో సైన్ ఇన్ చేయండి';
@@ -512,30 +512,27 @@ class AppLocalizationsTe extends AppLocalizations {
   String get demoGroupPartners => 'భాగస్వాములు';
 
   @override
-  String get demoGroupPlatform => 'ప్లాట్‌ఫామ్';
+  String get demoGroupPlatform => 'PawSetu టీమ్';
 
   @override
-  String get demoPriya =>
-      'బెంగళూరు · Plus · లాబ్రడార్ బ్రూనో, పర్షియన్ పిల్లి మిస్టీ';
+  String get demoPriya => 'బెంగళూరు, లాబ్రడార్ బ్రూనో, పర్షియన్ పిల్లి మిస్టీ';
 
   @override
-  String get demoRavi =>
-      'హైదరాబాద్ · Free · తెలుగు · దేశీ కుక్కపిల్ల సింబా, కాకటీల్ కివీ';
+  String get demoRavi => 'హైదరాబాద్, దేశీ కుక్కపిల్ల సింబా, కాకటీల్ కివీ';
 
   @override
-  String get demoAnjali =>
-      'ఢిల్లీ NCR · Free · హిందీ · ఈజీ మోడ్ · కుందేలు కోకో, వృద్ధ పిల్లి టైగర్';
+  String get demoAnjali => 'ఢిల్లీ NCR, కుందేలు కోకో, వృద్ధ పిల్లి టైగర్';
 
   @override
   String get demoArjun =>
-      'ముంబై · Plus · జర్మన్ షెపర్డ్ మ్యాక్స్, బీగల్ కుక్కపిల్ల లూనా';
+      'ముంబై, జర్మన్ షెపర్డ్ మ్యాక్స్, బీగల్ కుక్కపిల్ల లూనా';
 
   @override
-  String get demoRohan => 'ప్రియ భర్త · బ్రూనో, మిస్టీల సంరక్షకుడు';
+  String get demoRohan => 'ప్రియ భర్త, బ్రూనో, మిస్టీల సంరక్షకుడు';
 
   @override
   String get demoMeera =>
-      'అర్జున్ పెట్ సిట్టర్ · యాక్సెస్ 3 రోజుల్లో ముగుస్తుంది';
+      'అర్జున్ పెట్ సిట్టర్, యాక్సెస్ 3 రోజుల్లో ముగుస్తుంది';
 
   @override
   String get demoClinicAdmin =>
@@ -2352,6 +2349,15 @@ class AppLocalizationsTe extends AppLocalizations {
       'ఈ కార్డ్ ఇంటర్నెట్ లేకుండా పనిచేస్తుంది. వెట్, బోర్డింగ్ సెంటర్ లేదా ఎయిర్‌పోర్ట్‌లో చూపించండి.';
 
   @override
+  String get healthAllClear => 'అన్నీ సమయానికి ఉన్నాయి';
+
+  @override
+  String get certificate => 'సర్టిఫికెట్';
+
+  @override
+  String get emergencyInfo => 'అత్యవసర సమాచారం';
+
+  @override
   String get bookTitle => 'సంరక్షణ బుక్ చేయండి';
 
   @override
@@ -3297,6 +3303,14 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get remove => 'తీసివేయండి';
+
+  @override
+  String bookFor(String name) {
+    return '$name కోసం బుక్ చేయండి';
+  }
+
+  @override
+  String get nextFreeSlot => 'తదుపరి ఖాళీ సమయం';
 
   @override
   String get aiTitle => 'PawSetu ని అడగండి';
@@ -4890,7 +4904,7 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String get albumSeeAlbum => 'ఆల్బమ్ చూడండి';
+  String get albumSeeAlbum => 'ఆల్బమ్';
 
   @override
   String albumYearsAgo(int count) {
@@ -6132,7 +6146,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String shopReorderPrice(String price) {
-    return 'మళ్ళీ ఆర్డర్ · $price';
+    return 'మళ్ళీ ఆర్డర్ $price';
   }
 
   @override
@@ -6993,7 +7007,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String foodRunsOutIn(String pet, int days) {
-    return '$pet ఆహారం సుమారు $days రోజుల్లో అయిపోవచ్చు. మళ్ళీ ఆర్డర్ చేయాలా?';
+    return '$pet ఆహారం సుమారు $days రోజుల్లో అయిపోవచ్చు';
   }
 
   @override
@@ -7007,7 +7021,7 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String get foodEditPortion => 'పరిమాణం మార్చండి';
+  String get foodEditPortion => 'రోజువారీ మోతాదు మార్చండి';
 
   @override
   String foodOnTheWay(String pet) {
@@ -10338,4 +10352,1111 @@ class AppLocalizationsTe extends AppLocalizations {
   String albumTitle(String pet) {
     return '$pet జ్ఞాపకాలు';
   }
+
+  @override
+  String gendaProgress(int done, int total) {
+    return '$totalలో $done పూర్తయ్యాయి';
+  }
+
+  @override
+  String get gendaNothingPlanned =>
+      'ఈరోజు ఏమీ ప్లాన్ లేదు. ఒక దినచర్య జోడించండి.';
+
+  @override
+  String withUnread(String label, int count) {
+    return '$label, $count చదవనివి';
+  }
+
+  @override
+  String shopAskVet(String name) {
+    return '$nameకి ఏది సరిపోతుందో తెలియదా? వెట్‌ని అడగండి';
+  }
+
+  @override
+  String get meGroupPets => 'పెంపుడు జంతువులు, కుటుంబం';
+
+  @override
+  String get meGroupMoney => 'ఆర్డర్‌లు, డబ్బు';
+
+  @override
+  String get meGroupHelp => 'సహాయం, సెట్టింగ్‌లు';
+
+  @override
+  String gendaNext(String task) {
+    return 'తర్వాత: $task';
+  }
+
+  @override
+  String get bookIntro =>
+      'మీ దగ్గర్లోని వెట్‌లు, గ్రూమర్‌లు, ట్రైనర్‌లు, బోర్డింగ్, వాకర్‌లు.';
+
+  @override
+  String get bookVetSub => 'చెకప్‌లు, టీకాలు, శస్త్రచికిత్స';
+
+  @override
+  String get bookTeleSub => 'వెట్‌తో చాట్ లేదా వీడియో';
+
+  @override
+  String get bookGroomSub => 'సెలూన్ లేదా ఇంటి వద్ద';
+
+  @override
+  String get bookTrainSub => 'ప్రాథమిక శిక్షణ నుండి ప్రవర్తన వరకు';
+
+  @override
+  String get bookBoardSub => 'బోర్డింగ్, పెట్ సిట్టింగ్';
+
+  @override
+  String get bookWalkSub => 'లైవ్ రూట్, ఫోటోలు';
+
+  @override
+  String get welcomeLanguages =>
+      'English, हिन्दी, తెలుగు. సెట్టింగ్స్‌లో ఎప్పుడైనా మార్చండి.';
+
+  @override
+  String get firstAidGuides => 'గైడ్‌లు';
+
+  @override
+  String get yesterday => 'నిన్న';
+
+  @override
+  String get earlier => 'ఇంతకుముందు';
+
+  @override
+  String get stepBooked => 'బుక్ అయింది';
+
+  @override
+  String get stepConfirmed => 'నిర్ధారించబడింది';
+
+  @override
+  String get stepVisited => 'సందర్శించారు';
+
+  @override
+  String shopGoodMatch(String name) {
+    return '$nameకి సరిపోతుంది';
+  }
+
+  @override
+  String get logGridTitle => 'ఏదైనా నమోదు చేయండి';
+
+  @override
+  String leftCount(int count) {
+    return '$count మిగిలాయి';
+  }
+
+  @override
+  String get markGiven => 'ఇచ్చాను';
+
+  @override
+  String playOfMin(int done, int goal) {
+    return '$goal ని.లో $done';
+  }
+
+  @override
+  String aboutLeft(String amount) {
+    return 'సుమారు $amount మిగిలింది';
+  }
+
+  @override
+  String nowAt(String time) {
+    return 'ఇప్పుడు, $time';
+  }
+
+  @override
+  String get albumYearAgo => 'ఏడాది క్రితం ఈ రోజు';
+
+  @override
+  String get bookWord => 'బుక్';
+
+  @override
+  String get sosEmergencyHelp => 'SOS, అత్యవసర సహాయం';
+
+  @override
+  String get healthRecords => 'రికార్డులు';
+
+  @override
+  String get noneRightNow => 'ప్రస్తుతం ఏమీ లేవు';
+
+  @override
+  String get nothingLogged => 'ఏమీ నమోదు కాలేదు';
+
+  @override
+  String whatDueOn(String what, String date) {
+    return '$what గడువు $date';
+  }
+
+  @override
+  String get vaccinesUpToDate => 'టీకాలు పూర్తయ్యాయి';
+
+  @override
+  String get weightHealthy => 'ఆరోగ్యకర పరిధిలో ఉంది';
+
+  @override
+  String get weightBelow => 'సాధారణ పరిధి కంటే తక్కువ';
+
+  @override
+  String get weightAbove => 'సాధారణ పరిధి కంటే ఎక్కువ';
+
+  @override
+  String get preventionTitle => 'డీవార్మింగ్, ఈగలు, పేలు';
+
+  @override
+  String get indicativeSchedule =>
+      'ఇది సూచనాత్మక షెడ్యూల్. ఎప్పుడూ మీ వెట్‌తో నిర్ధారించుకోండి.';
+
+  @override
+  String bookIntroNear(String area) {
+    return '$area దగ్గర్లోని వెట్‌లు, గ్రూమర్‌లు, ట్రైనర్‌లు, బోర్డింగ్, వాకర్‌లు.';
+  }
+
+  @override
+  String bookNextSlot(String when) {
+    return 'తదుపరి స్లాట్ $when';
+  }
+
+  @override
+  String bookVetsOnline(int count) {
+    return '$count వెట్‌లు ఆన్‌లైన్‌లో ఉన్నారు';
+  }
+
+  @override
+  String inDaysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count రోజుల్లో',
+      one: 'రేపు',
+      zero: 'ఈరోజు',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shopDeliveringTo => 'డెలివరీ చిరునామా:';
+
+  @override
+  String get shopRunningLow => 'అయిపోతోంది';
+
+  @override
+  String shopNotSure(String name) {
+    return '$nameకి ఏది సరిపోతుందో తెలియదా?';
+  }
+
+  @override
+  String get shopFromPartners => 'భాగస్వామి స్టోర్ల నుండి';
+
+  @override
+  String shopBuyOnStore(String price, String store) {
+    return '$price, మీరు కొనేది: $store';
+  }
+
+  @override
+  String meDocsCount(int count) {
+    return '$count పత్రాలు';
+  }
+
+  @override
+  String meExpireSoon(int count) {
+    return '$count త్వరలో ముగుస్తాయి';
+  }
+
+  @override
+  String mePhotosCount(int count) {
+    return '$count ఫోటోలు';
+  }
+
+  @override
+  String meVideosCount(int count) {
+    return '$count వీడియోలు';
+  }
+
+  @override
+  String get meTagsReady => 'ట్యాగ్‌లు సిద్ధం. ఏ పెంపుడు జంతువూ తప్పిపోలేదు.';
+
+  @override
+  String mePetLost(String name) {
+    return '$name తప్పిపోయినట్లు గుర్తించారు';
+  }
+
+  @override
+  String get meNoneYet => 'ఇంకా ఏమీ లేవు';
+
+  @override
+  String meDeviceLine(String device, int battery) {
+    return '$device, $battery%';
+  }
+
+  @override
+  String get meOnlyYou => 'మీరు మాత్రమే';
+
+  @override
+  String meCanCare(String who, String pets) {
+    return '$who $petsను చూసుకోగలరు';
+  }
+
+  @override
+  String meOnTheWay(String item) {
+    return '$item దారిలో ఉంది';
+  }
+
+  @override
+  String meThisMonth(String amount) {
+    return 'ఈ నెల $amount';
+  }
+
+  @override
+  String meRenewsOn(String date) {
+    return '$dateన పునరుద్ధరణ';
+  }
+
+  @override
+  String get meTryFree => '7 రోజులు ఉచితంగా ప్రయత్నించండి';
+
+  @override
+  String meBothGet(String amount) {
+    return 'ఇద్దరికీ $amount';
+  }
+
+  @override
+  String get meSettingsSub => 'భాష, రూపం, ఈజీ మోడ్';
+
+  @override
+  String get mePrivacySub => 'మీ డేటా, అనుమతులు';
+
+  @override
+  String get meGroupApp => 'యాప్, సహాయం';
+
+  @override
+  String get meSavedAddresses => 'సేవ్ చేసిన చిరునామాలు';
+
+  @override
+  String get catShortFood => 'ఆహారం';
+
+  @override
+  String get catShortTreats => 'ట్రీట్‌లు';
+
+  @override
+  String get catShortToys => 'బొమ్మలు';
+
+  @override
+  String get catShortGrooming => 'గ్రూమింగ్';
+
+  @override
+  String get catShortHealthHygiene => 'ఆరోగ్యం';
+
+  @override
+  String get catShortBeds => 'పడకలు';
+
+  @override
+  String get catShortCollarsLeashes => 'కాలర్‌లు';
+
+  @override
+  String get catShortBowlsFeeders => 'గిన్నెలు';
+
+  @override
+  String get catShortLitterCat => 'లిటర్';
+
+  @override
+  String get catShortBirdFoodCages => 'పక్షులు';
+
+  @override
+  String get catShortRabbitCare => 'కుందేళ్ళు';
+
+  @override
+  String get catShortClothing => 'దుస్తులు';
+
+  @override
+  String get catShortTravel => 'ప్రయాణం';
+
+  @override
+  String get orContinueWith => 'లేదా దీనితో కొనసాగండి';
+
+  @override
+  String get partnerAsk => 'క్లినిక్, సెలూన్ లేదా షాప్ నడుపుతున్నారా?';
+
+  @override
+  String get partnerApply => 'భాగస్వామిగా దరఖాస్తు చేయండి';
+
+  @override
+  String get demoPartnersTeam => 'భాగస్వాములు, PawSetu టీమ్';
+
+  @override
+  String seeAllCount(int count) {
+    return 'మొత్తం $count చూడండి';
+  }
+
+  @override
+  String sosCallNumber(String phone) {
+    return '$phoneకు కాల్ చేయండి';
+  }
+
+  @override
+  String get openMedicalCard => 'మెడికల్ కార్డ్ తెరవండి';
+
+  @override
+  String get tvBookVideo => 'వీడియో బుక్ చేయండి';
+
+  @override
+  String get tvUnlimitedWord => 'అపరిమితం';
+
+  @override
+  String get tvConsultationsWord => 'సంప్రదింపులు';
+
+  @override
+  String tvPerMonthTitle(int count) {
+    return 'నెలకు $count';
+  }
+
+  @override
+  String tvUsedSub(int used) {
+    return 'ఇప్పటివరకు $used వాడారు';
+  }
+
+  @override
+  String tvMessagesTitle(int count) {
+    return '$count సందేశాలు';
+  }
+
+  @override
+  String tvWordsSub(int words) {
+    return 'ఒక్కొక్కటి $words పదాలు';
+  }
+
+  @override
+  String tvHoursTitle(int hours) {
+    return '$hours గంటలు';
+  }
+
+  @override
+  String get tvHoursSub => 'చాట్ తెరిచి ఉంటుంది';
+
+  @override
+  String get tvVideoTitle => 'వీడియో కాల్‌లు';
+
+  @override
+  String get tvVideoSubPlus => '10% తగ్గింపుతో';
+
+  @override
+  String get tvVideoSubFree => 'Plusలో మాత్రమే';
+
+  @override
+  String tvPetWithVet(String pet, String vet) {
+    return '$vetతో $pet';
+  }
+
+  @override
+  String get tvOpenChat => 'చాట్ తెరవండి';
+
+  @override
+  String get tvPrescriptionWord => 'ప్రిస్క్రిప్షన్';
+
+  @override
+  String aiCareAnswers(String name) {
+    return '$name సంరక్షణ సమాధానాలు. ఇది రోగ నిర్ధారణ కాదు.';
+  }
+
+  @override
+  String get aiCareAnswersAll =>
+      'మీ పెంపుడు జంతువు సంరక్షణ సమాధానాలు. ఇది రోగ నిర్ధారణ కాదు.';
+
+  @override
+  String clinicsWithin(int count, int km) {
+    return '$km కి.మీ లోపు $count క్లినిక్‌లు';
+  }
+
+  @override
+  String placesWithin(int count, int km) {
+    return '$km కి.మీ లోపు $count చోట్లు';
+  }
+
+  @override
+  String get feeWord => 'సంప్రదింపు';
+
+  @override
+  String get bookAVisit => 'విజిట్ బుక్ చేయండి';
+
+  @override
+  String placeWhere(String kind, String area, String city, String distance) {
+    return '$area, $cityలో $kind. $distance దూరం.';
+  }
+
+  @override
+  String serviceWithVet(String service, String vet) {
+    return '$vetతో $service';
+  }
+
+  @override
+  String serviceForPet(String service, String pet) {
+    return '$pet కోసం $service';
+  }
+
+  @override
+  String get bookingIdLabel => 'బుకింగ్ ID';
+
+  @override
+  String get howWasVisit => 'విజిట్ ఎలా జరిగింది?';
+
+  @override
+  String get reviewWhoCan =>
+      'వచ్చిన వారు మాత్రమే సమీక్ష రాయగలరు. వారు సమాధానం ఇవ్వగలరు.';
+
+  @override
+  String get bookAgain => 'మళ్ళీ బుక్ చేయండి';
+
+  @override
+  String get bookAgainSub => 'అదే చోటు, అదే సేవ';
+
+  @override
+  String get addToCalendarSub => 'సమయాన్ని మీ ఫోన్ క్యాలెండర్‌లో దాచండి';
+
+  @override
+  String get getHelpSub => 'ఏదైనా తప్పు జరిగిందా? మాకు చెప్పండి';
+
+  @override
+  String dueBoosters(String name, String date) {
+    return '$name టీకాల గడువు $date';
+  }
+
+  @override
+  String get dueBoostersSub =>
+      'దగ్గర్లోని క్లినిక్‌లో ఒకే విజిట్‌లో వేయించండి.';
+
+  @override
+  String get bookVaccines => 'టీకాలు బుక్ చేయండి';
+
+  @override
+  String requestCancels(String when) {
+    return 'వారు $when లోపు స్పందిస్తారు, లేకపోతే అభ్యర్థన దానంతట అదే రద్దవుతుంది.';
+  }
+
+  @override
+  String get discountWord => 'తగ్గింపు';
+
+  @override
+  String shopDeliveryBy(String date) {
+    return '$date లోపు డెలివరీ';
+  }
+
+  @override
+  String shopDeliverTo(String pin) {
+    return 'పిన్ కోడ్ $pinకి.';
+  }
+
+  @override
+  String shopSoldByName(String seller) {
+    return 'విక్రేత: $seller';
+  }
+
+  @override
+  String shopReturnsDays(int days) {
+    return '$days రోజుల్లో రిటర్న్';
+  }
+
+  @override
+  String get shopNoReturns => 'రిటర్న్ లేదు';
+
+  @override
+  String shopNoAllergen(String allergen, String pet) {
+    return 'ఇందులో $allergen లేదు, $pet దాన్ని తినదు.';
+  }
+
+  @override
+  String get changeWord => 'మార్చండి';
+
+  @override
+  String reviewsLink(int count) {
+    return '$count సమీక్షలు';
+  }
+
+  @override
+  String youAreRole(String role) {
+    return 'మీరు $role';
+  }
+
+  @override
+  String birthdayOnDate(String date) {
+    return 'పుట్టినరోజు $date';
+  }
+
+  @override
+  String get qrActiveTitle => 'QR ట్యాగ్ పనిచేస్తోంది';
+
+  @override
+  String qrActiveSub(String name) {
+    return '$name దొరికిన ఎవరైనా మిమ్మల్ని సంప్రదించగలరు. మీ నంబర్ కనిపించదు.';
+  }
+
+  @override
+  String whoLooksAfter(String name) {
+    return '$nameను ఎవరు చూసుకుంటారు';
+  }
+
+  @override
+  String get medCardBrand => 'PawSetu మెడికల్ కార్డ్';
+
+  @override
+  String get worksOffline => 'ఇంటర్నెట్ లేకున్నా పనిచేస్తుంది';
+
+  @override
+  String get savePdf => 'PDF సేవ్ చేయండి';
+
+  @override
+  String get fullHealthReport => 'పూర్తి ఆరోగ్య నివేదిక';
+
+  @override
+  String get fullHealthReportSub => 'టీకాలు, మందులు, విజిట్‌లు, బరువు చార్ట్';
+
+  @override
+  String get editDetails => 'వివరాలు మార్చండి';
+
+  @override
+  String get editDetailsSub => 'అలెర్జీలు, మైక్రోచిప్, క్లినిక్';
+
+  @override
+  String get roleOwnerDoes => 'అన్నీ చేయగలరు';
+
+  @override
+  String get roleCoownerDoes => 'పెంపుడు జంతువును తొలగించడం తప్ప అన్నీ';
+
+  @override
+  String get roleCarerDoes => 'దినచర్య నమోదు, మందులు ఇవ్వడం, సేవలు బుక్ చేయడం';
+
+  @override
+  String get roleViewerDoes => 'అన్నీ చూడగలరు, నడకలు, భోజనం నమోదు చేయగలరు';
+
+  @override
+  String get languageNote =>
+      'యాప్ మొత్తం ఒకేసారి మారుతుంది, రిమైండర్‌లు, PDFలు కూడా.';
+
+  @override
+  String get textSizeNote => '200% వరకు అన్నీ చక్కగా కనిపిస్తాయి.';
+
+  @override
+  String get plusYouHaveShort => 'మీకు Plus ఉంది';
+
+  @override
+  String plusMemberSince(String name, String date) {
+    return '$name, $date నుండి సభ్యులు';
+  }
+
+  @override
+  String get plusRenewsOnLabel => 'రెన్యూ తేదీ';
+
+  @override
+  String get plusEndsOnLabel => 'ముగిసే తేదీ';
+
+  @override
+  String get plusYearlyPlan => 'సంవత్సర ప్లాన్';
+
+  @override
+  String get plusMonthlyPlan => 'నెలవారీ ప్లాన్';
+
+  @override
+  String plusPriceYear(String amount) {
+    return 'సంవత్సరానికి $amount';
+  }
+
+  @override
+  String plusPriceMonth(String amount) {
+    return 'నెలకు $amount';
+  }
+
+  @override
+  String plusNextPayment(String amount, String date) {
+    return 'తదుపరి చెల్లింపు $amount, $dateన';
+  }
+
+  @override
+  String get plusCancelPlan => 'ప్లాన్ రద్దు చేయండి';
+
+  @override
+  String get plusCancelTitle => 'మీ ప్లాన్ రద్దు చేయాలా?';
+
+  @override
+  String plusNewHere(int days) {
+    return 'కొత్తవారా? $days రోజులు ఉచితం';
+  }
+
+  @override
+  String get plusNewHereBody =>
+      'Free ప్లాన్ సభ్యులు డబ్బు చెల్లించే ముందు Plus ప్రయత్నించవచ్చు.';
+
+  @override
+  String get plusWhatYouGet => 'మీకు ఏమి లభిస్తుంది';
+
+  @override
+  String get plusNo => 'లేదు';
+
+  @override
+  String get plusSwitchMonthly => 'నెలవారీ ప్లాన్‌కు మార్చాలా?';
+
+  @override
+  String get plusSwitchYearly => 'సంవత్సర ప్లాన్‌కు మార్చాలా?';
+
+  @override
+  String plusSwitchBody(String date, String price) {
+    return '$date నుండి మీరు $price చెల్లిస్తారు. ఈరోజు ఏమీ కట్ అవ్వదు.';
+  }
+
+  @override
+  String get plusSwitched => 'ప్లాన్ మారింది';
+
+  @override
+  String cartDeliverToLabel(String label) {
+    return '$labelకి డెలివరీ';
+  }
+
+  @override
+  String cartItems(int count) {
+    return 'వస్తువులు ($count)';
+  }
+
+  @override
+  String get cartFreeWithPlus => 'Plusతో ఉచితం';
+
+  @override
+  String get cartApplied => 'వర్తించింది';
+
+  @override
+  String cartSaveOnOrder(String amount) {
+    return 'ఈ ఆర్డర్‌పై మీరు $amount ఆదా చేస్తారు';
+  }
+
+  @override
+  String get cartDemoPayNote =>
+      'డెమో చెల్లింపు. డబ్బు కట్ అవ్వదు. మీరు విజయవంతమైన, విఫలమైన లేదా పెండింగ్ చెల్లింపును ప్రయత్నించవచ్చు.';
+
+  @override
+  String get cartBillShort => 'బిల్లు';
+
+  @override
+  String cartWindowShort(String from, String to) {
+    return '$from నుండి $to';
+  }
+
+  @override
+  String get cartCodNote => 'ఆర్డర్ వచ్చినప్పుడు చెల్లించండి.';
+
+  @override
+  String get vaultSearchDocsHint => 'పత్రాలు, ట్యాగ్‌లు వెతకండి';
+
+  @override
+  String get vaultScanOrUpload => 'స్కాన్ లేదా అప్‌లోడ్ చేయండి';
+
+  @override
+  String get vaultTypeShortVaccination => 'సర్టిఫికెట్లు';
+
+  @override
+  String get vaultTypeShortInsurance => 'బీమా';
+
+  @override
+  String get vaultTypeShortLab => 'ల్యాబ్ రిపోర్టులు';
+
+  @override
+  String get vaultTypeShortPrescription => 'ప్రిస్క్రిప్షన్లు';
+
+  @override
+  String get vaultTypeShortInvoice => 'బిల్లులు';
+
+  @override
+  String get vaultTypeShortLicence => 'లైసెన్సులు';
+
+  @override
+  String get vaultTypeShortAdoption => 'దత్తత';
+
+  @override
+  String get vaultTypeShortTravel => 'ప్రయాణం';
+
+  @override
+  String get vaultTypeShortOther => 'ఇతరం';
+
+  @override
+  String vaultExpiresNote(String title, String date) {
+    return '$title $dateన గడువు ముగుస్తుంది.';
+  }
+
+  @override
+  String vaultExpiredNote(String title, String date) {
+    return '$title గడువు $dateన ముగిసింది.';
+  }
+
+  @override
+  String vaultRenewHintVaccine(String pet) {
+    return '$pet బూస్టర్ తర్వాత కొత్తది జోడించండి.';
+  }
+
+  @override
+  String get vaultRenewHint => 'కొత్తది వచ్చినప్పుడు జోడించండి.';
+
+  @override
+  String get vaultSharedWithVet => 'వెట్‌తో పంచుకున్నవి';
+
+  @override
+  String get vaultAllLinks => 'అన్ని లింక్‌లు';
+
+  @override
+  String get vaultRevokeShort => 'ఆపండి';
+
+  @override
+  String vaultPolicyLine(String name, String cover) {
+    return '$name, $cover కవర్';
+  }
+
+  @override
+  String vaultOpenClaimLine(
+    int count,
+    String status,
+    String amount,
+    int done,
+    int total,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count క్లెయిమ్‌లు',
+      one: '1 క్లెయిమ్',
+    );
+    return '$_temp0 $status: $amount, $totalలో $done పత్రాలు జోడించారు';
+  }
+
+  @override
+  String vaultRenewsOn(String date) {
+    return '$dateన రెన్యూ అవుతుంది';
+  }
+
+  @override
+  String get vaultAddInsurance => 'మీ పెంపుడు జంతువు బీమా జోడించండి';
+
+  @override
+  String get vaultAddInsuranceBody =>
+      'పాలసీ, రెన్యూ తేదీ, క్లెయిమ్‌లు ఒకే చోట ఉంచండి.';
+
+  @override
+  String vaultWhatViewOnly(String what) {
+    return '$what, చూడటానికి మాత్రమే';
+  }
+
+  @override
+  String vaultStorageOf(String used, String limit) {
+    return '$limitలో $used';
+  }
+
+  @override
+  String albumOnThisDayAgo(String ago) {
+    return 'ఈ రోజున, $ago';
+  }
+
+  @override
+  String albumMilestoneTag(String name) {
+    return 'మైలురాయి: $name';
+  }
+
+  @override
+  String albumVideoUpTo(String length) {
+    return '$length వరకు వీడియోలు.';
+  }
+
+  @override
+  String albumVideoUpToPlus(String length) {
+    return 'Plusతో $length వరకు వీడియోలు.';
+  }
+
+  @override
+  String byPerson(String name) {
+    return '$name ద్వారా';
+  }
+
+  @override
+  String get logSleepShort => 'నిద్ర';
+
+  @override
+  String get showToday => 'ఈరోజు మాత్రమే';
+
+  @override
+  String pPlaceAndDate(String place, String date) {
+    return '$place, $date';
+  }
+
+  @override
+  String pNextAt(String time) {
+    return 'తదుపరిది $timeకి';
+  }
+
+  @override
+  String get pAllAnswered => 'అన్నింటికీ జవాబిచ్చారు';
+
+  @override
+  String pAfterFee(int percent) {
+    return '$percent% ప్లాట్‌ఫామ్ రుసుము తర్వాత';
+  }
+
+  @override
+  String pWithOwner(String owner) {
+    return '$ownerతో';
+  }
+
+  @override
+  String get pThisWeek => 'ఈ వారం';
+
+  @override
+  String get pEmergencyListing => 'అత్యవసర జాబితా';
+
+  @override
+  String get pSosOpen24 => 'SOSలో 24x7 తెరిచి ఉన్నట్లు కనిపిస్తుంది.';
+
+  @override
+  String get pSosOpenNow =>
+      'SOSలో ఇప్పుడు తెరిచి ఉన్నట్లు కనిపిస్తుంది. 24x7 కాదు.';
+
+  @override
+  String get pSosClosedNow =>
+      'SOSలో ఇప్పుడు మూసి ఉన్నట్లు కనిపిస్తుంది. 24x7 కాదు.';
+
+  @override
+  String get pSosHidden => 'SOSలో కనిపించదు.';
+
+  @override
+  String get pEmergencyListingHelp =>
+      'మీ క్లినిక్ అత్యవసర కేసులు తీసుకోకపోతే దీన్ని ఆపండి. పెంపుడు జంతువుల యజమానులకు SOS పేజీలో ఇది కనిపించదు.';
+
+  @override
+  String get pNewReview => 'కొత్త సమీక్ష';
+
+  @override
+  String get pOpenQueue => 'క్యూ తెరవండి';
+
+  @override
+  String get pHistory => 'చరిత్ర';
+
+  @override
+  String get pOpen => 'తెరవండి';
+
+  @override
+  String starsOutOf5(int count) {
+    return '5లో $count స్టార్లు';
+  }
+
+  @override
+  String selSellerIn(String city, String date) {
+    return '$cityలో విక్రేత, $date';
+  }
+
+  @override
+  String get selPackToday => 'ఈరోజు ప్యాక్ చేయండి';
+
+  @override
+  String get selFirstPayout => 'డెలివరీ తర్వాత మొదటి చెల్లింపు';
+
+  @override
+  String selOrderFor(String number, String name, String place) {
+    return '$name కోసం ఆర్డర్ $number, $place';
+  }
+
+  @override
+  String selPlacedOn(String date) {
+    return '$dateన చేశారు';
+  }
+
+  @override
+  String get selPrintLabel => 'లేబుల్ ప్రింట్ చేయండి';
+
+  @override
+  String selStockLeftShort(int count) {
+    return '$count మిగిలాయి.';
+  }
+
+  @override
+  String selSellsPerWeek(int count) {
+    return 'వారానికి సుమారు $count అమ్ముడవుతాయి.';
+  }
+
+  @override
+  String get selAddStock => 'స్టాక్ జోడించండి';
+
+  @override
+  String get selBulkUpload => 'ఉత్పత్తులను ఒకేసారి అప్‌లోడ్ చేయండి';
+
+  @override
+  String get selBulkUploadBody => 'ఒకేసారి చాలా వస్తువులకు CSV ఫైల్ వాడండి.';
+
+  @override
+  String get admUsersShort => 'వినియోగదారులు';
+
+  @override
+  String admUsersSplit(int owners, int partners) {
+    return '$owners పెంపుడు జంతువుల యజమానులు, $partners భాగస్వాములు';
+  }
+
+  @override
+  String get admBookings30Short => 'బుకింగ్‌లు, 30 రోజులు';
+
+  @override
+  String get admOrderValue30Short => 'ఆర్డర్ విలువ, 30 రోజులు';
+
+  @override
+  String get admCommission30Short => 'కమీషన్, 30 రోజులు';
+
+  @override
+  String get admSos30Short => 'SOS, 30 రోజులు';
+
+  @override
+  String get admWaiting => 'మీ కోసం వేచి ఉన్నవి';
+
+  @override
+  String get admNothingWaiting => 'ఏమీ వేచి లేదు';
+
+  @override
+  String admCountClinics(int count) {
+    return '$count క్లినిక్‌లు';
+  }
+
+  @override
+  String admCountVets(int count) {
+    return '$count వెట్‌లు';
+  }
+
+  @override
+  String admCountSellers(int count) {
+    return '$count విక్రేతలు';
+  }
+
+  @override
+  String admCountProviders(int count) {
+    return '$count సేవలందించేవారు';
+  }
+
+  @override
+  String admTicketsLine(int open, int progress) {
+    return '$open తెరిచి ఉన్నవి, $progress జరుగుతున్నవి';
+  }
+
+  @override
+  String admReportsLine(int count) {
+    return '$count రిపోర్టులు చూడాలి';
+  }
+
+  @override
+  String admOutboxTo(String channel, String name) {
+    return '$nameకి $channel';
+  }
+
+  @override
+  String get admOutboxNote => 'ఇక్కడ ఏదీ నిజంగా పంపలేదు.';
+
+  @override
+  String admCountBookings(int count) {
+    return '$count బుకింగ్‌లు';
+  }
+
+  @override
+  String admCountSold(int count) {
+    return '$count అమ్ముడయ్యాయి';
+  }
+
+  @override
+  String get admComplaintsShort => 'ఫిర్యాదులు';
+
+  @override
+  String get themeSystemShort => 'సిస్టమ్';
+
+  @override
+  String get setReminderChannels => 'రిమైండర్ మార్గాలు';
+
+  @override
+  String get setReminderChannelsHint =>
+      'ప్రతి రిమైండర్‌కు పుష్, ఇమెయిల్, SMS, WhatsApp';
+
+  @override
+  String setQuietRange(String from, String to) {
+    return '$from నుండి $to';
+  }
+
+  @override
+  String get setQuietOff => 'ఆఫ్';
+
+  @override
+  String get setSosTap => 'SOS కోసం ట్యాప్ చేసి నిర్ధారించండి';
+
+  @override
+  String get setSosTapHint =>
+      '2 సెకన్లు నొక్కి పట్టుకునే బదులు. ఈజీ మోడ్‌లో ఆన్‌లో ఉంటుంది.';
+
+  @override
+  String get setAccount => 'ఖాతా';
+
+  @override
+  String get setEmailPassword => 'ఇమెయిల్, పాస్‌వర్డ్';
+
+  @override
+  String get setAbout => 'PawSetu గురించి';
+
+  @override
+  String setAboutDemo(String version) {
+    return 'వెర్షన్ $version, డెమో మోడ్';
+  }
+
+  @override
+  String get setResetPassword => 'పాస్‌వర్డ్ మార్చడానికి లింక్ పంపండి';
+
+  @override
+  String setResetSent(String email) {
+    return '$emailకి లింక్ పంపాము.';
+  }
+
+  @override
+  String get setNoEmail => 'ఇమెయిల్ జోడించలేదు';
+
+  @override
+  String get setNoPhone => 'ఫోన్ నంబర్ జోడించలేదు';
+
+  @override
+  String get whenQ => 'ఎప్పుడు?';
+
+  @override
+  String bookPayNote(int hours) {
+    return 'ఆన్‌లైన్‌లో లేదా క్లినిక్‌లో చెల్లించండి. $hours గంటల ముందు వరకు ఉచితంగా రద్దు చేయవచ్చు.';
+  }
+
+  @override
+  String get bookPickTime => 'సమయం ఎంచుకోండి';
+
+  @override
+  String vetYearsReg(int years, String no) {
+    return '$years ఏళ్లు. రిజి. నం. $no';
+  }
+
+  @override
+  String verifiedVisits(int count) {
+    return '$count ధృవీకరించిన విజిట్‌లు';
+  }
+
+  @override
+  String get verifiedVisit => 'ధృవీకరించిన విజిట్';
+
+  @override
+  String get replyFromClinic => 'క్లినిక్ జవాబు:';
+
+  @override
+  String get whereToFind => 'మేము ఎక్కడ ఉన్నాము';
+
+  @override
+  String get showFewer => 'తక్కువ చూపించండి';
+
+  @override
+  String peopleOf(int count, int max) {
+    return '$maxలో $count మంది';
+  }
+
+  @override
+  String get familyAway => 'ఊరికి వెళ్తున్నారా?';
+
+  @override
+  String get familyAwayBody =>
+      'పెట్ సిట్టర్ లేదా వాకర్‌కు సంరక్షకుడి అనుమతి ఇవ్వండి, మీరు ఎంచుకున్న తేదీన అది తానే ముగుస్తుంది.';
+
+  @override
+  String get latestActivity => 'తాజా కార్యకలాపాలు';
+
+  @override
+  String get vaultLockNote =>
+      '2 నిమిషాల తర్వాత తానే లాక్ అవుతుంది. PIN మర్చిపోయారా? రీసెట్ చేయడానికి మళ్ళీ సైన్ ఇన్ చేయండి.';
 }

@@ -8,6 +8,7 @@ import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../home/presentation/home_screen.dart' show PetDayBand;
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../data/routine_repository.dart';
@@ -16,6 +17,7 @@ import 'quick_log_sheet.dart';
 import 'routine_labels.dart';
 import 'today_card.dart';
 import 'walk_tracker_screen.dart';
+import '../../../core/theme/ph.dart';
 
 /// Per-pet routine: today's log, weekly and monthly charts, behaviour
 /// trends and the daily plan with suggested goals (spec 7.3).
@@ -45,7 +47,7 @@ class RoutineScreen extends ConsumerWidget {
         floatingActionButton: canLog
             ? FloatingActionButton.extended(
                 onPressed: () => showQuickLog(context, ref, pet),
-                icon: const Icon(Icons.add_rounded),
+                icon: const Icon(Ph.plus),
                 label: Text(l.logSomething),
               )
             : null,
@@ -60,13 +62,22 @@ class RoutineScreen extends ConsumerWidget {
   }
 }
 
-class _LogTab extends ConsumerWidget {
+class _LogTab extends ConsumerStatefulWidget {
   const _LogTab({required this.pet});
   final Pet pet;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_LogTab> createState() => _LogTabState();
+}
+
+class _LogTabState extends ConsumerState<_LogTab> {
+  /// "See all" opens the days before today.
+  bool _all = false;
+
+  @override
+  Widget build(BuildContext context) {
     final l = context.l10n;
+    final pet = widget.pet;
     return AsyncView(
       value: ref.watch(petLogsProvider(pet.id)),
       data: (logs) {
@@ -75,34 +86,142 @@ class _LogTab extends ConsumerWidget {
           byDay.putIfAbsent(Fmt.dayOnly(g.at), () => []).add(g);
         }
         final days = byDay.keys.toList()..sort((a, b) => b.compareTo(a));
-        return PageBody(maxWidth: 800, children: [
+        final today = Fmt.dayOnly(DateTime.now());
+        final todays = byDay[today] ?? const <RoutineLog>[];
+        final earlier = days.where((d) => d != today).take(6).toList();
+        final walk = todays.where((g) => g.type == LogType.walk && g.route.length > 1).firstOrNull;
+        return PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.md),
-          TodayCard(pet: pet),
+          PetDayBand(pet: pet, leftLine: true),
+          const SizedBox(height: Space.md),
+          _WeekStrip(pet: pet, logs: logs),
+          const SizedBox(height: Space.md),
+          TodayCard(pet: pet, header: false, bare: true),
+          const SizedBox(height: Sizes.sectionGap),
+          SecHead(l.logGridTitle),
+          _LogGrid(pet: pet),
+          const SizedBox(height: Sizes.sectionGap),
+          SecHead(l.today, action: earlier.isEmpty ? null : (_all ? l.showToday : l.seeAll), onAction: earlier.isEmpty ? null : () => setState(() => _all = !_all)),
           if (logs.isEmpty)
-            EmptyState(title: l.noLogsTitle(pet.name), message: l.noLogsBody, compact: true),
-          for (final d in days.take(7)) ...[
-            SectionHeader(Fmt.sameDay(d, DateTime.now()) ? l.today : Fmt.weekdayDate(d, context.lang)),
-            PawCard(
-              padding: const EdgeInsets.symmetric(vertical: Space.xs),
-              child: Column(children: [for (final g in byDay[d]!) _LogTile(log: g, pet: pet)]),
-            ),
+            EmptyState(title: l.noLogsTitle(pet.name), message: l.noLogsBody, compact: true)
+          else if (todays.isEmpty)
+            Text(l.noLogsBody, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary))
+          else
+            _Timeline(logs: todays, pet: pet),
+          if (walk != null) ...[
+            const SizedBox(height: Space.md),
+            ClipRRect(borderRadius: BorderRadius.circular(Radii.lg), child: WalkRouteView(log: walk, height: Sizes.mapSketch)),
           ],
-          const SizedBox(height: 80),
+          if (_all)
+            for (final d in earlier) ...[
+              const SizedBox(height: Sizes.sectionGap),
+              SecHead(Fmt.weekdayDate(d, context.lang)),
+              _Timeline(logs: byDay[d]!, pet: pet),
+            ],
+          const SizedBox(height: Space.fabClearance),
         ]);
       },
     );
   }
 }
 
+/// A day's logs, newest first: the time, a tile joined to the next by a
+/// short line, what it was and who logged it.
+class _Timeline extends StatelessWidget {
+  const _Timeline({required this.logs, required this.pet});
+  final List<RoutineLog> logs;
+  final Pet pet;
+
+  @override
+  Widget build(BuildContext context) => Column(children: [
+        for (final (i, g) in logs.indexed) _LogTile(log: g, pet: pet, first: i == 0, last: i == logs.length - 1),
+      ]);
+}
+
+/// The last seven days: a marigold for each day the plan was done, a ring
+/// filled as far as it got otherwise (UI Design 6).
+class _WeekStrip extends StatelessWidget {
+  const _WeekStrip({required this.pet, required this.logs});
+  final Pet pet;
+  final List<RoutineLog> logs;
+
+  @override
+  Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final days = [for (var i = 6; i >= 0; i--) Fmt.dayOnly(now).subtract(Duration(days: i))];
+    return Row(children: [
+      for (final d in days)
+        Expanded(
+          child: Builder(builder: (context) {
+            final p = TodayProgress(pet: pet, logs: logs, day: d);
+            final today = Fmt.sameDay(d, now);
+            return Semantics(
+              label: '${Fmt.weekdayDate(d, context.lang)}: ${(p.fraction * 100).round()}%',
+              excludeSemantics: true,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: Space.sm),
+                decoration: BoxDecoration(color: today ? context.paw.surfaceSubtle : null, borderRadius: BorderRadius.circular(Radii.lg)),
+                child: Column(children: [
+                  Text(Fmt.weekdayNarrow(d, context.lang), style: context.text.labelSmall),
+                  const SizedBox(height: Space.xs),
+                  p.items.isEmpty
+                      ? const SizedBox(height: IconSizes.lg)
+                      : TaskTick(done: (p.fraction * 100).round(), goal: 100, size: IconSizes.lg + Space.xxs),
+                ]),
+              ),
+            );
+          }),
+        ),
+    ]);
+  }
+}
+
+/// Every kind of log as a round button with its name; tap to log it.
+class _LogGrid extends ConsumerWidget {
+  const _LogGrid({required this.pet});
+  final Pet pet;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final types = LogType.values.where((t) => t != LogType.behaviour).toList();
+    final cols = MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 3 : 5;
+    return TileGrid(columns: cols, spacing: Space.xs, rowSpacing: Space.md, children: [
+      for (final t in types)
+        Semantics(
+          button: true,
+          label: logTypeLabel(context, t),
+          excludeSemantics: true,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(Radii.md),
+            onTap: () => showLogDetails(context, ref, pet, t),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: Space.xs),
+              child: Column(children: [
+                PawTile(icon: logTypeIcon(t), size: Sizes.tileLg - Space.xs, round: true),
+                const SizedBox(height: Space.xs + Space.xxs),
+                Text(logTypeShort(context, t), style: context.text.labelSmall?.copyWith(color: context.paw.textPrimary, fontWeight: FontWeight.w500), textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
+              ]),
+            ),
+          ),
+        ),
+    ]);
+  }
+}
+
 class _LogTile extends ConsumerWidget {
-  const _LogTile({required this.log, required this.pet});
+  const _LogTile({required this.log, required this.pet, this.first = false, this.last = false});
   final RoutineLog log;
   final Pet pet;
+
+  /// The first row of a day has no line coming down to it, and the last
+  /// has none going on.
+  final bool first;
+  final bool last;
 
   String _detail(BuildContext context) {
     final l = context.l10n;
     return switch (log.type) {
-      LogType.walk => '${Fmt.km(log.distanceKm)} · ${l.minutesShort(log.minutes)}',
+      LogType.walk => Fmt.km(log.distanceKm),
       LogType.meal => log.grams == null ? '' : '${log.grams} g',
       LogType.play || LogType.training || LogType.sleep => l.minutesShort(log.minutes),
       LogType.mood => moodLabel(context, log.mood),
@@ -115,34 +234,77 @@ class _LogTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final paw = context.paw;
     final detail = _detail(context);
-    final sub = [Fmt.time(log.at, context.lang), log.byName.split(' ').first, if (log.note != null) log.note!].join(' · ');
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: logTypeColor(log.type).withValues(alpha: 0.15),
-        child: Icon(logTypeIcon(log.type), color: logTypeColor(log.type)),
+    final title = [logTypeLabel(context, log.type), if (detail.isNotEmpty) detail].join(', ');
+    final who = log.byName.split(' ').first;
+    final parts = [
+      if (log.type == LogType.walk && log.minutes > 0) l.minutesShort(log.minutes),
+      if (log.note != null && log.note!.isNotEmpty) log.note!,
+      if (who.isNotEmpty) l.byPerson(who),
+    ].join(', ');
+    // "By Priya" when that's all there is to say.
+    final sub = parts.isEmpty ? parts : parts.characters.first.toUpperCase() + parts.characters.skip(1).string;
+    final hasRoute = log.type == LogType.walk && log.route.length > 1;
+    final time = Fmt.time(log.at, context.lang);
+    return Semantics(
+      container: true,
+      label: '$time. $title. $sub',
+      child: InkWell(
+        borderRadius: BorderRadius.circular(Radii.md),
+        onTap: !hasRoute
+            ? null
+            : () => showPawSheet<void>(context, builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                  Text('${logTypeLabel(ctx, LogType.walk)}, ${Fmt.dateTime(log.at, ctx.lang)}', style: ctx.text.titleMedium),
+                  const SizedBox(height: Space.md),
+                  WalkRouteView(log: log, height: Sizes.routeMap),
+                  const SizedBox(height: Space.md),
+                  Text('${Fmt.km(log.distanceKm)}, ${l.minutesShort(log.minutes)}, ${log.byName}'),
+                ])),
+        child: IntrinsicHeight(
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            SizedBox(
+              width: Sizes.timelineTime,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: ExcludeSemantics(child: Text(time, style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500), textAlign: TextAlign.right)),
+              ),
+            ),
+            const SizedBox(width: Space.sm + Space.xxs),
+            // The tile, with the line that joins it to the row above.
+            Column(children: [
+              Expanded(child: Container(width: Strokes.focus, color: first ? null : paw.outline)),
+              PawTile(icon: logTypeIcon(log.type), tone: logTypeTone(log.type), size: Sizes.stepper),
+              Expanded(child: Container(width: Strokes.focus, color: last ? null : paw.outline)),
+            ]),
+            const SizedBox(width: Space.sm + Space.xxs),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: Space.sm + Space.xxs),
+                child: ExcludeSemantics(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Text(title, style: context.text.labelLarge),
+                    if (sub.isNotEmpty) Text(sub, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+                  ]),
+                ),
+              ),
+            ),
+            Center(
+              child: PopupMenuButton<String>(
+                tooltip: l.moreOptions,
+                icon: const Icon(Ph.dotsThreeVertical),
+                onSelected: (v) async {
+                  if (v == 'delete') {
+                    final ok = await confirmAction(context, title: l.deleteLogConfirm);
+                    if (ok) await ref.read(routineRepositoryProvider).deleteLog(log.id);
+                  }
+                },
+                itemBuilder: (_) => [PopupMenuItem(value: 'delete', child: Text(l.delete))],
+              ),
+            ),
+          ]),
+        ),
       ),
-      title: Text([logTypeLabel(context, log.type), if (detail.isNotEmpty) detail].join(' · ')),
-      subtitle: Text(sub, maxLines: 2, overflow: TextOverflow.ellipsis),
-      trailing: PopupMenuButton<String>(
-        tooltip: l.moreOptions,
-        onSelected: (v) async {
-          if (v == 'delete') {
-            final ok = await confirmAction(context, title: l.deleteLogConfirm);
-            if (ok) await ref.read(routineRepositoryProvider).deleteLog(log.id);
-          }
-        },
-        itemBuilder: (_) => [PopupMenuItem(value: 'delete', child: Text(l.delete))],
-      ),
-      onTap: log.type == LogType.walk && log.route.length > 1
-          ? () => showPawSheet<void>(context, builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                Text('${logTypeLabel(ctx, LogType.walk)} · ${Fmt.dateTime(log.at, ctx.lang)}', style: ctx.text.titleMedium),
-                const SizedBox(height: Space.md),
-                WalkRouteView(log: log, height: 280),
-                const SizedBox(height: Space.md),
-                Text('${Fmt.km(log.distanceKm)} · ${l.minutesShort(log.minutes)} · ${log.byName}'),
-              ]))
-          : null,
     );
   }
 }
@@ -176,7 +338,7 @@ class _ChartsTabState extends ConsumerState<_ChartsTab> {
         for (final g in logs.where((g) => g.type == LogType.mood && !g.at.isBefore(days.first))) {
           moodCounts[g.mood ?? ''] = (moodCounts[g.mood ?? ''] ?? 0) + 1;
         }
-        return PageBody(maxWidth: 900, children: [
+        return PageBody(maxWidth: Space.wideWidth, children: [
           const SizedBox(height: Space.md),
           Center(
             child: SegmentedButton<int>(
@@ -186,22 +348,22 @@ class _ChartsTabState extends ConsumerState<_ChartsTab> {
             ),
           ),
           const SizedBox(height: Space.md),
-          ResponsiveGrid(minItemWidth: 180, children: [
-            if (isDog) StatTile(label: l.totalWalked, value: Fmt.km(walksTotal), icon: Icons.directions_walk_rounded),
-            StatTile(label: l.streak, value: l.daysCount(streak(logs.map((g) => g.at), DateTime.now())), icon: Icons.local_fire_department_rounded, color: context.paw.accent),
-            StatTile(label: l.mealsLogged, value: '${meals.fold<double>(0, (a, b) => a + b).round()}', icon: Icons.restaurant_rounded),
+          ResponsiveGrid(minColumns: 2, minItemWidth: 180, children: [
+            if (isDog) StatTile(label: l.totalWalked, value: Fmt.km(walksTotal), icon: Ph.personSimpleWalk),
+            StatTile(label: l.streak, value: l.daysCount(streak(logs.map((g) => g.at), DateTime.now())), icon: Ph.fire, color: context.paw.accent),
+            StatTile(label: l.mealsLogged, value: '${meals.fold<double>(0, (a, b) => a + b).round()}', icon: Ph.forkKnife),
           ]),
           SectionHeader(isDog ? l.chartWalkKm : l.chartPlayMinutes),
           _BarChartCard(values: activity, days: days, color: context.colors.primary, goal: isDog ? null : pet.dailyPlan.playMinutes.toDouble()),
           SectionHeader(l.chartMeals),
-          _BarChartCard(values: meals, days: days, color: logTypeColor(LogType.meal), goal: pet.dailyPlan.meals.toDouble()),
+          _BarChartCard(values: meals, days: days, color: logTypeColor(context, LogType.meal), goal: pet.dailyPlan.meals.toDouble()),
           SectionHeader(l.chartMood),
           PawCard(
             child: moodCounts.isEmpty
                 ? Text(l.noMoodLogs)
                 : Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
                     for (final e in (moodCounts.entries.toList()..sort((a, b) => b.value.compareTo(a.value))))
-                      Chip(avatar: Icon(moodIcon(e.key), size: 18), label: Text('${moodLabel(context, e.key)} · ${e.value}')),
+                      Chip(avatar: Icon(moodIcon(e.key), size: IconSizes.chip), label: Text('${moodLabel(context, e.key)} · ${e.value}')),
                   ]),
           ),
         ]);
@@ -225,7 +387,7 @@ class _BarChartCard extends StatelessWidget {
     final text = context.text.labelSmall;
     return PawCard(
       child: SizedBox(
-        height: 200,
+        height: Sizes.chartHeight,
         child: BarChart(
           BarChartData(
             maxY: top,
@@ -234,13 +396,13 @@ class _BarChartCard extends StatelessWidget {
             gridData: FlGridData(
               drawVerticalLine: false,
               horizontalInterval: top / 4,
-              getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: 1),
+              getDrawingHorizontalLine: (_) => FlLine(color: context.paw.outline, strokeWidth: Strokes.hairline),
             ),
             borderData: FlBorderData(show: false),
             extraLinesData: goal == null
                 ? null
                 : ExtraLinesData(horizontalLines: [
-                    HorizontalLine(y: goal!, color: context.paw.accent, strokeWidth: 2, dashArray: [6, 4]),
+                    HorizontalLine(y: goal!, color: context.paw.accent, strokeWidth: Strokes.focus, dashArray: Strokes.dash),
                   ]),
             titlesData: FlTitlesData(
               topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -248,7 +410,7 @@ class _BarChartCard extends StatelessWidget {
               leftTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
-                  reservedSize: 36,
+                  reservedSize: Sizes.chartAxisLeft,
                   interval: top / 4,
                   getTitlesWidget: (v, meta) => SideTitleWidget(
                     meta: meta,
@@ -259,7 +421,7 @@ class _BarChartCard extends StatelessWidget {
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
-                  reservedSize: 28,
+                  reservedSize: Sizes.chartAxisBottom,
                   getTitlesWidget: (v, meta) {
                     final i = v.toInt();
                     if (i < 0 || i >= days.length || (days.length - 1 - i) % step != 0) return const SizedBox.shrink();
@@ -274,8 +436,8 @@ class _BarChartCard extends StatelessWidget {
                   BarChartRodData(
                     toY: values[i],
                     color: color,
-                    width: days.length > 10 ? 6 : 18,
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
+                    width: days.length > 10 ? Sizes.barThin : Sizes.barWide,
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(Radii.xs)),
                   ),
                 ]),
             ],
@@ -316,7 +478,7 @@ class _BehaviourTab extends ConsumerWidget {
           return d > 0 ? l.trendUp : (d < 0 ? l.trendDown : l.trendSteady);
         }
 
-        return PageBody(maxWidth: 800, children: [
+        return PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.md),
           for (final e in tags.entries)
             Padding(
@@ -330,8 +492,8 @@ class _BehaviourTab extends ConsumerWidget {
                     ]),
                   ),
                   SizedBox(
-                    width: 120,
-                    height: 40,
+                    width: Sizes.sparklineWidth,
+                    height: Sizes.sparklineHeight,
                     child: LineChart(LineChartData(
                       minY: 0,
                       maxY: 3.5,
@@ -343,7 +505,7 @@ class _BehaviourTab extends ConsumerWidget {
                         LineChartBarData(
                           spots: [for (var i = 0; i < e.value.length; i++) FlSpot(i.toDouble(), e.value[i].$2.toDouble())],
                           color: context.colors.primary,
-                          barWidth: 3,
+                          barWidth: Strokes.chart,
                           isCurved: true,
                           dotData: const FlDotData(show: true),
                         ),
@@ -355,7 +517,7 @@ class _BehaviourTab extends ConsumerWidget {
             ),
           SecondaryButton(
             label: l.shareWithTrainerVet,
-            icon: Icons.share_rounded,
+            icon: Ph.shareNetwork,
             onPressed: () {
               final lines = [
                 l.behaviourSummaryTitle(pet.name),
@@ -388,13 +550,13 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
         IconButton(
           tooltip: context.l10n.decrease,
           onPressed: value > min ? () => on(value - step) : null,
-          icon: const Icon(Icons.remove_circle_outline_rounded),
+          icon: const Icon(Ph.minusCircle),
         ),
-        SizedBox(width: 40, child: Text('$value', textAlign: TextAlign.center, style: context.text.titleMedium)),
+        SizedBox(width: Sizes.stepperValue, child: Text('$value', textAlign: TextAlign.center, style: context.text.titleMedium)),
         IconButton(
           tooltip: context.l10n.increase,
           onPressed: value < max ? () => on(value + step) : null,
-          icon: const Icon(Icons.add_circle_outline_rounded),
+          icon: const Icon(Ph.plusCircle),
         ),
       ]),
     );
@@ -406,7 +568,7 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
     final pet = widget.pet;
     final g = suggestedGoals(species: pet.speciesEnum, size: pet.size, lifeStage: pet.lifeStage());
     final canEdit = pet.canCare(ref.watch(currentUserProvider)?.uid ?? '');
-    return PageBody(maxWidth: 720, children: [
+    return PageBody(maxWidth: Space.formWidth, children: [
       const SizedBox(height: Space.md),
       Text(l.dailyPlanFor(pet.name), style: context.text.titleMedium),
       const SizedBox(height: Space.xs),
@@ -429,7 +591,7 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
       const SizedBox(height: Space.sm),
       TextButton.icon(
         onPressed: () => setState(() => _plan = DailyPlan(walks: g.walks, meals: g.meals, playMinutes: g.playMinutes)),
-        icon: const Icon(Icons.auto_fix_high_rounded),
+        icon: const Icon(Ph.magicWand),
         label: Text(l.useSuggested),
       ),
       const SizedBox(height: Space.md),
@@ -446,7 +608,7 @@ class _PlanTabState extends ConsumerState<_PlanTab> {
       InfoNote(l.planReminderNote),
       if (pet.species == 'dog') ...[
         const SizedBox(height: Space.lg),
-        SecondaryButton(label: l.startWalk, icon: Icons.directions_walk_rounded, onPressed: () => context.push('/walk/${pet.id}')),
+        SecondaryButton(label: l.startWalk, icon: Ph.personSimpleWalk, onPressed: () => context.push('/walk/${pet.id}')),
       ],
     ]);
   }

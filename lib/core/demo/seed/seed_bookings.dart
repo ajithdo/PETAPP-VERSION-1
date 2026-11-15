@@ -238,7 +238,7 @@ void seedBookings(Add add, DateTime now) {
     expense: true,
     walkRoute: demoLoopRoute(12.9784, 77.6408, seed: 41, km: 1.6, points: 30),
     updates: [
-      {'text': 'Bruno walked well on the lead and drank water at the halfway point.', 'photoUrl': 'seed:album:dog:2', 'at': day(-2, 7, 25)},
+      {'text': 'Bruno walked well on the lead and drank water at the halfway point.', 'photoUrl': 'seed:album:dog:bruno:2', 'at': day(-2, 7, 25)},
     ],
   );
   booking(
@@ -286,7 +286,7 @@ void seedBookings(Add add, DateTime now) {
     createdAt: now.subtract(const Duration(days: 1)),
     walkRoute: demoLoopRoute(banjara.lat, banjara.lng, seed: 17, km: 3, points: 60),
     updates: [
-      {'text': 'Simba met two friends at the park and is having a great time!', 'photoUrl': 'seed:album:dog:3', 'at': now.subtract(const Duration(minutes: 8))},
+      {'text': 'Simba met two friends at the park and is having a great time!', 'photoUrl': 'seed:album:dog:simba:3', 'at': now.subtract(const Duration(minutes: 8))},
     ],
   );
   note('u_ravi', 'Imran Walks Simba గురించి అప్‌డేట్ పంపారు', 0, '/book/bookings/bk_seed_r1');
@@ -391,8 +391,8 @@ void seedBookings(Add add, DateTime now) {
     price: 3600,
     expense: true,
     updates: [
-      {'text': 'Max settled in well. Ate all his dinner and slept by 10 pm.', 'photoUrl': 'seed:album:dog:4', 'at': day(-2, 21)},
-      {'text': 'Morning run in the garden, then a nap in the sun.', 'photoUrl': 'seed:album:dog:5', 'at': day(-1, 9, 30)},
+      {'text': 'Max settled in well. Ate all his dinner and slept by 10 pm.', 'photoUrl': 'seed:album:dog:max:4', 'at': day(-2, 21)},
+      {'text': 'Morning run in the garden, then a nap in the sun.', 'photoUrl': 'seed:album:dog:max:5', 'at': day(-1, 9, 30)},
     ],
   );
   booking(
@@ -782,7 +782,7 @@ void seedBookings(Add add, DateTime now) {
     status: 'in_progress',
     price: 1800,
     updates: [
-      {'text': 'Tommy ate well and played with the other guests.', 'photoUrl': 'seed:album:dog:1', 'at': day(-1, 20)},
+      {'text': 'Tommy ate well and played with the other guests.', 'photoUrl': 'seed:album:dog:sheru:1', 'at': day(-1, 20)},
     ],
   );
   booking(

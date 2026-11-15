@@ -13,6 +13,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../pets/domain/breeds.dart';
 import '../../pets/presentation/pet_labels.dart';
 import '../data/lost_repository.dart';
+import '../../../core/theme/ph.dart';
 
 /// The public page behind a pet's QR tag (spec 7.14). Anyone can open it,
 /// signed in or not. The family's phone number is never shown: messages
@@ -104,9 +105,9 @@ class _PublicLostScreenState extends ConsumerState<PublicLostScreen> {
           children: [
             Center(
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 640),
+                constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                  const Align(alignment: AlignmentDirectional.centerStart, child: PawSetuLogo(size: 40, withName: true)),
+                  const Align(alignment: AlignmentDirectional.centerStart, child: PawSetuLogo(size: Sizes.avatarSm, withName: true)),
                   const SizedBox(height: Space.lg),
                   if (_failed)
                     ErrorState(onRetry: _open)
@@ -118,13 +119,13 @@ class _PublicLostScreenState extends ConsumerState<PublicLostScreen> {
                     if (ref.watch(appConfigProvider).isDemo) ...[DemoBanner(l.finderDemoNote), const SizedBox(height: Space.md)],
                     _PetHeader(view: v),
                     const SizedBox(height: Space.lg),
-                    PrimaryButton(label: l.finderContact, icon: Icons.forum_rounded, onPressed: () => _contact(v)),
+                    PrimaryButton(label: l.finderContact, icon: Ph.chatsCircle, onPressed: () => _contact(v)),
                     const SizedBox(height: Space.sm),
-                    SecondaryButton(label: l.finderShareLocation, icon: Icons.my_location_rounded, onPressed: () => _shareLocation(v)),
+                    SecondaryButton(label: l.finderShareLocation, icon: Ph.crosshair, onPressed: () => _shareLocation(v)),
                     const SizedBox(height: Space.lg),
-                    InfoNote(l.finderPrivacy, icon: Icons.lock_rounded),
+                    InfoNote(l.finderPrivacy, icon: Ph.lockKey),
                     const SizedBox(height: Space.md),
-                    InfoNote(l.finderTips, icon: Icons.tips_and_updates_rounded, tone: ChipTone.success),
+                    InfoNote(l.finderTips, icon: Ph.lightbulb, tone: ChipTone.success),
                   ],
                   const SizedBox(height: Space.xl),
                   Center(child: TextButton(onPressed: () => context.go('/splash'), child: Text(l.vaultGetPawSetu))),
@@ -181,7 +182,7 @@ class _PetHeader extends StatelessWidget {
           ]),
         ),
       const SizedBox(height: Space.lg),
-      Center(child: PetAvatar(species: view.species, colorTag: p['colorTag'] as String?, photoUrl: p['photoUrl'] as String?, size: 140)),
+      Center(child: PetAvatar(species: view.species, colorTag: p['colorTag'] as String?, photoUrl: p['photoUrl'] as String?, size: Sizes.profileAvatar)),
       const SizedBox(height: Space.md),
       Text(lost != null ? l.finderHelloLost(view.name) : l.finderHello(view.name), textAlign: TextAlign.center, style: context.text.headlineSmall),
       const SizedBox(height: Space.xs),
@@ -231,7 +232,7 @@ class _ContactFormState extends State<_ContactForm> {
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.finderSend,
-        icon: Icons.send_rounded,
+        icon: Ph.paperPlaneRight,
         onPressed: () {
           if (_message.text.trim().isEmpty) return;
           Navigator.pop(context, (message: _message.text.trim(), name: _name.text.trim(), phone: _phone.text.trim()));
@@ -281,7 +282,7 @@ class _AreaFormState extends State<_AreaForm> {
       const SizedBox(height: Space.md),
       PrimaryButton(
         label: l.finderSend,
-        icon: Icons.send_rounded,
+        icon: Ph.paperPlaneRight,
         onPressed: _area == null ? null : () => Navigator.pop(context, (area: _area!, note: _note.text.trim())),
       ),
     ]);

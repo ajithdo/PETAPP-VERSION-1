@@ -1,14 +1,71 @@
 {
-  "extraKnownMarketplaces": {
-    "dart-flutter": {
-      "source": {
-        "source": "github",
-        "repo": "flutter/agent-plugins"
-      }
-    }
+  "permissions": {
+    "allow": [
+      "Bash(flutter analyze *)",
+      "Bash(flutter test *)",
+      "Bash(flutter pub get *)",
+      "Bash(flutter gen-l10n *)",
+      "Bash(flutter build web *)",
+      "Bash(dart format *)",
+      "Bash(dart run build_runner *)",
+      "Bash(dart run tools/l10n/merge.dart *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git branch *)",
+      "Bash(git switch *)",
+      "Bash(git push -u origin *)",
+      "Bash(git push --set-upstream origin *)",
+      "Bash(git push origin *)",
+      "mcp__dart__*"
+    ],
+    "ask": [
+      "Bash(git push)",
+      "Bash(git push origin)",
+      "Bash(git push -u origin)",
+      "Bash(git push --set-upstream origin)",
+      "Bash(git push * HEAD)",
+      "Bash(git push * HEAD *)",
+      "Bash(git push *--force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * -f*)",
+      "Bash(git push * +*)",
+      "Bash(git push *--delete*)",
+      "Bash(git push -d*)",
+      "Bash(git push * -d*)",
+      "Bash(git push * :*)",
+      "Bash(git push *--prune*)",
+      "Bash(git push *--mirror*)",
+      "Bash(git push *--all*)",
+      "Bash(git push *ui-revamp*)",
+      "Bash(git push *claude/zen-ramanujan-4g7djn*)",
+      "Bash(git push * main)",
+      "Bash(git push * main *)",
+      "Bash(git push * main:*)",
+      "Bash(git push *:main)",
+      "Bash(git push *:main *)",
+      "Bash(git push *refs/heads/main*)",
+      "Bash(git -* push)",
+      "Bash(git -* push *)",
+      "Bash(git reset --hard *)",
+      "Bash(git branch -d *)",
+      "Bash(git branch -D *)",
+      "Bash(firebase deploy *)",
+      "Bash(npx *firebase-tools* deploy *)",
+      "Bash(netlify deploy *)",
+      "Bash(npx *netlify* deploy *)",
+      "Bash(rm *)",
+      "Bash(rmdir *)",
+      "Bash(unlink *)",
+      "Bash(git rm *)",
+      "Bash(git clean *)",
+      "Bash(find * -delete *)"
+    ]
   },
   "enabledPlugins": {
-    "dart-flutter@dart-flutter": true
+    "security-guidance@claude-plugins-official": true
   },
   "hooks": {
     "SessionStart": [

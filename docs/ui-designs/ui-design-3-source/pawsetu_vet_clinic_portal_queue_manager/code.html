@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSetu - Vet Clinic Portal &amp; Queue Manager</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { 'coral': '#E05A47', 'forest-teal': '#18453E', 'soft-sage': '#E6F0ED', 'soft-sand': '#F3EFEA', 'warm-border': '#E7E2DA', 'status-upcoming': '#D97706', 'status-completed': '#15803D', 'status-emergency': '#DC2626', 'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-secondary': '#C84735',
+            'light-on-secondary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-surface-subtle': '#F3EFEA',
+            'light-outline': '#E7E2DA',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '28px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+</head>
+<body class="bg-light-surface text-light-on-surface min-h-[1024px] font-body antialiased flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Clinical Dashboard Top Navigation -->
+  <header class="bg-forest-teal text-white border-b border-forest-teal/40 px-6 py-4 flex-shrink-0">
+    <div class="max-w-[1400px] mx-auto flex items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-white text-forest-teal flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-[24px]">local_hospital</span>
+          </div>
+          <div>
+            <h1 class="font-headline font-bold text-[18px] leading-tight text-white">Gulmohar Vet Studio — Clinic Portal</h1>
+            <span class="text-[11px] text-emerald-200">Indiranagar Branch · Dr. Sameer Khan On Duty</span>
+          </div>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-2 pl-6 border-l border-white/20 text-[13px]">
+          <a href="#queue" class="px-3 py-1.5 rounded-lg bg-white/20 text-white font-bold">Live Patient Queue</a>
+          <a href="#slots" class="px-3 py-1.5 rounded-lg text-white/80 hover:text-white font-medium">Slot Inventory</a>
+          <a href="#records" class="px-3 py-1.5 rounded-lg text-white/80 hover:text-white font-medium">EMR Registry</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 text-[12px] font-bold">
+          Queue System Active · 4 Patients Waiting
+        </span>
+        <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-[13px]">
+          SK
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Clinic Management Bento Grid (1400px layout) -->
+  <main class="flex-1 max-w-[1400px] w-full mx-auto px-6 py-8 space-y-8">
+    
+    <!-- Top KPI Glanceable Metric Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bg-light-surface-elevated p-5 rounded-2xl border border-light-outline shadow-sm">
+        <span class="text-[12px] text-stone-500 font-semibold uppercase block">Today&#39;s Total Visits</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="font-headline font-bold text-[28px] text-light-on-surface">18 Visits</span>
+          <span class="text-[12px] font-bold text-status-completed bg-emerald-50 px-2 py-0.5 rounded">+12% vs last week</span>
+        </div>
+      </div>
+
+      <div class="bg-light-surface-elevated p-5 rounded-2xl border border-light-outline shadow-sm">
+        <span class="text-[12px] text-stone-500 font-semibold uppercase block">In-Clinic Queue</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="font-headline font-bold text-[28px] text-forest-teal">4 Waiting</span>
+          <span class="text-[12px] font-medium text-stone-500">Avg wait: 8 mins</span>
+        </div>
+      </div>
+
+      <div class="bg-light-surface-elevated p-5 rounded-2xl border border-light-outline shadow-sm">
+        <span class="text-[12px] text-stone-500 font-semibold uppercase block">Vaccines Administered</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="font-headline font-bold text-[28px] text-light-on-surface">7 Doses</span>
+          <span class="text-[12px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Cold-Chain OK</span>
+        </div>
+      </div>
+
+      <div class="bg-light-surface-elevated p-5 rounded-2xl border border-light-outline shadow-sm">
+        <span class="text-[12px] text-stone-500 font-semibold uppercase block">Today&#39;s Revenue</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="font-headline font-bold text-[28px] text-coral">₹14,250</span>
+          <span class="text-[12px] font-medium text-stone-500">Zero Commission</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Patient Queue & In-Room Consultation Table -->
+    <div class="bg-light-surface-elevated rounded-2xl border border-light-outline shadow-sm overflow-hidden">
+      
+      <div class="p-6 border-b border-light-outline flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-headline font-bold text-[20px] text-light-on-surface">Active Patient Triage &amp; Queue</h2>
+          <p class="text-body-sm text-stone-500">Patients checked-in via PawSetu QR passcard or booked online.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" class="px-4 py-2 bg-forest-teal text-white rounded-xl text-body-sm font-bold shadow-sm hover:opacity-95 transition flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            <span>Walk-In Registration</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Queue Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-body-sm">
+          <thead class="bg-light-surface-subtle text-stone-600 font-semibold border-b border-light-outline">
+            <tr>
+              <th class="py-3.5 px-6">Queue #</th>
+              <th class="py-3.5 px-6">Patient &amp; Breed</th>
+              <th class="py-3.5 px-6">Pet Parent</th>
+              <th class="py-3.5 px-6">Slot Time</th>
+              <th class="py-3.5 px-6">Care Service</th>
+              <th class="py-3.5 px-6">Status</th>
+              <th class="py-3.5 px-6 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-light-outline">
+            
+            <!-- Row 1: Active In Room -->
+            <tr class="bg-emerald-50/40">
+              <td class="py-4 px-6 font-code font-bold text-forest-teal">#01 (In Room)</td>
+              <td class="py-4 px-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-stone-300 overflow-hidden flex-shrink-0">
+                    <img src="https://lh3.googleusercontent.com/aida/AEtjO1XGLg2qU28LEV0ZBHrz6yoD9YicJosz-9TqQUThEM0FNluzeX10On2sw5CQFYGSHV54ZDv6DnhIPSlWRKxthhj88SFwsNJGAI1WaFwOdMZlHqTsLyAw0eQleMEHB3YoOlzYwMm1eucSonbQmuDAFahKurKAyH1T_lusQqSWDE-VooE8ET_EMHeJZlWeZUBVqGZr_H8R2vx7gpYABjFIYEyJdekfGc4Xk0cmk8dtkdbMYZUNc4RMwzIje-geL5U" alt="Bruno" class="w-full h-full object-cover" data-stitch-original-src="5fe0244cd4dde074===../../images/pet_bruno_portrait.jpg">
+                  </div>
+                  <div>
+                    <strong class="text-stone-900 block font-headline">Bruno</strong>
+                    <span class="text-[12px] text-stone-500">Golden Retriever · 29.4 kg</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-6 text-stone-700">Priya Sharma (+91 98450...)</td>
+              <td class="py-4 px-6 font-code font-bold text-stone-900">4:30 PM</td>
+              <td class="py-4 px-6">Consultation &amp; Vitals</td>
+              <td class="py-4 px-6">
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-status-completed font-bold text-[11px]">
+                  With Doctor
+                </span>
+              </td>
+              <td class="py-4 px-6 text-right">
+                <a href="../medical-records/MedicalRecords.html" class="px-3 py-1.5 bg-forest-teal text-white rounded-lg text-[12px] font-bold hover:opacity-95 transition inline-block">
+                  Open EMR
+                </a>
+              </td>
+            </tr>
+
+            <!-- Row 2: Next in waiting room -->
+            <tr>
+              <td class="py-4 px-6 font-code font-bold text-stone-500">#02 (Waiting)</td>
+              <td class="py-4 px-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-stone-200 overflow-hidden flex-shrink-0">
+                    <img src="https://lh3.googleusercontent.com/aida/AEtjO1UfmqZVFeTe9ceHTcEbQB37XtnSdeoGHe7jOHLW_N2nXgTxRGysDYlUL1IHwhlEk5w7lclqTIe5nf8TXa57u_vLtukQ-ej7a3ugPM-x5bsy15xohBrYu_VkCM7sZG-tsWaN-iOA0RxR7dZPARJhZgYHpPCscbbcsUPO08Pys7CWweGxa_TIRIGpTKHgwLZy-MF9rLNWmyH6TtC_DETOQuErnOH0QoW4_hehsvL0Jm7LZwYEDNwst2zpnjdpoYw" alt="Misty" class="w-full h-full object-cover" data-stitch-original-src="cd2d7707c7859824===../../images/pet_misty_portrait.jpg">
+                  </div>
+                  <div>
+                    <strong class="text-stone-900 block font-headline">Misty</strong>
+                    <span class="text-[12px] text-stone-500">Persian Cat · 4.1 kg</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-6 text-stone-700">Arjun Mehta</td>
+              <td class="py-4 px-6 font-code text-stone-900">4:45 PM</td>
+              <td class="py-4 px-6">DHPPi Booster Shot</td>
+              <td class="py-4 px-6">
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold text-[11px]">
+                  Checked-In
+                </span>
+              </td>
+              <td class="py-4 px-6 text-right">
+                <button type="button" class="px-3 py-1.5 border border-light-outline rounded-lg text-[12px] font-semibold hover:bg-stone-100 transition">
+                  Call Next
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 3: Upcoming slot -->
+            <tr>
+              <td class="py-4 px-6 font-code font-bold text-stone-400">#03</td>
+              <td class="py-4 px-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-soft-sand flex items-center justify-center font-bold text-coral text-sm">
+                    🐕
+                  </div>
+                  <div>
+                    <strong class="text-stone-900 block font-headline">Simba</strong>
+                    <span class="text-[12px] text-stone-500">Indie Puppy · 8.5 kg</span>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-6 text-stone-700">Ravi Teja</td>
+              <td class="py-4 px-6 font-code text-stone-900">5:15 PM</td>
+              <td class="py-4 px-6">Deworming &amp; Parasite Evaluation</td>
+              <td class="py-4 px-6">
+                <span class="px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-600 font-medium text-[11px]">
+                  Booked
+                </span>
+              </td>
+              <td class="py-4 px-6 text-right">
+                <button type="button" class="px-3 py-1.5 border border-light-outline rounded-lg text-[12px] font-semibold hover:bg-stone-100 transition">
+                  View Notes
+                </button>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="mt-auto border-t border-light-outline bg-light-surface py-6 text-center text-body-sm text-stone-500">
+    <div class="max-w-[1400px] mx-auto px-6 flex items-center justify-between">
+      <span>PawSetu Veterinary Health Records Management System</span>
+      <a href="../home-discovery/HomeDiscovery.html" class="hover:underline">Consumer App Preview</a>
+    </div>
+  </footer>
+
+
+
+</body></html>

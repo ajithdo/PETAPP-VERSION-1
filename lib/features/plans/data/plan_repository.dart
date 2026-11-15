@@ -45,12 +45,21 @@ class PlanRepository {
       'kind': 'plus',
       'period': yearly ? 'yearly' : 'monthly',
       'amount': amount,
-      'tax': 0, // GST placeholder (Version 2)
+      'tax': 0, // GST placeholder (FINAL VERSION)
       'status': 'paid',
       'demo': true,
       'at': now,
     });
     return renews;
+  }
+
+  /// Monthly or yearly from the next renewal. Nothing is charged now.
+  Future<void> setPeriod(AppUser user, {required bool yearly}) async {
+    if (functions != null) {
+      await functions!.httpsCallable('setPlanPeriod').call(<String, dynamic>{'yearly': yearly});
+      return;
+    }
+    await _db.collection('users').doc(user.uid).update({'planPeriod': yearly ? 'yearly' : 'monthly'});
   }
 
   /// Plus stays until the paid period ends, then becomes free.

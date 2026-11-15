@@ -7,21 +7,22 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../domain/devices.dart';
 import '../domain/toxic.dart';
+import '../../../core/theme/ph.dart';
 
 /// The 9 first-aid guides (spec 7.14), in the order they are listed.
 const firstAidIds = ['choking', 'poisoning', 'heatstroke', 'bleeding', 'fracture', 'seizure', 'burn', 'bite', 'tick'];
 
 IconData firstAidIcon(String id) => switch (id) {
-      'choking' => Icons.air_rounded,
-      'poisoning' => Icons.science_rounded,
-      'heatstroke' => Icons.wb_sunny_rounded,
-      'bleeding' => Icons.water_drop_rounded,
-      'fracture' => Icons.accessibility_new_rounded,
-      'seizure' => Icons.bolt_rounded,
-      'burn' => Icons.local_fire_department_rounded,
-      'bite' => Icons.pest_control_rounded,
-      'tick' => Icons.bug_report_rounded,
-      _ => Icons.medical_services_rounded,
+      'choking' => Ph.wind,
+      'poisoning' => Ph.flask,
+      'heatstroke' => Ph.thermometerHot,
+      'bleeding' => Ph.drop,
+      'fracture' => Ph.bone,
+      'seizure' => Ph.lightning,
+      'burn' => Ph.fire,
+      'bite' => Ph.bugBeetle,
+      'tick' => Ph.bug,
+      _ => Ph.firstAidKit,
     };
 
 class FirstAidText {
@@ -106,9 +107,9 @@ ChipTone toxTone(ToxLevel v) => switch (v) {
     };
 
 IconData toxIcon(ToxLevel v) => switch (v) {
-      ToxLevel.danger => Icons.dangerous_rounded,
-      ToxLevel.caution => Icons.warning_amber_rounded,
-      ToxLevel.safe => Icons.check_circle_rounded,
+      ToxLevel.danger => Ph.warningOctagon,
+      ToxLevel.caution => Ph.warning,
+      ToxLevel.safe => Ph.checkCircleFill,
     };
 
 String toxKindLabel(AppLocalizations l, ToxKind k) => switch (k) {
@@ -136,15 +137,15 @@ String deviceTypeHint(AppLocalizations l, DeviceType t) => switch (t) {
     };
 
 IconData deviceIcon(DeviceType t) => switch (t) {
-      DeviceType.gpsCollar => Icons.share_location_rounded,
-      DeviceType.activityTracker => Icons.watch_rounded,
-      DeviceType.feeder => Icons.set_meal_rounded,
-      DeviceType.fountain => Icons.water_drop_rounded,
-      DeviceType.camera => Icons.videocam_rounded,
-      DeviceType.litterBox => Icons.inventory_2_rounded,
+      DeviceType.gpsCollar => Ph.mapPinLine,
+      DeviceType.activityTracker => Ph.watch,
+      DeviceType.feeder => Ph.bowlFood,
+      DeviceType.fountain => Ph.drop,
+      DeviceType.camera => Ph.videoCamera,
+      DeviceType.litterBox => Ph.package,
     };
 
-/// The "Draft, to be reviewed by a vet" label (Version 1 content). Once the
+/// The "Draft, to be reviewed by a vet" label (DEMO VERSION 1 content). Once the
 /// admin records a vet's review (Settings → Content review), it shows who
 /// reviewed it instead. [area] is firstAid or toxic.
 class DraftLabel extends ConsumerWidget {
@@ -155,12 +156,10 @@ class DraftLabel extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final review = (ref.watch(appSettingsDocProvider).value?['contentReview'] as Map?) ?? const {};
     final by = (review[area] as String?) ?? '';
-    return Align(
-      alignment: AlignmentDirectional.centerStart,
-      child: by.isEmpty
-          ? StatusChip(context.l10n.draftVetReview, tone: ChipTone.warning, icon: Icons.rate_review_rounded)
-          : StatusChip(context.l10n.reviewedBy(by), tone: ChipTone.success, icon: Icons.verified_rounded),
-    );
+    // A plain tag, as long as its words (it sits in a wrap).
+    return by.isEmpty
+        ? PawTag(context.l10n.draftVetReview, kind: TagKind.gold, icon: Ph.pencilSimpleLineFill)
+        : PawTag(context.l10n.reviewedBy(by), kind: TagKind.green, icon: Ph.sealCheckFill);
   }
 }
 

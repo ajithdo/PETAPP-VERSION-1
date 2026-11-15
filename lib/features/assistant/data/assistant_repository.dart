@@ -90,8 +90,8 @@ class LocalAssistantBackend implements AssistantBackend {
 }
 
 /// Firebase: the askPawSetu Cloud Function counts questions on the server.
-/// Version 1 still matches topics with the shared Dart engine and sends the
-/// result; Version 2 moves answering to Gemini in the function.
+/// DEMO VERSION 1 still matches topics with the shared Dart engine and sends the
+/// result; FINAL VERSION moves answering to Gemini in the function.
 class FunctionsAssistantBackend implements AssistantBackend {
   FunctionsAssistantBackend(this._fns);
   final FirebaseFunctions _fns;

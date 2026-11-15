@@ -11,12 +11,12 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const PawSetuLogo(size: 72),
+          const PawSetuLogo(size: Sizes.logoXl),
           const SizedBox(height: Space.lg),
           SizedBox(
-            width: 28,
-            height: 28,
-            child: CircularProgressIndicator(strokeWidth: 3, color: context.colors.primary),
+            width: Sizes.avatarXs,
+            height: Sizes.avatarXs,
+            child: CircularProgressIndicator(strokeWidth: Strokes.chart, color: context.colors.primary),
           ),
         ]),
       ),

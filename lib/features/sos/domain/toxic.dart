@@ -1,5 +1,5 @@
 /// Toxic food and plant checker (spec 7.14): what is dangerous for which
-/// species. Version 1 content is a draft, to be reviewed by a vet. Names and
+/// species. DEMO VERSION 1 content is a draft, to be reviewed by a vet. Names and
 /// explanations live in the ARB files (`tox<Id>Name`, `tox<Id>Why`); the search
 /// keywords below are only used to find items, never shown.
 ///

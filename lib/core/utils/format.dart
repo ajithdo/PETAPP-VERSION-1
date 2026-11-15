@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart' show StringCharacters;
 import 'package:intl/intl.dart';
 
 /// India-first formatting (spec section 1): ₹ with Indian digit grouping,
@@ -16,8 +17,19 @@ class Fmt {
   static String dateShort(DateTime d, [String locale = 'en']) => DateFormat('d MMM', _l(locale)).format(d);
   static String weekdayDate(DateTime d, [String locale = 'en']) =>
       DateFormat('EEE, d MMM', _l(locale)).format(d);
+  /// "Sunday, 8 November" (the line above Home's greeting).
+  static String weekdayDateLong(DateTime d, [String locale = 'en']) => DateFormat('EEEE, d MMMM', _l(locale)).format(d);
+
+  /// "Sunday 8 November" (after a place name on the partner dashboards).
+  static String weekdayDatePlain(DateTime d, [String locale = 'en']) => DateFormat('EEEE d MMMM', _l(locale)).format(d);
+
+  /// "6 am", "2 pm": an hour on the walk strip.
+  static String hour(DateTime d, [String locale = 'en']) => DateFormat('h a', _l(locale)).format(d).toLowerCase();
   static String monthYear(DateTime d, [String locale = 'en']) => DateFormat('MMMM yyyy', _l(locale)).format(d);
+  static String monthYearShort(DateTime d, [String locale = 'en']) => DateFormat('MMM yyyy', _l(locale)).format(d);
   static String monthShort(DateTime d, [String locale = 'en']) => DateFormat('MMM', _l(locale)).format(d);
+  static String weekdayShort(DateTime d, [String locale = 'en']) => DateFormat('EEE', _l(locale)).format(d);
+  static String weekdayNarrow(DateTime d, [String locale = 'en']) => DateFormat('EEEEE', _l(locale)).format(d);
   static String time(DateTime d, [String locale = 'en']) =>
       DateFormat('h:mm a', locale == 'en' ? 'en' : _l(locale)).format(d);
   static String dateTime(DateTime d, [String locale = 'en']) => '${date(d, locale)}, ${time(d, locale)}';
@@ -46,4 +58,15 @@ class Fmt {
   if (to.day < from.day) months--;
   if (months < 0) months = 0;
   return (years: months ~/ 12, months: months % 12);
+}
+
+/// Up to two initials for an avatar ("Priya Sharma" → "PS").
+String initials(String name) {
+  final parts = name.trim().split(RegExp(r'\s+')).where((p) => p.isNotEmpty).toList();
+  // "Dr. Sameer Khan" is SK, not DK.
+  if (parts.length > 2 && const {'dr', 'dr.', 'mr', 'mr.', 'mrs', 'mrs.', 'ms', 'ms.', 'shri', 'smt', 'smt.'}.contains(parts.first.toLowerCase())) parts.removeAt(0);
+  if (parts.isEmpty) return '?';
+  final first = parts.first.characters.first;
+  final last = parts.length > 1 ? parts.last.characters.first : '';
+  return (first + last).toUpperCase();
 }

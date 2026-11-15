@@ -14,6 +14,7 @@ import '../../messaging/presentation/chat_view.dart';
 import '../../pets/presentation/pet_labels.dart';
 import '../data/consultation.dart';
 import '../data/televet_repository.dart';
+import '../../../core/theme/ph.dart';
 
 /// Vet workspace for one consultation (spec 7.7): pet history panel, the
 /// chat, private notes, recommendations, e-prescription and end.
@@ -37,11 +38,11 @@ class VetConsultScreen extends ConsumerWidget {
         ]);
         final actions = [
           if (c.isActive)
-            IconButton(tooltip: l.tvVideoCall, onPressed: () => context.push('/televet/call/${c.id}'), icon: const Icon(Icons.videocam_rounded)),
+            IconButton(tooltip: l.tvVideoCall, onPressed: () => context.push('/televet/call/${c.id}'), icon: const Icon(Ph.videoCamera)),
           if (!c.isEnded)
             Padding(
               padding: const EdgeInsets.only(right: Space.sm),
-              child: TextButton.icon(onPressed: () => _end(context, ref, c), icon: const Icon(Icons.task_alt_rounded), label: Text(l.tvEnd)),
+              child: TextButton.icon(onPressed: () => _end(context, ref, c), icon: const Icon(Ph.checkCircle), label: Text(l.tvEnd)),
             ),
         ];
         final title = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -55,11 +56,11 @@ class VetConsultScreen extends ConsumerWidget {
           return Scaffold(
             appBar: AppBar(title: title, actions: actions),
             body: Row(children: [
-              SizedBox(width: 340, child: PetHistoryPanel(consultation: c)),
-              const VerticalDivider(width: 1),
+              SizedBox(width: Sizes.sidePanel, child: PetHistoryPanel(consultation: c)),
+              const VerticalDivider(width: Strokes.hairline),
               Expanded(child: chat),
-              const VerticalDivider(width: 1),
-              SizedBox(width: 360, child: VetToolsPanel(consultation: c)),
+              const VerticalDivider(width: Strokes.hairline),
+              SizedBox(width: Sizes.sidePanelWide, child: VetToolsPanel(consultation: c)),
             ]),
           );
         }
@@ -69,7 +70,7 @@ class VetConsultScreen extends ConsumerWidget {
             appBar: AppBar(
               title: title,
               actions: actions,
-              bottom: TabBar(tabs: [
+              bottom: TabBar(isScrollable: true, tabAlignment: TabAlignment.start, tabs: [
                 Tab(text: l.tvTabChat),
                 Tab(text: l.tvTabHistory),
                 Tab(text: l.tvTabTools),
@@ -108,7 +109,7 @@ class _AcceptBannerState extends ConsumerState<_AcceptBanner> {
   Widget build(BuildContext context) {
     final l = context.l10n;
     return Material(
-      color: context.paw.accent.withValues(alpha: 0.15),
+      color: context.paw.accent.withValues(alpha: Opacities.chip),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.sm),
         child: Row(children: [
@@ -148,15 +149,15 @@ class PetHistoryPanel extends ConsumerWidget {
     final events = full ? (ref.watch(petEventsForVetProvider(c.petId)).value ?? const <Map<String, dynamic>>[]) : const <Map<String, dynamic>>[];
     final vaccines = full ? (ref.watch(petVaccinesForVetProvider(c.petId)).value ?? const <Map<String, dynamic>>[]) : const <Map<String, dynamic>>[];
     Widget kv(String k, String v) => Padding(
-          padding: const EdgeInsets.only(bottom: 4),
+          padding: const EdgeInsets.only(bottom: Space.xs),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(width: 96, child: Text(k, style: context.text.bodySmall)),
+            SizedBox(width: Sizes.labelColumnSm, child: Text(k, style: context.text.bodySmall)),
             Expanded(child: Text(v.isEmpty ? '–' : v, style: context.text.bodyMedium)),
           ]),
         );
     return ListView(padding: const EdgeInsets.all(Space.lg), children: [
       Row(children: [
-        PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: 56),
+        PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.thumb),
         const SizedBox(width: Space.md),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -180,7 +181,7 @@ class PetHistoryPanel extends ConsumerWidget {
         Wrap(spacing: Space.xs, runSpacing: Space.xs, children: [for (final a in pet.allergies) StatusChip(a, tone: ChipTone.error)]),
       SectionHeader(l.tvProblemLabel),
       if (c.redFlag != null) ...[
-        StatusChip(l.tvUrgentSign(redFlagLabel(context, c.redFlag!)), tone: ChipTone.error, icon: Icons.emergency_rounded),
+        StatusChip(l.tvUrgentSign(redFlagLabel(context, c.redFlag!)), tone: ChipTone.error, icon: Ph.asteriskFill),
         const SizedBox(height: Space.xs),
       ],
       Text(c.problem, style: context.text.bodyMedium),
@@ -190,7 +191,7 @@ class PetHistoryPanel extends ConsumerWidget {
           for (final p in c.photos)
             InkWell(
               onTap: () => PhotoViewerScreen.open(context, p),
-              child: ClipRRect(borderRadius: BorderRadius.circular(10), child: MediaImage(url: p, width: 72, height: 72)),
+              child: ClipRRect(borderRadius: BorderRadius.circular(Radii.md), child: MediaImage(url: p, width: Sizes.thumbXl, height: Sizes.thumbXl)),
             ),
         ]),
       ],
@@ -209,7 +210,7 @@ class PetHistoryPanel extends ConsumerWidget {
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.medication_rounded),
+            leading: const Icon(Ph.pill),
             title: Text(m['name'] as String? ?? ''),
             subtitle: Text([m['dose'], m['unit']].whereType<String>().join(' ')),
           ),
@@ -219,7 +220,7 @@ class PetHistoryPanel extends ConsumerWidget {
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.vaccines_rounded),
+            leading: const Icon(Ph.syringe),
             title: Text(v['name'] as String? ?? ''),
             subtitle: Text(parseDate(v['givenDate']) == null ? '' : Fmt.date(parseDate(v['givenDate'])!, lang)),
           ),
@@ -230,10 +231,10 @@ class PetHistoryPanel extends ConsumerWidget {
             dense: true,
             contentPadding: EdgeInsets.zero,
             leading: Icon(switch (e['type']) {
-              'symptom' => Icons.sick_rounded,
-              'vet_visit' => Icons.local_hospital_rounded,
-              'deworming' => Icons.bug_report_rounded,
-              _ => Icons.event_note_rounded,
+              'symptom' => Ph.smileyNervous,
+              'vet_visit' => Ph.firstAid,
+              'deworming' => Ph.bug,
+              _ => Ph.notepad,
             }),
             title: Text(e['type'] == 'symptom' ? symptomLabel(context, e['symptom'] as String?) : (e['title'] as String? ?? '')),
             subtitle: Text([
@@ -297,7 +298,7 @@ class _VetToolsPanelState extends ConsumerState<VetToolsPanel> {
       const SizedBox(height: Space.sm),
       SecondaryButton(
         label: _saving ? l.loading : l.save,
-        icon: Icons.save_rounded,
+        icon: Ph.floppyDisk,
         onPressed: _saving
             ? null
             : () async {
@@ -312,29 +313,29 @@ class _VetToolsPanelState extends ConsumerState<VetToolsPanel> {
       SectionHeader(l.rxTitle),
       if (c.prescriptionId != null) ...[
         PawCard(
-          color: context.paw.success.withValues(alpha: 0.08),
+          color: context.paw.success.withValues(alpha: Opacities.pressed),
           padding: const EdgeInsets.all(Space.md),
           child: Row(children: [
-            Icon(Icons.check_circle_rounded, color: context.paw.success),
+            Icon(Ph.checkCircleFill, color: context.paw.success),
             const SizedBox(width: Space.sm),
             Expanded(child: Text(l.rxSaved(c.petName))),
           ]),
         ),
         const SizedBox(height: Space.sm),
-        SecondaryButton(label: l.rxView, icon: Icons.picture_as_pdf_rounded, onPressed: () => context.push('/prescriptions/${c.prescriptionId}')),
+        SecondaryButton(label: l.rxView, icon: Ph.filePdf, onPressed: () => context.push('/prescriptions/${c.prescriptionId}')),
       ] else
         PrimaryButton(
           label: l.rxWrite,
-          icon: Icons.edit_note_rounded,
+          icon: Ph.notePencil,
           onPressed: c.isQueued ? null : () => context.push('/partner/consult/${c.id}/prescription'),
         ),
       SectionHeader(l.tvRecommend),
-      SecondaryButton(label: l.tvRecVisit, icon: Icons.local_hospital_rounded, onPressed: c.isEnded || c.isQueued ? null : () => _recommend('visit')),
+      SecondaryButton(label: l.tvRecVisit, icon: Ph.firstAid, onPressed: c.isEnded || c.isQueued ? null : () => _recommend('visit')),
       const SizedBox(height: Space.sm),
       OutlinedButton.icon(
         style: OutlinedButton.styleFrom(foregroundColor: context.paw.sos, side: BorderSide(color: context.paw.sos)),
         onPressed: c.isEnded || c.isQueued ? null : () => _recommend('emergency'),
-        icon: const Icon(Icons.emergency_rounded),
+        icon: const Icon(Ph.asterisk),
         label: Text(l.tvRecEmergency),
       ),
       if (c.recommendation != null) ...[

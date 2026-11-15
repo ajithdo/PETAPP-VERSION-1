@@ -1,102 +1,142 @@
 import 'package:flutter/cupertino.dart' show CupertinoPageTransitionsBuilder;
 import 'package:flutter/material.dart';
 
+import 'ph.dart';
 import 'tokens.dart';
 
-/// Builds the Material 3 theme from the design tokens (spec section 4).
+/// Builds the Material 3 theme from the design tokens (UI Design 6 "Toran",
+/// DESIGN.md and lib/core/theme/tokens.dart). No colour or size is typed here
+/// directly.
 class AppTheme {
-  static const _jakarta = 'PlusJakartaSans';
-  static const _deva = 'NotoSansDevanagari';
-  static const _telugu = 'NotoSansTelugu';
+  static bool _indic(String locale) => locale == 'hi' || locale == 'te';
 
-  static String fontFor(String locale) => switch (locale) {
-        'hi' => _deva,
-        'te' => _telugu,
-        _ => _jakarta,
-      };
+  /// Text font for a language. Bricolage Grotesque in every language; Hindi
+  /// and Telugu letters come from the Noto fallbacks.
+  static String fontFor(String locale) => locale == 'te' ? FontFamilies.bodyTelugu : FontFamilies.body;
 
+  /// Title font for a language (the narrow, heavy Bricolage cut).
+  static String headingFor(String locale) => locale == 'te' ? FontFamilies.headingTelugu : FontFamilies.heading;
+
+  /// Fallbacks: the script of the current language first.
   static List<String> fallbackFor(String locale) => switch (locale) {
-        'hi' => const [_jakarta, _telugu],
-        'te' => const [_jakarta, _deva],
-        _ => const [_deva, _telugu],
-      };
+    'te' => const [FontFamilies.telugu, FontFamilies.devanagari],
+    _ => const [FontFamilies.devanagari, FontFamilies.telugu],
+  };
 
-  static ThemeData build({
-    required Brightness brightness,
-    required String locale,
-    bool highContrast = false,
-    bool easyMode = false,
-  }) {
+  /// Hindi and Telugu titles sit a little smaller than English ones: the
+  /// letters are taller and the words longer (DESIGN.md, the Indic rule).
+  static const double _indicTitleScale = 0.88;
+
+  /// Line height for Hindi and Telugu titles (body text uses
+  /// [TypeScale.indicLineHeight]).
+  static const double _indicTitleLineHeight = 1.42;
+
+  /// A text style for [t] in [locale]: titles in the narrow heavy cut, text
+  /// in the regular cut. Hindi and Telugu get taller lines, no
+  /// letter-spacing, and small text one step up. [tabular] lines numbers up
+  /// in columns (times, IDs, doses).
+  static TextStyle styleFor(TypeToken t, String locale, Color color, {String? family, bool tabular = false}) {
+    final indic = _indic(locale);
+    final f = family ?? (t.heading ? headingFor(locale) : fontFor(locale));
+    final bigTitle = t.heading && t.size >= 20;
+    final size = indic
+        ? (t.size < 16 ? t.size + TypeScale.indicSmallBump : (bigTitle ? (t.size * _indicTitleScale).roundToDouble() : t.size))
+        : t.size;
+    final lh = t.lineHeight / t.size;
+    final indicLh = t.heading ? _indicTitleLineHeight : TypeScale.indicLineHeight;
+    return TextStyle(
+      fontFamily: f,
+      fontFamilyFallback: [if (family != null) fontFor(locale), ...fallbackFor(locale)],
+      fontSize: size,
+      fontWeight: t.weight,
+      height: indic && lh < indicLh ? indicLh : lh,
+      letterSpacing: indic ? 0 : t.tracking,
+      fontFeatures: tabular ? const [FontFeature.tabularFigures()] : null,
+      color: color,
+    );
+  }
+
+  static ThemeData build({required Brightness brightness, required String locale, bool highContrast = false, bool easyMode = false}) {
     final light = brightness == Brightness.light;
     var paw = light ? PawColors.light : PawColors.dark;
     if (highContrast) paw = paw.highContrast(brightness);
 
-    final primary = light ? const Color(0xFF0F766E) : const Color(0xFF2DD4BF);
-    final onPrimary = light ? const Color(0xFFFFFFFF) : const Color(0xFF04201D);
-
     final scheme = ColorScheme(
       brightness: brightness,
-      primary: primary,
-      onPrimary: onPrimary,
+      primary: paw.brand,
+      onPrimary: paw.onBrand,
       primaryContainer: paw.primaryContainer,
-      onPrimaryContainer: light ? const Color(0xFF053B36) : const Color(0xFFCCFBF1),
-      secondary: paw.accent,
-      onSecondary: paw.onAccent,
-      secondaryContainer: light ? const Color(0xFFFDE7D3) : const Color(0xFF4A2E14),
-      onSecondaryContainer: light ? const Color(0xFF4A2508) : const Color(0xFFFDE7D3),
-      tertiary: const Color(0xFF9B8AFB),
-      onTertiary: const Color(0xFF1B1240),
+      onPrimaryContainer: paw.onPrimaryContainer,
+      secondary: paw.action,
+      onSecondary: paw.onAction,
+      secondaryContainer: paw.actionContainer,
+      onSecondaryContainer: paw.onActionContainer,
+      tertiary: paw.accent,
+      onTertiary: paw.onAccent,
       error: paw.error,
-      onError: light ? Colors.white : const Color(0xFF3B0A0A),
+      onError: light ? paw.surface : paw.errorContainer,
+      errorContainer: paw.errorContainer,
+      onErrorContainer: paw.onErrorContainer,
       surface: paw.surface,
       onSurface: paw.textPrimary,
       onSurfaceVariant: paw.textSecondary,
-      surfaceContainerLowest: paw.background,
-      surfaceContainerLow: light ? const Color(0xFFF5F2EE) : const Color(0xFF131B1D),
-      surfaceContainer: light ? const Color(0xFFF1EDE8) : const Color(0xFF1B2629),
-      surfaceContainerHigh: light ? const Color(0xFFEBE6E0) : const Color(0xFF213033),
-      surfaceContainerHighest: light ? const Color(0xFFE5E1DA) : const Color(0xFF2A3639),
-      outline: paw.outline,
+      surfaceContainerLowest: paw.surface,
+      surfaceContainerLow: paw.background,
+      surfaceContainer: paw.surfaceSubtle,
+      surfaceContainerHigh: paw.surfaceSubtle,
+      surfaceContainerHighest: paw.surfaceSubtle,
+      outline: paw.controlBorder,
       outlineVariant: paw.outline,
-      shadow: Colors.black,
-      inverseSurface: light ? const Color(0xFF1C2B2D) : const Color(0xFFE8EEEE),
-      onInverseSurface: light ? const Color(0xFFE8EEEE) : const Color(0xFF1C2B2D),
-      inversePrimary: light ? const Color(0xFF2DD4BF) : const Color(0xFF0F766E),
+      shadow: paw.ink,
+      scrim: paw.ink,
+      inverseSurface: paw.inverseSurface,
+      onInverseSurface: paw.onInverseSurface,
+      inversePrimary: light ? PawColors.dark.brand : PawColors.light.brand,
     );
 
-    final family = fontFor(locale);
-    final height = (locale == 'hi' || locale == 'te') ? 1.6 : 1.4;
-    TextStyle s(double size, FontWeight w, Color c) => TextStyle(
-          fontFamily: family,
-          fontFamilyFallback: fallbackFor(locale),
-          fontSize: size,
-          fontWeight: w,
-          height: height,
-          color: c,
-        );
     final tp = paw.textPrimary;
     final ts = paw.textSecondary;
+    TextStyle s(TypeToken t, [Color? c]) => styleFor(t, locale, c ?? tp);
     final textTheme = TextTheme(
-      displayLarge: s(40, FontWeight.w700, tp),
-      displayMedium: s(36, FontWeight.w700, tp),
-      displaySmall: s(32, FontWeight.w700, tp),
-      headlineLarge: s(28, FontWeight.w700, tp),
-      headlineMedium: s(24, FontWeight.w700, tp),
-      headlineSmall: s(22, FontWeight.w700, tp),
-      titleLarge: s(22, FontWeight.w700, tp),
-      titleMedium: s(18, FontWeight.w600, tp),
-      titleSmall: s(16, FontWeight.w600, tp),
-      bodyLarge: s(16, FontWeight.w400, tp),
-      bodyMedium: s(16, FontWeight.w400, tp),
-      bodySmall: s(13, FontWeight.w400, ts),
-      labelLarge: s(16, FontWeight.w600, tp),
-      labelMedium: s(13, FontWeight.w600, tp),
-      labelSmall: s(12, FontWeight.w500, ts),
+      displayLarge: s(TypeScale.display),
+      displayMedium: s(TypeScale.headlineLarge),
+      displaySmall: s(TypeScale.displayPhone),
+      headlineLarge: s(TypeScale.headlineLarge),
+      headlineMedium: s(TypeScale.headline),
+      headlineSmall: s(TypeScale.headlineMedium),
+      titleLarge: s(TypeScale.title),
+      titleMedium: s(TypeScale.titleMedium),
+      titleSmall: s(TypeScale.titleSmall),
+      bodyLarge: s(TypeScale.bodyLarge),
+      bodyMedium: s(TypeScale.body),
+      bodySmall: s(TypeScale.bodySmall, ts),
+      labelLarge: s(TypeScale.label),
+      labelMedium: s(TypeScale.labelMedium),
+      labelSmall: s(TypeScale.labelSmall, ts),
+    );
+    final extraText = PawTextStyles(
+      mono: styleFor(TypeScale.mono, locale, tp, tabular: true),
+      overline: s(TypeScale.overline, ts),
+      dateNumber: s(TypeScale.dateNumber).copyWith(height: TypeScale.tightLineHeight + 0.08),
     );
 
-    final minButton = Size(64, easyMode ? 56 : 48);
-    final buttonShape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.button));
-    final cardShadow = light ? Colors.black.withValues(alpha: 0.06) : Colors.transparent;
+    final target = easyMode ? TapTarget.easy : TapTarget.min;
+    const pill = StadiumBorder();
+    final focusRing = BorderSide(color: paw.focus, width: Strokes.focus);
+    final tints = light ? ToranTints.light : ToranTints.dark;
+    final controlSide = BorderSide(color: paw.controlBorder);
+    RoundedRectangleBorder rounded(double r, [BorderSide side = BorderSide.none]) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(r), side: side);
+    OutlineInputBorder field(Color c, [double w = 1]) => OutlineInputBorder(
+      borderRadius: BorderRadius.circular(Radii.input),
+      borderSide: BorderSide(color: c, width: w),
+    );
+    WidgetStateProperty<T> byState<T>(T normal, {T? selected, T? disabled}) => WidgetStateProperty.resolveWith((st) {
+      if (disabled != null && st.contains(WidgetState.disabled)) return disabled;
+      if (selected != null && st.contains(WidgetState.selected)) return selected;
+      return normal;
+    });
+    final disabledFill = paw.surfaceSubtle;
+    final disabledText = ts;
 
     return ThemeData(
       useMaterial3: true,
@@ -104,145 +144,310 @@ class AppTheme {
       colorScheme: scheme,
       scaffoldBackgroundColor: paw.background,
       canvasColor: paw.background,
-      fontFamily: family,
+      fontFamily: fontFor(locale),
       fontFamilyFallback: fallbackFor(locale),
       textTheme: textTheme,
-      extensions: [paw],
+      extensions: [paw, extraText],
       visualDensity: VisualDensity.standard,
       materialTapTargetSize: MaterialTapTargetSize.padded,
       splashFactory: InkSparkle.splashFactory,
+      focusColor: paw.focus.withValues(alpha: Opacities.focus),
+      hoverColor: paw.textPrimary.withValues(alpha: Opacities.hover),
+      highlightColor: paw.textPrimary.withValues(alpha: Opacities.highlight),
+      dividerColor: paw.outline,
+      iconTheme: IconThemeData(color: tp, size: IconSizes.lg),
       appBarTheme: AppBarTheme(
         backgroundColor: paw.background,
+        // With a back arrow the title starts 56 px in, as in the design;
+        // without one it keeps a normal margin.
+        titleSpacing: Space.md,
+        leadingWidth: Sizes.topControl,
         foregroundColor: tp,
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: false,
-        titleTextStyle: textTheme.titleLarge,
+        // UI Design 6 sub-page header: a back arrow, then a 19 px title.
+        titleTextStyle: styleFor(TypeScale.appBar, locale, tp),
+        toolbarHeight: Sizes.dock - Space.md,
+        shape: const Border(),
+      ),
+      actionIconTheme: ActionIconThemeData(
+        backButtonIconBuilder: (_) => const Icon(Ph.arrowLeft),
+        closeButtonIconBuilder: (_) => const Icon(Ph.x),
+        drawerButtonIconBuilder: (_) => const Icon(Ph.list),
       ),
       cardTheme: CardThemeData(
         color: paw.surface,
-        elevation: light ? 2 : 0,
-        shadowColor: cardShadow,
+        elevation: 0,
+        shadowColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         margin: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Radii.card),
-          side: light ? BorderSide.none : BorderSide(color: paw.outline),
-        ),
+        shape: rounded(Radii.card, light && !highContrast ? BorderSide.none : BorderSide(color: paw.outline)),
       ),
       filledButtonTheme: FilledButtonThemeData(
-        style: FilledButton.styleFrom(
-          minimumSize: minButton,
-          shape: buttonShape,
-          textStyle: textTheme.labelLarge,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        style: ButtonStyle(
+          // Padding is left to Material, which narrows it as text grows.
+          minimumSize: WidgetStatePropertyAll(Size(64, target)),
+          shape: const WidgetStatePropertyAll(pill),
+          textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
+          elevation: const WidgetStatePropertyAll(0),
+          backgroundColor: WidgetStateProperty.resolveWith((st) {
+            if (st.contains(WidgetState.disabled)) return disabledFill;
+            if (st.contains(WidgetState.pressed)) return paw.actionPressed;
+            return paw.action;
+          }),
+          foregroundColor: byState(paw.onAction, disabled: disabledText),
+          iconColor: byState(paw.onAction, disabled: disabledText),
+          overlayColor: WidgetStatePropertyAll(paw.onAction.withValues(alpha: Opacities.pressed)),
+          side: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.focused) ? BorderSide(color: tp, width: Strokes.focus) : null),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          minimumSize: minButton,
-          shape: buttonShape,
-          side: BorderSide(color: highContrast ? paw.textPrimary : paw.outline, width: 1.5),
-          foregroundColor: primary,
-          textStyle: textTheme.labelLarge,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        style: ButtonStyle(
+          minimumSize: WidgetStatePropertyAll(Size(64, target)),
+          shape: const WidgetStatePropertyAll(pill),
+          textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
+          backgroundColor: WidgetStatePropertyAll(paw.surface),
+          foregroundColor: byState(tp, disabled: disabledText),
+          iconColor: byState(paw.brand, disabled: disabledText),
+          overlayColor: WidgetStatePropertyAll(paw.brand.withValues(alpha: Opacities.highlight)),
+          side: WidgetStateProperty.resolveWith((st) {
+            if (st.contains(WidgetState.focused)) return focusRing;
+            if (st.contains(WidgetState.disabled)) return BorderSide(color: paw.outline);
+            return BorderSide(color: tp, width: Strokes.strong);
+          }),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          minimumSize: Size(48, easyMode ? 56 : 48),
-          shape: buttonShape,
+        style: ButtonStyle(
+          minimumSize: WidgetStatePropertyAll(Size(TapTarget.min, target)),
+          shape: const WidgetStatePropertyAll(pill),
+          textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
+          foregroundColor: byState(paw.brand, disabled: disabledText),
+          iconColor: byState(paw.brand, disabled: disabledText),
+          overlayColor: WidgetStatePropertyAll(paw.brand.withValues(alpha: Opacities.pressed)),
+          side: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.focused) ? focusRing : null),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(64, target),
+          shape: pill,
+          elevation: 0,
+          backgroundColor: paw.surface,
+          foregroundColor: paw.brand,
           textStyle: textTheme.labelLarge,
         ),
       ),
       iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(minimumSize: Size.square(easyMode ? 56 : 48)),
+        style: ButtonStyle(
+          minimumSize: WidgetStatePropertyAll(Size.square(target)),
+          foregroundColor: byState(tp, selected: paw.brand, disabled: disabledText),
+          side: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.focused) ? focusRing : null),
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: paw.action,
+        foregroundColor: paw.onAction,
+        elevation: 2,
+        focusElevation: 2,
+        hoverElevation: 3,
+        highlightElevation: 1,
+        shape: pill,
+        extendedTextStyle: textTheme.labelLarge,
+        // A 48 px pill, as in the design.
+        extendedSizeConstraints: const BoxConstraints.tightFor(height: TapTarget.min),
+        extendedPadding: const EdgeInsets.symmetric(horizontal: Space.lg + Space.xs),
+        extendedIconLabelSpacing: Space.sm,
       ),
       chipTheme: ChipThemeData(
-        shape: const StadiumBorder(),
-        side: BorderSide(color: paw.outline),
-        backgroundColor: paw.surface,
-        selectedColor: paw.primaryContainer,
-        labelStyle: textTheme.labelMedium,
-        // 48 px tall with the default label: an easy finger-sized target.
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        shape: StadiumBorder(side: BorderSide(color: highContrast ? paw.controlBorder : tints.line2)),
+        side: WidgetStateBorderSide.resolveWith((st) {
+          if (st.contains(WidgetState.focused)) return focusRing;
+          if (st.contains(WidgetState.selected)) return BorderSide(color: paw.brand);
+          // UI Design 6 chips have a quiet edge (darker in high contrast).
+          return BorderSide(color: highContrast ? paw.controlBorder : tints.line2);
+        }),
+        color: byState(paw.surface, selected: paw.brand, disabled: disabledFill),
+        labelStyle: textTheme.labelMedium?.copyWith(
+          fontWeight: FontWeight.w500,
+          color: WidgetStateColor.resolveWith(
+            (st) => st.contains(WidgetState.selected) ? paw.onBrand : (st.contains(WidgetState.disabled) ? ts : tp),
+          ),
+        ),
+        secondaryLabelStyle: textTheme.labelMedium?.copyWith(color: paw.onBrand),
+        checkmarkColor: paw.onBrand,
+        iconTheme: IconThemeData(color: paw.brand, size: IconSizes.sm),
+        deleteIconColor: ts,
+        // 40 px tall (the tap area around it is 48); the fill shows which one
+        // is chosen, so no tick.
+        padding: const EdgeInsets.symmetric(horizontal: Space.sm, vertical: Space.sm + Space.xxs),
+        showCheckmark: false,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: paw.surface,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Radii.button),
-          borderSide: BorderSide(color: paw.outline),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Radii.button),
-          borderSide: BorderSide(color: highContrast ? paw.textSecondary : paw.outline),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Radii.button),
-          borderSide: BorderSide(color: primary, width: 2),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Radii.button),
-          borderSide: BorderSide(color: paw.error),
-        ),
+        // UI Design 6 fields: 52 px tall with a quiet 1.5 px edge (darker in
+        // high contrast).
+        contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md + Space.xs),
+        border: field(highContrast ? paw.controlBorder : tints.line2, Strokes.strong),
+        enabledBorder: field(highContrast ? paw.controlBorder : tints.line2, Strokes.strong),
+        focusedBorder: field(paw.focus, 2),
+        errorBorder: field(paw.error),
+        focusedErrorBorder: field(paw.error, 2),
+        disabledBorder: field(paw.outline),
         labelStyle: textTheme.bodyMedium?.copyWith(color: ts),
+        floatingLabelStyle: textTheme.labelMedium?.copyWith(color: tp),
         hintStyle: textTheme.bodyMedium?.copyWith(color: ts),
+        helperStyle: textTheme.bodySmall,
+        errorStyle: textTheme.bodySmall?.copyWith(color: paw.error),
+        prefixIconColor: ts,
+        suffixIconColor: ts,
+      ),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: paw.brand,
+        selectionColor: paw.brand.withValues(alpha: Opacities.selection),
+        selectionHandleColor: paw.brand,
       ),
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: paw.surface,
         surfaceTintColor: Colors.transparent,
         showDragHandle: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(Radii.sheet)),
-        ),
+        dragHandleColor: paw.controlBorder,
+        elevation: 0,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(Radii.sheet))),
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: paw.surface,
         surfaceTintColor: Colors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.card)),
+        shape: rounded(Radii.card),
+        titleTextStyle: textTheme.titleLarge,
+        contentTextStyle: textTheme.bodyMedium,
       ),
-      navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: paw.surface,
+      popupMenuTheme: PopupMenuThemeData(
+        color: paw.surface,
         surfaceTintColor: Colors.transparent,
-        indicatorColor: paw.primaryContainer,
-        height: easyMode ? 76 : 68,
-        labelTextStyle: WidgetStatePropertyAll(textTheme.labelMedium),
+        shape: rounded(Radii.md, BorderSide(color: paw.outline)),
+        textStyle: textTheme.bodyMedium,
+      ),
+      menuTheme: MenuThemeData(
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll(paw.surface),
+          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+          shape: WidgetStatePropertyAll(rounded(Radii.md, BorderSide(color: paw.outline))),
+        ),
+      ),
+      // Toran: navigation sits on the dark kaapi band (a floating dock on
+      // phones, a side menu on wide screens) with a marigold pill for the
+      // current tab.
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: paw.band,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        indicatorColor: paw.marigold,
+        indicatorShape: pill,
+        height: easyMode ? 80 : 68,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        iconTheme: WidgetStateProperty.resolveWith(
+          (st) => IconThemeData(color: st.contains(WidgetState.selected) ? paw.onMarigold : paw.onBandMuted, size: easyMode ? IconSizes.xl : IconSizes.lg),
+        ),
+        labelTextStyle: WidgetStateProperty.resolveWith(
+          (st) => st.contains(WidgetState.selected)
+              ? textTheme.labelSmall!.copyWith(color: paw.onBand, fontWeight: FontWeight.w700)
+              : textTheme.labelSmall!.copyWith(color: paw.onBandMuted, fontWeight: FontWeight.w500),
+        ),
       ),
       navigationRailTheme: NavigationRailThemeData(
-        backgroundColor: paw.surface,
-        indicatorColor: paw.primaryContainer,
-        selectedLabelTextStyle: textTheme.labelMedium?.copyWith(color: primary),
-        unselectedLabelTextStyle: textTheme.labelMedium?.copyWith(color: ts),
+        backgroundColor: paw.band,
+        indicatorColor: paw.marigold,
+        indicatorShape: pill,
+        selectedIconTheme: IconThemeData(color: paw.onMarigold),
+        unselectedIconTheme: IconThemeData(color: paw.onBandMuted),
+        selectedLabelTextStyle: textTheme.labelLarge?.copyWith(color: paw.onBand, fontWeight: FontWeight.w700),
+        unselectedLabelTextStyle: textTheme.labelLarge?.copyWith(color: paw.onBandMuted, fontWeight: FontWeight.w500),
       ),
       navigationDrawerTheme: NavigationDrawerThemeData(
-        backgroundColor: paw.surface,
-        indicatorColor: paw.primaryContainer,
+        backgroundColor: paw.band,
+        indicatorColor: paw.marigold,
+        indicatorShape: pill,
+        // The selected item sits on the marigold pill.
+        iconTheme: WidgetStateProperty.resolveWith((st) => IconThemeData(color: st.contains(WidgetState.selected) ? paw.onMarigold : paw.onBandMuted)),
+        labelTextStyle: WidgetStateProperty.resolveWith((st) => st.contains(WidgetState.selected)
+            ? textTheme.labelLarge!.copyWith(color: paw.onMarigold, fontWeight: FontWeight.w700)
+            : textTheme.labelLarge!.copyWith(color: paw.onBandMuted, fontWeight: FontWeight.w500)),
         surfaceTintColor: Colors.transparent,
+      ),
+      tabBarTheme: TabBarThemeData(
+        labelColor: paw.brand,
+        unselectedLabelColor: ts,
+        indicatorColor: paw.marigold,
+        dividerColor: paw.outline,
+        // UI Design 6 tabs: words 20 px apart from the left, a 3 px
+        // marigold line under the current one.
+        tabAlignment: TabAlignment.start,
+        labelPadding: const EdgeInsets.symmetric(horizontal: Space.sm + Space.xxs),
+        indicatorSize: TabBarIndicatorSize.label,
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(color: paw.marigold, width: Strokes.chart),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(Strokes.chart)),
+        ),
+        labelStyle: textTheme.labelLarge,
+        unselectedLabelStyle: textTheme.labelLarge,
+      ),
+      segmentedButtonTheme: SegmentedButtonThemeData(
+        style: ButtonStyle(
+          minimumSize: WidgetStatePropertyAll(Size(TapTarget.min, target)),
+          shape: const WidgetStatePropertyAll(pill),
+          side: WidgetStatePropertyAll(controlSide),
+          backgroundColor: byState(paw.surface, selected: paw.brand),
+          foregroundColor: byState(tp, selected: paw.onBrand),
+          iconColor: byState(tp, selected: paw.onBrand),
+          textStyle: WidgetStatePropertyAll(textTheme.labelMedium),
+        ),
       ),
       dividerTheme: DividerThemeData(color: paw.outline, space: 1, thickness: 1),
       listTileTheme: ListTileThemeData(
-        minVerticalPadding: 12,
-        minTileHeight: easyMode ? 64 : 56,
+        minVerticalPadding: Space.md,
+        minTileHeight: easyMode ? 76 : 64,
         iconColor: ts,
-        titleTextStyle: textTheme.bodyLarge,
+        titleTextStyle: textTheme.titleSmall,
         subtitleTextStyle: textTheme.bodySmall,
+        shape: rounded(Radii.md),
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Radii.button)),
+        backgroundColor: paw.inverseSurface,
+        contentTextStyle: textTheme.bodyMedium?.copyWith(color: paw.onInverseSurface),
+        actionTextColor: light ? PawColors.dark.marigold : PawColors.light.brand,
+        shape: rounded(Radii.md),
+        elevation: 0,
       ),
+      tooltipTheme: TooltipThemeData(
+        decoration: BoxDecoration(color: paw.inverseSurface, borderRadius: BorderRadius.circular(Radii.sm)),
+        textStyle: textTheme.bodySmall?.copyWith(color: paw.onInverseSurface),
+      ),
+      // Count badges are cocoa (marigold in dark): SOS is the only red.
+      badgeTheme: BadgeThemeData(backgroundColor: paw.brand, textColor: paw.onBrand, textStyle: textTheme.labelSmall),
+      progressIndicatorTheme: ProgressIndicatorThemeData(color: paw.marigold, linearTrackColor: paw.surfaceSubtle, circularTrackColor: Colors.transparent),
       switchTheme: SwitchThemeData(
-        thumbColor: WidgetStateProperty.resolveWith(
-            (s) => s.contains(WidgetState.selected) ? onPrimary : paw.textSecondary),
-        trackColor: WidgetStateProperty.resolveWith(
-            (s) => s.contains(WidgetState.selected) ? primary : paw.outline),
+        // UI Design 6 switch: a white knob on a quiet track, green when on.
+        // (An empty knob icon keeps the knob one size, on or off.)
+        thumbColor: WidgetStatePropertyAll(light ? paw.surface : paw.onBand),
+        trackColor: byState(highContrast ? paw.controlBorder : tints.line2, selected: paw.success),
+        trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
+        thumbIcon: const WidgetStatePropertyAll(Icon(Ph.circle, color: Colors.transparent)),
       ),
-      pageTransitionsTheme: const PageTransitionsTheme(builders: {
-        TargetPlatform.android: FadeForwardsPageTransitionsBuilder(),
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      }),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: byState(Colors.transparent, selected: paw.brand),
+        checkColor: WidgetStatePropertyAll(paw.onBrand),
+        side: BorderSide(color: paw.controlBorder, width: Strokes.strong),
+        shape: rounded(Radii.xs),
+      ),
+      radioTheme: RadioThemeData(fillColor: byState(paw.controlBorder, selected: paw.brand)),
+      sliderTheme: SliderThemeData(activeTrackColor: paw.brand, inactiveTrackColor: tints.paper3, thumbColor: paw.marigold, trackHeight: Space.xs + Space.xxs),
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {TargetPlatform.android: FadeForwardsPageTransitionsBuilder(), TargetPlatform.iOS: CupertinoPageTransitionsBuilder()},
+      ),
     );
   }
 }

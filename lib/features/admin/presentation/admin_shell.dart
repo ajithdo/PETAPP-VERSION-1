@@ -5,6 +5,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../shell/presentation/coming_soon_screen.dart';
 import '../../shell/presentation/portal_scaffold.dart';
 import 'admin_sections.dart';
+import '../../../core/theme/ph.dart';
 
 /// Platform admin panel (spec 10). Only reachable with the admin role.
 class AdminShell extends ConsumerWidget {
@@ -15,15 +16,15 @@ class AdminShell extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final sections = [
-      PortalSection('dashboard', Icons.insights_rounded, l.aDashboard),
-      PortalSection('approvals', Icons.verified_rounded, l.aApprovals),
-      PortalSection('users', Icons.people_rounded, l.aUsers),
-      PortalSection('catalogue', Icons.category_rounded, l.aCatalogue),
-      PortalSection('complaints', Icons.support_agent_rounded, l.aComplaints),
-      PortalSection('moderation', Icons.flag_rounded, l.aModeration),
-      PortalSection('settings', Icons.tune_rounded, l.aSettings),
-      PortalSection('outbox', Icons.outbox_rounded, l.aOutbox),
-      PortalSection('audit', Icons.history_rounded, l.aAudit),
+      PortalSection('dashboard', Ph.chartLineUp, l.aDashboard),
+      PortalSection('approvals', Ph.sealCheck, l.aApprovals),
+      PortalSection('users', Ph.users, l.aUsers),
+      PortalSection('catalogue', Ph.shapes, l.aCatalogue),
+      PortalSection('complaints', Ph.headset, l.aComplaints),
+      PortalSection('moderation', Ph.flag, l.aModeration),
+      PortalSection('settings', Ph.slidersHorizontal, l.aSettings),
+      PortalSection('outbox', Ph.trayArrowUp, l.aOutbox),
+      PortalSection('audit', Ph.clockCounterClockwise, l.aAudit),
     ];
     final current = sections.any((s) => s.key == section) ? section : 'dashboard';
     final body = adminSectionBody(context, ref, current) ??

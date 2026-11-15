@@ -493,7 +493,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get demoAccountsHint =>
-      'किसी भी खाते पर टैप करके साइन इन करें। पासवर्ड की ज़रूरत नहीं।';
+      'किसी भी खाते पर टैप करके साइन इन करें। पासवर्ड की ज़रूरत नहीं। यहाँ कुछ भी असली नहीं है और कोई पैसा नहीं कटता।';
 
   @override
   String get orSignInWithEmail => 'या अपने ईमेल से साइन इन करें';
@@ -508,29 +508,25 @@ class AppLocalizationsHi extends AppLocalizations {
   String get demoGroupPartners => 'पार्टनर';
 
   @override
-  String get demoGroupPlatform => 'प्लेटफ़ॉर्म';
+  String get demoGroupPlatform => 'PawSetu टीम';
 
   @override
-  String get demoPriya =>
-      'बेंगलुरु · Plus · लैब्राडोर ब्रूनो और पर्शियन बिल्ली मिस्टी';
+  String get demoPriya => 'बेंगलुरु, लैब्राडोर ब्रूनो और पर्शियन बिल्ली मिस्टी';
 
   @override
-  String get demoRavi =>
-      'हैदराबाद · Free · तेलुगु · देसी पिल्ला सिम्बा और कॉकटेल कीवी';
+  String get demoRavi => 'हैदराबाद, देसी पिल्ला सिम्बा और कॉकटेल कीवी';
 
   @override
-  String get demoAnjali =>
-      'दिल्ली NCR · Free · हिन्दी · आसान मोड · खरगोश कोको और बुज़ुर्ग बिल्ली टाइगर';
+  String get demoAnjali => 'दिल्ली NCR, खरगोश कोको और बुज़ुर्ग बिल्ली टाइगर';
 
   @override
-  String get demoArjun =>
-      'मुंबई · Plus · जर्मन शेफर्ड मैक्स और बीगल पिल्ला लूना';
+  String get demoArjun => 'मुंबई, जर्मन शेफर्ड मैक्स और बीगल पिल्ला लूना';
 
   @override
-  String get demoRohan => 'प्रिया के पति · ब्रूनो और मिस्टी के देखभालकर्ता';
+  String get demoRohan => 'प्रिया के पति, ब्रूनो और मिस्टी के देखभालकर्ता';
 
   @override
-  String get demoMeera => 'अर्जुन की पेट सिटर · पहुँच 3 दिन में खत्म';
+  String get demoMeera => 'अर्जुन की पेट सिटर, पहुँच 3 दिन में खत्म';
 
   @override
   String get demoClinicAdmin =>
@@ -2342,6 +2338,15 @@ class AppLocalizationsHi extends AppLocalizations {
       'यह कार्ड बिना इंटरनेट के चलता है। डॉक्टर, बोर्डिंग सेंटर या एयरपोर्ट पर दिखाएँ।';
 
   @override
+  String get healthAllClear => 'सब कुछ समय पर है';
+
+  @override
+  String get certificate => 'प्रमाणपत्र';
+
+  @override
+  String get emergencyInfo => 'आपातकालीन जानकारी';
+
+  @override
   String get bookTitle => 'देखभाल बुक करें';
 
   @override
@@ -3282,6 +3287,14 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get remove => 'हटाएँ';
+
+  @override
+  String bookFor(String name) {
+    return '$name के लिए बुक करें';
+  }
+
+  @override
+  String get nextFreeSlot => 'अगला खाली समय';
 
   @override
   String get aiTitle => 'PawSetu से पूछें';
@@ -4872,7 +4885,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get albumSeeAlbum => 'एल्बम देखें';
+  String get albumSeeAlbum => 'एल्बम';
 
   @override
   String albumYearsAgo(int count) {
@@ -6114,7 +6127,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String shopReorderPrice(String price) {
-    return 'फिर से मँगाएँ · $price';
+    return 'फिर से मँगाएँ $price';
   }
 
   @override
@@ -6975,7 +6988,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String foodRunsOutIn(String pet, int days) {
-    return '$pet का खाना लगभग $days दिन में खत्म हो सकता है। फिर से मँगाएँ?';
+    return '$pet का खाना लगभग $days दिन में खत्म हो सकता है';
   }
 
   @override
@@ -6989,7 +7002,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get foodEditPortion => 'मात्रा बदलें';
+  String get foodEditPortion => 'रोज़ की मात्रा बदलें';
 
   @override
   String foodOnTheWay(String pet) {
@@ -10310,4 +10323,1108 @@ class AppLocalizationsHi extends AppLocalizations {
   String albumTitle(String pet) {
     return '$pet की यादें';
   }
+
+  @override
+  String gendaProgress(int done, int total) {
+    return '$total में से $done हो गए';
+  }
+
+  @override
+  String get gendaNothingPlanned => 'आज कुछ तय नहीं है। एक दिनचर्या जोड़ें।';
+
+  @override
+  String withUnread(String label, int count) {
+    return '$label, $count बिना पढ़े';
+  }
+
+  @override
+  String shopAskVet(String name) {
+    return '$name के लिए क्या ठीक रहेगा, पता नहीं? डॉक्टर से पूछें';
+  }
+
+  @override
+  String get meGroupPets => 'पालतू और परिवार';
+
+  @override
+  String get meGroupMoney => 'ऑर्डर और पैसे';
+
+  @override
+  String get meGroupHelp => 'मदद और सेटिंग्स';
+
+  @override
+  String gendaNext(String task) {
+    return 'अगला: $task';
+  }
+
+  @override
+  String get bookIntro =>
+      'आपके पास के डॉक्टर, ग्रूमर, ट्रेनर, बोर्डिंग और वॉकर।';
+
+  @override
+  String get bookVetSub => 'जाँच, टीके, सर्जरी';
+
+  @override
+  String get bookTeleSub => 'डॉक्टर से चैट या वीडियो';
+
+  @override
+  String get bookGroomSub => 'सैलून या घर पर';
+
+  @override
+  String get bookTrainSub => 'बुनियादी सीख से व्यवहार तक';
+
+  @override
+  String get bookBoardSub => 'बोर्डिंग और पेट सिटिंग';
+
+  @override
+  String get bookWalkSub => 'लाइव रास्ता और फ़ोटो';
+
+  @override
+  String get welcomeLanguages =>
+      'English, हिन्दी और తెలుగు। सेटिंग्स में कभी भी बदलें।';
+
+  @override
+  String get firstAidGuides => 'गाइड';
+
+  @override
+  String get yesterday => 'कल';
+
+  @override
+  String get earlier => 'पहले';
+
+  @override
+  String get stepBooked => 'बुक हुआ';
+
+  @override
+  String get stepConfirmed => 'पक्का हुआ';
+
+  @override
+  String get stepVisited => 'मिल लिए';
+
+  @override
+  String shopGoodMatch(String name) {
+    return '$name के लिए सही';
+  }
+
+  @override
+  String get logGridTitle => 'कुछ दर्ज करें';
+
+  @override
+  String leftCount(int count) {
+    return '$count बाकी';
+  }
+
+  @override
+  String get markGiven => 'दे दिया';
+
+  @override
+  String playOfMin(int done, int goal) {
+    return '$goal में से $done मिनट';
+  }
+
+  @override
+  String aboutLeft(String amount) {
+    return 'लगभग $amount बचा है';
+  }
+
+  @override
+  String nowAt(String time) {
+    return 'अभी, $time';
+  }
+
+  @override
+  String get albumYearAgo => 'एक साल पहले आज';
+
+  @override
+  String get bookWord => 'बुक करें';
+
+  @override
+  String get sosEmergencyHelp => 'SOS, आपातकालीन मदद';
+
+  @override
+  String get healthRecords => 'रिकॉर्ड';
+
+  @override
+  String get noneRightNow => 'अभी कोई नहीं';
+
+  @override
+  String get nothingLogged => 'कुछ दर्ज नहीं';
+
+  @override
+  String whatDueOn(String what, String date) {
+    return '$what $date को';
+  }
+
+  @override
+  String get vaccinesUpToDate => 'टीके समय पर हैं';
+
+  @override
+  String get weightHealthy => 'स्वस्थ सीमा में';
+
+  @override
+  String get weightBelow => 'सामान्य सीमा से कम';
+
+  @override
+  String get weightAbove => 'सामान्य सीमा से ज़्यादा';
+
+  @override
+  String get preventionTitle => 'कृमिनाशक और पिस्सू, किलनी';
+
+  @override
+  String get indicativeSchedule =>
+      'यह अनुमानित समय-सारणी है। हमेशा अपने डॉक्टर से पुष्टि करें।';
+
+  @override
+  String bookIntroNear(String area) {
+    return '$area के पास डॉक्टर, ग्रूमर, ट्रेनर, बोर्डिंग और वॉकर।';
+  }
+
+  @override
+  String bookNextSlot(String when) {
+    return 'अगला स्लॉट $when';
+  }
+
+  @override
+  String bookVetsOnline(int count) {
+    return '$count डॉक्टर अभी ऑनलाइन';
+  }
+
+  @override
+  String inDaysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count दिन में',
+      one: 'कल',
+      zero: 'आज',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shopDeliveringTo => 'डिलीवरी का पता:';
+
+  @override
+  String get shopRunningLow => 'कम बचा है';
+
+  @override
+  String shopNotSure(String name) {
+    return '$name के लिए क्या ठीक रहेगा, पता नहीं?';
+  }
+
+  @override
+  String get shopFromPartners => 'पार्टनर स्टोर से';
+
+  @override
+  String shopBuyOnStore(String price, String store) {
+    return '$price, आप $store पर खरीदेंगे';
+  }
+
+  @override
+  String meDocsCount(int count) {
+    return '$count दस्तावेज़';
+  }
+
+  @override
+  String meExpireSoon(int count) {
+    return '$count जल्द खत्म होंगे';
+  }
+
+  @override
+  String mePhotosCount(int count) {
+    return '$count फ़ोटो';
+  }
+
+  @override
+  String meVideosCount(int count) {
+    return '$count वीडियो';
+  }
+
+  @override
+  String get meTagsReady => 'टैग तैयार हैं। कोई पालतू खोया नहीं है।';
+
+  @override
+  String mePetLost(String name) {
+    return '$name खोया हुआ दर्ज है';
+  }
+
+  @override
+  String get meNoneYet => 'अभी कोई नहीं';
+
+  @override
+  String meDeviceLine(String device, int battery) {
+    return '$device, $battery%';
+  }
+
+  @override
+  String get meOnlyYou => 'सिर्फ़ आप';
+
+  @override
+  String meCanCare(String who, String pets) {
+    return '$who $pets की देखभाल कर सकते हैं';
+  }
+
+  @override
+  String meOnTheWay(String item) {
+    return '$item रास्ते में है';
+  }
+
+  @override
+  String meThisMonth(String amount) {
+    return 'इस महीने $amount';
+  }
+
+  @override
+  String meRenewsOn(String date) {
+    return '$date को नवीकरण';
+  }
+
+  @override
+  String get meTryFree => '7 दिन मुफ़्त आज़माएँ';
+
+  @override
+  String meBothGet(String amount) {
+    return 'दोनों को $amount मिलेंगे';
+  }
+
+  @override
+  String get meSettingsSub => 'भाषा, रूप, ईज़ी मोड';
+
+  @override
+  String get mePrivacySub => 'आपका डेटा और सहमतियाँ';
+
+  @override
+  String get meGroupApp => 'ऐप और मदद';
+
+  @override
+  String get meSavedAddresses => 'सहेजे गए पते';
+
+  @override
+  String get catShortFood => 'खाना';
+
+  @override
+  String get catShortTreats => 'ट्रीट';
+
+  @override
+  String get catShortToys => 'खिलौने';
+
+  @override
+  String get catShortGrooming => 'ग्रूमिंग';
+
+  @override
+  String get catShortHealthHygiene => 'सेहत';
+
+  @override
+  String get catShortBeds => 'बिस्तर';
+
+  @override
+  String get catShortCollarsLeashes => 'पट्टे';
+
+  @override
+  String get catShortBowlsFeeders => 'कटोरे';
+
+  @override
+  String get catShortLitterCat => 'लिटर';
+
+  @override
+  String get catShortBirdFoodCages => 'पक्षी';
+
+  @override
+  String get catShortRabbitCare => 'खरगोश';
+
+  @override
+  String get catShortClothing => 'कपड़े';
+
+  @override
+  String get catShortTravel => 'सफ़र';
+
+  @override
+  String get orContinueWith => 'या इससे जारी रखें';
+
+  @override
+  String get partnerAsk => 'क्लिनिक, सैलून या दुकान चलाते हैं?';
+
+  @override
+  String get partnerApply => 'पार्टनर बनने के लिए आवेदन करें';
+
+  @override
+  String get demoPartnersTeam => 'पार्टनर और PawSetu टीम';
+
+  @override
+  String seeAllCount(int count) {
+    return 'सभी $count देखें';
+  }
+
+  @override
+  String sosCallNumber(String phone) {
+    return '$phone पर कॉल करें';
+  }
+
+  @override
+  String get openMedicalCard => 'मेडिकल कार्ड खोलें';
+
+  @override
+  String get tvBookVideo => 'वीडियो बुक करें';
+
+  @override
+  String get tvUnlimitedWord => 'असीमित';
+
+  @override
+  String get tvConsultationsWord => 'परामर्श';
+
+  @override
+  String tvPerMonthTitle(int count) {
+    return 'महीने में $count';
+  }
+
+  @override
+  String tvUsedSub(int used) {
+    return 'अब तक $used इस्तेमाल';
+  }
+
+  @override
+  String tvMessagesTitle(int count) {
+    return '$count संदेश';
+  }
+
+  @override
+  String tvWordsSub(int words) {
+    return 'हर एक में $words शब्द';
+  }
+
+  @override
+  String tvHoursTitle(int hours) {
+    return '$hours घंटे';
+  }
+
+  @override
+  String get tvHoursSub => 'चैट खुली रहती है';
+
+  @override
+  String get tvVideoTitle => 'वीडियो कॉल';
+
+  @override
+  String get tvVideoSubPlus => '10% छूट के साथ';
+
+  @override
+  String get tvVideoSubFree => 'सिर्फ़ Plus में';
+
+  @override
+  String tvPetWithVet(String pet, String vet) {
+    return '$vet के साथ $pet';
+  }
+
+  @override
+  String get tvOpenChat => 'चैट खोलें';
+
+  @override
+  String get tvPrescriptionWord => 'पर्चा';
+
+  @override
+  String aiCareAnswers(String name) {
+    return '$name की देखभाल के जवाब। यह निदान नहीं है।';
+  }
+
+  @override
+  String get aiCareAnswersAll =>
+      'आपके पालतू की देखभाल के जवाब। यह निदान नहीं है।';
+
+  @override
+  String clinicsWithin(int count, int km) {
+    return '$km किमी के अंदर $count क्लिनिक';
+  }
+
+  @override
+  String placesWithin(int count, int km) {
+    return '$km किमी के अंदर $count जगहें';
+  }
+
+  @override
+  String get feeWord => 'परामर्श';
+
+  @override
+  String get bookAVisit => 'विज़िट बुक करें';
+
+  @override
+  String placeWhere(String kind, String area, String city, String distance) {
+    return '$area, $city में $kind। $distance दूर।';
+  }
+
+  @override
+  String serviceWithVet(String service, String vet) {
+    return '$vet के साथ $service';
+  }
+
+  @override
+  String serviceForPet(String service, String pet) {
+    return '$pet के लिए $service';
+  }
+
+  @override
+  String get bookingIdLabel => 'बुकिंग आईडी';
+
+  @override
+  String get howWasVisit => 'विज़िट कैसी रही?';
+
+  @override
+  String get reviewWhoCan =>
+      'सिर्फ़ वही लोग रिव्यू दे सकते हैं जो वहाँ गए थे। वे जवाब दे सकते हैं।';
+
+  @override
+  String get bookAgain => 'फिर से बुक करें';
+
+  @override
+  String get bookAgainSub => 'वही जगह, वही सेवा';
+
+  @override
+  String get addToCalendarSub => 'समय अपने फ़ोन के कैलेंडर में रखें';
+
+  @override
+  String get getHelpSub => 'कुछ गड़बड़ हुई? हमें बताएँ';
+
+  @override
+  String dueBoosters(String name, String date) {
+    return '$name के टीके $date को हैं';
+  }
+
+  @override
+  String get dueBoostersSub => 'पास के क्लिनिक में एक ही विज़िट में लगवाएँ।';
+
+  @override
+  String get bookVaccines => 'टीके बुक करें';
+
+  @override
+  String requestCancels(String when) {
+    return 'वे $when तक जवाब देंगे, नहीं तो अनुरोध अपने आप रद्द हो जाएगा।';
+  }
+
+  @override
+  String get discountWord => 'छूट';
+
+  @override
+  String shopDeliveryBy(String date) {
+    return '$date तक डिलीवरी';
+  }
+
+  @override
+  String shopDeliverTo(String pin) {
+    return 'पिन कोड $pin पर।';
+  }
+
+  @override
+  String shopSoldByName(String seller) {
+    return 'विक्रेता: $seller';
+  }
+
+  @override
+  String shopReturnsDays(int days) {
+    return '$days दिन में वापसी';
+  }
+
+  @override
+  String get shopNoReturns => 'वापसी नहीं';
+
+  @override
+  String shopNoAllergen(String allergen, String pet) {
+    return 'इसमें $allergen नहीं है, जिससे $pet बचता है।';
+  }
+
+  @override
+  String get changeWord => 'बदलें';
+
+  @override
+  String reviewsLink(int count) {
+    return '$count रिव्यू';
+  }
+
+  @override
+  String youAreRole(String role) {
+    return 'आप $role हैं';
+  }
+
+  @override
+  String birthdayOnDate(String date) {
+    return 'जन्मदिन $date';
+  }
+
+  @override
+  String get qrActiveTitle => 'QR टैग चालू है';
+
+  @override
+  String qrActiveSub(String name) {
+    return 'जिसे भी $name मिले, वह आपसे संपर्क कर सकता है। आपका नंबर छिपा रहता है।';
+  }
+
+  @override
+  String whoLooksAfter(String name) {
+    return '$name की देखभाल कौन करता है';
+  }
+
+  @override
+  String get medCardBrand => 'PawSetu मेडिकल कार्ड';
+
+  @override
+  String get worksOffline => 'बिना इंटरनेट चलता है';
+
+  @override
+  String get savePdf => 'PDF सहेजें';
+
+  @override
+  String get fullHealthReport => 'पूरी हेल्थ रिपोर्ट';
+
+  @override
+  String get fullHealthReportSub => 'टीके, दवाएँ, विज़िट, वज़न चार्ट';
+
+  @override
+  String get editDetails => 'जानकारी बदलें';
+
+  @override
+  String get editDetailsSub => 'एलर्जी, माइक्रोचिप, क्लिनिक';
+
+  @override
+  String get roleOwnerDoes => 'सब कुछ कर सकते हैं';
+
+  @override
+  String get roleCoownerDoes => 'पालतू को हटाने के अलावा सब कुछ';
+
+  @override
+  String get roleCarerDoes =>
+      'दिनचर्या दर्ज करते हैं, दवाएँ देते हैं, सेवाएँ बुक करते हैं';
+
+  @override
+  String get roleViewerDoes => 'सब देख सकते हैं, सैर और खाना दर्ज करते हैं';
+
+  @override
+  String get languageNote => 'पूरा ऐप एक साथ बदल जाता है, रिमाइंडर और PDF भी।';
+
+  @override
+  String get textSizeNote => '200% तक सब कुछ ठीक से दिखता है।';
+
+  @override
+  String get plusYouHaveShort => 'आपके पास Plus है';
+
+  @override
+  String plusMemberSince(String name, String date) {
+    return '$name, $date से सदस्य';
+  }
+
+  @override
+  String get plusRenewsOnLabel => 'रिन्यू होगा';
+
+  @override
+  String get plusEndsOnLabel => 'ख़त्म होगा';
+
+  @override
+  String get plusYearlyPlan => 'सालाना प्लान';
+
+  @override
+  String get plusMonthlyPlan => 'मासिक प्लान';
+
+  @override
+  String plusPriceYear(String amount) {
+    return '$amount हर साल';
+  }
+
+  @override
+  String plusPriceMonth(String amount) {
+    return '$amount हर महीने';
+  }
+
+  @override
+  String plusNextPayment(String amount, String date) {
+    return 'अगला भुगतान $amount, $date को';
+  }
+
+  @override
+  String get plusCancelPlan => 'प्लान रद्द करें';
+
+  @override
+  String get plusCancelTitle => 'अपना प्लान रद्द करें?';
+
+  @override
+  String plusNewHere(int days) {
+    return 'नए हैं? $days दिन मुफ़्त';
+  }
+
+  @override
+  String get plusNewHereBody =>
+      'Free प्लान के सदस्य पैसे देने से पहले Plus आज़मा सकते हैं।';
+
+  @override
+  String get plusWhatYouGet => 'आपको क्या मिलता है';
+
+  @override
+  String get plusNo => 'नहीं';
+
+  @override
+  String get plusSwitchMonthly => 'मासिक प्लान में बदलें?';
+
+  @override
+  String get plusSwitchYearly => 'सालाना प्लान में बदलें?';
+
+  @override
+  String plusSwitchBody(String date, String price) {
+    return '$date से आप $price देंगे। आज कुछ नहीं कटेगा।';
+  }
+
+  @override
+  String get plusSwitched => 'प्लान बदल गया';
+
+  @override
+  String cartDeliverToLabel(String label) {
+    return '$label पर डिलीवरी';
+  }
+
+  @override
+  String cartItems(int count) {
+    return 'सामान ($count)';
+  }
+
+  @override
+  String get cartFreeWithPlus => 'Plus के साथ मुफ़्त';
+
+  @override
+  String get cartApplied => 'लग गया';
+
+  @override
+  String cartSaveOnOrder(String amount) {
+    return 'इस ऑर्डर पर आप $amount बचाते हैं';
+  }
+
+  @override
+  String get cartDemoPayNote =>
+      'डेमो भुगतान। कोई पैसा नहीं कटता। आप सफल, असफल या रुका हुआ भुगतान आज़मा सकते हैं।';
+
+  @override
+  String get cartBillShort => 'बिल';
+
+  @override
+  String cartWindowShort(String from, String to) {
+    return '$from से $to';
+  }
+
+  @override
+  String get cartCodNote => 'ऑर्डर पहुँचने पर भुगतान करें।';
+
+  @override
+  String get vaultSearchDocsHint => 'दस्तावेज़ और टैग खोजें';
+
+  @override
+  String get vaultScanOrUpload => 'स्कैन या अपलोड करें';
+
+  @override
+  String get vaultTypeShortVaccination => 'प्रमाणपत्र';
+
+  @override
+  String get vaultTypeShortInsurance => 'बीमा';
+
+  @override
+  String get vaultTypeShortLab => 'लैब रिपोर्ट';
+
+  @override
+  String get vaultTypeShortPrescription => 'पर्चे';
+
+  @override
+  String get vaultTypeShortInvoice => 'बिल';
+
+  @override
+  String get vaultTypeShortLicence => 'लाइसेंस';
+
+  @override
+  String get vaultTypeShortAdoption => 'गोद लेना';
+
+  @override
+  String get vaultTypeShortTravel => 'यात्रा';
+
+  @override
+  String get vaultTypeShortOther => 'अन्य';
+
+  @override
+  String vaultExpiresNote(String title, String date) {
+    return '$title $date को ख़त्म होगा।';
+  }
+
+  @override
+  String vaultExpiredNote(String title, String date) {
+    return '$title $date को ख़त्म हो गया।';
+  }
+
+  @override
+  String vaultRenewHintVaccine(String pet) {
+    return '$pet के बूस्टर के बाद नया जोड़ें।';
+  }
+
+  @override
+  String get vaultRenewHint => 'नया मिलने पर जोड़ें।';
+
+  @override
+  String get vaultSharedWithVet => 'डॉक्टर के साथ साझा';
+
+  @override
+  String get vaultAllLinks => 'सभी लिंक';
+
+  @override
+  String get vaultRevokeShort => 'रोकें';
+
+  @override
+  String vaultPolicyLine(String name, String cover) {
+    return '$name, $cover का कवर';
+  }
+
+  @override
+  String vaultOpenClaimLine(
+    int count,
+    String status,
+    String amount,
+    int done,
+    int total,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count दावे',
+      one: '1 दावा',
+    );
+    return '$_temp0 $status: $amount, $total में से $done दस्तावेज़ जुड़े';
+  }
+
+  @override
+  String vaultRenewsOn(String date) {
+    return '$date को रिन्यू होगा';
+  }
+
+  @override
+  String get vaultAddInsurance => 'अपने पालतू का बीमा जोड़ें';
+
+  @override
+  String get vaultAddInsuranceBody =>
+      'पॉलिसी, रिन्यू की तारीख़ और दावे एक जगह रखें।';
+
+  @override
+  String vaultWhatViewOnly(String what) {
+    return '$what, सिर्फ़ देखने के लिए';
+  }
+
+  @override
+  String vaultStorageOf(String used, String limit) {
+    return '$limit में से $used';
+  }
+
+  @override
+  String albumOnThisDayAgo(String ago) {
+    return 'आज के दिन, $ago';
+  }
+
+  @override
+  String albumMilestoneTag(String name) {
+    return 'ख़ास पल: $name';
+  }
+
+  @override
+  String albumVideoUpTo(String length) {
+    return '$length तक के वीडियो।';
+  }
+
+  @override
+  String albumVideoUpToPlus(String length) {
+    return 'Plus के साथ $length तक के वीडियो।';
+  }
+
+  @override
+  String byPerson(String name) {
+    return '$name ने';
+  }
+
+  @override
+  String get logSleepShort => 'नींद';
+
+  @override
+  String get showToday => 'सिर्फ़ आज';
+
+  @override
+  String pPlaceAndDate(String place, String date) {
+    return '$place, $date';
+  }
+
+  @override
+  String pNextAt(String time) {
+    return 'अगली $time पर';
+  }
+
+  @override
+  String get pAllAnswered => 'सबका जवाब दे दिया';
+
+  @override
+  String pAfterFee(int percent) {
+    return '$percent% प्लेटफ़ॉर्म शुल्क के बाद';
+  }
+
+  @override
+  String pWithOwner(String owner) {
+    return '$owner के साथ';
+  }
+
+  @override
+  String get pThisWeek => 'इस हफ़्ते';
+
+  @override
+  String get pEmergencyListing => 'आपातकालीन सूची';
+
+  @override
+  String get pSosOpen24 => 'SOS में 24x7 खुला दिखता है।';
+
+  @override
+  String get pSosOpenNow => 'SOS में अभी खुला दिखता है। 24x7 नहीं।';
+
+  @override
+  String get pSosClosedNow => 'SOS में अभी बंद दिखता है। 24x7 नहीं।';
+
+  @override
+  String get pSosHidden => 'SOS में नहीं दिखता।';
+
+  @override
+  String get pEmergencyListingHelp =>
+      'अगर आपका क्लिनिक आपात मामले नहीं लेता तो इसे बंद करें। पालतू के मालिकों को यह SOS पेज पर नहीं दिखेगा।';
+
+  @override
+  String get pNewReview => 'नई समीक्षा';
+
+  @override
+  String get pOpenQueue => 'कतार खोलें';
+
+  @override
+  String get pHistory => 'इतिहास';
+
+  @override
+  String get pOpen => 'खोलें';
+
+  @override
+  String starsOutOf5(int count) {
+    return '5 में से $count स्टार';
+  }
+
+  @override
+  String selSellerIn(String city, String date) {
+    return '$city में विक्रेता, $date';
+  }
+
+  @override
+  String get selPackToday => 'आज पैक करें';
+
+  @override
+  String get selFirstPayout => 'पहला भुगतान डिलीवरी के बाद';
+
+  @override
+  String selOrderFor(String number, String name, String place) {
+    return '$name के लिए ऑर्डर $number, $place';
+  }
+
+  @override
+  String selPlacedOn(String date) {
+    return '$date को किया';
+  }
+
+  @override
+  String get selPrintLabel => 'लेबल छापें';
+
+  @override
+  String selStockLeftShort(int count) {
+    return '$count बचे।';
+  }
+
+  @override
+  String selSellsPerWeek(int count) {
+    return 'हफ़्ते में क़रीब $count बिकते हैं।';
+  }
+
+  @override
+  String get selAddStock => 'स्टॉक जोड़ें';
+
+  @override
+  String get selBulkUpload => 'एक साथ कई उत्पाद अपलोड करें';
+
+  @override
+  String get selBulkUploadBody =>
+      'कई चीज़ों के लिए एक CSV फ़ाइल इस्तेमाल करें।';
+
+  @override
+  String get admUsersShort => 'उपयोगकर्ता';
+
+  @override
+  String admUsersSplit(int owners, int partners) {
+    return '$owners पालतू के मालिक, $partners पार्टनर';
+  }
+
+  @override
+  String get admBookings30Short => 'बुकिंग, 30 दिन';
+
+  @override
+  String get admOrderValue30Short => 'ऑर्डर की रक़म, 30 दिन';
+
+  @override
+  String get admCommission30Short => 'कमीशन, 30 दिन';
+
+  @override
+  String get admSos30Short => 'SOS, 30 दिन';
+
+  @override
+  String get admWaiting => 'आपका इंतज़ार है';
+
+  @override
+  String get admNothingWaiting => 'कुछ बाकी नहीं';
+
+  @override
+  String admCountClinics(int count) {
+    return '$count क्लिनिक';
+  }
+
+  @override
+  String admCountVets(int count) {
+    return '$count डॉक्टर';
+  }
+
+  @override
+  String admCountSellers(int count) {
+    return '$count विक्रेता';
+  }
+
+  @override
+  String admCountProviders(int count) {
+    return '$count सेवा देने वाले';
+  }
+
+  @override
+  String admTicketsLine(int open, int progress) {
+    return '$open खुली, $progress पर काम चल रहा है';
+  }
+
+  @override
+  String admReportsLine(int count) {
+    return '$count रिपोर्ट देखनी हैं';
+  }
+
+  @override
+  String admOutboxTo(String channel, String name) {
+    return '$name को $channel';
+  }
+
+  @override
+  String get admOutboxNote => 'यहाँ कुछ भी असल में भेजा नहीं गया।';
+
+  @override
+  String admCountBookings(int count) {
+    return '$count बुकिंग';
+  }
+
+  @override
+  String admCountSold(int count) {
+    return '$count बिके';
+  }
+
+  @override
+  String get admComplaintsShort => 'शिकायतें';
+
+  @override
+  String get themeSystemShort => 'सिस्टम';
+
+  @override
+  String get setReminderChannels => 'रिमाइंडर के तरीके';
+
+  @override
+  String get setReminderChannelsHint =>
+      'हर रिमाइंडर के लिए पुश, ईमेल, SMS और WhatsApp';
+
+  @override
+  String setQuietRange(String from, String to) {
+    return '$from से $to';
+  }
+
+  @override
+  String get setQuietOff => 'बंद';
+
+  @override
+  String get setSosTap => 'SOS के लिए टैप करके पक्का करें';
+
+  @override
+  String get setSosTapHint =>
+      '2 सेकंड दबाए रखने की जगह। आसान मोड में चालू रहता है।';
+
+  @override
+  String get setAccount => 'खाता';
+
+  @override
+  String get setEmailPassword => 'ईमेल और पासवर्ड';
+
+  @override
+  String get setAbout => 'PawSetu के बारे में';
+
+  @override
+  String setAboutDemo(String version) {
+    return 'वर्शन $version, डेमो मोड';
+  }
+
+  @override
+  String get setResetPassword => 'पासवर्ड बदलने का लिंक भेजें';
+
+  @override
+  String setResetSent(String email) {
+    return 'हमने $email पर लिंक भेजा है।';
+  }
+
+  @override
+  String get setNoEmail => 'कोई ईमेल नहीं जोड़ा';
+
+  @override
+  String get setNoPhone => 'कोई फ़ोन नंबर नहीं जोड़ा';
+
+  @override
+  String get whenQ => 'कब?';
+
+  @override
+  String bookPayNote(int hours) {
+    return 'ऑनलाइन या क्लिनिक पर भुगतान करें। $hours घंटे पहले तक मुफ़्त में रद्द करें।';
+  }
+
+  @override
+  String get bookPickTime => 'समय चुनें';
+
+  @override
+  String vetYearsReg(int years, String no) {
+    return '$years साल। रजि. नं. $no';
+  }
+
+  @override
+  String verifiedVisits(int count) {
+    return '$count पक्की विज़िट';
+  }
+
+  @override
+  String get verifiedVisit => 'पक्की विज़िट';
+
+  @override
+  String get replyFromClinic => 'क्लिनिक का जवाब:';
+
+  @override
+  String get whereToFind => 'हम कहाँ मिलेंगे';
+
+  @override
+  String get showFewer => 'कम दिखाएँ';
+
+  @override
+  String peopleOf(int count, int max) {
+    return '$max में से $count लोग';
+  }
+
+  @override
+  String get familyAway => 'कहीं बाहर जा रहे हैं?';
+
+  @override
+  String get familyAwayBody =>
+      'पेट सिटर या वॉकर को देखभाल की अनुमति दें, जो आपकी चुनी तारीख़ पर अपने आप ख़त्म हो जाए।';
+
+  @override
+  String get latestActivity => 'हाल की गतिविधि';
+
+  @override
+  String get vaultLockNote =>
+      '2 मिनट बाद अपने आप लॉक हो जाता है। PIN भूल गए? रीसेट करने के लिए दोबारा साइन इन करें।';
 }

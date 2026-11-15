@@ -11,6 +11,7 @@ import '../../../core/settings/settings_controller.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../core/theme/ph.dart';
 
 /// The newest page of my notifications; "Show more" loads older ones.
 final _notificationsProvider = StreamProvider.autoDispose<List<QueryDocumentSnapshot<Map<String, dynamic>>>>((ref) {
@@ -37,20 +38,42 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
   String _filter = 'all';
 
   IconData _icon(String? type) => switch (type) {
-        'vaccines' => Icons.vaccines_rounded,
-        'medicines' => Icons.medication_rounded,
-        'deworming' => Icons.bug_report_rounded,
-        'bookings' => Icons.event_available_rounded,
-        'messages' => Icons.chat_rounded,
-        'orders' => Icons.local_shipping_rounded,
-        'lost' => Icons.travel_explore_rounded,
-        'device' => Icons.watch_rounded,
-        'sos' => Icons.emergency_rounded,
-        'support' => Icons.support_agent_rounded,
-        'account' => Icons.verified_user_rounded,
-        'plan' => Icons.workspace_premium_rounded,
-        _ => Icons.notifications_rounded,
+        'vaccines' => Ph.syringe,
+        'medicines' => Ph.pill,
+        'deworming' => Ph.bug,
+        'bookings' => Ph.calendarCheck,
+        'messages' => Ph.chatCircleDots,
+        'orders' => Ph.truck,
+        'lost' => Ph.globeHemisphereEast,
+        'device' => Ph.watch,
+        'sos' => Ph.asterisk,
+        'support' => Ph.headset,
+        'account' => Ph.shieldCheck,
+        'plan' => Ph.crownSimple,
+        'health' => Ph.fileText,
+        'referral' => Ph.gift,
+        _ => Ph.bell,
       };
+
+  /// Tile tint for a notification type (UI Design 6: things are tiles).
+  Tone _tone(String? type) => switch (type) {
+        'vaccines' || 'medicines' || 'account' => Tone.green,
+        'deworming' || 'plan' => Tone.gold,
+        'orders' || 'device' => Tone.sky,
+        'sos' || 'lost' => Tone.red,
+        _ => Tone.neutral,
+      };
+
+  /// "Today", "Yesterday" or "Earlier" for grouping.
+  String _dayGroup(BuildContext context, DateTime at) {
+    final now = DateTime.now();
+    final d = DateTime(at.year, at.month, at.day);
+    final today = DateTime(now.year, now.month, now.day);
+    final l = context.l10n;
+    if (!d.isBefore(today)) return l.today;
+    if (!d.isBefore(today.subtract(const Duration(days: 1)))) return l.yesterday;
+    return l.earlier;
+  }
 
   bool _match(String? type) => switch (_filter) {
         'unread' => true,
@@ -68,26 +91,32 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
       appBar: AppBar(
         title: Text(l.notifications),
         actions: [
-          TextButton(
-            onPressed: () async {
-              // Every unread one, not just the page on screen.
-              final u = ref.read(currentUserProvider);
-              if (u == null) return;
-              final db = ref.read(firestoreProvider);
-              final unread = await db.collection('notifications').where('uid', isEqualTo: u.uid).where('read', isEqualTo: false).get();
-              for (var i = 0; i < unread.docs.length; i += 400) {
-                final batch = db.batch();
-                for (final d in unread.docs.skip(i).take(400)) {
-                  batch.update(d.reference, {'read': true});
-                }
-                await batch.commit();
-              }
-            },
-            child: Text(l.markAllRead),
+          ConstrainedBox(
+            // Room for the title and the settings button at large text sizes.
+            constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * StatusChip.maxWidthShare),
+            child: Center(
+              child: TextLink(
+                l.markAllRead,
+                onTap: () async {
+                  // Every unread one, not just the page on screen.
+                  final u = ref.read(currentUserProvider);
+                  if (u == null) return;
+                  final db = ref.read(firestoreProvider);
+                  final unread = await db.collection('notifications').where('uid', isEqualTo: u.uid).where('read', isEqualTo: false).get();
+                  for (var i = 0; i < unread.docs.length; i += 400) {
+                    final batch = db.batch();
+                    for (final d in unread.docs.skip(i).take(400)) {
+                      batch.update(d.reference, {'read': true});
+                    }
+                    await batch.commit();
+                  }
+                },
+              ),
+            ),
           ),
           IconButton(
             tooltip: l.settings,
-            icon: const Icon(Icons.tune_rounded),
+            icon: const Icon(Ph.slidersHorizontal),
             onPressed: () => context.push('/me/settings/notifications'),
           ),
         ],
@@ -112,32 +141,88 @@ class _NotificationCentreScreenState extends ConsumerState<NotificationCentreScr
             Expanded(
               child: list.isEmpty
                   ? EmptyState(scene: Scene.chat, title: l.noNotificationsTitle, message: l.noNotificationsBody)
-                  : ListView.separated(
+                  : ListView.builder(
                       padding: EdgeInsets.symmetric(horizontal: context.gutter),
                       itemCount: list.length + (more ? 1 : 0),
-                      separatorBuilder: (_, _) => const Divider(height: 1),
                       itemBuilder: (context, i) {
                         if (i == list.length) {
                           return ShowMoreButton(onPressed: () => ref.read(listLimitProvider('notifications').notifier).more());
                         }
                         final d = list[i].data();
                         final unread = d['read'] != true;
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: unread ? context.paw.primaryContainer : context.paw.outline.withValues(alpha: 0.5),
-                            child: Icon(_icon(d['type'] as String?), color: context.colors.primary),
+                        final at = parseDate(d['createdAt']) ?? DateTime.now();
+                        final group = _dayGroup(context, at);
+                        final newGroup = i == 0 || _dayGroup(context, parseDate(list[i - 1].data()['createdAt']) ?? DateTime.now()) != group;
+                        final type = d['type'] as String?;
+                        final body = (d['body'] as String?) ?? '';
+                        final link = d['link'] as String?;
+                        final now = DateTime.now();
+                        // "10:52 AM" today; "7 Nov, 5:52 PM" before; the
+                        // year only when it is not this one.
+                        final when = Fmt.sameDay(at, now)
+                            ? Fmt.time(at, context.lang)
+                            : '${at.year == now.year ? Fmt.dateShort(at, context.lang) : Fmt.date(at, context.lang)}, ${Fmt.time(at, context.lang)}';
+                        Future<void> open() async {
+                          await list[i].reference.update({'read': true});
+                          if (link != null && context.mounted) context.push(link);
+                        }
+
+                        // What you can do about it, as a small button.
+                        final (String, IconData?, BtnKind)? action = link == null
+                            ? null
+                            : link.startsWith('/prescriptions')
+                                ? (l.rxView, null, BtnKind.soft)
+                                : switch (type) {
+                                    'orders' => (l.ordTrack, Ph.mapTrifold, BtnKind.soft),
+                                    'deworming' || 'vaccines' || 'medicines' when unread => (l.markGiven, null, BtnKind.line),
+                                    _ => null,
+                                  };
+                        // UI Design 6: grouped by day; a tinted tile, the
+                        // title (bold when unread), the time, a small action,
+                        // and a marigold dot for unread.
+                        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                          if (newGroup)
+                            Padding(
+                              padding: EdgeInsets.only(top: i == 0 ? Space.md : Space.lg + Space.xs, bottom: Space.xs),
+                              child: Semantics(header: true, child: Text(group, style: context.text.titleSmall)),
+                            ),
+                          Semantics(
+                            button: true,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(Radii.md),
+                              onTap: open,
+                              child: Container(
+                                constraints: const BoxConstraints(minHeight: Sizes.item),
+                                padding: const EdgeInsets.symmetric(vertical: Space.md),
+                                decoration: BoxDecoration(border: Border(top: BorderSide(color: newGroup ? context.paw.outline.withValues(alpha: 0) : context.paw.outline))),
+                                child: Row(children: [
+                                  PawTile(icon: _icon(type), tone: _tone(type)),
+                                  const SizedBox(width: Space.md),
+                                  Expanded(
+                                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                      Text((d['title'] as String?) ?? '', style: unread ? context.text.labelLarge : context.text.bodyMedium),
+                                      if (body.isNotEmpty) Text(body, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary), maxLines: 2, overflow: TextOverflow.ellipsis),
+                                      Text(when, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+                                      if (action != null) ...[
+                                        const SizedBox(height: Space.sm),
+                                        PawButton(label: action.$1, icon: action.$2, kind: action.$3, onPressed: open),
+                                      ],
+                                    ]),
+                                  ),
+                                  if (unread)
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: Space.md),
+                                      child: Container(
+                                        width: Sizes.dot,
+                                        height: Sizes.dot,
+                                        decoration: BoxDecoration(color: context.paw.marigold, shape: BoxShape.circle),
+                                      ),
+                                    ),
+                                ]),
+                              ),
+                            ),
                           ),
-                          title: Text((d['title'] as String?) ?? '', style: unread ? const TextStyle(fontWeight: FontWeight.w700) : null),
-                          subtitle: Text([
-                            if ((d['body'] as String?)?.isNotEmpty == true) d['body'] as String,
-                            Fmt.dateTime(parseDate(d['createdAt']) ?? DateTime.now(), context.lang),
-                          ].join(' · ')),
-                          onTap: () async {
-                            await list[i].reference.update({'read': true});
-                            final link = d['link'] as String?;
-                            if (link != null && context.mounted) context.push(link);
-                          },
-                        );
+                        ]);
                       },
                     ),
             ),
@@ -159,22 +244,22 @@ class NotificationSettingsScreen extends ConsumerWidget {
     final n = ref.read(settingsProvider.notifier);
     final isDemo = ref.watch(appConfigProvider).isDemo;
     final types = [
-      ('vaccines', l.ntVaccines, Icons.vaccines_rounded),
-      ('medicines', l.ntMedicines, Icons.medication_rounded),
-      ('deworming', l.ntDeworming, Icons.bug_report_rounded),
-      ('bookings', l.ntBookings, Icons.event_available_rounded),
-      ('routine', l.ntRoutine, Icons.directions_walk_rounded),
-      ('custom', l.ntCustom, Icons.alarm_rounded),
+      ('vaccines', l.ntVaccines, Ph.syringe),
+      ('medicines', l.ntMedicines, Ph.pill),
+      ('deworming', l.ntDeworming, Ph.bug),
+      ('bookings', l.ntBookings, Ph.calendarCheck),
+      ('routine', l.ntRoutine, Ph.personSimpleWalk),
+      ('custom', l.ntCustom, Ph.alarm),
     ];
     final channels = [('push', l.chPush), ('email', l.chEmail), ('sms', l.chSms), ('whatsapp', l.chWhatsApp)];
     String hour(int h) => Fmt.time(DateTime(2000, 1, 1, h), context.lang);
     return Scaffold(
       appBar: AppBar(title: Text(l.notificationChannels)),
-      body: PageBody(maxWidth: 720, children: [
+      body: PageBody(maxWidth: Space.formWidth, children: [
         if (isDemo) ...[const SizedBox(height: Space.sm), DemoBanner(l.channelsDemoNote)],
         const SizedBox(height: Space.sm),
         OutlinedButton.icon(
-          icon: const Icon(Icons.notifications_active_rounded),
+          icon: const Icon(Ph.bellRinging),
           label: Text(l.allowNotifications),
           onPressed: () async {
             final ok = await ref.read(notificationServiceProvider).requestPermission();

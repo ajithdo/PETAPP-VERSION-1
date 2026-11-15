@@ -9,11 +9,11 @@ import '../theme/tokens.dart';
 /// Used only for onboarding, empty states and success screens (spec 4).
 enum Scene { welcomeCare, welcomeHealth, welcomeBridge, empty, success, search, lost, memory, shop, chat, vault }
 
-const _teal = Color(0xFF0F766E);
-const _tealLight = Color(0xFF5EEAD4);
-const _apricot = Color(0xFFF4A261);
-const _apricotLight = Color(0xFFFDE7D3);
-const _ink = Color(0xFF1C2B2D);
+const _teal = Color(0xFF4A2A12); // cocoa (UI Design 5)
+const _tealLight = Color(0xFFEAD7BA); // warm cocoa tint
+const _apricot = Color(0xFFF3A712); // marigold
+const _apricotLight = Color(0xFFFFF0CC); // pale marigold
+const _ink = Color(0xFF231B12);
 
 class Illustration extends StatelessWidget {
   const Illustration(this.scene, {super.key, this.size = 180});
@@ -59,7 +59,7 @@ class _ScenePainter extends CustomPainter {
         _heart(canvas, Offset(s * 0.55, s * 0.24), s * 0.09, _apricot);
       case Scene.welcomeHealth:
         _rrect(canvas, Rect.fromLTWH(s * 0.22, s * 0.2, s * 0.56, s * 0.62), s * 0.06,
-            dark ? const Color(0xFF172124) : Colors.white);
+            dark ? const Color(0xFF1F1A14) : Colors.white);
         for (var i = 0; i < 3; i++) {
           final y = s * (0.34 + i * 0.15);
           _circle(canvas, Offset(s * 0.32, y), s * 0.035, i < 2 ? _teal : _apricotLight);
@@ -175,7 +175,7 @@ class _ScenePainter extends CustomPainter {
 
   void _clinic(Canvas c, Offset o, double r) {
     _rrect(c, Rect.fromCenter(center: o.translate(0, r * 0.1), width: r * 1.5, height: r * 1.5), r * 0.2,
-        dark ? const Color(0xFF172124) : Colors.white);
+        dark ? const Color(0xFF1F1A14) : Colors.white);
     final cross = Paint()..color = _teal;
     c.drawRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: o.translate(0, r * 0.1), width: r * 0.3, height: r * 0.9), Radius.circular(r * 0.08)), cross);
     c.drawRRect(RRect.fromRectAndRadius(Rect.fromCenter(center: o.translate(0, r * 0.1), width: r * 0.9, height: r * 0.3), Radius.circular(r * 0.08)), cross);
@@ -347,4 +347,48 @@ class _FacePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _FacePainter old) => old.species != species || old.color != color;
+}
+
+/// The document vault's door (UI Design 6 kit): a dark arched door on a pale
+/// circle, a marigold line inside it and a keyhole.
+class VaultDoorPainter extends CustomPainter {
+  VaultDoorPainter({required this.wash, required this.door, required this.gold});
+  final Color wash;
+  final Color door;
+  final Color gold;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Drawn in the kit's 120 × 120 box.
+    canvas.scale(size.shortestSide / 120);
+    final dark = Paint()..color = door;
+    final g = Paint()..color = gold;
+    canvas.drawCircle(const Offset(60, 62), 54, Paint()..color = wash);
+    canvas.drawPath(
+      Path()
+        ..moveTo(30, 104)
+        ..lineTo(30, 56)
+        ..arcToPoint(const Offset(90, 56), radius: const Radius.circular(30))
+        ..lineTo(90, 104)
+        ..close(),
+      dark,
+    );
+    canvas.drawPath(
+      Path()
+        ..moveTo(38, 104)
+        ..lineTo(38, 57)
+        ..arcToPoint(const Offset(82, 57), radius: const Radius.circular(22))
+        ..lineTo(82, 104),
+      Paint()
+        ..color = gold
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.5,
+    );
+    canvas.drawCircle(const Offset(60, 68), 7, g);
+    canvas.drawPath(Path()..moveTo(57, 72)..lineTo(63, 72)..lineTo(65.5, 86)..lineTo(54.5, 86)..close(), g);
+    canvas.drawRRect(RRect.fromRectAndRadius(const Rect.fromLTWH(22, 102, 76, 6), const Radius.circular(3)), dark);
+  }
+
+  @override
+  bool shouldRepaint(VaultDoorPainter o) => o.wash != wash || o.door != door || o.gold != gold;
 }

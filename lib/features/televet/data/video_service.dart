@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/config/app_config.dart';
 import '../../../core/providers.dart';
 
-/// Video calls for tele-vet (spec 7.7). Version 1 uses a simulated call
-/// (no camera, microphone or network); Version 2 (L4) plugs in a real
+/// Video calls for tele-vet (spec 7.7). DEMO VERSION 1 uses a simulated call
+/// (no camera, microphone or network); FINAL VERSION (L4) plugs in a real
 /// provider with tokens from Cloud Functions.
 abstract class VideoCallService {
   bool get simulated;
@@ -26,14 +26,14 @@ class DemoVideoCallService implements VideoCallService {
   Future<void> leave() async {}
 }
 
-/// Version 2 placeholder: the real provider is chosen in Live phase L4.
+/// FINAL VERSION placeholder: the real provider is chosen in Live phase L4.
 class LiveVideoCallService implements VideoCallService {
   @override
   bool get simulated => false;
 
   @override
   Future<void> join({required String consultationId, required String uid}) =>
-      Future<void>.error(UnsupportedError('Live video calls arrive in Version 2 (Live phase L4).'));
+      Future<void>.error(UnsupportedError('Live video calls arrive in FINAL VERSION (Live phase L4).'));
 
   @override
   Future<void> leave() async {}

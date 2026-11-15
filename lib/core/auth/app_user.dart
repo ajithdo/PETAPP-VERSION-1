@@ -54,6 +54,7 @@ class AppUser {
     this.referralCode,
     this.autoRenew = true,
     this.planPeriod,
+    this.createdAt,
   });
 
   final String uid;
@@ -80,11 +81,14 @@ class AppUser {
   final Map<String, dynamic> consents;
   final String? referralCode;
 
-  /// Plus renews at [planRenewsAt] unless turned off (Version 1: demo).
+  /// Plus renews at [planRenewsAt] unless turned off (DEMO VERSION 1: demo).
   final bool autoRenew;
 
   /// monthly or yearly
   final String? planPeriod;
+
+  /// When the account was made (for "member since").
+  final DateTime? createdAt;
 
   /// The plan that applies now: an ended trial or paid period counts as free.
   String get effectivePlan => effectivePlanAt(DateTime.now());
@@ -128,6 +132,7 @@ class AppUser {
         referralCode: referralCode,
         autoRenew: autoRenew,
         planPeriod: planPeriod,
+        createdAt: createdAt,
       );
 
   static AppUser fromProfile(String uid, Map<String, dynamic>? p,
@@ -154,5 +159,6 @@ class AppUser {
         referralCode: p?['referralCode'] as String?,
         autoRenew: (p?['autoRenew'] as bool?) ?? true,
         planPeriod: p?['planPeriod'] as String?,
+        createdAt: parseDate(p?['createdAt']),
       );
 }

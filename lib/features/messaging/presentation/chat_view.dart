@@ -22,6 +22,7 @@ import '../domain/chat_rules.dart';
 import 'attachments.dart';
 import 'chat_widgets.dart';
 import 'voice_note.dart';
+import '../../../core/theme/ph.dart';
 
 /// Message list + composer for any conversation. Tele-vet messages go
 /// through the tele-vet backend so plan limits apply (spec 7.7).
@@ -218,7 +219,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
           if (mayHaveMore(list.length, ref.watch(listLimitProvider(limitKey))))
             ShowMoreButton(
               label: l.showEarlierMessages,
-              icon: Icons.expand_less_rounded,
+              icon: Ph.caretUp,
               onPressed: () => ref.read(listLimitProvider(limitKey).notifier).more(),
             )
           else
@@ -249,7 +250,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
                     padding: EdgeInsets.symmetric(horizontal: context.gutter, vertical: Space.sm),
                     itemCount: items.length,
                     itemBuilder: (_, i) => Center(
-                      child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 860), child: items[items.length - 1 - i]),
+                      child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: Space.readingWidth), child: items[items.length - 1 - i]),
                     ),
                   ),
           ),
@@ -262,21 +263,21 @@ class _ChatViewState extends ConsumerState<ChatView> {
 
   Widget _composerArea(BuildContext context, Conversation c, Consultation? consult, AppUser me) {
     final l = context.l10n;
-    Widget banner(String text, {String? action, VoidCallback? onAction, IconData icon = Icons.lock_rounded}) => _Banner(
+    Widget banner(String text, {String? action, VoidCallback? onAction, IconData icon = Ph.lockKey}) => _Banner(
           text: text,
           icon: icon,
           action: action,
           onAction: onAction,
         );
     if (c.blockedBy.contains(me.uid)) {
-      return banner(l.msgYouBlocked, action: l.msgUnblock, onAction: () => ref.read(chatRepositoryProvider).unblock(c, me.uid), icon: Icons.block_rounded);
+      return banner(l.msgYouBlocked, action: l.msgUnblock, onAction: () => ref.read(chatRepositoryProvider).unblock(c, me.uid), icon: Ph.prohibit);
     }
-    if (c.isBlocked) return banner(l.msgBlockedByOther, icon: Icons.block_rounded);
+    if (c.isBlocked) return banner(l.msgBlockedByOther, icon: Ph.prohibit);
     final isOwner = me.uid == c.ownerId;
     if (consult != null) {
-      if (consult.isEnded) return banner(l.tvEndedBanner, icon: Icons.check_circle_rounded);
+      if (consult.isEnded) return banner(l.tvEndedBanner, icon: Ph.checkCircleFill);
       if (isOwner && consult.closedFor(DateTime.now())) {
-        return banner(l.tvClosedBanner(consult.limits.hours), icon: Icons.schedule_rounded);
+        return banner(l.tvClosedBanner(consult.limits.hours), icon: Ph.clock);
       }
     }
     final rec = _recorder;
@@ -289,10 +290,10 @@ class _ChatViewState extends ConsumerState<ChatView> {
       child: SafeArea(
         top: false,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(context.gutter - 8, Space.xs, context.gutter - 8, Space.sm),
+          padding: EdgeInsets.fromLTRB(context.gutter - Space.sm, Space.xs, context.gutter - Space.sm, Space.sm),
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 860),
+              constraints: const BoxConstraints(maxWidth: Space.readingWidth),
               child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 if (counted && limits != null)
                   Padding(
@@ -321,7 +322,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
                     IconButton(
                       tooltip: l.msgAttach,
                       onPressed: _sending ? null : () => _attach(c, consult, me),
-                      icon: const Icon(Icons.add_circle_outline_rounded),
+                      icon: const Icon(Ph.plusCircle),
                     ),
                     Expanded(
                       child: TextField(
@@ -335,7 +336,7 @@ class _ChatViewState extends ConsumerState<ChatView> {
                         decoration: InputDecoration(
                           hintText: l.msgTypeHint,
                           isDense: true,
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(Radii.xxl)),
                           contentPadding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.md),
                         ),
                       ),
@@ -345,15 +346,15 @@ class _ChatViewState extends ConsumerState<ChatView> {
                       IconButton(
                         tooltip: l.msgRecordVoice,
                         onPressed: _sending ? null : _startRecording,
-                        icon: const Icon(Icons.mic_rounded),
+                        icon: const Icon(Ph.microphone),
                       )
                     else
                       IconButton.filled(
                         tooltip: l.msgSend,
                         onPressed: _sending ? null : () => _sendText(c, consult, me),
                         icon: _sending
-                            ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                            : const Icon(Icons.send_rounded),
+                            ? const SizedBox(width: IconSizes.chip, height: IconSizes.chip, child: CircularProgressIndicator(strokeWidth: Strokes.focus))
+                            : const Icon(Ph.paperPlaneRight),
                       ),
                   ]),
               ]),
@@ -404,18 +405,18 @@ class _RedFlagBanner extends ConsumerWidget {
     final l = context.l10n;
     return Container(
       width: double.infinity,
-      color: context.paw.sos.withValues(alpha: 0.1),
+      color: context.paw.sos.withValues(alpha: Opacities.tint),
       padding: EdgeInsets.fromLTRB(context.gutter, Space.sm, Space.sm, Space.sm),
       child: Row(children: [
-        Icon(Icons.emergency_rounded, color: context.paw.sos),
+        Icon(Ph.asterisk, color: context.paw.sos),
         const SizedBox(width: Space.sm),
         Expanded(child: Text(l.aiRedFlagShort(redFlagLabel(context, flag)), style: context.text.bodySmall?.copyWith(color: context.paw.textPrimary))),
         FilledButton(
-          style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos),
+          style: FilledButton.styleFrom(backgroundColor: context.paw.sos, foregroundColor: context.paw.onSos, iconColor: context.paw.onSos),
           onPressed: () => openSos(context, ref),
           child: Text(l.sosTitle),
         ),
-        IconButton(tooltip: l.msgClose, onPressed: onClose, icon: const Icon(Icons.close_rounded)),
+        IconButton(tooltip: l.msgClose, onPressed: onClose, icon: const Icon(Ph.x)),
       ]),
     );
   }
@@ -435,8 +436,8 @@ Future<void> showTeleVetLimitNotice(BuildContext context, TeleVetCheck check, Co
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(children: [
         CircleAvatar(
-          backgroundColor: ctx.paw.accent.withValues(alpha: 0.2),
-          child: Icon(check.block == TeleVetBlock.tooManyWords ? Icons.short_text_rounded : Icons.chat_bubble_outline_rounded, color: ctx.paw.onAccent),
+          backgroundColor: ctx.paw.accent.withValues(alpha: Opacities.tintStrong),
+          child: Icon(check.block == TeleVetBlock.tooManyWords ? Ph.textAlignLeft : Ph.chatCircle, color: ctx.paw.onAccentContainer),
         ),
         const SizedBox(width: Space.md),
         Expanded(child: Text(title, style: ctx.text.titleMedium)),
@@ -445,7 +446,7 @@ Future<void> showTeleVetLimitNotice(BuildContext context, TeleVetCheck check, Co
       Text(body, style: ctx.text.bodyMedium),
       if (!me.isPlus) ...[
         const SizedBox(height: Space.md),
-        InfoNote(l.tvPlusHint, icon: Icons.workspace_premium_rounded),
+        InfoNote(l.tvPlusHint, icon: Ph.crownSimple),
       ],
       const SizedBox(height: Space.lg),
       PrimaryButton(
@@ -456,7 +457,7 @@ Future<void> showTeleVetLimitNotice(BuildContext context, TeleVetCheck check, Co
         const SizedBox(height: Space.sm),
         SecondaryButton(
           label: l.tvBookVisit,
-          icon: Icons.local_hospital_rounded,
+          icon: Ph.firstAid,
           onPressed: () {
             Navigator.pop(ctx);
             context.push('/book/find/clinic');

@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSetu - 24/7 SOS Emergency Triage</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'coral': '#E05A47',
+            'forest-teal': '#18453E',
+            'soft-sage': '#E6F0ED',
+            'soft-sand': '#F3EFEA',
+            'warm-border': '#E7E2DA',
+            'status-upcoming': '#D97706',
+            'status-completed': '#15803D',
+            'status-emergency': '#DC2626',
+            'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-surface-subtle': '#F3EFEA',
+            'light-outline': '#E7E2DA',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '28px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+</head>
+<body class="bg-light-surface text-light-on-surface min-h-[1024px] font-body antialiased flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-light-outline">
+    <div class="max-w-[1240px] mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <a href="../home-discovery/HomeDiscovery.html" class="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-light-outline bg-light-surface-subtle hover:bg-stone-200/50 transition text-light-on-surface font-label text-[13px] font-semibold">
+          <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+          <span>Exit SOS Mode</span>
+        </a>
+        <div class="flex items-center gap-2 pl-2">
+          <span class="w-3 h-3 rounded-full bg-status-emergency animate-ping"></span>
+          <span class="font-headline font-bold text-status-emergency text-[18px]">24/7 Veterinary Emergency Line</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="tel:18002008890" class="inline-flex items-center gap-2 px-5 py-2.5 bg-status-emergency text-white rounded-xl font-label text-[14px] font-bold shadow-md hover:bg-rose-700 transition">
+          <span class="material-symbols-outlined text-[20px]">call</span>
+          <span>Call Ambulance Dispatch</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main SOS Triage Content (1200px container) -->
+  <main class="flex-1 max-w-[1240px] w-full mx-auto px-6 py-8 space-y-8">
+
+    <!-- Emergency Hero Banner -->
+    <div class="bg-rose-50 border-2 border-rose-300 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-status-emergency text-white text-[12px] font-bold uppercase tracking-wider">
+          <span class="material-symbols-outlined text-[15px]">e911_emergency</span>
+          <span>Immediate Trauma &amp; Critical Care Protocol Active</span>
+        </div>
+        <h1 class="font-headline font-bold text-[28px] text-stone-900">
+          Emergency Care Centers Within 5 km of Indiranagar
+        </h1>
+        <p class="text-stone-700 text-body-md max-w-2xl">
+          Hospital surgical units and blood banks alerted. If your pet is in respiratory distress, bleeding, or consumed toxins, head directly to the nearest hospital below.
+        </p>
+      </div>
+
+      <div class="flex-shrink-0 w-full md:w-auto flex flex-col sm:flex-row gap-3">
+        <a href="tel:18002008890" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-status-emergency text-white rounded-xl font-label text-[15px] font-bold shadow-md hover:bg-rose-700 transition">
+          <span class="material-symbols-outlined text-[22px]">ambulance</span>
+          <span>Request Pet Ambulance</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Active Pet Quick Vital Sheet for Attending Surgeons -->
+    <div class="bg-stone-900 text-white rounded-2xl p-6 border border-stone-800 shadow-md">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-white/10">
+        <div class="flex items-center gap-4">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1XxUq1bOZRiIA2H6VxFO2poRcUT2izixzVyL73fv2iSZRSvkZ0JBJ0jin1r55P7HsHFzmHQMG_tzjNUkmnQDbFQMrzuvLDR06OcupUF1vD7x9L5k-Cdt00vNEtSuvNCV7rHH3UQS3Te_x5xoCkL4bGCTqjoJVhw9bdMIjmJu3_-IXwafoNSiwE8L25mBq7MBqwvb48TUMHrR35iwa6dvTjhscPM7CWOI3bwNuVKNByzQSdx4re8KsFa6rJbWjg" alt="Bruno" class="w-14 h-14 rounded-full object-cover ring-2 ring-rose-500" data-stitch-original-src="c2a13ef3ba31c4d4===../../images/pet_bruno_portrait.jpg">
+          <div>
+            <h2 class="font-headline font-bold text-[20px] text-white">Bruno (Patient Triage Profile)</h2>
+            <span class="text-stone-400 text-body-sm">Golden Retriever · 3 yrs 2 mo · Microchip: 982 000 412 884</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 text-[12px] font-bold">
+            Allergy Alert: Chicken Protein
+          </span>
+          <span class="px-3 py-1 rounded-full bg-white/10 text-stone-300 text-[12px] font-code">
+            Blood: DEA 1.1 Neg
+          </span>
+        </div>
+      </div>
+      <p class="text-stone-300 text-[13px]">
+        Attending vet note: Bruno is current on DHPPi and Anti-Rabies immunizations. Fully cleared for trauma sedation.
+      </p>
+    </div>
+
+    <!-- 24/7 Verified Emergency Hospital Feed -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Hospital 1 -->
+      <article class="bg-white rounded-2xl border-2 border-stone-200 p-6 shadow-sm hover:border-status-emergency transition space-y-4">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <span class="px-2.5 py-0.5 rounded-full bg-rose-100 text-status-emergency text-[11px] font-bold uppercase mb-2 inline-block">
+              24/7 Emergency Surgery Unit Open
+            </span>
+            <h3 class="font-headline font-bold text-[22px] text-stone-900">Namma Pet Hospital</h3>
+            <p class="text-body-sm text-stone-600">80 Feet Rd, Koramangala · 4.3 km away (approx 12 mins)</p>
+          </div>
+          <span class="px-3 py-1 bg-amber-50 text-amber-900 border border-amber-200 rounded-lg text-body-sm font-bold">
+            ★ 4.7
+          </span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 py-3 border-y border-stone-100 text-center">
+          <div class="bg-stone-50 p-2 rounded-xl">
+            <span class="text-[10px] text-stone-500 uppercase block">ICU Beds</span>
+            <span class="font-bold text-stone-900 text-[14px]">4 Available</span>
+          </div>
+          <div class="bg-stone-50 p-2 rounded-xl">
+            <span class="text-[10px] text-stone-500 uppercase block">Blood Bank</span>
+            <span class="font-bold text-emerald-700 text-[14px]">In Stock</span>
+          </div>
+          <div class="bg-stone-50 p-2 rounded-xl">
+            <span class="text-[10px] text-stone-500 uppercase block">Oxygen Cages</span>
+            <span class="font-bold text-emerald-700 text-[14px]">Ready</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-2">
+          <a href="tel:08044229988" class="flex-1 py-3 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-center font-label text-[14px] font-bold transition flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">call</span>
+            <span>Alert ER: 080 4422 9988</span>
+          </a>
+          <button type="button" class="px-4 py-3 border border-stone-300 rounded-xl hover:bg-stone-50 transition text-stone-700 font-semibold text-[13px] flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px] text-coral">navigation</span>
+            <span>Map</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- Hospital 2 -->
+      <article class="bg-white rounded-2xl border-2 border-stone-200 p-6 shadow-sm hover:border-status-emergency transition space-y-4">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <span class="px-2.5 py-0.5 rounded-full bg-rose-100 text-status-emergency text-[11px] font-bold uppercase mb-2 inline-block">
+              24/7 Trauma Care
+            </span>
+            <h3 class="font-headline font-bold text-[22px] text-stone-900">Cessna Lifeline Animal Hospital</h3>
+            <p class="text-body-sm text-stone-600">Domlur Intermediate Ring Rd · 3.1 km away (approx 9 mins)</p>
+          </div>
+          <span class="px-3 py-1 bg-amber-50 text-amber-900 border border-amber-200 rounded-lg text-body-sm font-bold">
+            ★ 4.8
+          </span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 py-3 border-y border-stone-100 text-center">
+          <div class="bg-stone-50 p-2 rounded-xl">
+            <span class="text-[10px] text-stone-500 uppercase block">Trauma Surgeon</span>
+            <span class="font-bold text-emerald-700 text-[14px]">On-Duty</span>
+          </div>
+          <div class="bg-stone-50 p-2 rounded-xl">
+            <span class="text-[10px] text-stone-500 uppercase block">CT / X-Ray</span>
+            <span class="font-bold text-emerald-700 text-[14px]">24×7 Active</span>
+          </div>
+          <div class="bg-stone-50 p-2 rounded-xl">
+            <span class="text-[10px] text-stone-500 uppercase block">Wait Time</span>
+            <span class="font-bold text-stone-900 text-[14px]">0 Mins (Triage)</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-2">
+          <a href="tel:08044229989" class="flex-1 py-3 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-center font-label text-[14px] font-bold transition flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">call</span>
+            <span>Alert ER: 080 4422 9989</span>
+          </a>
+          <button type="button" class="px-4 py-3 border border-stone-300 rounded-xl hover:bg-stone-50 transition text-stone-700 font-semibold text-[13px] flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[18px] text-coral">navigation</span>
+            <span>Map</span>
+          </button>
+        </div>
+      </article>
+
+    </div>
+
+  </main>
+
+  <footer class="mt-auto border-t border-light-outline bg-light-surface py-6 text-center text-body-sm text-light-on-surface-subtle">
+    <div class="max-w-[1240px] mx-auto px-6 flex items-center justify-between">
+      <span>PawSetu Rapid Veterinary Response Protocol</span>
+      <a href="../home-discovery/HomeDiscovery.html" class="hover:underline">Return to Standard Care</a>
+    </div>
+  </footer>
+
+
+
+</body></html>

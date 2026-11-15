@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PawSetu - Verified Pet Passport &amp; Certificate</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { 'coral': '#E05A47', 'forest-teal': '#18453E', 'soft-sage': '#E6F0ED', 'soft-sand': '#F3EFEA', 'warm-border': '#E7E2DA', 'status-upcoming': '#D97706', 'status-completed': '#15803D', 'status-emergency': '#DC2626', 'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-secondary': '#C84735',
+            'light-on-secondary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-surface-subtle': '#F4EFEA',
+            'light-outline': '#EAE5DC',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            'body': ['"Inter"', '-apple-system', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <style>
+    * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+    html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+    @media print {
+      body { background: white; padding: 0; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body class="bg-[#FAF8F5] text-stone-900 min-h-[1024px] font-body antialiased flex flex-col justify-between py-6 sm:py-10 px-3 sm:px-6" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Action Header -->
+  <header class="no-print max-w-[850px] w-full mx-auto flex items-center justify-between gap-2 mb-6">
+    <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+      <a href="../medical-records/MedicalRecords.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#EAE5DC] bg-white hover:bg-stone-50 text-[12px] sm:text-[13px] font-semibold text-stone-700 transition active:scale-95 flex-shrink-0">
+        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+        <span class="hidden xs:inline">Vault</span>
+      </a>
+      <span class="text-[12px] sm:text-[13px] font-bold text-forest-teal truncate">Medical Passport</span>
+    </div>
+
+    <button onclick="window.print()" type="button" class="inline-flex items-center gap-1.5 px-4 py-2 bg-forest-teal text-white rounded-xl text-[12px] sm:text-[13px] font-bold shadow-sm hover:opacity-95 transition active:scale-95 flex-shrink-0">
+      <span class="material-symbols-outlined text-[16px]">print</span>
+      <span class>Print / PDF</span>
+    </button>
+  </header>
+
+  <!-- Printable Official Veterinary Certificate & Passport -->
+  <main class="max-w-[850px] w-full mx-auto bg-white rounded-2xl border-2 border-forest-teal/40 p-5 sm:p-8 md:p-12 shadow-xl space-y-6 sm:space-y-8 relative">
+    
+    <!-- Official Security Header Seal -->
+    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b-2 border-forest-teal/20 pb-5 sm:pb-6">
+      <div class="flex items-center gap-3 sm:gap-4">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-forest-teal text-white flex items-center justify-center font-bold shadow-sm flex-shrink-0">
+          <span class="material-symbols-outlined text-[26px] sm:text-[32px]">pets</span>
+        </div>
+        <div>
+          <span class="text-[10px] sm:text-[11px] uppercase tracking-widest font-extrabold text-forest-teal block">Official Pet Health Passport</span>
+          <h1 class="font-headline font-extrabold text-[20px] sm:text-[26px] text-stone-900 leading-tight">PawSetu Health Certificate</h1>
+          <p class="text-[11px] sm:text-[12px] text-stone-500 font-medium">Valid for Airline Travel &amp; Canine Boarding</p>
+        </div>
+      </div>
+
+      <!-- Verification QR & Certificate ID -->
+      <div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2 pt-2 sm:pt-0">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white p-1 border border-stone-300 rounded-lg flex items-center justify-center">
+          <svg class="w-full h-full text-stone-900" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 3h2v3h-2v-3zm0-5h4v2h-4v-2zm2 2h2v2h-2v-2zm-6-2h3v2h-3v-2zm0 3h2v3h-2v-3zm3 0h3v3h-3v-3z"></path>
+          </svg>
+        </div>
+        <span class="font-code font-bold text-[11px] sm:text-[12px] text-stone-800">CERT: VXC-9824-BLR</span>
+      </div>
+    </div>
+
+    <!-- Patient Identity Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 bg-[#FAF8F5] p-4 sm:p-6 rounded-2xl border border-[#EAE5DC]">
+      <div class="sm:col-span-3 flex justify-center sm:justify-start">
+        <img src="https://lh3.googleusercontent.com/aida/AEtjO1XGLg2qU28LEV0ZBHrz6yoD9YicJosz-9TqQUThEM0FNluzeX10On2sw5CQFYGSHV54ZDv6DnhIPSlWRKxthhj88SFwsNJGAI1WaFwOdMZlHqTsLyAw0eQleMEHB3YoOlzYwMm1eucSonbQmuDAFahKurKAyH1T_lusQqSWDE-VooE8ET_EMHeJZlWeZUBVqGZr_H8R2vx7gpYABjFIYEyJdekfGc4Xk0cmk8dtkdbMYZUNc4RMwzIje-geL5U" alt="Bruno" class="w-24 h-24 sm:w-32 sm:h-32 rounded-xl object-cover ring-2 ring-forest-teal/40" data-stitch-original-src="5fe0244cd4dde074===../../images/pet_bruno_portrait.jpg">
+      </div>
+      <div class="sm:col-span-9 grid grid-cols-2 sm:grid-cols-3 gap-3 text-[12px] sm:text-[13px]">
+        <div>
+          <span class="text-[10px] font-bold uppercase text-stone-500 block">Patient Name</span>
+          <strong class="font-headline font-bold text-stone-900 text-[15px] sm:text-[16px]">Bruno</strong>
+        </div>
+        <div>
+          <span class="text-[10px] font-bold uppercase text-stone-500 block">Species &amp; Breed</span>
+          <span class="font-medium text-stone-800">Canine · Retriever</span>
+        </div>
+        <div>
+          <span class="text-[10px] font-bold uppercase text-stone-500 block">Gender &amp; Status</span>
+          <span class="font-medium text-stone-800">Male (Neutered)</span>
+        </div>
+        <div>
+          <span class="text-[10px] font-bold uppercase text-stone-500 block">Microchip RFID</span>
+          <span class="font-code font-bold text-stone-900 tracking-wider">982 000 412 884</span>
+        </div>
+        <div>
+          <span class="text-[10px] font-bold uppercase text-stone-500 block">Age &amp; Weight</span>
+          <span class="font-medium text-stone-800">3 yrs 2 mo · 29.4 kg</span>
+        </div>
+        <div>
+          <span class="text-[10px] font-bold uppercase text-stone-500 block">Guardian</span>
+          <span class="font-medium text-stone-800">Priya Sharma</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Official Immunization Table (Responsive Wrapper) -->
+    <div class="space-y-2.5">
+      <div class="flex items-center justify-between">
+        <h2 class="font-headline font-bold text-[16px] sm:text-[18px] text-stone-900">Certified Immunization Record</h2>
+        <span class="text-[10px] sm:text-[11px] text-status-completed font-bold bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+          Fully Certified
+        </span>
+      </div>
+
+      <div class="overflow-x-auto -mx-1 sm:mx-0">
+        <table class="w-full text-left text-[11px] sm:text-[13px] border border-stone-200 rounded-xl overflow-hidden min-w-[500px]">
+          <thead class="bg-forest-teal text-white font-semibold">
+            <tr>
+              <th class="py-2 px-3">Vaccine &amp; Antigen</th>
+              <th class="py-2 px-3">Date</th>
+              <th class="py-2 px-3">Batch</th>
+              <th class="py-2 px-3">Valid Until</th>
+              <th class="py-2 px-3">Clinic</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200 text-stone-700 font-medium">
+            <tr>
+              <td class="py-2.5 px-3 font-bold text-stone-900">Anti-Rabies (Dose 1)</td>
+              <td class="py-2.5 px-3 font-code">10 Dec 2023</td>
+              <td class="py-2.5 px-3 font-code">Rabivet / RB-9941</td>
+              <td class="py-2.5 px-3 font-code text-status-completed font-bold">10 Dec 2024</td>
+              <td class="py-2.5 px-3">Gulmohar Vet Studio</td>
+            </tr>
+            <tr class="bg-stone-50">
+              <td class="py-2.5 px-3 font-bold text-stone-900">DHPPi + Lepto (Dose 3)</td>
+              <td class="py-2.5 px-3 font-code">10 Nov 2023</td>
+              <td class="py-2.5 px-3 font-code">Vaxipet / VXI-8842</td>
+              <td class="py-2.5 px-3 font-code text-status-completed font-bold">10 Nov 2024</td>
+              <td class="py-2.5 px-3">Gulmohar Vet Studio</td>
+            </tr>
+            <tr>
+              <td class="py-2.5 px-3 font-bold text-stone-900">DHPPi + Lepto (Dose 2)</td>
+              <td class="py-2.5 px-3 font-code">18 Oct 2023</td>
+              <td class="py-2.5 px-3 font-code">Vaxipet / VXI-7109</td>
+              <td class="py-2.5 px-3 font-code text-stone-500">Completed</td>
+              <td class="py-2.5 px-3">Gulmohar Vet Studio</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Attending Veterinarian Attestation & Digital Stamp -->
+    <div class="pt-5 border-t-2 border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="space-y-0.5 text-center sm:text-left">
+        <span class="text-[10px] uppercase tracking-wider text-stone-500 font-bold block">Attesting Veterinary Surgeon</span>
+        <strong class="font-headline font-bold text-[15px] sm:text-[16px] text-stone-900 block">Dr. Sameer Khan, MVSc</strong>
+        <span class="text-[11px] sm:text-[12px] text-stone-600 block">KVC Registration #KVC-1209</span>
+        <span class="text-[10px] text-stone-400 font-code block">Signed: SHA256:7a9f...b831</span>
+      </div>
+
+      <!-- Stamp Graphic -->
+      <div class="border-2 border-dashed border-forest-teal/60 rounded-xl p-3 text-center bg-[#E6F0ED]/30 flex flex-col items-center justify-center">
+        <span class="material-symbols-outlined text-forest-teal text-[24px]">verified_user</span>
+        <span class="font-headline font-bold text-[11px] text-forest-teal mt-0.5">OFFICIAL VET STAMP</span>
+        <span class="text-[9px] text-stone-600 uppercase font-code">Gulmohar Vet Studio · Blr</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="no-print max-w-[850px] w-full mx-auto text-center text-[11px] sm:text-[12px] text-stone-500 pt-6">
+    PawSetu Certified Pet Passport · Compliant with National Animal Health Registry standards.
+  </footer>
+
+
+
+</body></html>

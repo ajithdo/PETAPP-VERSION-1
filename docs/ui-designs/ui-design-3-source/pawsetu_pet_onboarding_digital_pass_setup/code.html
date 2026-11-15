@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSetu - Pet Onboarding &amp; Digital Pass Setup</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { 'coral': '#E05A47', 'forest-teal': '#18453E', 'soft-sage': '#E6F0ED', 'soft-sand': '#F3EFEA', 'warm-border': '#E7E2DA', 'status-upcoming': '#D97706', 'status-completed': '#15803D', 'status-emergency': '#DC2626', 'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-surface-subtle': '#F3EFEA',
+            'light-outline': '#E7E2DA',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+</head>
+<body class="bg-light-surface text-light-on-surface min-h-[1024px] font-body antialiased flex flex-col justify-between py-8 px-4" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Header -->
+  <header class="max-w-xl w-full mx-auto flex items-center justify-between mb-8">
+    <a href="../home-discovery/HomeDiscovery.html" class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl bg-forest-teal text-white flex items-center justify-center">
+        <span class="material-symbols-outlined text-[20px]">pets</span>
+      </div>
+      <span class="font-headline font-bold text-[20px] text-light-on-surface">PawSetu</span>
+    </a>
+    <span class="text-body-sm font-semibold text-stone-500">Step 2 of 3</span>
+  </header>
+
+  <!-- Centered Onboarding Wizard Card -->
+  <main class="max-w-xl w-full mx-auto bg-light-surface-elevated rounded-2xl border border-light-outline p-8 shadow-[0_8px_32px_-4px_rgba(28,25,23,0.06)] space-y-6">
+    
+    <div>
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-soft-sage text-forest-teal text-[11px] font-bold uppercase mb-2">
+        <span class="material-symbols-outlined text-[14px]">id_card</span>
+        <span>Digital Health Passcard Setup</span>
+      </div>
+      <h1 class="font-headline font-bold text-[26px] text-light-on-surface">Register Your Pet Profile</h1>
+      <p class="text-body-sm text-stone-600 mt-1">
+        This creates an encrypted digital passcard for verified vet check-ins, booster alerts, and microchip recovery.
+      </p>
+    </div>
+
+    <!-- Pet Species Selector -->
+    <div>
+      <label class="font-label font-bold text-[13px] text-light-on-surface block mb-2">Species</label>
+      <div class="grid grid-cols-3 gap-3">
+        <button type="button" class="p-3 rounded-xl border-2 border-forest-teal bg-soft-sage/40 flex flex-col items-center justify-center text-forest-teal font-bold text-[13px]">
+          <span class="text-2xl mb-1">🐶</span>
+          <span>Dog</span>
+        </button>
+        <button type="button" class="p-3 rounded-xl border border-light-outline bg-light-surface-subtle hover:bg-stone-200/50 flex flex-col items-center justify-center text-stone-600 font-medium text-[13px]">
+          <span class="text-2xl mb-1">🐱</span>
+          <span>Cat</span>
+        </button>
+        <button type="button" class="p-3 rounded-xl border border-light-outline bg-light-surface-subtle hover:bg-stone-200/50 flex flex-col items-center justify-center text-stone-600 font-medium text-[13px]">
+          <span class="text-2xl mb-1">🐰</span>
+          <span>Other</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Pet Details Inputs -->
+    <div class="space-y-4">
+      <div>
+        <label class="font-label font-bold text-[13px] text-light-on-surface block mb-1">Pet’s Name</label>
+        <input type="text" value="Bruno" class="w-full px-4 py-2.5 bg-white border border-light-outline rounded-xl font-body text-[14px] focus:ring-2 focus:ring-forest-teal">
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="font-label font-bold text-[13px] text-light-on-surface block mb-1">Breed</label>
+          <input type="text" value="Golden Retriever" class="w-full px-4 py-2.5 bg-white border border-light-outline rounded-xl font-body text-[14px] focus:ring-2 focus:ring-forest-teal">
+        </div>
+        <div>
+          <label class="font-label font-bold text-[13px] text-light-on-surface block mb-1">Gender</label>
+          <select class="w-full px-4 py-2.5 bg-white border border-light-outline rounded-xl font-body text-[14px] focus:ring-2 focus:ring-forest-teal">
+            <option>Male (Neutered)</option>
+            <option>Male (Intact)</option>
+            <option>Female (Spayed)</option>
+            <option>Female (Intact)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="font-label font-bold text-[13px] text-light-on-surface block mb-1">Date of Birth / Age</label>
+          <input type="text" value="3 Years, 2 Months" class="w-full px-4 py-2.5 bg-white border border-light-outline rounded-xl font-body text-[14px] focus:ring-2 focus:ring-forest-teal">
+        </div>
+        <div>
+          <label class="font-label font-bold text-[13px] text-light-on-surface block mb-1">Weight (kg)</label>
+          <input type="text" value="29.4 kg" class="w-full px-4 py-2.5 bg-white border border-light-outline rounded-xl font-body text-[14px] focus:ring-2 focus:ring-forest-teal font-code">
+        </div>
+      </div>
+
+      <div>
+        <label class="font-label font-bold text-[13px] text-light-on-surface block mb-1">Microchip Number (15 Digits)</label>
+        <div class="relative">
+          <input type="text" value="982000412884102" class="w-full px-4 py-2.5 bg-white border border-light-outline rounded-xl font-code text-[14px] font-semibold text-light-on-surface tracking-wider focus:ring-2 focus:ring-forest-teal">
+          <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-status-completed text-[20px]">check_circle</span>
+        </div>
+        <span class="text-[11px] text-stone-500 mt-1 block">Valid ISO 11784/11785 RFID format verified.</span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="pt-4 border-t border-light-outline flex items-center justify-between">
+      <a href="../home-discovery/HomeDiscovery.html" class="text-body-sm font-semibold text-stone-500 hover:underline">
+        Skip for now
+      </a>
+      <a href="../medical-records/MedicalRecords.html" class="inline-flex items-center gap-2 px-6 py-3 bg-light-primary text-white rounded-xl font-label text-[14px] font-bold shadow-sm hover:opacity-95 transition">
+        <span>Generate Pet Passcard</span>
+        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="max-w-xl w-full mx-auto text-center text-[12px] text-stone-500">
+    PawSetu Pet Health Security · All records stored on Indian Veterinary Council compliant servers.
+  </footer>
+
+
+
+</body></html>

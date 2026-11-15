@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawSetu - Booking Confirmed &amp; Passcard</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { 'coral': '#E05A47', 'forest-teal': '#18453E', 'soft-sage': '#E6F0ED', 'soft-sand': '#F3EFEA', 'warm-border': '#E7E2DA', 'status-upcoming': '#D97706', 'status-completed': '#15803D', 'status-emergency': '#DC2626', 'light-primary': '#C84735',
+            'light-on-primary': '#FFFFFF',
+            'light-secondary': '#C84735',
+            'light-on-secondary': '#FFFFFF',
+            'light-surface': '#FAF8F5',
+            'light-on-surface': '#1C1917',
+            'light-surface-elevated': '#FFFFFF',
+            'light-on-surface-elevated': '#1C1917',
+            'light-surface-subtle': '#F3EFEA',
+            'light-outline': '#E7E2DA',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '28px',
+            'full': '9999px',
+          },
+          fontFamily: {
+            'display': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'headline': ['"Plus Jakarta Sans"', 'sans-serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'code': ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <style>
+    * { -webkit-font-smoothing: antialiased; }
+    .ticket-cutout-l {
+      position: absolute; left: -12px; top: 62%; width: 24px; height: 24px; border-radius: 50%; background: #FAF8F5;
+    }
+    .ticket-cutout-r {
+      position: absolute; right: -12px; top: 62%; width: 24px; height: 24px; border-radius: 50%; background: #FAF8F5;
+    }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface min-h-[1024px] font-body antialiased flex flex-col justify-between py-10 px-6" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+  <!-- Header -->
+  <header class="max-w-2xl w-full mx-auto flex items-center justify-between mb-6">
+    <a href="../home-discovery/HomeDiscovery.html" class="flex items-center gap-2.5">
+      <div class="w-10 h-10 rounded-xl bg-forest-teal text-white flex items-center justify-center shadow-sm">
+        <span class="material-symbols-outlined text-[22px]">pets</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-headline font-bold text-[20px] text-light-on-surface leading-tight">PawSetu</span>
+        <span class="text-[10px] font-semibold uppercase tracking-wider text-forest-teal">Booking Service</span>
+      </div>
+    </a>
+    <a href="../home-discovery/HomeDiscovery.html" class="text-body-sm font-semibold text-stone-500 hover:text-stone-800 flex items-center gap-1">
+      <span class="material-symbols-outlined text-[18px]">close</span>
+      <span>Close</span>
+    </a>
+  </header>
+
+  <!-- Main Confirmation Card & Boarding Ticket -->
+  <main class="max-w-2xl w-full mx-auto space-y-6">
+
+    <!-- Reassurance Banner -->
+    <div class="text-center space-y-2">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-status-completed flex items-center justify-center mx-auto shadow-sm">
+        <span class="material-symbols-outlined text-[36px]">check_circle</span>
+      </div>
+      <h1 class="font-headline font-bold text-[28px] text-light-on-surface">Appointment Confirmed!</h1>
+      <p class="text-body-md text-stone-600">
+        Dr. Sameer Khan at Gulmohar Vet Studio is expecting Bruno. We’ve sent the confirmation SMS &amp; WhatsApp pass.
+      </p>
+    </div>
+
+    <!-- High-Craft Digital Clinic Passcard (Boarding Ticket Metaphor) -->
+    <div class="relative bg-light-surface-elevated rounded-2xl border border-light-outline shadow-xl overflow-hidden">
+      
+      <div class="ticket-cutout-l border-r border-light-outline"></div>
+      <div class="ticket-cutout-r border-l border-light-outline"></div>
+
+      <!-- Top Section: Clinic & Pet Details -->
+      <div class="p-6 sm:p-8 space-y-6">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-light-outline">
+          <div class="flex items-center gap-4">
+            <img src="https://lh3.googleusercontent.com/aida/AEtjO1XGLg2qU28LEV0ZBHrz6yoD9YicJosz-9TqQUThEM0FNluzeX10On2sw5CQFYGSHV54ZDv6DnhIPSlWRKxthhj88SFwsNJGAI1WaFwOdMZlHqTsLyAw0eQleMEHB3YoOlzYwMm1eucSonbQmuDAFahKurKAyH1T_lusQqSWDE-VooE8ET_EMHeJZlWeZUBVqGZr_H8R2vx7gpYABjFIYEyJdekfGc4Xk0cmk8dtkdbMYZUNc4RMwzIje-geL5U" alt="Bruno" class="w-16 h-16 rounded-2xl object-cover ring-2 ring-forest-teal/30" data-stitch-original-src="5fe0244cd4dde074===../../images/pet_bruno_portrait.jpg">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-headline font-bold text-[20px] text-light-on-surface">Bruno</span>
+                <span class="px-2 py-0.5 rounded-full bg-soft-sage text-forest-teal text-[11px] font-bold">Patient</span>
+              </div>
+              <p class="text-body-sm text-stone-600">Golden Retriever · 29.4 kg</p>
+              <span class="text-[11px] font-code text-stone-400 mt-0.5 block">Microchip: 982 000 412 884</span>
+            </div>
+          </div>
+
+          <div class="sm:text-right">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-stone-400 block">Booking Reference</span>
+            <span class="font-code font-bold text-[18px] text-forest-teal">PWS-8841-IND</span>
+          </div>
+        </div>
+
+        <!-- Appointment Specifics Bento -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-[13px]">
+          <div class="p-3 rounded-xl bg-light-surface-subtle">
+            <span class="text-[11px] uppercase tracking-wider text-stone-400 font-bold block">Date</span>
+            <span class="font-headline font-bold text-light-on-surface text-[15px] mt-0.5 block">Today, 3 Nov</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-light-surface-subtle">
+            <span class="text-[11px] uppercase tracking-wider text-stone-400 font-bold block">Time Slot</span>
+            <span class="font-code font-bold text-coral text-[15px] mt-0.5 block">4:30 PM - 5:00 PM</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-light-surface-subtle">
+            <span class="text-[11px] uppercase tracking-wider text-stone-400 font-bold block">Doctor</span>
+            <span class="font-headline font-semibold text-light-on-surface text-[14px] mt-0.5 block">Dr. Sameer Khan</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-light-surface-subtle">
+            <span class="text-[11px] uppercase tracking-wider text-stone-400 font-bold block">Amount Payable</span>
+            <span class="font-headline font-bold text-light-on-surface text-[15px] mt-0.5 block">₹750 at Clinic</span>
+          </div>
+        </div>
+
+        <!-- Clinic Address & Navigation Quick Strip -->
+        <div class="flex items-start justify-between gap-4 p-4 rounded-xl bg-forest-teal/5 border border-forest-teal/15">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-forest-teal text-[22px] flex-shrink-0 mt-0.5">location_on</span>
+            <div class="text-[13px]">
+              <strong class="text-forest-teal font-bold block text-[14px]">Gulmohar Vet Studio</strong>
+              <p class="text-stone-600">100 Feet Road, 12th Main, Indiranagar, Bengaluru · 1.2 km away</p>
+            </div>
+          </div>
+          <button type="button" class="px-3 py-1.5 rounded-lg bg-forest-teal text-white text-[12px] font-bold hover:opacity-95 transition flex items-center gap-1 flex-shrink-0">
+            <span class="material-symbols-outlined text-[15px]">directions</span>
+            <span>Navigate</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Perforated Tear Line -->
+      <div class="border-t-2 border-dashed border-light-outline mx-6 my-2"></div>
+
+      <!-- Bottom Ticket Stub: Digital Reception QR & Sync Actions -->
+      <div class="p-6 sm:p-8 bg-stone-50 flex flex-col sm:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-4">
+          <!-- Vector QR Simulation -->
+          <div class="w-20 h-20 bg-white p-2 rounded-xl border border-light-outline shadow-sm flex items-center justify-center">
+            <svg class="w-full h-full text-stone-900" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 3h2v3h-2v-3zm0-5h4v2h-4v-2zm2 2h2v2h-2v-2zm-6-2h3v2h-3v-2zm0 3h2v3h-2v-3zm3 0h3v3h-3v-3z"></path>
+            </svg>
+          </div>
+          <div>
+            <span class="font-headline font-bold text-[14px] text-light-on-surface block">Express Kiosk Check-In QR</span>
+            <p class="text-[12px] text-stone-500 max-w-xs mt-0.5">
+              Show this QR code at the Gulmohar reception desk to bypass paper registration.
+            </p>
+          </div>
+        </div>
+
+        <!-- Sync to Calendar Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto">
+          <button type="button" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-light-outline bg-white hover:bg-stone-100 font-label text-[13px] font-semibold text-stone-700 transition shadow-sm">
+            <span class="material-symbols-outlined text-[18px] text-forest-teal">event</span>
+            <span>Add to Calendar</span>
+          </button>
+          <button type="button" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-light-outline bg-white hover:bg-stone-100 font-label text-[13px] font-semibold text-stone-700 transition shadow-sm">
+            <span class="material-symbols-outlined text-[18px] text-emerald-600">chat</span>
+            <span>WhatsApp Pass</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Navigation Hub Links -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 text-body-sm">
+      <a href="../medical-records/MedicalRecords.html" class="text-forest-teal font-semibold hover:underline flex items-center gap-1">
+        <span class="material-symbols-outlined text-[18px]">history_edu</span>
+        <span>View Bruno’s Medical Vault &amp; Vaccination Log</span>
+      </a>
+      <a href="../home-discovery/HomeDiscovery.html" class="text-stone-500 font-semibold hover:underline">
+        Back to Clinic Discovery
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="max-w-2xl w-full mx-auto text-center text-[12px] text-stone-500 pt-6">
+    PawSetu Instant Booking Engine · Indiranagar Cluster ID #4188
+  </footer>
+
+
+
+</body></html>

@@ -508,7 +508,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get demoAccountsHint =>
-      'Tap any account to sign in. No password needed.';
+      'Tap any account to sign in. No password needed. Nothing here is real and no money is charged.';
 
   @override
   String get orSignInWithEmail => 'Or sign in with your email';
@@ -523,29 +523,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get demoGroupPartners => 'Partners';
 
   @override
-  String get demoGroupPlatform => 'Platform';
+  String get demoGroupPlatform => 'PawSetu team';
 
   @override
   String get demoPriya =>
-      'Bengaluru · Plus · Bruno the Labrador and Misty the Persian cat';
+      'Bengaluru. Bruno the Labrador and Misty the Persian cat';
 
   @override
   String get demoRavi =>
-      'Hyderabad · Free · Telugu · Simba the Indie puppy and Kiwi the cockatiel';
+      'Hyderabad. Simba the Indie puppy and Kiwi the cockatiel';
 
   @override
   String get demoAnjali =>
-      'Delhi NCR · Free · Hindi · Easy mode · Coco the rabbit and Tiger the senior cat';
+      'Delhi NCR. Coco the rabbit and Tiger the senior cat';
 
   @override
   String get demoArjun =>
-      'Mumbai · Plus · Max the German Shepherd and Luna the Beagle puppy';
+      'Mumbai. Max the German Shepherd and Luna the Beagle puppy';
 
   @override
-  String get demoRohan => 'Priya\'s husband · Carer for Bruno and Misty';
+  String get demoRohan => 'Priya\'s husband. Carer for Bruno and Misty';
 
   @override
-  String get demoMeera => 'Pet sitter for Arjun · access ends in 3 days';
+  String get demoMeera => 'Pet sitter for Arjun. Access ends in 3 days';
 
   @override
   String get demoClinicAdmin =>
@@ -1505,7 +1505,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String streakDays(int count) {
-    return '$count-day streak';
+    return '$count days in a row';
   }
 
   @override
@@ -2383,6 +2383,15 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get medicalCardOffline =>
       'This card works without internet. Show it to a vet, a boarding centre or at the airport.';
+
+  @override
+  String get healthAllClear => 'All up to date';
+
+  @override
+  String get certificate => 'Certificate';
+
+  @override
+  String get emergencyInfo => 'Emergency info';
 
   @override
   String get bookTitle => 'Book care';
@@ -3351,6 +3360,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get remove => 'Remove';
+
+  @override
+  String bookFor(String name) {
+    return 'Book for $name';
+  }
+
+  @override
+  String get nextFreeSlot => 'Next free slot';
 
   @override
   String get aiTitle => 'Ask PawSetu';
@@ -5002,7 +5019,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get albumSeeAlbum => 'See album';
+  String get albumSeeAlbum => 'Album';
 
   @override
   String albumYearsAgo(int count) {
@@ -6299,7 +6316,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String shopReorderPrice(String price) {
-    return 'Reorder · $price';
+    return 'Reorder $price';
   }
 
   @override
@@ -7221,7 +7238,7 @@ class AppLocalizationsEn extends AppLocalizations {
       other: '$days days',
       one: '1 day',
     );
-    return '$pet\'s food may run out in about $_temp0. Reorder?';
+    return '$pet\'s food may run out in about $_temp0';
   }
 
   @override
@@ -7235,7 +7252,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get foodEditPortion => 'Edit portion';
+  String get foodEditPortion => 'Change daily portion';
 
   @override
   String foodOnTheWay(String pet) {
@@ -10682,4 +10699,1201 @@ class AppLocalizationsEn extends AppLocalizations {
   String albumTitle(String pet) {
     return '$pet\'s memories';
   }
+
+  @override
+  String gendaProgress(int done, int total) {
+    return '$done of $total done';
+  }
+
+  @override
+  String get gendaNothingPlanned => 'Nothing planned today. Add a routine.';
+
+  @override
+  String withUnread(String label, int count) {
+    return '$label, $count unread';
+  }
+
+  @override
+  String shopAskVet(String name) {
+    return 'Not sure what suits $name? Ask a vet';
+  }
+
+  @override
+  String get meGroupPets => 'Pets and family';
+
+  @override
+  String get meGroupMoney => 'Orders and money';
+
+  @override
+  String get meGroupHelp => 'Help and settings';
+
+  @override
+  String gendaNext(String task) {
+    return 'Next: $task';
+  }
+
+  @override
+  String get bookIntro =>
+      'Vets, groomers, trainers, boarding and walkers near you.';
+
+  @override
+  String get bookVetSub => 'Check-ups, vaccines, surgery';
+
+  @override
+  String get bookTeleSub => 'Chat or video with a vet';
+
+  @override
+  String get bookGroomSub => 'Salon or home visit';
+
+  @override
+  String get bookTrainSub => 'Puppy basics to behaviour';
+
+  @override
+  String get bookBoardSub => 'Boarding and pet sitting';
+
+  @override
+  String get bookWalkSub => 'Live route and photos';
+
+  @override
+  String get welcomeLanguages =>
+      'English, हिन्दी and తెలుగు. Change any time in Settings.';
+
+  @override
+  String get firstAidGuides => 'Guides';
+
+  @override
+  String get yesterday => 'Yesterday';
+
+  @override
+  String get earlier => 'Earlier';
+
+  @override
+  String get stepBooked => 'Booked';
+
+  @override
+  String get stepConfirmed => 'Confirmed';
+
+  @override
+  String get stepVisited => 'Visited';
+
+  @override
+  String shopGoodMatch(String name) {
+    return 'A good match for $name';
+  }
+
+  @override
+  String get logGridTitle => 'Log something';
+
+  @override
+  String leftCount(int count) {
+    return '$count left';
+  }
+
+  @override
+  String get markGiven => 'Mark given';
+
+  @override
+  String playOfMin(int done, int goal) {
+    return '$done of $goal min';
+  }
+
+  @override
+  String aboutLeft(String amount) {
+    return 'about $amount left';
+  }
+
+  @override
+  String nowAt(String time) {
+    return 'Now, $time';
+  }
+
+  @override
+  String get albumYearAgo => 'A year ago today';
+
+  @override
+  String get bookWord => 'Book';
+
+  @override
+  String get sosEmergencyHelp => 'SOS, emergency help';
+
+  @override
+  String get healthRecords => 'Records';
+
+  @override
+  String get noneRightNow => 'None right now';
+
+  @override
+  String get nothingLogged => 'Nothing logged';
+
+  @override
+  String whatDueOn(String what, String date) {
+    return '$what due $date';
+  }
+
+  @override
+  String get vaccinesUpToDate => 'Vaccines up to date';
+
+  @override
+  String get weightHealthy => 'in the healthy range';
+
+  @override
+  String get weightBelow => 'below the usual range';
+
+  @override
+  String get weightAbove => 'above the usual range';
+
+  @override
+  String get preventionTitle => 'Deworming and flea, tick';
+
+  @override
+  String get indicativeSchedule =>
+      'Indicative schedule. Always confirm with your vet.';
+
+  @override
+  String bookIntroNear(String area) {
+    return 'Vets, groomers, trainers, boarding and walkers near $area.';
+  }
+
+  @override
+  String bookNextSlot(String when) {
+    return 'Next slot $when';
+  }
+
+  @override
+  String bookVetsOnline(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count vets online now',
+      one: '1 vet online now',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String inDaysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'in $count days',
+      one: 'tomorrow',
+      zero: 'today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shopDeliveringTo => 'Delivering to';
+
+  @override
+  String get shopRunningLow => 'Running low';
+
+  @override
+  String shopNotSure(String name) {
+    return 'Not sure what suits $name?';
+  }
+
+  @override
+  String get shopFromPartners => 'From partner stores';
+
+  @override
+  String shopBuyOnStore(String price, String store) {
+    return '$price, you will buy on $store';
+  }
+
+  @override
+  String meDocsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count documents',
+      one: '1 document',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String meExpireSoon(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count expire soon',
+      one: '1 expires soon',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String mePhotosCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count photos',
+      one: '1 photo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String meVideosCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count videos',
+      one: '1 video',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get meTagsReady => 'Tags ready. No pet is lost.';
+
+  @override
+  String mePetLost(String name) {
+    return '$name is marked lost';
+  }
+
+  @override
+  String get meNoneYet => 'None yet';
+
+  @override
+  String meDeviceLine(String device, int battery) {
+    return '$device, $battery%';
+  }
+
+  @override
+  String get meOnlyYou => 'Only you';
+
+  @override
+  String meCanCare(String who, String pets) {
+    return '$who can care for $pets';
+  }
+
+  @override
+  String meOnTheWay(String item) {
+    return '$item is on the way';
+  }
+
+  @override
+  String meThisMonth(String amount) {
+    return '$amount this month';
+  }
+
+  @override
+  String meRenewsOn(String date) {
+    return 'Renews on $date';
+  }
+
+  @override
+  String get meTryFree => 'Try 7 days free';
+
+  @override
+  String meBothGet(String amount) {
+    return 'You both get $amount';
+  }
+
+  @override
+  String get meSettingsSub => 'Language, appearance, Easy mode';
+
+  @override
+  String get mePrivacySub => 'Your data and consents';
+
+  @override
+  String get meGroupApp => 'App and support';
+
+  @override
+  String get meSavedAddresses => 'Saved addresses';
+
+  @override
+  String get catShortFood => 'Food';
+
+  @override
+  String get catShortTreats => 'Treats';
+
+  @override
+  String get catShortToys => 'Toys';
+
+  @override
+  String get catShortGrooming => 'Grooming';
+
+  @override
+  String get catShortHealthHygiene => 'Health';
+
+  @override
+  String get catShortBeds => 'Beds';
+
+  @override
+  String get catShortCollarsLeashes => 'Collars';
+
+  @override
+  String get catShortBowlsFeeders => 'Bowls';
+
+  @override
+  String get catShortLitterCat => 'Litter';
+
+  @override
+  String get catShortBirdFoodCages => 'Birds';
+
+  @override
+  String get catShortRabbitCare => 'Rabbits';
+
+  @override
+  String get catShortClothing => 'Clothing';
+
+  @override
+  String get catShortTravel => 'Travel';
+
+  @override
+  String get orContinueWith => 'or continue with';
+
+  @override
+  String get partnerAsk => 'Run a clinic, salon or shop?';
+
+  @override
+  String get partnerApply => 'Apply as a partner';
+
+  @override
+  String get demoPartnersTeam => 'Partners and the PawSetu team';
+
+  @override
+  String seeAllCount(int count) {
+    return 'See all $count';
+  }
+
+  @override
+  String sosCallNumber(String phone) {
+    return 'Call $phone';
+  }
+
+  @override
+  String get openMedicalCard => 'Open medical card';
+
+  @override
+  String get tvBookVideo => 'Book video';
+
+  @override
+  String get tvUnlimitedWord => 'Unlimited';
+
+  @override
+  String get tvConsultationsWord => 'consultations';
+
+  @override
+  String tvPerMonthTitle(int count) {
+    return '$count a month';
+  }
+
+  @override
+  String tvUsedSub(int used) {
+    return '$used used so far';
+  }
+
+  @override
+  String tvMessagesTitle(int count) {
+    return '$count messages';
+  }
+
+  @override
+  String tvWordsSub(int words) {
+    return '$words words each';
+  }
+
+  @override
+  String tvHoursTitle(int hours) {
+    return '$hours hours';
+  }
+
+  @override
+  String get tvHoursSub => 'chat stays open';
+
+  @override
+  String get tvVideoTitle => 'Video calls';
+
+  @override
+  String get tvVideoSubPlus => 'with 10% off';
+
+  @override
+  String get tvVideoSubFree => 'with Plus only';
+
+  @override
+  String tvPetWithVet(String pet, String vet) {
+    return '$pet with $vet';
+  }
+
+  @override
+  String get tvOpenChat => 'Open chat';
+
+  @override
+  String get tvPrescriptionWord => 'Prescription';
+
+  @override
+  String aiCareAnswers(String name) {
+    return 'Care answers for $name. Not a diagnosis.';
+  }
+
+  @override
+  String get aiCareAnswersAll => 'Care answers for your pet. Not a diagnosis.';
+
+  @override
+  String clinicsWithin(int count, int km) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count clinics',
+      one: '1 clinic',
+    );
+    return '$_temp0 within $km km';
+  }
+
+  @override
+  String placesWithin(int count, int km) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count places',
+      one: '1 place',
+    );
+    return '$_temp0 within $km km';
+  }
+
+  @override
+  String get feeWord => 'Consultation';
+
+  @override
+  String get bookAVisit => 'Book a visit';
+
+  @override
+  String placeWhere(String kind, String area, String city, String distance) {
+    return '$kind in $area, $city. $distance away.';
+  }
+
+  @override
+  String serviceWithVet(String service, String vet) {
+    return '$service with $vet';
+  }
+
+  @override
+  String serviceForPet(String service, String pet) {
+    return '$service for $pet';
+  }
+
+  @override
+  String get bookingIdLabel => 'Booking ID';
+
+  @override
+  String get howWasVisit => 'How was the visit?';
+
+  @override
+  String get reviewWhoCan =>
+      'Only people who visited can review. The place can reply.';
+
+  @override
+  String get bookAgain => 'Book again';
+
+  @override
+  String get bookAgainSub => 'Same place, same service';
+
+  @override
+  String get addToCalendarSub => 'Save the time in your phone\'s calendar';
+
+  @override
+  String get getHelpSub => 'Something went wrong? Tell us';
+
+  @override
+  String dueBoosters(String name, String date) {
+    return '$name\'s vaccines are due on $date';
+  }
+
+  @override
+  String get dueBoostersSub => 'Book them in one visit at a clinic near you.';
+
+  @override
+  String get bookVaccines => 'Book vaccines';
+
+  @override
+  String requestCancels(String when) {
+    return 'They reply by $when, or the request cancels itself.';
+  }
+
+  @override
+  String get discountWord => 'Discount';
+
+  @override
+  String shopDeliveryBy(String date) {
+    return 'Delivery by $date';
+  }
+
+  @override
+  String shopDeliverTo(String pin) {
+    return 'To PIN code $pin.';
+  }
+
+  @override
+  String shopSoldByName(String seller) {
+    return 'Sold by $seller';
+  }
+
+  @override
+  String shopReturnsDays(int days) {
+    return '$days-day returns';
+  }
+
+  @override
+  String get shopNoReturns => 'No returns';
+
+  @override
+  String shopNoAllergen(String allergen, String pet) {
+    return 'No $allergen, which $pet avoids.';
+  }
+
+  @override
+  String get changeWord => 'Change';
+
+  @override
+  String reviewsLink(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reviews',
+      one: '1 review',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String youAreRole(String role) {
+    return 'You are the $role';
+  }
+
+  @override
+  String birthdayOnDate(String date) {
+    return 'Birthday $date';
+  }
+
+  @override
+  String get qrActiveTitle => 'QR tag is active';
+
+  @override
+  String qrActiveSub(String name) {
+    return 'Anyone who finds $name can reach you. Your number stays hidden.';
+  }
+
+  @override
+  String whoLooksAfter(String name) {
+    return 'Who looks after $name';
+  }
+
+  @override
+  String get medCardBrand => 'PawSetu medical card';
+
+  @override
+  String get worksOffline => 'Works offline';
+
+  @override
+  String get savePdf => 'Save PDF';
+
+  @override
+  String get fullHealthReport => 'Full health report';
+
+  @override
+  String get fullHealthReportSub => 'Vaccines, medicines, visits, weight chart';
+
+  @override
+  String get editDetails => 'Edit details';
+
+  @override
+  String get editDetailsSub => 'Allergies, microchip, clinic';
+
+  @override
+  String get roleOwnerDoes => 'Can do everything';
+
+  @override
+  String get roleCoownerDoes => 'Everything except deleting the pet';
+
+  @override
+  String get roleCarerDoes => 'Logs routine, gives medicines, books services';
+
+  @override
+  String get roleViewerDoes => 'Sees everything, logs walks and meals';
+
+  @override
+  String get languageNote =>
+      'Changes the whole app at once, including reminders and PDFs.';
+
+  @override
+  String get textSizeNote => 'Layouts stay tidy up to 200%.';
+
+  @override
+  String get plusYouHaveShort => 'You have Plus';
+
+  @override
+  String plusMemberSince(String name, String date) {
+    return '$name, member since $date';
+  }
+
+  @override
+  String get plusRenewsOnLabel => 'Renews on';
+
+  @override
+  String get plusEndsOnLabel => 'Ends on';
+
+  @override
+  String get plusYearlyPlan => 'Yearly plan';
+
+  @override
+  String get plusMonthlyPlan => 'Monthly plan';
+
+  @override
+  String plusPriceYear(String amount) {
+    return '$amount a year';
+  }
+
+  @override
+  String plusPriceMonth(String amount) {
+    return '$amount a month';
+  }
+
+  @override
+  String plusNextPayment(String amount, String date) {
+    return 'Next payment $amount on $date';
+  }
+
+  @override
+  String get plusCancelPlan => 'Cancel plan';
+
+  @override
+  String get plusCancelTitle => 'Cancel your plan?';
+
+  @override
+  String plusNewHere(int days) {
+    return 'New here? $days days free';
+  }
+
+  @override
+  String get plusNewHereBody => 'Free plan members can try Plus before paying.';
+
+  @override
+  String get plusWhatYouGet => 'What you get';
+
+  @override
+  String get plusNo => 'No';
+
+  @override
+  String get plusSwitchMonthly => 'Change to the monthly plan?';
+
+  @override
+  String get plusSwitchYearly => 'Change to the yearly plan?';
+
+  @override
+  String plusSwitchBody(String date, String price) {
+    return 'From $date you pay $price. Nothing is charged today.';
+  }
+
+  @override
+  String get plusSwitched => 'Plan changed';
+
+  @override
+  String cartDeliverToLabel(String label) {
+    return 'Deliver to $label';
+  }
+
+  @override
+  String cartItems(int count) {
+    return 'Items ($count)';
+  }
+
+  @override
+  String get cartFreeWithPlus => 'Free with Plus';
+
+  @override
+  String get cartApplied => 'Applied';
+
+  @override
+  String cartSaveOnOrder(String amount) {
+    return 'You save $amount on this order';
+  }
+
+  @override
+  String get cartDemoPayNote =>
+      'Demo payment. No money is charged. You can try a successful, failed or pending payment.';
+
+  @override
+  String get cartBillShort => 'Bill';
+
+  @override
+  String cartWindowShort(String from, String to) {
+    return '$from to $to';
+  }
+
+  @override
+  String get cartCodNote => 'You pay when the order arrives.';
+
+  @override
+  String get vaultSearchDocsHint => 'Search documents and tags';
+
+  @override
+  String get vaultScanOrUpload => 'Scan or upload';
+
+  @override
+  String get vaultTypeShortVaccination => 'Certificates';
+
+  @override
+  String get vaultTypeShortInsurance => 'Insurance';
+
+  @override
+  String get vaultTypeShortLab => 'Lab reports';
+
+  @override
+  String get vaultTypeShortPrescription => 'Prescriptions';
+
+  @override
+  String get vaultTypeShortInvoice => 'Bills';
+
+  @override
+  String get vaultTypeShortLicence => 'Licences';
+
+  @override
+  String get vaultTypeShortAdoption => 'Adoption';
+
+  @override
+  String get vaultTypeShortTravel => 'Travel';
+
+  @override
+  String get vaultTypeShortOther => 'Other';
+
+  @override
+  String vaultExpiresNote(String title, String date) {
+    return '$title expires on $date.';
+  }
+
+  @override
+  String vaultExpiredNote(String title, String date) {
+    return '$title expired on $date.';
+  }
+
+  @override
+  String vaultRenewHintVaccine(String pet) {
+    return 'Add the new one after $pet\'s booster.';
+  }
+
+  @override
+  String get vaultRenewHint => 'Add the new one when you get it.';
+
+  @override
+  String get vaultSharedWithVet => 'Shared with a vet';
+
+  @override
+  String get vaultAllLinks => 'All links';
+
+  @override
+  String get vaultRevokeShort => 'Revoke';
+
+  @override
+  String vaultPolicyLine(String name, String cover) {
+    return '$name, $cover cover';
+  }
+
+  @override
+  String vaultOpenClaimLine(
+    int count,
+    String status,
+    String amount,
+    int done,
+    int total,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count claims',
+      one: '1 claim',
+    );
+    return '$_temp0 $status: $amount, $done of $total documents added';
+  }
+
+  @override
+  String vaultRenewsOn(String date) {
+    return 'Renews $date';
+  }
+
+  @override
+  String get vaultAddInsurance => 'Add your pet\'s insurance';
+
+  @override
+  String get vaultAddInsuranceBody =>
+      'Keep the policy, renewal date and claims in one place.';
+
+  @override
+  String vaultWhatViewOnly(String what) {
+    return '$what, view only';
+  }
+
+  @override
+  String vaultStorageOf(String used, String limit) {
+    return '$used of $limit';
+  }
+
+  @override
+  String albumOnThisDayAgo(String ago) {
+    return 'On this day, $ago';
+  }
+
+  @override
+  String albumMilestoneTag(String name) {
+    return 'Milestone: $name';
+  }
+
+  @override
+  String albumVideoUpTo(String length) {
+    return 'Videos up to $length.';
+  }
+
+  @override
+  String albumVideoUpToPlus(String length) {
+    return 'Videos up to $length with Plus.';
+  }
+
+  @override
+  String byPerson(String name) {
+    return 'by $name';
+  }
+
+  @override
+  String get logSleepShort => 'Sleep';
+
+  @override
+  String get showToday => 'Today only';
+
+  @override
+  String pPlaceAndDate(String place, String date) {
+    return '$place, $date';
+  }
+
+  @override
+  String pNextAt(String time) {
+    return 'Next at $time';
+  }
+
+  @override
+  String get pAllAnswered => 'All answered';
+
+  @override
+  String pAfterFee(int percent) {
+    return 'After $percent% platform fee';
+  }
+
+  @override
+  String pWithOwner(String owner) {
+    return 'with $owner';
+  }
+
+  @override
+  String get pThisWeek => 'This week';
+
+  @override
+  String get pEmergencyListing => 'Emergency listing';
+
+  @override
+  String get pSosOpen24 => 'Shown in SOS as open 24x7.';
+
+  @override
+  String get pSosOpenNow => 'Shown in SOS as open now. Not 24x7.';
+
+  @override
+  String get pSosClosedNow => 'Shown in SOS as closed now. Not 24x7.';
+
+  @override
+  String get pSosHidden => 'Not shown in SOS.';
+
+  @override
+  String get pEmergencyListingHelp =>
+      'Turn this off if your clinic does not take emergencies. Pet parents will not see it on the SOS page.';
+
+  @override
+  String get pNewReview => 'New review';
+
+  @override
+  String get pOpenQueue => 'Open queue';
+
+  @override
+  String get pHistory => 'History';
+
+  @override
+  String get pOpen => 'Open';
+
+  @override
+  String starsOutOf5(int count) {
+    return '$count out of 5 stars';
+  }
+
+  @override
+  String selSellerIn(String city, String date) {
+    return 'Seller in $city, $date';
+  }
+
+  @override
+  String get selPackToday => 'Pack today';
+
+  @override
+  String get selFirstPayout => 'First payout after delivery';
+
+  @override
+  String selOrderFor(String number, String name, String place) {
+    return 'Order $number for $name, $place';
+  }
+
+  @override
+  String selPlacedOn(String date) {
+    return 'Placed $date';
+  }
+
+  @override
+  String get selPrintLabel => 'Print label';
+
+  @override
+  String selStockLeftShort(int count) {
+    return '$count left.';
+  }
+
+  @override
+  String selSellsPerWeek(int count) {
+    return 'Sells about $count a week.';
+  }
+
+  @override
+  String get selAddStock => 'Add stock';
+
+  @override
+  String get selBulkUpload => 'Upload products in bulk';
+
+  @override
+  String get selBulkUploadBody => 'Use a CSV file for many items at once.';
+
+  @override
+  String get admUsersShort => 'Users';
+
+  @override
+  String admUsersSplit(int owners, int partners) {
+    return '$owners pet parents, $partners partners';
+  }
+
+  @override
+  String get admBookings30Short => 'Bookings, 30 days';
+
+  @override
+  String get admOrderValue30Short => 'Order value, 30 days';
+
+  @override
+  String get admCommission30Short => 'Commission, 30 days';
+
+  @override
+  String get admSos30Short => 'SOS activations, 30 days';
+
+  @override
+  String get admWaiting => 'Waiting for you';
+
+  @override
+  String get admNothingWaiting => 'Nothing waiting';
+
+  @override
+  String admCountClinics(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count clinics',
+      one: '1 clinic',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admCountVets(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count vets',
+      one: '1 vet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admCountSellers(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sellers',
+      one: '1 seller',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admCountProviders(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count service providers',
+      one: '1 service provider',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admTicketsLine(int open, int progress) {
+    return '$open open, $progress in progress';
+  }
+
+  @override
+  String admReportsLine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reports to check',
+      one: '1 report to check',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admOutboxTo(String channel, String name) {
+    return '$channel to $name';
+  }
+
+  @override
+  String get admOutboxNote => 'Nothing here was really sent.';
+
+  @override
+  String admCountBookings(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bookings',
+      one: '1 booking',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String admCountSold(int count) {
+    return '$count sold';
+  }
+
+  @override
+  String get admComplaintsShort => 'Complaints';
+
+  @override
+  String get themeSystemShort => 'System';
+
+  @override
+  String get setReminderChannels => 'Reminder channels';
+
+  @override
+  String get setReminderChannelsHint =>
+      'Push, email, SMS and WhatsApp for each reminder';
+
+  @override
+  String setQuietRange(String from, String to) {
+    return '$from to $to';
+  }
+
+  @override
+  String get setQuietOff => 'Off';
+
+  @override
+  String get setSosTap => 'Tap to confirm SOS';
+
+  @override
+  String get setSosTapHint =>
+      'Instead of holding for 2 seconds. On with Easy mode.';
+
+  @override
+  String get setAccount => 'Account';
+
+  @override
+  String get setEmailPassword => 'Email and password';
+
+  @override
+  String get setAbout => 'About PawSetu';
+
+  @override
+  String setAboutDemo(String version) {
+    return 'Version $version, demo mode';
+  }
+
+  @override
+  String get setResetPassword => 'Send a link to change your password';
+
+  @override
+  String setResetSent(String email) {
+    return 'We sent a link to $email.';
+  }
+
+  @override
+  String get setNoEmail => 'No email added';
+
+  @override
+  String get setNoPhone => 'No phone number added';
+
+  @override
+  String get whenQ => 'When?';
+
+  @override
+  String bookPayNote(int hours) {
+    return 'Pay online or at the clinic. Free to cancel up to $hours hours before.';
+  }
+
+  @override
+  String get bookPickTime => 'Pick a time';
+
+  @override
+  String vetYearsReg(int years, String no) {
+    String _temp0 = intl.Intl.pluralLogic(
+      years,
+      locale: localeName,
+      other: '$years years',
+      one: '1 year',
+    );
+    return '$_temp0. Reg. no. $no';
+  }
+
+  @override
+  String verifiedVisits(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count verified visits',
+      one: '1 verified visit',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get verifiedVisit => 'Verified visit';
+
+  @override
+  String get replyFromClinic => 'Reply from the clinic:';
+
+  @override
+  String get whereToFind => 'Where to find us';
+
+  @override
+  String get showFewer => 'Show fewer';
+
+  @override
+  String peopleOf(int count, int max) {
+    return '$count of $max people';
+  }
+
+  @override
+  String get familyAway => 'Going away?';
+
+  @override
+  String get familyAwayBody =>
+      'Give a pet sitter or walker Carer access that ends by itself on a date you choose.';
+
+  @override
+  String get latestActivity => 'Latest activity';
+
+  @override
+  String get vaultLockNote =>
+      'Locks itself after 2 minutes. Forgot your PIN? Sign in again to reset it.';
 }

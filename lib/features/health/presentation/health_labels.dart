@@ -4,6 +4,7 @@ import '../../../core/utils/format.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/health_repository.dart';
 import '../domain/vaccine_schedule.dart';
+import '../../../core/theme/ph.dart';
 
 String doseLabel(BuildContext context, String key) {
   final l = context.l10n;
@@ -19,11 +20,11 @@ String doseLabel(BuildContext context, String key) {
 (String, ChipTone, IconData) statusChip(BuildContext context, DoseStatus s) {
   final l = context.l10n;
   return switch (s) {
-    DoseStatus.done => (l.statusDone, ChipTone.success, Icons.check_rounded),
-    DoseStatus.overdue => (l.statusOverdue, ChipTone.error, Icons.error_rounded),
-    DoseStatus.dueSoon => (l.statusDueSoon, ChipTone.warning, Icons.schedule_rounded),
-    DoseStatus.upcoming => (l.statusUpcoming, ChipTone.info, Icons.event_rounded),
-    DoseStatus.askVet => (l.statusAskVet, ChipTone.neutral, Icons.help_outline_rounded),
+    DoseStatus.done => (l.statusDone, ChipTone.success, Ph.checkCircleFill),
+    DoseStatus.overdue => (l.statusOverdue, ChipTone.error, Ph.warningFill),
+    DoseStatus.dueSoon => (l.statusDueSoon, ChipTone.warning, Ph.clockFill),
+    DoseStatus.upcoming => (l.statusUpcoming, ChipTone.info, Ph.calendarBlankFill),
+    DoseStatus.askVet => (l.statusAskVet, ChipTone.neutral, Ph.questionFill),
   };
 }
 
@@ -66,13 +67,13 @@ String dueWhen(BuildContext context, DueItem i) {
 }
 
 IconData dueIcon(String kind) => switch (kind) {
-      'vaccine' => Icons.vaccines_rounded,
-      'medicine' => Icons.medication_rounded,
-      'refill' => Icons.inventory_2_rounded,
-      'deworming' => Icons.bug_report_rounded,
-      'flea_tick' => Icons.pest_control_rounded,
-      'booking' => Icons.event_available_rounded,
-      _ => Icons.alarm_rounded,
+      'vaccine' => Ph.syringe,
+      'medicine' => Ph.pill,
+      'refill' => Ph.package,
+      'deworming' => Ph.bug,
+      'flea_tick' => Ph.bugBeetle,
+      'booking' => Ph.calendarCheck,
+      _ => Ph.alarm,
     };
 
 String symptomLabel(BuildContext context, String? s) {

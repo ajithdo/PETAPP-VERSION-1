@@ -18,6 +18,7 @@ import '../domain/auto_read.dart';
 import 'scan_screen.dart';
 import 'vault_labels.dart';
 import 'vault_screen.dart';
+import '../../../core/theme/ph.dart';
 
 /// Largest file the vault accepts (matches storage.rules).
 const maxVaultFileBytes = 25 * 1024 * 1024;
@@ -52,7 +53,7 @@ Future<void> showUploadSheet(BuildContext context, WidgetRef ref, {Pet? pet, boo
           Wrap(spacing: Space.sm, runSpacing: Space.sm, children: [
             for (final p in pets)
               ChoiceChip(
-                avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: 24),
+                avatar: PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarChip),
                 label: Text(p.name),
                 showCheckmark: false,
                 selected: chosen.id == p.id,
@@ -62,18 +63,18 @@ Future<void> showUploadSheet(BuildContext context, WidgetRef ref, {Pet? pet, boo
         ],
         const SizedBox(height: Space.md),
         ListTile(
-          leading: const Icon(Icons.document_scanner_rounded),
+          leading: const Icon(Ph.scan),
           title: Text(l.vaultScanCamera),
           subtitle: Text(l.vaultScanCameraHint),
           onTap: () => Navigator.pop(ctx, 'scan'),
         ),
         ListTile(
-          leading: const Icon(Icons.photo_library_rounded),
+          leading: const Icon(Ph.images),
           title: Text(l.vaultFromGallery),
           onTap: () => Navigator.pop(ctx, 'gallery'),
         ),
         ListTile(
-          leading: const Icon(Icons.picture_as_pdf_rounded),
+          leading: const Icon(Ph.filePdf),
           title: Text(l.vaultFromPdf),
           onTap: () => Navigator.pop(ctx, 'pdf'),
         ),
@@ -84,7 +85,7 @@ Future<void> showUploadSheet(BuildContext context, WidgetRef ref, {Pet? pet, boo
         ),
         for (final k in uploadSamples)
           ListTile(
-            leading: DocTypeBadge(type: sampleDocType(k), size: 36),
+            leading: DocTypeBadge(type: sampleDocType(k), size: Sizes.docBadge),
             title: Text(sampleTitle(ctx, k)),
             onTap: () => Navigator.pop(ctx, 'sample:$k'),
           ),

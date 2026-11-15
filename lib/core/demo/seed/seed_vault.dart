@@ -7,7 +7,7 @@ import 'seed.dart';
 /// Documents use the built-in samples (url `sample:<key>`): the app draws
 /// each one from what is printed on it, and `extracted` holds exactly those
 /// values ([printedSample]; a unit test checks they match the app).
-/// Photos and videos are illustrated placeholders (`seed:album:<species>:<n>`).
+/// Photos and videos are illustrated placeholders (`seed:album:<species>:<pet>:<n>`, drawn scenes from UI Design 6).
 void seedVault(Add add, DateTime now, SeedData data) {
   DateTime day(int ago, [int hour = 10, int minute = 0]) => DateTime(now.year, now.month, now.day - ago, hour, minute);
   Map<String, dynamic> pet(String id) => data['pets']![id]!;
@@ -65,13 +65,13 @@ void seedVault(Add add, DateTime now, SeedData data) {
   // days, so it shows "Expires soon"), his insurance policy, the lab report
   // and vet bill behind an open claim, and his licence.
   final brunoBooster = day(355);
-  doc('doc_bruno_rabies', 'pet_bruno', 'rabies_certificate', brunoBooster, title: 'Anti-rabies certificate', tags: ['rabies', '${brunoBooster.year}']);
+  doc('doc_bruno_rabies', 'pet_bruno', 'rabies_certificate', brunoBooster, title: 'Rabies certificate', tags: ['rabies', '${brunoBooster.year}']);
   doc('doc_bruno_dhppi', 'pet_bruno', 'dhppi_certificate', brunoBooster, title: 'DHPPi + Lepto certificate', tags: ['dhppi', '${brunoBooster.year}']);
   final brunoPolicyStart = day(300);
-  doc('doc_bruno_policy', 'pet_bruno', 'insurance_policy', brunoPolicyStart, title: 'Shield Pet Cover (sample) policy', tags: ['insurance', '${brunoPolicyStart.year}']);
+  doc('doc_bruno_policy', 'pet_bruno', 'insurance_policy', brunoPolicyStart, title: 'PawCover Gold policy', tags: ['insurance', '${brunoPolicyStart.year}']);
   final earVisit = day(41);
-  doc('doc_bruno_lab', 'pet_bruno', 'lab_report', earVisit, title: 'Complete blood count (CBC)', tags: ['lab', 'ear infection']);
-  doc('doc_bruno_invoice', 'pet_bruno', 'invoice', earVisit, title: 'Gulmohar Vet Studio bill', tags: ['vet bill', 'claim']);
+  doc('doc_bruno_lab', 'pet_bruno', 'lab_report', earVisit, title: 'Blood test report', tags: ['lab', 'ear infection']);
+  doc('doc_bruno_invoice', 'pet_bruno', 'invoice', earVisit, title: 'Invoice, Gulmohar', tags: ['vet bill', 'claim']);
   doc('doc_bruno_licence', 'pet_bruno', 'licence', day(200), title: 'Dog licence', tags: ['licence']);
 
   // Misty: rabies certificate, adoption papers, and a new lab report that
@@ -101,7 +101,7 @@ void seedVault(Add add, DateTime now, SeedData data) {
   // booster certificates and a Goa trip certificate that has expired.
   final maxRenewal = DateTime(now.year, now.month, now.day + 20);
   final maxPolicyStart = DateTime(maxRenewal.year - 1, maxRenewal.month, maxRenewal.day + 1);
-  doc('doc_max_policy', 'pet_max', 'insurance_policy', maxPolicyStart, title: 'Shield Pet Cover (sample) policy', tags: ['insurance']);
+  doc('doc_max_policy', 'pet_max', 'insurance_policy', maxPolicyStart, title: 'PawCover Senior policy', tags: ['insurance']);
   doc('doc_max_dhppi', 'pet_max', 'dhppi_certificate', day(240), title: 'DHPPi + Lepto certificate', tags: ['dhppi']);
   doc('doc_max_rabies', 'pet_max', 'rabies_certificate', day(240), title: 'Anti-rabies certificate', tags: ['rabies']);
   doc('doc_max_travel', 'pet_max', 'travel', day(150), title: 'Travel certificate (Goa trip)', tags: ['travel', 'Goa']);
@@ -153,7 +153,7 @@ void seedVault(Add add, DateTime now, SeedData data) {
   }
 
   add('insurance', 'ins_bruno', {
-    ...policy('pet_bruno', 'doc_bruno_policy', 'Comprehensive', brunoPolicyStart),
+    ...policy('pet_bruno', 'doc_bruno_policy', 'Gold', brunoPolicyStart),
     'claims': [
       {
         'id': 'clm_bruno_ear',
@@ -180,7 +180,7 @@ void seedVault(Add add, DateTime now, SeedData data) {
     ],
   });
   add('insurance', 'ins_max', {
-    ...policy('pet_max', 'doc_max_policy', 'Senior care', maxPolicyStart),
+    ...policy('pet_max', 'doc_max_policy', 'Senior', maxPolicyStart),
     'claims': [
       {
         'id': 'clm_max_joint',
@@ -231,9 +231,9 @@ void seedVault(Add add, DateTime now, SeedData data) {
     });
   }
 
-  // Active: Bruno's vaccine papers and lab report for a new vet, 7 days.
+  // Active: Bruno's blood test report for a new vet, 7 days.
   link('BrunoVetVisitDemoK7q2X', 'pet_bruno', {
-    'docIds': ['doc_bruno_rabies', 'doc_bruno_dhppi', 'doc_bruno_lab'],
+    'docIds': ['doc_bruno_lab'],
     'createdAt': day(2, 9, 30),
     'expiresAt': day(-5, 9, 30),
     'accessLog': [
@@ -285,6 +285,7 @@ void seedVault(Add add, DateTime now, SeedData data) {
     String? milestoneTitle,
     int durationSec = 0,
     String? by,
+    int? scene,
   }) {
     final p = pet(petId);
     final owner = p['ownerId'] as String;
@@ -295,7 +296,9 @@ void seedVault(Add add, DateTime now, SeedData data) {
       'petId': petId,
       'ownerId': owner,
       'type': type,
-      'url': media ? 'seed:album:${p['species']}:$n' : null,
+      // [scene] picks the drawing: 0 park, 1 beach, 2 festival, 3 home,
+      // 4 rain, 5 party, 6 bath, 7 night, 8 vet. Otherwise they take turns.
+      'url': media ? 'seed:album:${p['species']}:${petId.substring(4)}:${scene ?? n}' : null,
       'contentType': switch (type) {
         'video' => 'video/mp4',
         'photo' => 'image/jpeg',
@@ -326,27 +329,34 @@ void seedVault(Add add, DateTime now, SeedData data) {
     return DateTime(b.year + yearsAfterBirth, b.month, b.day, 16);
   }
 
-  // Bruno (17): puppy milestones, two birthdays, a beach trip exactly one
-  // year ago ("On this day"), and photos across recent months, some added
-  // by Rohan.
+  // Bruno (20): puppy milestones, two birthdays, a beach trip exactly one
+  // year ago ("On this day"), and photos across recent months as the design
+  // shows them (Diwali this month, the rains last month, his third birthday
+  // before that), some added by Rohan.
   final brunoBorn = birthday('pet_bruno');
-  memory('pet_bruno', after(brunoBorn, 45), 'Brave boy at his first vaccine', milestone: 'first_vaccine', albums: ['Puppy days']);
-  memory('pet_bruno', after(brunoBorn, 58), 'Bruno came home!', milestone: 'gotcha', fav: true, albums: ['Puppy days']);
-  memory('pet_bruno', after(brunoBorn, 100, 7), 'First walk around the block', milestone: 'first_walk', albums: ['Puppy days']);
+  final bruno3 = birthdayIn('pet_bruno', 3);
+  DateTime thisMonth(int back, int hour) => DateTime(now.year, now.month, (now.day - back).clamp(1, 28), hour);
+  DateTime lastMonth(int dayOfMonth, int hour) => DateTime(now.year, now.month - 1, dayOfMonth, hour);
+  memory('pet_bruno', after(brunoBorn, 45), 'Brave boy at his first vaccine', milestone: 'first_vaccine', albums: ['Puppy days'], scene: 8);
+  memory('pet_bruno', after(brunoBorn, 58), 'Bruno came home!', milestone: 'gotcha', fav: true, albums: ['Puppy days'], scene: 3);
+  memory('pet_bruno', after(brunoBorn, 100, 7), 'First walk around the block', milestone: 'first_walk', albums: ['Puppy days'], scene: 0);
   memory('pet_bruno', after(brunoBorn, 150), '', type: 'milestone', milestone: 'custom', milestoneTitle: 'Learned to sit and shake hands');
-  memory('pet_bruno', birthdayIn('pet_bruno', 2), 'Second birthday', milestone: 'birthday', albums: ['Birthdays']);
-  memory('pet_bruno', onDay(1, 8), 'First time at the beach in Gokarna', fav: true, albums: ['Beach days']);
-  memory('pet_bruno', onDay(1, 9), 'Chasing the waves', type: 'video', durationSec: 24, albums: ['Beach days']);
-  memory('pet_bruno', day(200, 18), 'Muddy paws after the rain');
-  memory('pet_bruno', day(150, 17), 'Learning to fetch');
-  memory('pet_bruno', day(120, 9), 'Sunday swim at the pool', albums: ['Beach days']);
-  memory('pet_bruno', day(80, 19), 'Playing with Misty', fav: true);
-  memory('pet_bruno', birthdayIn('pet_bruno', 3), 'Third birthday, cake from the pet bakery', milestone: 'birthday', fav: true, albums: ['Birthdays']);
-  memory('pet_bruno', day(38, 18), 'Rainy day zoomies', type: 'video', durationSec: 18, by: 'u_rohan');
-  memory('pet_bruno', day(23, 12), 'New red collar', fav: true);
-  memory('pet_bruno', day(9, 15), 'Nap after the bath');
-  memory('pet_bruno', day(2, 7), 'Morning walk in Cubbon Park', by: 'u_rohan');
-  memory('pet_bruno', day(0, 8), 'Breakfast face');
+  memory('pet_bruno', birthdayIn('pet_bruno', 2), 'Second birthday', milestone: 'birthday', albums: ['Birthdays'], scene: 5);
+  memory('pet_bruno', onDay(1, 9), 'A stop at the park on the way', fav: true, scene: 0);
+  memory('pet_bruno', onDay(1, 17), "Bruno's first beach day, Gokarna", type: 'video', durationSec: 24, albums: ['Beach days'], scene: 1);
+  memory('pet_bruno', day(200, 18), 'Muddy paws after the rain', scene: 4);
+  memory('pet_bruno', day(150, 17), 'Learning to fetch', scene: 0);
+  memory('pet_bruno', day(120, 9), 'Sunday swim at the pool', albums: ['Beach days'], scene: 1);
+  memory('pet_bruno', day(95, 19), 'Playing with Misty', fav: true, scene: 3);
+  memory('pet_bruno', after(bruno3, -9, 17), 'Chasing a ball at the park', scene: 0);
+  memory('pet_bruno', after(bruno3, -4, 8), 'Weekend at the beach', albums: ['Beach days'], scene: 1);
+  memory('pet_bruno', bruno3, 'Third birthday, cake from the pet bakery', milestone: 'birthday', fav: true, albums: ['Birthdays'], scene: 5);
+  memory('pet_bruno', lastMonth(4, 12), 'Brave at the ear check-up', type: 'video', durationSec: 18, by: 'u_rohan', scene: 8);
+  memory('pet_bruno', lastMonth(18, 22), 'Fast asleep after a long day', fav: true, scene: 7);
+  memory('pet_bruno', lastMonth(25, 18), 'Rainy day walk in his new bandana', scene: 4);
+  memory('pet_bruno', thisMonth(12, 9), 'Lazy afternoon at home', by: 'u_rohan', scene: 3);
+  memory('pet_bruno', thisMonth(9, 13), 'Nap after the bath', scene: 6);
+  memory('pet_bruno', thisMonth(6, 19), 'Diwali at home', fav: true, milestone: 'custom', milestoneTitle: 'Diwali at home', scene: 2);
 
   // Misty (5).
   memory('pet_misty', after(birthday('pet_misty'), 70), 'Tiny Misty on her first day home', milestone: 'gotcha', fav: true);
@@ -423,9 +433,9 @@ Map<String, dynamic> printedSample(String key, String petName, DateTime issuedOn
       ...vet,
     },
     'insurance_policy' => {
-      'insurer': 'Shield Pet Cover (sample)',
+      'insurer': 'PawCover',
       'policyNo': 'SAMPLE-PI-${20431 + petName.length}',
-      'cover': 100000,
+      'cover': 200000,
       'premium': 6499,
       'coverStart': on,
       'expiry': plusYear(on).subtract(const Duration(days: 1)),

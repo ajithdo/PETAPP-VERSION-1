@@ -4,6 +4,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../domain/shop_models.dart';
 import '../domain/shop_rules.dart';
+import '../../../core/theme/ph.dart';
 
 String categoryLabel(BuildContext context, String c) {
   final l = context.l10n;
@@ -25,39 +26,60 @@ String categoryLabel(BuildContext context, String c) {
   };
 }
 
+/// One-word category names for the round tiles on the Shop tab.
+String categoryShort(BuildContext context, String c) {
+  final l = context.l10n;
+  return switch (c) {
+    'food' => l.catShortFood,
+    'treats' => l.catShortTreats,
+    'toys' => l.catShortToys,
+    'grooming' => l.catShortGrooming,
+    'health_hygiene' => l.catShortHealthHygiene,
+    'beds' => l.catShortBeds,
+    'collars_leashes' => l.catShortCollarsLeashes,
+    'bowls_feeders' => l.catShortBowlsFeeders,
+    'litter_cat' => l.catShortLitterCat,
+    'bird_food_cages' => l.catShortBirdFoodCages,
+    'rabbit_care' => l.catShortRabbitCare,
+    'clothing' => l.catShortClothing,
+    'travel' => l.catShortTravel,
+    _ => categoryLabel(context, c),
+  };
+}
+
 IconData categoryIcon(String c) => switch (c) {
-      'food' => Icons.set_meal_rounded,
-      'treats' => Icons.cookie_rounded,
-      'toys' => Icons.sports_baseball_rounded,
-      'grooming' => Icons.shower_rounded,
-      'health_hygiene' => Icons.health_and_safety_rounded,
-      'beds' => Icons.bed_rounded,
-      'collars_leashes' => Icons.link_rounded,
-      'bowls_feeders' => Icons.rice_bowl_rounded,
-      'litter_cat' => Icons.cleaning_services_rounded,
-      'bird_food_cages' => Icons.flutter_dash_rounded,
-      'rabbit_care' => Icons.grass_rounded,
-      'clothing' => Icons.checkroom_rounded,
-      'travel' => Icons.luggage_rounded,
-      _ => Icons.shopping_bag_rounded,
+      'food' => Ph.bowlFood,
+      'treats' => Ph.bone,
+      'toys' => Ph.tennisBall,
+      'grooming' => Ph.scissors,
+      'health_hygiene' => Ph.firstAidKit,
+      'beds' => Ph.couch,
+      'collars_leashes' => Ph.dog,
+      'bowls_feeders' => Ph.bowlSteam,
+      'litter_cat' => Ph.cat,
+      'bird_food_cages' => Ph.bird,
+      'rabbit_care' => Ph.rabbit,
+      'clothing' => Ph.tShirt,
+      'travel' => Ph.suitcaseRolling,
+      _ => Ph.bag,
     };
 
 Color categoryColor(String c) => const {
-      'food': Color(0xFFF4A261),
-      'treats': Color(0xFFD6B98C),
-      'toys': Color(0xFF38BDF8),
-      'grooming': Color(0xFFF472B6),
-      'health_hygiene': Color(0xFF34D399),
-      'beds': Color(0xFF9B8AFB),
-      'collars_leashes': Color(0xFF0F766E),
-      'bowls_feeders': Color(0xFFF59E0B),
-      'litter_cat': Color(0xFF64748B),
-      'bird_food_cages': Color(0xFF22C55E),
-      'rabbit_care': Color(0xFF84CC16),
-      'clothing': Color(0xFFEC4899),
-      'travel': Color(0xFF0EA5E9),
+      'food': CategoryColors.amber,
+      'treats': CategoryColors.gold,
+      'toys': CategoryColors.sky,
+      'grooming': CategoryColors.rose,
+      'health_hygiene': CategoryColors.teal,
+      'beds': CategoryColors.plum,
+      'collars_leashes': CategoryColors.teal,
+      'bowls_feeders': CategoryColors.clay,
+      'litter_cat': CategoryColors.slate,
+      'bird_food_cages': CategoryColors.olive,
+      'rabbit_care': CategoryColors.olive,
+      'clothing': CategoryColors.rose,
+      'travel': CategoryColors.ocean,
     }[c] ??
-    const Color(0xFF0F766E);
+    CategoryColors.teal;
 
 String speciesName(BuildContext context, String s) {
   final l = context.l10n;
@@ -89,16 +111,16 @@ String sortLabel(BuildContext context, ProductSort s) {
 (String, ChipTone, IconData) orderStatusInfo(BuildContext context, String s) {
   final l = context.l10n;
   return switch (s) {
-    'placed' => (l.ordPlaced, ChipTone.info, Icons.receipt_long_rounded),
-    'packed' => (l.ordPacked, ChipTone.info, Icons.inventory_2_rounded),
-    'shipped' => (l.ordShipped, ChipTone.accent, Icons.local_shipping_rounded),
-    'out_for_delivery' => (l.ordOutForDelivery, ChipTone.accent, Icons.delivery_dining_rounded),
-    'delivered' => (l.ordDelivered, ChipTone.success, Icons.check_circle_rounded),
-    'cancelled' => (l.ordCancelled, ChipTone.neutral, Icons.cancel_rounded),
-    'return_requested' => (l.ordReturnRequested, ChipTone.warning, Icons.assignment_return_rounded),
-    'returned' => (l.ordReturned, ChipTone.neutral, Icons.assignment_returned_rounded),
-    'return_rejected' => (l.ordReturnRejected, ChipTone.error, Icons.block_rounded),
-    _ => (s, ChipTone.neutral, Icons.circle_outlined),
+    'placed' => (l.ordPlaced, ChipTone.info, Ph.receipt),
+    'packed' => (l.ordPacked, ChipTone.info, Ph.package),
+    'shipped' => (l.ordShipped, ChipTone.accent, Ph.truck),
+    'out_for_delivery' => (l.ordOutForDelivery, ChipTone.accent, Ph.moped),
+    'delivered' => (l.ordDelivered, ChipTone.success, Ph.checkCircleFill),
+    'cancelled' => (l.ordCancelled, ChipTone.neutral, Ph.xCircle),
+    'return_requested' => (l.ordReturnRequested, ChipTone.warning, Ph.arrowUUpLeft),
+    'returned' => (l.ordReturned, ChipTone.neutral, Ph.arrowUDownLeft),
+    'return_rejected' => (l.ordReturnRejected, ChipTone.error, Ph.prohibit),
+    _ => (s, ChipTone.neutral, Ph.circle),
   };
 }
 
@@ -142,28 +164,28 @@ String expenseCategoryLabel(BuildContext context, String c) {
 }
 
 IconData expenseIcon(String c) => switch (c) {
-      'vet' => Icons.local_hospital_rounded,
-      'grooming' => Icons.content_cut_rounded,
-      'training' => Icons.sports_rounded,
-      'boarding' => Icons.house_rounded,
-      'walking' => Icons.directions_walk_rounded,
-      'food' => Icons.set_meal_rounded,
-      'supplies' => Icons.shopping_bag_rounded,
-      'insurance' => Icons.health_and_safety_rounded,
-      _ => Icons.receipt_rounded,
+      'vet' => Ph.firstAid,
+      'grooming' => Ph.scissors,
+      'training' => Ph.graduationCap,
+      'boarding' => Ph.houseLine,
+      'walking' => Ph.personSimpleWalk,
+      'food' => Ph.bowlFood,
+      'supplies' => Ph.bag,
+      'insurance' => Ph.shieldPlus,
+      _ => Ph.receipt,
     };
 
 Color expenseColor(String c) => const {
-      'vet': Color(0xFF0F766E),
-      'grooming': Color(0xFFF472B6),
-      'training': Color(0xFF0EA5E9),
-      'boarding': Color(0xFF9B8AFB),
-      'walking': Color(0xFF34D399),
-      'food': Color(0xFFF4A261),
-      'supplies': Color(0xFFF59E0B),
-      'insurance': Color(0xFF6D5BD0),
+      'vet': CategoryColors.teal,
+      'grooming': CategoryColors.rose,
+      'training': CategoryColors.ocean,
+      'boarding': CategoryColors.plum,
+      'walking': CategoryColors.teal,
+      'food': CategoryColors.amber,
+      'supplies': CategoryColors.clay,
+      'insurance': CategoryColors.violet,
     }[c] ??
-    const Color(0xFF94A3B8);
+    CategoryColors.slate;
 
 String couponMessage(BuildContext context, CouponResult r, {int minOrder = 0}) {
   final l = context.l10n;
@@ -179,3 +201,15 @@ String couponMessage(BuildContext context, CouponResult r, {int minOrder = 0}) {
 
 /// Colour for the sale price.
 Color priceColor(BuildContext context) => context.paw.textPrimary;
+
+/// "7-11" → "7 to 11 AM"; "11-15" → "11 AM to 3 PM" (delivery slot chips).
+String windowShort(BuildContext context, String w) {
+  final parts = w.split('-');
+  if (parts.length != 2) return w;
+  final a = int.tryParse(parts[0]) ?? 0, b = int.tryParse(parts[1]) ?? 0;
+  final loc = MaterialLocalizations.of(context);
+  String full(int h) => loc.formatTimeOfDay(TimeOfDay(hour: h, minute: 0), alwaysUse24HourFormat: false).replaceFirst(':00', '');
+  final sameHalf = (a < 12) == (b < 12);
+  final from = sameHalf ? '${a % 12 == 0 ? 12 : a % 12}' : full(a);
+  return context.l10n.cartWindowShort(from, full(b));
+}

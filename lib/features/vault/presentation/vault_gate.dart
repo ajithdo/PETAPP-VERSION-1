@@ -9,6 +9,7 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/vault_lock.dart';
 import '../domain/pin_hash.dart';
+import '../../../core/theme/ph.dart';
 
 /// Wraps every vault screen: asks for fingerprint/face on Android and iOS,
 /// or the vault PIN (web and as a fallback); first time, the owner chooses
@@ -43,7 +44,7 @@ class _GateFrame extends StatelessWidget {
           child: SingleChildScrollView(
             padding: EdgeInsets.all(context.gutter),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 420),
+              constraints: const BoxConstraints(maxWidth: Sizes.emptyStateWidth),
               child: Column(mainAxisSize: MainAxisSize.min, children: children),
             ),
           ),
@@ -111,9 +112,9 @@ class _LockScreenState extends ConsumerState<_LockScreen> {
     String? message = _error;
     if (lockedOut) message = l.vaultLockedOut(state.lockedOutUntil!.difference(now).inSeconds + 1);
     return _GateFrame(children: [
-      const Illustration(Scene.vault, size: 110),
+      const _ArchLock(),
       const SizedBox(height: Space.md),
-      Semantics(header: true, child: Text(l.vaultLockedTitle, style: context.text.titleLarge, textAlign: TextAlign.center)),
+      Semantics(header: true, child: Text(l.vaultLockedTitle, style: context.text.headlineMedium, textAlign: TextAlign.center)),
       const SizedBox(height: Space.xs),
       Text(l.vaultLockedBody, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary), textAlign: TextAlign.center),
       const SizedBox(height: Space.lg),
@@ -133,12 +134,12 @@ class _LockScreenState extends ConsumerState<_LockScreen> {
       ),
       if (bio && bioOn) ...[
         const SizedBox(height: Space.md),
-        SecondaryButton(label: l.vaultUseBiometrics, icon: Icons.fingerprint_rounded, onPressed: _biometric),
+        SecondaryButton(label: l.vaultUseBiometrics, icon: Ph.fingerprint, onPressed: _biometric),
       ],
       const SizedBox(height: Space.sm),
       TextButton(onPressed: _forgot, child: Text(l.vaultForgotPin)),
       const SizedBox(height: Space.sm),
-      Text(l.vaultAutoLockNote, style: context.text.bodySmall, textAlign: TextAlign.center),
+      const _LockNote(),
     ]);
   }
 }
@@ -159,14 +160,14 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
     final bio = ref.watch(biometricAvailableProvider).value ?? false;
     final notifier = ref.read(vaultLockProvider.notifier);
     return _GateFrame(children: [
-      const Illustration(Scene.vault, size: 110),
+      const _ArchLock(),
       const SizedBox(height: Space.md),
-      Semantics(header: true, child: Text(l.vaultSetupTitle, style: context.text.titleLarge, textAlign: TextAlign.center)),
+      Semantics(header: true, child: Text(l.vaultSetupTitle, style: context.text.headlineMedium, textAlign: TextAlign.center)),
       const SizedBox(height: Space.xs),
       Text(bio ? l.vaultSetupBodyBio : l.vaultSetupBody,
           style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary), textAlign: TextAlign.center),
       const SizedBox(height: Space.lg),
-      Text(_first == null ? l.vaultChoosePin : l.vaultConfirmPin, style: context.text.titleSmall),
+      Text(_first == null ? l.vaultChoosePin : l.vaultConfirmPin, style: context.text.labelLarge),
       const SizedBox(height: Space.sm),
       PinPad(
         key: ValueKey(_first == null),
@@ -202,13 +203,78 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
           value: notifier.biometricsOn,
           onChanged: (v) => setState(() => notifier.setBiometrics(v)),
           title: Text(l.vaultBiometricsToggle),
-          secondary: const Icon(Icons.fingerprint_rounded),
+          secondary: const Icon(Ph.fingerprint),
         ),
       ],
       const SizedBox(height: Space.md),
-      Text(l.vaultAutoLockNote, style: context.text.bodySmall, textAlign: TextAlign.center),
+      const _LockNote(),
     ]);
   }
+}
+
+/// The vault's picture (from the UI Design 6 kit): a dark arched door on a
+/// pale marigold circle, with a marigold line inside it and a keyhole.
+class _ArchLock extends StatelessWidget {
+  const _ArchLock();
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return ExcludeSemantics(
+      child: CustomPaint(
+        size: const Size.square(Sizes.illustrationSm),
+        painter: VaultDoorPainter(wash: paw.accentContainer, door: PawColors.light.band, gold: paw.marigold),
+      ),
+    );
+  }
+}
+
+/// One digit of the PIN: a ring that fills with marigold. The two optional
+/// digits (a PIN can be 4 to 6 long) have a dashed ring until they're used.
+class _PinDot extends StatelessWidget {
+  const _PinDot({required this.filled, required this.optional});
+  final bool filled;
+  final bool optional;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return CustomPaint(
+      size: const Size.square(Sizes.pinDot),
+      painter: _PinDotPainter(fill: filled ? paw.marigold : null, ring: optional && !filled ? context.tint.line2 : paw.textPrimary, dashed: optional && !filled),
+    );
+  }
+}
+
+class _PinDotPainter extends CustomPainter {
+  _PinDotPainter({required this.fill, required this.ring, required this.dashed});
+  final Color? fill;
+  final Color ring;
+  final bool dashed;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = size.center(Offset.zero);
+    final r = size.shortestSide / 2 - Strokes.focus / 2;
+    if (fill != null) canvas.drawCircle(c, r, Paint()..color = fill!);
+    final line = Paint()
+      ..color = ring
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = Strokes.focus;
+    if (!dashed) {
+      canvas.drawCircle(c, r, line);
+      return;
+    }
+    // Six short strokes around the ring.
+    const n = 6;
+    const turn = 6.283185307179586 / n;
+    for (var i = 0; i < n; i++) {
+      canvas.drawArc(Rect.fromCircle(center: c, radius: r), i * turn, turn * 0.55, false, line);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_PinDotPainter o) => o.fill != fill || o.ring != ring || o.dashed != dashed;
 }
 
 /// Number pad for 4–6 digit PINs. Also takes digits, Backspace and Enter
@@ -293,21 +359,14 @@ class _PinPadState extends State<PinPad> {
           liveRegion: true,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             for (var i = 0; i < widget.maxLength; i++)
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 150),
-                margin: const EdgeInsets.symmetric(horizontal: 7),
-                width: 16,
-                height: 16,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: i < _pin.length ? context.colors.primary : Colors.transparent,
-                  border: Border.all(color: i < 4 || i < _pin.length ? context.colors.primary : context.paw.outline, width: 2),
-                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs),
+                child: _PinDot(filled: i < _pin.length, optional: i >= 4),
               ),
           ]),
         ),
         SizedBox(
-          height: 44,
+          height: TapTarget.min,
           child: Center(
             child: widget.error == null
                 ? null
@@ -321,9 +380,9 @@ class _PinPadState extends State<PinPad> {
         ])
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [for (final d in row) key(d)]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const SizedBox(width: 80, height: 80),
+          const SizedBox(width: Sizes.pinKeyCell, height: Sizes.pinKeyCell),
           key('0'),
-          _PadKey(icon: Icons.backspace_outlined, semantic: l.vaultPinBackspace, onTap: _back, enabled: widget.enabled),
+          _PadKey(icon: Ph.backspace, semantic: l.vaultPinBackspace, onTap: _back, enabled: widget.enabled),
         ]),
         const SizedBox(height: Space.md),
         PrimaryButton(
@@ -349,27 +408,34 @@ class _PadKey extends StatelessWidget {
     final bg = context.paw.surface;
     final fg = context.paw.textPrimary;
     return Padding(
-      padding: const EdgeInsets.all(6),
+      padding: const EdgeInsets.all(Space.xs + Space.xxs),
       child: Semantics(
         button: true,
         enabled: enabled,
         label: semantic,
         excludeSemantics: true,
-        child: Material(
-          color: bg,
-          shape: CircleBorder(side: BorderSide(color: context.paw.outline)),
+        // UI Design 6: arched keys, like small doorways: white, lifted by a
+        // soft shadow.
+        child: DecoratedBox(
+          decoration: icon != null ? const BoxDecoration() : ShapeDecoration(shape: archShape(Sizes.pinKey), shadows: Shadows.card(context.paw.ink)),
+          child: Material(
+          color: icon != null ? Colors.transparent : bg,
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          shape: archShape(Sizes.pinKey),
           child: InkWell(
-            customBorder: const CircleBorder(),
+            customBorder: archShape(Sizes.pinKey),
             onTap: enabled ? onTap : null,
             child: SizedBox(
-              width: 68,
-              height: 68,
+              width: Sizes.pinKey,
+              height: Sizes.pinKey * 1.08,
               child: Center(
                 child: icon != null
                     ? Icon(icon, color: enabled ? fg : context.paw.textSecondary)
                     : Text(label!, style: context.text.headlineSmall?.copyWith(color: enabled ? fg : context.paw.textSecondary)),
               ),
             ),
+          ),
           ),
         ),
       ),
@@ -388,7 +454,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
         Text(l.vaultLockSettings, style: ctx.text.titleMedium),
         const SizedBox(height: Space.sm),
         ListTile(
-          leading: const Icon(Icons.lock_rounded),
+          leading: const Icon(Ph.lockKey),
           title: Text(l.vaultLockNow),
           onTap: () {
             Navigator.pop(ctx);
@@ -396,7 +462,7 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
           },
         ),
         ListTile(
-          leading: const Icon(Icons.pin_rounded),
+          leading: const Icon(Ph.password),
           title: Text(l.vaultChangePin),
           onTap: () {
             Navigator.pop(ctx);
@@ -405,13 +471,13 @@ Future<void> showVaultLockSheet(BuildContext context, WidgetRef ref) {
         ),
         if (bio)
           SwitchListTile(
-            secondary: const Icon(Icons.fingerprint_rounded),
+            secondary: const Icon(Ph.fingerprint),
             value: notifier.biometricsOn,
             title: Text(l.vaultBiometricsToggle),
             onChanged: (v) => setState(() => notifier.setBiometrics(v)),
           ),
         const SizedBox(height: Space.sm),
-        InfoNote(l.vaultAutoLockNote, icon: Icons.timer_outlined),
+        InfoNote(l.vaultAutoLockNote, icon: Ph.timer),
       ]);
     });
   });
@@ -439,7 +505,7 @@ class _ChangePinScreenState extends ConsumerState<_ChangePinScreen> {
         child: SingleChildScrollView(
           padding: EdgeInsets.all(context.gutter),
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420),
+            constraints: const BoxConstraints(maxWidth: Sizes.emptyStateWidth),
             child: Column(children: [
               Text(prompt, style: context.text.titleMedium),
               const SizedBox(height: Space.md),
@@ -488,6 +554,24 @@ class _ChangePinScreenState extends ConsumerState<_ChangePinScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// "Locks itself after 2 minutes…" with a small lock before it.
+class _LockNote extends StatelessWidget {
+  const _LockNote();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.paw.textSecondary;
+    return Text.rich(
+      TextSpan(children: [
+        WidgetSpan(alignment: PlaceholderAlignment.middle, child: Icon(Ph.lockKey, size: IconSizes.xs, color: c)),
+        TextSpan(text: ' ${context.l10n.vaultLockNote}'),
+      ]),
+      style: context.text.bodySmall?.copyWith(color: c),
+      textAlign: TextAlign.center,
     );
   }
 }

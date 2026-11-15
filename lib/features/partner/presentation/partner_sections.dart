@@ -16,7 +16,9 @@ import '../../booking/domain/booking_rules.dart';
 import '../../booking/presentation/book_home_screen.dart';
 import '../../booking/presentation/booking_labels.dart';
 import '../../admin/admin_slots.dart' show HelpListBody;
+import '../../televet/presentation/vet_queue_section.dart';
 import 'partner_extra_sections.dart';
+import '../../../core/theme/ph.dart';
 
 /// The clinic or provider this partner account manages. Vets resolve to
 /// their clinic.
@@ -66,56 +68,288 @@ class _Dashboard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final lang = context.lang;
+    final paw = context.paw;
     final user = ref.watch(currentUserProvider)!;
     final bookings = ref.watch(partnerBookingsProvider).value ?? const <Booking>[];
     final now = DateTime.now();
     final today = bookings
         .where((b) => Fmt.sameDay(b.start, now) && (b.status == 'confirmed' || b.status == 'in_progress' || b.status == 'completed'))
-        .toList();
+        .toList()
+      ..sort((a, b) => a.start.compareTo(b.start));
     final requests = bookings.where((b) => b.status == 'pending').toList();
-    final month = bookings.where((b) => b.status == 'completed' && b.start.month == now.month && b.start.year == now.year);
+    final month = bookings.where((b) => b.status == 'completed' && b.start.month == now.month && b.start.year == now.year).toList();
     final earnings = month.fold<int>(0, (s, b) => s + b.payout);
-    return _needsPlace(
-      ref,
-      (place) => PageBody(
-        children: [
-          const SizedBox(height: Space.md),
-          Text(l.helloPartner(user.firstName), style: context.text.headlineSmall),
-          Text(place.name, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary)),
-          if (place.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
-          const SizedBox(height: Space.lg),
-          ResponsiveGrid(
-            minItemWidth: 200,
-            children: [
-              StatTile(label: l.todaysBookings, value: '${today.length}', icon: Icons.event_available_rounded),
-              StatTile(label: l.requestsWaiting, value: '${requests.length}', icon: Icons.inbox_rounded, color: requests.isEmpty ? null : context.paw.warning),
-              StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings), icon: Icons.account_balance_wallet_rounded),
-              StatTile(
-                label: l.rating,
-                value: place.reviewCount == 0 ? '–' : '★ ${place.rating.toStringAsFixed(1)}',
-                icon: Icons.star_rounded,
-                color: context.paw.accent,
-              ),
-            ],
+    final fees = month.fold<int>(0, (s, b) => s + b.commission);
+    final feePercent = earnings + fees == 0 ? 0 : (fees * 100 / (earnings + fees)).round();
+    final next = today.where((b) => b.start.isAfter(now)).firstOrNull;
+    final isVet = user.role == UserRole.vet;
+    return _needsPlace(ref, (place) {
+      final reviews = ref.watch(reviewsProvider(place.id)).value ?? const <Review>[];
+      final latest = reviews.where((r) => r.status == 'visible' && r.text.isNotEmpty).fold<Review?>(null, (a, b) => a == null || b.createdAt.isAfter(a.createdAt) ? b : a);
+      final todayList = <Widget>[
+        SecHead(l.todaysBookings, action: l.pCalendar, onAction: () => context.go('/partner/calendar')),
+        if (today.isEmpty)
+          PawPanel(child: Text(l.noBookingsToday, style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)))
+        else
+          PawCard(
+            padding: const EdgeInsets.symmetric(horizontal: Space.lg, vertical: Space.xs + Space.xxs),
+            child: PawList(children: [for (final b in today) _Appt(booking: b, showVet: !isVet)]),
           ),
-          if (requests.isNotEmpty) ...[
-            SectionHeader(l.requestsWaiting, action: l.seeAll, onAction: () => context.go('/partner/requests')),
-            for (final b in requests.take(3))
-              Padding(
-                padding: const EdgeInsets.only(bottom: Space.sm),
-                child: BookingCard(booking: b, partnerView: true),
-              ),
-          ],
-          SectionHeader(l.todaysBookings, action: l.pCalendar, onAction: () => context.go('/partner/calendar')),
-          if (today.isEmpty) PawCard(child: Text(l.noBookingsToday)),
-          for (final b in today)
-            Padding(
-              padding: const EdgeInsets.only(bottom: Space.sm),
-              child: BookingCard(booking: b, partnerView: true),
-            ),
+      ];
+      final side = <Widget>[
+        if (isVet)
+          const _QueuePeek()
+        else ...[
+          _WeekPanel(bookings: bookings),
+          if (user.role == UserRole.clinicAdmin) _EmergencyPanel(place: place),
+          if (latest != null) _ReviewPanel(review: latest),
         ],
+      ];
+      Widget stack(List<Widget> items) => Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              for (final (i, w) in items.indexed) ...[if (i > 0) const SizedBox(height: Space.md), w],
+            ],
+          );
+      return LayoutBuilder(builder: (context, box) {
+        final wide = box.maxWidth >= Space.readingWidth;
+        return PageBody(
+          children: [
+            const SizedBox(height: Space.sm),
+            Text(l.helloPartner(user.firstName), style: context.text.displaySmall),
+            const SizedBox(height: Space.xs),
+            Text(l.pPlaceAndDate(place.name, Fmt.weekdayDatePlain(now, lang)), style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),
+            if (place.status != 'approved') ...[const SizedBox(height: Space.md), InfoNote(l.waitingApproval, tone: ChipTone.warning)],
+            const SizedBox(height: Space.lg + Space.xs),
+            ResponsiveGrid(
+              minColumns: 2,
+              minItemWidth: 200,
+              children: [
+                StatTile(label: l.todaysBookings, value: '${today.length}', icon: Ph.calendarCheck, sub: next == null ? null : l.pNextAt(Fmt.time(next.start, lang))),
+                StatTile(
+                  label: l.requestsWaiting,
+                  value: '${requests.length}',
+                  icon: Ph.tray,
+                  color: requests.isEmpty ? null : paw.accent,
+                  sub: requests.isEmpty ? l.pAllAnswered : null,
+                ),
+                StatTile(label: l.earningsThisMonth, value: Fmt.inr(earnings, lang), icon: Ph.wallet, sub: !isVet && feePercent > 0 ? l.pAfterFee(feePercent) : null),
+                StatTile(
+                  label: l.rating,
+                  value: place.reviewCount == 0 ? '–' : place.rating.toStringAsFixed(1),
+                  icon: Ph.star,
+                  color: paw.accent,
+                  sub: place.reviewCount == 0 ? null : l.reviewsCount(place.reviewCount),
+                ),
+              ],
+            ),
+            if (requests.isNotEmpty) ...[
+              const SizedBox(height: Sizes.sectionGap),
+              SecHead(l.requestsWaiting, action: l.seeAll, onAction: () => context.go('/partner/requests')),
+              for (final b in requests.take(3))
+                Padding(
+                  padding: const EdgeInsets.only(bottom: Space.sm),
+                  child: BookingCard(booking: b, partnerView: true),
+                ),
+            ],
+            const SizedBox(height: Sizes.sectionGap),
+            if (wide)
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Expanded(flex: isVet ? 7 : 8, child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: todayList)),
+                const SizedBox(width: Space.md),
+                Expanded(flex: isVet ? 5 : 4, child: stack(side)),
+              ])
+            else ...[
+              ...todayList,
+              SizedBox(height: isVet ? Sizes.sectionGap : Space.xl),
+              stack(side),
+            ],
+            const SizedBox(height: Space.xl),
+          ],
+        );
+      });
+    });
+  }
+}
+
+/// One of today's bookings: the pet, whose it is and what for, then the
+/// time and its status at the end.
+class _Appt extends StatelessWidget {
+  const _Appt({required this.booking, required this.showVet});
+  final Booking booking;
+  final bool showVet;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final b = booking;
+    final (label, tone) = bookingStatus(context, b.status);
+    final time = Fmt.time(b.start, context.lang);
+    final what = [serviceLabel(context, b.serviceId), if (showVet && (b.vetName ?? '').isNotEmpty) b.vetName!].join(', ');
+    return Semantics(
+      button: true,
+      label: '$time. ${b.petName} ${l.pWithOwner(b.ownerName)}. $what. $label',
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: () => context.push('/partner/booking/${b.id}'),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: Space.md),
+          child: Row(children: [
+            PetAvatar(species: b.petSpecies, colorTag: b.raw['petColorTag'] as String?, photoUrl: b.raw['petPhotoUrl'] as String?, size: Sizes.stepper, ring: false),
+            const SizedBox(width: Space.md),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text.rich(TextSpan(children: [
+                  TextSpan(text: b.petName, style: context.text.labelLarge),
+                  TextSpan(text: ' ${l.pWithOwner(b.ownerName)}', style: context.text.bodyMedium?.copyWith(color: paw.textSecondary)),
+                ])),
+                Text(what, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+              ]),
+            ),
+            const SizedBox(width: Space.sm),
+            Column(crossAxisAlignment: CrossAxisAlignment.end, mainAxisSize: MainAxisSize.min, children: [
+              Text(time, style: context.text.labelLarge?.copyWith(fontWeight: FontWeight.w700, fontFeatures: const [FontFeature.tabularFigures()])),
+              const SizedBox(height: Space.xs),
+              StatusChip(label, tone: tone, icon: b.status == 'confirmed' || b.status == 'completed' ? Ph.checkCircleFill : null),
+            ]),
+          ]),
+        ),
       ),
     );
+  }
+}
+
+/// "This week": what each day brings in, Monday to Sunday, today in marigold.
+class _WeekPanel extends StatelessWidget {
+  const _WeekPanel({required this.bookings});
+  final List<Booking> bookings;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final today = Fmt.dayOnly(DateTime.now());
+    final monday = today.subtract(Duration(days: today.weekday - 1));
+    final days = [for (var i = 0; i < 7; i++) DateTime(monday.year, monday.month, monday.day + i)];
+    int of(DateTime d) => bookings
+        .where((b) => Fmt.sameDay(b.start, d) && (b.status == 'confirmed' || b.status == 'in_progress' || b.status == 'completed'))
+        .fold(0, (s, b) => s + b.payout);
+    final vals = [for (final d in days) of(d)];
+    final top = vals.fold(0, (a, b) => b > a ? b : a);
+    final total = vals.fold(0, (a, b) => a + b);
+    return Semantics(
+      label: '${l.pThisWeek}: ${Fmt.inr(total, context.lang)}',
+      excludeSemantics: true,
+      child: PawPanel(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Row(children: [
+            Expanded(child: Text(l.pThisWeek, style: context.text.labelLarge)),
+            Text(Fmt.inr(total, context.lang), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+          ]),
+          const SizedBox(height: Space.md),
+          SizedBox(
+            height: Sizes.weekBars,
+            child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              for (final (i, v) in vals.indexed) ...[
+                if (i > 0) const SizedBox(width: Space.sm + Space.xxs),
+                Expanded(
+                  child: FractionallySizedBox(
+                    heightFactor: top == 0 ? Sizes.weekBarMin : (v / top).clamp(Sizes.weekBarMin, 1.0),
+                    alignment: Alignment.bottomCenter,
+                    child: DecoratedBox(decoration: BoxDecoration(color: days[i] == today ? paw.marigold : context.tint.paper3, borderRadius: BorderRadius.circular(Radii.xs))),
+                  ),
+                ),
+              ],
+            ]),
+          ),
+          const SizedBox(height: Space.xs),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            for (final d in [days.first, days.last]) Text(Fmt.weekdayShort(d, context.lang), style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500)),
+          ]),
+        ]),
+      ),
+    );
+  }
+}
+
+/// Whether the clinic shows on the SOS page, and how.
+class _EmergencyPanel extends ConsumerWidget {
+  const _EmergencyPanel({required this.place});
+  final Place place;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final open = place.is24x7 || hoursOn(place.hours, DateTime.now()) != null && isOpenNow(place.hours, DateTime.now());
+    final sub = !place.sosListed ? l.pSosHidden : (place.is24x7 ? l.pSosOpen24 : (open ? l.pSosOpenNow : l.pSosClosedNow));
+    void set(bool v) => ref.read(placesRepositoryProvider).updatePlace(place, {'sosListed': v});
+    return PawPanel(
+      child: MergeSemantics(
+        child: Row(children: [
+          const PawTile(icon: Ph.asterisk, tone: Tone.red),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(l.pEmergencyListing, style: context.text.labelLarge),
+              Text(sub, style: context.text.bodySmall?.copyWith(color: context.paw.textSecondary)),
+            ]),
+          ),
+          const SizedBox(width: Space.sm),
+          Switch(value: place.sosListed, onChanged: set),
+        ]),
+      ),
+    );
+  }
+}
+
+/// The newest review, with a link to reply.
+class _ReviewPanel extends StatelessWidget {
+  const _ReviewPanel({required this.review});
+  final Review review;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final paw = context.paw;
+    final r = review;
+    return PawPanel(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Row(children: [
+          Semantics(
+            label: l.starsOutOf5(r.rating),
+            excludeSemantics: true,
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              for (var i = 1; i <= 5; i++) Icon(Ph.starFill, size: IconSizes.sm, color: i <= r.rating ? context.tint.star : context.tint.line2),
+            ]),
+          ),
+          const SizedBox(width: Space.sm),
+          Text(l.pNewReview, style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+        ]),
+        const SizedBox(height: Space.sm),
+        Text('"${r.text}"', style: context.text.bodyMedium, maxLines: 4, overflow: TextOverflow.ellipsis),
+        const SizedBox(height: Space.sm),
+        Row(children: [
+          Expanded(child: Text('${r.ownerName}, ${Fmt.dateShort(r.createdAt, context.lang)}', style: context.text.bodySmall?.copyWith(color: paw.textSecondary))),
+          if (r.reply == null) TextLink(l.reply, onTap: () => context.go('/partner/reviews')),
+        ]),
+      ]),
+    );
+  }
+}
+
+/// The vet's dashboard peek at the tele-vet queue: who's first in line.
+class _QueuePeek extends ConsumerWidget {
+  const _QueuePeek();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      SecHead(l.tvQueueTitle, action: l.pOpenQueue, onAction: () => context.go('/partner/televet')),
+      const VetQueuePeek(),
+    ]);
   }
 }
 
@@ -151,7 +385,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
         children: [
           const SizedBox(height: Space.md),
           SizedBox(
-            height: 64,
+            height: Sizes.dateStrip,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
@@ -176,7 +410,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
             runSpacing: Space.sm,
             children: [
               OutlinedButton.icon(
-                icon: Icon(isHoliday ? Icons.event_available_rounded : Icons.event_busy_rounded),
+                icon: Icon(isHoliday ? Ph.calendarCheck : Ph.calendarX),
                 label: Text(isHoliday ? l.removeHoliday : l.markHoliday),
                 onPressed: () {
                   final hs = place.holidays.where((h) => !Fmt.sameDay(h, _day)).toList();
@@ -185,7 +419,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
                 },
               ),
               OutlinedButton.icon(
-                icon: const Icon(Icons.block_rounded),
+                icon: const Icon(Ph.prohibit),
                 label: Text(l.blockTime),
                 onPressed: () async {
                   final t = await showTimePicker(context: context, initialTime: const TimeOfDay(hour: 13, minute: 0));
@@ -199,7 +433,7 @@ class _CalendarState extends ConsumerState<_Calendar> {
                   if (context.mounted) showToast(context, l.timeBlocked(Fmt.time(start, context.lang)));
                 },
               ),
-              OutlinedButton.icon(icon: const Icon(Icons.schedule_rounded), label: Text(l.workingHours), onPressed: () => _hours(context, place)),
+              OutlinedButton.icon(icon: const Icon(Ph.clock), label: Text(l.workingHours), onPressed: () => _hours(context, place)),
             ],
           ),
           SectionHeader(l.bookingsOn(Fmt.weekdayDate(_day, context.lang))),
@@ -304,7 +538,7 @@ class _Requests extends ConsumerWidget {
     final waiting = all.where((b) => b.status == 'suggested').toList();
     if (pending.isEmpty && waiting.isEmpty) return EmptyState(title: l.noRequestsPartner, scene: Scene.empty);
     return PageBody(
-      maxWidth: 800,
+      maxWidth: Space.readingWidth,
       children: [
         const SizedBox(height: Space.md),
         for (final b in pending)
@@ -339,10 +573,10 @@ class RequestCard extends ConsumerWidget {
         children: [
           Text('${b.petName} · ${b.ownerName}', style: context.text.titleMedium),
           Text('${serviceLabel(context, b.serviceId)} · ${Fmt.inr(b.total)}', style: context.text.bodySmall),
-          if (b.notes?.isNotEmpty == true) Padding(padding: const EdgeInsets.only(top: 4), child: Text('"${b.notes}"')),
+          if (b.notes?.isNotEmpty == true) Padding(padding: const EdgeInsets.only(top: Space.xs), child: Text('"${b.notes}"')),
           if (b.respondBy != null)
             Padding(
-              padding: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(top: Space.xs),
               child: Text(l.replyBefore(Fmt.time(b.respondBy!, context.lang)), style: context.text.bodySmall?.copyWith(color: context.paw.warning)),
             ),
           const SizedBox(height: Space.sm),
@@ -353,7 +587,7 @@ class RequestCard extends ConsumerWidget {
             children: [
               for (final t in b.proposedTimes)
                 ActionChip(
-                  avatar: Icon(Icons.check_circle_rounded, color: context.paw.success, size: 18),
+                  avatar: Icon(Ph.checkCircleFill, color: context.paw.success, size: IconSizes.chip),
                   label: Text(Fmt.dateTime(t, context.lang)),
                   onPressed: () async {
                     await repo.accept(b, t);
@@ -368,7 +602,7 @@ class RequestCard extends ConsumerWidget {
               Expanded(
                 child: SecondaryButton(
                   label: l.suggestTime,
-                  icon: Icons.schedule_send_rounded,
+                  icon: Ph.paperPlaneTilt,
                   onPressed: () async {
                     final d = await showDatePicker(
                       context: context,
@@ -388,7 +622,7 @@ class RequestCard extends ConsumerWidget {
               Expanded(
                 child: SecondaryButton(
                   label: l.decline,
-                  icon: Icons.close_rounded,
+                  icon: Ph.x,
                   onPressed: () async {
                     final ok = await confirmAction(context, title: l.declineRequestQ(b.petName), confirmLabel: l.decline);
                     if (ok) await repo.decline(b);
@@ -411,7 +645,7 @@ class _Services extends ConsumerWidget {
     return _needsPlace(
       ref,
       (place) => PageBody(
-        maxWidth: 800,
+        maxWidth: Space.readingWidth,
         children: [
           const SizedBox(height: Space.md),
           InfoNote(l.servicesHelp),
@@ -436,7 +670,7 @@ class _Services extends ConsumerWidget {
                       ),
                     ),
                     Text(Fmt.inr(s.price), style: context.text.titleMedium),
-                    const Icon(Icons.edit_rounded),
+                    const Icon(Ph.pencilSimple),
                   ],
                 ),
               ),
@@ -515,14 +749,14 @@ class _Staff extends ConsumerWidget {
     return _needsPlace(ref, (place) {
       final vets = ref.watch(vetsProvider(place.id)).value ?? const <Vet>[];
       return PageBody(
-        maxWidth: 800,
+        maxWidth: Space.readingWidth,
         children: [
           const SizedBox(height: Space.md),
           for (final v in vets)
             ListTile(
               leading: CircleAvatar(
                 backgroundColor: context.paw.primaryContainer,
-                child: Icon(Icons.medical_services_rounded, color: context.colors.primary),
+                child: Icon(Ph.firstAidKit, color: context.colors.primary),
               ),
               title: Text(v.name),
               subtitle: Text('${v.qualification}\n${l.regNo(v.regNo)}'),
@@ -532,7 +766,7 @@ class _Staff extends ConsumerWidget {
           const SizedBox(height: Space.md),
           SecondaryButton(
             label: l.addVet,
-            icon: Icons.person_add_rounded,
+            icon: Ph.userPlus,
             onPressed: () async {
               final name = TextEditingController();
               final reg = TextEditingController();
@@ -581,7 +815,7 @@ class _PartnerReviews extends ConsumerWidget {
       final reviews = ref.watch(reviewsProvider(place.id)).value ?? const <Review>[];
       if (reviews.isEmpty) return EmptyState(title: l.noReviewsYet);
       return PageBody(
-        maxWidth: 800,
+        maxWidth: Space.readingWidth,
         children: [
           const SizedBox(height: Space.md),
           for (final r in reviews)
@@ -607,7 +841,7 @@ class _PartnerReviews extends ConsumerWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton.icon(
-                          icon: const Icon(Icons.reply_rounded),
+                          icon: const Icon(Ph.arrowBendUpLeft),
                           label: Text(l.reply),
                           onPressed: () async {
                             final c = TextEditingController();
@@ -645,17 +879,18 @@ class _Payouts extends ConsumerWidget {
     final total = done.fold<int>(0, (s, b) => s + b.payout);
     final commission = done.fold<int>(0, (s, b) => s + b.commission);
     return PageBody(
-      maxWidth: 900,
+      maxWidth: Space.wideWidth,
       children: [
         const SizedBox(height: Space.md),
         DemoBanner(l.demoPayoutsNote),
         const SizedBox(height: Space.md),
         ResponsiveGrid(
+          minColumns: 2,
           minItemWidth: 220,
           children: [
-            StatTile(label: l.totalPayouts, value: Fmt.inr(total), icon: Icons.account_balance_rounded),
-            StatTile(label: l.platformCommission, value: Fmt.inr(commission), icon: Icons.percent_rounded),
-            StatTile(label: l.completedBookings, value: '${done.length}', icon: Icons.task_alt_rounded),
+            StatTile(label: l.totalPayouts, value: Fmt.inr(total), icon: Ph.bank),
+            StatTile(label: l.platformCommission, value: Fmt.inr(commission), icon: Ph.percent),
+            StatTile(label: l.completedBookings, value: '${done.length}', icon: Ph.checkCircle),
           ],
         ),
         SectionHeader(l.payoutHistory),
@@ -669,7 +904,7 @@ class _Payouts extends ConsumerWidget {
                   title: Text('${b.petName} · ${serviceLabel(context, b.serviceId)}'),
                   subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text('${Fmt.date(b.start, context.lang)} · ${l.commissionLine(Fmt.inr(b.commission))}'),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: Space.xs),
                     StatusChip(
                       b.start.isBefore(DateTime.now().subtract(const Duration(days: 3))) ? l.settled : l.payoutPending,
                       tone: b.start.isBefore(DateTime.now().subtract(const Duration(days: 3))) ? ChipTone.success : ChipTone.warning,
@@ -693,7 +928,7 @@ class _Profile extends ConsumerWidget {
     return _needsPlace(
       ref,
       (place) => PageBody(
-        maxWidth: 800,
+        maxWidth: Space.readingWidth,
         children: [
           const SizedBox(height: Space.md),
           PawCard(
@@ -718,9 +953,9 @@ class _Profile extends ConsumerWidget {
               children: [
                 for (final d in ((place.raw['kycDocs'] as List?) ?? const []).cast<String>())
                   ListTile(
-                    leading: const Icon(Icons.description_rounded),
+                    leading: const Icon(Ph.fileText),
                     title: Text(d),
-                    trailing: Icon(Icons.verified_rounded, color: context.paw.success),
+                    trailing: Icon(Ph.sealCheckFill, color: context.paw.success),
                   ),
               ],
             ),
@@ -728,7 +963,7 @@ class _Profile extends ConsumerWidget {
           const SizedBox(height: Space.sm),
           SecondaryButton(
             label: l.uploadKyc,
-            icon: Icons.upload_file_rounded,
+            icon: Ph.fileArrowUp,
             onPressed: () async {
               final pick = await pickImage(context, ImageSource.gallery);
               if (pick == null) return;
@@ -760,10 +995,16 @@ class _Emergency extends ConsumerWidget {
     return _needsPlace(ref, (place) {
       final phone = TextEditingController(text: place.emergencyPhone ?? '');
       return PageBody(
-        maxWidth: 720,
+        maxWidth: Space.formWidth,
         children: [
           const SizedBox(height: Space.md),
           InfoNote(l.emergencySettingsHelp),
+          SwitchListTile(
+            value: place.sosListed,
+            onChanged: (v) => ref.read(placesRepositoryProvider).updatePlace(place, {'sosListed': v}),
+            title: Text(l.pEmergencyListing),
+            subtitle: Text(l.pEmergencyListingHelp),
+          ),
           SwitchListTile(
             value: place.is24x7,
             onChanged: (v) => ref.read(placesRepositoryProvider).updatePlace(place, {
@@ -816,7 +1057,7 @@ class PartnerBookingActions extends ConsumerWidget {
         if ((b.status == 'in_progress' || b.status == 'confirmed') && (b.kind == 'walker' || b.kind == 'boarder' || b.kind == 'groomer'))
           SecondaryButton(
             label: l.sendPhotoUpdate,
-            icon: Icons.add_a_photo_rounded,
+            icon: Ph.cameraPlus,
             onPressed: () async {
               final text = TextEditingController(text: l.defaultUpdateText(b.petName));
               final pick = await pickImage(context, ImageSource.gallery);
@@ -826,7 +1067,7 @@ class PartnerBookingActions extends ConsumerWidget {
                     .read(storageServiceProvider)
                     .upload(pick.bytes, path: 'users/${ref.read(currentUserProvider)!.uid}/updates/${pick.name}', contentType: 'image/jpeg');
               }
-              await repo.addUpdate(b, text.text, url ?? 'seed:album:${b.petSpecies}:${DateTime.now().second}');
+              await repo.addUpdate(b, text.text, url ?? 'seed:album:${b.petSpecies}:${b.petId.replaceFirst('pet_', '')}:${DateTime.now().second}');
               if (context.mounted) showToast(context, l.updateSent(b.ownerName.split(' ').first));
             },
           ),

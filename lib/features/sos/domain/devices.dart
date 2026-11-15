@@ -1,5 +1,5 @@
 /// Connected devices (spec 7.13): device records, safe zones and the demo
-/// readings that make Version 1 feel alive. Real vendors plug in behind
+/// readings that make DEMO VERSION 1 feel alive. Real vendors plug in behind
 /// DeviceProvider (lib/features/sos/data/device_provider.dart).
 ///
 /// Pure Dart: shared by the app and the unit tests.

@@ -1,4 +1,4 @@
-/// Demo data for Version 1 (spec section 12). Pure Dart, no Flutter imports:
+/// Demo data for DEMO VERSION 1 (spec section 12). Pure Dart, no Flutter imports:
 /// used by the standalone demo (lib/core/demo/demo_store.dart) and by the
 /// emulator seed tool (tools/seed/seed.dart).
 ///
@@ -16,7 +16,7 @@ typedef SeedData = Map<String, Map<String, Map<String, dynamic>>>;
 
 class DemoSeed {
   /// Bump when the seed changes so saved standalone demo data is replaced.
-  static const version = 13;
+  static const version = 16;
 
   static SeedData build(DateTime now) {
     final data = <String, Map<String, Map<String, dynamic>>>{};
