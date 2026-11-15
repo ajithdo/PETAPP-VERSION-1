@@ -107,6 +107,18 @@ describe('plan expiry and account deletion (Firestore emulator)', { skip: !emula
     assert.equal(notes.docs[0]?.data().title, 'మీ Plus ట్రయల్ ముగిసింది');
   });
 
+  it('a Plus member changes monthly or yearly for the next renewal; others cannot', async () => {
+    await db.collection('users').doc('x_period').set({ name: 'M', plan: 'plus', planRenewsAt: new Date(now.getTime() + 20 * day), planPeriod: 'monthly' });
+    await db.collection('users').doc('x_period_free').set({ name: 'F', plan: 'free' });
+    await db.collection('users').doc('x_period_ended').set({ name: 'E', plan: 'plus', planRenewsAt: new Date(now.getTime() - day), planPeriod: 'monthly' });
+    assert.deepEqual(await m.changePlanPeriod('x_period', true, now), { planPeriod: 'yearly' });
+    const u = (await db.collection('users').doc('x_period').get()).data()!;
+    assert.equal(u.planPeriod, 'yearly');
+    assert.equal(u.planRenewsAt.toDate().getTime(), now.getTime() + 20 * day, 'nothing charged now; the date stays');
+    await assert.rejects(m.changePlanPeriod('x_period_free', true, now));
+    await assert.rejects(m.changePlanPeriod('x_period_ended', true, now));
+  });
+
   it('deleting an account removes personal records and keeps money records anonymised', async () => {
     await db.collection('users').doc('x_gone').set({ name: 'Gone', plan: 'free' });
     await db.collection('pets').doc('x_pet').set({ ownerId: 'x_gone', name: 'Tommy' });

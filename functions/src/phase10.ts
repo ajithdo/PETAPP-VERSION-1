@@ -328,16 +328,18 @@ export const startTrial = onCall(async (req) => {
 });
 
 /** Monthly or yearly from the next renewal. Members only; nothing is charged now. */
-export const setPlanPeriod = onCall(async (req) => {
-  const uid = requireUser(req);
-  const yearly = req.data?.yearly === true;
+export const setPlanPeriod = onCall(async (req) => changePlanPeriod(requireUser(req), req.data?.yearly === true, new Date()));
+
+/** Only a member whose paid period is still running can change it. */
+export async function changePlanPeriod(uid: string, yearly: boolean, now: Date): Promise<{ planPeriod: string }> {
   const ref = db.collection('users').doc(uid);
   const u = (await ref.get()).data() ?? {};
   const renews = toDate(u.planRenewsAt);
-  if (u.plan !== 'plus' || (renews && renews <= new Date())) throw new HttpsError('failed-precondition', 'not-plus');
-  await ref.update({ planPeriod: yearly ? 'yearly' : 'monthly' });
-  return { planPeriod: yearly ? 'yearly' : 'monthly' };
-});
+  if (u.plan !== 'plus' || (renews && renews <= now)) throw new HttpsError('failed-precondition', 'not-plus');
+  const planPeriod = yearly ? 'yearly' : 'monthly';
+  await ref.update({ planPeriod });
+  return { planPeriod };
+}
 
 /** Called after the (demo) payment succeeded. The price is taken from config, not the app. */
 export const buyPlus = onCall(async (req) => {
