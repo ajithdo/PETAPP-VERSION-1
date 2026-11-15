@@ -255,32 +255,34 @@ class _CartScreenState extends ConsumerState<CartScreen> {
     final l = context.l10n;
     final paw = context.paw;
     if (_applied != null && price.coupon?.result == CouponResult.ok) {
-      // The code in a field-shaped box, a green "Applied" tag and Remove.
+      // The code in a field-shaped box, a green "Applied" tag and Remove
+      // (on a second line with big text).
+      final box = Container(
+        constraints: const BoxConstraints(minHeight: Sizes.field),
+        padding: const EdgeInsets.symmetric(horizontal: Space.lg),
+        decoration: BoxDecoration(
+          color: paw.surface,
+          borderRadius: BorderRadius.circular(Radii.lg),
+          border: Border.all(color: context.tint.line2, width: Strokes.strong),
+        ),
+        child: Row(children: [
+          Icon(Ph.ticket, size: IconSizes.md, color: paw.textPrimary),
+          const SizedBox(width: Space.md),
+          Expanded(child: ExcludeSemantics(child: Text(_applied!.code, style: context.text.labelLarge, maxLines: 1, overflow: TextOverflow.ellipsis))),
+        ]),
+      );
+      final tag = PawTag(l.cartApplied, kind: TagKind.green, icon: Ph.checkCircleFill);
+      final remove = TextLink(l.remove, onTap: _removeCoupon);
       return Semantics(
         container: true,
         label: l.couponSaved(_applied!.code, Fmt.inr(price.discount)),
-        child: Row(children: [
-          Expanded(
-            child: Container(
-              constraints: const BoxConstraints(minHeight: Sizes.field),
-              padding: const EdgeInsets.symmetric(horizontal: Space.lg),
-              decoration: BoxDecoration(
-                color: paw.surface,
-                borderRadius: BorderRadius.circular(Radii.lg),
-                border: Border.all(color: context.tint.line2, width: Strokes.strong),
-              ),
-              child: Row(children: [
-                Icon(Ph.ticket, size: IconSizes.md, color: paw.textPrimary),
-                const SizedBox(width: Space.md),
-                Expanded(child: ExcludeSemantics(child: Text(_applied!.code, style: context.text.labelLarge, maxLines: 1, overflow: TextOverflow.ellipsis))),
-              ]),
-            ),
-          ),
-          const SizedBox(width: Space.md),
-          PawTag(l.cartApplied, kind: TagKind.green, icon: Ph.checkCircleFill),
-          const SizedBox(width: Space.md),
-          TextLink(l.remove, onTap: _removeCoupon),
-        ]),
+        child: MediaQuery.textScalerOf(context).scale(1) > 1.3
+            ? Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                box,
+                const SizedBox(height: Space.sm),
+                Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.center, spacing: Space.md, runSpacing: Space.sm, children: [tag, remove]),
+              ])
+            : Row(children: [Expanded(child: box), const SizedBox(width: Space.md), tag, const SizedBox(width: Space.md), remove]),
       );
     }
     final check = price.coupon;

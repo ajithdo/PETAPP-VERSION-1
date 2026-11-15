@@ -71,7 +71,7 @@ void main() {
       home: const Scaffold(body: GendaBand(petName: 'Bruno', photo: SizedBox(), done: 1, total: 3, streakDays: 30)),
     ));
     await tester.pumpAndSettle();
-    expect(find.text('30-day streak'), findsOneWidget);
+    expect(find.text('30 days in a row'), findsOneWidget);
   });
 
   testWidgets('Telugu, 200% text, 360 px: stacks without overflowing', (tester) async {

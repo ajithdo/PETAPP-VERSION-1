@@ -318,14 +318,15 @@ class _QuickActions extends ConsumerWidget {
         badge: msgs,
         onPressed: () => context.push('/messages'),
       ),
-      const SizedBox(width: Space.sm),
+      // 8 px between the circles (each has 2 px of touch area around it).
+      const SizedBox(width: Space.xs),
       PawIconButton(
         icon: Ph.bell,
         tooltip: l.notifications,
         badge: notes,
         onPressed: () => context.push('/notifications'),
       ),
-      const SizedBox(width: Space.xs),
+      const SizedBox(width: Space.xxs),
       SosButton(onActivate: () => openSos(context, ref)),
     ]);
   }

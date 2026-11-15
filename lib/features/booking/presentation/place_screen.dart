@@ -313,13 +313,15 @@ class _ReviewsState extends ConsumerState<_Reviews> {
           PawCard(
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Column(children: [
-                  Text(place.rating.toStringAsFixed(1), style: context.text.displaySmall?.copyWith(height: 1)),
-                  const SizedBox(height: Space.xs),
-                  RatingStars(place.rating.round()),
-                  const SizedBox(height: Space.xxs),
-                  Text(l.verifiedVisits(place.reviewCount), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
-                ]),
+                Flexible(
+                  child: Column(children: [
+                    Text(place.rating.toStringAsFixed(1), style: context.text.displaySmall?.copyWith(height: TypeScale.tightLineHeight)),
+                    const SizedBox(height: Space.xs),
+                    FittedBox(fit: BoxFit.scaleDown, child: RatingStars(place.rating.round())),
+                    const SizedBox(height: Space.xxs),
+                    Text(l.verifiedVisits(place.reviewCount), style: context.text.bodySmall?.copyWith(color: paw.textSecondary), textAlign: TextAlign.center),
+                  ]),
+                ),
                 const SizedBox(width: Space.lg + Space.xs),
                 Expanded(
                   child: Column(children: [

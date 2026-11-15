@@ -696,6 +696,12 @@ class TypeScale {
 
   /// Line height for big numbers stacked tight (date squares).
   static const double tightLineHeight = 1.0;
+
+  /// Two-line product names on small tiles.
+  static const double snugLineHeight = 1.3;
+
+  /// A number in the heading cut on the pass card (13 px on a 24 px line).
+  static const double passValueLineHeight = 24 / 13;
 }
 
 /// 4 px spacing grid.
@@ -835,6 +841,9 @@ class Sizes {
 
   /// Minus and plus on a quantity pill.
   static const double stepper = 40;
+
+  /// The ring in the corner of the Plus card (a 12rem circle).
+  static const double plusRing = 96;
 
   /// The week's bars on a partner dashboard, and the least a bar shows.
   static const double weekBars = 36;

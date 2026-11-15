@@ -274,7 +274,7 @@ class _BuyAgainTile extends ConsumerWidget {
           const SizedBox(width: Space.md),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min, children: [
-              Text(short, style: context.text.labelMedium?.copyWith(height: 1.3), maxLines: 2, overflow: TextOverflow.ellipsis),
+              Text(short, style: context.text.labelMedium?.copyWith(height: TypeScale.snugLineHeight), maxLines: 2, overflow: TextOverflow.ellipsis),
               Text(Fmt.inr(p.price), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
             ]),
           ),

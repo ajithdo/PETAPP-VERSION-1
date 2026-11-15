@@ -238,7 +238,7 @@ class PassRow extends StatelessWidget {
         FittedBox(
           fit: BoxFit.scaleDown,
           alignment: Alignment.centerLeft,
-          child: Text(value, maxLines: 1, style: (mono ? context.text.bodySmall?.copyWith(fontFamily: FontFamilies.heading, height: 24 / 13) : context.text.titleMedium)?.copyWith(color: c.fg, fontWeight: FontWeight.w700)),
+          child: Text(value, maxLines: 1, style: (mono ? context.text.bodySmall?.copyWith(fontFamily: FontFamilies.heading, height: TypeScale.passValueLineHeight) : context.text.titleMedium)?.copyWith(color: c.fg, fontWeight: FontWeight.w700)),
         ),
       ]),
     );

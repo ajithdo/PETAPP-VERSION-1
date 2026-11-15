@@ -223,52 +223,10 @@ class _ArchLock extends StatelessWidget {
     return ExcludeSemantics(
       child: CustomPaint(
         size: const Size.square(Sizes.illustrationSm),
-        painter: _ArchLockPainter(wash: paw.accentContainer, door: PawColors.light.band, gold: paw.marigold),
+        painter: VaultDoorPainter(wash: paw.accentContainer, door: PawColors.light.band, gold: paw.marigold),
       ),
     );
   }
-}
-
-class _ArchLockPainter extends CustomPainter {
-  _ArchLockPainter({required this.wash, required this.door, required this.gold});
-  final Color wash;
-  final Color door;
-  final Color gold;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Drawn in the kit's 120 × 120 box.
-    canvas.scale(size.shortestSide / 120);
-    final dark = Paint()..color = door;
-    final g = Paint()..color = gold;
-    canvas.drawCircle(const Offset(60, 62), 54, Paint()..color = wash);
-    canvas.drawPath(
-      Path()
-        ..moveTo(30, 104)
-        ..lineTo(30, 56)
-        ..arcToPoint(const Offset(90, 56), radius: const Radius.circular(30))
-        ..lineTo(90, 104)
-        ..close(),
-      dark,
-    );
-    canvas.drawPath(
-      Path()
-        ..moveTo(38, 104)
-        ..lineTo(38, 57)
-        ..arcToPoint(const Offset(82, 57), radius: const Radius.circular(22))
-        ..lineTo(82, 104),
-      Paint()
-        ..color = gold
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2.5,
-    );
-    canvas.drawCircle(const Offset(60, 68), 7, g);
-    canvas.drawPath(Path()..moveTo(57, 72)..lineTo(63, 72)..lineTo(65.5, 86)..lineTo(54.5, 86)..close(), g);
-    canvas.drawRRect(RRect.fromRectAndRadius(const Rect.fromLTWH(22, 102, 76, 6), const Radius.circular(3)), dark);
-  }
-
-  @override
-  bool shouldRepaint(_ArchLockPainter o) => o.wash != wash || o.door != door || o.gold != gold;
 }
 
 /// One digit of the PIN: a ring that fills with marigold. The two optional

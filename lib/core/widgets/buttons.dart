@@ -139,7 +139,8 @@ class PawIconButton extends StatelessWidget {
         minimumSize: const Size.square(Sizes.topControl),
         fixedSize: const Size.square(Sizes.topControl),
         padding: EdgeInsets.zero,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        // The circle is 44 px; the touch area around it is the full 48.
+        tapTargetSize: MaterialTapTargetSize.padded,
       ),
       icon: Badge.count(
         count: n,

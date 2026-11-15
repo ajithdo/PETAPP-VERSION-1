@@ -142,7 +142,7 @@ class ProductCard extends ConsumerWidget {
           ),
           const SizedBox(height: Space.sm),
           Text(p.brand, style: context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500), maxLines: 1, overflow: TextOverflow.ellipsis),
-          Text(p.name, style: context.text.labelMedium?.copyWith(height: 1.3), maxLines: 2, overflow: TextOverflow.ellipsis),
+          Text(p.name, style: context.text.labelMedium?.copyWith(height: TypeScale.snugLineHeight), maxLines: 2, overflow: TextOverflow.ellipsis),
           const SizedBox(height: Space.xs),
           PriceTag(price: p.price, mrp: p.mrp),
           if (wide && !p.isAffiliate && p.inStock) ...[
@@ -227,30 +227,36 @@ class QtyStepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    // A pill with minus, the count and plus (UI Design 6): 40 px high.
+    // A pill with minus, the count and plus (UI Design 6): 40 px high to
+    // look at, with full 48 px touch areas for minus and plus.
     Widget step(IconData icon, String tip, VoidCallback? onTap) => IconButton(
           tooltip: tip,
           icon: Icon(icon, size: IconSizes.sm),
           padding: EdgeInsets.zero,
-          constraints: const BoxConstraints.tightFor(width: Sizes.stepper, height: Sizes.stepper),
-          style: IconButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+          constraints: const BoxConstraints.tightFor(width: TapTarget.min, height: TapTarget.min),
           onPressed: onTap,
         );
-    return Container(
-      decoration: BoxDecoration(border: Border.all(color: context.tint.line2, width: Strokes.strong), borderRadius: BorderRadius.circular(Radii.full)),
-      child: Row(mainAxisSize: MainAxisSize.min, children: [
+    return Stack(alignment: Alignment.center, children: [
+      Positioned.fill(
+        top: (TapTarget.min - Sizes.stepper) / 2,
+        bottom: (TapTarget.min - Sizes.stepper) / 2,
+        child: DecoratedBox(
+          decoration: BoxDecoration(border: Border.all(color: context.tint.line2, width: Strokes.strong), borderRadius: BorderRadius.circular(Radii.full)),
+        ),
+      ),
+      Row(mainAxisSize: MainAxisSize.min, children: [
         step(qty <= 1 ? Ph.trash : Ph.minus, qty <= 1 ? l.shopRemoveItem(itemName) : l.shopLessOf(itemName), () => onChanged(qty - 1)),
         Semantics(
           label: l.shopQtySemantics(qty),
           excludeSemantics: true,
           child: ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: Space.xl - Space.xs),
+            constraints: const BoxConstraints(minWidth: Space.md),
             child: Text('$qty', style: context.text.labelLarge?.copyWith(fontWeight: FontWeight.w700, fontFeatures: const [FontFeature.tabularFigures()]), textAlign: TextAlign.center),
           ),
         ),
         step(Ph.plus, l.shopMoreOf(itemName), qty >= max ? null : () => onChanged(qty + 1)),
       ]),
-    );
+    ]);
   }
 }
 

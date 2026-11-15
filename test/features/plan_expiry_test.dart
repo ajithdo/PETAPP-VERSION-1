@@ -8,7 +8,8 @@ import 'package:pawsetu/features/plans/data/plan_expiry.dart';
 import 'package:pawsetu/features/plans/domain/plan_rules.dart';
 
 /// The standalone demo's stand-in for the nightly plan job. Demo data made on
-/// 14 Oct 2026 has Priya (monthly) and Arjun (yearly) renewing on 6 Nov 2026.
+/// 14 Oct 2026 has Priya (yearly, as in UI Design 6) and Arjun (monthly)
+/// renewing on 6 Nov 2026.
 void main() {
   final made = DateTime(2026, 10, 14);
   final renews = DateTime(2026, 11, 6);
@@ -44,20 +45,20 @@ void main() {
 
       expect(await runPlanExpiry(db, now), 2);
 
-      final priya = await user('u_priya');
-      expect(priya.effectivePlanAt(now), 'plus');
-      expect(priya.planRenewsAt, DateTime(2026, 12, 6));
-      final paid = await renewals('u_priya');
+      final arjun = await user('u_arjun');
+      expect(arjun.effectivePlanAt(now), 'plus');
+      expect(arjun.planRenewsAt, DateTime(2026, 12, 6));
+      final paid = await renewals('u_arjun');
       expect(paid, hasLength(1));
       expect(paid.single['amount'], 99);
       expect(paid.single['period'], 'monthly');
       expect(paid.single['demo'], isTrue);
       expect(parseDate(paid.single['at']), renews);
 
-      final arjun = await user('u_arjun');
-      expect(arjun.effectivePlanAt(now), 'plus');
-      expect(arjun.planRenewsAt, DateTime(2027, 11, 6));
-      expect((await renewals('u_arjun')).single['amount'], 799);
+      final priya = await user('u_priya');
+      expect(priya.effectivePlanAt(now), 'plus');
+      expect(priya.planRenewsAt, DateTime(2027, 11, 6));
+      expect((await renewals('u_priya')).single['amount'], 799);
 
       // Ravi is on the free plan and stays there.
       expect((await user('u_ravi')).plan, 'free');
@@ -66,15 +67,15 @@ void main() {
     test('months later it catches up on every missed month, once', () async {
       final now = DateTime(2027, 3, 20);
       await runPlanExpiry(db, now);
-      final priya = await user('u_priya');
-      expect(priya.effectivePlanAt(now), 'plus');
-      expect(priya.planRenewsAt, DateTime(2027, 4, 6));
-      expect(await renewals('u_priya'), hasLength(5)); // Nov, Dec, Jan, Feb, Mar
-      expect(await renewals('u_arjun'), hasLength(1));
+      final arjun = await user('u_arjun');
+      expect(arjun.effectivePlanAt(now), 'plus');
+      expect(arjun.planRenewsAt, DateTime(2027, 4, 6));
+      expect(await renewals('u_arjun'), hasLength(5)); // Nov, Dec, Jan, Feb, Mar
+      expect(await renewals('u_priya'), hasLength(1));
 
       // A second run (the app reopened) changes nothing and pays nothing.
       expect(await runPlanExpiry(db, now), 0);
-      expect(await renewals('u_priya'), hasLength(5));
+      expect(await renewals('u_arjun'), hasLength(5));
     });
 
     test('with auto-renew off Plus ends, and an ended trial goes back to free', () async {

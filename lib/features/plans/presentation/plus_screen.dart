@@ -610,7 +610,7 @@ class _CardRings extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     // A 12rem circle centred 3rem in from the top right corner, with a
     // 2rem halo around it.
-    const r = Space.x3l * 2;
+    const r = Sizes.plusRing;
     final c = Offset(size.width - Space.x3l, Space.x3l);
     canvas.drawCircle(c, r + Space.lg, Paint()..style = PaintingStyle.stroke..strokeWidth = Space.xxl..color = halo);
     canvas.drawCircle(c, r, Paint()..style = PaintingStyle.stroke..strokeWidth = Strokes.strong..color = color);

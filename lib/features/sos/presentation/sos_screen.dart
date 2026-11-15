@@ -273,7 +273,7 @@ class _SosScreenState extends ConsumerState<SosScreen> {
                             minimumSize: const Size.square(Sizes.topControl),
                             fixedSize: const Size.square(Sizes.topControl),
                             padding: EdgeInsets.zero,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            tapTargetSize: MaterialTapTargetSize.padded,
                           ),
                           icon: Icon(Ph.navigationArrow, size: IconSizes.md, color: paw.textPrimary),
                         ),

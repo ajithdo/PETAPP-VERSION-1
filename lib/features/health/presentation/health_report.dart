@@ -342,13 +342,24 @@ class MedicalSummaryCard extends ConsumerWidget {
       padding: const EdgeInsets.all(Space.lg + Space.xxs),
       decoration: BoxDecoration(color: paw.band, borderRadius: BorderRadius.circular(Radii.xxl)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Row(children: [
-          const PawSetuLogo(size: IconSizes.md + Space.xs, onDark: true),
-          const SizedBox(width: Space.sm),
-          Expanded(child: Text(l.medCardBrand, style: small, maxLines: 1, overflow: TextOverflow.ellipsis)),
-          const SizedBox(width: Space.sm),
-          PawTag(l.worksOffline, kind: TagKind.onDark, icon: Ph.cloudCheckFill),
-        ]),
+        // The brand and "Works offline"; with big text the tag drops to its
+        // own line.
+        if (MediaQuery.textScalerOf(context).scale(1) > 1.3) ...[
+          Row(children: [
+            const PawSetuLogo(size: IconSizes.md + Space.xs, onDark: true),
+            const SizedBox(width: Space.sm),
+            Expanded(child: Text(l.medCardBrand, style: small, maxLines: 2, overflow: TextOverflow.ellipsis)),
+          ]),
+          const SizedBox(height: Space.sm),
+          Align(alignment: Alignment.centerLeft, child: PawTag(l.worksOffline, kind: TagKind.onDark, icon: Ph.cloudCheckFill)),
+        ] else
+          Row(children: [
+            const PawSetuLogo(size: IconSizes.md + Space.xs, onDark: true),
+            const SizedBox(width: Space.sm),
+            Expanded(child: Text(l.medCardBrand, style: small, maxLines: 1, overflow: TextOverflow.ellipsis)),
+            const SizedBox(width: Space.sm),
+            PawTag(l.worksOffline, kind: TagKind.onDark, icon: Ph.cloudCheckFill),
+          ]),
         const SizedBox(height: Space.md),
         Row(children: [
           PetAvatar(species: pet.species, colorTag: pet.colorTag, photoUrl: pet.photoUrl, size: Sizes.profileAvatarSm, name: pet.name),

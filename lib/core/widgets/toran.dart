@@ -402,7 +402,8 @@ class RoundButton extends StatelessWidget {
         minimumSize: Size.square(size),
         fixedSize: Size.square(size),
         padding: EdgeInsets.zero,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        // The circle is 44 px; the touch area around it is the full 48.
+        tapTargetSize: MaterialTapTargetSize.padded,
       ),
       icon: Icon(icon, size: IconSizes.md),
     );
@@ -540,7 +541,10 @@ class KvList extends StatelessWidget {
     }
     return LayoutBuilder(builder: (context, box) {
       final k = MediaQuery.textScalerOf(context).scale(1);
-      final w = (box.maxWidth * 0.38).clamp(Sizes.labelColumnSm * k, box.maxWidth * 0.5);
+      // Never more than half the row, even with very big text.
+      final half = box.maxWidth * 0.5;
+      final least = Sizes.labelColumnSm * k;
+      final w = least >= half ? half : (box.maxWidth * 0.38).clamp(least, half);
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         for (final (i, r) in rows.indexed) ...[
           if (i > 0) const SizedBox(height: Space.xs + Space.xxs),
@@ -627,7 +631,7 @@ class PersonDot extends StatelessWidget {
         height: size,
         alignment: Alignment.center,
         decoration: BoxDecoration(color: gold ? paw.marigold : context.tint.paper3, shape: BoxShape.circle),
-        child: Text(initials(name), style: context.text.titleSmall?.copyWith(fontSize: size * Sizes.personText, fontWeight: FontWeight.w700, color: gold ? paw.onMarigold : paw.textPrimary, height: 1)),
+        child: Text(initials(name), style: context.text.titleSmall?.copyWith(fontSize: size * Sizes.personText, fontWeight: FontWeight.w700, color: gold ? paw.onMarigold : paw.textPrimary, height: TypeScale.tightLineHeight)),
       ),
     );
   }
@@ -645,9 +649,9 @@ class SegText extends StatelessWidget {
   Widget build(BuildContext context) {
     final paw = context.paw;
     return Container(
-      padding: const EdgeInsets.all(Space.xs),
+      padding: const EdgeInsets.symmetric(horizontal: Space.xs),
       decoration: BoxDecoration(color: paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.xl)),
-      child: Wrap(spacing: Space.xxs, runSpacing: Space.xxs, children: [
+      child: Wrap(spacing: Space.xxs, children: [
         for (final (i, label) in items.indexed)
           Semantics(
             button: true,
@@ -656,16 +660,23 @@ class SegText extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(Radii.full),
               onTap: onChanged == null || i == index ? null : () => onChanged!(i),
-              child: AnimatedContainer(
-                duration: Motion.toggle,
-                constraints: const BoxConstraints(minHeight: Sizes.buttonSmall),
-                padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs, vertical: Space.sm),
-                decoration: BoxDecoration(
-                  color: i == index ? paw.surface : paw.surface.withValues(alpha: 0),
-                  borderRadius: BorderRadius.circular(Radii.full),
-                  boxShadow: i == index ? [BoxShadow(color: paw.ink.withValues(alpha: Opacities.chip), blurRadius: Space.xs - Strokes.hairline, offset: const Offset(0, Strokes.hairline))] : null,
+              // The pill is 36 px high; its touch area is the full 48.
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: TapTarget.min),
+                child: Center(
+                  widthFactor: 1,
+                  child: AnimatedContainer(
+                    duration: Motion.toggle,
+                    constraints: const BoxConstraints(minHeight: Sizes.buttonSmall),
+                    padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs, vertical: Space.sm),
+                    decoration: BoxDecoration(
+                      color: i == index ? paw.surface : paw.surface.withValues(alpha: 0),
+                      borderRadius: BorderRadius.circular(Radii.full),
+                      boxShadow: i == index ? [BoxShadow(color: paw.ink.withValues(alpha: Opacities.chip), blurRadius: Space.xs - Strokes.hairline, offset: const Offset(0, Strokes.hairline))] : null,
+                    ),
+                    child: Text(label, style: context.text.labelMedium?.copyWith(color: i == index ? paw.textPrimary : paw.textSecondary)),
+                  ),
                 ),
-                child: Text(label, style: context.text.labelMedium?.copyWith(color: i == index ? paw.textPrimary : paw.textSecondary)),
               ),
             ),
           ),
@@ -688,7 +699,7 @@ class SegIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     final paw = context.paw;
     return Container(
-      padding: const EdgeInsets.all(Space.xs),
+      padding: const EdgeInsets.symmetric(horizontal: Space.xs),
       decoration: BoxDecoration(color: paw.surfaceSubtle, borderRadius: BorderRadius.circular(Radii.full)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         for (final (i, it) in items.indexed)
@@ -702,16 +713,23 @@ class SegIcons extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(Radii.full),
                 onTap: () => onChanged(i),
-                child: AnimatedContainer(
-                  duration: Motion.toggle,
-                  height: Sizes.buttonSmall,
-                  padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs),
-                  decoration: BoxDecoration(
-                    color: i == index ? paw.surface : paw.surface.withValues(alpha: 0),
-                    borderRadius: BorderRadius.circular(Radii.full),
-                    boxShadow: i == index ? [BoxShadow(color: paw.ink.withValues(alpha: Opacities.chip), blurRadius: Space.xs - Strokes.hairline, offset: const Offset(0, Strokes.hairline))] : null,
+                // The pill is 36 px high; its touch area is the full 48.
+                child: SizedBox(
+                  height: TapTarget.min,
+                  child: Center(
+                    widthFactor: 1,
+                    child: AnimatedContainer(
+                      duration: Motion.toggle,
+                      height: Sizes.buttonSmall,
+                      padding: const EdgeInsets.symmetric(horizontal: Space.md + Space.xxs),
+                      decoration: BoxDecoration(
+                        color: i == index ? paw.surface : paw.surface.withValues(alpha: 0),
+                        borderRadius: BorderRadius.circular(Radii.full),
+                        boxShadow: i == index ? [BoxShadow(color: paw.ink.withValues(alpha: Opacities.chip), blurRadius: Space.xs - Strokes.hairline, offset: const Offset(0, Strokes.hairline))] : null,
+                      ),
+                      child: Icon(it.$1, size: IconSizes.sm + Space.xxs, color: i == index ? paw.textPrimary : paw.textSecondary),
+                    ),
                   ),
-                  child: Icon(it.$1, size: IconSizes.sm + Space.xxs, color: i == index ? paw.textPrimary : paw.textSecondary),
                 ),
               ),
             ),
