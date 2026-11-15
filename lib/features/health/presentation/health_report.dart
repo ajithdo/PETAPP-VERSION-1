@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/theme/tokens.dart';
@@ -14,6 +15,7 @@ import '../../pets/presentation/pet_labels.dart';
 import '../../routine/data/routine_repository.dart';
 import '../../routine/domain/routine.dart';
 import '../../shell/presentation/sos_launcher.dart';
+import '../../sos/presentation/lost_screens.dart' show petTagUrl;
 import '../data/health_repository.dart';
 import '../domain/vaccine_schedule.dart';
 import 'health_labels.dart';
@@ -393,7 +395,19 @@ class MedicalSummaryCard extends ConsumerWidget {
           (l.owner, [user?.name ?? '', user?.phone ?? ''].where((x) => x.isNotEmpty).join('\n'), null),
         ]),
         Padding(padding: const EdgeInsets.symmetric(vertical: Space.md + Space.xxs), child: Divider(height: Strokes.hairline, color: line)),
-        Text(l.medicalCardUpdated(Fmt.dateTime(now, lang)), style: context.text.labelSmall?.copyWith(color: paw.onBandMuted, fontWeight: FontWeight.w500)),
+        // When it was last brought up to date, and the pet's own QR (the one
+        // on the collar tag) for anyone who needs to reach the family.
+        Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+          Expanded(child: Text(l.medicalCardUpdated(Fmt.dateTime(now, lang)), style: context.text.labelSmall?.copyWith(color: paw.onBandMuted, fontWeight: FontWeight.w500))),
+          if (pet.qrToken != null) ...[
+            const SizedBox(width: Space.md),
+            Container(
+              padding: const EdgeInsets.all(Space.xs),
+              decoration: BoxDecoration(color: PrintColors.paper, borderRadius: BorderRadius.circular(Radii.xs)),
+              child: QrImageView(data: petTagUrl(pet.qrToken!), size: Sizes.tileXl - Space.sm, padding: EdgeInsets.zero, backgroundColor: PrintColors.paper, semanticsLabel: l.qrForPet(pet.name)),
+            ),
+          ],
+        ]),
       ]),
     );
   }

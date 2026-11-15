@@ -114,7 +114,7 @@ class _LockScreenState extends ConsumerState<_LockScreen> {
     return _GateFrame(children: [
       const _ArchLock(),
       const SizedBox(height: Space.md),
-      Semantics(header: true, child: Text(l.vaultLockedTitle, style: context.text.titleLarge, textAlign: TextAlign.center)),
+      Semantics(header: true, child: Text(l.vaultLockedTitle, style: context.text.headlineMedium, textAlign: TextAlign.center)),
       const SizedBox(height: Space.xs),
       Text(l.vaultLockedBody, style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary), textAlign: TextAlign.center),
       const SizedBox(height: Space.lg),
@@ -139,7 +139,7 @@ class _LockScreenState extends ConsumerState<_LockScreen> {
       const SizedBox(height: Space.sm),
       TextButton(onPressed: _forgot, child: Text(l.vaultForgotPin)),
       const SizedBox(height: Space.sm),
-      Text(l.vaultAutoLockNote, style: context.text.bodySmall, textAlign: TextAlign.center),
+      const _LockNote(),
     ]);
   }
 }
@@ -162,12 +162,12 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
     return _GateFrame(children: [
       const _ArchLock(),
       const SizedBox(height: Space.md),
-      Semantics(header: true, child: Text(l.vaultSetupTitle, style: context.text.titleLarge, textAlign: TextAlign.center)),
+      Semantics(header: true, child: Text(l.vaultSetupTitle, style: context.text.headlineMedium, textAlign: TextAlign.center)),
       const SizedBox(height: Space.xs),
       Text(bio ? l.vaultSetupBodyBio : l.vaultSetupBody,
           style: context.text.bodyMedium?.copyWith(color: context.paw.textSecondary), textAlign: TextAlign.center),
       const SizedBox(height: Space.lg),
-      Text(_first == null ? l.vaultChoosePin : l.vaultConfirmPin, style: context.text.titleSmall),
+      Text(_first == null ? l.vaultChoosePin : l.vaultConfirmPin, style: context.text.labelLarge),
       const SizedBox(height: Space.sm),
       PinPad(
         key: ValueKey(_first == null),
@@ -207,39 +207,116 @@ class _SetupPinScreenState extends ConsumerState<_SetupPinScreen> {
         ),
       ],
       const SizedBox(height: Space.md),
-      Text(l.vaultAutoLockNote, style: context.text.bodySmall, textAlign: TextAlign.center),
+      const _LockNote(),
     ]);
   }
 }
 
-/// The vault's picture: a dark arched door with a marigold keyhole.
+/// The vault's picture (from the UI Design 6 kit): a dark arched door on a
+/// pale marigold circle, with a marigold line inside it and a keyhole.
 class _ArchLock extends StatelessWidget {
   const _ArchLock();
 
   @override
   Widget build(BuildContext context) {
     final paw = context.paw;
-    const w = Sizes.illustrationSm * 0.5;
     return ExcludeSemantics(
-      child: Container(
-        width: Sizes.illustrationSm,
-        height: Sizes.illustrationSm,
-        alignment: Alignment.bottomCenter,
-        decoration: BoxDecoration(color: paw.accentContainer, shape: BoxShape.circle),
-        child: Container(
-          width: w,
-          height: w * 1.2,
-          margin: const EdgeInsets.only(bottom: Space.md),
-          decoration: ShapeDecoration(color: PawColors.light.band, shape: archShape(w)),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const SizedBox(height: Space.md),
-            Container(width: Space.md, height: Space.md, decoration: BoxDecoration(color: paw.marigold, shape: BoxShape.circle)),
-            Container(width: Space.sm, height: Space.md, color: paw.marigold),
-          ]),
-        ),
+      child: CustomPaint(
+        size: const Size.square(Sizes.illustrationSm),
+        painter: _ArchLockPainter(wash: paw.accentContainer, door: PawColors.light.band, gold: paw.marigold),
       ),
     );
   }
+}
+
+class _ArchLockPainter extends CustomPainter {
+  _ArchLockPainter({required this.wash, required this.door, required this.gold});
+  final Color wash;
+  final Color door;
+  final Color gold;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Drawn in the kit's 120 × 120 box.
+    canvas.scale(size.shortestSide / 120);
+    final dark = Paint()..color = door;
+    final g = Paint()..color = gold;
+    canvas.drawCircle(const Offset(60, 62), 54, Paint()..color = wash);
+    canvas.drawPath(
+      Path()
+        ..moveTo(30, 104)
+        ..lineTo(30, 56)
+        ..arcToPoint(const Offset(90, 56), radius: const Radius.circular(30))
+        ..lineTo(90, 104)
+        ..close(),
+      dark,
+    );
+    canvas.drawPath(
+      Path()
+        ..moveTo(38, 104)
+        ..lineTo(38, 57)
+        ..arcToPoint(const Offset(82, 57), radius: const Radius.circular(22))
+        ..lineTo(82, 104),
+      Paint()
+        ..color = gold
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.5,
+    );
+    canvas.drawCircle(const Offset(60, 68), 7, g);
+    canvas.drawPath(Path()..moveTo(57, 72)..lineTo(63, 72)..lineTo(65.5, 86)..lineTo(54.5, 86)..close(), g);
+    canvas.drawRRect(RRect.fromRectAndRadius(const Rect.fromLTWH(22, 102, 76, 6), const Radius.circular(3)), dark);
+  }
+
+  @override
+  bool shouldRepaint(_ArchLockPainter o) => o.wash != wash || o.door != door || o.gold != gold;
+}
+
+/// One digit of the PIN: a ring that fills with marigold. The two optional
+/// digits (a PIN can be 4 to 6 long) have a dashed ring until they're used.
+class _PinDot extends StatelessWidget {
+  const _PinDot({required this.filled, required this.optional});
+  final bool filled;
+  final bool optional;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    return CustomPaint(
+      size: const Size.square(Sizes.pinDot),
+      painter: _PinDotPainter(fill: filled ? paw.marigold : null, ring: optional && !filled ? context.tint.line2 : paw.textPrimary, dashed: optional && !filled),
+    );
+  }
+}
+
+class _PinDotPainter extends CustomPainter {
+  _PinDotPainter({required this.fill, required this.ring, required this.dashed});
+  final Color? fill;
+  final Color ring;
+  final bool dashed;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = size.center(Offset.zero);
+    final r = size.shortestSide / 2 - Strokes.focus / 2;
+    if (fill != null) canvas.drawCircle(c, r, Paint()..color = fill!);
+    final line = Paint()
+      ..color = ring
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = Strokes.focus;
+    if (!dashed) {
+      canvas.drawCircle(c, r, line);
+      return;
+    }
+    // Six short strokes around the ring.
+    const n = 6;
+    const turn = 6.283185307179586 / n;
+    for (var i = 0; i < n; i++) {
+      canvas.drawArc(Rect.fromCircle(center: c, radius: r), i * turn, turn * 0.55, false, line);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_PinDotPainter o) => o.fill != fill || o.ring != ring || o.dashed != dashed;
 }
 
 /// Number pad for 4–6 digit PINs. Also takes digits, Backspace and Enter
@@ -324,17 +401,9 @@ class _PinPadState extends State<PinPad> {
           liveRegion: true,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             for (var i = 0; i < widget.maxLength; i++)
-              AnimatedContainer(
-                duration: Motion.toggle,
-                margin: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs),
-                width: Sizes.pinDot,
-                height: Sizes.pinDot,
-                // Filled dots are marigold; the two optional digits are faint.
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: i < _pin.length ? context.paw.marigold : Colors.transparent,
-                  border: Border.all(color: i < 4 || i < _pin.length ? context.paw.textPrimary : context.paw.controlBorder.withValues(alpha: Opacities.muted), width: Strokes.focus),
-                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: Space.xs + Space.xxs),
+                child: _PinDot(filled: i < _pin.length, optional: i >= 4),
               ),
           ]),
         ),
@@ -387,12 +456,15 @@ class _PadKey extends StatelessWidget {
         enabled: enabled,
         label: semantic,
         excludeSemantics: true,
-        // UI Design 6: arched keys, like small doorways.
-        child: Material(
+        // UI Design 6: arched keys, like small doorways: white, lifted by a
+        // soft shadow.
+        child: DecoratedBox(
+          decoration: icon != null ? const BoxDecoration() : ShapeDecoration(shape: archShape(Sizes.pinKey), shadows: Shadows.card(context.paw.ink)),
+          child: Material(
           color: icon != null ? Colors.transparent : bg,
           elevation: 0,
           shadowColor: Colors.transparent,
-          shape: archShape(Sizes.pinKey, icon != null || Theme.of(context).brightness == Brightness.dark ? BorderSide.none : BorderSide(color: context.paw.outline)),
+          shape: archShape(Sizes.pinKey),
           child: InkWell(
             customBorder: archShape(Sizes.pinKey),
             onTap: enabled ? onTap : null,
@@ -405,6 +477,7 @@ class _PadKey extends StatelessWidget {
                     : Text(label!, style: context.text.headlineSmall?.copyWith(color: enabled ? fg : context.paw.textSecondary)),
               ),
             ),
+          ),
           ),
         ),
       ),
@@ -523,6 +596,24 @@ class _ChangePinScreenState extends ConsumerState<_ChangePinScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// "Locks itself after 2 minutes…" with a small lock before it.
+class _LockNote extends StatelessWidget {
+  const _LockNote();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.paw.textSecondary;
+    return Text.rich(
+      TextSpan(children: [
+        WidgetSpan(alignment: PlaceholderAlignment.middle, child: Icon(Ph.lockKey, size: IconSizes.xs, color: c)),
+        TextSpan(text: ' ${context.l10n.vaultLockNote}'),
+      ]),
+      style: context.text.bodySmall?.copyWith(color: c),
+      textAlign: TextAlign.center,
     );
   }
 }

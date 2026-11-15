@@ -11423,4 +11423,8 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get latestActivity => 'हाल की गतिविधि';
+
+  @override
+  String get vaultLockNote =>
+      '2 मिनट बाद अपने आप लॉक हो जाता है। PIN भूल गए? रीसेट करने के लिए दोबारा साइन इन करें।';
 }

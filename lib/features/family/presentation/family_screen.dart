@@ -11,6 +11,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../pets/data/pets_repository.dart';
 import '../../pets/domain/pet.dart';
 import '../../pets/presentation/pet_labels.dart';
+import '../../plans/domain/plan_rules.dart';
 import '../../plans/presentation/plus_prompt.dart';
 import '../data/family_repository.dart';
 import '../../../core/theme/ph.dart';
@@ -76,6 +77,22 @@ class _FamilyScreenState extends ConsumerState<FamilyScreen> {
             ),
             for (final p in ordered) _PetMembersCard(pet: p, user: user),
             if (pets.isEmpty) EmptyState(title: l.noPetsTitle, compact: true),
+            // A sitter or walker for a few days: Carer access with an end date.
+            if (ordered.any((p) => p.canEdit(user.uid))) ...[
+              const SizedBox(height: Space.lg),
+              PawPanel(
+                padding: PawPanel.listPadding,
+                child: PawItem(
+                  lead: const PawTile(icon: Ph.calendarX, tone: Tone.gold),
+                  title: l.familyAway,
+                  sub: l.familyAwayBody,
+                  subMaxLines: 4,
+                  onTap: () => _inviteTo(context, ref, ordered.firstWhere((p) => p.canEdit(user.uid)), user, sitter: true),
+                ),
+              ),
+            ],
+            if (pets.isNotEmpty) Builder(builder: (context) => _LatestActivity(pets: pets, user: user, onSeeAll: () => DefaultTabController.of(context).animateTo(1))),
+            const SizedBox(height: Space.xl),
           ]),
           _ActivityFeed(petIds: pets.map((p) => p.id).toList(), pets: pets),
         ]),
@@ -133,7 +150,7 @@ class _PetMembersCard extends ConsumerWidget {
     final l = context.l10n;
     final canManage = pet.canEdit(user.uid);
     final sent = ref.watch(sentInvitesProvider(pet.id)).value ?? const [];
-    final others = pet.members.entries.where((e) => e.key != pet.ownerId).toList();
+    final limit = (ref.watch(planLimitsProvider)['family'] as num?)?.toInt() ?? 2;
     final paw = context.paw;
     String does(String uid, String role) => uid == pet.ownerId
         ? l.roleOwnerDoes
@@ -153,10 +170,10 @@ class _PetMembersCard extends ConsumerWidget {
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text(pet.name, style: context.text.labelLarge),
-                Text(l.peopleCount(pet.members.length), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
+                Text(isUnlimited(limit) ? l.peopleCount(pet.members.length) : l.peopleOf(pet.members.length, pet.members.length > limit ? pet.members.length : limit), style: context.text.bodySmall?.copyWith(color: paw.textSecondary)),
               ]),
             ),
-            if (canManage) PawButton(label: l.invite, icon: Ph.userPlus, onPressed: () => _invite(context, ref, others.length)),
+            if (canManage) PawButton(label: l.invite, icon: Ph.userPlus, onPressed: () => _inviteTo(context, ref, pet, user)),
           ]),
           const SizedBox(height: Space.sm),
           // People are circles with initials (the owner's is ink): the name,
@@ -223,65 +240,72 @@ class _PetMembersCard extends ConsumerWidget {
     if (result != null) await repo.changeRole(pet.id, uid, result.role, result.expiresAt, user);
   }
 
-  Future<void> _invite(BuildContext context, WidgetRef ref, int currentOthers) async {
-    final l = context.l10n;
-    final limit = (ref.read(planLimitsProvider)['family'] as num?)?.toInt() ?? 2;
-    if (currentOthers >= limit) {
-      await showPlusPrompt(context, title: l.familyLimitTitle(limit), body: l.familyLimitBody);
-      return;
-    }
-    final result = await _InviteSheet.show(context, pet);
-    if (result == null) return;
-    final inv = await ref.read(familyRepositoryProvider).invite(
-          petId: pet.id,
-          petName: pet.name,
-          from: user,
-          role: result.role,
-          contact: result.contact,
-          expiresAt: result.expiresAt,
-        );
-    if (!context.mounted) return;
-    if (result.contact == null) {
-      final link = 'https://pawsetu.app/#/join/${inv.token}';
-      await showPawSheet<void>(context, builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Text(l.inviteLinkReady, style: ctx.text.titleMedium),
-            const SizedBox(height: Space.md),
-            SelectableText(link, style: ctx.text.bodyMedium),
-            const SizedBox(height: Space.md),
-            PrimaryButton(
-              label: l.share,
-              icon: Ph.shareNetwork,
-              onPressed: () => SharePlus.instance.share(ShareParams(text: l.inviteShareText(pet.name, link))),
-            ),
-            const SizedBox(height: Space.sm),
-            SecondaryButton(
-              label: l.copyLink,
-              icon: Ph.copy,
-              onPressed: () {
-                Clipboard.setData(ClipboardData(text: link));
-                Navigator.pop(ctx);
-                showToast(context, l.copied);
-              },
-            ),
-          ]));
-    } else {
-      showToast(context, l.inviteSent(result.contact!));
-    }
+}
+
+/// Invites someone to help with [pet]. [sitter] opens the sheet set to
+/// Carer access with an end date ("Going away?").
+Future<void> _inviteTo(BuildContext context, WidgetRef ref, Pet pet, AppUser user, {bool sitter = false}) async {
+final currentOthers = pet.members.keys.where((k) => k != pet.ownerId).length;
+  final l = context.l10n;
+  final limit = (ref.read(planLimitsProvider)['family'] as num?)?.toInt() ?? 2;
+  if (currentOthers >= limit) {
+    await showPlusPrompt(context, title: l.familyLimitTitle(limit), body: l.familyLimitBody);
+    return;
+  }
+  final result = await _InviteSheet.show(context, pet, sitter: sitter);
+  if (result == null) return;
+  final inv = await ref.read(familyRepositoryProvider).invite(
+        petId: pet.id,
+        petName: pet.name,
+        from: user,
+        role: result.role,
+        contact: result.contact,
+        expiresAt: result.expiresAt,
+      );
+  if (!context.mounted) return;
+  if (result.contact == null) {
+    final link = 'https://pawsetu.app/#/join/${inv.token}';
+    await showPawSheet<void>(context, builder: (ctx) => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Text(l.inviteLinkReady, style: ctx.text.titleMedium),
+          const SizedBox(height: Space.md),
+          SelectableText(link, style: ctx.text.bodyMedium),
+          const SizedBox(height: Space.md),
+          PrimaryButton(
+            label: l.share,
+            icon: Ph.shareNetwork,
+            onPressed: () => SharePlus.instance.share(ShareParams(text: l.inviteShareText(pet.name, link))),
+          ),
+          const SizedBox(height: Space.sm),
+          SecondaryButton(
+            label: l.copyLink,
+            icon: Ph.copy,
+            onPressed: () {
+              Clipboard.setData(ClipboardData(text: link));
+              Navigator.pop(ctx);
+              showToast(context, l.copied);
+            },
+          ),
+        ]));
+  } else {
+    showToast(context, l.inviteSent(result.contact!));
   }
 }
 
 typedef _InviteResult = ({String? contact, String role, DateTime? expiresAt});
 
 class _InviteSheet extends StatefulWidget {
-  const _InviteSheet({required this.pet});
+  const _InviteSheet({required this.pet, this.sitter = false});
   final Pet pet;
 
-  static Future<_InviteResult?> show(BuildContext context, Pet pet) => showModalBottomSheet<_InviteResult>(
+  /// Start on Carer access with an end date.
+  final bool sitter;
+
+  static Future<_InviteResult?> show(BuildContext context, Pet pet, {bool sitter = false}) => showModalBottomSheet<_InviteResult>(
         context: context,
         isScrollControlled: true,
         useSafeArea: true,
         constraints: const BoxConstraints(maxWidth: Sizes.sheetMaxWidth),
-        builder: (_) => _InviteSheet(pet: pet),
+        builder: (_) => _InviteSheet(pet: pet, sitter: sitter),
       );
 
   @override
@@ -291,7 +315,7 @@ class _InviteSheet extends StatefulWidget {
 class _InviteSheetState extends State<_InviteSheet> {
   String _how = 'phone';
   String _role = 'carer';
-  bool _sitter = false;
+  late bool _sitter = widget.sitter;
   DateTime _until = DateTime.now().add(const Duration(days: 3));
   final _contact = TextEditingController();
   String? _error;
@@ -435,6 +459,7 @@ class _ActivityFeed extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
+    final user = ref.watch(currentUserProvider);
     final stream = ref.watch(_activityProvider(petIds.join(',')));
     return AsyncView(
       value: stream,
@@ -442,22 +467,96 @@ class _ActivityFeed extends ConsumerWidget {
         if (items.isEmpty) return EmptyState(title: l.noActivityTitle, message: l.noActivityBody, scene: Scene.chat);
         return PageBody(maxWidth: Space.readingWidth, children: [
           const SizedBox(height: Space.md),
-          for (final a in items)
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: _petAvatar(a.petId),
-              title: Text(activityText(context, a, pets)),
-              subtitle: Text(Fmt.dateTime(a.createdAt, context.lang)),
-            ),
+          for (final (i, a) in items.indexed) _ActivityRow(item: a, pets: pets, me: user, first: i == 0, last: i == items.length - 1),
+          const SizedBox(height: Space.xl),
         ]);
       },
     );
   }
+}
 
-  Widget _petAvatar(String petId) {
-    final p = pets.where((p) => p.id == petId).firstOrNull;
-    if (p == null) return const CircleAvatar(child: Icon(Ph.pawPrint));
-    return PetAvatar(species: p.species, colorTag: p.colorTag, photoUrl: p.photoUrl, size: Sizes.avatarSm);
+/// The last few things anyone did, under the people; "See all" opens the
+/// Activity tab.
+class _LatestActivity extends ConsumerWidget {
+  const _LatestActivity({required this.pets, required this.user, required this.onSeeAll});
+  final List<Pet> pets;
+  final AppUser user;
+  final VoidCallback onSeeAll;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final items = (ref.watch(_activityProvider(pets.map((p) => p.id).join(','))).value ?? const <ActivityItem>[]).take(4).toList();
+    if (items.isEmpty) return const SizedBox.shrink();
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      const SizedBox(height: Sizes.sectionGap),
+      SecHead(context.l10n.latestActivity, action: context.l10n.seeAll, onAction: onSeeAll),
+      for (final (i, a) in items.indexed) _ActivityRow(item: a, pets: pets, me: user, first: i == 0, last: i == items.length - 1),
+    ]);
+  }
+}
+
+/// One thing someone did: when, who (their initials, joined to the next by
+/// a short line) and what, with the person's name in bold.
+class _ActivityRow extends StatelessWidget {
+  const _ActivityRow({required this.item, required this.pets, required this.me, this.first = false, this.last = false});
+  final ActivityItem item;
+  final List<Pet> pets;
+  final AppUser? me;
+  final bool first;
+  final bool last;
+
+  @override
+  Widget build(BuildContext context) {
+    final paw = context.paw;
+    final a = item;
+    final text = activityText(context, a, pets);
+    final who = a.actorName.split(' ').first;
+    final mine = me != null && a.actorName == me!.name;
+    final today = Fmt.sameDay(a.createdAt, DateTime.now());
+    final small = context.text.labelSmall?.copyWith(color: paw.textSecondary, fontWeight: FontWeight.w500);
+    return Semantics(
+      container: true,
+      label: '${Fmt.dateTime(a.createdAt, context.lang)}. $text',
+      excludeSemantics: true,
+      child: IntrinsicHeight(
+        child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          SizedBox(
+            width: Sizes.timelineTime,
+            child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end, children: [
+              Text(Fmt.time(a.createdAt, context.lang), style: small, textAlign: TextAlign.right),
+              Text(today ? context.l10n.today.toLowerCase() : Fmt.dateShort(a.createdAt, context.lang), style: small, textAlign: TextAlign.right),
+            ]),
+          ),
+          const SizedBox(width: Space.md),
+          Column(children: [
+            Expanded(child: Container(width: Strokes.focus, color: first ? null : paw.outline)),
+            Container(
+              width: Sizes.buttonSmall,
+              height: Sizes.buttonSmall,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(color: mine ? paw.textPrimary : context.tint.paper3, shape: BoxShape.circle),
+              child: Text(initials(a.actorName), style: context.text.labelMedium?.copyWith(color: mine ? paw.background : paw.textPrimary, fontWeight: FontWeight.w700)),
+            ),
+            Expanded(child: Container(width: Strokes.focus, color: last ? null : paw.outline)),
+          ]),
+          const SizedBox(width: Space.md),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: Space.md),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: who.isNotEmpty && text.startsWith(who)
+                    ? Text.rich(TextSpan(children: [
+                        TextSpan(text: who, style: const TextStyle(fontWeight: FontWeight.w700)),
+                        TextSpan(text: text.substring(who.length)),
+                      ]), style: context.text.bodyMedium)
+                    : Text(text, style: context.text.bodyMedium),
+              ),
+            ),
+          ),
+        ]),
+      ),
+    );
   }
 }
 

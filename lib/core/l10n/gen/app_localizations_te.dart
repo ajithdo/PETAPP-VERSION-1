@@ -11455,4 +11455,8 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get latestActivity => 'తాజా కార్యకలాపాలు';
+
+  @override
+  String get vaultLockNote =>
+      '2 నిమిషాల తర్వాత తానే లాక్ అవుతుంది. PIN మర్చిపోయారా? రీసెట్ చేయడానికి మళ్ళీ సైన్ ఇన్ చేయండి.';
 }

@@ -8432,5 +8432,6 @@
   },
   "familyAway": "Going away?",
   "familyAwayBody": "Give a pet sitter or walker Carer access that ends by itself on a date you choose.",
-  "latestActivity": "Latest activity"
+  "latestActivity": "Latest activity",
+  "vaultLockNote": "Locks itself after 2 minutes. Forgot your PIN? Sign in again to reset it."
 }

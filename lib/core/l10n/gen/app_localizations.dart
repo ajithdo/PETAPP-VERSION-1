@@ -19533,6 +19533,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Latest activity'**
   String get latestActivity;
+
+  /// No description provided for @vaultLockNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Locks itself after 2 minutes. Forgot your PIN? Sign in again to reset it.'**
+  String get vaultLockNote;
 }
 
 class _AppLocalizationsDelegate

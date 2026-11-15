@@ -11892,4 +11892,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get latestActivity => 'Latest activity';
+
+  @override
+  String get vaultLockNote =>
+      'Locks itself after 2 minutes. Forgot your PIN? Sign in again to reset it.';
 }
